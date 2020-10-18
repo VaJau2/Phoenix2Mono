@@ -1,0 +1,34 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.458824, 0.501961, 0.458824, 1 )
+sky_horizon_color = Color( 0.705882, 0.733333, 0.65098, 1 )
+ground_bottom_color = Color( 0.509804, 0.462745, 0.34902, 1 )
+ground_horizon_color = Color( 0.521569, 0.47451, 0.384314, 1 )
+sun_color = Color( 1, 0.913725, 0.780392, 1 )
+sun_latitude = 15.0
+sun_energy = 0.7
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 75.0
+background_energy = 0.2
+ambient_light_color = Color( 0.298039, 0.298039, 0.301961, 1 )
+ambient_light_energy = 0.5
+ambient_light_sky_contribution = 0.69
+fog_enabled = true
+fog_color = Color( 0.286275, 0.564706, 0.247059, 0.0156863 )
+fog_sun_color = Color( 0, 0, 0, 1 )
+fog_sun_amount = 0.1
+fog_depth_begin = 15.0
+fog_depth_curve = 1.03527
+fog_transmit_enabled = true
+fog_transmit_curve = 0.840897
+fog_height_min = -5.0
+fog_height_max = 15.0
+fog_height_curve = 1.07177
+tonemap_mode = 2
+ssao_enabled = true
+dof_blur_far_distance = 120.3
+dof_blur_far_quality = 0

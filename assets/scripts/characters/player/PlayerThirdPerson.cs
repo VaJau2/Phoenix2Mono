@@ -1,0 +1,195 @@
+using Godot;
+using System;
+
+public class PlayerThirdPerson : Spatial
+{
+    const int BUTTON_WHEEL_UP = 4;
+    const int BUTTON_WHEEL_DOWN = 5;
+
+    private Camera thirdCamera;
+    private Camera firstCamera;
+
+    private Player player;
+    private Control eyePartsInterface;
+
+    private Vector3 third = new Vector3(2.5f, 0.4f, 4.2f);
+    private Vector3 thirdMin = new Vector3(1.75f, 0.35f, 3.5f);
+    private Vector3 thirdMax = new Vector3(2.75f, 0.45f, 5.2f);
+    private Vector3 tempThird = new Vector3(2.5f, 0.4f, 4.2f);
+
+    private RayCast ray;
+    private bool seePlayer = false;
+    private Vector3 oldThird;
+
+    private bool mayChange = true;
+
+    private void setThirdView(bool on) 
+    {
+        firstCamera.Current = !on;
+        thirdCamera.Current = on;
+        player.ThirdView = on;
+        ray.Enabled = on;
+        eyePartsInterface.Visible = !on;
+    }
+
+    private float updateSide(float delta, float side, string keyUp,
+        string keyDown, float maxValue, float minValue, float usualValue) 
+        {
+            if (Input.IsActionPressed(keyUp)) {
+                side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
+
+            } else if (Input.IsActionPressed(keyDown)) {
+                side = Mathf.MoveToward(side, minValue, delta * 1.5f);
+
+            } else {
+                side = Mathf.MoveToward(side, usualValue, delta * 1.5f);
+            }
+            return side;
+        }
+
+    private void UpdateThirdCameraPos(float delta)
+    {
+        tempThird.x = updateSide(delta, tempThird.x, "ui_left", "ui_right",
+            third.x + 0.7f, third.x - 0.7f, third.x);
+        tempThird.z = updateSide(delta, tempThird.z, "ui_up", "ui_down",
+            third.z + 0.5f, third.z - 0.5f, third.z);
+        
+        if (player is Player_Pegasus) {
+            var pegasus = player as Player_Pegasus;
+
+            if(pegasus.IsFlying) {
+                tempThird.y = updateSide(delta, tempThird.y, "jump", "ui_shift",
+                    third.y + 0.7f, third.y - 0.7f, third.y);
+            } else {
+                tempThird.y = third.y;
+            }
+        } else {
+            tempThird.y = third.y;
+        }
+
+        thirdCamera.Translation = tempThird;
+    }
+    
+    private void checkCameraSee() 
+    {
+        ray.Enabled = true;
+        var dir = player.GlobalTransform.origin - ray.GlobalTransform.origin;
+        ray.CastTo = dir;
+
+        Transform rayTransf = ray.GlobalTransform;
+        rayTransf.basis = new Basis(Vector3.Zero);
+        ray.GlobalTransform = rayTransf;
+
+        if (ray.IsColliding()) {
+            var collider = ray.GetCollider() as Node;
+            if (collider.Name == "Player") {
+                seePlayer = true;
+            } else {
+                oldThird = third;
+                seePlayer = false;
+            }
+        }
+    }
+
+    private void closeCamera() 
+    {
+        if (third.x > thirdMin.x) {
+            third.x -= 0.05f;
+        }
+        if (third.y > thirdMin.y) {
+            third.y -= 0.01f;
+        }
+        if (third.z > thirdMin.z) {
+            third.z -= 0.1f;
+        }
+
+        if (third.x <= thirdMin.x &&
+            third.y <= thirdMin.y &&
+            third.z <= thirdMin.z) {
+                if (player.ThirdView) {
+                    setThirdView(false);
+                }
+            }
+    }
+
+    private void farCamera() 
+    {
+        if (!player.ThirdView) {
+            setThirdView(true);
+            third = thirdMin;
+            tempThird = third;
+        }
+
+        if (third.x < thirdMax.x) {
+            third.x += 0.05f;
+        }
+        if (third.y < thirdMax.y) {
+            third.y += 0.01f;
+        }
+        if (third.z < thirdMax.z) {
+            third.z += 0.1f;
+        }
+    }
+
+    public override void _Ready()
+    {
+        eyePartsInterface = GetNode<Control>("/root/Main/Scene/canvas/eyesParts");
+        firstCamera = GetNode<Camera>("../rotation_helper/camera");
+        thirdCamera = GetNode<Camera>("camera");
+        ray = GetNode<RayCast>("camera/RayCast");
+        player = GetParent<Player>();
+    }
+
+    public override void _Process(float delta)
+    {
+        if (mayChange && Input.IsActionJustPressed("changeView")) {
+            if (oldThird != Vector3.Zero) {
+                oldThird = Vector3.Zero;
+            } else {
+                setThirdView(!player.ThirdView);
+            }
+        }
+
+        if (player.ThirdView) {
+            UpdateThirdCameraPos(delta);
+            checkCameraSee();
+
+            if (!seePlayer) {
+                closeCamera();
+            } else {
+                if (oldThird != Vector3.Zero) {
+                    if (oldThird.x > third.x) {
+                        farCamera();
+                    } else {
+                        oldThird = Vector3.Zero;
+                    }
+                }
+            }
+        } else {
+            if (oldThird != Vector3.Zero) {
+                checkCameraSee();
+                if (seePlayer) {
+                    farCamera();
+                    oldThird = Vector3.Zero;
+                }
+            }
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (mayChange && @event is InputEventMouseButton) {
+            var mouseEvent = @event as InputEventMouseButton;
+
+            if (mouseEvent.IsPressed()) {
+                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_UP) {
+                    closeCamera();
+                    oldThird = Vector3.Zero;
+                }
+                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_DOWN) {
+                    farCamera();
+                }
+            }
+        }
+    }
+}

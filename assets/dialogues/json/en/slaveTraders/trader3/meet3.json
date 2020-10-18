@@ -1,0 +1,131 @@
+{
+	"0": {
+		"left": "strikely/shy-smile_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "You came to me again? Do you really like me too?"],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/serious",
+		
+		"phrase": ["right", "Trust me, I've got a lot of sins. I'm not as good as you are."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/shy-smile_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Although I must admit, your attention makes my heart race..."],
+		"answers": [
+			["[wink]", "3"],
+			["[leave]", "16"]
+		]
+	},
+	"3": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/suprised",
+		
+		"text": "[you are winking to the mare; seems like, she didn't expect that.]",
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/suprised_talk",
+		
+		"phrase": ["right", "You ... you've just winked to me, right? Was it my imagination?"],
+		"answers": [
+			["[flirt]", "5"],
+			["[leave]", "16"]
+		]
+	},
+	"5": {
+		"left": "strikely/shy-flirt_collared",
+		"right": "trader3/suprised",
+		
+		"text": "[You're casually stretching, displaying your bottom and hoping that nobopy else is watching at you.]",
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Oh, it was a low blow, darling..."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "For a rematch I will have to try very hard..."],
+		"tonode": "8"
+	},
+	"8": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/serious",
+		
+		"phrase": ["right", "Oh...what am I saiyng... You're untouchable!"],
+		"tonode": "9"
+	},
+	"9": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/sad_talk",
+		
+		"phrase": ["right", "I'll be killed, if I do anything to you!"],
+		"answers": [
+			["[wink again]", "10"],
+			["[leave]", "16"]
+		]
+	},
+	"10": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/sad",
+		
+		"text": "[You smile and wink to the mare again. She seems almost broken.]",
+		"tonode": "11"
+	},
+	"11": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/think",
+		
+		"phrase": ["right", "Oh..."],
+		"tonode": "12"
+	},
+	"12": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "You know... I think, nopony will be mind, if they don't even know about this..."],
+		"tonode": "13"
+	},
+	"13": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "You really want this as much as I do?"],
+		"answers": [
+			["[nod]", "14"],
+			["[leave]", "16"]
+		]
+	},
+	"14": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/idle",
+		
+		"text": "[You nod in agreement, and she immediately gets up from her seat.]",
+		"tonode": "15"
+	},
+	"15": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/idle_talk",
+		
+		"phrase": ["right", "Follow me, I know one secluded place..."],
+		"newStage": "2"
+	},
+	"16": {
+		"right": "trader3/lusty2",
+		
+		"text": "[You suddenly leave without saying goodbye. The mare doesn't look upset at all.]",
+	}
+}

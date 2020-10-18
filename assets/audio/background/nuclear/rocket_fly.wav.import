@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rocket_fly.wav-8a4e18d31db1be41f5dbe085fbbcb61b.sample"
+
+[deps]
+
+source_file="res://assets/audio/background/nuclear/rocket_fly.wav"
+dest_files=[ "res://.import/rocket_fly.wav-8a4e18d31db1be41f5dbe085fbbcb61b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

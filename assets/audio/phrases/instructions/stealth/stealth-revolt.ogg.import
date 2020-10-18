@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stealth-revolt.ogg-7ea35ce5fab7f74f864a53d47db15312.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/stealth/stealth-revolt.ogg"
+dest_files=[ "res://.import/stealth-revolt.ogg-7ea35ce5fab7f74f864a53d47db15312.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

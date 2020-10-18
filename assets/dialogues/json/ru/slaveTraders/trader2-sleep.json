@@ -1,0 +1,22 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader2/sleep",
+		
+		"phrase": ["right", "Э? Это опять ты, Грей? Отстань, я же уже сказала."],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/idle_collared",
+		"right": "trader2/sleep",
+		
+		"phrase": ["right", "Дай поспать, я вчера всю ночь стояла на патруле."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/idle_collared",
+		"right": "trader2/sleep",
+		
+		"phrase": ["right", "И выключи уже эти сраные лампы..."]
+	}
+}

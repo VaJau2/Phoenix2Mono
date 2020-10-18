@@ -1,0 +1,37 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "Новенькая, да? О, Селестия, какая же ты милашка."],
+		"tonode": "1",
+	},
+	"1": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Как же хочется тебя попробовать,мм... "],
+		"tonode": "2",
+	},
+	"2": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "Надеюсь, ты сильно провинишься и подставишься под удар одного из парней с дубинкой..."],
+		"tonode": "3",
+	},
+	"3": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "...Я буду связывать тебя с особой нежностью... "],
+		"tonode": "4",
+	},
+	"4": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Жаль, что у нас запрещено трогать рабынь. Мы бы могли повеселиться..."],
+		"newStage": "1"
+	},
+}

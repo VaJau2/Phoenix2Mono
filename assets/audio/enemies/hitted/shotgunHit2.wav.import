@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemies/hitted/shotgunHit2.wav"
+dest_files=[ "res://.import/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

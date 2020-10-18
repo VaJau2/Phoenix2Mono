@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "w41j8Xk5vSf3/4xi45qzymgZlAsExCuQp/Y908jD68RX3xKZqxdhzq/St1aMF7gP3e7+VZJS/8A87WBEHOFIQg==",
+  "success": true,
+  "projectFilePath": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Compuhter\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\Compuhter\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.0\\microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

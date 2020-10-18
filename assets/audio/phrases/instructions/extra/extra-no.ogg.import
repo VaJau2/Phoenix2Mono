@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/extra-no.ogg-96d518ec2aad623714fbac770602eb14.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/extra/extra-no.ogg"
+dest_files=[ "res://.import/extra-no.ogg-96d518ec2aad623714fbac770602eb14.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

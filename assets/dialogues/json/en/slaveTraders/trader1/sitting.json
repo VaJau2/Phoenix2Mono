@@ -1,0 +1,76 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk1",
+		
+		"phrase": ["right", "I'm quite busy here. What do you want?"],
+		"answers": [
+			["- how's it going?", "1"],
+			["[not interfere]", "8"]
+		]
+	},
+	"1": {
+		"left": "strikely/idle-talk_collared",
+		"right": "trader1/sit",
+		
+		"phrase": ["left", "How's it going?"],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk1",
+		
+		"phrase": ["right", "So far, so-so. This old pony did good job to his system..."],
+		"tonode": "3"
+	},
+	"3": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk2",
+		
+		"phrase": ["right", "It was easy with you - just to press one red button, but now it doesn't work..."],
+		"answers": [
+			["- Are they really my exact copies?", "4"],
+			["- I see..", "_"]
+		]
+	},
+	"4": {
+		"left": "strikely/idle-talk_collared",
+		"right": "trader1/sit",
+		
+		"phrase": ["left", "These mares in flasks... Are they really my exact copies?"],
+		"tonode": "5"
+	},
+	"5": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk2",
+		
+		"phrase": ["right", "How the hell do you think I know that?"],
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk1",
+		
+		"phrase": ["right", "But if you're interested, look at the terminals. They have notes about you."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit_talk1",
+		
+		"phrase": ["right", "Personally I doubt, that they are you. Even if you are so similar. There can't be several copies of the same pony...It'll be so strange..."],
+	},
+	"8": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/sit",
+		
+		"text": "[You walk away from him in silence, he keeps to study the screen intently.]",
+	},
+	"9": {
+		"left": "strikely/idle-talk_collared",
+		"right": "trader1/sit",
+		
+		"phrase": ["left", "I see..."],
+		"tonode": "8"
+	}
+}

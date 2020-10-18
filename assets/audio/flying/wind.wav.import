@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wind.wav-06784f3e3419e04a7dd3441511703da7.sample"
+
+[deps]
+
+source_file="res://assets/audio/flying/wind.wav"
+dest_files=[ "res://.import/wind.wav-06784f3e3419e04a7dd3441511703da7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

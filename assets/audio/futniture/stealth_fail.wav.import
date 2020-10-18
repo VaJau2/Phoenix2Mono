@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stealth_fail.wav-9f58d3d15ad035478e7fe0861aa25744.sample"
+
+[deps]
+
+source_file="res://assets/audio/futniture/stealth_fail.wav"
+dest_files=[ "res://.import/stealth_fail.wav-9f58d3d15ad035478e7fe0861aa25744.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

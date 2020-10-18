@@ -1,0 +1,279 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/materials/fonts/mana_theme.tres" type="Theme" id=3]
+[ext_resource path="res://objects/interface/FPSShow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/weapon/cross.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/interface/icons/health_ammo.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/interface/icons/gun_icons.png" type="Texture" id=10]
+
+[node name="canvas" type="CanvasLayer"]
+
+[node name="messages" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -345.0
+margin_top = 10.0
+margin_right = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stealthLabel" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -17.0
+margin_right = 50.0
+theme = ExtResource( 2 )
+text = "[Вас не видят]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="openBack" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = 20.0
+margin_right = 97.0
+margin_bottom = 64.0
+color = Color( 0.180392, 0.176471, 0.176471, 0.537255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="openBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+text = "Е - открыть"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jumpHint" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -80.0
+margin_right = 96.0
+margin_bottom = -36.0
+color = Color( 0.180392, 0.176471, 0.176471, 0.537255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="jumpHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+text = "перепрыгнуть"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shootInterface" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gunIcons" type="Control" parent="shootInterface"]
+margin_top = -36.0
+margin_right = 364.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pistol" type="Sprite" parent="shootInterface/gunIcons"]
+visible = false
+position = Vector2( 36.439, 17.1082 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 30, 0, 49, 26 )
+
+[node name="shotgun" type="Sprite" parent="shootInterface/gunIcons"]
+visible = false
+position = Vector2( 120.494, 19.1082 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 78, 109, 26 )
+
+[node name="revolver" type="Sprite" parent="shootInterface/gunIcons"]
+visible = false
+position = Vector2( 201.032, 17.1082 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 30, 26, 49, 26 )
+
+[node name="sniper" type="Sprite" parent="shootInterface/gunIcons"]
+visible = false
+position = Vector2( 285.565, 19.1082 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 53, 109, 26 )
+
+[node name="ammoBack" type="ColorRect" parent="shootInterface"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -129.0
+margin_top = -46.0
+color = Color( 0.141176, 0.141176, 0.141176, 0.796078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="shootInterface/ammoBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 43.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Sprite2" type="Sprite" parent="shootInterface/ammoBack"]
+position = Vector2( 30, 22 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 40, 0, 40, 40 )
+
+[node name="cross" type="TextureRect" parent="shootInterface"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="manaBar" type="ProgressBar" parent="."]
+visible = false
+margin_right = 229.0
+margin_bottom = 14.0
+theme = ExtResource( 3 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthBack" type="ColorRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -46.0
+margin_right = 129.0
+color = Color( 0.141176, 0.141176, 0.141176, 0.796078 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="healthBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 57.0
+theme = ExtResource( 1 )
+text = "100"
+align = 1
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="healthBack"]
+position = Vector2( 30, 23 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 40, 40 )
+
+[node name="redScreen" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eyesParts" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eyeUp" type="TextureRect" parent="eyesParts"]
+anchor_top = -1.0
+anchor_right = 1.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eyeDown" type="TextureRect" parent="eyesParts"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 2.0
+rect_pivot_offset = Vector2( 512, 300 )
+texture = ExtResource( 9 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="subtitles" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -477.0
+margin_top = -84.0
+margin_right = 478.0
+margin_bottom = -50.0
+theme = ExtResource( 2 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="black" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPSShow" parent="." instance=ExtResource( 4 )]

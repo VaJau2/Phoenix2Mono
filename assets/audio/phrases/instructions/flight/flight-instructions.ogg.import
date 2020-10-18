@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flight-instructions.ogg-2880626cef3e8438c37c1285bdc4b1af.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/flight/flight-instructions.ogg"
+dest_files=[ "res://.import/flight-instructions.ogg-2880626cef3e8438c37c1285bdc4b1af.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,44 @@
+{
+	"0": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "You're from flask, right? Interesting, have your friends been woken up already?"],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Oh, if I got caps, I'd definetly buy you and run away from here..."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "Perhaps, you haven't got any fun being in a flask ..."],
+		"tonode": "3"
+	},
+	"3": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "...I bet that you're still a virgin..."],
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "Ponies like you are worth their weight in gold. As soon as everypony find out about you, they will start a war for you."],
+		"tonode": "5"
+	},
+	"5": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Personally, I would definitely start..."],
+		"newStage": "1"
+	}
+}

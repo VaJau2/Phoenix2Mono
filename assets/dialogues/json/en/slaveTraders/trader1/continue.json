@@ -1,0 +1,57 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "So, you will sleep here."],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "As long as you're calm, the door will be open."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "You've got the collar, so I don't see any reasons to worry about you hanging around."],
+		"tonode": "3"
+	},
+	"3": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Just don't leave the base."],
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "We don't want your head to explode, right?"],
+		"tonode": "5"
+	},
+	"5": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Don't get used too much, you're not here for long."],
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "As soon as I fint a way to wake up your friends, you all be sent to our town."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "And try not to touch this door - once it's closed, you won't be able to go outside."]
+	}
+}

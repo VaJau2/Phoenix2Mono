@@ -1,0 +1,463 @@
+{
+	"0": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"text": "[Ты чувствуешь, как на твою шею надели какое-то устройство. Ты слышишь щелчок замка и тихий писк.]",
+		"tonode": "1",
+		
+		"effects": {"left-shake-x": "2.5"}
+	},
+	
+	"1": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Говорить умеешь?"],
+
+		"answers": [
+			["- да", "2"],
+			["- [промолчать]", "23"],
+		],
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"2": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Д..да, умею"],
+		"tonode": "3",
+		
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"3": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Это хорошо. Тогда слушай меня внимательно, два раза я повторять не буду."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1.5"}
+	},
+	
+	"4": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "На тебе взрывающийся ошейник, так что на твоем месте я бы не делал никаких глупостей."],
+		"tonode": "5",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"5": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Ошейник взорвется, если ты попробуешь покинуть пределы базы. Но если бы ты знала, что там за этими пределами, ты бы считала меня своим гребаным спасителем."],
+		"tonode": "6",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"6": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Но не будем о плохом."],
+		"tonode": "7",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"7": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Прими мои поздравления, я только что нашел тебе официальную работу и место в этом мире. Добро пожаловать в нашу организацию."],
+		"tonode": "8",
+		
+		"effects": {"left-shake-x": "0.5"}
+	},
+	
+	"8": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Условия твой работы будут рабскими. Буквально. Но выбора у тебя все равно нет. Все понятно?"],
+		"answers": [
+			["- понятно", "9"],
+			["- вот же пиздец", "14"],
+		]
+	},
+	
+	"9": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Понятно..."],
+		"tonode": "10"
+	},
+	
+	"10": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Ты мне уже нравишься. Если не будешь рыпаться и всегда отвечать так, тебя никто не тронет, моя тебе гарантия."],
+		"tonode": "11"
+	},
+	
+	"11": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "А если будешь буянить, в твоих интересах стоять смирно, постараться подставиться под удар дубинки и притвориться лежащей лошадкой без сознания. Будет больно, зато ты не умрешь."],
+		"tonode": "12"
+	},
+	
+	"12": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "А уж о твоем бессознательном теле мы позаботимся, не беспокойся."],
+		"tonode": "13"
+	},
+	
+	"13": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "А теперь иди за мной, я отведу тебя в твой новый кабинет."]
+	},
+	
+	"14": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Вот же пиздец..."],
+		"tonode": "15"
+	},
+	
+	"15": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Хех. Я бы отреагировал так же, будь я на твоем месте. Хотя нет, я как раз так же и реагировал, один в один."],
+		"tonode": "16"
+	},
+	
+	"16": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Многие из нас начинали, будучи рабами. Можешь называть это карьерным ростом."],
+		"answers": [
+			["- ладно", "41"],
+			["- вы отвратительны", "17"],
+		]
+	},
+	
+	"17": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Вы отвратительны. Это все просто ужасно..."],
+		"tonode": "18"
+	},
+	
+	"18": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Хах, ты и вправду не в курсе насчет происходящего вокруг, да?"],
+		"tonode": "19"
+	},
+	
+	"19": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Мы все выживаем в гребаной пустоши, и большая часть из нас просыпается по утрам, радуясь лишь одному факту того, что их не сожрали заживо за прошедшую ночь. И вместе с этим сожалея по той же самой причине."],
+		"tonode": "20"
+	},
+	
+	"20": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Быть рабом в таком месте не так ужасно. По крайней мере, у тебя будет еда и гарантия завтрашнего дня. Никто не заинтересован в том, чтобы их рабы умирали от голода, иначе они их быстро растеряют."],
+		"tonode": "21"
+	},
+	
+	"21": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Мы с такими дел не имеем, уверяю тебя. Я лично прослежу, чтобы для тебя нашелся достойный покупатель."],
+		"tonode": "22"
+	},
+	
+	"22": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Главное помни, что на тебе ошейник. Не пытайся сбежать, у тебя это все равно не получится. Веди себя спокойно, и тебя никто не тронет."],
+		"tonode": "11"
+	},
+	
+	"23": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[Ты молчишь. Жеребец пристально изучает тебя взглядом и ждет ответа.]",
+		"tonode": "24",
+		
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"24": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Хоть понимаешь, что я говорю? Знаешь Эквестрийский язык?"],
+		"answers": [
+			["- да", "25"],
+			["- [кивнуть]", "27"],
+			["- [промолчать]", "47"],
+		],
+		
+		"effects": {"left-shake-x": "1.5"}
+	},
+	
+	"25": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/talk1",
+		
+		"phrase": ["left", "Д...да, я могу говорить и знаю язык."],
+		"tonode": "26",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	
+	"26": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Птичка наконец-то запела, это хорошо. Тогда слушай внимательно, повторять дважды я не буду."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"27": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"text": "[Ты киваешь ему. Он не кажется сильно удовлетворенным этим ответом.]",
+		"tonode": "28",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"28": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Немая, но понимаешь, что говорят? Возможно так даже лучше. Некоторым приходится отрезать языки, лишь бы они заткнулись"],
+		"answers": [
+			["- чего?", "29"],
+			["- [промолчать]", "30"],
+		],
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"29": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Ч...Чего? Отрезать...языки?!"],
+		"tonode": "26",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"30": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[Ты молчишь. Прокашлявшись, жеребец собирается продолжить свою речь.]",
+		"tonode": "31",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"31": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Ну тогда слушай меня внимательно. Два раза я повторять это не буду"],
+		"tonode": "32",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	
+	"32": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "На тебе взрывающийся ошейник, так что на твоем месте я бы не делал никаких глупостей."],
+		"tonode": "33",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"33": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Ошейник взорвется, если ты попробуешь покинуть пределы базы. Но если бы ты знала, что там за этими пределами, ты бы считала меня своим гребаным спасителем."],
+		"tonode": "34",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"34": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Но не будем о плохом."],
+		"tonode": "35",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"35": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Прими мои поздравления, я только что нашел тебе официальную работу и место в этом мире. Добро пожаловать в нашу организацию."],
+		"tonode": "36",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"36": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Условия твой работы будут рабскими. Буквально. Но выбора у тебя все равно нет. Все понятно?"],
+		"answers": [
+			["[кивнуть]", "37"],
+			["- вот же пиздец", "38"],
+		],
+		
+		"effects": {"left-shake-x": "0.5"}
+	},
+	
+	"37": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile",
+		
+		"text": "[Ты снова киваешь ему. Он снисходительно улыбается.]",
+		"tonode": "10"
+	},
+	
+	"38": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "В...вот же пиздец..."],
+		"tonode": "39"
+	},
+	
+	"39": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Надо же, птичка все же умеет петь, да еще и таким прекрасным голоском. Это просто замечательно."],
+		"tonode": "40"
+	},
+	
+	"40": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "У меня была такая же реакция в свое время, почти один в один."],
+		"tonode": "16"
+	},
+	
+	"41": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Ладно..."],
+		"tonode": "10"
+	},
+	
+	"42": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/confused-talk",
+		
+		"phrase": ["right", "Не сказать, что я не ожидал такого, но... как же там делается..."],
+		"tonode": "43",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"43": {
+		"left": "strikely/after-flask-smile",
+		"right": "trader1/confused-sign",
+		
+		"text": "[Жеребец отчаянно пытается показать жестами ошейник и взрыв, сопровождая это озвучкой взрыва голосом, от которой любому на его месте стало бы стыдно.]",
+		"answers": [
+			[" - ладно, я на самом деле могу говорить", "44"],
+		],
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"44": {
+		"left": "strikely/after-flask-smile-talk",
+		"right": "trader1/angry",
+		
+		"phrase": ["left", "Л... ладно, я на самом деле знаю язык и могу говорить."],
+		"tonode": "45",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"45": {
+		"left": "strikely/after-flask-smile",
+		"right": "trader1/angry-talk",
+		
+		"phrase": ["right", "Никто не заставлял меня раньше выглядеть настолько тупо. Поздравляю."],
+		"tonode": "46",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"46": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Не думай, что я сейчас на тебе не отыграюсь. Ты сейчас в гораздо худшем положении, чем я, смекаешь? Слушай внимательно, дважды я не буду повторять."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"47": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[Ты продолжаешь молчать. Жеребец кажется немного растерянным.]",
+		"tonode": "42",
+		
+		"effects": {"left-shake-x": "2"}
+	}
+}

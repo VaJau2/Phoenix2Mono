@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/extra-greetings.ogg-643841f7199ebb8bc70996d70ad4701a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/extra/extra-greetings.ogg"
+dest_files=[ "res://.import/extra-greetings.ogg-643841f7199ebb8bc70996d70ad4701a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

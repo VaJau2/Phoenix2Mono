@@ -1,0 +1,57 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk1",
+		
+		"phrase": ["right", "Грей наконец смог разбудить одну из вас! Он чертов гений!"],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk3",
+		
+		"phrase": ["right", "За вас, шестерых миленьких близняшек, аукцион просто разорвется в торгах!"],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk2",
+		
+		"phrase": ["right", "Не беспокойся насчет себя, вы уникальный товар, вас точно не заставят работать, как других рабов."],
+		"tonode": "3"
+	},
+	"3": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk2",
+		
+		"phrase": ["right", "Скорее всего какой-нибудь очень богатый хер приберет всех вас в качестве прислуги к себе в особняк."],
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk3",
+		
+		"phrase": ["right", "Шесть абсолютно одинаковых кобылок в качестве прислуги - это именно то, что они будут хотеть."],
+		"tonode": "5"
+	},
+	"5": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk1",
+		
+		"phrase": ["right", "Срочно надо отправить кого-нибудь в город с этой новостью!"],
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk3",
+		
+		"phrase": ["right", "Сначала вас хорошенько обучат, а затем вы, красивые, причесанные, дисциплинированные, будете вшестером стоять и наблюдать за бойней, которая развернется за вас."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/idle_collared",
+		"right": "traderBoss/talk2",
+		
+		"phrase": ["right", "Многие вам позавидуют."]
+	},
+}

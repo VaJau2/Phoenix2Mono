@@ -1,0 +1,463 @@
+{
+	"0": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"text": "[You feel like some device is being put around your neck. You hear the click of the lock and a small squeak.]",
+		"tonode": "1",
+		
+		"effects": {"left-shake-x": "2.5"}
+	},
+	
+	"1": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Can you speak?"],
+
+		"answers": [
+			["- yes", "2"],
+			["- [say nothing]", "23"],
+		],
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"2": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Y..yes, I can"],
+		"tonode": "3",
+		
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"3": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "It's good. Then listen to me carefully, I won't tell you twice."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1.5"}
+	},
+	
+	"4": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "You've got an explosive collar, so if I were you, I wouldn't do anything stupid."],
+		"tonode": "5",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"5": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "The collar will explode, if you try to escape this base. But if you knew what's beyond, then you would consider me as your fucking savior."],
+		"tonode": "6",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"6": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "But let's not talk about the bad."],
+		"tonode": "7",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"7": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Congratulations, I've just found an official job and a place in this world for you. Welcome to our organisation."],
+		"tonode": "8",
+		
+		"effects": {"left-shake-x": "0.5"}
+	},
+	
+	"8": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Your working conditions will be servile. Literally. But you don't have a chose anyway. You've got it?"],
+		"answers": [
+			["- yes", "9"],
+			["- that's fucked up", "14"],
+		]
+	},
+	
+	"9": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Yes, I've got it..."],
+		"tonode": "10"
+	},
+	
+	"10": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "I like you already. If you don't push it and always respond like this, nopony touches you, my guarantee to you."],
+		"tonode": "11"
+	},
+	
+	"11": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "And if you get rowdy, you'd better stand still, put yourself under the baton and pretend to be an unconscious pony. It will hurt, but you won't die."],
+		"tonode": "12"
+	},
+	
+	"12": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "We'll take care of your body, don't be worry."],
+		"tonode": "13"
+	},
+	
+	"13": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Now follow me, I'll take you to your new office."]
+	},
+	
+	"14": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "That's fucked up..."],
+		"tonode": "15"
+	},
+	
+	"15": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Huh. I would have reacted the same way if I were you. Although no, I just reacted the same way..."],
+		"tonode": "16"
+	},
+	
+	"16": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Many of us started as slaves. You can call it career development."],
+		"answers": [
+			["- okay", "41"],
+			["- you're disgusting", "17"],
+		]
+	},
+	
+	"17": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "You're disgusting. It's all just awful..."],
+		"tonode": "18"
+	},
+	
+	"18": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Huh, you really don't know what happens around, right?"],
+		"tonode": "19"
+	},
+	
+	"19": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "We're all surviving in fucking wasteland, most of us wake up being glad only one fach that they weren't eaten alive last night. And yet regretting it for the same reason."],
+		"tonode": "20"
+	},
+	
+	"20": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Being a slave in such place is not that awful. At least, you'll have food and tomorrow's guarantee. Nopony is interested in their slaves were dying from starving, otherwise they will quickly lose them all."],
+		"tonode": "21"
+	},
+	
+	"21": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "We have nothing to do with them, I assure you. I'll see to myself, that there'll be a worthy buyer for you."],
+		"tonode": "22"
+	},
+	
+	"22": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "The important thing to remember about the collar. Don't try to escape, you can't do it anyway. Be calm, and nopony touches you."],
+		"tonode": "11"
+	},
+	
+	"23": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[You keep silence. Stallion studies you intently and waits for your answer.]",
+		"tonode": "24",
+		
+		"effects": {"left-shake-x": "2"}
+	},
+	
+	"24": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Do you understand what I'm saying? Know Equestrian language?"],
+		"answers": [
+			["- yes", "25"],
+			["- [nod]", "27"],
+			["- [say nothing]", "47"],
+		],
+		
+		"effects": {"left-shake-x": "1.5"}
+	},
+	
+	"25": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/talk1",
+		
+		"phrase": ["left", "Y...yes, I can speak and know the language."],
+		"tonode": "26",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	
+	"26": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "The bird finally sings, it's good. Then listen to me carefully, I won't tell you twice."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"27": {
+		"left": "strikely/after-flask",
+		"right": "trader1/idle",
+		
+		"text": "[You not to him. He doesn't seem very satisfied with this answer.]",
+		"tonode": "28",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"28": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Dumb, but understand, what I'm saying? Maybe, that's even better. Sometimes we have to cut off somepony's tongues just to shut them up."],
+		"answers": [
+			["- what?", "29"],
+			["- [say nothing]", "30"],
+		],
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"29": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "W...what? Cut off...tongues?!"],
+		"tonode": "26",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"30": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[You keep silence. Clearing his throat, the stallion is going to continue.]",
+		"tonode": "31",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"31": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Well then, listen to me carefully, I won't tell you twice."],
+		"tonode": "32",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	
+	"32": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "You've got an explosive collar, so if I were you, I wouldn't do anything stupid."],
+		"tonode": "33",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"33": {
+		"left": "strikely/after-flask",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "The collar will explode, if you try to escape this base. But if you knew what's beyond, then you would consider me as your fucking savior."],
+		"tonode": "34",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"34": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "But let's not talk about the bad."],
+		"tonode": "35",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"35": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Congratulations, I've just found an official job and a place in this world for you. Welcome to our organisation."],
+		"tonode": "36",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"36": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Your working conditions will be servile. Literally. But you don't have a chose anyway. You've got it?"],
+		"answers": [
+			["[nod]", "37"],
+			["- that's fucked up", "38"],
+		],
+		
+		"effects": {"left-shake-x": "0.5"}
+	},
+	
+	"37": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile",
+		
+		"text": "[You nod to him again. He smiles indulgently.]",
+		"tonode": "10"
+	},
+	
+	"38": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "T...that's fucked up..."],
+		"tonode": "39"
+	},
+	
+	"39": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "Wow, the bird can still sing, and even with such a beautiful voice. It's just wonderful."],
+		"tonode": "40"
+	},
+	
+	"40": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "I've got the same reaction at one time, you know. The exact same words."],
+		"tonode": "16"
+	},
+	
+	"41": {
+		"left": "strikely/after-flask-talk",
+		"right": "trader1/idle",
+		
+		"phrase": ["left", "Okay..."],
+		"tonode": "10"
+	},
+	
+	"42": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/confused-talk",
+		
+		"phrase": ["right", "Not to say I didn't expect this, but... how is it done there?.."],
+		"tonode": "43",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"43": {
+		"left": "strikely/after-flask-smile",
+		"right": "trader1/confused-sign",
+		
+		"text": "[The stallion desperately tries to show gestures the collar and explosion, accompanying this with a voice-over of the explosion, which would make anypony in his position feel ashamed.]",
+		"answers": [
+			[" - allright, I can speak", "44"],
+		],
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"44": {
+		"left": "strikely/after-flask-smile-talk",
+		"right": "trader1/angry",
+		
+		"phrase": ["left", "A... allright, I actually can speak Equestrian."],
+		"tonode": "45",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"45": {
+		"left": "strikely/after-flask-smile",
+		"right": "trader1/angry-talk",
+		
+		"phrase": ["right", "Nopony has ever made me look so stupid before. Congratulations."],
+		"tonode": "46",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"46": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Don't think I won't take it out on you right now. You're in a much worse position than I am right now, you know? Listen to me carefully, I won't repeat twice."],
+		"tonode": "4",
+		
+		"effects": {"left-shake-x": "1"}
+	},
+	
+	"47": {
+		"left": "strikely/after-flask1",
+		"right": "trader1/idle",
+		
+		"text": "[You keep silence. The stallion seems a little confused.]",
+		"tonode": "42",
+		
+		"effects": {"left-shake-x": "2"}
+	}
+}

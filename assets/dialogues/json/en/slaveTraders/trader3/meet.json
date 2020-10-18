@@ -1,0 +1,37 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "You're new, right? Oh, Celestia, you're so cute."],
+		"tonode": "1",
+	},
+	"1": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "How I want to taste you, mm... "],
+		"tonode": "2",
+	},
+	"2": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "I hope, you will be very guilty and get hit by one of the guys with a baton..."],
+		"tonode": "3",
+	},
+	"3": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "...I will tie you up with special tenderness... "],
+		"tonode": "4",
+	},
+	"4": {
+		"left": "strikely/shy-afraid1_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "I wish, it was not forbidden to touch slaves. We could make some fun together..."],
+		"newStage": "1"
+	},
+}

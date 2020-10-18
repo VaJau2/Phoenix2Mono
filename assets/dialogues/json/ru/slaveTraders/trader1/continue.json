@@ -1,0 +1,57 @@
+{
+	"0": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "В общем, здесь ты будешь спать."],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Пока ведешь себя спокойно, дверь будет открыта."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "На тебе ошейник, так что не вижу смысла беспокоиться, если ты будешь шляться по округе."],
+		"tonode": "3"
+	},
+	"3": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Главное, не покидай пределов базы."],
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk2",
+		
+		"phrase": ["right", "Мы не не хотим, чтобы твоя голова внезапно взорвалась, да?"],
+		"tonode": "5"
+	},
+	"5": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk1",
+		
+		"phrase": ["right", "Сильно не привыкай, ты здесь ненадолго."],
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/talk2",
+		
+		"phrase": ["right", "Как только я найду способ разбудить всех твоих подружек, вас тут же отправят в наш город."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/idle_collared",
+		"right": "trader1/smile-talk1",
+		
+		"phrase": ["right", "И постарайся не трогать эту дверь - если она захлопнется, наружу ты уже не выйдешь."]
+	}
+}

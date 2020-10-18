@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stealth-noticed.ogg-e376a493ae171eeee6d184f309e11508.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/stealth/stealth-noticed.ogg"
+dest_files=[ "res://.import/stealth-noticed.ogg-e376a493ae171eeee6d184f309e11508.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

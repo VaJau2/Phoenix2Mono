@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/magic-non-unicorns.ogg-75fd29e708930d035b1535ec6b0c4cd9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/magic/magic-non-unicorns.ogg"
+dest_files=[ "res://.import/magic-non-unicorns.ogg-75fd29e708930d035b1535ec6b0c4cd9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

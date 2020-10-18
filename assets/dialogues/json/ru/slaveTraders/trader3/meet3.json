@@ -1,0 +1,131 @@
+{
+	"0": {
+		"left": "strikely/shy-smile_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "Ты снова подошла ко мне? Неужели я тебе тоже нравлюсь?"],
+		"tonode": "1"
+	},
+	"1": {
+		"left": "strikely/shy_collared",
+		"right": "trader3/serious",
+		
+		"phrase": ["right", "Поверь мне, на моем счету множество грехов. Я не настолько хороша, как ты."],
+		"tonode": "2"
+	},
+	"2": {
+		"left": "strikely/shy-smile_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Хотя признаюсь, от твоего внимания мое сердечко колотится как бешеное..."],
+		"answers": [
+			["[подмигнуть]", "3"],
+			["[уйти]", "16"]
+		]
+	},
+	"3": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/suprised",
+		
+		"text": "[Ты подмигиваешь кобылке; кажется, она этого совсем не ожидала.]",
+		"tonode": "4"
+	},
+	"4": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/suprised_talk",
+		
+		"phrase": ["right", "Ты ... ты мне только что подмингула, да? Мне не показалось?"],
+		"answers": [
+			["[кокетничать]", "5"],
+			["[уйти]", "16"]
+		]
+	},
+	"5": {
+		"left": "strikely/shy-flirt_collared",
+		"right": "trader3/suprised",
+		
+		"text": "[Ты как бы невзначай потягиваешься, выставляя филейные части напоказ и надеясь, что никто больше не смотрит.]",
+		"tonode": "6"
+	},
+	"6": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Ох, это был удар ниже пояса, дорогуша..."],
+		"tonode": "7"
+	},
+	"7": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Для реванша мне придется сильно постараться..."],
+		"tonode": "8"
+	},
+	"8": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/serious",
+		
+		"phrase": ["right", "Ох...о чем я говорю... Вы же неприкосновенны!"],
+		"tonode": "9"
+	},
+	"9": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/sad_talk",
+		
+		"phrase": ["right", "Меня убьют, если я сделаю что-либо с тобой!"],
+		"answers": [
+			["[подмигнуть ещё раз]", "10"],
+			["[уйти]", "16"]
+		]
+	},
+	"10": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/sad",
+		
+		"text": "[Ты подмигиваешь кобылке ещё раз. Кажется, она почти сломалась]",
+		"tonode": "11"
+	},
+	"11": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/think",
+		
+		"phrase": ["right", "Ох..."],
+		"tonode": "12"
+	},
+	"12": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty1",
+		
+		"phrase": ["right", "А знаешь... Я думаю, никто не будет против, если они об этом даже не узнают..."],
+		"tonode": "13"
+	},
+	"13": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/lusty2",
+		
+		"phrase": ["right", "Ты точно этого хочешь так же сильно, как и я?"],
+		"answers": [
+			["[кивнуть]", "14"],
+			["[уйти]", "16"]
+		]
+	},
+	"14": {
+		"left": "strikely/shy-blink_collared",
+		"right": "trader3/idle",
+		
+		"text": "[Ты согласно киваешь кобылке, и она тут же встает с места]",
+		"tonode": "15"
+	},
+	"15": {
+		"left": "strikely/shy-smile-lusty_collared",
+		"right": "trader3/idle_talk",
+		
+		"phrase": ["right", "Пошли за мной, я знаю одно укромное место..."],
+		"newStage": "2"
+	},
+	"16": {
+		"right": "trader3/lusty2",
+		
+		"text": "[Ты внезапно уходишь не попрощавшись. Кажется, кобылка совсем не расстроилась.]",
+	}
+}

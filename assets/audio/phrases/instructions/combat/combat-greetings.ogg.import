@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/combat-greetings.ogg-60865acaff693f3d13ecbbf35cdda672.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/phrases/instructions/combat/combat-greetings.ogg"
+dest_files=[ "res://.import/combat-greetings.ogg-60865acaff693f3d13ecbbf35cdda672.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

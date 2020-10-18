@@ -1,0 +1,7 @@
+{
+    "stealth": {
+        "safe": "[Safe]",
+        "caution": "[Caution]",
+        "danger": "[Danger]"
+    }
+}
