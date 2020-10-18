@@ -38,6 +38,8 @@ public class Player : Character
     public PlayerHitsManager LegsHit;
     public PlayerStealth Stealth;
 
+    public PlayerWeapons Weapons;
+
     public Control JumpHint;
 
     private AudioStreamPlayer audi;
@@ -94,6 +96,7 @@ public class Player : Character
         LegsHit.ConnectEvents();
         Label stealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
         Stealth = new PlayerStealth(stealthLabel);
+        Weapons = new PlayerWeapons(this);
         JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
 
         Camera = GetNode<Spatial>("rotation_helper/camera");
@@ -233,7 +236,6 @@ public class Player : Character
     //для земнопня шоб бегал
     public virtual void UpdateGoForward() {}
 
-    //для пегаса шоб обнулял свой клятый flyingFast
     public virtual void UpdateStand() {}
 
     public virtual void Crouch() 

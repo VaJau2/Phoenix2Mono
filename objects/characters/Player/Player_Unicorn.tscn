@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://objects/characters/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/player_variants/body/000.res" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/models/player_variants/head/1000.res" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/scripts/characters/player/Player_Unicorn.cs" type="Script" id=4]
+[ext_resource path="res://assets/materials/magic/shield.tres" type="Material" id=5]
+[ext_resource path="res://assets/materials/weapon/result/magic.tres" type="Material" id=6]
+[ext_resource path="res://assets/scripts/characters/player/UnicornShield.cs" type="Script" id=7]
+[ext_resource path="res://assets/audio/magic/shield.wav" type="AudioStream" id=8]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.80996, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 1024
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
+direction = Vector3( 0, 0, -1 )
+gravity = Vector3( 0, -3, 0 )
+initial_velocity = 2.0
+scale_curve = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=4]
+material = ExtResource( 6 )
+size = Vector2( 0.1, 0.1 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[sub_resource type="SphereMesh" id=6]
+flip_faces = true
+
+[sub_resource type="SphereMesh" id=7]
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+Health = 100
+StartWeapons = null
+
+[node name="Skeleton" parent="player_body/Armature" index="0"]
+bones/0/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/3/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="Head" parent="player_body/Armature/Skeleton/BoneAttachment" index="0"]
+mesh = ExtResource( 3 )
+
+[node name="magic" type="Particles" parent="player_body/Armature/Skeleton/BoneAttachment/Head" index="1"]
+transform = Transform( 0.999996, -2.18482e-12, 1.06843e-11, -3.02537e-13, 0.997803, 0.0663339, 1.16337e-11, -0.0663357, 0.997803, 7.45058e-09, 4.07833, -1.78454 )
+layers = 2
+emitting = false
+lifetime = 0.3
+explosiveness = 0.3
+visibility_aabb = AABB( -0.769224, -0.718177, -1.00421, 1.53845, 1.43635, 2.00842 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="shotgunBag" parent="player_body/Armature/Skeleton/BoneAttachment 2" index="0"]
+visible = false
+
+[node name="Body" parent="player_body/Armature/Skeleton" index="2"]
+mesh = ExtResource( 2 )
+
+[node name="animTree" parent="player_body" index="2"]
+parameters/StateMachine/playback = SubResource( 5 )
+
+[node name="teleportRay" type="RayCast" parent="rotation_helper/camera" index="0"]
+
+[node name="shield" type="Spatial" parent="." index="6"]
+transform = Transform( 3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, 0, 1.11078, 0.797428 )
+script = ExtResource( 7 )
+
+[node name="first" type="MeshInstance" parent="shield" index="0"]
+visible = false
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = ExtResource( 5 )
+
+[node name="third" type="MeshInstance" parent="shield" index="1"]
+visible = false
+cast_shadow = 0
+mesh = SubResource( 7 )
+material/0 = ExtResource( 5 )
+
+[node name="audi_horn" type="AudioStreamPlayer" parent="sound" index="2"]
+volume_db = -6.0
+
+[node name="audi_shield" type="AudioStreamPlayer" parent="sound" index="3"]
+stream = ExtResource( 8 )
+volume_db = -8.0

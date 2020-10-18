@@ -7,11 +7,14 @@ public class Player_Earthpony : Player
 
     public override void UpdateGoForward() 
     {
-        IsRunning = false;
-
         if (!IsCrouching && Input.IsActionPressed("ui_shift")) {
             IsRunning = true;
         }
+    }
+
+    public override void UpdateStand()
+    {
+        IsRunning = false;
     }
 
     public override float GetWalkSpeed(float delta)

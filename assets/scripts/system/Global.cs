@@ -24,7 +24,15 @@ public class Global {
         return null;
     }
 
-    public Race playerRace = Race.Pegasus;
+    public Race playerRace = Race.Unicorn;
+
+
+    public static Transform setNewOrigin(Transform transform, Vector3 newOrigin)
+    {
+        Transform tempTrans = transform;
+        tempTrans.origin = newOrigin;
+        return tempTrans;
+    }
 }
 
 public enum Race {
