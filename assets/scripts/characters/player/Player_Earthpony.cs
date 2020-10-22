@@ -2,7 +2,10 @@ using Godot;
 
 public class Player_Earthpony : Player
 {
+    const float DASH_TIMER = 1;
+
     public bool IsRunning = false;
+    public bool IsDashing = false;
     private float RunSpeed = 30f;
 
     public override void UpdateGoForward() 
@@ -26,9 +29,11 @@ public class Player_Earthpony : Player
         }
     }
 
-    public void DashBlock() 
+    public async void DashBlock() 
     {
-        GD.Print("dash blocking...");
+        IsDashing = true;
+        await global.ToTimer(DASH_TIMER);
+        IsDashing = false;
     }
 
     public override void Crouch()
@@ -43,8 +48,8 @@ public class Player_Earthpony : Player
                 Sit(!IsCrouching);
 
                 if (IsCrouching && dash) {
-                    vel.x *= 5;
-                    vel.z *= 5;
+                    Velocity.x *= 5;
+                    Velocity.z *= 5;
                     DashBlock();
                 }
             }
@@ -58,7 +63,7 @@ public class Player_Earthpony : Player
                 Sit(false);
             } else {
                 OnStairs = false;
-                vel.y = JUMP_SPEED;
+                Velocity.y = JUMP_SPEED;
             }
         }
     }

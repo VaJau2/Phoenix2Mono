@@ -15,16 +15,7 @@ public class Global {
     //-----------------------------
 
     public Player player {set; private get;}
-    public Player GetPlayer() 
-    {
-        if (player != null) {
-            return player;
-        }
-        GD.PrintErr("someone tried to get player, but player is null :c");
-        return null;
-    }
-
-    public Race playerRace = Race.Unicorn;
+    public Race playerRace = Race.Pegasus;
 
 
     public static Transform setNewOrigin(Transform transform, Vector3 newOrigin)
@@ -32,6 +23,10 @@ public class Global {
         Transform tempTrans = transform;
         tempTrans.origin = newOrigin;
         return tempTrans;
+    }
+
+    public SignalAwaiter ToTimer(float time) {
+        return player.ToSignal(player.GetTree().CreateTimer(time), "timeout");
     }
 }
 

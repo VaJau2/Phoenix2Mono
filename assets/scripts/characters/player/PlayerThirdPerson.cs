@@ -30,6 +30,23 @@ public class PlayerThirdPerson : Spatial
         player.ThirdView = on;
         ray.Enabled = on;
         eyePartsInterface.Visible = !on;
+
+        //возвращаем игроку вращение при переходе от 3 лица
+        //если он повернулся на больше 180 градусов
+        if (!on) {
+            if (!player.Body.RotClumpsMin || !player.Body.RotClumpsMax) {
+                var bodyRotY = player.Body.GlobalTransform.basis.GetEuler().y;
+                Vector3 playerRot = player.GlobalTransform.basis.GetEuler();
+                playerRot.y = bodyRotY;
+
+                Basis basis = new Basis(playerRot);
+                Vector3 origin = player.GlobalTransform.origin;
+                Transform playerTransform = new Transform(basis, origin);
+                player.GlobalTransform = playerTransform;
+
+                player.Body.SetRotZero();
+            }
+        }
     }
 
     private float updateSide(float delta, float side, string keyUp,

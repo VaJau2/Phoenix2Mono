@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/player_variants/head/0000.res" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/models/player_variants/body/001.res" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/scripts/characters/player/Player_Pegasus.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/characters/player/PegasusSmash.cs" type="Script" id=5]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.517748, 0.925822, 0.635211 )
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -18,9 +22,6 @@ transform = Transform( 1, -2.95586e-12, 2.62261e-06, 2.59534e-06, 0.143813, -0.9
 [node name="Head" parent="player_body/Armature/Skeleton/BoneAttachment" index="0"]
 mesh = ExtResource( 2 )
 
-[node name="BoneAttachment 2" parent="player_body/Armature/Skeleton" index="1"]
-transform = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 3.97508e-17, 0.177527, 0.0159377 )
-
 [node name="shotgunBag" parent="player_body/Armature/Skeleton/BoneAttachment 2" index="0"]
 visible = false
 
@@ -30,5 +31,15 @@ mesh = ExtResource( 3 )
 [node name="animTree" parent="player_body" index="2"]
 parameters/StateMachine/playback = SubResource( 1 )
 
+[node name="smash-area" type="Area" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0494847, -0.358425 )
+visible = false
+script = ExtResource( 5 )
+
+[node name="shape" type="CollisionShape" parent="smash-area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85444, -0.512936 )
+shape = SubResource( 2 )
+
 [node name="audi_wings" type="AudioStreamPlayer" parent="sound" index="2"]
 volume_db = -6.0
+[connection signal="body_entered" from="smash-area" to="smash-area" method="_on_smasharea_body_entered"]

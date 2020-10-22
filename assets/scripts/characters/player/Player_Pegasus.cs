@@ -2,15 +2,18 @@ using Godot;
 
 public class Player_Pegasus : Player
 {
+    const float FLYING_FAST_SMASH_COOLDOWN = 1f;
     public bool IsFlying = false;
     public bool IsFlyingFast = false;
 
+    public bool MaySmash = false;
+    private float flyingFastTimer = 0;
     private float speedY;
-    private float flySpeed = 30f;
+    public float flySpeed {get; private set;} = 30f;
     private float flyIncrease = 10f;
     private float flyDecrease = 4;
 
-    private AudioStreamPlayer wingsAudi;
+    public AudioStreamPlayer wingsAudi;
     private AudioStreamSample wingsSound;
 
     public override void _Ready()
@@ -41,6 +44,19 @@ public class Player_Pegasus : Player
             }
             Body.RotationDegrees = newRot;
         }
+
+        if (IsFlyingFast) {
+            if (flyingFastTimer < FLYING_FAST_SMASH_COOLDOWN) {
+                flyingFastTimer += delta;
+            } else {
+                MaySmash = true;
+            }
+        } else {
+            if (MaySmash) {
+                flyingFastTimer = 0;
+                MaySmash = false;
+            }
+        }
     }
 
     public override void UpdateGoForward()
@@ -69,7 +85,7 @@ public class Player_Pegasus : Player
                 Sit(false);
             } else {
                 OnStairs = false;
-                vel.y = JUMP_SPEED;
+                Velocity.y = JUMP_SPEED;
             }
         }
     }
@@ -103,7 +119,7 @@ public class Player_Pegasus : Player
         if (IsFlying) {
             return speedY;
         } else {
-            return vel.y + (GRAVITY * delta + tempShake);
+            return Velocity.y + (GRAVITY * delta + tempShake);
         }
     }
 

@@ -8,20 +8,32 @@ public abstract class Character : KinematicBody
     public int Health;
     public int HealthMax {get; private set;}
 
-    public Character() {
+    public Vector3 Velocity;
+
+    public float GetSpeed() { return Velocity.Length(); }
+
+    public Character() 
+    {
         HealthMax = Health;
     }
 
-    protected void decreaseHealth(int decrease) {
+    protected void decreaseHealth(int decrease) 
+    {
         Health -= decrease;
         Health = Mathf.Clamp(Health, 0, HealthMax);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        decreaseHealth(damage);
     }
 
     /// <summary>
     /// Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
     /// код загрузки лежит в global.cs
     /// </summary>
-    public Dictionary GetSaveData() {
+    public Dictionary GetSaveData() 
+    {
         Dictionary savingData = new Dictionary
         {
             {"pos_x", GlobalTransform.origin.x.ToString()},
@@ -39,7 +51,8 @@ public abstract class Character : KinematicBody
     /// <summary>
     /// Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     /// </summary>
-    public void LoadData(Dictionary data) {
+    public void LoadData(Dictionary data) 
+    {
         Vector3 newPos = new Vector3((float)data["pos_x"], (float)data["pos_y"], (float)data["pos_z"]);
         Vector3 newRot = new Vector3((float)data["rot_x"], (float)data["rot_y"], (float)data["rot_z"]);
 

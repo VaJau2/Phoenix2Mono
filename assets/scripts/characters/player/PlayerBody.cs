@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using Godot.Collections;
 
 public class PlayerBody : Spatial
 {
@@ -19,7 +19,8 @@ public class PlayerBody : Spatial
     const float JUMP_COOLDOWN = 0.6f;
 
     public PlayerHead Head;
-
+    public PlayerLegs Legs;
+    public SoundSteps SoundSteps;
     private Player player;
     private Race playerRace;
 
@@ -36,9 +37,17 @@ public class PlayerBody : Spatial
     public float bodyRot {get; private set;} = 0;
     private bool onetimeBodyRotBack;
 
-    public bool RotClumpsMin { get  => bodyRot < MAX_ANGLE; }
+    public bool RotClumpsMin { get  => bodyRot < MAX_ANGLE + 1; }
 
-    public bool RotClumpsMax { get => bodyRot > -MAX_ANGLE; }
+    public bool RotClumpsMax { get => bodyRot > -MAX_ANGLE - 1; }
+
+    public void SetRotZero() 
+    {
+        bodyRot = 0;
+        Vector3 rot = RotationDegrees;
+        rot.y = 0;
+        RotationDegrees = rot;
+    }
 
     private bool isWalking {
         get {
@@ -53,7 +62,7 @@ public class PlayerBody : Spatial
 
     private bool playerMakingShy {
         get {
-            if (player.IsHitting && !player.LegsHit.TempFront) {
+            if (player.IsHitting && !Legs.getTempFront) {
                 if (bodyRot > 17f && bodyRot < 44f && headBlend.y > 0.4f) {
                     return true;
                 }
@@ -84,6 +93,39 @@ public class PlayerBody : Spatial
             }
             return true;
         }
+    }
+
+    private void OnLegsAreaOn(Node body, bool front) {
+        var pBody = body as PhysicsBody;
+        if (front) {
+            Legs.FrontAreaBodyEntered(pBody);
+        } else {
+            Legs.BackAreaBodyEntered(pBody);
+        }
+    }
+
+    private void OnLegsAreaOff(Node body, bool front) {
+        var pBody = body as PhysicsBody;
+        if (front) {
+            Legs.FrontAreaBodyExited(pBody);
+        } else {
+            Legs.BackAreaBodyExited(pBody);
+        }
+    }
+
+    private void ConnectLegsHits() {
+        var frontArea = GetNode<Area>("frontArea");
+        var backArea = GetNode<Area>("backArea");
+        Array front = new Array();
+        front.Add(true);
+
+        Array back = new Array();
+        back.Add(false);
+
+        frontArea.Connect("body_entered", this, "OnLegsAreaOn", front);
+        frontArea.Connect("body_exited", this, "OnLegsAreaOff", front);
+        backArea.Connect("body_entered", this, "OnLegsAreaOn", back);
+        backArea.Connect("body_exited", this, "OnLegsAreaOff", back);
     }
 
     private void updateHeadRotation(float delta) 
@@ -203,10 +245,12 @@ public class PlayerBody : Spatial
 
     private void ClumpBodyRot() 
     {
-        if (bodyRot < -180) {
-            bodyRot = 180;
-        } else if (bodyRot > 180) {
-            bodyRot = -180;
+        float rotBeyond = MAX_ANGLE * 2; //180
+
+        if (bodyRot < -rotBeyond) {
+            bodyRot = rotBeyond;
+        } else if (bodyRot > rotBeyond) {
+            bodyRot = -rotBeyond;
         }
     }
 
@@ -221,6 +265,16 @@ public class PlayerBody : Spatial
         string path = "res://assets/models/player_variants/body/roped" + race + ".res";
         Mesh loadedMesh = GD.Load<Mesh>(path);
         bodyMesh.Mesh = loadedMesh;
+    }
+
+    
+    public void AnimateHitting(bool front, char animPart)
+    {
+        if (front) {
+            playback.Travel("HitFront-" + animPart);
+        } else {
+            playback.Travel("HitBack-" + animPart);
+        }
     }
 
     public void AnimateUnroping(bool unroping) 
@@ -259,6 +313,12 @@ public class PlayerBody : Spatial
         playerRace = Global.Get().playerRace;
         Head = GetNode<PlayerHead>("Armature/Skeleton/BoneAttachment/Head");
 
+        Legs = new PlayerLegs(player);
+        ConnectLegsHits();
+
+        var floorRay = GetNode<RayCast>("floorRay");
+        SoundSteps = new SoundSteps(player, floorRay);
+
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
@@ -269,6 +329,8 @@ public class PlayerBody : Spatial
     {
         if (player.Health > 0) {
             updateHeadRotation(delta);
+            Legs.Update(delta);
+            SoundSteps.Update(delta);
 
             //update smiling
             if(bodyRot > 130 || bodyRot < -105) {
@@ -375,10 +437,7 @@ public class PlayerBody : Spatial
 
             if (player.BodyFollowsCamera) {
 
-                bodyRot = 0;
-                Vector3 rot = RotationDegrees;
-                rot.y = 0;
-                RotationDegrees = rot;
+                SetRotZero();
             } else if (isWalking && !player.IsRoped) {
 
                 Vector3 rot = RotationDegrees;
@@ -405,6 +464,14 @@ public class PlayerBody : Spatial
         } else { //Health <= 0
             bodyRot = 0;
             playback.Travel("Die1");
+        }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if (player.Health > 0) 
+        {
+            SoundSteps.PhysicsUpdate(delta);
         }
     }
 

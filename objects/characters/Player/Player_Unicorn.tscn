@@ -41,8 +41,11 @@ Health = 100
 StartWeapons = null
 
 [node name="Skeleton" parent="player_body/Armature" index="0"]
-bones/0/bound_children = [ NodePath("BoneAttachment 2") ]
-bones/3/bound_children = [ NodePath("BoneAttachment") ]
+bones/0/bound_children = [  ]
+bones/3/bound_children = [  ]
+
+[node name="BoneAttachment" parent="player_body/Armature/Skeleton" index="0"]
+transform = Transform( 1, -2.95586e-12, 2.62261e-06, 2.59534e-06, 0.143813, -0.989605, -3.77164e-07, 0.989605, 0.143812, 9.59341e-13, 1.69933, 1.11108 )
 
 [node name="Head" parent="player_body/Armature/Skeleton/BoneAttachment" index="0"]
 mesh = ExtResource( 3 )

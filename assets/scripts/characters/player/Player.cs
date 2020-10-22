@@ -3,6 +3,7 @@ using Godot.Collections;
 
 public class Player : Character
 {
+    protected Global global;
     protected float MOUSE_SENSIVITY = 0.1f;
     const int CAMERA_MIN_Y = -65;
     const int CAMERA_MAX_Y = 70;
@@ -30,14 +31,16 @@ public class Player : Character
         GD.Load<AudioStreamSample>("res://assets/audio/enemies/ropes/unroping.wav");
 
     //Player parts links
-    public Spatial Camera {get; private set;}
-    private Spatial RotationHelper;
+    public Camera Camera {get; private set;}
+    public Spatial RotationHelper {get; private set;}
     private Spatial RotationHelperThird;
     private Spatial CameraHeadPos;
     public PlayerBody Body;
-    public PlayerHitsManager LegsHit;
+    //сслыки внутри body:
+    // - Head
+    // - Legs
+    // - SoundSteps
     public PlayerStealth Stealth;
-
     public PlayerWeapons Weapons;
 
     public Control JumpHint;
@@ -48,7 +51,6 @@ public class Player : Character
     //Moving  variables
     protected float MaxSpeed = 17f;
     private Vector3 dir;
-    protected Vector3 vel;
     private Vector3 impulse;
 
     private CollisionShape sphereCollider;
@@ -82,30 +84,43 @@ public class Player : Character
 
     public float GetSensivity() { return MOUSE_SENSIVITY; }
 
-    public float GetSpeed() { return vel.Length(); }
-
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
+
+    /// <summary>
+    /// интерфейс для вытаскивания audi (иногда он пустой)
+    /// </summary>
+    public AudioStreamPlayer GetAudi(bool hitted = false) {
+        if (hitted) {
+            if (audiHitted == null) {
+                audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted");
+            }
+            return audiHitted;
+        } else {
+            if (audi == null) {
+                audi = GetNode<AudioStreamPlayer>("sound/audi");
+            }
+            return audi;
+        }
+    }
 
     public void LoadPlayer()
     {
-        Global global = Global.Get();
+        global = Global.Get();
         global.player = this;
 
         LoadHeadBody(global.playerRace);
-        LegsHit = new PlayerHitsManager();
-        LegsHit.ConnectEvents();
         Label stealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
         Stealth = new PlayerStealth(stealthLabel);
         Weapons = new PlayerWeapons(this);
         JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
 
-        Camera = GetNode<Spatial>("rotation_helper/camera");
+        Camera = GetNode<Camera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
         RotationHelperThird = GetNode<Spatial>("rotation_helper_third");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/Head/cameraPos");
 
-        audi = GetNode<AudioStreamPlayer>("sound/audi");
-        audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted");
+        audi = GetAudi();
+        audiHitted = GetAudi(true);
 
         sphereCollider = GetNode<CollisionShape>("shape");
         bodyCollider = GetNode<CollisionShape>("body_shape");
@@ -386,7 +401,7 @@ public class Player : Character
 
     public virtual float GetGravitySpeed(float tempShake, float delta) 
     {
-        return vel.y + (GRAVITY * delta + tempShake);
+        return Velocity.y + (GRAVITY * delta + tempShake);
     }
 
     public virtual float GetWalkSpeed(float delta) 
@@ -410,12 +425,12 @@ public class Player : Character
         }
 
         if (OnStairs && stairGravity == 0) {
-            vel.y = 0;
+            Velocity.y = 0;
         } else {
-            vel.y = GetGravitySpeed(tempShake, delta);
+            Velocity.y = GetGravitySpeed(tempShake, delta);
         }
 
-        var hvel = vel;
+        var hvel = Velocity;
         hvel.y = 0;
 
         var target = dir;
@@ -429,9 +444,9 @@ public class Player : Character
         }
 
         hvel = hvel.LinearInterpolate(target, acceleration * delta);
-        vel.x = hvel.x;
-        vel.z = hvel.z;
-        vel = MoveAndSlide(vel, new Vector3(0, 1, 0), false, 4, Mathf.Deg2Rad(MAX_SLOPE_ANGLE));
+        Velocity.x = hvel.x;
+        Velocity.z = hvel.z;
+        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4, Mathf.Deg2Rad(MAX_SLOPE_ANGLE));
     }
 
     private void RotateBodyClumped(float speedX)
@@ -478,7 +493,6 @@ public class Player : Character
 
     public override void _Process(float delta)
     {
-        LegsHit.Update(delta);
         bodyCollider.Rotation = Body.Rotation;
     }
 
@@ -489,7 +503,7 @@ public class Player : Character
             HandleImpulse();
             ProcessMovement(delta);
         } else {
-            vel = new Vector3(0, 0, 0);
+            Velocity = new Vector3(0, 0, 0);
         }
     }
 
