@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/materials/props/buildings/wall.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=3]
+
+[sub_resource type="ArrayMesh" id=7]
+resource_name = "wall"
+lightmap_size_hint = Vector2( 84, 44 )
+surfaces/0 = {
+"aabb": AABB( -1.09955, 0, -1, 2.09956, 1e-05, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 127, 0, 0, 0, 0, 127, 127, 158, 59, 104, 6, 24, 30, 209, 33, 228, 189, 140, 191, 185, 125, 166, 50, 0, 0, 128, 191, 0, 127, 0, 0, 0, 0, 127, 127, 101, 6, 255, 59, 243, 59, 232, 59, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 127, 0, 0, 0, 0, 127, 127, 101, 6, 102, 6, 243, 59, 209, 33, 228, 189, 140, 191, 185, 125, 166, 50, 0, 0, 128, 63, 0, 127, 0, 0, 0, 0, 127, 127, 158, 59, 255, 59, 24, 30, 232, 59 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0 ),
+"blend_shape_data": [  ],
+"format": 97591,
+"index_count": 6,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.0377717, 1.048, 1.97359 )
+
+[node name="wall" type="StaticBody"]
+collision_layer = 3
+physics_material_override = ExtResource( 3 )
+
+[node name="wall" type="MeshInstance" parent="."]
+transform = Transform( 1.94707e-07, 1, 0, -1, 1.94707e-07, 0, 0, 0, 2, 0, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 7 )
+material/0 = ExtResource( 2 )
+
+[node name="wall2" type="MeshInstance" parent="."]
+transform = Transform( 1.94707e-07, -1, 0, -1, -1.94707e-07, 0, 0, 0, 2, -0.2, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 7 )
+material/0 = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11614, 0.0364883, 0 )
+shape = SubResource( 8 )

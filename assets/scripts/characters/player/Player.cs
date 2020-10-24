@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class Player : Character
 {
-    protected Global global;
+    protected Global global = Global.Get();
     protected float MOUSE_SENSIVITY = 0.1f;
     const int CAMERA_MIN_Y = -65;
     const int CAMERA_MAX_Y = 70;
@@ -24,6 +24,8 @@ public class Player : Character
     public bool IsHitting;
     public bool IsLying;
     public bool IsRoped;
+
+    public Array<string> HaveKeys = new Array<string>();
 
     private float unropingTime = 0;
 
@@ -105,7 +107,6 @@ public class Player : Character
 
     public void LoadPlayer()
     {
-        global = Global.Get();
         global.player = this;
 
         LoadHeadBody(global.playerRace);

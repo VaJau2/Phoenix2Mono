@@ -1,0 +1,144 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/scripts/furns/furn-door.gd" type="Script" id=4]
+[ext_resource path="res://assets/materials/props/door2.tres" type="Material" id=5]
+[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=7]
+
+[sub_resource type="ArrayMesh" id=10]
+resource_name = "Cube"
+lightmap_size_hint = Vector2( 212, 120 )
+surfaces/0 = {
+"aabb": AABB( -0.133413, -0.0371488, -1.87413, 0.266825, 4.07345, 2 ),
+"array_data": PoolByteArray( 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 129, 0, 0, 0, 0, 0, 129, 127, 12, 55, 255, 59, 91, 56, 196, 56, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 129, 0, 0, 0, 0, 0, 129, 127, 173, 10, 147, 46, 212, 24, 68, 28, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 129, 0, 0, 0, 0, 0, 129, 127, 12, 55, 147, 46, 212, 24, 196, 56, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 129, 0, 0, 0, 0, 0, 129, 127, 174, 10, 255, 59, 91, 56, 68, 28, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 162, 59, 33, 52, 212, 24, 42, 58, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 241, 59, 198, 58, 91, 56, 162, 58, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 162, 59, 198, 58, 91, 56, 42, 58, 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 241, 59, 33, 52, 212, 24, 162, 58, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 127, 0, 0, 0, 0, 0, 127, 127, 13, 59, 255, 59, 101, 56, 179, 59, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 127, 0, 0, 0, 0, 0, 127, 127, 14, 55, 147, 46, 19, 59, 68, 28, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 127, 0, 0, 0, 0, 0, 127, 127, 13, 59, 147, 46, 101, 56, 68, 28, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 127, 0, 0, 0, 0, 0, 127, 127, 14, 55, 255, 59, 19, 59, 179, 59, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 134, 59, 195, 58, 28, 59, 247, 59, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 55, 59, 28, 52, 96, 59, 204, 40, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 134, 59, 28, 52, 28, 59, 204, 40, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 55, 59, 195, 58, 96, 59, 247, 59, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 0, 129, 0, 0, 0, 0, 127, 127, 205, 54, 144, 37, 106, 59, 196, 56, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 0, 129, 0, 0, 0, 0, 127, 127, 208, 44, 97, 44, 173, 59, 68, 28, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 0, 129, 0, 0, 0, 0, 127, 127, 208, 44, 144, 37, 106, 59, 68, 28, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 0, 129, 0, 0, 0, 0, 127, 127, 205, 54, 97, 44, 173, 59, 196, 56, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 0, 127, 0, 0, 0, 0, 127, 127, 94, 59, 144, 37, 183, 59, 8, 57, 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 0, 127, 0, 0, 0, 0, 127, 127, 145, 56, 97, 44, 251, 59, 204, 40, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 0, 127, 0, 0, 0, 0, 127, 127, 145, 56, 144, 37, 183, 59, 204, 40, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 0, 127, 0, 0, 0, 0, 127, 127, 94, 59, 97, 44, 251, 59, 8, 57 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0, 4, 0, 5, 0, 6, 0, 4, 0, 7, 0, 5, 0, 8, 0, 9, 0, 10, 0, 8, 0, 11, 0, 9, 0, 12, 0, 13, 0, 14, 0, 12, 0, 15, 0, 13, 0, 16, 0, 17, 0, 18, 0, 16, 0, 19, 0, 17, 0, 20, 0, 21, 0, 22, 0, 20, 0, 23, 0, 21, 0 ),
+"blend_shape_data": [  ],
+"format": 97591,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.118674, 2.84399, 1.73329 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 100, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "close-2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -100, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 100, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "open-force"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 120, 0 ), Vector3( 0, 100, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "open-force-2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -120, 0 ), Vector3( 0, -100, 0 ) ]
+}
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 2.28331, 2.32394, 1.33791 )
+
+[node name="door" type="StaticBody"]
+physics_material_override = ExtResource( 3 )
+script = ExtResource( 4 )
+openSound = ExtResource( 2 )
+closeSound = ExtResource( 1 )
+closed_sound = ExtResource( 7 )
+open_with_key_sound = ExtResource( 6 )
+
+[node name="Cube" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 10 )
+material/0 = ExtResource( 5 )
+
+[node name="shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00236702, 2.86101, -1.50955 )
+shape = SubResource( 11 )
+
+[node name="audi" type="AudioStreamPlayer3D" parent="."]
+unit_db = 10.0
+unit_size = 10.0
+max_db = 5.0
+max_distance = 500.0
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/close = SubResource( 3 )
+anims/close-2 = SubResource( 8 )
+anims/open = SubResource( 5 )
+anims/open-force = SubResource( 6 )
+anims/open-force-2 = SubResource( 7 )
+
+[node name="other-side" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02012, 0.707591, -1.37034 )
+
+[node name="shape" type="CollisionShape" parent="other-side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212071, 2.14918, 0 )
+shape = SubResource( 9 )
+[connection signal="body_entered" from="other-side" to="." method="_on_otherside_body_entered"]
+[connection signal="body_exited" from="other-side" to="." method="_on_otherside_body_exited"]

@@ -3,5 +3,14 @@
         "safe": "[Safe]",
         "caution": "[Caution]",
         "danger": "[Danger]"
+    },
+
+    "tasks": {
+        "tasksHeader": "Tasks:",
+        "none": "?"
+    },
+
+    "keys" : {
+        "test": "Picked test key",
     }
 }

@@ -10,12 +10,16 @@ public class FurnBase: StaticBody {
 
     public OpenType openType = OpenType.Closed;
 
-    private AudioStreamPlayer audi;
+    private AudioStreamPlayer3D audi;
     private AnimationPlayer animator;
+
+    public bool IsOpen {
+        get => (openType == OpenType.Open);
+    }
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<AudioStreamPlayer3D>("audi");
         animator = GetNode<AnimationPlayer>("anim");
         global = Global.Get();
     }
@@ -39,7 +43,7 @@ public class FurnBase: StaticBody {
         }
     }
 
-    public void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string newAnim = null) {
+    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string newAnim = null) {
         switch (openType) {
             case (OpenType.OtherSided):
                 setOpen("close-2", CloseSound, timer);
