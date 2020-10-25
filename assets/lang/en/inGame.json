@@ -12,5 +12,11 @@
 
     "keys" : {
         "test": "Picked test key",
+    },
+
+    "cameraHints": {
+        "closed": "Closed",
+        "close": " - close",
+        "open": " - open"
     }
 }

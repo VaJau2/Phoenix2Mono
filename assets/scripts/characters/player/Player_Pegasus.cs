@@ -39,8 +39,10 @@ public class Player_Pegasus : Player
                 } else {
                     newRot.z = 0;
                 }
+            } else if(IsFlying) {
+                newRot.z = Mathf.MoveToward(newRot.z, 0, 150f * delta);
             } else {
-                newRot.z = Mathf.MoveToward(newRot.z, 0, 100f * delta);
+                newRot.z = 0;
             }
             Body.RotationDegrees = newRot;
         }

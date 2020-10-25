@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/materials/items/20mmAmmo.material" type="Material" id=1]
-[ext_resource path="res://assets/scripts/items/Ammo.gd" type="Script" id=2]
 [ext_resource path="res://assets/materials/items/itemParticles.tres" type="Material" id=3]
 
 [sub_resource type="ParticlesMaterial" id=1]
@@ -35,9 +34,6 @@ surfaces/0 = {
 
 [node name="20mmAmmo" type="Area"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-script = ExtResource( 2 )
-ammoType = "shotgun"
-ammoCount = 10
 
 [node name="Particles" type="Particles" parent="."]
 lifetime = 4.0

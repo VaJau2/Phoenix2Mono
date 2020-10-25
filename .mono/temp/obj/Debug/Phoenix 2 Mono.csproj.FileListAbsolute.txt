@@ -6,3 +6,11 @@ E:\Programs\Godot\Godot Projects\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mon
 E:\Programs\Godot\Godot Projects\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.pdb
 E:\Programs\Godot\Godot Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
 E:\Programs\Godot\Godot Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.dll
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.pdb
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csprojAssemblyReference.cache
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfoInputs.cache
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfo.cs
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csproj.CoreCompileInputs.cache
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
+E:\Godot\Projects\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb

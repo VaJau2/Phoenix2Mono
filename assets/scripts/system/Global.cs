@@ -17,6 +17,8 @@ public class Global {
     public Player player {set; private get;}
     public Race playerRace = Race.Pegasus;
 
+    public Settings Settings = new Settings();
+
 
     public static Transform setNewOrigin(Transform transform, Vector3 newOrigin)
     {

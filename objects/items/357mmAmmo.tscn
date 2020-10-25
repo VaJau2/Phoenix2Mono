@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/scripts/items/Ammo.gd" type="Script" id=1]
 [ext_resource path="res://assets/materials/items/itemParticles.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/items/357mmAmmo.material" type="Material" id=3]
 
@@ -35,9 +34,6 @@ surfaces/0 = {
 
 [node name="357mmAmmo" type="Area"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-script = ExtResource( 1 )
-ammoType = "revolver"
-ammoCount = 20
 
 [node name="Particles" type="Particles" parent="."]
 lifetime = 4.0

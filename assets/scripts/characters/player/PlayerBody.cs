@@ -12,7 +12,7 @@ public class PlayerBody : Spatial
     const int MAX_MOUSE_SPEED = 450;
     const float OFFSET_SPEED = 3f;
 
-    const float HEAD_ROT_SPEED = 4f;
+    const float HEAD_ROT_SPEED = 5f;
     const float BODY_ROT_SPEED = 20f;
 
     const float CROUCH_COOLDOWN = 5f;
@@ -133,24 +133,24 @@ public class PlayerBody : Spatial
         headBlend.y = (player.GetVerticalLook() / 60f) + walkOffset;
         if (isWalking || jumpingCooldown > 0) {
             if (checkPegasusFlyingFast) {
-                if (walkOffset < 0.7) {
+                if (walkOffset < 0.8) {
                     walkOffset += OFFSET_SPEED * delta;
                 }
             }
-            if (walkOffset < 0.3f) {
+            if (walkOffset < 0.4f) {
                 walkOffset += (OFFSET_SPEED - 1f) * delta;
             } else if (walkOffset > 0.4f) {
                 walkOffset -= OFFSET_SPEED * delta;
             }
         } else {
             if (player.IsCrouching && crouchingCooldown > 0) {
-                if (walkOffset < 0.3f) {
+                if (walkOffset < 0.4f) {
                     walkOffset += (OFFSET_SPEED - 1f) * delta;
                 } else if (walkOffset > 0.4f) {
                     walkOffset -= OFFSET_SPEED * delta;
                 }
             }  else {
-                if (walkOffset > 0.1f) {
+                if (walkOffset > 0.2f) {
                     walkOffset -= OFFSET_SPEED * delta;
                 }
             }
@@ -168,7 +168,18 @@ public class PlayerBody : Spatial
                 rotX = bodyRot / 90f;
             }
         }
-        headBlend.x = Mathf.MoveToward(headBlend.x, rotX, HEAD_ROT_SPEED * delta);
+
+        float speed = 0;
+        if (isWalking) {
+            speed = (BODY_ROT_SPEED / 90f) * player.GetSpeed();
+            //обрасываем нули, чтоб вращение головы не подрагивало
+            string parsedSpeed = System.String.Format("{0:0.00}", speed);  
+            speed = float.Parse(parsedSpeed);
+        } else {
+            speed = HEAD_ROT_SPEED;
+        }
+
+        headBlend.x = Mathf.MoveToward(headBlend.x, rotX, speed * delta);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 

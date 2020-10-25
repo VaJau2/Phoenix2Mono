@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
+    "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
   },
   "projects": {
-    "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
+    "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "projectUniqueName": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
         "projectName": "Phoenix 2 Mono",
-        "projectPath": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
-        "packagesPath": "C:\\Users\\Compuhter\\.nuget\\packages\\",
-        "outputPath": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\.mono\\temp\\obj\\",
+        "projectPath": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "E:\\Godot\\Projects\\Phoenix2Mono\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Compuhter\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -47,7 +42,7 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

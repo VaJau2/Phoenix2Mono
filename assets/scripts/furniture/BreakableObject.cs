@@ -23,7 +23,7 @@ public class BreakableObject: StaticBody
     private float itemHeight = 0.4f;
     private List<Character> HearingEnemies = new List<Character>();
 
-    private AudioStreamPlayer audi;
+    private AudioStreamPlayer3D audi;
 
     private async void dropItem() 
     {
@@ -72,8 +72,10 @@ public class BreakableObject: StaticBody
             switch (objectType)
             {
                 case (BreakableObjectType.Mirror):
-                    GD.Print("mirror brakes, but you don't have code to off it :c");
-                    GD.Print("please go to BreakableObject.cs to fix this");
+                    var mirror = GetNode<Mirror>("Mirror");
+                    mirror.MirrorOff();
+                    mirror.Visible = false;
+                    mirror.mirrorArea.DestroyMirror();
                     break;
                 
                 case (BreakableObjectType.Lamp): 
@@ -124,7 +126,7 @@ public class BreakableObject: StaticBody
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<AudioStreamPlayer3D>("audi");
         //TODO
         //добавить сюда добавление объекта в nuclear-скрипты
     }

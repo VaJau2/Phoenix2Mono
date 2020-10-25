@@ -13,6 +13,34 @@
 
 [node name="canvas" type="CanvasLayer"]
 
+[node name="eyesParts" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eyeUp" type="TextureRect" parent="eyesParts"]
+anchor_top = -1.0
+anchor_right = 1.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eyeDown" type="TextureRect" parent="eyesParts"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 2.0
+rect_pivot_offset = Vector2( 512, 300 )
+texture = ExtResource( 9 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="messages" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -222,34 +250,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="eyesParts" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="eyeUp" type="TextureRect" parent="eyesParts"]
-anchor_top = -1.0
-anchor_right = 1.0
-texture = ExtResource( 9 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="eyeDown" type="TextureRect" parent="eyesParts"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 2.0
-rect_pivot_offset = Vector2( 512, 300 )
-texture = ExtResource( 9 )
-expand = true
-flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

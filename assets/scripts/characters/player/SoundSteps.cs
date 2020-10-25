@@ -172,8 +172,8 @@ public class SoundSteps {
                 var collideObj = ray.GetCollider();
                 if (collideObj is StaticBody) {
                     var collideBody = collideObj as StaticBody;
-                    var nameArr = collideBody.Name.Split('_');
-                    var materialName = nameArr[nameArr.Length - 1];
+                    var friction = collideBody.PhysicsMaterialOverride.Friction;
+                    var materialName = MatNames.GetMatName(friction);
 
                     if (materialName == "stairs") {
                         if (isPlayer) {
@@ -186,7 +186,6 @@ public class SoundSteps {
                     if (steps.Keys.Contains(materialName)) {
                         landMaterial = materialName;
                     } else {
-                        GD.Print("couldn't find " + materialName);
                         landMaterial = "wood";
                     }
                     

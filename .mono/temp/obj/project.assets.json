@@ -18,7 +18,7 @@
   },
   "libraries": {
     "Microsoft.NETFramework.ReferenceAssemblies/1.0.0": {
-      "sha512": "yPGLn8gxE8ZQhtk/ff2dYmAO3WFPXqrrKU2WzEa7AkzBy9k7Zl+EmjPTZ6zU3zCRPbHlDrxpXefhLNGFpuHung==",
+      "sha512": "7D2TMufjGiowmt0E941kVoTIS+GTNzaPopuzM1/1LSaJAdJdBrVP0SkZW7AgDd0a2U1DjsIeaKG1wxGVBNLDMw==",
       "type": "package",
       "path": "microsoft.netframework.referenceassemblies/1.0.0",
       "files": [
@@ -29,7 +29,7 @@
       ]
     },
     "Microsoft.NETFramework.ReferenceAssemblies.net472/1.0.0": {
-      "sha512": "ygbOHfiwb+3exTcOXJ42x6yVQAwmW5K/3fXdqORUeI3hKQaOUMz6FOXzJAk8OZjJsxBFcIF+RQWWpgBZ48vtrA==",
+      "sha512": "VI0f22cH/xOlXLUVY7t6vr2Gi7cg0vzwpspNGz5isRusyspZblF7jJMw49E8mF1m071JyeVmZVkIK9c5kbiyFA==",
       "type": "package",
       "path": "microsoft.netframework.referenceassemblies.net472/1.0.0",
       "files": [
@@ -415,30 +415,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Compuhter\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+      "projectUniqueName": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
       "projectName": "Phoenix 2 Mono",
-      "projectPath": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
-      "packagesPath": "C:\\Users\\Compuhter\\.nuget\\packages\\",
-      "outputPath": "E:\\Programs\\Godot\\Godot Projects\\Phoenix2Mono\\.mono\\temp\\obj\\",
+      "projectPath": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "E:\\Godot\\Projects\\Phoenix2Mono\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Compuhter\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net472"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -461,7 +455,7 @@
             "autoReferenced": true
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

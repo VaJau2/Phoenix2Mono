@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Phoenix 2 Mono"
 run/main_scene="res://scenes/Test.tscn"
-config/icon="res://icon.ico"
+config/icon="res://assets/textures/interface/icons/icon.png"
 config/macos_native_icon="res://assets/textures/interface/icons/icon.png"
 config/windows_native_icon="res://icon.ico"
 
@@ -81,6 +81,11 @@ legsHit={
 task={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"unicode":0,"echo":false,"script":null)
+ ]
+}
+use={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 

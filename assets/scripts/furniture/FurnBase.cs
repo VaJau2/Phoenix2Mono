@@ -1,21 +1,18 @@
 using Godot;
 
 public class FurnBase: StaticBody {
-    Global global;
+    protected Global global;
 
     [Export]
     public AudioStreamSample OpenSound;
     [Export]
     public AudioStreamSample CloseSound;
 
-    public OpenType openType = OpenType.Closed;
+    public bool IsOpen {get; private set;}
+    public bool OtherSided = false;
 
-    private AudioStreamPlayer3D audi;
+    public AudioStreamPlayer3D audi;
     private AnimationPlayer animator;
-
-    public bool IsOpen {
-        get => (openType == OpenType.Open);
-    }
 
     public override void _Ready()
     {
@@ -25,48 +22,34 @@ public class FurnBase: StaticBody {
     }
 
     private async void setOpen(string anim, AudioStreamSample sound, float timer = 0,
-                               bool force = false) {
+                               bool otherSide = false) {
         audi.Stream = sound;
         audi.Play();
         if (timer != 0) {
             await global.ToTimer(timer);
         }
         animator.Play(anim);
-        if (openType == OpenType.Closed) {
-            if (force) {
-                openType = OpenType.OtherSided;
-            } else {
-                openType = OpenType.Open;
-            }
-        } else {
-            openType = OpenType.Closed;
-        }
+        IsOpen = !IsOpen;
     }
 
-    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string newAnim = null) {
-        switch (openType) {
-            case (OpenType.OtherSided):
-                setOpen("close-2", CloseSound, timer);
-                return;
-            case (OpenType.Open):
+    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) {
+        if (IsOpen) {
+            if (!OtherSided) {
                 setOpen("close", CloseSound, timer);
-                return;
+            } else {
+                setOpen("close-2", CloseSound, timer);
+            }
         }
-        //if closed
-        var anim = "open";
-        if (newAnim != null) {
-            anim = newAnim;
-        }
-        if (openSound == null) {
-            setOpen(anim, OpenSound, timer);
-        } else {
-            setOpen(anim, openSound, timer);
+        else {
+            var anim = "open";
+            if (openAnim != null) {
+                anim = openAnim;
+            }
+            if (openSound == null) {
+                setOpen(anim, OpenSound, timer);
+            } else {
+                setOpen(anim, openSound, timer);
+            }
         }
     }
-}
-
-public enum OpenType {
-    Open,
-    Closed,
-    OtherSided //для выбиваемых дверей
 }

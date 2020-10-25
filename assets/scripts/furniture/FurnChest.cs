@@ -3,7 +3,6 @@ using Godot.Collections;
 using System;
 
 public class FurnChest: FurnBase {
-    Global global = Global.Get();
 
     const float ITEM_DROP_CHANCE = 0.65f;
 
@@ -39,25 +38,27 @@ public class FurnChest: FurnBase {
                 key.KeyPickTextLink = pickKeyTextLink;
             }
 
-            GetNode("root/Main/Scene/items").AddChild(item);
+            GetNode("/root/Main/Scene/items").AddChild(item);
             Vector3 oldPos = GlobalTransform.origin;
-            Global.setNewOrigin(item.GlobalTransform, oldPos);
+            item.GlobalTransform = Global.setNewOrigin(item.GlobalTransform, oldPos);
             
-            while(item != null && itemHeight > 0) {
+            var wr = WeakRef(item);
+            while(wr.GetRef() != null && itemHeight > 0) {
                 Vector3 newPos = item.GlobalTransform.origin;
                 newPos.x += dropSide.x * 0.1f;
                 newPos.y -= 0.1f;
                 newPos.z += dropSide.z * 0.1f;
-                Global.setNewOrigin(item.GlobalTransform, newPos);
+                item.GlobalTransform = Global.setNewOrigin(item.GlobalTransform, newPos);
                 itemHeight -= 0.1f;
                 await ToSignal(GetTree(), "idle_frame");
             }
         }
     }
 
-    public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string newAnim = null)
+
+    public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null)
     {
-        base.ClickFurn(openSound, timer, newAnim);
+        base.ClickFurn();
         if (IsOpen) {
             if (!itemDropped) {
                 if (GD.Randf() < ITEM_DROP_CHANCE || itemPrefab != null) {

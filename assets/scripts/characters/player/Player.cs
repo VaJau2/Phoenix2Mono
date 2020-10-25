@@ -35,6 +35,7 @@ public class Player : Character
     //Player parts links
     public Camera Camera {get; private set;}
     public Spatial RotationHelper {get; private set;}
+    private Spatial headShape;
     private Spatial RotationHelperThird;
     private Spatial CameraHeadPos;
     public PlayerBody Body;
@@ -76,7 +77,7 @@ public class Player : Character
     private Material bodyMaterial = GD.Load<Material>(socksPath + "player_body.material");
     private Material socksMaterial = GD.Load<Material>(socksPath + "player_body_socks.material");
 
-    private Dictionary<string, bool> equipment = new Dictionary<string, bool>() 
+    public Dictionary<string, bool> equipment = new Dictionary<string, bool>() 
     {
         {"have_armor", false},
         {"have_socks", false},
@@ -117,6 +118,7 @@ public class Player : Character
 
         Camera = GetNode<Camera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
+        headShape = GetNode<Spatial>("headShape");
         RotationHelperThird = GetNode<Spatial>("rotation_helper_third");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/Head/cameraPos");
 
@@ -310,6 +312,7 @@ public class Player : Character
         Transform cameraTransf = RotationHelper.GlobalTransform;
         cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
         RotationHelper.GlobalTransform = cameraTransf;
+        headShape.GlobalTransform = cameraTransf;
 
         if (IsRoped) {
             if (inputMovementVector.Length() > 0) {
@@ -376,8 +379,8 @@ public class Player : Character
         if (bodyCollider.Scale.y != bodyColliderSize) {
             Vector3 bodyScale = bodyCollider.Scale;
             Vector3 sphereScale = sphereCollider.Scale;
-            bodyScale.y = Mathf.MoveToward(bodyScale.y, bodyColliderSize, 2 * delta);
-            sphereScale.y = Mathf.MoveToward(sphereScale.y, bodyColliderSize, 2 * delta);
+            bodyScale.y = bodyColliderSize;
+            sphereScale.y = bodyColliderSize;
             bodyCollider.Scale = bodyScale;
             sphereCollider.Scale = sphereScale;
         }

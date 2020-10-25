@@ -60,8 +60,34 @@ public class PlayerLegs
                 Character character = victim as Character;
                 character.TakeDamage(damage);
             } else {
-                GD.Print("Tried to brake breakable object, but it didn't coded yet");
-                GD.Print("Go to PlayerLegs.cs and code this c:");
+                if (victim is StaticBody) {
+                    var body = victim as StaticBody;
+                    var friction = body.PhysicsMaterialOverride.Friction;
+                    var materialName = MatNames.GetMatName(friction);
+                    if (materaiSounds.ContainsKey(materialName)) {
+                        audi.Stream = materaiSounds[materialName];
+                    }
+                }
+
+                if (victim is BreakableObject) {
+                    var obj = victim as BreakableObject;
+                    obj.Brake(damage);
+                }
+                else if (victim is FurnDoor) {
+                    var door = victim as FurnDoor;
+                    if (!door.IsOpen) {
+                        if (!door.ForceOpening) {
+                            door.audi.Stream = materaiSounds["stone"];
+                            door.audi.Play();
+                        } else if(door.myKey != "" && 
+                            global.playerRace != Race.Earthpony) {
+                                door.audi.Stream = materaiSounds["door"];
+                                door.audi.Play();
+                        } else {
+                            door.setOpen(materaiSounds["door_open"], 0, true);
+                        }
+                    }
+                }
             }
         }
     }
@@ -155,24 +181,32 @@ public class PlayerLegs
     }
 
     public void FrontAreaBodyEntered(PhysicsBody body) {
+        if (body is Player) return;
+
         if (body is StaticBody || body is Character) {
             frontObjects.Add(body);
         }
     }
 
     public void FrontAreaBodyExited(PhysicsBody body) {
+        if (body is Player) return;
+
         if (frontObjects.Contains(body)) {
             frontObjects.Remove(body);
         }
     }
 
     public void BackAreaBodyEntered(PhysicsBody body) {
+        if (body is Player) return;
+
         if (body is StaticBody || body is Character) {
             backObjects.Add(body);
         }
     }
 
     public void BackAreaBodyExited(PhysicsBody body) {
+        if (body is Player) return;
+
         if (backObjects.Contains(body)) {
             backObjects.Remove(body);
         }
