@@ -1,11 +1,12 @@
 using Godot;
+using Godot.Collections;
 
 public class PlayerSpawner : Spatial
 {
     [Export]
     public bool HaveCoat;
     [Export]
-    public string[] StartWeapons;
+    public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
 
     public override void _Ready()
     {

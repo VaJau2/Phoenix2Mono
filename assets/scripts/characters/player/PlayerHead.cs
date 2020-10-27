@@ -32,7 +32,7 @@ public class PlayerHead : MeshInstance
         closedTimer = (float)rand.Next(3, 6);
     }
 
-    void CloseEyes() {
+    public void CloseEyes() {
         if(shyTimer > 0) {
             SetSurfaceMaterial(0, closedEyesShy);
             closedTimer = 0.15f;

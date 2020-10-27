@@ -14,7 +14,9 @@ public class Global {
     }
     //-----------------------------
 
-    public Player player {set; private get;}
+    public bool paused;
+
+    public Player player;
     public Race playerRace = Race.Pegasus;
 
     public Settings Settings = new Settings();

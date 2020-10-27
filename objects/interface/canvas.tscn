@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/interface/icons/health_ammo.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/interface/icons/gun_icons.png" type="Texture" id=10]
+[ext_resource path="res://assets/scripts/interface/GunIcons.cs" type="Script" id=11]
 
 [node name="canvas" type="CanvasLayer"]
 
@@ -132,6 +133,7 @@ __meta__ = {
 [node name="gunIcons" type="Control" parent="shootInterface"]
 margin_top = -36.0
 margin_right = 364.0
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

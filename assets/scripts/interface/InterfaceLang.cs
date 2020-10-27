@@ -6,6 +6,9 @@ using Godot.Collections;
 /// </summary>
 public static class InterfaceLang {
     private static string lang = "ru";
+    private static string lastPhrase;
+    private static string lastPhraseText;
+    private static bool languageChanged;
 
     public static void ChangeLanguage(Language language)
     {
@@ -17,6 +20,7 @@ public static class InterfaceLang {
                 lang = "ru";
                 break;
         }
+        languageChanged = true;
     }
 
     /// <summary>
@@ -28,6 +32,14 @@ public static class InterfaceLang {
     /// <returns></returns>
     public static string GetLang(string file, string section, string phrase) 
     {
+        //кеширование последней фразы с:
+        //если сломает текст, смело можно удалять с:
+        if (!languageChanged) {
+            if (phrase == lastPhrase) {
+                return lastPhraseText;
+            }
+        }
+
         File langFile = new File();
         string path = "res://assets/lang/" + lang + "/" + file + ".json";
 
@@ -40,7 +52,11 @@ public static class InterfaceLang {
             if (result_json.Error == Error.Ok) {  
                 var data = (Dictionary)result_json.Result;
                 var sectionData = data[section] as Dictionary;
-                return sectionData[phrase].ToString();
+
+                lastPhrase = phrase;
+                lastPhraseText = sectionData[phrase].ToString();
+
+                return lastPhraseText;
                 
             } else { 
                 GD.Print("Error: ", result_json.Error);

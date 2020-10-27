@@ -18,7 +18,7 @@ public class Player : Character
     [Export]
     public bool HaveCoat;
     [Export]
-    public string[] StartWeapons;
+    public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
     public bool MayMove = true;
     public bool IsCrouching;
     public bool IsHitting;
@@ -54,7 +54,7 @@ public class Player : Character
     //Moving  variables
     protected float MaxSpeed = 17f;
     private Vector3 dir;
-    private Vector3 impulse;
+    public Vector3 impulse;
 
     private CollisionShape sphereCollider;
     private CollisionShape bodyCollider;
@@ -498,6 +498,7 @@ public class Player : Character
     public override void _Process(float delta)
     {
         bodyCollider.Rotation = Body.Rotation;
+        Weapons.Update(delta);
     }
 
     public override void _PhysicsProcess(float delta)

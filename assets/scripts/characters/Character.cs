@@ -23,9 +23,13 @@ public abstract class Character : KinematicBody
         Health = Mathf.Clamp(Health, 0, HealthMax);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, int shapeID = 0)
     {
         decreaseHealth(damage);
+    }
+
+    public void MakeDamage(Character victim, int damage, int shapeID = 0) {
+        victim.TakeDamage(damage, shapeID);
     }
 
     /// <summary>
