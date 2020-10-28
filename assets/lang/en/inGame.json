@@ -10,8 +10,11 @@
         "none": "?"
     },
 
-    "keys" : {
-        "test": "Picked test key"
+    "items": {
+        "healthEnough": "Your health is full already",
+        "notSpace": "Not enough space",
+
+        "key_test": "Picked test key"
     },
 
     "cameraHints": {

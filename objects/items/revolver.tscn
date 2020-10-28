@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/weapon/revolver.material" type="Material" id=1]
 [ext_resource path="res://objects/items/Item.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/scripts/items/shotgunItem.gd" type="Script" id=3]
+[ext_resource path="res://assets/scripts/items/ItemWeapon.cs" type="Script" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "revolver"
@@ -52,9 +52,8 @@ surfaces/0 = {
 [node name="revolver" instance=ExtResource( 2 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0 )
 script = ExtResource( 3 )
-weapon_type = "revolver"
-weapon_num = 2
-ammo_count = 20
+WeaponType = 2
+AmmoCount = 20
 
 [node name="mesh" type="MeshInstance" parent="." index="2"]
 transform = Transform( 0.299969, 0, 0, 0, 0.292281, 0.0674783, 0, -0.0674783, 0.292281, 8.25234e-17, 0.550039, -0.0891933 )

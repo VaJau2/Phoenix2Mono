@@ -2,12 +2,11 @@
 
 [ext_resource path="res://objects/guns/pistol.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/items/Item.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/scripts/items/shotgunItem.gd" type="Script" id=3]
+[ext_resource path="res://assets/scripts/items/ItemWeapon.cs" type="Script" id=3]
 
 [node name="pistol" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-weapon_type = "pistol"
-ammo_count = 50
+AmmoCount = 50
 
 [node name="mesh" parent="." index="2" instance=ExtResource( 1 )]
 transform = Transform( 0.8, 0, 0, 0, 0.762366, 0.242482, 0, -0.242482, 0.762366, 0, 0.16363, 0 )

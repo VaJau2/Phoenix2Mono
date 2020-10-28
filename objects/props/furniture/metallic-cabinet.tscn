@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/materials/props/furniture/metallic-cabinet-door.tres" type="Material" id=2]
 [ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/futniture/FurnClose.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=5]
-[ext_resource path="res://assets/scripts/furns/furn-chest.gd" type="Script" id=6]
+[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
+[ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5679, 2.01067, 1.00235 )
@@ -95,9 +95,8 @@ tracks/1/keys = {
 [node name="metallic-cabinet" type="StaticBody"]
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 6 )
-openSound = ExtResource( 3 )
-closeSound = ExtResource( 4 )
-drop_side = Vector3( 1, 0, 0 )
+OpenSound = ExtResource( 3 )
+CloseSound = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0521724, 0, 0 )

@@ -11,7 +11,7 @@ public class PlayerWeapons
 
     //--статистика------
     public bool GunOn = false;
-    public WeaponTypes TempWeapon = WeaponTypes.None;
+    public WeaponTypes TempWeaponType = WeaponTypes.None;
 
     public Dictionary<WeaponTypes, WeaponStats> weaponStats;
 
@@ -32,16 +32,20 @@ public class PlayerWeapons
     Label label;
     Control shootInterface;
 
-    Label ammoLabel;
+    public Label ammoLabel;
     Sprite ammoIcon;
     GunIcons weaponIcons;
 
 
     //--модельки-------
-    Dictionary<string, Spatial> weaponModels;
-    Dictionary<string, Spatial> weaponThirdModels;
+    Dictionary<string, Spatial> weaponParents;
+    Dictionary<string, Transform> weaponPositions = new Dictionary<string, Transform>();
+    Dictionary<string, PackedScene> weaponPrefabs = new Dictionary<string, PackedScene>();
 
     //--эффекты и анимания выстрела
+
+    Spatial tempWeapon;
+    string tempWeaponKey = "";
     AnimationPlayer gunAnim;
     Spatial gunLight;
     Spatial gunFire;
@@ -69,9 +73,10 @@ public class PlayerWeapons
 
     private void loadModels() 
     {
+        //вытаскиваем все модельки оружия
         string head1Path = "rotation_helper/camera/weapons/";
         string bagPath = "player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag/";
-        weaponModels = new Dictionary<string, Spatial>()
+        var weaponModels = new Dictionary<string, Spatial>()
         {
             {"pistol_on", player.GetNode<Spatial>(head1Path + "pistol")},
             {"pistol_off", player.GetNode<Spatial>(bagPath + "pistol")},
@@ -85,10 +90,39 @@ public class PlayerWeapons
         };
 
         string head3Path = "player_body/Armature/Skeleton/BoneAttachment/weapons/";
-        weaponThirdModels = new Dictionary<string, Spatial>() 
+        var weaponThirdModels = new Dictionary<string, Spatial>() 
         {
             {"pistol_on", player.GetNode<Spatial>(head3Path + "pistol")},
             {"revolver_on", player.GetNode<Spatial>(head3Path + "revolver")}
+        };
+
+        //грузим parent-объекты для спавнящегося оружия
+        weaponParents = new Dictionary<string, Spatial>()
+        {
+            {"head1", player.GetNode<Spatial>(head1Path)},
+            {"head3", player.GetNode<Spatial>(head3Path)},
+            {"bag", player.GetNode<Spatial>(bagPath)},
+        };
+
+        //запоминаем их локальную позицию и удаляем их
+        foreach(string weaponName in weaponModels.Keys) {
+            weaponPositions.Add(weaponName, weaponModels[weaponName].Transform);
+            weaponModels[weaponName].QueueFree();
+        }
+
+        foreach(string weaponName in weaponThirdModels.Keys) {
+            weaponPositions.Add("third_" + weaponName, weaponThirdModels[weaponName].Transform);
+            weaponThirdModels[weaponName].QueueFree();
+        }
+
+        //загружаем префабы моделек
+        string prefabPath = "res://objects/guns/";
+        weaponPrefabs = new Dictionary<string, PackedScene>()
+        {
+            {"pistol", GD.Load<PackedScene>(prefabPath + "pistol.tscn")},
+            {"revolver", GD.Load<PackedScene>(prefabPath + "revolver.tscn")},
+            {"sniper", GD.Load<PackedScene>(prefabPath + "rifle.tscn")},
+            {"shotgun", GD.Load<PackedScene>(prefabPath + "shotgun.tscn")}
         };
     }  
 
@@ -102,7 +136,7 @@ public class PlayerWeapons
         pistolStats.distance = 80;
         pistolStats.cooldown = 0.7f;
         pistolStats.recoil = 4f;
-        pistolStats.icon = 40;
+        pistolStats.iconSize = 40;
 
         WeaponStats shotgunStats = new WeaponStats();
         shotgunStats.ammo = 5;
@@ -111,7 +145,7 @@ public class PlayerWeapons
         shotgunStats.distance = 40;
         shotgunStats.cooldown = 2f;
         shotgunStats.recoil = 2.5f;
-        shotgunStats.icon = 80;
+        shotgunStats.iconSize = 80;
 
         WeaponStats revolverStats = new WeaponStats();
         revolverStats.ammo = 20;
@@ -120,16 +154,16 @@ public class PlayerWeapons
         revolverStats.distance = 80;
         revolverStats.cooldown = 0.5f;
         revolverStats.recoil = 3.0f;
-        revolverStats.icon = 40;
+        revolverStats.iconSize = 40;
 
         WeaponStats sniperStats = new WeaponStats();
-        sniperStats.ammoMax = 5;
+        sniperStats.ammo = 5;
         sniperStats.ammoMax = 15;
         sniperStats.damage = 70;
         sniperStats.distance = 200;
         sniperStats.cooldown = 1.6f;
         sniperStats.recoil = 1.5f;
-        sniperStats.icon = 120;
+        sniperStats.iconSize = 120;
 
         weaponStats = new Dictionary<WeaponTypes, WeaponStats>()
         {
@@ -201,32 +235,73 @@ public class PlayerWeapons
                 stats.have = true;
                 weaponStats[type] = stats;
             }
-            changeGun(player.StartWeapons[0]);
+            changeGun(player.StartWeapons[0], true);
         }
     }
 
     private void loadGunEffects() 
     {
-        var tempWeaponDict = weaponModels;
+        gunAnim = tempWeapon.GetNode<AnimationPlayer>("anim");
+        gunLight = tempWeapon.GetNode<Spatial>("light");
+        gunFire = tempWeapon.GetNode<Spatial>("fire");
+        gunSmoke = tempWeapon.GetNode<Particles>("smoke");
+    }
 
-        string tempType = WeaponType.ToString(TempWeapon);
-        bool haveThirdModel = weaponThirdModels.ContainsKey(tempType + "_on");
-        if (player.ThirdView && haveThirdModel) {
-            tempWeaponDict = weaponThirdModels;
+    private void setWeaponModel(WeaponTypes newType) 
+    {
+        //проверяем, не включена ли уже эта моделька
+        var key = "";
+        bool isPistol = IsNotRifle;
+        Spatial parent = null;
+
+        if (GunOn && isPistol) {
+            if (player.ThirdView) {
+                key += "third_";
+                parent = weaponParents["head3"];
+            } else {
+                parent = weaponParents["head1"];
+            }
+        } else {
+            parent = weaponParents["bag"];
         }
-        var weapon = tempWeaponDict[tempType + "_on"];
+        
+        string weaponName = WeaponType.ToString(newType);
+        key += weaponName;
 
-        gunAnim = weapon.GetNode<AnimationPlayer>("anim");
-        gunLight = weapon.GetNode<Spatial>("light");
-        gunFire = weapon.GetNode<Spatial>("fire");
-        gunSmoke = weapon.GetNode<Particles>("smoke");
+        if (!GunOn && isPistol) {
+            key += "_off";
+        } else {
+            key += "_on";
+        }
+        
+        if (tempWeaponKey != key) {
+            //удаляем предыдущую модельку
+            if (tempWeapon != null) {
+                tempWeapon.QueueFree();
+            }
+
+            if (newType == WeaponTypes.None) {
+                tempWeapon = null;
+                return;
+            }
+
+            //спавним новую модельку, ставим на её позицию
+            var newWeapon = (Spatial)weaponPrefabs[weaponName].Instance();
+            parent.AddChild(newWeapon);
+            newWeapon.Transform = weaponPositions[key];
+
+            //запоминаем её
+            tempWeapon = newWeapon;
+            tempWeaponKey = key;
+            loadGunEffects();
+        }
     }
 
     public bool IsNotRifle {
         get {
-            return (TempWeapon == WeaponTypes.Pistol ||
-                    TempWeapon == WeaponTypes.Revolver ||
-                    TempWeapon == WeaponTypes.None);
+            return (TempWeaponType == WeaponTypes.Pistol ||
+                    TempWeaponType == WeaponTypes.Revolver ||
+                    TempWeaponType == WeaponTypes.None);
         }
     }
 
@@ -236,9 +311,11 @@ public class PlayerWeapons
         return origin;
     }
 
-    private void setGunOn(bool newGunOn, bool collisionOn = true) {
+    private void setGunOn(bool newGunOn) {
         GunOn = newGunOn;
-        if (collisionOn) {
+        var isPistol = IsNotRifle;
+
+        if (isPistol) {
             gunShape.Disabled = !newGunOn;
             gunShape.RotationDegrees = Vector3.Zero;
         } else {
@@ -247,7 +324,7 @@ public class PlayerWeapons
         shootInterface.Visible = newGunOn;
 
         if (GunOn) {
-            if (IsNotRifle) {
+            if (isPistol) {
                 player.BodyFollowsCamera = false;
             } else {
                 player.BodyFollowsCamera = true;
@@ -265,7 +342,7 @@ public class PlayerWeapons
         bool shakingProcess = true;
         while(shakingProcess) {
             if (shakeUp) {
-                if (tempShake < weaponStats[TempWeapon].recoil) {
+                if (tempShake < weaponStats[TempWeaponType].recoil) {
                     tempShake += SHAKE_SPEED;
                     player.Camera.RotationDegrees = SetRotX(
                         player.Camera.RotationDegrees,
@@ -308,7 +385,10 @@ public class PlayerWeapons
                 await player.ToSignal(player.GetTree(), "idle_frame");
                 if (rayShotgun.GetCollider() == victim) {
                     handleVictim(victim);
-                    GD.Print("add in weapons.cs in 313 enemy's impulse pls");
+                    if (victim is Character) {
+                        var chr = victim as Character;
+                        spawnBlood(chr, player.impulse * -4, dir);
+                    }
                 } else {
                     if(!rayShotgun.IsColliding() && (victim is BreakableObject)) {
                         handleVictim(victim);
@@ -350,58 +430,23 @@ public class PlayerWeapons
                     name = "blood";
                 }
             var character = victim as Character;
-            player.MakeDamage(character, weaponStats[TempWeapon].damage, shapeID);
+            player.MakeDamage(character, weaponStats[TempWeaponType].damage, shapeID);
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;
             name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
             if (victim is BreakableObject) {
                 var obj = victim as BreakableObject;
-                obj.Brake(weaponStats[TempWeapon].damage);
+                obj.Brake(weaponStats[TempWeaponType].damage);
             }
         }
 
         return name;
     }  
 
-    private void activateGunOnModel(bool on) 
+    public void checkThirdView() 
     {
-        string tempType = WeaponType.ToString(TempWeapon);
-        bool haveThirdModel = weaponThirdModels.ContainsKey(tempType + "_on");
-
-        if (player.ThirdView && haveThirdModel) {
-            weaponThirdModels[tempType + "_on"].Visible = on;
-            gunShape.Disabled = on; 
-        } else {
-            weaponModels[tempType + "_on"].Visible = on;
-            if (!IsNotRifle) {
-                gunShape.Disabled = !on;
-            }
-        }
-        if (on) {
-            loadGunEffects();
-        }
-    }
-
-    private void checkThirdView(bool thirdOn) 
-    {
-        string tempType = WeaponType.ToString(TempWeapon);
-        bool haveThirdModel = weaponThirdModels.ContainsKey(tempType + "_on");
-
-        if (GunOn && haveThirdModel) {
-            weaponThirdModels[tempType + "_on"].Visible = thirdOn;
-            weaponModels[tempType + "on"].Visible = !thirdOn;
-            gunShape.Disabled = thirdOn;
-            loadGunEffects();
-        }
-    }
-
-    private void disactivateGunModel()
-    {
-        activateGunOnModel(false);
-        if (IsNotRifle) {
-            string tempType = WeaponType.ToString(TempWeapon);
-            weaponModels[tempType + "_off"].Visible = false;
-        } 
+        //если сменился вид, новая моделька подключится вместо старой
+        setWeaponModel(TempWeaponType);
     }
 
     private void ChangeBagVisible(bool visible)
@@ -411,41 +456,33 @@ public class PlayerWeapons
         bug.Visible = visible;
     }
 
-    private void changeGun(WeaponTypes newType) 
+    public void changeGun(WeaponTypes newType, bool atStart = false) 
     {
         //если у игрока до этого не было оружия
-        if (!bagEnabled) {
+        if (bagEnabled) {
             ChangeBagVisible(true);
         }
 
-        //вырубаем предыдущую модельку
-        if (TempWeapon != WeaponTypes.None) {
-            disactivateGunModel();
+        //меняем тип оружия и модельку
+        TempWeaponType = newType;
+
+        if (!atStart) {
+            setGunOn(true);
         }
 
-        TempWeapon = newType;
+        setWeaponModel(TempWeaponType);
 
-        //врубаем новые модельки
-        if (IsNotRifle) {
-            string tempType = WeaponType.ToString(TempWeapon);
-            weaponModels[tempType + "_off"].Visible = !GunOn;
-            activateGunOnModel(GunOn);
-            player.BodyFollowsCamera = false;
-        } else {
-            activateGunOnModel(true);
-            setGunOn(true, false);
-        }
-
-        shotgunArea.Monitoring = (TempWeapon == WeaponTypes.Shotgun);
+        shotgunArea.Monitoring = (newType == WeaponTypes.Shotgun);
         
-        ammoLabel.Text = weaponStats[TempWeapon].ammo.ToString();
-        ammoIcon.RegionRect = new Rect2(weaponStats[TempWeapon].icon, 0, 40, 40);
-        loadGunEffects();
-        audi.Stream = sounds["GunOn"];
-        audi.Play();
-        cooldown = 0;
+        ammoLabel.Text = weaponStats[newType].ammo.ToString();
+        ammoIcon.RegionRect = new Rect2(weaponStats[newType].iconSize, 0, 40, 40);
 
-        weaponIcons.ChangeWeapon(this, TempWeapon);
+        if (!atStart) {
+            audi.Stream = sounds["GunOn"];
+            audi.Play();
+
+            weaponIcons.ChangeWeapon(this, newType);
+        }
     }
 
     public RayCast EnableHeadRay(float distance)
@@ -462,17 +499,17 @@ public class PlayerWeapons
 
     private async void handleShoot() {
         onetimeShoot = true;
-        WeaponStats tempStats = weaponStats[TempWeapon];
+        WeaponStats tempStats = weaponStats[TempWeaponType];
 
         if (tempStats.ammo == 0) {
             audiShoot.Stream = sounds["TryShoot"];
             audiShoot.Play();
-            onetimeShoot = true;
+            onetimeShoot = false;
         } else {
             tempStats.ammo -= 1;
             ammoLabel.Text = tempStats.ammo.ToString();
             cooldown = tempStats.cooldown;
-            var tempWeapon = WeaponType.ToString(TempWeapon);
+            var tempWeapon = WeaponType.ToString(TempWeaponType);
             audiShoot.Stream = sounds[tempWeapon + "_shoot"];
             audiShoot.Play();
             if (gunAnim != null) {
@@ -490,7 +527,7 @@ public class PlayerWeapons
 
             //обрабатываем попадания
             if (IsNotRifle || player.MayMove) {
-                if (TempWeapon == WeaponTypes.Shotgun) {
+                if (TempWeaponType == WeaponTypes.Shotgun) {
                     player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
                     var objs = shotgunArea.objectsInside;
                     checkVisible(objs);
@@ -540,7 +577,7 @@ public class PlayerWeapons
     private void checkInputKey(int key, WeaponTypes type) 
     {
         if (Input.IsKeyPressed(key)) {
-            if (TempWeapon != type && weaponStats[type].have) {
+            if (TempWeaponType != type && weaponStats[type].have) {
                 changeGun(type);
             }
         }
@@ -549,7 +586,7 @@ public class PlayerWeapons
     public void Update(float delta) {
         if (!global.paused && player.Health > 0) 
         {
-            if (TempWeapon != WeaponTypes.None) {
+            if (TempWeaponType != WeaponTypes.None) {
                 if (GunOn) {
                     //вращаем коллизию пистолета вместе с пистолетом
                     if (IsNotRifle) {
@@ -569,9 +606,8 @@ public class PlayerWeapons
                 }
 
                 //обработка доставания оружия
-                if (weaponStats[TempWeapon].have) {
+                if (weaponStats[TempWeaponType].have) {
                     if (IsNotRifle) {
-                       // GD.Print(player.RotationHelper.RotationDegrees.x);
                         if (player.Body.bodyRot > 80 &&
                             player.Body.bodyRot < 130 &&
                             player.RotationHelper.RotationDegrees.x < -40) {
@@ -589,12 +625,7 @@ public class PlayerWeapons
                                 onetimeVisible = true;
                                 if (Input.IsActionJustPressed("getGun")) {
                                     setGunOn(!GunOn);
-
-                                    activateGunOnModel(GunOn);
-                                    if (IsNotRifle) {
-                                        string tempWeapon = WeaponType.ToString(TempWeapon);
-                                        weaponModels[tempWeapon + "_off"].Visible = !GunOn;
-                                    }
+                                    setWeaponModel(TempWeaponType);
 
                                     if (!GunOn) {
                                         audi.Stream = sounds["GunOff"];
@@ -683,5 +714,5 @@ public struct WeaponStats
     public int distance;
     public float cooldown;
     public float recoil;
-    public int icon;
+    public int iconSize;
 }

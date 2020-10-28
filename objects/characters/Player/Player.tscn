@@ -4310,7 +4310,6 @@ transform = Transform( 0.976954, 2.052e-12, -1.16635e-11, -1.13802e-12, 0.974798
 
 [node name="weapons" type="Spatial" parent="player_body/Armature/Skeleton/BoneAttachment"]
 transform = Transform( 1.17647, -9.98185e-07, -2.91949e-06, -8.1847e-13, 1.11321, -0.380607, 3.08541e-06, 0.380606, 1.1132, -9.86477e-08, 0.422465, 0.0376143 )
-visible = false
 
 [node name="pistol" parent="player_body/Armature/Skeleton/BoneAttachment/weapons" instance=ExtResource( 19 )]
 transform = Transform( 0.6, 1.13687e-12, 3.06954e-12, 4.83169e-13, 0.6, -1.49012e-08, 2.38742e-12, 2.68221e-07, 0.6, 0.532, 0.00599909, -2.14176 )

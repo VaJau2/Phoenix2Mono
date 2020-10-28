@@ -30,6 +30,7 @@ public class PlayerThirdPerson : Spatial
         player.ThirdView = on;
         ray.Enabled = on;
         eyePartsInterface.Visible = !on;
+        player.Weapons.checkThirdView();
 
         //возвращаем игроку вращение при переходе от 3 лица
         //если он повернулся на больше 180 градусов

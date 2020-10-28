@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -18,6 +18,16 @@
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=18]
+[ext_resource path="res://objects/items/HealPotion.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/items/307mmAmmo.tscn" type="PackedScene" id=21]
+[ext_resource path="res://objects/items/357mmAmmo.tscn" type="PackedScene" id=22]
+[ext_resource path="res://objects/items/10mmAmmo.tscn" type="PackedScene" id=23]
+[ext_resource path="res://objects/items/20mmAmmo.tscn" type="PackedScene" id=24]
+[ext_resource path="res://objects/items/pistol.tscn" type="PackedScene" id=25]
+[ext_resource path="res://objects/items/revolver.tscn" type="PackedScene" id=26]
+[ext_resource path="res://objects/items/rifle.tscn" type="PackedScene" id=27]
+[ext_resource path="res://objects/items/shotgun.tscn" type="PackedScene" id=28]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -123,19 +133,22 @@ shape = SubResource( 4 )
 
 [node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-StartWeapons = [ 0, 1 ]
 
 [node name="cabinet" parent="Scene" instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.4544, 2.91461, -3.64411 )
 physics_material_override = ExtResource( 7 )
 dropSide = Vector3( 1, 0, 0 )
 itemPrefab = ExtResource( 3 )
-keyName = "test"
-pickKeyTextLink = "test"
+keyName = "key_test"
+pickKeyTextLink = "key_test"
+
+[node name="metallic-cabinet" parent="Scene" instance=ExtResource( 20 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.3443, 2.99856, 2.5442 )
+dropSide = Vector3( 1, 0, 0 )
 
 [node name="door" parent="Scene" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
-myKey = "test"
+myKey = "key_test"
 
 [node name="Mirror" type="StaticBody" parent="Scene"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.672479, 3.41876, -16.2384 )
@@ -204,6 +217,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.139542, 0.0532303, 1.37937 
 shape = SubResource( 15 )
 
 [node name="items" type="Node" parent="Scene"]
+
+[node name="HealPotion" parent="Scene/items" instance=ExtResource( 19 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.2308, 1.15506, -1.19808 )
+
+[node name="10mmAmmo" parent="Scene/items" instance=ExtResource( 23 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 4.01038 )
+
+[node name="20mmAmmo" parent="Scene/items" instance=ExtResource( 24 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 8.08391 )
+
+[node name="307mmAmmo" parent="Scene/items" instance=ExtResource( 21 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 11.6341 )
+
+[node name="357mmAmmo" parent="Scene/items" instance=ExtResource( 22 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 17.1962 )
+
+[node name="pistol" parent="Scene/items" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3085, 1.15506, -2.22805 )
+
+[node name="revolver" parent="Scene/items" instance=ExtResource( 26 )]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 28.742, 1.155, 5.877 )
+
+[node name="rifle" parent="Scene/items" instance=ExtResource( 27 )]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 29.2679, 1.155, 14.765 )
+
+[node name="shotgun" parent="Scene/items" instance=ExtResource( 28 )]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 28.7142, 1.55, 26.2817 )
 
 [node name="canvas" parent="Scene" instance=ExtResource( 2 )]
 
