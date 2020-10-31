@@ -14,6 +14,11 @@ public class PegasusSmash : Area
 
     public void _on_smasharea_body_entered(Node body) 
     {
+        GD.Print("got "+ body.Name + " in area");
+
+        if (body is Player) return;
+
+        
         if(player.MaySmash) {
             var audiHitted = player.GetAudi(true);
             audiHitted.Stream = hitSound;

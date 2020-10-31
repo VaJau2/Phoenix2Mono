@@ -29,8 +29,12 @@ public class Global {
         return tempTrans;
     }
 
-    public SignalAwaiter ToTimer(float time) {
-        return player.ToSignal(player.GetTree().CreateTimer(time), "timeout");
+    public SignalAwaiter ToTimer(float time, Node _object = null) {
+        if (_object == null)
+        {
+            _object = player;
+        }
+        return _object.ToSignal(_object.GetTree().CreateTimer(time), "timeout");
     }
 }
 

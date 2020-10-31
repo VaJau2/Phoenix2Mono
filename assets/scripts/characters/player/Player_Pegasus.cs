@@ -9,8 +9,8 @@ public class Player_Pegasus : Player
     public bool MaySmash = false;
     private float flyingFastTimer = 0;
     private float speedY;
-    public float flySpeed {get; private set;} = 30f;
-    private float flyIncrease = 10f;
+    public float flySpeed {get; private set;} = 35f;
+    private float flyIncrease = 8f;
     private float flyDecrease = 4;
 
     public AudioStreamPlayer wingsAudi;
@@ -129,13 +129,15 @@ public class Player_Pegasus : Player
     {
         if (IsFlying) {
             if (IsFlyingFast) {
+                GD.Print(flySpeed);
                 flySpeed += flyIncrease * delta;
+
                 if (flyIncrease > 0) {
-                    flyIncrease -= delta * 15f;
-                }
+                    flyIncrease -= delta * 2f;
+                } 
             } else {
-                flySpeed = 30f;
-                flyIncrease = 10f;
+                flySpeed = 35f;
+                flyIncrease = 8f;
             }
 
             return flySpeed;

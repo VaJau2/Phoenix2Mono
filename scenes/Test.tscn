@@ -82,59 +82,59 @@ extents = Vector3( 6.52819, 2.3378, 9.37135 )
 [sub_resource type="BoxShape" id=15]
 extents = Vector3( 5.91382, 4.42414, 10.2255 )
 
-[node name="Main" type="Node"]
+[node name="Scene" type="Node"]
 
-[node name="Scene" type="Node" parent="."]
+[node name="canvas" parent="." instance=ExtResource( 2 )]
 
-[node name="terrain" type="StaticBody" parent="Scene"]
+[node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain"]
+[node name="MeshInstance" type="MeshInstance" parent="terrain"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain"]
+[node name="CollisionShape" type="CollisionShape" parent="terrain"]
 shape = SubResource( 2 )
 
-[node name="box" type="StaticBody" parent="Scene/terrain"]
+[node name="box" type="StaticBody" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/box"]
+[node name="MeshInstance" type="MeshInstance" parent="terrain/box"]
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/box"]
+[node name="CollisionShape" type="CollisionShape" parent="terrain/box"]
 shape = SubResource( 4 )
 
-[node name="box3" type="StaticBody" parent="Scene/terrain"]
+[node name="box3" type="StaticBody" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 14.9577 )
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/box3"]
+[node name="MeshInstance" type="MeshInstance" parent="terrain/box3"]
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/box3"]
+[node name="CollisionShape" type="CollisionShape" parent="terrain/box3"]
 shape = SubResource( 4 )
 
-[node name="box2" type="StaticBody" parent="Scene/terrain"]
+[node name="box2" type="StaticBody" parent="terrain"]
 transform = Transform( 8, 0, 0, 0, 5, 0, 0, 0, 2, -1.08094, 4.611, -18.6128 )
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/box2"]
+[node name="MeshInstance" type="MeshInstance" parent="terrain/box2"]
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/box2"]
+[node name="CollisionShape" type="CollisionShape" parent="terrain/box2"]
 shape = SubResource( 4 )
 
-[node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-
-[node name="cabinet" parent="Scene" instance=ExtResource( 4 )]
+[node name="cabinet" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.4544, 2.91461, -3.64411 )
 physics_material_override = ExtResource( 7 )
 dropSide = Vector3( 1, 0, 0 )
@@ -142,15 +142,15 @@ itemPrefab = ExtResource( 3 )
 keyName = "key_test"
 pickKeyTextLink = "key_test"
 
-[node name="metallic-cabinet" parent="Scene" instance=ExtResource( 20 )]
+[node name="metallic-cabinet" parent="." instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.3443, 2.99856, 2.5442 )
 dropSide = Vector3( 1, 0, 0 )
 
-[node name="door" parent="Scene" instance=ExtResource( 5 )]
+[node name="door" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
 myKey = "key_test"
 
-[node name="Mirror" type="StaticBody" parent="Scene"]
+[node name="Mirror" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.672479, 3.41876, -16.2384 )
 collision_layer = 3
 physics_material_override = ExtResource( 15 )
@@ -162,33 +162,33 @@ brakeSounds = {
 "brake2": ExtResource( 17 )
 }
 
-[node name="mesh" type="MeshInstance" parent="Scene/Mirror"]
+[node name="mesh" type="MeshInstance" parent="Mirror"]
 transform = Transform( 2.5, 0, 0, 0, -4.37114e-08, -1.5, 0, 1, -6.55671e-08, 0, 0, 0.354 )
 mesh = SubResource( 5 )
 material/0 = null
 
-[node name="shape" type="CollisionShape" parent="Scene/Mirror"]
+[node name="shape" type="CollisionShape" parent="Mirror"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326967, 0, 0.121668 )
 shape = SubResource( 6 )
 
-[node name="Mirror" parent="Scene/Mirror" instance=ExtResource( 8 )]
+[node name="Mirror" parent="Mirror" instance=ExtResource( 8 )]
 mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
 size = Vector2( 8, 4 )
 
-[node name="StaticBody" type="StaticBody" parent="Scene/Mirror/Mirror"]
+[node name="StaticBody" type="StaticBody" parent="Mirror/Mirror"]
 physics_material_override = ExtResource( 15 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/Mirror/Mirror/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Mirror/Mirror/StaticBody"]
 shape = SubResource( 9 )
 
-[node name="audi" type="AudioStreamPlayer3D" parent="Scene/Mirror"]
+[node name="audi" type="AudioStreamPlayer3D" parent="Mirror"]
 unit_db = 5.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 
-[node name="Particles" type="Particles" parent="Scene/Mirror"]
+[node name="Particles" type="Particles" parent="Mirror"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243034, 0 )
 emitting = false
 lifetime = 0.8
@@ -202,65 +202,47 @@ draw_pass_1 = SubResource( 11 )
 draw_pass_2 = SubResource( 12 )
 draw_pass_3 = SubResource( 13 )
 
-[node name="enemyArea" type="Area" parent="Scene/Mirror"]
+[node name="enemyArea" type="Area" parent="Mirror"]
 monitorable = false
 
-[node name="shape" type="CollisionShape" parent="Scene/Mirror/enemyArea"]
+[node name="shape" type="CollisionShape" parent="Mirror/enemyArea"]
 shape = SubResource( 14 )
 
-[node name="mirror-trigger" type="Area" parent="Scene"]
+[node name="mirror-trigger" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68609, 2.06327, -9.13055 )
 script = ExtResource( 10 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/mirror-trigger"]
+[node name="CollisionShape" type="CollisionShape" parent="mirror-trigger"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.139542, 0.0532303, 1.37937 )
 shape = SubResource( 15 )
 
-[node name="items" type="Node" parent="Scene"]
+[node name="items" type="Node" parent="."]
 
-[node name="HealPotion" parent="Scene/items" instance=ExtResource( 19 )]
+[node name="HealPotion" parent="items" instance=ExtResource( 19 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.2308, 1.15506, -1.19808 )
 
-[node name="10mmAmmo" parent="Scene/items" instance=ExtResource( 23 )]
+[node name="10mmAmmo" parent="items" instance=ExtResource( 23 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 4.01038 )
 
-[node name="20mmAmmo" parent="Scene/items" instance=ExtResource( 24 )]
+[node name="20mmAmmo" parent="items" instance=ExtResource( 24 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 8.08391 )
 
-[node name="307mmAmmo" parent="Scene/items" instance=ExtResource( 21 )]
+[node name="307mmAmmo" parent="items" instance=ExtResource( 21 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 11.6341 )
 
-[node name="357mmAmmo" parent="Scene/items" instance=ExtResource( 22 )]
+[node name="357mmAmmo" parent="items" instance=ExtResource( 22 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4621, 1.15506, 17.1962 )
 
-[node name="pistol" parent="Scene/items" instance=ExtResource( 25 )]
+[node name="pistol" parent="items" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3085, 1.15506, -2.22805 )
 
-[node name="revolver" parent="Scene/items" instance=ExtResource( 26 )]
+[node name="revolver" parent="items" instance=ExtResource( 26 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 28.742, 1.155, 5.877 )
 
-[node name="rifle" parent="Scene/items" instance=ExtResource( 27 )]
+[node name="rifle" parent="items" instance=ExtResource( 27 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 29.2679, 1.155, 14.765 )
 
-[node name="shotgun" parent="Scene/items" instance=ExtResource( 28 )]
+[node name="shotgun" parent="items" instance=ExtResource( 28 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 28.7142, 1.55, 26.2817 )
-
-[node name="canvas" parent="Scene" instance=ExtResource( 2 )]
-
-[node name="Menu" type="Node" parent="."]
-
-[node name="MenuScene" type="Control" parent="Menu"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SettingsMenu" type="Control" parent="Menu"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="body_entered" from="Scene/mirror-trigger" to="Scene/mirror-trigger" method="_on_Area_body_entered"]
-[connection signal="body_exited" from="Scene/mirror-trigger" to="Scene/mirror-trigger" method="_on_mirrortrigger_body_exited"]
+[connection signal="body_entered" from="mirror-trigger" to="mirror-trigger" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="mirror-trigger" to="mirror-trigger" method="_on_mirrortrigger_body_exited"]

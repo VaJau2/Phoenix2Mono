@@ -1,0 +1,47 @@
+{
+    "main": {
+        "loading": "Loading...",
+        "welcome": "> Welcome to Phoenix2! \n> Developed using Godot Engine \n> loading interface...",
+        "page": "/Phoenix2/Main_menu",
+
+        "continue": "               [Continue]",
+        "start":    "               [Start game]",
+        "load":     "               [Load save]",
+        "settings": "               [Settings]",
+        "records":  "               [Records]",
+        "about":    "               [About]",
+        "exit":     "               [Exit]",
+
+        "chooseRussian": "Выбрать русский язык",
+        "chooseEnglish": "Choose english language",
+        "chooseContinue": "Continue last save",
+        "chooseStart": "Start new game",
+        "chooseLoad": "Choose save to load",
+        "chooseSettings": "Open settings menu",
+        "chooseRecords": "Open records menu",
+        "chooseAbout": "About game",
+        "chooseExit": "Exit game",
+
+        "back": "[Back]",
+        "chooseBack": "Back to main menu"
+    },
+
+    "about": {
+        "page": "/Phoenix2/Main_menu/about",
+        "label": "The game was developed during participation in Sixth OKI.\nAuthor: VaJa72\nComposer and just a good person: Phelanhik\n\nVoiced using the service 15.ai\n\n2020"
+    },
+
+    "race": {
+        "page": "/Phoenix2/Main_menu/choose_race",
+        "button0": "[Earthpony]",
+        "label0": "> Health: 150\n> Ability to\nmake dashes\n> Ability to\run\n> Strong hits",
+        "button1": "[Unicorn]",
+        "label1": "> Health: 100\n> Ability to\nteleport\n> Ability to\ncreate\nmagic shield",
+        "button2": "[Pegasus]",
+        "label2": "> Health: 100\n> Ability to\fly",
+
+        "choose0": "Choose race: Earthpony",
+        "choose1": "Choose race: Unicorn",
+        "choose2": "Choose race: Pegasus"
+    }
+}

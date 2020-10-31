@@ -1,0 +1,1275 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
+[ext_resource path="res://assets/materials/fonts/terminal_big_text_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chooseLanguage" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chooseLabel" type="Label" parent="chooseLanguage"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -201.0
+margin_top = -90.0
+margin_right = 201.0
+margin_bottom = -68.0
+theme = ExtResource( 1 )
+text = "Выберите язык"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="russian" type="Button" parent="chooseLanguage"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -470.0
+margin_top = -40.0
+margin_right = -68.0
+margin_bottom = -15.0
+theme = ExtResource( 1 )
+text = "[Русский]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="english" type="Button" parent="chooseLanguage"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 38.0
+margin_top = -40.0
+margin_right = 440.0
+margin_bottom = -15.0
+theme = ExtResource( 1 )
+text = "[English]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 215.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 90.0
+margin_right = 876.0
+margin_bottom = 112.0
+theme = ExtResource( 1 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -87.4312
+margin_top = 103.925
+margin_right = 89.5688
+margin_bottom = 130.925
+theme = ExtResource( 5 )
+text = "Phoenix2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 125.0
+margin_right = 876.0
+margin_bottom = 147.0
+theme = ExtResource( 1 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = -116.364
+margin_right = -42.8409
+margin_bottom = -91.3641
+theme = ExtResource( 1 )
+text = "               [Продолжить]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = -81.3641
+margin_right = -42.8409
+margin_bottom = -56.3641
+theme = ExtResource( 1 )
+text = "               [Начать игру]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="load" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = -46.3641
+margin_right = -42.8409
+margin_bottom = -21.3641
+theme = ExtResource( 1 )
+disabled = true
+text = "               [Загрузить сохранение]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = -11.3641
+margin_right = -42.8409
+margin_bottom = 13.6359
+theme = ExtResource( 1 )
+text = "               [Настройки]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="records" type="Button" parent="."]
+visible = false
+anchor_top = 0.504
+anchor_right = 1.0
+anchor_bottom = 0.504
+margin_left = 41.1591
+margin_top = 21.2359
+margin_right = -42.8409
+margin_bottom = 46.2359
+theme = ExtResource( 1 )
+text = "               [Рекорды]"
+align = 0
+
+[node name="about" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = 58.6359
+margin_right = -42.8409
+margin_bottom = 83.6359
+theme = ExtResource( 1 )
+text = "               [Об игре]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 41.1591
+margin_top = 93.6359
+margin_right = -42.8409
+margin_bottom = 118.636
+theme = ExtResource( 1 )
+text = "               [Выйти]"
+align = 0
+
+[node name="ChangeRace" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="ChangeRace"]
+anchor_right = 1.0
+anchor_bottom = 0.853
+margin_bottom = 0.199982
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="ChangeRace"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Выбор_Расы"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="ChangeRace"]
+margin_left = 42.0
+margin_top = 100.0
+margin_right = 982.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="earthpony" type="TextureRect" parent="ChangeRace"]
+anchor_left = 0.5
+anchor_top = 0.387
+anchor_right = 0.5
+anchor_bottom = 0.387
+margin_left = -292.0
+margin_top = -72.2
+margin_right = -154.0
+margin_bottom = 71.8
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="choose" type="Button" parent="ChangeRace/earthpony"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 88.0
+margin_right = 69.0
+margin_bottom = 113.0
+theme = ExtResource( 1 )
+text = "[Земной пони]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ChangeRace/earthpony"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = 66.0
+margin_right = 69.0
+margin_bottom = 123.0
+theme = ExtResource( 1 )
+text = "> Здоровье: 150
+> Возможность 
+делать подкаты
+> Возможность
+бегать
+> Сильные удары"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unicorn" type="TextureRect" parent="ChangeRace"]
+anchor_left = 0.5
+anchor_top = 0.387
+anchor_right = 0.5
+anchor_bottom = 0.387
+margin_left = -72.0
+margin_top = -72.2
+margin_right = 66.0
+margin_bottom = 71.8
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="choose" type="Button" parent="ChangeRace/unicorn"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 88.0
+margin_right = 69.0
+margin_bottom = 113.0
+theme = ExtResource( 1 )
+text = "[Единорог]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ChangeRace/unicorn"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = 66.0
+margin_right = 69.0
+margin_bottom = 183.0
+theme = ExtResource( 1 )
+text = "> Здоровье: 100
+> Возможность 
+телепортации
+> Возможность
+создавать 
+магический щит"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pegasus" type="TextureRect" parent="ChangeRace"]
+anchor_left = 0.5
+anchor_top = 0.387
+anchor_right = 0.5
+anchor_bottom = 0.387
+margin_left = 148.0
+margin_top = -72.2
+margin_right = 286.0
+margin_bottom = 71.8
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="choose" type="Button" parent="ChangeRace/pegasus"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 88.0
+margin_right = 69.0
+margin_bottom = 113.0
+theme = ExtResource( 1 )
+text = "[Пегас]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ChangeRace/pegasus"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = 66.0
+margin_right = 69.0
+margin_bottom = 83.0
+theme = ExtResource( 1 )
+text = "> Здоровье: 100
+> Возможность 
+летать"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="Load"]
+anchor_right = 1.0
+anchor_bottom = 0.853
+margin_bottom = 0.199982
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="Load"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Загрузка_уровня"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="Load"]
+margin_left = 42.0
+margin_top = 100.0
+margin_right = 982.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TempLabel" type="Label" parent="Load"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.23
+margin_top = -114.557
+margin_right = 96.7703
+margin_bottom = -92.5567
+theme = ExtResource( 1 )
+text = "Менюшка пока не запрогана, сорян с:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="About" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="About"]
+anchor_right = 1.0
+anchor_bottom = 0.747
+margin_bottom = -0.200043
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="About"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 215.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Об_игре"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="about_label" type="Label" parent="About"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -412.0
+margin_top = -140.0
+margin_right = 174.0
+margin_bottom = 4.0
+theme = ExtResource( 1 )
+text = "Игра разработана в ходе участия в Шестом Общетабунском Конкурсе Игростроения.
+
+Автор игры: VaJa72
+Композитор треков и просто хороший человек: Phelanhik
+
+Озвучено с использованием сервиса 15.ai
+
+2020"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="About"]
+margin_left = 42.0
+margin_top = 100.0
+margin_right = 982.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecordsMenu" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="RecordsMenu"]
+anchor_right = 1.0
+anchor_bottom = 0.853
+margin_bottom = 0.199982
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="RecordsMenu"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 215.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Рекорд"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1_label" type="Label" parent="RecordsMenu"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -382.0
+margin_top = -100.0
+margin_right = -169.0
+margin_bottom = -78.0
+theme = ExtResource( 1 )
+text = "Уровень не пройден"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1" type="Control" parent="RecordsMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -452.0
+margin_top = -100.0
+margin_right = -140.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="RecordsMenu/Level1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="level_name" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -116.0
+margin_top = -125.0
+margin_right = 125.0
+margin_bottom = -103.0
+theme = ExtResource( 1 )
+text = "[--------------База-зебр------------------]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label6" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -95.0
+margin_right = 31.0
+margin_bottom = -73.0
+theme = ExtResource( 1 )
+text = "Раса:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="race_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -95.0
+margin_right = 181.0
+margin_bottom = -78.0
+theme = ExtResource( 1 )
+text = "Земнопони"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label1" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -70.0
+margin_right = 31.0
+margin_bottom = -48.0
+theme = ExtResource( 1 )
+text = "Количество очков:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -70.0
+margin_right = 181.0
+margin_bottom = -53.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -40.0
+margin_right = 31.0
+margin_bottom = -23.0
+theme = ExtResource( 1 )
+text = "Время прохождения:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -40.0
+margin_right = 181.0
+margin_bottom = -23.0
+theme = ExtResource( 1 )
+text = "00:00:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -15.0
+margin_right = 31.0
+margin_bottom = 2.0
+theme = ExtResource( 1 )
+text = "Убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kill_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -15.0
+margin_right = 181.0
+margin_bottom = 2.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label4" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 10.0
+margin_right = 31.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+text = "Скрытых убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stealth_Kill_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 181.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label5" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 35.0
+margin_right = 31.0
+margin_bottom = 52.0
+theme = ExtResource( 1 )
+text = "Кровавых убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Meat_Kill_label" type="Label" parent="RecordsMenu/Level1"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = 35.0
+margin_right = 181.0
+margin_bottom = 52.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Silent_Assasin_label" type="Label" parent="RecordsMenu/Level1"]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = 60.0
+margin_right = 75.0
+margin_bottom = 77.0
+theme = ExtResource( 1 )
+text = "Тревога не была поднята"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level2_label" type="Label" parent="RecordsMenu"]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 138.0
+margin_top = -100.0
+margin_right = 351.0
+margin_bottom = -78.0
+theme = ExtResource( 1 )
+text = "Уровень не пройден"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level2" type="Control" parent="RecordsMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 88.0
+margin_top = -100.0
+margin_right = 400.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="RecordsMenu/Level2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="level_name" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -116.0
+margin_top = -125.0
+margin_right = 125.0
+margin_bottom = -103.0
+theme = ExtResource( 1 )
+text = "[--------------Бункер----------------]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label6" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -95.0
+margin_right = 31.0
+margin_bottom = -73.0
+theme = ExtResource( 1 )
+text = "Раса:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="race_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -95.0
+margin_right = 181.0
+margin_bottom = -78.0
+theme = ExtResource( 1 )
+text = "Земнопони"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label1" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -70.0
+margin_right = 31.0
+margin_bottom = -48.0
+theme = ExtResource( 1 )
+text = "Количество очков:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -70.0
+margin_right = 181.0
+margin_bottom = -53.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -40.0
+margin_right = 31.0
+margin_bottom = -23.0
+theme = ExtResource( 1 )
+text = "Время прохождения:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -40.0
+margin_right = 181.0
+margin_bottom = -23.0
+theme = ExtResource( 1 )
+text = "00:00:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -15.0
+margin_right = 31.0
+margin_bottom = 2.0
+theme = ExtResource( 1 )
+text = "Убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kill_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -15.0
+margin_right = 181.0
+margin_bottom = 2.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label4" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 10.0
+margin_right = 31.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+text = "Скрытых убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stealth_Kill_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 181.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label5" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 35.0
+margin_right = 31.0
+margin_bottom = 52.0
+theme = ExtResource( 1 )
+text = "Кровавых убийств:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Meat_Kill_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = 35.0
+margin_right = 181.0
+margin_bottom = 52.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label7" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 60.0
+margin_right = 31.0
+margin_bottom = 77.0
+theme = ExtResource( 1 )
+text = "Клонов выжило:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clones_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = 60.0
+margin_right = 181.0
+margin_bottom = 77.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slaves_label" type="Label" parent="RecordsMenu/Level2"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = 85.0
+margin_right = 85.0
+margin_bottom = 102.0
+theme = ExtResource( 1 )
+text = "Рабы были спасены"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="RecordsMenu"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -50.0
+margin_right = 39.0
+margin_bottom = -28.0
+theme = ExtResource( 1 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="RecordsMenu"]
+margin_left = 42.0
+margin_top = 100.0
+margin_right = 982.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -50.0
+margin_right = 39.0
+margin_bottom = -28.0
+theme = ExtResource( 1 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down_label" type="Label" parent="."]
+visible = false
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 45.0
+margin_top = -50.0
+margin_right = 220.0
+margin_bottom = -28.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="audi" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+[connection signal="mouse_entered" from="chooseLanguage/russian" to="." method="_on_mouse_entered" binds= [ "main", "chooseRussian" ]]
+[connection signal="mouse_exited" from="chooseLanguage/russian" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="chooseLanguage/russian" to="." method="_on_language_pressed" binds= [ false ]]
+[connection signal="mouse_entered" from="chooseLanguage/english" to="." method="_on_mouse_entered" binds= [ "main", "chooseEnglish" ]]
+[connection signal="mouse_exited" from="chooseLanguage/english" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="chooseLanguage/english" to="." method="_on_language_pressed" binds= [ true ]]
+[connection signal="mouse_entered" from="continue" to="." method="_on_mouse_entered" binds= [ "main", "chooseContinue" ]]
+[connection signal="mouse_exited" from="continue" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="continue" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="start" to="." method="_on_mouse_entered" binds= [ "main", "chooseStart" ]]
+[connection signal="mouse_exited" from="start" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="load" to="." method="_on_mouse_entered" binds= [ "main", "chooseLoad" ]]
+[connection signal="mouse_exited" from="load" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="load" to="." method="_on_load_pressed"]
+[connection signal="mouse_entered" from="settings" to="." method="_on_mouse_entered" binds= [ "main", "chooseSettings" ]]
+[connection signal="mouse_exited" from="settings" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="records" to="." method="_on_mouse_entered" binds= [ "main", "chooseRecords" ]]
+[connection signal="mouse_exited" from="records" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="records" to="." method="_on_records_pressed"]
+[connection signal="mouse_entered" from="about" to="." method="_on_mouse_entered" binds= [ "main", "chooseAbout" ]]
+[connection signal="mouse_exited" from="about" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="about" to="." method="_on_about_pressed"]
+[connection signal="mouse_entered" from="exit" to="." method="_on_mouse_entered" binds= [ "main", "chooseExit" ]]
+[connection signal="mouse_exited" from="exit" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="ChangeRace/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="ChangeRace/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChangeRace/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="ChangeRace/earthpony/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose0" ]]
+[connection signal="mouse_exited" from="ChangeRace/earthpony/choose" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChangeRace/earthpony/choose" to="." method="_on_choose_pressed" binds= [ "earthpony" ]]
+[connection signal="mouse_entered" from="ChangeRace/unicorn/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose1" ]]
+[connection signal="mouse_exited" from="ChangeRace/unicorn/choose" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChangeRace/unicorn/choose" to="." method="_on_choose_pressed" binds= [ "unicorn" ]]
+[connection signal="mouse_entered" from="ChangeRace/pegasus/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose2" ]]
+[connection signal="mouse_exited" from="ChangeRace/pegasus/choose" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChangeRace/pegasus/choose" to="." method="_on_choose_pressed" binds= [ "pegasus" ]]
+[connection signal="mouse_entered" from="Load/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="Load/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Load/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="About/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="About/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="About/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="RecordsMenu/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="RecordsMenu/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="RecordsMenu/back" to="." method="_on_back_pressed"]

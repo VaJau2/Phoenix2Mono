@@ -249,6 +249,11 @@ public class PlayerWeapons
 
     private void setWeaponModel(WeaponTypes newType) 
     {
+        if (TempWeaponType == WeaponTypes.None && 
+            newType == WeaponTypes.None) {
+            return;
+        }
+
         //проверяем, не включена ли уже эта моделька
         var key = "";
         bool isPistol = IsNotRifle;

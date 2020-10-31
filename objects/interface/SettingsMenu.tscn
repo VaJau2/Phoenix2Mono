@@ -1,0 +1,1309 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 2 )
+text = "page_label"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 90.0
+margin_right = 876.0
+margin_bottom = 112.0
+theme = ExtResource( 2 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -25.5
+margin_top = 105.0
+margin_right = 57.5
+margin_bottom = 127.0
+theme = ExtResource( 2 )
+text = "[Настройки]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 125.0
+margin_right = 876.0
+margin_bottom = 147.0
+theme = ExtResource( 2 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -50.0
+margin_right = 39.0
+margin_bottom = -28.0
+theme = ExtResource( 2 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 42.0
+margin_top = -140.0
+margin_right = -42.0
+margin_bottom = -115.0
+theme = ExtResource( 2 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -297.0
+margin_top = -100.0
+margin_right = -121.0
+margin_bottom = -78.0
+theme = ExtResource( 2 )
+text = "Чувствительность мыши:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_slider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -79.0
+margin_top = -102.0
+margin_right = 221.0
+margin_bottom = -82.0
+theme = ExtResource( 2 )
+min_value = 0.01
+max_value = 0.8
+step = 0.01
+value = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border" type="Label" parent="mouse_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -5.0
+margin_right = -4.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border2" type="Label" parent="mouse_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="distance_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -297.0
+margin_top = -50.0
+margin_right = -121.0
+margin_bottom = -33.0
+theme = ExtResource( 2 )
+text = "Дальность прорисовки:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="distance_slider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -79.0
+margin_top = -54.847
+margin_right = 221.0
+margin_bottom = -34.8469
+theme = ExtResource( 2 )
+min_value = 200.0
+max_value = 600.0
+value = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="distance_border" type="Label" parent="distance_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -5.00006
+margin_right = 306.0
+margin_bottom = 16.9999
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="distance_border2" type="Label" parent="distance_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = -5.00006
+margin_right = 10.0
+margin_bottom = 9.99994
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shadows_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -297.599
+margin_top = -11.5861
+margin_right = -121.599
+margin_bottom = 10.4139
+theme = ExtResource( 2 )
+text = "Качество теней:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shadows_button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.5988
+margin_top = -11.5861
+margin_right = 227.401
+margin_bottom = 5.41388
+theme = ExtResource( 2 )
+text = "Максимальное"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shadows_border" type="Label" parent="shadows_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.49998
+margin_right = 6.0
+margin_bottom = 13.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shadows_border2" type="Label" parent="shadows_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -5.99982
+margin_top = -8.49998
+margin_right = 0.000183105
+margin_bottom = 6.50002
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="reflections_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -297.599
+margin_top = 23.4139
+margin_right = -121.599
+margin_bottom = 45.4139
+theme = ExtResource( 2 )
+text = "Качество отражений:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="reflections_button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.5987
+margin_top = 21.4139
+margin_right = 227.401
+margin_bottom = 38.4139
+theme = ExtResource( 2 )
+text = "Максимальное"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="reflections_border" type="Label" parent="reflections_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.5
+margin_right = 6.0
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="reflections_border2" type="Label" parent="reflections_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -5.99969
+margin_top = -8.5
+margin_right = 0.000305176
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreen" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -296.784
+margin_top = 58.8656
+margin_right = -120.784
+margin_bottom = 80.8656
+theme = ExtResource( 2 )
+text = "Полноэкранный режим:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreen_button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.7842
+margin_top = 56.8656
+margin_right = 228.216
+margin_bottom = 73.8656
+theme = ExtResource( 2 )
+text = "Выключен"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreeen_border" type="Label" parent="fullscreen_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.5
+margin_right = 6.0
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreeen_border2" type="Label" parent="fullscreen_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -6.00021
+margin_top = -8.5
+margin_right = -0.000213623
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="filter" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -298.044
+margin_top = 91.6235
+margin_right = -122.044
+margin_bottom = 113.624
+theme = ExtResource( 2 )
+text = "Фильтр 18+"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="filter_button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0441
+margin_top = 89.6235
+margin_right = 226.956
+margin_bottom = 106.624
+theme = ExtResource( 2 )
+text = "Выключен"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="filter_border1" type="Label" parent="filter_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.5
+margin_right = 6.0
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="filter_border2" type="Label" parent="filter_button"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -6.00021
+margin_top = -8.5
+margin_right = -0.000213623
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -298.298
+margin_top = 125.265
+margin_right = -122.298
+margin_bottom = 147.264
+theme = ExtResource( 2 )
+text = "Громкость звуков:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound_slider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.2975
+margin_top = 121.265
+margin_right = 219.702
+margin_bottom = 141.264
+theme = ExtResource( 2 )
+min_value = -8.0
+max_value = 3.0
+step = 0.1
+value = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound_border" type="Label" parent="sound_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -7.49989
+margin_right = -3.0
+margin_bottom = 7.50011
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound_border2" type="Label" parent="sound_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.00018
+margin_top = -7.49989
+margin_right = 9.00018
+margin_bottom = 7.50011
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -298.298
+margin_top = 155.264
+margin_right = -122.298
+margin_bottom = 177.264
+theme = ExtResource( 2 )
+text = "Громкость музыки:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_slider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.2975
+margin_top = 151.264
+margin_right = 219.702
+margin_bottom = 171.264
+theme = ExtResource( 2 )
+min_value = -8.0
+max_value = 3.0
+step = 0.1
+value = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_border" type="Label" parent="music_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -7.50002
+margin_right = -3.0
+margin_bottom = 7.49998
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_border2" type="Label" parent="music_slider"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.00018
+margin_top = -7.00002
+margin_right = 9.00018
+margin_bottom = 7.99998
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controls" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 227.0
+margin_top = 200.0
+margin_right = -276.0
+margin_bottom = 225.0
+theme = ExtResource( 2 )
+text = "[Настройки управления]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 0.852
+margin_bottom = 9.79999
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 2 )
+text = "page_label"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="Controls"]
+anchor_right = 1.0
+margin_left = 42.2973
+margin_top = 89.9321
+margin_right = -41.7027
+margin_bottom = 114.932
+theme = ExtResource( 2 )
+text = "               [Назад]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="default" type="Button" parent="Controls"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 42.2973
+margin_top = -19.5679
+margin_right = -41.7027
+margin_bottom = 5.43207
+theme = ExtResource( 2 )
+text = "               [Сбросить]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyForwardLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = -135.084
+margin_right = -71.2388
+margin_bottom = -113.084
+theme = ExtResource( 2 )
+text = "Вперед:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forwardBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = -132.234
+margin_right = 205.411
+margin_bottom = -116.234
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/forwardBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     W     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyBackLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = -105.084
+margin_right = -132.239
+margin_bottom = -83.0844
+theme = ExtResource( 2 )
+text = "Назад:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = -102.234
+margin_right = 205.411
+margin_bottom = -86.2343
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/backBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     S     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyLeftLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = -75.0844
+margin_right = -115.239
+margin_bottom = -53.0844
+theme = ExtResource( 2 )
+text = "Налево:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leftBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = -72.2343
+margin_right = 205.411
+margin_bottom = -56.2343
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/leftBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     A     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyRightLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = -45.0844
+margin_right = -156.239
+margin_bottom = -23.0843
+theme = ExtResource( 2 )
+text = "Направо:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rightBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = -42.2343
+margin_right = 205.411
+margin_bottom = -26.2342
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/rightBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     D     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyJumpLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = -15.0842
+margin_right = -19.2388
+margin_bottom = 1.91577
+theme = ExtResource( 2 )
+text = "Прыжок/Телепортация/Полет:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jumpBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = -12.2343
+margin_right = 205.411
+margin_bottom = 3.76566
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/jumpBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[ Space ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyRunLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 14.9158
+margin_right = -11.2387
+margin_bottom = 31.9158
+theme = ExtResource( 2 )
+text = "Бег/Магический щит/Снижение:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="runBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 17.7657
+margin_right = 205.411
+margin_bottom = 33.7657
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/runBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[ Shift ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyUseLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 44.9158
+margin_right = -19.2388
+margin_bottom = 61.9158
+theme = ExtResource( 2 )
+text = "Использовать: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="useBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 47.7657
+margin_right = 205.411
+margin_bottom = 63.7657
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/useBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     E     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyCrouchLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 74.9161
+margin_right = -19.2388
+margin_bottom = 91.9161
+theme = ExtResource( 2 )
+text = "Присесть: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="crouchBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 77.7661
+margin_right = 205.411
+margin_bottom = 93.7661
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/crouchBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[Control]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyDashLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 104.916
+margin_right = -19.2388
+margin_bottom = 121.916
+theme = ExtResource( 2 )
+text = "Подкат: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dashBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 107.766
+margin_right = 205.411
+margin_bottom = 123.766
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/dashBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     C     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyGetGunLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 134.916
+margin_right = -19.2388
+margin_bottom = 151.916
+theme = ExtResource( 2 )
+text = "Достать оружие: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="getGunBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 137.766
+margin_right = 205.411
+margin_bottom = 153.766
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/getGunBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     R     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyLegsLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -236.013
+margin_top = 164.916
+margin_right = -20.0126
+margin_bottom = 181.916
+theme = ExtResource( 2 )
+text = "Ближний удар:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="legsBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 167.766
+margin_right = 205.411
+margin_bottom = 183.766
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/legsBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     Q      ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyCameraLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 195.351
+margin_right = -19.2388
+margin_bottom = 212.351
+theme = ExtResource( 2 )
+text = "Сменить камеру: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cameraBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 195.351
+margin_right = 205.411
+margin_bottom = 211.351
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/cameraBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     F      ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyTaskLabel" type="Label" parent="Controls"]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.239
+margin_top = 220.932
+margin_right = -19.2388
+margin_bottom = 237.932
+theme = ExtResource( 2 )
+text = "Просмотреть задачи:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="taskBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.4113
+margin_top = 220.932
+margin_right = 205.411
+margin_bottom = 236.932
+color = Color( 0.223529, 0.752941, 0.145098, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/taskBack"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[     T      ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 45.0
+margin_top = -50.0
+margin_right = 220.0
+margin_bottom = -28.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="audi" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "Назад", "Back" ]]
+[connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="mouse_slider" to="." method="_on_mouse_entered" binds= [ "Настройка чувствительности мыши", "Mouse sensivity setting" ]]
+[connection signal="mouse_exited" from="mouse_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="mouse_slider" to="." method="_on_mouse_slider_value_changed"]
+[connection signal="mouse_entered" from="distance_slider" to="." method="_on_mouse_entered" binds= [ "Настройка дальности прорисовки", "Render distance setting" ]]
+[connection signal="mouse_exited" from="distance_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="distance_slider" to="." method="_on_distance_slider_value_changed"]
+[connection signal="mouse_entered" from="shadows_button" to="." method="_on_mouse_entered" binds= [ "Настройка качества теней", "Shadows quality setting" ]]
+[connection signal="mouse_exited" from="shadows_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="shadows_button" to="." method="_on_shadows_button_pressed"]
+[connection signal="mouse_entered" from="reflections_button" to="." method="_on_mouse_entered" binds= [ "Настройка качества отражений", "Reflections quality setting" ]]
+[connection signal="mouse_exited" from="reflections_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="reflections_button" to="." method="_on_reflections_button_pressed"]
+[connection signal="mouse_entered" from="fullscreen_button" to="." method="_on_mouse_entered" binds= [ "Настройка полноэкранного режима", "Fullscreen setting" ]]
+[connection signal="mouse_exited" from="fullscreen_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="fullscreen_button" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="mouse_entered" from="filter_button" to="." method="_on_mouse_entered" binds= [ "Настройка фильтра матов и др. 18+ штук", "Swear words and other 18+ stuff setting" ]]
+[connection signal="mouse_exited" from="filter_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="filter_button" to="." method="_on_filter_button_pressed"]
+[connection signal="mouse_entered" from="sound_slider" to="." method="_on_mouse_entered" binds= [ "Настройка громкости звуков", "Sound volume setting" ]]
+[connection signal="mouse_exited" from="sound_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="sound_slider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="mouse_entered" from="music_slider" to="." method="_on_mouse_entered" binds= [ "Настройка громкости музыки", "Music volume setting" ]]
+[connection signal="mouse_exited" from="music_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="mouse_entered" from="controls" to="." method="_on_mouse_entered" binds= [ "Настроить управление", "Set control buttons" ]]
+[connection signal="mouse_exited" from="controls" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="controls" to="." method="_on_controls_pressed"]
+[connection signal="mouse_entered" from="Controls/back" to="." method="_on_mouse_entered" binds= [ "Назад", "Back" ]]
+[connection signal="mouse_exited" from="Controls/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Controls/back" to="." method="_on_controls_back_pressed"]
+[connection signal="mouse_entered" from="Controls/default" to="." method="_on_mouse_entered" binds= [ "Сбросить настройки управления", "Reset defalut settings" ]]
+[connection signal="mouse_exited" from="Controls/default" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Controls/default" to="." method="_on_default_pressed"]
+[connection signal="gui_input" from="Controls/forwardBack" to="." method="_on_controls_gui_input" binds= [ "ui_up" ]]
+[connection signal="mouse_entered" from="Controls/forwardBack" to="." method="_on_controls_mouse_entered" binds= [ "forwardBack", "Настроить клавишу \"вперед\"", "Set \"forward\" button" ]]
+[connection signal="mouse_exited" from="Controls/forwardBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/backBack" to="." method="_on_controls_gui_input" binds= [ "ui_down" ]]
+[connection signal="mouse_entered" from="Controls/backBack" to="." method="_on_controls_mouse_entered" binds= [ "backBack", "Настроить клавишу \"назад\"", "Set \"back\" button" ]]
+[connection signal="mouse_exited" from="Controls/backBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/leftBack" to="." method="_on_controls_gui_input" binds= [ "ui_left" ]]
+[connection signal="mouse_entered" from="Controls/leftBack" to="." method="_on_controls_mouse_entered" binds= [ "leftBack", "Настроить клавишу \"налево\"", "Set \"left\" button" ]]
+[connection signal="mouse_exited" from="Controls/leftBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/rightBack" to="." method="_on_controls_gui_input" binds= [ "ui_right" ]]
+[connection signal="mouse_entered" from="Controls/rightBack" to="." method="_on_controls_mouse_entered" binds= [ "rightBack", "Настроить клавишу \"направо\"", "Set \"right\" button" ]]
+[connection signal="mouse_exited" from="Controls/rightBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/jumpBack" to="." method="_on_controls_gui_input" binds= [ "jump" ]]
+[connection signal="mouse_entered" from="Controls/jumpBack" to="." method="_on_controls_mouse_entered" binds= [ "jumpBack", "Настроить клавишу \"прыжок/телепортация/полет\"", "Set \"jump/teleport/fly up\" button" ]]
+[connection signal="mouse_exited" from="Controls/jumpBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/runBack" to="." method="_on_controls_gui_input" binds= [ "ui_shift" ]]
+[connection signal="mouse_entered" from="Controls/runBack" to="." method="_on_controls_mouse_entered" binds= [ "runBack", "Настроить клавишу \"бег/магический щит\"", "Set \"run/magical shield/fly down\" button" ]]
+[connection signal="mouse_exited" from="Controls/runBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/useBack" to="." method="_on_controls_gui_input" binds= [ "use" ]]
+[connection signal="mouse_entered" from="Controls/useBack" to="." method="_on_controls_mouse_entered" binds= [ "useBack", "Настроить клавишу \"использовать\"", "Set \"use\" button" ]]
+[connection signal="mouse_exited" from="Controls/useBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/crouchBack" to="." method="_on_controls_gui_input" binds= [ "crouch" ]]
+[connection signal="mouse_entered" from="Controls/crouchBack" to="." method="_on_controls_mouse_entered" binds= [ "crouchBack", "Настроить клавишу \"присесть\"", "Set \"sit\" button" ]]
+[connection signal="mouse_exited" from="Controls/crouchBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/dashBack" to="." method="_on_controls_gui_input" binds= [ "dash" ]]
+[connection signal="mouse_entered" from="Controls/dashBack" to="." method="_on_controls_mouse_entered" binds= [ "dashBack", "Настроить клавишу \"подкат\"", "Set \"dodge\" button" ]]
+[connection signal="mouse_exited" from="Controls/dashBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/getGunBack" to="." method="_on_controls_gui_input" binds= [ "getGun" ]]
+[connection signal="mouse_entered" from="Controls/getGunBack" to="." method="_on_controls_mouse_entered" binds= [ "getGunBack", "Настроить клавишу \"достать оружие\"", "Set \"get gun\" button" ]]
+[connection signal="mouse_exited" from="Controls/getGunBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/legsBack" to="." method="_on_controls_gui_input" binds= [ "legsHit" ]]
+[connection signal="mouse_entered" from="Controls/legsBack" to="." method="_on_controls_mouse_entered" binds= [ "legsBack", "Настроить клавишу \"ближний удар\"", "Set \"close hit\" button" ]]
+[connection signal="mouse_exited" from="Controls/legsBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/cameraBack" to="." method="_on_controls_gui_input" binds= [ "changeView" ]]
+[connection signal="mouse_entered" from="Controls/cameraBack" to="." method="_on_controls_mouse_entered" binds= [ "cameraBack", "Настроить клавишу \"сменить камеру\"", "Set \"change view\" button" ]]
+[connection signal="mouse_exited" from="Controls/cameraBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/taskBack" to="." method="_on_controls_gui_input" binds= [ "task" ]]
+[connection signal="mouse_entered" from="Controls/taskBack" to="." method="_on_controls_mouse_entered" binds= [ "taskBack", "Настроить клавишу \"просмотреть задачи\"", "Set \"see tasks\" button" ]]
+[connection signal="mouse_exited" from="Controls/taskBack" to="." method="_on_controls_mouse_exited"]
