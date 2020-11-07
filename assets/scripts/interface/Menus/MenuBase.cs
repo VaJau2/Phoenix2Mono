@@ -3,15 +3,25 @@ using Godot;
 public class MenuBase : Control
 {
     Global global = Global.Get();
-    protected string menuName = "mainMenu";
+    public string menuName = "mainMenu";
     protected Label downLabel;
     private bool updatingDownLabel = false;
     private bool downAdded = false;
+
+    private string tempSection, tempPhrase;
 
     public override void _Ready()
     {
         downLabel = GetNode<Label>("down_label");
     }
+
+
+    public virtual void SetMenuVisible(bool animate = false)
+    {
+        Visible = true;
+    }
+
+    public virtual void SoundClick() {}
 
     protected async void UpdateDownLabel() {
         updatingDownLabel = true;
@@ -41,6 +51,14 @@ public class MenuBase : Control
             downLabel.Text += "_";
         }
         changeDownLabel();
+
+        tempSection = section;
+        tempPhrase = messageLink;
+    }
+
+    public void ReloadMouseEntered()
+    {
+        _on_mouse_entered(tempSection, tempPhrase);
     }
 
     public void _on_mouse_exited() {

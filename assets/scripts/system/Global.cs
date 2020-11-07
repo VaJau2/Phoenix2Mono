@@ -19,7 +19,13 @@ public class Global {
     public Player player;
     public Race playerRace = Race.Pegasus;
 
-    public Settings Settings = new Settings();
+    public Settings Settings;
+
+    public void LoadSettings(Node menu) 
+    {
+        Settings = new Settings(menu);
+        Settings.LoadSettings();
+    }
 
 
     public static Transform setNewOrigin(Transform transform, Vector3 newOrigin)

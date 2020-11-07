@@ -2,18 +2,13 @@ using Godot;
 
 public class MainMenu : MenuBase
 {
-    //TODO:
-    //1) загрузка текста для /RecordsMenu
-
     Global global = Global.Get();
     AudioStreamPlayer audi;
-    //если менюшка запускается не первый раз, выбор языка и анимации пропускаются
-    public bool firstTime = true;
+    bool firstTime = true;
 
     Control changeRaceMenu;
     Control loadMenu;
     Control aboutMenu;
-    Control recordsMenu;
 
     Control chooseLanguage;
     Control label5;
@@ -26,7 +21,6 @@ public class MainMenu : MenuBase
     Button startButton;
     Button loadButton;
     Button settingsButton;
-    Button recordsButton;
     Button aboutButton;
     Button exitButton;
 
@@ -39,11 +33,12 @@ public class MainMenu : MenuBase
     Button[] raceButtons;
     Label[] raceLabels;
 
+    SettingsMenu settingsMenu;
 
     [Signal]
     public delegate void labelChanged();
 
-    private void LoadMenus()
+    private void LoadMenu()
     {
         chooseLanguage = GetNode<Control>("chooseLanguage");
         label5 = GetNode<Control>("Label5");
@@ -56,7 +51,6 @@ public class MainMenu : MenuBase
         startButton = GetNode<Button>("start");
         loadButton = GetNode<Button>("load");
         settingsButton = GetNode<Button>("settings");
-        recordsButton = GetNode<Button>("records");
         aboutButton = GetNode<Button>("about");
         exitButton = GetNode<Button>("exit");
 
@@ -78,9 +72,9 @@ public class MainMenu : MenuBase
             GetNode<Label>("ChangeRace/unicorn/Label"),
             GetNode<Label>("ChangeRace/pegasus/Label")
         };
-
-        recordsMenu = GetNode<Control>("RecordsMenu");
         loadMenu = GetNode<Control>("Load");
+
+        settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
     }
 
     private string getMenuText(string phrase, string section = "main") {
@@ -104,7 +98,6 @@ public class MainMenu : MenuBase
         startButton.Text = getMenuText("start");
         loadButton.Text = getMenuText("load");
         settingsButton.Text = getMenuText("settings");
-        recordsButton.Text = getMenuText("records");
         aboutButton.Text = getMenuText("about");
         exitButton.Text = getMenuText("exit");
     }
@@ -128,8 +121,14 @@ public class MainMenu : MenuBase
         }
     }
 
-    private async void SetMenuVisible(bool animating)
+    public override void SoundClick()
     {
+        audi.Play();
+    }
+
+    public async override void SetMenuVisible(bool animating = false)
+    {
+        Visible = true;
         pageLabel.Visible = true;
 
         if (animating) 
@@ -177,31 +176,36 @@ public class MainMenu : MenuBase
         startButton.Visible = true;
         loadButton.Visible = true;
         settingsButton.Visible = true;
-        recordsButton.Visible = true;
         aboutButton.Visible = true;
         exitButton.Visible = true;
-
     }
 
     public override void _Ready()
     {
+        global.LoadSettings(this);
+        
         base._Ready();
         audi = GetNode<AudioStreamPlayer>("audi");
-        LoadMenus();
+        LoadMenu();
         UpdateDownLabel();
 
+       
         if (firstTime)
         {
-            chooseLanguage.Visible = true;
-            downLabel.Visible = true;
-            label5.Visible = true;
-        }
-        else
-        {
-            SetMenuVisible(false);
+            if (global.Settings.SettingsLoaded) 
+            {
+                SetMenuVisible(true);
+            } 
+            else 
+            {
+                chooseLanguage.Visible = true;
+                downLabel.Visible = true;
+                label5.Visible = true;
+            }
+           
+            firstTime = false;
         }
     }
-
 
     public void _on_language_pressed(bool english)
     {
@@ -210,48 +214,48 @@ public class MainMenu : MenuBase
             InterfaceLang.ChangeLanguage(Language.English);
         }
         chooseLanguage.Visible = false;
+        global.Settings.SaveSettings();
         SetMenuVisible(true);
     }
 
     public void _on_start_pressed()
     {
-        audi.Play();
+        SoundClick();
         loadRaceLanguage();
         changeRaceMenu.Visible = true;
     }
 
     public void _on_load_pressed()
     {
-        audi.Play();
+        SoundClick();
         loadMenu.Visible = true;
     }
 
-    public void _on_records_pressed()
+    public void _on_settings_pressed()
     {
-        audi.Play();
-        recordsMenu.Visible = true;
+        SoundClick();
+        settingsMenu.OpenMenu(this, "main");
     }
 
     public void _on_about_pressed()
     {
         loadAboutLanguage();
-        audi.Play();
+        SoundClick();
         aboutMenu.Visible = true;
     }
 
     public void _on_back_pressed() 
     {
-        audi.Play();
+        SoundClick();
         aboutMenu.Visible = false;
         changeRaceMenu.Visible = false;
-        recordsMenu.Visible = false;
         loadMenu.Visible = false;
         _on_mouse_exited();
     }
 
     public async void _on_exit_pressed()
     {
-        audi.Play();
+        SoundClick();
         await global.ToTimer(0.3f, this);
         GetTree().Quit();
     }

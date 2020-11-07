@@ -4,7 +4,7 @@ using Godot.Collections;
 public class Player : Character
 {
     protected Global global = Global.Get();
-    protected float MOUSE_SENSIVITY = 0.1f;
+    public float MouseSensivity = 0.1f;
     const int CAMERA_MIN_Y = -65;
     const int CAMERA_MAX_Y = 70;
     protected const int GRAVITY = -50;
@@ -36,7 +36,7 @@ public class Player : Character
     public Camera Camera {get; private set;}
     public Spatial RotationHelper {get; private set;}
     private Spatial headShape;
-    private Spatial RotationHelperThird;
+    public PlayerThirdPerson RotationHelperThird;
     private Spatial CameraHeadPos;
     public PlayerBody Body;
     //сслыки внутри body:
@@ -85,8 +85,6 @@ public class Player : Character
         {"have_headrope", false}
     };
 
-    public float GetSensivity() { return MOUSE_SENSIVITY; }
-
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
 
     /// <summary>
@@ -119,7 +117,7 @@ public class Player : Character
         Camera = GetNode<Camera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");
-        RotationHelperThird = GetNode<Spatial>("rotation_helper_third");
+        RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/Head/cameraPos");
 
         audi = GetAudi();
@@ -128,6 +126,7 @@ public class Player : Character
         sphereCollider = GetNode<CollisionShape>("shape");
         bodyCollider = GetNode<CollisionShape>("body_shape");
 
+        MouseSensivity = global.Settings.mouseSensivity;
         Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
@@ -477,8 +476,8 @@ public class Player : Character
             Input.GetMouseMode() == Input.MouseMode.Captured) {
 
             var mouseEvent = @event as InputEventMouseMotion;
-            RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MOUSE_SENSIVITY));
-            RotateBodyClumped(mouseEvent.Relative.x * -MOUSE_SENSIVITY);
+            RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
+            RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
 
             Vector3 cameraRot = RotationHelper.RotationDegrees;
             cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);

@@ -7,8 +7,20 @@ using Godot.Collections;
 public static class InterfaceLang {
     private static string lang = "ru";
     private static string lastPhrase;
+    private static string lastSection;
     private static string lastPhraseText;
     private static bool languageChanged;
+
+    public static string GetSaveLanguage()
+    {
+        return lang;
+    }
+
+    public static void LoadLanguage(string savedLanguage) 
+    {
+        lang = savedLanguage;
+        languageChanged = true;
+    }
 
     public static void ChangeLanguage(Language language)
     {
@@ -23,6 +35,17 @@ public static class InterfaceLang {
         languageChanged = true;
     }
 
+    public static void SetNextLanguage()
+    {
+        if (lang == "en") {
+            lang = "ru";
+            languageChanged = true;
+        } else {
+            lang = "en";
+            languageChanged = true;
+        }
+    }
+
     /// <summary>
     /// Вытаскивает фразу нужного языка из лангового файла
     /// </summary>
@@ -35,7 +58,7 @@ public static class InterfaceLang {
         //кеширование последней фразы с:
         //если сломает текст, смело можно удалять с:
         if (!languageChanged) {
-            if (phrase == lastPhrase) {
+            if (phrase == lastPhrase && section == lastSection) {
                 return lastPhraseText;
             }
         }
@@ -54,6 +77,7 @@ public static class InterfaceLang {
                 var sectionData = data[section] as Dictionary;
 
                 lastPhrase = phrase;
+                lastSection = section;
                 lastPhraseText = sectionData[phrase].ToString();
 
                 return lastPhraseText;

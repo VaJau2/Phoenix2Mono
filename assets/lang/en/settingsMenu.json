@@ -1,0 +1,99 @@
+{
+    "pages": {
+        "mainMenu": "/Phoenix2/Main_menu/Settings",
+        "pauseMenu": "/Phoenix2/Pause_menu/Settings",
+        "controls": "/Controls"
+    },
+
+    "back": {
+        "mainMenu": "Back to main menu",
+        "pauseMenu": "Back to pause menu",
+        "controls": "Back to settings menu"
+    },
+
+    "choose": {
+        "mouse": "Set mouse sensivity",
+        "distance": "Set render distance",
+        "shadows": "Set shadows quality",
+        "reflections": "Set reflections quality",
+        "fullscreen": "Set fullscreen",
+        "sound": "Set sound volume",
+        "music": "Set music volume",
+        "filter": "Set swear words and other 18+ stuff filter",
+        "language": "Set other language",
+        "controls": "Set controls",
+
+        "default": "Reset defalut settings"
+    },
+
+    "labels": {
+        "header": "Settings",
+        "controlsHeader": "Controls settings",
+        "language": "Language:",
+        "filter": "18+ filter",
+        "mouse": "Mouse sensivity:",
+        "distance": "Render distance:",
+        "shadows": "Shadows quality:",
+        "reflections": "Reflections quality:",
+        "fullscreen": "Fullscreen:",
+        "sound": "Sound volume:",
+        "music": "Music volume:"
+    },
+
+    "buttons": {
+        "back": "[Back]",
+        "language": "English",
+        "controls": "[Controls settings]",
+        "default": "[Default]"
+    },
+
+    "buttonOn": {
+        "off": "Disabled",
+        "on": "Enabled"
+    },
+
+    "shadows": {
+        "0": "Minimum",
+        "1": "Average",
+        "2": "Above Average",
+        "3": "Maximum"
+    },
+
+    "reflections": {
+        "0": "Disabled",
+        "1": "Low",
+        "2": "Avegare",
+        "3": "Maximum"
+    },
+
+    "controls": {
+        "forward": "Set \"forward\" button",
+        "back": "Set \"back\" button",
+        "left": "Set \"left\" button",
+        "right": "Set \"right\" button",
+        "jump": "Set \"jump/teleport/fly\" button",
+        "run": "Set \"run/magic shield/descent\" button",
+        "use": "Set \"use\" button",
+        "sit": "Set \"sit\" button",
+        "dash": "Set \"dash\" button",
+        "getGun": "Set \"get gun\" button",
+        "choseHit": "Set \"close hit\" button",
+        "changeView": "Set \"change view\" button",
+        "seeTasks": "Set \"see tasks\" button"
+    },
+    "controlLabels": {
+        "forward": "Forward:",
+        "back": "Back:",
+        "left": "Left:",
+        "right": "Right:",
+        "jump": "Jump/Teleport/Fly:",
+        "run": "Run/Magic shield/Descent:",
+        "use": "Use:",
+        "sit": "Sit:",
+        "dash": "Dash:",
+        "getGun": "Get gun:",
+        "choseHit": "Close hit:",
+        "changeView": "Change view:",
+        "seeTasks": "See tasks:"
+    }
+}

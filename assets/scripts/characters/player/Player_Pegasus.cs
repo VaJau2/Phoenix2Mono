@@ -159,7 +159,7 @@ public class Player_Pegasus : Player
         if (IsFlyingFast) {
             if (speedX != 0) {
                 Vector3 newRot = Body.RotationDegrees;
-                newRot.z += speedX * -MOUSE_SENSIVITY * 0.5f;
+                newRot.z += speedX * -MouseSensivity * 0.5f;
                 Body.RotationDegrees = newRot;
             }
         }

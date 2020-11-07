@@ -17,7 +17,7 @@ public class MirrorArea: Area {
         global = Global.Get();
         mirror = GetNode<Mirror>("../Mirror/Mirror");
         mirror.mirrorArea = this;
-        mirror.pixelsPerUnit = global.Settings.reflections;
+        mirror.pixelsPerUnit = global.Settings.GetReflections();
         mirror.MirrorOn();
         SignalAwaiter toTimer = ToSignal(GetTree().CreateTimer(0.1f), "timeout");
         await toTimer;
@@ -81,8 +81,8 @@ public class MirrorArea: Area {
                 }
             }
 
-            if (mirror.pixelsPerUnit != global.Settings.reflections) {
-                mirror.pixelsPerUnit = global.Settings.reflections;
+            if (mirror.pixelsPerUnit != global.Settings.GetReflections()) {
+                mirror.pixelsPerUnit = global.Settings.GetReflections();
                 viewChanged = false;
                 timerOn = 0.1f;
             }

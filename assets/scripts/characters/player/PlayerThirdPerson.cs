@@ -1,13 +1,12 @@
 using Godot;
-using System;
 
 public class PlayerThirdPerson : Spatial
 {
     const int BUTTON_WHEEL_UP = 4;
     const int BUTTON_WHEEL_DOWN = 5;
 
-    private Camera thirdCamera;
-    private Camera firstCamera;
+    public Camera thirdCamera;
+    public Camera firstCamera;
 
     private Player player;
     private Control eyePartsInterface;
