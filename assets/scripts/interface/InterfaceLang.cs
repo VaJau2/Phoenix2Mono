@@ -6,10 +6,6 @@ using Godot.Collections;
 /// </summary>
 public static class InterfaceLang {
     private static string lang = "ru";
-    private static string lastPhrase;
-    private static string lastSection;
-    private static string lastPhraseText;
-    private static bool languageChanged;
 
     public static string GetSaveLanguage()
     {
@@ -19,7 +15,6 @@ public static class InterfaceLang {
     public static void LoadLanguage(string savedLanguage) 
     {
         lang = savedLanguage;
-        languageChanged = true;
     }
 
     public static void ChangeLanguage(Language language)
@@ -32,17 +27,14 @@ public static class InterfaceLang {
                 lang = "ru";
                 break;
         }
-        languageChanged = true;
     }
 
     public static void SetNextLanguage()
     {
         if (lang == "en") {
             lang = "ru";
-            languageChanged = true;
         } else {
             lang = "en";
-            languageChanged = true;
         }
     }
 
@@ -55,42 +47,13 @@ public static class InterfaceLang {
     /// <returns></returns>
     public static string GetLang(string file, string section, string phrase) 
     {
-        //кеширование последней фразы с:
-        //если сломает текст, смело можно удалять с:
-        if (!languageChanged) {
-            if (phrase == lastPhrase && section == lastSection) {
-                return lastPhraseText;
-            }
+        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        if (data != null) {
+            var sectionData = data[section] as Dictionary;
+            return sectionData[phrase].ToString();
         }
-
-        File langFile = new File();
-        string path = "res://assets/lang/" + lang + "/" + file + ".json";
-
-        Error fileError = langFile.Open(path, File.ModeFlags.Read);
-        if (fileError == Error.Ok) {
-            var text_json = langFile.GetAsText();
-            langFile.Close();
-            var result_json = JSON.Parse(text_json);
-
-            if (result_json.Error == Error.Ok) {  
-                var data = (Dictionary)result_json.Result;
-                var sectionData = data[section] as Dictionary;
-
-                lastPhrase = phrase;
-                lastSection = section;
-                lastPhraseText = sectionData[phrase].ToString();
-
-                return lastPhraseText;
-                
-            } else { 
-                GD.Print("Error: ", result_json.Error);
-                GD.Print("Error Line: ", result_json.ErrorLine);
-                GD.Print("Error String: ", result_json.ErrorString);
-
-                return result_json.Error.ToString();
-            }
-        }
-        return fileError.ToString();
+       
+        return "data is null :c";
     }
 }
 

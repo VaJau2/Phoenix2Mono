@@ -13,7 +13,7 @@ public class PlayerBody : Spatial
     const float OFFSET_SPEED = 3f;
 
     const float HEAD_ROT_SPEED = 5f;
-    const float BODY_ROT_SPEED = 20f;
+    const float BODY_ROT_SPEED = 26f;
 
     const float CROUCH_COOLDOWN = 5f;
     const float JUMP_COOLDOWN = 0.6f;
@@ -91,68 +91,28 @@ public class PlayerBody : Spatial
                 var pegasus = player as Player_Pegasus;
                 return pegasus.IsFlyingFast;
             }
-            return true;
+            return false;
         }
-    }
-
-    private void OnLegsAreaOn(Node body, bool front) {
-        var pBody = body as PhysicsBody;
-        if (front) {
-            Legs.FrontAreaBodyEntered(pBody);
-        } else {
-            Legs.BackAreaBodyEntered(pBody);
-        }
-    }
-
-    private void OnLegsAreaOff(Node body, bool front) {
-        var pBody = body as PhysicsBody;
-        if (front) {
-            Legs.FrontAreaBodyExited(pBody);
-        } else {
-            Legs.BackAreaBodyExited(pBody);
-        }
-    }
-
-    private void ConnectLegsHits() {
-        var frontArea = GetNode<Area>("frontArea");
-        var backArea = GetNode<Area>("backArea");
-        Array front = new Array();
-        front.Add(true);
-
-        Array back = new Array();
-        back.Add(false);
-
-        frontArea.Connect("body_entered", this, "OnLegsAreaOn", front);
-        frontArea.Connect("body_exited", this, "OnLegsAreaOff", front);
-        backArea.Connect("body_entered", this, "OnLegsAreaOn", back);
-        backArea.Connect("body_exited", this, "OnLegsAreaOff", back);
     }
 
     private void updateHeadRotation(float delta) 
     {
-        headBlend.y = (player.GetVerticalLook() / 60f) + walkOffset;
+        var lookYAngle = (player.GetVerticalLook() / 60f - 0.1f) + walkOffset;
+        //обрасываем нули, чтоб вращение головы не подрагивало
+        string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);  
+        headBlend.y = float.Parse(stringYAngle);
+
         if (isWalking || jumpingCooldown > 0) {
             if (checkPegasusFlyingFast) {
-                if (walkOffset < 0.8) {
-                    walkOffset += OFFSET_SPEED * delta;
-                }
-            }
-            if (walkOffset < 0.4f) {
-                walkOffset += (OFFSET_SPEED - 1f) * delta;
-            } else if (walkOffset > 0.4f) {
-                walkOffset -= OFFSET_SPEED * delta;
+                walkOffset = Mathf.MoveToward(walkOffset, 0.8f, 2 * delta);
+            } else {
+                walkOffset = Mathf.MoveToward(walkOffset, 0.4f, 2 * delta);
             }
         } else {
             if (player.IsCrouching && crouchingCooldown > 0) {
-                if (walkOffset < 0.4f) {
-                    walkOffset += (OFFSET_SPEED - 1f) * delta;
-                } else if (walkOffset > 0.4f) {
-                    walkOffset -= OFFSET_SPEED * delta;
-                }
+                walkOffset = Mathf.MoveToward(walkOffset, 0.4f, 2 * delta);
             }  else {
-                if (walkOffset > 0.2f) {
-                    walkOffset -= OFFSET_SPEED * delta;
-                }
+                walkOffset = Mathf.MoveToward(walkOffset, 0.2f, 2 * delta);
             }
         }
 
@@ -324,11 +284,9 @@ public class PlayerBody : Spatial
         playerRace = Global.Get().playerRace;
         Head = GetNode<PlayerHead>("Armature/Skeleton/BoneAttachment/Head");
 
-        Legs = new PlayerLegs(player);
-        ConnectLegsHits();
+        Legs = GetNode<PlayerLegs>("frontArea");
 
-        var floorRay = GetNode<RayCast>("floorRay");
-        SoundSteps = new SoundSteps(player, floorRay);
+        SoundSteps = GetNode<SoundSteps>("floorRay");
 
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
@@ -340,7 +298,6 @@ public class PlayerBody : Spatial
     {
         if (player.Health > 0) {
             updateHeadRotation(delta);
-            Legs.Update(delta);
             SoundSteps.Update(delta);
 
             //update smiling
@@ -495,7 +452,7 @@ public class PlayerBody : Spatial
                 float mouseSensivity = player.MouseSensivity;
                 float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
 
-                bool mayRotate = ((player.ThirdView && !player.IsLying) ||
+                bool mayRotate = ((player.ThirdView && !player.IsLying && !player.Weapons.GunOn) ||
                                  mouseEvent.Relative.x < 0 && RotClumpsMax) ||
                                  (mouseEvent.Relative.x > 0 && RotClumpsMin);
                 

@@ -4,7 +4,6 @@ public class MainMenu : MenuBase
 {
     Global global = Global.Get();
     AudioStreamPlayer audi;
-    bool firstTime = true;
 
     Control changeRaceMenu;
     Control loadMenu;
@@ -187,24 +186,18 @@ public class MainMenu : MenuBase
         base._Ready();
         audi = GetNode<AudioStreamPlayer>("audi");
         LoadMenu();
-        UpdateDownLabel();
 
-       
-        if (firstTime)
+        if (global.Settings.SettingsLoaded) 
         {
-            if (global.Settings.SettingsLoaded) 
-            {
-                SetMenuVisible(true);
-            } 
-            else 
-            {
-                chooseLanguage.Visible = true;
-                downLabel.Visible = true;
-                label5.Visible = true;
-            }
-           
-            firstTime = false;
+            SetMenuVisible(global.mainMenuFirstTime);
+        } 
+        else 
+        {
+            chooseLanguage.Visible = true;
+            downLabel.Visible = true;
+            label5.Visible = true;
         }
+        global.mainMenuFirstTime = false;
     }
 
     public void _on_language_pressed(bool english)
@@ -221,6 +214,7 @@ public class MainMenu : MenuBase
     public void _on_start_pressed()
     {
         SoundClick();
+        GetNode<LevelsLoader>("/root/Main").LoadLevel(1); return;
         loadRaceLanguage();
         changeRaceMenu.Visible = true;
     }
@@ -258,5 +252,12 @@ public class MainMenu : MenuBase
         SoundClick();
         await global.ToTimer(0.3f, this);
         GetTree().Quit();
+    }
+
+    public void _on_choose_pressed(string raceName) 
+    {
+        Race newRace = Global.raceFromString(raceName);
+        global.playerRace = newRace;
+        GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
     }
 }

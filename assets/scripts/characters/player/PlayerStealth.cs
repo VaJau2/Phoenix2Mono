@@ -1,12 +1,14 @@
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerStealth {
+public class PlayerStealth: Node {
     public StealthStage Stage;
     private Label StealthLabel;
 
-    public PlayerStealth(Label stealthLabel) {
-        StealthLabel = stealthLabel;
+    public override void _Ready()
+    {
+        StealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
+        StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "safe");
     }
 
     public void SetLabelVisible(bool visible) 
@@ -20,14 +22,14 @@ public class PlayerStealth {
     private void checkEmpty() 
     {
         foreach(Character enemy in seekEnemies) {
-            var wr = WeakRef.WeakRef(enemy);
+            var wr = WeakRef(enemy);
             if (wr.GetRef() == null) {
                 seekEnemies.Remove(enemy);
             }
         }
 
         foreach(Character enemy in attackEnemies) {
-            var wr = WeakRef.WeakRef(enemy);
+            var wr = WeakRef(enemy);
             if (wr.GetRef() == null) {
                 attackEnemies.Remove(enemy);
             }

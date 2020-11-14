@@ -31,14 +31,13 @@ public class FurnDoor: FurnBase {
         }
 
         string animForce = null;
-        OtherSided = false;
         if (force) {
             myKey = "";
             if (!standingOtherSide) {
                 animForce = "open-force";
             } else {
                 animForce = "open-force-2";
-                OtherSided = false;
+                OtherSided = true;
             }
         }
         base.ClickFurn(keySound, timer, animForce);
@@ -92,14 +91,14 @@ public class FurnDoor: FurnBase {
     }
 
     public void _on_otherside_body_entered(Node body) {
-        if (body.Name.Contains("Player")) {
-            OtherSided = true;
+        if (body is Player) {
+            standingOtherSide = true;
         }
     }
 
     public void _on_otherside_body_exited(Node body) {
-        if (body.Name.Contains("Player")) {
-            OtherSided = false;
+        if (body is Player) {
+            standingOtherSide = false;
         }
     }
 }

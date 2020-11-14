@@ -109,9 +109,8 @@ public class Player : Character
         global.player = this;
 
         LoadHeadBody(global.playerRace);
-        Label stealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
-        Stealth = new PlayerStealth(stealthLabel);
-        Weapons = new PlayerWeapons(this);
+        Stealth = GetNode<PlayerStealth>("stealth");
+        Weapons = GetNode<PlayerWeapons>("gun_shape");
         JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
 
         Camera = GetNode<Camera>("rotation_helper/camera");
@@ -235,17 +234,13 @@ public class Player : Character
         IsCrouching = sitOn;
         Stealth.SetLabelVisible(sitOn);
         if (sitOn) {
-            bodyColliderSize = 0.4f;
-            Vector3 bodyTranslation = Body.Translation;
-            bodyTranslation.y = 1.55f;
-            Body.Translation = bodyTranslation;
+            bodyColliderSize = 0.56f;
+            Body.Translate(new Vector3(0, 0.51f, 0));
             MaxSpeed = 8;
             crouchCooldown = 0.5f;
         } else {
             bodyColliderSize = 1;
-            Vector3 bodyTranslation = Body.Translation;
-            bodyTranslation.y = 1.024f;
-            Body.Translation = bodyTranslation;
+            Body.Translate(new Vector3(0, -0.51f, 0));
             MaxSpeed = 17;
         }
     }
@@ -497,7 +492,6 @@ public class Player : Character
     public override void _Process(float delta)
     {
         bodyCollider.Rotation = Body.Rotation;
-        Weapons.Update(delta);
     }
 
     public override void _PhysicsProcess(float delta)

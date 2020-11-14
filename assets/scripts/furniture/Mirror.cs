@@ -5,7 +5,7 @@ public class Mirror: MeshInstance {
     public Vector2 size;
 
     [Export]
-    public int pixelsPerUnit = 200;
+    public int pixelsPerUnit = 90;
 
     Viewport viewport;
     Position3D planeMark;

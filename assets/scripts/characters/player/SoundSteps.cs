@@ -2,10 +2,12 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class SoundSteps {
+public class SoundSteps: RayCast {
 
     //ссылка на скрипт через player.Body.SoundSteps
 
+    [Export]
+    public NodePath parentPath;
     const float STEP_COOLDOWN = 0.4f;
     const float STEP_CROUCH_COOLDOWN = 0.8f;
     const float STEP_RUN_COOLDOWN = 0.6f;
@@ -16,8 +18,7 @@ public class SoundSteps {
 
     private bool isPlayer = true;
     
-    RayCast ray;
-    Character parent;
+    Character parent {get => GetNode<Character>(parentPath);}
 
     float timer = 0;
     int stepI = 0;
@@ -62,13 +63,10 @@ public class SoundSteps {
             tempArray.Add(tempSound);
         }
         return tempArray;
-    }   
+    }
 
-    public SoundSteps(Character parent, RayCast ray)
+    public override void _Ready()
     {
-        this.parent = parent;
-        this.ray = ray;
-
         if (parent is Player) {
             var player = parent as Player;
             audi = player.GetAudi();
@@ -169,7 +167,7 @@ public class SoundSteps {
 
         if (parent.GetSpeed() > 2) {
             if (!isPlayer || parent.IsOnFloor()) {
-                var collideObj = ray.GetCollider();
+                var collideObj = GetCollider();
                 if (collideObj is StaticBody) {
                     var collideBody = collideObj as StaticBody;
                     var friction = collideBody.PhysicsMaterialOverride.Friction;

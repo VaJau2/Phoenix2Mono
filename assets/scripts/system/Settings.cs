@@ -15,7 +15,7 @@ public class Settings
     public int reflections = 3;
     private int[] reflectionSettings = new int[] 
     {
-        0, 45, 100, 200
+        0, 30, 50, 90
     };
     public int reflectionVariantsCount {get; private set;}
 

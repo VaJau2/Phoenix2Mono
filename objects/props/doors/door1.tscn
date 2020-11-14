@@ -137,6 +137,7 @@ anims/open-force-2 = SubResource( 7 )
 
 [node name="other-side" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02012, 0.707591, -1.37034 )
+monitorable = false
 
 [node name="shape" type="CollisionShape" parent="other-side"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212071, 2.14918, 0 )

@@ -5,8 +5,9 @@ public class MenuBase : Control
     Global global = Global.Get();
     public string menuName = "mainMenu";
     protected Label downLabel;
-    private bool updatingDownLabel = false;
     private bool downAdded = false;
+    private float downLabelTimer;
+    private const float DOWN_LABEL_TIME = 0.6f;
 
     private string tempSection, tempPhrase;
 
@@ -14,27 +15,13 @@ public class MenuBase : Control
     {
         downLabel = GetNode<Label>("down_label");
     }
-
-
+    
     public virtual void SetMenuVisible(bool animate = false)
     {
         Visible = true;
     }
 
     public virtual void SoundClick() {}
-
-    protected async void UpdateDownLabel() {
-        updatingDownLabel = true;
-        while(updatingDownLabel) {
-            downAdded = !downAdded;
-            if (downAdded) {
-                downLabel.Text += "_";
-            } else {
-                downLabel.Text = downLabel.Text.Replace("_", "");
-            }
-            await global.ToTimer(0.6f, this);
-        }
-    }
 
     private async void changeDownLabel() {
         downLabel.PercentVisible = 0;
@@ -66,6 +53,21 @@ public class MenuBase : Control
             downLabel.Text = "_";
         } else {
             downLabel.Text = "";
+        }
+    }
+
+    public override void _Process(float delta)
+    {
+        if (downLabelTimer > 0) {
+            downLabelTimer -= delta;
+        } else {
+            downAdded = !downAdded;
+            if (downAdded) {
+                downLabel.Text += "_";
+            } else {
+                downLabel.Text = downLabel.Text.Replace("_", "");
+            }
+            downLabelTimer = DOWN_LABEL_TIME;
         }
     }
 }

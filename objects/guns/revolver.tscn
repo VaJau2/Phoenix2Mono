@@ -105,7 +105,7 @@ transform = Transform( 1, 0, -8.74228e-08, 0, -1, 0, -8.74228e-08, 0, -1, 0.0015
 
 [node name="revolver001" type="MeshInstance" parent="Gun-armature/Bone/Bone002"]
 transform = Transform( 0.299969, -2.62241e-08, 1.0657e-15, -1.0657e-15, 0, 0.299969, -2.62241e-08, -0.299969, 0, -0.00159194, -0.0625917, 0.248412 )
-layers = 1025
+layers = 1024
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -114,13 +114,13 @@ transform = Transform( 1, -2.84217e-14, -7.15256e-07, -4.79531e-07, -0.74197, -0
 
 [node name="revolver002" type="MeshInstance" parent="Gun-armature/Bone/Bone003"]
 transform = Transform( 0.299969, -1.59193e-07, 1.43845e-07, 1.70513e-14, 0.201109, 0.222568, -2.14555e-07, -0.222568, 0.201109, -9.21754e-08, -0.543899, -0.128871 )
-layers = 1025
+layers = 2147484672
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="revolver" type="MeshInstance" parent="Gun-armature/Bone"]
 transform = Transform( 0.299969, 6.66066e-17, -6.66066e-17, -6.66066e-17, 0, -0.299969, -6.66066e-17, 0.299969, 0, 8.25234e-17, 0.550039, -0.0891933 )
-layers = 1025
+layers = 1024
 mesh = SubResource( 3 )
 material/0 = null
 

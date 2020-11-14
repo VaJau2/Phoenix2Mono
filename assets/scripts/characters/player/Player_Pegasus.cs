@@ -129,7 +129,6 @@ public class Player_Pegasus : Player
     {
         if (IsFlying) {
             if (IsFlyingFast) {
-                GD.Print(flySpeed);
                 flySpeed += flyIncrease * delta;
 
                 if (flyIncrease > 0) {

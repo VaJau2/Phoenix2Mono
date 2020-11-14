@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using System;
 
-public class PlayerWeapons 
+public class PlayerWeapons: CollisionShape
 {
     Global global;
     const float SHAKE_SPEED = 4;
@@ -15,7 +15,7 @@ public class PlayerWeapons
 
     public Dictionary<WeaponTypes, WeaponStats> weaponStats;
 
-    Player player;
+    Player player {get => GetParent<Player>();}
     //внутри player:
     //body
     //camera
@@ -23,7 +23,6 @@ public class PlayerWeapons
 
     RayCast rayFirst;
     RayCast rayThird;
-    CollisionShape gunShape; //бывший collision
     RayCast rayShotgun;
     ShotgunArea shotgunArea;
 
@@ -41,10 +40,12 @@ public class PlayerWeapons
     Dictionary<string, Spatial> weaponParents;
     Dictionary<string, Transform> weaponPositions = new Dictionary<string, Transform>();
     Dictionary<string, PackedScene> weaponPrefabs = new Dictionary<string, PackedScene>();
+    Dictionary<string, PackedScene> weaponMirrorPrefabs = new Dictionary<string, PackedScene>();
 
     //--эффекты и анимания выстрела
 
     Spatial tempWeapon;
+    Spatial tempMirrorWeapon;
     string tempWeaponKey = "";
     AnimationPlayer gunAnim;
     Spatial gunLight;
@@ -68,40 +69,40 @@ public class PlayerWeapons
 
     bool onetimeShoot = false;
     bool onetimeVisible = false;
-    bool bagEnabled = false;
+    bool bagEnabled = true; //для будущего прятания сумки
     
 
     private void loadModels() 
     {
         //вытаскиваем все модельки оружия
-        string head1Path = "rotation_helper/camera/weapons/";
-        string bagPath = "player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag/";
+        string head1Path = "../rotation_helper/camera/weapons/";
+        string bagPath = "../player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag/";
         var weaponModels = new Dictionary<string, Spatial>()
         {
-            {"pistol_on", player.GetNode<Spatial>(head1Path + "pistol")},
-            {"pistol_off", player.GetNode<Spatial>(bagPath + "pistol")},
+            {"pistol_on", GetNode<Spatial>(head1Path + "pistol")},
+            {"pistol_off", GetNode<Spatial>(bagPath + "pistol")},
 
-            {"shotgun_on", player.GetNode<Spatial>(bagPath + "shotgun")},
+            {"shotgun_on", GetNode<Spatial>(bagPath + "shotgun")},
 
-            {"revolver_on", player.GetNode<Spatial>(head1Path + "revolver")},
-            {"revolver_off", player.GetNode<Spatial>(bagPath + "revolver")},
+            {"revolver_on", GetNode<Spatial>(head1Path + "revolver")},
+            {"revolver_off", GetNode<Spatial>(bagPath + "revolver")},
 
-            {"sniper_on", player.GetNode<Spatial>(bagPath + "rifle")},
+            {"sniper_on", GetNode<Spatial>(bagPath + "rifle")},
         };
 
-        string head3Path = "player_body/Armature/Skeleton/BoneAttachment/weapons/";
+        string head3Path = "../player_body/Armature/Skeleton/BoneAttachment/weapons/";
         var weaponThirdModels = new Dictionary<string, Spatial>() 
         {
-            {"pistol_on", player.GetNode<Spatial>(head3Path + "pistol")},
-            {"revolver_on", player.GetNode<Spatial>(head3Path + "revolver")}
+            {"pistol_on", GetNode<Spatial>(head3Path + "pistol")},
+            {"revolver_on", GetNode<Spatial>(head3Path + "revolver")}
         };
 
         //грузим parent-объекты для спавнящегося оружия
         weaponParents = new Dictionary<string, Spatial>()
         {
-            {"head1", player.GetNode<Spatial>(head1Path)},
-            {"head3", player.GetNode<Spatial>(head3Path)},
-            {"bag", player.GetNode<Spatial>(bagPath)},
+            {"head1", GetNode<Spatial>(head1Path)},
+            {"head3", GetNode<Spatial>(head3Path)},
+            {"bag", GetNode<Spatial>(bagPath)},
         };
 
         //запоминаем их локальную позицию и удаляем их
@@ -123,6 +124,12 @@ public class PlayerWeapons
             {"revolver", GD.Load<PackedScene>(prefabPath + "revolver.tscn")},
             {"sniper", GD.Load<PackedScene>(prefabPath + "rifle.tscn")},
             {"shotgun", GD.Load<PackedScene>(prefabPath + "shotgun.tscn")}
+        };
+        
+        weaponMirrorPrefabs = new Dictionary<string, PackedScene>()
+        {
+            {"pistol", GD.Load<PackedScene>(prefabPath + "pistolMirror.tscn")},
+            {"revolver", GD.Load<PackedScene>(prefabPath + "revolverMirror.tscn")},
         };
     }  
 
@@ -195,31 +202,29 @@ public class PlayerWeapons
         };
     }
 
-    public PlayerWeapons(Player player) 
+    public override void _Ready()
     {
         global = Global.Get();
-        this.player = player;
 
-        rayFirst = player.GetNode<RayCast>("rotation_helper/camera/ray");
-        rayThird = player.GetNode<RayCast>("rotation_helper_third/camera/ray");
+        rayFirst = GetNode<RayCast>("../rotation_helper/camera/ray");
+        rayThird = GetNode<RayCast>("../rotation_helper_third/camera/ray");
         rayFirst.AddException(player);
         rayThird.AddException(player);
 
-        gunShape = player.GetNode<CollisionShape>("gun_shape");
-        rayShotgun = player.GetNode<RayCast>("player_body/shotgunRay");
-        shotgunArea = player.GetNode<ShotgunArea>("player_body/shotgunArea");
-        askGet = player.GetNode<Control>("/root/Main/Scene/canvas/openBack");
+        rayShotgun = GetNode<RayCast>("../player_body/shotgunRay");
+        shotgunArea = GetNode<ShotgunArea>("../player_body/shotgunArea");
+        askGet = GetNode<Control>("/root/Main/Scene/canvas/openBack");
         label = askGet.GetNode<Label>("label");
-        shootInterface = player.GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
+        shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<Sprite>("ammoBack/Sprite2");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
         weaponIcons = shootInterface.GetNode<GunIcons>("gunIcons");
 
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
-        particlesParent = player.GetNode("/root/Main/Scene");
+        particlesParent = GetNode("/root/Main/Scene");
 
-        audi = player.GetNode<AudioStreamPlayer>("sound/audi_weapons");
-        audiShoot = player.GetNode<AudioStreamPlayer>("sound/audi_shoot");
+        audi = GetNode<AudioStreamPlayer>("../sound/audi_weapons");
+        audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
 
         //enemiesManager = player.GetNode("/root/Main/Scene/enemies");
 
@@ -241,7 +246,12 @@ public class PlayerWeapons
 
     private void loadGunEffects() 
     {
-        gunAnim = tempWeapon.GetNode<AnimationPlayer>("anim");
+        if (tempWeapon.HasNode("anim")) {
+            gunAnim = tempWeapon.GetNode<AnimationPlayer>("anim");
+        } else {
+            gunAnim = null;
+        }
+        
         gunLight = tempWeapon.GetNode<Spatial>("light");
         gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");
@@ -257,6 +267,7 @@ public class PlayerWeapons
         //проверяем, не включена ли уже эта моделька
         var key = "";
         bool isPistol = IsNotRifle;
+        bool loadMirror = false;
         Spatial parent = null;
 
         if (GunOn && isPistol) {
@@ -265,6 +276,7 @@ public class PlayerWeapons
                 parent = weaponParents["head3"];
             } else {
                 parent = weaponParents["head1"];
+                loadMirror = true;
             }
         } else {
             parent = weaponParents["bag"];
@@ -284,6 +296,9 @@ public class PlayerWeapons
             if (tempWeapon != null) {
                 tempWeapon.QueueFree();
             }
+            if (tempMirrorWeapon != null) {
+                tempMirrorWeapon.QueueFree();
+            }
 
             if (newType == WeaponTypes.None) {
                 tempWeapon = null;
@@ -295,6 +310,13 @@ public class PlayerWeapons
             parent.AddChild(newWeapon);
             newWeapon.Transform = weaponPositions[key];
 
+            if (loadMirror) {
+                var newMirrorWeapon = (Spatial)weaponMirrorPrefabs[weaponName].Instance();
+                weaponParents["head3"].AddChild(newMirrorWeapon);
+                newMirrorWeapon.Transform = weaponPositions["third_" + weaponName + "_on"];
+                tempMirrorWeapon = newMirrorWeapon;
+            }
+            
             //запоминаем её
             tempWeapon = newWeapon;
             tempWeaponKey = key;
@@ -321,10 +343,10 @@ public class PlayerWeapons
         var isPistol = IsNotRifle;
 
         if (isPistol) {
-            gunShape.Disabled = !newGunOn;
-            gunShape.RotationDegrees = Vector3.Zero;
+            Disabled = !newGunOn;
+            RotationDegrees = Vector3.Zero;
         } else {
-            gunShape.Disabled = true;
+            Disabled = true;
         }
         shootInterface.Visible = newGunOn;
 
@@ -349,9 +371,10 @@ public class PlayerWeapons
             if (shakeUp) {
                 if (tempShake < weaponStats[TempWeaponType].recoil) {
                     tempShake += SHAKE_SPEED;
-                    player.Camera.RotationDegrees = SetRotX(
-                        player.Camera.RotationDegrees,
-                        player.Camera.RotationDegrees.x + SHAKE_SPEED
+                    Camera camera = player.GetViewport().GetCamera();
+                    camera.RotationDegrees = SetRotX(
+                        camera.RotationDegrees,
+                        camera.RotationDegrees.x + SHAKE_SPEED
                     );
                 } else {
                     shakeUp = false;
@@ -360,9 +383,10 @@ public class PlayerWeapons
                 if (tempShake > 0) {
                     var diff = SHAKE_SPEED * SHAKE_DIFF;
                     tempShake -= diff;
-                    player.Camera.RotationDegrees = SetRotX(
-                        player.Camera.RotationDegrees,
-                        player.Camera.RotationDegrees.x - SHAKE_SPEED * SHAKE_DIFF
+                    Camera camera = player.GetViewport().GetCamera();
+                    camera.RotationDegrees = SetRotX(
+                        camera.RotationDegrees,
+                        camera.RotationDegrees.x - SHAKE_SPEED * SHAKE_DIFF
                     );
                 } else {
                     shakeUp = true;
@@ -376,7 +400,7 @@ public class PlayerWeapons
     private async void checkVisible(List<Spatial> victims) 
     {
         foreach(Spatial victim in victims) {
-            var wr = WeakRef.WeakRef(victim);
+            var wr = WeakRef(victim);
             if (wr.GetRef() != null) {
                 var victPos = victim.GlobalTransform.origin;
                 if (victim is Character) {
@@ -572,7 +596,7 @@ public class PlayerWeapons
 
             if (!tempStats.silent) {
                 GD.Print("alarmed, but didn't have manager");
-                GD.Print("go to PlayerWeapons.cs - 530 to fix");
+                GD.Print("go to PlayerWeapons.cs - 574 to fix");
             }
 
             onetimeShoot = false;
@@ -588,14 +612,15 @@ public class PlayerWeapons
         }
     }
 
-    public void Update(float delta) {
+    public override void _Process(float delta)
+    {
         if (!global.paused && player.Health > 0) 
         {
             if (TempWeaponType != WeaponTypes.None) {
                 if (GunOn) {
                     //вращаем коллизию пистолета вместе с пистолетом
                     if (IsNotRifle) {
-                        gunShape.RotationDegrees = player.RotationHelper.RotationDegrees;
+                        RotationDegrees = player.RotationHelper.RotationDegrees;
                     } //иначе вращаем область дробовика за камерой
                     else {
                         Vector3 newRot = shotgunArea.RotationDegrees;

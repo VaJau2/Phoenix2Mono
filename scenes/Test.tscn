@@ -149,6 +149,7 @@ dropSide = Vector3( 1, 0, 0 )
 [node name="door" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
 myKey = "key_test"
+ForceOpening = true
 
 [node name="Mirror" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.672479, 3.41876, -16.2384 )

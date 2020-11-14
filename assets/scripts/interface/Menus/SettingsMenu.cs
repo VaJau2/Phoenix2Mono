@@ -373,7 +373,6 @@ public class SettingsMenu : MenuBase
             }
         }
     }
-
    
 
     public void _on_default_pressed()

@@ -34,10 +34,11 @@ public class FurnBase: StaticBody {
 
     public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) {
         if (IsOpen) {
-            if (!OtherSided) {
-                setOpen("close", CloseSound, timer);
-            } else {
+            if (OtherSided) {
                 setOpen("close-2", CloseSound, timer);
+                OtherSided = false;
+            } else {
+                setOpen("close", CloseSound, timer);
             }
         }
         else {

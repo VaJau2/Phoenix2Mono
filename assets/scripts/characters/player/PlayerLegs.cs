@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerLegs 
+public class PlayerLegs: Node
 {
     const int EARTHPONY_FRONT_DAMAGE = 40;
     const int EARTHPONY_BACK_DAMAGE = 80;
@@ -11,7 +11,7 @@ public class PlayerLegs
 
     const float BACK_HIT_ANGLE = 60;
 
-    Player player;
+    //Player player;
     Global global;
 
     AudioStreamPlayer audi;
@@ -29,11 +29,12 @@ public class PlayerLegs
 
     public bool getTempFront { get { return tempFront;} }
 
-    public PlayerLegs(Player player) 
+    private Player player { get => global.player; }
+
+    public override void _Ready()
     {
-        this.player = player;
         global = Global.Get();
-        audi = player.GetNode<AudioStreamPlayer>("sound/audi_hitted");
+        audi = GetNode<AudioStreamPlayer>("../../sound/audi_hitted");
 
         tryHit = GD.Load<AudioStreamSample>("res://assets/audio/enemies/SwordTryHit.wav");
         hit= GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
@@ -51,6 +52,7 @@ public class PlayerLegs
         frontObjects = new List<PhysicsBody>();
         backObjects = new List<PhysicsBody>();
     }
+
 
     private void handleVictim(PhysicsBody victim, int damage)
     {
@@ -146,7 +148,8 @@ public class PlayerLegs
         stoppingHit = false;
     }
 
-    public void Update(float delta) {
+    public override void _Process(float delta)
+    {
         bool playerRunningFlying = false;
 
         switch(global.playerRace) {

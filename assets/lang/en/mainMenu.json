@@ -43,5 +43,10 @@
         "choose0": "Choose race: Earthpony",
         "choose1": "Choose race: Unicorn",
         "choose2": "Choose race: Pegasus"
+    },
+
+    "load": {
+        "text": "Loading",
+        "page": "/Phoenix2/Loading"
     }
 }

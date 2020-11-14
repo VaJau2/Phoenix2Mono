@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
 
 [node name="MainMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -263,13 +264,12 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="ChangeRace"]
-margin_left = 42.0
+margin_left = 40.0
 margin_top = 100.0
-margin_right = 982.0
+margin_right = 384.0
 margin_bottom = 125.0
 theme = ExtResource( 1 )
-text = "               [Назад]"
-align = 0
+text = "[Назад]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -451,13 +451,12 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="Load"]
-margin_left = 42.0
+margin_left = 40.0
 margin_top = 100.0
-margin_right = 982.0
+margin_right = 384.0
 margin_bottom = 125.0
 theme = ExtResource( 1 )
-text = "               [Назад]"
-align = 0
+text = "[Назад]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -531,13 +530,12 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="About"]
-margin_left = 42.0
+margin_left = 40.0
 margin_top = 100.0
-margin_right = 982.0
+margin_right = 384.0
 margin_bottom = 125.0
 theme = ExtResource( 1 )
-text = "               [Назад]"
-align = 0
+text = "[Назад]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
