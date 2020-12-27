@@ -404,7 +404,6 @@ public class PlayerBody : Spatial
             
 
             if (player.BodyFollowsCamera) {
-
                 SetRotZero();
             } else if (isWalking && !player.IsRoped) {
 
@@ -417,7 +416,6 @@ public class PlayerBody : Spatial
                     speed = BODY_ROT_SPEED * player.GetSpeed();
                 }
                
-
                 rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);
                 RotationDegrees = rot;
             } else {

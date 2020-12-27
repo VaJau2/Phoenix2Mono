@@ -70,14 +70,7 @@ public class BreakableObject: StaticBody
         else 
         {
             switch (objectType)
-            {
-                case (BreakableObjectType.Mirror):
-                    var mirror = GetNode<Mirror>("Mirror");
-                    mirror.MirrorOff();
-                    mirror.Visible = false;
-                    mirror.mirrorArea.DestroyMirror();
-                    break;
-                
+            {            
                 case (BreakableObjectType.Lamp): 
                     audi.Stream = brakeSounds["brake1"];
                     break;

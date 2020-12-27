@@ -52,11 +52,6 @@ public class LevelsLoader : Node
 
         loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
         SetProcess(true);
-
-        // var resource = (PackedScene)GD.Load(levelPaths[tempLevelNum]);
-        // var newScene = resource.Instance();
-        // GetTree().Root.GetNode("Main").AddChild(newScene);
-        // currentScene = newScene;
     }
 
     private void respawnMenu(PackedScene newMenu) 

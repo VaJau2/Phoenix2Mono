@@ -214,7 +214,6 @@ public class MainMenu : MenuBase
     public void _on_start_pressed()
     {
         SoundClick();
-        GetNode<LevelsLoader>("/root/Main").LoadLevel(1); return;
         loadRaceLanguage();
         changeRaceMenu.Visible = true;
     }

@@ -300,7 +300,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="reflections_label" type="Label" parent="."]
+[node name="fullscreen" type="Label" parent="."]
 modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -310,68 +310,6 @@ margin_left = -152.0
 margin_top = 20.0
 margin_right = 24.0
 margin_bottom = 42.0
-theme = ExtResource( 2 )
-text = "Качество отражений:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="reflections_button" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 47.9999
-margin_top = 20.0
-margin_right = 363.0
-margin_bottom = 37.0
-theme = ExtResource( 2 )
-text = "Максимальное"
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="reflections_border" type="Label" parent="reflections_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -8.5
-margin_right = 6.0
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="reflections_border2" type="Label" parent="reflections_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -5.99969
-margin_top = -8.5
-margin_right = 0.000305176
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="fullscreen" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -152.0
-margin_top = 60.0
-margin_right = 24.0
-margin_bottom = 82.0
 theme = ExtResource( 2 )
 text = "Полноэкранный режим:"
 align = 2
@@ -384,10 +322,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 47.9999
-margin_top = 60.0
+margin_left = 48.0
+margin_top = 20.0
 margin_right = 363.0
-margin_bottom = 77.0
+margin_bottom = 37.0
 theme = ExtResource( 2 )
 text = "Выключен"
 __meta__ = {
@@ -1361,9 +1299,6 @@ stream = ExtResource( 1 )
 [connection signal="mouse_entered" from="shadows_button" to="." method="_on_mouse_entered" binds= [ "choose", "shadows" ]]
 [connection signal="mouse_exited" from="shadows_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="shadows_button" to="." method="_on_shadows_button_pressed"]
-[connection signal="mouse_entered" from="reflections_button" to="." method="_on_mouse_entered" binds= [ "choose", "reflections" ]]
-[connection signal="mouse_exited" from="reflections_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="reflections_button" to="." method="_on_reflections_button_pressed"]
 [connection signal="mouse_entered" from="fullscreen_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
 [connection signal="mouse_exited" from="fullscreen_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="fullscreen_button" to="." method="_on_fullscreen_button_pressed"]

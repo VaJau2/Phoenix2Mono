@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -7,17 +7,6 @@
 [ext_resource path="res://objects/props/doors/door1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
-[ext_resource path="res://objects/props/mirror/mirror.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=9]
-[ext_resource path="res://assets/scripts/furniture/MirrorArea.cs" type="Script" id=10]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=11]
-[ext_resource path="res://assets/materials/props/window/mirror-broken.tres" type="Material" id=12]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=13]
-[ext_resource path="res://assets/materials/props/window/transparent.tres" type="Material" id=14]
-[ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=15]
-[ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=18]
 [ext_resource path="res://objects/items/HealPotion.tscn" type="PackedScene" id=19]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 [ext_resource path="res://objects/items/307mmAmmo.tscn" type="PackedScene" id=21]
@@ -37,50 +26,6 @@ extents = Vector3( 50, 0.1, 50 )
 [sub_resource type="CubeMesh" id=3]
 
 [sub_resource type="BoxShape" id=4]
-
-[sub_resource type="PlaneMesh" id=5]
-material = ExtResource( 14 )
-
-[sub_resource type="BoxShape" id=6]
-extents = Vector3( 4.19303, 2.48784, 0.158027 )
-
-[sub_resource type="QuadMesh" id=7]
-size = Vector2( 8, 4 )
-
-[sub_resource type="SpatialMaterial" id=8]
-resource_local_to_scene = true
-flags_albedo_tex_force_srgb = true
-metallic_specular = 0.27
-roughness = 0.42
-
-[sub_resource type="BoxShape" id=9]
-extents = Vector3( 2.17797, 2.66149, 0.105925 )
-
-[sub_resource type="ParticlesMaterial" id=10]
-emission_shape = 2
-emission_box_extents = Vector3( 0.9, 0.2, 0.2 )
-direction = Vector3( 0, 0, 1 )
-spread = 50.0
-gravity = Vector3( 0, -6, 0 )
-initial_velocity = 2.0
-
-[sub_resource type="QuadMesh" id=11]
-material = ExtResource( 13 )
-size = Vector2( 0.8, 0.8 )
-
-[sub_resource type="QuadMesh" id=12]
-material = ExtResource( 11 )
-size = Vector2( 0.8, 0.8 )
-
-[sub_resource type="QuadMesh" id=13]
-material = ExtResource( 9 )
-size = Vector2( 0.8, 0.8 )
-
-[sub_resource type="BoxShape" id=14]
-extents = Vector3( 6.52819, 2.3378, 9.37135 )
-
-[sub_resource type="BoxShape" id=15]
-extents = Vector3( 5.91382, 4.42414, 10.2255 )
 
 [node name="Scene" type="Node"]
 
@@ -135,7 +80,7 @@ material/0 = null
 shape = SubResource( 4 )
 
 [node name="cabinet" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.4544, 2.91461, -3.64411 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )
 physics_material_override = ExtResource( 7 )
 dropSide = Vector3( 1, 0, 0 )
 itemPrefab = ExtResource( 3 )
@@ -143,79 +88,13 @@ keyName = "key_test"
 pickKeyTextLink = "key_test"
 
 [node name="metallic-cabinet" parent="." instance=ExtResource( 20 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.3443, 2.99856, 2.5442 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
 dropSide = Vector3( 1, 0, 0 )
 
 [node name="door" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
 myKey = "key_test"
 ForceOpening = true
-
-[node name="Mirror" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.672479, 3.41876, -16.2384 )
-collision_layer = 3
-physics_material_override = ExtResource( 15 )
-script = ExtResource( 18 )
-BrokenMaterial = ExtResource( 12 )
-objectType = 2
-brakeSounds = {
-"brake1": ExtResource( 16 ),
-"brake2": ExtResource( 17 )
-}
-
-[node name="mesh" type="MeshInstance" parent="Mirror"]
-transform = Transform( 2.5, 0, 0, 0, -4.37114e-08, -1.5, 0, 1, -6.55671e-08, 0, 0, 0.354 )
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="shape" type="CollisionShape" parent="Mirror"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326967, 0, 0.121668 )
-shape = SubResource( 6 )
-
-[node name="Mirror" parent="Mirror" instance=ExtResource( 8 )]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
-size = Vector2( 8, 4 )
-
-[node name="StaticBody" type="StaticBody" parent="Mirror/Mirror"]
-physics_material_override = ExtResource( 15 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Mirror/Mirror/StaticBody"]
-shape = SubResource( 9 )
-
-[node name="audi" type="AudioStreamPlayer3D" parent="Mirror"]
-unit_db = 5.0
-unit_size = 10.0
-max_db = 5.0
-max_distance = 500.0
-
-[node name="Particles" type="Particles" parent="Mirror"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243034, 0 )
-emitting = false
-lifetime = 0.8
-one_shot = true
-explosiveness = 1.0
-randomness = 0.87
-visibility_aabb = AABB( -0.8371, -0.708018, -0.693237, 1.6742, 1.41604, 1.38647 )
-process_material = SubResource( 10 )
-draw_passes = 3
-draw_pass_1 = SubResource( 11 )
-draw_pass_2 = SubResource( 12 )
-draw_pass_3 = SubResource( 13 )
-
-[node name="enemyArea" type="Area" parent="Mirror"]
-monitorable = false
-
-[node name="shape" type="CollisionShape" parent="Mirror/enemyArea"]
-shape = SubResource( 14 )
-
-[node name="mirror-trigger" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68609, 2.06327, -9.13055 )
-script = ExtResource( 10 )
-
-[node name="CollisionShape" type="CollisionShape" parent="mirror-trigger"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.139542, 0.0532303, 1.37937 )
-shape = SubResource( 15 )
 
 [node name="items" type="Node" parent="."]
 
@@ -245,5 +124,3 @@ transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 29.2679, 1.155, 14.765 )
 
 [node name="shotgun" parent="items" instance=ExtResource( 28 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 28.7142, 1.55, 26.2817 )
-[connection signal="body_entered" from="mirror-trigger" to="mirror-trigger" method="_on_Area_body_entered"]
-[connection signal="body_exited" from="mirror-trigger" to="mirror-trigger" method="_on_mirrortrigger_body_exited"]

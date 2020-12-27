@@ -135,7 +135,7 @@ public class PlayerLegs: Node
                 damage = EARTHPONY_BACK_DAMAGE;
             }
             damage *= (int)hittingTimer;
-            foreach (PhysicsBody victim in frontObjects) {
+            foreach (PhysicsBody victim in backObjects){
                 handleVictim(victim, damage);
             }
         }

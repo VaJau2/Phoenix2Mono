@@ -19,8 +19,6 @@ public class SettingsMenu : MenuBase
     private Label distanceLabel;
     private Label shadowsLabel;
     private Button shadowsButton;
-    private Label reflectionsLabel;
-    private Button reflectionsButton;
     private Label fullscreenLabel;
     private Label soundLabel;
     private Label musicLabel;
@@ -54,8 +52,6 @@ public class SettingsMenu : MenuBase
         distanceLabel = GetNode<Label>("distance_label");
         shadowsLabel = GetNode<Label>("shadows_label");
         shadowsButton = GetNode<Button>("shadows_button");
-        reflectionsLabel = GetNode<Label>("reflections_label");
-        reflectionsButton = GetNode<Button>("reflections_button");
         fullscreenLabel = GetNode<Label>("fullscreen");
         fullscreenButton = GetNode<Button>("fullscreen_button");
         soundLabel = GetNode<Label>("sound_label");
@@ -102,7 +98,6 @@ public class SettingsMenu : MenuBase
         mouseLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "mouse");
         distanceLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "distance");
         shadowsLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "shadows");
-        reflectionsLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "reflections");
         fullscreenLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "fullscreen");
         soundLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "sound");
         musicLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "music");
@@ -113,8 +108,6 @@ public class SettingsMenu : MenuBase
 
         shadowsButton.Text = InterfaceLang.GetLang("settingsMenu", "shadows", 
             global.Settings.shadows.ToString());
-        reflectionsButton.Text = InterfaceLang.GetLang("settingsMenu", "reflections", 
-            global.Settings.reflections.ToString());
         
         controlsBackButton.Text = backButton.Text;
         defaultButton.Text = InterfaceLang.GetLang("settingsMenu", "buttons", "default");
@@ -301,15 +294,6 @@ public class SettingsMenu : MenuBase
         tempShadows = increase(tempShadows, global.Settings.shadowVariantsCount);
         global.Settings.ChangeShadows(tempShadows);
         shadowsButton.Text = InterfaceLang.GetLang("settingsMenu", "shadows", tempShadows.ToString());
-    }
-
-    public void _on_reflections_button_pressed()
-    {
-        otherMenu.SoundClick();
-        var tempReflections = global.Settings.reflections;
-        tempReflections = increase(tempReflections, global.Settings.reflectionVariantsCount);
-        global.Settings.reflections = tempReflections;
-        reflectionsButton.Text = InterfaceLang.GetLang("settingsMenu", "reflections", tempReflections.ToString());
     }
 
     public void _on_fullscreen_button_pressed()

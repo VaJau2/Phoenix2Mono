@@ -15,7 +15,6 @@
         "mouse": "Set mouse sensivity",
         "distance": "Set render distance",
         "shadows": "Set shadows quality",
-        "reflections": "Set reflections quality",
         "fullscreen": "Set fullscreen",
         "sound": "Set sound volume",
         "music": "Set music volume",
@@ -34,7 +33,6 @@
         "mouse": "Mouse sensivity:",
         "distance": "Render distance:",
         "shadows": "Shadows quality:",
-        "reflections": "Reflections quality:",
         "fullscreen": "Fullscreen:",
         "sound": "Sound volume:",
         "music": "Music volume:"
@@ -56,13 +54,6 @@
         "0": "Minimum",
         "1": "Average",
         "2": "Above Average",
-        "3": "Maximum"
-    },
-
-    "reflections": {
-        "0": "Disabled",
-        "1": "Low",
-        "2": "Avegare",
         "3": "Maximum"
     },
 
