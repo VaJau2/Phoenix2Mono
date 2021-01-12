@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/characters/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/models/player_variants/head/0000.res" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/models/player_variants/empty/third/pegasus.res" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/models/player_variants/body/001.res" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/scripts/characters/player/Player_Pegasus.cs" type="Script" id=4]
 [ext_resource path="res://assets/scripts/characters/player/PegasusSmash.cs" type="Script" id=5]
@@ -15,21 +15,19 @@ extents = Vector3( 0.517748, 0.925822, 0.635211 )
 script = ExtResource( 4 )
 Health = 100
 
-[node name="Skeleton" parent="player_body/Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
-
 [node name="BoneAttachment" parent="player_body/Armature/Skeleton" index="0"]
 transform = Transform( 1, -2.95586e-12, 2.62261e-06, 2.59534e-06, 0.143813, -0.989605, -3.77164e-07, 0.989605, 0.143812, 9.59341e-13, 1.69933, 1.11108 )
-
-[node name="Head" parent="player_body/Armature/Skeleton/BoneAttachment" index="0"]
-mesh = ExtResource( 2 )
 
 [node name="shotgunBag" parent="player_body/Armature/Skeleton/BoneAttachment 2" index="0"]
 visible = false
 
 [node name="Body" parent="player_body/Armature/Skeleton" index="2"]
 mesh = ExtResource( 3 )
+material/2 = null
+
+[node name="Body_third" parent="player_body/Armature/Skeleton" index="3"]
+mesh = ExtResource( 2 )
+material/2 = null
 
 [node name="animTree" parent="player_body" index="2"]
 parameters/StateMachine/playback = SubResource( 1 )

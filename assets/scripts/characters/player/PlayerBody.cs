@@ -282,7 +282,7 @@ public class PlayerBody : Spatial
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-        Head = GetNode<PlayerHead>("Armature/Skeleton/BoneAttachment/Head");
+        Head = GetNode<PlayerHead>("Armature/Skeleton/Body_third");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 

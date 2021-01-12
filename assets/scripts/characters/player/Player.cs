@@ -117,7 +117,7 @@ public class Player : Character
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");
         RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
-        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/Head/cameraPos");
+        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
 
         audi = GetAudi();
         audiHitted = GetAudi(true);
@@ -182,8 +182,8 @@ public class Player : Character
 
     private void LoadHeadBody(Race playerRace) 
     {
-        LoadHeadMesh(playerRace);
-        LoadBodyMesh(playerRace);
+        //LoadHeadMesh(playerRace);
+        //LoadBodyMesh(playerRace);
 
         Body = GetNode<PlayerBody>("player_body");
     }
