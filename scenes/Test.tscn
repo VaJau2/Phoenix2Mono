@@ -33,7 +33,7 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-clothCode = "stealth_armor"
+clothCode = "coat"
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
@@ -79,6 +79,10 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/box2"]
 shape = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="terrain"]
+transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+shadow_enabled = true
 
 [node name="cabinet" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )

@@ -1,16 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/materials/fonts/mana_theme.tres" type="Theme" id=3]
-[ext_resource path="res://objects/interface/FPSShow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/interface/Messages.cs" type="Script" id=5]
 [ext_resource path="res://assets/textures/weapon/cross.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/interface/icons/health_ammo.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/interface/icons/gun_icons.png" type="Texture" id=10]
-[ext_resource path="res://assets/scripts/interface/GunIcons.cs" type="Script" id=11]
 
 [node name="canvas" type="CanvasLayer"]
 
@@ -130,44 +127,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="gunIcons" type="Control" parent="shootInterface"]
-margin_top = -36.0
-margin_right = 364.0
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="pistol" type="Sprite" parent="shootInterface/gunIcons"]
-visible = false
-position = Vector2( 36.439, 17.1082 )
-scale = Vector2( 1.1, 1.1 )
-texture = ExtResource( 10 )
-region_enabled = true
-region_rect = Rect2( 30, 0, 49, 26 )
-
-[node name="shotgun" type="Sprite" parent="shootInterface/gunIcons"]
-visible = false
-position = Vector2( 120.494, 19.1082 )
-texture = ExtResource( 10 )
-region_enabled = true
-region_rect = Rect2( 0, 78, 109, 26 )
-
-[node name="revolver" type="Sprite" parent="shootInterface/gunIcons"]
-visible = false
-position = Vector2( 201.032, 17.1082 )
-scale = Vector2( 1.1, 1.1 )
-texture = ExtResource( 10 )
-region_enabled = true
-region_rect = Rect2( 30, 26, 49, 26 )
-
-[node name="sniper" type="Sprite" parent="shootInterface/gunIcons"]
-visible = false
-position = Vector2( 285.565, 19.1082 )
-texture = ExtResource( 10 )
-region_enabled = true
-region_rect = Rect2( 0, 53, 109, 26 )
-
 [node name="ammoBack" type="ColorRect" parent="shootInterface"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -280,5 +239,3 @@ color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="FPSShow" parent="." instance=ExtResource( 4 )]

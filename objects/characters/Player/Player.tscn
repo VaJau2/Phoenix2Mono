@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=2]
+[gd_scene load_steps=151 format=2]
 
 [ext_resource path="res://assets/scripts/characters/player/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/models/player_variants/empty/first/earthpony.res" type="ArrayMesh" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/animations/Unroping.tres" type="Animation" id=12]
 [ext_resource path="res://assets/animations/Roped.tres" type="Animation" id=13]
 [ext_resource path="res://assets/animations/Lying.anim" type="Animation" id=14]
+[ext_resource path="res://assets/scripts/characters/player/PlayerHead.cs" type="Script" id=15]
 [ext_resource path="res://assets/scripts/characters/player/PlayerThirdPerson.cs" type="Script" id=16]
 [ext_resource path="res://assets/scripts/characters/player/LightsCheck.cs" type="Script" id=17]
 [ext_resource path="res://assets/scripts/characters/player/PlayerCamera.cs" type="Script" id=18]
@@ -4254,6 +4255,7 @@ mesh = ExtResource( 3 )
 skin = SubResource( 16 )
 material/0 = null
 material/1 = null
+script = ExtResource( 15 )
 
 [node name="collar" type="MeshInstance" parent="player_body/Armature/Skeleton"]
 visible = false

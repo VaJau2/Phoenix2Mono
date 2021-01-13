@@ -18,7 +18,7 @@ public class PlayerBody : Spatial
     const float CROUCH_COOLDOWN = 5f;
     const float JUMP_COOLDOWN = 0.6f;
 
-    //public PlayerHead Head;
+    public PlayerHead Head {get; private set;}
     public PlayerLegs Legs;
     public SoundSteps SoundSteps;
     private Player player;
@@ -243,11 +243,15 @@ public class PlayerBody : Spatial
         }
     }
 
+    public void SetHead(PlayerHead head) 
+    {
+        Head = head;
+    }
+
     public override void _Ready()
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-       // Head = GetNode<PlayerHead>("Armature/Skeleton/Body_third");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 
@@ -270,12 +274,12 @@ public class PlayerBody : Spatial
                 if(smileCooldown < 5) {
                     smileCooldown += delta;
                 } else {
-                    //Head.SmileOn();
+                    Head.SmileOn();
                 }
             } else {
                 if(smileCooldown != 0) {
                     smileCooldown = 0;
-                    //Head.SmileOff();
+                    Head.SmileOff();
                 }
             }
 
@@ -285,7 +289,7 @@ public class PlayerBody : Spatial
                     shyCooldown -= delta;
                 } else {
                     shyCooldown = 1.5f;
-                    //Head.ShyOn();
+                    Head.ShyOn();
                 }
             }
 

@@ -97,7 +97,6 @@ public class Player : Character
         global.player = this;
 
         LoadBodyMesh();
-        Body = GetNode<PlayerBody>("player_body");
         Stealth = GetNode<PlayerStealth>("stealth");
         Weapons = GetNode<PlayerWeapons>("gun_shape");
         JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
@@ -150,6 +149,12 @@ public class Player : Character
         LoadMesh(clothCode, "first", bodyMesh);
         MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
         LoadMesh(clothCode, "third", bodyThirdMesh);
+        
+        PlayerHead head = bodyThirdMesh as PlayerHead;
+        head.FindFaceMaterial();
+
+        Body = GetNode<PlayerBody>("player_body");
+        Body.SetHead(head);
     }
 
     private void HandleImpulse() 
