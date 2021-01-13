@@ -4,7 +4,7 @@ using Godot.Collections;
 public class PlayerSpawner : Spatial
 {
     [Export]
-    public bool HaveCoat;
+    public string clothCode;
     [Export]
     public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
 
@@ -27,7 +27,7 @@ public class PlayerSpawner : Spatial
 
         var playerPrefab = GD.Load<PackedScene>(path);
         var newPlayer = (Player)playerPrefab.Instance();
-        newPlayer.HaveCoat = HaveCoat;
+        newPlayer.clothCode = clothCode;
         newPlayer.StartWeapons = StartWeapons;
         
         SpawnPlayer(newPlayer);

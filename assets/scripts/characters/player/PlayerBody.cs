@@ -18,7 +18,7 @@ public class PlayerBody : Spatial
     const float CROUCH_COOLDOWN = 5f;
     const float JUMP_COOLDOWN = 0.6f;
 
-    public PlayerHead Head;
+    //public PlayerHead Head;
     public PlayerLegs Legs;
     public SoundSteps SoundSteps;
     private Player player;
@@ -225,47 +225,12 @@ public class PlayerBody : Spatial
         }
     }
 
-    private void LoadBodyRopedMesh() 
-    {
-        string race = "0";
-        if (playerRace == Race.Pegasus) {
-            race = "1";
-        }
-
-        MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        string path = "res://assets/models/player_variants/body/roped" + race + ".res";
-        Mesh loadedMesh = GD.Load<Mesh>(path);
-        bodyMesh.Mesh = loadedMesh;
-    }
-
-    
     public void AnimateHitting(bool front, char animPart)
     {
         if (front) {
             playback.Travel("HitFront-" + animPart);
         } else {
             playback.Travel("HitBack-" + animPart);
-        }
-    }
-
-    public void AnimateUnroping(bool unroping) 
-    {
-        if (unroping) {
-            playback.Travel("Unroping");
-        } else {
-            playback.Travel("Roped");
-        }
-        
-    }
-
-    public void MakeRoped(bool roped) 
-    {
-        if(roped) {
-            playback.Travel("Roped");
-            LoadBodyRopedMesh();
-        } else {
-            playback.Travel("Lying");
-            player.LoadBodyMesh(playerRace);
         }
     }
 
@@ -282,7 +247,7 @@ public class PlayerBody : Spatial
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-        Head = GetNode<PlayerHead>("Armature/Skeleton/Body_third");
+       // Head = GetNode<PlayerHead>("Armature/Skeleton/Body_third");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 
@@ -305,22 +270,22 @@ public class PlayerBody : Spatial
                 if(smileCooldown < 5) {
                     smileCooldown += delta;
                 } else {
-                    Head.SmileOn();
+                    //Head.SmileOn();
                 }
             } else {
                 if(smileCooldown != 0) {
                     smileCooldown = 0;
-                    Head.SmileOff();
+                    //Head.SmileOff();
                 }
             }
 
             //update shy when in coat
-            if(player.HaveCoat && playerMakingShy) {
+            if(player.clothCode == "coat" && playerMakingShy) {
                 if (shyCooldown > 0) {
                     shyCooldown -= delta;
                 } else {
                     shyCooldown = 1.5f;
-                    Head.ShyOn();
+                    //Head.ShyOn();
                 }
             }
 
@@ -405,7 +370,7 @@ public class PlayerBody : Spatial
 
             if (player.BodyFollowsCamera) {
                 SetRotZero();
-            } else if (isWalking && !player.IsRoped) {
+            } else if (isWalking) {
 
                 Vector3 rot = RotationDegrees;
 

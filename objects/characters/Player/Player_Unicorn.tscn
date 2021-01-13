@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/characters/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/models/player_variants/body/000.res" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/models/player_variants/empty/third/unicorn.res" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/scripts/characters/player/Player_Unicorn.cs" type="Script" id=4]
 [ext_resource path="res://assets/materials/magic/shield.tres" type="Material" id=5]
+[ext_resource path="res://objects/characters/Player/magic/Particles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/scripts/characters/player/UnicornShield.cs" type="Script" id=7]
 [ext_resource path="res://assets/audio/magic/shield.wav" type="AudioStream" id=8]
 
@@ -18,16 +18,16 @@ flip_faces = true
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 Health = 100
-StartWeapons = null
 
 [node name="BoneAttachment" parent="player_body/Armature/Skeleton" index="0"]
 transform = Transform( 1, -2.95586e-12, 2.62261e-06, 2.59534e-06, 0.143813, -0.989605, -3.77164e-07, 0.989605, 0.143812, 9.59341e-13, 1.69933, 1.11108 )
 
+[node name="Particles" parent="player_body/Armature/Skeleton/BoneAttachment/HeadPos" index="0" instance=ExtResource( 6 )]
+transform = Transform( 0.999997, -2.18482e-12, 1.06843e-11, -3.02538e-13, 0.997803, 0.0663339, 1.16337e-11, -0.0663356, 0.997803, 3.65617e-09, 0.327877, -0.662469 )
+emitting = false
+
 [node name="shotgunBag" parent="player_body/Armature/Skeleton/BoneAttachment 2" index="0"]
 visible = false
-
-[node name="Body" parent="player_body/Armature/Skeleton" index="2"]
-mesh = ExtResource( 2 )
 
 [node name="Body_third" parent="player_body/Armature/Skeleton" index="3"]
 mesh = ExtResource( 3 )

@@ -4,3 +4,4 @@
 
 [node name="PlayerSpawner" type="Spatial"]
 script = ExtResource( 1 )
+clothCode = "empty"

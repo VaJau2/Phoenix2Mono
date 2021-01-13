@@ -46,7 +46,7 @@ public class Player_Unicorn : Player
         teleportSound = GD.Load<AudioStreamSample>("res://assets/audio/magic/teleporting.wav");
 
         teleportRay = GetNode<RayCast>("rotation_helper/camera/teleportRay");
-        hornMagic = GetNode<Particles>("player_body/Armature/Skeleton/BoneAttachment/Head/magic");
+        hornMagic = GetNode<Particles>("player_body/Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         teleportMark = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportMark.tscn");
         teleportEffect = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportEffect.tscn");
 

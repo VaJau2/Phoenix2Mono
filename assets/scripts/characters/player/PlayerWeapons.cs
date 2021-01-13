@@ -545,9 +545,9 @@ public class PlayerWeapons: CollisionShape
                 gunAnim.Play("shoot");
             }
 
-            player.Body.Head.CloseEyes();
+            //player.Body.Head.CloseEyes();
             var tempDistance = tempStats.distance;
-            if (player.equipment["have_bandage"]) {
+            if (player.clothCode == "stealth_armor") {
                 tempDistance += 15;
             }
             var tempRay = EnableHeadRay(tempDistance);

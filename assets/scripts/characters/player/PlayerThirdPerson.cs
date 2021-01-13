@@ -20,7 +20,11 @@ public class PlayerThirdPerson : Spatial
     private bool seePlayer = false;
     private Vector3 oldThird;
 
+    private Spatial Body;
+    private GeometryInstance Body_third;
+
     private bool mayChange = true;
+
 
     private void setThirdView(bool on) 
     {
@@ -30,6 +34,14 @@ public class PlayerThirdPerson : Spatial
         ray.Enabled = on;
         eyePartsInterface.Visible = !on;
         player.Weapons.checkThirdView();
+
+        Body.Visible = !on;
+        if (!on) {
+            Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.ShadowsOnly;
+        } else {
+            Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.On;
+        }
+        
 
         //возвращаем игроку вращение при переходе от 3 лица
         //если он повернулся на больше 180 градусов
@@ -155,6 +167,9 @@ public class PlayerThirdPerson : Spatial
         thirdCamera = GetNode<Camera>("camera");
         ray = GetNode<RayCast>("camera/RayCast");
         player = GetParent<Player>();
+
+        Body       = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
+        Body_third = GetNode<GeometryInstance>("../player_body/Armature/Skeleton/Body_third");
     }
 
     public override void _Process(float delta)

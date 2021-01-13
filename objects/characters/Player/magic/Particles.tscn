@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/materials/weapon/result/magic.tres" type="Material" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.80996, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 1024
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
+direction = Vector3( 0, 0, -1 )
+gravity = Vector3( 0, -3, 0 )
+initial_velocity = 2.0
+scale_curve = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=4]
+material = ExtResource( 1 )
+size = Vector2( 0.1, 0.1 )
+
+[node name="Particles" type="Particles"]
+transform = Transform( 0.999996, -2.18482e-12, 1.06843e-11, -3.02537e-13, 0.997803, 0.0663339, 1.16337e-11, -0.0663356, 0.997803, 3.25963e-09, -1.351, 43.8507 )
+layers = 2
+lifetime = 0.3
+explosiveness = 0.3
+visibility_aabb = AABB( -0.769224, -0.718177, -1.00421, 1.53845, 1.43635, 2.00842 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )

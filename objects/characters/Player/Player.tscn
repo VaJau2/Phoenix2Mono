@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=2]
+[gd_scene load_steps=150 format=2]
 
 [ext_resource path="res://assets/scripts/characters/player/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/models/player_variants/empty/first/earthpony.res" type="ArrayMesh" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/animations/Unroping.tres" type="Animation" id=12]
 [ext_resource path="res://assets/animations/Roped.tres" type="Animation" id=13]
 [ext_resource path="res://assets/animations/Lying.anim" type="Animation" id=14]
-[ext_resource path="res://assets/scripts/characters/player/PlayerHead.cs" type="Script" id=15]
 [ext_resource path="res://assets/scripts/characters/player/PlayerThirdPerson.cs" type="Script" id=16]
 [ext_resource path="res://assets/scripts/characters/player/LightsCheck.cs" type="Script" id=17]
 [ext_resource path="res://assets/scripts/characters/player/PlayerCamera.cs" type="Script" id=18]
@@ -4244,18 +4243,17 @@ transform = Transform( 0.0444515, 2.54295, 0.363938, 7.55541, 0.0176309, -0.6227
 visible = false
 
 [node name="Body" type="MeshInstance" parent="player_body/Armature/Skeleton"]
-visible = false
 mesh = ExtResource( 2 )
 skin = SubResource( 16 )
 material/0 = null
 material/1 = null
 
 [node name="Body_third" type="MeshInstance" parent="player_body/Armature/Skeleton"]
+cast_shadow = 3
 mesh = ExtResource( 3 )
 skin = SubResource( 16 )
 material/0 = null
 material/1 = null
-script = ExtResource( 15 )
 
 [node name="collar" type="MeshInstance" parent="player_body/Armature/Skeleton"]
 visible = false

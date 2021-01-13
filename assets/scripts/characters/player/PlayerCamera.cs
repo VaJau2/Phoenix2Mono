@@ -67,7 +67,7 @@ public class PlayerCamera: Camera {
         } else if(fovClosing) {
             float closeFov = 42f;
 
-            if (player.equipment["have_bandage"]) {
+            if (player.clothCode == "stealth_armor") {
                 closeFov = 30f;
             }
 

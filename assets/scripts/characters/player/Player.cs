@@ -16,14 +16,14 @@ public class Player : Character
 
     //Player state booleans
     [Export]
-    public bool HaveCoat;
+    public string clothCode = "empty";
+
     [Export]
     public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
     public bool MayMove = true;
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsLying;
-    public bool IsRoped;
 
     public Array<string> HaveKeys = new Array<string>();
 
@@ -64,7 +64,6 @@ public class Player : Character
     public bool BlockJump;
     public bool OnStairs = false;
 
-    private float sideAngle;
     private float stairGravity;
     protected float crouchCooldown;
     private float bodyColliderSize = 1;
@@ -73,17 +72,6 @@ public class Player : Character
     bool shakeUp = false;
     float shakeTimer = 0;
 
-    private static string socksPath = "res://assets/materials/player/";
-    private Material bodyMaterial = GD.Load<Material>(socksPath + "player_body.material");
-    private Material socksMaterial = GD.Load<Material>(socksPath + "player_body_socks.material");
-
-    public Dictionary<string, bool> equipment = new Dictionary<string, bool>() 
-    {
-        {"have_armor", false},
-        {"have_socks", false},
-        {"have_bandage", false},
-        {"have_headrope", false}
-    };
 
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
 
@@ -108,7 +96,8 @@ public class Player : Character
     {
         global.player = this;
 
-        LoadHeadBody(global.playerRace);
+        LoadBodyMesh();
+        Body = GetNode<PlayerBody>("player_body");
         Stealth = GetNode<PlayerStealth>("stealth");
         Weapons = GetNode<PlayerWeapons>("gun_shape");
         JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
@@ -129,63 +118,38 @@ public class Player : Character
         Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
-    private void LoadMesh(string meshName, MeshInstance meshInstance, int[] parameters) 
+    private void LoadMesh(string clothName, string viewName, MeshInstance meshInstance) 
     {
-        string fileName = "";
-        for(int i = 0; i < parameters.Length; i++) {
-            fileName += parameters[i].ToString();
-        }
+        //определяем название расы по текущей Race
+        //(у единорогов от первого лица нет своей модельки)
+        Race playerRace = global.playerRace;
 
-        string path = "res://assets/models/player_variants/" + meshName + "/" + fileName + ".res";
+        string raceName = "earthpony";
+        if (viewName == "first") {
+            if (playerRace == Race.Pegasus) {
+                raceName = "pegasus";
+            }
+        } else {
+            if (playerRace == Race.Unicorn) {
+                raceName = "unicorn";
+            }
+            if (playerRace == Race.Pegasus) {
+                raceName = "pegasus";
+            }
+        }
+        
+
+        string path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
         Mesh loadedMesh = GD.Load<Mesh>(path);
         meshInstance.Mesh = loadedMesh;
     }
 
-    public void LoadHeadMesh(Race playerRace) 
+    public void LoadBodyMesh() 
     {
-        int[] headParams = new int[4];
-
-        if (playerRace == Race.Unicorn) {
-            headParams[0] = 1;
-        }
-        if (HaveCoat) {
-            headParams[1] = 1;
-        }
-        if(equipment["have_bandage"]) {
-            headParams[2] = 1;
-        }
-        if(equipment["have_headrope"]) {
-            headParams[3] = 1;
-        }
-
-        MeshInstance headMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/BoneAttachment/Head");
-        LoadMesh("head", headMesh, headParams);
-    }
-
-    public void LoadBodyMesh(Race playerRace) 
-    {
-        int[] bodyParams = new int[3];
-
-        if(HaveCoat) {
-            bodyParams[0] = 1;
-        }
-        if(equipment["have_armor"]) {
-            bodyParams[1] = 1;
-        }
-        if (playerRace == Race.Pegasus) {
-            bodyParams[2] = 1;
-        }
-
         MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        LoadMesh("body", bodyMesh, bodyParams);
-    }
-
-    private void LoadHeadBody(Race playerRace) 
-    {
-        //LoadHeadMesh(playerRace);
-        //LoadBodyMesh(playerRace);
-
-        Body = GetNode<PlayerBody>("player_body");
+        LoadMesh(clothCode, "first", bodyMesh);
+        MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        LoadMesh(clothCode, "third", bodyThirdMesh);
     }
 
     private void HandleImpulse() 
@@ -202,20 +166,7 @@ public class Player : Character
     {
         IsLying = true;
         MayMove = false;
-        if(MakeRoped) {
-            Body.Head.ShyOn();
-            IsRoped = true;
-            Body.MakeRoped(true);
-        } else {
-            Body.MakeLying(true);
-        }
-    }
-
-    private void Unrope() 
-    {
-        unropingTime = 3f;
-        Body.MakeRoped(false);
-        IsRoped = false;
+        Body.MakeLying(true);
     }
 
     async private void GetUp() 
@@ -223,7 +174,7 @@ public class Player : Character
         MayMove = false;
         Body.MakeLying(false);
         await ToSignal(GetTree().CreateTimer(1.6f), "timeout");
-        if(IsLying && !IsRoped) {
+        if(IsLying) {
             IsLying = false;
             MayMove = true;
         }
@@ -235,12 +186,12 @@ public class Player : Character
         Stealth.SetLabelVisible(sitOn);
         if (sitOn) {
             bodyColliderSize = 0.56f;
-            Body.Translate(new Vector3(0, 0.51f, 0));
+            Body.Translate(new Vector3(0, 0.75f, 0));
             MaxSpeed = 8;
             crouchCooldown = 0.5f;
         } else {
             bodyColliderSize = 1;
-            Body.Translate(new Vector3(0, -0.51f, 0));
+            Body.Translate(new Vector3(0, -0.75f, 0));
             MaxSpeed = 17;
         }
     }
@@ -275,8 +226,6 @@ public class Player : Character
         dir = new Vector3();
 
         Vector2 inputMovementVector = new Vector2();
-        bool goSide = false;
-
         UpdateStand();
         
         if (Input.IsActionPressed("ui_up")) {
@@ -288,13 +237,9 @@ public class Player : Character
         }
         if (Input.IsActionPressed("ui_left")) {
             inputMovementVector.x -= 1;
-            sideAngle += delta;
-            goSide = true;
         }
         if (Input.IsActionPressed("ui_right")) {
             inputMovementVector.x += 1;
-            sideAngle -= delta;
-            goSide = true;
         }
 
         if (ThirdView) {
@@ -308,39 +253,6 @@ public class Player : Character
         RotationHelper.GlobalTransform = cameraTransf;
         headShape.GlobalTransform = cameraTransf;
 
-        if (IsRoped) {
-            if (inputMovementVector.Length() > 0) {
-                if (unropingTime < 5) {
-                    Body.Head.ShyOn();
-                    unropingTime += delta;
-                    Body.AnimateUnroping(true);
-                    if (!audiHitted.Playing) {
-                        audiHitted.Stream = unropingSound;
-                        audiHitted.Play();
-                    }
-                    return;
-                } else {
-                    Unrope();
-                    return;
-                }
-            } else {
-                Body.AnimateUnroping(false);
-                if (unropingTime > 0){
-                    unropingTime -= delta;
-                }
-                return;
-            }
-        }
-
-        if (goSide) {
-            sideAngle = Mathf.Clamp(sideAngle, -2, 2);
-        } else {
-            sideAngle = Mathf.MoveToward(sideAngle, 0, 4 * delta);
-        }
-
-        Vector3 cameraRot = Camera.RotationDegrees;
-        cameraRot.z = sideAngle;
-        Camera.RotationDegrees = cameraRot;
 
         if (IsLying && inputMovementVector.Length() > 0) {
             GetUp();
@@ -477,7 +389,7 @@ public class Player : Character
             Vector3 cameraRot = RotationHelper.RotationDegrees;
             cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
             cameraRot.y = 0;
-            cameraRot.z = sideAngle;
+            cameraRot.z = 0;
             RotationHelper.RotationDegrees = cameraRot;
 
             OnCameraRotatingX(mouseEvent.Relative.x);
