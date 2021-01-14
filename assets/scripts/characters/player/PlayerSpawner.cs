@@ -4,9 +4,10 @@ using Godot.Collections;
 public class PlayerSpawner : Spatial
 {
     [Export]
-    public string clothCode;
+    public Array<string> itemCodes = new Array<string>();
     [Export]
-    public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
+    public string clothCode;
+   
 
     public override void _Ready()
     {
@@ -28,8 +29,8 @@ public class PlayerSpawner : Spatial
         var playerPrefab = GD.Load<PackedScene>(path);
         var newPlayer = (Player)playerPrefab.Instance();
         newPlayer.clothCode = clothCode;
-        newPlayer.StartWeapons = StartWeapons;
-        
+        newPlayer.ItemCodes = itemCodes;
+
         SpawnPlayer(newPlayer);
     }
 

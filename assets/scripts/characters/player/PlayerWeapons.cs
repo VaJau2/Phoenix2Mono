@@ -33,8 +33,6 @@ public class PlayerWeapons: CollisionShape
 
     public Label ammoLabel;
     Sprite ammoIcon;
-    GunIcons weaponIcons;
-
 
     //--модельки-------
     Dictionary<string, Spatial> weaponParents;
@@ -218,7 +216,6 @@ public class PlayerWeapons: CollisionShape
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<Sprite>("ammoBack/Sprite2");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
-        weaponIcons = shootInterface.GetNode<GunIcons>("gunIcons");
 
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
         particlesParent = GetNode("/root/Main/Scene");
@@ -231,17 +228,6 @@ public class PlayerWeapons: CollisionShape
         loadModels();
         loadStats();
         loadSounds();
-
-        if (player.StartWeapons.Count > 0) {
-            ChangeBagVisible(true);
-
-            foreach(WeaponTypes type in player.StartWeapons) {
-                WeaponStats stats = weaponStats[type];
-                stats.have = true;
-                weaponStats[type] = stats;
-            }
-            changeGun(player.StartWeapons[0], true);
-        }
     }
 
     private void loadGunEffects() 
@@ -509,8 +495,6 @@ public class PlayerWeapons: CollisionShape
         if (!atStart) {
             audi.Stream = sounds["GunOn"];
             audi.Play();
-
-            weaponIcons.ChangeWeapon(this, newType);
         }
     }
 
@@ -614,7 +598,7 @@ public class PlayerWeapons: CollisionShape
 
     public override void _Process(float delta)
     {
-        if (!global.paused && player.Health > 0) 
+        if (!global.paused && player.Health > 0 && Input.GetMouseMode() == Input.MouseMode.Captured) 
         {
             if (TempWeaponType != WeaponTypes.None) {
                 if (GunOn) {
@@ -646,9 +630,9 @@ public class PlayerWeapons: CollisionShape
                                 var key = OS.GetScancodeString(keyAction.Scancode);
 
                                 if (GunOn) {
-                                    label.Text = key + InterfaceLang.GetLang("inGame","cameraHints","putGun");
+                                    label.Text = key + InterfaceLang.GetPhrase("inGame","cameraHints","putGun");
                                 } else {
-                                    label.Text = key + InterfaceLang.GetLang("inGame","cameraHints","takeGun");
+                                    label.Text = key + InterfaceLang.GetPhrase("inGame","cameraHints","takeGun");
                                 }
 
                                 askGet.Visible = true;

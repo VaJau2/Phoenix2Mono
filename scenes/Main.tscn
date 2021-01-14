@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://objects/interface/MainMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/interface/SettingsMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/interface/menus/MainMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/interface/menus/SettingsMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=3]
 
 [node name="Main" type="Node"]

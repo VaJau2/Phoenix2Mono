@@ -1,0 +1,32 @@
+{
+    "book0": {
+        "name": "Книга",
+        "description": "Фанфик про поняху, которая нашла портал в мир двуногих существ",
+        "price": "15",
+        "icon": "book"
+    },
+    "book1": {
+        "name": "Книга",
+        "description": "Какая-то не интересная книга",
+        "price": "2",
+        "icon": "book"
+    },
+    "book2": {
+        "name": "Книга",
+        "description": "Учебник физики",
+        "price": "15",
+        "icon": "book"
+    },
+    "pencil": {
+        "name": "Карандаш",
+        "description": "Простой карандаш",
+        "price": "2",
+        "icon": "pencil"
+    },
+    "toaster": {
+        "name": "Тостер",
+        "description": "Сломанный тостер. Найти бы кого-нибудь, кто смог бы его починить",
+        "price": "40",
+        "icon": "toaster"
+    }
+}

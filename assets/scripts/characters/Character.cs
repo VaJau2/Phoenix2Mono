@@ -31,10 +31,8 @@ public abstract class Character : KinematicBody
         victim.TakeDamage(damage, shapeID);
     }
 
-    /// <summary>
-    /// Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
-    /// код загрузки лежит в global.cs
-    /// </summary>
+    // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
+    // код загрузки лежит в global.cs
     public Dictionary GetSaveData() 
     {
         Dictionary savingData = new Dictionary
@@ -51,9 +49,7 @@ public abstract class Character : KinematicBody
         return savingData;
     }
 
-    /// <summary>
-    /// Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
-    /// </summary>
+    // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public void LoadData(Dictionary data) 
     {
         Vector3 newPos = new Vector3((float)data["pos_x"], (float)data["pos_y"], (float)data["pos_z"]);

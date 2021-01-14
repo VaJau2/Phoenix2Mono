@@ -41,7 +41,7 @@ public class PlayerCamera: Camera {
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
         label.Text = key;
-        label.Text += InterfaceLang.GetLang("inGame", "cameraHints", textLink);
+        label.Text += InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
         labelBack.Visible = true;
         onetimeHint = true;
     }
@@ -50,7 +50,7 @@ public class PlayerCamera: Camera {
         if (closedTimer > 0) {
             closedTimer -= delta;
             if (!onetimeHint) {
-                label.Text = InterfaceLang.GetLang("inGame", "cameraHints", closedTextLink);
+                label.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
                 labelBack.Visible = true;
                 onetimeHint = true;
             }

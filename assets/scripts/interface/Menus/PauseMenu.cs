@@ -29,18 +29,15 @@ public class PauseMenu : MenuBase
 
     private void loadInterfaceLanguage()
     {
-        pageLabel.Text      = InterfaceLang.GetLang("pauseMenu", "main", "page");
-        headerLabel.Text    = InterfaceLang.GetLang("pauseMenu", "main", "header");
-        continueButton.Text = InterfaceLang.GetLang("pauseMenu", "main", "continue");
-        settingsButton.Text = InterfaceLang.GetLang("pauseMenu", "main", "settings");
-        exitButton.Text     = InterfaceLang.GetLang("pauseMenu", "main", "exit");
+        pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
+        headerLabel.Text    = InterfaceLang.GetPhrase("pauseMenu", "main", "header");
+        continueButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "continue");
+        settingsButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "settings");
+        exitButton.Text     = InterfaceLang.GetPhrase("pauseMenu", "main", "exit");
     }
 
     private void setPause(bool pause) 
     {
-        //TODO
-        //добавить сюда диалоги
-
         global.SetPause(this, pause);
         this.Visible = pause;
         if (pause) {

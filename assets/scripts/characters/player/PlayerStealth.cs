@@ -8,7 +8,7 @@ public class PlayerStealth: Node {
     public override void _Ready()
     {
         StealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
-        StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "safe");
+        StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
     }
 
     public void SetLabelVisible(bool visible) 
@@ -37,11 +37,11 @@ public class PlayerStealth: Node {
 
         if (attackEnemies.Count == 0) {
             if (seekEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "safe");
+                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
                 Stage = StealthStage.Safe;
             } else {
-                StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "caution");
+                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
                 StealthLabel.Modulate = Colors.Orange;
                 Stage = StealthStage.Caution;
             }
@@ -54,7 +54,7 @@ public class PlayerStealth: Node {
         if (!attackEnemies.Contains(enemy)) 
         {
             attackEnemies.Add(enemy);
-            StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "danger");
+            StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "danger");
             StealthLabel.Modulate = Colors.Red;
             Stage = StealthStage.Danger;
         }
@@ -66,7 +66,7 @@ public class PlayerStealth: Node {
         if (attackEnemies.Contains(enemy)) {
             attackEnemies.Remove(enemy);
             if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "safe");
+                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
                 Stage = StealthStage.Safe;
             }
@@ -79,7 +79,7 @@ public class PlayerStealth: Node {
         if (!seekEnemies.Contains(enemy)) {
             seekEnemies.Add(enemy);
             if (attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "caution");
+                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
                 StealthLabel.Modulate = Colors.Orange;
                 Stage = StealthStage.Caution;
             }
@@ -92,7 +92,7 @@ public class PlayerStealth: Node {
         if (seekEnemies.Contains(enemy)) {
             seekEnemies.Remove(enemy);
             if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetLang("inGame", "stealth", "safe");
+                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
                 Stage = StealthStage.Safe;
             }

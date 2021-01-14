@@ -12,10 +12,10 @@ public class LoadingMenu : Control
     public override void _Ready()
     {
         var loadingPage = GetNode<Label>("page_label");
-        loadingPage.Text = InterfaceLang.GetLang("mainMenu", "load", "page");
+        loadingPage.Text = InterfaceLang.GetPhrase("mainMenu", "load", "page");
 
         loadingLabel = GetNode<Label>("Label");
-        loadText = InterfaceLang.GetLang("mainMenu", "load", "text");
+        loadText = InterfaceLang.GetPhrase("mainMenu", "load", "text");
         loadingLabel.Text = loadText;
     }
 

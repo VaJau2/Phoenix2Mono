@@ -25,9 +25,9 @@ public class Messages: VBoxContainer {
     public void ShowMessage(string phraseLink, string sectionLink = "messages", float timer = HINT_TIMER) {
         var tempLabel = new Label();
         tempLabel.Autowrap = true;
-        tempLabel.Text = InterfaceLang.GetLang("inGame", sectionLink, phraseLink);
+        tempLabel.Text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         tempLabel.Theme = tempTheme;
-        tempLabel.Align = Label.AlignEnum.Right;
+        tempLabel.Align = Label.AlignEnum.Left;
         AddChild(tempLabel);
         waitAndDissapear(tempLabel, timer);
     }

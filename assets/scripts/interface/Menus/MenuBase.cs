@@ -32,7 +32,7 @@ public class MenuBase : Control
     } 
 
     public void _on_mouse_entered(string section, string messageLink) {
-        downLabel.Text = InterfaceLang.GetLang(menuName, section, messageLink);
+        downLabel.Text = InterfaceLang.GetPhrase(menuName, section, messageLink);
 
         if (downAdded) {
             downLabel.Text += "_";

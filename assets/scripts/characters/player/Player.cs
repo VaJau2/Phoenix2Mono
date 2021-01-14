@@ -15,11 +15,9 @@ public class Player : Character
     const float SHAKE_TIME = 0.1f;
 
     //Player state booleans
-    [Export]
+    public Array<string> ItemCodes = new Array<string>();
     public string clothCode = "empty";
 
-    [Export]
-    public Array<WeaponTypes> StartWeapons = new Array<WeaponTypes>();
     public bool MayMove = true;
     public bool IsCrouching;
     public bool IsHitting;

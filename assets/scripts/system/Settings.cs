@@ -90,7 +90,7 @@ public class Settings
         config.SetValue("screen", "reflections", reflections);
         config.SetValue("screen", "fullscreen", fullscreen);
         config.SetValue("screen", "filter", filter);
-        config.SetValue("screen", "language", InterfaceLang.GetSaveLanguage());
+        config.SetValue("screen", "language", InterfaceLang.GetLang());
         var screenSize = OS.WindowSize;
         config.SetValue("screen", "width", screenSize.x);
         config.SetValue("screen", "height", screenSize.y);

@@ -26,9 +26,9 @@ public class LevelsLoader : Node
         }
         currentMenu = GetNode<Control>("Menu/MainMenu");
         menuParent = GetNode<Node>("Menu");
-        mainMenuPrefab = GD.Load<PackedScene>("res://objects/interface/MainMenu.tscn");
-        pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/PauseMenu.tscn");
-        loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/LoadingMenu.tscn");
+        mainMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/MainMenu.tscn");
+        pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/PauseMenu.tscn");
+        loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
     }
 
     private async void updateScene()

@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/scripts/interface/inventory/ItemIcon.cs" type="Script" id=1]
+
+[node name="itemIcon" type="ColorRect"]
+margin_right = 42.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 42, 42 )
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="borders" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.148647
+margin_right = 0.148647
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="ColorRect" parent="borders"]
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = -3.8147e-06
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="ColorRect" parent="borders"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -3.8147e-06
+margin_bottom = -3.8147e-06
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="up" type="ColorRect" parent="borders"]
+anchor_right = 1.0
+margin_right = -3.8147e-06
+margin_bottom = 1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="ColorRect" parent="borders"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_right = -3.8147e-06
+margin_bottom = -3.8147e-06
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0
+rect_scale = Vector2( 0.9, 0.9 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="icon" to="." method="_on_itemIcon_mouse_entered"]
+[connection signal="mouse_exited" from="icon" to="." method="_on_itemIcon_mouse_exited"]

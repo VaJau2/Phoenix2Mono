@@ -7,7 +7,7 @@ using Godot.Collections;
 public static class InterfaceLang {
     private static string lang = "ru";
 
-    public static string GetSaveLanguage()
+    public static string GetLang()
     {
         return lang;
     }
@@ -45,7 +45,7 @@ public static class InterfaceLang {
     /// <param name="section">группа фраз (секция)</param>
     /// <param name="phrase">название фразы</param>
     /// <returns></returns>
-    public static string GetLang(string file, string section, string phrase) 
+    public static string GetPhrase(string file, string section, string phrase) 
     {
         Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
         if (data != null) {

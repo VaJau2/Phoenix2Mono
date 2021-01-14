@@ -77,7 +77,7 @@ public class MainMenu : MenuBase
     }
 
     private string getMenuText(string phrase, string section = "main") {
-        return InterfaceLang.GetLang(menuName, section, phrase);
+        return InterfaceLang.GetPhrase(menuName, section, phrase);
     }
 
     private async void changeLabel(Label label) 

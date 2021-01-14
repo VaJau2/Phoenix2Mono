@@ -1,0 +1,32 @@
+{
+    "book0": {
+        "name": "Book",
+        "description": "Fanfic about a pony, who found a portal to world of bipedal creatures",
+        "price": "15",
+        "icon": "book"
+    },
+    "book1": {
+        "name": "Book",
+        "description": "Some boring book",
+        "price": "2",
+        "icon": "book"
+    },
+    "book2": {
+        "name": "Book",
+        "description": "Physics textbook",
+        "price": "15",
+        "icon": "book"
+    },
+    "pencil": {
+        "name": "Pencil",
+        "description": "Simple pencil",
+        "price": "2",
+        "icon": "pencil"
+    },
+    "toaster": {
+        "name": "Toaster",
+        "description": "Broken toaster. Gotta find somepony, who will fix it",
+        "price": "40",
+        "icon": "toaster"
+    }
+}

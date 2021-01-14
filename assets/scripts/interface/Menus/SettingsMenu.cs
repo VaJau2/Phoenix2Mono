@@ -88,31 +88,31 @@ public class SettingsMenu : MenuBase
     
     private void loadInterfaceLanguage()
     {
-        string tempPage = InterfaceLang.GetLang("settingsMenu", "pages", otherMenu.menuName);
+        string tempPage = InterfaceLang.GetPhrase("settingsMenu", "pages", otherMenu.menuName);
         pageLabel.Text = tempPage;
-        headerLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "header");
-        backButton.Text = InterfaceLang.GetLang("settingsMenu", "buttons", "back");
-        languageLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "language");
-        languageButton.Text = InterfaceLang.GetLang("settingsMenu", "buttons", "language");
-        filterLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "filter");
-        mouseLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "mouse");
-        distanceLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "distance");
-        shadowsLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "shadows");
-        fullscreenLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "fullscreen");
-        soundLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "sound");
-        musicLabel.Text = InterfaceLang.GetLang("settingsMenu", "labels", "music");
+        headerLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "header");
+        backButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "back");
+        languageLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "language");
+        languageButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "language");
+        filterLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "filter");
+        mouseLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "mouse");
+        distanceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "distance");
+        shadowsLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "shadows");
+        fullscreenLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "fullscreen");
+        soundLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "sound");
+        musicLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "music");
         
-        controlsPageLabel.Text = tempPage + InterfaceLang.GetLang("settingsMenu", "pages", "controls");
-        controlsHeader.Text = InterfaceLang.GetLang("settingsMenu", "labels", "controlsHeader");
-        controlsButton.Text = InterfaceLang.GetLang("settingsMenu", "buttons", "controls");
+        controlsPageLabel.Text = tempPage + InterfaceLang.GetPhrase("settingsMenu", "pages", "controls");
+        controlsHeader.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "controlsHeader");
+        controlsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "controls");
 
-        shadowsButton.Text = InterfaceLang.GetLang("settingsMenu", "shadows", 
+        shadowsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "shadows", 
             global.Settings.shadows.ToString());
         
         controlsBackButton.Text = backButton.Text;
-        defaultButton.Text = InterfaceLang.GetLang("settingsMenu", "buttons", "default");
+        defaultButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "default");
         foreach(string key in controlLabels.Keys) {
-            controlLabels[key].Text = InterfaceLang.GetLang("settingsMenu", "controlLabels", key);
+            controlLabels[key].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", key);
         }
 
         loadOnOffText(filterButton, global.Settings.filter);
@@ -255,9 +255,9 @@ public class SettingsMenu : MenuBase
     private void loadOnOffText(Button button, bool on)
     {
         if (on) {
-            button.Text = InterfaceLang.GetLang("settingsMenu", "buttonOn", "on");
+            button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", "on");
         } else {
-            button.Text = InterfaceLang.GetLang("settingsMenu", "buttonOn", "off");
+            button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", "off");
         }
     }
 
@@ -293,7 +293,7 @@ public class SettingsMenu : MenuBase
         int tempShadows = global.Settings.shadows;
         tempShadows = increase(tempShadows, global.Settings.shadowVariantsCount);
         global.Settings.ChangeShadows(tempShadows);
-        shadowsButton.Text = InterfaceLang.GetLang("settingsMenu", "shadows", tempShadows.ToString());
+        shadowsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "shadows", tempShadows.ToString());
     }
 
     public void _on_fullscreen_button_pressed()
