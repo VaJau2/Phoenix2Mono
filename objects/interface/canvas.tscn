@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/interface/icons/health_ammo.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
+[ext_resource path="res://assets/scripts/interface/HealthLabel.cs" type="Script" id=10]
+[ext_resource path="res://assets/scripts/interface/DamageEffects.cs" type="Script" id=11]
 
 [node name="canvas" type="CanvasLayer"]
 
@@ -170,12 +172,12 @@ __meta__ = {
 }
 
 [node name="redScreen" type="TextureRect" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -214,6 +216,10 @@ theme = ExtResource( 1 )
 text = "100"
 align = 1
 valign = 1
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprite" type="Sprite" parent="healthBack"]
 position = Vector2( 30, 23 )

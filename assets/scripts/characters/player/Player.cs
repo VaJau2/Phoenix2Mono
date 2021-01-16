@@ -14,7 +14,7 @@ public class Player : Character
     const float MAX_SLOPE_ANGLE = 50;
     const float SHAKE_TIME = 0.1f;
 
-    //Player state booleans
+    //Переменные состояния
     public Array<string> ItemCodes = new Array<string>();
     public string clothCode = "empty";
 
@@ -23,14 +23,7 @@ public class Player : Character
     public bool IsHitting;
     public bool IsLying;
 
-    public Array<string> HaveKeys = new Array<string>();
-
-    private float unropingTime = 0;
-
-    private AudioStreamSample unropingSound = 
-        GD.Load<AudioStreamSample>("res://assets/audio/enemies/ropes/unroping.wav");
-
-    //Player parts links
+    //Ссылки на классы игрока
     public Camera Camera {get; private set;}
     public Spatial RotationHelper {get; private set;}
     private Spatial headShape;
@@ -44,13 +37,13 @@ public class Player : Character
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
 
+    private DamageEffects damageEffects;
+    protected SoundSteps soundSteps;
     public Control JumpHint;
-
     private AudioStreamPlayer audi;
     private AudioStreamPlayer audiHitted;
 
-    //Moving  variables
-    protected float MaxSpeed = 17f;
+    //Переменные для передвижения
     private Vector3 dir;
     public Vector3 impulse;
 
@@ -73,9 +66,7 @@ public class Player : Character
 
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
 
-    /// <summary>
-    /// интерфейс для вытаскивания audi (иногда он пустой)
-    /// </summary>
+    // интерфейс для вытаскивания audi (иногда он пустой)
     public AudioStreamPlayer GetAudi(bool hitted = false) {
         if (hitted) {
             if (audiHitted == null) {
@@ -88,31 +79,6 @@ public class Player : Character
             }
             return audi;
         }
-    }
-
-    public void LoadPlayer()
-    {
-        global.player = this;
-
-        LoadBodyMesh();
-        Stealth = GetNode<PlayerStealth>("stealth");
-        Weapons = GetNode<PlayerWeapons>("gun_shape");
-        JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
-
-        Camera = GetNode<Camera>("rotation_helper/camera");
-        RotationHelper = GetNode<Spatial>("rotation_helper");
-        headShape = GetNode<Spatial>("headShape");
-        RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
-        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
-
-        audi = GetAudi();
-        audiHitted = GetAudi(true);
-
-        sphereCollider = GetNode<CollisionShape>("shape");
-        bodyCollider = GetNode<CollisionShape>("body_shape");
-
-        MouseSensivity = global.Settings.mouseSensivity;
-        Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
     private void LoadMesh(string clothName, string viewName, MeshInstance meshInstance) 
@@ -183,6 +149,21 @@ public class Player : Character
         }
     }
 
+    public override int GetSpeed()
+    {
+        if (IsCrouching) {
+            return BaseSpeed / 2;
+        }
+        return BaseSpeed;
+    }
+
+    public override void TakeDamage(int damage, int shapeID = 0)
+    {
+        base.TakeDamage(damage, shapeID);
+        Body.Head.CloseEyes();
+        damageEffects.StartEffect();
+    }
+
     protected void Sit(bool sitOn) 
     {
         IsCrouching = sitOn;
@@ -190,12 +171,10 @@ public class Player : Character
         if (sitOn) {
             bodyColliderSize = 0.56f;
             Body.Translate(new Vector3(0, 0.75f, 0));
-            MaxSpeed = 8;
             crouchCooldown = 0.5f;
         } else {
             bodyColliderSize = 1;
             Body.Translate(new Vector3(0, -0.75f, 0));
-            MaxSpeed = 17;
         }
     }
 
@@ -317,11 +296,6 @@ public class Player : Character
         return Velocity.y + (GRAVITY * delta + tempShake);
     }
 
-    public virtual float GetWalkSpeed(float delta) 
-    {
-        return MaxSpeed;
-    }
-
     public virtual float GetDeacceleration() 
     {
         return DEACCCEL;
@@ -347,7 +321,7 @@ public class Player : Character
         hvel.y = 0;
 
         var target = dir;
-        target *= GetWalkSpeed(delta);
+        target *= GetSpeed();
 
         float acceleration;
         if (dir.Dot(hvel) > 0) {
@@ -401,7 +375,33 @@ public class Player : Character
 
     public override void _Ready()
     {
-        LoadPlayer();
+        global.player = this;
+
+        BaseSpeed = 15;
+        BaseRecoil = 2;
+        SetStartHealth(100);
+
+        LoadBodyMesh();
+        Stealth = GetNode<PlayerStealth>("stealth");
+        Weapons = GetNode<PlayerWeapons>("gun_shape");
+        RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
+        soundSteps = GetNode<SoundSteps>("player_body/floorRay");
+
+        JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
+        damageEffects = GetNode<DamageEffects>("/root/Main/Scene/canvas/redScreen");
+        Camera = GetNode<Camera>("rotation_helper/camera");
+        RotationHelper = GetNode<Spatial>("rotation_helper");
+        headShape = GetNode<Spatial>("headShape");
+        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
+
+        audi = GetAudi();
+        audiHitted = GetAudi(true);
+
+        sphereCollider = GetNode<CollisionShape>("shape");
+        bodyCollider = GetNode<CollisionShape>("body_shape");
+
+        MouseSensivity = global.Settings.mouseSensivity;
+        Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
     public override void _Process(float delta)

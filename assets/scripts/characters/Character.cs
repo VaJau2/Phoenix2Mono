@@ -1,20 +1,25 @@
 using Godot;
 using Godot.Collections;
 
-public abstract class Character : KinematicBody
+public class Character : KinematicBody
 {
-    [Export]
-    public int Health;
-    public int HealthMax {get; private set;}
+    public int Health {get; private set;}
+    protected int HealthMax {get; private set;}
+    protected float BaseDamageBlock; //от 0 до 1, процентное блокирование
+    protected int BaseSpeed;
+    protected int BaseDamage;
+    protected int BaseRecoil;
 
     public Vector3 Velocity;
 
-    public float GetSpeed() { return Velocity.Length(); }
-
-    public Character() 
+    protected void SetStartHealth(int newHealth)
     {
-        HealthMax = Health;
+        Health = HealthMax = newHealth;
     }
+    public virtual float GetDamageBlock() => BaseDamageBlock;
+    public virtual int GetSpeed()  => BaseSpeed;
+    public virtual int GetDamage() => BaseDamage;
+    public virtual int GetRecoil() => BaseRecoil;
 
     protected void decreaseHealth(int decrease) 
     {
@@ -22,13 +27,14 @@ public abstract class Character : KinematicBody
         Health = Mathf.Clamp(Health, 0, HealthMax);
     }
 
-    public void TakeDamage(int damage, int shapeID = 0)
+    public virtual void TakeDamage(int damage, int shapeID = 0)
     {
+        damage = damage - (int)(damage * GetDamageBlock());
         decreaseHealth(damage);
     }
 
-    public void MakeDamage(Character victim, int damage, int shapeID = 0) {
-        victim.TakeDamage(damage, shapeID);
+    public void MakeDamage(Character victim, int shapeID = 0) {
+        victim.TakeDamage(GetDamage(), shapeID);
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character

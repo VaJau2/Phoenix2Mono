@@ -140,7 +140,7 @@ public class PlayerWeapons: CollisionShape
         pistolStats.damage = 20;
         pistolStats.distance = 80;
         pistolStats.cooldown = 0.7f;
-        pistolStats.recoil = 4f;
+        pistolStats.recoil = 2f;
         pistolStats.iconSize = 40;
 
         WeaponStats shotgunStats = new WeaponStats();
@@ -149,7 +149,7 @@ public class PlayerWeapons: CollisionShape
         shotgunStats.damage = 110;
         shotgunStats.distance = 40;
         shotgunStats.cooldown = 2f;
-        shotgunStats.recoil = 2.5f;
+        shotgunStats.recoil = 0.5f;
         shotgunStats.iconSize = 80;
 
         WeaponStats revolverStats = new WeaponStats();
@@ -158,7 +158,7 @@ public class PlayerWeapons: CollisionShape
         revolverStats.damage = 20;
         revolverStats.distance = 80;
         revolverStats.cooldown = 0.5f;
-        revolverStats.recoil = 3.0f;
+        revolverStats.recoil = 1f;
         revolverStats.iconSize = 40;
 
         WeaponStats sniperStats = new WeaponStats();
@@ -167,7 +167,7 @@ public class PlayerWeapons: CollisionShape
         sniperStats.damage = 70;
         sniperStats.distance = 200;
         sniperStats.cooldown = 1.6f;
-        sniperStats.recoil = 1.5f;
+        sniperStats.recoil = 1f;
         sniperStats.iconSize = 120;
 
         weaponStats = new Dictionary<WeaponTypes, WeaponStats>()
@@ -355,7 +355,8 @@ public class PlayerWeapons: CollisionShape
         bool shakingProcess = true;
         while(shakingProcess) {
             if (shakeUp) {
-                if (tempShake < weaponStats[TempWeaponType].recoil) {
+                float recoil = player.GetRecoil() + weaponStats[TempWeaponType].recoil;
+                if (tempShake < recoil) {
                     tempShake += SHAKE_SPEED;
                     Camera camera = player.GetViewport().GetCamera();
                     camera.RotationDegrees = SetRotX(
@@ -445,7 +446,7 @@ public class PlayerWeapons: CollisionShape
                     name = "blood";
                 }
             var character = victim as Character;
-            player.MakeDamage(character, weaponStats[TempWeaponType].damage, shapeID);
+            player.MakeDamage(character, shapeID);
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;
             name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);

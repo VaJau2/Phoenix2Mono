@@ -24,9 +24,9 @@ public class PegasusSmash : Area
 
             if (body is Character) {
                 var victim = body as Character;
-                victim.TakeDamage((int)player.flySpeed * 3);
+                victim.TakeDamage((int)player.GetSpeed() * 3);
             } else {
-                player.TakeDamage((int)player.flySpeed - 20);
+                player.TakeDamage((int)player.GetSpeed() / 2);
                 player.wingsAudi.Stop();
                 player.IsFlying = false;
             }

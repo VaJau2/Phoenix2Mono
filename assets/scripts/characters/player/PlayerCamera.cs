@@ -143,7 +143,9 @@ public class PlayerCamera: Camera {
         if (labelBack.Visible && closedTimer <= 0 && tempObject != null) {
             if (tempObject is FurnDoor) {
                 var furn = tempObject as FurnDoor;
-                var keys = player.HaveKeys;
+                //TODO
+                //добавить вытаскивание ключей из инвентаря
+                var keys = new Array<string>();
                 closedTimer = furn.ClickFurn(keys);
                 onetimeHint = false;
             }

@@ -131,7 +131,7 @@ public class PlayerBody : Spatial
 
         float speed = 0;
         if (isWalking) {
-            speed = (BODY_ROT_SPEED / 90f) * player.GetSpeed();
+            speed = (BODY_ROT_SPEED / 90f) * player.Velocity.Length();
             //обрасываем нули, чтоб вращение головы не подрагивало
             string parsedSpeed = System.String.Format("{0:0.00}", speed);  
             speed = float.Parse(parsedSpeed);
@@ -382,7 +382,7 @@ public class PlayerBody : Spatial
                 if (checkPegasusFlyingFast) {
                     speed = BODY_ROT_SPEED * 10f;
                 } else {
-                    speed = BODY_ROT_SPEED * player.GetSpeed();
+                    speed = BODY_ROT_SPEED * player.Velocity.Length();
                 }
                
                 rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);

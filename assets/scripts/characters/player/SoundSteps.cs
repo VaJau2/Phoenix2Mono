@@ -107,10 +107,17 @@ public class SoundSteps: RayCast {
         rand = new Random();
     }
 
+    public void SoundDash()
+    {
+        audi.Stream = dash;
+        audi.Play();
+        timer = STEP_COOLDOWN;
+    }
+
     public void Update(float delta)
     {
         if (isPlayer) {
-            if (global.playerRace != Race.Unicorn) {
+            if (global.playerRace != Race.Unicorn && !playerCrouching) {
                 var pegasus = parent as Player_Pegasus;
                 if (Input.IsActionJustPressed("jump") && (pegasus == null || !pegasus.IsFlying)) {
                     audi.Stream = jump;
@@ -118,18 +125,9 @@ public class SoundSteps: RayCast {
                     timer = 0;
                 }
             }
-
-            if (global.playerRace == Race.Earthpony) {
-                var earthpony = parent as Player_Earthpony;
-                if (Input.IsActionJustPressed("dash") && earthpony.IsDashing) {
-                    audi.Stream = dash;
-                    audi.Play();
-                    timer = STEP_COOLDOWN;
-                }
-            }
         }
 
-        bool sounding = (parent.GetSpeed() > SOUND_SPEED) && (!isPlayer || parent.IsOnFloor());
+        bool sounding = (parent.Velocity.Length() > SOUND_SPEED) && (!isPlayer || parent.IsOnFloor());
 
         if (sounding) {
             if (timer > 0) {
@@ -165,7 +163,7 @@ public class SoundSteps: RayCast {
             player.OnStairs = false;
         }
 
-        if (parent.GetSpeed() > 2) {
+        if (parent.Velocity.Length() > 2) {
             if (!isPlayer || parent.IsOnFloor()) {
                 var collideObj = GetCollider();
                 if (collideObj is StaticBody) {

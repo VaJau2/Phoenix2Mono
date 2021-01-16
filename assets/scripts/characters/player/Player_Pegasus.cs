@@ -3,15 +3,16 @@ using Godot;
 public class Player_Pegasus : Player
 {
     const float FLYING_FAST_SMASH_COOLDOWN = 1f;
+    const float FLY_SPEED = 2.5f;
     public bool IsFlying = false;
     public bool IsFlyingFast = false;
 
     public bool MaySmash = false;
     private float flyingFastTimer = 0;
     private float speedY;
-    public float flySpeed {get; private set;} = 35f;
     private float flyIncrease = 8f;
     private float flyDecrease = 4;
+    private float flySpeed = FLY_SPEED;
 
     public AudioStreamPlayer wingsAudi;
     private AudioStreamSample wingsSound;
@@ -125,23 +126,24 @@ public class Player_Pegasus : Player
         }
     }
 
-    public override float GetWalkSpeed(float delta)
+
+    public override int GetSpeed()
     {
         if (IsFlying) {
             if (IsFlyingFast) {
-                flySpeed += flyIncrease * delta;
+                flySpeed += flyIncrease * 0.02f;
 
                 if (flyIncrease > 0) {
-                    flyIncrease -= delta * 2f;
+                    flyIncrease -= 0.25f;
                 } 
             } else {
-                flySpeed = 35f;
-                flyIncrease = 8f;
+                flySpeed = FLY_SPEED;
+                flyIncrease = 5f;
             }
 
-            return flySpeed;
+            return (int)(base.GetSpeed() * flySpeed);
         }
-        return MaxSpeed;
+        return base.GetSpeed();
     }
 
     public override float GetDeacceleration()
