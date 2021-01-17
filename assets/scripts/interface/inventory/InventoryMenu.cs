@@ -5,7 +5,6 @@ public class InventoryMenu : Control
 {
     private const float MENU_SPEED = 16f;
     private const float MENU_SIZE = 272f;
-    private Global global;
     private Control back;
     private Control wearBack;
 
@@ -19,10 +18,8 @@ public class InventoryMenu : Control
     private bool isAnimating = false;
 
     private ItemIcon tempIcon;
+    private Dictionary tempItemData;
     private Array itemIcons = new Array();
-
-    private Dictionary itemsData = new Dictionary();
-
 
     private Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
@@ -31,17 +28,18 @@ public class InventoryMenu : Control
         tempIcon = newIcon;
         if (newIcon != null) {
             itemInfo.Visible = true;
-            Dictionary itemData = ItemJSON.GetItemData(newIcon.myItemCode);
-            itemName.Text = itemData["name"].ToString();
-            itemDesc.Text = itemData["description"].ToString();
-            itemProps.Text = GetItemPropsString(itemData);
+            tempItemData = ItemJSON.GetItemData(newIcon.myItemCode);
+            itemName.Text = tempItemData["name"].ToString();
+            itemDesc.Text = tempItemData["description"].ToString();
+            itemProps.Text = GetItemPropsString(tempItemData);
             controlHints.Text = InterfaceLang.GetPhrase(
                 "inventory", 
                 "inventoryControlHints", 
-                itemData["type"].ToString()
+                tempItemData["type"].ToString()
             );
         } else {
             itemInfo.Visible = false;
+            tempItemData = new Dictionary();
         }
     }
 
@@ -65,12 +63,12 @@ public class InventoryMenu : Control
 
     private void UpdateItemIcons()
     {
-        Player player = global.player;
+        PlayerInventory inventory = Global.Get().player.inventory;
 
         for (int i = 0; i < itemIcons.Count; i++) {
             ItemIcon temp = itemIcons[i] as ItemIcon;
-            if (player.inventory.Items.Count > i) {
-                temp.SetItem(player.inventory.Items[i]);
+            if (inventory.Items.Count > i) {
+                temp.SetItem(inventory.Items[i], i);
             } else {
                 temp.ClearItem();
             }
@@ -138,8 +136,6 @@ public class InventoryMenu : Control
 
     public override void _Ready() 
     {
-        global = Global.Get();
-
         back     = GetNode<Control>("back");
         wearBack = GetNode<Control>("back/wearBack");
         itemIcons = GetNode<Control>("back/items").GetChildren(); 
@@ -168,6 +164,19 @@ public class InventoryMenu : Control
                 else {
                     OpenMenu();
                 }
+            }
+        }
+
+        if (isOpen && @event is InputEventMouse && tempIcon != null) {
+            PlayerInventory inventory = Global.Get().player.inventory;
+
+            if (Input.IsMouseButtonPressed(1)) {
+                if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
+                    inventory.UseItem(tempIcon.myItemNumber, tempItemData);
+                    UpdateItemIcons();
+                }
+            } else if(Input.IsMouseButtonPressed(2)) {
+                inventory.DropItem(tempIcon.myItemNumber);
             }
         }
     }

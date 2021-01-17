@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ItemAmmo.wav-5c743f64e51019234af956416e4f05dd.sample"
+path="res://.import/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/ItemAmmo.wav"
-dest_files=[ "res://.import/ItemAmmo.wav-5c743f64e51019234af956416e4f05dd.sample" ]
+source_file="res://assets/audio/item/eating1.wav"
+dest_files=[ "res://.import/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample" ]
 
 [params]
 

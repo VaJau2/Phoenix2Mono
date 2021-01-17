@@ -396,6 +396,7 @@ public class Player : Character
         BaseSpeed = 15;
         BaseRecoil = 2;
         SetStartHealth(100);
+        inventory.SetPlayer(this);
 
         LoadBodyMesh();
         Stealth = GetNode<PlayerStealth>("stealth");

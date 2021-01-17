@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ItemHeal.wav-2827da7c9381a932223b4c87fb2403c7.sample"
+path="res://.import/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/ItemHeal.wav"
-dest_files=[ "res://.import/ItemHeal.wav-2827da7c9381a932223b4c87fb2403c7.sample" ]
+source_file="res://assets/audio/item/coat.wav"
+dest_files=[ "res://.import/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample" ]
 
 [params]
 

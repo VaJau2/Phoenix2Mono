@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/socksChange.wav-c4286f74fb46f61ff94a54838a5c9fd0.sample"
+path="res://.import/socks.wav-170e7340f741208ae67272733de853d5.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/socksChange.wav"
-dest_files=[ "res://.import/socksChange.wav-c4286f74fb46f61ff94a54838a5c9fd0.sample" ]
+source_file="res://assets/audio/item/socks.wav"
+dest_files=[ "res://.import/socks.wav-170e7340f741208ae67272733de853d5.sample" ]
 
 [params]
 

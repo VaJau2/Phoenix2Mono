@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/armorChange.wav-7be2d62929ea7207f17eb246be4fe0c3.sample"
+path="res://.import/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/armorChange.wav"
-dest_files=[ "res://.import/armorChange.wav-7be2d62929ea7207f17eb246be4fe0c3.sample" ]
+source_file="res://assets/audio/item/colaDrink.wav"
+dest_files=[ "res://.import/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample" ]
 
 [params]
 
