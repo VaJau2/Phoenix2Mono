@@ -23,6 +23,8 @@ public class MenuBase : Control
 
     public virtual void SoundClick() {}
 
+    public virtual void loadInterfaceLanguage() {}
+
     private async void changeDownLabel() {
         downLabel.PercentVisible = 0;
         while(downLabel.PercentVisible < 1) {

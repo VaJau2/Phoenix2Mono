@@ -266,6 +266,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="hints" type="Label" parent="back/itemInfo"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = -32.0
+margin_right = 120.0
+margin_bottom = -17.0
+theme = ExtResource( 3 )
+text = "Подсказки по управлению"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="wearBack" type="ColorRect" parent="back"]
 visible = false
 anchor_left = 0.734

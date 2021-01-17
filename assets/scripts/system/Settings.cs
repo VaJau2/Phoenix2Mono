@@ -23,7 +23,6 @@ public class Settings
     public float musicVolume {get; private set;}
 
     public bool fullscreen {get; private set;} = false;
-    public bool filter = false;
 
     public string[] controlActions = new string[] 
     {
@@ -85,11 +84,9 @@ public class Settings
             config.SetValue("controls", action, key);
         }
         config.SetValue("screen", "distance", distance);
-        config.SetValue("screen", "filter", filter);
         config.SetValue("screen", "shadows", shadows);
         config.SetValue("screen", "reflections", reflections);
         config.SetValue("screen", "fullscreen", fullscreen);
-        config.SetValue("screen", "filter", filter);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
         var screenSize = OS.WindowSize;
         config.SetValue("screen", "width", screenSize.x);
@@ -123,7 +120,6 @@ public class Settings
             reflections = (int)config.GetValue("screen", "reflections");
             var tempFullscreen = (bool)config.GetValue("screen", "fullscreen");
             SetFullscreen(tempFullscreen);
-            filter = (bool)config.GetValue("screen", "filter");
             InterfaceLang.LoadLanguage(config.GetValue("screen", "language").ToString());
             var screenSize = new Vector2();
             screenSize.x = (float)config.GetValue("screen", "width");

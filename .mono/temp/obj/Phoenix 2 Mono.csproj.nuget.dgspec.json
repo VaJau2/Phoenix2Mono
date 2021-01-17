@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
+    "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
   },
   "projects": {
-    "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
+    "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "projectUniqueName": "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
         "projectName": "Phoenix 2 Mono",
-        "projectPath": "E:\\Godot\\Projects\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "projectPath": "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\Godot\\Projects\\Phoenix2Mono\\.mono\\temp\\obj\\",
+        "outputPath": "A:\\Phoenix2Mono\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

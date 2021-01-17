@@ -1,0 +1,20 @@
+{
+    "labels": {
+        "name": "Inventory",
+        "money": "Money count:",
+        "price": "Price:",
+        "wear": "Wear",
+        "weapon": "Weapon:",
+        "armor": "Armor:",
+        "artifact": "Artifact:"
+    },
+
+    "inventoryControlHints": {
+        "staff": "RMB - drop",
+        "weapon": "LMB - wear, RMB - drop, 1-4 - bind",
+        "armor": "LMB - wear, RMB - drop, 1-4 - bind",
+        "artifact": "LMB - wear, RMB - drop, 1-4 - bind",
+        "food": "LMB - eat, RMB - drop, 1-4 - bind",
+        "meds": "LMB - use, RMB - drop, 1-4 - bind"
+    }
+}

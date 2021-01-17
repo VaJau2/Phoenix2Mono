@@ -18,7 +18,6 @@
         "fullscreen": "Set fullscreen",
         "sound": "Set sound volume",
         "music": "Set music volume",
-        "filter": "Set swear words and other 18+ stuff filter",
         "language": "Set other language",
         "controls": "Set controls",
 
@@ -29,7 +28,6 @@
         "header": "Settings",
         "controlsHeader": "Controls settings",
         "language": "Language:",
-        "filter": "18+ filter",
         "mouse": "Mouse sensivity:",
         "distance": "Render distance:",
         "shadows": "Shadows quality:",

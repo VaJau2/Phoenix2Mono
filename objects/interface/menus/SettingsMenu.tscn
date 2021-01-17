@@ -494,67 +494,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="filter" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_right = -272.0
-margin_bottom = 22.0
-theme = ExtResource( 2 )
-text = "Фильтр 18+"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="filter_button" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -472.0
-margin_top = 30.0
-margin_right = -313.0
-margin_bottom = 47.0
-theme = ExtResource( 2 )
-text = "Выключен"
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="filter_border1" type="Label" parent="filter_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -8.5
-margin_right = 6.0
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="filter_border2" type="Label" parent="filter_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -6.00021
-margin_top = -8.5
-margin_right = -0.000213623
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="language" type="Label" parent="."]
 modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
@@ -1308,9 +1247,6 @@ stream = ExtResource( 1 )
 [connection signal="mouse_entered" from="music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
 [connection signal="mouse_exited" from="music_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="music_slider" to="." method="_on_music_slider_value_changed"]
-[connection signal="mouse_entered" from="filter_button" to="." method="_on_mouse_entered" binds= [ "choose", "filter" ]]
-[connection signal="mouse_exited" from="filter_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="filter_button" to="." method="_on_filter_button_pressed"]
 [connection signal="mouse_entered" from="language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
 [connection signal="mouse_exited" from="language_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="language_button" to="." method="_on_language_button_pressed"]

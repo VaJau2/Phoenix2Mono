@@ -91,7 +91,7 @@ public class MainMenu : MenuBase
         EmitSignal(nameof(labelChanged));
     }
 
-    private void loadInterfaceLanguage()
+    public override void loadInterfaceLanguage()
     {
         continueButton.Text = getMenuText("continue");
         startButton.Text = getMenuText("start");

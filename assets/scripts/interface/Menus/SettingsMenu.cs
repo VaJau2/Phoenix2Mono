@@ -4,6 +4,7 @@ using Godot.Collections;
 public class SettingsMenu : MenuBase
 {
     Global global = Global.Get();
+    AudioStreamPlayer audi;
 
     private MenuBase otherMenu;
     
@@ -13,8 +14,6 @@ public class SettingsMenu : MenuBase
     private Button backButton;
     private Label languageLabel;
     private Button languageButton;
-    private Label filterLabel;
-    private Button filterButton;
     private Label mouseLabel;
     private Label distanceLabel;
     private Label shadowsLabel;
@@ -46,8 +45,6 @@ public class SettingsMenu : MenuBase
         backButton = GetNode<Button>("back");
         languageLabel = GetNode<Label>("language");
         languageButton = GetNode<Button>("language_button");
-        filterLabel = GetNode<Label>("filter");
-        filterButton = GetNode<Button>("filter_button");
         mouseLabel = GetNode<Label>("mouse_label");
         distanceLabel = GetNode<Label>("distance_label");
         shadowsLabel = GetNode<Label>("shadows_label");
@@ -86,7 +83,7 @@ public class SettingsMenu : MenuBase
     }
 
     
-    private void loadInterfaceLanguage()
+    public override void loadInterfaceLanguage()
     {
         string tempPage = InterfaceLang.GetPhrase("settingsMenu", "pages", otherMenu.menuName);
         pageLabel.Text = tempPage;
@@ -94,7 +91,6 @@ public class SettingsMenu : MenuBase
         backButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "back");
         languageLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "language");
         languageButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "language");
-        filterLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "filter");
         mouseLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "mouse");
         distanceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "distance");
         shadowsLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "shadows");
@@ -115,7 +111,6 @@ public class SettingsMenu : MenuBase
             controlLabels[key].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", key);
         }
 
-        loadOnOffText(filterButton, global.Settings.filter);
         loadOnOffText(fullscreenButton, global.Settings.fullscreen);
         loadSliders();
         loadControlButtons();
@@ -219,6 +214,11 @@ public class SettingsMenu : MenuBase
         }
     }
 
+    public override void SoundClick()
+    {
+        audi.Play();
+    }
+
 
     public void OpenMenu(MenuBase self, string menuName)
     {
@@ -230,6 +230,7 @@ public class SettingsMenu : MenuBase
 
     public override void _Ready()
     {
+        audi = GetNode<AudioStreamPlayer>("audi");
         base._Ready();
         menuName = "settingsMenu";
         loadMenu();
@@ -249,6 +250,7 @@ public class SettingsMenu : MenuBase
         otherMenu.SoundClick();
         InterfaceLang.SetNextLanguage();
         loadInterfaceLanguage();
+        otherMenu.loadInterfaceLanguage();
         ReloadMouseEntered();
     }
 
@@ -260,15 +262,6 @@ public class SettingsMenu : MenuBase
             button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", "off");
         }
     }
-
-    public void _on_filter_button_pressed()
-    {
-        otherMenu.SoundClick();
-        bool filter = global.Settings.filter;
-        global.Settings.filter = !filter;
-        loadOnOffText(filterButton, !filter);
-    }
-   
 
     public void _on_mouse_slider_value_changed(float value)
     {

@@ -1,0 +1,15 @@
+{
+    "main": {
+        "page": "/Phoenix2/Pause_menu",
+        "header": "[Pause]",
+        "continue": "               [Continue]",
+        "settings": "               [Settings]",
+        "exit": "               [To main menu]"
+    },
+
+    "choose": {
+        "continue": "Continue game",
+        "settings": "Open settings menu",
+        "exit": "Back to main menu"
+    }
+}

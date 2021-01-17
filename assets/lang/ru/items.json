@@ -2,31 +2,89 @@
     "book0": {
         "name": "Книга",
         "description": "Фанфик про поняху, которая нашла портал в мир двуногих существ",
-        "price": "15",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "15" 
     },
     "book1": {
         "name": "Книга",
         "description": "Какая-то не интересная книга",
-        "price": "2",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "2"
     },
     "book2": {
         "name": "Книга",
         "description": "Учебник физики",
-        "price": "15",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "15"
     },
     "pencil": {
         "name": "Карандаш",
         "description": "Простой карандаш",
-        "price": "2",
-        "icon": "pencil"
+        "type": "staff",
+        "icon": "pencil",
+        "price": "2"
     },
     "toaster": {
         "name": "Тостер",
         "description": "Сломанный тостер. Найти бы кого-нибудь, кто смог бы его починить",
-        "price": "40",
-        "icon": "toaster"
+        "type": "staff",
+        "icon": "toaster",
+        "price": "40" 
+    },
+
+
+    "revolver32": {
+        "name": "Револьвер кал. 32",
+        "description": "Недорогое оружие, стреляющее распространенными патронами, не наносит много урона",
+        "type": "weapon",
+        "icon": "revolver32",
+        "price": "100",
+        "damage": "20",
+        "distance": "80",
+        "recoil": "1",
+        "ammoType": "32"
+    },
+
+
+    "coat": {
+        "name": "Плащ",
+        "description": "Пальто из толстой кожи с шляпой и рубашкой. Лучший друг любого детектива. Афигенно выглядит и хорошо защищает.",
+        "type": "armor",
+        "icon": "coat",
+        "price": "550",
+        "damageBlock": "0.5",
+        "speedDecrease": "3"
+    },
+
+
+    "bow-ribbon": {
+        "name": "Бантик",
+        "description": "Не имеет каких-либо свойств, стоит дешево. Зато выглядит мило с:",
+        "type": "artifact",
+        "icon": "bow-tie-ribbon",
+        "price": "5"
+    },
+
+
+    "maffin": {
+        "name": "Маффин",
+        "description": "Кто же откажется от кусочка чего-то сладкого?",
+        "type": "food",
+        "icon": "maffin",
+        "price": "20",
+        "heal": "15"
+    },
+
+
+    "heal-potion": {
+        "name": "Зелье лечения",
+        "description": "Один из самых полезных предметов для каждого пони начиная с момента объявления войны зебрам",
+        "type": "meds",
+        "icon": "heal-potion",
+        "price": "50",
+        "effect": "heal"
     }
 }

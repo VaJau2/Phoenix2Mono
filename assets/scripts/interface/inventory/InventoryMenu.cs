@@ -13,6 +13,7 @@ public class InventoryMenu : Control
     private Label itemName;
     private Label itemDesc;
     private Label itemPrice;
+    private Label controlHints;
 
     private bool isOpen = false;
     private bool isAnimating = false;
@@ -21,6 +22,9 @@ public class InventoryMenu : Control
     private Array itemIcons = new Array();
 
     private Dictionary itemsData = new Dictionary();
+
+
+    private Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
 
     public void SetTempIcon(ItemIcon newIcon)
@@ -32,6 +36,11 @@ public class InventoryMenu : Control
             itemName.Text = itemData["name"].ToString();
             itemDesc.Text = itemData["description"].ToString();
             itemPrice.Text = itemData["price"].ToString();
+            controlHints.Text = InterfaceLang.GetPhrase(
+                "inventory", 
+                "inventoryControlHints", 
+                itemData["type"].ToString()
+            );
         } else {
             itemInfo.Visible = false;
         }
@@ -59,9 +68,18 @@ public class InventoryMenu : Control
         }
     }
 
+    private void LoadLabels()
+    {
+        foreach(string labelName in labels.Keys) {
+            Label tempLabel = labels[labelName];
+            tempLabel.Text = InterfaceLang.GetPhrase("inventory", "labels", labelName);
+        }
+    }
+
     
     private async void OpenMenu(bool showWear = true) 
     {
+        LoadLabels();
         UpdateItemIcons();
 
         back.Visible = true;
@@ -113,6 +131,15 @@ public class InventoryMenu : Control
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
         itemPrice = itemInfo.GetNode<Label>("price");
+        controlHints = itemInfo.GetNode<Label>("hints");
+
+        labels.Add("name", GetNode<Label>("back/Label"));
+        labels.Add("money", GetNode<Label>("back/moneyLabel"));
+        labels.Add("wear", GetNode<Label>("back/wearBack/Label"));
+        labels.Add("price", GetNode<Label>("back/itemInfo/priceLabel"));
+        labels.Add("weapon", GetNode<Label>("back/wearBack/weaponLabel"));
+        labels.Add("armor", GetNode<Label>("back/wearBack/armorLabel"));
+        labels.Add("artifact", GetNode<Label>("back/wearBack/artifactLabel"));
     }
 
     public override void _Input(InputEvent @event)

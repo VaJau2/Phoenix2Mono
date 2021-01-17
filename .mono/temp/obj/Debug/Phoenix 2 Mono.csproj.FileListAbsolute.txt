@@ -22,3 +22,11 @@ E:\Godot\Projects\папки phoenix2\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 
 E:\Godot\Projects\папки phoenix2\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csproj.CoreCompileInputs.cache
 E:\Godot\Projects\папки phoenix2\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
 E:\Godot\Projects\папки phoenix2\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb
+A:\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.dll
+A:\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.pdb
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csprojAssemblyReference.cache
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfoInputs.cache
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfo.cs
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csproj.CoreCompileInputs.cache
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
+A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb

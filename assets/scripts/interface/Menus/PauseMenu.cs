@@ -8,6 +8,7 @@ public class PauseMenu : MenuBase
     // запрогать здесь скрипты кнопок
 
     Global global = Global.Get();
+    AudioStreamPlayer audi;
     private Label pageLabel;
     private Label headerLabel;
     private Button continueButton;
@@ -27,7 +28,7 @@ public class PauseMenu : MenuBase
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
     }
 
-    private void loadInterfaceLanguage()
+    public override void loadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
         headerLabel.Text    = InterfaceLang.GetPhrase("pauseMenu", "main", "header");
@@ -48,8 +49,14 @@ public class PauseMenu : MenuBase
         }
     }
 
+    public override void SoundClick()
+    {
+        audi.Play();
+    }
+
     public override void _Ready()
     {
+        audi = GetNode<AudioStreamPlayer>("audi");
         base._Ready();
         menuName = "pauseMenu";
         loadMenu();

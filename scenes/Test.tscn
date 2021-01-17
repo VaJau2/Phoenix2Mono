@@ -23,7 +23,7 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-itemCodes = [ "book1", "toaster" ]
+itemCodes = [ "book1", "toaster", "revolver32", "coat", "bow-ribbon", "maffin", "heal-potion" ]
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3

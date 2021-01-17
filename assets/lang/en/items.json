@@ -2,31 +2,89 @@
     "book0": {
         "name": "Book",
         "description": "Fanfic about a pony, who found a portal to world of bipedal creatures",
-        "price": "15",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "15"
     },
     "book1": {
         "name": "Book",
         "description": "Some boring book",
-        "price": "2",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "2"
     },
     "book2": {
         "name": "Book",
         "description": "Physics textbook",
-        "price": "15",
-        "icon": "book"
+        "type": "staff",
+        "icon": "book",
+        "price": "15"
     },
     "pencil": {
         "name": "Pencil",
         "description": "Simple pencil",
-        "price": "2",
-        "icon": "pencil"
+        "type": "staff",
+        "icon": "pencil",
+        "price": "2"
     },
     "toaster": {
         "name": "Toaster",
         "description": "Broken toaster. Gotta find somepony, who will fix it",
-        "price": "40",
-        "icon": "toaster"
+        "type": "staff",
+        "icon": "toaster",
+        "price": "40"
+    },
+
+
+    "revolver32": {
+        "name": ".32 revolver",
+        "description": "Not expensive weapon, shooting common cartridges, does not deal much damage",
+        "type": "weapon",
+        "icon": "revolver32",
+        "price": "100",
+        "damage": "20",
+        "distance": "80",
+        "recoil": "1",
+        "ammoType": "32"
+    },
+
+
+    "coat": {
+        "name": "Coat",
+        "description": "Coat of thick skin with a hat and a shirt. Any detective's best friend. Has great look and well protection.",
+        "type": "armor",
+        "icon": "coat",
+        "price": "550",
+        "damageBlock": "0.5",
+        "speedDecrease": "3"
+    },
+
+    
+    "bow-ribbon": {
+        "name": "Bow",
+        "description": "It does not have any properties, it is cheap. But it looks nice с:",
+        "type": "artifact",
+        "icon": "bow-tie-ribbon",
+        "price": "5"
+    },
+
+
+    "maffin": {
+        "name": "Maffin",
+        "description": "Who wouldn't want a piece of something sweet?",
+        "type": "food",
+        "icon": "maffin",
+        "price": "20",
+        "heal": "15"
+    },
+
+
+    "heal-potion": {
+        "name": "Heal potion",
+        "description": "One of the most useful items for every pony since the declaration of war on zebras",
+        "type": "meds",
+        "icon": "heal-potion",
+        "price": "50",
+        "effect": "heal"
     }
 }
