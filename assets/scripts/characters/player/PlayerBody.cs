@@ -267,7 +267,6 @@ public class PlayerBody : Spatial
     {
         if (player.Health > 0) {
             updateHeadRotation(delta);
-            SoundSteps.Update(delta);
 
             //update smiling
             if(bodyRot > 130 || bodyRot < -105) {
@@ -284,7 +283,7 @@ public class PlayerBody : Spatial
             }
 
             //update shy when in coat
-            if(player.inventory.cloth == "coat" && playerMakingShy) {
+            if(player.inventory.GetArmorProps().Contains("makeShy") && playerMakingShy) {
                 if (shyCooldown > 0) {
                     shyCooldown -= delta;
                 } else {
@@ -399,14 +398,6 @@ public class PlayerBody : Spatial
         } else { //Health <= 0
             bodyRot = 0;
             playback.Travel("Die1");
-        }
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        if (player.Health > 0) 
-        {
-            SoundSteps.PhysicsUpdate(delta);
         }
     }
 

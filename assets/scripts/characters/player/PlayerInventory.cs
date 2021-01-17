@@ -21,4 +21,14 @@ public class PlayerInventory
 
         return tempKeys;
     }
+
+    public Dictionary GetArmorProps() 
+    {
+        return ItemJSON.GetItemData(cloth);
+    }
+
+    public Dictionary GetWeaponProps()
+    {
+        return ItemJSON.GetItemData(weapon);
+    }
 }

@@ -12,7 +12,7 @@ public class InventoryMenu : Control
     private Control itemInfo;
     private Label itemName;
     private Label itemDesc;
-    private Label itemPrice;
+    private Label itemProps;
     private Label controlHints;
 
     private bool isOpen = false;
@@ -26,7 +26,6 @@ public class InventoryMenu : Control
 
     private Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
-
     public void SetTempIcon(ItemIcon newIcon)
     {
         tempIcon = newIcon;
@@ -35,7 +34,7 @@ public class InventoryMenu : Control
             Dictionary itemData = ItemJSON.GetItemData(newIcon.myItemCode);
             itemName.Text = itemData["name"].ToString();
             itemDesc.Text = itemData["description"].ToString();
-            itemPrice.Text = itemData["price"].ToString();
+            itemProps.Text = GetItemPropsString(itemData);
             controlHints.Text = InterfaceLang.GetPhrase(
                 "inventory", 
                 "inventoryControlHints", 
@@ -44,6 +43,24 @@ public class InventoryMenu : Control
         } else {
             itemInfo.Visible = false;
         }
+    }
+
+    private string GetItemPropsString(Dictionary itemProps)
+    {
+        string result = "";
+        Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
+        foreach(string prop in itemProps.Keys) {
+            if (itemPropNames.Contains(prop)) {
+                string propName = itemPropNames[prop].ToString();
+                string propValue = itemProps[prop].ToString();
+                if (prop == "medsEffect") {
+                    propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
+                }
+                
+                result += "> " + propName + propValue + "\n";
+            }
+        }
+        return result;
     }
 
     private void UpdateItemIcons()
@@ -130,13 +147,12 @@ public class InventoryMenu : Control
         itemInfo = GetNode<Control>("back/itemInfo");
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
-        itemPrice = itemInfo.GetNode<Label>("price");
+        itemProps = itemInfo.GetNode<Label>("props");
         controlHints = itemInfo.GetNode<Label>("hints");
 
         labels.Add("name", GetNode<Label>("back/Label"));
         labels.Add("money", GetNode<Label>("back/moneyLabel"));
         labels.Add("wear", GetNode<Label>("back/wearBack/Label"));
-        labels.Add("price", GetNode<Label>("back/itemInfo/priceLabel"));
         labels.Add("weapon", GetNode<Label>("back/wearBack/weaponLabel"));
         labels.Add("armor", GetNode<Label>("back/wearBack/armorLabel"));
         labels.Add("artifact", GetNode<Label>("back/wearBack/artifactLabel"));
@@ -154,23 +170,5 @@ public class InventoryMenu : Control
                 }
             }
         }
-    }
-}
-
-public static class ItemJSON
-{
-    static string tempLang;
-    static Dictionary itemsData = new Dictionary();
-    public static Dictionary GetItemData(string itemCode)
-    {
-        string lang = InterfaceLang.GetLang();
-
-        if (tempLang != lang) {
-            string path = "assets/lang/" + lang + "/items.json";
-            itemsData = Global.loadJsonFile(path);
-            tempLang = lang;
-        }
-        
-        return (Dictionary)itemsData[itemCode];
     }
 }

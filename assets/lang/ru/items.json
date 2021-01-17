@@ -50,7 +50,7 @@
         "icon": "revolver32",
         "price": "100",
         "damage": "20",
-        "distance": "80",
+        "shootDistance": "80",
         "recoil": "1",
         "ammoType": "32"
     },
@@ -63,7 +63,18 @@
         "icon": "coat",
         "price": "550",
         "damageBlock": "0.5",
-        "speedDecrease": "3"
+        "speedDecrease": "3",
+        "makeShy": "1"
+    },
+    "stealth-armor": {
+        "name": "Стелс-броня",
+        "description": "Сочетание из легкого бронежилета, банданы, повязки на глаз и милых стелс-носочков гарантирует незаметность.",
+        "type": "armor",
+        "icon": "stealth-armor",
+        "price": "1100",
+        "damageBlock": "0.6",
+        "closeFov": "30",
+        "shootDistPlus": "15"
     },
 
 
@@ -92,6 +103,6 @@
         "type": "meds",
         "icon": "heal-potion",
         "price": "50",
-        "effect": "heal"
+        "medsEffect": "heal"
     }
 }

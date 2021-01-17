@@ -1,8 +1,8 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 
 public class ShotgunArea: Area {
-    public List<Spatial> objectsInside = new List<Spatial>();
+    public Array<Spatial> objectsInside = new Array<Spatial>();
 
     public void _on_shotgunArea_body_entered(Node body) {
         if (body is Player) return;

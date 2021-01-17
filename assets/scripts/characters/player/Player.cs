@@ -150,10 +150,17 @@ public class Player : Character
 
     public override int GetSpeed()
     {
-        if (IsCrouching) {
-            return BaseSpeed / 2;
+        int tempSpeed = BaseSpeed;
+
+        Dictionary armorProps = inventory.GetArmorProps();
+        if (armorProps.Contains("speedDecrease")) {
+            tempSpeed -= (int)armorProps["speedDecrease"];
         }
-        return BaseSpeed;
+
+        if (IsCrouching) {
+            return tempSpeed / 2;
+        }
+        return tempSpeed;
     }
 
     public override void TakeDamage(int damage, int shapeID = 0)
@@ -161,6 +168,16 @@ public class Player : Character
         base.TakeDamage(damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
+    }
+
+    public override float GetDamageBlock() 
+    {
+        Dictionary armorProps = inventory.GetArmorProps();
+        if(armorProps.Contains("damageBlock")) {
+            return (float)armorProps["damageBlock"];
+        } else {
+            return base.GetDamageBlock();
+        }
     }
 
     protected void Sit(bool sitOn) 

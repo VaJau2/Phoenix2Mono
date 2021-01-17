@@ -67,8 +67,9 @@ public class PlayerCamera: Camera {
         } else if(fovClosing) {
             float closeFov = 42f;
 
-            if (player.inventory.cloth == "stealth_armor") {
-                closeFov = 30f;
+            Dictionary armorProps = player.inventory.GetArmorProps();
+            if (armorProps.Contains("closeFov")) {
+                closeFov = (float)armorProps["closeFov"];
             }
 
             if (Fov > closeFov) {
@@ -185,7 +186,8 @@ public class PlayerCamera: Camera {
            UpdateInput();
        }
 
-       if (!player.ThirdView && @event is InputEventMouseButton) {
+       if (!player.ThirdView && @event is InputEventMouseButton 
+            && Input.GetMouseMode() == Input.MouseMode.Captured) {
            var mouseEv = @event as InputEventMouseButton;
            if (mouseEv.ButtonIndex == 2) {
                if (mouseEv.Pressed) {

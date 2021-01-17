@@ -1,6 +1,5 @@
 using Godot;
-using System.Collections.Generic;
-using System;
+using Godot.Collections;
 
 public class PlayerWeapons: CollisionShape
 {
@@ -384,7 +383,7 @@ public class PlayerWeapons: CollisionShape
         }
     }
 
-    private async void checkVisible(List<Spatial> victims) 
+    private async void checkVisible(Array<Spatial> victims) 
     {
         foreach(Spatial victim in victims) {
             var wr = WeakRef(victim);
@@ -530,10 +529,11 @@ public class PlayerWeapons: CollisionShape
                 gunAnim.Play("shoot");
             }
 
-            //player.Body.Head.CloseEyes();
+            player.Body.Head.CloseEyes();
             var tempDistance = tempStats.distance;
-            if (player.inventory.cloth == "stealth_armor") {
-                tempDistance += 15;
+            Dictionary armorProps = player.inventory.GetArmorProps();
+            if (armorProps.Contains("shootDistPlus")) {
+                tempDistance += (int)armorProps["shootDistPlus"];
             }
             var tempRay = EnableHeadRay(tempDistance);
 
@@ -665,7 +665,7 @@ public class PlayerWeapons: CollisionShape
 
             //обработка смены оружия (проходим циклом по всем типам)
             int typeI = 0;
-            foreach(WeaponTypes tempType in Enum.GetValues(typeof(WeaponTypes))) {
+            foreach(WeaponTypes tempType in System.Enum.GetValues(typeof(WeaponTypes))) {
                 int key = ZERO_NUM_KEY + typeI;
                 checkInputKey(key, tempType);
                 typeI++;

@@ -38,22 +38,26 @@ public static class InterfaceLang {
         }
     }
 
-    /// <summary>
-    /// Вытаскивает фразу нужного языка из лангового файла
-    /// </summary>
-    /// <param name="file">файл (название без формата)</param>
-    /// <param name="section">группа фраз (секция)</param>
-    /// <param name="phrase">название фразы</param>
-    /// <returns></returns>
+    //Возвращает фразу нужного языка из лангового файла
     public static string GetPhrase(string file, string section, string phrase) 
     {
-        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data != null) {
-            var sectionData = data[section] as Dictionary;
+        Dictionary sectionData = GetPhrasesSection(file, section);
+        if (sectionData != null) {
             return sectionData[phrase].ToString();
         }
        
         return "data is null :c";
+    }
+
+    //Возвращает словарь из фраз из лангового файла
+    public static Dictionary GetPhrasesSection(string file, string section) 
+    {
+        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        if (data != null) {
+            var sectionData = data[section] as Dictionary;
+            return sectionData;
+        }
+        return null;
     }
 }
 

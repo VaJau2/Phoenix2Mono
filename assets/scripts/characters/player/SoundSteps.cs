@@ -114,7 +114,7 @@ public class SoundSteps: RayCast {
         timer = STEP_COOLDOWN;
     }
 
-    public void Update(float delta)
+    public override void _Process(float delta)
     {
         if (isPlayer) {
             if (global.playerRace != Race.Unicorn && !playerCrouching) {
@@ -156,9 +156,12 @@ public class SoundSteps: RayCast {
         }
     }
 
-    public void PhysicsUpdate(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         var player = parent as Player;
+        if (player.Health <= 0)
+            return;
+        
         if (isPlayer) {
             player.OnStairs = false;
         }
