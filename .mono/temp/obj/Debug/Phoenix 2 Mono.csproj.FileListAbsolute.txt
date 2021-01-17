@@ -30,3 +30,11 @@ A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfo.cs
 A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csproj.CoreCompileInputs.cache
 A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
 A:\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb
+D:\Godot\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.dll
+D:\Godot\Phoenix2Mono\.mono\temp\bin\Debug\Phoenix 2 Mono.pdb
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csprojAssemblyReference.cache
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfoInputs.cache
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.AssemblyInfo.cs
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.csproj.CoreCompileInputs.cache
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.dll
+D:\Godot\Phoenix2Mono\.mono\temp\obj\Debug\Phoenix 2 Mono.pdb

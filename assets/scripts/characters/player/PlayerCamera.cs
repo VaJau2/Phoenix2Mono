@@ -67,7 +67,7 @@ public class PlayerCamera: Camera {
         } else if(fovClosing) {
             float closeFov = 42f;
 
-            if (player.clothCode == "stealth_armor") {
+            if (player.inventory.cloth == "stealth_armor") {
                 closeFov = 30f;
             }
 
@@ -127,9 +127,6 @@ public class PlayerCamera: Camera {
                 }
                 //TODO
                 //дописать сюда интерфейс для взаимодействия с:
-                //пальто
-                //манекенами
-                //оружием
                 //терминалами
                 //картой
                 //персонажами
@@ -143,9 +140,7 @@ public class PlayerCamera: Camera {
         if (labelBack.Visible && closedTimer <= 0 && tempObject != null) {
             if (tempObject is FurnDoor) {
                 var furn = tempObject as FurnDoor;
-                //TODO
-                //добавить вытаскивание ключей из инвентаря
-                var keys = new Array<string>();
+                var keys = player.inventory.GetKeys();
                 closedTimer = furn.ClickFurn(keys);
                 onetimeHint = false;
             }
@@ -155,9 +150,6 @@ public class PlayerCamera: Camera {
             }
             //TODO
                 //дописать сюда взаимодействие с:
-                //пальто
-                //манекенами
-                //оружием
                 //терминалами
                 //картой
                 //персонажами

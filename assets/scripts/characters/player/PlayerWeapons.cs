@@ -532,7 +532,7 @@ public class PlayerWeapons: CollisionShape
 
             //player.Body.Head.CloseEyes();
             var tempDistance = tempStats.distance;
-            if (player.clothCode == "stealth_armor") {
+            if (player.inventory.cloth == "stealth_armor") {
                 tempDistance += 15;
             }
             var tempRay = EnableHeadRay(tempDistance);

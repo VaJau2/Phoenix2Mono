@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CXoNBg8wegzcev3VhtAzj+F4vdZbbO/Za9jFYQIUDyBiMPLHKK7fSo4LSxrYhGSX8C3j9XZzww1PWZzV2Rwl3w==",
+  "dgSpecHash": "2D2Gt3oCka4llb1bGMMtyyS5giGPRCimIFkkofij/p5d/D/Hc8eJB8dR4kxVEFPHx1vMla0eFQCJw+W+ggdxig==",
   "success": true,
-  "projectFilePath": "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.0\\microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\Godot\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

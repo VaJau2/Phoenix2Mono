@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
+    "D:\\Godot\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {}
   },
   "projects": {
-    "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
+    "D:\\Godot\\Phoenix2Mono\\Phoenix 2 Mono.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "projectUniqueName": "D:\\Godot\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
         "projectName": "Phoenix 2 Mono",
-        "projectPath": "A:\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "A:\\Phoenix2Mono\\.mono\\temp\\obj\\",
+        "projectPath": "D:\\Godot\\Phoenix2Mono\\Phoenix 2 Mono.csproj",
+        "packagesPath": "C:\\Users\\Compuhter\\.nuget\\packages\\",
+        "outputPath": "D:\\Godot\\Phoenix2Mono\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Compuhter\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
@@ -24,6 +24,7 @@
         },
         "frameworks": {
           "net472": {
+            "targetAlias": "net472",
             "projectReferences": {}
           }
         },
@@ -35,14 +36,8 @@
       },
       "frameworks": {
         "net472": {
-          "dependencies": {
-            "Microsoft.NETFramework.ReferenceAssemblies": {
-              "target": "Package",
-              "version": "[1.0.0, )",
-              "autoReferenced": true
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

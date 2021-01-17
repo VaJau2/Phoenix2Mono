@@ -28,8 +28,8 @@ public class PlayerSpawner : Spatial
 
         var playerPrefab = GD.Load<PackedScene>(path);
         var newPlayer = (Player)playerPrefab.Instance();
-        newPlayer.clothCode = clothCode;
-        newPlayer.ItemCodes = itemCodes;
+        newPlayer.inventory.cloth = clothCode;
+        newPlayer.inventory.Items = itemCodes;
 
         SpawnPlayer(newPlayer);
     }

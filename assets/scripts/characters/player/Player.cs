@@ -15,8 +15,7 @@ public class Player : Character
     const float SHAKE_TIME = 0.1f;
 
     //Переменные состояния
-    public Array<string> ItemCodes = new Array<string>();
-    public string clothCode = "empty";
+    public PlayerInventory inventory = new PlayerInventory();
 
     public bool MayMove = true;
     public bool IsCrouching;
@@ -110,9 +109,9 @@ public class Player : Character
     public void LoadBodyMesh() 
     {
         MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        LoadMesh(clothCode, "first", bodyMesh);
+        LoadMesh(inventory.cloth, "first", bodyMesh);
         MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
-        LoadMesh(clothCode, "third", bodyThirdMesh);
+        LoadMesh(inventory.cloth, "third", bodyThirdMesh);
         
         PlayerHead head = bodyThirdMesh as PlayerHead;
         head.FindFaceMaterial();

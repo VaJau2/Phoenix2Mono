@@ -34,6 +34,13 @@
         "icon": "toaster",
         "price": "40" 
     },
+    "key0": {
+        "name": "Ключ",
+        "description": "Железный ключ от какой-то двери",
+        "type": "staff",
+        "icon": "key0",
+        "price": "15" 
+    },
 
 
     "revolver32": {

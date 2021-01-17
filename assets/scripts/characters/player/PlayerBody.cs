@@ -284,7 +284,7 @@ public class PlayerBody : Spatial
             }
 
             //update shy when in coat
-            if(player.clothCode == "coat" && playerMakingShy) {
+            if(player.inventory.cloth == "coat" && playerMakingShy) {
                 if (shyCooldown > 0) {
                     shyCooldown -= delta;
                 } else {

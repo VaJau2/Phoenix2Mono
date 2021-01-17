@@ -52,8 +52,8 @@ public class InventoryMenu : Control
 
         for (int i = 0; i < itemIcons.Count; i++) {
             ItemIcon temp = itemIcons[i] as ItemIcon;
-            if (player.ItemCodes.Count > i) {
-                temp.SetItem(player.ItemCodes[i]);
+            if (player.inventory.Items.Count > i) {
+                temp.SetItem(player.inventory.Items[i]);
             } else {
                 temp.ClearItem();
             }
