@@ -5,29 +5,39 @@ public class ItemIcon : ColorRect
 {
     private Control selected;
     private TextureRect icon;
+    private Label bindLabel;
     private InventoryMenu menu;
 
-    public string myItemCode {get; private set;} = null;
+    public string myItemCode = null;
 
-    public int myItemNumber {get; private set;} = -1;
+    public StreamTexture GetIcon() 
+    {
+        return (StreamTexture)icon.Texture;
+    }
 
-    public void SetItem(string itemCode, int itemNumber = -1)
+    public void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
+
+
+    public void SetItem(string itemCode)
     {
         myItemCode = itemCode;
-        myItemNumber = itemNumber;
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         string path = "assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
-        icon.Texture = newIcon;
+        SetIcon(newIcon);
     }
 
     public void ClearItem()
     {
         myItemCode = null;
-        myItemNumber = -1;
         icon.Texture = null;
         _on_itemIcon_mouse_exited();
     }
+
+    public void SetBindText(string text) {
+        bindLabel.Text = text;
+    }
+
 
     public override void _Ready()
     {
@@ -38,19 +48,19 @@ public class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_entered()
     {
-        if (myItemCode != null) {
+        if (myItemCode != null && !menu.isDragging) {
             selected.Visible = true;
             icon.Modulate = Colors.Black;
-            menu.SetTempIcon(this);
+            menu.SetTempButton(this);
         }
     }
 
     public void _on_itemIcon_mouse_exited()
     {
-        if (selected.Visible) {
+        if (selected.Visible && !menu.isDragging) {
             selected.Visible = false;
             icon.Modulate = Colors.White;
-            menu.SetTempIcon(null);
+            menu.SetTempButton(null);
         }
     }
 }

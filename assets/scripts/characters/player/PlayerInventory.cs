@@ -1,31 +1,29 @@
 using Godot;
 using Godot.Collections;
 
-public class PlayerInventory 
-{
+public class PlayerInventory {
     Player player;
-    public Array<string> Items = new Array<string>();
-
     public string weapon = "";
     public string cloth = "empty";
     public string artifact = "";
 
-    public void SetPlayer(Player player) {
-        this.player = player;
-    }
+    private Array<string> tempKeys = new Array<string>();
 
-    public Array<string> GetKeys() 
+    public void AddKey(string key) 
     {
-        Array<string> tempKeys = new Array<string>();
-
-        foreach(string item in Items) {
-            if (item.Contains("key")) {
-                tempKeys.Add(item);
-            }
+        if (!tempKeys.Contains(key)) {
+            tempKeys.Add(key);
         }
-
-        return tempKeys;
     }
+
+    public void RemoveKey(string key) {
+        if (tempKeys.Contains(key)) {
+            tempKeys.Remove(key);
+        }
+    }
+
+    public Array<string> GetKeys() => tempKeys;
+
 
     public Dictionary GetArmorProps() 
     {
@@ -40,9 +38,10 @@ public class PlayerInventory
     public bool itemIsUsable(string itemType) {
         return itemType != "staff";
     }
-
-    public void UseItem(int itemNumber, Dictionary itemData)
+    
+    public void UseItem(string itemCode)
     {
+        Dictionary itemData = ItemJSON.GetItemData(itemCode);
         if(itemData.Contains("sound")) {
             string path = "res://assets/audio/item/" + itemData["sound"].ToString() + ".wav";
             var sound = GD.Load<AudioStreamSample>(path);
@@ -50,11 +49,12 @@ public class PlayerInventory
             player.GetAudi().Stream = sound;
             player.GetAudi().Play();
         }
-        Items.RemoveAt(itemNumber);
     }
 
-    public void DropItem(int itemNumber)
+    public void LoadItems(Player player, Array<string> items) 
     {
-        GD.Print("dropping item...");
+        this.player = player;
+        var menu = player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        menu.LoadItemButtons(items);
     }
 }

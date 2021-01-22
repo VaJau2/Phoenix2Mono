@@ -16,19 +16,49 @@ public class InventoryMenu : Control
 
     private bool isOpen = false;
     private bool isAnimating = false;
+    public bool isDragging {get; private set;} = false;
 
-    private ItemIcon tempIcon;
+    private ItemIcon tempButton;
     private Dictionary tempItemData;
-    private Array itemIcons = new Array();
-
+    private Array<ItemIcon> itemButtons = new Array<ItemIcon>();
+    private Dictionary<int, int> bindedButtons = new Dictionary<int, int>();
+    //key = key, value = button id
     private Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
-    public void SetTempIcon(ItemIcon newIcon)
+    
+    private float dragTimer = 0;
+    private TextureRect dragIcon;
+
+    public ItemIcon FirstEmptyButton {
+        get {
+            foreach(ItemIcon button in itemButtons) {
+                if (button.myItemCode == null) {
+                    return button;
+                }
+            }
+            return null;
+        }
+    }
+
+    public void AddNewItem(string itemCode) {
+        ItemIcon emptyButton = FirstEmptyButton;
+        if (emptyButton != null) {
+            emptyButton.SetItem(itemCode);
+        }
+        
+        if (itemCode.Contains("key")) {
+            PlayerInventory inventory = Global.Get().player.inventory;
+            inventory.AddKey(itemCode);
+        }
+    }
+
+    public void SetTempButton(ItemIcon newIcon)
     {
-        tempIcon = newIcon;
+        tempButton = newIcon;
         if (newIcon != null) {
             itemInfo.Visible = true;
-            tempItemData = ItemJSON.GetItemData(newIcon.myItemCode);
+            string itemCode = newIcon.myItemCode;
+            tempItemData = ItemJSON.GetItemData(itemCode);
             itemName.Text = tempItemData["name"].ToString();
             itemDesc.Text = tempItemData["description"].ToString();
             itemProps.Text = GetItemPropsString(tempItemData);
@@ -41,6 +71,75 @@ public class InventoryMenu : Control
             itemInfo.Visible = false;
             tempItemData = new Dictionary();
         }
+    }
+
+    private bool ItemIsBindable(string itemType) 
+    {
+        return itemType == "weapon" || itemType == "food" || itemType == "meds";
+    }
+
+    private int GetButtonID(ItemIcon button) 
+    {
+        for (int i = 0; i < itemButtons.Count; i++) {
+            if (itemButtons[i] == button) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void BindHotkeys() 
+    {
+        if (tempButton.myItemCode != null) {
+            if (ItemIsBindable(tempItemData["type"].ToString())) {
+                int tempButtonId = GetButtonID(tempButton);
+
+                for (int i = 0; i < 10; i++) {
+                    if (Input.IsKeyPressed(48 + i)) {
+                        //если клавиша уже забиндена
+                        if (bindedButtons.Keys.Contains(i)) {
+                            //если нажата та же кнопка, она стирается
+                            if (bindedButtons[i] == tempButtonId) {
+                                tempButton.SetBindText(null);
+                                bindedButtons.Remove(i);
+                            } else {
+                            //если на ту же кнопку биндится другая кнопка, предыдущая стирается
+                                ItemIcon oldBindedButton = itemButtons[bindedButtons[i]];
+                                oldBindedButton.SetBindText(null);
+                                bindedButtons[i] = tempButtonId;
+                                tempButton.SetBindText(i.ToString());
+                            }
+                        } else {
+                            //если кнопка биндится впервые
+                            bindedButtons[i] = tempButtonId;
+                            tempButton.SetBindText(i.ToString());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void UseHotkeys() 
+    {
+        for (int i = 0; i < 10; i++) {
+            if (Input.IsKeyPressed(48 + i) && bindedButtons.Keys.Contains(i)) {
+                tempButton = itemButtons[bindedButtons[i]];
+                //TODO
+                //сделать вызов метода UseItem
+            }
+        }
+    }
+
+    private void DropItem()
+    {
+        if (tempButton.myItemCode.Contains("key")) {
+            PlayerInventory inventory = Global.Get().player.inventory;
+            inventory.RemoveKey(tempButton.myItemCode);
+        }
+
+        tempButton.ClearItem();
+        tempButton = null;
     }
 
     private string GetItemPropsString(Dictionary itemProps)
@@ -61,25 +160,44 @@ public class InventoryMenu : Control
         return result;
     }
 
-    private void UpdateItemIcons()
+    public void LoadItemButtons(Array<string> newItems)
     {
-        PlayerInventory inventory = Global.Get().player.inventory;
-
-        for (int i = 0; i < itemIcons.Count; i++) {
-            ItemIcon temp = itemIcons[i] as ItemIcon;
-            if (inventory.Items.Count > i) {
-                temp.SetItem(inventory.Items[i], i);
-            } else {
-                temp.ClearItem();
-            }
+        for (int i = 0; i < newItems.Count; i++) {
+            AddNewItem(newItems[i]);
         }
     }
 
     private void CheckTempIcon()
     {
-        if (tempIcon != null) {
-            tempIcon._on_itemIcon_mouse_exited();
-            tempIcon = null;
+        if (tempButton != null) {
+            tempButton._on_itemIcon_mouse_exited();
+            tempButton = null;
+        }
+    }
+
+    private bool checkMouseInButton(Control button) 
+    {
+        var mouse = button.GetLocalMousePosition();
+        return mouse.x >= 0 && mouse.x <= button.RectSize.x 
+            && mouse.y >= 0 && mouse.y <= button.RectSize.y;
+    }
+
+    private void CheckDragItem() 
+    {
+        foreach(ItemIcon otherButton in itemButtons) {
+            Control buttonControl = otherButton as Control;
+            if(tempButton != otherButton && checkMouseInButton(buttonControl)) {
+                if (otherButton.myItemCode == null) {
+                    otherButton.SetItem(tempButton.myItemCode);
+                    tempButton.ClearItem();
+                    tempButton = otherButton;
+                    dragIcon.Texture = null;
+                } else {
+                    var tempItemCode = tempButton.myItemCode;
+                    tempButton.SetItem(otherButton.myItemCode);
+                    otherButton.SetItem(tempItemCode);
+                }
+            }
         }
     }
 
@@ -90,12 +208,10 @@ public class InventoryMenu : Control
             tempLabel.Text = InterfaceLang.GetPhrase("inventory", "labels", labelName);
         }
     }
-
     
     private async void OpenMenu(bool showWear = true) 
     {
         LoadLabels();
-        UpdateItemIcons();
 
         back.Visible = true;
         isAnimating = true;
@@ -136,15 +252,18 @@ public class InventoryMenu : Control
 
     public override void _Ready() 
     {
-        back     = GetNode<Control>("back");
-        wearBack = GetNode<Control>("back/wearBack");
-        itemIcons = GetNode<Control>("back/items").GetChildren(); 
+        back        = GetNode<Control>("back");
+        wearBack    = GetNode<Control>("back/wearBack");
+        foreach(object button in GetNode<Control>("back/items").GetChildren()) {
+            itemButtons.Add(button as ItemIcon); 
+        }
 
         itemInfo = GetNode<Control>("back/itemInfo");
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
         itemProps = itemInfo.GetNode<Label>("props");
         controlHints = itemInfo.GetNode<Label>("hints");
+        dragIcon = GetNode<TextureRect>("back/dragIcon");
 
         labels.Add("name", GetNode<Label>("back/Label"));
         labels.Add("money", GetNode<Label>("back/moneyLabel"));
@@ -167,16 +286,43 @@ public class InventoryMenu : Control
             }
         }
 
-        if (isOpen && @event is InputEventMouse && tempIcon != null) {
-            PlayerInventory inventory = Global.Get().player.inventory;
-
-            if (Input.IsMouseButtonPressed(1)) {
-                if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
-                    inventory.UseItem(tempIcon.myItemNumber, tempItemData);
-                    UpdateItemIcons();
+        if (isOpen && tempButton != null) {
+            if (Input.IsActionJustPressed("ui_click")) {
+                if (!isDragging) {
+                    dragIcon.Texture = tempButton.GetIcon();
+                    dragIcon.RectGlobalPosition = GetGlobalMousePosition();
+                    tempButton.SetIcon(null);
+                    isDragging = true;
                 }
-            } else if(Input.IsMouseButtonPressed(2)) {
-                inventory.DropItem(tempIcon.myItemNumber);
+            }
+            if (isDragging && @event is InputEventMouseMotion) {
+                if (dragTimer < 1) {
+                    dragTimer += 0.5f;
+                }
+                dragIcon.RectGlobalPosition = GetGlobalMousePosition();
+            }
+            if (Input.IsActionJustReleased("ui_click")) {
+                if (isDragging) {
+                    tempButton.SetIcon((StreamTexture)dragIcon.Texture);
+                    dragIcon.Texture = null;
+                    dragIcon.RectGlobalPosition = Vector2.Zero;
+                    isDragging = false;
+                }
+
+                if (dragTimer >= 1) {
+                    dragTimer = 0;
+                    CheckDragItem();
+                    return;
+                }
+
+                PlayerInventory inventory = Global.Get().player.inventory;
+                if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
+                    inventory.UseItem(tempButton.myItemCode);
+                }
+            }
+
+            if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) {
+                DropItem();
             }
         }
     }

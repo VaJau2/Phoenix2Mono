@@ -80,6 +80,20 @@ public class Player : Character
         }
     }
 
+    public void LoadBodyMesh() 
+    {
+        MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
+        LoadMesh(inventory.cloth, "first", bodyMesh);
+        MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        LoadMesh(inventory.cloth, "third", bodyThirdMesh);
+        
+        PlayerHead head = bodyThirdMesh as PlayerHead;
+        head.FindFaceMaterial();
+
+        Body = GetNode<PlayerBody>("player_body");
+        Body.SetHead(head);
+    }
+
     private void LoadMesh(string clothName, string viewName, MeshInstance meshInstance) 
     {
         //определяем название расы по текущей Race
@@ -106,19 +120,7 @@ public class Player : Character
         meshInstance.Mesh = loadedMesh;
     }
 
-    public void LoadBodyMesh() 
-    {
-        MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        LoadMesh(inventory.cloth, "first", bodyMesh);
-        MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
-        LoadMesh(inventory.cloth, "third", bodyThirdMesh);
-        
-        PlayerHead head = bodyThirdMesh as PlayerHead;
-        head.FindFaceMaterial();
-
-        Body = GetNode<PlayerBody>("player_body");
-        Body.SetHead(head);
-    }
+   
 
     private void HandleImpulse() 
     {
@@ -396,8 +398,6 @@ public class Player : Character
         BaseSpeed = 15;
         BaseRecoil = 2;
         SetStartHealth(100);
-        inventory.SetPlayer(this);
-
         LoadBodyMesh();
         Stealth = GetNode<PlayerStealth>("stealth");
         Weapons = GetNode<PlayerWeapons>("gun_shape");
