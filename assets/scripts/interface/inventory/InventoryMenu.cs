@@ -199,11 +199,11 @@ public class InventoryMenu : Control
         oldButton.SetBindKey(newButton.GetBindKey());
         newButton.SetBindKey(tempBind);
 
-        if (oldButton.GetBindKey() != null) {
+        if (oldButton.GetBindKey() != "") {
             int keyId = int.Parse(oldButton.GetBindKey());
             bindedButtons[keyId] = GetButtonID(oldButton);
         }
-        if (newButton.GetBindKey() != null) {
+        if (newButton.GetBindKey() != "") {
             int keyId = int.Parse(newButton.GetBindKey());
             bindedButtons[keyId] = GetButtonID(newButton);
         }

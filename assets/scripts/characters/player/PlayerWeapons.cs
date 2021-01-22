@@ -664,12 +664,12 @@ public class PlayerWeapons: CollisionShape
             }
 
             //обработка смены оружия (проходим циклом по всем типам)
-            int typeI = 0;
-            foreach(WeaponTypes tempType in System.Enum.GetValues(typeof(WeaponTypes))) {
-                int key = ZERO_NUM_KEY + typeI;
-                checkInputKey(key, tempType);
-                typeI++;
-            }
+            //int typeI = 0;
+            // foreach(WeaponTypes tempType in System.Enum.GetValues(typeof(WeaponTypes))) {
+            //     int key = ZERO_NUM_KEY + typeI;
+            //     checkInputKey(key, tempType);
+            //     typeI++;
+            // }
 
             if (changeWeaponCooldown > 0) {
                 changeWeaponCooldown -= delta;
