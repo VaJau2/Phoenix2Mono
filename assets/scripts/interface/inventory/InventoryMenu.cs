@@ -52,21 +52,23 @@ public class InventoryMenu : Control
         }
     }
 
-    public void SetTempButton(ItemIcon newIcon)
+    public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
-        tempButton = newIcon;
-        if (newIcon != null) {
-            itemInfo.Visible = true;
-            string itemCode = newIcon.myItemCode;
+        tempButton = newButton;
+        if (newButton != null) {
+            string itemCode = newButton.myItemCode;
             tempItemData = ItemJSON.GetItemData(itemCode);
-            itemName.Text = tempItemData["name"].ToString();
-            itemDesc.Text = tempItemData["description"].ToString();
-            itemProps.Text = GetItemPropsString(tempItemData);
-            controlHints.Text = InterfaceLang.GetPhrase(
-                "inventory", 
-                "inventoryControlHints", 
-                tempItemData["type"].ToString()
-            );
+            if (showInfo) {
+                itemInfo.Visible = true;
+                itemName.Text = tempItemData["name"].ToString();
+                itemDesc.Text = tempItemData["description"].ToString();
+                itemProps.Text = GetItemPropsString(tempItemData);
+                controlHints.Text = InterfaceLang.GetPhrase(
+                    "inventory", 
+                    "inventoryControlHints", 
+                    tempItemData["type"].ToString()
+                );
+            }
         } else {
             itemInfo.Visible = false;
             tempItemData = new Dictionary();
@@ -80,12 +82,7 @@ public class InventoryMenu : Control
 
     private int GetButtonID(ItemIcon button) 
     {
-        for (int i = 0; i < itemButtons.Count; i++) {
-            if (itemButtons[i] == button) {
-                return i;
-            }
-        }
-        return -1;
+        return itemButtons.IndexOf(button);
     }
 
     private void BindHotkeys() 
@@ -100,19 +97,19 @@ public class InventoryMenu : Control
                         if (bindedButtons.Keys.Contains(i)) {
                             //если нажата та же кнопка, она стирается
                             if (bindedButtons[i] == tempButtonId) {
-                                tempButton.SetBindText(null);
+                                tempButton.SetBindKey(null);
                                 bindedButtons.Remove(i);
                             } else {
                             //если на ту же кнопку биндится другая кнопка, предыдущая стирается
                                 ItemIcon oldBindedButton = itemButtons[bindedButtons[i]];
-                                oldBindedButton.SetBindText(null);
+                                oldBindedButton.SetBindKey(null);
                                 bindedButtons[i] = tempButtonId;
-                                tempButton.SetBindText(i.ToString());
+                                tempButton.SetBindKey(i.ToString());
                             }
                         } else {
                             //если кнопка биндится впервые
                             bindedButtons[i] = tempButtonId;
-                            tempButton.SetBindText(i.ToString());
+                            tempButton.SetBindKey(i.ToString());
                         }
                     }
                 }
@@ -124,14 +121,27 @@ public class InventoryMenu : Control
     {
         for (int i = 0; i < 10; i++) {
             if (Input.IsKeyPressed(48 + i) && bindedButtons.Keys.Contains(i)) {
-                tempButton = itemButtons[bindedButtons[i]];
-                //TODO
-                //сделать вызов метода UseItem
+                SetTempButton(itemButtons[bindedButtons[i]], false);
+                UseTempItem();
             }
         }
     }
 
-    private void DropItem()
+    private void UseTempItem()
+    {
+        PlayerInventory inventory = Global.Get().player.inventory;
+        if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
+            inventory.UseItem(tempButton.myItemCode);
+            RemoveTempItem();
+        }
+    }
+
+    private void DropTempItem() 
+    {
+        RemoveTempItem();
+    }
+
+    private void RemoveTempItem()
     {
         if (tempButton.myItemCode.Contains("key")) {
             PlayerInventory inventory = Global.Get().player.inventory;
@@ -182,21 +192,41 @@ public class InventoryMenu : Control
             && mouse.y >= 0 && mouse.y <= button.RectSize.y;
     }
 
+    private void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    {
+        //меняем местами бинды клавиш на кнопках
+        string tempBind = oldButton.GetBindKey();
+        oldButton.SetBindKey(newButton.GetBindKey());
+        newButton.SetBindKey(tempBind);
+
+        if (oldButton.GetBindKey() != null) {
+            int keyId = int.Parse(oldButton.GetBindKey());
+            bindedButtons[keyId] = GetButtonID(oldButton);
+        }
+        if (newButton.GetBindKey() != null) {
+            int keyId = int.Parse(newButton.GetBindKey());
+            bindedButtons[keyId] = GetButtonID(newButton);
+        }
+        
+        //меняем местами вещи на кнопках
+        if (newButton.myItemCode == null) {
+            newButton.SetItem(oldButton.myItemCode);
+            oldButton.ClearItem();
+        } else {
+            var tempItemCode = oldButton.myItemCode;
+            oldButton.SetItem(newButton.myItemCode);
+            newButton.SetItem(tempItemCode);
+        }
+    }
+
     private void CheckDragItem() 
     {
         foreach(ItemIcon otherButton in itemButtons) {
             Control buttonControl = otherButton as Control;
             if(tempButton != otherButton && checkMouseInButton(buttonControl)) {
-                if (otherButton.myItemCode == null) {
-                    otherButton.SetItem(tempButton.myItemCode);
-                    tempButton.ClearItem();
-                    tempButton = otherButton;
-                    dragIcon.Texture = null;
-                } else {
-                    var tempItemCode = tempButton.myItemCode;
-                    tempButton.SetItem(otherButton.myItemCode);
-                    otherButton.SetItem(tempItemCode);
-                }
+                ChangeItemButtons(tempButton, otherButton);
+                SetTempButton(otherButton, false);
+                dragIcon.Texture = null;
             }
         }
     }
@@ -252,8 +282,8 @@ public class InventoryMenu : Control
 
     public override void _Ready() 
     {
-        back        = GetNode<Control>("back");
-        wearBack    = GetNode<Control>("back/wearBack");
+        back     = GetNode<Control>("back");
+        wearBack = GetNode<Control>("back/wearBack");
         foreach(object button in GetNode<Control>("back/items").GetChildren()) {
             itemButtons.Add(button as ItemIcon); 
         }
@@ -287,15 +317,12 @@ public class InventoryMenu : Control
         }
 
         if (isOpen && tempButton != null) {
-            if (Input.IsActionJustPressed("ui_click")) {
+            if (Input.IsActionPressed("ui_click") && @event is InputEventMouseMotion) {
                 if (!isDragging) {
                     dragIcon.Texture = tempButton.GetIcon();
-                    dragIcon.RectGlobalPosition = GetGlobalMousePosition();
                     tempButton.SetIcon(null);
                     isDragging = true;
                 }
-            }
-            if (isDragging && @event is InputEventMouseMotion) {
                 if (dragTimer < 1) {
                     dragTimer += 0.5f;
                 }
@@ -315,15 +342,19 @@ public class InventoryMenu : Control
                     return;
                 }
 
-                PlayerInventory inventory = Global.Get().player.inventory;
-                if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
-                    inventory.UseItem(tempButton.myItemCode);
-                }
+                UseTempItem();
             }
 
             if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) {
-                DropItem();
+                DropTempItem();
             }
+
+            if (@event is InputEventKey) {
+                BindHotkeys();
+            }
+        }
+        if(@event is InputEventKey && tempButton == null) {
+            UseHotkeys();
         }
     }
 }

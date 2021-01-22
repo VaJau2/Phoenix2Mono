@@ -32,18 +32,23 @@ public class ItemIcon : ColorRect
         myItemCode = null;
         icon.Texture = null;
         _on_itemIcon_mouse_exited();
+        SetBindKey(null);
     }
 
-    public void SetBindText(string text) {
+    public void SetBindKey(string text) {
         bindLabel.Text = text;
     }
 
+    public string GetBindKey() {
+        return bindLabel.Text;
+    }
 
     public override void _Ready()
     {
-        selected = GetNode<Control>("selected");
-        icon     = GetNode<TextureRect>("icon");
-        menu     = GetNode<InventoryMenu>("../../../");
+        selected  = GetNode<Control>("selected");
+        icon      = GetNode<TextureRect>("icon");
+        menu      = GetNode<InventoryMenu>("../../../");
+        bindLabel = GetNode<Label>("bindLabel");
     }
 
     public void _on_itemIcon_mouse_entered()

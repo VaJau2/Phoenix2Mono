@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/scripts/interface/inventory/ItemIcon.cs" type="Script" id=1]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
 
 [node name="itemIcon" type="ColorRect"]
 margin_right = 42.0
@@ -85,5 +86,12 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="bindLabel" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 9.0
+margin_bottom = 16.0
+theme = ExtResource( 2 )
 [connection signal="mouse_entered" from="icon" to="." method="_on_itemIcon_mouse_entered"]
 [connection signal="mouse_exited" from="icon" to="." method="_on_itemIcon_mouse_exited"]
