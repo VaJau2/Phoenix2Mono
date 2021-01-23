@@ -6,17 +6,26 @@ public class ItemIcon : ColorRect
     private Control selected;
     private TextureRect icon;
     private Label bindLabel;
+    private Label countLabel;
     private InventoryMenu menu;
 
     public string myItemCode {get; private set;} = null;
 
-    public StreamTexture GetIcon() 
-    {
-        return (StreamTexture)icon.Texture;
-    }
+    public StreamTexture GetIcon() => (StreamTexture)icon.Texture;
 
     public void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
 
+    public int GetCount() => int.Parse(countLabel.Text);
+
+    public void SetCount(int count = 0) 
+    { 
+        if (count > 0) {
+            countLabel.Text = count.ToString();
+        } else {
+            countLabel.Text = "0";
+            countLabel.Visible = false;
+        }
+    }
 
     public void SetItem(string itemCode)
     {
@@ -25,6 +34,14 @@ public class ItemIcon : ColorRect
         string path = "assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
         SetIcon(newIcon);
+        
+        string itemType = itemData["type"].ToString();
+        countLabel.Visible = (itemType == "ammo");
+        if (itemType == "ammo") {
+            Player player = Global.Get().player;
+            string ammoType = itemData["ammoType"].ToString();
+            player.inventory.SetAmmoButton(ammoType, this);
+        }
     }
 
     public void ClearItem()
@@ -33,6 +50,7 @@ public class ItemIcon : ColorRect
         icon.Texture = null;
         _on_itemIcon_mouse_exited();
         SetBindKey("");
+        SetCount();
     }
 
     public void SetBindKey(string text) {
@@ -45,10 +63,11 @@ public class ItemIcon : ColorRect
 
     public override void _Ready()
     {
-        selected  = GetNode<Control>("selected");
-        icon      = GetNode<TextureRect>("icon");
-        menu      = GetNode<InventoryMenu>("../../../");
-        bindLabel = GetNode<Label>("bindLabel");
+        selected = GetNode<Control>("selected");
+        icon     = GetNode<TextureRect>("icon");
+        menu     = GetNode<InventoryMenu>("../../../");
+        bindLabel  = GetNode<Label>("bindLabel");
+        countLabel = GetNode<Label>("countLabel");
     }
 
     public void _on_itemIcon_mouse_entered()

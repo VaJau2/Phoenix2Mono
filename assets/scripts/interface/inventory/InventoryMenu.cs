@@ -44,16 +44,20 @@ public class InventoryMenu : Control
         }
     }
 
-    public void AddNewItem(string itemCode) {
+    public ItemIcon AddNewItem(string itemCode) {
         ItemIcon emptyButton = FirstEmptyButton;
         if (emptyButton != null) {
             emptyButton.SetItem(itemCode);
+
+            if (itemCode.Contains("key")) {
+                PlayerInventory inventory = Global.Get().player.inventory;
+                inventory.AddKey(itemCode);
+            }
+        } else {
+            inventory.MessageNotEnoughSpace();
         }
         
-        if (itemCode.Contains("key")) {
-            PlayerInventory inventory = Global.Get().player.inventory;
-            inventory.AddKey(itemCode);
-        }
+        return emptyButton;
     }
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
@@ -130,7 +134,7 @@ public class InventoryMenu : Control
         if (itemType == "artifact" && inventory.artifact != "") {
             Dictionary artifactData = ItemJSON.GetItemData(inventory.artifact);
             if (artifactData.Contains("cantUnwear")) {
-                inventory.MessaageCantUnwear(artifactData["name"].ToString());
+                inventory.MessageCantUnwear(artifactData["name"].ToString());
                 return false;
             }
         }
@@ -225,10 +229,14 @@ public class InventoryMenu : Control
         return result;
     }
 
-    public void LoadItemButtons(Array<string> newItems)
+    public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
         for (int i = 0; i < newItems.Count; i++) {
             AddNewItem(newItems[i]);
+        }
+        foreach(string ammoItem in ammo.Keys) {
+            ItemIcon newAmmoButton = AddNewItem(ammoItem);
+            newAmmoButton.SetCount(ammo[ammoItem]);
         }
     }
 
@@ -262,6 +270,11 @@ public class InventoryMenu : Control
             int keyId = int.Parse(newButton.GetBindKey());
             bindedButtons[keyId] = newButton;
         }
+
+        //меняем местами количество предметов (если это патроны)
+        int tempCount = oldButton.GetCount();
+        oldButton.SetCount(newButton.GetCount());
+        newButton.SetCount(tempCount);
         
         //меняем местами вещи на кнопках
         if (newButton.myItemCode == null) {

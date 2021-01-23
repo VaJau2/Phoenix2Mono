@@ -51,9 +51,82 @@
         "price": "100",
         "damage": "20",
         "shootDistance": "80",
+        "cooldown": "0.5",
         "recoil": "1",
         "ammoType": "32",
         "sound": "weapon"
+    },
+    "pistol10-silenced": {
+        "name": "10мм пистолет с глушителем",
+        "description": "Идеальный вариант для любителей бесшумных убийств",
+        "type": "weapon",
+        "icon": "pistol10-silenced",
+        "price": "350",
+        "damage": "30",
+        "shootDistance": "80",
+        "cooldown": "0.7",
+        "recoil": "2",
+        "ammoType": "10",
+        "sound": "weapon"
+    },
+    "shotgun12": {
+        "name": "12мм дробовик",
+        "description": "Наносит огромное количество урона в ближнем бою",
+        "type": "weapon",
+        "icon": "shotgun12",
+        "price": "1100",
+        "damage": "110",
+        "shootDistance": "40",
+        "cooldown": "2",
+        "recoil": "0.5",
+        "ammoType": "12",
+        "sound": "weapon"
+    },
+    "sniper307": {
+        "name": "Снайперская винтовка кал. 307",
+        "description": "Как вообще пользоваться этим снайперским прицелом?",
+        "type": "weapon",
+        "icon": "sniper307",
+        "price": "800",
+        "damage": "70",
+        "shootDistance": "200",
+        "cooldown": "1.6",
+        "recoil": "1",
+        "ammoType": "307",
+        "sound": "weapon"
+    },
+
+    "ammo32": {
+        "name": "Патроны кал. 32",
+        "description": "Дешевые пистолетные патроны небольшого калибра",
+        "type": "ammo",
+        "icon": "ammo",
+        "ammoType": "32",
+        "price": "1" 
+    },
+    "ammo10": {
+        "name": "10мм патроны",
+        "description": "Пистолетные патроны довольно большого калибра",
+        "type": "ammo",
+        "icon": "ammo",
+        "ammoType": "10",
+        "price": "2" 
+    },
+    "ammo12": {
+        "name": "Патроны кал. 12",
+        "description": "Мощные ружейные патроны для дробовиков",
+        "type": "ammo",
+        "icon": "ammo",
+        "ammoType": "12",
+        "price": "4" 
+    },
+    "ammo307": {
+        "name": "Патроны кал. 307",
+        "description": "Патроны для винтовок",
+        "type": "ammo",
+        "icon": "ammo",
+        "ammoType": "307",
+        "price": "5" 
     },
 
 

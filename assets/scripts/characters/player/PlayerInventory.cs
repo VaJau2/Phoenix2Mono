@@ -10,10 +10,22 @@ public class PlayerInventory {
 
     private Array<string> tempKeys = new Array<string>();
 
+    //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
+    public Dictionary<string, ItemIcon> ammoButtons {get; private set;} = new Dictionary<string, ItemIcon>();
+
     public PlayerInventory(Player player, Messages messages) 
     {
         this.player = player;
         this.messages = messages;
+    }
+    
+    public void SetAmmoButton(string ammoType, ItemIcon button)
+    {
+        if (ammoButtons.ContainsKey(ammoType)) {
+            ammoButtons[ammoType] = button;
+        } else {
+            ammoButtons.Add(ammoType, button);
+        }
     }
 
     public void AddKey(string key) 
@@ -43,7 +55,7 @@ public class PlayerInventory {
     }
 
     public bool itemIsUsable(string itemType) {
-        return itemType != "staff";
+        return itemType != "staff" && itemType != "ammo";
     }
 
     public void UseItem(Dictionary itemData)
@@ -98,15 +110,20 @@ public class PlayerInventory {
         }
     }
 
-    public void MessaageCantUnwear(string itemName) 
+    public void MessageCantUnwear(string itemName) 
     {
         messages.ShowMessage("cantUnwear", itemName, "items");
     }
 
-    public void LoadItems(Array<string> items) 
+    public void MessageNotEnoughSpace()
+    {
+        messages.ShowMessage("notSpace", "items", 2.5f);
+    }
+
+    public void LoadItems(Array<string> items, Dictionary<string, int> ammo) 
     {
         var menu = player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-        menu.LoadItemButtons(items);
+        menu.LoadItemButtons(items, ammo);
     }
 
     private void SoundUsingItem(Dictionary itemData) 

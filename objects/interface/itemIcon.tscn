@@ -93,5 +93,15 @@ margin_top = 1.0
 margin_right = 9.0
 margin_bottom = 16.0
 theme = ExtResource( 2 )
+
+[node name="countLabel" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -8.0
+margin_bottom = 15.0
+grow_horizontal = 0
+theme = ExtResource( 2 )
+text = "0"
 [connection signal="mouse_entered" from="icon" to="." method="_on_itemIcon_mouse_entered"]
 [connection signal="mouse_exited" from="icon" to="." method="_on_itemIcon_mouse_exited"]

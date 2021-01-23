@@ -6,6 +6,9 @@ public class PlayerSpawner : Spatial
     [Export]
     public Array<string> itemCodes = new Array<string>();
     [Export]
+    public Dictionary<string, int> ammo = new Dictionary<string, int>();
+
+    [Export]
     public string clothCode;
    
 
@@ -37,7 +40,7 @@ public class PlayerSpawner : Spatial
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
-        player.inventory.LoadItems(itemCodes);
+        player.inventory.LoadItems(itemCodes, ammo);
 
         QueueFree();
     }
