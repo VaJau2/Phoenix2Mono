@@ -8,7 +8,7 @@ public class ItemIcon : ColorRect
     private Label bindLabel;
     private InventoryMenu menu;
 
-    public string myItemCode = null;
+    public string myItemCode {get; private set;} = null;
 
     public StreamTexture GetIcon() 
     {
@@ -32,7 +32,7 @@ public class ItemIcon : ColorRect
         myItemCode = null;
         icon.Texture = null;
         _on_itemIcon_mouse_exited();
-        SetBindKey(null);
+        SetBindKey("");
     }
 
     public void SetBindKey(string text) {

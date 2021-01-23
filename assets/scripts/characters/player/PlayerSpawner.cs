@@ -37,7 +37,7 @@ public class PlayerSpawner : Spatial
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
-        player.inventory.LoadItems(player, itemCodes);
+        player.inventory.LoadItems(itemCodes);
 
         QueueFree();
     }

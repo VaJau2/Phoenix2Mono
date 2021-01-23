@@ -2,12 +2,19 @@ using Godot;
 using Godot.Collections;
 
 public class PlayerInventory {
+    Messages messages;
     Player player;
     public string weapon = "";
     public string cloth = "empty";
     public string artifact = "";
 
     private Array<string> tempKeys = new Array<string>();
+
+    public PlayerInventory(Player player, Messages messages) 
+    {
+        this.player = player;
+        this.messages = messages;
+    }
 
     public void AddKey(string key) 
     {
@@ -23,7 +30,7 @@ public class PlayerInventory {
     }
 
     public Array<string> GetKeys() => tempKeys;
-
+    
 
     public Dictionary GetArmorProps() 
     {
@@ -38,10 +45,41 @@ public class PlayerInventory {
     public bool itemIsUsable(string itemType) {
         return itemType != "staff";
     }
-    
-    public void UseItem(string itemCode)
+
+    public void UseItem(Dictionary itemData)
+    {
+        SoundUsingItem(itemData);
+
+        switch(itemData["type"]) {
+            case "food":
+                player.HealHealth(int.Parse(itemData["heal"].ToString()));
+                messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
+                break;
+        }
+    }
+
+    public void WearItem(string itemCode)
     {
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
+        SoundUsingItem(itemData);
+        messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
+    }
+
+    public void UnwearItem(string itemCode)
+    {
+        Dictionary itemData = ItemJSON.GetItemData(itemCode);
+        SoundUsingItem(itemData);
+        messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
+    }
+
+    public void LoadItems(Array<string> items) 
+    {
+        var menu = player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        menu.LoadItemButtons(items);
+    }
+
+    private void SoundUsingItem(Dictionary itemData) 
+    {
         if(itemData.Contains("sound")) {
             string path = "res://assets/audio/item/" + itemData["sound"].ToString() + ".wav";
             var sound = GD.Load<AudioStreamSample>(path);
@@ -49,12 +87,5 @@ public class PlayerInventory {
             player.GetAudi().Stream = sound;
             player.GetAudi().Play();
         }
-    }
-
-    public void LoadItems(Player player, Array<string> items) 
-    {
-        this.player = player;
-        var menu = player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-        menu.LoadItemButtons(items);
     }
 }

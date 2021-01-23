@@ -21,13 +21,17 @@ public class InventoryMenu : Control
     private ItemIcon tempButton;
     private Dictionary tempItemData;
     private Array<ItemIcon> itemButtons = new Array<ItemIcon>();
-    private Dictionary<int, int> bindedButtons = new Dictionary<int, int>();
-    //key = key, value = button id
+    private ItemIcon weaponButton;
+    private ItemIcon armorButton;
+    private ItemIcon artifactButton;
+    private Dictionary<int, ItemIcon> bindedButtons = new Dictionary<int, ItemIcon>();
+    //key = key, value = button
     private Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
     
     private float dragTimer = 0;
     private TextureRect dragIcon;
+    private PlayerInventory inventory => Global.Get().player.inventory;
 
     public ItemIcon FirstEmptyButton {
         get {
@@ -80,35 +84,28 @@ public class InventoryMenu : Control
         return itemType == "weapon" || itemType == "food" || itemType == "meds";
     }
 
-    private int GetButtonID(ItemIcon button) 
-    {
-        return itemButtons.IndexOf(button);
-    }
-
     private void BindHotkeys() 
     {
         if (tempButton.myItemCode != null) {
             if (ItemIsBindable(tempItemData["type"].ToString())) {
-                int tempButtonId = GetButtonID(tempButton);
-
                 for (int i = 0; i < 10; i++) {
                     if (Input.IsKeyPressed(48 + i)) {
                         //если клавиша уже забиндена
                         if (bindedButtons.Keys.Contains(i)) {
                             //если нажата та же кнопка, она стирается
-                            if (bindedButtons[i] == tempButtonId) {
+                            if (bindedButtons[i] == tempButton) {
                                 tempButton.SetBindKey(null);
                                 bindedButtons.Remove(i);
                             } else {
                             //если на ту же кнопку биндится другая кнопка, предыдущая стирается
-                                ItemIcon oldBindedButton = itemButtons[bindedButtons[i]];
+                                ItemIcon oldBindedButton = bindedButtons[i];
                                 oldBindedButton.SetBindKey(null);
-                                bindedButtons[i] = tempButtonId;
+                                bindedButtons[i] = tempButton;
                                 tempButton.SetBindKey(i.ToString());
                             }
                         } else {
                             //если кнопка биндится впервые
-                            bindedButtons[i] = tempButtonId;
+                            bindedButtons[i] = tempButton;
                             tempButton.SetBindKey(i.ToString());
                         }
                     }
@@ -121,19 +118,56 @@ public class InventoryMenu : Control
     {
         for (int i = 0; i < 10; i++) {
             if (Input.IsKeyPressed(48 + i) && bindedButtons.Keys.Contains(i)) {
-                SetTempButton(itemButtons[bindedButtons[i]], false);
+                SetTempButton(bindedButtons[i], false);
                 UseTempItem();
+            }
+        }
+    }
+
+    private void WearTempItem(ItemIcon wearButton)
+    {
+        //если вещь надевается
+        if (tempButton != wearButton) {
+            //если уже надета другая вещь
+            if (wearButton.myItemCode != null) {
+                inventory.UnwearItem(wearButton.myItemCode);
+            }
+            ChangeItemButtons(tempButton, wearButton);
+            inventory.WearItem(wearButton.myItemCode);
+        } //если вещь снимается 
+        else {
+            ItemIcon otherButton = FirstEmptyButton;
+            //если в инвентаре есть место
+            if (otherButton != null) {
+                inventory.UnwearItem(wearButton.myItemCode);
+                ChangeItemButtons(wearButton, otherButton);
+            } else {
+                DropTempItem();
             }
         }
     }
 
     private void UseTempItem()
     {
-        PlayerInventory inventory = Global.Get().player.inventory;
-        if (inventory.itemIsUsable(tempItemData["type"].ToString())) {
-            inventory.UseItem(tempButton.myItemCode);
-            RemoveTempItem();
+        string itemType = tempItemData["type"].ToString();
+        if (inventory.itemIsUsable(itemType)) {
+            switch(itemType) {
+                case "weapon":
+                    WearTempItem(weaponButton);
+                    break;
+                case "armor":
+                    WearTempItem(armorButton);
+                    break;
+                case "artifact":
+                    WearTempItem(artifactButton);
+                    break;
+                default:
+                    inventory.UseItem(tempItemData);
+                    RemoveTempItem();
+                    break;
+            }
         }
+        tempButton = null;
     }
 
     private void DropTempItem() 
@@ -146,6 +180,10 @@ public class InventoryMenu : Control
         if (tempButton.myItemCode.Contains("key")) {
             PlayerInventory inventory = Global.Get().player.inventory;
             inventory.RemoveKey(tempButton.myItemCode);
+        }
+        if (tempButton.GetBindKey() != "") {
+            int keyId = int.Parse(tempButton.GetBindKey());
+            bindedButtons.Remove(keyId);
         }
 
         tempButton.ClearItem();
@@ -201,11 +239,11 @@ public class InventoryMenu : Control
 
         if (oldButton.GetBindKey() != "") {
             int keyId = int.Parse(oldButton.GetBindKey());
-            bindedButtons[keyId] = GetButtonID(oldButton);
+            bindedButtons[keyId] = oldButton;
         }
         if (newButton.GetBindKey() != "") {
             int keyId = int.Parse(newButton.GetBindKey());
-            bindedButtons[keyId] = GetButtonID(newButton);
+            bindedButtons[keyId] = newButton;
         }
         
         //меняем местами вещи на кнопках
@@ -219,11 +257,33 @@ public class InventoryMenu : Control
         }
     }
 
+    private bool isUnwearingItem(string itemType)
+    {
+        return (itemType == "weapon" && tempButton == weaponButton)
+        || (itemType == "armor" && tempButton == armorButton)
+        || (itemType == "artifact" && tempButton == artifactButton);
+    }
+
     private void CheckDragItem() 
     {
+        string itemType = tempItemData["type"].ToString();
+
+        if (itemType == "weapon" && checkMouseInButton(weaponButton)) {
+            WearTempItem(weaponButton); return;
+        }
+        if (itemType == "armor" && checkMouseInButton(armorButton)) {
+            WearTempItem(armorButton); return;
+        }
+        if (itemType == "artifact" && checkMouseInButton(artifactButton)) {
+            WearTempItem(artifactButton); return;
+        }
         foreach(ItemIcon otherButton in itemButtons) {
             Control buttonControl = otherButton as Control;
             if(tempButton != otherButton && checkMouseInButton(buttonControl)) {
+                if(isUnwearingItem(itemType)) {
+                    inventory.UnwearItem(tempButton.myItemCode);
+                }
+
                 ChangeItemButtons(tempButton, otherButton);
                 SetTempButton(otherButton, false);
                 dragIcon.Texture = null;
@@ -282,11 +342,14 @@ public class InventoryMenu : Control
 
     public override void _Ready() 
     {
-        back     = GetNode<Control>("back");
-        wearBack = GetNode<Control>("back/wearBack");
         foreach(object button in GetNode<Control>("back/items").GetChildren()) {
             itemButtons.Add(button as ItemIcon); 
         }
+        back     = GetNode<Control>("back");
+        wearBack = GetNode<Control>("back/wearBack");
+        weaponButton    = wearBack.GetNode<ItemIcon>("weapon");
+        armorButton     = wearBack.GetNode<ItemIcon>("armor");
+        artifactButton  = wearBack.GetNode<ItemIcon>("artifact");
 
         itemInfo = GetNode<Control>("back/itemInfo");
         itemName = itemInfo.GetNode<Label>("name");

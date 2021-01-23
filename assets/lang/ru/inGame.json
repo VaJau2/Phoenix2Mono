@@ -11,10 +11,11 @@
     },
 
     "items": {
-        "healthEnough": "Вы и так здоровы",
-        "notSpace": "Нет места",
-        
-        "key_test": "Подобран тестовый ключ"
+        "useItem": "Использовано: ",
+        "useFood": "Съедено: ",
+        "wearItem": "Надето: ",
+        "unwearItem": "Снято: ",
+        "notSpace": "Нет места"
     },
 
     "cameraHints": {

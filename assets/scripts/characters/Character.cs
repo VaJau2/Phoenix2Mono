@@ -33,6 +33,11 @@ public class Character : KinematicBody
         decreaseHealth(damage);
     }
 
+    public virtual void HealHealth(int healing)
+    {
+        decreaseHealth(-healing);
+    }
+
     public void MakeDamage(Character victim, int shapeID = 0) {
         victim.TakeDamage(GetDamage(), shapeID);
     }

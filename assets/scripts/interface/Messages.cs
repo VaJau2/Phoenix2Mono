@@ -2,7 +2,7 @@ using Godot;
 
 public class Messages: VBoxContainer {
     Global global = Global.Get();
-    const float HINT_TIMER = 3f;
+    const float HINT_TIMER = 2.5f;
     [Export]
     public Theme tempTheme;
 
@@ -19,24 +19,46 @@ public class Messages: VBoxContainer {
         label.QueueFree();
     }
 
-    /// <summary>
-    /// Все фразы лежат в lang/inGame.json
-    /// </summary>
-    public void ShowMessage(string phraseLink, string sectionLink = "messages", float timer = HINT_TIMER) {
+    private Label ShowLabel(string text) 
+    {
         var tempLabel = new Label();
         tempLabel.Autowrap = true;
-        tempLabel.Text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
+        tempLabel.Text = text;
         tempLabel.Theme = tempTheme;
         tempLabel.Align = Label.AlignEnum.Left;
         AddChild(tempLabel);
+        return tempLabel;
+    }
+
+    // Все фразы лежат в lang/inGame.json
+    public void ShowMessage(
+        string phraseLink,
+        string sectionLink = "messages", 
+        float timer = HINT_TIMER
+    ) 
+    {
+        string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
+        var tempLabel = ShowLabel(text);
+        waitAndDissapear(tempLabel, timer);
+    }
+
+    public void ShowMessage(
+        string phraseLink, 
+        string addMessage, 
+        string sectionLink = "messages", 
+        float timer = HINT_TIMER
+    )
+    {
+        string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
+        var tempLabel = ShowLabel(text + addMessage);
         waitAndDissapear(tempLabel, timer);
     }
 
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("task")) {
-            ShowMessage("tasksHeader", "tasks");
-            ShowMessage(currentTaskLink, "tasks");
+            ShowMessage("tasksHeader", "tasks", 3);
+            ShowMessage(currentTaskLink, "tasks", 3);
         }
     }
 }

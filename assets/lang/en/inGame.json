@@ -11,10 +11,11 @@
     },
 
     "items": {
-        "healthEnough": "Your health is full already",
-        "notSpace": "Not enough space",
-
-        "key_test": "Picked test key"
+        "useItem": "Use: ",
+        "useFood": "Eat: ",
+        "wearItem": "Wear: ",
+        "unwearItem": "Unwear: ",
+        "notSpace": "Not enough space"
     },
 
     "cameraHints": {

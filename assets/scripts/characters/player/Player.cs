@@ -15,7 +15,7 @@ public class Player : Character
     const float SHAKE_TIME = 0.1f;
 
     //Переменные состояния
-    public PlayerInventory inventory = new PlayerInventory();
+    public PlayerInventory inventory;
 
     public bool MayMove = true;
     public bool IsCrouching;
@@ -394,6 +394,8 @@ public class Player : Character
     public override void _Ready()
     {
         global.player = this;
+        var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        inventory = new PlayerInventory(this, messages);
 
         BaseSpeed = 15;
         BaseRecoil = 2;
