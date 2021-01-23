@@ -15,6 +15,7 @@
         "useFood": "Съедено: ",
         "wearItem": "Надето: ",
         "unwearItem": "Снято: ",
+        "cantUnwear": "Невозможно снять: ",
         "notSpace": "Нет места"
     },
 

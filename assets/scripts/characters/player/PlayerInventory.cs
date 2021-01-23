@@ -71,6 +71,10 @@ public class PlayerInventory {
                 player.LoadBodyMesh();
                 CheckSpeed(itemData);
                 break;
+            case "artifact":
+                artifact = itemCode;
+                player.LoadArtifactMesh(itemCode);
+                break;
         }
     }
 
@@ -87,7 +91,16 @@ public class PlayerInventory {
                 CheckSpeed(itemData, -1);
                 if (changeModel) player.LoadBodyMesh();
                 break;
+            case "artifact":
+                artifact = "";
+                if (changeModel) player.LoadArtifactMesh();
+                break;
         }
+    }
+
+    public void MessaageCantUnwear(string itemName) 
+    {
+        messages.ShowMessage("cantUnwear", itemName, "items");
     }
 
     public void LoadItems(Array<string> items) 

@@ -65,6 +65,7 @@
         "price": "550",
         "damageBlock": "0.5",
         "speedDecrease": "3",
+        "makeShy": "true",
         "sound": "coat"
     },
     "stealth-armor": {
@@ -87,6 +88,15 @@
         "icon": "bow-tie-ribbon",
         "price": "5",
         "sound": "socks"
+    },
+    "collar": {
+        "name": "Collar",
+        "description": "Uncomfortable metal collar, strongly chafing the neck. I can't take it off without a key.",
+        "type": "artifact",
+        "icon": "collar",
+        "price": "0",
+        "cantUnwear": "true",
+        "sound": "collar"
     },
 
 

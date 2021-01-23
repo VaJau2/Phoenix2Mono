@@ -65,7 +65,7 @@
         "price": "550",
         "damageBlock": "0.5",
         "speedDecrease": "3",
-        "makeShy": "1",
+        "makeShy": "true",
         "sound": "coat"
     },
     "stealth-armor": {
@@ -88,6 +88,15 @@
         "icon": "bow-tie-ribbon",
         "price": "5",
         "sound": "socks"
+    },
+    "collar": {
+        "name": "Ошейник",
+        "description": "Неудобный металлический ошейник, сильно натирающий шею. Без ключа его не снять.",
+        "type": "artifact",
+        "icon": "collar",
+        "price": "0",
+        "cantUnwear": "true",
+        "sound": "collar"
     },
 
 

@@ -15,6 +15,7 @@
         "useFood": "Eat: ",
         "wearItem": "Wear: ",
         "unwearItem": "Unwear: ",
+        "cantUnwear": "Can't take off: ",
         "notSpace": "Not enough space"
     },
 

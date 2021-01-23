@@ -82,10 +82,10 @@ public class Player : Character
 
     public void LoadBodyMesh() 
     {
-        MeshInstance bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        LoadMesh(inventory.cloth, "first", bodyMesh);
-        MeshInstance bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
-        LoadMesh(inventory.cloth, "third", bodyThirdMesh);
+        var bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
+        LoadClothMesh(inventory.cloth, "first", bodyMesh);
+        var bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        LoadClothMesh(inventory.cloth, "third", bodyThirdMesh);
         
         PlayerHead head = bodyThirdMesh as PlayerHead;
         head.FindFaceMaterial();
@@ -94,7 +94,7 @@ public class Player : Character
         Body.SetHead(head);
     }
 
-    private void LoadMesh(string clothName, string viewName, MeshInstance meshInstance) 
+    private void LoadClothMesh(string clothName, string viewName, MeshInstance meshInstance) 
     {
         //определяем название расы по текущей Race
         //(у единорогов от первого лица нет своей модельки)
@@ -120,7 +120,19 @@ public class Player : Character
         meshInstance.Mesh = loadedMesh;
     }
 
-   
+    public void LoadArtifactMesh(string artifactName = null)
+    {
+        var artifact = GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
+        artifact.Visible = artifactName != null;
+
+        if (artifactName != null) {
+            string path = "res://assets/models/player_variants/artifacts/" + artifactName + "/";
+            Mesh loadedMesh = GD.Load<Mesh>(path + "mesh.res");
+            Skin loadedSkin = GD.Load<Skin>(path + "skin.res");
+            artifact.Mesh = loadedMesh;
+            artifact.Skin = loadedSkin;
+        }
+    }
 
     private void HandleImpulse() 
     {

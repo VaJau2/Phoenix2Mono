@@ -124,18 +124,35 @@ public class InventoryMenu : Control
         }
     }
 
+    private bool canTakeItemOff() 
+    {
+        string itemType = tempItemData["type"].ToString();
+        if (itemType == "artifact" && inventory.artifact != "") {
+            Dictionary artifactData = ItemJSON.GetItemData(inventory.artifact);
+            if (artifactData.Contains("cantUnwear")) {
+                inventory.MessaageCantUnwear(artifactData["name"].ToString());
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
     private void WearTempItem(ItemIcon wearButton)
     {
         //если вещь надевается
         if (tempButton != wearButton) {
             //если уже надета другая вещь
             if (wearButton.myItemCode != null) {
+                if (!canTakeItemOff()) return;
                 inventory.UnwearItem(wearButton.myItemCode, false);
             }
             ChangeItemButtons(tempButton, wearButton);
             inventory.WearItem(wearButton.myItemCode);
         } //если вещь снимается 
         else {
+            if (!canTakeItemOff()) return;
+
             ItemIcon otherButton = FirstEmptyButton;
             //если в инвентаре есть место
             if (otherButton != null) {
@@ -281,6 +298,7 @@ public class InventoryMenu : Control
             Control buttonControl = otherButton as Control;
             if(tempButton != otherButton && checkMouseInButton(buttonControl)) {
                 if(isUnwearingItem(itemType)) {
+                    if (!canTakeItemOff()) return;
                     inventory.UnwearItem(tempButton.myItemCode);
                 }
 
