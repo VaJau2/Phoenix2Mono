@@ -152,17 +152,10 @@ public class Player : Character
 
     public override int GetSpeed()
     {
-        int tempSpeed = BaseSpeed;
-
-        Dictionary armorProps = inventory.GetArmorProps();
-        if (armorProps.Contains("speedDecrease")) {
-            tempSpeed -= (int)armorProps["speedDecrease"];
-        }
-
         if (IsCrouching) {
-            return tempSpeed / 2;
+            return BaseSpeed / 2;
         }
-        return tempSpeed;
+        return BaseSpeed;
     }
 
     public override void TakeDamage(int damage, int shapeID = 0)

@@ -6,7 +6,7 @@ public class Character : KinematicBody
     public int Health {get; private set;}
     protected int HealthMax {get; private set;}
     protected float BaseDamageBlock; //от 0 до 1, процентное блокирование
-    protected int BaseSpeed;
+    public int BaseSpeed; //скорость берется каждый кадр, поэтому применяется сразу
     protected int BaseDamage;
     protected int BaseRecoil;
 

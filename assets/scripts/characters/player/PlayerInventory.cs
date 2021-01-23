@@ -62,14 +62,32 @@ public class PlayerInventory {
     {
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         SoundUsingItem(itemData);
+
         messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
+
+        switch(itemData["type"]) {
+            case "armor":
+                cloth = itemCode;
+                player.LoadBodyMesh();
+                CheckSpeed(itemData);
+                break;
+        }
     }
 
-    public void UnwearItem(string itemCode)
+    public void UnwearItem(string itemCode, bool changeModel = true)
     {
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         SoundUsingItem(itemData);
+
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
+
+        switch(itemData["type"]) {
+            case "armor":
+                cloth = "empty";
+                CheckSpeed(itemData, -1);
+                if (changeModel) player.LoadBodyMesh();
+                break;
+        }
     }
 
     public void LoadItems(Array<string> items) 
@@ -86,6 +104,14 @@ public class PlayerInventory {
             
             player.GetAudi().Stream = sound;
             player.GetAudi().Play();
+        }
+    }
+
+    private void CheckSpeed(Dictionary effects, int factor = 1)
+    {
+        if (effects.Contains("speedDecrease")) {
+            string speedEffect = effects["speedDecrease"].ToString();
+            player.BaseSpeed -= int.Parse(speedEffect) * factor;
         }
     }
 }

@@ -130,7 +130,7 @@ public class InventoryMenu : Control
         if (tempButton != wearButton) {
             //если уже надета другая вещь
             if (wearButton.myItemCode != null) {
-                inventory.UnwearItem(wearButton.myItemCode);
+                inventory.UnwearItem(wearButton.myItemCode, false);
             }
             ChangeItemButtons(tempButton, wearButton);
             inventory.WearItem(wearButton.myItemCode);
