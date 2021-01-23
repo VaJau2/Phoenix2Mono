@@ -11,10 +11,30 @@
 
     "inventoryControlHints": {
         "staff": "RMB - drop",
-        "weapon": "LMB - wear, RMB - drop, 1-4 - bind",
-        "armor": "LMB - wear, RMB - drop, 1-4 - bind",
-        "artifact": "LMB - wear, RMB - drop, 1-4 - bind",
-        "food": "LMB - eat, RMB - drop, 1-4 - bind",
-        "meds": "LMB - use, RMB - drop, 1-4 - bind"
+        "weapon": "LMB - wear, RMB - drop, 0-9 - bind",
+        "armor": "LMB - wear, RMB - drop",
+        "artifact": "LMB - wear, RMB - drop",
+        "food": "LMB - eat, RMB - drop, 0-9 - bind",
+        "meds": "LMB - use, RMB - drop, 0-9 - bind"
+    },
+
+    "itemProps": {
+        "price": "Price: ",
+        "damageBlock": "Damage block: ",
+        "speedDecrease": "- to speed: ",
+        "closeFov": "View close distance: ",
+        "shootDistPlus": "+ to shoot distance: ",
+
+        "damage": "Damage: ",
+        "shootDistance": "Shoot distance: ",
+        "recoil": "Recoil: ",
+        "ammoType": "Caliber: ",
+
+        "heal": "Heal: ",
+        "medsEffect": "Effect: "
+    },
+
+    "medsEffects": {
+        "heal": "60 sec. healing"
     }
 }

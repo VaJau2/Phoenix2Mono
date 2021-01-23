@@ -34,6 +34,13 @@
         "icon": "toaster",
         "price": "40"
     },
+    "key0": {
+        "name": "Key",
+        "description": "Iron key for some door",
+        "type": "staff",
+        "icon": "key0",
+        "price": "2" 
+    },
 
 
     "revolver32": {
@@ -45,7 +52,8 @@
         "damage": "20",
         "distance": "80",
         "recoil": "1",
-        "ammoType": "32"
+        "ammoType": "32",
+        "sound": "weapon"
     },
 
 
@@ -56,7 +64,19 @@
         "icon": "coat",
         "price": "550",
         "damageBlock": "0.5",
-        "speedDecrease": "3"
+        "speedDecrease": "3",
+        "sound": "coat"
+    },
+    "stealth-armor": {
+        "name": "Stealth armor",
+        "description": "Combination on light armor, bandage, headrope and cute stealth-socks guarantees the safety.",
+        "type": "armor",
+        "icon": "stealth-armor",
+        "price": "1100",
+        "damageBlock": "0.6",
+        "closeFov": "30",
+        "shootDistPlus": "15",
+        "sound": "armor"
     },
 
     
@@ -65,7 +85,8 @@
         "description": "It does not have any properties, it is cheap. But it looks nice с:",
         "type": "artifact",
         "icon": "bow-tie-ribbon",
-        "price": "5"
+        "price": "5",
+        "sound": "socks"
     },
 
 
@@ -75,7 +96,8 @@
         "type": "food",
         "icon": "maffin",
         "price": "20",
-        "heal": "15"
+        "heal": "15",
+        "sound": "eating1"
     },
 
 
@@ -85,6 +107,7 @@
         "type": "meds",
         "icon": "heal-potion",
         "price": "50",
-        "effect": "heal"
+        "effect": "heal",
+        "sound": "heal-potion"
     }
 }
