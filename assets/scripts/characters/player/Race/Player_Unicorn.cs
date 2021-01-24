@@ -40,7 +40,7 @@ public class Player_Unicorn : Player
     }
 
     public override Spatial GetWeaponParent(bool isPistol) {
-        return GetNode<Spatial>("levitation/weapons");
+        return GetNode<Spatial>("levitation/rotationHelper/weapons");
     }
 
     public override void SetWeaponOn(bool isPistol) {}
