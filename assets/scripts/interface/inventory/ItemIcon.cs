@@ -17,13 +17,17 @@ public class ItemIcon : ColorRect
 
     public int GetCount() => int.Parse(countLabel.Text);
 
-    public void SetCount(int count = 0) 
+    //если IsAmmo - false, то при нуле кнопка не очищается
+    public void SetCount(int count = 0, bool IsAmmo = true) 
     { 
         if (count > 0) {
             countLabel.Text = count.ToString();
         } else {
-            countLabel.Text = "0";
-            countLabel.Visible = false;
+            if (IsAmmo) {
+                ClearItem();
+            } else {
+                countLabel.Visible = false;
+            } 
         }
     }
 
@@ -39,18 +43,17 @@ public class ItemIcon : ColorRect
         countLabel.Visible = (itemType == "ammo");
         if (itemType == "ammo") {
             Player player = Global.Get().player;
-            string ammoType = itemData["ammoType"].ToString();
-            player.inventory.SetAmmoButton(ammoType, this);
+            player.inventory.SetAmmoButton(itemCode, this);
         }
     }
 
     public void ClearItem()
     {
-        myItemCode = null;
+        myItemCode   = null;
         icon.Texture = null;
-        _on_itemIcon_mouse_exited();
         SetBindKey("");
-        SetCount();
+        countLabel.Visible = false;
+        _on_itemIcon_mouse_exited();
     }
 
     public void SetBindKey(string text) {

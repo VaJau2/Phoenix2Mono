@@ -11,12 +11,21 @@ public class PlayerInventory {
     private Array<string> tempKeys = new Array<string>();
 
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
-    public Dictionary<string, ItemIcon> ammoButtons {get; private set;} = new Dictionary<string, ItemIcon>();
+    private Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
 
     public PlayerInventory(Player player, Messages messages) 
     {
         this.player = player;
         this.messages = messages;
+    }
+
+    public ItemIcon GetAmmoButton(string ammoType) 
+    {
+        if (ammoButtons.ContainsKey(ammoType)) {
+            return ammoButtons[ammoType];
+        } else {
+            return null;
+        }
     }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
@@ -78,6 +87,10 @@ public class PlayerInventory {
         messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
 
         switch(itemData["type"]) {
+            case "weapon":
+                weapon = itemCode;
+                player.Weapons.LoadNewWeapon(itemCode, itemData);
+                break;
             case "armor":
                 cloth = itemCode;
                 player.LoadBodyMesh();
@@ -98,6 +111,10 @@ public class PlayerInventory {
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
         switch(itemData["type"]) {
+            case "weapon":
+                weapon = "";
+                player.Weapons.ClearWeapon();
+                break;
             case "armor":
                 cloth = "empty";
                 CheckSpeed(itemData, -1);

@@ -26,14 +26,14 @@ public class PlayerThirdPerson : Spatial
     private bool mayChange = true;
 
 
-    private void setThirdView(bool on) 
+    private void SetThirdView(bool on) 
     {
         firstCamera.Current = !on;
         thirdCamera.Current = on;
         player.ThirdView = on;
         ray.Enabled = on;
         eyePartsInterface.Visible = !on;
-        player.Weapons.checkThirdView();
+        player.Weapons.СheckThirdView();
 
         Body.Visible = !on;
         if (!on) {
@@ -136,7 +136,7 @@ public class PlayerThirdPerson : Spatial
             third.y <= thirdMin.y &&
             third.z <= thirdMin.z) {
                 if (player.ThirdView) {
-                    setThirdView(false);
+                    SetThirdView(false);
                 }
             }
     }
@@ -144,7 +144,7 @@ public class PlayerThirdPerson : Spatial
     private void farCamera() 
     {
         if (!player.ThirdView) {
-            setThirdView(true);
+            SetThirdView(true);
             third = thirdMin;
             tempThird = third;
         }
@@ -178,7 +178,7 @@ public class PlayerThirdPerson : Spatial
             if (oldThird != Vector3.Zero) {
                 oldThird = Vector3.Zero;
             } else {
-                setThirdView(!player.ThirdView);
+                SetThirdView(!player.ThirdView);
             }
         }
 

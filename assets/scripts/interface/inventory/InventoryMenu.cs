@@ -273,8 +273,8 @@ public class InventoryMenu : Control
 
         //меняем местами количество предметов (если это патроны)
         int tempCount = oldButton.GetCount();
-        oldButton.SetCount(newButton.GetCount());
-        newButton.SetCount(tempCount);
+        oldButton.SetCount(newButton.GetCount(), false);
+        newButton.SetCount(tempCount, false);
         
         //меняем местами вещи на кнопках
         if (newButton.myItemCode == null) {

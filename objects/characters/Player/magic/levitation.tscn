@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/materials/weapon/result/magic.tres" type="Material" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 0.5, 0.5, 1 )
+gravity = Vector3( 0, 0.1, 0 )
+scale = 0.5
+scale_random = 1.0
+
+[sub_resource type="QuadMesh" id=2]
+material = ExtResource( 1 )
+size = Vector2( 0.1, 0.1 )
+
+[node name="levitation" type="Particles"]
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 2 )

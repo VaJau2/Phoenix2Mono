@@ -405,7 +405,6 @@ public class PlayerBody : Spatial
     {
         if (@event is InputEventMouseMotion && 
             Input.GetMouseMode() == Input.MouseMode.Captured) {
-
                 var mouseEvent = @event as InputEventMouseMotion;
                 float mouseSensivity = player.MouseSensivity;
                 float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;

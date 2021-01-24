@@ -15,8 +15,6 @@ public class Player : Character
     const float SHAKE_TIME = 0.1f;
 
     //Переменные состояния
-    public PlayerInventory inventory;
-
     public bool MayMove = true;
     public bool IsCrouching;
     public bool IsHitting;
@@ -35,6 +33,7 @@ public class Player : Character
     // - SoundSteps
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
+    public PlayerInventory inventory;
 
     private DamageEffects damageEffects;
     protected SoundSteps soundSteps;
@@ -49,7 +48,7 @@ public class Player : Character
     private CollisionShape sphereCollider;
     private CollisionShape bodyCollider;
 
-    public bool ThirdView;
+    public bool ThirdView = false;
     public bool BodyFollowsCamera;
     public bool BlockJump;
     public bool OnStairs = false;
@@ -78,6 +77,42 @@ public class Player : Character
             }
             return audi;
         }
+    }
+
+    public override int GetDamage()
+    {
+        int tempDamage = base.GetDamage();
+        if (inventory.weapon != "") {
+            tempDamage += Weapons.GetStatsInt("damage");
+        }
+        return tempDamage;
+    }
+
+    public virtual Spatial GetWeaponParent(bool isPistol)
+    {
+        if (isPistol) {
+            if (ThirdView) {
+                return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
+            } else {
+                return GetNode<Spatial>("rotation_helper/camera/weapons");
+            }
+        } else {
+            return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
+        }
+    }
+
+    public virtual void SetWeaponOn(bool isPistol)
+    {
+        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        bug.Visible = !isPistol;
+        BodyFollowsCamera = !isPistol;
+    }
+
+    public void SetWeaponOff()
+    {
+        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        bug.Visible = false;
+        BodyFollowsCamera = false;
     }
 
     public void LoadBodyMesh() 
@@ -404,6 +439,7 @@ public class Player : Character
 
         BaseSpeed = 15;
         BaseRecoil = 2;
+        BaseDamage = 0;
         SetStartHealth(100);
         LoadBodyMesh();
         Stealth = GetNode<PlayerStealth>("stealth");

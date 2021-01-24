@@ -53,6 +53,25 @@ public class PlayerLegs: Node
         backObjects = new List<PhysicsBody>();
     }
 
+    private int GetDamage()
+    {
+        int damage = 0;
+        if (tempFront) {
+            damage = FRONT_DAMAGE;
+            if (global.playerRace == Race.Earthpony) {
+                damage = EARTHPONY_FRONT_DAMAGE;
+            }
+            damage *= (int)hittingTimer;
+        } else {
+            damage = BACK_DAMAGE;
+            if (global.playerRace == Race.Earthpony) {
+                damage = EARTHPONY_BACK_DAMAGE;
+            }
+            damage *= (int)hittingTimer;
+        }
+        return damage;
+    }
+
 
     private void handleVictim(PhysicsBody victim, int damage)
     {
@@ -107,7 +126,7 @@ public class PlayerLegs: Node
     private async void finishHit()
     {
         stoppingHit = true;
-        if (tempFront && player.Weapons.IsNotRifle) {
+        if (tempFront && player.Weapons.isPistol) {
             player.BodyFollowsCamera = false;
         }
         player.Body.AnimateHitting(tempFront, '2');
@@ -119,22 +138,13 @@ public class PlayerLegs: Node
 
         await global.ToTimer(0.1f);
         audi.Stream = null;
+        var damage = GetDamage();
 
         if (tempFront) {
-            var damage = FRONT_DAMAGE;
-            if (global.playerRace == Race.Earthpony) {
-                damage = EARTHPONY_FRONT_DAMAGE;
-            }
-            damage *= (int)hittingTimer;
             foreach (PhysicsBody victim in frontObjects) {
                 handleVictim(victim, damage);
             }
         } else {
-            var damage = BACK_DAMAGE;
-            if (global.playerRace == Race.Earthpony) {
-                damage = EARTHPONY_BACK_DAMAGE;
-            }
-            damage *= (int)hittingTimer;
             foreach (PhysicsBody victim in backObjects){
                 handleVictim(victim, damage);
             }

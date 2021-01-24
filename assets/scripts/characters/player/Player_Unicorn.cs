@@ -39,6 +39,12 @@ public class Player_Unicorn : Player
         hornMagic.Emitting = emit;
     }
 
+    public override Spatial GetWeaponParent(bool isPistol) {
+        return GetNode<Spatial>("levitation/weapons");
+    }
+
+    public override void SetWeaponOn(bool isPistol) {}
+
     public override void _Ready()
     {
         base._Ready();
