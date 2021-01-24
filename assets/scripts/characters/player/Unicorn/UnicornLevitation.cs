@@ -9,15 +9,17 @@ public class UnicornLevitation : Particles
 
     Spatial rotationHelper;
     Spatial weaponNode;
-    Player player;
+    Player_Unicorn player;
 
     float tempHeight;
     bool moveUp = false;
     bool weaponClose = false;
 
+    bool magicIsEmitting = false;
+
     public override void _Ready()
     {
-        player = GetParent<Player>();
+        player = GetParent<Player_Unicorn>();
         rotationHelper = GetNode<Spatial>("rotationHelper");
         weaponNode = GetNode<Spatial>("rotationHelper/weapons");
     }
@@ -26,12 +28,19 @@ public class UnicornLevitation : Particles
     {
         Emitting = player.Weapons.GunOn;
         if (player.Weapons.GunOn) {
+            player.SetMagicEmit(true);
+            magicIsEmitting = true;
             AnimateUpDown();
             UpdateWeaponNode(delta);
 
             Vector3 oldRot = rotationHelper.Rotation;
             oldRot.x = player.RotationHelper.Rotation.x;
             rotationHelper.Rotation = oldRot;
+        } else {
+            if (magicIsEmitting) {
+                magicIsEmitting = false;
+                player.SetMagicEmit(false);
+            }
         }
     }
 

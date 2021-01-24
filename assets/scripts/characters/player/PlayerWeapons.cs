@@ -322,7 +322,7 @@ public class PlayerWeapons: CollisionShape
             var tempDistance = GetStatsInt("shootDistance");
             Dictionary armorProps = player.inventory.GetArmorProps();
             if (armorProps.Contains("shootDistPlus")) {
-                tempDistance += (int)armorProps["shootDistPlus"];
+                tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
             }
             var tempRay = EnableHeadRay(tempDistance);
 
