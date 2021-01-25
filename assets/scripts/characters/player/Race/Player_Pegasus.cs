@@ -2,7 +2,7 @@ using Godot;
 
 public class Player_Pegasus : Player
 {
-    const float FLYING_FAST_SMASH_COOLDOWN = 1f;
+    const float FLYING_FAST_SMASH_COOLDOWN = 0.5f;
     const float FLY_SPEED = 2.5f;
     public bool IsFlying = false;
     public bool IsFlyingFast = false;

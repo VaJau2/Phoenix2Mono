@@ -179,7 +179,7 @@
         "type": "food",
         "icon": "maffin",
         "price": "20",
-        "heal": "15",
+        "heal": "5",
         "sound": "eating1"
     },
 

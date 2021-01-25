@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" type="Script" id=1]
+
+[node name="EffectIcon" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -993.0
+margin_bottom = -569.0
+rect_min_size = Vector2( 31, 31 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.5
+margin_top = -15.5
+margin_right = 14.5
+margin_bottom = 14.5
+rect_min_size = Vector2( 30, 30 )
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="icon" type="TextureRect" parent="back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="ColorRect" parent="back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -30.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

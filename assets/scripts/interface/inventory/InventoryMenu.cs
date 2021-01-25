@@ -400,7 +400,7 @@ public class InventoryMenu : Control
     public override void _Input(InputEvent @event)
     {
         if (!isAnimating && @event is InputEventKey) {
-            if (Input.IsActionJustPressed("ui_focus_next")) {
+            if (Input.IsActionJustPressed("inventory")) {
                 if (isOpen) {
                     CloseMenu();
                 } 

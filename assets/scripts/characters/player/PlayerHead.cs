@@ -4,7 +4,7 @@ using System;
 public class PlayerHead : MeshInstance
 {
     const float SHY_TIMER = 10f;
-    private static string path = "res://assets/textures/player/";
+    private static string path = "res://assets/textures/player/emotions/";
     private StreamTexture openEyes = GD.Load<StreamTexture>(path + "player_body.png");
     private StreamTexture closeEyes = GD.Load<StreamTexture>(path + "player_body_closed_eyes.png");
 

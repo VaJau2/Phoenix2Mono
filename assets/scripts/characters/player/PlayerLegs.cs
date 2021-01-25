@@ -126,7 +126,7 @@ public class PlayerLegs: Node
     private async void finishHit()
     {
         stoppingHit = true;
-        if (tempFront && player.Weapons.isPistol) {
+        if (tempFront && (player.Weapons.isPistol || !player.Weapons.GunOn)) {
             player.BodyFollowsCamera = false;
         }
         player.Body.AnimateHitting(tempFront, '2');

@@ -434,8 +434,7 @@ public class Player : Character
     public override void _Ready()
     {
         global.player = this;
-        var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        inventory = new PlayerInventory(this, messages);
+        inventory = new PlayerInventory(this);
 
         BaseSpeed = 15;
         BaseRecoil = 2;

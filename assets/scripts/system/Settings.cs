@@ -12,12 +12,6 @@ public class Settings
     {
         1024, 2048, 2560, 4096
     };
-    public int reflections = 3;
-    private int[] reflectionSettings = new int[] 
-    {
-        0, 30, 50, 90
-    };
-    public int reflectionVariantsCount {get; private set;}
 
     public float soundVolume {get; private set;}
     public float musicVolume {get; private set;}
@@ -56,11 +50,6 @@ public class Settings
         root.ShadowAtlasSize = tempShadowSetting;
     }
 
-    public int GetReflections() 
-    {
-        return reflectionSettings[reflections];
-    }
-
     public void SetFullscreen(bool on)
     {
         fullscreen = on;
@@ -70,7 +59,6 @@ public class Settings
     public Settings(Node menu) {
         root = menu.GetTree().Root;
         shadowVariantsCount = shadowSettings.Length - 1;
-        reflectionVariantsCount = reflectionSettings.Length - 1;
     }
 
     public void SaveSettings() 
@@ -85,7 +73,6 @@ public class Settings
         }
         config.SetValue("screen", "distance", distance);
         config.SetValue("screen", "shadows", shadows);
-        config.SetValue("screen", "reflections", reflections);
         config.SetValue("screen", "fullscreen", fullscreen);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
         var screenSize = OS.WindowSize;
@@ -117,7 +104,6 @@ public class Settings
             distance = (float)config.GetValue("screen", "distance");
             shadows = (int)config.GetValue("screen", "shadows");
             ChangeShadows(shadows);
-            reflections = (int)config.GetValue("screen", "reflections");
             var tempFullscreen = (bool)config.GetValue("screen", "fullscreen");
             SetFullscreen(tempFullscreen);
             InterfaceLang.LoadLanguage(config.GetValue("screen", "language").ToString());

@@ -68,7 +68,8 @@
         "getGun": "Set \"get gun\" button",
         "choseHit": "Set \"close hit\" button",
         "changeView": "Set \"change view\" button",
-        "seeTasks": "Set \"see tasks\" button"
+        "seeTasks": "Set \"see tasks\" button",
+        "inventory": "Set \"inventory\" button"
     },
     "controlLabels": {
         "forward": "Forward:",
@@ -83,6 +84,7 @@
         "getGun": "Get gun:",
         "choseHit": "Close hit:",
         "changeView": "Change view:",
-        "seeTasks": "See tasks:"
+        "seeTasks": "See tasks:",
+        "inventory": "Inventory:"
     }
 }

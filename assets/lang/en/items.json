@@ -50,9 +50,11 @@
         "icon": "revolver32",
         "price": "100",
         "damage": "20",
-        "distance": "80",
+        "shootDistance": "80",
+        "cooldown": "0.5",
         "recoil": "1",
-        "ammoType": "32",
+        "ammoType": "ammo32",
+        "isPistol": "true",
         "sound": "weapon"
     },
     "pistol10-silenced": {
@@ -61,11 +63,13 @@
         "type": "weapon",
         "icon": "pistol10-silenced",
         "price": "350",
-        "damage": "20",
+        "damage": "30",
         "shootDistance": "80",
         "cooldown": "0.7",
         "recoil": "2",
-        "ammoType": "10",
+        "ammoType": "ammo10",
+        "isPistol": "true",
+        "isSilence": "true",
         "sound": "weapon"
     },
     "shotgun12": {
@@ -78,7 +82,8 @@
         "shootDistance": "40",
         "cooldown": "2",
         "recoil": "0.5",
-        "ammoType": "12",
+        "ammoType": "ammo12",
+        "isShotgun": "true",
         "sound": "weapon"
     },
     "sniper307": {
@@ -91,8 +96,37 @@
         "shootDistance": "200",
         "cooldown": "1.6",
         "recoil": "1",
-        "ammoType": "307",
+        "ammoType": "ammo307",
         "sound": "weapon"
+    },
+
+    "ammo32": {
+        "name": ".32 ammo",
+        "description": "Cheap small-caliber pistol cartridges",
+        "type": "ammo",
+        "icon": "ammo32",
+        "price": "1" 
+    },
+    "ammo10": {
+        "name": ".10 ammo",
+        "description": "Pistol cartridges of a fairly large caliber",
+        "type": "ammo",
+        "icon": "ammo10",
+        "price": "2" 
+    },
+    "ammo12": {
+        "name": ".12 ammo",
+        "description": "Powerful weapon cartridges for shotguns",
+        "type": "ammo",
+        "icon": "ammo12",
+        "price": "4" 
+    },
+    "ammo307": {
+        "name": ".307 ammo",
+        "description": "Rifle cartridges",
+        "type": "ammo",
+        "icon": "ammo307",
+        "price": "5" 
     },
 
 
@@ -145,7 +179,7 @@
         "type": "food",
         "icon": "maffin",
         "price": "20",
-        "heal": "15",
+        "heal": "5",
         "sound": "eating1"
     },
 

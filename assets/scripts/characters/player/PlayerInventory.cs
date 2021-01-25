@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 
 public class PlayerInventory {
+    EffectHandler effects;
     Messages messages;
     Player player;
     public string weapon = "";
@@ -13,10 +14,11 @@ public class PlayerInventory {
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
     private Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
 
-    public PlayerInventory(Player player, Messages messages) 
+    public PlayerInventory(Player player) 
     {
         this.player = player;
-        this.messages = messages;
+        this.messages = player.GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        this.effects = player.GetNode<EffectHandler>("/root/Main/Scene/canvas/effects");
     }
 
     public ItemIcon GetAmmoButton(string ammoType) 
@@ -75,6 +77,11 @@ public class PlayerInventory {
             case "food":
                 player.HealHealth(int.Parse(itemData["heal"].ToString()));
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
+                break;
+            case "meds":
+                Effect newEffect = effects.GetEffectByName(itemData["medsEffect"].ToString());
+                effects.AddEffect(newEffect);
+                messages.ShowMessage("useItem", itemData["name"].ToString(), "items");
                 break;
         }
     }

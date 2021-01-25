@@ -79,6 +79,7 @@ public class SettingsMenu : MenuBase
             {"choseHit", GetNode<Label>("Controls/keyLegsLabel")},
             {"changeView", GetNode<Label>("Controls/keyCameraLabel")},
             {"seeTasks", GetNode<Label>("Controls/keyTaskLabel")},
+            {"inventory", GetNode<Label>("Controls/keyInventoryLabel")}
         };
     }
 
@@ -132,6 +133,7 @@ public class SettingsMenu : MenuBase
             case "legsHit": return GetNode<Label>("Controls/legsBack/edit");
             case "changeView": return GetNode<Label>("Controls/cameraBack/edit");
             case "task": return GetNode<Label>("Controls/taskBack/edit");
+            case "inventory": return GetNode<Label>("Controls/inventoryBack/edit");
         }
         return null;
     }
