@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 public class PlayerLegs: Node
 {
-    const int EARTHPONY_FRONT_DAMAGE = 40;
-    const int EARTHPONY_BACK_DAMAGE = 80;
-
-    const int FRONT_DAMAGE = 10;
-    const int BACK_DAMAGE = 25;
+    const int BACK_INCREASE = 2;
+    const int DOOR_OPEN_DAMAGE = 110;
 
     const float BACK_HIT_ANGLE = 60;
 
@@ -22,7 +19,7 @@ public class PlayerLegs: Node
 
     bool tempFront = false;
     bool stoppingHit = false;
-    float hittingTimer = 0;
+    float hittingTimer = 1;
     
     List<PhysicsBody> frontObjects;
     List<PhysicsBody> backObjects;
@@ -55,18 +52,11 @@ public class PlayerLegs: Node
 
     private int GetDamage()
     {
-        int damage = 0;
+        int damage = player.LegsDamage;
         if (tempFront) {
-            damage = FRONT_DAMAGE;
-            if (global.playerRace == Race.Earthpony) {
-                damage = EARTHPONY_FRONT_DAMAGE;
-            }
             damage *= (int)hittingTimer;
         } else {
-            damage = BACK_DAMAGE;
-            if (global.playerRace == Race.Earthpony) {
-                damage = EARTHPONY_BACK_DAMAGE;
-            }
+            damage *= BACK_INCREASE;
             damage *= (int)hittingTimer;
         }
         return damage;
@@ -75,6 +65,7 @@ public class PlayerLegs: Node
 
     private void handleVictim(PhysicsBody victim, int damage)
     {
+        GD.Print(damage);
         if (victim != null) {
             if (victim is Character) {
                 audi.Stream = hit;
@@ -101,7 +92,7 @@ public class PlayerLegs: Node
                             door.audi.Stream = materaiSounds["stone"];
                             door.audi.Play();
                         } else if(door.myKey != "" && 
-                            global.playerRace != Race.Earthpony) {
+                            damage < DOOR_OPEN_DAMAGE) {
                                 door.audi.Stream = materaiSounds["door"];
                                 door.audi.Play();
                         } else {
@@ -175,14 +166,14 @@ public class PlayerLegs: Node
 
         if (!player.IsHitting && player.MayMove && !playerRunningFlying) {
             if (Input.IsActionJustPressed("legsHit") && player.IsOnFloor()) {
-                hittingTimer = 0;
+                hittingTimer = 1;
                 tempFront = Mathf.Abs(player.Body.bodyRot) < BACK_HIT_ANGLE;
                 startHit();
             }
         }
         if (player.IsHitting) {
             if (hittingTimer < 5) {
-                hittingTimer += delta;
+                hittingTimer += 2 * delta;
             }
 
             if (!stoppingHit) {

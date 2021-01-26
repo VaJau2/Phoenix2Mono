@@ -9,7 +9,7 @@ public class HealEffect: Effect
 
     public HealEffect() 
     {
-        maxTime = 10;
+        maxTime = 60;
         badEffect = false;
     }
 

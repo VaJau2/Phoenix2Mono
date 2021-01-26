@@ -14,6 +14,7 @@ public class Player_Earthpony : Player
     {
         base._Ready();
         BaseRecoil = 0;
+        LegsDamage = 30;
         SetStartHealth(200);
     }
 

@@ -189,8 +189,62 @@
         "description": "Один из самых полезных предметов для каждого пони начиная с момента объявления войны зебрам",
         "type": "meds",
         "icon": "heal-potion",
-        "price": "50",
+        "price": "100",
         "medsEffect": "heal",
         "sound": "heal-potion"
+    },
+    "buck": {
+        "name": "Бак",
+        "description": "Таблетки, временно повышающие силу и выносливость. Вызывают зависимость",
+        "type": "meds",
+        "icon": "buck",
+        "price": "90",
+        "medsEffect": "buck",
+        "sound": "mentats"
+    },
+    "dash": {
+        "name": "Дэш",
+        "description": "Ингалятор, сильно повышающий скорость реакции. Вызывает зависимость",
+        "type": "meds",
+        "icon": "dash",
+        "price": "90",
+        "medsEffect": "dash",
+        "sound": "dash"
+    },
+    "hydra": {
+        "name": "Гидра",
+        "description": "Сильно повышает регенерацию клеток. Некоторое время после применения еда не будет восстанавливать здоровье",
+        "type": "meds",
+        "icon": "hydra",
+        "price": "50",
+        "medsEffect": "hydra",
+        "sound": "medX"
+    },
+    "med-x": {
+        "name": "Мед-Х",
+        "description": "Внутривенное обезболивающее. Временно лишает чувства боли и снижает получаемый урон. Вызывает зависимость",
+        "type": "meds",
+        "icon": "med-x",
+        "price": "80",
+        "medsEffect": "medX",
+        "sound": "medX"
+    },
+    "mentats": {
+        "name": "Ментаты",
+        "description": "Добавляют миру красок и позволяют почувствовать себя умнее, чем ты есть на самом деле. Вызывают зависимость",
+        "type": "meds",
+        "icon": "mentats",
+        "price": "90",
+        "medsEffect": "mentats",
+        "sound": "medX"
+    },
+    "rage": {
+        "name": "Рейдж",
+        "description": "Внутривенный наркотик, сильно повышающий уровень агрессии. Вызывает зависимость",
+        "type": "meds",
+        "icon": "rage",
+        "price": "90",
+        "medsEffect": "rage",
+        "sound": "medX"
     }
 }

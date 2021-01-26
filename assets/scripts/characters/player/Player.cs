@@ -19,6 +19,7 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsLying;
+    public int LegsDamage = 0;
 
     //Ссылки на классы игрока
     public Camera Camera {get; private set;}
@@ -439,6 +440,7 @@ public class Player : Character
         BaseSpeed = 15;
         BaseRecoil = 2;
         BaseDamage = 0;
+        LegsDamage = 10;
         SetStartHealth(100);
         LoadBodyMesh();
         Stealth = GetNode<PlayerStealth>("stealth");

@@ -180,7 +180,7 @@ public class PlayerWeapons: CollisionShape
         bool shakingProcess = true;
         while(shakingProcess) {
             if (shakeUp) {
-                float recoil = player.GetRecoil() + GetStatsFloat("recoil");
+                float recoil = player.BaseRecoil + GetStatsFloat("recoil");
                 if (tempShake < recoil) {
                     tempShake += SHAKE_SPEED;
                     Camera camera = player.GetViewport().GetCamera();
