@@ -1,22 +1,16 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public class PlayerHead : MeshInstance
 {
     const float SHY_TIMER = 10f;
     private static string path = "res://assets/textures/player/emotions/";
-    private StreamTexture openEyes = GD.Load<StreamTexture>(path + "player_body.png");
-    private StreamTexture closeEyes = GD.Load<StreamTexture>(path + "player_body_closed_eyes.png");
-
-    private StreamTexture openEyesSmiling = GD.Load<StreamTexture>(path + "player_body_smiling.png");
-    private StreamTexture closeEyesSmiling = GD.Load<StreamTexture>(path + "player_body_smiling_closed_eyes.png");
-
-    private StreamTexture openEyesShy = GD.Load<StreamTexture>(path + "player_body_shy.png");
-    private StreamTexture closedEyesShy = GD.Load<StreamTexture>(path + "player_body_shy_closed_eyes.png");
-
+    private Dictionary<string, StreamTexture> openEyes = new Dictionary<string, StreamTexture>();
+    private Dictionary<string, StreamTexture> closeEyes = new Dictionary<string, StreamTexture>();
     private SpatialMaterial bodyMaterial;
 
-    private bool smiling = false;
+    private string emotion = "empty";
     private bool eyesClosed = false;
     private float closedTimer = 5f;
     private float shyTimer = 0;
@@ -35,63 +29,101 @@ public class PlayerHead : MeshInstance
         }
     }
 
-    void ChangeMaterialTexture(StreamTexture texture)
+    public void CloseEyes() 
     {
-        bodyMaterial.DetailAlbedo = texture;
+        ChangeMaterialTexture(false);
+        closedTimer = 0.2f;
     }
 
-
-    void OpenEyes() {
-        if(shyTimer > 0) {
-            ChangeMaterialTexture(openEyesShy);
-        } else if (smiling) {
-            ChangeMaterialTexture(openEyesSmiling);
-        } else {
-            ChangeMaterialTexture(openEyes);
+    public void SmileOn() 
+    {
+        if(shyTimer <= 0 && emotion != "smile" && !isOnMeds) {
+            emotion = "smile";
+            ChangeMaterialTexture(!eyesClosed);
         }
+    }
+
+    public void SmileOff() 
+    {
+        if(shyTimer <= 0 && emotion == "smile" && !isOnMeds) {
+            emotion = "empty";
+            ChangeMaterialTexture(!eyesClosed);
+        }
+    }
+
+    public void ShyOn() 
+    {
+        if (shyTimer <= 0 && emotion != "shy" && !isOnMeds) {
+            emotion = "shy";
+            ChangeMaterialTexture(!eyesClosed);
+        }
+        shyTimer = SHY_TIMER;
+    }
+
+    public void MedsOn()
+    {
+        emotion = "meds";
+        ChangeMaterialTexture(!eyesClosed);
+    }
+
+    public void MedsAfterOn()
+    {
+        emotion = "meds_after";
+        ChangeMaterialTexture(!eyesClosed);
+    }
+
+    public void SetEmptyFace()
+    {
+        emotion = "empty";
+        ChangeMaterialTexture(!eyesClosed);
+    }
+
+    private bool isOnMeds 
+    {
+        get => emotion == "meds" || emotion == "meds_after";
+    }
+
+    private void ChangeMaterialTexture(bool eyesAreOpen)
+    {
+        StreamTexture newTexture;
+        if (eyesAreOpen) {
+            newTexture = openEyes[emotion];
+        } else {
+            newTexture = closeEyes[emotion];
+        }
+        bodyMaterial.DetailAlbedo = newTexture;
+    }
+
+    private void OpenEyes() 
+    {
+        ChangeMaterialTexture(true);
         closedTimer = (float)rand.Next(3, 6);
     }
 
-    public void CloseEyes() {
-        if(shyTimer > 0) {
-            ChangeMaterialTexture(closedEyesShy);
-            closedTimer = 0.15f;
-        } else if (smiling) {
-            ChangeMaterialTexture(closeEyesSmiling);
-            closedTimer = 0.5f;
-        } else {
-            ChangeMaterialTexture(closeEyes);
-            closedTimer = 0.3f;
+    private void ShyOff() 
+    {
+        if (shyTimer <= 0 && emotion == "shy") {
+            SetEmptyFace();
         }
     }
 
-    public void SmileOn() {
-        if(shyTimer <= 0 && !smiling) {
-            if(eyesClosed) {
-                ChangeMaterialTexture(closeEyesSmiling);
-            } else {
-                ChangeMaterialTexture(openEyesSmiling);
-            }
-            smiling = true;
-        }
-    }
 
-    public void SmileOff() {
-        if(shyTimer <= 0 && smiling) {
-            if(eyesClosed) {
-                ChangeMaterialTexture(closeEyes);
-            } else {
-                ChangeMaterialTexture(openEyes);
-            }
-            smiling = false;
-        }
-    }
+    public override void _Ready()
+    {
+        openEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body.png"));
+        closeEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body_closed_eyes.png"));
 
-    public void ShyOn() {
-        if (shyTimer <= 0) {
-            ChangeMaterialTexture(openEyesShy);
-        }
-        shyTimer = SHY_TIMER;
+        openEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling.png"));
+        closeEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling_closed_eyes.png"));
+
+        openEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy.png"));
+        closeEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy_closed_eyes.png"));
+
+        openEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds.png"));
+        closeEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds_closed_eyes.png"));
+
+        openEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after.png"));
+        closeEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after_closed_eyes.png"));
     }
 
     public override void _Process(float delta)
@@ -99,6 +131,8 @@ public class PlayerHead : MeshInstance
         if (Visible) {
             if (shyTimer > 0) {
                 shyTimer -= delta;
+            } else {
+                ShyOff();
             }
 
             if (closedTimer > 0) {

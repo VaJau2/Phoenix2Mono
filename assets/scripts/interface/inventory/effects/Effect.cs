@@ -6,21 +6,22 @@ public class Effect
 {
     protected string iconName;
     protected Effect postEffect = null;
+    protected float postEffectChance = 1f;
     protected EffectHandler handler;
     public float time {get; private set;}
     public float maxTime {get; protected set;}
-    public StreamTexture texture {get; private set;}
+    public string emotion {get; protected set;} = null;
+    public StreamTexture iconTexture {get; private set;}
     public EffectIcon icon;
     public bool badEffect = false;
-
 
     //включение эффекта
     public virtual void SetOn(EffectHandler handler) {
         this.handler = handler;
         time = maxTime;
-        texture = GD.Load<StreamTexture>("res://assets/textures/interface/icons/items/" + iconName + ".png");
+        iconTexture = GD.Load<StreamTexture>("res://assets/textures/interface/icons/items/" + iconName + ".png");
 
-        handler.ClearEffect(postEffect);
+        if (postEffect != null) handler.ClearEffect(postEffect);
     }
 
     //выключение эффекта
@@ -33,8 +34,8 @@ public class Effect
 
     public void StartPostEffect() 
     {
-        //если нет других таких же эффектов, накладываем пост-эффект
-        if (postEffect != null) {
+        var rng = new RandomNumberGenerator();
+        if (postEffect != null && rng.Randf() <= postEffectChance) {
             handler.messages.ShowMessage("medsOff", "items", 2.5f);
             handler.AddEffect(postEffect);
         }

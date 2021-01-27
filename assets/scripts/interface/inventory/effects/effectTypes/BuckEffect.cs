@@ -10,6 +10,8 @@ public class BuckEffect: Effect
     {
         maxTime = 10;
         badEffect = true;
+        emotion = "meds";
+        postEffectChance = 0.85f;
         postEffect = new BuckPostEffect();
     }
 
@@ -17,14 +19,14 @@ public class BuckEffect: Effect
     {
         player = Global.Get().player;
         iconName = "buck";
+        base.SetOn(handler);
+        
         if (!handler.HasEffect(this)) {
             handler.SetPlayerParameter("recoil", ref player.BaseRecoil, RECOIL_DELTA);
             handler.SetPlayerParameter("legsDamage", ref player.LegsDamage, LEGS_DELTA);
             handler.SetPlayerParameter("healthMax", ref player.HealthMax, HEALTH_DELTA);
             player.HealHealth(HEALTH_DELTA);
         }
-        
-        base.SetOn(handler);
     }
 
     public override void SetOff(bool startPostEffect = true)

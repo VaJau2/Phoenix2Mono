@@ -9,20 +9,22 @@ public class BuckPostEffect: Effect
 
     public BuckPostEffect()
     {
-        maxTime = 10;
+        maxTime = 100;
         badEffect = true;
+        emotion = "meds_after";
     }
 
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
         iconName = "buck-after";
+        base.SetOn(handler);
+        
         if (!handler.HasEffect(this)) { 
             handler.SetPlayerParameter("recoil", ref player.BaseRecoil, RECOIL_DELTA);
             handler.SetPlayerParameter("legsDamage", ref player.LegsDamage, LEGS_DELTA);
             handler.SetPlayerParameter("healthMax", ref player.HealthMax, HEALTH_DELTA);
         }
-        base.SetOn(handler);
     }
 
     public override void SetOff(bool startPostEffect = true)

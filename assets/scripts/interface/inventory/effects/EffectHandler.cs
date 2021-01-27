@@ -12,6 +12,9 @@ public class EffectHandler: Node
     private List<EffectIcon> effectIcons = new List<EffectIcon>();
     private PackedScene iconPrefab;
     public Messages messages;
+    private HeartbeatEffect heartbeat = new HeartbeatEffect();
+
+    private Player player => Global.Get().player;
 
     private Dictionary<string, int> startParameters = new Dictionary<string, int>();
 
@@ -44,6 +47,16 @@ public class EffectHandler: Node
         return false;
     }
 
+    public bool HasEffectWithEmotion(string emotion) 
+    {
+        foreach(Effect temp in tempEffects) {
+            if (temp.emotion == emotion) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void AddEffect(Effect newEffect)
     {
         newEffect.SetOn(this);
@@ -51,13 +64,18 @@ public class EffectHandler: Node
 
         EffectIcon newIcon = (EffectIcon)iconPrefab.Instance();
         AddChild(newIcon);
-        newIcon.SetIcon(newEffect.texture);
+        newIcon.SetIcon(newEffect.iconTexture);
         newEffect.icon = newIcon;
+
+        heartbeat.CheckAddEffect(newEffect);
+        CheckEmotions(newEffect.emotion);
     }
 
     public void RemoveEffect(Effect oldEffect)
     {
         tempEffects.Remove(oldEffect);
+        heartbeat.CheckRemoveEffect(oldEffect);
+        CheckEmotions("empty");
     }
 
     public void ClearEffects()
@@ -66,14 +84,29 @@ public class EffectHandler: Node
             effect.SetOff();
         }
         tempEffects.Clear();
+        heartbeat.ClearEffects();
+        CheckEmotions("empty");
     }
 
+    //очищаем эффект нужного класса
     public void ClearEffect(Effect effect) 
     {
-        if (tempEffects.Contains(effect)) {
-            effect.SetOff();
-            RemoveEffect(effect);
+        //эффект в массиве и класс убираемого эффекта - не всегда одно и то же
+        Effect effectInList = GetTheSameEffect(effect);
+
+        if (effectInList != null) {
+            effectInList.SetOff();
         }
+    }
+
+    public Effect GetTheSameEffect(Effect effect) 
+    {
+        foreach(Effect temp in tempEffects) {
+            if (effect.GetType() == temp.GetType()) {
+                return temp;
+            }
+        }
+        return null;
     }
 
     public Effect GetEffectByName(string name)
@@ -85,6 +118,26 @@ public class EffectHandler: Node
                 return new BuckEffect();
         }
         return null;
+    }
+
+    private void CheckEmotions(string newEmotion) 
+    {
+        switch (newEmotion) {
+            case "empty":
+                if (!HasEffectWithEmotion("meds") && 
+                    !HasEffectWithEmotion("meds_after")) {
+                    player.Body.Head.SetEmptyFace();
+                }
+                break;
+            case "meds":
+                player.Body.Head.MedsOn();
+                break;
+            case "meds_after":
+                if (!HasEffectWithEmotion("meds")) {
+                    player.Body.Head.MedsAfterOn();
+                }
+                break;
+        }
     }
 
     public override void _Ready()

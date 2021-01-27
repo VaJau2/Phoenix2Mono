@@ -4220,6 +4220,9 @@ shape = SubResource( 116 )
 [node name="audi" type="AudioStreamPlayer" parent="sound"]
 volume_db = -6.0
 
+[node name="audi_heartbeat" type="AudioStreamPlayer" parent="sound"]
+volume_db = -6.0
+
 [node name="audi_hitted" type="AudioStreamPlayer" parent="sound"]
 volume_db = -6.0
 
