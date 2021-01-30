@@ -14,6 +14,7 @@ public class LevelsLoader : Node
 	private PackedScene mainMenuPrefab;
 	private PackedScene pauseMenuPrefab;
 	private PackedScene loadingMenuPrefab;
+	private PackedScene dealthMenuPrefab;
 	private bool mainMenuOn = true;
 	private ResourceInteractiveLoader loader;
 
@@ -29,6 +30,14 @@ public class LevelsLoader : Node
 		mainMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/MainMenu.tscn");
 		pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/PauseMenu.tscn");
 		loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
+		dealthMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DealthMenu.tscn");
+	}
+
+	private void respawnMenu(PackedScene newMenu) 
+	{
+		currentMenu.QueueFree();
+		currentMenu = (Control)newMenu.Instance();
+		menuParent.AddChild(currentMenu);
 	}
 
 	private async void updateScene()
@@ -54,13 +63,6 @@ public class LevelsLoader : Node
 		SetProcess(true);
 	}
 
-	private void respawnMenu(PackedScene newMenu) 
-	{
-		currentMenu.QueueFree();
-		currentMenu = (Control)newMenu.Instance();
-		menuParent.AddChild(currentMenu);
-	}
-
 	private void updateMenu()
 	{
 		if (tempLevelNum != 0) {
@@ -82,9 +84,23 @@ public class LevelsLoader : Node
 		}
 	}
 
+	public void ShowDealthMenu()
+	{
+		global.SetPause(this, true);
+		respawnMenu(dealthMenuPrefab);
+		currentMenu.Visible = true;
+		mainMenuOn = true;
+	}
+
 	public void LoadLevel(int levelNum) 
 	{
 		tempLevelNum = levelNum;
+		updateScene();
+		updateMenu();
+	}
+
+	public void ReloadLevel()
+	{
 		updateScene();
 		updateMenu();
 	}

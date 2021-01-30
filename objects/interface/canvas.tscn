@@ -262,7 +262,6 @@ __meta__ = {
 }
 
 [node name="black" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )

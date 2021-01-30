@@ -37,6 +37,7 @@ public class Player : Character
     public PlayerInventory inventory;
 
     private DamageEffects damageEffects;
+    private ColorRect blackScreen;
     protected SoundSteps soundSteps;
     public Control JumpHint;
     private AudioStreamPlayer audi;
@@ -211,6 +212,20 @@ public class Player : Character
         base.TakeDamage(damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
+        if (Health <= 0) {
+            AnimateDealth();
+        }
+    }
+
+    private async void AnimateDealth()
+    {
+        while (blackScreen.Color.a < 1) {
+            Color temp = blackScreen.Color;
+            temp.a += 0.05f;
+            blackScreen.Color = temp;
+            await global.ToTimer(0.05f);
+        }
+        GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
     }
 
     public override float GetDamageBlock() 
@@ -448,8 +463,10 @@ public class Player : Character
         RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
         soundSteps = GetNode<SoundSteps>("player_body/floorRay");
 
-        JumpHint = GetNode<Control>("/root/Main/Scene/canvas/jumpHint");
-        damageEffects = GetNode<DamageEffects>("/root/Main/Scene/canvas/redScreen");
+        var canvas = GetNode("/root/Main/Scene/canvas/");
+        JumpHint = canvas.GetNode<Control>("jumpHint");
+        damageEffects = canvas.GetNode<DamageEffects>("redScreen");
+        blackScreen = canvas.GetNode<ColorRect>("black");
         Camera = GetNode<Camera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");

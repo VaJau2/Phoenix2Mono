@@ -1,0 +1,159 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scripts/interface/Menus/DealthMenu.cs" type="Script" id=1]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=4]
+
+[node name="DealthMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 217.0
+margin_bottom = 42.0
+theme = ExtResource( 2 )
+text = "/Phoenix2/Экран_Смерти"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 90.0
+margin_right = 876.0
+margin_bottom = 112.0
+theme = ExtResource( 2 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_right = 1.0
+margin_top = 105.0
+margin_bottom = 122.0
+theme = ExtResource( 2 )
+text = "[Пауза]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -876.0
+margin_top = 125.0
+margin_right = 876.0
+margin_bottom = 147.0
+theme = ExtResource( 2 )
+text = "==========================================================================================================================================================================================================================="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="again" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -76.0
+margin_right = -44.0
+margin_bottom = -51.0
+theme = ExtResource( 2 )
+text = "               [Заново]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="load" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -44.0
+margin_right = -44.0
+margin_bottom = -19.0
+theme = ExtResource( 2 )
+text = "               [Загрузить сохранение]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -12.0
+margin_right = -44.0
+margin_bottom = 13.0
+theme = ExtResource( 2 )
+text = "               [В главное меню]"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down_label" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 45.0
+margin_top = -50.0
+margin_right = 220.0
+margin_bottom = -28.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -50.0
+margin_right = 39.0
+margin_bottom = -28.0
+theme = ExtResource( 2 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="audi" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+[connection signal="mouse_entered" from="again" to="." method="_on_mouse_entered" binds= [ "choose", "again" ]]
+[connection signal="mouse_exited" from="again" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="again" to="." method="_on_again_pressed"]
+[connection signal="mouse_entered" from="load" to="." method="_on_mouse_entered" binds= [ "choose", "load" ]]
+[connection signal="mouse_exited" from="load" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="exit" to="." method="_on_mouse_entered" binds= [ "choose", "exit" ]]
+[connection signal="mouse_exited" from="exit" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

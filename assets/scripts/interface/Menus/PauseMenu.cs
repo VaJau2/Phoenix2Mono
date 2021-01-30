@@ -2,11 +2,6 @@ using Godot;
 
 public class PauseMenu : MenuBase
 {
-    // TODO:
-    // вытащить все надписи и кнопки и запрогать загрузку их текста
-    // запрогать setPause в global и здесь
-    // запрогать здесь скрипты кнопок
-
     Global global = Global.Get();
     AudioStreamPlayer audi;
     private Label pageLabel;
@@ -64,8 +59,7 @@ public class PauseMenu : MenuBase
 
     public override void _Input(InputEvent @event)
     {
-        //TODO: добавить сюда проверку на gameOver
-        if (Input.IsActionJustPressed("ui_cancel")) {
+        if (Input.IsActionJustPressed("ui_cancel") && global.player.Health > 0) {
             setPause(!global.paused);
         }
     }
