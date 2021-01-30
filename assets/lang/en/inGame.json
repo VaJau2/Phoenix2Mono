@@ -16,7 +16,8 @@
         "wearItem": "Wear: ",
         "unwearItem": "Unwear: ",
         "cantUnwear": "Can't take off: ",
-        "notSpace": "Not enough space"
+        "notSpace": "Not enough space",
+        "medsOff": "The drug has worn off. You want more"
     },
 
     "cameraHints": {

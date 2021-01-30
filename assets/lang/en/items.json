@@ -192,5 +192,68 @@
         "price": "50",
         "effect": "heal",
         "sound": "heal-potion"
+    },
+    "buck": {
+        "name": "Buck",
+        "description": "Pills, that temporarily increase strength and endurance. May cause addiction",
+        "type": "meds",
+        "icon": "buck",
+        "price": "90",
+        "medsEffect": "buck",
+        "sound": "mentats"
+    },
+    "dash": {
+        "name": "Dash",
+        "description": "Inhaler, that increases reaction speed. May cause addiction",
+        "type": "meds",
+        "icon": "dash",
+        "price": "90",
+        "medsEffect": "dash",
+        "sound": "dash"
+    },
+    "hydra": {
+        "name": "Hydra",
+        "description": "Increases cell regeneration. Some time after use, food may not restore health",
+        "type": "meds",
+        "icon": "hydra",
+        "price": "50",
+        "medsEffect": "hydra",
+        "sound": "medX"
+    },
+    "med-x": {
+        "name": "Med-X",
+        "description": "Intravenous painkiller. Temporarily removes the feeling of pain and reduces the damage received. May cause addiction",
+        "type": "meds",
+        "icon": "med-x",
+        "price": "80",
+        "medsEffect": "medX",
+        "sound": "medX"
+    },
+    "rage": {
+        "name": "Rage",
+        "description": "Intravenous drug, that increases aggression level. May cause addiction",
+        "type": "meds",
+        "icon": "rage",
+        "price": "90",
+        "medsEffect": "rage",
+        "sound": "medX"
+    },
+    "mentats": {
+        "name": "Mentats",
+        "description": "Adds color to the world and make you feel smarter than you really are. May cause addiction",
+        "type": "meds",
+        "icon": "mentats",
+        "price": "90",
+        "medsEffect": "mentats",
+        "sound": "mentats"
+    },
+    "detoxine": {
+        "name": "Detoxine",
+        "description": "Pills, that heal from addiction",
+        "type": "meds",
+        "icon": "detoxine",
+        "price": "100",
+        "medsEffect": "detoxine",
+        "sound": "mentats"
     }
 }

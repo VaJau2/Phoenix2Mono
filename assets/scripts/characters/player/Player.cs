@@ -20,6 +20,8 @@ public class Player : Character
     public bool IsHitting;
     public bool IsLying;
     public int LegsDamage = 0;
+    public bool FoodCanHeal = true;
+    public float PriceDelta = 1;
 
     //Ссылки на классы игрока
     public Camera Camera {get; private set;}
@@ -88,6 +90,17 @@ public class Player : Character
             tempDamage += Weapons.GetStatsInt("damage");
         }
         return tempDamage;
+    }
+
+    
+    public override float GetDamageBlock() 
+    {
+        Dictionary armorProps = inventory.GetArmorProps();
+        if(armorProps.Contains("damageBlock")) {
+            return base.GetDamageBlock() + (float)armorProps["damageBlock"];
+        } else {
+            return base.GetDamageBlock();
+        }
     }
 
     public virtual Spatial GetWeaponParent(bool isPistol)
@@ -226,16 +239,6 @@ public class Player : Character
             await global.ToTimer(0.05f);
         }
         GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
-    }
-
-    public override float GetDamageBlock() 
-    {
-        Dictionary armorProps = inventory.GetArmorProps();
-        if(armorProps.Contains("damageBlock")) {
-            return (float)armorProps["damageBlock"];
-        } else {
-            return base.GetDamageBlock();
-        }
     }
 
     protected void Sit(bool sitOn) 

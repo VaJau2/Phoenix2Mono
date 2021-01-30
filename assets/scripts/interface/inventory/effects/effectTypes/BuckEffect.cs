@@ -8,10 +8,9 @@ public class BuckEffect: Effect
     private Player player;
     public BuckEffect()
     {
-        maxTime = 10;
+        maxTime = 60;
         badEffect = true;
-        emotion = "meds";
-        postEffectChance = 0.85f;
+        postEffectChance = 0.8f;
         postEffect = new BuckPostEffect();
     }
 

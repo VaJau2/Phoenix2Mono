@@ -6,8 +6,6 @@ using System.Collections.Generic;
 //вызывает нужные методы эффектов
 public class EffectHandler: Node
 {
-    const int BAD_EFFECTS_HEARTBEAT = 5;
-    const int BAD_EFFECTS_DEALTH = 10;
     private List<Effect> tempEffects = new List<Effect>();
     private List<EffectIcon> effectIcons = new List<EffectIcon>();
     private PackedScene iconPrefab;
@@ -17,6 +15,7 @@ public class EffectHandler: Node
     private Player player => Global.Get().player;
 
     private Dictionary<string, int> startParameters = new Dictionary<string, int>();
+    private Dictionary<string, float> startFloatParameters = new Dictionary<string, float>();
 
     //параметр передается по ссылке, чтоб изменяться прям внутри метода
     //и одновременно сохранять стартовое значение в переменную
@@ -35,6 +34,24 @@ public class EffectHandler: Node
     {
         playerParameter = startParameters[parameterName];
         startParameters.Remove(parameterName);
+    }
+
+    //копия для float-параметров
+    public void SetPlayerParameter(string parameterName, ref float playerParameter, float delta) 
+    {
+        if (startParameters.ContainsKey(parameterName)) {
+            GD.Print("someone is trying to set the same effect!");
+            return;
+        }
+        startFloatParameters.Add(parameterName, playerParameter);
+        playerParameter += delta;
+        if (playerParameter < 0) playerParameter = 0;
+    }
+
+    public void ClearPlayerParameter(string parameterName, ref float playerParameter)
+    {
+        playerParameter = startFloatParameters[parameterName];
+        startFloatParameters.Remove(parameterName);
     }
 
     public bool HasEffect(Effect effect)
@@ -71,17 +88,19 @@ public class EffectHandler: Node
         CheckEmotions(newEffect.emotion);
     }
 
-    public void RemoveEffect(Effect oldEffect)
+    public void RemoveEffect(Effect oldEffect, bool changeHeartbeat = true)
     {
         tempEffects.Remove(oldEffect);
-        heartbeat.CheckRemoveEffect(oldEffect);
-        CheckEmotions("empty");
+        if (changeHeartbeat) {
+            heartbeat.CheckRemoveEffect(oldEffect);
+            CheckEmotions("empty");
+        }
     }
 
     public void ClearEffects()
     {
-        foreach(Effect effect in tempEffects) {
-            effect.SetOff();
+        while(tempEffects.Count > 0) {
+            tempEffects[0].SetOff(false);
         }
         tempEffects.Clear();
         heartbeat.ClearEffects();
@@ -116,6 +135,18 @@ public class EffectHandler: Node
                 return new HealEffect();
             case "buck":
                 return new BuckEffect();
+            case "dash":
+                return new DashEffect();
+            case "hydra":
+                return new HydraEffect();
+            case "rage":
+                return new RageEffect();
+            case "medX":
+                return new MedXEffect();
+            case "mentats":
+                return new MentatsEffect();
+            case "detoxine":
+                return new DetoxineEffect();
         }
         return null;
     }
@@ -154,6 +185,7 @@ public class EffectHandler: Node
                     break;
                 }
             }
+            heartbeat.CheckOverdose(delta);
         }
     }
 }

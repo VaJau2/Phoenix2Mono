@@ -75,7 +75,8 @@ public class PlayerInventory {
 
         switch(itemData["type"]) {
             case "food":
-                player.HealHealth(int.Parse(itemData["heal"].ToString()));
+                if (player.FoodCanHeal)
+                    player.HealHealth(int.Parse(itemData["heal"].ToString()));
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
             case "meds":

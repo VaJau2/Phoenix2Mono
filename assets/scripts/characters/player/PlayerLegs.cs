@@ -52,7 +52,7 @@ public class PlayerLegs: Node
 
     private int GetDamage()
     {
-        int damage = player.LegsDamage;
+        int damage = player.BaseDamage + player.LegsDamage;
         if (tempFront) {
             damage *= (int)hittingTimer;
         } else {
@@ -65,7 +65,6 @@ public class PlayerLegs: Node
 
     private void handleVictim(PhysicsBody victim, int damage)
     {
-        GD.Print(damage);
         if (victim != null) {
             if (victim is Character) {
                 audi.Stream = hit;

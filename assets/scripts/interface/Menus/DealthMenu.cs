@@ -34,7 +34,7 @@ public class DealthMenu : MenuBase
         var phrasesCount = phrases.Keys.Count;
         var rand = new RandomNumberGenerator();
         rand.Randomize();
-        string randI = rand.RandiRange(0, phrasesCount).ToString();
+        string randI = rand.RandiRange(0, phrasesCount - 1).ToString();
         headerLabel.Text = phrases[randI].ToString();
     }
 

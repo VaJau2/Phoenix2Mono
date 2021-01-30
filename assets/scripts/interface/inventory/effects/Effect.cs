@@ -28,13 +28,14 @@ public class Effect
     //если параметр false, эффект снимается детоксином
     public virtual void SetOff(bool startPostEffect = true) 
     {
-        handler.RemoveEffect(this);
+        handler.RemoveEffect(this, startPostEffect);
         icon.UpdateTime(0);
     }
 
     public void StartPostEffect() 
     {
         var rng = new RandomNumberGenerator();
+        rng.Randomize();
         if (postEffect != null && rng.Randf() <= postEffectChance) {
             handler.messages.ShowMessage("medsOff", "items", 2.5f);
             handler.AddEffect(postEffect);

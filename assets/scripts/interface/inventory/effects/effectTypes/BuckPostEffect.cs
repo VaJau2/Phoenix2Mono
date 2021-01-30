@@ -9,7 +9,7 @@ public class BuckPostEffect: Effect
 
     public BuckPostEffect()
     {
-        maxTime = 100;
+        maxTime = 120;
         badEffect = true;
         emotion = "meds_after";
     }

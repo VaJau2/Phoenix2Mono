@@ -5,6 +5,7 @@ public class InventoryMenu : Control
 {
     private const float MENU_SPEED = 16f;
     private const float MENU_SIZE = 272f;
+    private Player player;
     private Control back;
     private Control wearBack;
 
@@ -31,7 +32,7 @@ public class InventoryMenu : Control
     
     private float dragTimer = 0;
     private TextureRect dragIcon;
-    private PlayerInventory inventory => Global.Get().player.inventory;
+    private PlayerInventory inventory => player.inventory;
 
     public ItemIcon FirstEmptyButton {
         get {
@@ -50,7 +51,6 @@ public class InventoryMenu : Control
             emptyButton.SetItem(itemCode);
 
             if (itemCode.Contains("key")) {
-                PlayerInventory inventory = Global.Get().player.inventory;
                 inventory.AddKey(itemCode);
             }
         } else {
@@ -332,6 +332,10 @@ public class InventoryMenu : Control
     
     private async void OpenMenu(bool showWear = true) 
     {
+        if (player == null) {
+            player = Global.Get().player;
+        }
+
         LoadLabels();
 
         back.Visible = true;
@@ -396,6 +400,13 @@ public class InventoryMenu : Control
         labels.Add("armor", GetNode<Label>("back/wearBack/armorLabel"));
         labels.Add("artifact", GetNode<Label>("back/wearBack/artifactLabel"));
     }
+
+    // public override void _Process(float delta)
+    // {
+    //     if (isOpen && player.Health <= 0) {
+    //         CloseMenu();
+    //     }
+    // }
 
     public override void _Input(InputEvent @event)
     {
