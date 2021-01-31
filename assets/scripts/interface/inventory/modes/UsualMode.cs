@@ -24,7 +24,7 @@ public class UsualMode: InventoryMode {
         wearBack.Visible = true;
     }
 
-    protected override void CloseMenu()
+    public override void CloseMenu()
     {
         wearBack.Visible = false;
         base.CloseMenu();

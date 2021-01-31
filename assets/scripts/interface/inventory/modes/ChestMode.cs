@@ -21,16 +21,20 @@ public class ChestMode: InventoryMode
         chestBack.Visible = true;
     }
 
-    protected override void CloseMenu()
+    public override void CloseMenu()
     {
+        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
         chestBack.Visible = false;
         base.CloseMenu();
+        menu.ChangeMode(NewInventoryMode.Usual);
     }
 
     protected override void CloseWithoutAnimating()
     {
+        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
         chestBack.Visible = false;
         base.CloseWithoutAnimating();
+        menu.ChangeMode(NewInventoryMode.Usual);
     }
 
     protected override void CheckDragItem()

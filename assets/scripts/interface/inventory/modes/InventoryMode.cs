@@ -228,9 +228,8 @@ public abstract class InventoryMode
         isAnimating = false;
     }
 
-    protected virtual async void CloseMenu()
+    public virtual async void CloseMenu()
     {
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
         CheckTempIcon();
         player.MayMove = true;
 
@@ -257,6 +256,7 @@ public abstract class InventoryMode
         newPos.x += MENU_SIZE;
         back.RectPosition = newPos;
         back.Visible = false;
+        menu.isOpen = false;
         Input.SetMouseMode(Input.MouseMode.Captured);
     }
 

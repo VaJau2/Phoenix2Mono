@@ -17,12 +17,30 @@ public class InventoryMenu : Control
         mode.SetTempButton(newButton, showInfo);
     }
 
-    public void OpenMenu(InventoryMode newMode = null) 
+    public void OpenMenu() 
     {
-        if (newMode != null) {
-            mode = newMode;
-        }
         mode.OpenMenu();
+    }
+
+    public void CloseMenu()
+    {
+        mode.CloseMenu();
+    }
+
+    public void ChangeMode(NewInventoryMode newMode = NewInventoryMode.Usual)
+    {
+        switch (newMode) {
+            case NewInventoryMode.Usual:
+                if (!(mode is UsualMode)) {
+                    mode = new UsualMode(this);
+                }
+                break;
+            case NewInventoryMode.Chest:
+                if (!(mode is ChestMode)) {
+                    mode = new ChestMode(this);
+                }
+                break;
+        }
     }
     
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
@@ -43,4 +61,10 @@ public class InventoryMenu : Control
             mode.UpdateInput(@event);
         }
     }
+}
+
+public enum NewInventoryMode
+{
+    Usual,
+    Chest
 }
