@@ -16,7 +16,7 @@ public class PlayerBody : Spatial
     const float BODY_ROT_SPEED = 26f;
 
     const float CROUCH_COOLDOWN = 5f;
-    const float JUMP_COOLDOWN = 0.6f;
+    const float JUMP_COOLDOWN = 0.7f;
 
     public PlayerHead Head {get; private set;}
     public PlayerLegs Legs;
@@ -146,14 +146,12 @@ public class PlayerBody : Spatial
     
     private void AnimateWalkEarthpony(Player_Earthpony earthpony) 
     {
-        if (Input.IsActionJustPressed("jump")) {
+        if (Input.IsActionJustPressed("jump") && jumpingCooldown <= 0) {
             if (earthpony.IsRunning) {
                 playback.Start("Jump-Run");
             } else {
                 playback.Start("Jump");
             }
-
-           
             jumpingCooldown = JUMP_COOLDOWN;
         } else {
             if (earthpony.IsRunning) {
@@ -179,8 +177,8 @@ public class PlayerBody : Spatial
                 }
             }
         } else {
-            if (Input.IsActionJustPressed("jump")) {
-                playback.Travel("Jump");
+            if (Input.IsActionJustPressed("jump") && jumpingCooldown <= 0) {
+                playback.Start("Jump");
                 jumpingCooldown = JUMP_COOLDOWN;
             } else {
                 if (jumpingCooldown <= 0) {
@@ -194,11 +192,11 @@ public class PlayerBody : Spatial
     {
         if (pegasus.IsFlying) {
             playback.Travel("Fly-OnPlace");
-        } else {
+        } else if (jumpingCooldown <= 0) {
             if(Input.IsActionJustPressed("jump") && !player.BlockJump) {
-                playback.Travel("Jump");
+                playback.Start("Jump");
 			    jumpingCooldown = JUMP_COOLDOWN;
-            } else if(jumpingCooldown <= 0) {
+            } else {
                 playback.Travel("Idle1");
             }
         }
@@ -206,11 +204,13 @@ public class PlayerBody : Spatial
 
     private void AnimateIdleEarthpony(Player_Earthpony earthpony) 
     {
-        if(Input.IsActionJustPressed("jump") && !player.BlockJump) {
-            playback.Travel("Jump");
-            jumpingCooldown = JUMP_COOLDOWN;
-        } else if(jumpingCooldown <= 0) {
-            playback.Travel("Idle1");
+        if (jumpingCooldown <= 0) {
+            if(Input.IsActionJustPressed("jump") && !player.BlockJump) {
+                playback.Start("Jump");
+                jumpingCooldown = JUMP_COOLDOWN;
+            } else {
+                playback.Travel("Idle1");
+            }
         }
     }
 

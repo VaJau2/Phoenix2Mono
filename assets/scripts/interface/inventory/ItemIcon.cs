@@ -75,7 +75,7 @@ public class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_entered()
     {
-        if (myItemCode != null && !menu.isDragging) {
+        if (myItemCode != null && !menu.mode.isDragging) {
             selected.Visible = true;
             icon.Modulate = Colors.Black;
             menu.SetTempButton(this);
@@ -84,7 +84,7 @@ public class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_exited()
     {
-        if (selected.Visible && !menu.isDragging) {
+        if (selected.Visible && !menu.mode.isDragging) {
             selected.Visible = false;
             icon.Modulate = Colors.White;
             menu.SetTempButton(null);

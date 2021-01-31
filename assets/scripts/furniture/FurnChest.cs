@@ -18,7 +18,7 @@ public class FurnChest: FurnBase {
     {
         base.ClickFurn();
         if (!menu.isOpen) {
-            menu.OpenMenu(InventoryMode.Chest);
+            menu.OpenMenu(new ChestMode(menu));
             menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
         }
     }

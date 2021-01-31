@@ -385,10 +385,10 @@ visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -768.0
-margin_top = 88.0
-margin_right = -496.0
-margin_bottom = -208.0
+margin_left = -560.0
+margin_top = 32.0
+margin_right = -288.0
+margin_bottom = -264.0
 color = Color( 0, 0, 0, 0.784314 )
 __meta__ = {
 "_edit_use_anchors_": false
