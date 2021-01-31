@@ -260,7 +260,7 @@ public abstract class InventoryMode
         Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
-    protected void UpdateDragging(InputEvent @event)
+    protected bool UpdateDragging(InputEvent @event)
     {
          if (Input.IsActionPressed("ui_click") && @event is InputEventMouseMotion) {
                 if (!isDragging) {
@@ -284,9 +284,10 @@ public abstract class InventoryMode
                 if (dragTimer >= 1) {
                     dragTimer = 0;
                     CheckDragItem();
-                    return;
+                    return true;
                 }
             }
+        return false;
     }
 
     public void UpdateOpen(InputEvent @event)

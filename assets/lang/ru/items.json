@@ -73,7 +73,7 @@
         "sound": "weapon"
     },
     "shotgun12": {
-        "name": "12мм дробовик",
+        "name": "Дробовик кал. 12",
         "description": "Наносит огромное количество урона в ближнем бою",
         "type": "weapon",
         "icon": "shotgun12",

@@ -26,5 +26,9 @@
         "open": " - open",
         "takeGun": " - take gun",
         "putGun": " - put gun"
+    },
+
+    "chestNames": {
+        "cabinet": "Cabinet"
     }
 }

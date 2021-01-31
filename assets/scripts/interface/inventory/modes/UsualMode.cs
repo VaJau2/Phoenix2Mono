@@ -188,7 +188,7 @@ public class UsualMode: InventoryMode {
     public override void UpdateInput(InputEvent @event)
     {
         if (menu.isOpen && tempButton != null) {
-            UpdateDragging(@event);
+            if (UpdateDragging(@event)) return;
             
             if (Input.IsActionJustReleased("ui_click")) {
                 UseTempItem();

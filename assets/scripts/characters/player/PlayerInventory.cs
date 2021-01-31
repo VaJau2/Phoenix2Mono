@@ -12,22 +12,13 @@ public class PlayerInventory {
     private Array<string> tempKeys = new Array<string>();
 
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
-    private Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
+    public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
 
     public PlayerInventory(Player player) 
     {
         this.player = player;
         this.messages = player.GetNode<Messages>("/root/Main/Scene/canvas/messages");
         this.effects = player.GetNode<EffectHandler>("/root/Main/Scene/canvas/effects");
-    }
-
-    public ItemIcon GetAmmoButton(string ammoType) 
-    {
-        if (ammoButtons.ContainsKey(ammoType)) {
-            return ammoButtons[ammoType];
-        } else {
-            return null;
-        }
     }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)

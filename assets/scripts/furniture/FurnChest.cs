@@ -5,7 +5,15 @@ using System;
 public class FurnChest: FurnBase {
 
     InventoryMenu menu;
-    Random rand = new Random();
+
+    [Export]
+    public string chestCode;
+    [Export]
+    public Array<string> itemCodes = new Array<string>();
+    [Export]
+    public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+    public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
+    public Dictionary<int, string> itemPositions = new Dictionary<int, string>();
 
     public override void _Ready()
     {
@@ -26,6 +34,8 @@ public class FurnChest: FurnBase {
         } else {
             base.ClickFurn();
             menu.ChangeMode(NewInventoryMode.Chest);
+            ChestMode tempMode = menu.mode as ChestMode;
+            tempMode.SetChest(this);
             menu.OpenMenu();
             menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
         }

@@ -39,106 +39,126 @@ __meta__ = {
 }
 
 [node name="itemIcon" parent="back/items" instance=ExtResource( 2 )]
+isInventoryIcon = true
 
 [node name="itemIcon2" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_right = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon3" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_right = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon4" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_right = 192.0
+isInventoryIcon = true
 
 [node name="itemIcon5" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_right = 242.0
+isInventoryIcon = true
 
 [node name="itemIcon6" parent="back/items" instance=ExtResource( 2 )]
 margin_top = 50.0
 margin_bottom = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon7" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 92.0
 margin_bottom = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon8" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 50.0
 margin_right = 142.0
 margin_bottom = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon9" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 50.0
 margin_right = 192.0
 margin_bottom = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon10" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 50.0
 margin_right = 242.0
 margin_bottom = 92.0
+isInventoryIcon = true
 
 [node name="itemIcon11" parent="back/items" instance=ExtResource( 2 )]
 margin_top = 100.0
 margin_bottom = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon12" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 100.0
 margin_right = 92.0
 margin_bottom = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon13" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 100.0
 margin_right = 142.0
 margin_bottom = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon14" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 100.0
 margin_right = 192.0
 margin_bottom = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon15" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 100.0
 margin_right = 242.0
 margin_bottom = 142.0
+isInventoryIcon = true
 
 [node name="itemIcon16" parent="back/items" instance=ExtResource( 2 )]
 margin_top = 150.0
 margin_bottom = 192.0
+isInventoryIcon = true
 
 [node name="itemIcon17" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 150.0
 margin_right = 92.0
 margin_bottom = 192.0
+isInventoryIcon = true
 
 [node name="itemIcon18" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 150.0
 margin_right = 142.0
 margin_bottom = 192.0
+isInventoryIcon = true
 
 [node name="itemIcon19" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 150.0
 margin_right = 192.0
 margin_bottom = 192.0
+isInventoryIcon = true
 
 [node name="itemIcon20" parent="back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 150.0
 margin_right = 242.0
 margin_bottom = 192.0
+isInventoryIcon = true
 
 [node name="Label" type="Label" parent="back"]
 anchor_left = 0.5
@@ -212,12 +232,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -64.0
+margin_left = -128.0
 margin_top = -248.0
-margin_right = 70.0
+margin_right = 128.0
 margin_bottom = -233.0
 theme = ExtResource( 3 )
 text = "Название предмета"
+align = 1
 
 [node name="description" type="Label" parent="back/itemInfo"]
 anchor_left = 0.5
@@ -397,9 +418,9 @@ __meta__ = {
 [node name="Label" type="Label" parent="back/chestBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -51.0
+margin_left = -128.0
 margin_top = 21.0
-margin_right = 47.0
+margin_right = 128.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
 text = "Сундук"

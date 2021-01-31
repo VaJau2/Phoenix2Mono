@@ -152,7 +152,7 @@ public class PlayerWeapons: CollisionShape
     private void LoadNewAmmo()
     {
         string ammoType = tempWeaponStats["ammoType"].ToString();
-        tempAmmoButton = player.inventory.GetAmmoButton(ammoType);
+        tempAmmoButton = player.inventory.ammoButtons[ammoType];
         SetAmmoIcon(ammoType);
         ammoLabel.Text = GetAmmo().ToString();
     }

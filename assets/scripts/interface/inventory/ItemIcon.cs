@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class ItemIcon : ColorRect
 {
+    [Export]
+    public bool isInventoryIcon = false;
     private Control selected;
     private TextureRect icon;
     private Label bindLabel;
@@ -42,16 +44,33 @@ public class ItemIcon : ColorRect
         string itemType = itemData["type"].ToString();
         countLabel.Visible = (itemType == "ammo");
         if (itemType == "ammo") {
-            Player player = Global.Get().player;
-            player.inventory.SetAmmoButton(itemCode, this);
+            if (isInventoryIcon) {
+                Player player = Global.Get().player;
+                player.inventory.SetAmmoButton(itemCode, this);
+            }
+          
+        } else {
+            countLabel.Text = "-1";
         }
     }
 
     public void ClearItem()
     {
+        //если очищается инвентарная иконка с патронами
+        //ссылка на патроны также должна очиститься
+        if (isInventoryIcon) {
+            Dictionary itemData = ItemJSON.GetItemData(myItemCode);
+            string itemType = itemData["type"].ToString();
+            if (itemType == "ammo") {
+                Player player = Global.Get().player;
+                player.inventory.ammoButtons.Remove(myItemCode);
+            }
+        }
+
         myItemCode   = null;
         icon.Texture = null;
         SetBindKey("");
+        countLabel.Text = "-1";
         countLabel.Visible = false;
         _on_itemIcon_mouse_exited();
     }
