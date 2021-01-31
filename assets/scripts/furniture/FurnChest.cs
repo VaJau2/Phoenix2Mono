@@ -4,23 +4,28 @@ using System;
 
 public class FurnChest: FurnBase {
 
-    const float ITEM_DROP_CHANCE = 0.65f;
-
-    [Export]
-    public Vector3 dropSide;
-    [Export]
-    public float itemHeight = 2f;
-
-    [Export]
-    public string keyName = "";
-    [Export]
-    public string pickKeyTextLink = "";
-
+    InventoryMenu menu;
     Random rand = new Random();
+
+    public override void _Ready()
+    {
+        base._Ready();
+        menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+    }
 
 
     public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null)
     {
         base.ClickFurn();
+        if (!menu.isOpen) {
+            menu.OpenMenu(InventoryMode.Chest);
+            menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
+        }
+    }
+
+    public void CloseFurn()
+    {
+        base.ClickFurn();
+        menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
     }
 }

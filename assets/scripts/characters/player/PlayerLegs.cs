@@ -16,10 +16,7 @@ public class PlayerLegs: Node
     AudioStreamSample hit;
 
     Dictionary<string, AudioStreamSample> materaiSounds;
-
     bool tempFront = false;
-    bool stoppingHit = false;
-    float hittingTimer = 1;
     
     List<PhysicsBody> frontObjects;
     List<PhysicsBody> backObjects;
@@ -53,12 +50,9 @@ public class PlayerLegs: Node
     private int GetDamage()
     {
         int damage = player.BaseDamage + player.LegsDamage;
-        if (tempFront) {
-            damage *= (int)hittingTimer;
-        } else {
+        if (!tempFront) {
             damage *= BACK_INCREASE;
-            damage *= (int)hittingTimer;
-        }
+        } 
         return damage;
     }
 
@@ -110,23 +104,21 @@ public class PlayerLegs: Node
         if (tempFront) {
             player.BodyFollowsCamera = true;
         }
-        player.Body.AnimateHitting(tempFront, '1');
+        player.Body.AnimateHitting(tempFront);
     }
 
     private async void finishHit()
     {
-        stoppingHit = true;
         if (tempFront && (player.Weapons.isPistol || !player.Weapons.GunOn)) {
             player.BodyFollowsCamera = false;
         }
-        player.Body.AnimateHitting(tempFront, '2');
 
         await global.ToTimer(0.15f);
 
         audi.Stream = tryHit;
         audi.Play();
 
-        await global.ToTimer(0.1f);
+        await global.ToTimer(0.15f);
         audi.Stream = null;
         var damage = GetDamage();
 
@@ -145,7 +137,6 @@ public class PlayerLegs: Node
 
         player.IsHitting = false;
         player.MayMove = true;
-        stoppingHit = false;
     }
 
     public override void _Process(float delta)
@@ -165,20 +156,9 @@ public class PlayerLegs: Node
 
         if (!player.IsHitting && player.MayMove && !playerRunningFlying) {
             if (Input.IsActionJustPressed("legsHit") && player.IsOnFloor()) {
-                hittingTimer = 1;
                 tempFront = Mathf.Abs(player.Body.bodyRot) < BACK_HIT_ANGLE;
                 startHit();
-            }
-        }
-        if (player.IsHitting) {
-            if (hittingTimer < 5) {
-                hittingTimer += 2 * delta;
-            }
-
-            if (!stoppingHit) {
-                if (Input.IsActionJustReleased("legsHit")) {
-                    finishHit();
-                }
+                finishHit();
             }
         }
     }

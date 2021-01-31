@@ -148,9 +148,9 @@ public class PlayerBody : Spatial
     {
         if (Input.IsActionJustPressed("jump")) {
             if (earthpony.IsRunning) {
-                playback.Travel("Jump-Run");
+                playback.Start("Jump-Run");
             } else {
-                playback.Travel("Jump");
+                playback.Start("Jump");
             }
 
            
@@ -225,12 +225,12 @@ public class PlayerBody : Spatial
         }
     }
 
-    public void AnimateHitting(bool front, char animPart)
+    public void AnimateHitting(bool front)
     {
         if (front) {
-            playback.Travel("HitFront-" + animPart);
+            playback.Travel("HitFront");
         } else {
-            playback.Travel("HitBack-" + animPart);
+            playback.Travel("HitBack");
         }
     }
 
@@ -322,7 +322,7 @@ public class PlayerBody : Spatial
                 bodyRot = 0;
                 onetimeBodyRotBack = true;
             }
-            else if (player.MayMove) {
+            else if (!player.IsHitting) {
                 if(player.IsCrouching) {
                     if(!player.BodyFollowsCamera && crouchingCooldown <= 0) {
                         playback.Travel("Sit");

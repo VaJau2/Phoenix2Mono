@@ -280,6 +280,20 @@ public class Player : Character
 
     public virtual void Fly() {}
 
+    private void UpdateCameraPos() 
+    {
+        if (ThirdView) {
+            Vector3 thirdRot = RotationHelperThird.Rotation;
+            thirdRot.x = RotationHelper.Rotation.x;
+            RotationHelperThird.Rotation = thirdRot;
+        }
+
+        Transform cameraTransf = RotationHelper.GlobalTransform;
+        cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
+        RotationHelper.GlobalTransform = cameraTransf;
+        headShape.GlobalTransform = cameraTransf;
+    }
+
     protected void ProcessInput(float delta) 
     {
         dir = new Vector3();
@@ -300,18 +314,6 @@ public class Player : Character
         if (Input.IsActionPressed("ui_right")) {
             inputMovementVector.x += 1;
         }
-
-        if (ThirdView) {
-            Vector3 thirdRot = RotationHelperThird.Rotation;
-            thirdRot.x = RotationHelper.Rotation.x;
-            RotationHelperThird.Rotation = thirdRot;
-        }
-
-        Transform cameraTransf = RotationHelper.GlobalTransform;
-        cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
-        RotationHelper.GlobalTransform = cameraTransf;
-        headShape.GlobalTransform = cameraTransf;
-
 
         if (IsLying && inputMovementVector.Length() > 0) {
             GetUp();
@@ -458,7 +460,7 @@ public class Player : Character
         BaseSpeed = 15;
         BaseRecoil = 2;
         BaseDamage = 0;
-        LegsDamage = 10;
+        LegsDamage = 50;
         SetStartHealth(100);
         LoadBodyMesh();
         Stealth = GetNode<PlayerStealth>("stealth");
@@ -492,13 +494,15 @@ public class Player : Character
 
     public override void _PhysicsProcess(float delta)
     {
-        ProcessInput(delta);
         if (Health > 0 && MayMove) {
-            HandleImpulse();
-            ProcessMovement(delta);
+            ProcessInput(delta);
         } else {
-            Velocity = new Vector3(0, 0, 0);
+            dir = Vector3.Zero;
         }
+
+        HandleImpulse();
+        ProcessMovement(delta);
+        UpdateCameraPos();
     }
 
     public override void _Input(InputEvent @event)

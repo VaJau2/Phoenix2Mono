@@ -3,11 +3,16 @@ using Godot.Collections;
 
 public class InventoryMenu : Control
 {
-    private const float MENU_SPEED = 16f;
-    private const float MENU_SIZE = 272f;
+    const float MENU_SPEED = 16f;
+    const float MENU_SIZE = 272f;
+    public InventoryMode Mode = InventoryMode.Usual;
+    public bool isOpen = false;
+
     private Player player;
     private Control back;
     private Control wearBack;
+    private Control chestBack;
+    private Label chestLabel;
 
     private Control itemInfo;
     private Label itemName;
@@ -15,7 +20,6 @@ public class InventoryMenu : Control
     private Label itemProps;
     private Label controlHints;
 
-    private bool isOpen = false;
     private bool isAnimating = false;
     public bool isDragging {get; private set;} = false;
 
@@ -33,6 +37,9 @@ public class InventoryMenu : Control
     private float dragTimer = 0;
     private TextureRect dragIcon;
     private PlayerInventory inventory => player.inventory;
+
+    [Signal]
+    public delegate void MenuIsClosed();
 
     public ItemIcon FirstEmptyButton {
         get {
@@ -330,11 +337,12 @@ public class InventoryMenu : Control
         }
     }
     
-    private async void OpenMenu(bool showWear = true) 
+    public async void OpenMenu(InventoryMode mode = InventoryMode.Usual) 
     {
         if (player == null) {
             player = Global.Get().player;
         }
+        player.MayMove = false;
 
         LoadLabels();
 
@@ -347,9 +355,14 @@ public class InventoryMenu : Control
             back.RectPosition = newPos;
             await ToSignal(GetTree(), "idle_frame");
         }
-        if (showWear) {
-            wearBack.Visible = true;
+        wearBack.Visible = true;
+
+        Mode = mode;
+        if (mode == InventoryMode.Chest || mode == InventoryMode.Trading) 
+        {
+            chestBack.Visible = true;
         }
+
         Input.SetMouseMode(Input.MouseMode.Visible);
         isOpen = true;
         isAnimating = false;
@@ -357,10 +370,13 @@ public class InventoryMenu : Control
 
     private async void CloseMenu()
     {
+        EmitSignal(nameof(MenuIsClosed));
         CheckTempIcon();
+        player.MayMove = true;
 
         isAnimating = true;
         wearBack.Visible = false;
+        chestBack.Visible = false;
         float startPos = back.RectPosition.x;
         while (back.RectPosition.x < startPos + MENU_SIZE) {
             Vector2 newPos = back.RectPosition;
@@ -375,6 +391,21 @@ public class InventoryMenu : Control
         isAnimating = false;
     }
 
+    private void CloseWithoutAnimating()
+    {
+        EmitSignal(nameof(MenuIsClosed));
+        CheckTempIcon();
+        player.MayMove = true;
+        wearBack.Visible = false;
+        Vector2 newPos = back.RectPosition;
+        newPos.x += MENU_SIZE;
+        back.RectPosition = newPos;
+        back.Visible = false;
+        Input.SetMouseMode(Input.MouseMode.Captured);
+
+        isOpen = false;
+    }
+
     public override void _Ready() 
     {
         foreach(object button in GetNode<Control>("back/items").GetChildren()) {
@@ -385,6 +416,9 @@ public class InventoryMenu : Control
         weaponButton    = wearBack.GetNode<ItemIcon>("weapon");
         armorButton     = wearBack.GetNode<ItemIcon>("armor");
         artifactButton  = wearBack.GetNode<ItemIcon>("artifact");
+
+        chestBack = GetNode<Control>("back/chestBack");
+        chestLabel = chestBack.GetNode<Label>("Label");
 
         itemInfo = GetNode<Control>("back/itemInfo");
         itemName = itemInfo.GetNode<Label>("name");
@@ -401,13 +435,6 @@ public class InventoryMenu : Control
         labels.Add("artifact", GetNode<Label>("back/wearBack/artifactLabel"));
     }
 
-    // public override void _Process(float delta)
-    // {
-    //     if (isOpen && player.Health <= 0) {
-    //         CloseMenu();
-    //     }
-    // }
-
     public override void _Input(InputEvent @event)
     {
         if (!isAnimating && @event is InputEventKey) {
@@ -418,6 +445,9 @@ public class InventoryMenu : Control
                 else {
                     OpenMenu();
                 }
+            }
+            if (Input.IsActionJustPressed("ui_cancel") && isOpen) {
+                CloseWithoutAnimating();
             }
         }
 
@@ -462,4 +492,11 @@ public class InventoryMenu : Control
             UseHotkeys();
         }
     }
+}
+
+public enum InventoryMode 
+{
+    Usual,
+    Chest,
+    Trading
 }

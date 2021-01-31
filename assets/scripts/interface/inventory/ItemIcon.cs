@@ -68,7 +68,7 @@ public class ItemIcon : ColorRect
     {
         selected = GetNode<Control>("selected");
         icon     = GetNode<TextureRect>("icon");
-        menu     = GetNode<InventoryMenu>("../../../");
+        menu     = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         bindLabel  = GetNode<Label>("bindLabel");
         countLabel = GetNode<Label>("countLabel");
     }

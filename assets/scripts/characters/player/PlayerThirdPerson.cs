@@ -64,10 +64,10 @@ public class PlayerThirdPerson : Spatial
     private float updateSide(float delta, float side, string keyUp,
         string keyDown, float maxValue, float minValue, float usualValue) 
         {
-            if (Input.IsActionPressed(keyUp)) {
+            if (player.MayMove && Input.IsActionPressed(keyUp)) {
                 side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
 
-            } else if (Input.IsActionPressed(keyDown)) {
+            } else if (player.MayMove && Input.IsActionPressed(keyDown)) {
                 side = Mathf.MoveToward(side, minValue, delta * 1.5f);
 
             } else {

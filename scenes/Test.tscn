@@ -23,7 +23,7 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-itemCodes = [ "shotgun12", "pistol10-silenced", "revolver32", "coat", "sniper307", "buck", "dash", "hydra", "mentats", "med-x", "heal-potion", "maffin", "detoxine" ]
+itemCodes = [ "shotgun12", "pistol10-silenced", "revolver32", "coat", "rifle307", "buck", "dash", "hydra", "mentats", "med-x", "heal-potion", "maffin", "detoxine" ]
 ammo = {
 "ammo10": 50,
 "ammo12": 20,
@@ -83,13 +83,9 @@ shadow_enabled = true
 [node name="cabinet" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )
 physics_material_override = ExtResource( 7 )
-dropSide = Vector3( 1, 0, 0 )
-keyName = "key_test"
-pickKeyTextLink = "key_test"
 
 [node name="metallic-cabinet" parent="." instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
-dropSide = Vector3( 1, 0, 0 )
 
 [node name="door" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )

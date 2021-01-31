@@ -99,6 +99,19 @@
         "ammoType": "ammo307",
         "sound": "weapon"
     },
+    "rifle307": {
+        "name": "Винтовка кал. 307",
+        "description": "Недорогой вариант винтовки, стреляющей довольно мощными патронами на дальних дистанциях",
+        "type": "weapon",
+        "icon": "rifle307",
+        "price": "600",
+        "damage": "60",
+        "shootDistance": "180",
+        "cooldown": "1.9",
+        "recoil": "1",
+        "ammoType": "ammo307",
+        "sound": "weapon"
+    },
 
     "ammo32": {
         "name": "Патроны кал. 32",
