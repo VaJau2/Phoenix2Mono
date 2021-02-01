@@ -34,7 +34,7 @@ public class PlayerWeapons: CollisionShape
     //--эффекты и анимания выстрела
 
     Spatial tempWeapon;
-    ItemIcon tempAmmoButton;
+    public ItemIcon tempAmmoButton {get; private set;}
     AnimationPlayer gunAnim;
     Spatial gunLight;
     Spatial gunFire;
@@ -149,12 +149,33 @@ public class PlayerWeapons: CollisionShape
         ammoLabel.Text = newAmmo.ToString();
     }
 
-    private void LoadNewAmmo()
+    public void UpdateAmmoCount()
+    {
+        ammoLabel.Text = GetAmmo().ToString();
+    }
+
+    public bool isTempAmmo(string ammoType)
+    {
+        if (tempWeaponStats != null) {
+            if (tempWeaponStats.Contains("ammoType") 
+            && tempWeaponStats["ammoType"].ToString() == ammoType) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void LoadNewAmmo()
     {
         string ammoType = tempWeaponStats["ammoType"].ToString();
-        tempAmmoButton = player.inventory.ammoButtons[ammoType];
+        if (player.inventory.ammoButtons.ContainsKey(ammoType)) {
+            tempAmmoButton = player.inventory.ammoButtons[ammoType];
+        } else {
+            tempAmmoButton = null;
+        }
+        
         SetAmmoIcon(ammoType);
-        ammoLabel.Text = GetAmmo().ToString();
+        UpdateAmmoCount();
     }
 
     private void LoadGunEffects() 

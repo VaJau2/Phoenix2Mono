@@ -182,6 +182,22 @@ public class ChestMode: InventoryMode
         if (CheckDragIn(chestButtons, "chest"))    return;
     }
 
+    protected override void LoadControlHint(bool isInventoryIcon)
+    {
+        string phraseName = isInventoryIcon ? "put" : "take";
+        controlHints.Text = InterfaceLang.GetPhrase(
+            "inventory", 
+            "chestControlHints", 
+            phraseName
+        );
+    }
+
+    protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    {
+        oldButton.SetBindKey(null);
+        base.ChangeItemButtons(oldButton, newButton);
+    }
+
     private void TakeTempItem()
     {
         //положить в сундук
@@ -239,6 +255,11 @@ public class ChestMode: InventoryMode
             ammoButton.SetCount(ammoButton.GetCount() + addCount);
             tempButton.ClearItem();
             UpdateChestPositions();
+
+            if (player.Weapons.tempAmmoButton == ammoButton) {
+                player.Weapons.UpdateAmmoCount();
+            }
+
             return true;
         }
         return false;

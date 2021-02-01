@@ -47,8 +47,11 @@ public class ItemIcon : ColorRect
             if (isInventoryIcon) {
                 Player player = Global.Get().player;
                 player.inventory.SetAmmoButton(itemCode, this);
+                //обновляем интерфейс, если новые патроны добавились для текущего оружия
+                if (player.Weapons.isTempAmmo(itemCode)) {
+                    player.Weapons.LoadNewAmmo();
+                }
             }
-          
         } else {
             countLabel.Text = "-1";
         }
@@ -64,6 +67,9 @@ public class ItemIcon : ColorRect
             if (itemType == "ammo") {
                 Player player = Global.Get().player;
                 player.inventory.ammoButtons.Remove(myItemCode);
+                if (player.Weapons.isTempAmmo(myItemCode)) {
+                    player.Weapons.LoadNewAmmo();
+                }
             }
         }
 

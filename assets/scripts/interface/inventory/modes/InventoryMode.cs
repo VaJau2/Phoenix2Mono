@@ -76,16 +76,21 @@ public abstract class InventoryMode
                 itemName.Text = tempItemData["name"].ToString();
                 itemDesc.Text = tempItemData["description"].ToString();
                 itemProps.Text = GetItemPropsString(tempItemData);
-                controlHints.Text = InterfaceLang.GetPhrase(
-                    "inventory", 
-                    "inventoryControlHints", 
-                    tempItemData["type"].ToString()
-                );
+                LoadControlHint(newButton.isInventoryIcon);
             }
         } else {
             itemInfo.Visible = false;
             tempItemData = new Dictionary();
         }
+    }
+
+    protected virtual void LoadControlHint(bool isInventoryIcon)
+    {
+        controlHints.Text = InterfaceLang.GetPhrase(
+            "inventory", 
+            "inventoryControlHints", 
+            tempItemData["type"].ToString()
+        );
     }
 
     protected ItemIcon FirstEmptyButton {
@@ -162,7 +167,7 @@ public abstract class InventoryMode
             && mouse.y >= 0 && mouse.y <= button.RectSize.y;
     }
 
-    protected void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    protected virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         //меняем местами бинды клавиш на кнопках
         string tempBind = oldButton.GetBindKey();
