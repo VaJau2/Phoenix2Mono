@@ -289,20 +289,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Button" parent="ChangeRace/earthpony"]
+[node name="choose" type="Label" parent="ChangeRace/earthpony"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -69.0
+margin_left = -75.0
 margin_top = 88.0
-margin_right = 69.0
+margin_right = 61.0
 margin_bottom = 113.0
 theme = ExtResource( 1 )
-text = "[Земной пони]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Земной пони"
+align = 1
+valign = 1
 
 [node name="Label" type="Label" parent="ChangeRace/earthpony"]
 anchor_left = 0.5
@@ -324,6 +323,65 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="hover" type="Control" parent="ChangeRace/earthpony"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_bottom = 1.0
+margin_right = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-right" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_right = 1.0
+margin_right = -129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_right = 1.0
+margin_left = 129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = -129.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-down2" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 129.0
+margin_top = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selectArea" type="Control" parent="ChangeRace/earthpony"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 192.0
+
 [node name="unicorn" type="TextureRect" parent="ChangeRace"]
 anchor_left = 0.5
 anchor_top = 0.387
@@ -339,7 +397,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Button" parent="ChangeRace/unicorn"]
+[node name="choose" type="Label" parent="ChangeRace/unicorn"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -349,10 +407,9 @@ margin_top = 88.0
 margin_right = 69.0
 margin_bottom = 113.0
 theme = ExtResource( 1 )
-text = "[Единорог]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Единорог"
+align = 1
+valign = 1
 
 [node name="Label" type="Label" parent="ChangeRace/unicorn"]
 anchor_left = 0.5
@@ -374,14 +431,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="hover" type="Control" parent="ChangeRace/unicorn"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_bottom = 1.0
+margin_right = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-right" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_right = 1.0
+margin_right = -129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_right = 1.0
+margin_left = 129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = -129.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-down2" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 129.0
+margin_top = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selectArea" type="Control" parent="ChangeRace/unicorn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 184.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="pegasus" type="TextureRect" parent="ChangeRace"]
 anchor_left = 0.5
 anchor_top = 0.387
 anchor_right = 0.5
 anchor_bottom = 0.387
-margin_left = 148.0
+margin_left = 152.0
 margin_top = -72.2
-margin_right = 286.0
+margin_right = 290.0
 margin_bottom = 71.8
 texture = ExtResource( 9 )
 expand = true
@@ -389,7 +508,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Button" parent="ChangeRace/pegasus"]
+[node name="choose" type="Label" parent="ChangeRace/pegasus"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -399,10 +518,9 @@ margin_top = 88.0
 margin_right = 69.0
 margin_bottom = 113.0
 theme = ExtResource( 1 )
-text = "[Пегас]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Пегас"
+align = 1
+valign = 1
 
 [node name="Label" type="Label" parent="ChangeRace/pegasus"]
 anchor_left = 0.5
@@ -417,6 +535,68 @@ theme = ExtResource( 1 )
 text = "> Здоровье: 100
 > Возможность 
 летать"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hover" type="Control" parent="ChangeRace/pegasus"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_bottom = 1.0
+margin_right = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-right" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_right = 1.0
+margin_right = -129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_right = 1.0
+margin_left = 129.0
+margin_bottom = 2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+
+[node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = -129.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-down2" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 129.0
+margin_top = -2.0
+color = Color( 0.196078, 0.678431, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selectArea" type="Control" parent="ChangeRace/pegasus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 128.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -598,15 +778,15 @@ stream = ExtResource( 6 )
 [connection signal="mouse_entered" from="ChangeRace/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
 [connection signal="mouse_exited" from="ChangeRace/back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ChangeRace/back" to="." method="_on_back_pressed"]
-[connection signal="mouse_entered" from="ChangeRace/earthpony/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose0" ]]
-[connection signal="mouse_exited" from="ChangeRace/earthpony/choose" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="ChangeRace/earthpony/choose" to="." method="_on_choose_pressed" binds= [ "earthpony" ]]
-[connection signal="mouse_entered" from="ChangeRace/unicorn/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose1" ]]
-[connection signal="mouse_exited" from="ChangeRace/unicorn/choose" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="ChangeRace/unicorn/choose" to="." method="_on_choose_pressed" binds= [ "unicorn" ]]
-[connection signal="mouse_entered" from="ChangeRace/pegasus/choose" to="." method="_on_mouse_entered" binds= [ "race", "choose2" ]]
-[connection signal="mouse_exited" from="ChangeRace/pegasus/choose" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="ChangeRace/pegasus/choose" to="." method="_on_choose_pressed" binds= [ "pegasus" ]]
+[connection signal="gui_input" from="ChangeRace/earthpony/selectArea" to="." method="_on_choose_pressed" binds= [ "earthpony" ]]
+[connection signal="mouse_entered" from="ChangeRace/earthpony/selectArea" to="." method="_on_selectArea_mouse_entered" binds= [ "choose0", "earthpony" ]]
+[connection signal="mouse_exited" from="ChangeRace/earthpony/selectArea" to="." method="_on_selectArea_mouse_exited"]
+[connection signal="gui_input" from="ChangeRace/unicorn/selectArea" to="." method="_on_choose_pressed" binds= [ "unicorn" ]]
+[connection signal="mouse_entered" from="ChangeRace/unicorn/selectArea" to="." method="_on_selectArea_mouse_entered" binds= [ "choose1", "unicorn" ]]
+[connection signal="mouse_exited" from="ChangeRace/unicorn/selectArea" to="." method="_on_selectArea_mouse_exited"]
+[connection signal="gui_input" from="ChangeRace/pegasus/selectArea" to="." method="_on_choose_pressed" binds= [ "pegasus" ]]
+[connection signal="mouse_entered" from="ChangeRace/pegasus/selectArea" to="." method="_on_selectArea_mouse_entered" binds= [ "choose2", "pegasus" ]]
+[connection signal="mouse_exited" from="ChangeRace/pegasus/selectArea" to="." method="_on_selectArea_mouse_exited"]
 [connection signal="mouse_entered" from="Load/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
 [connection signal="mouse_exited" from="Load/back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Load/back" to="." method="_on_back_pressed"]

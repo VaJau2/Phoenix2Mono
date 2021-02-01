@@ -29,8 +29,9 @@ public class MainMenu : MenuBase
 
     Label racePage;
     Button raceBack;
-    Button[] raceButtons;
+    Label[] raceButtons;
     Label[] raceLabels;
+    Control tempHover;
 
     SettingsMenu settingsMenu;
 
@@ -61,10 +62,10 @@ public class MainMenu : MenuBase
         changeRaceMenu = GetNode<Control>("ChangeRace");
         racePage = GetNode<Label>("ChangeRace/page_label");
         raceBack = GetNode<Button>("ChangeRace/back");
-        raceButtons = new Button[3] {
-            GetNode<Button>("ChangeRace/earthpony/choose"),
-            GetNode<Button>("ChangeRace/unicorn/choose"),
-            GetNode<Button>("ChangeRace/pegasus/choose")
+        raceButtons = new Label[3] {
+            GetNode<Label>("ChangeRace/earthpony/choose"),
+            GetNode<Label>("ChangeRace/unicorn/choose"),
+            GetNode<Label>("ChangeRace/pegasus/choose")
         };
         raceLabels = new Label[3] {
             GetNode<Label>("ChangeRace/earthpony/Label"),
@@ -253,10 +254,29 @@ public class MainMenu : MenuBase
         GetTree().Quit();
     }
 
-    public void _on_choose_pressed(string raceName) 
+    public void _on_choose_pressed(InputEvent @event, string raceName) 
     {
-        Race newRace = Global.raceFromString(raceName);
-        global.playerRace = newRace;
-        GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
+        if (Input.IsActionJustPressed("ui_click")) {
+            Race newRace = Global.raceFromString(raceName);
+            global.playerRace = newRace;
+            GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
+        }
+    }
+
+    public void _on_selectArea_mouse_entered(string raceName, string areaName)
+    {
+        base._on_mouse_entered("race", raceName);
+        Control newHover = changeRaceMenu.GetNode<Control>(areaName + "/hover");
+        newHover.Visible = true;
+        tempHover = newHover;
+    }
+
+    public void _on_selectArea_mouse_exited()
+    {
+        if (tempHover != null) {
+            base._on_mouse_exited();
+            tempHover.Visible = false;
+            tempHover = null;
+        }
     }
 }

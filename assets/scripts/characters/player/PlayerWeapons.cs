@@ -5,7 +5,7 @@ using System.Globalization;
 public class PlayerWeapons: CollisionShape
 {
     Global global;
-    const float SHAKE_SPEED = 4;
+    const float SHAKE_SPEED = 2f;
     const float SHAKE_DIFF = 0.5f;
     const int ZERO_NUM_KEY = 49;
 
