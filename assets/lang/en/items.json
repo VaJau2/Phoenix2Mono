@@ -99,6 +99,19 @@
         "ammoType": "ammo307",
         "sound": "weapon"
     },
+    "rifle307": {
+        "name": ".307 rifle",
+        "description": "An inexpensive version of a rifle that shoots quite powerful cartridges at long distances",
+        "type": "weapon",
+        "icon": "rifle307",
+        "price": "600",
+        "damage": "60",
+        "shootDistance": "180",
+        "cooldown": "1.9",
+        "recoil": "1",
+        "ammoType": "ammo307",
+        "sound": "weapon"
+    },
 
     "ammo32": {
         "name": ".32 ammo",

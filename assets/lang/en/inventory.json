@@ -2,7 +2,6 @@
     "labels": {
         "name": "Inventory",
         "money": "Money count:",
-        "price": "Price:",
         "wear": "Wear",
         "weapon": "Weapon:",
         "armor": "Armor:",
@@ -17,6 +16,10 @@
         "artifact": "LMB - wear, RMB - drop",
         "food": "LMB - eat, RMB - drop, 0-9 - bind",
         "meds": "LMB - use, RMB - drop, 0-9 - bind"
+    },
+    "chestControlHints": {
+        "take": "ЛКМ - take",
+        "put": "ЛКМ - put"
     },
 
     "itemProps": {

@@ -33,11 +33,11 @@
 
     "race": {
         "page": "/Phoenix2/Main_menu/choose_race",
-        "button0": "[Earthpony]",
+        "button0": "Earthpony",
         "label0": "> Health: 200\n> Ability to\nmake dashes\n> Ability to run\n> Strong hits",
-        "button1": "[Unicorn]",
+        "button1": "Unicorn",
         "label1": "> Health: 100\n> Ability to\nteleport\n> Ability to\ncreate\nmagic shield",
-        "button2": "[Pegasus]",
+        "button2": "Pegasus",
         "label2": "> Health: 100\n> Ability to\nfly",
 
         "choose0": "Choose race: Earthpony",
