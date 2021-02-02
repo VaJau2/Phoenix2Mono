@@ -6,7 +6,8 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=6]
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=7]
-[ext_resource path="res://assets/audio/guns/shoot/machine_shot.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/guns/shoot/autorifle762.wav" type="AudioStream" id=8]
+
 
 
 

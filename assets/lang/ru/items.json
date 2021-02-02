@@ -80,7 +80,7 @@
         "price": "1100",
         "damage": "110",
         "shootDistance": "40",
-        "cooldown": "2",
+        "cooldown": "1.6",
         "recoil": "0.5",
         "ammoType": "ammo12",
         "isShotgun": "true",
@@ -94,7 +94,7 @@
         "price": "800",
         "damage": "70",
         "shootDistance": "200",
-        "cooldown": "1.6",
+        "cooldown": "1.4",
         "recoil": "1",
         "ammoType": "ammo307",
         "sound": "weapon"
@@ -107,9 +107,23 @@
         "price": "600",
         "damage": "60",
         "shootDistance": "180",
-        "cooldown": "1.9",
+        "cooldown": "1.1",
         "recoil": "1",
         "ammoType": "ammo307",
+        "sound": "weapon"
+    },
+    "autorifle762": {
+        "name": "7.62 автоматическая винтовка",
+        "description": "Винтовка, стреляющая автоматическим огнем на средних дистанциях",
+        "type": "weapon",
+        "icon": "autorifle762",
+        "price": "1600",
+        "damage": "20",
+        "shootDistance": "110",
+        "cooldown": "0.1",
+        "auto": "1",
+        "recoil": "1",
+        "ammoType": "ammo762",
         "sound": "weapon"
     },
 
@@ -140,6 +154,13 @@
         "type": "ammo",
         "icon": "ammo307",
         "price": "5" 
+    },
+    "ammo762": {
+        "name": "Патроны кал. 7.62",
+        "description": "Патроны для автоматических винтовок",
+        "type": "ammo",
+        "icon": "ammo762",
+        "price": "2" 
     },
 
 

@@ -36,7 +36,8 @@ public class FurnChest: FurnBase {
                 string newItemCode = items.itemCodes[randItemNum];
                 Dictionary itemData = ItemJSON.GetItemData(newItemCode);
                 //если это патроны, ложим в список патронов
-                if (itemData["type"].ToString() == "ammo") {
+                if (itemData["type"].ToString() == "ammo"
+                && !ammoCount.ContainsKey(newItemCode)) {
                     int count = items.ammoCount[newItemCode];
                     ammoCount.Add(newItemCode, count);
                 } else {

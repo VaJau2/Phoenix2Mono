@@ -107,9 +107,23 @@
         "price": "600",
         "damage": "60",
         "shootDistance": "180",
-        "cooldown": "1.9",
+        "cooldown": "1.5",
         "recoil": "1",
         "ammoType": "ammo307",
+        "sound": "weapon"
+    },
+    "autorifle762": {
+        "name": "7.62 auto rifle",
+        "description": "A rifle that fires automatic fire at medium ranges",
+        "type": "weapon",
+        "icon": "autorifle762",
+        "price": "1600",
+        "damage": "20",
+        "shootDistance": "110",
+        "cooldown": "0.1",
+        "auto": "1",
+        "recoil": "1",
+        "ammoType": "ammo762",
         "sound": "weapon"
     },
 
@@ -141,7 +155,13 @@
         "icon": "ammo307",
         "price": "5" 
     },
-
+    "ammo762": {
+        "name": "7.62 ammo",
+        "description": "Cartridges for auto rifles",
+        "type": "ammo",
+        "icon": "ammo762",
+        "price": "2" 
+    },
 
     "coat": {
         "name": "Coat",

@@ -24,12 +24,12 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-itemCodes = [ "shotgun12", "pistol10-silenced", "revolver32", "coat", "rifle307", "buck", "dash", "hydra", "mentats", "med-x", "heal-potion", "maffin", "detoxine", "sniper307" ]
+itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307", "buck", "dash", "hydra", "mentats", "med-x", "heal-potion", "maffin", "detoxine", "sniper307" ]
 ammo = {
 "ammo10": 50,
 "ammo12": 20,
 "ammo307": 10,
-"ammo32": 15
+"ammo762": 50
 }
 
 [node name="terrain" type="StaticBody" parent="."]

@@ -375,7 +375,7 @@ public class PlayerWeapons: CollisionShape
                 }
             }
 
-            await global.ToTimer(0.1f);
+            await global.ToTimer(0.05f);
 
             gunLight.Visible = true;
             gunSmoke.Restart();
@@ -383,7 +383,6 @@ public class PlayerWeapons: CollisionShape
             shakeCameraUp();
             await global.ToTimer(0.05f);
             gunFire.Visible = false;
-            await global.ToTimer(0.1f);
             gunLight.Visible = false;
 
             tempRay.Enabled = false;
