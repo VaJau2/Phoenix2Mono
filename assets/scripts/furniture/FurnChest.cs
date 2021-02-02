@@ -5,6 +5,8 @@ using System;
 public class FurnChest: FurnBase {
 
     InventoryMenu menu;
+    [Export]
+    public bool SpawnRandomItems;
 
     [Export]
     public string chestCode;
@@ -19,6 +21,29 @@ public class FurnChest: FurnBase {
     {
         base._Ready();
         menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+
+        if (SpawnRandomItems) {
+            GD.Print("spawning random items");
+
+            RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
+            RandomNumberGenerator rand = new RandomNumberGenerator();
+
+            rand.Randomize();
+            int itemsCount = rand.RandiRange(0, 6);
+            for (int i = 0; i < itemsCount; i++) {
+                //берем рандомную вещь из списка
+                int randItemNum = rand.RandiRange(0, items.itemCodes.Count - 1);
+                string newItemCode = items.itemCodes[randItemNum];
+                Dictionary itemData = ItemJSON.GetItemData(newItemCode);
+                //если это патроны, ложим в список патронов
+                if (itemData["type"].ToString() == "ammo") {
+                    int count = items.ammoCount[newItemCode];
+                    ammoCount.Add(newItemCode, count);
+                } else {
+                    itemCodes.Add(newItemCode);
+                }
+            }
+        }
     }
 
     private bool mayOpen => (IsOpen == menu.isOpen);
