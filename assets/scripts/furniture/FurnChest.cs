@@ -23,21 +23,20 @@ public class FurnChest: FurnBase {
         menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
         if (SpawnRandomItems) {
-            GD.Print("spawning random items");
-
             RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
             RandomNumberGenerator rand = new RandomNumberGenerator();
 
             rand.Randomize();
-            int itemsCount = rand.RandiRange(0, 6);
+            int itemsCount = rand.RandiRange(0, items.maxItemsCount);
             for (int i = 0; i < itemsCount; i++) {
                 //берем рандомную вещь из списка
                 int randItemNum = rand.RandiRange(0, items.itemCodes.Count - 1);
                 string newItemCode = items.itemCodes[randItemNum];
                 Dictionary itemData = ItemJSON.GetItemData(newItemCode);
                 //если это патроны, ложим в список патронов
-                if (itemData["type"].ToString() == "ammo"
-                && !ammoCount.ContainsKey(newItemCode)) {
+                if (itemData["type"].ToString() == "ammo") {
+                    if (ammoCount.ContainsKey(newItemCode)) return;
+
                     int count = items.ammoCount[newItemCode];
                     ammoCount.Add(newItemCode, count);
                 } else {

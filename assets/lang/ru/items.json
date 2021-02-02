@@ -121,12 +121,12 @@
         "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
-        "auto": "1",
         "recoil": "1",
         "ammoType": "ammo762",
         "sound": "weapon"
     },
 
+    
     "ammo32": {
         "name": "Патроны кал. 32",
         "description": "Дешевые пистолетные патроны небольшого калибра",

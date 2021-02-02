@@ -23,12 +23,19 @@ public class FurnBase: StaticBody {
 
     private async void setOpen(string anim, AudioStreamSample sound, float timer = 0,
                                bool otherSide = false) {
-        audi.Stream = sound;
-        audi.Play();
+        if (audi != null) {
+            audi.Stream = sound;
+            audi.Play();
+        }
+        
         if (timer != 0) {
             await global.ToTimer(timer);
         }
-        animator.Play(anim);
+
+        if (animator != null) {
+            animator.Play(anim);
+        }
+        
         IsOpen = !IsOpen;
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://objects/props/doors/door1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
+[ext_resource path="res://objects/props/furniture/bag.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -24,7 +25,7 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307", "buck", "dash", "hydra", "mentats", "med-x", "heal-potion", "maffin", "detoxine", "sniper307" ]
+itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307" ]
 ammo = {
 "ammo10": 50,
 "ammo12": 20,
@@ -84,12 +85,8 @@ shadow_enabled = true
 [node name="cabinet" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )
 physics_material_override = ExtResource( 7 )
+SpawnRandomItems = true
 chestCode = "cabinet"
-itemCodes = [ "bow-ribbon", "maffin" ]
-ammoCount = {
-"ammo10": 10,
-"ammo307": 10
-}
 
 [node name="metallic-cabinet" parent="." instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
@@ -101,9 +98,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
 myKey = "key0"
 ForceOpening = true
 
+[node name="bag" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3804, 0.181597, -9 )
+
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
-itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32" ]
+maxItemsCount = 10
+itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32" ]
 ammoCount = {
 "ammo307": 10,
 "ammo32": 20

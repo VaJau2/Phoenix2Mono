@@ -121,11 +121,11 @@
         "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
-        "auto": "1",
         "recoil": "1",
         "ammoType": "ammo762",
         "sound": "weapon"
     },
+
 
     "ammo32": {
         "name": ".32 ammo",
@@ -163,6 +163,7 @@
         "price": "2" 
     },
 
+    
     "coat": {
         "name": "Coat",
         "description": "Coat of thick skin with a hat and a shirt. Any detective's best friend. Has great look and well protection.",

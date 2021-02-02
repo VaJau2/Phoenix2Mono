@@ -29,6 +29,7 @@
     },
 
     "chestNames": {
-        "cabinet": "Шкаф"
+        "cabinet": "Шкаф",
+        "bag": "Сумка"
     }
 }
