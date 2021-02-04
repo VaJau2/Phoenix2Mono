@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class UsualMode: InventoryMode {
 
+    private PackedScene bagPrefab;
+    private FurnChest tempBag = null;
     private Control wearBack;
 
     private ItemIcon weaponButton;
@@ -16,6 +18,8 @@ public class UsualMode: InventoryMode {
         weaponButton   = wearBack.GetNode<ItemIcon>("weapon");
         armorButton    = wearBack.GetNode<ItemIcon>("armor");
         artifactButton = wearBack.GetNode<ItemIcon>("artifact");
+
+        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
     }
 
     public override void OpenMenu()
@@ -26,12 +30,14 @@ public class UsualMode: InventoryMode {
 
     public override void CloseMenu()
     {
+        tempBag = null;
         wearBack.Visible = false;
         base.CloseMenu();
     }
 
     protected override void CloseWithoutAnimating()
     {
+        tempBag = null;
         wearBack.Visible = false;
         base.CloseWithoutAnimating();
     }
@@ -182,6 +188,20 @@ public class UsualMode: InventoryMode {
 
     protected void DropTempItem() 
     {
+        if (tempBag == null) {
+            tempBag = (FurnChest)bagPrefab.Instance();
+            Node parent = player.GetNode("/root/Main/Scene");
+            parent.AddChild(tempBag);
+            tempBag.Translation = player.Translation;
+            tempBag.Translate(Vector3.Down);
+        }
+
+        if (tempButton.GetCount() > 0) {
+            tempBag.ammoCount.Add(tempButton.myItemCode, tempButton.GetCount());
+        } else {
+            tempBag.itemCodes.Add(tempButton.myItemCode);
+        }
+        
         RemoveTempItem();
     }
 

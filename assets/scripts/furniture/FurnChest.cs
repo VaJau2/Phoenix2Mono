@@ -1,10 +1,11 @@
 using Godot;
 using Godot.Collections;
-using System;
 
 public class FurnChest: FurnBase {
 
     InventoryMenu menu;
+    [Export]
+    public bool isBag;
     [Export]
     public bool SpawnRandomItems;
 

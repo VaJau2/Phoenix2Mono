@@ -31,6 +31,7 @@ physics_material_override = ExtResource( 5 )
 script = ExtResource( 1 )
 OpenSound = ExtResource( 4 )
 CloseSound = ExtResource( 3 )
+isBag = true
 chestCode = "bag"
 
 [node name="Bag" type="MeshInstance" parent="."]

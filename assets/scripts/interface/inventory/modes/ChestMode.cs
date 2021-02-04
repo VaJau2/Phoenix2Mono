@@ -125,13 +125,17 @@ public class ChestMode: InventoryMode
     private void UpdateChestPositions() 
     {
         //очищаем все массивы сундука
+        chest.itemCodes.Clear();
         chest.itemPositions.Clear();
         chest.ammoCount.Clear();
         chest.ammoButtons.Clear();
+        bool isEmpty = true;
 
         //проходим по иконкам
         foreach(ItemIcon tempIcon in chestButtons) {
             if(tempIcon.myItemCode != null) {
+                isEmpty = false; //если есть вещи, то сундук не пустой
+
                 //сохраняем позицию иконки
                 int iconId = chestButtons.IndexOf(tempIcon);
                 chest.itemPositions.Add(iconId, tempIcon.myItemCode);
@@ -141,6 +145,13 @@ public class ChestMode: InventoryMode
                     chest.ammoButtons.Add(tempIcon.myItemCode, tempIcon);
                 }
             }
+        }
+
+        //если сундук - это сумка, и она опустошается
+        //то она удаляется
+        if (isEmpty && chest.isBag) {
+           chest.QueueFree();
+           CloseMenu();
         }
     }
 
