@@ -5,6 +5,7 @@ public class PlayerInventory {
     EffectHandler effects;
     Messages messages;
     Player player;
+    public int money = 0;
     public string weapon = "";
     public string cloth = "empty";
     public string artifact = "";
@@ -131,9 +132,9 @@ public class PlayerInventory {
         messages.ShowMessage("cantUnwear", itemName, "items");
     }
 
-    public void MessageNotEnoughSpace()
+    public void MessageNotEnough(string item)
     {
-        messages.ShowMessage("notSpace", "items", 2.5f);
+        messages.ShowMessage(item, "items", 2.5f);
     }
 
     public void LoadItems(Array<string> items, Dictionary<string, int> ammo) 

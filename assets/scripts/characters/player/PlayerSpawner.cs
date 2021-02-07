@@ -4,6 +4,8 @@ using Godot.Collections;
 public class PlayerSpawner : Spatial
 {
     [Export]
+    public int moneyCount = 0;
+    [Export]
     public Array<string> itemCodes = new Array<string>();
     [Export]
     public Dictionary<string, int> ammo = new Dictionary<string, int>();
@@ -40,6 +42,7 @@ public class PlayerSpawner : Spatial
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
+        player.inventory.money = moneyCount;
         player.inventory.LoadItems(itemCodes, ammo);
 
         QueueFree();

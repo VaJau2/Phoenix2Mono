@@ -111,11 +111,13 @@ public class PlayerCamera: Camera {
         var spaceState = GetWorld().DirectSpaceState;
         var from = ProjectRayOrigin(pos);
         var to = from + ProjectRayNormal(pos) * tempLength;
-        var result = spaceState.IntersectRay(from, to,
-            new Array() {player}, rayLayer);
+        var result = spaceState.IntersectRay(
+            from, to, new Array() {player}, rayLayer
+        );
 
         if (result.Count > 0) {
             tempObject = (Spatial)result["collider"];
+
             if (tempObject is FurnBase) {
                 var furn = tempObject as FurnBase;
                 if (furn.IsOpen) {
@@ -123,11 +125,8 @@ public class PlayerCamera: Camera {
                 } else {
                     showHint("open");
                 }
-                //TODO
-                //дописать сюда интерфейс для взаимодействия с:
-                //терминалами
-                //картой
-                //персонажами
+            } else if (tempObject is ITrader) {
+                showHint("trade");
             }
         } else {
             tempObject = null;
@@ -145,12 +144,10 @@ public class PlayerCamera: Camera {
             else if (tempObject is FurnBase) {
                 var furn = tempObject as FurnBase;
                 furn.ClickFurn();
+            } else if (tempObject is ITrader) {
+                var trader = tempObject as ITrader;
+                trader.StartTrading();
             }
-            //TODO
-                //дописать сюда взаимодействие с:
-                //терминалами
-                //картой
-                //персонажами
         }
     }
 

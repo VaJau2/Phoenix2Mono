@@ -13,7 +13,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="."]
+[node name="helper" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="helper"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +31,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="items" type="GridContainer" parent="back"]
+[node name="items" type="GridContainer" parent="helper/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -38,129 +46,129 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemIcon" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon" parent="helper/back/items" instance=ExtResource( 2 )]
 isInventoryIcon = true
 
-[node name="itemIcon2" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon2" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_right = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon3" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon3" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_right = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon4" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon4" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_right = 192.0
 isInventoryIcon = true
 
-[node name="itemIcon5" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon5" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_right = 242.0
 isInventoryIcon = true
 
-[node name="itemIcon6" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon6" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_top = 50.0
 margin_bottom = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon7" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon7" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 92.0
 margin_bottom = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon8" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon8" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 50.0
 margin_right = 142.0
 margin_bottom = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon9" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon9" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 50.0
 margin_right = 192.0
 margin_bottom = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon10" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon10" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 50.0
 margin_right = 242.0
 margin_bottom = 92.0
 isInventoryIcon = true
 
-[node name="itemIcon11" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon11" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_top = 100.0
 margin_bottom = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon12" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon12" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 100.0
 margin_right = 92.0
 margin_bottom = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon13" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon13" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 100.0
 margin_right = 142.0
 margin_bottom = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon14" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon14" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 100.0
 margin_right = 192.0
 margin_bottom = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon15" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon15" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 100.0
 margin_right = 242.0
 margin_bottom = 142.0
 isInventoryIcon = true
 
-[node name="itemIcon16" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon16" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_top = 150.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
-[node name="itemIcon17" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon17" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 150.0
 margin_right = 92.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
-[node name="itemIcon18" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon18" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 150.0
 margin_right = 142.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
-[node name="itemIcon19" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon19" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 150.0
 margin_right = 192.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
-[node name="itemIcon20" parent="back/items" instance=ExtResource( 2 )]
+[node name="itemIcon20" parent="helper/back/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 150.0
 margin_right = 242.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
-[node name="Label" type="Label" parent="back"]
+[node name="Label" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -48.0
@@ -174,7 +182,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="moneyLabel" type="Label" parent="back"]
+[node name="moneyLabel" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -190,7 +198,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="money" type="Label" parent="back"]
+[node name="moneyCount" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -205,12 +213,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border" type="ColorRect" parent="back"]
+[node name="border" type="ColorRect" parent="helper/back"]
 anchor_bottom = 1.0
 margin_right = 1.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
 
-[node name="border2" type="ColorRect" parent="back"]
+[node name="border2" type="ColorRect" parent="helper/back"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -218,7 +226,7 @@ margin_top = -256.0
 margin_bottom = -255.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
 
-[node name="itemInfo" type="Control" parent="back"]
+[node name="itemInfo" type="Control" parent="helper/back"]
 visible = false
 margin_top = 352.0
 margin_right = 272.0
@@ -227,7 +235,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="name" type="Label" parent="back/itemInfo"]
+[node name="name" type="Label" parent="helper/back/itemInfo"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -240,7 +248,7 @@ theme = ExtResource( 3 )
 text = "Название предмета"
 align = 1
 
-[node name="description" type="Label" parent="back/itemInfo"]
+[node name="description" type="Label" parent="helper/back/itemInfo"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -256,7 +264,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="props" type="Label" parent="back/itemInfo"]
+[node name="props" type="Label" parent="helper/back/itemInfo"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -272,7 +280,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hints" type="Label" parent="back/itemInfo"]
+[node name="hints" type="Label" parent="helper/back/itemInfo"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -288,7 +296,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="wearBack" type="ColorRect" parent="back"]
+[node name="wearBack" type="ColorRect" parent="helper/back"]
 visible = false
 anchor_left = 0.734
 anchor_right = 0.734
@@ -301,19 +309,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down" type="ColorRect" parent="back/wearBack"]
+[node name="border-down" type="ColorRect" parent="helper/back/wearBack"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
 
-[node name="border-up" type="ColorRect" parent="back/wearBack"]
+[node name="border-up" type="ColorRect" parent="helper/back/wearBack"]
 anchor_right = 1.0
 margin_bottom = 1.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
 
-[node name="border-left" type="ColorRect" parent="back/wearBack"]
+[node name="border-left" type="ColorRect" parent="helper/back/wearBack"]
 anchor_bottom = 1.0
 margin_right = 1.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
@@ -321,7 +329,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="back/wearBack"]
+[node name="Label" type="Label" parent="helper/back/wearBack"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -49.5
@@ -335,7 +343,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="weapon" parent="back/wearBack" instance=ExtResource( 2 )]
+[node name="weapon" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -56.0
@@ -343,7 +351,7 @@ margin_top = 52.0
 margin_right = -14.0
 margin_bottom = 94.0
 
-[node name="weaponLabel" type="Label" parent="back/wearBack"]
+[node name="weaponLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -184.0
@@ -357,7 +365,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="armor" parent="back/wearBack" instance=ExtResource( 2 )]
+[node name="armor" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -56.0
@@ -365,7 +373,7 @@ margin_top = 100.0
 margin_right = -14.0
 margin_bottom = 142.0
 
-[node name="armorLabel" type="Label" parent="back/wearBack"]
+[node name="armorLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -184.0
@@ -379,7 +387,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="artifact" parent="back/wearBack" instance=ExtResource( 2 )]
+[node name="artifact" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -56.0
@@ -387,7 +395,7 @@ margin_top = 148.0
 margin_right = -14.0
 margin_bottom = 190.0
 
-[node name="artifactLabel" type="Label" parent="back/wearBack"]
+[node name="artifactLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -184.0
@@ -401,7 +409,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chestBack" type="ColorRect" parent="back"]
+[node name="chestBack" type="ColorRect" parent="helper/back"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -416,7 +424,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="back/chestBack"]
+[node name="Label" type="Label" parent="helper/back/chestBack"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -128.0
@@ -430,7 +438,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-left" type="ColorRect" parent="back/chestBack"]
+[node name="border-left" type="ColorRect" parent="helper/back/chestBack"]
 anchor_bottom = 1.0
 margin_right = 1.0
 margin_bottom = 3.05176e-05
@@ -439,7 +447,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="back/chestBack"]
+[node name="border-right" type="ColorRect" parent="helper/back/chestBack"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -449,7 +457,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down" type="ColorRect" parent="back/chestBack"]
+[node name="border-down" type="ColorRect" parent="helper/back/chestBack"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -459,12 +467,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-up" type="ColorRect" parent="back/chestBack"]
+[node name="border-up" type="ColorRect" parent="helper/back/chestBack"]
 anchor_right = 1.0
 margin_bottom = 1.0
 color = Color( 0.223529, 0.752941, 0.145098, 1 )
 
-[node name="items" type="GridContainer" parent="back/chestBack"]
+[node name="takeAll" type="Button" parent="helper/back/chestBack"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -24.0
+margin_top = 56.0
+margin_right = 120.0
+margin_bottom = 80.0
+theme = ExtResource( 3 )
+text = "Взять все (space)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="items" type="GridContainer" parent="helper/back/chestBack"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -481,109 +502,402 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemIcon" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 
-[node name="itemIcon2" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon2" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_right = 92.0
 
-[node name="itemIcon3" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon3" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_right = 142.0
 
-[node name="itemIcon4" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon4" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_right = 192.0
 
-[node name="itemIcon5" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon5" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_right = 242.0
 
-[node name="itemIcon6" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon6" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_top = 50.0
 margin_bottom = 92.0
 
-[node name="itemIcon7" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon7" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 92.0
 margin_bottom = 92.0
 
-[node name="itemIcon8" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon8" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 50.0
 margin_right = 142.0
 margin_bottom = 92.0
 
-[node name="itemIcon9" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon9" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 50.0
 margin_right = 192.0
 margin_bottom = 92.0
 
-[node name="itemIcon10" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon10" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 50.0
 margin_right = 242.0
 margin_bottom = 92.0
 
-[node name="itemIcon11" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon11" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_top = 100.0
 margin_bottom = 142.0
 
-[node name="itemIcon12" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon12" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 100.0
 margin_right = 92.0
 margin_bottom = 142.0
 
-[node name="itemIcon13" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon13" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 100.0
 margin_right = 142.0
 margin_bottom = 142.0
 
-[node name="itemIcon14" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon14" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 100.0
 margin_right = 192.0
 margin_bottom = 142.0
 
-[node name="itemIcon15" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon15" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 100.0
 margin_right = 242.0
 margin_bottom = 142.0
 
-[node name="itemIcon16" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon16" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_top = 150.0
 margin_bottom = 192.0
 
-[node name="itemIcon17" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon17" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 50.0
 margin_top = 150.0
 margin_right = 92.0
 margin_bottom = 192.0
 
-[node name="itemIcon18" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon18" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 100.0
 margin_top = 150.0
 margin_right = 142.0
 margin_bottom = 192.0
 
-[node name="itemIcon19" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon19" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 150.0
 margin_top = 150.0
 margin_right = 192.0
 margin_bottom = 192.0
 
-[node name="itemIcon20" parent="back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon20" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 150.0
 margin_right = 242.0
 margin_bottom = 192.0
 
-[node name="trading" type="Control" parent="back/chestBack"]
+[node name="tradeBack" type="ColorRect" parent="helper/back"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -560.0
+margin_top = -172.0
+margin_right = -160.0
+margin_bottom = 196.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="helper/back/tradeBack"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -184.0
+margin_top = 21.0
+margin_right = 184.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+text = "Торговец"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="moneyLabel" type="Label" parent="helper/back/tradeBack"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 64.0
+margin_right = 72.0
+margin_bottom = 83.0
+theme = ExtResource( 3 )
+text = "Количество денег:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="moneyCount" type="Label" parent="helper/back/tradeBack"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 96.0
+margin_top = 64.0
+margin_right = 184.0
+margin_bottom = 83.0
+theme = ExtResource( 3 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-left" type="ColorRect" parent="helper/back/tradeBack"]
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 3.05176e-05
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-right" type="ColorRect" parent="helper/back/tradeBack"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-down" type="ColorRect" parent="helper/back/tradeBack"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-up" type="ColorRect" parent="helper/back/tradeBack"]
+anchor_right = 1.0
+margin_bottom = 1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+
+[node name="items" type="GridContainer" parent="helper/back/tradeBack"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -168.0
+margin_top = -272.0
+margin_right = 176.0
+margin_bottom = -24.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 7
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="itemIcon" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+
+[node name="itemIcon2" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_right = 92.0
+
+[node name="itemIcon3" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_right = 142.0
+
+[node name="itemIcon4" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_right = 192.0
+
+[node name="itemIcon5" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_right = 242.0
+
+[node name="itemIcon6" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 250.0
+margin_right = 292.0
+
+[node name="itemIcon7" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_right = 342.0
+
+[node name="itemIcon8" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_top = 50.0
+margin_bottom = 92.0
+
+[node name="itemIcon9" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 92.0
+
+[node name="itemIcon10" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 50.0
+margin_right = 142.0
+margin_bottom = 92.0
+
+[node name="itemIcon11" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 50.0
+margin_right = 192.0
+margin_bottom = 92.0
+
+[node name="itemIcon12" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 50.0
+margin_right = 242.0
+margin_bottom = 92.0
+
+[node name="itemIcon13" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 250.0
+margin_top = 50.0
+margin_right = 292.0
+margin_bottom = 92.0
+
+[node name="itemIcon14" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_top = 50.0
+margin_right = 342.0
+margin_bottom = 92.0
+
+[node name="itemIcon15" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_top = 100.0
+margin_bottom = 142.0
+
+[node name="itemIcon16" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 92.0
+margin_bottom = 142.0
+
+[node name="itemIcon17" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 142.0
+margin_bottom = 142.0
+
+[node name="itemIcon18" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 100.0
+margin_right = 192.0
+margin_bottom = 142.0
+
+[node name="itemIcon19" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 242.0
+margin_bottom = 142.0
+
+[node name="itemIcon20" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 250.0
+margin_top = 100.0
+margin_right = 292.0
+margin_bottom = 142.0
+
+[node name="itemIcon21" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 342.0
+margin_bottom = 142.0
+
+[node name="itemIcon22" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_top = 150.0
+margin_bottom = 192.0
+
+[node name="itemIcon23" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 150.0
+margin_right = 92.0
+margin_bottom = 192.0
+
+[node name="itemIcon24" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 150.0
+margin_right = 142.0
+margin_bottom = 192.0
+
+[node name="itemIcon25" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 150.0
+margin_right = 192.0
+margin_bottom = 192.0
+
+[node name="itemIcon26" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 150.0
+margin_right = 242.0
+margin_bottom = 192.0
+
+[node name="itemIcon27" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 250.0
+margin_top = 150.0
+margin_right = 292.0
+margin_bottom = 192.0
+
+[node name="itemIcon28" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_top = 150.0
+margin_right = 342.0
+margin_bottom = 192.0
+
+[node name="itemIcon29" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_top = 200.0
+margin_bottom = 242.0
+
+[node name="itemIcon30" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 92.0
+margin_bottom = 242.0
+
+[node name="itemIcon31" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 200.0
+margin_right = 142.0
+margin_bottom = 242.0
+
+[node name="itemIcon32" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 200.0
+margin_right = 192.0
+margin_bottom = 242.0
+
+[node name="itemIcon33" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 242.0
+margin_bottom = 242.0
+
+[node name="itemIcon34" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 250.0
+margin_top = 200.0
+margin_right = 292.0
+margin_bottom = 242.0
+
+[node name="itemIcon35" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_top = 200.0
+margin_right = 342.0
+margin_bottom = 242.0
+
+[node name="trading" type="Control" parent="helper/back/tradeBack"]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -594,7 +908,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="moneyLabel" type="Label" parent="back/chestBack/trading"]
+[node name="moneyLabel" type="Label" parent="helper/back/tradeBack/trading"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -610,7 +924,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="money" type="Label" parent="back/chestBack/trading"]
+[node name="money" type="Label" parent="helper/back/tradeBack/trading"]
 anchor_left = 0.5
 anchor_top = 0.9
 anchor_right = 0.5
@@ -625,7 +939,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="dragIcon" type="TextureRect" parent="back"]
+[node name="dragIcon" type="TextureRect" parent="helper/back"]
 anchor_right = 0.9
 anchor_bottom = 0.9
 margin_right = -202.8
@@ -636,3 +950,131 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="modalAsk" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -208.0
+margin_top = -52.0
+margin_right = 208.0
+margin_bottom = 60.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="askLabel" type="Label" parent="modalAsk"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -208.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 31.0
+grow_horizontal = 2
+theme = ExtResource( 3 )
+text = "Продать твою душу за 42 бита?"
+align = 1
+
+[node name="border-up" type="ColorRect" parent="modalAsk"]
+anchor_right = 1.0
+margin_bottom = 1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+
+[node name="border-down" type="ColorRect" parent="modalAsk"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+
+[node name="border-left" type="ColorRect" parent="modalAsk"]
+anchor_bottom = 1.0
+margin_right = 1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+
+[node name="border-right" type="ColorRect" parent="modalAsk"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+color = Color( 0.223529, 0.752941, 0.145098, 1 )
+
+[node name="yes" type="Button" parent="modalAsk"]
+margin_left = 64.0
+margin_top = 80.0
+margin_right = 156.0
+margin_bottom = 100.0
+theme = ExtResource( 3 )
+text = "Да (enter)"
+
+[node name="no" type="Button" parent="modalAsk"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -160.0
+margin_top = 80.0
+margin_right = -64.0
+margin_bottom = 100.0
+theme = ExtResource( 3 )
+text = "Нет (shift)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sliderBack" type="Control" parent="modalAsk"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -176.0
+margin_top = -20.0
+margin_right = 176.0
+margin_bottom = 12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sliderLabel" type="Label" parent="modalAsk/sliderBack"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 108.0
+margin_bottom = 23.0
+theme = ExtResource( 3 )
+text = "Количество:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sliderCount" type="Label" parent="modalAsk/sliderBack"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
+margin_top = 8.0
+margin_right = -16.0
+margin_bottom = 23.0
+theme = ExtResource( 3 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slider" type="HSlider" parent="modalAsk/sliderBack"]
+anchor_left = 0.5
+anchor_top = -1.125
+anchor_right = 0.5
+anchor_bottom = -1.125
+margin_left = -56.0
+margin_top = 44.0
+margin_right = 96.0
+margin_bottom = 60.0
+theme = ExtResource( 3 )
+min_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="helper/back/chestBack/takeAll" to="." method="_on_takeAll_pressed"]
+[connection signal="pressed" from="modalAsk/yes" to="." method="_on_modal_yes_pressed"]
+[connection signal="pressed" from="modalAsk/no" to="." method="_on_modal_no_pressed"]
+[connection signal="value_changed" from="modalAsk/sliderBack/slider" to="." method="_on_count_value_changed"]

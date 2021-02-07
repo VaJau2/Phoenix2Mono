@@ -29,7 +29,7 @@ public class UnicornShield : Spatial
 
     public override void _Process(float delta)
     {
-        if (Input.IsActionPressed("ui_shift") && player.ManaIsEnough(SHIELD_COST))
+        if (player.MayMove && Input.IsActionPressed("ui_shift") && player.ManaIsEnough(SHIELD_COST))
         {  
             firstShield.Visible = true;
             thirdShield.Visible = true;

@@ -205,9 +205,7 @@ public class SettingsMenu : MenuBase
     {
         if (tempAction != "") {
             setEditOn(tempEditBack, false);
-            var actions = InputMap.GetActionList(tempAction);
-            var action = actions[0] as InputEventKey;
-            var key = OS.GetScancodeString(action.Scancode);
+            var key = Global.GetKeyName(tempAction);
             if (tempEdit != null) {
                 WriteKeyToEdit(key, tempEdit);
             }

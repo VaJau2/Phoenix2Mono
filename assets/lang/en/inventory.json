@@ -2,24 +2,36 @@
     "labels": {
         "name": "Inventory",
         "money": "Money count:",
+        "moneyTrade": "Money count:",
         "wear": "Wear",
         "weapon": "Weapon:",
         "armor": "Armor:",
-        "artifact": "Artifact:"
+        "artifact": "Artifact:",
+        "takeAll": "Take all (#button#)"
+    },
+
+    "moneyNames": {
+        "bits1": "bit",
+        "bits2": "bits",
+        "bits5": "bits"
     },
 
     "inventoryControlHints": {
         "staff": "RMB - drop",
         "weapon": "LMB - wear, RMB - drop, 0-9 - bind",
-        "ammo": "ПКМ - drop all",
+        "ammo": "RMB - drop all",
         "armor": "LMB - wear, RMB - drop",
         "artifact": "LMB - wear, RMB - drop",
         "food": "LMB - eat, RMB - drop, 0-9 - bind",
         "meds": "LMB - use, RMB - drop, 0-9 - bind"
     },
     "chestControlHints": {
-        "take": "ЛКМ - take",
-        "put": "ЛКМ - put"
+        "take": "LMB - take",
+        "put": "LMB - put"
+    },
+    "tradeControlHints": {
+        "take": "ЛКМ - buy",
+        "put": "ЛКМ - sell"
     },
 
     "itemProps": {
@@ -46,5 +58,13 @@
         "medX": "60 sec. + 20% to block damage",
         "mentats": "Reducing the difference in price when trading",
         "detoxine": "Resetting all current effects"
+    },
+
+    "modalAsk": {
+        "askSell": "Sell \"#item#\" for #price# #money#?",
+        "askBuy": "Buy \"#item#\" for #price# #money#?",
+        "yes": "Yes (#button#)",
+        "no": "No (#button#)",
+        "countLabel": "Count:"
     }
 }

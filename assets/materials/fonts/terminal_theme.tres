@@ -19,25 +19,19 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 bg_color = Color( 0.14902, 0.47451, 0.101961, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
-content_margin_top = 6.0
-content_margin_bottom = 6.0
 bg_color = Color( 0.223529, 0.752941, 0.145098, 1 )
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
-anti_aliasing = false
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id=7]
-content_margin_top = 6.0
-content_margin_bottom = 6.0
 bg_color = Color( 0.223529, 0.752941, 0.145098, 1 )
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
-anti_aliasing = false
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 1 )
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 1 )

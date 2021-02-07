@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://assets/materials/fonts/MainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/textures/empty_image.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0901961, 0.0980392, 0.0862745, 0.784314 )
+bg_color = Color( 0.278431, 0.611765, 0.270588, 0.784314 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -27,6 +28,21 @@ border_width_bottom = 1
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.223529, 0.752941, 0.145098, 1 )
+expand_margin_top = 4.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.223529, 0.752941, 0.145098, 1 )
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.537255, 0.0156863, 0.0156863, 1 )
 corner_radius_top_left = 70
 corner_radius_top_right = 70
@@ -37,9 +53,9 @@ anti_aliasing = false
 
 [resource]
 default_font = ExtResource( 1 )
-Button/colors/font_color = Color( 0.223529, 0.752941, 0.145098, 1 )
-Button/colors/font_color_disabled = Color( 0.223529, 0.752941, 0.145098, 1 )
-Button/colors/font_color_hover = Color( 0.223529, 0.752941, 0.145098, 1 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
@@ -48,8 +64,15 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+HSlider/icons/grabber = ExtResource( 2 )
+HSlider/icons/grabber_disabled = ExtResource( 2 )
+HSlider/icons/grabber_highlight = ExtResource( 2 )
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource( 4 )
+HSlider/styles/grabber_area_highlight = SubResource( 4 )
+HSlider/styles/slider = SubResource( 5 )
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null
 ProgressBar/styles/bg = null
-ProgressBar/styles/fg = SubResource( 4 )
+ProgressBar/styles/fg = SubResource( 6 )

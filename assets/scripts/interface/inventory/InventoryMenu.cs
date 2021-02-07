@@ -40,6 +40,11 @@ public class InventoryMenu : Control
                     mode = new ChestMode(this);
                 }
                 break;
+            case NewInventoryMode.Trade:
+                if (!(mode is TradeMode)) {
+                    mode = new TradeMode(this);
+                }
+                break;
         }
     }
     
@@ -61,10 +66,31 @@ public class InventoryMenu : Control
             mode.UpdateInput(@event);
         }
     }
+
+    public void _on_modal_no_pressed()
+    {
+        mode._on_modal_no_pressed();
+    }
+
+    public void _on_modal_yes_pressed()
+    {
+        mode._on_modal_yes_pressed();
+    }
+
+    public void _on_count_value_changed(float newCount)
+    {
+        mode._on_count_value_changed(newCount);
+    }
+
+    public void _on_takeAll_pressed()
+    {
+        mode._on_takeAll_pressed();
+    }
 }
 
 public enum NewInventoryMode
 {
     Usual,
-    Chest
+    Chest,
+    Trade
 }

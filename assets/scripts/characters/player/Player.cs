@@ -22,7 +22,6 @@ public class Player : Character
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
     public float PriceDelta = 1;
-
     //Ссылки на классы игрока
     public Camera Camera {get; private set;}
     public Spatial RotationHelper {get; private set;}
@@ -92,7 +91,6 @@ public class Player : Character
         return tempDamage;
     }
 
-    
     public override float GetDamageBlock() 
     {
         Dictionary armorProps = inventory.GetArmorProps();

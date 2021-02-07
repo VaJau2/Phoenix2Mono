@@ -2,10 +2,18 @@
     "labels": {
         "name": "Инвентарь",
         "money": "Количество денег:",
+        "moneyTrade": "Количество денег:",
         "wear": "Надето",
         "weapon": "Оружие:",
         "armor": "Броня:",
-        "artifact": "Артефакт:"
+        "artifact": "Артефакт:",
+        "takeAll": "Взять все (#button#)"
+    },
+
+    "moneyNames": {
+        "bits1": "бит",
+        "bits2": "бита",
+        "bits5": "битов"
     },
 
     "inventoryControlHints": {
@@ -20,6 +28,10 @@
     "chestControlHints": {
         "take": "ЛКМ - взять",
         "put": "ЛКМ - сложить"
+    },
+    "tradeControlHints": {
+        "take": "ЛКМ - купить",
+        "put": "ЛКМ - продать"
     },
 
     "itemProps": {
@@ -46,5 +58,13 @@
         "medX": "+ 0.2 к блокированию урона на 60 сек.",
         "mentats": "Снижение разницы в цене при торговле",
         "detoxine": "Сброс всех текущих эффектов"
+    },
+
+    "modalAsk": {
+        "askSell": "Продать \"#item#\" за #price# #money#?",
+        "askBuy": "Купить \"#item#\" за #price# #money#?",
+        "yes": "Да (#button#)",
+        "no": "Нет (#button#)",
+        "countLabel": "Количество:"
     }
 }

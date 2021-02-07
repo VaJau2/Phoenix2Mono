@@ -25,25 +25,7 @@ public class FurnChest: FurnBase {
 
         if (SpawnRandomItems) {
             RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
-            RandomNumberGenerator rand = new RandomNumberGenerator();
-
-            rand.Randomize();
-            int itemsCount = rand.RandiRange(0, items.maxItemsCount);
-            for (int i = 0; i < itemsCount; i++) {
-                //берем рандомную вещь из списка
-                int randItemNum = rand.RandiRange(0, items.itemCodes.Count - 1);
-                string newItemCode = items.itemCodes[randItemNum];
-                Dictionary itemData = ItemJSON.GetItemData(newItemCode);
-                //если это патроны, ложим в список патронов
-                if (itemData["type"].ToString() == "ammo") {
-                    if (ammoCount.ContainsKey(newItemCode)) return;
-
-                    int count = items.ammoCount[newItemCode];
-                    ammoCount.Add(newItemCode, count);
-                } else {
-                    itemCodes.Add(newItemCode);
-                }
-            }
+            items.LoadRandomItems(itemCodes, ammoCount);
         }
     }
 

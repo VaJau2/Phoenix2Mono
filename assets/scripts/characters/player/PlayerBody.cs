@@ -143,10 +143,14 @@ public class PlayerBody : Spatial
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
+    private bool checkJumpKey {
+        get => Input.IsActionJustPressed("jump") && player.MayMove;
+    }
+
     
     private void AnimateWalkEarthpony(Player_Earthpony earthpony) 
     {
-        if (Input.IsActionJustPressed("jump") && jumpingCooldown <= 0) {
+        if (checkJumpKey && jumpingCooldown <= 0) {
             if (earthpony.IsRunning) {
                 playback.Start("Jump-Run");
             } else {
@@ -177,7 +181,7 @@ public class PlayerBody : Spatial
                 }
             }
         } else {
-            if (Input.IsActionJustPressed("jump") && jumpingCooldown <= 0) {
+            if (checkJumpKey && jumpingCooldown <= 0) {
                 playback.Start("Jump");
                 jumpingCooldown = JUMP_COOLDOWN;
             } else {
@@ -193,7 +197,7 @@ public class PlayerBody : Spatial
         if (pegasus.IsFlying) {
             playback.Travel("Fly-OnPlace");
         } else if (jumpingCooldown <= 0) {
-            if(Input.IsActionJustPressed("jump") && !player.BlockJump) {
+            if(checkJumpKey && !player.BlockJump) {
                 playback.Start("Jump");
 			    jumpingCooldown = JUMP_COOLDOWN;
             } else {
@@ -205,7 +209,7 @@ public class PlayerBody : Spatial
     private void AnimateIdleEarthpony(Player_Earthpony earthpony) 
     {
         if (jumpingCooldown <= 0) {
-            if(Input.IsActionJustPressed("jump") && !player.BlockJump) {
+            if(checkJumpKey && !player.BlockJump) {
                 playback.Start("Jump");
                 jumpingCooldown = JUMP_COOLDOWN;
             } else {

@@ -91,6 +91,21 @@ public class Global {
         }
         return _object.ToSignal(_object.GetTree().CreateTimer(time), "timeout");
     }
+
+    //nominativ - 1 бит
+    //genetiv   - 2 бита
+    //plural    - 5 битов
+    public static string GetCountWord(int number, string nominativ, string genetiv, string plural) {
+        var titles = new[] {nominativ, genetiv, plural};
+        var cases = new[] {2, 0, 1, 1, 1, 2};
+        return titles[number % 100 > 4 && number % 100 < 20 ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+    }
+
+    public static string GetKeyName(string actionName) {
+        var actions = InputMap.GetActionList(actionName);
+        var action = actions[0] as InputEventKey;
+        return OS.GetScancodeString(action.Scancode);
+    }
 }
 
 public enum Race {

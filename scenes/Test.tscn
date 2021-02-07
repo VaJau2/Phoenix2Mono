@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/scripts/furniture/TradeTerminal.cs" type="Script" id=9]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -25,6 +26,7 @@ extents = Vector3( 50, 0.1, 50 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+moneyCount = 500
 itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307" ]
 ammo = {
 "ammo10": 50,
@@ -65,6 +67,10 @@ ForceOpening = true
 
 [node name="terminal" parent="terrain/props" instance=ExtResource( 8 )]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 3.72852, 4.31248, -16.132 )
+script = ExtResource( 9 )
+moneyCount = 2000
+traderCode = "tradeTerminal"
+itemCodes = [ "stealth-armor" ]
 
 [node name="box" type="StaticBody" parent="terrain/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )

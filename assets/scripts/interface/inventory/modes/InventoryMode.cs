@@ -6,9 +6,10 @@ public abstract class InventoryMode
     protected const float MENU_SPEED = 16f;
     protected const float MENU_SIZE = 272f;
 
-    protected Player player;
+    protected Player player => Global.Get().player;
     protected InventoryMenu menu;
     protected Control back;
+    protected Label moneyCount;
 
     protected Control itemInfo;
     protected Label itemName;
@@ -18,6 +19,7 @@ public abstract class InventoryMode
 
     protected bool isAnimating = false;
     public bool isDragging {get; protected set;} = false;
+    public Control modalAsk {get; protected set;}
 
     protected ItemIcon tempButton;
     protected Dictionary tempItemData;
@@ -34,24 +36,26 @@ public abstract class InventoryMode
     {
         this.menu = menu;
 
-        foreach(object button in menu.GetNode<Control>("back/items").GetChildren()) {
+        foreach(object button in menu.GetNode<Control>("helper/back/items").GetChildren()) {
             itemButtons.Add(button as ItemIcon); 
         }
-        back = menu.GetNode<Control>("back");
+        back = menu.GetNode<Control>("helper/back");
+        moneyCount = back.GetNode<Label>("moneyCount");
+        modalAsk = menu.GetNode<Control>("modalAsk");
 
-        itemInfo = menu.GetNode<Control>("back/itemInfo");
+        itemInfo = back.GetNode<Control>("itemInfo");
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
         itemProps = itemInfo.GetNode<Label>("props");
         controlHints = itemInfo.GetNode<Label>("hints");
-        dragIcon = menu.GetNode<TextureRect>("back/dragIcon");
+        dragIcon = back.GetNode<TextureRect>("dragIcon");
 
-        labels.Add("name", menu.GetNode<Label>("back/Label"));
-        labels.Add("money", menu.GetNode<Label>("back/moneyLabel"));
-        labels.Add("wear", menu.GetNode<Label>("back/wearBack/Label"));
-        labels.Add("weapon", menu.GetNode<Label>("back/wearBack/weaponLabel"));
-        labels.Add("armor", menu.GetNode<Label>("back/wearBack/armorLabel"));
-        labels.Add("artifact", menu.GetNode<Label>("back/wearBack/artifactLabel"));
+        labels.Add("name", back.GetNode<Label>("Label"));
+        labels.Add("money", back.GetNode<Label>("moneyLabel"));
+        labels.Add("wear", back.GetNode<Label>("wearBack/Label"));
+        labels.Add("weapon", back.GetNode<Label>("wearBack/weaponLabel"));
+        labels.Add("armor", back.GetNode<Label>("wearBack/armorLabel"));
+        labels.Add("artifact", back.GetNode<Label>("wearBack/artifactLabel"));
     }
 
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
@@ -84,6 +88,7 @@ public abstract class InventoryMode
         }
     }
 
+    //грузим подсказки по управлению предметом
     protected virtual void LoadControlHint(bool isInventoryIcon)
     {
         controlHints.Text = InterfaceLang.GetPhrase(
@@ -113,7 +118,7 @@ public abstract class InventoryMode
                 inventory.AddKey(itemCode);
             }
         } else {
-            inventory.MessageNotEnoughSpace();
+            inventory.MessageNotEnough("space");
         }
         
         return emptyButton;
@@ -134,7 +139,7 @@ public abstract class InventoryMode
         tempButton = null;
     }
 
-    protected string GetItemPropsString(Dictionary itemProps)
+    protected virtual string GetItemPropsString(Dictionary itemProps)
     {
         string result = "";
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
@@ -165,6 +170,11 @@ public abstract class InventoryMode
         var mouse = button.GetLocalMousePosition();
         return mouse.x >= 0 && mouse.x <= button.RectSize.x 
             && mouse.y >= 0 && mouse.y <= button.RectSize.y;
+    }
+
+    protected virtual bool IconsInSameArray(ItemIcon oldButton, ItemIcon newButton) 
+    {
+        return itemButtons.Contains(oldButton) && itemButtons.Contains(newButton);
     }
 
     protected virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
@@ -211,26 +221,27 @@ public abstract class InventoryMode
     
     public virtual async void OpenMenu() 
     {
-        if (player == null) {
-            player = Global.Get().player;
-        }
         player.MayMove = false;
 
         LoadLabels();
+        moneyCount.Text = inventory.money.ToString();
 
         back.Visible = true;
-        isAnimating = true;
-        float startPos = back.RectPosition.x;
-        while (back.RectPosition.x > startPos - MENU_SIZE) {
-            Vector2 newPos = back.RectPosition;
-            newPos.x -= MENU_SPEED;
-            back.RectPosition = newPos;
-            await player.ToSignal(player.GetTree(), "idle_frame");
+        
+        if (!isAnimating) {
+            isAnimating = true;
+            while (back.RectPosition.x > -MENU_SIZE) {
+                Vector2 newPos = back.RectPosition;
+                newPos.x -= MENU_SPEED;
+                back.RectPosition = newPos;
+                await player.ToSignal(player.GetTree(), "idle_frame");
+            }
+
+            Input.SetMouseMode(Input.MouseMode.Visible);
+            isAnimating = false;
         }
 
-        Input.SetMouseMode(Input.MouseMode.Visible);
         menu.isOpen = true;
-        isAnimating = false;
     }
 
     public virtual async void CloseMenu()
@@ -239,8 +250,7 @@ public abstract class InventoryMode
         player.MayMove = true;
 
         isAnimating = true;
-        float startPos = back.RectPosition.x;
-        while (back.RectPosition.x < startPos + MENU_SIZE) {
+        while (back.RectPosition.x < 0) {
             Vector2 newPos = back.RectPosition;
             newPos.x += MENU_SPEED;
             back.RectPosition = newPos;
@@ -251,18 +261,6 @@ public abstract class InventoryMode
         Input.SetMouseMode(Input.MouseMode.Captured);
 
         isAnimating = false;
-    }
-
-    protected virtual void CloseWithoutAnimating()
-    {
-        CheckTempIcon();
-        player.MayMove = true;
-        Vector2 newPos = back.RectPosition;
-        newPos.x += MENU_SIZE;
-        back.RectPosition = newPos;
-        back.Visible = false;
-        menu.isOpen = false;
-        Input.SetMouseMode(Input.MouseMode.Captured);
     }
 
     protected bool UpdateDragging(InputEvent @event)
@@ -306,11 +304,13 @@ public abstract class InventoryMode
                     OpenMenu();
                 }
             }
-            if (Input.IsActionJustPressed("ui_cancel") && menu.isOpen) {
-                CloseWithoutAnimating();
-            }
         }
     }
 
     public virtual void UpdateInput(InputEvent @event) {}
+
+    public virtual void _on_modal_no_pressed() {}
+    public virtual void _on_modal_yes_pressed() {}
+    public virtual void _on_count_value_changed(float newCount) { }
+    public virtual void _on_takeAll_pressed() {}
 }

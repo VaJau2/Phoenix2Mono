@@ -5,16 +5,18 @@ public class ChestMode: InventoryMode
 {
     private Control chestBack;
     private Label chestLabel;
+    private Button takeAll;
 
     private Array<ItemIcon> chestButtons = new Array<ItemIcon>();
 
-    private FurnChest chest;
+    private FurnChest tempChest;
 
     public ChestMode (InventoryMenu menu)
     : base(menu)
     {
-        chestBack = menu.GetNode<Control>("back/chestBack");
+        chestBack  = back.GetNode<Control>("chestBack");
         chestLabel = chestBack.GetNode<Label>("Label");
+        takeAll    = chestBack.GetNode<Button>("takeAll");
         foreach(object button in chestBack.GetNode<Control>("items").GetChildren()) {
             chestButtons.Add(button as ItemIcon); 
         }
@@ -22,7 +24,7 @@ public class ChestMode: InventoryMode
 
     public void SetChest(FurnChest chest)
     {
-        this.chest = chest;
+        this.tempChest = chest;
         string chestName = InterfaceLang.GetPhrase("inGame", "chestNames", chest.chestCode);
         chestLabel.Text = chestName;
         if(chest.itemPositions.Count > 0) {
@@ -36,6 +38,9 @@ public class ChestMode: InventoryMode
     {
         base.OpenMenu();
         chestBack.Visible = true;
+
+        string askTakeAllText = InterfaceLang.GetPhrase("inventory", "labels", "takeAll");
+        takeAll.Text = askTakeAllText.Replace("#button#", Global.GetKeyName("ui_shift"));
     }
 
     public override void CloseMenu()
@@ -48,12 +53,29 @@ public class ChestMode: InventoryMode
 
     public override void UpdateInput(InputEvent @event)
     {
-        if (menu.isOpen && tempButton != null) {
-            if (UpdateDragging(@event)) return;
-            if (Input.IsActionJustReleased("ui_click")) {
-                TakeTempItem();
+        if (menu.isOpen) {
+            if (tempButton != null) {
+                if (UpdateDragging(@event)) return;
+                if (Input.IsActionJustReleased("ui_click")) {
+                    TakeTempItem();
+                }
+            }
+            if (Input.IsActionJustPressed("ui_shift")) {
+                _on_takeAll_pressed();
             }
         }
+    }
+
+    public override async void _on_takeAll_pressed()
+    {
+        foreach(ItemIcon tempIcon in chestButtons) {
+            if (tempIcon.myItemCode != null) {
+                tempButton = tempIcon;
+                if (!TakeTempItem()) return;
+            }
+        }
+        await Global.Get().ToTimer(0.1f);
+        CloseMenu();
     }
 
     private void ClearChestButtons()
@@ -73,7 +95,7 @@ public class ChestMode: InventoryMode
         foreach(string ammoItem in ammo.Keys) {
             ItemIcon newAmmoButton = AddChestItem(ammoItem);
             newAmmoButton.SetCount(ammo[ammoItem]);
-            chest.ammoButtons.Add(ammoItem, newAmmoButton);
+            tempChest.ammoButtons.Add(ammoItem, newAmmoButton);
         }
     }
 
@@ -113,9 +135,9 @@ public class ChestMode: InventoryMode
             emptyButton.SetItem(itemCode);
             
             int buttonId = chestButtons.IndexOf(emptyButton);
-            chest.itemPositions.Add(buttonId, itemCode);
+            tempChest.itemPositions.Add(buttonId, itemCode);
         } else {
-            inventory.MessageNotEnoughSpace();
+            inventory.MessageNotEnough("space");
         }
         
         return emptyButton;
@@ -125,10 +147,10 @@ public class ChestMode: InventoryMode
     private void UpdateChestPositions() 
     {
         //очищаем все массивы сундука
-        chest.itemCodes.Clear();
-        chest.itemPositions.Clear();
-        chest.ammoCount.Clear();
-        chest.ammoButtons.Clear();
+        tempChest.itemCodes.Clear();
+        tempChest.itemPositions.Clear();
+        tempChest.ammoCount.Clear();
+        tempChest.ammoButtons.Clear();
         bool isEmpty = true;
 
         //проходим по иконкам
@@ -138,29 +160,21 @@ public class ChestMode: InventoryMode
 
                 //сохраняем позицию иконки
                 int iconId = chestButtons.IndexOf(tempIcon);
-                chest.itemPositions.Add(iconId, tempIcon.myItemCode);
+                tempChest.itemPositions.Add(iconId, tempIcon.myItemCode);
                 //сохраняем количество, если это патроны
                 if(tempIcon.GetCount() != -1) {
-                    chest.ammoCount.Add(tempIcon.myItemCode, tempIcon.GetCount());
-                    chest.ammoButtons.Add(tempIcon.myItemCode, tempIcon);
+                    tempChest.ammoCount.Add(tempIcon.myItemCode, tempIcon.GetCount());
+                    tempChest.ammoButtons.Add(tempIcon.myItemCode, tempIcon);
                 }
             }
         }
 
         //если сундук - это сумка, и она опустошается
         //то она удаляется
-        if (isEmpty && chest.isBag) {
-           chest.QueueFree();
+        if (isEmpty && tempChest.isBag) {
+           tempChest.QueueFree();
            CloseMenu();
         }
-    }
-
-    protected override void CloseWithoutAnimating()
-    {
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
-        chestBack.Visible = false;
-        base.CloseWithoutAnimating();
-        menu.ChangeMode(NewInventoryMode.Usual);
     }
 
     private bool CheckDragIn(Array<ItemIcon> iconsArray, string ammoName)
@@ -178,7 +192,7 @@ public class ChestMode: InventoryMode
                 }
 
                 ChangeItemButtons(tempButton, otherButton);
-                SetTempButton(otherButton, false);
+                SetTempButton(null, false);
                 dragIcon.Texture = null;
                 UpdateChestPositions();
                 return true;
@@ -193,6 +207,7 @@ public class ChestMode: InventoryMode
         if (CheckDragIn(chestButtons, "chest"))    return;
     }
 
+    //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
         string phraseName = isInventoryIcon ? "put" : "take";
@@ -205,38 +220,42 @@ public class ChestMode: InventoryMode
 
     protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
-        oldButton.SetBindKey(null);
+        if (!IconsInSameArray(oldButton, newButton)) oldButton.SetBindKey(null);
         base.ChangeItemButtons(oldButton, newButton);
     }
 
-    private void TakeTempItem()
+    private bool TakeTempItem()
     {
         //положить в сундук
         if (itemButtons.Contains(tempButton)) {
             ItemIcon chestButton = FirstEmptyChestButton;
             if (chestButton != null) {
-                if (checkAmmoInChest()) return;
+                if (checkAmmoInChest()) return true;
                 ChangeItemButtons(tempButton, chestButton);
-                SetTempButton(chestButton, false);
+                SetTempButton(null, false);
                 UpdateChestPositions();
             } else {
-                inventory.MessageNotEnoughSpace();
+                inventory.MessageNotEnough("space");
+                return false;
             }
-            return;
+            return true;
         }
 
         //взять из сундука
         if(chestButtons.Contains(tempButton)) {
             ItemIcon itemButton = FirstEmptyButton;
             if (itemButton != null) {
-                if (checkAmmoInInventory()) return;
+                if (checkAmmoInInventory()) return true;
                 ChangeItemButtons(tempButton, itemButton);
-                SetTempButton(itemButton, false);
+                SetTempButton(null, false);
                 UpdateChestPositions();
             } else {
-                inventory.MessageNotEnoughSpace();
+                inventory.MessageNotEnough("space");
+                return false;
             }
         }
+
+        return true;
     }
 
     //проверяем, есть ли в сундуке патроны, которые собираемся ложить
@@ -244,8 +263,8 @@ public class ChestMode: InventoryMode
     {
         if (chestButtons.Contains(tempButton)) return false;
 
-        if (chest.ammoCount.Keys.Contains(tempButton.myItemCode)) {
-            ItemIcon ammoButton = chest.ammoButtons[tempButton.myItemCode];
+        if (tempChest.ammoCount.Keys.Contains(tempButton.myItemCode)) {
+            ItemIcon ammoButton = tempChest.ammoButtons[tempButton.myItemCode];
             int addCount = tempButton.GetCount();
             ammoButton.SetCount(ammoButton.GetCount() + addCount);
             tempButton.ClearItem();

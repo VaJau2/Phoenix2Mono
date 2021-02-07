@@ -14,7 +14,7 @@ public class UsualMode: InventoryMode {
     public UsualMode (InventoryMenu menu)
     : base(menu)
     {
-        wearBack       = menu.GetNode<Control>("back/wearBack");
+        wearBack       = back.GetNode<Control>("wearBack");
         weaponButton   = wearBack.GetNode<ItemIcon>("weapon");
         armorButton    = wearBack.GetNode<ItemIcon>("armor");
         artifactButton = wearBack.GetNode<ItemIcon>("artifact");
@@ -33,13 +33,6 @@ public class UsualMode: InventoryMode {
         tempBag = null;
         wearBack.Visible = false;
         base.CloseMenu();
-    }
-
-    protected override void CloseWithoutAnimating()
-    {
-        tempBag = null;
-        wearBack.Visible = false;
-        base.CloseWithoutAnimating();
     }
 
     private bool isUnwearingItem(string itemType)
@@ -153,9 +146,10 @@ public class UsualMode: InventoryMode {
             if (!canTakeItemOff()) return;
 
             ItemIcon otherButton = FirstEmptyButton;
+            inventory.UnwearItem(wearButton.myItemCode);
+
             //если в инвентаре есть место
             if (otherButton != null) {
-                inventory.UnwearItem(wearButton.myItemCode);
                 ChangeItemButtons(wearButton, otherButton);
             } else {
                 DropTempItem();

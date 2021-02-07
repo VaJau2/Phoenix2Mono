@@ -4,6 +4,7 @@ public class PauseMenu : MenuBase
 {
     Global global = Global.Get();
     AudioStreamPlayer audi;
+    private InventoryMenu inventoryMenu;
     private Label pageLabel;
     private Label headerLabel;
     private Button continueButton;
@@ -11,17 +12,6 @@ public class PauseMenu : MenuBase
     private Button exitButton;
 
     SettingsMenu settingsMenu;
-
-    private void loadMenu()
-    {
-        pageLabel      = GetNode<Label>("page_label");
-        headerLabel    = GetNode<Label>("Label");
-        continueButton = GetNode<Button>("continue");
-        settingsButton = GetNode<Button>("settings");
-        exitButton     = GetNode<Button>("exit");
-
-        settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
-    }
 
     public override void loadInterfaceLanguage()
     {
@@ -54,13 +44,33 @@ public class PauseMenu : MenuBase
         audi = GetNode<AudioStreamPlayer>("audi");
         base._Ready();
         menuName = "pauseMenu";
-        loadMenu();
+        
+        pageLabel      = GetNode<Label>("page_label");
+        headerLabel    = GetNode<Label>("Label");
+        continueButton = GetNode<Button>("continue");
+        settingsButton = GetNode<Button>("settings");
+        exitButton     = GetNode<Button>("exit");
+
+        settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
+    }
+
+    private void GetInventory() 
+    {
+        if (inventoryMenu == null) {
+            inventoryMenu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        }
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("ui_cancel") && global.player.Health > 0) {
-            setPause(!global.paused);
+        if (Input.IsActionJustPressed("ui_cancel")) {
+            GetInventory();
+            
+            if (inventoryMenu.isOpen) {
+                inventoryMenu.CloseMenu();
+            } else if (global.player.Health > 0) {
+                setPause(!global.paused);
+            }
         }
     }
 
