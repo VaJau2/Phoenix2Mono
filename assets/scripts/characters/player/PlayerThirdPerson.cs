@@ -7,6 +7,7 @@ public class PlayerThirdPerson : Spatial
 
     public Camera thirdCamera;
     public Camera firstCamera;
+    public RayCast TempRay;
 
     private Player player;
     private Control eyePartsInterface;
@@ -16,7 +17,9 @@ public class PlayerThirdPerson : Spatial
     private Vector3 thirdMax = new Vector3(2.75f, 0.45f, 5.2f);
     private Vector3 tempThird = new Vector3(2.5f, 0.4f, 4.2f);
 
-    private RayCast ray;
+    private RayCast RayToPlayer;
+    private RayCast RayFirst;
+    private RayCast RayThird;
     private bool seePlayer = false;
     private Vector3 oldThird;
 
@@ -30,18 +33,21 @@ public class PlayerThirdPerson : Spatial
     {
         firstCamera.Current = !on;
         thirdCamera.Current = on;
+        RayFirst.Enabled = !on;
+        RayThird.Enabled = on;
         player.ThirdView = on;
-        ray.Enabled = on;
+        RayToPlayer.Enabled = on;
         eyePartsInterface.Visible = !on;
         player.Weapons.СheckThirdView();
 
         Body.Visible = !on;
         if (!on) {
             Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.ShadowsOnly;
+            TempRay = RayFirst;
         } else {
             Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.On;
+            TempRay = RayThird;
         }
-        
 
         //возвращаем игроку вращение при переходе от 3 лица
         //если он повернулся на больше 180 градусов
@@ -101,16 +107,16 @@ public class PlayerThirdPerson : Spatial
     
     private void checkCameraSee() 
     {
-        ray.Enabled = true;
-        var dir = player.GlobalTransform.origin - ray.GlobalTransform.origin;
-        ray.CastTo = dir;
+        RayToPlayer.Enabled = true;
+        var dir = player.GlobalTransform.origin - RayToPlayer.GlobalTransform.origin;
+        RayToPlayer.CastTo = dir;
 
-        Transform rayTransf = ray.GlobalTransform;
+        Transform rayTransf = RayToPlayer.GlobalTransform;
         rayTransf.basis = new Basis(Vector3.Zero);
-        ray.GlobalTransform = rayTransf;
+        RayToPlayer.GlobalTransform = rayTransf;
 
-        if (ray.IsColliding()) {
-            var collider = ray.GetCollider() as Node;
+        if (RayToPlayer.IsColliding()) {
+            var collider = RayToPlayer.GetCollider() as Node;
             if (collider.Name == "Player") {
                 seePlayer = true;
             } else {
@@ -162,11 +168,18 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Ready()
     {
+        player = GetParent<Player>();
+
         eyePartsInterface = GetNode<Control>("/root/Main/Scene/canvas/eyesParts");
         firstCamera = GetNode<Camera>("../rotation_helper/camera");
         thirdCamera = GetNode<Camera>("camera");
-        ray = GetNode<RayCast>("camera/RayCast");
-        player = GetParent<Player>();
+        RayToPlayer = GetNode<RayCast>("camera/RayToPlayer");
+
+        RayFirst = GetNode<RayCast>("../rotation_helper/camera/ray");
+        RayThird = GetNode<RayCast>("camera/ray");
+        RayFirst.AddException(player);
+        RayThird.AddException(player);
+        TempRay = RayFirst;
 
         Body       = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
         Body_third = GetNode<GeometryInstance>("../player_body/Armature/Skeleton/Body_third");

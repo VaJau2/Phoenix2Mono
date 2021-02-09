@@ -24,7 +24,6 @@ public abstract class InventoryMode
     protected ItemIcon tempButton;
     protected Dictionary tempItemData;
     protected Array<ItemIcon> itemButtons = new Array<ItemIcon>();
-    protected Dictionary<int, ItemIcon> bindedButtons = new Dictionary<int, ItemIcon>();
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
@@ -132,7 +131,7 @@ public abstract class InventoryMode
         }
         if (tempButton.GetBindKey() != "") {
             int keyId = int.Parse(tempButton.GetBindKey());
-            bindedButtons.Remove(keyId);
+            menu.bindedButtons.Remove(keyId);
         }
 
         tempButton.ClearItem();
@@ -186,11 +185,11 @@ public abstract class InventoryMode
 
         if (oldButton.GetBindKey() != "") {
             int keyId = int.Parse(oldButton.GetBindKey());
-            bindedButtons[keyId] = oldButton;
+            menu.bindedButtons[keyId] = oldButton;
         }
         if (newButton.GetBindKey() != "") {
             int keyId = int.Parse(newButton.GetBindKey());
-            bindedButtons[keyId] = newButton;
+            menu.bindedButtons[keyId] = newButton;
         }
 
         //меняем местами количество предметов (если это патроны)

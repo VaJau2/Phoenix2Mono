@@ -17,9 +17,6 @@ public class PlayerWeapons: CollisionShape
     //body
     //camera
     //head -> body.head
-
-    RayCast rayFirst;
-    RayCast rayThird;
     RayCast rayShotgun;
     ShotgunArea shotgunArea;
 
@@ -108,11 +105,6 @@ public class PlayerWeapons: CollisionShape
     public override void _Ready()
     {
         global = Global.Get();
-
-        rayFirst = GetNode<RayCast>("../rotation_helper/camera/ray");
-        rayThird = GetNode<RayCast>("../rotation_helper_third/camera/ray");
-        rayFirst.AddException(player);
-        rayThird.AddException(player);
 
         rayShotgun = GetNode<RayCast>("../player_body/shotgunRay");
         shotgunArea = GetNode<ShotgunArea>("../player_body/shotgunArea");
@@ -308,18 +300,6 @@ public class PlayerWeapons: CollisionShape
         return name;
     }  
 
-    public RayCast EnableHeadRay(float distance)
-    {
-        var tempRay = rayFirst;
-        if(player.ThirdView) 
-        {
-            tempRay = rayThird;
-        }
-        tempRay.CastTo = new Vector3(0,0,-distance);
-        tempRay.Enabled = true;
-        return tempRay;
-    }
-
     private async void handleShoot() {
         onetimeShoot = true;
         int ammo = GetAmmo();
@@ -345,7 +325,8 @@ public class PlayerWeapons: CollisionShape
             if (armorProps.Contains("shootDistPlus")) {
                 tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
             }
-            var tempRay = EnableHeadRay(tempDistance);
+
+            var tempRay = player.Camera.UseRay(tempDistance);
 
             await player.ToSignal(player.GetTree(),"idle_frame");
 
@@ -385,7 +366,7 @@ public class PlayerWeapons: CollisionShape
             gunFire.Visible = false;
             gunLight.Visible = false;
 
-            tempRay.Enabled = false;
+            player.Camera.ReturnRayBack();
 
             if (!tempWeaponStats.Contains("isSilence")) {
                 GD.Print("alarmed, but didn't have manager");

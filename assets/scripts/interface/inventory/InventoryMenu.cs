@@ -9,6 +9,8 @@ public class InventoryMenu : Control
     public InventoryMode mode;
     public bool isOpen = false;
 
+    public Dictionary<int, ItemIcon> bindedButtons = new Dictionary<int, ItemIcon>();
+
     [Signal]
     public delegate void MenuIsClosed();
 

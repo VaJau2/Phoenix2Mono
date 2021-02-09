@@ -2,20 +2,18 @@ using Godot;
 using Godot.Collections;
 
 // скрипт взаимодействия с предметами
-public class PlayerCamera: Camera {
-    //TODO
-    //дописать взаимодействие для DialogueMenu
-    //ну и все остальное внизу тоже дописать, да
-
+public class PlayerCamera: Camera 
+{
     const float RAY_LENGH = 6;
     const float EYE_PART_SPEED1 = 1000;
     const float EYE_PART_SPEED2 = 1200;
     const float FOV_SPEED = 60;
 
+    public bool eyesClosed = false;
+
     Messages messages;
 
     Player player;
-    float tempLength;
     uint rayLayer = 3;
 
     Control labelBack;
@@ -30,8 +28,22 @@ public class PlayerCamera: Camera {
     Control eyePartUp;
     Control eyePartDown;
 
-    public bool eyesClosed = false;
+    bool mayUseRay = true;
 
+    RayCast tempRay => player.RotationHelperThird.TempRay;
+
+    public RayCast UseRay(float newDistance) 
+    {
+        tempRay.CastTo = new Vector3(0, 0, -newDistance);
+        mayUseRay = false;
+        return tempRay;
+    }
+
+    public void ReturnRayBack()
+    {
+        tempRay.CastTo = new Vector3(0, 0, -RAY_LENGH);
+        mayUseRay = true;
+    }
     
     private void showHint(string textLink) {
         var actions = InputMap.GetActionList("use");
@@ -106,18 +118,11 @@ public class PlayerCamera: Camera {
 
     private void UpdateInteracting(float delta) {
         if (closedTimer > 0) return;
+        if (!mayUseRay) return;
+        
+        tempObject = (Spatial)tempRay.GetCollider();
 
-        var pos = OS.WindowSize / 2;
-        var spaceState = GetWorld().DirectSpaceState;
-        var from = ProjectRayOrigin(pos);
-        var to = from + ProjectRayNormal(pos) * tempLength;
-        var result = spaceState.IntersectRay(
-            from, to, new Array() {player}, rayLayer
-        );
-
-        if (result.Count > 0) {
-            tempObject = (Spatial)result["collider"];
-
+        if (mayUseRay && tempObject != null) {
             if (tempObject is FurnBase) {
                 var furn = tempObject as FurnBase;
                 if (furn.IsOpen) {
@@ -160,7 +165,6 @@ public class PlayerCamera: Camera {
         eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
 
         label = labelBack.GetNode<Label>("label");
-        tempLength = RAY_LENGH;
     }
 
     public Vector2 setRectY(Vector2 oldPosition, float newY) {

@@ -3831,6 +3831,8 @@ far = 400.0
 script = ExtResource( 18 )
 
 [node name="ray" type="RayCast" parent="rotation_helper/camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
 collision_mask = 2147483649
 
 [node name="weapons" type="Spatial" parent="rotation_helper/camera"]
@@ -3845,10 +3847,11 @@ transform = Transform( 0.99863, 0, 0.052336, 0, 1, 0, -0.052336, 0, 0.99863, 2.5
 fov = 85.0
 far = 400.0
 
-[node name="RayCast" type="RayCast" parent="rotation_helper_third/camera"]
+[node name="RayToPlayer" type="RayCast" parent="rotation_helper_third/camera"]
 exclude_parent = false
 
 [node name="ray" type="RayCast" parent="rotation_helper_third/camera"]
+cast_to = Vector3( 0, 0, -5 )
 
 [node name="lightsCheck" type="Area" parent="."]
 script = ExtResource( 17 )

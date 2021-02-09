@@ -23,7 +23,7 @@ public class Player : Character
     public bool FoodCanHeal = true;
     public float PriceDelta = 1;
     //Ссылки на классы игрока
-    public Camera Camera {get; private set;}
+    public PlayerCamera Camera {get; private set;}
     public Spatial RotationHelper {get; private set;}
     private Spatial headShape;
     public PlayerThirdPerson RotationHelperThird;
@@ -470,7 +470,7 @@ public class Player : Character
         JumpHint = canvas.GetNode<Control>("jumpHint");
         damageEffects = canvas.GetNode<DamageEffects>("redScreen");
         blackScreen = canvas.GetNode<ColorRect>("black");
-        Camera = GetNode<Camera>("rotation_helper/camera");
+        Camera = GetNode<PlayerCamera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");

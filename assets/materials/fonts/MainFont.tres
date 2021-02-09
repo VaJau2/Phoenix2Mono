@@ -3,6 +3,6 @@
 [ext_resource path="res://assets/materials/fonts/ds_pixel_cyr.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 15
+size = 14
 outline_color = Color( 0.223529, 0.752941, 0.145098, 1 )
 font_data = ExtResource( 1 )

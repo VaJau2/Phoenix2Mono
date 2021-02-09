@@ -11,7 +11,6 @@ public class Player_Unicorn : Player
     public AudioStreamPlayer audiHorn;
     private AudioStreamSample teleportSound;
 
-    private RayCast teleportRay;
     private Particles hornMagic;
 
     private PackedScene teleportMark;
@@ -51,7 +50,6 @@ public class Player_Unicorn : Player
         audiHorn = GetNode<AudioStreamPlayer>("sound/audi_horn");
         teleportSound = GD.Load<AudioStreamSample>("res://assets/audio/magic/teleporting.wav");
 
-        teleportRay = GetNode<RayCast>("rotation_helper/camera/teleportRay");
         hornMagic = GetNode<Particles>("player_body/Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         teleportMark = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportMark.tscn");
         teleportEffect = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportEffect.tscn");
@@ -124,7 +122,7 @@ public class Player_Unicorn : Player
 
             SpawnTeleportEffect();
 
-            teleportRay.Enabled = false;
+            Camera.ReturnRayBack();
             startTeleporting = false;
 
             SetMagicEmit(true);
@@ -139,7 +137,7 @@ public class Player_Unicorn : Player
         {
             if (Health > 0 && !BlockJump)
             {
-                teleportRay = Weapons.EnableHeadRay(TELEPORT_DISTANCE);
+                var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
                 if(!teleportPressed) 
                 {
                     teleportPressed = true;
@@ -154,15 +152,15 @@ public class Player_Unicorn : Player
                         );
                     }
                 } 
-                else if (teleportRay.IsColliding())
+                else if (tempRay.IsColliding())
                 {
-                    Spatial collider = (Spatial)teleportRay.GetCollider();
+                    Spatial collider = (Spatial)tempRay.GetCollider();
                     if (collider.Name != "sky") 
                     {
                         //оно может внезапно стереться даже здесь
                         if (tempTeleportMark != null) 
                         {
-                            var place = teleportRay.GetCollisionPoint();
+                            var place = tempRay.GetCollisionPoint();
 
                             tempTeleportMark.GlobalTransform = Global.setNewOrigin(
                                 tempTeleportMark.GlobalTransform,

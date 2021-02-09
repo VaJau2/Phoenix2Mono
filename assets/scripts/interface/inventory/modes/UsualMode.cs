@@ -83,21 +83,21 @@ public class UsualMode: InventoryMode {
                 for (int i = 0; i < 10; i++) {
                     if (Input.IsKeyPressed(48 + i)) {
                         //если клавиша уже забиндена
-                        if (bindedButtons.Keys.Contains(i)) {
+                        if (menu.bindedButtons.Keys.Contains(i)) {
                             //если нажата та же кнопка, она стирается
-                            if (bindedButtons[i] == tempButton) {
+                            if (menu.bindedButtons[i] == tempButton) {
                                 tempButton.SetBindKey(null);
-                                bindedButtons.Remove(i);
+                                menu.bindedButtons.Remove(i);
                             } else {
                             //если на ту же кнопку биндится другая кнопка, предыдущая стирается
-                                ItemIcon oldBindedButton = bindedButtons[i];
+                                ItemIcon oldBindedButton = menu.bindedButtons[i];
                                 oldBindedButton.SetBindKey(null);
-                                bindedButtons[i] = tempButton;
+                                menu.bindedButtons[i] = tempButton;
                                 tempButton.SetBindKey(i.ToString());
                             }
                         } else {
                             //если кнопка биндится впервые
-                            bindedButtons[i] = tempButton;
+                            menu.bindedButtons[i] = tempButton;
                             tempButton.SetBindKey(i.ToString());
                         }
                     }
@@ -109,8 +109,8 @@ public class UsualMode: InventoryMode {
     protected void UseHotkeys() 
     {
         for (int i = 0; i < 10; i++) {
-            if (Input.IsKeyPressed(48 + i) && bindedButtons.Keys.Contains(i)) {
-                SetTempButton(bindedButtons[i], false);
+            if (Input.IsKeyPressed(48 + i) && menu.bindedButtons.Keys.Contains(i)) {
+                SetTempButton(menu.bindedButtons[i], false);
                 UseTempItem();
             }
         }
