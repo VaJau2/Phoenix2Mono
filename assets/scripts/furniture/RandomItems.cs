@@ -4,9 +4,15 @@ using Godot.Collections;
 public class RandomItems : Node
 {
     [Export]
+    public int maxItemsCount = 5;
+
+    [Export]
     public string moneyNameCode = "bits";
     [Export]
-    public int maxItemsCount = 5;
+    public float moneyChance = 0.5f;
+
+    [Export]
+    public int maxMoneyCount = 5;
     //в списке лежат и патроны тоже
     [Export]
     public Array<string> itemCodes = new Array<string>();

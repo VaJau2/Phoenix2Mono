@@ -17,6 +17,8 @@ public class FurnChest: FurnBase {
     public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions = new Dictionary<int, string>();
+    public int moneyCount = 0;
+    RandomNumberGenerator random = new RandomNumberGenerator();
 
     public override void _Ready()
     {
@@ -26,6 +28,12 @@ public class FurnChest: FurnBase {
         if (SpawnRandomItems) {
             RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
             items.LoadRandomItems(itemCodes, ammoCount);
+            
+            random.Randomize();
+            if (random.Randf() < items.moneyChance) {
+                itemCodes.Add(items.moneyNameCode);
+                moneyCount = random.RandiRange(0, items.maxMoneyCount);
+            }
         }
     }
 

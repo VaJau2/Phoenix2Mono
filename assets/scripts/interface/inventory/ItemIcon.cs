@@ -42,7 +42,7 @@ public class ItemIcon : ColorRect
         SetIcon(newIcon);
         
         string itemType = itemData["type"].ToString();
-        countLabel.Visible = (itemType == "ammo");
+        countLabel.Visible = (itemType == "ammo") || (itemType == "money");
         if (itemType == "ammo") {
             if (isInventoryIcon) {
                 Player player = Global.Get().player;

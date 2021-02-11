@@ -59,16 +59,20 @@ public class PlayerWeapons: CollisionShape
         //грузим префаб оружия
         string path = "res://objects/guns/prefabs/" + weaponCode + ".tscn";
         PackedScene weaponPrefab = GD.Load<PackedScene>(path);
+
         //грузим статистику оружия
         tempWeaponStats = weaponData;
         isPistol = weaponData.Contains("isPistol");
+        Disabled = !isPistol || global.playerRace == Race.Unicorn;
         shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + weaponCode + ".wav");
 
         //вытаскиваем родительский нод из игрока
         Spatial tempParent = player.GetWeaponParent(isPistol);
+
         //отправляем префаб туда
         var weapon = weaponPrefab.Instance();
         tempParent.AddChild(weapon);
+
         //сохраняем его для будущих перемещений по нодам
         tempWeapon = (Spatial)weapon;
         LoadNewAmmo();
@@ -81,6 +85,7 @@ public class PlayerWeapons: CollisionShape
     
     public void ClearWeapon()
     {
+        Disabled = true;
         tempWeapon.QueueFree();
         tempWeapon = null;
         shootInterface.Visible = false;

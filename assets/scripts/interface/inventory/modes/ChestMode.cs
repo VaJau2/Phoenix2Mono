@@ -70,7 +70,8 @@ public class ChestMode: InventoryMode
     {
         foreach(ItemIcon tempIcon in chestButtons) {
             if (tempIcon.myItemCode != null) {
-                tempButton = tempIcon;
+                //tempButton = tempIcon;
+                SetTempButton(tempIcon);
                 if (!TakeTempItem()) return;
             }
         }
@@ -107,7 +108,7 @@ public class ChestMode: InventoryMode
         foreach(int buttonId in itemPositions.Keys) {
             string itemCode = itemPositions[buttonId];
             ItemIcon tempButton = chestButtons[buttonId];
-            tempButton.SetItem(itemCode);
+            CheckAddMoney(tempButton, itemCode);
 
             //грузим количество этих патронов
             if(ammo.ContainsKey(itemCode)) {
@@ -132,7 +133,7 @@ public class ChestMode: InventoryMode
     {
         ItemIcon emptyButton = FirstEmptyChestButton;
         if (emptyButton != null) {
-            emptyButton.SetItem(itemCode);
+            CheckAddMoney(emptyButton, itemCode);
             
             int buttonId = chestButtons.IndexOf(emptyButton);
             tempChest.itemPositions.Add(buttonId, itemCode);
@@ -141,6 +142,16 @@ public class ChestMode: InventoryMode
         }
         
         return emptyButton;
+    }
+
+    private void CheckAddMoney(ItemIcon button, string itemCode)
+    {
+        button.SetItem(itemCode);
+
+        Dictionary itemData = ItemJSON.GetItemData(itemCode);
+        if (itemData["type"].ToString() == "money") {
+            button.SetCount(tempChest.moneyCount);
+        }
     }
 
     //сохраняем в сундук позиции кнопок
@@ -243,6 +254,9 @@ public class ChestMode: InventoryMode
 
         //взять из сундука
         if(chestButtons.Contains(tempButton)) {
+            bool isMoney = tempItemData["type"].ToString() == "money";
+            if (checkMoneyInInventory(isMoney)) return true;
+
             ItemIcon itemButton = FirstEmptyButton;
             if (itemButton != null) {
                 if (checkAmmoInInventory()) return true;
@@ -293,5 +307,17 @@ public class ChestMode: InventoryMode
             return true;
         }
         return false;
+    }
+
+    private bool checkMoneyInInventory(bool isMoney)
+    {
+        if (isMoney) {
+            inventory.money += tempChest.moneyCount;
+            tempChest.moneyCount = 0;
+            moneyCount.Text = inventory.money.ToString();
+            tempButton.ClearItem();
+            UpdateChestPositions();
+        }
+        return isMoney;
     }
 }

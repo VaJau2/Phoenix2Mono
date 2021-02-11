@@ -27,7 +27,7 @@ extents = Vector3( 50, 0.1, 50 )
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 moneyCount = 500
-itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307" ]
+itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307", "submachine10" ]
 ammo = {
 "ammo10": 50,
 "ammo12": 20,
@@ -112,6 +112,8 @@ shadow_enabled = true
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
 maxItemsCount = 10
+moneyChance = 0.5
+maxMoneyCount = 50
 itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon" ]
 ammoCount = {
 "ammo307": 10,

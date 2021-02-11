@@ -117,7 +117,7 @@ material = ExtResource( 3 )
 [node name="pistol" type="Spatial"]
 
 [node name="Gun-armature" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.859553, 0.255684, 0.0411906 )
+transform = Transform( 0.9, 0, 0, 0, -3.93403e-08, 0.9, 0, -0.9, -3.93403e-08, 0.859553, 0.255684, 0.0411906 )
 
 [node name="Bone" type="Spatial" parent="Gun-armature"]
 
@@ -159,7 +159,7 @@ playback_speed = 1.5
 anims/shoot = SubResource( 5 )
 
 [node name="light" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859047, 0.274954, -4.56332 )
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.859047, 0.274954, -4.56332 )
 visible = false
 light_color = Color( 0.890196, 0.631373, 0.423529, 1 )
 light_energy = 0.2
@@ -177,7 +177,7 @@ light_bake_mode = 0
 light_cull_mask = 4293919744
 
 [node name="fire" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.832575, 0.290937, -4.26573 )
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.832575, 0.290937, -4.26573 )
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="fire"]
@@ -193,7 +193,7 @@ transform = Transform( -2.61269, -8.06435e-07, 2.33718, -2.52415, -1.99476e-08, 
 texture = ExtResource( 1 )
 
 [node name="smoke" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.692145, 0.217731, -4.40911 )
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.692145, 0.217731, -4.40911 )
 emitting = false
 amount = 6
 lifetime = 0.5

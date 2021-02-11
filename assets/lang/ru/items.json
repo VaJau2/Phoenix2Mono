@@ -1,4 +1,11 @@
 {
+    "bits": {
+        "name": "Биты",
+        "description": "Золотые монеты, используемые в Эквестрии в качестве валюты",
+        "type": "money",
+        "icon": "bits"
+    },
+
     "book0": {
         "name": "Книга",
         "description": "Фанфик про поняху, которая нашла портал в мир двуногих существ",
@@ -118,11 +125,25 @@
         "type": "weapon",
         "icon": "autorifle762",
         "price": "1600",
-        "damage": "20",
+        "damage": "10",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
         "ammoType": "ammo762",
+        "sound": "weapon"
+    },
+    "submachine10": {
+        "name": "10мм пистолет-пулемет",
+        "description": "Пистолет-пулемет под патроны большого калибра, из-за этого его трудно удержать во рту, когда он стреляет",
+        "type": "weapon",
+        "icon": "submachine10",
+        "price": "700",
+        "damage": "5",
+        "shootDistance": "60",
+        "cooldown": "0.01",
+        "recoil": "2",
+        "isPistol": "true",
+        "ammoType": "ammo10",
         "sound": "weapon"
     },
 
