@@ -22,7 +22,7 @@ public class Settings
     {
         "ui_up", "ui_down", "ui_left", "ui_right",
         "jump", "ui_shift", "use", "crouch", "dash",
-        "getGun", "legsHit", "changeView", "task"
+        "legsHit", "changeView", "task", "autoheal"
     };
 
     private void updateAudioBus(int num, float value)

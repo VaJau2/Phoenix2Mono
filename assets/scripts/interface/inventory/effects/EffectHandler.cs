@@ -133,6 +133,8 @@ public class EffectHandler: Node
         switch(name) {
             case "heal":
                 return new HealEffect();
+            case "mana":
+                return new ManaEffect();
             case "buck":
                 return new BuckEffect();
             case "dash":

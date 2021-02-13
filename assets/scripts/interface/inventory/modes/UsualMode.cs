@@ -116,6 +116,29 @@ public class UsualMode: InventoryMode {
         }
     }
 
+    private void CheckAutoheal()
+    {
+        if (Input.IsActionJustPressed("autoheal")) {
+            if (player.Health == player.HealthMax) {
+                inventory.ItemsMessage("youAreHealthy");
+                return;
+            }
+
+            foreach(ItemIcon tempButton in itemButtons) {
+                if (tempButton.myItemCode != null) {
+                    SetTempButton(tempButton);
+                    if (tempButton.myItemCode == "heal-potion" 
+                    || tempItemData["type"].ToString() == "food") {
+                        UseTempItem();
+                        return;
+                    }
+                }
+            }
+            inventory.ItemsMessage("cantFindHeal");
+            CheckTempIcon();
+        }
+    }
+
     protected bool canTakeItemOff() 
     {
         string itemType = tempItemData["type"].ToString();
@@ -218,6 +241,7 @@ public class UsualMode: InventoryMode {
         }
         if(@event is InputEventKey && tempButton == null) {
             UseHotkeys();
+            CheckAutoheal();
         }
     }
 }

@@ -1,4 +1,11 @@
 {
+    "bits": {
+        "name": "Bits",
+        "description": "Gold coins, used in Equestria as currency",
+        "type": "money",
+        "icon": "bits"
+    },
+
     "book0": {
         "name": "Book",
         "description": "Fanfic about a pony, who found a portal to world of bipedal creatures",
@@ -224,7 +231,16 @@
         "type": "meds",
         "icon": "heal-potion",
         "price": "50",
-        "effect": "heal",
+        "effect": "mana",
+        "sound": "heal-potion"
+    },
+    "mana-potion": {
+        "name": "Mana potion",
+        "description": "Very useful for unicorns potion, that increases their magical abilities.",
+        "type": "meds",
+        "icon": "mana-potion",
+        "price": "150",
+        "medsEffect": "mana",
         "sound": "heal-potion"
     },
     "buck": {

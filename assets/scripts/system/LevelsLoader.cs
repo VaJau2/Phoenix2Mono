@@ -40,7 +40,7 @@ public class LevelsLoader : Node
 		menuParent.AddChild(currentMenu);
 	}
 
-	private async void updateScene()
+	private void updateScene()
 	{
 		if(currentScene != null) {
 			global.player = null;
@@ -56,8 +56,6 @@ public class LevelsLoader : Node
 		
 		currentLoading = (Control)loadingMenuPrefab.Instance();
 		menuParent.AddChild(currentLoading);
-
-		await ToSignal(GetTree(),"idle_frame");
 
 		loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
 		SetProcess(true);

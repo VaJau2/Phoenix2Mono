@@ -141,6 +141,8 @@ public class PlayerLegs: Node
 
     public override void _Process(float delta)
     {
+        if (player == null) return;
+        
         bool playerRunningFlying = false;
 
         switch(global.playerRace) {

@@ -2,22 +2,22 @@ using Godot;
 using System.Collections.Generic;
 
 public static class MatNames {
-    private static Dictionary<float, string> matNames = new Dictionary<float, string>() 
+    private static Dictionary<int, string> matNames = new Dictionary<int, string>() 
     {
-        {0.1f, "stairs"},
-        {0.2f, "blood"},
-        {0.3f, "glass"},
-        {0.4f, "grass"},
-        {0.5f, "dirt"},
-        {0.6f, "wood"},
-        {0.8f, "fence"},
-        {1, "stone"} //эта херня каким-то образом игнорит 0.7 и 0.9 \_(._.)_/
+        {55, "stairs"},
+        {2, "blood"},
+        {1, "glass"},
+        {50, "grass"},
+        {30, "dirt"},
+        {40, "wood"},
+        {20, "fence"},
+        {56, "stone"}
     };
 
     public static string GetMatName(float friction) {
-        if (!matNames.ContainsKey(friction)) {
+        if (!matNames.ContainsKey((int)friction)) {
             GD.PrintErr(friction.ToString() + " is not in materials array :/");
         }
-        return matNames[friction];
+        return matNames[(int)friction];
     }
 }

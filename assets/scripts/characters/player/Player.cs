@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Globalization;
 
 public class Player : Character
 {
@@ -95,7 +96,8 @@ public class Player : Character
     {
         Dictionary armorProps = inventory.GetArmorProps();
         if(armorProps.Contains("damageBlock")) {
-            return base.GetDamageBlock() + (float)armorProps["damageBlock"];
+            float armorBlock = float.Parse(armorProps["damageBlock"].ToString(), CultureInfo.InvariantCulture);
+            return base.GetDamageBlock() + armorBlock;
         } else {
             return base.GetDamageBlock();
         }
@@ -232,9 +234,9 @@ public class Player : Character
     {
         while (blackScreen.Color.a < 1) {
             Color temp = blackScreen.Color;
-            temp.a += 0.05f;
+            temp.a += 0.01f;
             blackScreen.Color = temp;
-            await global.ToTimer(0.05f);
+            await global.ToTimer(0.04f);
         }
         GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
     }
@@ -284,12 +286,15 @@ public class Player : Character
             Vector3 thirdRot = RotationHelperThird.Rotation;
             thirdRot.x = RotationHelper.Rotation.x;
             RotationHelperThird.Rotation = thirdRot;
+        } else {
+            Transform cameraTransf = RotationHelper.GlobalTransform;
+            cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
+            if (Health <= 0) {
+                cameraTransf.basis = CameraHeadPos.GlobalTransform.basis;
+            }
+            RotationHelper.GlobalTransform = cameraTransf;
+            headShape.GlobalTransform = cameraTransf;
         }
-
-        Transform cameraTransf = RotationHelper.GlobalTransform;
-        cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
-        RotationHelper.GlobalTransform = cameraTransf;
-        headShape.GlobalTransform = cameraTransf;
     }
 
     protected void ProcessInput(float delta) 
@@ -410,7 +415,7 @@ public class Player : Character
         hvel = hvel.LinearInterpolate(target, acceleration * delta);
         Velocity.x = hvel.x;
         Velocity.z = hvel.z;
-        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4, Mathf.Deg2Rad(MAX_SLOPE_ANGLE));
+        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4, Mathf.Deg2Rad(MAX_SLOPE_ANGLE));
     }
 
     private void RotateBodyClumped(float speedX)
@@ -492,14 +497,18 @@ public class Player : Character
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Health > 0 && MayMove) {
-            ProcessInput(delta);
-        } else {
+        if (Health > 0) {
+            if (MayMove) {
+                ProcessInput(delta);
+                HandleImpulse();
+            }
+            
+            ProcessMovement(delta);
+        }
+        if (Health < 0 || !MayMove) {
             dir = Vector3.Zero;
         }
 
-        HandleImpulse();
-        ProcessMovement(delta);
         UpdateCameraPos();
     }
 

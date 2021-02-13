@@ -127,7 +127,7 @@ public class SoundSteps: RayCast {
             }
         }
 
-        bool sounding = (parent.Velocity.Length() > SOUND_SPEED) && (!isPlayer || parent.IsOnFloor());
+        bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && (!isPlayer || parent.IsOnFloor());
 
         if (sounding) {
             if (timer > 0) {

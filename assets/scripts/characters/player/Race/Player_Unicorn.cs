@@ -2,16 +2,18 @@ using Godot;
 
 public class Player_Unicorn : Player
 {
-    private const float MANA_SPEED = 20f;
-    private const float TELEPORT_COST = 50f;
+    private const float MANA_SPEED = 3f;
+    private const float TELEPORT_COST = 70f;
     private const int TELEPORT_DISTANCE = 150;
-    private const float MANA_MAX = 100;
-    public float Mana {get; private set;}
+    public const float MANA_MAX = 100;
+    public float Mana;
+    public float ManaDelta = 1f;
 
     public AudioStreamPlayer audiHorn;
     private AudioStreamSample teleportSound;
 
     private Particles hornMagic;
+    private UnicornShield shield;
 
     private PackedScene teleportMark;
     private PackedScene teleportEffect;
@@ -38,6 +40,18 @@ public class Player_Unicorn : Player
         hornMagic.Emitting = emit;
     }
 
+    public override void TakeDamage(int damage, int shapeID = 0)
+    {
+        if (shield.shieldOn) {
+            damage -= (int)Mana;
+            if (damage <= 0) {
+                return;
+            }
+        }
+
+        base.TakeDamage(damage, shapeID);
+    }
+
     public override Spatial GetWeaponParent(bool isPistol) {
         return GetNode<Spatial>("levitation/rotationHelper/weapons");
     }
@@ -50,6 +64,7 @@ public class Player_Unicorn : Player
         audiHorn = GetNode<AudioStreamPlayer>("sound/audi_horn");
         teleportSound = GD.Load<AudioStreamSample>("res://assets/audio/magic/teleporting.wav");
 
+        shield = GetNode<UnicornShield>("shield");
         hornMagic = GetNode<Particles>("player_body/Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         teleportMark = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportMark.tscn");
         teleportEffect = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportEffect.tscn");
@@ -64,7 +79,7 @@ public class Player_Unicorn : Player
         base._Process(delta);
         if (Mana < MANA_MAX)
         {
-            Mana +=  MANA_SPEED * delta;
+            Mana += MANA_SPEED * delta * (1/ManaDelta) * (1 - GetDamageBlock());
             manaBar.Visible = true;
             manaBar.Value = Mana;
         }
@@ -118,7 +133,7 @@ public class Player_Unicorn : Player
 
             tempTeleportMark.QueueFree();
             tempTeleportMark = null;
-            DecreaseMana(TELEPORT_COST);
+            DecreaseMana(TELEPORT_COST * ManaDelta);
 
             SpawnTeleportEffect();
 
@@ -133,7 +148,7 @@ public class Player_Unicorn : Player
 
     public override void Jump() 
     {
-        if (Input.IsActionPressed("jump") && ManaIsEnough(TELEPORT_COST) && !JumpHint.Visible) 
+        if (Input.IsActionPressed("jump") && ManaIsEnough(TELEPORT_COST * ManaDelta) && !JumpHint.Visible) 
         {
             if (Health > 0 && !BlockJump)
             {

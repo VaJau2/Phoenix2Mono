@@ -25,7 +25,7 @@ extents = Vector3( 50, 0.1, 50 )
 [node name="canvas" parent="." instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
 moneyCount = 500
 itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307", "submachine10" ]
 ammo = {
@@ -37,6 +37,7 @@ ammo = {
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="terrain"]
@@ -51,22 +52,31 @@ shape = SubResource( 2 )
 
 [node name="cabinet" parent="terrain/props" instance=ExtResource( 4 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 7 )
 SpawnRandomItems = true
 chestCode = "cabinet"
+itemCodes = [ "mana-potion" ]
 
 [node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
+collision_layer = 3
+collision_mask = 3
 SpawnRandomItems = true
 chestCode = "cabinet"
 
 [node name="door" parent="terrain/props" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
+collision_layer = 3
+collision_mask = 3
 myKey = "key0"
 ForceOpening = true
 
 [node name="terminal" parent="terrain/props" instance=ExtResource( 8 )]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 3.72852, 4.31248, -16.132 )
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 9 )
 moneyCount = 2000
 traderCode = "tradeTerminal"
@@ -74,6 +84,8 @@ itemCodes = [ "stealth-armor" ]
 
 [node name="box" type="StaticBody" parent="terrain/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="terrain/props/box"]
@@ -85,6 +97,8 @@ shape = SubResource( 4 )
 
 [node name="box3" type="StaticBody" parent="terrain/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 14.9577 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="terrain/props/box3"]
@@ -96,6 +110,8 @@ shape = SubResource( 4 )
 
 [node name="box2" type="StaticBody" parent="terrain/props"]
 transform = Transform( 8, 0, 0, 0, 5, 0, 0, 0, 2, -1.08094, 4.611, -18.6128 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="terrain/props/box2"]
@@ -112,9 +128,8 @@ shadow_enabled = true
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
 maxItemsCount = 10
-moneyChance = 0.5
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon" ]
+itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon", "heal-potion" ]
 ammoCount = {
 "ammo307": 10,
 "ammo32": 20

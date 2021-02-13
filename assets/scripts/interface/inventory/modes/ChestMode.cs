@@ -138,7 +138,7 @@ public class ChestMode: InventoryMode
             int buttonId = chestButtons.IndexOf(emptyButton);
             tempChest.itemPositions.Add(buttonId, itemCode);
         } else {
-            inventory.MessageNotEnough("space");
+            inventory.ItemsMessage("space");
         }
         
         return emptyButton;
@@ -246,7 +246,7 @@ public class ChestMode: InventoryMode
                 SetTempButton(null, false);
                 UpdateChestPositions();
             } else {
-                inventory.MessageNotEnough("space");
+                inventory.ItemsMessage("space");
                 return false;
             }
             return true;
@@ -264,7 +264,7 @@ public class ChestMode: InventoryMode
                 SetTempButton(null, false);
                 UpdateChestPositions();
             } else {
-                inventory.MessageNotEnough("space");
+                inventory.ItemsMessage("space");
                 return false;
             }
         }

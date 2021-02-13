@@ -9,6 +9,7 @@ public class PlayerHead : MeshInstance
     private Dictionary<string, StreamTexture> openEyes = new Dictionary<string, StreamTexture>();
     private Dictionary<string, StreamTexture> closeEyes = new Dictionary<string, StreamTexture>();
     private SpatialMaterial bodyMaterial;
+    private Player player => Global.Get().player;
 
     private string emotion = "empty";
     private bool eyesClosed = false;
@@ -32,6 +33,7 @@ public class PlayerHead : MeshInstance
     public void CloseEyes() 
     {
         ChangeMaterialTexture(false);
+        eyesClosed = true;
         closedTimer = 0.2f;
     }
 
@@ -98,6 +100,7 @@ public class PlayerHead : MeshInstance
     {
         ChangeMaterialTexture(true);
         closedTimer = (float)rand.Next(3, 6);
+        eyesClosed = false;
     }
 
     private void ShyOff() 
@@ -129,19 +132,24 @@ public class PlayerHead : MeshInstance
     public override void _Process(float delta)
     {
         if (Visible) {
-            if (shyTimer > 0) {
-                shyTimer -= delta;
-            } else {
-                ShyOff();
-            }
-
-            if (closedTimer > 0) {
-                closedTimer -= delta;
-            } else {
-                eyesClosed = !eyesClosed;
-                if (!eyesClosed) {
-                    OpenEyes();
+            if (player != null && player.Health > 0) {
+                if (shyTimer > 0) {
+                    shyTimer -= delta;
                 } else {
+                    ShyOff();
+                }
+
+                if (closedTimer > 0) {
+                    closedTimer -= delta;
+                } else {
+                    if (!eyesClosed) {
+                        OpenEyes();
+                    } else {
+                        CloseEyes();
+                    }
+                }
+            } else {
+                if (!eyesClosed) {
                     CloseEyes();
                 }
             }

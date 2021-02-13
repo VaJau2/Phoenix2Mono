@@ -35,9 +35,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 128.0
+margin_top = 88.0
 margin_right = -14.0
-margin_bottom = -280.0
+margin_bottom = -320.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
@@ -168,13 +168,46 @@ margin_right = 242.0
 margin_bottom = 192.0
 isInventoryIcon = true
 
+[node name="itemIcon21" parent="helper/back/items" instance=ExtResource( 2 )]
+margin_top = 200.0
+margin_bottom = 242.0
+isInventoryIcon = true
+
+[node name="itemIcon22" parent="helper/back/items" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 92.0
+margin_bottom = 242.0
+isInventoryIcon = true
+
+[node name="itemIcon23" parent="helper/back/items" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 200.0
+margin_right = 142.0
+margin_bottom = 242.0
+isInventoryIcon = true
+
+[node name="itemIcon24" parent="helper/back/items" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 200.0
+margin_right = 192.0
+margin_bottom = 242.0
+isInventoryIcon = true
+
+[node name="itemIcon25" parent="helper/back/items" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 242.0
+margin_bottom = 242.0
+isInventoryIcon = true
+
 [node name="Label" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -48.0
-margin_top = 24.0
+margin_top = 16.0
 margin_right = 50.0
-margin_bottom = 43.0
+margin_bottom = 35.0
 theme = ExtResource( 1 )
 text = "Инвентарь"
 align = 1
@@ -188,9 +221,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -96.0
-margin_top = -504.0
+margin_top = -544.0
 margin_right = 37.0
-margin_bottom = -489.0
+margin_bottom = -529.0
 theme = ExtResource( 3 )
 text = "Количество денег:"
 align = 1
@@ -204,9 +237,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 56.0
-margin_top = -504.0
+margin_top = -544.0
 margin_right = 120.0
-margin_bottom = -489.0
+margin_bottom = -529.0
 theme = ExtResource( 3 )
 text = "0"
 __meta__ = {

@@ -3,7 +3,8 @@ using System;
 
 public class UnicornShield : Spatial
 {
-    private const float SHIELD_COST = 21f;
+    private const float SHIELD_COST = 30f;
+    public bool shieldOn = false;
     private Player_Unicorn player;
     private MeshInstance firstShield;
     private MeshInstance thirdShield;
@@ -29,15 +30,17 @@ public class UnicornShield : Spatial
 
     public override void _Process(float delta)
     {
-        if (player.MayMove && Input.IsActionPressed("ui_shift") && player.ManaIsEnough(SHIELD_COST))
+        float tempCost = SHIELD_COST * delta * player.ManaDelta;
+        if (player.MayMove && Input.IsActionPressed("ui_shift") && player.ManaIsEnough(tempCost))
         {  
+            shieldOn = true;
             firstShield.Visible = true;
             thirdShield.Visible = true;
             player.SetMagicEmit(true);
-            player.DecreaseMana(SHIELD_COST * delta);
+            player.DecreaseMana(tempCost);
 
             var color = material.AlbedoColor;
-            color.a = player.Mana / 1500f;
+            color.a = player.Mana / 150f;
             material.AlbedoColor = color;
             firstShield.SetSurfaceMaterial(0, material);
             thirdShield.SetSurfaceMaterial(0, material);
@@ -49,11 +52,11 @@ public class UnicornShield : Spatial
             }
        
         } else {
-            firstShield.Visible = false;
-            thirdShield.Visible = false;
+            if (firstShield.Visible) {
+                shieldOn = false;
+                firstShield.Visible = false;
+                thirdShield.Visible = false;
 
-            if (playOnetime)
-            {
                 audi.Stop();
                 player.SetMagicEmit(false);
                 playOnetime = false;

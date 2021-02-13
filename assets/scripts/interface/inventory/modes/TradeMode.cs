@@ -256,7 +256,7 @@ public class TradeMode: InventoryMode
             int buttonId = tradeButtons.IndexOf(emptyButton);
             tempTrader.itemPositions.Add(buttonId, itemCode);
         } else {
-            inventory.MessageNotEnough("space");
+            inventory.ItemsMessage("space");
         }
         
         return emptyButton;
@@ -364,7 +364,7 @@ public class TradeMode: InventoryMode
                 OpenModalAsk("sell");
                 return true;
             } else {
-                inventory.MessageNotEnough("money");
+                inventory.ItemsMessage("money");
             }
 
             return true;
@@ -384,11 +384,11 @@ public class TradeMode: InventoryMode
                     return true;
 
                 } else {
-                    inventory.MessageNotEnough("money");
+                    inventory.ItemsMessage("money");
                 }
                 
             } else {
-                inventory.MessageNotEnough("space");
+                inventory.ItemsMessage("space");
             }
         }
         return false;

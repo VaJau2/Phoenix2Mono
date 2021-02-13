@@ -132,7 +132,7 @@ public class PlayerInventory {
         messages.ShowMessage("cantUnwear", itemName, "items");
     }
 
-    public void MessageNotEnough(string item)
+    public void ItemsMessage(string item)
     {
         messages.ShowMessage(item, "items", 2.5f);
     }

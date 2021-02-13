@@ -65,12 +65,13 @@
         "use": "Set \"use\" button",
         "sit": "Set \"sit\" button",
         "dash": "Set \"dash\" button",
-        "getGun": "Set \"get gun\" button",
         "choseHit": "Set \"close hit\" button",
         "changeView": "Set \"change view\" button",
         "seeTasks": "Set \"see tasks\" button",
-        "inventory": "Set \"inventory\" button"
+        "inventory": "Set \"inventory\" button",
+        "autoheal": "Configure the key for automatic use of medical items"
     },
+    
     "controlLabels": {
         "forward": "Forward:",
         "back": "Back:",
@@ -81,10 +82,10 @@
         "use": "Use:",
         "sit": "Sit:",
         "dash": "Dash:",
-        "getGun": "Get gun:",
         "choseHit": "Close hit:",
         "changeView": "Change view:",
         "seeTasks": "See tasks:",
-        "inventory": "Inventory:"
+        "inventory": "Inventory:",
+        "autoheal": "Autoheal:"
     }
 }

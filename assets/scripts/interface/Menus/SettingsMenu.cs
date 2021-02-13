@@ -75,11 +75,11 @@ public class SettingsMenu : MenuBase
             {"use", GetNode<Label>("Controls/keyUseLabel")},
             {"sit", GetNode<Label>("Controls/keyCrouchLabel")},
             {"dash", GetNode<Label>("Controls/keyDashLabel")},
-            {"getGun", GetNode<Label>("Controls/keyGetGunLabel")},
             {"choseHit", GetNode<Label>("Controls/keyLegsLabel")},
             {"changeView", GetNode<Label>("Controls/keyCameraLabel")},
             {"seeTasks", GetNode<Label>("Controls/keyTaskLabel")},
-            {"inventory", GetNode<Label>("Controls/keyInventoryLabel")}
+            {"inventory", GetNode<Label>("Controls/keyInventoryLabel")},
+            {"autoheal", GetNode<Label>("Controls/keyAutohealLabel")}
         };
     }
 
@@ -129,11 +129,11 @@ public class SettingsMenu : MenuBase
             case "use": return GetNode<Label>("Controls/useBack/edit");
             case "crouch": return GetNode<Label>("Controls/crouchBack/edit");
             case "dash": return GetNode<Label>("Controls/dashBack/edit");
-            case "getGun": return GetNode<Label>("Controls/getGunBack/edit");
             case "legsHit": return GetNode<Label>("Controls/legsBack/edit");
             case "changeView": return GetNode<Label>("Controls/cameraBack/edit");
             case "task": return GetNode<Label>("Controls/taskBack/edit");
             case "inventory": return GetNode<Label>("Controls/inventoryBack/edit");
+            case "autoheal": return GetNode<Label>("Controls/autohealBack/edit");
         }
         return null;
     }

@@ -24,6 +24,7 @@ public class PlayerBody : Spatial
     private Player player;
     private Race playerRace;
 
+    private Skeleton playerSkeleton;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -256,6 +257,7 @@ public class PlayerBody : Spatial
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
+        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 
@@ -268,7 +270,11 @@ public class PlayerBody : Spatial
     }
 
     public override void _Process(float delta)
-    {
+    {  
+        if (Input.IsActionPressed("ui_end")) {
+            player.TakeDamage(9999);
+        }
+
         if (player.Health > 0) {
             updateHeadRotation(delta);
 
@@ -400,8 +406,12 @@ public class PlayerBody : Spatial
 
             }
         } else { //Health <= 0
+            playback.Travel("Idle1");
             bodyRot = 0;
-            playback.Travel("Die1");
+            player.CollisionLayer = 0;
+            player.CollisionMask = 0;
+            playerSkeleton.PhysicalBonesStartSimulation();
+            SetProcess(false);
         }
     }
 

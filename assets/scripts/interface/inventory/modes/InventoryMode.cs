@@ -38,6 +38,15 @@ public abstract class InventoryMode
         foreach(object button in menu.GetNode<Control>("helper/back/items").GetChildren()) {
             itemButtons.Add(button as ItemIcon); 
         }
+        
+        if (Global.Get().playerRace != Race.Earthpony) {
+            for(int i = 0; i < 5; i++) {
+                itemButtons[itemButtons.Count - 1].QueueFree();
+                itemButtons.RemoveAt(itemButtons.Count - 1);
+                
+            }
+        }
+
         back = menu.GetNode<Control>("helper/back");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk = menu.GetNode<Control>("modalAsk");
@@ -117,7 +126,7 @@ public abstract class InventoryMode
                 inventory.AddKey(itemCode);
             }
         } else {
-            inventory.MessageNotEnough("space");
+            inventory.ItemsMessage("space");
         }
         
         return emptyButton;

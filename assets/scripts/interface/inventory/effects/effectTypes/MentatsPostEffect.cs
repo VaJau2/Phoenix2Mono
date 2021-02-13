@@ -5,7 +5,7 @@ public class MentatsPostEffect: Effect
     const float BRIGHTNESS = -0.05f;
     const float CONTRAST = 0.75f;
     const float SATURATION = 0.5f;
-    const float PRICE_DELTA = 1.2f;
+    const float PRICE_DELTA = -0.2f;
     private Player player;
 
     public MentatsPostEffect()

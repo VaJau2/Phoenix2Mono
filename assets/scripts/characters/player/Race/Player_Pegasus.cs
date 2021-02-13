@@ -22,6 +22,7 @@ public class Player_Pegasus : Player
         base._Ready();
         wingsAudi = GetNode<AudioStreamPlayer>("sound/audi_wings");
         wingsSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/pegasus-wings.wav");
+        SetStartHealth(125);
     }
 
     public override void _Process(float delta)
@@ -59,6 +60,15 @@ public class Player_Pegasus : Player
                 flyingFastTimer = 0;
                 MaySmash = false;
             }
+        }
+    }
+
+    public override void TakeDamage(int damage, int shapeID = 0)
+    {
+        base.TakeDamage(damage, shapeID);
+
+        if (Health <= 0) {
+            wingsAudi.Stop();
         }
     }
 

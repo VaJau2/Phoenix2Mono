@@ -6,7 +6,9 @@ public class MentatsEffect: Effect
     const float CONTRAST = 1.25f;
     const float SATURATION = 1.25f;
     const float PRICE_DELTA = 0.5f;
+    const float MANA_DELTA = -0.6f;
     private Player player;
+    private Global global => Global.Get();
     public MentatsEffect()
     {
         maxTime = 60;
@@ -37,6 +39,10 @@ public class MentatsEffect: Effect
         if (!handler.HasEffect(this)) {
             SetShadersOn(true);
             handler.SetPlayerParameter("priceDelta", ref player.PriceDelta, PRICE_DELTA);
+            if (global.playerRace == Race.Unicorn) {
+                Player_Unicorn unicorn = player as Player_Unicorn;
+                handler.SetPlayerParameter("manaDelta", ref unicorn.ManaDelta, MANA_DELTA);
+            }
         }
     }
 
@@ -46,6 +52,10 @@ public class MentatsEffect: Effect
         if (!handler.HasEffect(this)) {
             SetShadersOn(false);
             handler.ClearPlayerParameter("priceDelta", ref player.PriceDelta);
+            if (global.playerRace == Race.Unicorn) {
+                Player_Unicorn unicorn = player as Player_Unicorn;
+                handler.ClearPlayerParameter("manaDelta", ref unicorn.ManaDelta);
+            }
             
             if (startPostEffect) {
                 StartPostEffect();

@@ -248,6 +248,15 @@
         "medsEffect": "heal",
         "sound": "heal-potion"
     },
+    "mana-potion": {
+        "name": "Зелье маны",
+        "description": "Очень полезное для единорогов зелье, повышающее их магические возможности.",
+        "type": "meds",
+        "icon": "mana-potion",
+        "price": "150",
+        "medsEffect": "mana",
+        "sound": "heal-potion"
+    },
     "buck": {
         "name": "Бак",
         "description": "Таблетки, временно повышающие силу и выносливость. Вызывают зависимость",
