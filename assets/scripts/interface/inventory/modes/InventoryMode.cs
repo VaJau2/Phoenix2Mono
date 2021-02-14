@@ -39,12 +39,12 @@ public abstract class InventoryMode
             itemButtons.Add(button as ItemIcon); 
         }
         
-        if (Global.Get().playerRace != Race.Earthpony) {
+        if (!menu.menuLoaded && Global.Get().playerRace != Race.Earthpony) {
             for(int i = 0; i < 5; i++) {
                 itemButtons[itemButtons.Count - 1].QueueFree();
                 itemButtons.RemoveAt(itemButtons.Count - 1);
-                
             }
+            menu.menuLoaded = true;
         }
 
         back = menu.GetNode<Control>("helper/back");

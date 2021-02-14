@@ -5,7 +5,7 @@ using System;
 public class PlayerHead : MeshInstance
 {
     const float SHY_TIMER = 10f;
-    private static string path = "res://assets/textures/player/emotions/";
+    private static string path = "res://assets/textures/characters/player/emotions/";
     private Dictionary<string, StreamTexture> openEyes = new Dictionary<string, StreamTexture>();
     private Dictionary<string, StreamTexture> closeEyes = new Dictionary<string, StreamTexture>();
     private SpatialMaterial bodyMaterial;
@@ -142,7 +142,7 @@ public class PlayerHead : MeshInstance
                 if (closedTimer > 0) {
                     closedTimer -= delta;
                 } else {
-                    if (!eyesClosed) {
+                    if (eyesClosed) {
                         OpenEyes();
                     } else {
                         CloseEyes();

@@ -146,6 +146,20 @@
         "ammoType": "ammo10",
         "sound": "weapon"
     },
+    "laserPistol": {
+        "name": "Лазерный пистолет",
+        "description": "Энергетический пистолет, стреляющий лазерным лучом",
+        "type": "weapon",
+        "icon": "laserPistol",
+        "price": "200",
+        "damage": "18",
+        "shootDistance": "100",
+        "cooldown": "0.5",
+        "recoil": "1",
+        "isPistol": "true",
+        "ammoType": "ammoEnergy",
+        "sound": "weapon"
+    },
 
     
     "ammo32": {
@@ -182,6 +196,13 @@
         "type": "ammo",
         "icon": "ammo762",
         "price": "2" 
+    },
+    "ammoEnergy": {
+        "name": "Энергетические батареи",
+        "description": "Боеприпасы для лазерного и плазменного оружия",
+        "type": "ammo",
+        "icon": "ammoEnergy",
+        "price": "3"
     },
 
 

@@ -132,6 +132,20 @@
         "ammoType": "ammo762",
         "sound": "weapon"
     },
+    "laserPistol": {
+        "name": "Laser pistol",
+        "description": "Energy pistol, firing with laser ray",
+        "type": "weapon",
+        "icon": "laserPistol",
+        "price": "200",
+        "damage": "18",
+        "shootDistance": "100",
+        "cooldown": "0.5",
+        "recoil": "1",
+        "isPistol": "true",
+        "ammoType": "ammoEnergy",
+        "sound": "weapon"
+    },
 
 
     "ammo32": {
@@ -168,6 +182,13 @@
         "type": "ammo",
         "icon": "ammo762",
         "price": "2" 
+    },
+    "ammoEnergy": {
+        "name": "Energy batteries",
+        "description": "Ammunition for laser and plasma weapons",
+        "type": "ammo",
+        "icon": "ammoEnergy",
+        "price": "3"
     },
 
     
