@@ -86,7 +86,7 @@
         "icon": "shotgun12",
         "price": "1100",
         "damage": "110",
-        "shootDistance": "40",
+        "shootDistance": "60",
         "cooldown": "1.6",
         "recoil": "0.5",
         "ammoType": "ammo12",
@@ -99,7 +99,7 @@
         "type": "weapon",
         "icon": "sniper307",
         "price": "800",
-        "damage": "70",
+        "damage": "75",
         "shootDistance": "200",
         "cooldown": "1.4",
         "recoil": "1",
@@ -125,7 +125,7 @@
         "type": "weapon",
         "icon": "autorifle762",
         "price": "1600",
-        "damage": "10",
+        "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
@@ -138,7 +138,7 @@
         "type": "weapon",
         "icon": "submachine10",
         "price": "700",
-        "damage": "5",
+        "damage": "8",
         "shootDistance": "60",
         "cooldown": "0.01",
         "recoil": "2",
@@ -152,7 +152,7 @@
         "type": "weapon",
         "icon": "laserPistol",
         "price": "200",
-        "damage": "18",
+        "damage": "20",
         "shootDistance": "100",
         "cooldown": "0.5",
         "recoil": "1",
@@ -160,8 +160,21 @@
         "ammoType": "ammoEnergy",
         "sound": "weapon"
     },
-
+    "laserRifle": {
+        "name": "Лазерная винтовка",
+        "description": "Энергетическая винтовка, стреляющая лазерным лучом",
+        "type": "weapon",
+        "icon": "laserRifle",
+        "price": "1600",
+        "damage": "40",
+        "shootDistance": "200",
+        "cooldown": "0.7",
+        "recoil": "1.2",
+        "ammoType": "ammoEnergy",
+        "sound": "weapon"
+    },
     
+
     "ammo32": {
         "name": "Патроны кал. 32",
         "description": "Дешевые пистолетные патроны небольшого калибра",

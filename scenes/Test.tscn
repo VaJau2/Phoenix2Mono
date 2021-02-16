@@ -37,7 +37,16 @@ ammo = {
 }
 
 [node name="facetest" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.009704, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.009704, 14.7001, 0, 0 )
+transform = Transform( -0.999847, 0, 0.0175046, 0, 1, 0, -0.0175046, 0, -0.999847, 14.7001, 0, 0 )
+
+[node name="facetest2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.995183, 0, 0.0980346, 0, 1, 0, -0.0980346, 0, 0.995183, 14.7001, 0, 10.6018 )
+
+[node name="facetest3" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.734666, 0, -0.678429, 0, 1, 0, 0.678429, 0, 0.734666, 5.09306, 0, 13.062 )
+
+[node name="facetest4" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.856429, 0, 0.516264, 0, 1, 0, -0.516264, 0, -0.856429, 23.4285, 0, -21.4698 )
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
@@ -69,7 +78,7 @@ collision_layer = 3
 collision_mask = 3
 SpawnRandomItems = true
 chestCode = "cabinet"
-itemCodes = [ "laserPistol" ]
+itemCodes = [ "laserPistol", "laserRifle" ]
 ammoCount = {
 "ammoEnergy": 40
 }

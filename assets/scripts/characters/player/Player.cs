@@ -220,9 +220,9 @@ public class Player : Character
         return BaseSpeed;
     }
 
-    public override void TakeDamage(int damage, int shapeID = 0)
+    public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        base.TakeDamage(damage, shapeID);
+        base.TakeDamage(damager, damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
         if (Health <= 0) {

@@ -12,6 +12,7 @@ public class NPCFace : MeshInstance
     [Export]
     public string startEyesVariant = "";
     
+    NPC npc;
     private SpatialMaterial eyesMaterial;
     private SpatialMaterial mouthMaterial;
     private Dictionary<string, StreamTexture> mouthTextures = new Dictionary<string, StreamTexture>();
@@ -68,21 +69,28 @@ public class NPCFace : MeshInstance
 
     private void UpdateOpenEyes(float delta)
     {
-        if (eyesOpenCooldown > 0) {
-            eyesOpenCooldown -= delta;
-        } else {
-            eyesAreOpen = !eyesAreOpen;
-            eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
-            if (eyesAreOpen) {
-                eyesOpenCooldown = (float)rand.Next(3, 6);
+        if (npc.Health > 0) {
+            if (eyesOpenCooldown > 0) {
+                eyesOpenCooldown -= delta;
             } else {
-                eyesOpenCooldown = 0.2f;
+                eyesAreOpen = !eyesAreOpen;
+                eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
+                if (eyesAreOpen) {
+                    eyesOpenCooldown = (float)rand.Next(3, 6);
+                } else {
+                    eyesOpenCooldown = 0.2f;
+                }
             }
+        } else {
+            eyesAreOpen = false;
+            eyesMaterial.AlbedoTexture = closedEyes;
+            SetProcess(false);
         }
     }
 
     public override void _Ready()
     {
+        npc = GetNode<NPC>("../../../");
         eyesMaterial  = (SpatialMaterial)Mesh.SurfaceGetMaterial(1);
         mouthMaterial = (SpatialMaterial)Mesh.SurfaceGetMaterial(2);
 

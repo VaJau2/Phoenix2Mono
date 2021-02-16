@@ -27,11 +27,13 @@ public class Character : KinematicBody
         Health = Mathf.Clamp(Health, 0, HealthMax);
     }
 
-    public virtual void TakeDamage(int damage, int shapeID = 0)
+    public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         damage = damage - (int)(damage * GetDamageBlock());
         decreaseHealth(damage);
     }
+    
+    public virtual void CheckShotgunShot(bool isShotgun) {}
 
     public virtual void HealHealth(int healing)
     {
@@ -39,7 +41,7 @@ public class Character : KinematicBody
     }
 
     public void MakeDamage(Character victim, int shapeID = 0) {
-        victim.TakeDamage(GetDamage(), shapeID);
+        victim.TakeDamage(this, GetDamage(), shapeID);
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character

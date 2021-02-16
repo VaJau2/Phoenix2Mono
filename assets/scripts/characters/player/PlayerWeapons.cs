@@ -17,8 +17,6 @@ public class PlayerWeapons: CollisionShape
     //body
     //camera
     //head -> body.head
-    RayCast rayShotgun;
-    ShotgunArea shotgunArea;
 
     //---интерфейс-------
     Control shootInterface;
@@ -111,8 +109,6 @@ public class PlayerWeapons: CollisionShape
     {
         global = Global.Get();
 
-        rayShotgun = GetNode<RayCast>("../player_body/shotgunRay");
-        shotgunArea = GetNode<ShotgunArea>("../player_body/shotgunArea");
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<TextureRect>("ammoBack/icon");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
@@ -227,58 +223,8 @@ public class PlayerWeapons: CollisionShape
         }
     }
 
-    private async void СheckVisible(Array<Spatial> victims) 
-    {
-        foreach(Spatial victim in victims) {
-            var wr = WeakRef(victim);
-            if (wr.GetRef() != null) {
-                var victPos = victim.GlobalTransform.origin;
-                if (victim is Character) {
-                    victPos.y += 1;
-                }
-                var dir = victPos - rayShotgun.GlobalTransform.origin;
-                Transform newTransf = rayShotgun.GlobalTransform;
-                newTransf.basis = new Basis(Vector3.Zero);
-                rayShotgun.GlobalTransform = newTransf;
-                rayShotgun.CastTo = dir;
-                await player.ToSignal(player.GetTree(), "idle_frame");
-                if (rayShotgun.GetCollider() == victim) {
-                    handleVictim(victim);
-                    if (victim is Character) {
-                        var chr = victim as Character;
-                        spawnBlood(chr, player.impulse * -4, dir);
-                    }
-                } else {
-                    if(!rayShotgun.IsColliding() && (victim is BreakableObject)) {
-                        handleVictim(victim);
-                    }
-                }
-            }
-        }   
-    }
-
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
     public float GetStatsFloat(string statsName) => float.Parse(tempWeaponStats[statsName].ToString(), CultureInfo.InvariantCulture);
-
-    private void gunPartsEmit(Spatial gunParts, Vector3 point, string material) 
-    {
-        gunParts.Call("_startEmitting", point, material);
-    }
-
-    private void spawnBlood(Character victim, Vector3 impulse, Vector3 dir) 
-    {
-        Spatial gunParts = gunParticlesPrefab.Instance() as Spatial;
-        particlesParent.AddChild(gunParts);
-        gunParts.GlobalTransform = Global.setNewOrigin(
-            gunParts.GlobalTransform,
-            rayShotgun.GetCollisionPoint()
-        );
-        gunPartsEmit(gunParts, rayShotgun.GetCollisionNormal(), "blood");
-
-        dir = dir.Normalized();
-        dir.y = 0;
-        GD.Print("add in weapons.cs in 262 enemy's impulse pls");
-    }
 
     private string handleVictim(Spatial victim, int shapeID = 0)
     {
@@ -292,7 +238,9 @@ public class PlayerWeapons: CollisionShape
                     name = "blood";
                 }
             var character = victim as Character;
+            character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
             player.MakeDamage(character, shapeID);
+
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;
             name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
@@ -333,49 +281,45 @@ public class PlayerWeapons: CollisionShape
 
             var tempRay = player.Camera.UseRay(tempDistance);
 
-            await player.ToSignal(player.GetTree(),"idle_frame");
+            await global.ToTimer(0.03f);
 
             //обрабатываем попадания
             if (isPistol || player.MayMove) {
                 if (tempWeaponStats.Contains("isShotgun")) {
                     player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
-                    var objs = shotgunArea.objectsInside;
-                    СheckVisible(objs);
-                } else {
-                    var obj = (Spatial)tempRay.GetCollider();
-                    if (obj != null) {
-                        var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-                        particlesParent.AddChild(gunParticles);
-                        gunParticles.GlobalTransform = Global.setNewOrigin(
-                            gunParticles.GlobalTransform,
-                            tempRay.GetCollisionPoint()
-                        );
-                        var shapeId = tempRay.GetColliderShape();
-                        var matName = handleVictim(obj, shapeId);
-                        gunPartsEmit(
-                            gunParticles,
-                            tempRay.GetCollisionNormal(),
-                            matName
-                        );
-                    }
-                }
-            }
+                } 
 
-            await global.ToTimer(0.05f);
+                var obj = (Spatial)tempRay.GetCollider();
+                if (obj != null) {
+                    var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                    particlesParent.AddChild(gunParticles);
+                    gunParticles.GlobalTransform = Global.setNewOrigin(
+                        gunParticles.GlobalTransform,
+                        tempRay.GetCollisionPoint()
+                    );
+                    var shapeId = tempRay.GetColliderShape();
+                    var matName = handleVictim(obj, shapeId);
+                    gunParticles.Call(
+                        "_startEmitting", 
+                        tempRay.GetCollisionNormal(), 
+                        matName
+                    );
+                }
+                
+            }
+            player.Camera.ReturnRayBack();
 
             gunLight.Visible = true;
             gunSmoke.Restart();
             gunFire.Visible = true;
             shakeCameraUp();
-            await global.ToTimer(0.05f);
+            await global.ToTimer(0.06f);
             gunFire.Visible = false;
             gunLight.Visible = false;
 
-            player.Camera.ReturnRayBack();
-
             if (!tempWeaponStats.Contains("isSilence")) {
-                GD.Print("alarmed, but didn't have manager");
-                GD.Print("go to PlayerWeapons.cs - 372 to fix");
+                //TODO:
+                //запрогать что-то типа тревоги
             }
 
             onetimeShoot = false;
@@ -390,11 +334,6 @@ public class PlayerWeapons: CollisionShape
                 //вращаем коллизию пистолета вместе с пистолетом
                 if (isPistol) {
                     RotationDegrees = player.RotationHelper.RotationDegrees;
-                } //иначе вращаем область дробовика за камерой
-                else {
-                    Vector3 newRot = shotgunArea.RotationDegrees;
-                    newRot.x = player.RotationHelper.RotationDegrees.x;
-                    shotgunArea.RotationDegrees = newRot;
                 }
 
                 if (Input.IsMouseButtonPressed(1) && cooldown <= 0) {

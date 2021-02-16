@@ -253,6 +253,16 @@ public class PlayerBody : Spatial
         Head = head;
     }
 
+    public void AnimateDealth(Character killer)
+    {
+        playback.Travel("Idle1");
+        bodyRot = 0;
+        player.CollisionLayer = 0;
+        player.CollisionMask = 0;
+        playerSkeleton.PhysicalBonesStartSimulation();
+        SetProcess(false);
+    }
+
     public override void _Ready()
     {
         player = GetNode<Player>("../");
@@ -272,7 +282,7 @@ public class PlayerBody : Spatial
     public override void _Process(float delta)
     {  
         if (Input.IsActionPressed("ui_end")) {
-            player.TakeDamage(9999);
+            player.TakeDamage(player, 9999);
         }
 
         if (player.Health > 0) {
@@ -405,14 +415,7 @@ public class PlayerBody : Spatial
                 ClumpBodyRot();
 
             }
-        } else { //Health <= 0
-            playback.Travel("Idle1");
-            bodyRot = 0;
-            player.CollisionLayer = 0;
-            player.CollisionMask = 0;
-            playerSkeleton.PhysicalBonesStartSimulation();
-            SetProcess(false);
-        }
+        } 
     }
 
     public override void _Input(InputEvent @event)

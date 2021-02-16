@@ -63,9 +63,9 @@ public class Player_Pegasus : Player
         }
     }
 
-    public override void TakeDamage(int damage, int shapeID = 0)
+    public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        base.TakeDamage(damage, shapeID);
+        base.TakeDamage(damager, damage, shapeID);
 
         if (Health <= 0) {
             wingsAudi.Stop();

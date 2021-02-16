@@ -63,7 +63,7 @@ public class PlayerLegs: Node
             if (victim is Character) {
                 audi.Stream = hit;
                 Character character = victim as Character;
-                character.TakeDamage(damage);
+                character.TakeDamage(player, damage);
             } else {
                 if (victim is StaticBody) {
                     var body = victim as StaticBody;

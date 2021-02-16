@@ -84,7 +84,7 @@ public class HeartbeatEffect
             if (damageCooldown > 0) {
                 damageCooldown -= delta * count;
             } else {
-                player.TakeDamage(OVERDOSE_DAMAGE * count);
+                player.TakeDamage(player, OVERDOSE_DAMAGE * count);
                 damageCooldown = DAMAGE_TIMER;
             }
         }

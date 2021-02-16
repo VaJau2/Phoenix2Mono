@@ -40,7 +40,7 @@ public class Player_Unicorn : Player
         hornMagic.Emitting = emit;
     }
 
-    public override void TakeDamage(int damage, int shapeID = 0)
+    public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         if (shield.shieldOn) {
             damage -= (int)Mana;
@@ -49,7 +49,7 @@ public class Player_Unicorn : Player
             }
         }
 
-        base.TakeDamage(damage, shapeID);
+        base.TakeDamage(damager, damage, shapeID);
     }
 
     public override Spatial GetWeaponParent(bool isPistol) {
