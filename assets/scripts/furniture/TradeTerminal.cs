@@ -8,8 +8,11 @@ public class TradeTerminal: StaticBody, ITrader
     [Export]
     public string traderCode {get; set;}
     [Export]
-    public Array<string> itemCodes {get; set;} = new Array<string>();
+    public Array<string> startItemCodes {get; set;} = new Array<string>();
     [Export]
+    public Dictionary<string, int> startAmmoCount {get; set;} = new Dictionary<string, int>();
+
+    public Array<string> itemCodes {get; set;} = new Array<string>();
     public Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
@@ -21,6 +24,13 @@ public class TradeTerminal: StaticBody, ITrader
 
         RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
         items.LoadRandomItems(itemCodes, ammoCount);
+
+        foreach(string itemCode in startItemCodes) {
+            itemCodes.Add(itemCode);
+        }
+        foreach(string ammoKey in startAmmoCount.Keys) {
+            ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
+        }
     }
 
     private bool mayOpen => (isTrading == menu.isOpen);

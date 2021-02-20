@@ -12,8 +12,14 @@ public class FurnChest: FurnBase {
     [Export]
     public string chestCode;
     [Export]
-    public Array<string> itemCodes = new Array<string>();
+    public Array<string> startItemCodes = new Array<string>();
     [Export]
+    public Dictionary<string, int> startAmmoCount = new Dictionary<string, int>();
+
+    //каким-то образом export-массивы сохраняются между сессиями
+    //и если уровень перезагружается, игра получает их уже заполненными
+    public Array<string> itemCodes = new Array<string>();
+    //патроны считаются отдельно и не должны лежать в массиве вещей
     public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions = new Dictionary<int, string>();
@@ -34,6 +40,13 @@ public class FurnChest: FurnBase {
                 itemCodes.Add(items.moneyNameCode);
                 moneyCount = random.RandiRange(0, items.maxMoneyCount);
             }
+        }
+
+        foreach(string itemCode in startItemCodes) {
+            itemCodes.Add(itemCode);
+        }
+        foreach(string ammoKey in startAmmoCount.Keys) {
+            ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
         }
     }
 
