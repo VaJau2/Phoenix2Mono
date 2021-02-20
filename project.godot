@@ -139,6 +139,14 @@ autoheal={
  ]
 }
 
+[locale]
+
+fallback="ru_RU"
+
+[mono]
+
+profiler/enabled=true
+
 [rendering]
 
 vram_compression/import_etc=true

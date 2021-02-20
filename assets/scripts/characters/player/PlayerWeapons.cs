@@ -28,8 +28,8 @@ public class PlayerWeapons: CollisionShape
 
     //--эффекты и анимания выстрела
 
-    Spatial tempWeapon;
     public ItemIcon tempAmmoButton {get; private set;}
+    Spatial tempWeapon;
     AnimationPlayer gunAnim;
     Spatial gunLight;
     Spatial gunFire;
@@ -253,6 +253,18 @@ public class PlayerWeapons: CollisionShape
         return name;
     }  
 
+    private void SpawnBullet()
+    {
+        string bullet = tempWeaponStats["bullet"].ToString();
+        var bulletPrefab = GD.Load<PackedScene>("res://objects/guns/bullets/" + bullet + ".tscn");
+        Bullet newBullet = (Bullet)bulletPrefab.Instance();
+        newBullet.Damage = player.GetDamage();
+        newBullet.Shooter = player;
+        
+        GetNode("/root/Main/Scene").AddChild(newBullet);
+        newBullet.GlobalTransform = gunFire.GlobalTransform;
+    }
+
     private async void handleShoot() {
         onetimeShoot = true;
         int ammo = GetAmmo();
@@ -285,27 +297,30 @@ public class PlayerWeapons: CollisionShape
 
             //обрабатываем попадания
             if (isPistol || player.MayMove) {
-                if (tempWeaponStats.Contains("isShotgun")) {
-                    player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
-                } 
+                if (tempWeaponStats.Contains("bullet")) {
+                    SpawnBullet();
+                } else {
+                    if (tempWeaponStats.Contains("isShotgun")) {
+                        player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+                    } 
 
-                var obj = (Spatial)tempRay.GetCollider();
-                if (obj != null) {
-                    var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-                    particlesParent.AddChild(gunParticles);
-                    gunParticles.GlobalTransform = Global.setNewOrigin(
-                        gunParticles.GlobalTransform,
-                        tempRay.GetCollisionPoint()
-                    );
-                    var shapeId = tempRay.GetColliderShape();
-                    var matName = handleVictim(obj, shapeId);
-                    gunParticles.Call(
-                        "_startEmitting", 
-                        tempRay.GetCollisionNormal(), 
-                        matName
-                    );
+                    var obj = (Spatial)tempRay.GetCollider();
+                    if (obj != null) {
+                        var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                        particlesParent.AddChild(gunParticles);
+                        gunParticles.GlobalTransform = Global.setNewOrigin(
+                            gunParticles.GlobalTransform,
+                            tempRay.GetCollisionPoint()
+                        );
+                        var shapeId = tempRay.GetColliderShape();
+                        var matName = handleVictim(obj, shapeId);
+                        gunParticles.Call(
+                            "_startEmitting", 
+                            tempRay.GetCollisionNormal(), 
+                            matName
+                        );
+                    }
                 }
-                
             }
             player.Camera.ReturnRayBack();
 

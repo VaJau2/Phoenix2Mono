@@ -5,6 +5,7 @@ using Godot.Collections;
 public class PlayerCamera: Camera 
 {
     const float RAY_LENGH = 6;
+    const float RAY_THIRD_LENGTH = 9;
     const float EYE_PART_SPEED1 = 1000;
     const float EYE_PART_SPEED2 = 1200;
     const float FOV_SPEED = 60;
@@ -41,7 +42,8 @@ public class PlayerCamera: Camera
 
     public void ReturnRayBack()
     {
-        tempRay.CastTo = new Vector3(0, 0, -RAY_LENGH);
+        float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGH;
+        tempRay.CastTo = new Vector3(0, 0, -oldLength);
         mayUseRay = true;
     }
     
