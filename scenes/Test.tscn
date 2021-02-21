@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/scripts/furniture/TradeTerminal.cs" type="Script" id=9]
-[ext_resource path="res://objects/characters/facetest.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/characters/npcBase.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -34,14 +34,6 @@ ammo = {
 "ammo12": 20,
 "ammo307": 10,
 "ammo762": 50
-}
-
-[node name="facetest" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.994573, 0, 0.104042, 0, 1, 0, -0.104042, 0, -0.994573, 14.7001, 0, 0 )
-weaponCode = "laserPistol"
-itemCodes = [ "maffin" ]
-ammoCount = {
-"ammoEnergy": 20
 }
 
 [node name="terrain" type="StaticBody" parent="."]
@@ -135,6 +127,13 @@ shape = SubResource( 4 )
 [node name="DirectionalLight" type="DirectionalLight" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true
+
+[node name="npcBase" parent="terrain" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9042, 0.110706, -0.154526 )
+weaponCode = "revolver32"
+ammoCount = {
+"ammo32": 15
+}
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )

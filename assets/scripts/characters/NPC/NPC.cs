@@ -10,7 +10,7 @@ public class NPC : Character
     [Export]
     public int StartHealth = 100;
     [Export]
-    public string weaponCode;
+    public string weaponCode = "";
     [Export]
     public Array<string> itemCodes = new Array<string>();
     [Export]
@@ -21,8 +21,8 @@ public class NPC : Character
     public NPCState state;
 
     public NPCFace head;
+    public NPCBody body;
     private NPCWeapons weapons;
-    public AnimationPlayer anim;
     private  AudioStreamPlayer3D audi;
     private Skeleton skeleton;
     private PhysicalBone headBone;
@@ -41,7 +41,7 @@ public class NPC : Character
         if (Health <= 0) {
             return;
         }
-        
+
         switch(newState) {
             case NPCState.Idle:
                 if (tempVictim == player) {
@@ -50,6 +50,7 @@ public class NPC : Character
 
                 weapons.SetWeapon(false);
                 tempVictim = null;
+                body.lookTarget = null;
                 break;
             
             case NPCState.Attack:
@@ -67,6 +68,7 @@ public class NPC : Character
 
                 lastSeePos = tempVictim.GlobalTransform.origin;
                 searchTimer = SEARCH_TIMER;
+                body.lookTarget = null;
                 break;
         }
         state = newState;
@@ -150,9 +152,19 @@ public class NPC : Character
         QueueFree();
     }
 
+    public void _on_lookArea_body_entered(Node body)
+    {
+        this.body._on_lookArea_body_entered(body);
+    }
+
+    public void _on_lookArea_body_exited(Node body)
+    {
+        this.body._on_lookArea_body_exited(body);
+    }
+
     public override void _Ready()
     {
-        anim = GetNode<AnimationPlayer>("anim");
+        body = new NPCBody(this);
         audi = GetNode<AudioStreamPlayer3D>("audi");
         skeleton = GetNode<Skeleton>("Armature/Skeleton");
         head = GetNode<NPCFace>("Armature/Skeleton/Body");
@@ -161,7 +173,6 @@ public class NPC : Character
         bodyBone = GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
 
-        anim.Play("Idle");
         SetStartHealth(StartHealth);
 
         if (weaponCode != "") {
@@ -171,6 +182,11 @@ public class NPC : Character
 
     public override void _Process(float delta)
     {
+        if (Health <= 0) {
+            return;
+        }
+
+        body.Update(delta);
         switch(state) {
 
             case NPCState.Search:

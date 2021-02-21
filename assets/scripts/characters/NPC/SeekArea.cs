@@ -71,13 +71,12 @@ public class SeekArea : Area
     {
         if (body is Character && body != this) {
             //если нпц видит игрока, и он дружественный
-            GD.Print("check player is friend");
             if (body is Player && npc.relation == Relation.Friend && !npc.aggressiveAgainstPlayer) return;
 
             //если нпц видит нпц, и они в одной "фракции"
             if (body is NPC && (body as NPC).relation == npc.relation) return;
 
-            GD.Print("player is not friend");
+            
             enemiesInArea.Add(body as Character);
             attackTimer.Add(0);
         }
