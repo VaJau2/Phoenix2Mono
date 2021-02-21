@@ -22,6 +22,11 @@ public class PlayerStealth: Node {
     private void checkEmpty() 
     {
         foreach(Character enemy in seekEnemies) {
+            if (enemy == null) {
+                seekEnemies.Remove(enemy);
+                continue;
+            }
+
             var wr = WeakRef(enemy);
             if (wr.GetRef() == null) {
                 seekEnemies.Remove(enemy);
@@ -29,6 +34,11 @@ public class PlayerStealth: Node {
         }
 
         foreach(Character enemy in attackEnemies) {
+            if (enemy == null) {
+                attackEnemies.Remove(enemy);
+                continue;
+            }
+
             var wr = WeakRef(enemy);
             if (wr.GetRef() == null) {
                 attackEnemies.Remove(enemy);

@@ -37,21 +37,12 @@ ammo = {
 }
 
 [node name="facetest" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.999847, 0, 0.0175046, 0, 1, 0, -0.0175046, 0, -0.999847, 14.7001, 0, 0 )
+transform = Transform( -0.994573, 0, 0.104042, 0, 1, 0, -0.104042, 0, -0.994573, 14.7001, 0, 0 )
+weaponCode = "laserPistol"
 itemCodes = [ "maffin" ]
-SpawnRandomItems = true
-
-[node name="facetest2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.995183, 0, 0.0980346, 0, 1, 0, -0.0980346, 0, 0.995183, 14.7001, 0, 10.6018 )
-SpawnRandomItems = true
-
-[node name="facetest3" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.734666, 0, -0.678429, 0, 1, 0, 0.678429, 0, 0.734666, 5.09306, 0, 13.062 )
-SpawnRandomItems = true
-
-[node name="facetest4" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.856429, 0, 0.516264, 0, 1, 0, -0.516264, 0, -0.856429, 23.4285, 0, -21.4698 )
-SpawnRandomItems = true
+ammoCount = {
+"ammoEnergy": 20
+}
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
@@ -75,7 +66,6 @@ collision_mask = 3
 physics_material_override = ExtResource( 7 )
 SpawnRandomItems = true
 chestCode = "cabinet"
-itemCodes = [ "mana-potion" ]
 
 [node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
@@ -83,8 +73,8 @@ collision_layer = 3
 collision_mask = 3
 SpawnRandomItems = true
 chestCode = "cabinet"
-itemCodes = [ "laserPistol", "laserRifle" ]
-ammoCount = {
+startItemCodes = [ "plasmaPistol", "laserRifle" ]
+startAmmoCount = {
 "ammoEnergy": 40
 }
 
@@ -102,7 +92,6 @@ collision_mask = 3
 script = ExtResource( 9 )
 moneyCount = 2000
 traderCode = "tradeTerminal"
-itemCodes = [ "stealth-armor" ]
 
 [node name="box" type="StaticBody" parent="terrain/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )
@@ -151,7 +140,7 @@ shadow_enabled = true
 script = ExtResource( 3 )
 maxItemsCount = 10
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon", "heal-potion" ]
+itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol" ]
 ammoCount = {
 "ammo307": 10,
 "ammo32": 20

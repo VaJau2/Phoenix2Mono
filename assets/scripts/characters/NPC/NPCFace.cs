@@ -36,6 +36,13 @@ public class NPCFace : MeshInstance
         }
     }
 
+    public void CloseEyes()
+    {
+        eyesAreOpen = false;
+        eyesMaterial.AlbedoTexture = closedEyes;
+        eyesOpenCooldown = 0.2f;
+    }
+
     private List<AnimTime> LoadTimingFile(string fileName)
     {
         List<AnimTime> animation = new List<AnimTime>();
