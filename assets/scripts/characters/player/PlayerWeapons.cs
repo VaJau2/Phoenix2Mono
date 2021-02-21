@@ -23,6 +23,7 @@ public class PlayerWeapons: CollisionShape
 
     public Label ammoLabel;
     TextureRect ammoIcon;
+    TextureRect crossHitted;
 
     Dictionary tempWeaponStats;
 
@@ -112,6 +113,7 @@ public class PlayerWeapons: CollisionShape
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<TextureRect>("ammoBack/icon");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
+        crossHitted = shootInterface.GetNode<TextureRect>("cross/hitted");
 
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
         particlesParent = GetNode("/root/Main/Scene");
@@ -121,6 +123,17 @@ public class PlayerWeapons: CollisionShape
         tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
 
         //enemiesManager = player.GetNode("/root/Main/Scene/enemies");
+    }
+
+    private async void ShowCrossHitted(bool head)
+    {
+        crossHitted.Modulate = head? Colors.Red : Colors.White;
+        if (crossHitted.Visible) {
+            return;
+        }
+        crossHitted.Visible = true;
+        await global.ToTimer(0.2f);
+        crossHitted.Visible = false;
     }
 
     private void SetAmmoIcon(string ammoType)
@@ -240,6 +253,7 @@ public class PlayerWeapons: CollisionShape
             var character = victim as Character;
             character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
             player.MakeDamage(character, shapeID);
+            ShowCrossHitted(shapeID != 0);
 
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;

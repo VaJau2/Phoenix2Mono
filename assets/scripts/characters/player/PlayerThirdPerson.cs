@@ -175,8 +175,8 @@ public class PlayerThirdPerson : Spatial
         thirdCamera = GetNode<Camera>("camera");
         RayToPlayer = GetNode<RayCast>("camera/RayToPlayer");
 
-        RayFirst = GetNode<RayCast>("../rotation_helper/camera/ray");
-        RayThird = GetNode<RayCast>("camera/ray");
+        RayFirst = GetNode<RayCast>("../rotation_helper/camera/rayFirst");
+        RayThird = GetNode<RayCast>("camera/rayThird");
         RayFirst.AddException(player);
         RayThird.AddException(player);
         TempRay = RayFirst;
