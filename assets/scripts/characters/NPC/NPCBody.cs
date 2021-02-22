@@ -18,21 +18,41 @@ public class NPCBody
         playback.Start("Idle1");
     }
 
+    public void PlayAnim(string animName)
+    {
+        playback.Travel(animName);
+    }
+
+    public Vector3 GetDirToTarget(Spatial target)
+    {
+        Vector3 targetDirPos = target.GlobalTransform.origin;
+        targetDirPos.y = npc.GlobalTransform.origin.y;
+        return targetDirPos - npc.GlobalTransform.origin;
+    }
+
     public void Update(float delta)
     {
         if (lookTarget != null) {
-            Vector3 npcForward = npc.GlobalTransform.basis.x;
-            Vector3 dir = lookTarget.GlobalTransform.origin - npc.GlobalTransform.origin;
+            Vector3 npcForward = -npc.GlobalTransform.basis.z;
+            Vector3 dir = GetDirToTarget(lookTarget);
 
-            float diffY = lookTarget.GlobalTransform.origin.y - npc.GlobalTransform.origin.y;
-
-            SetValueTo(ref headBlend.x, npcForward.Dot(dir) / 11, delta * 2);
-            SetValueTo(ref headBlend.y, diffY / 10, delta * 2);
-        } else {
-            if (npc.state == NPCState.Attack) {
-                lookTarget = npc.tempVictim;
+            float angle = npcForward.AngleTo(dir);
+            if (npc.GlobalTransform.basis.x.Dot(dir) < 0) {
+                angle = -angle;
             }
 
+            var targetY = lookTarget.GlobalTransform.origin.y;
+            //точка центра игрока чуть выше, тк он умеет красться и приседать с:
+            if (lookTarget is Player) {
+                targetY -= 0.8f;
+            }
+
+            float diffY = targetY - npc.GlobalTransform.origin.y;
+            
+
+            SetValueTo(ref headBlend.x, angle / 1.5f, delta * 4);
+            SetValueTo(ref headBlend.y, diffY / 50, delta * 4);
+        } else {
             SetValueTo(ref headBlend.x, 0, delta * 2);
             SetValueTo(ref headBlend.y, 0, delta * 2);
         }

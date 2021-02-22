@@ -12,11 +12,22 @@ public class SeekArea : Area
     const float NPC_MULTIPLY = 2f;
 
     Array<Character> enemiesInArea = new Array<Character>();
+    Array<NPC> alliesInArea = new Array<NPC>();
     Array<float> attackTimer = new Array<float>();
     int tempEnemy = 0;
 
     NPC npc;
     RayCast ray;
+
+    public void MakeAlliesAttack()
+    {
+        foreach(NPC ally in alliesInArea) {
+            if (ally.state == NPCState.Idle) {
+                ally.tempVictim = npc.tempVictim;
+                ally.SetState(NPCState.Attack);
+            }
+        }
+    }
 
     public override void _Ready()
     {
@@ -35,32 +46,38 @@ public class SeekArea : Area
 
         if (npc.state == NPCState.Attack) {
             //теряем жертву, если не видим её
-            var dir = npc.tempVictim.GlobalTransform.origin - ray.GlobalTransform.origin;
-            ray.CastTo = dir;
-            ray.Enabled = true;
-            if (ray.GetCollider() != npc.tempVictim) {
+            if (!SeeCharacter(npc.tempVictim)) {
+                if (CheckHiding()) {
+                    return;
+                }
                 npc.SetState(NPCState.Search);
+            } else {
+                if (CheckHiding() && (npc as Pony).InCover) {
+                    (npc as Pony).StopHidingInCover();
+                }
             }
+
         } else {
             if (enemiesInArea.Count == 0) {
-                ray.Enabled = false;
                 return;
             }
             //если рядом есть враги
             if (tempEnemy < enemiesInArea.Count) {
                 //проверяем их видимость
                 var tempVictim = enemiesInArea[tempEnemy];
-                var dir = tempVictim.GlobalTransform.origin - ray.GlobalTransform.origin;
+                if (tempVictim == null) {
+                    enemiesInArea.RemoveAt(tempEnemy);
+                    return;
+                }
 
-                ray.CastTo = dir;
-                ray.Enabled = true;
-                if (ray.GetCollider() == tempVictim) {
-                    //считаем таймер видимости
-                    attackTimer[tempEnemy] += GetSeeTimerSpeed(tempVictim);
+                if (SeeCharacter(tempVictim)) {
                     if (attackTimer[tempEnemy] >= ATTACK_TIME) {
                         //идем в атаку на врага, которого заметили
                         npc.tempVictim = tempVictim;
                         npc.SetState(NPCState.Attack);
+                    } else {
+                        //считаем таймер видимости
+                        attackTimer[tempEnemy] += GetSeeTimerSpeed(tempVictim);
                     }
                 }
             }
@@ -74,8 +91,10 @@ public class SeekArea : Area
             if (body is Player && npc.relation == Relation.Friend && !npc.aggressiveAgainstPlayer) return;
 
             //если нпц видит нпц, и они в одной "фракции"
-            if (body is NPC && (body as NPC).relation == npc.relation) return;
-
+            if (body is NPC && (body as NPC).relation == npc.relation) {
+                alliesInArea.Add(body as NPC);
+                return;
+            };
             
             enemiesInArea.Add(body as Character);
             attackTimer.Add(0);
@@ -89,6 +108,10 @@ public class SeekArea : Area
             //если враг ушел из зоны видимости
             if (npc.state == NPCState.Attack) {
                 if (character == npc.tempVictim) {
+                    if (CheckHiding()) {
+                        return;
+                    }
+
                     npc.SetState(NPCState.Search);
                 }
             }
@@ -98,6 +121,10 @@ public class SeekArea : Area
                 enemiesInArea.RemoveAt(i);
                 attackTimer.RemoveAt(i);
                 tempEnemy = 0;
+            }
+
+            if (alliesInArea.Contains(body as NPC)) {
+                alliesInArea.Remove(body as NPC);
             }
         }
     }
@@ -114,5 +141,23 @@ public class SeekArea : Area
             speed *= NPC_MULTIPLY;
         }
         return speed;
+    }
+
+    private bool CheckHiding()
+    {
+        if (npc is Pony) {
+            var pony = npc as Pony;
+            if (pony.IsHidingInCover) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool SeeCharacter(Character character) 
+    {
+        var dir = character.GlobalTransform.origin - ray.GlobalTransform.origin;
+        ray.CastTo = dir;
+        return ray.GetCollider() == character;
     }
 }

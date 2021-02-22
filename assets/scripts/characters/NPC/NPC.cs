@@ -6,35 +6,42 @@ public class NPC : Character
 {
     const int RAGDOLL_IMPULSE = 700;
     const float SEARCH_TIMER = 5f;
+    private float ROTATION_SPEED = 0.45f;
+    protected float GRAVITY = 6;
+    protected float PATROL_WAIT = 4f;
+    [Export]
+    public Array<NodePath> patrolArray;
+    protected Spatial[] patrolPoints;
+    protected int patrolI = 0;
+    protected float patrolWaitTimer = 0;
+    [Export]
+    public string IdleAnim = "";
 
     [Export]
     public int StartHealth = 100;
     [Export]
-    public string weaponCode = "";
-    [Export]
-    public Array<string> itemCodes = new Array<string>();
-    [Export]
-    public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
-    [Export]
     public Relation relation;
+    [Export]
+    public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
     public NPCState state;
-
     public NPCFace head;
-    public NPCBody body;
-    private NPCWeapons weapons;
-    private  AudioStreamPlayer3D audi;
+    protected SeekArea seekArea;
+    protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
 
-    private PackedScene bagPrefab;
-
     private Player player => Global.Get().player;
     public Character tempVictim;
-    private Vector3 lastSeePos;
-    private float searchTimer = 0;
+    protected Vector3 lastSeePos;
+    protected float searchTimer = 0;
+
+    protected bool CloseToPoint = false;
+
+    protected Vector3 myStartPos, myStartRot;
+
 
     public virtual void SetState(NPCState newState)
     {
@@ -47,18 +54,13 @@ public class NPC : Character
                 if (tempVictim == player) {
                     player.Stealth.RemoveSeekEnemy(this);
                 }
-
-                weapons.SetWeapon(false);
                 tempVictim = null;
-                body.lookTarget = null;
                 break;
             
             case NPCState.Attack:
                 if (tempVictim == player) {
                     player.Stealth.AddAttackEnemy(this);
                 }
-
-                weapons.SetWeapon(true);
                 break;
             
             case NPCState.Search:
@@ -68,20 +70,9 @@ public class NPC : Character
 
                 lastSeePos = tempVictim.GlobalTransform.origin;
                 searchTimer = SEARCH_TIMER;
-                body.lookTarget = null;
                 break;
         }
         state = newState;
-        GD.Print(this.Name + ": new state = " + newState);
-    }
-
-    public virtual Spatial GetWeaponParent(bool isPistol)
-    {
-        if (isPistol) {
-            return GetNode<Spatial>("Armature/Skeleton/BoneAttachment/weapons");
-        } else {
-            return GetNode<Spatial>("Armature/Skeleton/BoneAttachment 2/weapons");
-        }
     }
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
@@ -102,13 +93,8 @@ public class NPC : Character
 
         if (Health <= 0) {
             if (tempVictim == player) {
-                GD.Print(this.Name + " remove seek and attack enemy");
                 player.Stealth.RemoveAttackEnemy(this);
                 player.Stealth.RemoveSeekEnemy(this);
-            }
-
-            if (itemCodes.Count > 0) {
-                SpawnItemsBag();
             }
 
             AnimateDealth(damager, shapeID);
@@ -120,22 +106,8 @@ public class NPC : Character
         tempShotgunShot = isShotgun;
     }
 
-    private void SpawnItemsBag()
+    protected virtual async void AnimateDealth(Character killer, int shapeID)
     {
-        FurnChest tempBag = (FurnChest)bagPrefab.Instance();
-
-        tempBag.itemCodes = itemCodes;
-        tempBag.ammoCount = ammoCount;
-
-        Node parent = GetNode("/root/Main/Scene");
-        parent.AddChild(tempBag);
-        tempBag.Translation = Translation;
-        tempBag.Translate(Vector3.Up / 4f);
-    }
-
-    private async void AnimateDealth(Character killer, int shapeID)
-    {
-        weapons.SetWeapon(false);
         CollisionLayer = 0;
         CollisionMask = 0;
         skeleton.PhysicalBonesStartSimulation();
@@ -152,32 +124,50 @@ public class NPC : Character
         QueueFree();
     }
 
-    public void _on_lookArea_body_entered(Node body)
+    protected void MoveTo(Vector3 place, float distance, float speed = 1)
     {
-        this.body._on_lookArea_body_entered(body);
-    }
+        var pos = GlobalTransform.origin;
+        place.y = pos.y;
 
-    public void _on_lookArea_body_exited(Node body)
-    {
-        this.body._on_lookArea_body_exited(body);
+        var rotA = Transform.basis.Quat().Normalized();
+        var rotB = Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
+        var tempRotation = rotA.Slerp(rotB, ROTATION_SPEED);
+
+        Transform tempTransform = Transform;
+        tempTransform.basis = new Basis(tempRotation);
+        Transform = tempTransform;
+
+        speed += BaseSpeed;
+
+        Rotation = new Vector3(0, Rotation.y, 0);
+        Velocity = new Vector3(0, -GRAVITY, -speed).Rotated(Vector3.Up, Rotation.y);
+
+        var temp_distance = pos.DistanceTo(place);
+        CloseToPoint = temp_distance <= distance;
     }
 
     public override void _Ready()
     {
-        body = new NPCBody(this);
         audi = GetNode<AudioStreamPlayer3D>("audi");
         skeleton = GetNode<Skeleton>("Armature/Skeleton");
         head = GetNode<NPCFace>("Armature/Skeleton/Body");
-        weapons = GetNode<NPCWeapons>("weapons");
+        seekArea = GetNode<SeekArea>("seekArea");
+        
         headBone = GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
         bodyBone = GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
-        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
 
         SetStartHealth(StartHealth);
+        BaseSpeed = WalkSpeed;
 
-        if (weaponCode != "") {
-            weapons.LoadWeapon(this, weaponCode);
-        } 
+        if (patrolArray == null || patrolArray.Count == 0) {
+            myStartPos = GlobalTransform.origin;
+            myStartRot = Rotation;
+        } else {
+            patrolPoints = new Spatial[patrolArray.Count];
+            for(int i = 0; i < patrolArray.Count; i++) {
+                patrolPoints[i] = GetNode<Spatial>(patrolArray[i]);
+            }
+        }
     }
 
     public override void _Process(float delta)
@@ -186,17 +176,16 @@ public class NPC : Character
             return;
         }
 
-        body.Update(delta);
-        switch(state) {
+        if (state == NPCState.Search) {
+            if (searchTimer > 0) {
+                searchTimer -= delta;
+            } else {
+                SetState(NPCState.Idle);
+            }
+        }
 
-            case NPCState.Search:
-                if (searchTimer > 0) {
-                    searchTimer -= delta;
-                } else {
-                    SetState(NPCState.Idle);
-                }
-                break;
-
+        if (Velocity.Length() > 0) {
+            MoveAndSlide(Velocity);
         }
     }
 }

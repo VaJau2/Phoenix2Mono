@@ -5,6 +5,7 @@ public class Bullet : Area
     [Export]
     public float speed;
     public int Damage;
+    public float Timer;
     public Character Shooter;
 
     PackedScene gunParticlesPrefab;
@@ -67,5 +68,11 @@ public class Bullet : Area
     public override void _Process(float delta)
     {
         Translate(Vector3.Forward * speed);
+
+        if (Timer > 0) {
+            Timer -= delta;
+        } else {
+            QueueFree();
+        }
     }
 }

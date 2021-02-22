@@ -15,7 +15,6 @@ public class PlayerCamera: Camera
     Messages messages;
 
     Player player;
-    uint rayLayer = 3;
 
     Control labelBack;
     Label label;

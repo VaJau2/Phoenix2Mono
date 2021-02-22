@@ -84,12 +84,14 @@ public class PlayerWeapons: CollisionShape
     
     public void ClearWeapon()
     {
-        Disabled = true;
-        tempWeapon.QueueFree();
-        tempWeapon = null;
-        shootInterface.Visible = false;
-        player.SetWeaponOff();
-        GunOn = false;
+        if (tempWeapon != null) {
+            Disabled = true;
+            tempWeapon.QueueFree();
+            tempWeapon = null;
+            shootInterface.Visible = false;
+            player.SetWeaponOff();
+            GunOn = false;
+        }
     }
 
     public void СheckThirdView() 
@@ -274,6 +276,7 @@ public class PlayerWeapons: CollisionShape
         Bullet newBullet = (Bullet)bulletPrefab.Instance();
         newBullet.Damage = player.GetDamage();
         newBullet.Shooter = player;
+        newBullet.Timer = GetStatsFloat("shootDistance");
         
         GetNode("/root/Main/Scene").AddChild(newBullet);
         newBullet.GlobalTransform = gunFire.GlobalTransform;

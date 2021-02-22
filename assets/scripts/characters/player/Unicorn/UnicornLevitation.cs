@@ -2,8 +2,8 @@ using Godot;
 
 public class UnicornLevitation : Particles
 {   
-    const float HEIGHT_MIN = 2.3f;
-    const float HEIGHT_MAX = 2.5f;
+    const float HEIGHT_MIN = 2.5f;
+    const float HEIGHT_MAX = 2.8f;
     const float SPEED = 0.002f;
     const float CLOSING_SPEED = 10f;
 
@@ -11,7 +11,6 @@ public class UnicornLevitation : Particles
     Spatial weaponNode;
     Player_Unicorn player;
 
-    float tempHeight;
     bool moveUp = false;
     bool weaponClose = false;
 

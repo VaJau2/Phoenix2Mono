@@ -14,14 +14,16 @@ public class NPCWeapons : Node
     PackedScene gunParticlesPrefab;
 
     //--звуки-------------
-    AudioStreamPlayer audi;
-    AudioStreamPlayer audiShoot;
+    AudioStreamPlayer3D audiShoot;
     AudioStreamSample shootSound;
+    AudioStreamSample missSound;
 
     private bool GunOn;
-    private bool isPistol;
+    public bool isPistol;
 
-    public void LoadWeapon(NPC npc, string weaponCode)
+    private RandomNumberGenerator rand = new RandomNumberGenerator();
+
+    public void LoadWeapon(Pony npc, string weaponCode)
     {
         this.npc = npc;
 
@@ -55,7 +57,7 @@ public class NPCWeapons : Node
         if (tempWeapon != null) tempWeapon.Visible = on;
     }
 
-    public void MakeShoot()
+    public float MakeShoot(float victimDistance)
     {
         audiShoot.Stream = shootSound;
         audiShoot.Play();
@@ -69,22 +71,38 @@ public class NPCWeapons : Node
             SpawnBullet();
         } else {
             var victim = npc.tempVictim;
-            Vector3 shootPos = victim.GlobalTransform.origin + Vector3.Up * 2f;
 
-            var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-            GetNode("/root/Main/Scene").AddChild(gunParticles);
-            gunParticles.GlobalTransform = Global.setNewOrigin(
-                gunParticles.GlobalTransform,
-                shootPos
-            );
-            gunParticles.Call(
-                "_startEmitting", 
-                npc.GlobalTransform.basis.z, 
-                "blood"
-            );
+            float shootChance = 1f;
+            shootChance -= victimDistance / 100f;
+            shootChance /= (victim.Velocity.Length() / 10f);
 
-            npc.MakeDamage(victim);
+            AnimGunEffects();
+
+            if (rand.Randf() < shootChance) {
+                Vector3 shootPos = victim.GlobalTransform.origin + Vector3.Up;
+                var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                GetNode("/root/Main/Scene").AddChild(gunParticles);
+                gunParticles.GlobalTransform = Global.setNewOrigin(
+                    gunParticles.GlobalTransform,
+                    shootPos
+                );
+                gunParticles.Call(
+                    "_startEmitting", 
+                    npc.GlobalTransform.basis.z, 
+                    "blood"
+                );
+
+                npc.MakeDamage(victim);
+            } else {
+                if (victim is Player) {
+                    var playerAudi = (victim as Player).GetAudi(true);
+                    playerAudi.Stream = missSound;
+                    playerAudi.Play();
+                }
+            }
+            
         }
+        return GetStatsFloat("cooldown");
     }
 
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
@@ -97,9 +115,20 @@ public class NPCWeapons : Node
         Bullet newBullet = (Bullet)bulletPrefab.Instance();
         newBullet.Damage = npc.GetDamage();
         newBullet.Shooter = npc;
+        newBullet.Timer = GetStatsFloat("shootDistance");
         
         GetNode("/root/Main/Scene").AddChild(newBullet);
         newBullet.GlobalTransform = gunFire.GlobalTransform;
+
+        if (rand.Randf() < 0.4f){
+            var rotXDelta = (rand.Randf() - 0.5f) / 10f;
+            var rotYDelta = (rand.Randf() - 0.5f) / 10f;
+            newBullet.Rotation = new Vector3(
+                newBullet.Rotation.x + rotXDelta,
+                newBullet.Rotation.y + rotYDelta,
+                newBullet.Rotation.z
+            );
+        }
     }
 
     private void LoadGunEffects() 
@@ -113,5 +142,23 @@ public class NPCWeapons : Node
         gunLight = tempWeapon.GetNode<Spatial>("light");
         gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");
+    }
+
+    private async void AnimGunEffects()
+    {
+        gunLight.Visible = true;
+        gunSmoke.Restart();
+        gunFire.Visible = true;
+        await Global.Get().ToTimer(0.06f);
+        gunFire.Visible = false;
+        gunLight.Visible = false;
+    }
+
+    public override void _Ready()
+    {
+        gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
+        missSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/ShotBeside.wav");
+        audiShoot = GetNode<AudioStreamPlayer3D>("../audiShoot");
+        rand.Randomize();
     }
 }

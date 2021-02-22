@@ -27,8 +27,7 @@ public class PlayerStealth: Node {
                 continue;
             }
 
-            var wr = WeakRef(enemy);
-            if (wr.GetRef() == null) {
+            if (!IsInstanceValid(enemy)) {
                 seekEnemies.Remove(enemy);
             }
         }
@@ -39,8 +38,7 @@ public class PlayerStealth: Node {
                 continue;
             }
 
-            var wr = WeakRef(enemy);
-            if (wr.GetRef() == null) {
+            if (!IsInstanceValid(enemy)) {
                 attackEnemies.Remove(enemy);
             }
         }

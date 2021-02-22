@@ -18,6 +18,8 @@ public class PlayerBody : Spatial
     const float CROUCH_COOLDOWN = 5f;
     const float JUMP_COOLDOWN = 0.7f;
 
+    const int RAGDOLL_IMPULSE = 700;
+
     public PlayerHead Head {get; private set;}
     public PlayerLegs Legs;
     public SoundSteps SoundSteps;
@@ -25,6 +27,7 @@ public class PlayerBody : Spatial
     private Race playerRace;
 
     private Skeleton playerSkeleton;
+    private PhysicalBone headBone;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -260,6 +263,9 @@ public class PlayerBody : Spatial
         player.CollisionLayer = 0;
         player.CollisionMask = 0;
         playerSkeleton.PhysicalBonesStartSimulation();
+
+        Vector3 dir = Translation.DirectionTo(killer.Translation);
+        headBone.ApplyCentralImpulse(-dir * RAGDOLL_IMPULSE);
         SetProcess(false);
     }
 
@@ -268,6 +274,7 @@ public class PlayerBody : Spatial
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
         playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
+        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 
@@ -281,10 +288,6 @@ public class PlayerBody : Spatial
 
     public override void _Process(float delta)
     {  
-        if (Input.IsActionPressed("ui_end")) {
-            player.TakeDamage(player, 9999);
-        }
-
         if (player.Health > 0) {
             updateHeadRotation(delta);
 

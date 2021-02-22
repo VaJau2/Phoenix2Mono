@@ -15,17 +15,15 @@ public class SoundSteps: RayCast {
     const int SOUNDS_COUNT = 3;
     const float SOUND_SPEED = 6;
     Global global;
-
-    private bool isPlayer = true;
     
-    Character parent {get => GetNode<Character>(parentPath);}
-
+    Character parent => GetNode<Character>(parentPath);
     float timer = 0;
     int stepI = 0;
 
     string landMaterial = "grass";
 
     AudioStreamPlayer audi;
+    AudioStreamPlayer3D audi3D;
     AudioStreamSample dash;
     AudioStreamSample jump;
 
@@ -33,6 +31,8 @@ public class SoundSteps: RayCast {
     Dictionary<string, Array<AudioStreamSample>> stepsRun;
     Dictionary<string, Array<AudioStreamSample>> stepsCrouch;
 
+    Character player => parent as Character;
+    bool isPlayer => parent is Player;
     Random rand;
 
     private bool playerCrouching {
@@ -44,13 +44,27 @@ public class SoundSteps: RayCast {
 
     private bool parentRunning {
         get {
-            //TODO
-            //добавить сюда условие для бегающих противников
             var player = parent as Player_Earthpony;
             if (player != null) {
                 return player.IsRunning;
+            } 
+
+            var npc = parent as Pony;
+            if (npc != null) {
+                return npc.IsRunning;
             }
             return false;
+        }
+    }
+
+    private void PlaySound(AudioStreamSample sound)
+    {
+        if (audi != null) {
+            audi.Stream = sound;
+            audi.Play();
+        } else {
+            audi3D.Stream = sound;
+            audi3D.Play();
         }
     }
 
@@ -67,13 +81,11 @@ public class SoundSteps: RayCast {
 
     public override void _Ready()
     {
-        if (parent is Player) {
+        if (isPlayer) {
             var player = parent as Player;
             audi = player.GetAudi();
-            isPlayer = true;
         } else {
-            audi = parent.GetNode<AudioStreamPlayer>("audi");
-            isPlayer = false;
+            audi3D = parent.GetNode<AudioStreamPlayer3D>("audi");
         }
        
         dash = GD.Load<AudioStreamSample>("res://assets/audio/steps/dash.wav");
@@ -109,8 +121,7 @@ public class SoundSteps: RayCast {
 
     public void SoundDash()
     {
-        audi.Stream = dash;
-        audi.Play();
+        PlaySound(dash);
         timer = STEP_COOLDOWN;
     }
 
@@ -120,8 +131,7 @@ public class SoundSteps: RayCast {
             if (global.playerRace != Race.Unicorn && !playerCrouching) {
                 var pegasus = parent as Player_Pegasus;
                 if (Input.IsActionJustPressed("jump") && (pegasus == null || !pegasus.IsFlying)) {
-                    audi.Stream = jump;
-                    audi.Play();
+                    PlaySound(jump);
                     timer = 0;
                 }
             }
@@ -134,18 +144,17 @@ public class SoundSteps: RayCast {
                 timer -= delta;
             } else {
                 if (isPlayer && playerCrouching) {
-                    audi.Stream = stepsCrouch[landMaterial][stepI];
+                    PlaySound(stepsCrouch[landMaterial][stepI]);
                     timer = STEP_CROUCH_COOLDOWN;
                 } else {
                     if (parentRunning) {
-                        audi.Stream = stepsRun[landMaterial][stepI];
+                        PlaySound(stepsRun[landMaterial][stepI]);
                         timer = STEP_RUN_COOLDOWN;
                     } else {
-                        audi.Stream = steps[landMaterial][stepI];
+                        PlaySound(steps[landMaterial][stepI]);
                         timer = STEP_COOLDOWN;
                     }
                 }
-                audi.Play();
 
                 var oldI = stepI;
                 stepI = rand.Next(0, SOUNDS_COUNT);
@@ -158,12 +167,11 @@ public class SoundSteps: RayCast {
 
     public override void _PhysicsProcess(float delta)
     {
-        var player = parent as Player;
         if (player.Health <= 0)
             return;
         
         if (isPlayer) {
-            player.OnStairs = false;
+            (player as Player).OnStairs = false;
         }
 
         if (parent.Velocity.Length() > 2) {
@@ -176,7 +184,7 @@ public class SoundSteps: RayCast {
 
                     if (materialName == "stairs") {
                         if (isPlayer) {
-                            player.OnStairs = true;
+                            (player as Player).OnStairs = true;
                         }
                         landMaterial = "stone";
                         return;

@@ -226,7 +226,9 @@ public class Player : Character
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
         if (Health <= 0) {
+            Weapons.ClearWeapon();
             AnimateDealth();
+            Body.AnimateDealth(damager);
         }
     }
 
