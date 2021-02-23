@@ -137,7 +137,7 @@ public class Pony: NPC
 
     public void FindCover()
     {
-        tempCover = covers.GetCover(tempVictim);
+        tempCover = covers.GetCover(this);
         if (tempCover != null) {
             tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.origin);
             cameToPlace = false;
@@ -148,7 +148,7 @@ public class Pony: NPC
 
     public void StopHidingInCover()
     {
-        if (tempCover != null) tempCover.free = true;
+        if (tempCover != null) covers.ReturnCover(tempCover);
         tempCover = null;
         coverTimer = rand.RandfRange(UNCOVER_TIMER[0], UNCOVER_TIMER[1]);
     }

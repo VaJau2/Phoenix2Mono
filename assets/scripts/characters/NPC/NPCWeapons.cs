@@ -72,8 +72,7 @@ public class NPCWeapons : Node
         } else {
             var victim = npc.tempVictim;
 
-            float shootChance = 1f;
-            shootChance -= victimDistance / 100f;
+            float shootChance = 1.0f - (victimDistance / tempDistance * 0.5f);
             shootChance /= (victim.Velocity.Length() / 10f);
 
             AnimGunEffects();

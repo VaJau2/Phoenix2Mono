@@ -13,8 +13,8 @@ public class CoversManager : Node
         }
     }
 
-    //Берет самое дальнее от противника укрытие
-    public Cover GetCover(Spatial enemy)
+    //Берет ближайшее к себе укрытие
+    public Cover GetCover(Spatial npc)
     {
         if (covers.Count == 0) {
             return null;
@@ -22,18 +22,14 @@ public class CoversManager : Node
 
         Cover closestCover = covers[0];
         //если первое укрытие занято, не проверяем
-        if (!closestCover.free) {
-            closestCover = null;
-        }
 
         if (covers.Count > 1) {
-            Vector3 enemyPos = enemy.GlobalTransform.origin;
-            float oldDistance = (closestCover != null) ? closestCover.center.DistanceTo(enemyPos) : 0;
+            Vector3 npcPos = npc.GlobalTransform.origin;
+            float oldDistance = closestCover.center.DistanceTo(npcPos);
 
             for(int i = 1; i < covers.Count; i++) {
-                if (!covers[i].free) continue;
-                float tempDistance = covers[i].center.DistanceTo(enemyPos);
-                if (tempDistance > oldDistance) {
+                float tempDistance = covers[i].center.DistanceTo(npcPos);
+                if (tempDistance < oldDistance) {
                     closestCover = covers[i];
                     oldDistance = tempDistance;
                 }
@@ -41,18 +37,22 @@ public class CoversManager : Node
         }
 
         if (closestCover != null) {
-            closestCover.free = false;
+            covers.Remove(closestCover);
             return closestCover;
         } else {
             return null;
         }
+    }
+
+    public void ReturnCover(Cover cover)
+    {
+        covers.Add(cover);
     }
 }
 
 //Класс укрытия
 public class Cover
 {
-    public bool free = true;
     public Vector3 center;
     public List<Vector3> places = new List<Vector3>();
 

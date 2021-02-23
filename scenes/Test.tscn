@@ -44,9 +44,8 @@ ammo = {
 }
 
 [node name="npcBase" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.24055, 0, -0.970637, 0, 1, 0, 0.970637, 0, -0.24055, -25.5375, 0.110706, 32.8044 )
+transform = Transform( 0.980707, 0, 0.195484, 0, 1, 0, -0.195484, 0, 0.980707, 5.80995, 0.110706, 32.8044 )
 IdleAnim = "Sit"
-relation = 1
 WalkSpeed = 6
 RunSpeed = 12
 weaponCode = "laserPistol"
@@ -55,12 +54,33 @@ ammoCount = {
 }
 
 [node name="npcBase2" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.367362, 0, 0.930078, 0, 1, 0, -0.930078, 0, -0.367362, 23.7992, 0.110706, 32.8044 )
+transform = Transform( 0.999713, 0, -0.0239609, 0, 1, 0, 0.0239609, 0, 0.999713, 23.7992, 0.110706, 32.8044 )
 IdleAnim = "Sit"
-relation = 1
 WalkSpeed = 6
 RunSpeed = 12
 weaponCode = "plasmaPistol"
+ammoCount = {
+"ammo32": 15
+}
+
+[node name="npcBase3" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.997113, 0, 0.0759356, 0, 1, 0, -0.0759356, 0, -0.997113, 23.7992, 0.110706, -14.4806 )
+IdleAnim = "Idle1"
+relation = 1
+WalkSpeed = 6
+RunSpeed = 12
+weaponCode = "revolver32"
+ammoCount = {
+"ammo32": 15
+}
+
+[node name="npcBase4" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.997113, 0, 0.0759356, 0, 1, 0, -0.0759356, 0, -0.997113, 11.162, 0.110706, -14.4806 )
+IdleAnim = "Idle1"
+relation = 1
+WalkSpeed = 6
+RunSpeed = 12
+weaponCode = "revolver32"
 ammoCount = {
 "ammo32": 15
 }
