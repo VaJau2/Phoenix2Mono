@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/materials/props/locations/sand.tres" type="Material" id=3]
 [ext_resource path="res://assets/materials/weapon/pistol.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/weapon/rifle.material" type="Material" id=5]
-[ext_resource path="res://assets/materials/enemies/bodyArmor.material" type="Material" id=6]
-[ext_resource path="res://assets/materials/enemies/black.material" type="Material" id=7]
+[ext_resource path="res://assets/materials/characters/bodyArmor.material" type="Material" id=6]
+[ext_resource path="res://assets/materials/characters/black.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/props/fence.material" type="Material" id=8]
 [ext_resource path="res://assets/materials/physics/dirt.phymat" type="PhysicsMaterial" id=9]
 [ext_resource path="res://objects/props/plants/tree1.tscn" type="PackedScene" id=10]
@@ -59,6 +59,7 @@
 [ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=95]
 [ext_resource path="res://assets/materials/props/furniture/trash/bottle.material" type="Material" id=96]
 [ext_resource path="res://assets/materials/props/locations/location-map.material" type="Material" id=97]
+
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 3 )

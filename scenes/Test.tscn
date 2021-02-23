@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/scripts/furniture/TradeTerminal.cs" type="Script" id=9]
-[ext_resource path="res://objects/characters/npcBase.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/characters/facetest.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/scripts/characters/NPC/CoversManager.cs" type="Script" id=11]
+[ext_resource path="res://objects/characters/42.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -43,47 +44,18 @@ ammo = {
 "ammo762": 50
 }
 
-[node name="npcBase" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.980707, 0, 0.195484, 0, 1, 0, -0.195484, 0, 0.980707, 5.80995, 0.110706, 32.8044 )
-IdleAnim = "Sit"
-WalkSpeed = 6
-RunSpeed = 12
-weaponCode = "laserPistol"
-ammoCount = {
-"ammo32": 15
-}
+[node name="npc" type="Node" parent="."]
 
-[node name="npcBase2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.999713, 0, -0.0239609, 0, 1, 0, 0.0239609, 0, 0.999713, 23.7992, 0.110706, 32.8044 )
-IdleAnim = "Sit"
+[node name="facetest" parent="npc" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.2798 )
+StartHealth = 150
 WalkSpeed = 6
 RunSpeed = 12
-weaponCode = "plasmaPistol"
-ammoCount = {
-"ammo32": 15
-}
+weaponCode = "rifle307"
 
-[node name="npcBase3" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.997113, 0, 0.0759356, 0, 1, 0, -0.0759356, 0, -0.997113, 23.7992, 0.110706, -14.4806 )
-IdleAnim = "Idle1"
-relation = 1
-WalkSpeed = 6
-RunSpeed = 12
+[node name="42" parent="npc" instance=ExtResource( 12 )]
+transform = Transform( 0.948096, 0, 0.317983, 0, 1, 0, -0.317983, 0, 0.948096, 15.7683, 0, 23.9656 )
 weaponCode = "revolver32"
-ammoCount = {
-"ammo32": 15
-}
-
-[node name="npcBase4" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.997113, 0, 0.0759356, 0, 1, 0, -0.0759356, 0, -0.997113, 11.162, 0.110706, -14.4806 )
-IdleAnim = "Idle1"
-relation = 1
-WalkSpeed = 6
-RunSpeed = 12
-weaponCode = "revolver32"
-ammoCount = {
-"ammo32": 15
-}
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3
