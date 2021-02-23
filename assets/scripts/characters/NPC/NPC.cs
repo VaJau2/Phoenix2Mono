@@ -81,8 +81,9 @@ public class NPC : Character
             tempVictim = damager;
             SetState(NPCState.Attack);
         }
-        if (damager == player) {
+        if (damager == player && !aggressiveAgainstPlayer) {
             aggressiveAgainstPlayer = true;
+            seekArea.AddEnemyInArea(player);
         }
 
         if (shapeID != 0) {

@@ -123,7 +123,7 @@ public class Player : Character
         BodyFollowsCamera = !isPistol;
     }
 
-    public void SetWeaponOff()
+    public virtual void SetWeaponOff()
     {
         var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
         bug.Visible = false;

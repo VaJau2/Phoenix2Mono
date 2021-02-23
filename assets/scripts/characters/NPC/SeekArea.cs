@@ -45,13 +45,17 @@ public class SeekArea : Area
         }
 
         if (npc.state == NPCState.Attack) {
-            //теряем жертву, если не видим её
+            //теряем противника, если не видим его
             if (!SeeCharacter(npc.tempVictim)) {
                 if (CheckHiding()) {
+                    //если мы прячемся, то то, что мы не 
+                    //видим его, это норма
                     return;
                 }
                 npc.SetState(NPCState.Search);
             } else {
+                //если увидели противника, будучи в укрытии
+                //больше не прячемся
                 if (CheckHiding() && (npc as Pony).InCover) {
                     (npc as Pony).StopHidingInCover();
                 }
@@ -84,6 +88,12 @@ public class SeekArea : Area
         }     
     }
 
+    public void AddEnemyInArea(Character enemy)
+    {
+        enemiesInArea.Add(enemy);
+        attackTimer.Add(0);
+    }
+
     public void _on_seekArea_body_entered(Node body)
     {
         if (body is Character && body != this) {
@@ -96,8 +106,7 @@ public class SeekArea : Area
                 return;
             };
             
-            enemiesInArea.Add(body as Character);
-            attackTimer.Add(0);
+           AddEnemyInArea(body as Character);
         }
     }
 

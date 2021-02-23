@@ -18,7 +18,7 @@ public class NPCWeapons : Node
     AudioStreamSample shootSound;
     AudioStreamSample missSound;
 
-    private bool GunOn;
+    public bool GunOn;
     public bool isPistol;
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
@@ -55,6 +55,13 @@ public class NPCWeapons : Node
     {
         GunOn = on;
         if (tempWeapon != null) tempWeapon.Visible = on;
+        
+        if (npc is Pony) {
+            Pony tempPony = npc as Pony;
+            if (tempPony.IsUnicorn) {
+                tempPony.MagicParticles.Emitting = on;
+            }
+        }
     }
 
     public float MakeShoot(float victimDistance)
@@ -73,7 +80,7 @@ public class NPCWeapons : Node
             var victim = npc.tempVictim;
 
             float shootChance = 1.0f - (victimDistance / tempDistance * 0.5f);
-            shootChance /= (victim.Velocity.Length() / 10f);
+            shootChance /= victim.Velocity.Length();
 
             AnimGunEffects();
 

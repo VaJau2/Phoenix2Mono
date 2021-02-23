@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 
+//Класс для пней-неписей
+//Также включает в себя единорогов, которые умеют только в левитацию
 public class Pony: NPC
 {
     const float RUN_DISTANCE = 12f;
@@ -18,10 +20,15 @@ public class Pony: NPC
     [Export]
     public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
 
+    [Export]
+    public bool IsUnicorn = false;
+    public Particles MagicParticles;
+
     public bool IsRunning = false;
+    public float RotationToVictim = 0f;
 
     public NPCBody body;
-    private NPCWeapons weapons;
+    public NPCWeapons weapons;
     private PackedScene bagPrefab;
 
     private Navigation navigation;
@@ -76,9 +83,12 @@ public class Pony: NPC
         }
     }
     
-    public virtual Spatial GetWeaponParent(bool isPistol)
+    public Spatial GetWeaponParent(bool isPistol)
     {
-        if (isPistol) {
+        if (IsUnicorn) {
+            return GetNode<Spatial>("levitation/weapons");
+        }
+        else if (isPistol) {
             return GetNode<Spatial>("Armature/Skeleton/BoneAttachment/weapons");
         } else {
             return GetNode<Spatial>("Armature/Skeleton/BoneAttachment 2/weapons");
@@ -170,14 +180,16 @@ public class Pony: NPC
     private void LookAtTarget()
     {
         if (tempVictim == null) {
+            RotationToVictim = 0;
             return;
         }
 
+        var npcForward = -GlobalTransform.basis.z;
+        var npcDir = body.GetDirToTarget(tempVictim);
+        RotationToVictim = npcForward.AngleTo(npcDir);
+
         if (weapons.isPistol) {
-            var npcForward = -GlobalTransform.basis.z;
-            var npcDir = body.GetDirToTarget(tempVictim);
-            float angle = Mathf.Rad2Deg(npcForward.AngleTo(npcDir));
-            if (angle < 80) {
+            if (Mathf.Rad2Deg(RotationToVictim) < 80) {
                 return;
             }
         }
@@ -273,6 +285,9 @@ public class Pony: NPC
         navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
+        if (IsUnicorn) {
+            MagicParticles = GetNode<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
+        }
         if (weaponCode != "") {
             weapons.LoadWeapon(this, weaponCode);
         } 

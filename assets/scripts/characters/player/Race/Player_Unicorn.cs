@@ -53,10 +53,17 @@ public class Player_Unicorn : Player
     }
 
     public override Spatial GetWeaponParent(bool isPistol) {
-        return GetNode<Spatial>("levitation/rotationHelper/weapons");
+        return GetNode<Spatial>("levitation/weapons");
     }
 
-    public override void SetWeaponOn(bool isPistol) {}
+    public override void SetWeaponOn(bool isPistol) {
+        SetMagicEmit(true);
+    }
+
+    public override void SetWeaponOff()
+    {
+        SetMagicEmit(false);
+    }
 
     public override void _Ready()
     {
