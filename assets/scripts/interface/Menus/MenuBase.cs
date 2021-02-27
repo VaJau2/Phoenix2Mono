@@ -14,6 +14,34 @@ public class MenuBase : Control
     public override void _Ready()
     {
         downLabel = GetNode<Label>("down_label");
+
+        LoadColorForChildren(this);
+    }
+
+    //загрузка цвета для интерфейса из настроек
+    public static void LoadColorForChildren(Node node)
+    {
+        if (node.GetChildCount() == 0) {
+            return;
+        }
+        foreach(var child in node.GetChildren()) {
+            if (child is CanvasItem) {
+                var canvasChild = child as CanvasItem;
+                if (!canvasChild.IsInGroup("ignore_color")) {
+                    float tempA = canvasChild.Modulate.a;
+                    Color newColor = Global.Get().Settings.interfaceColor;
+                    canvasChild.Modulate = new Color (
+                        newColor.r,
+                        newColor.g,
+                        newColor.b,
+                        tempA
+                    );
+                }
+                if (canvasChild.GetChildCount() > 0) {
+                    LoadColorForChildren(canvasChild);
+                }
+            }
+        }
     }
     
     public virtual void SetMenuVisible(bool animate = false)

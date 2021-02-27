@@ -12,7 +12,6 @@ __meta__ = {
 }
 
 [node name="Label5" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
@@ -34,7 +33,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 215.0
@@ -46,7 +44,6 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 150.0
 margin_top = 100.0
 margin_right = 246.0

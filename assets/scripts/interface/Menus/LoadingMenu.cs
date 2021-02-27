@@ -17,6 +17,8 @@ public class LoadingMenu : Control
         loadingLabel = GetNode<Label>("Label");
         loadText = InterfaceLang.GetPhrase("mainMenu", "load", "text");
         loadingLabel.Text = loadText;
+
+        MenuBase.LoadColorForChildren(this);
     }
 
     public override void _Process(float delta)

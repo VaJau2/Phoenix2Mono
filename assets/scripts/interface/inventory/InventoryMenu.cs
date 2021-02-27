@@ -59,6 +59,7 @@ public class InventoryMenu : Control
     public override void _Ready()
     {
         mode = new UsualMode(this);
+        MenuBase.LoadColorForChildren(this);
     }
 
     public override void _Input(InputEvent @event)

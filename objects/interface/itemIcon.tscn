@@ -3,7 +3,9 @@
 [ext_resource path="res://assets/scripts/interface/inventory/ItemIcon.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
 
-[node name="itemIcon" type="ColorRect"]
+[node name="itemIcon" type="ColorRect" groups=[
+"ignore_color",
+]]
 margin_right = 42.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
@@ -26,7 +28,6 @@ __meta__ = {
 anchor_bottom = 1.0
 margin_right = 1.0
 margin_bottom = -3.8147e-06
-color = Color( 0.223529, 0.752941, 0.145098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,7 +39,6 @@ anchor_bottom = 1.0
 margin_left = -1.0
 margin_right = -3.8147e-06
 margin_bottom = -3.8147e-06
-color = Color( 0.223529, 0.752941, 0.145098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,7 +47,6 @@ __meta__ = {
 anchor_right = 1.0
 margin_right = -3.8147e-06
 margin_bottom = 1.0
-color = Color( 0.223529, 0.752941, 0.145098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -59,7 +58,6 @@ anchor_bottom = 1.0
 margin_top = -1.0
 margin_right = -3.8147e-06
 margin_bottom = -3.8147e-06
-color = Color( 0.223529, 0.752941, 0.145098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,7 +66,6 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.223529, 0.752941, 0.145098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -87,14 +84,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bindLabel" type="Label" parent="."]
+[node name="bindLabel" type="Label" parent="." groups=[
+"ignore_color",
+]]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 9.0
 margin_bottom = 16.0
 theme = ExtResource( 2 )
 
-[node name="countLabel" type="Label" parent="."]
+[node name="countLabel" type="Label" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0

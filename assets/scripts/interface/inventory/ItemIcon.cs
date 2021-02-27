@@ -10,6 +10,7 @@ public class ItemIcon : ColorRect
     private Label bindLabel;
     private Label countLabel;
     private InventoryMenu menu;
+    private Color lastColor;
 
     public string myItemCode {get; private set;} = null;
 
@@ -104,6 +105,7 @@ public class ItemIcon : ColorRect
         && !menu.mode.isDragging
         && !menu.mode.modalAsk.Visible) {
             selected.Visible = true;
+            lastColor = icon.Modulate;
             icon.Modulate = Colors.Black;
             menu.SetTempButton(this);
         }
@@ -115,7 +117,7 @@ public class ItemIcon : ColorRect
         && !menu.mode.isDragging 
         && !menu.mode.modalAsk.Visible) {
             selected.Visible = false;
-            icon.Modulate = Colors.White;
+            icon.Modulate = lastColor;
             menu.SetTempButton(null);
         }
     }

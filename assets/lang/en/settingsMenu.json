@@ -20,6 +20,9 @@
         "music": "Set music volume",
         "language": "Set other language",
         "controls": "Set controls",
+        "color_r": "Set red for interface color",
+        "color_g": "Set green for interface color",
+        "color_b": "Set blue for interface color",
 
         "default": "Reset defalut settings"
     },
@@ -33,7 +36,8 @@
         "shadows": "Shadows quality:",
         "fullscreen": "Fullscreen:",
         "sound": "Sound volume:",
-        "music": "Music volume:"
+        "music": "Music volume:",
+        "color": "Interface color:"
     },
 
     "buttons": {

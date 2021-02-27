@@ -22,6 +22,16 @@ public class Messages: VBoxContainer {
     private Label ShowLabel(string text) 
     {
         var tempLabel = new Label();
+
+        float tempA = tempLabel.Modulate.a;
+        Color newColor = Global.Get().Settings.interfaceColor;
+        tempLabel.Modulate = new Color (
+            newColor.r,
+            newColor.g,
+            newColor.b,
+            tempA
+        );
+
         tempLabel.Autowrap = true;
         tempLabel.Text = text;
         tempLabel.Theme = tempTheme;

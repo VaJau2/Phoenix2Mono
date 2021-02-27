@@ -4,6 +4,7 @@ public class Settings
 {
     public bool SettingsLoaded = false;
     Viewport root;
+    public Color interfaceColor = new Color(0.226f, 0.75f, 0.144f);
     public float mouseSensivity = 0.1f;
     public float distance = 600;
     public int shadows {get; private set;} = 3;
@@ -22,7 +23,8 @@ public class Settings
     {
         "ui_up", "ui_down", "ui_left", "ui_right",
         "jump", "ui_shift", "use", "crouch", "dash",
-        "legsHit", "changeView", "task", "autoheal"
+        "legsHit", "changeView", "task", "inventory",
+        "autoheal"
     };
 
     private void updateAudioBus(int num, float value)
@@ -78,6 +80,7 @@ public class Settings
         var screenSize = OS.WindowSize;
         config.SetValue("screen", "width", screenSize.x);
         config.SetValue("screen", "height", screenSize.y);
+        config.SetValue("screen", "color", interfaceColor);
 
         config.SetValue("audio", "sound_volume", soundVolume);
         config.SetValue("audio", "music_volume", musicVolume);
@@ -111,6 +114,8 @@ public class Settings
             screenSize.x = (float)config.GetValue("screen", "width");
             screenSize.y = (float)config.GetValue("screen", "height");
             OS.WindowSize = screenSize;
+
+            interfaceColor = (Color)config.GetValue("screen", "color");
 
             SetSoundVolume((float)config.GetValue("audio", "sound_volume"));
             SetMusicVolume((float)config.GetValue("audio", "music_volume"));

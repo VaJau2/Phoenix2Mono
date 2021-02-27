@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/interface/bg_pic.png" type="Texture" id=3]
 [ext_resource path="res://assets/materials/fonts/terminal_big_text_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture" id=7]
@@ -17,7 +18,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="."]
+[node name="bgPic" type="TextureRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -25,7 +40,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chooseLanguage" type="Control" parent="."]
+[node name="chooseLanguage" type="Control" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,7 +51,6 @@ __meta__ = {
 }
 
 [node name="chooseLabel" type="Label" parent="chooseLanguage"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -82,7 +98,6 @@ __meta__ = {
 
 [node name="page_label" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 215.0
@@ -94,7 +109,6 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -110,7 +124,6 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -87.4312
@@ -126,7 +139,6 @@ __meta__ = {
 
 [node name="Label3" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -234,7 +246,9 @@ theme = ExtResource( 1 )
 text = "               [Выйти]"
 align = 0
 
-[node name="ChangeRace" type="Control" parent="."]
+[node name="ChangeRace" type="Control" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -242,7 +256,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="ChangeRace"]
+[node name="background" type="ColorRect" parent="ChangeRace" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 0.853
 margin_bottom = 0.199982
@@ -252,7 +268,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="ChangeRace"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 322.0
@@ -331,7 +346,6 @@ anchor_bottom = 1.0
 [node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover"]
 anchor_bottom = 1.0
 margin_right = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -341,19 +355,16 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover"]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
 anchor_top = 1.0
@@ -361,7 +372,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -2.0
 margin_right = -129.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -372,7 +382,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 129.0
 margin_top = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -439,7 +448,6 @@ anchor_bottom = 1.0
 [node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover"]
 anchor_bottom = 1.0
 margin_right = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -449,19 +457,16 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover"]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
 anchor_top = 1.0
@@ -469,7 +474,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -2.0
 margin_right = -129.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -480,7 +484,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 129.0
 margin_top = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -547,7 +550,6 @@ anchor_bottom = 1.0
 [node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover"]
 anchor_bottom = 1.0
 margin_right = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -557,19 +559,16 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover"]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
 anchor_top = 1.0
@@ -577,7 +576,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -2.0
 margin_right = -129.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -588,7 +586,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 129.0
 margin_top = -2.0
-color = Color( 0.196078, 0.678431, 0.121569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -609,7 +606,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="Load"]
+[node name="background" type="ColorRect" parent="Load" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 0.853
 margin_bottom = 0.199982
@@ -619,7 +618,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="Load"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 322.0
@@ -642,7 +640,6 @@ __meta__ = {
 }
 
 [node name="TempLabel" type="Label" parent="Load"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -665,7 +662,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="About"]
+[node name="background" type="ColorRect" parent="About" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 0.747
 margin_bottom = -0.200043
@@ -675,7 +674,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="About"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 215.0
@@ -687,7 +685,6 @@ __meta__ = {
 }
 
 [node name="about_label" type="Label" parent="About"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -722,7 +719,6 @@ __meta__ = {
 
 [node name="Label5" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
@@ -737,7 +733,6 @@ __meta__ = {
 
 [node name="down_label" type="Label" parent="."]
 visible = false
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 45.0

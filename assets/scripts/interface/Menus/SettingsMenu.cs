@@ -34,9 +34,15 @@ public class SettingsMenu : MenuBase
     private Button defaultButton;
     private Dictionary<string, Label> controlLabels;
 
+    private Label colorLabel;
+    private Slider rSlider;
+    private Slider gSlider;
+    private Slider bSlider;
+
     private Label tempEdit;
     private ColorRect tempEditBack;
     private string tempAction = "";
+    private bool colorChanged = false;
 
     private void loadMenu()
     {
@@ -58,6 +64,11 @@ public class SettingsMenu : MenuBase
         distanceSlider = GetNode<Slider>("distance_slider");
         soundSlider = GetNode<Slider>("sound_slider");
         musicSlider = GetNode<Slider>("music_slider");
+
+        colorLabel = GetNode<Label>("colorBlock/label");
+        rSlider = GetNode<Slider>("colorBlock/r_slider");
+        gSlider = GetNode<Slider>("colorBlock/g_slider");
+        bSlider = GetNode<Slider>("colorBlock/b_slider");
 
         controlsPageLabel = GetNode<Label>("Controls/page_label");
         controlsMenu = GetNode<Control>("Controls");
@@ -111,6 +122,12 @@ public class SettingsMenu : MenuBase
         foreach(string key in controlLabels.Keys) {
             controlLabels[key].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", key);
         }
+
+        colorLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "color");
+        Color tempColor = global.Settings.interfaceColor;
+        rSlider.Value = tempColor.r;
+        gSlider.Value = tempColor.g;
+        bSlider.Value = tempColor.b;
 
         loadOnOffText(fullscreenButton, global.Settings.fullscreen);
         loadSliders();
@@ -188,17 +205,7 @@ public class SettingsMenu : MenuBase
 
     private void WriteKeyToEdit(string key, Label edit)
     {
-        var spacing = "     ";
-        var keyLen = key.Length;
-        if (keyLen > 1) {
-            var spacintLen = spacing.Length;
-            if (keyLen >= spacintLen) {
-                spacing = "";
-            } else {
-                spacing = spacing.Substr(0, (spacintLen - (keyLen) / 2) - 1);
-            }
-        }
-        edit.Text = "[" + spacing + key.Capitalize() + spacing + "]";
+        edit.Text = "["  + key.Capitalize() + "]";
     }
 
     private void cancelControlEdit()
@@ -212,6 +219,58 @@ public class SettingsMenu : MenuBase
             tempAction = "";
             tempEdit = null;
         }
+    }
+
+    private void UpdateInterfaceColor()
+    {  
+        if (!Visible) {
+            return;
+        }
+
+        LoadColorForChildren(this);
+
+        // Color tempColor = global.Settings.interfaceColor;
+
+        // colorLabel.Modulate = tempColor;
+        // rSlider.Modulate = tempColor;
+        // gSlider.Modulate = tempColor;
+        // bSlider.Modulate = tempColor;
+        // GetNode<Control>("colorBlock/r_label").Modulate = tempColor;
+        // GetNode<Control>("colorBlock/g_label").Modulate = tempColor;
+        // GetNode<Control>("colorBlock/b_label").Modulate = tempColor;
+
+        // GetNode<Control>("borderUp").Modulate = tempColor;
+        // GetNode<Control>("borderDown").Modulate = tempColor;
+        // GetNode<Control>("Label5").Modulate = tempColor;
+        // pageLabel.Modulate = tempColor;
+        // headerLabel.Modulate = tempColor;
+        // backButton.Modulate = tempColor;
+        // languageLabel.Modulate = tempColor;
+        // languageButton.Modulate = tempColor;
+        // languageButton.GetNode<Control>("border1").Modulate = tempColor;
+        // languageButton.GetNode<Control>("border2").Modulate = tempColor;
+        // mouseLabel.Modulate = tempColor;
+        // distanceLabel.Modulate = tempColor;
+        // shadowsLabel.Modulate = tempColor;
+        // shadowsButton.Modulate = tempColor;
+        // fullscreenLabel.Modulate = tempColor;
+        // fullscreenButton.Modulate = tempColor;
+        // soundLabel.Modulate = tempColor;
+        // musicLabel.Modulate = tempColor;
+
+        // mouseSlider.Modulate = tempColor;
+        // distanceSlider.Modulate = tempColor;
+        // soundSlider.Modulate = tempColor;
+        // musicSlider.Modulate = tempColor;
+
+        // controlsButton.Modulate = tempColor;
+        // controlsHeader.Modulate = tempColor;
+
+        // foreach(string action in global.Settings.controlActions) {
+        //     var edit = getControlEdit(action);
+        //     edit.Modulate = tempColor;
+        // }
+        colorChanged = true;
     }
 
     public override void SoundClick()
@@ -243,6 +302,9 @@ public class SettingsMenu : MenuBase
         otherMenu.SetMenuVisible(false);
         _on_mouse_exited();
         global.Settings.SaveSettings();
+        if (colorChanged) {
+            MenuBase.LoadColorForChildren(otherMenu);
+        }
     }
 
     public void _on_language_button_pressed()
@@ -349,6 +411,32 @@ public class SettingsMenu : MenuBase
                 }
             }
         }
+    }
+
+    public void _on_color_slider_value_changed(float value, string color)
+    {
+        float tempR = global.Settings.interfaceColor.r;
+        float tempG = global.Settings.interfaceColor.g;
+        float tempB = global.Settings.interfaceColor.b;
+
+        switch (color)
+        {
+            case "Red":
+                tempR = value;
+                break;
+            case "Green":
+                tempG = value;
+                break;
+            case "Blue":
+                tempB = value;
+                break;
+        }
+
+        global.Settings.interfaceColor = new Color(
+            tempR, tempG, tempB,
+            global.Settings.interfaceColor.a
+        );
+        UpdateInterfaceColor();
     }
    
 

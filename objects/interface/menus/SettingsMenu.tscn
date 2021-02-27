@@ -23,7 +23,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 322.0
@@ -35,7 +34,6 @@ __meta__ = {
 }
 
 [node name="borderUp" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -50,7 +48,6 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -25.5
@@ -65,7 +62,6 @@ __meta__ = {
 }
 
 [node name="borderDown" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -80,7 +76,6 @@ __meta__ = {
 }
 
 [node name="Label5" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
@@ -97,9 +92,9 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 0.322
 anchor_bottom = 0.5
-margin_left = 42.0
+margin_left = 40.0
 margin_top = -140.0
-margin_right = 0.271973
+margin_right = 0.272003
 margin_bottom = -115.0
 theme = ExtResource( 2 )
 text = "[Назад]"
@@ -108,7 +103,6 @@ __meta__ = {
 }
 
 [node name="mouse_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -144,7 +138,6 @@ __meta__ = {
 }
 
 [node name="mouse_border" type="Label" parent="mouse_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
@@ -158,7 +151,6 @@ __meta__ = {
 }
 
 [node name="mouse_border2" type="Label" parent="mouse_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -174,7 +166,6 @@ __meta__ = {
 }
 
 [node name="distance_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -209,7 +200,6 @@ __meta__ = {
 }
 
 [node name="distance_border" type="Label" parent="distance_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
@@ -223,7 +213,6 @@ __meta__ = {
 }
 
 [node name="distance_border2" type="Label" parent="distance_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -239,7 +228,6 @@ __meta__ = {
 }
 
 [node name="shadows_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -272,7 +260,6 @@ __meta__ = {
 }
 
 [node name="shadows_border" type="Label" parent="shadows_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -8.49998
@@ -285,7 +272,6 @@ __meta__ = {
 }
 
 [node name="shadows_border2" type="Label" parent="shadows_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -301,7 +287,6 @@ __meta__ = {
 }
 
 [node name="fullscreen" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -334,7 +319,6 @@ __meta__ = {
 }
 
 [node name="fullscreeen_border" type="Label" parent="fullscreen_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -8.5
@@ -347,7 +331,6 @@ __meta__ = {
 }
 
 [node name="fullscreeen_border2" type="Label" parent="fullscreen_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -363,7 +346,6 @@ __meta__ = {
 }
 
 [node name="sound_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -399,7 +381,6 @@ __meta__ = {
 }
 
 [node name="sound_border" type="Label" parent="sound_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -9.0
@@ -413,7 +394,6 @@ __meta__ = {
 }
 
 [node name="sound_border2" type="Label" parent="sound_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -429,7 +409,6 @@ __meta__ = {
 }
 
 [node name="music_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -465,7 +444,6 @@ __meta__ = {
 }
 
 [node name="music_border" type="Label" parent="music_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -9.0
@@ -479,7 +457,6 @@ __meta__ = {
 }
 
 [node name="music_border2" type="Label" parent="music_slider"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -495,7 +472,6 @@ __meta__ = {
 }
 
 [node name="language" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -528,7 +504,6 @@ __meta__ = {
 }
 
 [node name="border1" type="Label" parent="language_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -8.5
@@ -541,7 +516,6 @@ __meta__ = {
 }
 
 [node name="border2" type="Label" parent="language_button"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -550,6 +524,216 @@ margin_left = -6.00021
 margin_top = -8.5
 margin_right = -0.000213623
 margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="colorBlock" type="Control" parent="." groups=[
+"ignore_color",
+]]
+anchor_left = 0.031
+anchor_top = 0.533
+anchor_right = 0.281
+anchor_bottom = 0.72
+margin_left = 0.255999
+margin_top = 0.199982
+margin_right = 0.255981
+margin_bottom = -3.05176e-05
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_right = -96.0
+margin_bottom = -176.0
+theme = ExtResource( 2 )
+text = "Цвет интерфейса:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="r_label" type="Label" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -16.25
+margin_top = 27.5
+margin_right = -208.25
+margin_bottom = -69.5
+theme = ExtResource( 2 )
+text = "R:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="r_slider" type="HSlider" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 32.0
+margin_right = -8.0
+margin_bottom = -75.0
+theme = ExtResource( 2 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border" type="Label" parent="colorBlock/r_slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -5.0
+margin_right = -4.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border2" type="Label" parent="colorBlock/r_slider"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="g_label" type="Label" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -16.25
+margin_top = 51.5
+margin_right = -208.25
+margin_bottom = -45.5
+theme = ExtResource( 2 )
+text = "G:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="g_slider" type="HSlider" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 56.0
+margin_right = -8.0
+margin_bottom = -51.0
+theme = ExtResource( 2 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border" type="Label" parent="colorBlock/g_slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -5.0
+margin_right = -4.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border2" type="Label" parent="colorBlock/g_slider"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="b_label" type="Label" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -16.25
+margin_top = 75.5
+margin_right = -208.25
+margin_bottom = -21.5
+theme = ExtResource( 2 )
+text = "B:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="b_slider" type="HSlider" parent="colorBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 80.0
+margin_right = -8.0
+margin_bottom = -27.0
+theme = ExtResource( 2 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border" type="Label" parent="colorBlock/b_slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -5.0
+margin_right = -4.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouse_border2" type="Label" parent="colorBlock/b_slider"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = 17.0
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -570,19 +754,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Controls" type="ColorRect" parent="."]
+[node name="Controls" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 0.852
-margin_bottom = 48.8
+margin_bottom = 40.8
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="page_label" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 322.0
@@ -594,7 +778,6 @@ __meta__ = {
 }
 
 [node name="borderUp" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -609,12 +792,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -72.0
 margin_top = 105.0
-margin_right = 97.0
+margin_right = 104.0
 margin_bottom = 127.0
 theme = ExtResource( 2 )
 text = "[Настройки управления]"
@@ -624,7 +806,6 @@ __meta__ = {
 }
 
 [node name="borderDown" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -876.0
@@ -640,13 +821,13 @@ __meta__ = {
 
 [node name="back" type="Button" parent="Controls"]
 anchor_left = 0.039
-anchor_top = 0.286
+anchor_top = 0.29
 anchor_right = 0.32
-anchor_bottom = 0.329
+anchor_bottom = 0.335
 margin_left = 0.0639992
-margin_top = -0.160004
+margin_top = -0.0800171
 margin_right = 2.31998
-margin_bottom = 0.759979
+margin_bottom = 0.0800018
 theme = ExtResource( 2 )
 text = "[Назад]"
 __meta__ = {
@@ -659,9 +840,9 @@ anchor_top = 0.375
 anchor_right = 0.32
 anchor_bottom = 0.414
 margin_left = 0.0639992
-margin_top = -1.52588e-05
-margin_right = 2.31998
-margin_bottom = 3.15997
+margin_top = 1.0
+margin_right = 0.320007
+margin_bottom = 3.472
 theme = ExtResource( 2 )
 text = " [Сбросить]"
 __meta__ = {
@@ -669,15 +850,14 @@ __meta__ = {
 }
 
 [node name="keyForwardLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -120.0
+margin_top = -116.0
 margin_right = 12.0002
-margin_bottom = -98.0
+margin_bottom = -94.0
 theme = ExtResource( 2 )
 text = "Вперед:"
 __meta__ = {
@@ -690,10 +870,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = -120.0
+margin_top = -116.0
 margin_right = 160.0
-margin_bottom = -104.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -100.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -704,7 +884,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 theme = ExtResource( 2 )
-text = "[     W     ]"
+text = "[W]"
 align = 1
 clip_text = true
 __meta__ = {
@@ -712,15 +892,14 @@ __meta__ = {
 }
 
 [node name="keyBackLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -88.0
+margin_top = -84.0
 margin_right = -49.0
-margin_bottom = -66.0004
+margin_bottom = -62.0004
 theme = ExtResource( 2 )
 text = "Назад:"
 __meta__ = {
@@ -733,10 +912,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = -88.0
+margin_top = -84.0
 margin_right = 160.0
-margin_bottom = -72.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -68.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -747,7 +926,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 theme = ExtResource( 2 )
-text = "[     S     ]"
+text = "[S]"
 align = 1
 clip_text = true
 __meta__ = {
@@ -755,15 +934,14 @@ __meta__ = {
 }
 
 [node name="keyLeftLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -56.0
+margin_top = -52.0
 margin_right = -32.0
-margin_bottom = -34.0
+margin_bottom = -30.0
 theme = ExtResource( 2 )
 text = "Налево:"
 __meta__ = {
@@ -776,10 +954,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = -56.0
+margin_top = -52.0
 margin_right = 160.0
-margin_bottom = -40.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -36.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -790,7 +968,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 theme = ExtResource( 2 )
-text = "[     A     ]"
+text = "[A]"
 align = 1
 clip_text = true
 __meta__ = {
@@ -798,15 +976,14 @@ __meta__ = {
 }
 
 [node name="keyRightLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -24.0
+margin_top = -20.0
 margin_right = -73.0
-margin_bottom = -1.99994
+margin_bottom = 2.00006
 theme = ExtResource( 2 )
 text = "Направо:"
 __meta__ = {
@@ -819,10 +996,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = -24.0
+margin_top = -20.0
 margin_right = 160.0
-margin_bottom = -8.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -4.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -833,7 +1010,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 theme = ExtResource( 2 )
-text = "[     D     ]"
+text = "[D]"
 align = 1
 clip_text = true
 __meta__ = {
@@ -841,15 +1018,14 @@ __meta__ = {
 }
 
 [node name="keyJumpLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 7.99997
+margin_top = 12.0
 margin_right = 64.0
-margin_bottom = 25.0
+margin_bottom = 29.0
 theme = ExtResource( 2 )
 text = "Прыжок/Телепортация/Полет:"
 __meta__ = {
@@ -862,10 +1038,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 8.0
+margin_top = 12.0
 margin_right = 160.0
-margin_bottom = 24.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 28.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -884,15 +1060,14 @@ __meta__ = {
 }
 
 [node name="keyRunLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 40.0
+margin_top = 44.0
 margin_right = 72.0
-margin_bottom = 57.0
+margin_bottom = 61.0
 theme = ExtResource( 2 )
 text = "Бег/Магический щит/Снижение:"
 __meta__ = {
@@ -905,10 +1080,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 40.0
+margin_top = 44.0
 margin_right = 160.0
-margin_bottom = 56.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 60.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -927,15 +1102,14 @@ __meta__ = {
 }
 
 [node name="keyUseLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 72.0
+margin_top = 76.0
 margin_right = 64.0
-margin_bottom = 89.0
+margin_bottom = 93.0
 theme = ExtResource( 2 )
 text = "Использовать: "
 __meta__ = {
@@ -948,10 +1122,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 72.0
+margin_top = 76.0
 margin_right = 160.0
-margin_bottom = 88.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 92.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -970,15 +1144,14 @@ __meta__ = {
 }
 
 [node name="keyCrouchLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 104.0
+margin_top = 108.0
 margin_right = 64.0
-margin_bottom = 121.0
+margin_bottom = 125.0
 theme = ExtResource( 2 )
 text = "Присесть: "
 __meta__ = {
@@ -991,10 +1164,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 104.0
+margin_top = 108.0
 margin_right = 160.0
-margin_bottom = 120.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 124.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1013,15 +1186,14 @@ __meta__ = {
 }
 
 [node name="keyDashLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 136.0
+margin_top = 140.0
 margin_right = 64.0
-margin_bottom = 153.0
+margin_bottom = 157.0
 theme = ExtResource( 2 )
 text = "Подкат: "
 __meta__ = {
@@ -1034,10 +1206,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 136.0
+margin_top = 140.0
 margin_right = 160.0
-margin_bottom = 152.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 156.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1056,15 +1228,14 @@ __meta__ = {
 }
 
 [node name="keyLegsLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = 168.0
+margin_top = 172.0
 margin_right = 64.0
-margin_bottom = 185.0
+margin_bottom = 189.0
 theme = ExtResource( 2 )
 text = "Ближний удар:"
 __meta__ = {
@@ -1077,10 +1248,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 168.0
+margin_top = 172.0
 margin_right = 160.0
-margin_bottom = 184.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = 188.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1099,15 +1270,14 @@ __meta__ = {
 }
 
 [node name="keyCameraLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 208.0
-margin_top = -120.0
+margin_top = -116.0
 margin_right = 384.0
-margin_bottom = -103.0
+margin_bottom = -99.0
 theme = ExtResource( 2 )
 text = "Сменить камеру: "
 __meta__ = {
@@ -1120,10 +1290,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 376.0
-margin_top = -120.0
+margin_top = -116.0
 margin_right = 480.0
-margin_bottom = -104.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -100.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1142,15 +1312,14 @@ __meta__ = {
 }
 
 [node name="keyTaskLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 208.0
-margin_top = -88.0
+margin_top = -84.0
 margin_right = 384.0
-margin_bottom = -71.0
+margin_bottom = -67.0
 theme = ExtResource( 2 )
 text = "Просмотреть задачи:"
 __meta__ = {
@@ -1163,10 +1332,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 376.0
-margin_top = -88.0
+margin_top = -84.0
 margin_right = 480.0
-margin_bottom = -72.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -68.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1185,15 +1354,14 @@ __meta__ = {
 }
 
 [node name="keyInventoryLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 208.0
-margin_top = -56.0
+margin_top = -52.0
 margin_right = 384.0
-margin_bottom = -39.0
+margin_bottom = -35.0
 theme = ExtResource( 2 )
 text = "Инвентарь:"
 __meta__ = {
@@ -1206,10 +1374,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 376.0
-margin_top = -56.0
+margin_top = -52.0
 margin_right = 480.0
-margin_bottom = -40.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -36.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1220,7 +1388,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 theme = ExtResource( 2 )
-text = "[    Tab     ]"
+text = "[Tab]"
 align = 1
 clip_text = true
 __meta__ = {
@@ -1228,15 +1396,14 @@ __meta__ = {
 }
 
 [node name="keyAutohealLabel" type="Label" parent="Controls"]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 208.0
-margin_top = -24.0
+margin_top = -20.0
 margin_right = 384.0
-margin_bottom = -7.0
+margin_bottom = -3.0
 theme = ExtResource( 2 )
 text = "Автохил:"
 __meta__ = {
@@ -1249,10 +1416,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 376.0
-margin_top = -24.0
+margin_top = -20.0
 margin_right = 480.0
-margin_bottom = -8.0
-color = Color( 0.223529, 0.752941, 0.145098, 0 )
+margin_bottom = -4.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1271,7 +1438,6 @@ __meta__ = {
 }
 
 [node name="down_label" type="Label" parent="."]
-modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 45.0
@@ -1309,6 +1475,15 @@ stream = ExtResource( 1 )
 [connection signal="mouse_entered" from="language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
 [connection signal="mouse_exited" from="language_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="language_button" to="." method="_on_language_button_pressed"]
+[connection signal="mouse_entered" from="colorBlock/r_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_r" ]]
+[connection signal="mouse_exited" from="colorBlock/r_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="colorBlock/r_slider" to="." method="_on_color_slider_value_changed" binds= [ "Red" ]]
+[connection signal="mouse_entered" from="colorBlock/g_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_g" ]]
+[connection signal="mouse_exited" from="colorBlock/g_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="colorBlock/g_slider" to="." method="_on_color_slider_value_changed" binds= [ "Green" ]]
+[connection signal="mouse_entered" from="colorBlock/b_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_b" ]]
+[connection signal="mouse_exited" from="colorBlock/b_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="colorBlock/b_slider" to="." method="_on_color_slider_value_changed" binds= [ "Blue" ]]
 [connection signal="mouse_entered" from="controls" to="." method="_on_mouse_entered" binds= [ "choose", "controls" ]]
 [connection signal="mouse_exited" from="controls" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="controls" to="." method="_on_controls_pressed"]
