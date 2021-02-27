@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class SettingsMenu : MenuBase
 {
+    const float MIN_COLOR_SUM = 0.7f;
+
     Global global = Global.Get();
     AudioStreamPlayer audi;
 
@@ -228,48 +230,6 @@ public class SettingsMenu : MenuBase
         }
 
         LoadColorForChildren(this);
-
-        // Color tempColor = global.Settings.interfaceColor;
-
-        // colorLabel.Modulate = tempColor;
-        // rSlider.Modulate = tempColor;
-        // gSlider.Modulate = tempColor;
-        // bSlider.Modulate = tempColor;
-        // GetNode<Control>("colorBlock/r_label").Modulate = tempColor;
-        // GetNode<Control>("colorBlock/g_label").Modulate = tempColor;
-        // GetNode<Control>("colorBlock/b_label").Modulate = tempColor;
-
-        // GetNode<Control>("borderUp").Modulate = tempColor;
-        // GetNode<Control>("borderDown").Modulate = tempColor;
-        // GetNode<Control>("Label5").Modulate = tempColor;
-        // pageLabel.Modulate = tempColor;
-        // headerLabel.Modulate = tempColor;
-        // backButton.Modulate = tempColor;
-        // languageLabel.Modulate = tempColor;
-        // languageButton.Modulate = tempColor;
-        // languageButton.GetNode<Control>("border1").Modulate = tempColor;
-        // languageButton.GetNode<Control>("border2").Modulate = tempColor;
-        // mouseLabel.Modulate = tempColor;
-        // distanceLabel.Modulate = tempColor;
-        // shadowsLabel.Modulate = tempColor;
-        // shadowsButton.Modulate = tempColor;
-        // fullscreenLabel.Modulate = tempColor;
-        // fullscreenButton.Modulate = tempColor;
-        // soundLabel.Modulate = tempColor;
-        // musicLabel.Modulate = tempColor;
-
-        // mouseSlider.Modulate = tempColor;
-        // distanceSlider.Modulate = tempColor;
-        // soundSlider.Modulate = tempColor;
-        // musicSlider.Modulate = tempColor;
-
-        // controlsButton.Modulate = tempColor;
-        // controlsHeader.Modulate = tempColor;
-
-        // foreach(string action in global.Settings.controlActions) {
-        //     var edit = getControlEdit(action);
-        //     edit.Modulate = tempColor;
-        // }
         colorChanged = true;
     }
 
@@ -413,8 +373,52 @@ public class SettingsMenu : MenuBase
         }
     }
 
+    private bool checkDarkColor(float newValue, string color)
+    {
+        //считаем сумму цветов с учетом нового значения для одного из цветов
+        Color tempColor = global.Settings.interfaceColor;
+        float tempR = tempColor.r;
+        float tempG = tempColor.g;
+        float tempB = tempColor.b;
+
+        switch (color)
+        {
+            case "Red":
+                tempR = newValue;
+                break;
+            case "Green":
+                tempG = newValue;
+                break;
+            case "Blue":
+                tempB = newValue;
+                break;
+        }
+
+        float colorSum = tempR + tempG + tempB;
+
+        //если сумма меньше, возвращаем новое значение обратно
+        if (colorSum < MIN_COLOR_SUM) {
+            switch(color) 
+            {
+                case "Red":
+                    rSlider.Value = tempColor.r;
+                    break;
+                case "Green":
+                    gSlider.Value = tempColor.g;
+                    break;
+                case "Blue":
+                    bSlider.Value = tempColor.b;
+                    break;
+            }
+        }
+        return colorSum >= MIN_COLOR_SUM;
+    }
+
     public void _on_color_slider_value_changed(float value, string color)
     {
+        if (!checkDarkColor(value, color)) {
+            return;
+        }
         float tempR = global.Settings.interfaceColor.r;
         float tempG = global.Settings.interfaceColor.g;
         float tempB = global.Settings.interfaceColor.b;
