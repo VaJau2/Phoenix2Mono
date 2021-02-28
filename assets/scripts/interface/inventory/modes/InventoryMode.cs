@@ -20,6 +20,7 @@ public abstract class InventoryMode
     protected bool isAnimating = false;
     public bool isDragging {get; protected set;} = false;
     public Control modalAsk {get; protected set;}
+    public Control modalRead {get; protected set;}
 
     protected ItemIcon tempButton;
     protected Dictionary tempItemData;
@@ -49,7 +50,8 @@ public abstract class InventoryMode
 
         back = menu.GetNode<Control>("helper/back");
         moneyCount = back.GetNode<Label>("moneyCount");
-        modalAsk = menu.GetNode<Control>("modalAsk");
+        modalAsk   = menu.GetNode<Control>("modalAsk");
+        modalRead  = menu.GetNode<Control>("modalRead");
 
         itemInfo = back.GetNode<Control>("itemInfo");
         itemName = itemInfo.GetNode<Label>("name");

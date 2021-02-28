@@ -22,6 +22,7 @@
         "ammo": "RMB - drop all",
         "armor": "LMB - wear, RMB - drop",
         "artifact": "LMB - wear, RMB - drop",
+        "note": "ЛКМ - read, ПКМ - drop",
         "food": "LMB - eat, RMB - drop, 0-9 - bind",
         "meds": "LMB - use, RMB - drop, 0-9 - bind"
     },
@@ -67,5 +68,9 @@
         "yes": "Yes (#button#)",
         "no": "No (#button#)",
         "countLabel": "Count:"
+    },
+
+    "modalRead": {
+        "closeHint": "#button# to close"
     }
 }

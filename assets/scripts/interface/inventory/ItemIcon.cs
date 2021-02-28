@@ -90,6 +90,13 @@ public class ItemIcon : ColorRect
         return bindLabel.Text;
     }
 
+    private bool MayShowInfo()
+    {
+        return !menu.mode.isDragging
+        && !menu.mode.modalAsk.Visible
+        && !menu.mode.modalRead.Visible;
+    }
+
     public override void _Ready()
     {
         selected = GetNode<Control>("selected");
@@ -101,9 +108,7 @@ public class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_entered()
     {
-        if (myItemCode != null 
-        && !menu.mode.isDragging
-        && !menu.mode.modalAsk.Visible) {
+        if (myItemCode != null && MayShowInfo()) {
             selected.Visible = true;
             lastColor = icon.Modulate;
             icon.Modulate = Colors.Black;
@@ -113,9 +118,7 @@ public class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_exited()
     {
-        if (selected.Visible 
-        && !menu.mode.isDragging 
-        && !menu.mode.modalAsk.Visible) {
+        if (selected.Visible && MayShowInfo()) {
             selected.Visible = false;
             icon.Modulate = lastColor;
             menu.SetTempButton(null);

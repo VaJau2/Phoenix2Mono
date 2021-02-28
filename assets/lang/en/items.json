@@ -48,6 +48,16 @@
         "icon": "key0",
         "price": "2" 
     },
+    
+
+    "noteTest": {
+        "name": "Test note",
+        "description": "Note for test",
+        "type": "note",
+        "icon": "note",
+        "text": "test",
+        "price": "4"
+    },
 
 
     "revolver32": {
@@ -171,6 +181,7 @@
         "cooldown": "0.5",
         "recoil": "1",
         "isPistol": "true",
+        "bullet": "plasma",
         "ammoType": "ammoEnergy",
         "sound": "weapon"
     },

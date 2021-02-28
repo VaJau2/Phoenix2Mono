@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/scripts/interface/inventory/InventoryMenu.cs" type="Script" id=4]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
 
 [node name="inventory" type="Control" groups=[
 "ignore_color",
@@ -1075,6 +1076,81 @@ value = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="modalRead" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -208.0
+margin_top = -172.0
+margin_right = 208.0
+margin_bottom = 212.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="noteName" type="Label" parent="modalRead"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -208.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 31.0
+grow_horizontal = 2
+theme = ExtResource( 3 )
+text = "Название записки"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="noteText" type="RichTextLabel" parent="modalRead"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 312.0
+grow_horizontal = 2
+theme = ExtResource( 5 )
+text = "Текст записки"
+
+[node name="closeHint" type="Label" parent="modalRead"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 352.0
+margin_right = 192.0
+margin_bottom = 368.0
+grow_horizontal = 2
+theme = ExtResource( 3 )
+text = "Esc, чтобы закрыть"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-up" type="ColorRect" parent="modalRead"]
+anchor_right = 1.0
+margin_bottom = 1.0
+
+[node name="border-down" type="ColorRect" parent="modalRead"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+
+[node name="border-left" type="ColorRect" parent="modalRead"]
+anchor_bottom = 1.0
+margin_right = 1.0
+
+[node name="border-right" type="ColorRect" parent="modalRead"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
 [connection signal="pressed" from="helper/back/chestBack/takeAll" to="." method="_on_takeAll_pressed"]
 [connection signal="pressed" from="modalAsk/yes" to="." method="_on_modal_yes_pressed"]
 [connection signal="pressed" from="modalAsk/no" to="." method="_on_modal_no_pressed"]

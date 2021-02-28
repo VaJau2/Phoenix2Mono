@@ -11,6 +11,11 @@ public class UsualMode: InventoryMode {
     private ItemIcon armorButton;
     private ItemIcon artifactButton;
 
+    private Label noteName;
+    private RichTextLabel noteText;
+    private Label closeHint;
+    private bool isReading;
+
     public UsualMode (InventoryMenu menu)
     : base(menu)
     {
@@ -18,6 +23,10 @@ public class UsualMode: InventoryMode {
         weaponButton   = wearBack.GetNode<ItemIcon>("weapon");
         armorButton    = wearBack.GetNode<ItemIcon>("armor");
         artifactButton = wearBack.GetNode<ItemIcon>("artifact");
+
+        noteName       = modalRead.GetNode<Label>("noteName");
+        noteText       = modalRead.GetNode<RichTextLabel>("noteText");
+        closeHint      = modalRead.GetNode<Label>("closeHint");
 
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
     }
@@ -30,6 +39,12 @@ public class UsualMode: InventoryMode {
 
     public override void CloseMenu()
     {
+        if (isReading) {
+            isReading = false;
+            modalRead.Visible = false;
+            return;
+        }
+        
         tempBag = null;
         wearBack.Visible = false;
         base.CloseMenu();
@@ -180,11 +195,34 @@ public class UsualMode: InventoryMode {
         }
     }
 
+    private void ReadTempNote()
+    {
+        noteText.Text = "";
+
+        string code = tempItemData["text"].ToString();
+        Array text = InterfaceLang.GetPhrasesAsArray("notes", code);
+        
+        noteName.Text = tempItemData["name"].ToString();
+        foreach(string line in text) {
+            noteText.Text += line + "\n";
+        }
+
+        string hintText = InterfaceLang.GetPhrase("inventory", "modalRead", "closeHint");
+        closeHint.Text  = hintText.Replace("#button#", Global.GetKeyName("ui_focus_next"));
+        
+        tempButton._on_itemIcon_mouse_exited();
+        modalRead.Visible = true;
+        isReading = true;
+    }
+
     protected void UseTempItem()
     {
         string itemType = tempItemData["type"].ToString();
         if (inventory.itemIsUsable(itemType)) {
             switch(itemType) {
+                case "note":
+                    ReadTempNote();
+                    break;
                 case "weapon":
                     WearTempItem(weaponButton);
                     break;
@@ -210,7 +248,7 @@ public class UsualMode: InventoryMode {
             Node parent = player.GetNode("/root/Main/Scene");
             parent.AddChild(tempBag);
             tempBag.Translation = player.Translation;
-            tempBag.Translate(Vector3.Down);
+            tempBag.Translate(Vector3.Down * 0.5f);
         }
 
         if (tempButton.GetCount() > 0) {

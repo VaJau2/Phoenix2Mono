@@ -59,6 +59,16 @@ public static class InterfaceLang {
         }
         return null;
     }
+
+    public static Array GetPhrasesAsArray(string file, string section)
+    {
+        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        if (data != null) {
+            var sectionData = data[section] as Array;
+            return sectionData;
+        }
+        return null;
+    }
 }
 
 public enum Language 

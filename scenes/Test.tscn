@@ -81,6 +81,7 @@ collision_mask = 3
 physics_material_override = ExtResource( 7 )
 SpawnRandomItems = true
 chestCode = "cabinet"
+startItemCodes = [ "noteTest" ]
 
 [node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
