@@ -1,0 +1,703 @@
+{
+    "nodes": {
+        "A1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что такая маленькая пони делает одна ночью в такую дождливую погоду?",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A1(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A1(3)"
+                }
+            ]
+        },
+        "A1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты, должно быть, представитель организации, помогающей зебрам.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A2"
+        },
+        "A1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Кончай прикалываться, ты знаешь, зачем я здесь.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A3"
+        },
+        "A1(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Простите, дяденька, я заблудилась!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A4"
+        },
+        "A2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты, должно быть, одна из работниц министерств, готовая продать информацию нашей организации.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A2(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A2(2)"
+                }
+            ]
+        },
+        "A2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Все верно. Деньги принес?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A5"
+        },
+        "A2(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вот ты и спалился! Готовься к смерти!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "combat": {
+            "kind": "combat",
+            "root_node": false
+        },
+        "A5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Можешь не сомневаться [показывает закрытый чемодан] Документы принесла?",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A5(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A5(3)"
+                }
+            ]
+        },
+        "A3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не имею ни малейшего понятия. Возможно, ты просто любишь гулять ночью под дождем?\n",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A3(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A3(3)"
+                }
+            ]
+        },
+        "A3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не угадал. Я здесь, чтобы продать тебе информацию.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A6"
+        },
+        "A3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Угадал. Но кроме этого, я здесь, чтобы продать тебе информацию.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A6"
+        },
+        "A3(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " Не угадал. Я здесь, чтобы убить тебя! ",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я ожидал кого-то посолиднее. Впрочем, ты тоже сойдешь. Главное, чтобы документы были у тебя. Кстати насчет них…",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A6(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A6(2)"
+                }
+            ]
+        },
+        "A6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Сначала покажи деньги. Они у тебя?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A5"
+        },
+        "A4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Давай я покажу тебе дорогу. Видишь, куда я показываю? Это называется “нахер”, ясно? Либо ты скажешь мне, зачем ты здесь, либо пойдешь туда.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A4(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A4(3)"
+                }
+            ]
+        },
+        "A4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я здесь, чтобы продать тебе информацию.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A6"
+        },
+        "A4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я здесь, чтобы убить тебя!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A4(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Сейчас ты сам туда пойдешь, ублюдок! ",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[показать свой чемодан]",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A8"
+        },
+        "A5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Кажется, дома забыла…",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A7"
+        },
+        "A5(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Отдавай чемодан, или умрешь!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A6(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Они у меня. [показать свой чемодан]",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A8"
+        },
+        "A7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тебе настолько не мила твоя жизнь? Либо ты показываешь документы, либо идешь нахер, и мы больше не имеем с вами дел!\n",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A7(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A7(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A7(3)"
+                }
+            ]
+        },
+        "A8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Замечательно. Тебе известно, зачем мы это делаем? Вы постоянно спрашиваете подобные вопросы.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A9"
+        },
+        "A7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно. Вот. [показать свой чемодан]",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A8"
+        },
+        "A7(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Совсем шуток не понимаешь? Вот твои документы [показать чемодан]",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A8"
+        },
+        "A7(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мне надоело это. Сейчас ты умрешь!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " \"Вы же тоже пони, почему вы предаете свою нацию?\"",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A10"
+        },
+        "A10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты хочешь знать, почему?",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A10(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A10(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A10(3)"
+                }
+            ]
+        },
+        "A10(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хочу.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A11"
+        },
+        "A10(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вообще похер. Давай деньги, и мы разойдемся.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A10(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А ты хочешь знать, почему я хочу сейчас застрелить тебя? Давай расскажу!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы не предаем свою нацию. Мы её спасаем.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A11(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A11(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A11(3)"
+                }
+            ]
+        },
+        "A11(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Сбывая документы противнику? Как же вы спасаете этим пони?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A12"
+        },
+        "A11(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А в общем-то, я передумала. Мне похер. Давай деньги",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A11(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Спасатели хреновы. Никто не спасет тебя, когда в тебя полетят мои пули!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Очень просто. Власть нашей дорогой Эквестрии уже давно показывает себя некомпетентной.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A13"
+        },
+        "A13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Все их последние действия уже почти кричат о том, что Принцессы сошли с ума.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A14"
+        },
+        "A14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Их необходимо сместить и поставить на их место тех, кто способен покончить с войной.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A14(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A14(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A14(3)"
+                }
+            ]
+        },
+        "A15": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Она длится уже много лет, но никто из сторон так и не получил преимущества.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A16"
+        },
+        "A16": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы всегда будем равными противниками, наращивая мощь друг друга с одинаковой скоростью.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A17"
+        },
+        "A17": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " А патриотизм? Это лишь инструмент политиков.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A18"
+        },
+        "A18": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так легко думать, что они там глупые злодеи, а мы единственные хорошие.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A19"
+        },
+        "A19": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Правда в том, что это все ложь. Эта война погубит нас всех.\n",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A19(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A19(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A19(3)"
+                }
+            ]
+        },
+        "A20": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Возможно, за несколько лет до этого можно было все исправить более легким путем.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A21"
+        },
+        "A21": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но сейчас все зашло слишком далеко. Ты согласна?\n",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A21(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A21(2)"
+                }
+            ]
+        },
+        "A22": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Боюсь, все не так просто. Дело в том, что тебя предали. Мне известно, что ты - подставной агент.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A22(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A22(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A22(3)"
+                }
+            ]
+        },
+        "A23": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты хочешь знать, кто? Ха, моя дорогая, мы не сдаем своих партнеров.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A25"
+        },
+        "A24": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Если ты считаешь меня болтливым, ты еще не видела своего предателя. Он тот еще болтун - выдал почти все ваши разведданные, не пришлось даже его уговаривать! ",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A25"
+        },
+        "A25": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но могу заверить, он тот ещё мудак. Намеревается произвести покушение на одну из Министров через пару дней. Удачи ему в этом.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A26"
+        },
+        "A26": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ой, проболтался…",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A26(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "A26(2)"
+                }
+            ]
+        },
+        "A27": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я уже и так наговорил лишнего. Хотя ты все равно вряд ли что-то сможешь сделать…",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "A28"
+        },
+        "A28": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "...Будучи в могиле.",
+            "speaker": "Агент",
+            "opposite": "Страйкли",
+            "next": "combat"
+        },
+        "A14(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Разве не победа единственно верный исход этой войны?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A15"
+        },
+        "A14(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ясно. Давай деньги",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A14(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Принцессы непогрешимы! Покончить здесь нужно только с твоей жизнью, еретик!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A19(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И для этого необходимы такие радикальные меры?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A20"
+        },
+        "A19(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Кончай болтовню, давай деньги. ",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A19(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты слишком болтлив для трупа. Давай это исправим!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A21(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да, конечно. Давай деньги.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A21(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нет, но мы здесь не затем, чтобы спорить о политике. Давай деньги.",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A22"
+        },
+        "A22(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вот же сука! И кто это сделал?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A23"
+        },
+        "A22(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А нахера тогда столько болтать, если ты все знал изначально?",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A24"
+        },
+        "A22(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тогда хватит разговоров. Доставай свое оружие!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        },
+        "A26(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Скажи, кто это! Я должна его остановить!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "A27"
+        },
+        "A26(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хватит! Пора умирать!",
+            "speaker": "Страйкли",
+            "opposite": "Агент",
+            "next": "combat"
+        }
+    },
+    "speakers": {}
+}
