@@ -234,7 +234,7 @@ public abstract class InventoryMode
         LoadLabels();
         moneyCount.Text = inventory.money.ToString();
 
-        back.Visible = true;
+        menu.Visible = true;
         
         if (!isAnimating) {
             isAnimating = true;
@@ -264,7 +264,7 @@ public abstract class InventoryMode
             back.RectPosition = newPos;
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
-        back.Visible = false;
+        menu.Visible = false;
         menu.isOpen = false;
         Input.SetMouseMode(Input.MouseMode.Captured);
 

@@ -65,6 +65,9 @@ public class Player : Character
     bool shakeUp = false;
     float shakeTimer = 0;
 
+    [Signal]
+    public delegate void TakenDamage();
+
 
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
 
@@ -222,6 +225,7 @@ public class Player : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
+        EmitSignal(nameof(TakenDamage));
         base.TakeDamage(damager, damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
@@ -455,6 +459,20 @@ public class Player : Character
 
             OnCameraRotatingX(mouseEvent.Relative.x);
         }
+    }
+
+    public void LookAt(Vector3 target)
+    {
+        var dir = target - GlobalTransform.origin;
+        var forward = -GlobalTransform.basis.z;
+        var cameraForward = -RotationHelper.GlobalTransform.basis.y;
+
+        //берем угол по плоскости XZ (горизонтальное вращение)
+        var horizontalDir = new Vector2(dir.x, dir.z);
+        var horizontalPos = new Vector2(forward.x, forward.z);
+        var horizontalAngle = horizontalPos.AngleTo(horizontalDir);
+        //вращаем тело на этот угол (который постепенно уменьшается до нуля)
+        RotateY(-horizontalAngle);
     }
 
     public override void _Ready()

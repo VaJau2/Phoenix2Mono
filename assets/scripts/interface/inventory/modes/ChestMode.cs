@@ -70,7 +70,6 @@ public class ChestMode: InventoryMode
     {
         foreach(ItemIcon tempIcon in chestButtons) {
             if (tempIcon.myItemCode != null) {
-                //tempButton = tempIcon;
                 SetTempButton(tempIcon);
                 if (!TakeTempItem()) return;
             }

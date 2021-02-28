@@ -5,6 +5,7 @@ public class PauseMenu : MenuBase
     Global global = Global.Get();
     AudioStreamPlayer audi;
     private InventoryMenu inventoryMenu;
+    private DialogueMenu dialogueMenu;
     private Label pageLabel;
     private Label headerLabel;
     private Button continueButton;
@@ -54,22 +55,30 @@ public class PauseMenu : MenuBase
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
     }
 
-    private void GetInventory() 
+    private void GetGameMenus() 
     {
         if (inventoryMenu == null) {
             inventoryMenu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        }
+        if (dialogueMenu == null) {
+            dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
         }
     }
 
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("ui_cancel")) {
-            GetInventory();
+            GetGameMenus();
             
             if (inventoryMenu.isOpen) {
                 inventoryMenu.CloseMenu();
             } else if (global.player.Health > 0) {
                 setPause(!global.paused);
+            }
+
+            //если менюшка снимает с паузы, но открыт диалог, возвращаем курсор обратно
+            if (!global.paused && dialogueMenu.MenuOn) {
+                Input.SetMouseMode(Input.MouseMode.Visible);
             }
         }
     }

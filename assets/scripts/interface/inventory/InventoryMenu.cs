@@ -6,6 +6,8 @@ using Godot.Collections;
 //режимы устанавливаются переменной mode
 public class InventoryMenu : Control
 {
+    private DialogueMenu dialogueMenu;
+
     public InventoryMode mode;
     public bool isOpen = false;
     public bool menuLoaded = false;
@@ -60,11 +62,12 @@ public class InventoryMenu : Control
     {
         mode = new UsualMode(this);
         MenuBase.LoadColorForChildren(this);
+        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (mode != null) {
+        if (mode != null && !dialogueMenu.MenuOn) {
             mode.UpdateOpen(@event);
             mode.UpdateInput(@event);
         }

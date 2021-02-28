@@ -48,7 +48,9 @@ ammo = {
 
 [node name="facetest" parent="npc" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.2798 )
+IdleAnim = "Sit"
 StartHealth = 150
+dialogueCode = "startDialogue"
 WalkSpeed = 6
 RunSpeed = 12
 weaponCode = "rifle307"
@@ -169,6 +171,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11258, 0, -0.0895691 )
 
 [node name="2" type="Spatial" parent="terrain/covers/2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33775, 0, -0.328845 )
+
+[node name="patrolPoint1" type="Spatial" parent="terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
+
+[node name="patrolPoint2" type="Spatial" parent="terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )

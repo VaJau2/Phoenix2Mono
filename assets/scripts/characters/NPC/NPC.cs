@@ -22,6 +22,8 @@ public class NPC : Character
     [Export]
     public Relation relation;
     [Export]
+    public string dialogueCode = "";
+    [Export]
     public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
     public NPCState state;
@@ -199,5 +201,6 @@ public enum Relation {
 public enum NPCState {
     Idle,
     Attack,
-    Search
+    Search,
+    Talk
 }

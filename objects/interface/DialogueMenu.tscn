@@ -1,0 +1,208 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/scripts/interface/Menus/DialogueMenu.cs" type="Script" id=2]
+
+[node name="DialogueMenu" type="Control" groups=[
+"ignore_color",
+]]
+anchor_left = 0.211
+anchor_right = 0.719
+anchor_bottom = 1.0
+margin_left = -0.0640106
+margin_top = 40.0
+margin_right = 7.74396
+margin_bottom = -56.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="border1" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_right = 1.0
+
+[node name="border2" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+
+[node name="border3" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = 156.0
+margin_right = -1.0
+margin_bottom = 157.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border4" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = -200.0
+margin_right = -1.0
+margin_bottom = -199.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border5" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = 250.0
+margin_right = -1.0
+margin_bottom = 251.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border6" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = -252.0
+margin_right = -1.0
+margin_bottom = -251.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leftName" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.096
+margin_left = 11.0
+margin_top = 1.0
+margin_right = -113.0
+margin_bottom = 0.192001
+theme = ExtResource( 1 )
+text = "Игрок"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rightName" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.096
+margin_left = 110.0
+margin_top = 1.0
+margin_right = -14.0
+margin_bottom = 0.192001
+theme = ExtResource( 1 )
+text = "Непись 1"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="RichTextLabel" parent="."]
+anchor_left = 0.03
+anchor_top = 0.111
+anchor_right = 0.985
+anchor_bottom = 0.81
+margin_left = -7.84
+margin_top = 0.0559959
+margin_right = -0.0800171
+margin_bottom = -0.240021
+theme = ExtResource( 1 )
+bbcode_enabled = true
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="answer1" type="Button" parent="."]
+visible = false
+anchor_left = 0.004
+anchor_top = 0.819
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.19209e-07
+margin_top = 0.138
+margin_right = -1.99994
+margin_bottom = -75.0
+grow_horizontal = 2
+theme = ExtResource( 1 )
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="answer2" type="Button" parent="."]
+visible = false
+anchor_top = 0.819
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 24.138
+margin_right = -1.99994
+margin_bottom = -51.0
+grow_horizontal = 2
+theme = ExtResource( 1 )
+text = "[Ответ 2]"
+clip_text = true
+
+[node name="answer3" type="Button" parent="."]
+visible = false
+anchor_left = 0.004
+anchor_top = 0.819
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.19209e-07
+margin_top = 48.138
+margin_right = -1.99994
+margin_bottom = -27.0
+grow_horizontal = 2
+theme = ExtResource( 1 )
+text = "[Ответ 3]"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="answer4" type="Button" parent="."]
+visible = false
+anchor_left = 0.004
+anchor_top = 0.803
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.19209e-07
+margin_top = 80.106
+margin_right = -1.99994
+margin_bottom = -3.0
+theme = ExtResource( 1 )
+text = "[Ответ 4]"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="answer1" to="." method="_on_answer_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="answer1" to="." method="_on_answer_mouse_exited" binds= [ 0 ]]
+[connection signal="pressed" from="answer1" to="." method="_on_answer_pressed" binds= [ 0 ]]
+[connection signal="mouse_entered" from="answer2" to="." method="_on_answer_mouse_entered" binds= [ 1 ]]
+[connection signal="mouse_exited" from="answer2" to="." method="_on_answer_mouse_exited" binds= [ 1 ]]
+[connection signal="pressed" from="answer2" to="." method="_on_answer_pressed" binds= [ 1 ]]
+[connection signal="mouse_entered" from="answer3" to="." method="_on_answer_mouse_entered" binds= [ 2 ]]
+[connection signal="mouse_exited" from="answer3" to="." method="_on_answer_mouse_exited" binds= [ 2 ]]
+[connection signal="pressed" from="answer3" to="." method="_on_answer_pressed" binds= [ 2 ]]
+[connection signal="mouse_entered" from="answer4" to="." method="_on_answer_mouse_entered" binds= [ 3 ]]
+[connection signal="mouse_exited" from="answer4" to="." method="_on_answer_mouse_exited" binds= [ 3 ]]
+[connection signal="pressed" from="answer4" to="." method="_on_answer_pressed" binds= [ 3 ]]

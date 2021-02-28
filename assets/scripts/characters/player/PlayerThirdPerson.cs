@@ -26,8 +26,6 @@ public class PlayerThirdPerson : Spatial
     private Spatial Body;
     private GeometryInstance Body_third;
 
-    private bool mayChange = true;
-
 
     private void SetThirdView(bool on) 
     {
@@ -187,7 +185,7 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Process(float delta)
     {
-        if (mayChange && Input.IsActionJustPressed("changeView")) {
+        if (Input.IsActionJustPressed("changeView")) {
             if (oldThird != Vector3.Zero) {
                 oldThird = Vector3.Zero;
             } else {
@@ -223,7 +221,8 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Input(InputEvent @event)
     {
-        if (mayChange && @event is InputEventMouseButton) {
+        if (@event is InputEventMouseButton
+        && Input.GetMouseMode() == Input.MouseMode.Captured) {
             var mouseEvent = @event as InputEventMouseButton;
 
             if (mouseEvent.IsPressed()) {

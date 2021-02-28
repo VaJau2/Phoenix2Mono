@@ -13,6 +13,7 @@ public class PlayerCamera: Camera
     public bool eyesClosed = false;
 
     Messages messages;
+    DialogueMenu dialogueMenu;
 
     Player player;
 
@@ -133,6 +134,11 @@ public class PlayerCamera: Camera
                 }
             } else if (tempObject is ITrader) {
                 showHint("trade");
+            } else if (!dialogueMenu.MenuOn && tempObject is NPC) {
+                var npc = tempObject as NPC;
+                if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
+                    showHint("talk");
+                }
             }
         } else {
             tempObject = null;
@@ -153,6 +159,11 @@ public class PlayerCamera: Camera
             } else if (tempObject is ITrader) {
                 var trader = tempObject as ITrader;
                 trader.StartTrading();
+            } else if (tempObject is NPC) {
+                var npc = tempObject as NPC;
+                if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
+                    dialogueMenu.StartTalkingTo(npc);
+                }
             }
         }
     }
@@ -160,6 +171,7 @@ public class PlayerCamera: Camera
     public override void _Ready()
     {
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
         player = GetNode<Player>("../../");
         labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");

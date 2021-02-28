@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/materials/shaders/contrast.shader" type="Shader" id=13]
 [ext_resource path="res://assets/textures/interface/cross-hitted.png" type="Texture" id=14]
 [ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=15]
+[ext_resource path="res://objects/interface/DialogueMenu.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -303,4 +304,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DialogueMenu" parent="." instance=ExtResource( 16 )]
+visible = false
+
 [node name="inventory" parent="." instance=ExtResource( 4 )]
+visible = false

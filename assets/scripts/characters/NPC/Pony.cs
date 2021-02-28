@@ -177,7 +177,7 @@ public class Pony: NPC
         }
     }
 
-    private void LookAtTarget()
+    private void LookAtTarget(bool rotateBody = true)
     {
         if (tempVictim == null) {
             RotationToVictim = 0;
@@ -188,7 +188,7 @@ public class Pony: NPC
         var npcDir = body.GetDirToTarget(tempVictim);
         RotationToVictim = npcForward.AngleTo(npcDir);
 
-        if (weapons.isPistol) {
+        if (weapons.isPistol || !rotateBody) {
             if (Mathf.Rad2Deg(RotationToVictim) < 80) {
                 return;
             }
@@ -371,6 +371,11 @@ public class Pony: NPC
                 } else {
                     GoTo(lastSeePos);
                 }
+                break;
+            
+            case NPCState.Talk:
+                Stop();
+                LookAtTarget(false);
                 break;
         }
     }
