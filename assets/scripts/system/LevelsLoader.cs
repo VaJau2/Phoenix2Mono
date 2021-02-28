@@ -53,13 +53,14 @@ public class LevelsLoader : Node
 			Input.SetMouseMode(Input.MouseMode.Visible);
 			return;
 		}
-		
-		currentLoading = (Control)loadingMenuPrefab.Instance();
-		menuParent.AddChild(currentLoading);
 
-		loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
-		GD.Print("LevelsLoader.cs: start loading scene...");
-		SetProcess(true);
+		if (loader == null) {
+			currentLoading = (Control)loadingMenuPrefab.Instance();
+			menuParent.AddChild(currentLoading);
+
+			loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+			SetProcess(true);
+		}
 	}
 
 	private void updateMenu()
@@ -122,14 +123,12 @@ public class LevelsLoader : Node
 	public override void _Process(float delta)
 	{
 		if (loader == null) {
-			GD.Print("LevelsLoader.cs: loader is null, setting process to false");
 			SetProcess(false);
 			return;
 		}
 
 		var err = loader.Poll();
 		if (err == Error.FileEof) {
-			GD.Print("LevelsLoader.cs: loaded succesfully");
 			var resource = (PackedScene)loader.GetResource();
 			loader.Dispose();
 			loader = null;
@@ -141,7 +140,6 @@ public class LevelsLoader : Node
 			deleteLoadingMenu();
 		}
 		else if(err != Error.Ok) {
-			GD.Print("LevelsLoader.cs: got an error");
 			GD.PrintErr(err);
 		}
 	}
