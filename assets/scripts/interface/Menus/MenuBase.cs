@@ -21,26 +21,35 @@ public class MenuBase : Control
     //загрузка цвета для интерфейса из настроек
     public static void LoadColorForChildren(Node node)
     {
+        if (node is CanvasItem) {
+            LoadCanvasColor(node as CanvasItem);
+        }
+
         if (node.GetChildCount() == 0) {
             return;
         }
         foreach(var child in node.GetChildren()) {
             if (child is CanvasItem) {
                 var canvasChild = child as CanvasItem;
-                if (!canvasChild.IsInGroup("ignore_color")) {
-                    float tempA = canvasChild.Modulate.a;
-                    Color newColor = Global.Get().Settings.interfaceColor;
-                    canvasChild.Modulate = new Color (
-                        newColor.r,
-                        newColor.g,
-                        newColor.b,
-                        tempA
-                    );
-                }
+                LoadCanvasColor(canvasChild);
                 if (canvasChild.GetChildCount() > 0) {
                     LoadColorForChildren(canvasChild);
                 }
             }
+        }
+    }
+
+    private static void LoadCanvasColor(CanvasItem item)
+    {
+        if (!item.IsInGroup("ignore_color")) {
+            float tempA = item.Modulate.a;
+            Color newColor = Global.Get().Settings.interfaceColor;
+            item.Modulate = new Color (
+                newColor.r,
+                newColor.g,
+                newColor.b,
+                tempA
+            );
         }
     }
     
