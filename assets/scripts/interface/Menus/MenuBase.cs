@@ -25,16 +25,10 @@ public class MenuBase : Control
             LoadCanvasColor(node as CanvasItem);
         }
 
-        if (node.GetChildCount() == 0) {
-            return;
-        }
         foreach(var child in node.GetChildren()) {
             if (child is CanvasItem) {
                 var canvasChild = child as CanvasItem;
-                LoadCanvasColor(canvasChild);
-                if (canvasChild.GetChildCount() > 0) {
-                    LoadColorForChildren(canvasChild);
-                }
+                LoadColorForChildren(canvasChild);
             }
         }
     }
@@ -52,7 +46,7 @@ public class MenuBase : Control
             );
         }
     }
-    
+
     public virtual void SetMenuVisible(bool animate = false)
     {
         Visible = true;

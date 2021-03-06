@@ -183,7 +183,7 @@ public class ChestMode: InventoryMode
         //то она удаляется
         if (isEmpty && tempChest.isBag) {
            tempChest.QueueFree();
-           CloseMenu();
+           MenuManager.CloseMenu(menu);
         }
     }
 

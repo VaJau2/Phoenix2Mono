@@ -40,13 +40,13 @@ public class TradeTerminal: StaticBody, ITrader
         if (!mayOpen) return;
 
         if (isTrading) {
-            menu.CloseMenu();
+            MenuManager.CloseMenu(menu);
             isTrading = false;
         } else {
             menu.ChangeMode(NewInventoryMode.Trade);
             TradeMode tempMode = menu.mode as TradeMode;
             tempMode.SetTrader(this);
-            menu.OpenMenu();
+            MenuManager.TryToOpenMenu(menu);
             menu.Connect("MenuIsClosed", this, nameof(StopTrading));
             isTrading = true;
         }

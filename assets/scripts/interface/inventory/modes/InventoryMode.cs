@@ -17,7 +17,7 @@ public abstract class InventoryMode
     protected Label itemProps;
     protected Label controlHints;
 
-    protected bool isAnimating = false;
+    public bool isAnimating = false;
     public bool isDragging {get; protected set;} = false;
     public Control modalAsk {get; protected set;}
     public Control modalRead {get; protected set;}
@@ -303,19 +303,6 @@ public abstract class InventoryMode
         return false;
     }
 
-    public void UpdateOpen(InputEvent @event)
-    {
-        if (!isAnimating && @event is InputEventKey) {
-            if (Input.IsActionJustPressed("inventory")) {
-                if (menu.isOpen) {
-                    CloseMenu();
-                } 
-                else {
-                    OpenMenu();
-                }
-            }
-        }
-    }
 
     public virtual void UpdateInput(InputEvent @event) {}
 

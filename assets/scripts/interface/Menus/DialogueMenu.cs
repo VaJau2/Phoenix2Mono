@@ -1,8 +1,9 @@
 using Godot;
 using Godot.Collections;
 
-public class DialogueMenu : Control
+public class DialogueMenu : Control, IMenu
 {
+    public bool mustBeClosed {get => false;}
     const int MAX_LINE_LENGTH = 50;
     const int MAX_ANSWER_LENGTH = 65;
     NPC npc;
@@ -25,7 +26,7 @@ public class DialogueMenu : Control
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
         LoadDialogueFile(npc.Name, npc.dialogueCode);
-        OpenMenu();
+        MenuManager.TryToOpenMenu(this);
     }
 
     private void LoadDialogueFile(string npcName, string code)
@@ -83,7 +84,6 @@ public class DialogueMenu : Control
     private void MoveToNode(string code)
     {
         var tempNode = nodes[code] as Dictionary;
-        GD.Print(tempNode["kind"].ToString());
         
         switch (tempNode["kind"].ToString()) {
             case "dialogue":
@@ -134,11 +134,11 @@ public class DialogueMenu : Control
             answers[0].Text = GetContinueText();
             answerCodes[0] = tempNode["next"].ToString();
         } else {
-            CloseMenu();
+            MenuManager.CloseMenu(this);
         }
     }
 
-    private void OpenMenu()
+    public void OpenMenu()
     {
         player.MayMove = false;
         Input.SetMouseMode(Input.MouseMode.Visible);
@@ -146,7 +146,7 @@ public class DialogueMenu : Control
         MenuOn = true;
     }
 
-    private void CloseMenu()
+    public void CloseMenu()
     {
         if (npc != null) {
             npc.SetState(NPCState.Idle);

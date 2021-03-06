@@ -1,7 +1,8 @@
 using Godot;
 
-public class PauseMenu : MenuBase
+public class PauseMenu : MenuBase, IMenu
 {
+    public bool mustBeClosed {get => true;}
     Global global = Global.Get();
     AudioStreamPlayer audi;
     private InventoryMenu inventoryMenu;
@@ -23,16 +24,19 @@ public class PauseMenu : MenuBase
         exitButton.Text     = InterfaceLang.GetPhrase("pauseMenu", "main", "exit");
     }
 
-    private void setPause(bool pause) 
+    public void OpenMenu()
     {
-        global.SetPause(this, pause);
-        this.Visible = pause;
-        if (pause) {
-            loadInterfaceLanguage();
-        } else {
-            settingsMenu.Visible = false;
-            global.Settings.SaveSettings();
-        }
+        global.SetPause(this, true);
+        this.Visible = true;
+        loadInterfaceLanguage();
+    }
+
+    public void CloseMenu()
+    {
+        global.SetPause(this, false);
+        this.Visible = false;
+        settingsMenu.Visible = false;
+        global.Settings.SaveSettings();
     }
 
     public override void SoundClick()
@@ -70,10 +74,10 @@ public class PauseMenu : MenuBase
         if (Input.IsActionJustPressed("ui_cancel")) {
             GetGameMenus();
             
-            if (inventoryMenu.isOpen) {
-                inventoryMenu.CloseMenu();
-            } else if (global.player.Health > 0) {
-                setPause(!global.paused);
+            if (Visible) {
+                MenuManager.CloseMenu(this);
+            } else {
+                MenuManager.TryToOpenMenu(this, true);
             }
 
             //если менюшка снимает с паузы, но открыт диалог, возвращаем курсор обратно
@@ -86,7 +90,7 @@ public class PauseMenu : MenuBase
     public void _on_continue_pressed() 
     {
         SoundClick();
-        setPause(false);
+        MenuManager.CloseMenu(this);
     }
 
     public void _on_settings_pressed()

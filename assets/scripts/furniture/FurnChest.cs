@@ -59,13 +59,13 @@ public class FurnChest: FurnBase {
         if (IsOpen) { 
             //если мебель и меню открыты
             //меню закроется и закроет мебель
-            menu.CloseMenu();
+            MenuManager.CloseMenu(menu);
         } else {
             base.ClickFurn();
             menu.ChangeMode(NewInventoryMode.Chest);
             ChestMode tempMode = menu.mode as ChestMode;
             tempMode.SetChest(this);
-            menu.OpenMenu();
+            MenuManager.TryToOpenMenu(menu);
             menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
         }
     }

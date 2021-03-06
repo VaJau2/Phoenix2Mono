@@ -4,10 +4,9 @@ using Godot.Collections;
 //класс управляет инвентарным меню
 //имеет несколько разных режимов работы
 //режимы устанавливаются переменной mode
-public class InventoryMenu : Control
+public class InventoryMenu : Control, IMenu
 {
-    private DialogueMenu dialogueMenu;
-
+    public bool mustBeClosed {get => true;}
     public InventoryMode mode;
     public bool isOpen = false;
     public bool menuLoaded = false;
@@ -62,14 +61,22 @@ public class InventoryMenu : Control
     {
         mode = new UsualMode(this);
         MenuBase.LoadColorForChildren(this);
-        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (mode != null && !dialogueMenu.MenuOn) {
-            mode.UpdateOpen(@event);
+        if (mode != null) {
             mode.UpdateInput(@event);
+
+            if (!mode.isAnimating && @event is InputEventKey) {
+                if (Input.IsActionJustPressed("inventory")) {
+                    if (isOpen) {
+                        MenuManager.CloseMenu(this);
+                    } else {
+                        MenuManager.TryToOpenMenu(this);
+                    }
+                }
+            }
         }
     }
 
