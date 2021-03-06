@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 //класс отвечает за лицо НПЦ
 //за текстуры глаз и рта
@@ -9,6 +11,8 @@ public class NPCFace : MeshInstance
     public string npcName;
     [Export]
     public string startEyesVariant = "";
+
+    private Dictionary<string, StreamTexture> mouthTextures = new Dictionary<string, StreamTexture>();
     
     NPC npc;
     private SpatialMaterial eyesMaterial;
@@ -26,6 +30,53 @@ public class NPCFace : MeshInstance
         eyesAreOpen = false;
         eyesMaterial.AlbedoTexture = closedEyes;
         eyesOpenCooldown = 0.2f;
+    }
+
+    //загружаем файл с анимациями рта и тут же его анимируем
+    public async void AnimateMouth(string fileName)
+    {
+        List<AnimTime> animation = LoadTimingFile(fileName + "_mouth.txt");
+        float lastTime = 0;
+
+        foreach(AnimTime animTime in animation) {
+            mouthMaterial.AlbedoTexture = mouthTextures[animTime.name];
+            await global.ToTimer(animTime.time - lastTime);
+            lastTime = animTime.time;
+        }
+    }
+
+    private List<AnimTime> LoadTimingFile(string fileName)
+    {
+        List<AnimTime> animation = new List<AnimTime>();
+
+        string path = "res://assets/audio/dialogue/" + npcName + "/" + fileName;
+        var file = new File();
+        file.Open(path, File.ModeFlags.Read);
+        while (!file.EofReached()) {
+            string line = file.GetLine();
+            if (line.Length <= 0) continue;
+
+            string[] parts = line.Split("	");
+            float newTime = float.Parse(parts[0], CultureInfo.InvariantCulture);
+            animation.Add(new AnimTime {
+                time = newTime,
+                name = parts[1]
+            });
+        }
+        file.Close();
+
+        return animation;
+    }
+
+    //если появится необходимость анимировать рты для неписей
+    //этот метод нужно будет пихнуть в _ready()
+    private void LoadMouthTextures()
+    {
+        string[] mouthVariants = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "X"};
+        foreach(string tempVariant in mouthVariants) {
+            StreamTexture mouthTexture = GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant + ".png");
+            mouthTextures.Add(tempVariant, mouthTexture);
+        }
     }
 
     private void ChangeEyesVariant(string variantName)
