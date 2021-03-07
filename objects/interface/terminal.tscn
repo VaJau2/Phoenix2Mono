@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/materials/fonts/terminal_big_text_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=2]
+
+[node name="Control" type="Control" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+theme = ExtResource( 1 )
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
