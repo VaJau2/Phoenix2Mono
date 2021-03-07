@@ -1,0 +1,55 @@
+{
+    "phrases": {
+        "personal": "(c) STABLE TEC \nTo see commands list, write help",
+        "commandNotFound": "Command \"#command#\" not found",
+
+        "chooseFile": "Choose file from list below",
+        "chooseHelp1": "(use arrows and key to select file)",
+        "chooseHelp2": "(Press backspace to exit read mode)",
+
+        "readError1": "Error: file not found",
+        "readError2": "Press backspace to show files list",
+
+        "readHeader": "  File: ",
+        "readFooter": "(Press backspace to return to files list)",
+
+        "scriptNotFound": "Script \"#script#\" not found",
+        "scriptError": "Script \"\" not found",
+        "scriptHelp": "(Press backspace to exit script files list)"
+    },
+
+    "helpAnswer": [
+        "clear         - clear output",
+        "dir           - show files list",
+        "help [command]- show command help",
+        "read [file]   - read file (.text)",
+        "script [file] - start script file (.script)"
+    ],
+
+    "helpCommands": {
+        "clear": [
+            "The command clears the terminal output",
+            "Does not require parameters"
+        ],
+        "dir": [
+            "The command displays a list of terminal files",
+            "Does not require parameters"
+        ],
+        "help": [
+            "The command displays help by command",
+            "Displays a list of available commands without parameters",
+            "Displays information about the command with the parameter"
+        ],
+        "read": [
+            "The command starts the file reading mode",
+            "The reading mode can be started without parameters",
+            "Then a list of text files to choose from will be displayed",
+            "With the parameter starts reading the selected file"
+        ],
+        "script": [
+            "The command runs a script file",
+            "Without parameters displays a list of script files to choose from",
+            "with the parameter runs the file directly"
+        ]
+    }
+}

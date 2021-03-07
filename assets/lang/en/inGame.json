@@ -28,7 +28,8 @@
         "close": " - close",
         "open": " - open",
         "trade": " - trade",
-        "talk": " - talk"
+        "talk": " - talk",
+        "terminal": " - manage"
     },
 
     "chestNames": {

@@ -128,6 +128,10 @@ public class SoundSteps: RayCast {
     public override void _Process(float delta)
     {
         if (isPlayer) {
+            if (!(parent as Player).MayMove) {
+                return;
+            }
+
             if (global.playerRace != Race.Unicorn && !playerCrouching) {
                 var pegasus = parent as Player_Pegasus;
                 if (Input.IsActionJustPressed("jump") && (pegasus == null || !pegasus.IsFlying)) {

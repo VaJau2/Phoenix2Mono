@@ -185,6 +185,10 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Process(float delta)
     {
+        if (!player.MayRotateHead) {
+            return;
+        }
+
         if (Input.IsActionJustPressed("changeView")) {
             if (oldThird != Vector3.Zero) {
                 oldThird = Vector3.Zero;

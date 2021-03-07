@@ -11,6 +11,7 @@ public class PlayerCamera: Camera
     const float FOV_SPEED = 60;
 
     public bool eyesClosed = false;
+    public bool isUpdating = true;
 
     Messages messages;
     DialogueMenu dialogueMenu;
@@ -134,7 +135,10 @@ public class PlayerCamera: Camera
                 }
             } else if (tempObject is ITrader) {
                 showHint("trade");
-            } else if (!dialogueMenu.MenuOn && tempObject is NPC) {
+            } else if (tempObject is Terminal) {
+                showHint("terminal");
+            } 
+            else if (!dialogueMenu.MenuOn && tempObject is NPC) {
                 var npc = tempObject as NPC;
                 if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
                     showHint("talk");
@@ -159,6 +163,9 @@ public class PlayerCamera: Camera
             } else if (tempObject is ITrader) {
                 var trader = tempObject as ITrader;
                 trader.StartTrading();
+            } else if (tempObject is Terminal) {
+                var terminal = tempObject as Terminal;
+                MenuManager.TryToOpenMenu(terminal);
             } else if (tempObject is NPC) {
                 var npc = tempObject as NPC;
                 if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
@@ -187,26 +194,34 @@ public class PlayerCamera: Camera
 
     public override void _Process(float delta)
     {
+        if (!isUpdating) {
+            labelBack.Visible = false;
+            return;
+        }
+        
         UpdateFov(delta);
         UpdateInteracting(delta);
     }
 
     public override void _Input(InputEvent @event)
     {
-       if (@event is InputEventKey && Input.IsActionJustPressed("use")) {
-           UpdateInput();
-       }
+        if (!isUpdating) {
+            return;
+        }
+        if (@event is InputEventKey && Input.IsActionJustPressed("use")) {
+            UpdateInput();
+        }
 
-       if (!player.ThirdView && @event is InputEventMouseButton 
-            && Input.GetMouseMode() == Input.MouseMode.Captured) {
-           var mouseEv = @event as InputEventMouseButton;
-           if (mouseEv.ButtonIndex == 2) {
-               if (mouseEv.Pressed) {
-                   fovClosing = true;
-               } else {
-                   fovClosing = false;
-               }
-           }
-       }
+        if (!player.ThirdView && @event is InputEventMouseButton 
+                && Input.GetMouseMode() == Input.MouseMode.Captured) {
+            var mouseEv = @event as InputEventMouseButton;
+            if (mouseEv.ButtonIndex == 2) {
+                if (mouseEv.Pressed) {
+                    fovClosing = true;
+                } else {
+                    fovClosing = false;
+                }
+            }
+        }
     }
 }

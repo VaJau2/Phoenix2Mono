@@ -66,7 +66,7 @@ public class Messages: VBoxContainer {
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("task")) {
+        if (Input.IsActionJustPressed("task") && global.player.MayMove) {
             ShowMessage("tasksHeader", "tasks", 3);
             ShowMessage(currentTaskLink, "tasks", 3);
         }

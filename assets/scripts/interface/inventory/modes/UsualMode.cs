@@ -133,7 +133,7 @@ public class UsualMode: InventoryMode {
 
     private void CheckAutoheal()
     {
-        if (Input.IsActionJustPressed("autoheal")) {
+        if (Input.IsActionJustPressed("autoheal") && player.MayMove) {
             if (player.Health == player.HealthMax) {
                 inventory.ItemsMessage("youAreHealthy");
                 return;

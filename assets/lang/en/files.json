@@ -1,0 +1,31 @@
+{
+    "test": {
+        "name": "test",
+        "type": "text",
+        "text": [
+            "file for test",
+            "file text in few lines"
+        ]
+    },
+    "test3": {
+        "name": "test2",
+        "type": "text",
+        "text": [
+            "file for test 2",
+            "file text in few lines"
+        ]
+    },
+    "test4": {
+        "name": "test3",
+        "type": "text",
+        "text": [
+            "file for test 3",
+            "file text in few lines"
+        ]
+    },
+    "test2": {
+        "name": "test",
+        "type": "script",
+        "script": "Terminal_TestScript"
+    }
+}

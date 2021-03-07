@@ -53,7 +53,7 @@ public static class InterfaceLang {
     public static Dictionary GetPhrasesSection(string file, string section) 
     {
         Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data != null) {
+        if (data != null && data.Contains(section)) {
             var sectionData = data[section] as Dictionary;
             return sectionData;
         }

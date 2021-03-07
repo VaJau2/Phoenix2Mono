@@ -17,6 +17,7 @@ public class Player : Character
 
     //Переменные состояния
     public bool MayMove = true;
+    public bool MayRotateHead = true;
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsLying;
@@ -444,8 +445,9 @@ public class Player : Character
 
     protected void RotateCamera(InputEvent @event) 
     {
-        if (@event is InputEventMouseMotion && 
-            Input.GetMouseMode() == Input.MouseMode.Captured) {
+        if (@event is InputEventMouseMotion
+            && Input.GetMouseMode() == Input.MouseMode.Captured
+            && MayRotateHead) {
 
             var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
