@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 
+//Синглтон-класс для управления паузами и для всяких универсальных методов
 public class Global {
     //----Using singleton pattern----
     private static Global instance;
@@ -47,7 +48,7 @@ public class Global {
         Settings.LoadSettings();
     }
 
-    public static Race raceFromString(string raceString) 
+    public static Race RaceFromString(string raceString) 
     {
         switch(raceString) {
             case "earthpony": return Race.Earthpony;
@@ -95,13 +96,15 @@ public class Global {
     //nominativ - 1 бит
     //genetiv   - 2 бита
     //plural    - 5 битов
-    public static string GetCountWord(int number, string nominativ, string genetiv, string plural) {
+    public static string GetCountWord(int number, string nominativ, string genetiv, string plural) 
+    {
         var titles = new[] {nominativ, genetiv, plural};
         var cases = new[] {2, 0, 1, 1, 1, 2};
         return titles[number % 100 > 4 && number % 100 < 20 ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
 
-    public static string GetKeyName(string actionName) {
+    public static string GetKeyName(string actionName) 
+    {
         var actions = InputMap.GetActionList(actionName);
         var action = actions[0] as InputEventKey;
         return OS.GetScancodeString(action.Scancode);

@@ -257,7 +257,7 @@ public class MainMenu : MenuBase
     public void _on_choose_pressed(InputEvent @event, string raceName) 
     {
         if (Input.IsActionJustPressed("ui_click")) {
-            Race newRace = Global.raceFromString(raceName);
+            Race newRace = Global.RaceFromString(raceName);
             global.playerRace = newRace;
             GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
         }
