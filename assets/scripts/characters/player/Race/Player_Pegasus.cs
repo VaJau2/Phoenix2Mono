@@ -93,7 +93,7 @@ public class Player_Pegasus : Player
         }
 
         //on_jump
-        if (Input.IsActionJustPressed("jump") && !BlockJump) {
+        if (Input.IsActionJustPressed("jump")) {
             if (IsCrouching) {
                 Sit(false);
             } else {

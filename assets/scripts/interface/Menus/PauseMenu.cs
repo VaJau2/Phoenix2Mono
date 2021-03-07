@@ -101,6 +101,7 @@ public class PauseMenu : MenuBase, IMenu
 
     public void _on_exit_pressed()
     {
+        MenuManager.ClearMenus();
         SoundClick();
         GetNode<LevelsLoader>("/root/Main").LoadLevel(0);
     }

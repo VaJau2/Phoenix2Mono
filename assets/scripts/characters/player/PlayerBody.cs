@@ -33,6 +33,7 @@ public class PlayerBody : Spatial
     private Vector2 headBlend;
 
     private float walkOffset;
+    private float notJumpingCooldown; //чтоб гг не прыгала сразу после того, как встает
     private float jumpingCooldown;
     private float crouchingCooldown;
     private float smileCooldown;
@@ -147,9 +148,7 @@ public class PlayerBody : Spatial
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
-    private bool checkJumpKey {
-        get => Input.IsActionJustPressed("jump") && player.MayMove;
-    }
+    private bool checkJumpKey => Input.IsActionJustPressed("jump") && player.MayMove && notJumpingCooldown <= 0f;
 
     
     private void AnimateWalkEarthpony(Player_Earthpony earthpony) 
@@ -201,7 +200,7 @@ public class PlayerBody : Spatial
         if (pegasus.IsFlying) {
             playback.Travel("Fly-OnPlace");
         } else if (jumpingCooldown <= 0) {
-            if(checkJumpKey && !player.BlockJump) {
+            if(checkJumpKey) {
                 playback.Start("Jump");
 			    jumpingCooldown = JUMP_COOLDOWN;
             } else {
@@ -213,7 +212,7 @@ public class PlayerBody : Spatial
     private void AnimateIdleEarthpony(Player_Earthpony earthpony) 
     {
         if (jumpingCooldown <= 0) {
-            if(checkJumpKey && !player.BlockJump) {
+            if(checkJumpKey) {
                 playback.Start("Jump");
                 jumpingCooldown = JUMP_COOLDOWN;
             } else {
@@ -317,6 +316,12 @@ public class PlayerBody : Spatial
 
             if(jumpingCooldown > 0) {
                 jumpingCooldown -= delta;
+            }
+
+            if (player.IsCrouching) {
+                notJumpingCooldown = 0.1f;
+            } else if (notJumpingCooldown > 0) {
+                notJumpingCooldown -= delta;
             }
 
             if(crouchingCooldown > 0) {

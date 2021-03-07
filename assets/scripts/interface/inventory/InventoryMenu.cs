@@ -71,7 +71,12 @@ public class InventoryMenu : Control, IMenu
             if (!mode.isAnimating && @event is InputEventKey) {
                 if (Input.IsActionJustPressed("inventory")) {
                     if (isOpen) {
-                        MenuManager.CloseMenu(this);
+                        if (mode.ModalOpened) {
+                            mode.CloseModal();
+                        } else {
+                            MenuManager.CloseMenu(this);
+                        }
+                        
                     } else {
                         MenuManager.TryToOpenMenu(this);
                     }

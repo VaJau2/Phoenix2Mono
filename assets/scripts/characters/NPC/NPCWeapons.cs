@@ -66,6 +66,10 @@ public class NPCWeapons : Node
 
     public float MakeShoot(float victimDistance)
     {
+        if (tempWeapon == null) {
+            return 1f;
+        }
+
         audiShoot.Stream = shootSound;
         audiShoot.Play();
         if (gunAnim != null) {

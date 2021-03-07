@@ -19,6 +19,7 @@ public abstract class InventoryMode
 
     public bool isAnimating = false;
     public bool isDragging {get; protected set;} = false;
+    public bool ModalOpened {get; protected set;} = false;
     public Control modalAsk {get; protected set;}
     public Control modalRead {get; protected set;}
 
@@ -268,7 +269,9 @@ public abstract class InventoryMode
         }
         menu.Visible = false;
         menu.isOpen = false;
-        Input.SetMouseMode(Input.MouseMode.Captured);
+        if (!Global.Get().paused) {
+            Input.SetMouseMode(Input.MouseMode.Captured);
+        }
 
         isAnimating = false;
     }
@@ -303,7 +306,7 @@ public abstract class InventoryMode
         return false;
     }
 
-
+    public virtual void CloseModal() {}
     public virtual void UpdateInput(InputEvent @event) {}
 
     public virtual void _on_modal_no_pressed() {}

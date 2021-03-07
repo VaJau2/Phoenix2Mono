@@ -28,10 +28,13 @@ public static class MenuManager {
             openedMenu.CloseMenu();
             openedMenu = backgroundMenu;
             backgroundMenu = null;
-        } else {
-            Godot.GD.Print("other menu is opened:");
-            Godot.GD.Print(openedMenu);
-        }
+        } 
+    }
+
+    public static void ClearMenus()
+    {
+        openedMenu = null;
+        backgroundMenu = null;
     }
 }
 

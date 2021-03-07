@@ -14,7 +14,6 @@ public class UsualMode: InventoryMode {
     private Label noteName;
     private RichTextLabel noteText;
     private Label closeHint;
-    private bool isReading;
 
     public UsualMode (InventoryMenu menu)
     : base(menu)
@@ -37,14 +36,15 @@ public class UsualMode: InventoryMode {
         wearBack.Visible = true;
     }
 
+    public override void CloseModal()
+    {
+        modalRead.Visible = false;
+        ModalOpened = false;
+    }
+
     public override void CloseMenu()
     {
-        if (isReading) {
-            isReading = false;
-            modalRead.Visible = false;
-            return;
-        }
-        
+        CloseModal();
         tempBag = null;
         wearBack.Visible = false;
         base.CloseMenu();
@@ -212,7 +212,7 @@ public class UsualMode: InventoryMode {
         
         tempButton._on_itemIcon_mouse_exited();
         modalRead.Visible = true;
-        isReading = true;
+        ModalOpened = true;
     }
 
     protected void UseTempItem()

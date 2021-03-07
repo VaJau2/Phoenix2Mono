@@ -253,6 +253,12 @@ public class Pony: NPC
 
     private void AttackEnemy(float delta)
     {
+        if (weaponCode == "") {
+            //если нет оружия
+            //бегаем по укрытиям и молимся Селестии
+            coverTimer = 0;
+            return;
+        }
         Vector3 victimPos = tempVictim.GlobalTransform.origin;
         float shootDistance = weapons.GetStatsFloat("shootDistance");
         float tempDistance = GlobalTransform.origin.DistanceTo(victimPos);

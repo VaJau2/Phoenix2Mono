@@ -55,7 +55,6 @@ public class Player : Character
 
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
-    public bool BlockJump;
     public bool OnStairs = false;
 
     private float stairGravity;
@@ -278,7 +277,7 @@ public class Player : Character
 
     public virtual void Jump() 
     {
-        if (Input.IsActionJustPressed("jump") && !BlockJump) {
+        if (Input.IsActionJustPressed("jump")) {
             if (IsCrouching) {
                 Sit(false);
             }

@@ -74,7 +74,7 @@ public class Player_Earthpony : Player
 
     public override void Jump()
     {
-        if (Input.IsActionJustPressed("jump") && !BlockJump) {
+        if (Input.IsActionJustPressed("jump")) {
             if (IsCrouching) {
                 Sit(false);
             } else {

@@ -157,7 +157,7 @@ public class Player_Unicorn : Player
     {
         if (Input.IsActionPressed("jump") && ManaIsEnough(TELEPORT_COST * ManaDelta) && !JumpHint.Visible) 
         {
-            if (Health > 0 && !BlockJump)
+            if (Health > 0)
             {
                 var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
                 if(!teleportPressed) 
@@ -206,7 +206,7 @@ public class Player_Unicorn : Player
                     }
                 }
             }
-            else //Health <= 0 || BlockJump
+            else //Health <= 0
             {
                 if (teleportPressed)
                 {
