@@ -79,12 +79,13 @@ public class PlayerInventory {
         }
     }
 
-    public void WearItem(string itemCode)
+    public void WearItem(string itemCode, bool sound = true)
     {
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        SoundUsingItem(itemData);
-
-        messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
+        if (sound) {
+            SoundUsingItem(itemData);
+            messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
+        }
 
         switch(itemData["type"]) {
             case "weapon":

@@ -11,7 +11,7 @@ public class PlayerSpawner : Spatial
     public Dictionary<string, int> ammo = new Dictionary<string, int>();
 
     [Export]
-    public string clothCode;
+    public string clothCode = "";
    
 
     public override void _Ready()
@@ -44,6 +44,13 @@ public class PlayerSpawner : Spatial
         player.Camera.Current = true;
         player.inventory.money = moneyCount;
         player.inventory.LoadItems(itemCodes, ammo);
+
+        //загрузка надетой на ГГ брони
+        if(clothCode != "" && clothCode != "empty") {
+            player.inventory.WearItem(clothCode, false);
+            var armorButton = player.GetNode<ItemIcon>("/root/Main/Scene/canvas/inventory/helper/back/wearBack/armor");
+            armorButton.SetItem(clothCode);
+        }
 
         QueueFree();
     }
