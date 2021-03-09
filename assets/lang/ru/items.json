@@ -266,6 +266,15 @@
         "shootDistPlus": "15",
         "sound": "armor"
     },
+    "private_uniform": {
+        "name": "Военная форма",
+        "description": "Форма рядового Эквестрийской армии. Кажется, чего-то в ней не хватает...",
+        "type": "armor",
+        "icon": "private_uniform",
+        "price": "150",
+        "damageBlock": "0.2",
+        "sound": "coat"
+    },
 
 
     "bow-ribbon": {
