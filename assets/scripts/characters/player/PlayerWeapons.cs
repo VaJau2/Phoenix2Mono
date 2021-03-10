@@ -259,10 +259,12 @@ public class PlayerWeapons: CollisionShape
 
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;
-            name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
-            if (victim is BreakableObject) {
-                var obj = victim as BreakableObject;
-                obj.Brake(player.GetDamage());
+            if (body != null && body.PhysicsMaterialOverride != null) {
+                name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
+                if (victim is BreakableObject) {
+                    var obj = victim as BreakableObject;
+                    obj.Brake(player.GetDamage());
+                }
             }
         }
 

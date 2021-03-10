@@ -173,24 +173,32 @@ public class SoundSteps: RayCast {
     {
         if (player.Health <= 0)
             return;
-        
-        if (isPlayer) {
-            (player as Player).OnStairs = false;
-        }
 
         if (parent.Velocity.Length() > 2) {
             if (!isPlayer || parent.IsOnFloor()) {
+                if (isPlayer) {
+                    (player as Player).OnStairs = false;
+                }
+
                 var collideObj = GetCollider();
                 if (collideObj is StaticBody) {
                     var collideBody = collideObj as StaticBody;
                     var friction = collideBody.PhysicsMaterialOverride.Friction;
                     var materialName = MatNames.GetMatName(friction);
-
-                    if (materialName == "stairs") {
+                    
+                    if (materialName == "stairs" || materialName == "grass_stairs") {
                         if (isPlayer) {
                             (player as Player).OnStairs = true;
                         }
-                        landMaterial = "stone";
+                        switch (materialName) {
+                            case "stairs":
+                                landMaterial = "stone";
+                                break;
+                            case "grass_stairs":
+                                landMaterial = "grass";
+                                break;
+                        }
+                        
                         return;
                     } 
 

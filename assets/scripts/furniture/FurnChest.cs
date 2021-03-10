@@ -46,7 +46,9 @@ public class FurnChest: FurnBase {
             itemCodes.Add(itemCode);
         }
         foreach(string ammoKey in startAmmoCount.Keys) {
-            ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
+            if (!ammoCount.ContainsKey(ammoKey)) {
+                ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
+            }
         }
     }
 

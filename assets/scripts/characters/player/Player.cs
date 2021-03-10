@@ -12,7 +12,6 @@ public class Player : Character
     protected const float JUMP_SPEED = 18f;
     const float ACCEL = 5.5f;
     protected const float DEACCCEL = 12f;
-    const float MAX_SLOPE_ANGLE = 50;
     const float SHAKE_TIME = 0.1f;
 
     //Переменные состояния
@@ -421,7 +420,7 @@ public class Player : Character
         hvel = hvel.LinearInterpolate(target, acceleration * delta);
         Velocity.x = hvel.x;
         Velocity.z = hvel.z;
-        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4, Mathf.Deg2Rad(MAX_SLOPE_ANGLE));
+        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4, 0.75f);
     }
 
     private void RotateBodyClumped(float speedX)
