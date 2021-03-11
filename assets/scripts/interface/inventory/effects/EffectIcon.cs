@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class EffectIcon : Control
 {
@@ -8,6 +7,7 @@ public class EffectIcon : Control
     private Control timerBack;
     public override void _Ready()
     {
+        MenuBase.LoadColorForChildren(this);
         timerBack = GetNode<Control>("back/timer");
         icon = GetNode<TextureRect>("back/icon");
     }

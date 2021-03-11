@@ -33,9 +33,20 @@ public class MenuBase : Control
         }
     }
 
+    public static void ReloadAllColors(SceneTree tree)
+    {
+        foreach(var node in tree.GetNodesInGroup("color_loaded")) {
+            LoadCanvasColor(node as CanvasItem);
+        }
+    }
+
     private static void LoadCanvasColor(CanvasItem item)
     {
         if (!item.IsInGroup("ignore_color")) {
+            if (!item.IsInGroup("color_loaded")) {
+                item.AddToGroup("color_loaded");
+            }
+            
             float tempA = item.Modulate.a;
             Color newColor = Global.Get().Settings.interfaceColor;
             item.Modulate = new Color (

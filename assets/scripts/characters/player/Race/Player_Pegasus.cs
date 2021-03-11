@@ -130,7 +130,7 @@ public class Player_Pegasus : Player
     public override float GetGravitySpeed(float tempShake, float delta)
     {
         if (IsFlying) {
-            return speedY;
+            return MayMove ? speedY : 0;
         } else {
             return Velocity.y + (GRAVITY * delta + tempShake);
         }

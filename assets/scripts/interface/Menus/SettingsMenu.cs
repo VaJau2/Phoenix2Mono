@@ -263,7 +263,7 @@ public class SettingsMenu : MenuBase
         _on_mouse_exited();
         global.Settings.SaveSettings();
         if (colorChanged) {
-            MenuBase.LoadColorForChildren(otherMenu);
+            ReloadAllColors(GetTree());
         }
     }
 

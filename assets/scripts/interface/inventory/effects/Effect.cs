@@ -29,7 +29,7 @@ public class Effect
     public virtual void SetOff(bool startPostEffect = true) 
     {
         handler.RemoveEffect(this, startPostEffect);
-        icon.UpdateTime(0);
+        if (icon != null) icon.UpdateTime(0);
     }
 
     public void StartPostEffect() 

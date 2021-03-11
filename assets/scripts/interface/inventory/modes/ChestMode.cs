@@ -75,6 +75,7 @@ public class ChestMode: InventoryMode
             }
         }
         await Global.Get().ToTimer(0.1f);
+        if (Object.IsInstanceValid(tempChest)) UpdateChestPositions();
         CloseMenu();
     }
 
@@ -135,7 +136,10 @@ public class ChestMode: InventoryMode
             CheckAddMoney(emptyButton, itemCode);
             
             int buttonId = chestButtons.IndexOf(emptyButton);
-            tempChest.itemPositions.Add(buttonId, itemCode);
+            if (!tempChest.itemPositions.ContainsKey(buttonId)) {
+                tempChest.itemPositions.Add(buttonId, itemCode);
+            }
+            
         } else {
             inventory.ItemsMessage("space");
         }

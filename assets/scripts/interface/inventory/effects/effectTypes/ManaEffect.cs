@@ -9,7 +9,11 @@ public class ManaEffect: Effect
 
     public ManaEffect() 
     {
-        maxTime = 60;
+        if (Global.Get().playerRace == Race.Unicorn) {
+            maxTime = 60;
+        } else {
+            maxTime = 0;
+        }
         badEffect = false;
     }
 
@@ -17,11 +21,10 @@ public class ManaEffect: Effect
     {
         if (Global.Get().playerRace == Race.Unicorn) {
             player = Global.Get().player as Player_Unicorn;
-            iconName = "mana-potion";
-            base.SetOn(handler);
-        } else {
-            maxTime = 0;
-        }
+        } 
+
+        iconName = "mana-potion";
+        base.SetOn(handler);
     }
 
     public override bool Count(float delta)
