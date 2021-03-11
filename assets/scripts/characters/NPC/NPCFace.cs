@@ -25,7 +25,7 @@ public class NPCFace : MeshInstance
     Random rand = new Random();
     Global global => Global.Get();
 
-    public void CloseEyes()
+    public virtual void CloseEyes()
     {
         eyesAreOpen = false;
         eyesMaterial.AlbedoTexture = closedEyes;

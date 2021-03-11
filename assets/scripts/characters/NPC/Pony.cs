@@ -6,7 +6,7 @@ using Godot.Collections;
 public class Pony: NPC
 {
     const float RUN_DISTANCE = 12f;
-    const float COME_DISTANCE = 3f;
+    const float COME_DISTANCE = 3.5f;
 
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
@@ -247,7 +247,7 @@ public class Pony: NPC
             shootCooldown -= delta;
         } else {
             shootCooldown = weapons.MakeShoot(victimDistance);
-            coverTimer /= 2;
+            coverTimer *= 0.75f;
         }
     }
 

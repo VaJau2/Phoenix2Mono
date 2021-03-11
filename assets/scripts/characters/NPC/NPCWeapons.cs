@@ -76,15 +76,15 @@ public class NPCWeapons : Node
             gunAnim.Play("shoot");
         }
         npc.head.CloseEyes();
-        var tempDistance = GetStatsInt("shootDistance");
+        var statsDistance = GetStatsInt("shootDistance");
 
         if (tempWeaponStats.Contains("bullet")) {
             SpawnBullet();
         } else {
             var victim = npc.tempVictim;
 
-            float shootChance = 1.0f - (victimDistance / tempDistance * 0.5f);
-            shootChance /= victim.Velocity.Length();
+            float shootChance = 1.0f - (victimDistance / statsDistance * 0.5f) + 0.2f;
+            shootChance /= (victim.Velocity.Length() / 5);
 
             AnimGunEffects();
 

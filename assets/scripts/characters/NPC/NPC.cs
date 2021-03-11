@@ -6,7 +6,7 @@ public class NPC : Character
 {
     const int RAGDOLL_IMPULSE = 700;
     const float SEARCH_TIMER = 5f;
-    private float ROTATION_SPEED = 0.45f;
+    private float ROTATION_SPEED = 0.15f;
     protected float GRAVITY = 6;
     protected float PATROL_WAIT = 4f;
     [Export]

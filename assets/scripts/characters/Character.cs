@@ -37,7 +37,7 @@ public class Character : KinematicBody
 
     public virtual void HealHealth(int healing)
     {
-        decreaseHealth(-healing);
+        if (Health > 0) decreaseHealth(-healing);
     }
 
     public void MakeDamage(Character victim, int shapeID = 0) {
