@@ -211,8 +211,9 @@ public abstract class InventoryMode
         
         //меняем местами вещи на кнопках
         if (newButton.myItemCode == null) {
-            newButton.SetItem(oldButton.myItemCode);
+            var tempItemCode = oldButton.myItemCode;
             oldButton.ClearItem();
+            newButton.SetItem(tempItemCode);
         } else {
             var tempItemCode = oldButton.myItemCode;
             oldButton.SetItem(newButton.myItemCode);
