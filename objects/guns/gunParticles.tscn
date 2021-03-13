@@ -9,6 +9,7 @@ script/source = "extends Spatial
 var materials = {
 	\"black\": preload(\"res://assets/materials/weapon/result/black.tres\"),
 	\"grass\": preload(\"res://assets/materials/weapon/result/grass.tres\"),
+	\"grass_stairs\": preload(\"res://assets/materials/weapon/result/grass.tres\"),
 	\"dirt\": preload(\"res://assets/materials/weapon/result/dirt.tres\"),
 	\"stone\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
 	\"blood\": preload(\"res://assets/materials/weapon/result/blood.tres\"),

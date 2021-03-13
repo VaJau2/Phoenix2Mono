@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/DialogueMenu.cs" type="Script" id=2]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
 
-[node name="DialogueMenu" type="Control" groups=[
+[node name="DialogueMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blur" type="ColorRect" parent="."]
+material = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Control" parent="." groups=[
 "ignore_color",
 ]]
 anchor_left = 0.211
@@ -18,24 +35,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="." groups=[
+[node name="background" type="ColorRect" parent="Menu" groups=[
 "ignore_color",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="border1" type="ColorRect" parent="."]
+[node name="border1" type="ColorRect" parent="Menu"]
 anchor_bottom = 1.0
 margin_right = 1.0
 
-[node name="border2" type="ColorRect" parent="."]
+[node name="border2" type="ColorRect" parent="Menu"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
 
-[node name="border3" type="ColorRect" parent="."]
+[node name="border3" type="ColorRect" parent="Menu"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -47,7 +67,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border4" type="ColorRect" parent="."]
+[node name="border4" type="ColorRect" parent="Menu"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -59,7 +79,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border5" type="ColorRect" parent="."]
+[node name="border5" type="ColorRect" parent="Menu"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -71,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border6" type="ColorRect" parent="."]
+[node name="border6" type="ColorRect" parent="Menu"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -83,7 +103,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="leftName" type="Label" parent="."]
+[node name="leftName" type="Label" parent="Menu"]
 anchor_right = 0.5
 anchor_bottom = 0.096
 margin_left = 11.0
@@ -97,7 +117,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="rightName" type="Label" parent="."]
+[node name="rightName" type="Label" parent="Menu"]
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.096
@@ -113,7 +133,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="text" type="RichTextLabel" parent="."]
+[node name="text" type="RichTextLabel" parent="Menu"]
 anchor_left = 0.03
 anchor_top = 0.111
 anchor_right = 0.985
@@ -129,7 +149,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="answer1" type="Button" parent="."]
+[node name="answer1" type="Button" parent="Menu"]
 visible = false
 anchor_left = 0.004
 anchor_top = 0.819
@@ -146,7 +166,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="answer2" type="Button" parent="."]
+[node name="answer2" type="Button" parent="Menu"]
 visible = false
 anchor_top = 0.819
 anchor_right = 1.0
@@ -160,7 +180,7 @@ theme = ExtResource( 1 )
 text = "[Ответ 2]"
 clip_text = true
 
-[node name="answer3" type="Button" parent="."]
+[node name="answer3" type="Button" parent="Menu"]
 visible = false
 anchor_left = 0.004
 anchor_top = 0.819
@@ -178,7 +198,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="answer4" type="Button" parent="."]
+[node name="answer4" type="Button" parent="Menu"]
 visible = false
 anchor_left = 0.004
 anchor_top = 0.803
@@ -194,15 +214,15 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_entered" from="answer1" to="." method="_on_answer_mouse_entered" binds= [ 0 ]]
-[connection signal="mouse_exited" from="answer1" to="." method="_on_answer_mouse_exited" binds= [ 0 ]]
-[connection signal="pressed" from="answer1" to="." method="_on_answer_pressed" binds= [ 0 ]]
-[connection signal="mouse_entered" from="answer2" to="." method="_on_answer_mouse_entered" binds= [ 1 ]]
-[connection signal="mouse_exited" from="answer2" to="." method="_on_answer_mouse_exited" binds= [ 1 ]]
-[connection signal="pressed" from="answer2" to="." method="_on_answer_pressed" binds= [ 1 ]]
-[connection signal="mouse_entered" from="answer3" to="." method="_on_answer_mouse_entered" binds= [ 2 ]]
-[connection signal="mouse_exited" from="answer3" to="." method="_on_answer_mouse_exited" binds= [ 2 ]]
-[connection signal="pressed" from="answer3" to="." method="_on_answer_pressed" binds= [ 2 ]]
-[connection signal="mouse_entered" from="answer4" to="." method="_on_answer_mouse_entered" binds= [ 3 ]]
-[connection signal="mouse_exited" from="answer4" to="." method="_on_answer_mouse_exited" binds= [ 3 ]]
-[connection signal="pressed" from="answer4" to="." method="_on_answer_pressed" binds= [ 3 ]]
+[connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [ 0 ]]
+[connection signal="pressed" from="Menu/answer1" to="Menu" method="_on_answer_pressed" binds= [ 0 ]]
+[connection signal="mouse_entered" from="Menu/answer2" to="Menu" method="_on_answer_mouse_entered" binds= [ 1 ]]
+[connection signal="mouse_exited" from="Menu/answer2" to="Menu" method="_on_answer_mouse_exited" binds= [ 1 ]]
+[connection signal="pressed" from="Menu/answer2" to="Menu" method="_on_answer_pressed" binds= [ 1 ]]
+[connection signal="mouse_entered" from="Menu/answer3" to="Menu" method="_on_answer_mouse_entered" binds= [ 2 ]]
+[connection signal="mouse_exited" from="Menu/answer3" to="Menu" method="_on_answer_mouse_exited" binds= [ 2 ]]
+[connection signal="pressed" from="Menu/answer3" to="Menu" method="_on_answer_pressed" binds= [ 2 ]]
+[connection signal="mouse_entered" from="Menu/answer4" to="Menu" method="_on_answer_mouse_entered" binds= [ 3 ]]
+[connection signal="mouse_exited" from="Menu/answer4" to="Menu" method="_on_answer_mouse_exited" binds= [ 3 ]]
+[connection signal="pressed" from="Menu/answer4" to="Menu" method="_on_answer_pressed" binds= [ 3 ]]

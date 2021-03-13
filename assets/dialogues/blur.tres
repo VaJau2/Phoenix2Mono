@@ -8,8 +8,7 @@ uniform float blur_amount : hint_range(0, 5);
 void fragment() {
 	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
 }"
-custom_defines = ""
 
 [resource]
 shader = SubResource( 1 )
-shader_param/blur_amount = null
+shader_param/blur_amount = 2.0
