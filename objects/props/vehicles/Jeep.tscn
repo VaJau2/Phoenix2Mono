@@ -35,33 +35,33 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 1.04865, 0.658572, 2.37875 )
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.967836, 0.658572, 1.24737 )
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 1.04865, 0.658572, 0.622075 )
 
 [node name="Jeep" type="StaticBody"]
 physics_material_override = ExtResource( 3 )
 
 [node name="jeap2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0887642, 0, 0.73477 )
+transform = Transform( 2.06937, 0, 0, 0, 2.06937, 0, 0, 0, 2.06937, -0.0871072, -0.604929, 1.57622 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="Cube2" type="MeshInstance" parent="."]
-transform = Transform( 0.0330696, 0, 0, 0, 0.0329281, 0, 0, 0, 0.556601, -0.081964, 2.77456, 0.549339 )
+transform = Transform( 0.0684332, 0, 0, 0, 0.0681405, 0, 0, 0, 1.15181, -0.0730351, 5.13666, 1.1925 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0986633, 0.752063, 0.21768 )
+transform = Transform( 2.06937, 0, 0, 0, 2.06937, 0, 0, 0, 2.06937, -0.107592, 0.951368, 0.506172 )
 shape = SubResource( 3 )
 
 [node name="shape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.99994, -0.010943, 0, 0.010943, 0.99994, -0.083532, 1.78249, -0.838964 )
-shape = SubResource( 5 )
+transform = Transform( 2.06937, 0, 0, 0, 2.06925, -0.0226451, 0, 0.0226451, 2.06925, -0.0762798, 3.0837, -1.68041 )
+shape = SubResource( 6 )
 
 [node name="shape3" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.895634, 0.444792, 0, -0.444792, 0.895634, -0.0986633, 1.54448, 0.183027 )
-shape = SubResource( 4 )
+transform = Transform( 2.06937, 0, 0, 0, 1.8534, 0.920437, 0, -0.920437, 1.8534, -0.107592, 2.59117, 0.434462 )
+shape = SubResource( 5 )

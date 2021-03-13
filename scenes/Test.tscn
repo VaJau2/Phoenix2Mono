@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -8,10 +8,8 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/characters/private1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://objects/characters/facetest.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/scripts/characters/NPC/CoversManager.cs" type="Script" id=11]
-[ext_resource path="res://objects/characters/42.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/characters/ponies/korporal1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -46,18 +44,9 @@ ammo = {
 
 [node name="npc" type="Node" parent="."]
 
-[node name="42" parent="npc" instance=ExtResource( 12 )]
-transform = Transform( 0.948096, 0, 0.317983, 0, 1, 0, -0.317983, 0, 0.948096, 15.7683, 0, 23.9656 )
-weaponCode = "revolver32"
-
-[node name="private1" parent="npc" instance=ExtResource( 9 )]
-transform = Transform( -0.0569369, 0, 0.998378, 0, 1, 0, -0.998378, 0, -0.0569369, 28.1325, 0, 0 )
-weaponCode = "pistol10-silenced"
-
-[node name="facetest" parent="npc" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.0334 )
-dialogueCode = "startDialogue"
-weaponCode = "laserRifle"
+[node name="korporal" parent="npc" instance=ExtResource( 13 )]
+transform = Transform( -0.149812, 0, 0.988715, 0, 1, 0, -0.988715, 0, -0.149812, 27.8738, 0, -7.60915 )
+weaponCode = "rifle307"
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3

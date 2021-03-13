@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/materials/props/buildings/palatka.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/physics/dirt.phymat" type="PhysicsMaterial" id=2]
 
-[sub_resource type="ArrayMesh" id=16]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
 lightmap_size_hint = Vector2( 564, 552 )
 surfaces/0 = {
@@ -17,7 +18,7 @@ surfaces/0 = {
 "vertex_count": 243
 }
 
-[sub_resource type="ArrayMesh" id=17]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "Cube001"
 surfaces/0 = {
 "aabb": AABB( -1.97652, -1, -4.51108, 3.95304, 1.01699, 7.19687 ),
@@ -31,91 +32,92 @@ surfaces/0 = {
 "vertex_count": 108
 }
 
-[sub_resource type="ConvexPolygonShape" id=18]
+[sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( 20.665, 2.88925, -5.39634, 20.665, 2.88925, 5.54278, 20.9528, -1.2616, -4.99973, 20.9528, -1.2616, 5.14616, 21.2197, -1.2616, -4.99973, 21.2197, -1.2616, 5.14616, 21.2197, 3.01035, -4.99973, 21.2197, 3.01035, 5.14616 )
 
-[sub_resource type="ConvexPolygonShape" id=19]
+[sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( 19.8505, 2.89171, -5.43495, 19.8619, 2.84223, 5.4367, 19.8848, 3.27735, -4.99973, 19.8848, 3.27735, 5.14616, 20.1519, -1.2616, -4.99973, 20.1519, -1.2616, 5.14616, 20.1519, 3.27735, -4.99973, 20.1519, 3.27735, 5.14616, 20.4187, -1.2616, -4.99973, 20.4187, -1.2616, 5.14616, 20.7171, 2.87867, -5.39682, 20.7171, 2.87867, 5.54326 )
 
-[sub_resource type="ConvexPolygonShape" id=20]
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -20.4317, 2.74336, -4.99973, -20.4317, 2.74336, 5.14616, -20.4317, 3.01048, -4.99973, -20.4317, 3.01048, 5.14616, -19.6306, 3.27722, -4.99973, -19.6306, 3.27722, 5.14616, -18.525, 2.72042, 5.4367, -18.5057, 2.70886, -5.4367, -18.2962, 3.54435, -4.99973, -18.2962, 3.54435, 5.14616, -18.0287, 3.54435, -4.99973, -18.0287, 3.54435, 5.14616, -17.9599, 3.00285, 5.4367, -17.9252, 2.999, -5.4367 )
 
-[sub_resource type="ConvexPolygonShape" id=21]
+[sub_resource type="ConvexPolygonShape" id=6]
 points = PoolVector3Array( -20.4317, -1.26121, -4.99973, -20.4317, -1.26121, 5.14616, -20.4317, 2.74296, -4.99973, -20.4317, 2.74296, 5.14616, -19.3638, -1.26121, -4.99973, -19.3638, -1.26121, 5.14616, -19.3333, 2.85763, 5.4367, -19.3322, 2.86142, -5.29987 )
 
-[sub_resource type="ConvexPolygonShape" id=22]
+[sub_resource type="ConvexPolygonShape" id=7]
 points = PoolVector3Array( -1.0824, 6.54497, -5.20131, -1.0824, 6.54497, 5.34774, 0.24572, 6.82421, -4.54587, 0.24572, 6.82421, 4.6923, 1.73089, 7.01531, -4.99973, 1.73089, 7.01531, 5.14616, 15.0772, 4.34576, -4.99973, 15.0772, 4.34576, 5.14616, 18.8142, 3.54456, -4.99973, 18.8142, 3.54456, 5.14616, 19.6246, 2.62102, 5.4367, 19.8848, 3.27735, -4.99973, 19.8848, 3.27735, 5.14616, 19.8982, 2.55937, -5.4367, 20.1785, 2.68234, -5.14465, 20.1785, 2.68234, 5.29109 )
 
-[sub_resource type="ConvexPolygonShape" id=23]
+[sub_resource type="ConvexPolygonShape" id=8]
 points = PoolVector3Array( -18.7761, 2.83868, -5.4367, -18.5256, 2.89647, 5.4367, -18.0287, 3.54503, -4.99973, -18.0287, 3.54503, 5.14616, -17.9034, 2.83868, -5.4367, -17.6762, 2.89647, 5.4367, -16.9586, 3.81197, -4.99973, -16.9586, 3.81197, 5.14616, -4.85785, 5.44728, -5.4367, -1.2107, 6.21369, -4.99973, -0.944016, 7.01531, -4.99973, -0.944016, 7.01531, 5.14616, -0.744369, 6.28244, 5.4367, -0.677333, 6.48063, -4.99973, -0.677333, 7.01531, -4.99973, -0.677333, 7.01531, 5.14616, -0.180454, 6.56468, 5.4367 )
 
-[sub_resource type="ConvexPolygonShape" id=24]
+[sub_resource type="ConvexPolygonShape" id=9]
 points = PoolVector3Array( -18.6922, 2.99061, -4.9691, -18.0287, -0.460608, -5.80072, -18.0287, -0.460608, -5.26685, -18.0287, 3.54372, -5.80072, -18.0287, 3.54372, -4.99973, -17.2253, -0.460608, -5.80072, -17.2253, -0.460608, -5.26685, -16.9586, 3.81082, -5.80072, -16.9586, 3.81082, -4.99973, -1.74407, 5.6798, -5.80072, -1.74407, 5.6798, -5.26685, -0.944016, 7.01531, -5.80072, -0.944016, 7.01531, -4.99973, -0.677333, 6.21327, -5.80072, -0.677333, 7.01531, -5.80072, -0.677333, 7.01531, -4.99973, 0.192396, 6.80228, -4.95958 )
 
-[sub_resource type="ConvexPolygonShape" id=25]
+[sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( -20.6985, 2.47599, -5.80072, -20.6985, 2.7432, -5.53359, -20.4314, -1.2616, -5.80072, -20.4314, -1.2616, -4.99973, -20.4314, 3.00994, -5.80072, -20.3105, 2.7984, -5.04506, -19.6304, 3.27714, -4.99973, -19.3636, -1.2616, -4.99973, -18.2961, 3.54435, -4.99973, -18.0287, -0.727186, -5.80072, -18.0287, -0.727186, -5.26685, -18.0287, 3.54435, -5.80072, -17.9331, 3.14382, -4.97103 )
 
-[sub_resource type="ConvexPolygonShape" id=13]
+[sub_resource type="ConvexPolygonShape" id=11]
 points = PoolVector3Array( -1.49575, 6.46154, -5.25696, -0.954096, 6.57087, -4.9896, -0.673937, 7.01531, -5.80072, -0.0936058, 6.79856, -5.0207, 0.128675, -1.2616, -5.80072, 0.128675, -1.2616, -5.26685, 1.72956, 7.01531, -5.80072, 2.74852, 6.52931, -5.04676, 15.0768, 4.34411, -5.80072, 20.1408, 2.99576, -5.03962, 20.1506, -1.2616, -4.99973, 20.1506, 3.27709, -5.80072, 21.2178, -1.2616, -5.80072, 21.4868, 2.74479, -5.80072 )
 
-[sub_resource type="ConvexPolygonShape" id=14]
+[sub_resource type="ConvexPolygonShape" id=12]
 points = PoolVector3Array( -0.954096, 6.57087, 5.13946, -0.673937, -1.2616, 5.41318, -0.673937, -1.2616, 5.68015, -0.673937, 7.01531, 5.68015, -0.0936058, 6.79856, 5.16019, 1.72956, 7.01531, 5.68015, 2.74852, 6.52931, 5.17756, 5.73611, 6.21403, 5.68015, 20.1408, 2.99576, 5.17281, 20.1506, -1.2616, 5.14621, 20.1506, 3.27709, 5.68015, 20.9788, 2.75085, 5.41318, 21.2178, -1.2616, 5.68015, 21.9415, 2.4602, 5.69111 )
 
-[sub_resource type="ConvexPolygonShape" id=15]
+[sub_resource type="ConvexPolygonShape" id=13]
 points = PoolVector3Array( -21.1737, 2.45763, 5.69282, -20.4282, -1.2616, 5.68015, -19.6286, 3.27709, 5.14621, -19.6286, 3.27709, 5.68015, -19.3601, -1.2616, 5.14621, -0.944408, 7.01531, 5.14621, -0.944408, 7.01531, 5.68015, -0.677855, -1.2616, 5.41318, -0.677855, -1.2616, 5.68015, -0.677855, 7.01531, 5.14621, -0.677855, 7.01531, 5.68015, 0.25115, 6.81414, 5.12144 )
 
 [node name="palatka" type="StaticBody"]
+physics_material_override = ExtResource( 2 )
 
 [node name="Cube" type="MeshInstance" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-mesh = SubResource( 16 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
 [node name="Cube001" type="MeshInstance" parent="."]
-transform = Transform( -1, 0, -3.25841e-07, 0, 0.81697, 0, 3.25841e-07, 0, -1, 0, -0.205696, 0 )
-mesh = SubResource( 17 )
+transform = Transform( -0.905509, 0, -2.95052e-07, 0, 0.739774, 0, 2.95052e-07, 0, -0.905509, 0.0449058, 0.62092, -0.00433933 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape17" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 18 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape16" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 19 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape15" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 20 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape14" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 21 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape13" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 22 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape12" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 23 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape11" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 24 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape10" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 25 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape9" type="CollisionShape" parent="."]
-transform = Transform( 0.116686, 0, 0, 0, 0.957353, 0, 0, 0, 1, 0.950475, 0, -0.0918462 )
-shape = SubResource( 13 )
+transform = Transform( 0.10566, 0, 0, 0, 0.866892, 0, 0, 0, 0.905509, 0.905569, 0.807179, -0.0875069 )
+shape = SubResource( 11 )
 
 [node name="CollisionShape6" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 14 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 12 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="."]
-transform = Transform( 0.171788, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0918462 )
-shape = SubResource( 15 )
+transform = Transform( 0.155556, 0, 0, 0, 0.905509, 0, 0, 0, 0.905509, 0.0449058, 0.807179, -0.0875069 )
+shape = SubResource( 13 )
