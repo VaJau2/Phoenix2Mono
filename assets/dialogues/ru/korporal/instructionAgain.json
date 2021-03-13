@@ -1,0 +1,235 @@
+{
+    "nodes": {
+        "K2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну что, готова?",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K2(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K2(2)"
+                }
+            ]
+        },
+        "K3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы разделимся и окружим их. Я и солдат слева от меня отправимся к дальней стороне лагеря. Ты вместе с другим солдатом отправитесь в противоположную.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K3(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K3(3)"
+                }
+            ]
+        },
+        "K4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Видишь деревянную вышку? Туда тебе и нужно. Не беспокойся, даже если заблудишься - просто следуй за своей напарницей.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K4(2)"
+                }
+            ]
+        },
+        "K5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Здесь повсюду спрятаны сумки со снаряжением. Попробуй поискать их. Одна из таких сумок лежит рядом с камнем слева от тебя.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K5(2)"
+                }
+            ]
+        },
+        "K6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Видишь деревянную вышку? Туда тебе и нужно. Не беспокойся, даже если заблудишься - просто следуй за своей напарницей.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K6(1)"
+                }
+            ]
+        },
+        "K7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Здесь повсюду спрятаны сумки со снаряжением. Попробуй поискать их. Одна из таких сумок лежит рядом с камнем слева от тебя.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K7(1)"
+                }
+            ]
+        },
+        "K8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тогда выдвигаемся. Не будем медлить.",
+            "speaker": "Командир",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K8(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K8(2)"
+                }
+            ]
+        },
+        "K2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Какой план?",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K3"
+        },
+        "K2(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Пошли убъем их всех",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "K3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так точно",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "K3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Куда мне нужно идти?",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K4"
+        },
+        "K3(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Где я могу взять оружие?",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K5"
+        },
+        "K4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так точно",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "K4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Где я могу взять оружие?",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K7"
+        },
+        "K5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так точно.",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "K5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Куда мне нужно идти?",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K6"
+        },
+        "K7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так точно",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "K6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так точно",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "K8"
+        },
+        "script": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "Dialogue_SimulationFightStart"
+        },
+        "K8(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Пошли",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "script"
+        },
+        "K8(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Подождите немного, мне нужно осмотреться",
+            "speaker": "Страйкли",
+            "opposite": "Командир",
+            "next": "script2"
+        },
+        "script2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "set": "instructionAgain"
+        }
+    },
+    "speakers": {}
+}

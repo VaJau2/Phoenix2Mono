@@ -1,0 +1,256 @@
+{
+    "nodes": {
+        "K1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Backup, great. I don't care where you come from. The main thing now is that you know how to fight. Can you do it?",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K1(1)"
+                }
+            ]
+        },
+        "K2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Then you must help us. Not far from here, a group of zebras set up camp. They must be destroyed.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K2(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K2(2)"
+                }
+            ]
+        },
+        "K3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "We'll split up and surround them. Me and the soldier on my left will go to the far side of the camp. You and the other soldier will go to the opposite side.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K3(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K3(3)"
+                }
+            ]
+        },
+        "K4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "See the wooden tower? That's where you need to go. Don't worry, even if you get lost - just follow your partner.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K4(2)"
+                }
+            ]
+        },
+        "K5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "There are hidden gear bags everywhere. Try looking for them. One of these bags is lying next to a rock to your left.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K5(2)"
+                }
+            ]
+        },
+        "K6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "See the wooden tower? That's where you need to go. Don't worry, even if you get lost - just follow your partner.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K6(1)"
+                }
+            ]
+        },
+        "K7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "There are hidden gear bags everywhere. Try looking for them. One of these bags is lying next to a rock to your left.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K7(1)"
+                }
+            ]
+        },
+        "K8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Then let's move out. Let's not delay.",
+            "speaker": "Commander",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "K8(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "K8(2)"
+                }
+            ]
+        },
+        "K1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K2"
+        },
+        "K2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What's the plan?",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K3"
+        },
+        "K2(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Let's kill them all",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "K3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes sir",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "K3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Where should I go?",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K4"
+        },
+        "K3(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Where can I get weapon?",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K5"
+        },
+        "K4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes sir",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "K4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Where can I get weapon?",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K7"
+        },
+        "K5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes sir",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "K5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Where should I go?",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K6"
+        },
+        "K7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes sir",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "K6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes sir",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "K8"
+        },
+        "script": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "Dialogue_SimulationFightStart"
+        },
+        "K8(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Let's go",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "script"
+        },
+        "K8(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Wait a bit, I need to look around",
+            "speaker": "Strikely",
+            "opposite": "Commander",
+            "next": "script2"
+        },
+        "script2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "set": "instructionAgain"
+        }
+    },
+    "speakers": {}
+}
