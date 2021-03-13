@@ -9,7 +9,7 @@ public class SeekArea : Area
     const float CROUCH_MULTIPLY = 0.5f;
     const float WALK_MULTIPLY = 4f;
     const float LIGHT_MULTIPLY = 4f;
-    const float NPC_MULTIPLY = 2f;
+    const float NPC_MULTIPLY = 10f;
 
     Array<Character> enemiesInArea = new Array<Character>();
     Array<NPC> alliesInArea = new Array<NPC>();
@@ -33,6 +33,7 @@ public class SeekArea : Area
     {
         npc = GetParent<NPC>();
         ray = GetNode<RayCast>("ray");
+        ray.AddException(npc);
     }
 
     public override void _Process(float delta)

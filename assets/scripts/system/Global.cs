@@ -18,7 +18,6 @@ public class Global {
     //-----------------------------
 
     public bool paused;
-    public bool musicPaused;
     public bool mainMenuFirstTime = true;
 
     public Player player;
@@ -32,6 +31,7 @@ public class Global {
         if (pauseMusicArg) {
             pauseMusic = pause;
         }
+        SetPauseMusic(pauseMusic);
 
         self.GetTree().Paused = pause;
         paused = pause;
@@ -39,6 +39,20 @@ public class Global {
             Input.SetMouseMode(Input.MouseMode.Visible);
         } else {
             Input.SetMouseMode(Input.MouseMode.Captured);
+        }
+    }
+
+    public void SetPauseMusic(bool pause)
+    {
+        if (player == null) {
+            return;
+        }
+
+        foreach(var tempObj in player.GetTree().GetNodesInGroup("unpaused_sound")) {
+            if (tempObj is AudioStreamPlayer) {
+                var tempAudi = tempObj as AudioStreamPlayer;
+                tempAudi.StreamPaused = pause;
+            }
         }
     }
 

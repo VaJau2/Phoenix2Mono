@@ -178,7 +178,7 @@ public class PlayerCamera: Camera
     public override void _Ready()
     {
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
+        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         player = GetNode<Player>("../../");
         labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");

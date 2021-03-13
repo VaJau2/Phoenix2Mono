@@ -131,7 +131,8 @@ public class PlayerHead : MeshInstance
 
     public override void _Process(float delta)
     {
-        if (Visible) {
+        //тело игрока всегда видимо, но от 1 лица оно только бросает тени
+        if (CastShadow == ShadowCastingSetting.On) {
             if (player != null && player.Health > 0) {
                 if (shyTimer > 0) {
                     shyTimer -= delta;

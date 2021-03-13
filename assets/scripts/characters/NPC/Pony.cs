@@ -6,7 +6,7 @@ using Godot.Collections;
 public class Pony: NPC
 {
     const float RUN_DISTANCE = 12f;
-    const float COME_DISTANCE = 3.5f;
+    public const float COME_DISTANCE = 3.5f;
 
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
@@ -95,6 +95,19 @@ public class Pony: NPC
         }
     }
 
+    public void SetNewStartPos(Vector3 newPos)
+    {
+        cameToPlace = false;
+        myStartPos = newPos;
+    }
+
+    private void FinishGoingTo()
+    {
+        Stop();
+        cameToPlace = true;
+        EmitSignal(nameof(IsCame));
+    }
+
     public void GoTo(Vector3 place, float distance = COME_DISTANCE, bool mayRun = true)
     {
         cameToPlace = false;
@@ -102,9 +115,7 @@ public class Pony: NPC
 
         var tempDistance = pos.DistanceTo(place);
         if (tempDistance < distance) {
-            Stop();
-            cameToPlace = true;
-            EmitSignal(nameof(IsCame));
+            FinishGoingTo();
             return;
         }
 
@@ -138,9 +149,7 @@ public class Pony: NPC
             if (pathI < path.Length - 1) {
                 pathI += 1;
             } else {
-                EmitSignal(nameof(IsCame));
-                cameToPlace = true;
-                Stop();
+                FinishGoingTo();
             }
         }
     }
@@ -342,7 +351,6 @@ public class Pony: NPC
                     SetState(NPCState.Idle);
                     return;
                 }
-
                 if (coverTimer > 0) {
                     coverTimer -= delta;
                     if (tempCover == null) {
@@ -365,7 +373,6 @@ public class Pony: NPC
                     }
                 }
                 
-
                 break;
             case NPCState.Search:
                 if (cameToPlace) {

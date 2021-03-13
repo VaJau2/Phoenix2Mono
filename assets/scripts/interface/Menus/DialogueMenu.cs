@@ -3,11 +3,12 @@ using Godot.Collections;
 
 public class DialogueMenu : Control, IMenu
 {
+    Global global => Global.Get();
     public bool mustBeClosed {get => false;}
     const int MAX_LINE_LENGTH = 50;
     const int MAX_ANSWER_LENGTH = 65;
-    NPC npc;
-    Player player => Global.Get().player;
+    public NPC npc {get; private set;}
+    public Player player => Global.Get().player;
     public bool MenuOn = false;
     Dictionary nodes = null;
 
@@ -19,12 +20,14 @@ public class DialogueMenu : Control, IMenu
     string tempAnswer = "";
     int tempAnswerI = -1;
     float tempAnswerCooldown;
+    bool signalConnected = false;
 
     public void StartTalkingTo(NPC npc)
     {
         this.npc = npc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
+        text.BbcodeText = "";
         LoadDialogueFile(npc.Name, npc.dialogueCode);
         MenuManager.TryToOpenMenu(this);
     }
@@ -83,6 +86,11 @@ public class DialogueMenu : Control, IMenu
 
     private void MoveToNode(string code)
     {
+        if (code == "") {
+            MenuManager.CloseMenu(this);
+            return;
+        }
+
         var tempNode = nodes[code] as Dictionary;
         
         switch (tempNode["kind"].ToString()) {
@@ -108,7 +116,16 @@ public class DialogueMenu : Control, IMenu
                 npc = null;
                 break;
             case "narration":
-                GD.Print("start script = " + tempNode["body"].ToString());
+                string scriptName = tempNode["body"].ToString();
+                var scriptType = System.Type.GetType(scriptName);
+                var scriptObj = System.Activator.CreateInstance(scriptType) as IDialogueScript;
+
+                string parameter = null;
+                if (tempNode.Contains("set")) {
+                    parameter = tempNode["set"].ToString();
+                }
+
+                scriptObj.initiate(this, parameter);
                 break;
         }
 
@@ -122,11 +139,16 @@ public class DialogueMenu : Control, IMenu
 
                     var optionNode = nodes[optionCode] as Dictionary;
                     var optionText = optionNode["body"].ToString();
-                    var optionNext = optionNode["next"].ToString();
 
                     answers[i].Text = optionText;
                     answers[i].Visible = true;
-                    answerCodes[i] = optionNext;
+
+                    if (optionNode.Contains("next")) {
+                        var optionNext = optionNode["next"].ToString();
+                        answerCodes[i] = optionNext;
+                    } else {
+                        answerCodes[i] = "";
+                    }
                 } 
             }
         } else if (tempNode.Contains("next")) {
@@ -140,28 +162,22 @@ public class DialogueMenu : Control, IMenu
 
     public void OpenMenu()
     {
-        player.MayMove = false;
-        Input.SetMouseMode(Input.MouseMode.Visible);
-        Visible = true;
+        global.SetPause(this, true, false);
+        (GetParent() as Control).Visible = true;
         MenuOn = true;
     }
 
     public void CloseMenu()
     {
+        global.SetPause(this, false, false);
         if (npc != null) {
             npc.SetState(NPCState.Idle);
             npc = null;
         }
 
-        player.MayMove = true;
-        Input.SetMouseMode(Input.MouseMode.Captured);
-        Visible = false;
+        text.BbcodeText = "";
+        (GetParent() as Control).Visible = false;
         MenuOn = false;
-    }
-
-    public void onPlayerTakeDamage()
-    {
-        CloseMenu();
     }
 
     public void _on_answer_mouse_entered(int i)
@@ -197,7 +213,6 @@ public class DialogueMenu : Control, IMenu
     public override void _Ready()
     {
         MenuBase.LoadColorForChildren(this);
-        this.Connect("TakenDamage", player, nameof(onPlayerTakeDamage));
 
         text      = GetNode<RichTextLabel>("text");
         leftName  = GetNode<Label>("leftName");

@@ -127,11 +127,8 @@ public class NPC : Character
         QueueFree();
     }
 
-    protected void MoveTo(Vector3 place, float distance, float speed = 1)
+    protected void RotateTo(Vector3 place)
     {
-        var pos = GlobalTransform.origin;
-        place.y = pos.y;
-
         var rotA = Transform.basis.Quat().Normalized();
         var rotB = Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
         var tempRotation = rotA.Slerp(rotB, ROTATION_SPEED);
@@ -139,6 +136,14 @@ public class NPC : Character
         Transform tempTransform = Transform;
         tempTransform.basis = new Basis(tempRotation);
         Transform = tempTransform;
+    }
+
+    protected void MoveTo(Vector3 place, float distance, float speed = 1)
+    {
+        var pos = GlobalTransform.origin;
+        place.y = pos.y;
+
+        RotateTo(place);
 
         speed += BaseSpeed;
 

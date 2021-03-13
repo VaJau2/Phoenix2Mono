@@ -3,7 +3,7 @@ using Godot;
 public class Player_Unicorn : Player
 {
     private const float MANA_SPEED = 3f;
-    private const float TELEPORT_COST = 70f;
+    private const float TELEPORT_COST = 50f;
     private const int TELEPORT_DISTANCE = 150;
     public const float MANA_MAX = 100;
     public float Mana;

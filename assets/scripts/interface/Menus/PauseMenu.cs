@@ -5,7 +5,6 @@ public class PauseMenu : MenuBase, IMenu
     public bool mustBeClosed {get => true;}
     Global global = Global.Get();
     AudioStreamPlayer audi;
-    private InventoryMenu inventoryMenu;
     private DialogueMenu dialogueMenu;
     private Label pageLabel;
     private Label headerLabel;
@@ -33,7 +32,12 @@ public class PauseMenu : MenuBase, IMenu
 
     public void CloseMenu()
     {
-        global.SetPause(this, false);
+        if (!dialogueMenu.MenuOn) {
+            global.SetPause(this, false);
+        } else {
+            global.SetPauseMusic(false);
+        }
+        
         this.Visible = false;
         settingsMenu.Visible = false;
         global.Settings.SaveSettings();
@@ -59,30 +63,17 @@ public class PauseMenu : MenuBase, IMenu
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
     }
 
-    private void GetGameMenus() 
-    {
-        if (inventoryMenu == null) {
-            inventoryMenu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-        }
-        if (dialogueMenu == null) {
-            dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu");
-        }
-    }
-
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("ui_cancel")) {
-            GetGameMenus();
+            if (dialogueMenu == null) {
+                dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+            }
             
             if (Visible) {
                 MenuManager.CloseMenu(this);
             } else {
                 MenuManager.TryToOpenMenu(this, true);
-            }
-
-            //если менюшка снимает с паузы, но открыт диалог, возвращаем курсор обратно
-            if (!global.paused && dialogueMenu.MenuOn) {
-                Input.SetMouseMode(Input.MouseMode.Visible);
             }
         }
     }

@@ -3,7 +3,7 @@ using Godot;
 public class DashEffect: Effect 
 {
     const int SPEED_DELTA = 10;
-    const float GAME_SPEED = 0.6f;
+    const float SLOW_GAME_SPEED = 0.6f;
     private Player player;
     public DashEffect()
     {
@@ -22,7 +22,7 @@ public class DashEffect: Effect
 
         if (!handler.HasEffect(this)) {
             handler.SetPlayerParameter("speed", ref player.BaseSpeed, SPEED_DELTA);
-            Engine.TimeScale = GAME_SPEED;
+            Engine.TimeScale = SLOW_GAME_SPEED;
         }
     }
 

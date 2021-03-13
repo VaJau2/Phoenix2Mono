@@ -17,7 +17,10 @@ public class FurnBase: StaticBody {
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        animator = GetNode<AnimationPlayer>("anim");
+        if (HasNode("anim")) {
+            animator = GetNode<AnimationPlayer>("anim");
+        }
+        
         global = Global.Get();
     }
 

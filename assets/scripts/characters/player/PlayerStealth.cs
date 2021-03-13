@@ -21,25 +21,21 @@ public class PlayerStealth: Node {
 
     private void checkEmpty() 
     {
-        foreach(Character enemy in seekEnemies) {
-            if (enemy == null) {
-                seekEnemies.Remove(enemy);
-                continue;
-            }
-
-            if (!IsInstanceValid(enemy)) {
-                seekEnemies.Remove(enemy);
+        for(int i = 0; i < seekEnemies.Count; i++) {
+            if (seekEnemies.Count > i) {
+                if (seekEnemies[i] == null || !IsInstanceValid(seekEnemies[i])) {
+                    seekEnemies.RemoveAt(i);
+                    continue;
+                }
             }
         }
 
-        foreach(Character enemy in attackEnemies) {
-            if (enemy == null) {
-                attackEnemies.Remove(enemy);
-                continue;
-            }
-
-            if (!IsInstanceValid(enemy)) {
-                attackEnemies.Remove(enemy);
+        for(int i = 0; i < attackEnemies.Count; i++) {
+            if (attackEnemies.Count > i) {
+                if (attackEnemies[i] == null || !IsInstanceValid(attackEnemies[i])) {
+                    attackEnemies.RemoveAt(i);
+                    continue;
+                }
             }
         }
 
