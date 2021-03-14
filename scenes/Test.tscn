@@ -8,8 +8,8 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/NPC/CoversManager.cs" type="Script" id=11]
-[ext_resource path="res://objects/characters/ponies/korporal1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -44,9 +44,10 @@ ammo = {
 
 [node name="npc" type="Node" parent="."]
 
-[node name="korporal" parent="npc" instance=ExtResource( 13 )]
-transform = Transform( -0.149812, 0, 0.988715, 0, 1, 0, -0.988715, 0, -0.149812, 27.8738, 0, -7.60915 )
-weaponCode = "rifle307"
+[node name="facetest" parent="npc" instance=ExtResource( 9 )]
+transform = Transform( -0.0242404, 0, 0.999706, 0, 1, 0, -0.999706, 0, -0.0242404, 32.773, 0, -9.20512 )
+dialogueCode = "startDialogue"
+weaponCode = "revolver32"
 
 [node name="terrain" type="StaticBody" parent="."]
 collision_layer = 3

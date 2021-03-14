@@ -2,7 +2,9 @@
 
 [ext_resource path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" type="Script" id=1]
 
-[node name="EffectIcon" type="Control"]
+[node name="EffectIcon" type="Control" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -993.0
@@ -13,7 +15,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="."]
+[node name="back" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -34,7 +38,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="timer" type="ColorRect" parent="back"]
+[node name="timer" type="ColorRect" parent="back" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -30.0
