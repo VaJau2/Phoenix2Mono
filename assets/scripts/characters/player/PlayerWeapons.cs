@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System.Globalization;
 
 public class PlayerWeapons: CollisionShape
 {
@@ -239,7 +238,7 @@ public class PlayerWeapons: CollisionShape
     }
 
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
-    public float GetStatsFloat(string statsName) => float.Parse(tempWeaponStats[statsName].ToString(), CultureInfo.InvariantCulture);
+    public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
     private string handleVictim(Spatial victim, int shapeID = 0)
     {

@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System.Globalization;
 
 public class Player : Character
 {
@@ -98,7 +97,7 @@ public class Player : Character
     {
         Dictionary armorProps = inventory.GetArmorProps();
         if(armorProps.Contains("damageBlock")) {
-            float armorBlock = float.Parse(armorProps["damageBlock"].ToString(), CultureInfo.InvariantCulture);
+            float armorBlock = Global.ParseFloat(armorProps["damageBlock"].ToString());
             return base.GetDamageBlock() + armorBlock;
         } else {
             return base.GetDamageBlock();

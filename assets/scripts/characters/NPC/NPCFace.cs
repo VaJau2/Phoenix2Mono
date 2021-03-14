@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 //класс отвечает за лицо НПЦ
 //за текстуры глаз и рта
@@ -57,7 +56,7 @@ public class NPCFace : MeshInstance
             if (line.Length <= 0) continue;
 
             string[] parts = line.Split("	");
-            float newTime = float.Parse(parts[0], CultureInfo.InvariantCulture);
+            float newTime = Global.ParseFloat(parts[0]);
             animation.Add(new AnimTime {
                 time = newTime,
                 name = parts[1]

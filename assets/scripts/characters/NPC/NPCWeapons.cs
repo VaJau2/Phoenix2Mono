@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System.Globalization;
 
 public class NPCWeapons : Node
 {
@@ -116,7 +115,7 @@ public class NPCWeapons : Node
     }
 
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
-    public float GetStatsFloat(string statsName) => float.Parse(tempWeaponStats[statsName].ToString(), CultureInfo.InvariantCulture);
+    public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
     private void SpawnBullet()
     {

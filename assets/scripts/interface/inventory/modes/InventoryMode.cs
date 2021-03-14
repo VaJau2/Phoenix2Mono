@@ -161,6 +161,11 @@ public abstract class InventoryMode
                 if (prop == "medsEffect") {
                     propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
                 }
+                if (prop == "damageBlock") {
+                    //выводим блокирование урона в процентах
+                    float blockValue = Global.ParseFloat(propValue);
+                    propValue = (blockValue * 100f).ToString() + "%";
+                }
                 
                 result += "> " + propName + propValue + "\n";
             }

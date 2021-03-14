@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Globalization;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
 public class Global {
@@ -123,6 +124,8 @@ public class Global {
         var action = actions[0] as InputEventKey;
         return OS.GetScancodeString(action.Scancode);
     }
+
+    public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);
 }
 
 public enum Race {
