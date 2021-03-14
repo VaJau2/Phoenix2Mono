@@ -50,38 +50,22 @@ public class DialogueMenu : Control, IMenu
         return "[продолжить]";
     }
 
-    //метод добавляет переносы в строку между пробелами, точками или запятыми
-    //ограничивая длину строки на MAX_LINE_LENGTH символов
+    //ограничивает длину строки на MAX_LINE_LENGTH символов
     private string GetSpacedText(string text)
     {
         if (text.Length <= MAX_LINE_LENGTH) {
             return text;
         }
 
-        Array<char> charsForEOL = new Array<char>() {'.', ',', ' '};
-        var resultString = "";
-        var sourceString = text;
-        do
-        {
-            for (int i = MAX_LINE_LENGTH; i >= 1; i--) {
-                if (charsForEOL.Contains(sourceString[i])) {
-                    resultString += sourceString.Substring(0, i) + "\n";
-                    sourceString = sourceString.Substring(i + 1);
+        Array tempLines = new Array() {text};
+        tempLines = Global.ClumpLineLength(tempLines, MAX_LINE_LENGTH);
 
-                    if (sourceString.Length <= MAX_LINE_LENGTH) {
-                        resultString += sourceString;
-                    }
-                    break;
-                }
-                if (i == 1) {
-                    resultString += sourceString.Substring(0, MAX_LINE_LENGTH) + "\n";
-                    sourceString = sourceString.Substring(MAX_LINE_LENGTH + 1);
+        string result = "";
+        foreach(string temp in tempLines) {
+            result += temp + "\n";
+        }
+        return result;
 
-                }
-            }
-        } while(sourceString.Length > MAX_LINE_LENGTH);
-
-        return resultString;
     }
 
     private void MoveToNode(string code)

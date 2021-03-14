@@ -6,6 +6,7 @@ using Godot.Collections;
 //выбор файла ограничен 9 текстовыми файлами
 public class TerminalReadMode: TerminalMode {
     const int MAX_LINES_COUNT = 10;
+    const int MAX_LINE_LENGTH = 39;
     private Array<string> textFiles = new Array<string>();
     int tempChoose = 0;
     string fileCode = null;
@@ -134,9 +135,10 @@ public class TerminalReadMode: TerminalMode {
         } 
 
         Array lines = fileData["text"] as Array;
+        lines = Global.ClumpLineLength(lines, MAX_LINE_LENGTH);
 
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "readHeader") + fileData["name"].ToString() + "\n";
-        textLabel.Text += "-------------------------------------\n\n";
+        textLabel.Text += "-------------------------------------\n";
         
         for(int i = 0; i < MAX_LINES_COUNT + 1; i++) {
             if (lines.Count > i) {
@@ -147,6 +149,7 @@ public class TerminalReadMode: TerminalMode {
         }
 
         textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "Страница: 1 из 1 ( ->)" + "\n";
         textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readFooter") + "\n";
     }
 }
