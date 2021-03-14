@@ -66,6 +66,11 @@ public class PauseMenu : MenuBase, IMenu
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("ui_cancel")) {
+            //меню паузы загружается раньше уровня
+            if (global.player == null) {
+                return;
+            }
+
             if (dialogueMenu == null) {
                 dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
             }

@@ -256,6 +256,16 @@ public class UsualMode: InventoryMode {
         } else {
             tempBag.itemCodes.Add(tempButton.myItemCode);
         }
+
+        if (checkMouseInButton(weaponButton)) {
+            inventory.UnwearItem(weaponButton.myItemCode);
+        }
+        if (checkMouseInButton(armorButton)) {
+            inventory.UnwearItem(armorButton.myItemCode);
+        }
+        if (checkMouseInButton(artifactButton)) {
+            inventory.UnwearItem(artifactButton.myItemCode);
+        }
         
         RemoveTempItem();
     }

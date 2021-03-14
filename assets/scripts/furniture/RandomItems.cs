@@ -29,7 +29,7 @@ public class RandomItems : Node
         chestAmmo.Clear();
 
         int tempMax = maxItems != 0 ? maxItems : maxItemsCount;
-        int itemsCount = rand.RandiRange(0, tempMax);
+        int itemsCount = rand.RandiRange(1, tempMax); //специально для плечачника не 0, а 1
 
         for (int i = 0; i < itemsCount; i++) {
 
