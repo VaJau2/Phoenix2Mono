@@ -103,6 +103,20 @@
         "isShotgun": "true",
         "sound": "weapon"
     },
+    "shotgun20": {
+        "name": ".20 double-barrel",
+        "description": "A sawn-off double-barreled shotgun that deals a large amount of damage at close range",
+        "type": "weapon",
+        "icon": "shotgun20",
+        "price": "500",
+        "damage": "100",
+        "shootDistance": "40",
+        "cooldown": "2",
+        "recoil": "0.5",
+        "ammoType": "ammo20",
+        "isShotgun": "true",
+        "sound": "weapon"
+    },
     "sniper307": {
         "name": ".307 sniper rifle",
         "description": "How can a pony even use this scope?",
@@ -131,14 +145,27 @@
     },
     "autorifle762": {
         "name": "7.62 auto rifle",
-        "description": "A rifle that fires automatic fire at medium ranges",
+        "description": "A rifle that fires automatic fire at long ranges, deals not mane damage",
         "type": "weapon",
         "icon": "autorifle762",
         "price": "1600",
-        "damage": "23",
+        "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
+        "ammoType": "ammo762",
+        "sound": "weapon"
+    },
+    "ak47": {
+        "name": "7.62 auto rifle",
+        "description": "A rifle that fires automatic fire at meduim ranges, deals many damage",
+        "type": "weapon",
+        "icon": "ak47",
+        "price": "1200",
+        "damage": "28",
+        "shootDistance": "80",
+        "cooldown": "0.15",
+        "recoil": "2",
         "ammoType": "ammo762",
         "sound": "weapon"
     },
@@ -216,10 +243,17 @@
     },
     "ammo12": {
         "name": ".12 ammo",
-        "description": "Powerful weapon cartridges for shotguns",
+        "description": "Powerful weapon cartridges for expensive shotguns",
         "type": "ammo",
         "icon": "ammo12",
         "price": "4" 
+    },
+    "ammo20": {
+        "name": ".20 ammo",
+        "description": "Powerful weapon cartridges for cheap shotguns",
+        "type": "ammo",
+        "icon": "ammo12",
+        "price": "3" 
     },
     "ammo307": {
         "name": ".307 ammo",

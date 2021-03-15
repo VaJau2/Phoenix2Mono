@@ -91,7 +91,7 @@
     },
     "shotgun12": {
         "name": "Дробовик кал. 12",
-        "description": "Наносит огромное количество урона в ближнем бою",
+        "description": "Наносит огромное количество урона на ближней дистанци",
         "type": "weapon",
         "icon": "shotgun12",
         "price": "1100",
@@ -100,6 +100,20 @@
         "cooldown": "1.6",
         "recoil": "0.5",
         "ammoType": "ammo12",
+        "isShotgun": "true",
+        "sound": "weapon"
+    },
+    "shotgun20": {
+        "name": "Двустволка кал. 20",
+        "description": "Обрез двустволки, наносящий большое количество урона на ближней дистанции",
+        "type": "weapon",
+        "icon": "shotgun20",
+        "price": "500",
+        "damage": "100",
+        "shootDistance": "40",
+        "cooldown": "2",
+        "recoil": "0.5",
+        "ammoType": "ammo20",
         "isShotgun": "true",
         "sound": "weapon"
     },
@@ -131,14 +145,27 @@
     },
     "autorifle762": {
         "name": "7.62 автоматическая винтовка",
-        "description": "Винтовка, стреляющая автоматическим огнем на средних дистанциях",
+        "description": "Винтовка, стреляющая автоматическим огнем на дальних дистанциях, наносит не очень много урона",
         "type": "weapon",
         "icon": "autorifle762",
         "price": "1600",
-        "damage": "23",
+        "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
+        "ammoType": "ammo762",
+        "sound": "weapon"
+    },
+    "ak47": {
+        "name": "7.62 автоматическая винтовка",
+        "description": "Винтовка, стреляющая автоматическим огнем на средних дистанциях, наносит много урона",
+        "type": "weapon",
+        "icon": "ak47",
+        "price": "1200",
+        "damage": "28",
+        "shootDistance": "80",
+        "cooldown": "0.15",
+        "recoil": "2",
         "ammoType": "ammo762",
         "sound": "weapon"
     },
@@ -216,10 +243,17 @@
     },
     "ammo12": {
         "name": "Патроны кал. 12",
-        "description": "Мощные ружейные патроны для дробовиков",
+        "description": "Мощные ружейные патроны для дорогих дробовиков",
         "type": "ammo",
         "icon": "ammo12",
         "price": "4" 
+    },
+    "ammo20": {
+        "name": "Патроны кал. 20",
+        "description": "Мощные ружейные патроны для дешевых дробовиков",
+        "type": "ammo",
+        "icon": "ammo12",
+        "price": "3" 
     },
     "ammo307": {
         "name": "Патроны кал. 307",

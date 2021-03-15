@@ -71,7 +71,10 @@ collision_mask = 3
 physics_material_override = ExtResource( 7 )
 SpawnRandomItems = true
 chestCode = "cabinet"
-startItemCodes = [ "noteTest" ]
+startItemCodes = [ "noteTest", "ak47", "autorifle762" ]
+startAmmoCount = {
+"ammo762": 20
+}
 
 [node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
@@ -79,8 +82,9 @@ collision_layer = 3
 collision_mask = 3
 SpawnRandomItems = true
 chestCode = "cabinet"
-startItemCodes = [ "plasmaPistol", "laserRifle" ]
+startItemCodes = [ "plasmaPistol", "shotgun20" ]
 startAmmoCount = {
+"ammo20": 20,
 "ammoEnergy": 40
 }
 
