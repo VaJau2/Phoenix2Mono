@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class ItemIcon : ColorRect
 {
+    Global global => Global.Get();
+
     [Export]
     public bool isInventoryIcon = false;
     private Control selected;
@@ -10,7 +12,6 @@ public class ItemIcon : ColorRect
     private Label bindLabel;
     private Label countLabel;
     private InventoryMenu menu;
-    private Color lastColor;
 
     public string myItemCode {get; private set;} = null;
 
@@ -110,7 +111,6 @@ public class ItemIcon : ColorRect
     {
         if (myItemCode != null && MayShowInfo()) {
             selected.Visible = true;
-            lastColor = icon.Modulate;
             icon.Modulate = Colors.Black;
             menu.SetTempButton(this);
         }
@@ -120,7 +120,7 @@ public class ItemIcon : ColorRect
     {
         if (selected.Visible && MayShowInfo()) {
             selected.Visible = false;
-            icon.Modulate = lastColor;
+            icon.Modulate = global.Settings.interfaceColor;
             menu.SetTempButton(null);
         }
     }
