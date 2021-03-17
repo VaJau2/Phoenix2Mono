@@ -11,7 +11,7 @@ public class Player_Unicorn : Player
 
     public AudioStreamPlayer audiHorn;
     private AudioStreamSample teleportSound;
-
+    private Messages messages;
     private Particles hornMagic;
     private UnicornShield shield;
 
@@ -19,6 +19,7 @@ public class Player_Unicorn : Player
     private PackedScene teleportEffect;
 
     private Spatial tempTeleportMark;
+    private bool notEnoughMana = false;
     private bool teleportPressed = false;
     private bool startTeleporting = false;
     private bool teleportInside = false;
@@ -78,6 +79,7 @@ public class Player_Unicorn : Player
 
         Mana = MANA_MAX;
         manaBar = GetNode<ProgressBar>("/root/Main/Scene/canvas/manaBar");
+        messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
     }
     
 
@@ -107,10 +109,15 @@ public class Player_Unicorn : Player
             if (@event is InputEventKey)
             {
                 var keyEvent = @event as InputEventKey;
-                if (!keyEvent.Pressed && teleportPressed && !Input.IsActionPressed("jump"))
+                if (!keyEvent.Pressed && !Input.IsActionPressed("jump"))
                 {
-                    teleportPressed = false;
-                    startTeleporting = true;
+                    if (teleportPressed) {
+                        teleportPressed = false;
+                        startTeleporting = true;
+                    }
+                    if (notEnoughMana) {
+                        notEnoughMana = false;
+                    }
                 };
             }
         }
@@ -155,67 +162,74 @@ public class Player_Unicorn : Player
 
     public override void Jump() 
     {
-        if (Input.IsActionPressed("jump") && ManaIsEnough(TELEPORT_COST * ManaDelta) && !JumpHint.Visible) 
+        if (Input.IsActionPressed("jump") && !JumpHint.Visible) 
         {
-            if (Health > 0)
-            {
-                var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
-                if(!teleportPressed) 
+            if (ManaIsEnough(TELEPORT_COST * ManaDelta)) {
+                if (Health > 0)
                 {
-                    teleportPressed = true;
-                    if (tempTeleportMark == null)
+                    var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
+                    if(!teleportPressed) 
                     {
-                        tempTeleportMark = (Spatial)teleportMark.Instance();
-                        GetParent().AddChild(tempTeleportMark);
-
-                        tempTeleportMark.GlobalTransform = Global.setNewOrigin(
-                            tempTeleportMark.GlobalTransform,
-                            GlobalTransform.origin
-                        );
-                    }
-                } 
-                else if (tempRay.IsColliding())
-                {
-                    Spatial collider = (Spatial)tempRay.GetCollider();
-                    if (collider.Name != "sky") 
-                    {
-                        //оно может внезапно стереться даже здесь
-                        if (tempTeleportMark != null) 
-                        {
-                            var place = tempRay.GetCollisionPoint();
-
-                            tempTeleportMark.GlobalTransform = Global.setNewOrigin(
-                                tempTeleportMark.GlobalTransform,
-                                place
-                            );
-
-                            //чтоб не перемещаться через стенки бункера наружу
-                            if (teleportInside && 
-                                tempTeleportMark.Translation.y > Translation.y + 3)
-                                {
-                                    Vector3 newPos = tempTeleportMark.Translation;
-                                    newPos.y -= 3;
-                                    tempTeleportMark.Translation = newPos;
-                                }
-                        }
-                        else 
+                        teleportPressed = true;
+                        if (tempTeleportMark == null)
                         {
                             tempTeleportMark = (Spatial)teleportMark.Instance();
                             GetParent().AddChild(tempTeleportMark);
+
+                            tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+                                tempTeleportMark.GlobalTransform,
+                                GlobalTransform.origin
+                            );
+                        }
+                    } 
+                    else if (tempRay.IsColliding())
+                    {
+                        Spatial collider = (Spatial)tempRay.GetCollider();
+                        if (collider.Name != "sky") 
+                        {
+                            //оно может внезапно стереться даже здесь
+                            if (tempTeleportMark != null) 
+                            {
+                                var place = tempRay.GetCollisionPoint();
+
+                                tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+                                    tempTeleportMark.GlobalTransform,
+                                    place
+                                );
+
+                                //чтоб не перемещаться через стенки бункера наружу
+                                if (teleportInside && 
+                                    tempTeleportMark.Translation.y > Translation.y + 3)
+                                    {
+                                        Vector3 newPos = tempTeleportMark.Translation;
+                                        newPos.y -= 3;
+                                        tempTeleportMark.Translation = newPos;
+                                    }
+                            }
+                            else 
+                            {
+                                tempTeleportMark = (Spatial)teleportMark.Instance();
+                                GetParent().AddChild(tempTeleportMark);
+                            }
                         }
                     }
                 }
-            }
-            else //Health <= 0
-            {
-                if (teleportPressed)
+                else //Health <= 0
                 {
-                    teleportPressed = false;
-                    if (tempTeleportMark != null)
+                    if (teleportPressed)
                     {
-                        tempTeleportMark.QueueFree();
-                        tempTeleportMark = null;
+                        teleportPressed = false;
+                        if (tempTeleportMark != null)
+                        {
+                            tempTeleportMark.QueueFree();
+                            tempTeleportMark = null;
+                        }
                     }
+                }
+            } else {
+                if (!notEnoughMana) {
+                    notEnoughMana = true;
+                    messages.ShowMessage("notEnoughMana");
                 }
             }
         }

@@ -23,6 +23,10 @@
         "medsOff": "The drug has worn off. You want more"
     },
 
+    "messages": {
+        "notEnoughMana": "Not enough mana"
+    },
+
     "cameraHints": {
         "closed": "Closed",
         "close": " - close",
