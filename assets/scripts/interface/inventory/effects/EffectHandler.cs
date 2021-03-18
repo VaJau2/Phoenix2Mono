@@ -81,7 +81,7 @@ public class EffectHandler: Node
 
         EffectIcon newIcon = (EffectIcon)iconPrefab.Instance();
         AddChild(newIcon);
-        newIcon.SetIcon(newEffect.iconTexture);
+        newIcon.SetData(newEffect.GetType().Name, newEffect.iconTexture);
         newEffect.icon = newIcon;
 
         heartbeat.CheckAddEffect(newEffect);

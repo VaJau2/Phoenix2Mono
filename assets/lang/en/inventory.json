@@ -62,6 +62,23 @@
         "detoxine": "Resetting all current effects"
     },
 
+    "effectIconsText": {
+        "BuckEffect": "You feel yourself stronger than before",
+        "BuckPostEffect": "You feel yourself weaker than before",
+        "DashEffect": "The world around you seems very slow",
+        "DashPostEffect": "You hardly move around",
+        "HealEffect": "Your wounds are healing before your eyes",
+        "HydraEffect": "Something inside of you stirs and gurgles, but it seems your wounds are healing",
+        "HydraPostEffect": "The body's natural regeneration was disrupted",
+        "ManaEffect": "It's much easier for you to concentrate than before",
+        "MedXPostEffect": "You constantly feel phantom pains",
+        "MentatsEffect": "Smart thoughts just pop into your head",
+        "MentatsPostEffect": "You have a hard time even thinking about simple things",
+        "MedXEffect": "You hardly feel any pain",
+        "RageEffect": "Your bullets have somehow miraculously become more powerful",
+        "RagePostEffect": "You don't want to fight at all right now"
+    },
+
     "modalAsk": {
         "askSell": "Sell \"#item#\" for #price# #money#?",
         "askBuy": "Buy \"#item#\" for #price# #money#?",

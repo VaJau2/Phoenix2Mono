@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" type="Script" id=1]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
 
 [node name="EffectIcon" type="Control" groups=[
 "ignore_color",
@@ -48,3 +49,32 @@ color = Color( 0, 0, 0, 0.784314 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="message" type="Label" parent="."]
+visible = false
+margin_left = 8.0
+margin_top = -24.0
+margin_right = 66.0
+margin_bottom = -5.0
+theme = ExtResource( 2 )
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="message" groups=[
+"ignore_color",
+]]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_right = 10.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="back/icon" to="." method="_on_EffectIcon_mouse_entered"]
+[connection signal="mouse_exited" from="back/icon" to="." method="_on_EffectIcon_mouse_exited"]

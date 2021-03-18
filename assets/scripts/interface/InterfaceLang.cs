@@ -42,11 +42,11 @@ public static class InterfaceLang {
     public static string GetPhrase(string file, string section, string phrase) 
     {
         Dictionary sectionData = GetPhrasesSection(file, section);
-        if (sectionData != null) {
+        if (sectionData != null && sectionData.Contains(phrase)) {
             return sectionData[phrase].ToString();
         }
        
-        return "data is null :c";
+        return null;
     }
 
     //Возвращает словарь из фраз из лангового файла
