@@ -48,7 +48,7 @@ public class PlayerWeapons: CollisionShape
     AudioStreamSample tryShootSound;
     AudioStreamSample shootSound;
 
-    Node enemiesManager; //TODO - изменить на класс enemiesManager
+    EnemiesManager enemiesManager;
 
     bool onetimeShoot = false;
 
@@ -123,7 +123,7 @@ public class PlayerWeapons: CollisionShape
         audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
         tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
 
-        //enemiesManager = player.GetNode("/root/Main/Scene/enemies");
+        enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
     }
 
     public async void ShowCrossHitted(bool head)
@@ -351,8 +351,7 @@ public class PlayerWeapons: CollisionShape
             gunLight.Visible = false;
 
             if (!tempWeaponStats.Contains("isSilence")) {
-                //TODO:
-                //запрогать что-то типа тревоги
+                enemiesManager.PlayerLoudShoot(GetStatsInt("shootDistance") * 0.75f);
             }
 
             onetimeShoot = false;
