@@ -9,7 +9,9 @@
 [ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" groups=[
+"ignore_color",
+]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -598,7 +600,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Load" type="Control" parent="."]
+[node name="Load" type="Control" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -654,7 +658,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="About" type="Control" parent="."]
+[node name="About" type="Control" parent="." groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0

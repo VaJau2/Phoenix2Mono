@@ -68,7 +68,7 @@ public class LevelsLoader : Node
 	{
 		if (tempLevelNum != 0) {
 			//грузим меню паузы
-			if (mainMenuOn) {
+			if (currentMenu.Name != "PauseMenu") {
 				respawnMenu(pauseMenuPrefab);
 				mainMenuOn = false;
 			}
@@ -90,7 +90,6 @@ public class LevelsLoader : Node
 		global.SetPause(this, true);
 		respawnMenu(dealthMenuPrefab);
 		currentMenu.Visible = true;
-		mainMenuOn = true;
 	}
 
 	public void LoadLevel(int levelNum) 
