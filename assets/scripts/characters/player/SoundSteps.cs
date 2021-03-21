@@ -20,7 +20,7 @@ public class SoundSteps: RayCast {
     float timer = 0;
     int stepI = 0;
 
-    string landMaterial = "grass";
+    public string landMaterial {get; private set;} = null;
 
     AudioStreamPlayer audi;
     AudioStreamPlayer3D audi3D;
@@ -125,6 +125,48 @@ public class SoundSteps: RayCast {
         timer = STEP_COOLDOWN;
     }
 
+    private void CheckFloor()
+    {
+        if (player.Health <= 0)
+            return;
+
+        if (isPlayer) {
+            (player as Player).OnStairs = false;
+        }
+
+        var collideObj = GetCollider();
+        if (collideObj is StaticBody) {
+            var collideBody = collideObj as StaticBody;
+            var friction = collideBody.PhysicsMaterialOverride.Friction;
+            var materialName = MatNames.GetMatName(friction);
+            
+            if (materialName == "stairs" || materialName == "grass_stairs") {
+                if (isPlayer) {
+                    (player as Player).OnStairs = true;
+                }
+                switch (materialName) {
+                    case "stairs":
+                        landMaterial = "stone";
+                        break;
+                    case "grass_stairs":
+                        landMaterial = "grass";
+                        break;
+                }
+                
+                return;
+            } 
+
+            if (steps.Keys.Contains(materialName)) {
+                landMaterial = materialName;
+            } else {
+                landMaterial = "wood";
+            }
+            
+        } else {
+            landMaterial = null;
+        }
+    }
+
     public override void _Process(float delta)
     {
         if (isPlayer) {
@@ -136,12 +178,13 @@ public class SoundSteps: RayCast {
                 var pegasus = parent as Player_Pegasus;
                 if (Input.IsActionJustPressed("jump") && (pegasus == null || !pegasus.IsFlying)) {
                     PlaySound(jump);
-                    timer = 0;
+                    timer = STEP_COOLDOWN;
+                    return;
                 }
             }
         }
 
-        bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && (!isPlayer || parent.IsOnFloor());
+        bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && landMaterial != null;
 
         if (sounding) {
             if (timer > 0) {
@@ -167,49 +210,7 @@ public class SoundSteps: RayCast {
                 }
             }
         }
-    }
 
-    public override void _PhysicsProcess(float delta)
-    {
-        if (player.Health <= 0)
-            return;
-
-        if (parent.Velocity.Length() > 2) {
-            if (!isPlayer || parent.IsOnFloor()) {
-                if (isPlayer) {
-                    (player as Player).OnStairs = false;
-                }
-
-                var collideObj = GetCollider();
-                if (collideObj is StaticBody) {
-                    var collideBody = collideObj as StaticBody;
-                    var friction = collideBody.PhysicsMaterialOverride.Friction;
-                    var materialName = MatNames.GetMatName(friction);
-                    
-                    if (materialName == "stairs" || materialName == "grass_stairs") {
-                        if (isPlayer) {
-                            (player as Player).OnStairs = true;
-                        }
-                        switch (materialName) {
-                            case "stairs":
-                                landMaterial = "stone";
-                                break;
-                            case "grass_stairs":
-                                landMaterial = "grass";
-                                break;
-                        }
-                        
-                        return;
-                    } 
-
-                    if (steps.Keys.Contains(materialName)) {
-                        landMaterial = materialName;
-                    } else {
-                        landMaterial = "wood";
-                    }
-                    
-                }
-            }
-        }
+        CheckFloor();
     }
 }

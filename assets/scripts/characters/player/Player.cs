@@ -54,8 +54,7 @@ public class Player : Character
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
     public bool OnStairs = false;
-
-    private float stairGravity;
+    private bool IsWalking = false;
     protected float crouchCooldown;
     private float bodyColliderSize = 1;
 
@@ -68,6 +67,7 @@ public class Player : Character
 
 
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
+    private bool OnFloor() {return soundSteps.landMaterial != null; }
 
     // интерфейс для вытаскивания audi (иногда он пустой)
     public AudioStreamPlayer GetAudi(bool hitted = false) {
@@ -326,19 +326,14 @@ public class Player : Character
             GetUp();
         }
 
-        if (!OnStairs || inputMovementVector.Length() > 0) {
-            stairGravity = 1;
-        } else {
-            stairGravity = 0;
-        }
-
         inputMovementVector = inputMovementVector.Normalized();
+        IsWalking = inputMovementVector.Length() > 0;
 
         Transform camXForm = Camera.GlobalTransform;
         dir += -camXForm.basis.z * inputMovementVector.y;
 	    dir += camXForm.basis.x * inputMovementVector.x;
 
-        if (IsOnFloor()) {
+        if (OnFloor()) {
             Jump();
 
             if (crouchCooldown > 0) {
@@ -397,7 +392,7 @@ public class Player : Character
             tempShake = GetTempShake(delta);
         }
 
-        if (OnStairs && stairGravity == 0) {
+        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0) {
             Velocity.y = 0;
         } else {
             Velocity.y = GetGravitySpeed(tempShake, delta);
@@ -419,7 +414,7 @@ public class Player : Character
         hvel = hvel.LinearInterpolate(target, acceleration * delta);
         Velocity.x = hvel.x;
         Velocity.z = hvel.z;
-        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4, 0.75f);
+        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4);
     }
 
     private void RotateBodyClumped(float speedX)
