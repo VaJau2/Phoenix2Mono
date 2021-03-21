@@ -110,6 +110,14 @@ public class PlayerHead : MeshInstance
         }
     }
 
+    //после перезагрузки ГГ спавнится с закрытыми глазами
+    private async void StartOpenEyes()
+    {
+        await(ToSignal(GetTree(), "idle_frame"));
+        emotion = "empty";
+        OpenEyes();
+    }
+
 
     public override void _Ready()
     {
@@ -127,6 +135,8 @@ public class PlayerHead : MeshInstance
 
         openEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after.png"));
         closeEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after_closed_eyes.png"));
+
+        StartOpenEyes();
     }
 
     public override void _Process(float delta)
