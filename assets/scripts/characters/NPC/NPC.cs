@@ -28,7 +28,7 @@ public class NPC : Character
     public bool aggressiveAgainstPlayer;
     public NPCState state;
     public NPCFace head;
-    protected SeekArea seekArea;
+    public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
     private PhysicalBone headBone;
@@ -83,7 +83,7 @@ public class NPC : Character
             tempVictim = damager;
             SetState(NPCState.Attack);
         }
-        if (damager == player && !aggressiveAgainstPlayer) {
+        if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle) {
             aggressiveAgainstPlayer = true;
             seekArea.AddEnemyInArea(player);
         }

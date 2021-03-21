@@ -23,6 +23,8 @@ public class SeekArea : Area
     {
         foreach(NPC ally in alliesInArea) {
             if (ally.state == NPCState.Idle) {
+                ally.seekArea.AddEnemyInArea(npc.tempVictim);
+                ally.aggressiveAgainstPlayer = npc.aggressiveAgainstPlayer;
                 ally.tempVictim = npc.tempVictim;
                 ally.SetState(NPCState.Attack);
             }
@@ -91,8 +93,10 @@ public class SeekArea : Area
 
     public void AddEnemyInArea(Character enemy)
     {
-        enemiesInArea.Add(enemy);
-        attackTimer.Add(0);
+        if (!enemiesInArea.Contains(enemy)) {
+            enemiesInArea.Add(enemy);
+            attackTimer.Add(0);
+        }
     }
 
     public void _on_seekArea_body_entered(Node body)
