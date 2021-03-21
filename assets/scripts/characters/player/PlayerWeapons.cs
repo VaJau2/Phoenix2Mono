@@ -126,7 +126,7 @@ public class PlayerWeapons: CollisionShape
         //enemiesManager = player.GetNode("/root/Main/Scene/enemies");
     }
 
-    private async void ShowCrossHitted(bool head)
+    public async void ShowCrossHitted(bool head)
     {
         crossHitted.Modulate = head? Colors.Red : Colors.White;
         if (crossHitted.Visible) {

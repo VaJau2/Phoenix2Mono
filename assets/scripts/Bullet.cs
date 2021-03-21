@@ -24,6 +24,9 @@ public class Bullet : Area
             var character = victim as Character;
             character.CheckShotgunShot(false);
             Shooter.MakeDamage(character, shapeID);
+            if (Shooter is Player) {
+                Global.Get().player.Weapons.ShowCrossHitted(shapeID != 0);
+            }
 
         } else if (victim is StaticBody) {
             var body = victim as StaticBody;

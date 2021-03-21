@@ -25,7 +25,7 @@ extents = Vector3( 0.196587, 0.192603, 0.59109 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0532041 )
 collision_layer = 3
 script = ExtResource( 3 )
-speed = 0.9
+speed = 1.8
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.4, 0, 0, 0 )
