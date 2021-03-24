@@ -73,6 +73,16 @@ public class Global {
         return Race.Earthpony;
     }
 
+    public static string RaceToString(Race race)
+    {
+        switch(race) {
+            case Race.Earthpony: return "earthpony";
+            case Race.Pegasus:   return "pegasus";
+            case Race.Unicorn:   return "unicorn";
+        }
+        return "earthpony";
+    }
+
     public static Dictionary loadJsonFile(string filePath)
     {
         File tempFile = new File();

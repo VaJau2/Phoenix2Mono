@@ -1,13 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/interface/bg_pic.png" type="Texture" id=3]
-[ext_resource path="res://assets/materials/fonts/terminal_big_text_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_pic.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_earthpony.png" type="Texture" id=4]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=5]
 [ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
+[ext_resource path="res://objects/interface/table.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_dust.png" type="Texture" id=11]
+[ext_resource path="res://assets/materials/shaders/godrays.tres" type="Material" id=12]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.454545 ), 0.0, 1.71599, 0, 0, Vector2( 1, 0.0909091 ), -4.12208, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 512
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 500, 300, 500 )
+flag_disable_z = true
+direction = Vector3( -90, 0, 0 )
+spread = 20.0
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = SubResource( 2 )
+color = Color( 0.407843, 0.384314, 0.305882, 1 )
 
 [node name="MainMenu" type="Control" groups=[
 "ignore_color",
@@ -23,11 +48,53 @@ __meta__ = {
 [node name="bgPic" type="TextureRect" parent="." groups=[
 "ignore_color",
 ]]
+modulate = Color( 0.439216, 0.411765, 0.411765, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="particles" type="Particles2D" parent="." groups=[
+"ignore_color",
+]]
+position = Vector2( 448, 304 )
+amount = 100
+process_material = SubResource( 3 )
+
+[node name="bgPony" type="TextureRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bgDust" type="TextureRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodRaysShader" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+material = ExtResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,7 +166,6 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-visible = false
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 215.0
@@ -109,60 +175,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -876.0
-margin_top = 90.0
-margin_right = 876.0
-margin_bottom = 112.0
-theme = ExtResource( 1 )
-text = "==========================================================================================================================================================================================================================="
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -87.4312
-margin_top = 103.925
-margin_right = 89.5688
-margin_bottom = 130.925
-theme = ExtResource( 5 )
-text = "Phoenix2"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label3" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -876.0
-margin_top = 125.0
-margin_right = 876.0
-margin_bottom = 147.0
-theme = ExtResource( 1 )
-text = "==========================================================================================================================================================================================================================="
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="continue" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.492
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = -116.0
-margin_right = -44.0
-margin_bottom = -91.0001
+margin_right = -55.808
+margin_bottom = -91.0
 theme = ExtResource( 1 )
 text = "               [Продолжить]"
 align = 0
@@ -173,11 +194,11 @@ __meta__ = {
 [node name="start" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.437
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = -84.0
-margin_right = -44.0
+margin_right = 0.511993
 margin_bottom = -59.0
 theme = ExtResource( 1 )
 text = "               [Начать игру]"
@@ -189,14 +210,13 @@ __meta__ = {
 [node name="load" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.437
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = -52.0
-margin_right = -44.0
+margin_right = 0.511993
 margin_bottom = -27.0
 theme = ExtResource( 1 )
-disabled = true
 text = "               [Загрузить сохранение]"
 align = 0
 __meta__ = {
@@ -206,12 +226,11 @@ __meta__ = {
 [node name="settings" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = -20.0
-margin_right = -44.0
-margin_bottom = 4.99997
+margin_bottom = 5.0
 theme = ExtResource( 1 )
 text = "               [Настройки]"
 align = 0
@@ -222,11 +241,10 @@ __meta__ = {
 [node name="about" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = 12.0
-margin_right = -44.0
 margin_bottom = 37.0
 theme = ExtResource( 1 )
 text = "               [Об игре]"
@@ -238,12 +256,11 @@ __meta__ = {
 [node name="exit" type="Button" parent="."]
 visible = false
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = 44.0
-margin_right = -44.0
-margin_bottom = 69.0001
+margin_bottom = 69.0
 theme = ExtResource( 1 )
 text = "               [Выйти]"
 align = 0
@@ -261,10 +278,19 @@ __meta__ = {
 [node name="background" type="ColorRect" parent="ChangeRace" groups=[
 "ignore_color",
 ]]
+material = ExtResource( 5 )
 anchor_right = 1.0
-anchor_bottom = 0.853
-margin_bottom = 0.199982
-color = Color( 0, 0, 0, 1 )
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="ChangeRace" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -306,7 +332,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/earthpony"]
+[node name="choose" type="Label" parent="ChangeRace/earthpony" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -320,7 +348,9 @@ text = "Земной пони"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/earthpony"]
+[node name="Label" type="Label" parent="ChangeRace/earthpony" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -340,35 +370,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/earthpony"]
+[node name="hover" type="Control" parent="ChangeRace/earthpony" groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-right" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -378,7 +420,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/earthpony/hover"]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -408,7 +452,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/unicorn"]
+[node name="choose" type="Label" parent="ChangeRace/unicorn" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -422,7 +468,9 @@ text = "Единорог"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/unicorn"]
+[node name="Label" type="Label" parent="ChangeRace/unicorn" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -442,35 +490,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/unicorn"]
+[node name="hover" type="Control" parent="ChangeRace/unicorn" groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-right" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -480,7 +540,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/unicorn/hover"]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -513,7 +575,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/pegasus"]
+[node name="choose" type="Label" parent="ChangeRace/pegasus" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -527,7 +591,9 @@ text = "Пегас"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/pegasus"]
+[node name="Label" type="Label" parent="ChangeRace/pegasus" groups=[
+"ignore_color",
+]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -535,7 +601,7 @@ anchor_bottom = 1.0
 margin_left = -69.0
 margin_top = 66.0
 margin_right = 69.0
-margin_bottom = 83.0
+margin_bottom = 184.0
 theme = ExtResource( 1 )
 text = "> Здоровье: 100
 > Возможность 
@@ -544,35 +610,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/pegasus"]
+[node name="hover" type="Control" parent="ChangeRace/pegasus" groups=[
+"ignore_color",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-right" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -582,7 +660,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/pegasus/hover"]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
+"ignore_color",
+]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -613,10 +693,19 @@ __meta__ = {
 [node name="background" type="ColorRect" parent="Load" groups=[
 "ignore_color",
 ]]
+material = ExtResource( 5 )
 anchor_right = 1.0
-anchor_bottom = 0.853
-margin_bottom = 0.199982
-color = Color( 0, 0, 0, 1 )
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="Load" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -643,20 +732,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TempLabel" type="Label" parent="Load"]
+[node name="Table" parent="Load" instance=ExtResource( 10 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -210.23
-margin_top = -114.557
-margin_right = 96.7703
-margin_bottom = -92.5567
-theme = ExtResource( 1 )
-text = "Менюшка пока не запрогана, сорян с:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -496.0
+margin_top = -140.0
+margin_right = 496.0
+margin_bottom = 220.0
 
 [node name="About" type="Control" parent="." groups=[
 "ignore_color",
@@ -671,10 +755,19 @@ __meta__ = {
 [node name="background" type="ColorRect" parent="About" groups=[
 "ignore_color",
 ]]
+material = ExtResource( 5 )
 anchor_right = 1.0
-anchor_bottom = 0.747
-margin_bottom = -0.200043
-color = Color( 0, 0, 0, 1 )
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="About" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

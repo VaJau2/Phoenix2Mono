@@ -38,6 +38,7 @@ public class LevelsLoader : Node
 		currentMenu.QueueFree();
 		currentMenu = (Control)newMenu.Instance();
 		menuParent.AddChild(currentMenu);
+		menuParent.MoveChild(currentMenu, 0);
 	}
 
 	private void updateScene()

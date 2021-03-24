@@ -5,6 +5,8 @@ public class MainMenu : MenuBase
     Global global = Global.Get();
     AudioStreamPlayer audi;
 
+    ColorRect backgroundRect;
+
     Control changeRaceMenu;
     Control loadMenu;
     Control aboutMenu;
@@ -12,9 +14,6 @@ public class MainMenu : MenuBase
     Control chooseLanguage;
     Control label5;
     Label pageLabel;
-    Label labelBorder1;
-    Label labelName;
-    Label labelBorder2;
 
     Button continueButton;
     Button startButton;
@@ -40,12 +39,10 @@ public class MainMenu : MenuBase
 
     private void LoadMenu()
     {
+        backgroundRect = GetNode<ColorRect>("background");
         chooseLanguage = GetNode<Control>("chooseLanguage");
         label5 = GetNode<Control>("Label5");
         pageLabel = GetNode<Label>("page_label");
-        labelBorder1 = GetNode<Label>("Label2");
-        labelName = GetNode<Label>("Label");
-        labelBorder2 = GetNode<Label>("Label3");
 
         continueButton = GetNode<Button>("continue");
         startButton = GetNode<Button>("start");
@@ -75,6 +72,12 @@ public class MainMenu : MenuBase
         loadMenu = GetNode<Control>("Load");
 
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
+
+        var raceStr = Global.RaceToString(global.playerRace);
+        var bgPicRes = GD.Load<StreamTexture>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
+
+        var bgPic = GetNode<TextureRect>("bgPony");
+        bgPic.Texture = bgPicRes;
     }
 
     private string getMenuText(string phrase, string section = "main") {
@@ -144,27 +147,19 @@ public class MainMenu : MenuBase
 
             pageLabel.Text = getMenuText("page");
             changeLabel(pageLabel);
-            await ToSignal(this, "labelChanged");
 
-            changeLabel(labelBorder1);
-            labelBorder1.Visible = true;
-            await ToSignal(this, "labelChanged");
-
-            changeLabel(labelName);
-            labelName.Visible = true;
-            await ToSignal(this, "labelChanged");
-
-            changeLabel(labelBorder2);
-            labelBorder2.Visible = true;
-            await ToSignal(this, "labelChanged");
+            while(backgroundRect.Color.a > 0) {
+                backgroundRect.Color = new Color(
+                    0, 0, 0,
+                    backgroundRect.Color.a - 0.1f
+                );
+                await ToSignal(GetTree(), "idle_frame");
+            }
         }
         else
         {
             pageLabel.Text = getMenuText("page");
-            labelBorder1.Visible = true;
-            labelName.Visible = true;
-            labelName.Visible = true;
-            labelBorder2.Visible = true;
+            backgroundRect.Color = new Color(0, 0, 0, 0);
         }
 
         downLabel.Visible = true;

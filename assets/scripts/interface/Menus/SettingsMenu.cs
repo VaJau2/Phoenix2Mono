@@ -9,10 +9,11 @@ public class SettingsMenu : MenuBase
     AudioStreamPlayer audi;
 
     private MenuBase otherMenu;
+
+    private Control settingsSubmenu;
+    private Control controlsSubmenu;
     
     private Label pageLabel;
-    private Label controlsPageLabel;
-    private Label headerLabel;
     private Button backButton;
     private Label languageLabel;
     private Button languageButton;
@@ -29,10 +30,6 @@ public class SettingsMenu : MenuBase
     private Button fullscreenButton;
     private Slider soundSlider;
     private Slider musicSlider;
-
-    private Control controlsMenu;
-    private Label controlsHeader;
-    private Button controlsBackButton;
     private Button defaultButton;
     private Dictionary<string, Label> controlLabels;
 
@@ -48,34 +45,32 @@ public class SettingsMenu : MenuBase
 
     private void loadMenu()
     {
+        settingsSubmenu = GetNode<Control>("Settings");
+        controlsSubmenu = GetNode<Control>("Controls");
+
         pageLabel = GetNode<Label>("page_label");
-        headerLabel = GetNode<Label>("Label");
         backButton = GetNode<Button>("back");
-        languageLabel = GetNode<Label>("language");
-        languageButton = GetNode<Button>("language_button");
-        mouseLabel = GetNode<Label>("mouse_label");
-        distanceLabel = GetNode<Label>("distance_label");
-        shadowsLabel = GetNode<Label>("shadows_label");
-        shadowsButton = GetNode<Button>("shadows_button");
-        fullscreenLabel = GetNode<Label>("fullscreen");
-        fullscreenButton = GetNode<Button>("fullscreen_button");
-        soundLabel = GetNode<Label>("sound_label");
-        musicLabel = GetNode<Label>("music_label");
-        controlsButton = GetNode<Button>("controls");
-        mouseSlider = GetNode<Slider>("mouse_slider");
-        distanceSlider = GetNode<Slider>("distance_slider");
-        soundSlider = GetNode<Slider>("sound_slider");
-        musicSlider = GetNode<Slider>("music_slider");
+        languageLabel = GetNode<Label>("Settings/language");
+        languageButton = GetNode<Button>("Settings/language_button");
+        mouseLabel = GetNode<Label>("Settings/mouse_label");
+        distanceLabel = GetNode<Label>("Settings/distance_label");
+        shadowsLabel = GetNode<Label>("Settings/shadows_label");
+        shadowsButton = GetNode<Button>("Settings/shadows_button");
+        fullscreenLabel = GetNode<Label>("Settings/fullscreen");
+        fullscreenButton = GetNode<Button>("Settings/fullscreen_button");
+        soundLabel = GetNode<Label>("Settings/sound_label");
+        musicLabel = GetNode<Label>("Settings/music_label");
+        controlsButton = GetNode<Button>("Settings/controls");
+        mouseSlider = GetNode<Slider>("Settings/mouse_slider");
+        distanceSlider = GetNode<Slider>("Settings/distance_slider");
+        soundSlider = GetNode<Slider>("Settings/sound_slider");
+        musicSlider = GetNode<Slider>("Settings/music_slider");
 
-        colorLabel = GetNode<Label>("colorBlock/label");
-        rSlider = GetNode<Slider>("colorBlock/r_slider");
-        gSlider = GetNode<Slider>("colorBlock/g_slider");
-        bSlider = GetNode<Slider>("colorBlock/b_slider");
+        colorLabel = GetNode<Label>("Settings/colorBlock/label");
+        rSlider = GetNode<Slider>("Settings/colorBlock/r_slider");
+        gSlider = GetNode<Slider>("Settings/colorBlock/g_slider");
+        bSlider = GetNode<Slider>("Settings/colorBlock/b_slider");
 
-        controlsPageLabel = GetNode<Label>("Controls/page_label");
-        controlsMenu = GetNode<Control>("Controls");
-        controlsHeader = GetNode<Label>("Controls/Label");
-        controlsBackButton = GetNode<Button>("Controls/back");
         defaultButton = GetNode<Button>("Controls/default");
         controlLabels = new Dictionary<string, Label>()
         {
@@ -101,7 +96,6 @@ public class SettingsMenu : MenuBase
     {
         string tempPage = InterfaceLang.GetPhrase("settingsMenu", "pages", otherMenu.menuName);
         pageLabel.Text = tempPage;
-        headerLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "header");
         backButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "back");
         languageLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "language");
         languageButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "language");
@@ -111,15 +105,11 @@ public class SettingsMenu : MenuBase
         fullscreenLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "fullscreen");
         soundLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "sound");
         musicLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "music");
-        
-        controlsPageLabel.Text = tempPage + InterfaceLang.GetPhrase("settingsMenu", "pages", "controls");
-        controlsHeader.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "controlsHeader");
         controlsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "controls");
 
         shadowsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "shadows", 
             global.Settings.shadows.ToString());
         
-        controlsBackButton.Text = backButton.Text;
         defaultButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "default");
         foreach(string key in controlLabels.Keys) {
             controlLabels[key].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", key);
@@ -243,7 +233,6 @@ public class SettingsMenu : MenuBase
     {
         otherMenu = self;
         loadInterfaceLanguage();
-        otherMenu.Visible = false;
         this.Visible = true;
     }
 
@@ -258,12 +247,17 @@ public class SettingsMenu : MenuBase
     public void _on_back_pressed()
     {
         otherMenu.SoundClick();
-        this.Visible = false;
-        otherMenu.SetMenuVisible(false);
-        _on_mouse_exited();
-        global.Settings.SaveSettings();
-        if (colorChanged) {
-            ReloadAllColors(GetTree());
+
+        if (controlsSubmenu.Visible) {
+            controlsSubmenu.Visible = false;
+            settingsSubmenu.Visible = true;
+        } else {
+            this.Visible = false;
+            _on_mouse_exited();
+            global.Settings.SaveSettings();
+            if (colorChanged) {
+                ReloadAllColors(GetTree());
+            }
         }
     }
 
@@ -332,13 +326,8 @@ public class SettingsMenu : MenuBase
     public void _on_controls_pressed()
     {
         otherMenu.SoundClick();
-        controlsMenu.Visible = true;
-    }
-
-    public void _on_controls_back_pressed() 
-    {
-        otherMenu.SoundClick();
-        controlsMenu.Visible = false;
+        settingsSubmenu.Visible = false;
+        controlsSubmenu.Visible = true;
     }
 
     public void _on_controls_mouse_entered(string editName, string section, string phrase)

@@ -7,7 +7,6 @@ public class PauseMenu : MenuBase, IMenu
     AudioStreamPlayer audi;
     private DialogueMenu dialogueMenu;
     private Label pageLabel;
-    private Label headerLabel;
     private Button continueButton;
     private Button settingsButton;
     private Button exitButton;
@@ -17,7 +16,6 @@ public class PauseMenu : MenuBase, IMenu
     public override void loadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
-        headerLabel.Text    = InterfaceLang.GetPhrase("pauseMenu", "main", "header");
         continueButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "continue");
         settingsButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "settings");
         exitButton.Text     = InterfaceLang.GetPhrase("pauseMenu", "main", "exit");
@@ -55,7 +53,6 @@ public class PauseMenu : MenuBase, IMenu
         menuName = "pauseMenu";
         
         pageLabel      = GetNode<Label>("page_label");
-        headerLabel    = GetNode<Label>("Label");
         continueButton = GetNode<Button>("continue");
         settingsButton = GetNode<Button>("settings");
         exitButton     = GetNode<Button>("exit");

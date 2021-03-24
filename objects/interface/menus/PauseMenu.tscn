@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/scripts/interface/Menus/PauseMenu.cs" type="Script" id=3]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
 
 [node name="PauseMenu" type="Control" groups=[
 "ignore_color",
@@ -18,9 +19,19 @@ __meta__ = {
 [node name="background" type="ColorRect" parent="." groups=[
 "ignore_color",
 ]]
+material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,48 +43,6 @@ margin_right = 215.0
 margin_bottom = 42.0
 theme = ExtResource( 1 )
 text = "/Phoenix2/Меню_паузы"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label-border1" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -876.0
-margin_top = 90.0
-margin_right = 876.0
-margin_bottom = 112.0
-theme = ExtResource( 1 )
-text = "==========================================================================================================================================================================================================================="
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -25.5
-margin_top = 105.0
-margin_right = 25.5
-margin_bottom = 127.0
-theme = ExtResource( 1 )
-text = "[Пауза]"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label-border2" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -876.0
-margin_top = 125.0
-margin_right = 876.0
-margin_bottom = 147.0
-theme = ExtResource( 1 )
-text = "==========================================================================================================================================================================================================================="
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -6,7 +6,7 @@
     },
 
     "back": {
-        "mainMenu": "Back to main menu",
+        "mainMenu": "Back",
         "pauseMenu": "Back to pause menu",
         "controls": "Back to settings menu"
     },
@@ -28,7 +28,6 @@
     },
 
     "labels": {
-        "header": "Settings",
         "controlsHeader": "Controls settings",
         "language": "Language:",
         "mouse": "Mouse sensivity:",
