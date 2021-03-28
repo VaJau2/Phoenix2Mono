@@ -1,5 +1,6 @@
-using Godot;
+using System;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 /// грузит язык для интерфейса из файлов в папке lang/
@@ -26,16 +27,14 @@ public static class InterfaceLang {
             case Language.Russian:
                 lang = "ru";
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(language), language, null);
         }
     }
 
     public static void SetNextLanguage()
     {
-        if (lang == "en") {
-            lang = "ru";
-        } else {
-            lang = "en";
-        }
+        lang = lang == "en" ? "ru" : "en";
     }
 
     //Возвращает фразу нужного языка из лангового файла
@@ -53,21 +52,16 @@ public static class InterfaceLang {
     public static Dictionary GetPhrasesSection(string file, string section) 
     {
         Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data != null && data.Contains(section)) {
-            var sectionData = data[section] as Dictionary;
-            return sectionData;
-        }
-        return null;
+        if (data == null || !data.Contains(section)) return null;
+        var sectionData = data[section] as Dictionary;
+        return sectionData;
     }
 
     public static Array GetPhrasesAsArray(string file, string section)
     {
         Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data != null) {
-            var sectionData = data[section] as Array;
-            return sectionData;
-        }
-        return null;
+        var sectionData = data?[section] as Array;
+        return sectionData;
     }
 }
 
