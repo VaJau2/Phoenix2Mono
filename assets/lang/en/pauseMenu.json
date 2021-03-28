@@ -2,12 +2,16 @@
     "main": {
         "page": "/Phoenix2/Pause_menu",
         "continue": "               [Continue]",
+        "save":     "               [Save]",
+        "load":     "               [Load]",
         "settings": "               [Settings]",
         "exit": "               [To main menu]"
     },
 
     "choose": {
         "continue": "Continue game",
+        "load": "Load game",
+        "save": "Save game",
         "settings": "Open settings menu",
         "exit": "Back to main menu"
     }

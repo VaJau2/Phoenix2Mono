@@ -4,7 +4,8 @@ using Godot.Collections;
 public class LevelsLoader : Node
 {
 	Global global = Global.Get();
-	private int tempLevelNum = 0;
+	public static int tempLevelNum = 0;
+	
 	private Array<string> levelPaths = new Array<string>();
 	private Control currentMenu;
 	private Node currentScene;

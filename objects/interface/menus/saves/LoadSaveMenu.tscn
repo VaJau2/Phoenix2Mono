@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/scripts/interface/Menus/Saving/LoadMenu.cs" type="Script" id=2]
+[ext_resource path="res://objects/interface/table.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
+
+[node name="Load" type="Control" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+material = ExtResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 5 )
+text = "/Phoenix2/Главное_меню/Загрузка_уровня"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="."]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 125.0
+theme = ExtResource( 5 )
+text = "[Назад]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Table" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.504
+anchor_right = 0.504
+margin_left = -452.096
+margin_top = -140.0
+margin_right = 451.904
+margin_bottom = 108.0
+
+[node name="Load" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = -160.0
+margin_right = 224.0
+margin_bottom = -140.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Загрузить"
+
+[node name="Delete" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = -160.0
+margin_right = -72.0
+margin_bottom = -140.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Удалить"
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "choose", "back" ]]
+[connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="TableButtonPressed" from="Table" to="." method="_on_TableButtonPressed"]
+[connection signal="mouse_entered" from="Load" to="." method="_on_mouse_entered" binds= [ "choose", "load" ]]
+[connection signal="mouse_exited" from="Load" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Delete" to="." method="_on_mouse_entered" binds= [ "choose", "delete" ]]
+[connection signal="mouse_exited" from="Delete" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]

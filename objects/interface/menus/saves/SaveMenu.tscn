@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/scripts/interface/Menus/Saving/SaveMenu.cs" type="Script" id=1]
+[ext_resource path="res://objects/interface/table.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=4]
+
+[node name="Save" type="Control" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+material = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="." groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 4 )
+text = "/Phoenix2/Главное_меню/Загрузка_уровня"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="."]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 125.0
+theme = ExtResource( 4 )
+text = "[Назад]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Table" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.504
+anchor_right = 0.504
+margin_left = -452.096
+margin_top = -140.0
+margin_right = 451.904
+margin_bottom = 108.0
+
+[node name="Exist" type="Control" parent="." groups=[
+"ignore_color",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -152.0
+margin_right = 384.0
+margin_bottom = -128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rewrite" type="Button" parent="Exist"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -24.0
+margin_right = 192.0
+theme = ExtResource( 4 )
+disabled = true
+text = "[Перезаписать]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="Exist"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = -24.0
+theme = ExtResource( 4 )
+disabled = true
+text = "[Удалить]"
+
+[node name="New" type="Control" parent="." groups=[
+"ignore_color",
+]]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -152.0
+margin_right = 384.0
+margin_bottom = -128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="New"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = -24.0
+margin_right = 192.0
+theme = ExtResource( 4 )
+disabled = true
+text = "[Сохранить]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -392.0
+margin_top = -152.0
+margin_right = -56.0
+margin_bottom = -128.0
+theme = ExtResource( 4 )
+placeholder_text = "Введите название сохранения"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "choose", "back" ]]
+[connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="TableButtonPressed" from="Table" to="." method="_on_TableButtonPressed"]
+[connection signal="mouse_entered" from="Exist/Rewrite" to="." method="_on_mouse_entered" binds= [ "choose", "rewrite" ]]
+[connection signal="mouse_exited" from="Exist/Rewrite" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Exist/Rewrite" to="." method="_on_Rewrite_pressed"]
+[connection signal="mouse_entered" from="Exist/Delete" to="." method="_on_mouse_entered" binds= [ "choose", "delete" ]]
+[connection signal="mouse_exited" from="Exist/Delete" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Exist/Delete" to="." method="_on_Delete_pressed"]
+[connection signal="mouse_entered" from="New/Save" to="." method="_on_mouse_entered" binds= [ "choose", "save" ]]
+[connection signal="mouse_exited" from="New/Save" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="New/Save" to="." method="_on_Save_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

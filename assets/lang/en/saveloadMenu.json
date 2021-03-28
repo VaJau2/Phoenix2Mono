@@ -1,0 +1,27 @@
+﻿{
+  "main": {
+    "page_save": "/Phoenix2/Pause_menu/Save_menu",
+    "page_load_main": "/Phoenix2/Main_menu/Load_menu",
+    "page_load_pause": "/Phoenix2/Pause_menu/Load_menu",
+    "back": "[Back]",
+    "input_placeholder": "Press save name",
+    "rewrite": "[Rewrite]",
+    "delete": "[Delete]",
+    "load": "[Load]",
+    "save": "[Save]"
+  },
+  
+  "choose": {
+    "back": "Back",
+    "rewrite": "Rewrite save file",
+    "delete": "Delete save file",
+    "load": "Load save file",
+    "save": "Create new save file"
+  },
+
+  "table": {
+    "name": "name",
+    "date": "data",
+    "level": "level"
+  }
+}

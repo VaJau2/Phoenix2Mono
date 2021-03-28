@@ -8,7 +8,7 @@ public class MainMenu : MenuBase
     ColorRect backgroundRect;
 
     Control changeRaceMenu;
-    Control loadMenu;
+    LoadMenu loadMenu;
     Control aboutMenu;
 
     Control chooseLanguage;
@@ -69,7 +69,7 @@ public class MainMenu : MenuBase
             GetNode<Label>("ChangeRace/unicorn/Label"),
             GetNode<Label>("ChangeRace/pegasus/Label")
         };
-        loadMenu = GetNode<Control>("Load");
+        loadMenu = GetNode<LoadMenu>("Load");
 
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
 
@@ -103,6 +103,7 @@ public class MainMenu : MenuBase
         settingsButton.Text = getMenuText("settings");
         aboutButton.Text = getMenuText("about");
         exitButton.Text = getMenuText("exit");
+        loadMenu.LoadInterfaceLanguage();
     }
 
     private void loadAboutLanguage()
@@ -129,7 +130,7 @@ public class MainMenu : MenuBase
         audi.Play();
     }
 
-    public async override void SetMenuVisible(bool animating = false)
+    public override async void SetMenuVisible(bool animating = false)
     {
         Visible = true;
         pageLabel.Visible = true;
@@ -217,6 +218,7 @@ public class MainMenu : MenuBase
     public void _on_load_pressed()
     {
         SoundClick();
+        loadMenu.UpdateTable();
         loadMenu.Visible = true;
     }
 
@@ -249,13 +251,12 @@ public class MainMenu : MenuBase
         GetTree().Quit();
     }
 
-    public void _on_choose_pressed(InputEvent @event, string raceName) 
+    public void _on_choose_pressed(InputEvent @event, string raceName)
     {
-        if (Input.IsActionJustPressed("ui_click")) {
-            Race newRace = Global.RaceFromString(raceName);
-            global.playerRace = newRace;
-            GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
-        }
+        if (!Input.IsActionJustPressed("ui_click")) return;
+        Race newRace = Global.RaceFromString(raceName);
+        global.playerRace = newRace;
+        GetNode<LevelsLoader>("/root/Main").LoadLevel(1);
     }
 
     public void _on_selectArea_mouse_entered(string raceName, string areaName)
@@ -268,10 +269,9 @@ public class MainMenu : MenuBase
 
     public void _on_selectArea_mouse_exited()
     {
-        if (tempHover != null) {
-            base._on_mouse_exited();
-            tempHover.Visible = false;
-            tempHover = null;
-        }
+        if (tempHover == null) return;
+        base._on_mouse_exited();
+        tempHover.Visible = false;
+        tempHover = null;
     }
 }

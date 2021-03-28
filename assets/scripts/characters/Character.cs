@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class Character : KinematicBody
+public class Character : KinematicBody, ISavable
 {
     public int Health {get; private set;}
     public int HealthMax;
@@ -46,7 +46,7 @@ public class Character : KinematicBody
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
     // код загрузки лежит в global.cs
-    public Dictionary GetSaveData() 
+    public virtual Dictionary GetSaveData() 
     {
         Dictionary savingData = new Dictionary
         {
@@ -63,7 +63,7 @@ public class Character : KinematicBody
     }
 
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
-    public void LoadData(Dictionary data) 
+    public virtual void LoadData(Dictionary data) 
     {
         Vector3 newPos = new Vector3((float)data["pos_x"], (float)data["pos_y"], (float)data["pos_z"]);
         Vector3 newRot = new Vector3((float)data["rot_x"], (float)data["rot_y"], (float)data["rot_z"]);

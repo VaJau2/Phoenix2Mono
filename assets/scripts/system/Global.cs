@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System.Globalization;
+using System.Collections.Generic;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
 public class Global {
@@ -25,6 +26,9 @@ public class Global {
     public Race playerRace = Race.Earthpony;
 
     public Settings Settings;
+    
+    //массив файлов сохранений
+    public static List<FileTableLine> saveFilesArray = new List<FileTableLine>();
 
     public void SetPause(Node self, bool pause, bool pauseMusicArg = true) 
     {
@@ -59,7 +63,18 @@ public class Global {
 
     public void LoadSettings(Node menu) 
     {
-        Settings = new Settings(menu);
+        GD.Print("load settings");
+        if (Settings == null)
+        {
+            GD.Print("load save files");
+            foreach (string saveFileName in GetSaveFiles())
+            {
+                saveFilesArray.Add(GetFileMetadata(saveFileName));
+            }
+            
+            Settings = new Settings(menu);
+        }
+        
         Settings.LoadSettings();
     }
 
@@ -174,6 +189,45 @@ public class Global {
         }
         
         return result;
+    }
+    
+    //возвращает название всех файлов в папке /saves/
+    private static Array<string> GetSaveFiles()
+    {
+        var files = new Array<string>();
+        var dir = new Directory();
+        dir.Open("res://saves/");
+        dir.ListDirBegin();
+
+        while (true)
+        {
+            string file = dir.GetNext();
+            if (file == "") break;
+            if (!file.BeginsWith("."))
+            {
+                files.Add("res://saves/" + file);
+            }
+        }
+        
+        dir.ListDirEnd();
+        return files;
+    }
+
+    private static FileTableLine GetFileMetadata(string fileName)
+    {
+        var file = new File();
+        file.Open(fileName, File.ModeFlags.Read);
+        string name = file.GetLine();
+        string date = file.GetLine();
+        string level = InterfaceLang.GetPhrase("levels", "levelNames",file.GetLine());
+        file.Close();
+        return new FileTableLine(name, date, level);
+    }
+
+    public static void DeleteSaveFile(string fileName)
+    {
+        GD.Print("delete file: " + fileName);
+        new Directory().Remove("res://saves/" + fileName);
     }
 }
 

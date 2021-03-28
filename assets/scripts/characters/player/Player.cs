@@ -469,6 +469,16 @@ public class Player : Character
         RotateY(-horizontalAngle);
     }
 
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        return base.GetSaveData();
+    }
+
     public override void _Ready()
     {
         global.player = this;
