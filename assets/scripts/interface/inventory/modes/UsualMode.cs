@@ -71,104 +71,95 @@ public class UsualMode: InventoryMode {
             WearTempItem(artifactButton); return;
         }
 
-        foreach(ItemIcon otherButton in itemButtons) {
-            Control buttonControl = otherButton as Control;
-            if(tempButton != otherButton && checkMouseInButton(buttonControl)) {
-                if(isUnwearingItem(itemType)) {
-                    if (!canTakeItemOff()) return;
-                    inventory.UnwearItem(tempButton.myItemCode);
-                }
-
-                ChangeItemButtons(tempButton, otherButton);
-                SetTempButton(otherButton, false);
-                dragIcon.Texture = null;
+        foreach(var otherButton in itemButtons) {
+            var buttonControl = (Control) otherButton;
+            if (tempButton == otherButton || !checkMouseInButton(buttonControl)) continue;
+            if(isUnwearingItem(itemType)) {
+                if (!canTakeItemOff()) return;
+                inventory.UnwearItem(tempButton.myItemCode);
             }
+
+            ChangeItemButtons(tempButton, otherButton);
+            SetTempButton(otherButton, false);
+            dragIcon.Texture = null;
         }
     }
 
-    protected bool ItemIsBindable(string itemType) 
+    private static bool ItemIsBindable(string itemType) 
     {
         return itemType == "weapon" || itemType == "food" || itemType == "meds";
     }
 
-    protected void BindHotkeys() 
+    private void BindHotkeys()
     {
-        if (tempButton.myItemCode != null) {
-            if (ItemIsBindable(tempItemData["type"].ToString())) {
-                for (int i = 0; i < 10; i++) {
-                    if (Input.IsKeyPressed(48 + i)) {
-                        //если клавиша уже забиндена
-                        if (menu.bindedButtons.Keys.Contains(i)) {
-                            //если нажата та же кнопка, она стирается
-                            if (menu.bindedButtons[i] == tempButton) {
-                                tempButton.SetBindKey(null);
-                                menu.bindedButtons.Remove(i);
-                            } else {
-                            //если на ту же кнопку биндится другая кнопка, предыдущая стирается
-                                ItemIcon oldBindedButton = menu.bindedButtons[i];
-                                oldBindedButton.SetBindKey(null);
-                                menu.bindedButtons[i] = tempButton;
-                                tempButton.SetBindKey(i.ToString());
-                            }
-                        } else {
-                            //если кнопка биндится впервые
-                            menu.bindedButtons[i] = tempButton;
-                            tempButton.SetBindKey(i.ToString());
-                        }
-                    }
+        if (tempButton.myItemCode == null) return;
+        if (!ItemIsBindable(tempItemData["type"].ToString())) return;
+        for (int i = 0; i < 10; i++)
+        {
+            if (!Input.IsKeyPressed(48 + i)) continue;
+            //если клавиша уже забиндена
+            if (menu.bindedButtons.Keys.Contains(i)) {
+                //если нажата та же кнопка, она стирается
+                if (menu.bindedButtons[i] == tempButton) {
+                    tempButton.SetBindKey(null);
+                    menu.bindedButtons.Remove(i);
+                } else {
+                    //если на ту же кнопку биндится другая кнопка, предыдущая стирается
+                    ItemIcon oldBindedButton = menu.bindedButtons[i];
+                    oldBindedButton.SetBindKey(null);
+                    menu.bindedButtons[i] = tempButton;
+                    tempButton.SetBindKey(i.ToString());
                 }
+            } else {
+                //если кнопка биндится впервые
+                menu.bindedButtons[i] = tempButton;
+                tempButton.SetBindKey(i.ToString());
             }
         }
     }
 
-    protected void UseHotkeys() 
+    private void UseHotkeys() 
     {
-        for (int i = 0; i < 10; i++) {
-            if (Input.IsKeyPressed(48 + i) && menu.bindedButtons.Keys.Contains(i)) {
-                SetTempButton(menu.bindedButtons[i], false);
-                UseTempItem();
-            }
+        for (var i = 0; i < 10; i++)
+        {
+            if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
+            SetTempButton(menu.bindedButtons[i], false);
+            UseTempItem();
         }
     }
 
     private void CheckAutoheal()
     {
-        if (Input.IsActionJustPressed("autoheal") && player.MayMove) {
-            if (player.Health == player.HealthMax) {
-                inventory.ItemsMessage("youAreHealthy");
-                return;
-            }
-
-            foreach(ItemIcon tempButton in itemButtons) {
-                if (tempButton.myItemCode != null) {
-                    SetTempButton(tempButton);
-                    if (tempButton.myItemCode == "heal-potion" 
-                    || tempItemData["type"].ToString() == "food") {
-                        UseTempItem();
-                        return;
-                    }
-                }
-            }
-            inventory.ItemsMessage("cantFindHeal");
-            CheckTempIcon();
+        if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
+        if (player.Health == player.HealthMax) {
+            inventory.ItemsMessage("youAreHealthy");
+            return;
         }
+
+        foreach(var newTempButton in itemButtons)
+        {
+            if (newTempButton.myItemCode == null) continue;
+            SetTempButton(newTempButton);
+            if (tempButton.myItemCode != "heal-potion" && tempItemData["type"].ToString() != "food") continue;
+            UseTempItem();
+            return;
+        }
+        inventory.ItemsMessage("cantFindHeal");
+        CheckTempIcon();
     }
 
-    protected bool canTakeItemOff() 
+    private bool canTakeItemOff() 
     {
         string itemType = tempItemData["type"].ToString();
-        if (itemType == "artifact" && inventory.artifact != "") {
-            Dictionary artifactData = ItemJSON.GetItemData(inventory.artifact);
-            if (artifactData.Contains("cantUnwear")) {
-                inventory.MessageCantUnwear(artifactData["name"].ToString());
-                return false;
-            }
-        }
+        if (itemType != "artifact" || inventory.artifact == "") return true;
         
-        return true;
+        var artifactData = ItemJSON.GetItemData(inventory.artifact);
+        if (!artifactData.Contains("cantUnwear")) return true;
+        inventory.MessageCantUnwear(artifactData["name"].ToString());
+        return false;
     }
 
-    protected void WearTempItem(ItemIcon wearButton)
+    private void WearTempItem(ItemIcon wearButton)
     {
         //если вещь надевается
         if (tempButton != wearButton) {
@@ -215,7 +206,7 @@ public class UsualMode: InventoryMode {
         ModalOpened = true;
     }
 
-    protected void UseTempItem()
+    private void UseTempItem()
     {
         string itemType = tempItemData["type"].ToString();
         if (inventory.itemIsUsable(itemType)) {
@@ -241,12 +232,13 @@ public class UsualMode: InventoryMode {
         tempButton = null;
     }
 
-    protected void DropTempItem() 
+    private void DropTempItem() 
     {
         if (tempBag == null) {
             tempBag = (FurnChest)bagPrefab.Instance();
             Node parent = player.GetNode("/root/Main/Scene");
             parent.AddChild(tempBag);
+            tempBag.Name = "Created_" + tempBag.Name;
             tempBag.Translation = player.Translation;
             tempBag.Translate(Vector3.Down * 0.5f);
         }
