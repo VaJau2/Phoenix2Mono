@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/characters/NPC/CoversManager.cs" type="Script" id=11]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
@@ -43,6 +44,7 @@ ammo = {
 }
 
 [node name="npc" type="Node" parent="."]
+script = ExtResource( 10 )
 
 [node name="facetest" parent="npc" instance=ExtResource( 9 )]
 transform = Transform( -0.0242404, 0, 0.999706, 0, 1, 0, -0.999706, 0, -0.0242404, 32.773, 0, -9.20512 )

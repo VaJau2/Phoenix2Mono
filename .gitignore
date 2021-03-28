@@ -1,5 +1,8 @@
 /.import/*
 /.mono/*
 /.vscode/*
+/.idea/*
+/saves/*
 
 *.import
+*.DotSettings.user

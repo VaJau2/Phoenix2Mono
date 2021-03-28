@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/models/props/terrain/terrain1v2.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/materials/props/background/forest.tres" type="Material" id=5]
 [ext_resource path="res://assets/materials/environments/default_env.tres" type="Environment" id=6]
 [ext_resource path="res://objects/props/plants/treesLibrary.meshlib" type="MeshLibrary" id=7]
+[ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=8]
 [ext_resource path="res://objects/props/vehicles/Jeep.tscn" type="PackedScene" id=9]
 [ext_resource path="res://objects/props/buildings/palatka.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/props/fire.tscn" type="PackedScene" id=11]
@@ -47,6 +48,7 @@ transform = Transform( 0.174679, 0, 0.984625, 0, 1, 0, -0.984625, 0, 0.174679, 1
 clothCode = "private_uniform"
 
 [node name="npc" type="Node" parent="."]
+script = ExtResource( 8 )
 
 [node name="private1" parent="npc" instance=ExtResource( 20 )]
 transform = Transform( -0.765135, 0, 0.64387, 0, 1, 0, -0.64387, 0, -0.765135, 94.9384, -2.8372, -96.574 )
@@ -177,6 +179,7 @@ startAmmoCount = {
 
 [node name="bag2" parent="terrain/props/bags" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -122.297, 5.12118, -110.139 )
+SpawnRandomItems = true
 
 [node name="bag3" parent="terrain/props/bags" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 116.412, 10.1955, 130.109 )

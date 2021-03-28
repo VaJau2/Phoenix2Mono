@@ -73,11 +73,10 @@ public class MenuBase : Control
             downLabel.PercentVisible += 0.1f;
             await global.ToTimer(0.01f, this);
         }
-    } 
+    }
 
-    public void _on_mouse_entered(string section, string messageLink) {
-        downLabel.Text = InterfaceLang.GetPhrase(menuName, section, messageLink);
-
+    private void updateDownLabel(string section, string messageLink)
+    {
         if (downAdded) {
             downLabel.Text += "_";
         }
@@ -85,6 +84,18 @@ public class MenuBase : Control
 
         tempSection = section;
         tempPhrase = messageLink;
+    }
+    
+    public void _on_mouse_entered(string section, string messageLink)
+    {
+        downLabel.Text = InterfaceLang.GetPhrase(menuName, section, messageLink);
+        updateDownLabel(section, messageLink);
+    }
+
+    public void _on_mouse_entered(string section, string messageLink, string customMenuName)
+    {
+        downLabel.Text = InterfaceLang.GetPhrase(customMenuName, section, messageLink);
+        updateDownLabel(section, messageLink);
     }
 
     public void ReloadMouseEntered()
