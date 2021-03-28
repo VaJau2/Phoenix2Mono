@@ -252,7 +252,7 @@
         "name": ".20 ammo",
         "description": "Powerful weapon cartridges for cheap shotguns",
         "type": "ammo",
-        "icon": "ammo12",
+        "icon": "ammo20",
         "price": "3" 
     },
     "ammo307": {
