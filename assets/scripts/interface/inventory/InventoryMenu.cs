@@ -53,7 +53,7 @@ public class InventoryMenu : Control, IMenu
     
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
-        mode = (mode == null) ? new UsualMode(this) : mode;
+        mode = mode ?? new UsualMode(this);
         mode.LoadItemButtons(newItems, ammo);
     }
 
@@ -65,22 +65,20 @@ public class InventoryMenu : Control, IMenu
 
     public override void _Input(InputEvent @event)
     {
-        if (mode != null) {
-            mode.UpdateInput(@event);
+        if (mode == null) return;
+        mode.UpdateInput(@event);
 
-            if (!mode.isAnimating && @event is InputEventKey) {
-                if (Input.IsActionJustPressed("inventory")) {
-                    if (isOpen) {
-                        if (mode.ModalOpened) {
-                            mode.CloseModal();
-                        } else {
-                            MenuManager.CloseMenu(this);
-                        }
-                        
-                    } else {
-                        MenuManager.TryToOpenMenu(this);
-                    }
+        if (mode.isAnimating || !(@event is InputEventKey)) return;
+        if (Input.IsActionJustPressed("inventory")) {
+            if (isOpen) {
+                if (mode.ModalOpened) {
+                    mode.CloseModal();
+                } else {
+                    MenuManager.CloseMenu(this);
                 }
+                        
+            } else {
+                MenuManager.TryToOpenMenu(this);
             }
         }
     }

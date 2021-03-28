@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -63,6 +64,11 @@ public class ChestMode: InventoryMode
             if (Input.IsActionJustPressed("ui_shift")) {
                 _on_takeAll_pressed();
             }
+
+            if (Input.IsActionJustPressed("use"))
+            {
+                MenuManager.CloseMenu(menu);
+            }
         }
     }
 
@@ -76,7 +82,7 @@ public class ChestMode: InventoryMode
         }
         await Global.Get().ToTimer(0.1f);
         if (Object.IsInstanceValid(tempChest)) UpdateChestPositions();
-        CloseMenu();
+        MenuManager.CloseMenu(menu);
     }
 
     private void ClearChestButtons()
@@ -117,17 +123,7 @@ public class ChestMode: InventoryMode
         }
     }
 
-    private ItemIcon FirstEmptyChestButton 
-    {
-        get {
-            foreach(ItemIcon button in chestButtons) {
-                if (button.myItemCode == null) {
-                    return button;
-                }
-            }
-            return null;
-        }
-    }
+    private ItemIcon FirstEmptyChestButton => chestButtons.FirstOrDefault(button => button.myItemCode == null);
 
     private ItemIcon AddChestItem(string itemCode) 
     {
