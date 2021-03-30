@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/textures/interface/bg_pic/bg_dust.png" type="Texture" id=11]
 [ext_resource path="res://assets/materials/shaders/godrays.tres" type="Material" id=12]
+[ext_resource path="res://assets/audio/music/mainMenu.ogg" type="AudioStream" id=13]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0.454545 ), 0.0, 1.71599, 0, 0, Vector2( 1, 0.0909091 ), -4.12208, 0.0, 0, 0 ]
@@ -786,6 +787,12 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
+volume_db = -3.0
+bus = "Music"
 [connection signal="mouse_entered" from="chooseLanguage/russian" to="." method="_on_mouse_entered" binds= [ "main", "chooseRussian" ]]
 [connection signal="mouse_exited" from="chooseLanguage/russian" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="chooseLanguage/russian" to="." method="_on_language_pressed" binds= [ false ]]

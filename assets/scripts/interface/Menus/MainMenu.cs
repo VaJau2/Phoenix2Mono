@@ -4,6 +4,7 @@ public class MainMenu : MenuBase
 {
     Global global = Global.Get();
     AudioStreamPlayer audi;
+    AudioStreamPlayer music;
 
     ColorRect backgroundRect;
 
@@ -162,7 +163,8 @@ public class MainMenu : MenuBase
             pageLabel.Text = getMenuText("page");
             backgroundRect.Color = new Color(0, 0, 0, 0);
         }
-
+    
+        music.Play();
         downLabel.Visible = true;
         label5.Visible = true;
 
@@ -182,6 +184,7 @@ public class MainMenu : MenuBase
         
         base._Ready();
         audi = GetNode<AudioStreamPlayer>("audi");
+        music = GetNode<AudioStreamPlayer>("music");
         LoadMenu();
 
         if (global.Settings.SettingsLoaded) 
