@@ -96,7 +96,6 @@ public class SaveMenu : Control
 
     public void _on_Save_pressed()
     {
-        parentMenu.SoundClick();
         SaveGame(lineEdit.Text);
         CreateTableLine(lineEdit.Text);
     }
@@ -161,7 +160,6 @@ public class SaveMenu : Control
         saveFile.StoreLine(fileName);                             //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());     //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString()); //номер текущего уровня
-        saveFile.StoreLine("------------------");
         //данные игровых объектов
         var objectsData = new Dictionary<string, Dictionary>();
         foreach (Node tempNode in GetTree().GetNodesInGroup("savable"))

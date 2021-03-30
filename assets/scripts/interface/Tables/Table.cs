@@ -39,7 +39,6 @@ public class Table : VBoxContainer
     public Button SpawnButton(FileTableLine fileData)
     {
         var newButton = new Button {Name = buttonsCount.ToString()};
-        GD.Print("create button named " + newButton.Name);
         newButton.Connect("pressed", this, nameof(_on_table_button_click), new Godot.Collections.Array() {newButton.Name});
         newButton.ToggleMode = true;
         newButton.Align = Button.TextAlign.Left;

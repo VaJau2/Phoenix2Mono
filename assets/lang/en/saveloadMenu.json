@@ -10,6 +10,12 @@
     "load": "[Load]",
     "save": "[Save]"
   },
+
+  "modal": {
+    "header": "Error",
+    "desc": "File corrupted",
+    "ok": "[damn it]"
+  },
   
   "choose": {
     "back": "Back",

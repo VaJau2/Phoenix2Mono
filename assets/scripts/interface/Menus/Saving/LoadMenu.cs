@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Godot.Collections;
 
 public class LoadMenu : Control
 {
@@ -15,6 +17,11 @@ public class LoadMenu : Control
     
     private Button loadButton;
     private Button deleteButton;
+
+    private Control modalError;
+    private Label modalHeader;
+    private Label modalDesc;
+    private Button modalOk;
     
     public void UpdateTable()
     {
@@ -28,6 +35,10 @@ public class LoadMenu : Control
         backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "back");
         loadButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "load");
         deleteButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "delete");
+
+        modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
+        modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
+        modalOk.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "ok");
         
         table.HeaderName = InterfaceLang.GetPhrase("saveloadMenu", "table", "name");
         table.HeaderDate = InterfaceLang.GetPhrase("saveloadMenu", "table", "date");
@@ -45,6 +56,10 @@ public class LoadMenu : Control
         table = tableBack.GetNode<Table>("table");
         loadButton = GetNode<Button>("Load");
         deleteButton = GetNode<Button>("Delete");
+        modalError = GetNode<Control>("modalError");
+        modalHeader = modalError.GetNode<Label>("back/Header");
+        modalDesc = modalError.GetNode<Label>("back/Text");
+        modalOk = modalError.GetNode<Button>("back/OK");
         LoadInterfaceLanguage();
     }
 
@@ -82,5 +97,35 @@ public class LoadMenu : Control
         
         loadButton.Disabled = true;
         deleteButton.Disabled = true;
+    }
+
+    public void _on_Load_pressed()
+    {
+        parentMenu.SoundClick();
+        LoadGame(table.GetTempFileData.name);
+    }
+
+    private void LoadGame(string fileName)
+    {
+        try
+        {
+            var saveFile = new File();
+            var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+            saveFile.Open(filePath, File.ModeFlags.Read);
+            for (int i = 0; i < 2; i++) saveFile.GetLine();
+            var levelNum = int.Parse(saveFile.GetLine());
+            var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
+
+            GetNode<LevelsLoader>("/root/Main").LoadLevel(levelNum, levelsData);
+        }
+        catch (Exception ex)
+        {
+            modalError.Visible = true;
+        }
+    }
+    
+    public void _on_Error_OK_pressed()
+    {
+        modalError.Visible = false;
     }
 }

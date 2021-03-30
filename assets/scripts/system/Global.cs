@@ -63,10 +63,8 @@ public class Global {
 
     public void LoadSettings(Node menu) 
     {
-        GD.Print("load settings");
         if (Settings == null)
         {
-            GD.Print("load save files");
             foreach (string saveFileName in GetSaveFiles())
             {
                 saveFilesArray.Add(GetFileMetadata(saveFileName));
@@ -226,7 +224,6 @@ public class Global {
 
     public static void DeleteSaveFile(string fileName)
     {
-        GD.Print("delete file: " + fileName);
         new Directory().Remove("res://saves/" + fileName);
     }
 }
