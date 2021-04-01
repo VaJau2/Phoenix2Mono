@@ -34,7 +34,7 @@ public class LoadMenu : Control
     {
         var menuName = parentMenu is MainMenu ? "main" : "pause";
         pageLabel.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "page_load_" + menuName);
-        backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "back");
+        backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "Gback");
         loadButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "load");
         deleteButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "delete");
 
