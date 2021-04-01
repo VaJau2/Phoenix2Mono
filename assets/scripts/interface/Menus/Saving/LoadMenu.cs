@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -32,7 +34,7 @@ public class LoadMenu : Control
     {
         var menuName = parentMenu is MainMenu ? "main" : "pause";
         pageLabel.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "page_load_" + menuName);
-        backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "back");
+        backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "Gback");
         loadButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "load");
         deleteButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "delete");
 
@@ -114,9 +116,11 @@ public class LoadMenu : Control
             saveFile.Open(filePath, File.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
+            Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
+            var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
             var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
 
-            GetNode<LevelsLoader>("/root/Main").LoadLevel(levelNum, levelsData);
+            GetNode<LevelsLoader>("/root/Main").LoadLevel(levelNum, levelsData, deletedObjects);
         }
         catch (Exception ex)
         {

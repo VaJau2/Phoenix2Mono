@@ -86,6 +86,8 @@ public class PauseMenu : MenuBase, IMenu
         }
             
         if (Visible) {
+            loadMenu.Visible = false;
+            saveMenu.Visible = false;
             MenuManager.CloseMenu(this);
         } else {
             MenuManager.TryToOpenMenu(this, true);

@@ -181,9 +181,10 @@ public class ChestMode: InventoryMode
 
         //если сундук - это сумка, и она опустошается
         //то она удаляется
-        if (isEmpty && tempChest.isBag) {
-           tempChest.QueueFree();
-           MenuManager.CloseMenu(menu);
+        if (isEmpty && tempChest.isBag) { 
+            Global.AddDeletedObject(tempChest.Name);
+            tempChest.QueueFree();
+            MenuManager.CloseMenu(menu);
         }
     }
 

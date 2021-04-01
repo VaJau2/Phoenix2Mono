@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -18,6 +19,9 @@ public class LevelsLoader : Node
 	private PackedScene dealthMenuPrefab;
 	private bool mainMenuOn = true;
 	private ResourceInteractiveLoader loader;
+	
+	[Signal]
+	public delegate void LevelLoaded();
 
 	public override void _Ready()
 	{
@@ -42,12 +46,13 @@ public class LevelsLoader : Node
 		menuParent.MoveChild(currentMenu, 0);
 	}
 
-	private void updateScene()
+	private async void updateScene()
 	{
-		if(currentScene != null) {
+		if (currentScene != null) {
 			global.player = null;
 			currentScene.QueueFree();
 			currentScene = null;
+			await ToSignal(GetTree(), "idle_frame");
 		}
 
 		global.SetPause(this, false);
@@ -101,6 +106,50 @@ public class LevelsLoader : Node
 		updateMenu();
 	}
 
+	public async void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
+	{
+		LoadLevel(levelNum);
+		await ToSignal(this, nameof(LevelLoaded));
+		await ToSignal(GetTree(), "idle_frame");
+
+		//загрузка сохранения
+		Node scene = GetNode("/root/Main/Scene");
+		
+		//удаление удаленных в сохранении объектов
+		foreach (string objName in deletedObjects)
+		{
+			var foundedObject = Global.FindNodeInScene(scene, objName);
+			foundedObject.QueueFree();
+		}
+
+		foreach (string objKey in levelData.Keys)
+		{
+			Dictionary objData = (Dictionary) levelData[objKey];
+			
+			//создание создаваемых в сохранении объектов
+			if (objKey.BeginsWith("Created_"))
+			{
+				string className = objData["class_name"].ToString();
+				string parentName = objData["parent"].ToString();
+				
+				var scriptType = Type.GetType(className);
+				if (scriptType == null) throw new InvalidCastException();
+				var scriptObj = Activator.CreateInstance(scriptType) as ISavable;
+				var parent = Global.FindNodeInScene(scene, parentName);
+				
+				scriptObj?.LoadData(objData);
+				parent?.AddChild((Node)scriptObj);
+			}
+			
+			//загрузка загружаемых объектов
+			else
+			{
+				ISavable node = Global.FindNodeInScene(scene, objKey) as ISavable;
+				node?.LoadData(objData);
+			}
+		}
+	}
+
 	public void ReloadLevel()
 	{
 		updateScene();
@@ -140,6 +189,7 @@ public class LevelsLoader : Node
 			currentScene = newScene;
 
 			deleteLoadingMenu();
+			EmitSignal(nameof(LevelLoaded));
 		}
 		else if(err != Error.Ok) {
 			GD.PrintErr(err);
