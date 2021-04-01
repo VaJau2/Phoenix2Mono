@@ -30,6 +30,38 @@ public class Global {
     //массив файлов сохранений
     public static List<FileTableLine> saveFilesArray = new List<FileTableLine>();
 
+    public static Array<string> deletedObjects { get; private set; } = new Array<string>();
+
+    public static void AddDeletedObject(string name)
+    {
+        if (!name.BeginsWith("Created_") && !deletedObjects.Contains(name))
+        {
+            deletedObjects.Add(name);
+        } 
+    }
+    
+    //Поиск нода в сцене по его имени
+    public static Node FindNodeInScene(Node scene, string name)
+    {
+        var queue = new Queue<Node>();
+        queue.Enqueue(scene);
+
+        while (queue.Count > 0)
+        {
+            var node = queue.Dequeue();
+
+            if (node.Name == name)
+                return node;
+
+            foreach (Node child in node.GetChildren())
+            {
+                queue.Enqueue(child);
+            }
+        }
+
+        return null;
+    }
+
     public void SetPause(Node self, bool pause, bool pauseMusicArg = true) 
     {
         bool pauseMusic = pauseMusicArg;
@@ -54,8 +86,7 @@ public class Global {
         }
 
         foreach(var tempObj in player.GetTree().GetNodesInGroup("unpaused_sound")) {
-            if (tempObj is AudioStreamPlayer) {
-                var tempAudi = tempObj as AudioStreamPlayer;
+            if (tempObj is AudioStreamPlayer tempAudi) {
                 tempAudi.StreamPaused = pause;
             }
         }

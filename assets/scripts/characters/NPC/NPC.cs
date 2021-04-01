@@ -124,6 +124,7 @@ public class NPC : Character
         }
         
         await Global.Get().ToTimer(5f);
+        Global.AddDeletedObject(Name);
         QueueFree();
     }
 

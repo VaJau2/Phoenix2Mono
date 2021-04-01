@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -21,6 +22,8 @@ public class SaveMenu : Control
 
     private Control existButtons;
     private Control newButtons;
+
+    private string tempText = "";
 
     public void UpdateTable()
     {
@@ -81,16 +84,32 @@ public class SaveMenu : Control
         lineEdit.EmitSignal("text_changed", fileName);
     }
 
+    private static bool IsValidFilename(string line)
+    {
+        var forbiddenChars = new[] {':', '/', '\\', '?', '*', '\"', '|', '%', '<', '>'};
+        var lineArray = line.ToCharArray();
+        return !forbiddenChars.Any(tempLineChar => lineArray.Any(tempCheckChar => tempLineChar == tempCheckChar));
+    }
+
     public void _on_LineEdit_text_changed(string newText)
     {
         var textNotEmpty = newText.Length > 0;
         if (textNotEmpty)
         {
+            if (!IsValidFilename(newText))
+            {
+                int oldCaretPosition = lineEdit.CaretPosition;
+                lineEdit.Text = tempText;
+                lineEdit.CaretPosition = oldCaretPosition - 1;
+                return;
+            }
+
+            tempText = newText;
             var lineExists = table.LineExists(newText);
             UpdateControls(true, lineExists);
             return;
         }
-
+        
         UpdateControls(false);
     }
 
@@ -157,9 +176,14 @@ public class SaveMenu : Control
         //saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
         saveFile.Open(filePath, File.ModeFlags.Write);
         
-        saveFile.StoreLine(fileName);                             //название сохранения
-        saveFile.StoreLine(DateTime.Now.ToShortDateString());     //дата
-        saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString()); //номер текущего уровня
+        saveFile.StoreLine(fileName);                            //название сохранения
+        saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
+        saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
+        saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
+        
+        //данные удаленных объектов
+        saveFile.StoreLine(JSON.Print(Global.deletedObjects));
+        
         //данные игровых объектов
         var objectsData = new Dictionary<string, Dictionary>();
         foreach (Node tempNode in GetTree().GetNodesInGroup("savable"))
@@ -176,39 +200,40 @@ public class SaveMenu : Control
     {
         var DicVer = new System.Collections.Generic.Dictionary<char, char>()
         {
-            {'а', 'а'},
-            {'б', 'b'},
-            {'в', 'v'},
-            {'г', 'g'},
-            {'д', 'd'},
-            {'е', 'e'},
-            {'ё', 'e'},
-            {'ж', 'g'},
-            {'з', 'z'},
-            {'и', 'i'},
-            {'й', 'y'},
-            {'к', 'k'},
-            {'л', 'l'},
-            {'м', 'm'},
-            {'н', 'n'},
-            {'о', 'o'},
-            {'п', 'p'},
-            {'р', 'r'},
-            {'с', 's'},
-            {'т', 't'},
-            {'у', 'u'},
-            {'ф', 'f'},
-            {'х', 'h'},
-            {'ц', 'c'},
-            {'ч', 'h'},
-            {'ш', 'h'},
-            {'щ', 'h'},
-            {'ъ', 'b'},
-            {'ы', 'i'},
-            {'ь', 'b'},
-            {'э', 'a'},
-            {'ю', 'u'},
-            {'я', 'a'},
+            {'а', 'а'}, {'А', 'A'},
+            {'б', 'b'}, {'Б', 'B'},
+            {'в', 'v'}, {'В', 'V'},
+            {'г', 'g'}, {'Г', 'G'},
+            {'д', 'd'}, {'Д', 'D'},
+            {'е', 'e'}, {'Е', 'E'},
+            {'ё', 'e'}, {'Ё', 'E'},
+            {'ж', 'g'}, {'Ж', 'G'},
+            {'з', 'z'}, {'З', 'Z'},
+            {'и', 'i'}, {'И', 'I'},
+            {'й', 'y'}, {'Й', 'Y'},
+            {'к', 'k'}, {'К', 'K'},
+            {'л', 'l'}, {'Л', 'L'},
+            {'м', 'm'}, {'М', 'M'},
+            {'н', 'n'}, {'Н', 'N'},
+            {'о', 'o'}, {'О', 'O'},
+            {'п', 'p'}, {'П', 'P'},
+            {'р', 'r'}, {'Р', 'R'},
+            {'с', 's'}, {'С', 'S'},
+            {'т', 't'}, {'Т', 'T'},
+            {'у', 'u'}, {'У', 'U'},
+            {'ф', 'f'}, {'Ф', 'F'},
+            {'х', 'h'}, {'Х', 'H'},
+            {'ц', 'c'}, {'Ц', 'C'},
+            {'ч', 'h'}, {'Ч', 'H'},
+            {'ш', 'h'}, {'Ш', 'H'},
+            {'щ', 'h'}, {'Щ', 'H'},
+            {'ъ', 'b'}, {'Ъ', 'b'},
+            {'ы', 'i'}, {'Ы', 'I'},
+            {'ь', 'b'}, {'Ь', 'b'},
+            {'э', 'a'}, {'Э', 'A'},
+            {'ю', 'u'}, {'Ю', 'U'},
+            {'я', 'a'}, {'Я', 'A'},
+
             {' ', '_'}
         };
 
