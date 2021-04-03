@@ -79,6 +79,10 @@ public class LevelsLoader : Node
 				respawnMenu(pauseMenuPrefab);
 				mainMenuOn = false;
 			}
+			else
+			{
+				MenuManager.CloseMenu(currentMenu as IMenu);
+			}
 
 			currentMenu.Visible = false;
 		} else {

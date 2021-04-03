@@ -5,6 +5,8 @@ public static class MenuManager {
     static IMenu openedMenu;
     static IMenu backgroundMenu = null;
 
+    public static bool SomeMenuOpen => openedMenu != null;
+
     public static void TryToOpenMenu(IMenu menu, bool closeOther = false)
     {
         if (openedMenu != null) {

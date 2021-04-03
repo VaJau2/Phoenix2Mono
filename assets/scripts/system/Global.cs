@@ -221,7 +221,7 @@ public class Global {
     }
     
     //возвращает название всех файлов в папке /saves/
-    private static Array<string> GetSaveFiles()
+    public static Array<string> GetSaveFiles()
     {
         var files = new Array<string>();
         var dir = new Directory();

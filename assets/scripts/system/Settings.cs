@@ -24,7 +24,7 @@ public class Settings
         "ui_up", "ui_down", "ui_left", "ui_right",
         "jump", "ui_shift", "use", "crouch", "dash",
         "legsHit", "changeView", "task", "inventory",
-        "autoheal"
+        "autoheal", "ui_quicksave", "ui_quickload"
     };
 
     private void updateAudioBus(int num, float value)

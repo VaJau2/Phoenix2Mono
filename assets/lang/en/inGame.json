@@ -24,7 +24,9 @@
     },
 
     "messages": {
-        "notEnoughMana": "Not enough mana"
+        "notEnoughMana": "Not enough mana",
+        "gameQuicksaved": "Quicksaving...",
+        "quicksaveNotFound": "Quicksave file not found"
     },
 
     "cameraHints": {

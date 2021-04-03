@@ -72,7 +72,9 @@
         "changeView": "Set \"change view\" button",
         "seeTasks": "Set \"see tasks\" button",
         "inventory": "Set \"inventory\" button",
-        "autoheal": "Configure the key for automatic use of medical items"
+        "autoheal": "Configure the key for automatic use of medical items",
+        "quicksave": "Set quicksave key",
+        "quickload": "Set quickload key"
     },
     
     "controlLabels": {
@@ -89,6 +91,8 @@
         "changeView": "Change view:",
         "seeTasks": "See tasks:",
         "inventory": "Inventory:",
-        "autoheal": "Autoheal:"
+        "autoheal": "Autoheal:",
+        "quicksave": "Quicksave:",
+        "quickload": "Quickload:"
     }
 }

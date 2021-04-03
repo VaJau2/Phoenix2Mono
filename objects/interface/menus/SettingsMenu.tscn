@@ -750,6 +750,9 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="default" type="Button" parent="Controls"]
 anchor_left = 0.07
@@ -1382,6 +1385,94 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="keyQuicksaveLabel" type="Label" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 216.0
+margin_top = -44.0
+margin_right = 392.0
+margin_bottom = -24.0
+theme = ExtResource( 2 )
+text = "Быстрое сохранение:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quicksaveBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 384.0
+margin_top = -44.0
+margin_right = 488.0
+margin_bottom = -28.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/quicksaveBack" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[    F5     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyQuickloadLabel" type="Label" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 216.0
+margin_top = -12.0
+margin_right = 392.0
+margin_bottom = 8.0
+theme = ExtResource( 2 )
+text = "Быстрое сохранение:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quickloadBack" type="ColorRect" parent="Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 384.0
+margin_top = -12.0
+margin_right = 488.0
+margin_bottom = 4.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Label" parent="Controls/quickloadBack" groups=[
+"ignore_color",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+theme = ExtResource( 2 )
+text = "[    F9     ]"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="back" type="Button" parent="."]
 anchor_left = 0.078
 anchor_top = 0.2
@@ -1501,6 +1592,12 @@ stream = ExtResource( 1 )
 [connection signal="gui_input" from="Controls/autohealBack" to="." method="_on_controls_gui_input" binds= [ "autoheal" ]]
 [connection signal="mouse_entered" from="Controls/autohealBack" to="." method="_on_controls_mouse_entered" binds= [ "autohealBack", "controls", "autoheal" ]]
 [connection signal="mouse_exited" from="Controls/autohealBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/quicksaveBack" to="." method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
+[connection signal="mouse_entered" from="Controls/quicksaveBack" to="." method="_on_controls_mouse_entered" binds= [ "quicksaveBack", "controls", "quicksave" ]]
+[connection signal="mouse_exited" from="Controls/quicksaveBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/quickloadBack" to="." method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
+[connection signal="mouse_entered" from="Controls/quickloadBack" to="." method="_on_controls_mouse_entered" binds= [ "quickloadBack", "controls", "quickload" ]]
+[connection signal="mouse_exited" from="Controls/quickloadBack" to="." method="_on_controls_mouse_exited"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "back", "mainMenu" ]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

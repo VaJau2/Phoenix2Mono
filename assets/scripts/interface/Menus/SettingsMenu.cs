@@ -87,7 +87,9 @@ public class SettingsMenu : MenuBase
             {"changeView", GetNode<Label>("Controls/keyCameraLabel")},
             {"seeTasks", GetNode<Label>("Controls/keyTaskLabel")},
             {"inventory", GetNode<Label>("Controls/keyInventoryLabel")},
-            {"autoheal", GetNode<Label>("Controls/keyAutohealLabel")}
+            {"autoheal", GetNode<Label>("Controls/keyAutohealLabel")},
+            {"quicksave", GetNode<Label>("Controls/keyQuicksaveLabel")},
+            {"quickload", GetNode<Label>("Controls/keyQuickloadLabel")},
         };
     }
 
@@ -143,6 +145,8 @@ public class SettingsMenu : MenuBase
             case "task": return GetNode<Label>("Controls/taskBack/edit");
             case "inventory": return GetNode<Label>("Controls/inventoryBack/edit");
             case "autoheal": return GetNode<Label>("Controls/autohealBack/edit");
+            case "ui_quicksave": return GetNode<Label>("Controls/quicksaveBack/edit");
+            case "ui_quickload": return GetNode<Label>("Controls/quickloadBack/edit");
         }
         return null;
     }

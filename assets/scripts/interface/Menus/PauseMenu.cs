@@ -47,6 +47,8 @@ public class PauseMenu : MenuBase, IMenu
         
         this.Visible = false;
         settingsMenu.Visible = false;
+        loadMenu.Visible = false;
+        saveMenu.Visible = false;
         global.Settings.SaveSettings();
     }
 

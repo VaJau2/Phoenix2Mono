@@ -75,6 +75,24 @@ public class LoadMenu : Control
         LoadInterfaceLanguage();
     }
 
+    public override void _Process(float delta)
+    {
+        if (!(parentMenu is PauseMenu)) return;
+        if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quickload"))
+        {
+            if (Global.GetSaveFiles().Contains("res://saves/quicksave.sav"))
+            {
+                LoadGame("quicksave");
+            }
+            else
+            {
+                Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+                messages.ShowMessage("quicksaveNotFound");
+            }
+        }
+    }
+    
+
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();

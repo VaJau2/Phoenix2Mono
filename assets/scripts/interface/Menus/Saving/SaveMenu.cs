@@ -60,6 +60,16 @@ public class SaveMenu : Control
         LoadInterfaceLanguage();
     }
 
+    public override void _Process(float delta)
+    {
+        if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quicksave"))
+        {
+            SaveGame("quicksave");
+            Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+            messages.ShowMessage("gameQuicksaved");
+        }
+    }
+
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
