@@ -146,6 +146,12 @@ public class PlayerInventory {
     {
         menu.LoadItemButtons(items, ammo);
     }
+    
+    private ItemIcon GetWearButton(string wearButtonName)
+    {
+        const string buttonsPath = "/root/Main/Scene/canvas/inventory/helper/back/wearBack/";
+        return player.GetNode<ItemIcon>(buttonsPath + wearButtonName);
+    }
 
     public Dictionary GetSaveData()
     {
@@ -166,6 +172,8 @@ public class PlayerInventory {
             effectNames.Add(EffectHandler.GetNameByEffect(tempEffect));
             effectTimes.Add(tempEffect.time);
         }
+
+        var weaponButton = GetWearButton("weapon");
         return new Dictionary()
         {
             {"money", money},
@@ -175,6 +183,7 @@ public class PlayerInventory {
             {"itemCodes", itemCodes},
             {"itemCounts", itemCounts},
             {"itemBinds", itemBinds},
+            {"weaponBind", weaponButton.GetBindKey()},
             {"effectNames", effectNames},
             {"effectTimes", effectTimes},
         };
@@ -182,9 +191,8 @@ public class PlayerInventory {
 
     public void LoadWearItem(string item, string button)
     {
-        var buttonsPath = "/root/Main/Scene/canvas/inventory/helper/back/wearBack/";
         WearItem(item, false);
-        var wearButton = player.GetNode<ItemIcon>(buttonsPath + button);
+        var wearButton = GetWearButton(button);
         wearButton.SetItem(item);
     }
     
@@ -208,6 +216,14 @@ public class PlayerInventory {
                 tempButton.SetBindKey(itemBinds[i].ToString());
                 menu.bindedButtons[Convert.ToInt32(itemBinds[i])] = tempButton;
             }
+        }
+
+        string weaponBind = data["weaponBind"].ToString();
+        if (!string.IsNullOrEmpty(weaponBind))
+        {
+            var weaponButton = GetWearButton("weapon");
+            weaponButton.SetBindKey(weaponBind);
+            menu.bindedButtons[Convert.ToInt32(weaponBind)] = weaponButton;
         }
         
         //загрузка денег и надетых вещей
