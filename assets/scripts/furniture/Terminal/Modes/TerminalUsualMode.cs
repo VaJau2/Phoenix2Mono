@@ -25,7 +25,7 @@ public class TerminalUsualMode: TerminalMode {
 
     private void RemoveLetterFromCommand()
     {
-        if (tempCommand.Length > 0) {
+        if (!string.IsNullOrEmpty(tempCommand)) {
             tempCommand    = tempCommand.Remove(tempCommand.Length - 1);
             textLabel.Text = textLabel.Text.Remove(textLabel.Text.Length - 1);
         }
