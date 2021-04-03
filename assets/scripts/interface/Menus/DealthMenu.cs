@@ -4,6 +4,9 @@ public class DealthMenu : MenuBase
 {
     AudioStreamPlayer audi;
 
+    private Control menuPage;
+    private LoadMenu loadPage;
+    
     private Label pageLabel;
     private Label headerLabel;
     private Button againButton;
@@ -12,11 +15,14 @@ public class DealthMenu : MenuBase
 
     private void loadMenu()
     {
-        pageLabel   = GetNode<Label>("page_label");
-        headerLabel = GetNode<Label>("Label");
-        againButton = GetNode<Button>("again");
-        loadButton  = GetNode<Button>("load");
-        exitButton  = GetNode<Button>("exit");
+        menuPage = GetNode<Control>("Menu");
+        loadPage = GetNode<LoadMenu>("Load");
+        
+        pageLabel   = GetNode<Label>("Menu/page_label");
+        headerLabel = GetNode<Label>("Menu/Label");
+        againButton = GetNode<Button>("Menu/again");
+        loadButton  = GetNode<Button>("Menu/load");
+        exitButton  = GetNode<Button>("Menu/exit");
     }
 
     public override void loadInterfaceLanguage()
@@ -44,6 +50,22 @@ public class DealthMenu : MenuBase
         GetNode<LevelsLoader>("/root/Main").ReloadLevel();
     }
 
+    public void _on_load_pressed()
+    {
+        loadPage.UpdateTable();
+
+        SoundClick();
+        menuPage.Visible = false;
+        loadPage.Visible = true;
+    }
+
+    public void _on_Load_BackPressed()
+    {
+        SoundClick();
+        menuPage.Visible = true;
+        loadPage.Visible = false;
+    }
+    
     public void _on_exit_pressed()
     {
         MenuManager.ClearMenus();
