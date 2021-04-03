@@ -54,7 +54,7 @@ public class ItemIcon : ColorRect
                     player.Weapons.LoadNewAmmo();
                 }
             }
-        } else {
+        } else if (itemType != "money") {
             countLabel.Text = "-1";
         }
     }
