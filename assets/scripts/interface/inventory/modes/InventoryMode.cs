@@ -25,7 +25,7 @@ public abstract class InventoryMode
 
     protected ItemIcon tempButton;
     protected Dictionary tempItemData;
-    protected Array<ItemIcon> itemButtons = new Array<ItemIcon>();
+    public Array<ItemIcon> itemButtons {get;} = new Array<ItemIcon>();
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
 

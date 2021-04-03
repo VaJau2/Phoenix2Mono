@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Godot.Collections;
 
 public class Player_Pegasus : Player
 {
@@ -174,5 +176,18 @@ public class Player_Pegasus : Player
                 Body.RotationDegrees = newRot;
             }
         }
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        Dictionary saveData = base.GetSaveData();
+        saveData.Add("is_flying", IsFlying);
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        IsFlying = Convert.ToBoolean(data["is_flying"]);
     }
 }

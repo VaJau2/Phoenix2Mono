@@ -99,6 +99,7 @@ public class LevelsLoader : Node
 		currentMenu.Visible = true;
 	}
 
+	//загрузка уровня
 	public void LoadLevel(int levelNum) 
 	{
 		tempLevelNum = levelNum;
@@ -106,10 +107,19 @@ public class LevelsLoader : Node
 		updateMenu();
 	}
 
+	//загрузка уровня с сохраненными данными
 	public async void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
 	{
 		LoadLevel(levelNum);
 		await ToSignal(this, nameof(LevelLoaded));
+
+		//очищаем спавнер от предзаполненных вещей
+		var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
+		playerSpawner.moneyCount = 0;
+		playerSpawner.itemCodes.Clear();
+		playerSpawner.ammo.Clear();
+		playerSpawner.clothCode = "";
+		
 		await ToSignal(GetTree(), "idle_frame");
 
 		//загрузка сохранения
@@ -129,16 +139,16 @@ public class LevelsLoader : Node
 			//создание создаваемых в сохранении объектов
 			if (objKey.BeginsWith("Created_"))
 			{
-				string className = objData["class_name"].ToString();
-				string parentName = objData["parent"].ToString();
-				
-				var scriptType = Type.GetType(className);
-				if (scriptType == null) throw new InvalidCastException();
-				var scriptObj = Activator.CreateInstance(scriptType) as ISavable;
+				var filename = objData["fileName"].ToString();
+				var parentName = objData["parent"].ToString();
+
+				PackedScene newNode = (PackedScene)GD.Load(filename);
+				Node newInstance = newNode.Instance();
+				if (!(newInstance is ISavable savable)) continue;
+				newInstance.Name = objKey;
+				savable.LoadData(objData);
 				var parent = Global.FindNodeInScene(scene, parentName);
-				
-				scriptObj?.LoadData(objData);
-				parent?.AddChild((Node)scriptObj);
+				parent?.AddChild(newInstance);
 			}
 			
 			//загрузка загружаемых объектов

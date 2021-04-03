@@ -471,12 +471,15 @@ public class Player : Character
 
     public override void LoadData(Dictionary data)
     {
+        inventory.LoadData((Dictionary)data["inventory"]);
         base.LoadData(data);
     }
 
     public override Dictionary GetSaveData()
     {
-        return base.GetSaveData();
+        Dictionary saveData = base.GetSaveData();
+        saveData["inventory"] = inventory.GetSaveData();
+        return saveData;
     }
 
     public override void _Ready()

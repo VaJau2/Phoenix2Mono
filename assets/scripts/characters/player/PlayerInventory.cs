@@ -1,5 +1,7 @@
+using System;
 using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public class PlayerInventory {
     EffectHandler effects;
@@ -14,6 +16,8 @@ public class PlayerInventory {
 
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
     public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
+    
+    private InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
     public PlayerInventory(Player player) 
     {
@@ -72,7 +76,7 @@ public class PlayerInventory {
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
             case "meds":
-                Effect newEffect = effects.GetEffectByName(itemData["medsEffect"].ToString());
+                Effect newEffect = EffectHandler.GetEffectByName(itemData["medsEffect"].ToString());
                 effects.AddEffect(newEffect);
                 messages.ShowMessage("useItem", itemData["name"].ToString(), "items");
                 break;
@@ -140,14 +144,98 @@ public class PlayerInventory {
 
     public void LoadItems(Array<string> items, Dictionary<string, int> ammo) 
     {
-        var menu = player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         menu.LoadItemButtons(items, ammo);
+    }
+
+    public Dictionary GetSaveData()
+    {
+        var itemCodes = new Array();
+        var itemCounts = new Array();
+        var itemBinds = new Array();
+        foreach (ItemIcon button in menu.mode.itemButtons)
+        {
+            itemCodes.Add(button.myItemCode ?? "_");
+            itemCounts.Add(button.GetCount());
+            itemBinds.Add(button.GetBindKey());
+        }
+
+        var effectNames = new Array();
+        var effectTimes = new Array();
+        foreach (Effect tempEffect in effects.tempEffects)
+        {
+            effectNames.Add(EffectHandler.GetNameByEffect(tempEffect));
+            effectTimes.Add(tempEffect.time);
+        }
+        return new Dictionary()
+        {
+            {"money", money},
+            {"weapon", weapon},
+            {"cloth", cloth},
+            {"artifact", artifact},
+            {"itemCodes", itemCodes},
+            {"itemCounts", itemCounts},
+            {"itemBinds", itemBinds},
+            {"effectNames", effectNames},
+            {"effectTimes", effectTimes},
+        };
+    }
+
+    public void LoadWearItem(string item, string button)
+    {
+        var buttonsPath = "/root/Main/Scene/canvas/inventory/helper/back/wearBack/";
+        WearItem(item, false);
+        var wearButton = player.GetNode<ItemIcon>(buttonsPath + button);
+        wearButton.SetItem(item);
+    }
+    
+    public void LoadData(Dictionary data)
+    {
+        //загрузка кнопок вещей
+        Array itemCodes = (Array) data["itemCodes"];
+        Array itemCounts = (Array) data["itemCounts"];
+        Array itemBinds = (Array) data["itemBinds"];
+        for (int i = 0; i < itemCodes.Count; i++)
+        {
+            var itemCode = itemCodes[i].ToString();
+            if (itemCode == "_") continue;
+            
+            var itemCount = Convert.ToInt32(itemCounts[i]);
+            ItemIcon tempButton = menu.mode.itemButtons[i];
+            tempButton.SetItem(itemCode);
+            tempButton.SetCount(itemCount, false);
+            if (itemBinds[i] != null && itemBinds[i].ToString() != "")
+            {
+                tempButton.SetBindKey(itemBinds[i].ToString());
+                menu.bindedButtons[Convert.ToInt32(itemBinds[i])] = tempButton;
+            }
+        }
+        
+        //загрузка денег и надетых вещей
+        money = Convert.ToInt32(data["money"]);
+        
+        weapon = data["weapon"].ToString();
+        cloth = data["cloth"].ToString();
+        artifact = data["artifact"].ToString();
+        
+        if (!string.IsNullOrEmpty(weapon)) LoadWearItem(weapon, "weapon");
+        if (!string.IsNullOrEmpty(cloth) && cloth != "empty") LoadWearItem(cloth, "armor");
+        if (!string.IsNullOrEmpty(artifact)) LoadWearItem(artifact, "artifact");
+
+        //загрузка эффектов
+        Array effectNames = (Array) data["effectNames"];
+        Array effectTimes = (Array) data["effectTimes"];
+        for (int i = 0; i < effectNames.Count; i++)
+        {
+            Effect newEffect = EffectHandler.GetEffectByName(effectNames[i].ToString());
+            effects.AddEffect(newEffect);
+            newEffect.time = Convert.ToInt32(effectTimes[i]);
+        }
     }
 
     private void SoundUsingItem(Dictionary itemData) 
     {
         if(itemData.Contains("sound")) {
-            string path = "res://assets/audio/item/" + itemData["sound"].ToString() + ".wav";
+            string path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
             var sound = GD.Load<AudioStreamSample>(path);
             
             player.GetAudi().Stream = sound;

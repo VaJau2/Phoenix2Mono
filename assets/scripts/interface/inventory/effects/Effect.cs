@@ -8,7 +8,7 @@ public class Effect
     protected Effect postEffect = null;
     protected float postEffectChance = 1f;
     protected EffectHandler handler;
-    public float time {get; private set;}
+    public float time;
     public float maxTime {get; protected set;}
     public string emotion {get; protected set;} = null;
     public StreamTexture iconTexture {get; private set;}

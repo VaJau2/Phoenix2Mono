@@ -1,13 +1,13 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 //обработчик эффектов
 //рисует иконки эффектов через интерфейс
 //вызывает нужные методы эффектов
 public class EffectHandler: Node
 {
-    private List<Effect> tempEffects = new List<Effect>();
-    private List<EffectIcon> effectIcons = new List<EffectIcon>();
+    public List<Effect> tempEffects { get; } = new List<Effect>();
     private PackedScene iconPrefab;
     public Messages messages;
     private HeartbeatEffect heartbeat = new HeartbeatEffect();
@@ -56,22 +56,12 @@ public class EffectHandler: Node
 
     public bool HasEffect(Effect effect)
     {
-        foreach(Effect temp in tempEffects) {
-            if (effect.GetType() == temp.GetType()) {
-                return true;
-            }
-        }
-        return false;
+        return tempEffects.Any(temp => effect.GetType() == temp.GetType());
     }
 
-    public bool HasEffectWithEmotion(string emotion) 
+    public bool HasEffectWithEmotion(string emotion)
     {
-        foreach(Effect temp in tempEffects) {
-            if (temp.emotion == emotion) {
-                return true;
-            }
-        }
-        return false;
+        return tempEffects.Any(temp => temp.emotion == emotion);
     }
 
     public void AddEffect(Effect newEffect)
@@ -112,23 +102,15 @@ public class EffectHandler: Node
     {
         //эффект в массиве и класс убираемого эффекта - не всегда одно и то же
         Effect effectInList = GetTheSameEffect(effect);
-
-        if (effectInList != null) {
-            effectInList.SetOff();
-        }
+        effectInList?.SetOff();
     }
 
-    public Effect GetTheSameEffect(Effect effect) 
+    public Effect GetTheSameEffect(Effect effect)
     {
-        foreach(Effect temp in tempEffects) {
-            if (effect.GetType() == temp.GetType()) {
-                return temp;
-            }
-        }
-        return null;
+        return tempEffects.FirstOrDefault(temp => effect.GetType() == temp.GetType());
     }
 
-    public Effect GetEffectByName(string name)
+    public static Effect GetEffectByName(string name)
     {
         switch(name) {
             case "heal":
@@ -150,6 +132,25 @@ public class EffectHandler: Node
             case "detoxine":
                 return new DetoxineEffect();
         }
+        return null;
+    }
+
+    public static string GetNameByEffect(Effect effect)
+    {
+        switch (effect.GetType().ToString())
+        {
+            case "HealEffect": return "heal";
+            case "ManaEffect": return "mana";
+            case "BuckEffect": return "buck";
+            case "DashEffect": return "dash";
+            case "HydraEffect": return "hydra";
+            case "RageEffect": return "rage";
+            case "MedXEffect": return "medX";
+            case "MentatsEffect": return "mentats";
+            case "DetoxineEffect": return "detoxine";
+            
+        }
+
         return null;
     }
 

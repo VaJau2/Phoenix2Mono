@@ -46,10 +46,9 @@ public class PlayerSpawner : Spatial
         player.inventory.LoadItems(itemCodes, ammo);
 
         //загрузка надетой на ГГ брони
-        if(clothCode != "" && clothCode != "empty") {
-            player.inventory.WearItem(clothCode, false);
-            var armorButton = player.GetNode<ItemIcon>("/root/Main/Scene/canvas/inventory/helper/back/wearBack/armor");
-            armorButton.SetItem(clothCode);
+        if(clothCode != "" && clothCode != "empty")
+        {
+            player.inventory.LoadWearItem(clothCode, "armor");
         }
 
         QueueFree();
