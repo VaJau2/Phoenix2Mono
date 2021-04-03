@@ -32,7 +32,17 @@ public class LoadMenu : Control
 
     public void LoadInterfaceLanguage()
     {
-        var menuName = parentMenu is MainMenu ? "main" : "pause";
+        var menuName = "main";
+        switch (parentMenu.GetType().ToString())
+        {
+            case "PauseMenu":
+                menuName = "pause";
+                break;
+            case "DealthMenu":
+                menuName = "death";
+                break;
+        }
+
         pageLabel.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "page_load_" + menuName);
         backButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "back");
         loadButton.Text = InterfaceLang.GetPhrase("saveloadMenu", "main", "load");
