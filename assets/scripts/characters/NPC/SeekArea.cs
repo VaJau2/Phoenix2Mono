@@ -87,6 +87,12 @@ public class SeekArea : Area
                         attackTimer[tempEnemy] += GetSeeTimerSpeed(tempVictim);
                     }
                 }
+
+                tempEnemy++;
+            }
+            else
+            {
+                tempEnemy = 0;
             }
         }     
     }
@@ -101,18 +107,17 @@ public class SeekArea : Area
 
     public void _on_seekArea_body_entered(Node body)
     {
-        if (body is Character && body != this) {
-            //если нпц видит игрока, и он дружественный
-            if (body is Player && npc.relation == Relation.Friend && !npc.aggressiveAgainstPlayer) return;
+        if (!(body is Character) || body == this) return;
+        //если нпц видит игрока, и он дружественный
+        if (body is Player && npc.relation == Relation.Friend && !npc.aggressiveAgainstPlayer) return;
 
-            //если нпц видит нпц, и они в одной "фракции"
-            if (body is NPC && (body as NPC).relation == npc.relation) {
-                alliesInArea.Add(body as NPC);
-                return;
-            };
+        //если нпц видит нпц, и они в одной "фракции"
+        if (body is NPC && (body as NPC).relation == npc.relation) {
+            alliesInArea.Add(body as NPC);
+            return;
+        };
             
-           AddEnemyInArea(body as Character);
-        }
+        AddEnemyInArea(body as Character);
     }
 
     public void _on_seekArea_body_exited(Node body)

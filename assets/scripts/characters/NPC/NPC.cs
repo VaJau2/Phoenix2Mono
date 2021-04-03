@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -79,13 +80,14 @@ public class NPC : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        if (state != NPCState.Attack) {
-            tempVictim = damager;
-            SetState(NPCState.Attack);
-        }
         if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle) {
             aggressiveAgainstPlayer = true;
             seekArea.AddEnemyInArea(player);
+        }
+        
+        if (state != NPCState.Attack) {
+            tempVictim = damager;
+            SetState(NPCState.Attack);
         }
 
         if (shapeID != 0) {
@@ -153,6 +155,62 @@ public class NPC : Character
 
         var temp_distance = pos.DistanceTo(place);
         CloseToPoint = temp_distance <= distance;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        string tempVictimName = data["tempVictim"].ToString();
+        if (tempVictimName != "")
+        {
+            var scene = GetNode("/root/Main/Scene");
+            tempVictim = Global.FindNodeInScene(scene, tempVictimName) as Character;
+        }
+        
+        var newState = (NPCState) Enum.Parse(typeof(NPCState), data["state"].ToString());
+        SetState(newState);
+        lastSeePos = data["lastSeePos"] as Vector3? ?? default;
+        relation = (Relation)Enum.Parse(typeof(Relation), data["relation"].ToString());
+        aggressiveAgainstPlayer = Convert.ToBoolean(data["aggressiveAgainstPlayer"]);
+        myStartPos = new Vector3(
+            Convert.ToSingle(data["myStartPos_x"]), 
+            Convert.ToSingle(data["myStartPos_y"]), 
+            Convert.ToSingle(data["myStartPos_z"])
+        );
+        myStartRot = new Vector3(
+            Convert.ToSingle(data["myStartRot_x"]), 
+            Convert.ToSingle(data["myStartRot_y"]), 
+            Convert.ToSingle(data["myStartRot_z"])
+        );
+        dialogueCode = data["dialogueCode"].ToString();
+        
+        base.LoadData(data);
+
+        if (Health <= 0)
+        {
+            AnimateDealth(this, 0);
+        }
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        Dictionary saveData = base.GetSaveData();
+        saveData["tempVictim"] = tempVictim != null ? tempVictim.Name : "";
+        saveData["state"] = state.ToString();
+        saveData["lastSeePos"] = lastSeePos;
+        saveData["relation"] = relation.ToString();
+        saveData["aggressiveAgainstPlayer"] = aggressiveAgainstPlayer;
+        
+        saveData["myStartPos_x"] = myStartPos.x;
+        saveData["myStartPos_y"] = myStartPos.y;
+        saveData["myStartPos_z"] = myStartPos.z;
+        
+        saveData["myStartRot_x"] = myStartRot.x;
+        saveData["myStartRot_y"] = myStartRot.y;
+        saveData["myStartRot_z"] = myStartRot.z;
+        
+        saveData["dialogueCode"] = dialogueCode;
+        
+        return saveData;
     }
 
     public override void _Ready()
