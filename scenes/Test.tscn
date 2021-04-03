@@ -66,29 +66,18 @@ shape = SubResource( 2 )
 
 [node name="props" type="Spatial" parent="terrain"]
 
+[node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
+SpawnRandomItems = true
+chestCode = "cabinet"
+
 [node name="cabinet" parent="terrain/props" instance=ExtResource( 4 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.4589, 2.91461, -3.64411 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4589, 2.91461, -3.64411 )
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 7 )
 SpawnRandomItems = true
 chestCode = "cabinet"
-startItemCodes = [ "noteTest", "ak47", "autorifle762" ]
-startAmmoCount = {
-"ammo762": 20
-}
-
-[node name="metallic-cabinet" parent="terrain/props" instance=ExtResource( 20 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.3488, 2.99856, 2.5442 )
-collision_layer = 3
-collision_mask = 3
-SpawnRandomItems = true
-chestCode = "cabinet"
-startItemCodes = [ "plasmaPistol", "shotgun20" ]
-startAmmoCount = {
-"ammo20": 20,
-"ammoEnergy": 40
-}
 
 [node name="door" parent="terrain/props" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
@@ -176,6 +165,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
 maxItemsCount = 10
+moneyChance = 0.9
 maxMoneyCount = 50
 itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol" ]
 ammoCount = {

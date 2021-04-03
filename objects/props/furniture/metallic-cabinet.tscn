@@ -92,29 +92,32 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, -180 ), Vector3( 0, -100, -180 ) ]
 }
 
-[node name="metallic-cabinet" type="StaticBody"]
+[node name="metallic-cabinet" type="StaticBody" groups=[
+"savable",
+]]
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 6 )
 OpenSound = ExtResource( 3 )
 CloseSound = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0521724, 0, 0 )
+transform = Transform( 1.43739, 0, 0, 0, 1.43739, 0, 0, 0, 1.43739, -0.0488558, 0, -0.00664511 )
 shape = SubResource( 1 )
 
 [node name="cabinet" type="MeshInstance" parent="."]
+transform = Transform( 1.43739, 0, 0, 0, 1.43739, 0, 0, 0, 1.43739, -0.123848, 0, -0.00664511 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="door" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5663, 0, -0.969015 )
+transform = Transform( 1.43739, 0, 0, 0, 1.43739, 0, 0, 0, 1.43739, 0.690148, 0, -1.3995 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 2 )
 
 [node name="door2" type="MeshInstance" parent="."]
-transform = Transform( 1, 8.74228e-08, 0, -8.74228e-08, 1, 0, 0, 0, -1, 0.5663, 0, 0.9994 )
+transform = Transform( 1.43739, 2.1704e-07, 0, -2.1704e-07, 1.43739, 0, 0, 0, -1.43739, 0.690148, 0, 1.42989 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 2 )
