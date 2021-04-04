@@ -64,7 +64,7 @@ public class SaveMenu : Control
     {
         if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quicksave"))
         {
-            SaveGame("quicksave");
+            SaveGame("quicksave", GetTree());
             Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
             messages.ShowMessage("gameQuicksaved");
         }
@@ -125,14 +125,14 @@ public class SaveMenu : Control
 
     public void _on_Save_pressed()
     {
-        SaveGame(lineEdit.Text);
+        SaveGame(lineEdit.Text, GetTree());
         CreateTableLine(lineEdit.Text);
     }
 
     public void _on_Rewrite_pressed()
     {
         parentMenu.SoundClick();
-        SaveGame(lineEdit.Text);
+        SaveGame(lineEdit.Text, GetTree());
         table.UpdateButton(createNewTableLine(lineEdit.Text));
     }
 
@@ -178,7 +178,7 @@ public class SaveMenu : Control
         table._on_table_button_click(newButton.Name);
     }
 
-    private void SaveGame(string fileName)
+    public static void SaveGame(string fileName, SceneTree tree)
     {
         var saveFile = new File();
         
@@ -196,7 +196,7 @@ public class SaveMenu : Control
         
         //данные игровых объектов
         var objectsData = new Dictionary<string, Dictionary>();
-        foreach (Node tempNode in GetTree().GetNodesInGroup("savable"))
+        foreach (Node tempNode in tree.GetNodesInGroup("savable"))
         {
             if (!(tempNode is ISavable savableNode)) continue;
             Dictionary tempData = savableNode.GetSaveData();
