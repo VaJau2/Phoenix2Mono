@@ -146,7 +146,7 @@ public class SaveMenu : Control
         UpdateControls(true);
     }
     
-    private FileTableLine createNewTableLine(string saveName)
+    private static FileTableLine createNewTableLine(string saveName)
     {
         return new FileTableLine(
             saveName,
@@ -172,7 +172,7 @@ public class SaveMenu : Control
     private void CreateTableLine(string fileName)
     {
         var fileTableLine = createNewTableLine(fileName); 
-        Global.saveFilesArray.Add(fileTableLine);
+        //Global.saveFilesArray.Add(fileTableLine);
         Button newButton = table.SpawnButton(fileTableLine);
         newButton.Pressed = true;
         table._on_table_button_click(newButton.Name);
@@ -183,9 +183,7 @@ public class SaveMenu : Control
         var saveFile = new File();
         
         var filePath = $"res://saves/{GetLikeLatinString(fileName)}.sav";
-        //saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
-        saveFile.Open(filePath, File.ModeFlags.Write);
-        
+        saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
         saveFile.StoreLine(fileName);                            //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
@@ -204,6 +202,9 @@ public class SaveMenu : Control
         }
         saveFile.StoreLine(JSON.Print(objectsData));
         saveFile.Close();
+        
+        var fileTableLine = createNewTableLine(fileName); 
+        Global.saveFilesArray.Add(fileTableLine);
     }
     
     public static string GetLikeLatinString(string cyrillicLine)

@@ -245,7 +245,7 @@ public class Global {
     private static FileTableLine GetFileMetadata(string fileName)
     {
         var file = new File();
-        file.Open(fileName, File.ModeFlags.Read);
+        file.OpenCompressed(fileName, File.ModeFlags.Read);
         string name = file.GetLine();
         string date = file.GetLine();
         string level = InterfaceLang.GetPhrase("levels", "levelNames",file.GetLine());

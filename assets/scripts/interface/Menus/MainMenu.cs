@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public class MainMenu : MenuBase
@@ -34,6 +35,11 @@ public class MainMenu : MenuBase
     Control tempHover;
 
     SettingsMenu settingsMenu;
+    
+    private Control modalError;
+    private Label modalHeader;
+    private Label modalDesc;
+    private Button modalOk;
 
     [Signal]
     public delegate void labelChanged();
@@ -70,6 +76,11 @@ public class MainMenu : MenuBase
             GetNode<Label>("ChangeRace/unicorn/Label"),
             GetNode<Label>("ChangeRace/pegasus/Label")
         };
+        
+        modalError = GetNode<Control>("modalError");
+        modalHeader = modalError.GetNode<Label>("back/Header");
+        modalDesc = modalError.GetNode<Label>("back/Text");
+        modalOk = modalError.GetNode<Button>("back/OK");
         loadMenu = GetNode<LoadMenu>("Load");
 
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
@@ -104,6 +115,10 @@ public class MainMenu : MenuBase
         settingsButton.Text = getMenuText("settings");
         aboutButton.Text = getMenuText("about");
         exitButton.Text = getMenuText("exit");
+        
+        modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
+        modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
+        modalOk.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "ok");
         loadMenu.LoadInterfaceLanguage();
     }
 
@@ -164,13 +179,12 @@ public class MainMenu : MenuBase
             backgroundRect.Color = new Color(0, 0, 0, 0);
         }
     
-        music.Play();
+        //music.Play();
         downLabel.Visible = true;
         label5.Visible = true;
 
         loadInterfaceLanguage();
-        //TODO - добавить проверку на наличие файлов сохранений
-        //continueButton.Visible = true;
+        continueButton.Visible = Global.saveFilesArray.Count > 0;
         startButton.Visible = true;
         loadButton.Visible = true;
         settingsButton.Visible = true;
@@ -178,13 +192,48 @@ public class MainMenu : MenuBase
         exitButton.Visible = true;
     }
 
+    private static string GetLastSaveFile()
+    {
+        if (Global.saveFilesArray.Count == 0) return null;
+        
+        string lastFileName = null;
+        ulong lastTime = 0;
+
+        foreach (FileTableLine tempTableLine in Global.saveFilesArray)
+        {
+            var fileName = tempTableLine.name;
+            var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+            var tempTime = new File().GetModifiedTime(filePath);
+            if (tempTime <= lastTime) continue;
+            lastFileName = fileName;
+            lastTime = tempTime;
+        }
+
+        return lastFileName;
+    }
+
+    private static Race GetRaceFromSave(string fileName)
+    {
+        var saveFile = new File();
+        var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+        saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
+        for (int i = 0; i < 3; i++) saveFile.GetLine();
+        return  Global.RaceFromString(saveFile.GetLine());
+    }
+
     public override void _Ready()
     {
         global.LoadSettings(this);
-        
         base._Ready();
         audi = GetNode<AudioStreamPlayer>("audi");
         music = GetNode<AudioStreamPlayer>("music");
+
+        if (global.mainMenuFirstTime && Global.saveFilesArray.Count > 0)
+        {
+            string lastSave = GetLastSaveFile();
+            global.playerRace = GetRaceFromSave(lastSave);
+        }
+        
         LoadMenu();
 
         if (global.Settings.SettingsLoaded) 
@@ -209,6 +258,21 @@ public class MainMenu : MenuBase
         chooseLanguage.Visible = false;
         global.Settings.SaveSettings();
         SetMenuVisible(true);
+    }
+
+    public void _on_continue_pressed()
+    {
+        SoundClick();
+        string lastSave = GetLastSaveFile();
+        if (!global::LoadMenu.TryToLoadGame(lastSave, GetNode<LevelsLoader>("/root/Main")))
+        {
+            modalError.Visible = true;
+        }
+    }
+
+    public void _on_error_OK_pressed()
+    {
+        modalError.Visible = false;
     }
 
     public void _on_start_pressed()

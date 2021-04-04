@@ -135,22 +135,31 @@ public class LoadMenu : Control
         LoadGame(table.GetTempFileData.name);
     }
 
-    private void LoadGame(string fileName)
+    public static bool TryToLoadGame(string fileName, LevelsLoader loader)
     {
         try
         {
             var saveFile = new File();
             var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            saveFile.Open(filePath, File.ModeFlags.Read);
+            saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
             Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
             var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
             var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
 
-            GetNode<LevelsLoader>("/root/Main").LoadLevel(levelNum, levelsData, deletedObjects);
+            loader.LoadLevel(levelNum, levelsData, deletedObjects);
+            return true;
         }
         catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    private void LoadGame(string fileName)
+    {
+        if (!TryToLoadGame(fileName, GetNode<LevelsLoader>("/root/Main")))
         {
             modalError.Visible = true;
         }
