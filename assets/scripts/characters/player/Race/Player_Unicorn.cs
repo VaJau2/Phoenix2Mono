@@ -1,8 +1,10 @@
 using Godot;
+using Godot.Collections;
+using System;
 
 public class Player_Unicorn : Player
 {
-    private const float MANA_SPEED = 3f;
+    private const float MANA_SPEED = 5f;
     private const float TELEPORT_COST = 50f;
     private const int TELEPORT_DISTANCE = 150;
     public const float MANA_MAX = 100;
@@ -104,22 +106,25 @@ public class Player_Unicorn : Player
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        if (Health > 0)
+        if (Health <= 0) return;
+        if (@event is InputEventKey keyEvent)
         {
-            if (@event is InputEventKey)
+            if (!keyEvent.Pressed && !Input.IsActionPressed("jump"))
             {
-                var keyEvent = @event as InputEventKey;
-                if (!keyEvent.Pressed && !Input.IsActionPressed("jump"))
+                if (!teleportPressed) return;
+
+                teleportPressed = false;
+                if (ManaIsEnough(GetTeleportCost()))
                 {
-                    if (teleportPressed) {
-                        teleportPressed = false;
-                        startTeleporting = true;
-                    }
-                    if (notEnoughMana) {
-                        notEnoughMana = false;
-                    }
-                };
-            }
+                    startTeleporting = true; 
+                }
+                else
+                {
+                    messages.ShowMessage("notEnoughMana");
+                    tempTeleportMark.QueueFree();
+                    tempTeleportMark = null;
+                }
+            };
         }
     }
 
@@ -132,6 +137,12 @@ public class Player_Unicorn : Player
             Global.setNewOrigin(effect.GlobalTransform, GlobalTransform.origin);
     }
 
+    private float GetTeleportCost()
+    {
+        var tempDistance = GlobalTransform.origin.DistanceTo(tempTeleportMark.GlobalTransform.origin);
+        return TELEPORT_COST * ManaDelta * (tempDistance / TELEPORT_DISTANCE);
+    }
+
     public override async void UpdateStand()
     {
         if (startTeleporting) 
@@ -139,6 +150,7 @@ public class Player_Unicorn : Player
             OnStairs = false;
             audiHorn.Stream = teleportSound;
             audiHorn.Play();
+            DecreaseMana(GetTeleportCost());
 
             SpawnTeleportEffect();
 
@@ -147,7 +159,6 @@ public class Player_Unicorn : Player
 
             tempTeleportMark.QueueFree();
             tempTeleportMark = null;
-            DecreaseMana(TELEPORT_COST * ManaDelta);
 
             SpawnTeleportEffect();
 
@@ -164,74 +175,72 @@ public class Player_Unicorn : Player
     {
         if (Input.IsActionPressed("jump") && !JumpHint.Visible) 
         {
-            if (ManaIsEnough(TELEPORT_COST * ManaDelta)) {
-                if (Health > 0)
+            if (Health > 0)
+            {
+                var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
+                if(!teleportPressed) 
                 {
-                    var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
-                    if(!teleportPressed) 
+                    teleportPressed = true;
+                    if (tempTeleportMark != null) return;
+                    tempTeleportMark = (Spatial)teleportMark.Instance();
+                    GetParent().AddChild(tempTeleportMark);
+
+                    tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+                        tempTeleportMark.GlobalTransform,
+                        GlobalTransform.origin
+                    );
+                }
+                else if (tempRay.IsColliding())
+                {
+                    Spatial collider = (Spatial)tempRay.GetCollider();
+                    if (collider.Name == "sky") return;
+                    //оно может внезапно стереться даже здесь
+                    if (tempTeleportMark != null) 
                     {
-                        teleportPressed = true;
-                        if (tempTeleportMark == null)
+                        var place = tempRay.GetCollisionPoint();
+
+                        tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+                            tempTeleportMark.GlobalTransform,
+                            place
+                        );
+
+                        //чтоб не перемещаться через стенки бункера наружу
+                        if (teleportInside && 
+                            tempTeleportMark.Translation.y > Translation.y + 3)
                         {
-                            tempTeleportMark = (Spatial)teleportMark.Instance();
-                            GetParent().AddChild(tempTeleportMark);
-
-                            tempTeleportMark.GlobalTransform = Global.setNewOrigin(
-                                tempTeleportMark.GlobalTransform,
-                                GlobalTransform.origin
-                            );
-                        }
-                    } 
-                    else if (tempRay.IsColliding())
-                    {
-                        Spatial collider = (Spatial)tempRay.GetCollider();
-                        if (collider.Name != "sky") 
-                        {
-                            //оно может внезапно стереться даже здесь
-                            if (tempTeleportMark != null) 
-                            {
-                                var place = tempRay.GetCollisionPoint();
-
-                                tempTeleportMark.GlobalTransform = Global.setNewOrigin(
-                                    tempTeleportMark.GlobalTransform,
-                                    place
-                                );
-
-                                //чтоб не перемещаться через стенки бункера наружу
-                                if (teleportInside && 
-                                    tempTeleportMark.Translation.y > Translation.y + 3)
-                                    {
-                                        Vector3 newPos = tempTeleportMark.Translation;
-                                        newPos.y -= 3;
-                                        tempTeleportMark.Translation = newPos;
-                                    }
-                            }
-                            else 
-                            {
-                                tempTeleportMark = (Spatial)teleportMark.Instance();
-                                GetParent().AddChild(tempTeleportMark);
-                            }
+                            Vector3 newPos = tempTeleportMark.Translation;
+                            newPos.y -= 3;
+                            tempTeleportMark.Translation = newPos;
                         }
                     }
-                }
-                else //Health <= 0
-                {
-                    if (teleportPressed)
+                    else 
                     {
-                        teleportPressed = false;
-                        if (tempTeleportMark != null)
-                        {
-                            tempTeleportMark.QueueFree();
-                            tempTeleportMark = null;
-                        }
+                        tempTeleportMark = (Spatial)teleportMark.Instance();
+                        GetParent().AddChild(tempTeleportMark);
                     }
-                }
-            } else {
-                if (!notEnoughMana) {
-                    notEnoughMana = true;
-                    messages.ShowMessage("notEnoughMana");
                 }
             }
+            else //Health <= 0
+            {
+                if (!teleportPressed) return;
+                teleportPressed = false;
+                if (tempTeleportMark == null) return;
+                tempTeleportMark.QueueFree();
+                tempTeleportMark = null;
+            }
         }
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        Dictionary saveData = base.GetSaveData();
+        saveData.Add("mana", Mana);
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        Mana = Convert.ToSingle(data["mana"]);
     }
 }
