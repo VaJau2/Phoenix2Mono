@@ -75,9 +75,9 @@ public class ItemIcon : ColorRect
             }
         }
 
+        SetBindKey(null); 
         myItemCode   = null;
         icon.Texture = null;
-        SetBindKey("");
         countLabel.Text = "-1";
         countLabel.Visible = false;
         _on_itemIcon_mouse_exited();

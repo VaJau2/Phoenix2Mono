@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/textures/interface/cross-hitted.png" type="Texture" id=14]
 [ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=15]
 [ext_resource path="res://objects/interface/DialogueMenu.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/scripts/interface/BindsList.cs" type="Script" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -226,10 +227,13 @@ __meta__ = {
 
 [node name="manaBar" type="ProgressBar" parent="."]
 visible = false
+anchor_left = 0.039
 anchor_top = 0.88
+anchor_right = 0.039
 anchor_bottom = 0.903
-margin_top = -6.10352e-05
-margin_right = 229.0
+margin_left = 0.0639992
+margin_top = -0.00012207
+margin_right = 229.064
 margin_bottom = 0.199951
 theme = ExtResource( 3 )
 percent_visible = false
@@ -268,14 +272,14 @@ texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 40, 40 )
 
-[node name="effects" type="HBoxContainer" parent="."]
-anchor_left = 0.133
-anchor_top = 0.925
-anchor_right = 0.865
-anchor_bottom = 1.0
-margin_left = -0.192001
-margin_right = 0.23999
-margin_bottom = -15.0
+[node name="effects" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -300.0
+margin_right = 40.0
+margin_bottom = 252.0
+alignment = 2
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -293,6 +297,23 @@ margin_bottom = -50.0
 theme = ExtResource( 2 )
 align = 1
 __meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="binds" type="HBoxContainer" parent="." groups=[
+"ignore_color",
+]]
+anchor_left = 0.133
+anchor_top = 0.933
+anchor_right = 0.867
+anchor_bottom = 1.0
+margin_left = -0.192001
+margin_top = -5.12262
+margin_right = 0.191956
+margin_bottom = -3.32263
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

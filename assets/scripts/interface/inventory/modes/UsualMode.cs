@@ -103,18 +103,19 @@ public class UsualMode: InventoryMode {
                 if (menu.bindedButtons[i] == tempButton) {
                     tempButton.SetBindKey(null);
                     menu.bindedButtons.Remove(i);
-                } else {
-                    //если на ту же кнопку биндится другая кнопка, предыдущая стирается
-                    ItemIcon oldBindedButton = menu.bindedButtons[i];
-                    oldBindedButton.SetBindKey(null);
-                    menu.bindedButtons[i] = tempButton;
-                    tempButton.SetBindKey(i.ToString());
-                }
-            } else {
-                //если кнопка биндится впервые
-                menu.bindedButtons[i] = tempButton;
-                tempButton.SetBindKey(i.ToString());
-            }
+                    bindsList.RemoveIcon(tempButton);
+                    return;
+                } 
+                
+                //если на ту же кнопку биндится другая кнопка, предыдущая стирается
+                ItemIcon oldBindedButton = menu.bindedButtons[i];
+                oldBindedButton.SetBindKey(null);
+            } 
+            
+            //бинд кнопки
+            menu.bindedButtons[i] = tempButton;
+            tempButton.SetBindKey(i.ToString());
+            bindsList.AddIcon(tempButton);
         }
     }
 
@@ -208,6 +209,8 @@ public class UsualMode: InventoryMode {
 
     private void UseTempItem()
     {
+        if (player.Health <= 0) return;
+        
         string itemType = tempItemData["type"].ToString();
         if (inventory.itemIsUsable(itemType)) {
             switch(itemType) {

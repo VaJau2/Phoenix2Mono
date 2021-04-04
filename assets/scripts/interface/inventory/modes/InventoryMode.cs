@@ -8,6 +8,7 @@ public abstract class InventoryMode
 
     protected Player player => Global.Get().player;
     protected InventoryMenu menu;
+    protected BindsList bindsList;
     protected Control back;
     protected Label moneyCount;
 
@@ -49,6 +50,7 @@ public abstract class InventoryMode
             menu.menuLoaded = true;
         }
 
+        bindsList = menu.GetNode<BindsList>("/root/Main/Scene/canvas/binds");
         back = menu.GetNode<Control>("helper/back");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk   = menu.GetNode<Control>("modalAsk");
@@ -144,6 +146,7 @@ public abstract class InventoryMode
         if (tempButton.GetBindKey() != "") {
             int keyId = int.Parse(tempButton.GetBindKey());
             menu.bindedButtons.Remove(keyId);
+            bindsList.RemoveIcon(tempButton);
         }
 
         tempButton.ClearItem();
