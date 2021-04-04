@@ -91,7 +91,7 @@ public class DialogueMenu : Control, IMenu
                 }
                 
                 var spacedText = GetSpacedText(tempNode["body"].ToString());
-                text.BbcodeText += GetBlockText(spacedText, "right") + "\n\n";
+                text.BbcodeText += GetBlockText(spacedText, "right") + "\n";
                 isContinue = false;
                 break;
             case "combat":
