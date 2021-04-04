@@ -5,8 +5,8 @@ using Godot.Collections;
 //делится на два подрежима - выбор файла и чтение файла
 //выбор файла ограничен 9 текстовыми файлами
 public class TerminalReadMode: TerminalMode {
-    const int MAX_LINES_COUNT = 11;
-    const int MAX_LINE_LENGTH = 39;
+    const int MAX_LINES_COUNT = 10;
+    private const int MAX_LINE_LENGTH = 36;
     private Array<string> textFiles = new Array<string>();
     int tempChoose = 0;
     string fileCode = null;
@@ -121,7 +121,7 @@ public class TerminalReadMode: TerminalMode {
     private void ShowFilesList()
     {
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "chooseFile") + "\n";
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
 
         for(int i = 0; i < MAX_LINES_COUNT - 1; i++) {
             if (textFiles.Count > i) {
@@ -138,9 +138,9 @@ public class TerminalReadMode: TerminalMode {
             }
         }        
 
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
         textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp1") + "\n";
-        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp2") + "\n";
+        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp2");
     }
 
     private void OpenFile(string fileName)
@@ -170,7 +170,7 @@ public class TerminalReadMode: TerminalMode {
     private void UpdateFileText()
     {
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "readHeader") + fileName + "\n";
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
         
         int firstLine = tempPage * MAX_LINES_COUNT;
         int lastLine = firstLine + MAX_LINES_COUNT;
@@ -183,7 +183,7 @@ public class TerminalReadMode: TerminalMode {
             }
         }
 
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
         if (pagesMax > 0) {
             textLabel.Text += "Страница: " + (tempPage + 1) + " из " + (pagesMax + 1) + " (";
             textLabel.Text += (tempPage > 0) ? "<" : " ";
@@ -194,7 +194,7 @@ public class TerminalReadMode: TerminalMode {
             textLabel.Text += "\n";
         }
         
-        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readFooter") + "\n";
+        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readFooter");
     }
 
     private void TurnPage(bool forward)

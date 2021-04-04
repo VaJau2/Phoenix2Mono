@@ -49,7 +49,7 @@ material/0 = ExtResource( 1 )
 material/1 = SubResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 525, 500 )
+size = Vector2( 525, 525 )
 hdr = false
 usage = 0
 

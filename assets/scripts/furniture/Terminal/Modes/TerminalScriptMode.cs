@@ -5,7 +5,7 @@ using Godot.Collections;
 //После выбора запускает обратно режим консоли
 public class TerminalScriptMode: TerminalMode {
 
-    const int MAX_LINES_COUNT = 10;
+    const int MAX_LINES_COUNT = 9;
 
     private Array<string> scriptFiles = new Array<string>();
     int tempChoose = 0;
@@ -69,7 +69,7 @@ public class TerminalScriptMode: TerminalMode {
     private void ShowFilesList()
     {
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "chooseFile") + "\n";
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
 
         for(int i = 0; i < MAX_LINES_COUNT; i++) {
             if (scriptFiles.Count > i) {
@@ -87,9 +87,9 @@ public class TerminalScriptMode: TerminalMode {
             }
         }        
 
-        textLabel.Text += "-------------------------------------\n";
+        textLabel.Text += "------------------------------------\n";
         textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp1") + "\n";
-        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "scriptHelp") + "\n";
+        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "scriptHelp");
     }
 
     private async void InitScript()

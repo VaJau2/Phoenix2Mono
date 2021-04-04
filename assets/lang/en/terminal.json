@@ -5,17 +5,17 @@
 
         "chooseFile": "Choose file from list below",
         "chooseHelp1": "(use arrows and key to select file)",
-        "chooseHelp2": "(Press backspace to exit read mode)",
+        "chooseHelp2": "(backspace - back)",
 
         "readError1": "Error: file not found",
         "readError2": "Press backspace to show files list",
 
         "readHeader": "  File: ",
-        "readFooter": "(Press backspace to return to files list)",
+        "readFooter": "(backspace - back)",
 
         "scriptNotFound": "Script \"#script#\" not found",
         "scriptError": "Script \"\" not found",
-        "scriptHelp": "(Press backspace to exit script files list)"
+        "scriptHelp": "(backspace - back)"
     },
 
     "helpAnswer": [
@@ -37,13 +37,12 @@
         ],
         "help": [
             "The command displays help by command",
-            "Displays a list of available commands without parameters",
+            "Without parameters displays a list of available commands",
             "Displays information about the command with the parameter"
         ],
         "read": [
             "The command starts the file reading mode",
-            "The reading mode can be started without parameters",
-            "Then a list of text files to choose from will be displayed",
+            "Without parameters displays a list of text files to choose from",
             "With the parameter starts reading the selected file"
         ],
         "script": [
