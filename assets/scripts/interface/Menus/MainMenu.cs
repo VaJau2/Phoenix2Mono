@@ -179,7 +179,7 @@ public class MainMenu : MenuBase
             backgroundRect.Color = new Color(0, 0, 0, 0);
         }
     
-        //music.Play();
+        music.Play();
         downLabel.Visible = true;
         label5.Visible = true;
 
@@ -304,6 +304,7 @@ public class MainMenu : MenuBase
 
     public void _on_back_pressed() 
     {
+        continueButton.Visible = Global.saveFilesArray.Count > 0;
         SoundClick();
         aboutMenu.Visible = false;
         changeRaceMenu.Visible = false;
