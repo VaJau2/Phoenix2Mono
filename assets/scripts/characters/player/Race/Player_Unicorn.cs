@@ -21,6 +21,7 @@ public class Player_Unicorn : Player
     private PackedScene teleportEffect;
 
     private Spatial tempTeleportMark;
+    private Sprite3D tempTeleportSprite;
     private bool notEnoughMana = false;
     private bool teleportPressed = false;
     private bool startTeleporting = false;
@@ -121,11 +122,26 @@ public class Player_Unicorn : Player
                 else
                 {
                     messages.ShowMessage("notEnoughMana");
-                    tempTeleportMark.QueueFree();
-                    tempTeleportMark = null;
+                    ClearTeleportMark();
                 }
             };
         }
+    }
+
+    private void SpawnTeleportMark()
+    {
+        if (tempTeleportMark != null) return;
+        tempTeleportMark = (Spatial)teleportMark.Instance();
+        GetParent().AddChild(tempTeleportMark);
+        tempTeleportSprite = tempTeleportMark.GetNode<Sprite3D>("Sprite3D");
+    }
+
+    private void ClearTeleportMark()
+    {
+        if (tempTeleportMark == null) return;
+        tempTeleportMark.QueueFree();
+        tempTeleportMark = null;
+        tempTeleportSprite = null;
     }
 
     private void SpawnTeleportEffect() 
@@ -157,9 +173,7 @@ public class Player_Unicorn : Player
             GlobalTransform = 
                 Global.setNewOrigin(GlobalTransform, tempTeleportMark.GlobalTransform.origin);
 
-            tempTeleportMark.QueueFree();
-            tempTeleportMark = null;
-
+            ClearTeleportMark();
             SpawnTeleportEffect();
 
             Camera.ReturnRayBack();
@@ -181,10 +195,7 @@ public class Player_Unicorn : Player
                 if(!teleportPressed) 
                 {
                     teleportPressed = true;
-                    if (tempTeleportMark != null) return;
-                    tempTeleportMark = (Spatial)teleportMark.Instance();
-                    GetParent().AddChild(tempTeleportMark);
-
+                    SpawnTeleportMark();
                     tempTeleportMark.GlobalTransform = Global.setNewOrigin(
                         tempTeleportMark.GlobalTransform,
                         GlobalTransform.origin
@@ -212,11 +223,12 @@ public class Player_Unicorn : Player
                             newPos.y -= 3;
                             tempTeleportMark.Translation = newPos;
                         }
+
+                        tempTeleportSprite.Modulate = ManaIsEnough(GetTeleportCost()) ? Colors.White : Colors.Red;
                     }
                     else 
                     {
-                        tempTeleportMark = (Spatial)teleportMark.Instance();
-                        GetParent().AddChild(tempTeleportMark);
+                        SpawnTeleportMark();
                     }
                 }
             }
@@ -224,9 +236,7 @@ public class Player_Unicorn : Player
             {
                 if (!teleportPressed) return;
                 teleportPressed = false;
-                if (tempTeleportMark == null) return;
-                tempTeleportMark.QueueFree();
-                tempTeleportMark = null;
+                ClearTeleportMark();
             }
         }
     }
