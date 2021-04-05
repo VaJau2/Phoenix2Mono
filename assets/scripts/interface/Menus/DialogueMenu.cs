@@ -47,7 +47,7 @@ public class DialogueMenu : Control, IMenu
 
     private string GetContinueText()
     {
-        return "[продолжить]";
+        return InterfaceLang.GetPhrase("inGame", "dialogue", "continue");
     }
 
     //ограничивает длину строки на MAX_LINE_LENGTH символов

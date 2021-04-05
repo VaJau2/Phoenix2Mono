@@ -1,4 +1,8 @@
 {
+    "dialogue": {
+        "continue": "[continue]"
+    },
+
     "stealth": {
         "safe": "[Safe]",
         "caution": "[Caution]",
