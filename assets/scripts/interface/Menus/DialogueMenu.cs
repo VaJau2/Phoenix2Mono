@@ -54,7 +54,7 @@ public class DialogueMenu : Control, IMenu
     private string GetSpacedText(string text)
     {
         if (text.Length <= MAX_LINE_LENGTH) {
-            return text;
+            return text + "\n";
         }
 
         Array tempLines = new Array() {text};

@@ -15,7 +15,7 @@ public class LightsCheck : Area
     {
         if (body.Name.Contains("Light"))
         {
-            var lightSource = body.GetNode<BreakableObject>("lightSource");
+            var lightSource = body.GetNodeOrNull<BreakableObject>("lightSource");
             if (lightSource != null && !lightSource.Broken) 
             {
                 OnLight = true;

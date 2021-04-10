@@ -6,6 +6,7 @@ public class Player_Unicorn : Player
 {
     private const float MANA_SPEED = 5f;
     private const float TELEPORT_COST = 50f;
+    private const float TELEPORT_MIN_COST = 10f;
     private const int TELEPORT_DISTANCE = 150;
     public const float MANA_MAX = 100;
     public float Mana;
@@ -156,7 +157,7 @@ public class Player_Unicorn : Player
     private float GetTeleportCost()
     {
         var tempDistance = GlobalTransform.origin.DistanceTo(tempTeleportMark.GlobalTransform.origin);
-        return TELEPORT_COST * ManaDelta * (tempDistance / TELEPORT_DISTANCE);
+        return TELEPORT_MIN_COST + TELEPORT_COST * ManaDelta * (tempDistance / TELEPORT_DISTANCE);
     }
 
     public override async void UpdateStand()
