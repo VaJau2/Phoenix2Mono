@@ -21,15 +21,18 @@ public class DialogueMenu : Control, IMenu
     int tempAnswerI = -1;
     float tempAnswerCooldown;
     bool signalConnected = false;
+    
+    [Signal]
+    public delegate void FinishTalking();
 
     public void StartTalkingTo(NPC npc)
     {
+        if (!MenuManager.TryToOpenMenu(this)) return;
         this.npc = npc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
         text.BbcodeText = "";
         LoadDialogueFile(npc.Name, npc.dialogueCode);
-        MenuManager.TryToOpenMenu(this);
     }
 
     private void LoadDialogueFile(string npcName, string code)
@@ -115,6 +118,7 @@ public class DialogueMenu : Control, IMenu
         }
 
         //грузим варианты ответов
+        tempAnswerI = -1;
         if (tempNode.Contains("options")) {
             var options = tempNode["options"] as Array;
             for(int i = 0; i < answers.Length; i++) {
@@ -163,6 +167,7 @@ public class DialogueMenu : Control, IMenu
         text.BbcodeText = "";
         (GetParent() as Control).Visible = false;
         MenuOn = false;
+        EmitSignal(nameof(FinishTalking));
     }
 
     public void _on_answer_mouse_entered(int i)
