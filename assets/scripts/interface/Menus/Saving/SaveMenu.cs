@@ -182,7 +182,7 @@ public class SaveMenu : Control
     {
         var saveFile = new File();
         
-        var filePath = $"res://saves/{GetLikeLatinString(fileName)}.sav";
+        var filePath = $"user://saves/{GetLikeLatinString(fileName)}.sav";
         saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
         saveFile.StoreLine(fileName);                            //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата

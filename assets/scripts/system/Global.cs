@@ -226,14 +226,15 @@ public class Global {
     {
         var files = new Array<string>();
         var dir = new Directory();
+        dir.Open("user://");
 
-        if (!dir.DirExists("res://saves/"))
+        if (!dir.DirExists("user://saves/"))
         {
-            dir.MakeDir("res://saves/");
+            Error result = dir.MakeDir("user://saves/");
             return new Array<string>();
         }
         
-        dir.Open("res://saves/");
+        dir.Open("user://saves/");
         dir.ListDirBegin();
 
         while (true)
@@ -242,7 +243,7 @@ public class Global {
             if (file == "") break;
             if (!file.BeginsWith("."))
             {
-                files.Add("res://saves/" + file);
+                files.Add("user://saves/" + file);
             }
         }
         
@@ -263,7 +264,7 @@ public class Global {
 
     public static void DeleteSaveFile(string fileName)
     {
-        new Directory().Remove("res://saves/" + fileName);
+        new Directory().Remove("user://saves/" + fileName);
     }
 }
 

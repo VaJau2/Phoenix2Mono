@@ -80,7 +80,7 @@ public class LoadMenu : Control
         if (!(parentMenu is PauseMenu)) return;
         if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quickload"))
         {
-            if (Global.GetSaveFiles().Contains("res://saves/quicksave.sav"))
+            if (Global.GetSaveFiles().Contains("user://saves/quicksave.sav"))
             {
                 LoadGame("quicksave");
             }
@@ -140,7 +140,7 @@ public class LoadMenu : Control
         try
         {
             var saveFile = new File();
-            var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+            var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
             saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());

@@ -202,7 +202,7 @@ public class MainMenu : MenuBase
         foreach (FileTableLine tempTableLine in Global.saveFilesArray)
         {
             var fileName = tempTableLine.name;
-            var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+            var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
             var tempTime = new File().GetModifiedTime(filePath);
             if (tempTime <= lastTime) continue;
             lastFileName = fileName;
@@ -215,7 +215,7 @@ public class MainMenu : MenuBase
     private static Race GetRaceFromSave(string fileName)
     {
         var saveFile = new File();
-        var filePath = $"res://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+        var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
         saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
         for (int i = 0; i < 3; i++) saveFile.GetLine();
         return  Global.RaceFromString(saveFile.GetLine());
