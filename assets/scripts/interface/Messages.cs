@@ -63,6 +63,16 @@ public class Messages: VBoxContainer {
         var tempLabel = ShowLabel(text + addMessage);
         waitAndDissapear(tempLabel, timer);
     }
+    
+    // Показать "голое" сообщение без поиска его в лангах
+    public void ShowMessageRaw(
+        string text,
+        float timer = HINT_TIMER
+    ) 
+    {
+        var tempLabel = ShowLabel(text);
+        waitAndDissapear(tempLabel, timer);
+    }
 
     public override void _Input(InputEvent @event)
     {

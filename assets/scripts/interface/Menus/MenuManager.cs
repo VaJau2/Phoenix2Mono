@@ -7,7 +7,7 @@ public static class MenuManager {
 
     public static bool SomeMenuOpen => openedMenu != null;
 
-    public static void TryToOpenMenu(IMenu menu, bool closeOther = false)
+    public static bool TryToOpenMenu(IMenu menu, bool closeOther = false)
     {
         if (openedMenu != null) {
             if (closeOther) {
@@ -17,11 +17,12 @@ public static class MenuManager {
                     backgroundMenu = openedMenu;
                 }
             } else {
-                return;
+                return false;
             }
         }
         openedMenu = menu;
         menu.OpenMenu();
+        return true;
     }
 
     public static void CloseMenu(IMenu menu)
