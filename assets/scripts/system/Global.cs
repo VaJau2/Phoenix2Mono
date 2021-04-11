@@ -176,7 +176,8 @@ public class Global {
     public static string GetKeyName(string actionName) 
     {
         var actions = InputMap.GetActionList(actionName);
-        var action = actions[0] as InputEventKey;
+        if (actions.Count == 0) return null;
+        if (!(actions[0] is InputEventKey action)) return null;
         return OS.GetScancodeString(action.Scancode);
     }
 
@@ -225,6 +226,13 @@ public class Global {
     {
         var files = new Array<string>();
         var dir = new Directory();
+
+        if (!dir.DirExists("res://saves/"))
+        {
+            dir.MakeDir("res://saves/");
+            return new Array<string>();
+        }
+        
         dir.Open("res://saves/");
         dir.ListDirBegin();
 
