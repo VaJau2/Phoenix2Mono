@@ -74,6 +74,12 @@ public class ChestMode: InventoryMode
 
     public override async void _on_takeAll_pressed()
     {
+        //чтоб щит не включался на ту же кнопку
+        if (player is Player_Unicorn unicorn)
+        {
+            unicorn.shield.shieldCooldown = 0.5f;
+        }
+        
         foreach(ItemIcon tempIcon in chestButtons) {
             if (tempIcon.myItemCode != null) {
                 SetTempButton(tempIcon);

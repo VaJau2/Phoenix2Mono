@@ -5,6 +5,7 @@ public class UnicornShield : Spatial
 {
     private const float SHIELD_COST = 30f;
     public bool shieldOn = false;
+    public float shieldCooldown = 0f;
     private Player_Unicorn player;
     private MeshInstance firstShield;
     private MeshInstance thirdShield;
@@ -15,6 +16,7 @@ public class UnicornShield : Spatial
     private LightsCheck lights;
 
     private AudioStreamPlayer audi;
+    
 
     public override void _Ready()
     {
@@ -30,8 +32,16 @@ public class UnicornShield : Spatial
 
     public override void _Process(float delta)
     {
+        if (shieldCooldown > 0)
+        {
+            shieldCooldown -= delta;
+        }
+        
         float tempCost = SHIELD_COST * delta * player.ManaDelta;
-        if (player.MayMove && Input.IsActionPressed("ui_shift") && player.ManaIsEnough(tempCost))
+        if (player.MayMove 
+            && Input.IsActionPressed("ui_shift") 
+            && player.ManaIsEnough(tempCost) 
+            && shieldCooldown <= 0)
         {  
             shieldOn = true;
             firstShield.Visible = true;

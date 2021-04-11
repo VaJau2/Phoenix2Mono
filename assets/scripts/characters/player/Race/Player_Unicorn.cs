@@ -16,7 +16,7 @@ public class Player_Unicorn : Player
     private AudioStreamSample teleportSound;
     private Messages messages;
     private Particles hornMagic;
-    private UnicornShield shield;
+    public UnicornShield shield;
 
     private PackedScene teleportMark;
     private PackedScene teleportEffect;
