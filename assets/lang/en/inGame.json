@@ -42,6 +42,14 @@
         "terminal": " - manage"
     },
 
+    "hints": {
+        "1_earthpony": "#ui_shift# - run, #jump# - jump, #dash# - dash",
+        "1_pegasus": "#jump# - jump/flying, #ui_shift# - in-flight descent",
+        "1_unicorn": "#jump# - teleportation, #ui_shift# - shield",
+        "2": "#inventory# - inventory",
+        "3": "You can assign weapons to the number keys for quick access. It is better to do this in advance"
+    },
+
     "chestNames": {
         "cabinet": "Cabinet",
         "bag": "Bag"

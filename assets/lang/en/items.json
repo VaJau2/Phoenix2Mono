@@ -41,6 +41,13 @@
         "icon": "toaster",
         "price": "40"
     },
+	"suitcase_empty": {
+		"name": "Suitcase",
+        "description": "A medium-sized black suitcase. Empty.",
+        "type": "staff",
+        "icon": "suitcase",
+        "price": "30" 
+	},
     "key0": {
         "name": "Key",
         "description": "Iron key for some door",
@@ -50,13 +57,13 @@
     },
     
 
-    "noteTest": {
-        "name": "Test note",
-        "description": "Note for test",
+    "agent1Note": {
+        "name": "A drenched note",
+        "description": "A rain-soaked note belonging to the stallion in a raincoat. The letters are clearly legible.",
         "type": "note",
         "icon": "note",
-        "text": "test",
-        "price": "4"
+        "text": "agent1",
+        "price": "6"
     },
 
 

@@ -1,0 +1,703 @@
+{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What is such a small pony doing alone at night in such rainy weather?",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A1(3)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You must be a representative of an organization that helps zebras.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A2"
+    },
+    "A1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stop kidding me, you know why I'm here.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A3"
+    },
+    "A1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry, I'm lost...",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A4"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You must be one of the ministry employees willing to sell information to our organization.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A2(2)"
+        }
+      ]
+    },
+    "A2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "That's right. Did you bring the money?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A5"
+    },
+    "A2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're busted! Prepare to die!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "combat": {
+      "kind": "combat",
+      "root_node": false
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You can be sure [shows closed suitcase] You brought the documents?",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A5(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(3)"
+        }
+      ]
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I haven't the faintest idea. Maybe you just like to walk in the rain at night?",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(3)"
+        }
+      ]
+    },
+    "A3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're wrong. I'm here to sell you information.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A6"
+    },
+    "A3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You guessed it. But other than that, I'm here to sell you information.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A6"
+    },
+    "A3(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're wrong. I'm here to kill you!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I was expecting somepony more significant. You'll do, too, though. The main thing is that you have the documents. By the way about them…",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A6(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A6(2)"
+        }
+      ]
+    },
+    "A6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Show me the money first. Do you have them?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A5"
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Let me show you the way. See where I'm pointing? It's called “far away\" okay? Either you tell me why you're here, or you go there.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(3)"
+        }
+      ]
+    },
+    "A4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm here to sell you information.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A6"
+    },
+    "A4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm here to kill you!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A4(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're going in there now, you bastard!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "[show your suitcase]",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A8"
+    },
+    "A5(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I think I forgot it at home…",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A7"
+    },
+    "A5(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Give me the suitcase, or you'll die!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A6(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I have them. [show your suitcase]",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A8"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You don't like your life so much? Either you show the documents, or you leave here, and we have nothing more to do with you!",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(3)"
+        }
+      ]
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Great. Do you know why we're doing this? You keep asking questions like this.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A9"
+    },
+    "A7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright. Here. [show your suitcase]",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A8"
+    },
+    "A7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't you understand any jokes at all? Here are your documents [show suitcase]",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A8"
+    },
+    "A7(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm sick of it. You're going to die now!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": " \"You are ponies too, why do you betray your own nation?\"",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A10"
+    },
+    "A10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you want to know why?",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A10(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A10(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A10(3)"
+        }
+      ]
+    },
+    "A10(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes I want.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A11"
+    },
+    "A10(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I don't care. Give me the money, and we'll break up.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A10(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you want to know why I want to shoot you right now? Let me tell you!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We do not betray our nation. We're saving her.",
+      "speaker": "Agent",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A11(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A11(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A11(3)"
+        }
+      ]
+    },
+    "A11(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Selling documents to the enemy? How do you save ponies with this?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A12"
+    },
+    "A11(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But in general, I changed my mind. I don't care. Give me the money.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A11(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Damned saviors. Nopony will save toy, when my bullets hit you!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Very easy. The government of our dear Equestria is been showing itself incompetent for a long time.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A13"
+    },
+    "A13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "All their recent actions are already almost screaming that Princesses are mad.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A14"
+    },
+    "A14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "They must be removed and replaced by those who are capable of ending the war.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A14(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A14(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A14(3)"
+        }
+      ]
+    },
+    "A15": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It has been going on for many years, but neither side has gained an advantage.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A16"
+    },
+    "A16": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We will always be equal opponents, building up each other's power at the same speed.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A17"
+    },
+    "A17": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And patriotism? This is just a tool of politicians.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A18"
+    },
+    "A18": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's so easy to think they're the stupid villains out there, and we're the only good ones.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A19"
+    },
+    "A19": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The truth is, it's all a lie. This war will destroy us all.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A19(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A19(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A19(3)"
+        }
+      ]
+    },
+    "A20": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Perhaps, a few years before, it was possible to fix everything in an easier way.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A21"
+    },
+    "A21": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But now things have gone too far. Do you agree?",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A21(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A21(2)"
+        }
+      ]
+    },
+    "A22": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm afraid it's not that simple. The thing is, you've been betrayed. I know you're a fake agent.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A22(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A22(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A22(3)"
+        }
+      ]
+    },
+    "A23": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You want to know who? Ha, my dear, we don't give up our partners.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A25"
+    },
+    "A24": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "If you think I'm talkative, you haven't seen your traitor yet. He's a big talker - he gave away almost all of your intelligence, you didn't even have to persuade him!",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A25"
+    },
+    "A25": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But I can assure you, he's an asshole. Intends to make an attempt on one of the Ministers in a couple of days. Good luck with that.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A26"
+    },
+    "A26": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh, I blabbed…",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A26(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A26(2)"
+        }
+      ]
+    },
+    "A27": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I've already said too much. Although there's hardly anything you can do anyway…",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "A28"
+    },
+    "A28": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...Being in a grave.",
+      "speaker": "Agent",
+      "opposite": "Strikely",
+      "next": "combat"
+    },
+    "A14(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Isn't victory the only sure outcome of this war?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A15"
+    },
+    "A14(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I see. Now give me the money.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A14(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Princesses are infallible! The only thing to end here is your life, heretic!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A19(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And this requires such drastic measures?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A20"
+    },
+    "A19(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stop talking, give me the money.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A19(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're too talkative for a corpse. Let's fix it!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A21(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Of course. Give me the money.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A21(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, but we're not here to argue about politics. Give me the money.",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A22"
+    },
+    "A22(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Damn it! Who did this?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A23"
+    },
+    "A22(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Then why talk so much if you knew everything from the beginning?",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A24"
+    },
+    "A22(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Enough talking then. Get your weapons out!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    },
+    "A26(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Tell me who it is! I have to stop him!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "A27"
+    },
+    "A26(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stop it! Time to die!",
+      "speaker": "Strikely",
+      "opposite": "Agent",
+      "next": "combat"
+    }
+  },
+  "speakers": {}
+}

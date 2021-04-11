@@ -41,6 +41,13 @@
         "icon": "toaster",
         "price": "40" 
     },
+	"suitcase_empty": {
+		"name": "Чемодан",
+        "description": "Черный чемодан средних размеров. Пустой.",
+        "type": "staff",
+        "icon": "suitcase",
+        "price": "30" 
+	},
     "key0": {
         "name": "Ключ",
         "description": "Железный ключ от какой-то двери",
@@ -50,13 +57,13 @@
     },
 
     
-    "noteTest": {
-        "name": "Тестовая записка",
-        "description": "Записка для теста",
+    "agent1Note": {
+        "name": "Промокшая записка",
+        "description": "Промокшая под дождем записка, принадлежащая жеребцу в плаще. Буквы читаются отчетливо.",
         "type": "note",
         "icon": "note",
-        "text": "test",
-        "price": "4"
+        "text": "agent1",
+        "price": "6"
     },
 
 

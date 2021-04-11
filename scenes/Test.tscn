@@ -35,12 +35,9 @@ agent/radius = 1.55
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
 moneyCount = 500
-itemCodes = [ "shotgun12", "pistol10-silenced", "autorifle762", "coat", "rifle307", "submachine10" ]
+itemCodes = [ "shotgun20" ]
 ammo = {
-"ammo10": 50,
-"ammo12": 20,
-"ammo307": 10,
-"ammo762": 50
+"ammo20": 20
 }
 
 [node name="npc" type="Node" parent="."]

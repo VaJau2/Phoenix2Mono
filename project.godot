@@ -153,6 +153,10 @@ ui_quickload={
 
 fallback="ru_RU"
 
+[logging]
+
+file_logging/enable_file_logging=true
+
 [mono]
 
 profiler/enabled=true
