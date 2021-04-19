@@ -110,6 +110,7 @@ public class UsualMode: InventoryMode {
                 //если на ту же кнопку биндится другая кнопка, предыдущая стирается
                 ItemIcon oldBindedButton = menu.bindedButtons[i];
                 oldBindedButton.SetBindKey(null);
+                bindsList.RemoveIcon(oldBindedButton);
             } 
             
             //бинд кнопки

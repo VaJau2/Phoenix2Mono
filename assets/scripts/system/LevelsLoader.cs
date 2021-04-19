@@ -120,11 +120,8 @@ public class LevelsLoader : Node
 
 		//очищаем спавнер от предзаполненных вещей
 		var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
-		playerSpawner.moneyCount = 0;
-		playerSpawner.itemCodes.Clear();
-		playerSpawner.ammo.Clear();
-		playerSpawner.clothCode = "";
-		
+		playerSpawner.loadStartItems = false;
+
 		await ToSignal(GetTree(), "idle_frame");
 
 		//загрузка сохранения

@@ -14,6 +14,8 @@ public class PlayerSpawner : Spatial
     public string clothCode = "";
 
     [Export] public bool checkSavedData = true;
+
+    public bool loadStartItems = true;
    
 
     public override void _Ready()
@@ -44,28 +46,33 @@ public class PlayerSpawner : Spatial
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
-        
-        //загрузка инвентаря во время перехода между уровнями
-        if (checkSavedData)
+
+        if (loadStartItems)
         {
-            var savedData = GetNodeOrNull<SaveNode>("/root/Main/SavedData");
-            if (savedData != null)
+            //загрузка инвентаря во время перехода между уровнями
+            if (checkSavedData)
             {
-                player.inventory.LoadData(savedData.InventoryData);
-                savedData.QueueFree();
-                QueueFree();
-                return;
+                var savedData = GetNodeOrNull<SaveNode>("/root/Main/SavedData");
+                if (savedData != null)
+                {
+                    player.inventory.LoadData(savedData.InventoryData);
+                    savedData.QueueFree();
+                    QueueFree();
+                    return;
+                }
+            }
+
+            //загрузка стартовых вещей
+            player.inventory.money = moneyCount;
+            player.inventory.LoadItems(itemCodes, ammo);
+
+            //загрузка надетой на ГГ брони
+            if (clothCode != "" && clothCode != "empty")
+            {
+                player.inventory.LoadWearItem(clothCode, "armor");
             }
         }
 
-        //загрузка стартовых вещей
-        player.inventory.money = moneyCount;
-        player.inventory.LoadItems(itemCodes, ammo);
-
-        //загрузка надетой на ГГ брони
-        if(clothCode != "" && clothCode != "empty")
-        {
-            player.inventory.LoadWearItem(clothCode, "armor");
-        }
+        QueueFree();
     }
 }
