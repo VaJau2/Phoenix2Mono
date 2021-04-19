@@ -218,7 +218,9 @@ public class MainMenu : MenuBase
         var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
         saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
         for (int i = 0; i < 3; i++) saveFile.GetLine();
-        return  Global.RaceFromString(saveFile.GetLine());
+        Race race = Global.RaceFromString(saveFile.GetLine());
+        saveFile.Close();
+        return race;
     }
 
     public override void _Ready()

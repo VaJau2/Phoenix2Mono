@@ -48,13 +48,19 @@ public class PlayerCamera: Camera
         mayUseRay = true;
     }
     
-    private void showHint(string textLink) {
+    public void ShowHint(string textLink, bool triggerClosing = true) {
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
         label.Text = key;
         label.Text += InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
         labelBack.Visible = true;
+        if (!triggerClosing) return;
+        onetimeHint = true;
+    }
+
+    public void HideHint()
+    {
         onetimeHint = true;
     }
 
@@ -110,7 +116,7 @@ public class PlayerCamera: Camera
                     eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
-             if (eyePartDown.RectPosition.y < 650) {
+            if (eyePartDown.RectPosition.y < 650) {
                 eyePartDown.RectPosition = setRectY(
                     eyePartDown.RectPosition, 
                     eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
@@ -125,23 +131,31 @@ public class PlayerCamera: Camera
         
         tempObject = (Spatial)tempRay.GetCollider();
 
-        if (mayUseRay && tempObject != null) {
-            if (tempObject is FurnBase) {
-                var furn = tempObject as FurnBase;
-                if (furn.IsOpen) {
-                    showHint("close");
-                } else {
-                    showHint("open");
-                }
-            } else if (tempObject is ITrader) {
-                showHint("trade");
-            } else if (tempObject is Terminal) {
-                showHint("terminal");
-            } 
-            else if (!dialogueMenu.MenuOn && tempObject is NPC) {
-                var npc = tempObject as NPC;
-                if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
-                    showHint("talk");
+        if (mayUseRay && tempObject != null)
+        {
+            switch (tempObject)
+            {
+                case FurnBase furn when furn.IsOpen:
+                    ShowHint("close");
+                    break;
+                case FurnBase furn:
+                    ShowHint("open");
+                    break;
+                case ITrader _:
+                    ShowHint("trade");
+                    break;
+                case Terminal _:
+                    ShowHint("terminal");
+                    break;
+                default:
+                {
+                    if (!dialogueMenu.MenuOn && tempObject is NPC npc) {
+                        if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
+                            ShowHint("talk");
+                        }
+                    }
+
+                    break;
                 }
             }
         } else {
@@ -149,28 +163,38 @@ public class PlayerCamera: Camera
         }
     }
 
-    public void UpdateInput() {
-        if (labelBack.Visible && closedTimer <= 0 && tempObject != null) {
-            if (tempObject is FurnDoor) {
-                var furn = tempObject as FurnDoor;
+    public void UpdateInput()
+    {
+        if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
+        switch (tempObject)
+        {
+            case FurnDoor furn1:
+            {
                 var keys = player.inventory.GetKeys();
-                closedTimer = furn.ClickFurn(keys);
+                closedTimer = furn1.ClickFurn(keys);
                 onetimeHint = false;
+                break;
             }
-            else if (tempObject is FurnBase) {
-                var furn = tempObject as FurnBase;
+            case FurnBase furn:
                 furn.ClickFurn();
-            } else if (tempObject is ITrader) {
-                var trader = tempObject as ITrader;
+                break;
+            case ITrader trader:
+            {
                 trader.StartTrading();
-            } else if (tempObject is Terminal) {
-                var terminal = tempObject as Terminal;
-                MenuManager.TryToOpenMenu(terminal);
-            } else if (tempObject is NPC) {
-                var npc = tempObject as NPC;
+                break;
+            }
+            case Terminal tempTerminal:
+            {
+                MenuManager.TryToOpenMenu(tempTerminal);
+                break;
+            }
+            case NPC npc:
+            {
                 if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
                     dialogueMenu.StartTalkingTo(npc);
                 }
+
+                break;
             }
         }
     }

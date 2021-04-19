@@ -153,7 +153,7 @@ public class PlayerInventory {
         return player.GetNode<ItemIcon>(buttonsPath + wearButtonName);
     }
 
-    public Dictionary GetSaveData()
+    public Dictionary GetSaveData(bool saveEffects = true)
     {
         var itemCodes = new Array();
         var itemCounts = new Array();
@@ -167,10 +167,13 @@ public class PlayerInventory {
 
         var effectNames = new Array();
         var effectTimes = new Array();
-        foreach (Effect tempEffect in effects.tempEffects)
+        if (saveEffects)
         {
-            effectNames.Add(EffectHandler.GetNameByEffect(tempEffect));
-            effectTimes.Add(tempEffect.time);
+            foreach (Effect tempEffect in effects.tempEffects)
+            {
+                effectNames.Add(EffectHandler.GetNameByEffect(tempEffect));
+                effectTimes.Add(tempEffect.time);
+            }
         }
 
         var weaponButton = GetWearButton("weapon");
@@ -202,6 +205,7 @@ public class PlayerInventory {
         Array itemCodes = (Array) data["itemCodes"];
         Array itemCounts = (Array) data["itemCounts"];
         Array itemBinds = (Array) data["itemBinds"];
+        var bindsList = player.GetNode<BindsList>("/root/Main/Scene/canvas/binds");
         for (int i = 0; i < itemCodes.Count; i++)
         {
             var itemCode = itemCodes[i].ToString();
@@ -215,6 +219,7 @@ public class PlayerInventory {
             {
                 tempButton.SetBindKey(itemBinds[i].ToString());
                 menu.bindedButtons[Convert.ToInt32(itemBinds[i])] = tempButton;
+                bindsList.AddIcon(tempButton);
             }
         }
 

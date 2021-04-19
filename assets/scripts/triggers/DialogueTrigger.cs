@@ -30,6 +30,7 @@ public class DialogueTrigger : TriggerBase
 
     public override async void _on_body_entered(Node body)
     {
+        if (!IsActive) return;
         if (!(body is Player)) return;
         if (npc.Health > 0)
         {

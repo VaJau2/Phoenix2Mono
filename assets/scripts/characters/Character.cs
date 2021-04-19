@@ -12,6 +12,9 @@ public class Character : KinematicBody, ISavable
     public int BaseRecoil;
 
     public Vector3 Velocity;
+    
+    [Signal]
+    public delegate void Die();
 
     protected void SetStartHealth(int newHealth)
     {
@@ -22,7 +25,7 @@ public class Character : KinematicBody, ISavable
     public virtual int GetDamage() => BaseDamage;
     public virtual int GetRecoil() => BaseRecoil;
 
-    protected void decreaseHealth(int decrease) 
+    private void decreaseHealth(int decrease) 
     {
         Health -= decrease;
         Health = Mathf.Clamp(Health, 0, HealthMax);
@@ -30,8 +33,12 @@ public class Character : KinematicBody, ISavable
 
     public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        damage = damage - (int)(damage * GetDamageBlock());
+        damage -= (int)(damage * GetDamageBlock());
         decreaseHealth(damage);
+        if (Health <= 0)
+        {
+            EmitSignal(nameof(Die));
+        }
     }
     
     public virtual void CheckShotgunShot(bool isShotgun) {}

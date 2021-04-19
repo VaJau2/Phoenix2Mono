@@ -134,7 +134,8 @@ public class FurnChest: FurnBase, ISavable {
         }
         
         ammoButtons.Clear();
-        var scene = GetNode("/root/Main/Scene");
+        //пока сундук не добавлен на сцену, его GetNode не работает
+        var scene = Global.Get().player.GetNode("/root/Main/Scene");
         foreach (string key in newAmmoButtonNames.Keys)
         {
             ItemIcon tempButton = (ItemIcon)Global.FindNodeInScene(scene, newAmmoButtonNames[key].ToString());

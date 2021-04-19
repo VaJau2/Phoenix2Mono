@@ -212,6 +212,7 @@ public class Pony: NPC
     {
         FurnChest tempBag = (FurnChest)bagPrefab.Instance();
 
+        tempBag.Name = "Created_" + tempBag.Name;
         tempBag.itemCodes = itemCodes;
         tempBag.ammoCount = ammoCount;
 

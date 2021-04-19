@@ -12,6 +12,8 @@ public class PlayerSpawner : Spatial
 
     [Export]
     public string clothCode = "";
+
+    [Export] public bool checkSavedData = true;
    
 
     public override void _Ready()
@@ -42,6 +44,21 @@ public class PlayerSpawner : Spatial
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
+        
+        //загрузка инвентаря во время перехода между уровнями
+        if (checkSavedData)
+        {
+            var savedData = GetNodeOrNull<SaveNode>("/root/Main/SavedData");
+            if (savedData != null)
+            {
+                player.inventory.LoadData(savedData.InventoryData);
+                savedData.QueueFree();
+                QueueFree();
+                return;
+            }
+        }
+
+        //загрузка стартовых вещей
         player.inventory.money = moneyCount;
         player.inventory.LoadItems(itemCodes, ammo);
 
@@ -50,8 +67,5 @@ public class PlayerSpawner : Spatial
         {
             player.inventory.LoadWearItem(clothCode, "armor");
         }
-
-        QueueFree();
     }
-
 }

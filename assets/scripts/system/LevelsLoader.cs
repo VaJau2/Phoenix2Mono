@@ -48,6 +48,7 @@ public class LevelsLoader : Node
 
 	private async void updateScene()
 	{
+		Global.deletedObjects.Clear();
 		if (currentScene != null) {
 			global.player = null;
 			currentScene.QueueFree();
@@ -132,6 +133,7 @@ public class LevelsLoader : Node
 		//удаление удаленных в сохранении объектов
 		foreach (string objName in deletedObjects)
 		{
+			Global.AddDeletedObject(objName);
 			var foundedObject = Global.FindNodeInScene(scene, objName);
 			foundedObject.QueueFree();
 		}

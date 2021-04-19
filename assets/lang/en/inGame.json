@@ -39,7 +39,8 @@
         "open": " - open",
         "trade": " - trade",
         "talk": " - talk",
-        "terminal": " - manage"
+        "terminal": " - manage",
+        "exitLocation": " - leave location"
     },
 
     "hints": {

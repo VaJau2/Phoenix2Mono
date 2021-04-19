@@ -29,6 +29,7 @@ public class HintTrigger : TriggerBase
 
     public override void _on_body_entered(Node body)
     {
+        if (!IsActive) return;
         if (!(body is Player)) return;
         
         var hintCode = HintCode;

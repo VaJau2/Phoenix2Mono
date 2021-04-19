@@ -147,6 +147,7 @@ public class LoadMenu : Control
             Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
             var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
             var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
+            saveFile.Close();
 
             loader.LoadLevel(levelNum, levelsData, deletedObjects);
             return true;
