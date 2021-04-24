@@ -16,6 +16,7 @@
         "unwearItem": "Unwear: ",
         "cantUnwear": "Can't take off: ",
         "cantDrop": "Can't drop quest item: ",
+        "cantSell": "Can't sell quest item: ",
         "cantFindHeal": "Couldn't find any heals",
         "youAreHealthy": "You are healty enough",
         "space": "Not enough space",

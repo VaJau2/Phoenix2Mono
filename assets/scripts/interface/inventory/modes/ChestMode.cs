@@ -220,7 +220,15 @@ public class ChestMode: InventoryMode
 
     protected override void CheckDragItem()
     {
+        //перетащить из сундука
         if (CheckDragIn(itemButtons, "inventory")) return;
+
+        if (tempItemData.Contains("questItem"))
+        {
+            inventory.MessageCantDrop(tempItemData["name"].ToString());
+            return;
+        }
+        //перетащить в сундук
         if (CheckDragIn(chestButtons, "chest"))    return;
     }
 
@@ -245,6 +253,12 @@ public class ChestMode: InventoryMode
     {
         //положить в сундук
         if (itemButtons.Contains(tempButton)) {
+            if (tempItemData.Contains("questItem"))
+            {
+                inventory.MessageCantDrop(tempItemData["name"].ToString());
+                return false;
+            }
+
             ItemIcon chestButton = FirstEmptyChestButton;
             if (chestButton != null) {
                 if (checkAmmoInChest()) return true;

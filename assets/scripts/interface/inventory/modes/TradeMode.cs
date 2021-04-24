@@ -359,6 +359,13 @@ public class TradeMode: InventoryMode
     private bool CheckSellItem()
     {
         if (itemButtons.Contains(tempButton)) {
+            //если предмет квестовый, его нельзя продать
+            if (tempItemData.Contains("questItem"))
+            {
+                inventory.MessageCantSell(tempItemData["name"].ToString());
+                return true;
+            }
+
             //если у торговца хватает денег
             if (tempTrader.moneyCount > tempItemPrice) {
                 OpenModalAsk("sell");
