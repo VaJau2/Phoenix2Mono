@@ -141,6 +141,8 @@ public class Global {
             if (result_json.Error == Error.Ok) {  
                 return (Dictionary)result_json.Result;
             }
+            GD.PrintErr("parse json (" + filePath  + ") error: " + result_json.ErrorString + ", in line: " + result_json.ErrorLine);
+            return null;
         }
         GD.PrintErr("error loading JSON file in: " + path);
         return null;

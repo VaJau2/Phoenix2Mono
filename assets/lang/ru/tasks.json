@@ -1,0 +1,10 @@
+{
+    "tasks": {
+        "tasksHeader": "Задачи:",
+        "none": "?",
+
+        "talkToAgent": "Поговорить с пони в плаще",
+        "searchAgent": "Обыскать тело",
+        "talkToCommander": "Доложить полковнику"
+    }
+}

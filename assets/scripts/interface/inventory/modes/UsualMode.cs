@@ -238,6 +238,12 @@ public class UsualMode: InventoryMode {
 
     private void DropTempItem() 
     {
+        if (tempItemData.Contains("questItem"))
+        {
+            inventory.MessageCantDrop(tempItemData["name"].ToString());
+            return;
+        }
+
         if (tempBag == null) {
             tempBag = (FurnChest)bagPrefab.Instance();
             Node parent = player.GetNode("/root/Main/Scene");

@@ -2,9 +2,9 @@
 using Godot;
 using Godot.Collections;
 
-public class TriggerBase : Area, ISavable
+public class TriggerBase : Node, ISavable
 {
-    [Export] public bool IsActive = true;
+    [Export] public bool IsActive { get; private set; } = true;
     [Export] public bool DeleteAfterTrigger = true;
 
     public Dictionary GetSaveData()
@@ -17,6 +17,11 @@ public class TriggerBase : Area, ISavable
     public void LoadData(Dictionary data)
     {
         IsActive = Convert.ToBoolean(data["active"]);
+    }
+
+    public virtual void SetActive(bool newActive)
+    {
+        IsActive = newActive;
     }
 
     public virtual void _on_body_entered(Node body)

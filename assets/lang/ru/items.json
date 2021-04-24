@@ -56,14 +56,15 @@
         "price": "2" 
     },
 
-    
+
     "agent1Note": {
         "name": "Промокшая записка",
         "description": "Промокшая под дождем записка, принадлежащая жеребцу в плаще. Буквы читаются отчетливо.",
         "type": "note",
         "icon": "note",
         "text": "agent1",
-        "price": "6"
+        "price": "6",
+        "questItem": "true"
     },
 
 

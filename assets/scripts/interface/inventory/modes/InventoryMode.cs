@@ -169,6 +169,10 @@ public abstract class InventoryMode
                     float blockValue = Global.ParseFloat(propValue);
                     propValue = (blockValue * 100f).ToString() + "%";
                 }
+                if (prop == "questItem")
+                {
+                    propValue = "";
+                }
                 
                 result += "> " + propName + propValue + "\n";
             }

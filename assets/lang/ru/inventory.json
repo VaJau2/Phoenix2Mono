@@ -47,7 +47,8 @@
         "recoil": "Отдача: ",
 
         "heal": "+ к Здоровью: ",
-        "medsEffect": "Эффект: "
+        "medsEffect": "Эффект: ",
+        "questItem": "Квестовый предмет"
     },
 
     "medsEffects": {

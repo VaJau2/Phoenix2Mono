@@ -55,7 +55,7 @@
         "icon": "key0",
         "price": "2" 
     },
-    
+
 
     "agent1Note": {
         "name": "A drenched note",
@@ -63,7 +63,8 @@
         "type": "note",
         "icon": "note",
         "text": "agent1",
-        "price": "6"
+        "price": "6",
+        "questItem": "true"
     },
 
 

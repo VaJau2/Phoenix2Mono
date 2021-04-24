@@ -1,18 +1,32 @@
 ﻿using Godot;
+using Godot.Collections;
 
-//активирует другой триггер
-public class ActivateOtherTrigger: Node
+//активирует другие триггеры
+public class ActivateOtherTrigger: TriggerBase
 {
-    [Export] public NodePath otherTriggerPath;
-    private TriggerBase otherTrigger;
+    [Export] public Array<NodePath> otherTriggerPaths;
+    private Array<TriggerBase> otherTriggers = new Array<TriggerBase>();
 
     public override void _Ready()
     {
-        otherTrigger = GetNode<TriggerBase>(otherTriggerPath);
+        foreach(NodePath tempPath in otherTriggerPaths)
+        {
+            otherTriggers.Add(GetNode<TriggerBase>(tempPath));
+        }
     }
 
     public void _on_activate_trigger()
     {
-        otherTrigger.IsActive = true;
+        if (IsActive)
+        {
+            foreach (TriggerBase otherTrigger in otherTriggers)
+            {
+                otherTrigger.SetActive(true);
+            }
+            if (DeleteAfterTrigger)
+            {
+                QueueFree();
+            }
+        }
     }
 }

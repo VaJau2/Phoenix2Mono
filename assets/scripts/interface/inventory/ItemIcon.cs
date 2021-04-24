@@ -4,6 +4,7 @@ using Godot.Collections;
 public class ItemIcon : ColorRect
 {
     Global global => Global.Get();
+    Player player => global.player;
 
     [Export]
     public bool isInventoryIcon = false;
@@ -47,7 +48,6 @@ public class ItemIcon : ColorRect
         countLabel.Visible = (itemType == "ammo") || (itemType == "money");
         if (itemType == "ammo") {
             if (isInventoryIcon) {
-                Player player = Global.Get().player;
                 player.inventory.SetAmmoButton(itemCode, this);
                 //обновляем интерфейс, если новые патроны добавились для текущего оружия
                 if (player.Weapons.isTempAmmo(itemCode)) {
@@ -56,6 +56,11 @@ public class ItemIcon : ColorRect
             }
         } else if (itemType != "money") {
             countLabel.Text = "-1";
+        }
+
+        if (isInventoryIcon)
+        {
+            player.EmitSignal(nameof(Player.TakeItem), itemCode);
         }
     }
 

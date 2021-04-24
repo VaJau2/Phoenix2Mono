@@ -132,6 +132,11 @@ public class PlayerInventory {
         }
     }
 
+    public void MessageCantDrop(string itemName)
+    {
+        messages.ShowMessage("cantDrop", itemName, "items");
+    }
+
     public void MessageCantUnwear(string itemName) 
     {
         messages.ShowMessage("cantUnwear", itemName, "items");

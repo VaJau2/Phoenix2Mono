@@ -47,7 +47,8 @@
         "recoil": "Recoil: ",
 
         "heal": "Heal: ",
-        "medsEffect": "Effect: "
+        "medsEffect": "Effect: ",
+        "questItem": "Quest item"
     },
 
     "medsEffects": {
