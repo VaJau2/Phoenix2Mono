@@ -27,6 +27,7 @@ public class Pony: NPC
     public bool IsRunning = false;
     public float RotationToVictim = 0f;
 
+    public NPCFace head;
     public NPCBody body;
     public NPCWeapons weapons;
     private PackedScene bagPrefab;
@@ -297,6 +298,7 @@ public class Pony: NPC
         base._Ready();
         rand.Randomize();
         body = new NPCBody(this);
+        head = GetNode<NPCFace>("Armature/Skeleton/Body");
         weapons = GetNode<NPCWeapons>("weapons");
         navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");

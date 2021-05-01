@@ -28,10 +28,10 @@ public class NPC : Character
     public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
     public NPCState state;
-    public NPCFace head;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
+    [Export] private NodePath headBonePath, bodyBonePath;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
@@ -217,11 +217,12 @@ public class NPC : Character
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
         skeleton = GetNode<Skeleton>("Armature/Skeleton");
-        head = GetNode<NPCFace>("Armature/Skeleton/Body");
         seekArea = GetNode<SeekArea>("seekArea");
-        
-        headBone = GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
-        bodyBone = GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+
+        headBone = headBonePath != null ? GetNode<PhysicalBone>(headBonePath) 
+            : GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
+        bodyBone = bodyBonePath != null ? GetNode<PhysicalBone>(bodyBonePath) 
+            : GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
 
         SetStartHealth(StartHealth);
         BaseSpeed = WalkSpeed;

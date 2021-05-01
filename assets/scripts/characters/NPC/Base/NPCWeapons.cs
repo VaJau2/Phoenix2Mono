@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class NPCWeapons : Node
 {
-    NPC npc;
+    Pony npc;
     Dictionary tempWeaponStats;
     Spatial tempWeapon;
     AnimationPlayer gunAnim;
