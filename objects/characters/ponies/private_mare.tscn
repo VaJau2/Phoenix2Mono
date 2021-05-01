@@ -5,8 +5,10 @@
 [ext_resource path="res://assets/materials/characters/private_mare/eyes.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/private_mare/mouth.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/private_mare/tie.material" type="Material" id=5]
-[ext_resource path="res://objects/characters/npcBase.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/scripts/characters/NPC/NPCFace.cs" type="Script" id=7]
+[ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=7]
+
+
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "mane"

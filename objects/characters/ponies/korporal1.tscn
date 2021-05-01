@@ -1,11 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://objects/characters/npcBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/korporal1/body.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/korporal1/eyes.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/NPCFace.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/characters/korporal1/mouth.material" type="Material" id=6]
+
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"

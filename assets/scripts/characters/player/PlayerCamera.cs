@@ -141,9 +141,6 @@ public class PlayerCamera: Camera
                 case FurnBase furn:
                     ShowHint("open");
                     break;
-                case ITrader _:
-                    ShowHint("trade");
-                    break;
                 case Terminal _:
                     ShowHint("terminal");
                     break;
@@ -176,11 +173,8 @@ public class PlayerCamera: Camera
                 break;
             }
             case FurnBase furn:
-                furn.ClickFurn();
-                break;
-            case ITrader trader:
             {
-                trader.StartTrading();
+                furn.ClickFurn();
                 break;
             }
             case Terminal tempTerminal:

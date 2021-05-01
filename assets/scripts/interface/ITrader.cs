@@ -10,4 +10,5 @@ public interface ITrader
     Dictionary<int, string> itemPositions {get; set;}
 
     void StartTrading();
+    void StopTrading();
 }

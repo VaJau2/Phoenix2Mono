@@ -331,8 +331,14 @@ public class TradeMode: InventoryMode
                     float priceDelta = player.PriceDelta;
 
                     if (itemButtons.Contains(tempButton)) {
+                        //стоимость продажи
                         tempItemPrice = (int)(tempItemPrice * (PRICE_DIFF * priceDelta));
+                        if (tempItemPrice == 0)
+                        {
+                            tempItemPrice = 1;
+                        }
                     } else {
+                        //стоимость покупки
                         tempItemPrice = (int)(tempItemPrice / (PRICE_DIFF * priceDelta));
                     }
 
@@ -343,6 +349,15 @@ public class TradeMode: InventoryMode
                 
                 if (prop == "medsEffect") {
                     propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
+                }
+                if (prop == "damageBlock") {
+                    //выводим блокирование урона в процентах
+                    float blockValue = Global.ParseFloat(propValue);
+                    propValue = (blockValue * 100f) + "%";
+                }
+                if (prop == "questItem")
+                {
+                    propValue = "";
                 }
                 
                 result += "> " + propName + propValue + "\n";

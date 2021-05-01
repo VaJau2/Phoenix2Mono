@@ -6,11 +6,12 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=4]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=6]
-[ext_resource path="res://assets/scripts/furns/broken-glass.gd" type="Script" id=7]
+[ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=7]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=8]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=9]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=11]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.573285, 10.5258, 0.772525 )

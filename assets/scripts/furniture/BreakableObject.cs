@@ -12,8 +12,6 @@ public class BreakableObject: StaticBody
     [Export]
     public BreakableObjectType objectType;
     [Export]
-    public PackedScene ItemPrefab;
-    [Export]
     public Dictionary<string, AudioStreamSample> brakeSounds = new Dictionary<string, AudioStreamSample>
     {
         {"brake1", null},
@@ -24,29 +22,6 @@ public class BreakableObject: StaticBody
     private List<Character> HearingEnemies = new List<Character>();
 
     private AudioStreamPlayer3D audi;
-
-    private async void dropItem() 
-    {
-        var item = (Spatial)ItemPrefab.Instance();
-        GetNode<Spatial>("/root/Main/Scene/items").AddChild(item);
-        item.GlobalTransform = 
-            Global.setNewOrigin(item.GlobalTransform, GlobalTransform.origin);
-        var sideX = GD.Randf() - 0.5f;
-        var sideZ = GD.Randf() - 0.5f;
-        while(itemHeight > 0 && item != null)
-        {
-            Vector3 newPos = item.GlobalTransform.origin;
-            newPos.x += sideX * 0.1f;
-            newPos.y += sideZ * 0.1f;
-            newPos.z -= 0.1f;
-            item.GlobalTransform = Global.setNewOrigin(
-                item.GlobalTransform,
-                newPos
-            );
-            itemHeight -= 0.1f;
-            await ToSignal(GetTree(), "idle_frame");
-        }
-    }
 
     public async void Brake(float damage)
     {
@@ -78,11 +53,6 @@ public class BreakableObject: StaticBody
                 case (BreakableObjectType.Box):
                     audi.Stream = brakeSounds["brake2"];
                     break;
-            }
-
-            if (ItemPrefab != null)
-            {
-                dropItem();
             }
 
             GetNode<Spatial>("mesh").Visible = false;
@@ -120,8 +90,6 @@ public class BreakableObject: StaticBody
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        //TODO
-        //добавить сюда добавление объекта в nuclear-скрипты
     }
 
 }

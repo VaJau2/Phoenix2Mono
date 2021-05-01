@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/materials/props/light/lightglass.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=2]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=3]
-[ext_resource path="res://assets/scripts/furns/broken-glass.gd" type="Script" id=4]
+[ext_resource path="res://assets/materials/weapon/result/glass.tres" type="Material" id=4]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=5]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=6]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=9]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.4
@@ -34,11 +36,12 @@ size = Vector2( 0.8, 0.8 )
 
 [node name="lamp" type="StaticBody"]
 physics_material_override = ExtResource( 2 )
-script = ExtResource( 4 )
-brake_damage = 1
-lamp = true
-sound = {
-"brake1": ExtResource( 7 ),
+script = ExtResource( 9 )
+BrakeDamage = 10.0
+BrokenMaterial = ExtResource( 4 )
+objectType = 1
+brakeSounds = {
+"brake1": ExtResource( 8 ),
 "brake2": ExtResource( 7 )
 }
 

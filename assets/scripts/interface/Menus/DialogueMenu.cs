@@ -4,7 +4,7 @@ using Godot.Collections;
 public class DialogueMenu : Control, IMenu
 {
     Global global => Global.Get();
-    public bool mustBeClosed {get => false;}
+    public bool mustBeClosed => false;
     const int MAX_LINE_LENGTH = 50;
     const int MAX_ANSWER_LENGTH = 65;
     public NPC npc {get; private set;}
@@ -71,6 +71,13 @@ public class DialogueMenu : Control, IMenu
 
     }
 
+    private void initDialogueScript(string scriptName, string parameter)
+    {
+        var scriptType = System.Type.GetType(scriptName);
+        var scriptObj = System.Activator.CreateInstance(scriptType) as IDialogueScript;
+        scriptObj.initiate(this, parameter);
+    }
+
     private void MoveToNode(string code)
     {
         if (code == "") {
@@ -105,15 +112,27 @@ public class DialogueMenu : Control, IMenu
                 break;
             case "narration":
                 string scriptName = tempNode["body"].ToString();
-                var scriptType = System.Type.GetType(scriptName);
-                var scriptObj = System.Activator.CreateInstance(scriptType) as IDialogueScript;
-
+                
                 string parameter = null;
                 if (tempNode.Contains("set")) {
                     parameter = tempNode["set"].ToString();
                 }
-
-                scriptObj.initiate(this, parameter);
+                //если указано несколько скриптов в несколько строк
+                if (scriptName.Contains("\n"))
+                {
+                    //выполняем их все по очереди
+                    string[] scriptNames = scriptName.Split('\n');
+                    foreach (var tempScriptName in scriptNames)
+                    {
+                        initDialogueScript(tempScriptName, parameter);
+                    }
+                }
+                //если указан только один скрипт
+                else
+                {
+                    initDialogueScript(scriptName, parameter);
+                }
+                
                 break;
         }
 
@@ -220,7 +239,7 @@ public class DialogueMenu : Control, IMenu
     {
         if (MenuOn) {
             if (npc.state != NPCState.Talk) {
-                CloseMenu();
+                MenuManager.CloseMenu(this);
             } else {
                 player.LookAt(npc.GlobalTransform.origin);
             }

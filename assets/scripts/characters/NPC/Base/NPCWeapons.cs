@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class NPCWeapons : Node
 {
-    Pony npc;
+    NPC npc;
     Dictionary tempWeaponStats;
     Spatial tempWeapon;
     AnimationPlayer gunAnim;
@@ -22,7 +22,7 @@ public class NPCWeapons : Node
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
 
-    public void LoadWeapon(Pony npc, string weaponCode)
+    public void LoadWeapon(NpcWithWeapons npc, string weaponCode)
     {
         this.npc = npc;
 
@@ -74,7 +74,12 @@ public class NPCWeapons : Node
         if (gunAnim != null) {
             gunAnim.Play("shoot");
         }
-        npc.head.CloseEyes();
+
+        if (npc is Pony pony)
+        {
+            pony.head.CloseEyes();
+        }
+
         var statsDistance = GetStatsInt("shootDistance");
 
         if (tempWeaponStats.Contains("bullet")) {

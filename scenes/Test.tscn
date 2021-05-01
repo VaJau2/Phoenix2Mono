@@ -10,8 +10,9 @@
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/characters/NPC/CoversManager.cs" type="Script" id=11]
+[ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=11]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
+
 
 [sub_resource type="PlaneMesh" id=1]
 

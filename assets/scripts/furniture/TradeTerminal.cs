@@ -52,7 +52,7 @@ public class TradeTerminal: StaticBody, ITrader
         }
     }
 
-    private void StopTrading()
+    public void StopTrading()
     {
         isTrading = false;
         menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
