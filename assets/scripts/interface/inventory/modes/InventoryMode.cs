@@ -319,6 +319,7 @@ public abstract class InventoryMode
         return false;
     }
 
+    public virtual void Process(float delta) {}
     public virtual void CloseModal() {}
     public virtual void UpdateInput(InputEvent @event) {}
 

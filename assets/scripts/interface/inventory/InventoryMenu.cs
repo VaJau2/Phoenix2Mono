@@ -63,6 +63,11 @@ public class InventoryMenu : Control, IMenu
         MenuBase.LoadColorForChildren(this);
     }
 
+    public override void _Process(float delta)
+    {
+        mode.Process(delta);
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (mode == null) return;

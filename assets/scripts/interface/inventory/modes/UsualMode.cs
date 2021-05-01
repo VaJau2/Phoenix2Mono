@@ -15,6 +15,9 @@ public class UsualMode: InventoryMode {
     private RichTextLabel noteText;
     private Label closeHint;
 
+    private bool countClickTimer;
+    private float clickTimer;
+
     public UsualMode (InventoryMenu menu)
     : base(menu)
     {
@@ -272,12 +275,36 @@ public class UsualMode: InventoryMode {
         RemoveTempItem();
     }
 
+    public override void Process(float delta)
+    {
+        countClickTimer = false;
+        if (menu.isOpen && tempButton != null)
+        {
+            if (Input.IsActionPressed("ui_click"))
+            {
+                countClickTimer = true;
+            }
+        }
+
+        if (countClickTimer)
+        {
+            if (clickTimer < 0.5f)
+            {
+                clickTimer += delta;
+            }
+        }
+        else
+        {
+            clickTimer = 0;
+        }
+    }
+
     public override void UpdateInput(InputEvent @event)
     {
         if (menu.isOpen && tempButton != null) {
             if (UpdateDragging(@event)) return;
             
-            if (Input.IsActionJustReleased("ui_click")) {
+            if (Input.IsActionJustReleased("ui_click") && clickTimer < 0.2f) {
                 UseTempItem();
             }
 
