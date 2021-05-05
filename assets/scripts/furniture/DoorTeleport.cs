@@ -6,8 +6,10 @@ public class DoorTeleport : StaticBody
     [Export] private NodePath newPlacePath;
     [Export] private NodePath oldLocationPath;
     [Export] private NodePath newLocationPath;
+    [Export] private NodePath otherDoorPath;
 
     [Export] private AudioStreamSample openSound;
+    private DoorTeleport otherDoor;
     AudioStreamPlayer3D audi;
     Spatial newPlace, oldLocation, newLocation;
 
@@ -19,6 +21,7 @@ public class DoorTeleport : StaticBody
         newPlace = GetNode<Spatial>(newPlacePath);
         oldLocation = GetNode<Spatial>(oldLocationPath);
         newLocation = GetNode<Spatial>(newLocationPath);
+        otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
         SetProcess(false);
     }
 
@@ -32,7 +35,12 @@ public class DoorTeleport : StaticBody
 
     public void Open(Spatial character, bool makeVisible)
     {
-        if (audi != null)
+        if (otherDoor?.audi != null)
+        {
+            otherDoor.audi.Stream = openSound;
+            otherDoor.audi.Play();
+        }
+        else if (audi != null)
         {
             audi.Stream = openSound;
             audi.Play();
