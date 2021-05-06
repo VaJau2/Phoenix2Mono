@@ -103,10 +103,9 @@ public class UsualMode: InventoryMode {
             //если клавиша уже забиндена
             if (menu.bindedButtons.Keys.Contains(i)) {
                 //если нажата та же кнопка, она стирается
-                if (menu.bindedButtons[i] == tempButton) {
-                    tempButton.SetBindKey(null);
-                    menu.bindedButtons.Remove(i);
-                    bindsList.RemoveIcon(tempButton);
+                if (menu.bindedButtons[i] == tempButton)
+                {
+                    ClearBind(tempButton);
                     return;
                 } 
                 

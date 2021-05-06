@@ -259,7 +259,7 @@ public class Global {
         file.OpenCompressed(fileName, File.ModeFlags.Read);
         string name = file.GetLine();
         string date = file.GetLine();
-        string level = InterfaceLang.GetPhrase("levels", "levelNames",file.GetLine());
+        string level = file.GetLine();
         file.Close();
         return new FileTableLine(name, date, level);
     }

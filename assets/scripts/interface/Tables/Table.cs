@@ -44,7 +44,8 @@ public class Table : VBoxContainer
         newButton.Align = Button.TextAlign.Left;
         newButton.Theme = buttonsTheme;
         newButton.AddToGroup("ignore_color");
-        newButton.Text = GetLine(fileData.name, fileData.date, fileData.level);
+        newButton.Text = GetLine(fileData.name, fileData.date, 
+            InterfaceLang.GetPhrase("levels", "levelNames",fileData.level));
         AddChild(newButton);
         buttonsCount++;
         return newButton;
@@ -55,7 +56,8 @@ public class Table : VBoxContainer
         Button foundButton = FindButton(fileData.name);
         if (foundButton != null)
         {
-            foundButton.Text = GetLine(fileData.name, fileData.date, fileData.level);
+            foundButton.Text = GetLine(fileData.name, fileData.date, 
+                InterfaceLang.GetPhrase("levels", "levelNames",fileData.level));
         }
     }
 
@@ -179,7 +181,9 @@ public class Table : VBoxContainer
             tempButton.Pressed = false;
         }
 
-        tempButton = GetNode<Button>(buttonName);
+        tempButton = GetNodeOrNull<Button>(buttonName);
+        if (tempButton == null) return;
+        
         var fileI = int.Parse(buttonName);
         parent.EmitSignal(nameof(TableSignals.TableButtonPressed), filesArray[fileI].name);
     }

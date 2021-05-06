@@ -200,6 +200,13 @@ public abstract class InventoryMode
         return itemButtons.Contains(oldButton) && itemButtons.Contains(newButton);
     }
 
+    protected void ClearBind(ItemIcon button)
+    {
+        menu.bindedButtons.Remove(int.Parse(button.GetBindKey()));
+        bindsList.RemoveIcon(button);
+        button.SetBindKey(null);
+    }
+
     protected virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         //меняем местами бинды клавиш на кнопках

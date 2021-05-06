@@ -65,6 +65,7 @@ public class SaveMenu : Control
         if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quicksave"))
         {
             SaveGame("quicksave", GetTree());
+            CreateTableLine("quicksave");
             Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
             messages.ShowMessage("gameQuicksaved");
         }
@@ -119,7 +120,8 @@ public class SaveMenu : Control
             UpdateControls(true, lineExists);
             return;
         }
-        
+
+        table._on_table_button_click(null);
         UpdateControls(false);
     }
 
@@ -151,7 +153,7 @@ public class SaveMenu : Control
         return new FileTableLine(
             saveName,
             DateTime.Now.ToShortDateString(),
-            InterfaceLang.GetPhrase("levels", "levelNames", LevelsLoader.tempLevelNum.ToString())
+            LevelsLoader.tempLevelNum.ToString()
         );
     }
 
@@ -172,8 +174,8 @@ public class SaveMenu : Control
     private void CreateTableLine(string fileName)
     {
         var fileTableLine = createNewTableLine(fileName); 
-        //Global.saveFilesArray.Add(fileTableLine);
         Button newButton = table.SpawnButton(fileTableLine);
+        Global.saveFilesArray.Add(fileTableLine);
         newButton.Pressed = true;
         table._on_table_button_click(newButton.Name);
     }
@@ -202,9 +204,6 @@ public class SaveMenu : Control
         }
         saveFile.StoreLine(JSON.Print(objectsData));
         saveFile.Close();
-        
-        var fileTableLine = createNewTableLine(fileName); 
-        Global.saveFilesArray.Add(fileTableLine);
     }
     
     public static string GetLikeLatinString(string cyrillicLine)

@@ -311,7 +311,10 @@ public class TradeMode: InventoryMode
 
     protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
-        if (!IconsInSameArray(oldButton, newButton)) oldButton.SetBindKey(null);
+        if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        {
+            ClearBind(oldButton);
+        }
         base.ChangeItemButtons(oldButton, newButton);
     }
 

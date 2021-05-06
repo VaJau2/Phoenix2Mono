@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Object = Godot.Object;
 
 public class ChestMode: InventoryMode 
 {
@@ -245,7 +247,10 @@ public class ChestMode: InventoryMode
 
     protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
-        if (!IconsInSameArray(oldButton, newButton)) oldButton.SetBindKey(null);
+        if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        {
+            ClearBind(oldButton);
+        }
         base.ChangeItemButtons(oldButton, newButton);
     }
 
