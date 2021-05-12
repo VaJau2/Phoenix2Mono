@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/materials/props/furniture/cabinet-books.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/furniture/books3.tres" type="Material" id=2]
@@ -7,11 +7,13 @@
 [ext_resource path="res://assets/materials/props/furniture/cabinet-door.tres" type="Material" id=5]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=7]
+[ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/futniture/FridgeClose.wav" type="AudioStream" id=9]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.925995, 2.95851, 1.70622 )
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=10]
 lightmap_size_hint = Vector2( 276, 288 )
 surfaces/0 = {
 "aabb": AABB( -0.875395, -2.41737, -1.71255, 1.72276, 5.96348, 3.42511 ),
@@ -25,7 +27,7 @@ surfaces/0 = {
 "vertex_count": 112
 }
 
-[sub_resource type="ArrayMesh" id=3]
+[sub_resource type="ArrayMesh" id=11]
 lightmap_size_hint = Vector2( 76, 64 )
 surfaces/0 = {
 "aabb": AABB( -1, -1, -0.0305698, 2, 2.00001, 1.91202 ),
@@ -39,7 +41,7 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ArrayMesh" id=4]
+[sub_resource type="ArrayMesh" id=12]
 lightmap_size_hint = Vector2( 68, 72 )
 surfaces/0 = {
 "aabb": AABB( -0.407831, 0.105524, -1.58342, 0.8304, 1.02473, 3.13565 ),
@@ -53,7 +55,7 @@ surfaces/0 = {
 "vertex_count": 88
 }
 
-[sub_resource type="ArrayMesh" id=5]
+[sub_resource type="ArrayMesh" id=13]
 lightmap_size_hint = Vector2( 64, 68 )
 surfaces/0 = {
 "aabb": AABB( -0.407831, 1.25963, -1.60802, 0.8304, 1.00127, 3.16026 ),
@@ -67,7 +69,7 @@ surfaces/0 = {
 "vertex_count": 88
 }
 
-[sub_resource type="ArrayMesh" id=6]
+[sub_resource type="ArrayMesh" id=14]
 lightmap_size_hint = Vector2( 68, 68 )
 surfaces/0 = {
 "aabb": AABB( -0.407831, 2.43584, -1.63963, 0.8304, 0.868588, 3.19983 ),
@@ -141,45 +143,47 @@ tracks/1/keys = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.885597, 0 )
 physics_material_override = ExtResource( 6 )
 script = ExtResource( 7 )
+OpenSound = ExtResource( 8 )
+CloseSound = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84608, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [node name="cabinet" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20694, 0 )
 use_in_baked_light = true
-mesh = SubResource( 2 )
+mesh = SubResource( 10 )
 material/0 = ExtResource( 1 )
 
 [node name="door1" type="MeshInstance" parent="."]
 transform = Transform( 0.04, 1.03246e-07, 0, -3.49691e-09, 1.181, 0, 0, 0, -0.855, 0.881658, 0.0183339, 1.62745 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
+mesh = SubResource( 11 )
 material/0 = ExtResource( 5 )
 
 [node name="door2" type="MeshInstance" parent="."]
 transform = Transform( 0.0395067, 0, 0, 0, 1.18115, 0, 0, 0, 0.855048, 0.881658, 0.0183339, -1.66032 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
+mesh = SubResource( 11 )
 material/0 = ExtResource( 5 )
 
 [node name="books3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20694, 0 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
+mesh = SubResource( 12 )
 material/0 = ExtResource( 2 )
 
 [node name="books2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3209, 0 )
 use_in_baked_light = true
-mesh = SubResource( 5 )
+mesh = SubResource( 13 )
 material/0 = ExtResource( 4 )
 
 [node name="books1" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0858641, 0 )
 use_in_baked_light = true
-mesh = SubResource( 6 )
+mesh = SubResource( 14 )
 material/0 = ExtResource( 3 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
