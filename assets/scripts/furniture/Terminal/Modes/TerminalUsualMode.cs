@@ -53,42 +53,9 @@ public class TerminalUsualMode: TerminalMode {
         }
     }
 
-    private string InitScript(string fileCode, string parameter)
-    {
-        if (fileCode == null) {
-            var scriptMode = new TerminalScriptMode(terminal);
-            terminal.ChangeMode(scriptMode);
-            return null;
-        }
-
-        string scriptName = null;
-
-        foreach(string file in terminal.files) {
-            Dictionary fileData = InterfaceLang.GetPhrasesSection("files", file);
-            string fileType = fileData["type"].ToString();
-            if (fileType == "script") {
-                string fileName = fileData["name"].ToString();
-
-                if (fileName + "." + fileType == fileCode) {
-                    scriptName = fileData["script"].ToString();
-                }
-            }   
-        }
-
-        if (scriptName != null) {
-            terminal.InitiateScript(scriptName, parameter);
-        } else {
-            var result = InterfaceLang.GetPhrase("terminal", "phrases", "scriptNotFound");
-            result = result.Replace("#script#", fileCode);
-            return result;
-        }
-        return null;
-    }
-
     private void ProcessCommand(string command, string[] properties = null)
     {
-        string answer   = null;
-        string fileName = null;
+        string answer = null;
 
         switch (command) {
             case "clear":
@@ -126,22 +93,26 @@ public class TerminalUsualMode: TerminalMode {
                 break;
 
             case "read":
+                string fileName = null;
                 if (properties != null) {
                     fileName = properties[0];
                 } 
                 var readMode = new TerminalReadMode(terminal, fileName);
                 terminal.ChangeMode(readMode);
                 break;
-
-            case "script":
-                string addProperty = null;
-                if (properties != null) {
-                    fileName = properties[0];
-                    addProperty = properties.Length > 1 ? properties[1] : null;
-                } 
-                answer = InitScript(fileName, addProperty);
+            
+            case "doors":
+                if (terminal.doors.Count > 0)
+                {
+                    var doorsMode = new TerminalDoorsMode(terminal);
+                    terminal.ChangeMode(doorsMode);
+                }
+                else
+                {
+                    answer = InterfaceLang.GetPhrase("terminal", "door", "isEmpty");
+                }
                 break;
-
+            
             default:
                 answer = InterfaceLang.GetPhrase("terminal", "phrases", "commandNotFound");
                 answer = answer.Replace("#command#", command);
@@ -158,7 +129,7 @@ public class TerminalUsualMode: TerminalMode {
         string result = "";
         foreach(string fileCode in terminal.files) {
             Dictionary fileData = InterfaceLang.GetPhrasesSection("files", fileCode);
-            string fileName = fileData["name"].ToString() + "." + fileData["type"].ToString();
+            string fileName = fileData["name"].ToString();
             result += " - " + fileName + "\n";
         }
         return result;
@@ -166,7 +137,7 @@ public class TerminalUsualMode: TerminalMode {
    
     private bool IsLetterKey(uint keyCode)
     {
-        return keyCode >= 65 && keyCode <= 90;
+        return (keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90);
     }
 
     public override void UpdateInput(InputEventKey keyEvent)

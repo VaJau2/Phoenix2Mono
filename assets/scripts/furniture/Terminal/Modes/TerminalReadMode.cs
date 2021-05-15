@@ -21,20 +21,15 @@ public class TerminalReadMode: TerminalMode {
         //добавляем в список только текстовые файлы
         foreach(string tempCode in terminal.files) {
             Dictionary fileData = InterfaceLang.GetPhrasesSection("files", tempCode);
-            string fileType = fileData["type"].ToString();
-            if (fileType == "text") {
-                textFiles.Add(tempCode);
-
-                //проверяем, не был ли этот текстовый файл введен как параметр
-                //(в параметрах выводится имя.формат, а сами ссылки хранятся как коды)
-                if (fileName != null) {
-                    string tempName = fileData["name"].ToString() + "." + fileType;
-                    if (tempName == fileName) {
-                        this.fileCode = tempCode;
-                        this.fileName = tempName;
-                    }
+            textFiles.Add(tempCode);
+            
+            if (fileName != null) {
+                string tempName = fileData["name"].ToString();
+                if (tempName == fileName) {
+                    this.fileCode = tempCode;
+                    this.fileName = tempName;
                 }
-            }        
+            }
         }
 
         //если файл из параметров не найден, для отображения ошибки его все равно надо добавить
@@ -127,7 +122,7 @@ public class TerminalReadMode: TerminalMode {
             if (textFiles.Count > i) {
                 string tempCode = textFiles[i];
                 Dictionary fileData = InterfaceLang.GetPhrasesSection("files", tempCode);
-                string fileName = fileData["name"].ToString() + "." + fileData["type"].ToString();
+                string fileName = fileData["name"].ToString();
                 if (i == tempChoose) {
                     textLabel.Text += " >" + fileName + "\n";
                 } else {
@@ -139,8 +134,8 @@ public class TerminalReadMode: TerminalMode {
         }        
 
         textLabel.Text += "------------------------------------\n";
-        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp1") + "\n";
-        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp2");
+        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp") + "\n";
+        textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readFooter");
     }
 
     private void OpenFile(string fileName)

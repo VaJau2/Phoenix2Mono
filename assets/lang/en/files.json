@@ -1,31 +1,49 @@
 {
-    "test": {
-        "name": "test",
-        "type": "text",
+    "lostArmor": {
+        "name": "Lost Armor",
         "text": [
-            "file for test",
-            "file text in few lines"
+            "From: Captain Iron Blues",
+            "To: Corporal Lowfall Night",
+            "",
+            "I've received your report on Private Lucky Diamond's lost power armor.",
+            "The cost of such an expensive outfit will be deducted from her salary.",
+            "Tell her that it will take her about 510 years to recover all the losses.",
+            "I reserve you the right to make appropriate disciplinary action."
         ]
     },
-    "test3": {
-        "name": "test2",
-        "type": "text",
+    "tradeRobot": {
+        "name": "Problem with the robot",
         "text": [
-            "file for test 2",
-            "file text in few lines"
+            "From: Captain Iron Blues",
+            "To: Corporal Lowfall Night",
+            "",
+            "Please deal with the robot from the warehouse.",
+            "Somepony allowed the robot to freely trade our supplies with any pony who asks for it.",
+            "Try to convince him that this is the wrong behavior.",
+            "If you don't succeed, report back and I'll call a technician."
         ]
     },
-    "test4": {
-        "name": "test3",
-        "type": "text",
+    "terrorists": {
+        "name": "Terrorists",
         "text": [
-            "file for test 3",
-            "file text in few lines"
+            "From: Captain Iron Blues",
+            "To: Colonel Green Blood",
+            "",
+            "The terrorist organization operating in the city has begun to cross the boundaries of what is allowed, the police can no longer cope.",
+            "They're asking for our intervention. Since our base is nearby, the terrorists may attack us.",
+            "I request all available forces and means to eliminate them immediately."
         ]
     },
-    "test2": {
-        "name": "test",
-        "type": "script",
-        "script": "Terminal_TestScript"
+    "terrorists2": {
+        "name": "RE: Terrorists",
+        "text": [
+            "From: Colonel Green Blood",
+            "To: Captain Iron Blues",
+            "",
+            "It was high time to deal with them. We need to plan well.",
+            "We must contact them through intermediaries and offer the documents for sale. I'm sure they won't refuse.",
+            "We'll send Lieutenant Strikely on the deal - she's showing promise.",
+            "Give her a solid cover."
+        ]
     }
 }

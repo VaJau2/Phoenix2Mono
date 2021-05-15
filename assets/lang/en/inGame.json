@@ -31,7 +31,7 @@
     },
 
     "cameraHints": {
-        "closed": "Closed",
+        "closed": "Locked",
         "close": " - close",
         "open": " - open",
         "trade": " - trade",

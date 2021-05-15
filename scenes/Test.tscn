@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=11]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=20]
 
-
 [sub_resource type="PlaneMesh" id=1]
 
 [sub_resource type="BoxShape" id=2]
@@ -88,7 +87,7 @@ ForceOpening = true
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 3.72852, 4.31248, -16.132 )
 collision_layer = 3
 collision_mask = 3
-files = PoolStringArray( "test", "test2", "test3", "test4" )
+files = PoolStringArray( "test", "test4", "test3" )
 
 [node name="box" type="StaticBody" parent="terrain/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )

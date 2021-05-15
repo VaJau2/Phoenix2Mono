@@ -4,26 +4,22 @@
         "commandNotFound": "Command \"#command#\" not found",
 
         "chooseFile": "Choose file from list below",
-        "chooseHelp1": "(use arrows and key to select file)",
-        "chooseHelp2": "(backspace - back)",
+        "chooseDoor": "Choose door from list below",
+        "chooseHelp": "(use arrows and key to select file)",
 
         "readError1": "Error: file not found",
         "readError2": "Press backspace to show files list",
 
         "readHeader": "  File: ",
-        "readFooter": "(backspace - back)",
-
-        "scriptNotFound": "Script \"#script#\" not found",
-        "scriptError": "Script \"\" not found",
-        "scriptHelp": "(backspace - back)"
+        "readFooter": "(backspace - back)"
     },
 
     "helpAnswer": [
         "clear         - clear output",
         "dir           - show files list",
         "help [command]- show command help",
-        "read [file]   - read file (.text)",
-        "script [file] - start script file (.script)"
+        "read [file]   - read file",
+        "doors         - lock/unlock door"
     ],
 
     "helpCommands": {
@@ -45,10 +41,21 @@
             "Without parameters displays a list of text files to choose from",
             "With the parameter starts reading the selected file"
         ],
-        "script": [
-            "The command runs a script file",
-            "Without parameters displays a list of script files to choose from",
-            "with the parameter runs the file directly"
+        "doors": [
+            "The command controls the locks on the doors attached to the terminal",
+            "Displays a list of doors to choose",
+            "Locks/Unlocks chosen doors (make sure that the door is closed before locking it)"
         ]
+    },
+
+    "door": {
+        "isEmpty": "There are no doors attached to the terminal",
+        "opened": " | unlocked",
+        "closed": " | locked"
+    },
+
+    "doorCodes": {
+        "door100": "Door 100",
+        "door103": "Door 103"
     }
 }

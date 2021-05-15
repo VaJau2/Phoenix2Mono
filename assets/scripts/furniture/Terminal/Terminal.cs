@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 //терминал - объект, показывающий интерфейс внутри себя
 //когда игрок им управляет, другие менюшки не должны открываться
@@ -15,6 +16,10 @@ public class Terminal : StaticBody, IMenu
     public string startCommand = ">";
     [Export]
     public string[] files;
+    [Export] 
+    private Array<NodePath> doorsPath = new Array<NodePath>();
+    
+    public Array<FurnDoor> doors = new Array<FurnDoor>();
  
     Player player => Global.Get().player;
     
@@ -60,16 +65,17 @@ public class Terminal : StaticBody, IMenu
         mode.LoadMode();
     }
 
-    public void InitiateScript(string scriptName, string parameter)
-    {
-        var scriptType = System.Type.GetType(scriptName);
-        var scriptObj = System.Activator.CreateInstance(scriptType) as ITerminalScript;
-        scriptObj.initiate(this, parameter);
-    }
-
-
     public override async void _Ready()
     {
+        foreach (var doorPath in doorsPath)
+        {
+            var tempDoor = GetNode<FurnDoor>(doorPath);
+            if (tempDoor != null)
+            {
+                doors.Add(tempDoor);
+            }
+        }
+        
         mode = new TerminalUsualMode(this);
         await ToSignal(GetTree(), "idle_frame");
         mode.LoadMode();

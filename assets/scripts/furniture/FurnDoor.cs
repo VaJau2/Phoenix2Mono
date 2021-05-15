@@ -12,6 +12,10 @@ public class FurnDoor: FurnBase {
     public bool ForceOpening;
     [Export]
     public float openTimer = 0f;
+    [Export] 
+    public string doorCode;
+
+    public string KeyToRemember;
 
     bool opening = false;
     bool standingOtherSide = false;
