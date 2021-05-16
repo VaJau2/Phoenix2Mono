@@ -73,9 +73,10 @@ public class DialogueMenu : Control, IMenu
 
     private void initDialogueScript(string scriptName, string parameter)
     {
-        var scriptType = System.Type.GetType(scriptName);
-        var scriptObj = System.Activator.CreateInstance(scriptType) as IDialogueScript;
-        scriptObj.initiate(this, parameter);
+        var scriptType = System.Type.GetType("DialogueScripts." + scriptName);
+        if (scriptType == null) return;
+        var scriptObj = System.Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
+        scriptObj?.initiate(this, parameter);
     }
 
     private void MoveToNode(string code)
@@ -115,7 +116,17 @@ public class DialogueMenu : Control, IMenu
                 
                 string parameter = null;
                 if (tempNode.Contains("set")) {
-                    parameter = tempNode["set"].ToString();
+                    if (tempNode["set"] is Array paramsArray)
+                    {
+                        if (paramsArray[0] is Dictionary paramsDict)
+                        {
+                            parameter = paramsDict["value"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        parameter = tempNode["set"].ToString();
+                    }
                 }
                 //если указано несколько скриптов в несколько строк
                 if (scriptName.Contains("\n"))
@@ -131,6 +142,13 @@ public class DialogueMenu : Control, IMenu
                 else
                 {
                     initDialogueScript(scriptName, parameter);
+                }
+
+                //после выполнения скрипта сразу отправляемся на следующий нод
+                if (tempNode.Contains("next"))
+                {
+                    MoveToNode(tempNode["next"].ToString());
+                    return;
                 }
                 
                 break;

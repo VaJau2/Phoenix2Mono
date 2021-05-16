@@ -180,7 +180,11 @@ public class TerminalReadMode: TerminalMode {
 
         textLabel.Text += "------------------------------------\n";
         if (pagesMax > 0) {
-            textLabel.Text += "Страница: " + (tempPage + 1) + " из " + (pagesMax + 1) + " (";
+            textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readPage1")
+                              + (tempPage + 1) + 
+                              InterfaceLang.GetPhrase("terminal", "phrases", "readPage2")
+                              + (pagesMax + 1) + " (";
+            
             textLabel.Text += (tempPage > 0) ? "<" : " ";
             textLabel.Text += "-";
             textLabel.Text += (tempPage < pagesMax) ? ">" : " ";

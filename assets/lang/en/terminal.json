@@ -11,6 +11,8 @@
         "readError2": "Press backspace to show files list",
 
         "readHeader": "  File: ",
+        "readPage1": "Page: ",
+        "readPage2": " of ",
         "readFooter": "(backspace - back)"
     },
 

@@ -64,18 +64,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="messages" type="VBoxContainer" parent="."]
-anchor_bottom = 0.82
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 351.0
-margin_bottom = -3.05176e-05
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tempTheme = ExtResource( 2 )
-
 [node name="stealthLabel" type="Label" parent="."]
 visible = false
 anchor_left = 0.5
@@ -322,6 +310,18 @@ visible = false
 
 [node name="DialogueMenu" parent="." instance=ExtResource( 16 )]
 visible = false
+
+[node name="messages" type="VBoxContainer" parent="."]
+anchor_bottom = 0.82
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 351.0
+margin_bottom = -3.05176e-05
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tempTheme = ExtResource( 2 )
 
 [node name="black" type="ColorRect" parent="."]
 anchor_right = 1.0

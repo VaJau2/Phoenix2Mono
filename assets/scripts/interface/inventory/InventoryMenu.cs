@@ -57,6 +57,17 @@ public class InventoryMenu : Control, IMenu
         mode.LoadItemButtons(newItems, ammo);
     }
 
+    public void RemoveItemIfExists(string itemCode)
+    {
+        foreach (var button in mode.itemButtons)
+        {
+            if (button.myItemCode == itemCode)
+            {
+                button.ClearItem();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         mode = new UsualMode(this);

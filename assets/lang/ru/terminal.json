@@ -11,6 +11,8 @@
         "readError2": "Чтобы выйти в список файлов, нажмите backspace",
 
         "readHeader": "  Файл: ",
+        "readPage1": "Страница: ",
+        "readPage2": " из ",
         "readFooter": "(backspace - назад)"
     },
 
