@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/props/furniture/cabinet.tres" type="Material" id=2]
 [ext_resource path="res://assets/audio/futniture/FurnClose.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/props/furniture/cabinet-door.tres" type="Material" id=4]
 [ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=5]
+[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5679, 2.01067, 1.00235 )
@@ -94,6 +95,7 @@ tracks/1/keys = {
 [node name="cabinet" type="StaticBody" groups=[
 "savable",
 ]]
+physics_material_override = ExtResource( 6 )
 script = ExtResource( 5 )
 OpenSound = ExtResource( 1 )
 CloseSound = ExtResource( 3 )

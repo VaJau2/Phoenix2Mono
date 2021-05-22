@@ -131,7 +131,9 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 100, 0 ) ]
 }
 
-[node name="cabinet-books" type="StaticBody"]
+[node name="cabinet-books" type="StaticBody" groups=[
+"savable",
+]]
 script = ExtResource( 6 )
 OpenSound = ExtResource( 7 )
 CloseSound = ExtResource( 8 )

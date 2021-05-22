@@ -69,7 +69,9 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 90, 0 ), Vector3( 0, 160, 0 ) ]
 }
 
-[node name="fridge" type="StaticBody"]
+[node name="fridge" type="StaticBody" groups=[
+"savable",
+]]
 physics_material_override = ExtResource( 3 )
 script = ExtResource( 1 )
 OpenSound = ExtResource( 5 )
