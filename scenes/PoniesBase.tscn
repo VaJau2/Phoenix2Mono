@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -85,6 +85,7 @@
 [ext_resource path="res://objects/props/furniture/cooker.tscn" type="PackedScene" id=83]
 [ext_resource path="res://objects/props/furniture/trash/colaBottle.tscn" type="PackedScene" id=84]
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=85]
+[ext_resource path="res://assets/audio/background/forest_day.ogg" type="AudioStream" id=86]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )
@@ -125,6 +126,16 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 
 [sub_resource type="BoxShape" id=14]
 extents = Vector3( 193.404, 136.659, 4.6054 )
+
+[sub_resource type="GDScript" id=38]
+script/source = "extends AudioStreamPlayer
+
+
+func _process(delta):
+	var parentVisible = get_parent().visible
+	if (playing != parentVisible):
+		playing = parentVisible
+"
 
 [sub_resource type="ArrayMesh" id=15]
 surfaces/0 = {
@@ -411,6 +422,13 @@ ammoCount = {
 [node name="cookie" parent="npc" instance=ExtResource( 74 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3566, -99.6825, 105.787 )
 dialogueCode = "talk"
+
+[node name="lucky_diamond" parent="npc" instance=ExtResource( 47 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -23.8954, -98.6917, -65.087 )
+IdleAnim = "Sit"
+dialogueCode = "talk"
+headBonePath = NodePath("../../rooms/kpp/lucky_diamond/Armature/Skeleton/Physical Bone neck")
+bodyBonePath = NodePath("../../rooms/kpp/lucky_diamond/Armature/Skeleton/Physical Bone back_1")
 
 [node name="terrain" type="Spatial" parent="." groups=[
 "savable",
@@ -826,6 +844,12 @@ shape = SubResource( 14 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -39.0199, 208.29, 74.9982 )
 shape = SubResource( 14 )
 
+[node name="ambient" type="AudioStreamPlayer" parent="terrain"]
+stream = ExtResource( 86 )
+volume_db = -2.0
+autoplay = true
+script = SubResource( 38 )
+
 [node name="triggers" type="Node" parent="."]
 
 [node name="autosave" type="Node" parent="triggers"]
@@ -967,11 +991,6 @@ transparent = false
 shaded = true
 double_sided = false
 texture = ExtResource( 48 )
-
-[node name="lucky_diamond" parent="rooms/kpp" instance=ExtResource( 47 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.955433, 1.30827, 0 )
-IdleAnim = "Sit"
-dialogueCode = "talk"
 
 [node name="kp" type="Spatial" parent="rooms" groups=[
 "savable",
@@ -1492,6 +1511,9 @@ otherDoorPath = NodePath("../../../terrain/props/stolovaya/DoorTeleport5")
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 13.9086, 0.886002, 23.05 )
 
 [node name="walls" type="StaticBody" parent="rooms/stolovaya"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = ExtResource( 61 )
 
 [node name="mesh" type="MeshInstance" parent="rooms/stolovaya/walls"]
 transform = Transform( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
@@ -1806,7 +1828,7 @@ texture = ExtResource( 60 )
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster" ]
+itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra" ]
 ammoCount = {
 "ammo20": 20,
 "ammo307": 10,
