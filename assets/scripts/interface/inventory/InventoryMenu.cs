@@ -57,6 +57,20 @@ public class InventoryMenu : Control, IMenu
         mode.LoadItemButtons(newItems, ammo);
     }
 
+    public bool AddOrDropItem(string itemCode)
+    {
+        var emptyButton = mode.FirstEmptyButton;
+        if (emptyButton != null)
+        {
+            emptyButton.SetItem(itemCode);
+            return true;
+        }
+ 
+        FurnChest tempBag = mode.SpawnItemBag();
+        tempBag.itemCodes.Add(itemCode);
+        return false;
+    }
+
     public void RemoveItemIfExists(string itemCode)
     {
         foreach (var button in mode.itemButtons)

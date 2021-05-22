@@ -16,8 +16,8 @@ public static class ItemJSON
         
         if (itemsData.Contains(itemCode)) {
             return (Dictionary)itemsData[itemCode];
-        } else {
-            return new Dictionary();
-        }
+        } 
+        
+        return new Dictionary();
     }
 }

@@ -22,7 +22,8 @@
         "space": "Not enough space",
         "money": "Not enough money",
         "medsOff": "The drug has worn off. You want more",
-        "itemGiven": "You gave away the item: "
+        "itemGiven": "You gave away the item: ",
+        "itemTaken": "You take item: "
     },
 
     "messages": {

@@ -2,7 +2,9 @@
 
 namespace DialogueScripts
 {
-    public class GiveItem : IDialogueScript
+    //получить предмет во время диалога 
+    //(если нет места, предмет положится в сумку
+    public class TakeItem: IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter)
         {
@@ -11,10 +13,13 @@ namespace DialogueScripts
             if (itemData.Count == 0) return;
             
             InventoryMenu inventory = dialogueMenu.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-            inventory.RemoveItemIfExists(parameter);
-            
             Messages messages = dialogueMenu.GetNode<Messages>("/root/Main/Scene/canvas/messages");
-            messages.ShowMessage("itemGiven", itemData["name"].ToString(), "items");
+            messages.ShowMessage("itemTaken", itemData["name"].ToString(), "items");
+            if (!inventory.AddOrDropItem(parameter))
+            {
+                messages.ShowMessage("space", "items", 2.5f);
+            }
         }
+
     }
 }

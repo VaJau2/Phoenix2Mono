@@ -33,6 +33,7 @@ public abstract class InventoryMode
     protected float dragTimer = 0;
     protected TextureRect dragIcon;
     protected PlayerInventory inventory => player.inventory;
+    private PackedScene bagPrefab;
 
     public InventoryMode(InventoryMenu menu)
     {
@@ -69,6 +70,8 @@ public abstract class InventoryMode
         labels.Add("weapon", back.GetNode<Label>("wearBack/weaponLabel"));
         labels.Add("armor", back.GetNode<Label>("wearBack/armorLabel"));
         labels.Add("artifact", back.GetNode<Label>("wearBack/artifactLabel"));
+        
+        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
     }
 
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
@@ -111,7 +114,7 @@ public abstract class InventoryMode
         );
     }
 
-    protected ItemIcon FirstEmptyButton {
+    public ItemIcon FirstEmptyButton {
         get {
             foreach(ItemIcon button in itemButtons) {
                 if (button.myItemCode == null) {
@@ -120,6 +123,17 @@ public abstract class InventoryMode
             }
             return null;
         }
+    }
+
+    public FurnChest SpawnItemBag()
+    {
+        var newBag = (FurnChest)bagPrefab.Instance();
+        Node parent = player.GetNode("/root/Main/Scene");
+        parent.AddChild(newBag);
+        newBag.Name = "Created_" + newBag.Name;
+        newBag.Translation = player.Translation;
+        newBag.Translate(Vector3.Down * 0.5f);
+        return newBag;
     }
 
     private ItemIcon AddNewItem(string itemCode) {

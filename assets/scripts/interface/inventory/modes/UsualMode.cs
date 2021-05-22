@@ -3,7 +3,6 @@ using Godot.Collections;
 
 public class UsualMode: InventoryMode {
 
-    private PackedScene bagPrefab;
     private FurnChest tempBag = null;
     private Control wearBack;
 
@@ -29,8 +28,6 @@ public class UsualMode: InventoryMode {
         noteName       = modalRead.GetNode<Label>("noteName");
         noteText       = modalRead.GetNode<RichTextLabel>("noteText");
         closeHint      = modalRead.GetNode<Label>("closeHint");
-
-        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
     }
 
     public override void OpenMenu()
@@ -246,13 +243,9 @@ public class UsualMode: InventoryMode {
             return;
         }
 
-        if (tempBag == null) {
-            tempBag = (FurnChest)bagPrefab.Instance();
-            Node parent = player.GetNode("/root/Main/Scene");
-            parent.AddChild(tempBag);
-            tempBag.Name = "Created_" + tempBag.Name;
-            tempBag.Translation = player.Translation;
-            tempBag.Translate(Vector3.Down * 0.5f);
+        if (tempBag == null)
+        {
+            tempBag = SpawnItemBag();
         }
 
         if (tempButton.GetCount() > 0) {
