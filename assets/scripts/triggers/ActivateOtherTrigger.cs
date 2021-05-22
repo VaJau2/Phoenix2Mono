@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-//активирует другие триггеры
+//включает другие триггеры
 public class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
@@ -15,7 +15,7 @@ public class ActivateOtherTrigger: TriggerBase
         }
     }
 
-    public void _on_activate_trigger()
+    public override void _on_activate_trigger()
     {
         if (IsActive)
         {
@@ -23,10 +23,7 @@ public class ActivateOtherTrigger: TriggerBase
             {
                 otherTrigger.SetActive(true);
             }
-            if (DeleteAfterTrigger)
-            {
-                QueueFree();
-            }
+            base._on_activate_trigger();
         }
     }
 }

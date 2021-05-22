@@ -27,11 +27,8 @@ public class HintTrigger : TriggerBase
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
     }
 
-    public override void _on_body_entered(Node body)
+    public override void _on_activate_trigger()
     {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        
         var hintCode = HintCode;
         if (DiffRacesHints)
         {
@@ -48,7 +45,15 @@ public class HintTrigger : TriggerBase
 
             messages.ShowMessageRaw(message, hintTime);
         }
+        
+        base._on_activate_trigger();
+    }
 
-        base._on_body_entered(body);
+    public void _on_body_entered(Node body)
+    {
+        if (!IsActive) return;
+        if (!(body is Player)) return;
+        
+        _on_activate_trigger();
     }
 }

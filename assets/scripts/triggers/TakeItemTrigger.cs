@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 //если активен, следит за инвентарем и получаемыми предметами
-//активирует другие триггеры, если игрок получает нужный предмет
+//включает другие триггеры, если игрок получает нужный предмет
 class TakeItemTrigger: ActivateOtherTrigger
 {
     [Export] public string ItemToTake;
@@ -23,6 +23,10 @@ class TakeItemTrigger: ActivateOtherTrigger
         if (IsActive)
         {
             player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        }
+        else
+        {
+            player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         }
     }
 

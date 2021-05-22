@@ -28,32 +28,37 @@ public class DialogueTrigger : TriggerBase
         }
     }
 
-    public override async void _on_body_entered(Node body)
+    public override async void _on_activate_trigger()
+    {
+        if (startPoint != Vector3.Zero)
+        {
+            npc.SetNewStartPos(startPoint);
+            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+        }
+
+        if (otherDialogueCode != null)
+        {
+            npc.dialogueCode = otherDialogueCode;
+        }
+
+        dialogueMenu.StartTalkingTo(npc);
+
+        if (endPoint != Vector3.Zero)
+        {
+            await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
+            npc.SetNewStartPos(endPoint);
+        }
+        
+        base._on_activate_trigger();
+    }
+
+    public async void _on_body_entered(Node body)
     {
         if (!IsActive) return;
         if (!(body is Player)) return;
         if (npc.Health > 0)
         {
-            if (startPoint != Vector3.Zero)
-            {
-                npc.SetNewStartPos(startPoint);
-                await ToSignal(npc, nameof(Pony.IsCame));
-            }
-
-            if (otherDialogueCode != null)
-            {
-                npc.dialogueCode = otherDialogueCode;
-            }
-
-            dialogueMenu.StartTalkingTo(npc);
-
-            if (endPoint != Vector3.Zero)
-            {
-                await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
-                npc.SetNewStartPos(endPoint);
-            }
+            _on_activate_trigger();
         }
-
-        base._on_body_entered(body);
     }
 }

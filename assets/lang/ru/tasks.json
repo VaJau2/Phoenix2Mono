@@ -5,6 +5,7 @@
 
         "talkToAgent": "Поговорить с пони в плаще",
         "searchAgent": "Обыскать тело",
-        "talkToCommander": "Доложить полковнику"
+        "talkToCommander": "Доложить полковнику",
+        "goToTheater": "Отправиться в театр на презентацию"
     }
 }

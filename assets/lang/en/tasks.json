@@ -5,6 +5,7 @@
 
         "talkToAgent": "Talk to the pony in the raincoat",
         "searchAgent": "Search the body",
-        "talkToCommander": "Report to the colonel"
+        "talkToCommander": "Report to the colonel",
+        "goToTheater": "Go to the theater for a presentation"
     }
 }

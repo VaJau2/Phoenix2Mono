@@ -30,8 +30,8 @@ public class LoadLevelTrigger: TriggerBase
 
         levelsLoader.LoadLevel(NewLevelNum);
     }
-
-    public override void _on_body_entered(Node body)
+    
+    public void _on_body_entered(Node body)
     {
         if (!IsActive) return;
         if (!(body is Player)) return;

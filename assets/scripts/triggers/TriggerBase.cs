@@ -19,12 +19,14 @@ public class TriggerBase : Node, ISavable
         IsActive = Convert.ToBoolean(data["active"]);
     }
 
+    //включает триггер (не активирует)
     public virtual void SetActive(bool newActive)
     {
         IsActive = newActive;
     }
-
-    public virtual void _on_body_entered(Node body)
+    
+    //событие активации триггера
+    public virtual void _on_activate_trigger()
     {
         if (!DeleteAfterTrigger) return;
         Global.AddDeletedObject(Name);

@@ -10,24 +10,24 @@ class ChangeTaskTrigger: TriggerBase
     public override void _Ready()
     {
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        CheckChange();
+        if (IsActive)
+        {
+            _on_activate_trigger();
+        }
     }
 
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        CheckChange();
-    }
-
-    private void CheckChange()
-    {
         if (IsActive)
         {
-            messages.currentTaskLink = NewTaskCode;
-            if (DeleteAfterTrigger)
-            {
-                QueueFree();
-            }
+            _on_activate_trigger();
         }
+    }
+
+    public override void _on_activate_trigger()
+    {
+        messages.currentTaskLink = NewTaskCode;
+        base._on_activate_trigger();
     }
 }
