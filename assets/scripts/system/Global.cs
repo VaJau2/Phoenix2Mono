@@ -155,13 +155,11 @@ public class Global {
         return tempTrans;
     }
 
-    public SignalAwaiter ToTimer(float time, Node _object = null) 
+    public SignalAwaiter ToTimer(float time, Node _object = null)
     {
-        if (_object == null)
-        {
-            _object = player;
-        }
-        return _object.ToSignal(_object.GetTree().CreateTimer(time), "timeout");
+        return _object != null ? 
+            _object.ToSignal(_object.GetTree().CreateTimer(time), "timeout") 
+            : player?.ToSignal(player.GetTree().CreateTimer(time), "timeout");
     }
 
     //nominativ - 1 бит

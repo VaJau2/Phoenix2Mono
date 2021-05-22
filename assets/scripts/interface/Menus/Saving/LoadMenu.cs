@@ -73,6 +73,27 @@ public class LoadMenu : Control
         modalDesc = modalError.GetNode<Label>("back/Text");
         modalOk = modalError.GetNode<Button>("back/OK");
         LoadInterfaceLanguage();
+        UpdateTable();
+    }
+    
+    public static string GetLastSaveFile()
+    {
+        if (Global.saveFilesArray.Count == 0) return null;
+        
+        string lastFileName = null;
+        ulong lastTime = 0;
+
+        foreach (FileTableLine tempTableLine in Global.saveFilesArray)
+        {
+            var fileName = tempTableLine.name;
+            var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
+            var tempTime = new File().GetModifiedTime(filePath);
+            if (tempTime <= lastTime) continue;
+            lastFileName = fileName;
+            lastTime = tempTime;
+        }
+
+        return lastFileName;
     }
 
     public override void _Process(float delta)

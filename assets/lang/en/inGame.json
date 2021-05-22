@@ -29,6 +29,7 @@
     "messages": {
         "notEnoughMana": "Not enough mana",
         "gameQuicksaved": "Quicksaving...",
+        "gameAutosaved": "Game saved",
         "quicksaveNotFound": "Quicksave file not found"
     },
 
@@ -53,7 +54,8 @@
 
     "chestNames": {
         "cabinet": "Cabinet",
-        "bag": "Bag"
+        "bag": "Bag",
+        "fridge": "Fridge"
     },
 
     "tradeNames": {

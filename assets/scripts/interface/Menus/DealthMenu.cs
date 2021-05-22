@@ -12,6 +12,11 @@ public class DealthMenu : MenuBase
     private Button againButton;
     private Button loadButton;
     private Button exitButton;
+    
+    private Control modalError;
+    private Label modalHeader;
+    private Label modalDesc;
+    private Button modalOk;
 
     private void loadMenu()
     {
@@ -23,6 +28,11 @@ public class DealthMenu : MenuBase
         againButton = GetNode<Button>("Menu/again");
         loadButton  = GetNode<Button>("Menu/load");
         exitButton  = GetNode<Button>("Menu/exit");
+        
+        modalError = GetNode<Control>("modalError");
+        modalHeader = modalError.GetNode<Label>("back/Header");
+        modalDesc = modalError.GetNode<Label>("back/Text");
+        modalOk = modalError.GetNode<Button>("back/OK");
     }
 
     public override void loadInterfaceLanguage()
@@ -31,6 +41,10 @@ public class DealthMenu : MenuBase
         againButton.Text = InterfaceLang.GetPhrase("dealthMenu", "main", "again");
         loadButton.Text  = InterfaceLang.GetPhrase("dealthMenu", "main", "load");
         exitButton.Text  = InterfaceLang.GetPhrase("dealthMenu", "main", "exit");
+        
+        modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
+        modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
+        modalOk.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "ok");
         getRandomHeaderPhrase();
     }
 
@@ -43,11 +57,19 @@ public class DealthMenu : MenuBase
         string randI = rand.RandiRange(0, phrasesCount - 1).ToString();
         headerLabel.Text = phrases[randI].ToString();
     }
-
+    
     public void _on_again_pressed()
     {
         SoundClick();
-        GetNode<LevelsLoader>("/root/Main").ReloadLevel();
+        string lastSave = LoadMenu.GetLastSaveFile();
+        if (!LoadMenu.TryToLoadGame(lastSave, GetNode<LevelsLoader>("/root/Main")))
+        {
+            modalError.Visible = true;
+        }
+    }
+    public void _on_error_OK_pressed()
+    {
+        modalError.Visible = false;
     }
 
     public void _on_load_pressed()

@@ -192,25 +192,7 @@ public class MainMenu : MenuBase
         exitButton.Visible = true;
     }
 
-    private static string GetLastSaveFile()
-    {
-        if (Global.saveFilesArray.Count == 0) return null;
-        
-        string lastFileName = null;
-        ulong lastTime = 0;
-
-        foreach (FileTableLine tempTableLine in Global.saveFilesArray)
-        {
-            var fileName = tempTableLine.name;
-            var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            var tempTime = new File().GetModifiedTime(filePath);
-            if (tempTime <= lastTime) continue;
-            lastFileName = fileName;
-            lastTime = tempTime;
-        }
-
-        return lastFileName;
-    }
+    
 
     private static Race GetRaceFromSave(string fileName)
     {
@@ -232,7 +214,7 @@ public class MainMenu : MenuBase
 
         if (global.mainMenuFirstTime && Global.saveFilesArray.Count > 0)
         {
-            string lastSave = GetLastSaveFile();
+            string lastSave = global::LoadMenu.GetLastSaveFile();
             global.playerRace = GetRaceFromSave(lastSave);
         }
         
@@ -265,7 +247,7 @@ public class MainMenu : MenuBase
     public void _on_continue_pressed()
     {
         SoundClick();
-        string lastSave = GetLastSaveFile();
+        string lastSave = global::LoadMenu.GetLastSaveFile();
         if (!global::LoadMenu.TryToLoadGame(lastSave, GetNode<LevelsLoader>("/root/Main")))
         {
             modalError.Visible = true;

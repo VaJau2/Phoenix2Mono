@@ -30,6 +30,8 @@ material = ExtResource( 3 )
 material = ExtResource( 4 )
 
 [node name="storage" type="StaticBody"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 2 )
 
 [node name="Cube001" type="MeshInstance" parent="."]

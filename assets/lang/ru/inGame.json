@@ -29,6 +29,7 @@
     "messages": {
         "notEnoughMana": "Не хватает маны",
         "gameQuicksaved": "Идет быстрое сохранение...",
+        "gameAutosaved": "Игра сохранена",
         "quicksaveNotFound": "Не найден файл быстрого сохранения"
     },
 
@@ -53,7 +54,8 @@
 
     "chestNames": {
         "cabinet": "Шкаф",
-        "bag": "Сумка"
+        "bag": "Сумка",
+        "fridge": "Холодильник"
     },
 
     "tradeNames": {

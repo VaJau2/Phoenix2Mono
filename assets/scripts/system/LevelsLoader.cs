@@ -23,6 +23,10 @@ public class LevelsLoader : Node
 	[Signal]
 	public delegate void LevelLoaded();
 
+	private bool loadSavedData;
+	private Dictionary levelData;
+	private Godot.Collections.Array deletedObjects;
+
 	public override void _Ready()
 	{
 		var levelData = Global.loadJsonFile("scenes/levels.json");
@@ -113,26 +117,27 @@ public class LevelsLoader : Node
 	}
 
 	//загрузка уровня с сохраненными данными
-	public async void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
+	public void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
 	{
+		loadSavedData = true;
+		this.levelData = levelData;
+		this.deletedObjects = deletedObjects;
 		LoadLevel(levelNum);
-		await ToSignal(this, nameof(LevelLoaded));
+	}
 
-		//очищаем спавнер от предзаполненных вещей
-		var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
+	private async void LoadLevelData(Node scene)
+	{
+		//очищаем спавнер от предзаполненных вещей и создаем объект игрока в спавнере
+		var playerSpawner = scene.GetNode<PlayerSpawner>("PlayerSpawner");
 		playerSpawner.loadStartItems = false;
+		Dictionary playerData = null;
 
-		await ToSignal(GetTree(), "idle_frame");
-
-		//загрузка сохранения
-		Node scene = GetNode("/root/Main/Scene");
-		
 		//удаление удаленных в сохранении объектов
 		foreach (string objName in deletedObjects)
 		{
 			Global.AddDeletedObject(objName);
 			var foundedObject = Global.FindNodeInScene(scene, objName);
-			foundedObject.QueueFree();
+			foundedObject?.QueueFree();
 		}
 
 		foreach (string objKey in levelData.Keys)
@@ -157,10 +162,28 @@ public class LevelsLoader : Node
 			//загрузка загружаемых объектов
 			else
 			{
-				ISavable node = Global.FindNodeInScene(scene, objKey) as ISavable;
-				node?.LoadData(objData);
+				ISavable node;
+				if (objKey == "Player")
+				{
+					playerData = objData;
+				}
+				else
+				{
+					node = Global.FindNodeInScene(scene, objKey) as ISavable;
+					node?.LoadData(objData);
+				}
 			}
 		}
+
+		//игрок ни в какую не хочет спавниться вручную, поэтому ждем, пока он не соизволит наспавниться сам
+		await ToSignal(this, nameof(LevelLoaded));
+		await ToSignal(GetTree(), "idle_frame");
+		
+		global.player.LoadData(playerData);
+		
+		levelData = null;
+		deletedObjects = null;
+		loadSavedData = false;
 	}
 
 	public void ReloadLevel()
@@ -198,6 +221,10 @@ public class LevelsLoader : Node
 			loader = null;
 			
 			var newScene = resource.Instance();
+			if (loadSavedData)
+			{
+				LoadLevelData(newScene);
+			}
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
 

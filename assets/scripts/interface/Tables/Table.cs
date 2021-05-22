@@ -91,7 +91,7 @@ public class Table : VBoxContainer
         RedrawAllButtons();
     }
 
-    public async void RedrawAllButtons()
+    public void RedrawAllButtons()
     {
         for (int i = 0; i < buttonsCount; i++)
         {

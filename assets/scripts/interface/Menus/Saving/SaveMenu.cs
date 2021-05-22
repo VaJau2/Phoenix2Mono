@@ -58,6 +58,7 @@ public class SaveMenu : Control
         existButtons = GetNode<Control>("Exist");
         newButtons = GetNode<Control>("New");
         LoadInterfaceLanguage();
+        UpdateTable();
     }
 
     public override void _Process(float delta)
@@ -171,16 +172,23 @@ public class SaveMenu : Control
     }
 
     //создает и выделяет запись в таблице
-    private void CreateTableLine(string fileName)
+    public void CreateTableLine(string fileName)
     {
         var fileTableLine = createNewTableLine(fileName); 
-        Button newButton = table.SpawnButton(fileTableLine);
-        Global.saveFilesArray.Add(fileTableLine);
-        newButton.Pressed = true;
-        table._on_table_button_click(newButton.Name);
+        if (table.LineExists(fileName))
+        {
+            table.UpdateButton(fileTableLine);
+        }
+        else
+        {
+            Button newButton = table.SpawnButton(fileTableLine);
+            Global.saveFilesArray.Add(fileTableLine);
+            newButton.Pressed = true;
+            table._on_table_button_click(newButton.Name);
+        }
     }
 
-    public static void SaveGame(string fileName, SceneTree tree)
+    public void SaveGame(string fileName, SceneTree tree)
     {
         var saveFile = new File();
         
