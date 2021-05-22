@@ -31,6 +31,7 @@ public class NpcWithWeapons: NPC
     private float shootCooldown = 0;
     public bool IsHidingInCover => tempCover != null;
     public bool InCover = false;
+    protected bool lookAreaEntered;
 
     [Signal]
     public delegate void IsCame();
@@ -246,7 +247,15 @@ public class NpcWithWeapons: NPC
             case NPCState.Idle:
                 if (patrolPoints == null || patrolPoints.Length == 0) {
                     if (!cameToPlace) {
-                        GoTo(myStartPos, COME_DISTANCE, false);
+                        if (lookAreaEntered)
+                        {
+                            Stop();
+                        }
+                        else
+                        {
+                            GoTo(myStartPos, COME_DISTANCE, false);
+                        }
+                        
                     } else {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
                         Rotation = myStartRot;
@@ -256,7 +265,15 @@ public class NpcWithWeapons: NPC
                     if (patrolWaitTimer > 0) {
                         patrolWaitTimer -= delta;
                     } else {
-                        GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
+                        if (lookAreaEntered)
+                        {
+                            Stop();
+                        }
+                        else
+                        {
+                            GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
+                        }
+                        
                         if (cameToPlace) {
                             if (patrolI < patrolPoints.Length - 1) {
                                 patrolI += 1;

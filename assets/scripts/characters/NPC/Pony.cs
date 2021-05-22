@@ -119,11 +119,21 @@ public class Pony: NpcWithWeapons
 
     public void _on_lookArea_body_entered(Node body)
     {
+        if (body is Player)
+        {
+            lookAreaEntered = true;
+        }
+        
         this.body._on_lookArea_body_entered(body);
     }
 
     public void _on_lookArea_body_exited(Node body)
     {
+        if (body is Player)
+        {
+            lookAreaEntered = false;
+        }
+        
         this.body._on_lookArea_body_exited(body);
     }
 
