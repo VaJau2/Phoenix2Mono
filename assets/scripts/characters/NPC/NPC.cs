@@ -18,6 +18,8 @@ public class NPC : Character
     [Export]
     public string IdleAnim = "";
 
+    [Export] 
+    public bool IsImmortal;
     [Export]
     public int StartHealth = 100;
     [Export]
@@ -88,6 +90,11 @@ public class NPC : Character
         if (state != NPCState.Attack) {
             tempVictim = damager;
             SetState(NPCState.Attack);
+        }
+
+        if (IsImmortal)
+        {
+            return;
         }
 
         if (shapeID != 0) {
