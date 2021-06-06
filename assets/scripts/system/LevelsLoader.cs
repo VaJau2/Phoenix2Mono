@@ -162,15 +162,17 @@ public class LevelsLoader : Node
 			//загрузка загружаемых объектов
 			else
 			{
-				ISavable node;
 				if (objKey == "Player")
 				{
 					playerData = objData;
 				}
 				else
 				{
-					node = Global.FindNodeInScene(scene, objKey) as ISavable;
-					node?.LoadData(objData);
+					Node node = scene.GetNode(objKey);
+					if (node is ISavable savable)
+					{
+						savable.LoadData(objData);
+					}
 				}
 			}
 		}

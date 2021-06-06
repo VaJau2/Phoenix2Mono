@@ -30,6 +30,12 @@ public class DialogueTrigger : TriggerBase
 
     public override async void _on_activate_trigger()
     {
+        if (npc.state != NPCState.Idle)
+        {
+            base._on_activate_trigger();
+            return;
+        }
+        
         if (startPoint != Vector3.Zero)
         {
             npc.SetNewStartPos(startPoint);

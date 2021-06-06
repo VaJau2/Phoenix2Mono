@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/props/furniture/small-cabinet.tres" type="Material" id=2]
 [ext_resource path="res://assets/audio/futniture/FurnClose.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 2.08703, 1 )
@@ -92,10 +93,14 @@ tracks/0/keys = {
 "values": [ Vector3( 0.013, 0.445, 0.009 ), Vector3( 1.486, 0.445, 0.009 ) ]
 }
 
-[node name="small-cabinet" type="StaticBody"]
+[node name="small-cabinet" type="StaticBody" groups=[
+"savable",
+]]
+physics_material_override = ExtResource( 5 )
 script = ExtResource( 1 )
 OpenSound = ExtResource( 4 )
 CloseSound = ExtResource( 3 )
+chestCode = "small_cabinet"
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

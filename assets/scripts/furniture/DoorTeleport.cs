@@ -3,6 +3,7 @@ using Godot;
 //дверь, перемещающая в отдельную подлокацию
 public class DoorTeleport : StaticBody
 {
+    [Export] private bool Inside;
     [Export] private NodePath newPlacePath;
     [Export] private NodePath oldLocationPath;
     [Export] private NodePath newLocationPath;
@@ -47,6 +48,12 @@ public class DoorTeleport : StaticBody
         }
 
         character.GlobalTransform = newPlace.GlobalTransform;
+        
+        if (character is Player_Unicorn unicorn)
+        {
+            unicorn.teleportInside = Inside;
+        }
+        
         if (makeVisible)
         {
             oldLocation.Visible = false;
@@ -63,7 +70,7 @@ public class DoorTeleport : StaticBody
     public void _on_body_exited(Node body)
     {
         if (!(body is Player)) return;
-        player.Camera.HideHint();
+        player?.Camera.HideHint();
         SetProcess(false);
     }
 }

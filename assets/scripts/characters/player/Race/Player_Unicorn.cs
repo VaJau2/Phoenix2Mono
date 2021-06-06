@@ -26,7 +26,7 @@ public class Player_Unicorn : Player
     private bool notEnoughMana = false;
     private bool teleportPressed = false;
     private bool startTeleporting = false;
-    private bool teleportInside = false;
+    public bool teleportInside = false;
 
     private ProgressBar manaBar;
 
@@ -216,7 +216,7 @@ public class Player_Unicorn : Player
                             place
                         );
 
-                        //чтоб не перемещаться через стенки бункера наружу
+                        //чтоб не перемещаться наружу в помещениях
                         if (teleportInside && 
                             tempTeleportMark.Translation.y > Translation.y + 3)
                         {
@@ -246,6 +246,7 @@ public class Player_Unicorn : Player
     {
         Dictionary saveData = base.GetSaveData();
         saveData.Add("mana", Mana);
+        saveData.Add("inside", teleportInside);
         return saveData;
     }
 
@@ -253,5 +254,6 @@ public class Player_Unicorn : Player
     {
         base.LoadData(data);
         Mana = Convert.ToSingle(data["mana"]);
+        teleportInside = Convert.ToBoolean(data["inside"]);
     }
 }

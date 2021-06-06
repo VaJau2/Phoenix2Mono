@@ -14,6 +14,7 @@ public class PlayerSpawner : Spatial
     public string clothCode = "";
 
     [Export] public bool checkSavedData = true;
+    [Export] public bool spawningInside = false;
 
     public bool loadStartItems = true;
    
@@ -70,6 +71,12 @@ public class PlayerSpawner : Spatial
             if (clothCode != "" && clothCode != "empty")
             {
                 player.inventory.LoadWearItem(clothCode, "armor");
+            }
+
+            //если единорог спавнится в помещении
+            if (player is Player_Unicorn unicorn && spawningInside)
+            {
+                unicorn.teleportInside = true;
             }
         }
 

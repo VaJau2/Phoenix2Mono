@@ -54,6 +54,7 @@
 
     "chestNames": {
         "cabinet": "Шкаф",
+        "small_cabinet": "Шкафчик",
         "bag": "Сумка",
         "fridge": "Холодильник"
     },

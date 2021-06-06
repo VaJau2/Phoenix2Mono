@@ -61,7 +61,7 @@ public class FurnDoor: FurnBase {
 
     public float ClickFurn(Array<string> keys = null) {
         if (!opening) {
-            if (myKey.Length > 0 && !IsOpen) {
+            if (!string.IsNullOrEmpty(myKey) && !IsOpen) {
                 if (keys != null) {
                     if (keys.Contains(myKey)) {
                         setOpen(openWithKeySound, 0.5f);

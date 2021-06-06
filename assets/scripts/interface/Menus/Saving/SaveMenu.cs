@@ -208,7 +208,18 @@ public class SaveMenu : Control
         {
             if (!(tempNode is ISavable savableNode)) continue;
             Dictionary tempData = savableNode.GetSaveData();
-            objectsData.Add(tempNode.Name, tempData);
+            
+            if (tempNode.Name.BeginsWith("Created_") || tempNode.Name == "Player")
+            {
+                objectsData.Add(tempNode.Name, tempData);
+            }
+            else
+            {
+                //сохраняемые объекты могут иметь одинаковые имена
+                //поэтому вместо имен сохраняем локальные пути от нода Main
+                objectsData.Add(GetNode("/root/Main/Scene").GetPathTo(tempNode), tempData);
+            }
+            
         }
         saveFile.StoreLine(JSON.Print(objectsData));
         saveFile.Close();
