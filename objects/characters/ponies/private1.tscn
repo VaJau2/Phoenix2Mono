@@ -135,13 +135,13 @@ surfaces/2 = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="private1" instance=ExtResource( 2 )]
+IdleAnim = "Idle1"
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.9, 0, 0, 0, -0.153435, 0.886824, 0, -0.886824, -0.153435, -0.0198563, 2.42013, 0.630795 )
 
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
+[node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
+transform = Transform( 0.99999, 0.00128411, -0.0042297, -0.00438519, 0.167779, -0.985815, -0.000556243, 0.985824, 0.167782, -3.92458e-13, 1.69933, 1.11108 )
 
 [node name="hair" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631587, 1.30521, 0.429072 )
@@ -185,8 +185,8 @@ body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934115, -0.9
 
 [node name="Physical Bone b_leg_1_l" parent="Armature/Skeleton" index="9"]
 transform = Transform( 0.989938, -0.141448, 6.01218e-05, 0.141038, 0.987029, -0.0765896, 0.0107717, 0.075831, 0.997045, -0.259934, 0.497917, -0.990166 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143285, 0.0446107, 0.580228 )
-body_offset = Transform( 0.981232, -0.131362, -0.141116, -0.131237, 0.0810798, -0.988012, 0.141232, 0.988005, 0.06232, 0.07368, 0.571535, -0.082259 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143284, 0.0446107, 0.580228 )
+body_offset = Transform( 0.981232, -0.131362, -0.141116, -0.131237, 0.0810798, -0.988012, 0.141232, 0.988005, 0.06232, 0.07368, 0.571535, -0.0822591 )
 
 [node name="Physical Bone b_leg_2_l" parent="Armature/Skeleton" index="10"]
 transform = Transform( 0.984243, -0.176716, -0.00633607, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366938, 0.541537, -2.04398 )

@@ -67,6 +67,12 @@ public class NpcWithWeapons: NPC
         return null;
     }
     
+    public void SetNewStartPos(Vector3 newPos)
+    {
+        cameToPlace = false;
+        myStartPos = newPos;
+    }
+    
     private void FinishGoingTo()
     {
         Stop();
@@ -258,7 +264,11 @@ public class NpcWithWeapons: NPC
                         
                     } else {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
-                        Rotation = myStartRot;
+                        Rotation = new Vector3(
+                            Rotation.x,
+                            myStartRot.y,
+                            Rotation.z
+                        );
                         PlayIdleAnim();
                     }
                 } else {

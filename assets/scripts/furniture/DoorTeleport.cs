@@ -34,18 +34,23 @@ public class DoorTeleport : StaticBody
         player.Camera.HideHint();
     }
 
-    public void Open(Spatial character, bool makeVisible)
+    public void SoundOpening()
     {
         if (otherDoor?.audi != null)
         {
             otherDoor.audi.Stream = openSound;
             otherDoor.audi.Play();
         }
-        else if (audi != null)
+        if (audi != null)
         {
             audi.Stream = openSound;
             audi.Play();
         }
+    }
+
+    public void Open(Spatial character, bool makeVisible)
+    {
+        SoundOpening();
 
         character.GlobalTransform = newPlace.GlobalTransform;
         

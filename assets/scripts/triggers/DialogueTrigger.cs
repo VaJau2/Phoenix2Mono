@@ -2,6 +2,7 @@ using Godot;
 
 public class DialogueTrigger : TriggerBase
 {
+    [Export] public bool onlyChangeCode;
     [Export] public NodePath npcPath;
     [Export] public NodePath dialogueStartPointPath;
     [Export] public NodePath dialogueEndPointPath;
@@ -30,6 +31,11 @@ public class DialogueTrigger : TriggerBase
 
     public override async void _on_activate_trigger()
     {
+        if (otherDialogueCode != null)
+        {
+            npc.dialogueCode = otherDialogueCode;
+        }
+        
         if (npc.state != NPCState.Idle)
         {
             base._on_activate_trigger();
@@ -41,13 +47,11 @@ public class DialogueTrigger : TriggerBase
             npc.SetNewStartPos(startPoint);
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
         }
-
-        if (otherDialogueCode != null)
+        
+        if (!onlyChangeCode)
         {
-            npc.dialogueCode = otherDialogueCode;
+            dialogueMenu.StartTalkingTo(npc);
         }
-
-        dialogueMenu.StartTalkingTo(npc);
 
         if (endPoint != Vector3.Zero)
         {
@@ -56,6 +60,14 @@ public class DialogueTrigger : TriggerBase
         }
         
         base._on_activate_trigger();
+    }
+
+    public override void SetActive(bool active)
+    {
+        if (onlyChangeCode)
+        {
+            _on_activate_trigger();
+        }
     }
 
     public async void _on_body_entered(Node body)

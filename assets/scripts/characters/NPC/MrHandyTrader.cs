@@ -12,8 +12,8 @@ public class MrHandyTrader: MrHandy, ITrader
     [Export]
     public Dictionary<string, int> startAmmoCount {get; set;} = new Dictionary<string, int>();
 
-    public Array<string> itemCodes {get; set;} = new Array<string>();
-    public Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
+    public new Array<string> itemCodes {get; set;} = new Array<string>();
+    public new Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
     

@@ -8,9 +8,11 @@ class TakeItemTrigger: ActivateOtherTrigger
 
     Player player => Global.Get().player;
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         base._Ready();
+        await ToSignal(GetTree(), "idle_frame");
+        
         if (IsActive)
         {
             player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));

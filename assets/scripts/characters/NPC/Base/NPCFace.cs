@@ -118,7 +118,10 @@ public class NPCFace : MeshInstance
 
     public override void _Process(float delta)
     {
-        UpdateOpenEyes(delta);
+        if (Visible)
+        {
+            UpdateOpenEyes(delta);
+        }
     }
 }
 

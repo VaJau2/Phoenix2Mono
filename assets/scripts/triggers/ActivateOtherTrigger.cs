@@ -5,14 +5,28 @@ using Godot.Collections;
 public class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
+    [Export] public Array<NodePath> disactiveTriggerPaths;
     private Array<TriggerBase> otherTriggers = new Array<TriggerBase>();
+    private Array<TriggerBase> triggersToDisactive = new Array<TriggerBase>();
 
     public override void _Ready()
     {
-        foreach(NodePath tempPath in otherTriggerPaths)
+        if (otherTriggerPaths != null)
         {
-            otherTriggers.Add(GetNode<TriggerBase>(tempPath));
+            foreach (NodePath tempPath in otherTriggerPaths)
+            {
+                otherTriggers.Add(GetNode<TriggerBase>(tempPath));
+            }
         }
+
+        if (disactiveTriggerPaths != null)
+        {
+            foreach(NodePath tempPath in disactiveTriggerPaths)
+            {
+                triggersToDisactive.Add(GetNode<TriggerBase>(tempPath));
+            }
+        }
+       
     }
 
     public override void _on_activate_trigger()
@@ -22,6 +36,10 @@ public class ActivateOtherTrigger: TriggerBase
             foreach (TriggerBase otherTrigger in otherTriggers)
             {
                 otherTrigger.SetActive(true);
+            }
+            foreach (TriggerBase otherTrigger in triggersToDisactive)
+            {
+                otherTrigger.SetActive(false);
             }
             base._on_activate_trigger();
         }

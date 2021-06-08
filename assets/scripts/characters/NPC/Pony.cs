@@ -57,13 +57,7 @@ public class Pony: NpcWithWeapons
         
         return GetNode<Spatial>("Armature/Skeleton/BoneAttachment 2/weapons");
     }
-
-    public void SetNewStartPos(Vector3 newPos)
-    {
-        cameToPlace = false;
-        myStartPos = newPos;
-    }
-
+    
     private void FinishGoingTo()
     {
         Stop();
@@ -113,7 +107,10 @@ public class Pony: NpcWithWeapons
     
     protected override void PlayIdleAnim()
     {
-        body.PlayAnim(IdleAnim ?? "Idle1");
+        if (!string.IsNullOrEmpty(IdleAnim))
+        {
+            body.PlayAnim(IdleAnim);
+        }
     }
 
 

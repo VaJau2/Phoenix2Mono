@@ -45,7 +45,7 @@ public class NPC : Character
 
     protected bool CloseToPoint = false;
 
-    protected Vector3 myStartPos, myStartRot;
+    public Vector3 myStartPos, myStartRot;
 
 
     public virtual void SetState(NPCState newState)
@@ -234,7 +234,10 @@ public class NPC : Character
         SetStartHealth(StartHealth);
         BaseSpeed = WalkSpeed;
 
-        if (patrolArray == null || patrolArray.Count == 0) {
+        if (patrolArray == null || patrolArray.Count == 0)
+        {
+            if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
+            
             myStartPos = GlobalTransform.origin;
             myStartRot = Rotation;
         } else {

@@ -55,6 +55,14 @@
         "icon": "key0",
         "price": "2" 
     },
+    "nucBattery": {
+        "name": "Ядерная батарея",
+        "description": "Источник энергии для энергомагических устройств, таких как силовая броня",
+        "type": "staff",
+        "icon": "nucBattery",
+        "price": "100",
+        "questItem": "true"
+    },
 
 
     "agent1Note": {

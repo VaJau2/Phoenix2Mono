@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=141 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -89,6 +89,17 @@
 [ext_resource path="res://objects/props/buildings/base-houses/kazarma.tscn" type="PackedScene" id=87]
 [ext_resource path="res://objects/props/doors/door2.tscn" type="PackedScene" id=88]
 [ext_resource path="res://objects/props/furniture/bed-2.tscn" type="PackedScene" id=89]
+[ext_resource path="res://objects/characters/ponies/armored_soldier.tscn" type="PackedScene" id=90]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet107.png" type="Texture" id=91]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet109.png" type="Texture" id=92]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet104.png" type="Texture" id=93]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet108.png" type="Texture" id=94]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet105.png" type="Texture" id=95]
+[ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet106.png" type="Texture" id=96]
+[ext_resource path="res://assets/scripts/triggers/TakeItemTrigger.cs" type="Script" id=97]
+[ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=98]
+[ext_resource path="res://assets/scripts/triggers/ChangeNPCStatesTrigger.cs" type="Script" id=99]
+[ext_resource path="res://assets/scripts/triggers/MoveNpcToDoor.cs" type="Script" id=100]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )
@@ -474,6 +485,9 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -23.895
 IdleAnim = "Sit"
 dialogueCode = "talk"
 
+[node name="armored_soldier" parent="npc" instance=ExtResource( 90 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.01483, -0.257269, 148.517 )
+
 [node name="terrain" type="Spatial" parent="." groups=[
 "savable",
 ]]
@@ -802,7 +816,7 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 0.909091, 0, 1, 0, -1.62921e-07, 
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 16.622, -0.147, 53.864 )
 
 [node name="DoorTeleport2" parent="terrain/props/KP" instance=ExtResource( 52 )]
-transform = Transform( 1, 0, 0, 0, 1.311, 0, 0, 0, 1.336, 18.424, 0.334, 1.2 )
+transform = Transform( 1, 0, 0, 0, 1.311, 0, 0, 0, 1.336, 18.424, 0.334, 1.19999 )
 Inside = true
 newPlacePath = NodePath("../../../../rooms/kp/spawn")
 oldLocationPath = NodePath("../../..")
@@ -920,6 +934,52 @@ otherTriggerPaths = [ NodePath("../changeTask") ]
 script = ExtResource( 50 )
 IsActive = false
 NewTaskCode = "goToTheater"
+
+[node name="takeBatteryBefore" type="Node" parent="triggers"]
+script = ExtResource( 97 )
+otherTriggerPaths = [ NodePath("../changeDialogueHelp2") ]
+ItemToTake = "nucBattery"
+
+[node name="changeTakeBattery" type="Node" parent="triggers"]
+script = ExtResource( 72 )
+otherTriggerPaths = [ NodePath("../takeBatteryAfter") ]
+disactiveTriggerPaths = [ NodePath("../takeBatteryBefore") ]
+
+[node name="takeBatteryAfter" type="Node" parent="triggers"]
+script = ExtResource( 97 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../changeDialogueHelping") ]
+ItemToTake = "nucBattery"
+
+[node name="changeDialogueHelp2" type="Node" parent="triggers"]
+script = ExtResource( 98 )
+onlyChangeCode = true
+npcPath = NodePath("../../npc/armored_soldier")
+otherDialogueCode = "help2"
+
+[node name="changeDialogueHelping" type="Node" parent="triggers"]
+script = ExtResource( 98 )
+onlyChangeCode = true
+npcPath = NodePath("../../npc/armored_soldier")
+otherDialogueCode = "helping"
+
+[node name="MakeArmoredSoldierMove" type="Node" parent="triggers"]
+pause_mode = 2
+script = ExtResource( 99 )
+otherTriggerPaths = [ NodePath("../armoredSoldierDoor") ]
+npcPath = NodePath("../../npc/armored_soldier")
+showObjects = PoolStringArray( "Armature/Skeleton/BoneAttachment/hair", "Armature/Skeleton/Body" )
+hideObjects = PoolStringArray( "Armature/Skeleton/helmet" )
+newAnimation = "Sit"
+newWalkSpeed = 7
+newRunSpeed = 11
+
+[node name="armoredSoldierDoor" type="Node" parent="triggers"]
+script = ExtResource( 100 )
+IsActive = false
+NpcPath = NodePath("../../npc/armored_soldier")
+doorPath = NodePath("../../terrain/props/KP/DoorTeleport2")
+teleportPointPath = NodePath("../../rooms/kp/npcPos")
 
 [node name="rooms" type="Node" parent="."]
 
@@ -1053,6 +1113,7 @@ texture = ExtResource( 48 )
 "savable",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.914, -100, 56.778 )
+visible = false
 script = ExtResource( 49 )
 
 [node name="spawn" type="Spatial" parent="rooms/kp"]
@@ -1357,6 +1418,9 @@ transparent = false
 shaded = true
 double_sided = false
 texture = ExtResource( 63 )
+
+[node name="npcPos" type="Spatial" parent="rooms/kp"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.3646, 1.03709, -14.8893 )
 
 [node name="storage" type="Spatial" parent="rooms" groups=[
 "savable",
@@ -1920,11 +1984,10 @@ transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -1
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.13576 )
 
 [node name="door3" parent="rooms/kazarma/doors" instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.126, 1.048 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.126, 1.08 )
 
 [node name="door4" parent="rooms/kazarma/doors" instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.69949 )
-myKey = "closed"
 
 [node name="door5" parent="rooms/kazarma/doors" instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.9468 )
@@ -1946,6 +2009,71 @@ myKey = "closed"
 
 [node name="door10" parent="rooms/kazarma/doors" instance=ExtResource( 88 )]
 transform = Transform( -4.37114e-08, 0, -1.181, 0, 1, 0, 1, 0, -5.16232e-08, 12.6274, 8.97787, 11.8246 )
+
+[node name="notes" type="Spatial" parent="rooms/kazarma"]
+
+[node name="101" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -18.112 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 66 )
+
+[node name="102" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -10.8422 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 64 )
+
+[node name="103" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -2.7723 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 63 )
+
+[node name="104" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, 4.88884 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 93 )
+
+[node name="105" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, 14.0936 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 95 )
+
+[node name="106" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.96846, 4.277, 4.889 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 96 )
+
+[node name="107" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -2.772 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 91 )
+
+[node name="108" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -10.8427 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 94 )
+
+[node name="109" type="Sprite3D" parent="rooms/kazarma/notes"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -18.1115 )
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource( 92 )
 
 [node name="light" type="Spatial" parent="rooms/kazarma"]
 
@@ -2064,6 +2192,7 @@ startAmmoCount = {
 [node name="cabinet4" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, 10.7308 )
 chestCode = "cabinet"
+startItemCodes = [ "nucBattery" ]
 startAmmoCount = {
 }
 

@@ -15,12 +15,23 @@ public class NPCBody
         animTree = npc.GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
-        playback.Start("Idle1");
+        if (!string.IsNullOrEmpty(npc.IdleAnim))
+        {
+            playback.Start(npc.IdleAnim);
+        }
+        
     }
 
     public void PlayAnim(string animName)
     {
-        playback.Travel(animName);
+        if (playback.IsPlaying())
+        {
+            playback.Travel(animName);
+        }
+        else
+        {
+            playback.Start(animName);
+        }
     }
 
     public Vector3 GetDirToTarget(Spatial target)
@@ -32,6 +43,11 @@ public class NPCBody
 
     public void Update(float delta)
     {
+        if (npc.WalkSpeed == 0)
+        {
+            return;
+        }
+        
         if (lookTarget != null) {
             Vector3 npcForward = -npc.GlobalTransform.basis.z;
             Vector3 dir = GetDirToTarget(lookTarget);
