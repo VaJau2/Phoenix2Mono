@@ -55,8 +55,9 @@ transform = Transform( 1, 0, 0, 0, 2.30198, 0, 0, 0, 1, 0.000305176, -3.51183, -
 light_color = Color( 1, 0.964706, 0.721569, 1 )
 light_bake_mode = 2
 shadow_enabled = true
-shadow_bias = 0.12
-omni_range = 25.6084
+shadow_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+shadow_bias = 0.95
+omni_range = 30.0
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
