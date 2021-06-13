@@ -16,7 +16,6 @@ public class Pony: NpcWithWeapons
     public bool IsRunning = false;
     public float RotationToVictim = 0f;
 
-    public NPCFace head;
     public NPCBody body;
     
     private float doorWait = 0;
@@ -137,13 +136,13 @@ public class Pony: NpcWithWeapons
  
     public override void _Ready()
     {
-        base._Ready();
-        rand.Randomize();
-        body = new NPCBody(this);
-        head = GetNode<NPCFace>("Armature/Skeleton/Body");
         if (IsUnicorn) {
             MagicParticles = GetNode<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         }
+        
+        base._Ready();
+        rand.Randomize();
+        body = new NPCBody(this);
     }
 
     public override void _Process(float delta)

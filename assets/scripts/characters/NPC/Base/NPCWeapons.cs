@@ -77,7 +77,8 @@ public class NPCWeapons : Node
 
         if (npc is Pony pony)
         {
-            pony.head.CloseEyes();
+            var eyes = pony.GetNode<NPCFace>("Armature/Skeleton/Body");
+            eyes?.CloseEyes();
         }
 
         var statsDistance = GetStatsInt("shootDistance");
