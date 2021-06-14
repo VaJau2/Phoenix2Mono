@@ -102,10 +102,19 @@ public class TradeMode: InventoryMode
 
     public override void _on_modal_yes_pressed()
     {
-        if (tempAction == "sell") {
+        int itemPrice = tempItemPrice * tempCount;
+        
+        if (tempAction == "sell")
+        {
+            if (tempTrader.moneyCount < itemPrice)
+            {
+                inventory.ItemsMessage("money");
+                return;
+            }
+            
             //продажа товара
-            tempTrader.moneyCount -= tempItemPrice * tempCount;
-            inventory.money += tempItemPrice * tempCount;
+            tempTrader.moneyCount -= itemPrice;
+            inventory.money += itemPrice;
 
             ItemIcon traderButton = FirstEmptyTradeButton;
             if (traderButton != null) {
@@ -125,6 +134,12 @@ public class TradeMode: InventoryMode
                 RemoveTempItem();
             }
         } else {
+            if (inventory.money < itemPrice)
+            {
+                inventory.ItemsMessage("money");
+                return;
+            }
+            
             //покупка товара
             tempTrader.moneyCount += tempItemPrice * tempCount;
             inventory.money -= tempItemPrice * tempCount;
