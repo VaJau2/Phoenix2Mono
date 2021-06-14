@@ -90,20 +90,20 @@ public class DialogueMenu : Control, IMenu
         
         switch (tempNode["kind"].ToString()) {
             case "dialogue":
-                //грузим имена персонажей
-                leftName.Text  = tempNode["opposite"].ToString();
-                rightName.Text = tempNode["speaker"].ToString();
-
                 //грузим текст фразы
-                if (!isContinue) {
+                if (!isContinue || rightName.Text != tempNode["speaker"].ToString()) {
                     //имя персонажа
-                    string uName = GetBlockText(rightName.Text, "u");
+                    string uName = GetBlockText(tempNode["speaker"].ToString(), "u");
                     text.BbcodeText += GetBlockText(uName + ":", "right") + "\n";
                 }
                 
                 var spacedText = GetSpacedText(tempNode["body"].ToString());
                 text.BbcodeText += GetBlockText(spacedText, "right") + "\n";
                 isContinue = false;
+                
+                //грузим имена персонажей
+                leftName.Text  = tempNode["opposite"].ToString();
+                rightName.Text = tempNode["speaker"].ToString();
                 break;
             case "combat":
                 npc.aggressiveAgainstPlayer = true;
@@ -150,8 +150,11 @@ public class DialogueMenu : Control, IMenu
                     MoveToNode(tempNode["next"].ToString());
                     return;
                 }
-                
-                break;
+                else
+                {
+                    MenuManager.CloseMenu(this);
+                    return;
+                }
         }
 
         //грузим варианты ответов
@@ -177,13 +180,11 @@ public class DialogueMenu : Control, IMenu
                     }
                 } 
             }
-        } else if (tempNode.Contains("next")) {
+        } else {
             answers[0].Visible = true;
             answers[0].Text = GetContinueText();
-            answerCodes[0] = tempNode["next"].ToString();
-        } else {
-            MenuManager.CloseMenu(this);
-        }
+            answerCodes[0] = tempNode.Contains("next") ? tempNode["next"].ToString() : "";
+        } 
     }
 
     public void OpenMenu()

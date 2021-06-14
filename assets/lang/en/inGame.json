@@ -40,7 +40,8 @@
         "trade": " - trade",
         "talk": " - talk",
         "terminal": " - manage",
-        "exitLocation": " - leave location"
+        "exitLocation": " - leave location",
+        "sit": " - sit here"
     },
 
     "hints": {

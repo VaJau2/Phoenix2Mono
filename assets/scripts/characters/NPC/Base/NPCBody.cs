@@ -8,6 +8,7 @@ public class NPCBody
     private Vector2 headBlend;
 
     public Character lookTarget = null;
+    private float lookTimer = 1.5f;
 
     public NPCBody(NPC npc) {
         this.npc = npc;
@@ -49,6 +50,16 @@ public class NPCBody
         }
         
         if (lookTarget != null) {
+            if (lookTimer > 0)
+            {
+                lookTimer -= delta;
+            }
+            else
+            {
+                lookTarget = null;
+                return;
+            }
+            
             Vector3 npcForward = -npc.GlobalTransform.basis.z;
             Vector3 dir = GetDirToTarget(lookTarget);
 
@@ -80,7 +91,9 @@ public class NPCBody
     {  
         if (body is Character && body != npc) {
             var character = body as Character;
-            if (npc.state == NPCState.Idle && lookTarget == null) {
+            if (npc.state == NPCState.Idle && lookTarget == null)
+            {
+                lookTimer = 1.5f;
                 lookTarget = character;
             }
         }

@@ -18,7 +18,7 @@ public class Player : Character
     public bool MayRotateHead = true;
     public bool IsCrouching;
     public bool IsHitting;
-    public bool IsLying;
+    public bool IsSitting;
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
     public float PriceDelta = 1;
@@ -197,24 +197,6 @@ public class Player : Character
         }
     }
 
-    public void Faint(bool MakeRoped = false) 
-    {
-        IsLying = true;
-        MayMove = false;
-        Body.MakeLying(true);
-    }
-
-    async private void GetUp() 
-    {
-        MayMove = false;
-        Body.MakeLying(false);
-        await ToSignal(GetTree().CreateTimer(1.6f), "timeout");
-        if(IsLying) {
-            IsLying = false;
-            MayMove = true;
-        }
-    }
-
     public override int GetSpeed()
     {
         if (IsCrouching) {
@@ -259,6 +241,13 @@ public class Player : Character
             bodyColliderSize = 1;
             Body.Translate(new Vector3(0, -0.75f, 0));
         }
+    }
+
+    public void SitOnChair(bool sitOn)
+    {
+        Body.MakeSitting(sitOn);
+        MayMove = !sitOn;
+        IsSitting = sitOn;
     }
 
     //для земнопня шоб бегал
@@ -322,10 +311,6 @@ public class Player : Character
         }
         if (Input.IsActionPressed("ui_right")) {
             inputMovementVector.x += 1;
-        }
-
-        if (IsLying && inputMovementVector.Length() > 0) {
-            GetUp();
         }
 
         inputMovementVector = inputMovementVector.Normalized();
@@ -421,7 +406,7 @@ public class Player : Character
 
     private void RotateBodyClumped(float speedX)
     {
-        if (IsLying) 
+        if (IsSitting) 
         {
             if(speedX > 0 && Body.RotClumpsMin) {
                 RotateY(Mathf.Deg2Rad(speedX));

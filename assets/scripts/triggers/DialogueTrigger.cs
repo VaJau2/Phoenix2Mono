@@ -5,12 +5,13 @@ public class DialogueTrigger : TriggerBase
     [Export] public bool onlyChangeCode;
     [Export] public NodePath npcPath;
     [Export] public NodePath dialogueStartPointPath;
+    [Export] public float dialogueStartTimer;
     [Export] public NodePath dialogueEndPointPath;
     [Export] public string otherDialogueCode;
 
     private Pony npc;
-    private Vector3 startPoint = Vector3.Zero;
-    private Vector3 endPoint = Vector3.Zero;
+    private Spatial startPoint;
+    private Spatial endPoint;
     
     private DialogueMenu dialogueMenu;
 
@@ -21,16 +22,18 @@ public class DialogueTrigger : TriggerBase
         npc = GetNode<Pony>(npcPath);
         if (dialogueStartPointPath != null)
         {
-            startPoint = GetNode<Spatial>(dialogueStartPointPath).GlobalTransform.origin;
+            startPoint = GetNode<Spatial>(dialogueStartPointPath);
         }
         if (dialogueEndPointPath != null)
         {
-            endPoint = GetNode<Spatial>(dialogueEndPointPath).GlobalTransform.origin;
+            endPoint = GetNode<Spatial>(dialogueEndPointPath);
         }
     }
 
     public override async void _on_activate_trigger()
     {
+        if (!IsActive) return;
+        
         if (otherDialogueCode != null)
         {
             npc.dialogueCode = otherDialogueCode;
@@ -42,21 +45,28 @@ public class DialogueTrigger : TriggerBase
             return;
         }
         
-        if (startPoint != Vector3.Zero)
+        if (startPoint != null)
         {
-            npc.SetNewStartPos(startPoint);
+            npc.SetNewStartPos(startPoint.GlobalTransform.origin);
+            npc.myStartRot = startPoint.Rotation;
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
         }
         
         if (!onlyChangeCode)
         {
+            if (dialogueStartTimer > 0)
+            {
+                await Global.Get().ToTimer(dialogueStartTimer);
+            }
+            
             dialogueMenu.StartTalkingTo(npc);
         }
 
-        if (endPoint != Vector3.Zero)
+        if (endPoint != null)
         {
             await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
-            npc.SetNewStartPos(endPoint);
+            npc.SetNewStartPos(endPoint.GlobalTransform.origin);
+            npc.myStartRot = endPoint.Rotation;
         }
         
         base._on_activate_trigger();
@@ -64,10 +74,8 @@ public class DialogueTrigger : TriggerBase
 
     public override void SetActive(bool active)
     {
-        if (onlyChangeCode)
-        {
-            _on_activate_trigger();
-        }
+        base.SetActive(active);
+        _on_activate_trigger();
     }
 
     public async void _on_body_entered(Node body)

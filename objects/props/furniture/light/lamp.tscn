@@ -45,12 +45,12 @@ brakeSounds = {
 "brake2": ExtResource( 7 )
 }
 
-[node name="window" type="MeshInstance" parent="."]
+[node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
-[node name="light" type="OmniLight" parent="window"]
+[node name="light" type="OmniLight" parent="mesh"]
 transform = Transform( 1, 0, 0, 0, 2.30198, 0, 0, 0, 1, 0.000305176, -3.51183, -3.05176e-05 )
 light_color = Color( 1, 0.964706, 0.721569, 1 )
 light_bake_mode = 2

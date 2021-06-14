@@ -42,9 +42,9 @@ public class PlayerBody : Spatial
     public float bodyRot {get; private set;} = 0;
     private bool onetimeBodyRotBack;
 
-    public bool RotClumpsMin { get  => bodyRot < MAX_ANGLE + 1; }
+    public bool RotClumpsMin { get  => bodyRot > -MAX_ANGLE + 1; }
 
-    public bool RotClumpsMax { get => bodyRot > -MAX_ANGLE - 1; }
+    public bool RotClumpsMax { get => bodyRot < MAX_ANGLE - 1; }
 
     public void SetRotZero() 
     {
@@ -250,6 +250,15 @@ public class PlayerBody : Spatial
         }
     }
 
+    public void MakeSitting(bool sitting)
+    {
+        if (sitting) {
+            playback.Travel("Sit");
+        } else {
+            playback.Travel("Idle1");
+        }
+    }
+
     public void SetHead(PlayerHead head) 
     {
         Head = head;
@@ -350,7 +359,7 @@ public class PlayerBody : Spatial
                 bodyRot = 0;
                 onetimeBodyRotBack = true;
             }
-            else if (!player.IsHitting) {
+            else if (!player.IsHitting && !player.IsSitting) {
                 if(player.IsCrouching) {
                     if(!player.BodyFollowsCamera && crouchingCooldown <= 0) {
                         playback.Travel("Sit");
@@ -435,10 +444,9 @@ public class PlayerBody : Spatial
                 float mouseSensivity = player.MouseSensivity;
                 float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
 
-                bool mayRotate = ((player.ThirdView && !player.IsLying && !player.Weapons.GunOn) ||
-                                 mouseEvent.Relative.x < 0 && RotClumpsMax) ||
-                                 (mouseEvent.Relative.x > 0 && RotClumpsMin);
-                
+                bool mayRotate = (player.ThirdView && !player.IsSitting && !player.Weapons.GunOn) ||
+                                 (mouseEvent.Relative.x < 0 && RotClumpsMin) ||
+                                 (mouseEvent.Relative.x > 0 && RotClumpsMax);
                 if (mayRotate) {
                     bodyRot -= speedX;
                 }

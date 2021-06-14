@@ -11,6 +11,7 @@ anchor_bottom = 1.0
 margin_right = -993.0
 margin_bottom = -569.0
 rect_min_size = Vector2( 31, 31 )
+mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,6 +29,7 @@ margin_top = -15.5
 margin_right = 14.5
 margin_bottom = 14.5
 rect_min_size = Vector2( 30, 30 )
+mouse_filter = 1
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="icon" type="TextureRect" parent="back"]
@@ -76,5 +78,6 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
+
 [connection signal="mouse_entered" from="back/icon" to="." method="_on_EffectIcon_mouse_entered"]
 [connection signal="mouse_exited" from="back/icon" to="." method="_on_EffectIcon_mouse_exited"]

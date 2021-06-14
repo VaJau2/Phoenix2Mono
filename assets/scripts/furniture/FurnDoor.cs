@@ -84,7 +84,7 @@ public class FurnDoor: FurnBase {
     ///</summary>
     public void ClickFurn() {
         if (!opening) {
-            if (myKey.Length > 0 && !IsOpen) {
+            if (!string.IsNullOrEmpty(myKey) && !IsOpen) {
                 setOpen(openWithKeySound, 0.5f);
                 audi.Stream = openWithKeySound;
                 audi.Play();

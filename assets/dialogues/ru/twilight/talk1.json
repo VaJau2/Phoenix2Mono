@@ -1,1 +1,162 @@
-{"nodes":{"T1":{"kind":"dialogue","root_node":false,"body":"Да?","speaker":"Министр Твайлайт","opposite":"Страйкли","options":[{"body":"answer","next":"T1(1)"},{"body":"answer","next":"T1(2)"}]},"T2":{"kind":"dialogue","root_node":false,"body":"Ох, прошу, только не надо этого, без автографов. Мне это так надоело…\n","speaker":"Министр Твайлайт","opposite":"Страйкли","options":[{"body":"answer","next":"T2(1)"}]},"T3":{"kind":"dialogue","root_node":false,"body":"Да? И что же это за причина?","speaker":"Министр Твайлайт","opposite":"Страйкли","options":[{"body":"answer","next":"T3(1)"}]},"T4":{"kind":"dialogue","root_node":false,"body":"Страйкли? Хм… А мне известно про тебя.","speaker":"Министр Твайлайт","opposite":"Страйкли","options":[{"body":"answer","next":"T4(1)"},{"body":"answer","next":"T4(2)"}]},"T5":{"kind":"dialogue","root_node":false,"body":"Конечно. Когда мне сообщили о том, кто справился с тем агентом и нашел записку, у меня не осталось сомнений, что тебе здесь самое место.","speaker":"Министр Твайлайт","opposite":"Страйкли","next":"T7"},"T6":{"kind":"dialogue","root_node":false,"body":"Я в курсе, что на меня собираются покушаться. В политике это происходит так часто, что становится обычным делом. К тому же, я сама настояла, чтобы здесь была ты. В конце концов, именно ты узнала про это покушение. ","speaker":"Министр Твайлайт","opposite":"Страйкли","next":"T7"},"T7":{"kind":"dialogue","root_node":false,"body":"Остается надеяться, что за очередным именем в списке приглашенных скрывается настоящий специалист.","speaker":"Министр Твайлайт","opposite":"Страйкли","options":[{"body":"answer","next":"T7(1)"}]},"T8":{"kind":"dialogue","root_node":false,"body":"В таком случае, не буду мешать тебе работать.","speaker":"Министр Твайлайт","opposite":"Страйкли","next":"T8(1)"},"T1(1)":{"kind":"dialogue","root_node":false,"body":"Министр Твайлайт! Очень приятно с вами встретиться! ","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T2"},"T1(2)":{"kind":"dialogue","root_node":false,"body":"Нет, ничего, простите.","speaker":"Страйкли","opposite":"Министр Твайлайт"},"T2(1)":{"kind":"dialogue","root_node":false,"body":"Конечно. Боюсь, я здесь по другой причине…","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T3"},"T3(1)":{"kind":"dialogue","root_node":false,"body":"Кхем… Лейтенант Страйкли Клауд, мем! Я здесь, чтобы обеспечить Вашу безопасность! ","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T4"},"T4(1)":{"kind":"dialogue","root_node":false,"body":"Вы знаете про меня? ","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T5"},"T4(2)":{"kind":"dialogue","root_node":false,"body":"Откуда вы про меня знаете?","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T6"},"T7(1)":{"kind":"dialogue","root_node":false,"body":"Можете не беспокоиться об этом!","speaker":"Страйкли","opposite":"Министр Твайлайт","next":"T8"},"T8(1)":{"kind":"narration","root_node":false,"body":"SetDialogueCode"}},"speakers":{}}
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да?",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T1(2)"
+        }
+      ]
+    },
+    "T2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ох, прошу, только не надо этого, без автографов. Мне это так надоело…\n",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T2(1)"
+        }
+      ]
+    },
+    "T3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да? И что же это за причина?",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T3(1)"
+        }
+      ]
+    },
+    "T4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Страйкли? Хм… А мне известно про тебя.",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T4(2)"
+        }
+      ]
+    },
+    "T5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Конечно. Когда мне сообщили о том, кто справился с тем агентом и нашел записку, у меня не осталось сомнений, что тебе здесь самое место.",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "next": "T7"
+    },
+    "T6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я в курсе, что на меня собираются покушаться. В политике это происходит так часто, что становится обычным делом. К тому же, я сама настояла, чтобы здесь была ты. В конце концов, именно ты узнала про это покушение. ",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "next": "T7"
+    },
+    "T7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Остается надеяться, что за очередным именем в списке приглашенных скрывается настоящий специалист.",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T7(1)"
+        }
+      ]
+    },
+    "T8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "В таком случае, не буду мешать тебе работать.",
+      "speaker": "Министр Твайлайт",
+      "opposite": "Страйкли",
+      "next": "T8(1)"
+    },
+    "T1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Министр Твайлайт! Очень приятно с вами встретиться! ",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T2"
+    },
+    "T1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, ничего, простите.",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт"
+    },
+    "T2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Конечно. Боюсь, я здесь по другой причине…",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T3"
+    },
+    "T3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кхем… Лейтенант Страйкли Клауд, мем! Я здесь, чтобы обеспечить Вашу безопасность! ",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T4"
+    },
+    "T4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вы знаете про меня? ",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T5"
+    },
+    "T4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Откуда вы про меня знаете?",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T6"
+    },
+    "T7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Можете не беспокоиться об этом!",
+      "speaker": "Страйкли",
+      "opposite": "Министр Твайлайт",
+      "next": "T8"
+    },
+    "T8(1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {}
+}

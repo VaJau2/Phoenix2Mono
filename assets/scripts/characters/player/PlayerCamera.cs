@@ -137,6 +137,9 @@ public class PlayerCamera: Camera
         {
             switch (tempObject)
             {
+                case TheaterChair chair when chair.isActive && !player.IsSitting:
+                    ShowHint("sit");
+                    break;
                 case FurnBase furn when furn.IsOpen:
                     ShowHint("close");
                     break;
@@ -167,6 +170,11 @@ public class PlayerCamera: Camera
         if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
         switch (tempObject)
         {
+            case TheaterChair chair when chair.isActive && !player.IsSitting:
+            {
+                chair.Sit(player);
+                break;
+            }
             case FurnDoor furn1:
             {
                 var keys = player.inventory.GetKeys();

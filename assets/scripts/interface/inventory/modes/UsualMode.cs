@@ -163,7 +163,9 @@ public class UsualMode: InventoryMode {
     private void WearTempItem(ItemIcon wearButton)
     {
         //если вещь надевается
-        if (tempButton != wearButton) {
+        if (tempButton != wearButton)
+        {
+            if (player.IsSitting) return;
             //если уже надета другая вещь
             if (wearButton.myItemCode != null) {
                 if (!canTakeItemOff()) return;

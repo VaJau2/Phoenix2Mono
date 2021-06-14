@@ -292,7 +292,11 @@ public abstract class InventoryMode
     public virtual async void CloseMenu()
     {
         CheckTempIcon();
-        player.MayMove = true;
+        if (!player.IsSitting)
+        {
+            player.MayMove = true;
+        }
+        
 
         isAnimating = true;
         while (back.RectPosition.x < 0) {

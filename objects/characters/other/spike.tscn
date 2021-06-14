@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCWeapons.cs" type="Script" id=8]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/SeekArea.cs" type="Script" id=9]
 
-[sub_resource type="ArrayMesh" id=58]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "spike"
 surfaces/0 = {
 "aabb": AABB( -1.58055, -0.0197162, -1.21764, 3.16066, 3.99358, 2.37069 ),
@@ -21,7 +21,7 @@ surfaces/0 = {
 "vertex_count": 1166
 }
 
-[sub_resource type="Skin" id=59]
+[sub_resource type="Skin" id=2]
 resource_name = "Skin"
 bind_count = 15
 bind/0/name = "body"
@@ -70,15 +70,16 @@ bind/14/name = "tail2"
 bind/14/bone = -1
 bind/14/pose = Transform( 1, -2.19735e-07, 9.252e-08, 2.13163e-14, -0.388057, -0.921635, 2.38419e-07, 0.921635, -0.388057, -0.00204375, -0.111291, -1.45232 )
 
-[sub_resource type="BoxShape" id=56]
-extents = Vector3( 0.444508, 0.71787, 0.426592 )
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.359155, 0.71787, 0.426592 )
 
-[sub_resource type="BoxShape" id=57]
-extents = Vector3( 0.58895, 0.737443, 0.726815 )
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.488117, 0.737443, 0.726815 )
 
-[sub_resource type="Animation" id=60]
+[sub_resource type="Animation" id=5]
 resource_name = "Idle1"
 length = 5.0
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
 tracks/0/interp = 1
@@ -185,7 +186,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.0666667, 1, 6.42606e-27, 0.00042646, -4.31652e-05, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.133333, 1, 2.61397e-26, 0.00153074, -0.000154937, 0, 0, -1.03398e-24, 1, 1, 1, 1, 0.2, 1, 3.79031e-26, 0.00328741, -0.000332744, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.333333, 1, 1.55096e-25, 0.00835974, -0.000846152, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.13333, 1, 8.55054e-25, 0.04647, -0.00470358, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.2, 1, 1.09901e-24, 0.0474133, -0.00479906, 0, 0, 2.48154e-24, 1, 1, 1, 1, 1.26667, 1, 3.82533e-18, 0.0475969, -0.00481764, -3.72529e-09, 1.65436e-24, 6.20385e-25, 1, 1, 1, 1, 1.33333, 1, 3.82533e-18, 0.0470518, -0.00476246, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.4, 1, 3.82533e-18, 0.0457357, -0.00462925, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.46667, 1, 3.82533e-18, 0.0438434, -0.00443772, 0, 0, 8.27181e-25, 1, 1, 1, 1, 2.46667, 1, 3.06025e-18, 0.000124269, -1.25773e-05, 0, -1.65436e-24, -8.27181e-25, 1, 1, 1, 1, 2.53333, 1, -7.25865e-29, 0.000124266, -1.25779e-05, 0, 0, 8.27181e-25, 1, 1, 1, 1, 2.6, 1, 1.61559e-26, 0.000898107, -9.09041e-05, 0, 0, 8.27181e-25, 1, 1, 1, 1, 2.66667, 1, 4.02258e-26, 0.00231587, -0.000234407, 0, 0, 8.27181e-25, 1, 1, 1, 1, 2.73333, 1, 4.9376e-26, 0.00438604, -0.000443944, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.66667, 1, 6.66841e-25, 0.0470518, -0.00476246, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.73333, 1, 2.2952e-18, 0.0475969, -0.00481764, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.8, 1, 3.82533e-18, 0.0474133, -0.00479906, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.86667, 1, 3.82533e-18, 0.04647, -0.00470358, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.93333, 1, 3.82533e-18, 0.0448574, -0.00454035, 0, -1.65436e-24, -8.27181e-25, 1, 1, 1, 1, 4, 1, 3.82533e-18, 0.0427025, -0.00432224, 0, 0, 8.27181e-25, 1, 1, 1, 1, 4.93333, 1, 3.82533e-18, 0.000426463, -4.31645e-05, 0, 0, 8.27181e-25, 1, 1, 1, 1, 5, 1, 0, 0, 0, 0, 0, 8.27181e-25, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=61]
+[sub_resource type="Animation" id=6]
 resource_name = "LookDown"
 length = 0.166667
 tracks/0/type = "transform"
@@ -196,7 +197,7 @@ tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.229791, -2.96595e-14, 5.47864e-08, 0.97324, 1, 1, 1, 0.166667, 1, 0, 0, 0, 0.229791, -2.96595e-14, 5.47864e-08, 0.97324, 1, 1, 1 )
 
-[sub_resource type="Animation" id=62]
+[sub_resource type="Animation" id=7]
 resource_name = "LookLeft"
 length = 0.166667
 tracks/0/type = "transform"
@@ -207,7 +208,7 @@ tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 9.58616e-10, 0.526637, 0.00235106, 0.850087, 1, 1, 1, 0.166667, 1, 0, 0, 0, 9.58616e-10, 0.526637, 0.00235106, 0.850087, 1, 1, 1 )
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=8]
 resource_name = "LookRight"
 length = 0.166667
 tracks/0/type = "transform"
@@ -218,8 +219,7 @@ tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 3.70341e-08, -0.499998, -0.00223211, 0.866024, 1, 1, 1, 0.166667, 1, 0, 0, 0, 3.70341e-08, -0.499998, -0.00223211, 0.866024, 1, 1, 1 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "LookUp"
+[sub_resource type="Animation" id=9]
 length = 0.166667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
@@ -229,9 +229,9 @@ tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.221239, 4.55373e-16, -5.27474e-08, 0.97522, 1, 1, 1, 0.166667, 1, 0, 0, 0, -0.221239, 4.55373e-16, -5.27474e-08, 0.97522, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "Sit"
+[sub_resource type="Animation" id=10]
 length = 3.33333
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
 tracks/0/interp = 1
@@ -338,9 +338,9 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, -1.01865e-16, -0.402018, -0.0902693, 0, 0, 8.27181e-25, 1, 1, 1, 1, 3.33333, 1, -1.01865e-16, -0.402018, -0.0902693, 0, 0, 8.27181e-25, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=9]
-resource_name = "Walk"
+[sub_resource type="Animation" id=11]
 length = 1.29167
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
 tracks/0/interp = 1
@@ -447,116 +447,116 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 1.328e-17, 0.047659, -0.00482392, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.0666667, 1, 1.328e-17, 0.0377453, 0.00857654, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.133333, 1, 1.328e-17, 0.0203023, 0.0321546, 0, 0, -1.03398e-24, 1, 1, 1, 1, 0.2, 1, 1.49601e-18, 0.00925923, 0.0470817, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.266667, 1, -1.44998e-18, 0.0138264, 0.0454509, 0, -1.65436e-24, -8.27181e-25, 1, 1, 1, 1, 0.333333, 1, -1.44998e-18, 0.0259751, 0.0384421, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.4, 1, 4.24545e-18, 0.0358643, 0.0295939, 0, 3.30872e-24, 6.20385e-25, 1, 1, 1, 1, 0.466667, 1, 8.0424e-18, 0.0392285, 0.0219129, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.533333, 1, 8.04239e-18, 0.0403298, 0.0166188, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.6, 1, 8.79974e-18, 0.0406051, 0.0140786, 0, 3.30872e-24, 6.20385e-25, 1, 1, 1, 1, 0.666667, 1, 9.93576e-18, 0.0374594, 0.0191408, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.8, 1, 7.48161e-18, 0.0127586, 0.0614998, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.866667, 1, -2.33496e-18, 0.0118558, 0.0639121, 0, 0, 8.27181e-25, 1, 1, 1, 1, 0.933333, 1, -2.33496e-18, 0.0201678, 0.0534902, -3.72529e-09, 1.65436e-24, 6.20385e-25, 1, 1, 1, 1, 1.06667, 1, 8.0424e-18, 0.0401031, 0.0218274, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.13333, 1, 8.0424e-18, 0.0450093, 0.00892948, 0, 0, 8.27181e-25, 1, 1, 1, 1, 1.2, 1, 8.0424e-18, 0.0471066, 5.30602e-05, 0, 0, 2.48154e-24, 1, 1, 1, 1, 1.26667, 1, 1.01374e-17, 0.0476309, -0.00422073, -3.72529e-09, 1.65436e-24, 6.20385e-25, 1, 1, 1, 1, 1.29167, 1, 1.328e-17, 0.047659, -0.00482392, 0, 0, 8.27181e-25, 1, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeBlend2" id=27]
+[sub_resource type="AnimationNodeBlend2" id=12]
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "LookUp"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "LookDown"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "LookRight"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "LookLeft"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=32]
-blend_point_0/node = SubResource( 28 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=17]
+blend_point_0/node = SubResource( 13 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 29 )
+blend_point_1/node = SubResource( 14 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 30 )
+blend_point_2/node = SubResource( 15 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 31 )
+blend_point_3/node = SubResource( 16 )
 blend_point_3/pos = Vector2( -1, 0 )
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Idle1"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Run"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Shotgun"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "Sit"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "Sleep"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=51]
-states/Idle1/node = SubResource( 33 )
+[sub_resource type="AnimationNodeStateMachine" id=36]
+states/Idle1/node = SubResource( 18 )
 states/Idle1/position = Vector2( 396, 221 )
-states/Run/node = SubResource( 34 )
+states/Run/node = SubResource( 19 )
 states/Run/position = Vector2( 176, 293 )
-states/Shoot/node = SubResource( 35 )
+states/Shoot/node = SubResource( 20 )
 states/Shoot/position = Vector2( 644, 284 )
-states/Sit/node = SubResource( 36 )
+states/Sit/node = SubResource( 21 )
 states/Sit/position = Vector2( 649, 147 )
-states/Sleep/node = SubResource( 37 )
+states/Sleep/node = SubResource( 22 )
 states/Sleep/position = Vector2( 460, 83 )
-states/Walk/node = SubResource( 38 )
+states/Walk/node = SubResource( 23 )
 states/Walk/position = Vector2( 378, 385 )
-transitions = [ "Idle1", "Walk", SubResource( 39 ), "Walk", "Idle1", SubResource( 40 ), "Idle1", "Run", SubResource( 41 ), "Run", "Idle1", SubResource( 42 ), "Walk", "Run", SubResource( 43 ), "Run", "Walk", SubResource( 44 ), "Idle1", "Sleep", SubResource( 45 ), "Idle1", "Sit", SubResource( 46 ), "Sit", "Idle1", SubResource( 47 ), "Sleep", "Idle1", SubResource( 48 ), "Idle1", "Shoot", SubResource( 49 ), "Shoot", "Idle1", SubResource( 50 ) ]
+transitions = [ "Idle1", "Walk", SubResource( 24 ), "Walk", "Idle1", SubResource( 25 ), "Idle1", "Run", SubResource( 26 ), "Run", "Idle1", SubResource( 27 ), "Walk", "Run", SubResource( 28 ), "Run", "Walk", SubResource( 29 ), "Idle1", "Sleep", SubResource( 30 ), "Idle1", "Sit", SubResource( 31 ), "Sit", "Idle1", SubResource( 32 ), "Sleep", "Idle1", SubResource( 33 ), "Idle1", "Shoot", SubResource( 34 ), "Shoot", "Idle1", SubResource( 35 ) ]
 graph_offset = Vector2( -102, -6 )
 
-[sub_resource type="AnimationNodeBlendTree" id=52]
+[sub_resource type="AnimationNodeBlendTree" id=37]
 graph_offset = Vector2( -589, 115 )
-nodes/Blend2/node = SubResource( 27 )
+nodes/Blend2/node = SubResource( 12 )
 nodes/Blend2/position = Vector2( 61, 157 )
-nodes/BlendSpace2D/node = SubResource( 32 )
+nodes/BlendSpace2D/node = SubResource( 17 )
 nodes/BlendSpace2D/position = Vector2( -280, 280 )
-nodes/StateMachine/node = SubResource( 51 )
+nodes/StateMachine/node = SubResource( 36 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
 node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
-[sub_resource type="BoxShape" id=54]
+[sub_resource type="BoxShape" id=39]
 extents = Vector3( 14.4008, 11.5559, 29.3611 )
 
-[sub_resource type="BoxShape" id=55]
-extents = Vector3( 6.24065, 3.62098, 6.65832 )
+[sub_resource type="BoxShape" id=40]
+extents = Vector3( 3.71017, 3.62098, 4.73551 )
 
 [node name="spike" type="KinematicBody" groups=[
 "savable",
@@ -649,8 +649,8 @@ bones/14/enabled = true
 bones/14/bound_children = [  ]
 
 [node name="spike" type="MeshInstance" parent="Armature/Skeleton"]
-mesh = SubResource( 58 )
-skin = SubResource( 59 )
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
 material/0 = null
 script = ExtResource( 1 )
 npcName = "spike"
@@ -658,28 +658,28 @@ startEyesVariant = "neitral"
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1.23529, 0, 0, 0, 1.23529, 0, 0, 0, 1.23529, 0.00209009, 0.782275, 0.105436 )
-shape = SubResource( 56 )
+shape = SubResource( 3 )
 
 [node name="shapeHead" type="CollisionShape" parent="."]
 transform = Transform( 1.23529, 0, 0, 0, 1.23529, 0, 0, 0, 1.23529, 0.00209009, 2.40062, 0.211609 )
-shape = SubResource( 57 )
+shape = SubResource( 4 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/Idle1 = SubResource( 60 )
-anims/LookDown = SubResource( 61 )
-anims/LookLeft = SubResource( 62 )
-anims/LookRight = SubResource( 63 )
-anims/LookUp = SubResource( 7 )
-anims/Sit = SubResource( 8 )
-anims/Walk = SubResource( 9 )
+anims/Idle1 = SubResource( 5 )
+anims/LookDown = SubResource( 6 )
+anims/LookLeft = SubResource( 7 )
+anims/LookRight = SubResource( 8 )
+anims/LookUp = SubResource( 9 )
+anims/Sit = SubResource( 10 )
+anims/Walk = SubResource( 11 )
 
 [node name="animTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 52 )
+tree_root = SubResource( 37 )
 anim_player = NodePath("../anim")
 active = true
 parameters/Blend2/blend_amount = 0.99
 parameters/BlendSpace2D/blend_position = Vector2( 0.00439751, -0.00254452 )
-parameters/StateMachine/playback = SubResource( 53 )
+parameters/StateMachine/playback = SubResource( 38 )
 
 [node name="seekArea" type="Area" parent="."]
 monitorable = false
@@ -687,7 +687,7 @@ script = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="seekArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8097, -17.9081 )
-shape = SubResource( 54 )
+shape = SubResource( 39 )
 
 [node name="ray" type="RayCast" parent="seekArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21756, -1.21516 )
@@ -698,8 +698,8 @@ cast_to = Vector3( 0, 0, -1 )
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="lookArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48777, -5.37711 )
-shape = SubResource( 55 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48777, -3.12451 )
+shape = SubResource( 40 )
 
 [node name="weapons" type="Node" parent="."]
 script = ExtResource( 8 )

@@ -596,6 +596,7 @@ shape = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -147.694 )
 script = ExtResource( 30 )
 npcPath = NodePath("../../npc/agent1")
+dialogueStartTimer = 0.5
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/dialogue"]
 shape = SubResource( 7 )

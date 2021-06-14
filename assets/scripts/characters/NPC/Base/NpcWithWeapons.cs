@@ -6,7 +6,8 @@ public class NpcWithWeapons: NPC
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
     
-    protected const float COME_DISTANCE = 4f;
+    [Export]
+    public float COME_DISTANCE = 4f;
     
     [Export]
     public string weaponCode = "";
@@ -31,7 +32,7 @@ public class NpcWithWeapons: NPC
     private float shootCooldown = 0;
     public bool IsHidingInCover => tempCover != null;
     public bool InCover = false;
-    protected bool lookAreaEntered;
+    protected bool stopAreaEntered;
 
     [Signal]
     public delegate void IsCame();
@@ -85,7 +86,7 @@ public class NpcWithWeapons: NPC
         MoveTo(path[pathI], COME_DISTANCE, WalkSpeed);
     }
     
-    public void GoTo(Vector3 place, float distance = COME_DISTANCE, bool mayRun = true)
+    public void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
         cameToPlace = false;
         var pos = GlobalTransform.origin;
@@ -253,7 +254,7 @@ public class NpcWithWeapons: NPC
             case NPCState.Idle:
                 if (patrolPoints == null || patrolPoints.Length == 0) {
                     if (!cameToPlace) {
-                        if (lookAreaEntered)
+                        if (stopAreaEntered)
                         {
                             Stop();
                         }
@@ -275,7 +276,7 @@ public class NpcWithWeapons: NPC
                     if (patrolWaitTimer > 0) {
                         patrolWaitTimer -= delta;
                     } else {
-                        if (lookAreaEntered)
+                        if (stopAreaEntered)
                         {
                             Stop();
                         }
@@ -333,7 +334,7 @@ public class NpcWithWeapons: NPC
                         SetState(NPCState.Idle);
                     }
                 } else {
-                    GoTo(lastSeePos);
+                    GoTo(lastSeePos, COME_DISTANCE);
                 }
                 break;
             

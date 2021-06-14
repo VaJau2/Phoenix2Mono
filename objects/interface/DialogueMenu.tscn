@@ -110,8 +110,8 @@ anchor_right = 0.5
 anchor_bottom = 0.096
 margin_left = 11.0
 margin_top = 1.0
-margin_right = -113.0
-margin_bottom = 0.192001
+margin_right = -16.0
+margin_bottom = 0.616001
 theme = ExtResource( 1 )
 text = "Игрок"
 valign = 1
@@ -123,10 +123,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.096
-margin_left = 110.0
 margin_top = 1.0
 margin_right = -14.0
-margin_bottom = 0.192001
+margin_bottom = 0.616001
 theme = ExtResource( 1 )
 text = "Непись 1"
 align = 2
@@ -216,6 +215,7 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [ 0 ]]
 [connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [ 0 ]]
 [connection signal="pressed" from="Menu/answer1" to="Menu" method="_on_answer_pressed" binds= [ 0 ]]

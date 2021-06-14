@@ -31,5 +31,6 @@ public class TriggerBase : Node, ISavable
         if (!DeleteAfterTrigger) return;
         Global.AddDeletedObject(Name);
         QueueFree();
+        IsActive = false;
     }
 }

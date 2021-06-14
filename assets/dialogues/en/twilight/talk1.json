@@ -1,1 +1,179 @@
-{"nodes":{"T1":{"kind":"dialogue","root_node":false,"body":"Yes?","speaker":"Minister Twilight","opposite":"Strikely","options":[{"body":"answer","next":"T1(1)"},{"body":"answer","next":"T1(2)"}]},"T2":{"kind":"dialogue","root_node":false,"body":"Oh, please, don't do this, no autographs. I'm so sick of it…","speaker":"Minister Twilight","opposite":"Strikely","options":[{"body":"answer","next":"T2(1)"}]},"T3":{"kind":"dialogue","root_node":false,"body":"Really? And what's the reason?","speaker":"Minister Twilight","opposite":"Strikely","options":[{"body":"answer","next":"T3(1)"}]},"T4":{"kind":"dialogue","root_node":false,"body":"Strikely? Hm… I know about you.","speaker":"Minister Twilight","opposite":"Strikely","options":[{"body":"answer","next":"T4(1)"},{"body":"answer","next":"T4(2)"}]},"T5":{"kind":"dialogue","root_node":false,"body":"Sure. When I was told who had contacted that agent and found the note, I had no doubt that you belonged here","speaker":"Minister Twilight","opposite":"Strikely","next":"T7"},"T6":{"kind":"dialogue","root_node":false,"body":"I know they're going to try to kill me. In politics, this happens so often that it becomes commonplace. Besides, I insisted that you be here. After all, you were the pony who found out about this assassination attempt","speaker":"Minister Twilight","opposite":"Strikely","next":"T7"},"T7":{"kind":"dialogue","root_node":false,"body":"We can only hope that the next name on the guest list hides a real specialist.","speaker":"Minister Twilight","opposite":"Strikely","options":[{"body":"answer","next":"T7(1)"}]},"T8":{"kind":"dialogue","root_node":false,"body":"In that case, I won't stop you from working.","speaker":"Minister Twilight","opposite":"Strikely","next":"T8(1)"},"T1(1)":{"kind":"dialogue","root_node":false,"body":"Minister Twilight! It's very nice to mett you!","speaker":"Strikely","opposite":"Minister Twilight","next":"T2"},"T1(2)":{"kind":"dialogue","root_node":false,"body":"It's nothing, sorry","speaker":"Strikely","opposite":"Minister Twilight"},"T2(1)":{"kind":"dialogue","root_node":false,"body":"Of course. I'm afraid, I'm here for other reason","speaker":"Strikely","opposite":"Minister Twilight","next":"T3"},"T3(1)":{"kind":"dialogue","root_node":false,"body":"Ahem ... Lieutenant Strikely Cloud, mem! I'm here to ensure your safety!","speaker":"Strikely","opposite":"Minister Twilight","next":"T4"},"T4(1)":{"kind":"dialogue","root_node":false,"body":"You know about me?","speaker":"Strikely","opposite":"Minister Twilight","next":"T5"},"T4(2)":{"kind":"dialogue","root_node":false,"body":"How do you know about me?","speaker":"Strikely","opposite":"Minister Twilight","next":"T6"},"T7(1)":{"kind":"dialogue","root_node":false,"body":"Don't worry about it!","speaker":"Strikely","opposite":"Minister Twilight","next":"T8"},"T8(1)":{"kind":"narration","root_node":false,"body":"SetDialogueCode"}},"speakers":{"Minister Twilight":{"color":{"r":0,"g":0,"b":0,"a":0}},"Strikely":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes?",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T1(2)"
+        }
+      ]
+    },
+    "T2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh, please, don't do this, no autographs. I'm so sick of it…",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T2(1)"
+        }
+      ]
+    },
+    "T3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Really? And what's the reason?",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T3(1)"
+        }
+      ]
+    },
+    "T4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Strikely? Hm… I know about you.",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T4(2)"
+        }
+      ]
+    },
+    "T5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sure. When I was told who had contacted that agent and found the note, I had no doubt that you belonged here",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "next": "T7"
+    },
+    "T6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I know they're going to try to kill me. In politics, this happens so often that it becomes commonplace. Besides, I insisted that you be here. After all, you were the pony who found out about this assassination attempt",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "next": "T7"
+    },
+    "T7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We can only hope that the next name on the guest list hides a real specialist.",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T7(1)"
+        }
+      ]
+    },
+    "T8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "In that case, I won't stop you from working.",
+      "speaker": "Minister Twilight",
+      "opposite": "Strikely",
+      "next": "T8(1)"
+    },
+    "T1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Minister Twilight! It's very nice to meet you!",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T2"
+    },
+    "T1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's nothing, sorry",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight"
+    },
+    "T2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Of course. I'm afraid, I'm here for other reason",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T3"
+    },
+    "T3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ahem ... Lieutenant Strikely Cloud, mem! I'm here to ensure your safety!",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T4"
+    },
+    "T4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You know about me?",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T5"
+    },
+    "T4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "How do you know about me?",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T6"
+    },
+    "T7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't worry about it!",
+      "speaker": "Strikely",
+      "opposite": "Minister Twilight",
+      "next": "T8"
+    },
+    "T8(1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Minister Twilight": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

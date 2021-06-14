@@ -99,7 +99,7 @@
 [ext_resource path="res://assets/scripts/triggers/TakeItemTrigger.cs" type="Script" id=97]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=98]
 [ext_resource path="res://assets/scripts/triggers/ChangeNPCStatesTrigger.cs" type="Script" id=99]
-[ext_resource path="res://assets/scripts/triggers/MoveNpcToDoor.cs" type="Script" id=100]
+[ext_resource path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" type="Script" id=100]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=101]
 
 [sub_resource type="BoxShape" id=1]

@@ -115,25 +115,35 @@ public class Pony: NpcWithWeapons
 
     public void _on_lookArea_body_entered(Node body)
     {
-        if (body is Player)
-        {
-            lookAreaEntered = true;
-        }
-        
         this.body._on_lookArea_body_entered(body);
     }
 
     public void _on_lookArea_body_exited(Node body)
     {
-        if (body is Player)
-        {
-            lookAreaEntered = false;
-        }
-        
         this.body._on_lookArea_body_exited(body);
     }
 
- 
+    public void _on_stopArea_body_entered(Node body)
+    {
+        if (body is Player)
+        {
+            stopAreaEntered = true;
+        }
+
+        if (body is FurnDoor door)
+        {
+            door.ClickFurn();
+        }
+    }
+    
+    public void _on_stopArea_body_exited(Node body)
+    {
+        if (body is Player)
+        {
+            stopAreaEntered = false;
+        }
+    }
+
     public override void _Ready()
     {
         if (IsUnicorn) {
