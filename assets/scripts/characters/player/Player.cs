@@ -58,7 +58,7 @@ public class Player : Character
     protected float crouchCooldown;
     private float bodyColliderSize = 1;
 
-    float shakingSpeed = 0;
+    public float shakingSpeed = 0;
     bool shakeUp = false;
     float shakeTimer = 0;
 

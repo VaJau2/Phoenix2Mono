@@ -2,14 +2,14 @@ using Godot;
 
 public class HealEffect: Effect 
 {
-    const float HEAL_COOLDOWN = 2f;
+    const float HEAL_COOLDOWN = 0.6f;
     private Player player;
     private int healCount = 2;
     private float cooldown = 0;
 
     public HealEffect() 
     {
-        maxTime = 60;
+        maxTime = 30;
         badEffect = false;
     }
 

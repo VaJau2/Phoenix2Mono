@@ -52,7 +52,7 @@
     },
 
     "medsEffects": {
-        "heal": "60 sec. healing",
+        "heal": "30 sec. healing",
         "mana": "60 sec. increasing mana speed for unicorns",
         "buck": "60 sec. increasing max HP and hoofs damage",
         "dash": "30 sec. increasing speed",

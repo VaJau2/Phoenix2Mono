@@ -67,8 +67,8 @@ public class NpcWithWeapons: NPC
     {
         return null;
     }
-    
-    public void SetNewStartPos(Vector3 newPos)
+
+    public virtual void SetNewStartPos(Vector3 newPos, bool run = false)
     {
         cameToPlace = false;
         myStartPos = newPos;

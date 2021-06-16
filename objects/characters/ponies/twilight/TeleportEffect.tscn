@@ -8,7 +8,8 @@ script/source = "extends Spatial
 func _ready():
 	$anim.play(\"idle\")
 	yield(get_tree().create_timer(1),\"timeout\")
-	queue_free()"
+	queue_free()
+"
 
 [sub_resource type="Animation" id=2]
 length = 0.9
@@ -30,7 +31,7 @@ script = SubResource( 1 )
 
 [node name="sprite" type="Sprite3D" parent="."]
 transform = Transform( 9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 3, 0 )
-modulate = Color( 0.101961, 0.184314, 0.862745, 1 )
+modulate = Color( 0.647059, 0.172549, 0.913725, 1 )
 billboard = 1
 texture = ExtResource( 1 )
 hframes = 3

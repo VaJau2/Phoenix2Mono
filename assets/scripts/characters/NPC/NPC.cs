@@ -94,6 +94,7 @@ public class NPC : Character
 
         if (IsImmortal)
         {
+            EmitSignal(nameof(TakenDamage));
             return;
         }
 

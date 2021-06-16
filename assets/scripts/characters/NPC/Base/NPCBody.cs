@@ -50,16 +50,19 @@ public class NPCBody
         }
         
         if (lookTarget != null) {
-            if (lookTimer > 0)
+            if (npc.state == NPCState.Idle)
             {
-                lookTimer -= delta;
+                if (lookTimer > 0)
+                {
+                    lookTimer -= delta;
+                }
+                else
+                {
+                    lookTarget = null;
+                    return;
+                }
             }
-            else
-            {
-                lookTarget = null;
-                return;
-            }
-            
+
             Vector3 npcForward = -npc.GlobalTransform.basis.z;
             Vector3 dir = GetDirToTarget(lookTarget);
 
@@ -87,16 +90,12 @@ public class NPCBody
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
-    public void _on_lookArea_body_entered(Node body) 
-    {  
-        if (body is Character && body != npc) {
-            var character = body as Character;
-            if (npc.state == NPCState.Idle && lookTarget == null)
-            {
-                lookTimer = 1.5f;
-                lookTarget = character;
-            }
-        }
+    public void _on_lookArea_body_entered(Node body)
+    {
+        if (npc.state != NPCState.Idle || lookTarget != null || body == npc) return;
+        if (!(body is Character character)) return;
+        lookTimer = 1.5f;
+        lookTarget = character;
     }
 
     public void _on_lookArea_body_exited(Node body)

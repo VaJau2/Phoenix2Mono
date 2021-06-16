@@ -19,6 +19,8 @@ public class Pony: NpcWithWeapons
     public NPCBody body;
     
     private float doorWait = 0;
+    private bool RunToPoint;
+    public bool stayInPoint;
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
     
@@ -56,17 +58,29 @@ public class Pony: NpcWithWeapons
         
         return GetNode<Spatial>("Armature/Skeleton/BoneAttachment 2/weapons");
     }
+
+    public override void SetNewStartPos(Vector3 newPos, bool run = false)
+    {
+        RunToPoint = run;
+        base.SetNewStartPos(newPos, run);
+    }
     
     private void FinishGoingTo()
     {
         Stop();
+        RunToPoint = false;
         cameToPlace = true;
+        if (stayInPoint)
+        {
+            stayInPoint = false;
+            SetProcess(false);
+        }
         EmitSignal(nameof(IsCame));
     }
 
     protected override void MoveToPoint(float tempDistance, bool mayRun)
     {
-        if (mayRun && tempDistance > RUN_DISTANCE) {
+        if ((RunToPoint || mayRun) && tempDistance > RUN_DISTANCE) {
             body.PlayAnim("Run");
             MoveTo(path[pathI], COME_DISTANCE, RunSpeed);
             IsRunning = true;

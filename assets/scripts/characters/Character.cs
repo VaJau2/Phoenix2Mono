@@ -13,6 +13,9 @@ public class Character : KinematicBody, ISavable
 
     public Vector3 Velocity;
     
+        
+    [Signal]
+    public delegate void TakenDamage();
     [Signal]
     public delegate void Die();
 
@@ -33,6 +36,7 @@ public class Character : KinematicBody, ISavable
 
     public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
+        EmitSignal(nameof(TakenDamage));
         damage -= (int)(damage * GetDamageBlock());
         decreaseHealth(damage);
         if (Health <= 0)

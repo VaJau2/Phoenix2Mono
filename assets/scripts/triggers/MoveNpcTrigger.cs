@@ -6,9 +6,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public Array<NodePath> NpcPaths; 
     [Export] public Array<NodePath> pointPaths;
     [Export] public Array<string> idleAnims;
+    [Export] private Array<bool> stayThere;
     [Export] public float timer = 1f;
     [Export] public float lastTimer = 1f;
-    
+    [Export] public bool runToPoint;
+
     private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
     private Array<Spatial> points = new Array<Spatial>();
     private bool activated;
@@ -41,9 +43,14 @@ public class MoveNpcTrigger: ActivateOtherTrigger
 
             for (int i = 0; i < npc.Count; i++)
             {
-                npc[i].SetNewStartPos(points[i].GlobalTransform.origin);
+                npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
                 npc[i].myStartRot = points[i].Rotation;
-                npc[i].IdleAnim = idleAnims[i];
+                if (idleAnims.Count > i) npc[i].IdleAnim = idleAnims[i];
+                
+                if (npc[i] is Pony pony && stayThere.Count == npc.Count)
+                {
+                    pony.stayInPoint = stayThere[i];
+                }
                 await Global.Get().ToTimer(timer);
             }
             
