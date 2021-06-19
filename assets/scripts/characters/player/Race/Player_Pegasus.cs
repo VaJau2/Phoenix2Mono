@@ -129,6 +129,12 @@ public class Player_Pegasus : Player
         }
     }
 
+    public override void SitOnChair(bool sitOn)
+    {
+        wingsAudi.Stop();
+        base.SitOnChair(sitOn);
+    }
+
     public override float GetGravitySpeed(float tempShake, float delta)
     {
         if (IsFlying) {

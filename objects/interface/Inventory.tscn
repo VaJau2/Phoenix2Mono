@@ -1152,6 +1152,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
+
 [connection signal="pressed" from="helper/back/chestBack/takeAll" to="." method="_on_takeAll_pressed"]
 [connection signal="pressed" from="modalAsk/yes" to="." method="_on_modal_yes_pressed"]
 [connection signal="pressed" from="modalAsk/no" to="." method="_on_modal_no_pressed"]

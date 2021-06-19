@@ -15,6 +15,8 @@ public class NpcWithWeapons: NPC
     public Array<string> itemCodes = new Array<string>();
     [Export]
     public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+
+    private Character followTarget;
     
     private Navigation navigation;
     protected bool cameToPlace = false;
@@ -47,7 +49,11 @@ public class NpcWithWeapons: NPC
         }
 
         base.SetState(newState);
-        StopHidingInCover();
+        if (!string.IsNullOrEmpty(weaponCode))
+        {
+            StopHidingInCover();
+        }
+        
         cameToPlace = false;
         path = null;
 
@@ -62,6 +68,11 @@ public class NpcWithWeapons: NPC
                 break;
         }
     }
+
+    public virtual void SetFollowTarget(Character newTarget)
+    {
+        followTarget = newTarget;
+    }
     
     public virtual Spatial GetWeaponParent(bool isPistol)
     {
@@ -74,7 +85,7 @@ public class NpcWithWeapons: NPC
         myStartPos = newPos;
     }
     
-    private void FinishGoingTo()
+    protected virtual void FinishGoingTo()
     {
         Stop();
         cameToPlace = true;
@@ -86,7 +97,7 @@ public class NpcWithWeapons: NPC
         MoveTo(path[pathI], COME_DISTANCE, WalkSpeed);
     }
     
-    public void GoTo(Vector3 place, float distance, bool mayRun = true)
+    private void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
         cameToPlace = false;
         var pos = GlobalTransform.origin;
@@ -124,17 +135,24 @@ public class NpcWithWeapons: NPC
             }
         }
     }
-    
-    public void FindCover()
+
+    private void FindCover()
     {
-        tempCover = covers.GetCover(this);
-        if (tempCover != null)
+        if (InCover)
         {
-            tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.origin);
-            cameToPlace = false;
+            coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
         }
-        InCover = false;
-        coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
+        else
+        {
+            tempCover = covers.GetCover(this);
+            if (tempCover != null)
+            {
+                tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.origin);
+                cameToPlace = false;
+            }
+            InCover = false;
+            coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
+        }
     }
 
     public void StopHidingInCover()
@@ -142,12 +160,17 @@ public class NpcWithWeapons: NPC
         if (tempCover != null) covers.ReturnCover(tempCover);
         tempCover = null;
         coverTimer = rand.RandfRange(UNCOVER_TIMER[0], UNCOVER_TIMER[1]);
+        InCover = false;
     }
     
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         base.TakeDamage(damager, damage, shapeID);
         coverTimer -= damage / 10;
+        if (string.IsNullOrEmpty(weaponCode))
+        {
+            StopHidingInCover();
+        }
     }
     
     protected override void AnimateDealth(Character killer, int shapeID)
@@ -227,7 +250,7 @@ public class NpcWithWeapons: NPC
     
     protected void AttackEnemy(float delta)
     {
-        if (weaponCode == "") {
+        if (string.IsNullOrEmpty(weaponCode)) {
             //если нет оружия
             //бегаем по укрытиям и молимся Селестии
             coverTimer = 0;
@@ -245,6 +268,13 @@ public class NpcWithWeapons: NPC
             updatePath = tempVictim.Velocity.Length() > 2;
         }
     }
+
+    private void FollowTarget()
+    {
+        Vector3 targetPos = followTarget.GlobalTransform.origin;
+        GoTo(targetPos, COME_DISTANCE * 2f);
+        updatePath = followTarget?.Velocity.Length() > 2;
+    }
     
     protected virtual void PlayIdleAnim() {}
 
@@ -252,7 +282,11 @@ public class NpcWithWeapons: NPC
     {
         switch (state) {
             case NPCState.Idle:
-                if (patrolPoints == null || patrolPoints.Length == 0) {
+                if (followTarget != null)
+                {
+                    FollowTarget();
+                }
+                else if (patrolPoints == null || patrolPoints.Length == 0) {
                     if (!cameToPlace) {
                         if (stopAreaEntered)
                         {
@@ -320,7 +354,7 @@ public class NpcWithWeapons: NPC
                 } else {
                     if (tempCover == null) {
                         FindCover();
-                    } else {
+                    } else if (!string.IsNullOrEmpty(weaponCode)) {
                         StopHidingInCover();
                     }
                 }

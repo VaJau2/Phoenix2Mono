@@ -27,7 +27,7 @@ public class DialogueMenu : Control, IMenu
 
     public void StartTalkingTo(NPC npc)
     {
-        if (!MenuManager.TryToOpenMenu(this)) return;
+        if (!MenuManager.TryToOpenMenu(this, true)) return;
         this.npc = npc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
@@ -257,7 +257,7 @@ public class DialogueMenu : Control, IMenu
     public override void _Process(float delta)
     {
         if (MenuOn) {
-            if (npc.state != NPCState.Talk) {
+            if (npc == null || npc.state != NPCState.Talk) {
                 MenuManager.CloseMenu(this);
             } else {
                 player.LookAt(npc.GlobalTransform.origin);

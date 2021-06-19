@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class MoveNpcTrigger: ActivateOtherTrigger
 {
-    [Export] public Array<NodePath> NpcPaths; 
+    [Export] public Array<string> NpcPaths; 
     [Export] public Array<NodePath> pointPaths;
     [Export] public Array<string> idleAnims;
     [Export] private Array<bool> stayThere;
@@ -14,20 +14,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
     private Array<Spatial> points = new Array<Spatial>();
     private bool activated;
-
-    public override void _Ready()
-    {
-        base._Ready();
-        
-        if (NpcPaths == null || pointPaths == null) return;
-        
-        for (int i = 0; i < NpcPaths.Count; i++)
-        {
-            npc.Add(GetNode<NpcWithWeapons>(NpcPaths[i]));
-            points.Add(GetNode<Spatial>(pointPaths[i]));
-        }
-    }
-
+    
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
@@ -37,27 +24,39 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     
     public override async void _on_activate_trigger()
     {
-        if (IsActive)
+        if (!IsActive) return;
+        
+        if (NpcPaths == null || pointPaths == null) return;
+        
+        for (int i = 0; i < NpcPaths.Count; i++)
         {
-            activated = true;
-
-            for (int i = 0; i < npc.Count; i++)
-            {
-                npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
-                npc[i].myStartRot = points[i].Rotation;
-                if (idleAnims.Count > i) npc[i].IdleAnim = idleAnims[i];
-                
-                if (npc[i] is Pony pony && stayThere.Count == npc.Count)
-                {
-                    pony.stayInPoint = stayThere[i];
-                }
-                await Global.Get().ToTimer(timer);
-            }
-            
-            await Global.Get().ToTimer(lastTimer);
-            
-            base._on_activate_trigger();
+            npc.Add(GetNode<NpcWithWeapons>(NpcPaths[i]));
+            points.Add(GetNode<Spatial>(pointPaths[i]));
         }
+        
+        activated = true;
+
+        for (int i = 0; i < npc.Count; i++)
+        {
+            if (!IsInstanceValid(npc[i])) continue;
+            npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
+            npc[i].myStartRot = points[i].Rotation;
+            if (idleAnims != null && idleAnims.Count > i)
+            {
+                npc[i].IdleAnim = idleAnims[i];
+            }
+
+            if (stayThere != null && stayThere.Count == npc.Count && npc[i] is Pony pony)
+            {
+                pony.stayInPoint = stayThere[i];
+            }
+
+            await Global.Get().ToTimer(timer);
+        }
+            
+        await Global.Get().ToTimer(lastTimer);
+            
+        base._on_activate_trigger();
     }
     
     public void _on_body_entered(Node body)

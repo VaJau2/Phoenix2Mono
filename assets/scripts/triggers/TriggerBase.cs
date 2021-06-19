@@ -7,14 +7,14 @@ public class TriggerBase : Node, ISavable
     [Export] public bool IsActive { get; private set; } = true;
     [Export] public bool DeleteAfterTrigger = true;
 
-    public Dictionary GetSaveData()
+    public virtual Dictionary GetSaveData()
     {
         return new Dictionary()
         {
             {"active", IsActive}
         };
     }
-    public void LoadData(Dictionary data)
+    public virtual void LoadData(Dictionary data)
     {
         IsActive = Convert.ToBoolean(data["active"]);
     }

@@ -56,6 +56,7 @@ public class TeleportWhenAttach: TriggerBase
                 GetNode("/root/Main/Scene").AddChild(effect);
             }
 
+            Global.AddDeletedObject(npc.Name);
             npc.QueueFree();
         }
 

@@ -3,6 +3,7 @@ using Godot;
 //дверь, перемещающая в отдельную подлокацию
 public class DoorTeleport : StaticBody
 {
+    [Export] private bool Closed;
     [Export] private bool Inside;
     [Export] private NodePath newPlacePath;
     [Export] private NodePath oldLocationPath;
@@ -50,6 +51,7 @@ public class DoorTeleport : StaticBody
 
     public void Open(Spatial character, bool makeVisible)
     {
+        
         SoundOpening();
 
         character.GlobalTransform = newPlace.GlobalTransform;

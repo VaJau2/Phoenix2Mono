@@ -1,0 +1,267 @@
+{
+  "nodes": {
+    "R1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты! Откуда ты взялась? Тебя не должно быть здесь!",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R1(1)"
+        }
+      ]
+    },
+    "R2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Твайлайт сбежала из-за тебя, Страйкли! У меня все было под контролем!",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R2(1)"
+        }
+      ]
+    },
+    "R3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Никто не должен был умереть, кроме неё! Я для этого даже нанял этих актеров-охранников, чтобы никто нам не помешал. Все должно было произойти за несколько секунд!",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R3(2)"
+        }
+      ]
+    },
+    "R4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты не понимаешь! Они зашли слишком далеко, я ... мы должны их остановить! Иначе мы все умрем!",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R3(2)"
+        }
+      ]
+    },
+    "R5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Если бы ты знала, что знаю я, ты бы была на моей стороне, но боюсь, ты мне не поверишь. Мы в безвыходном положении...",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R3(2)"
+        }
+      ]
+    },
+    "R6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ни за что. Это мой единственный шанс выжить. И ты это знаешь.",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R6(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R6(2)"
+        }
+      ]
+    },
+    "R7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Опусти оружие и дай мне сбежать.",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R7(2)"
+        },
+        {
+          "body": "answer",
+          "next": "R7(1)"
+        }
+      ]
+    },
+    "R8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я не буду делать ничего, пока ты тычешь в меня этим стволом! Просто брось его на пол!",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R8(1)"
+        }
+      ]
+    },
+    "R9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо, Страйкли. Обещаю, ты больше не услышишь обо мне.",
+      "speaker": "Рэд Панч",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R9(1)"
+        }
+      ]
+    },
+    "R1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Рэд Панч? Это был ты?",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R2"
+    },
+    "R2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Зачем ты это делаешь?",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R3"
+    },
+    "R3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Почему, Рэд?",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R4"
+    },
+    "R3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Отпусти заложницу, и я не буду в тебя стрелять, обещаю.",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R6"
+    },
+    "R4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Это те агенты запудрили тебе мозги, да?",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R5"
+    },
+    "R6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Чего ты хочешь?",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R7"
+    },
+    "R6(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Выход есть всегда. Только сначала успокойся.",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R8"
+    },
+    "R7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Хорошо. Я положу его на пол *положить оружие*",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R7(1.1)"
+    },
+    "R7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Сначала ты опусти свое.",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R8"
+    },
+    "R8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ладно, ладно, я ложу его *положить оружие*",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R7(1.1)"
+    },
+    "R9(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Страйкли",
+      "opposite": "Рэд Панч",
+      "next": "R9(1.1)"
+    },
+    "R7(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "DropWeapon",
+      "next": "R9"
+    },
+    "R9(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "R9(1.2)"
+    },
+    "R9(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "RedPunchRun"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Рэд Панч": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

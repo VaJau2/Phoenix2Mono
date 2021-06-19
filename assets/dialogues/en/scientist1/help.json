@@ -1,1 +1,156 @@
-{"nodes":{"S1":{"kind":"dialogue","root_node":false,"body":"Help me!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S1(1)"}]},"S2":{"kind":"dialogue","root_node":false,"body":"It's my graduate student, Dask. I saw her run into the hall on the first floor and heard the shots from there!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S2(1)"},{"body":"answer","next":"S2(2)"}]},"S3":{"kind":"dialogue","root_node":false,"body":"Thank you very much! Bring her to me alive, please!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S3(1)"},{"body":"answer","next":"S3(2)"}]},"S4":{"kind":"dialogue","root_node":false,"body":"How can you say that? She couldn't be dead! We haven't finished our project yet!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S4(1)"}]},"S5":{"kind":"dialogue","root_node":false,"body":"Please let me be right...","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S5(1)"}]},"S1(1)":{"kind":"dialogue","root_node":false,"body":"What is it?","speaker":"Strikely","opposite":"Scientist","next":"S2"},"S2(1)":{"kind":"dialogue","root_node":false,"body":"Okay, I'll find her","speaker":"Scientist","opposite":"Strikely","next":"S3"},"S2(2)":{"kind":"dialogue","root_node":false,"body":"Face it, she's probably already dead","speaker":"Scientist","opposite":"Strikely","next":"S4"},"S3(1)":{"kind":"dialogue","root_node":false,"body":"I promise she'll be safe and sound","speaker":"Strikely","opposite":"Scientist"},"S3(2)":{"kind":"dialogue","root_node":false,"body":"I can't promise anything","speaker":"Strikely","opposite":"Scientist"},"S4(1)":{"kind":"dialogue","root_node":false,"body":"All right, all right. I'll check it out","speaker":"Strikely","opposite":"Scientist","next":"S5"},"S5(1)":{"kind":"dialogue","root_node":false,"body":"...","speaker":"Strikely","opposite":"Scientist"}},"speakers":{"Scientist":{"color":{"r":0,"g":0,"b":0,"a":0}},"Strikely":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Help me!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's my graduate student, Dask. I saw her run into the hall on the first floor and heard the shots from there!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S2(2)"
+        }
+      ]
+    },
+    "S3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thank you very much! Bring her to me alive, please!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S3(2)"
+        }
+      ]
+    },
+    "S4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "How can you say that? She couldn't be dead! We haven't finished our project yet!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S4(1)"
+        }
+      ]
+    },
+    "S5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Please let me be right...",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S5(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What is it?",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S2"
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay, I'll find her",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "next": "S3"
+    },
+    "S2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Face it, she's probably already dead",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "next": "S4"
+    },
+    "S3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I promise she'll be safe and sound",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S5(1.1)"
+    },
+    "S3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I can't promise anything",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S5(1.1)"
+    },
+    "S4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "All right, all right. I'll check it out",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S5"
+    },
+    "S5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S5(1.1)"
+    },
+    "S5(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Scientist": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

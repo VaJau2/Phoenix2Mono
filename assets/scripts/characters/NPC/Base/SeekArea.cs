@@ -59,11 +59,14 @@ public class SeekArea : Area
             } else {
                 //если увидели противника, будучи в укрытии
                 //больше не прячемся
-                if (CheckHiding() && (npc as Pony).InCover) {
-                    (npc as Pony).StopHidingInCover();
+                if (npc is Pony pony)
+                {
+                    if (CheckHiding() && pony.InCover && !pony.stayInPoint)
+                    {
+                        pony.StopHidingInCover();
+                    }
                 }
             }
-
         } else {
             if (enemiesInArea.Count == 0) {
                 return;

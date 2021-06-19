@@ -311,7 +311,7 @@ public class PlayerWeapons: CollisionShape
 
             var tempRay = player.Camera.UseRay(tempDistance);
 
-            await global.ToTimer(0.03f);
+            await global.ToTimer(0.05f);
 
             //обрабатываем попадания
             if (isPistol || player.MayMove) {
@@ -322,6 +322,7 @@ public class PlayerWeapons: CollisionShape
                         player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
                     } 
 
+                    tempRay.ForceRaycastUpdate();
                     var obj = (Spatial)tempRay.GetCollider();
                     if (obj != null) {
                         var gunParticles = (Spatial)gunParticlesPrefab.Instance();

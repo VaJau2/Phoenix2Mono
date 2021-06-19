@@ -77,7 +77,7 @@ public class InventoryMenu : Control, IMenu
         {
             if (button.myItemCode == itemCode)
             {
-                button.ClearItem();
+                mode.RemoveItemFromButton(button);
             }
         }
     }

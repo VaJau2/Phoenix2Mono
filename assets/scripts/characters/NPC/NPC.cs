@@ -202,7 +202,7 @@ public class NPC : Character
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
-        saveData["tempVictim"] = tempVictim != null ? tempVictim.Name : "";
+        saveData["tempVictim"] = IsInstanceValid(tempVictim) ? tempVictim.Name : "";
         saveData["state"] = state.ToString();
         saveData["lastSeePos"] = lastSeePos;
         saveData["relation"] = relation.ToString();

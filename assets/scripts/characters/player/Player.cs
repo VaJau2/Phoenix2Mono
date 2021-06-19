@@ -243,7 +243,7 @@ public class Player : Character
         }
     }
 
-    public void SitOnChair(bool sitOn)
+    public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
         MayMove = !sitOn;

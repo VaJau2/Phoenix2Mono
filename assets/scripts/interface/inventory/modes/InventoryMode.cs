@@ -150,20 +150,25 @@ public abstract class InventoryMode
         
         return emptyButton;
     }
+
+    public void RemoveItemFromButton(ItemIcon button)
+    {
+        if (button.myItemCode.Contains("key")) {
+            PlayerInventory inventory = Global.Get().player.inventory;
+            inventory.RemoveKey(button.myItemCode);
+        }
+        if (button.GetBindKey() != "") {
+            int keyId = int.Parse(button.GetBindKey());
+            menu.bindedButtons.Remove(keyId);
+            bindsList.RemoveIcon(button);
+        }
+
+        button.ClearItem();
+    }
    
     protected void RemoveTempItem()
     {
-        if (tempButton.myItemCode.Contains("key")) {
-            PlayerInventory inventory = Global.Get().player.inventory;
-            inventory.RemoveKey(tempButton.myItemCode);
-        }
-        if (tempButton.GetBindKey() != "") {
-            int keyId = int.Parse(tempButton.GetBindKey());
-            menu.bindedButtons.Remove(keyId);
-            bindsList.RemoveIcon(tempButton);
-        }
-
-        tempButton.ClearItem();
+        RemoveItemFromButton(tempButton);
         tempButton = null;
     }
 

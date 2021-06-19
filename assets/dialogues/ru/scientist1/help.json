@@ -1,1 +1,156 @@
-{"nodes":{"S1":{"kind":"dialogue","root_node":false,"body":"Помогите мне!","speaker":"Ученый","opposite":"Страйкли","options":[{"body":"answer","next":"S1(1)"}]},"S2":{"kind":"dialogue","root_node":false,"body":"Моя аспирантка, Даск. Я видел, как она убежала в холл на первом этаже и слышал выстрелы оттуда!","speaker":"Ученый","opposite":"Страйкли","options":[{"body":"answer","next":"S2(1)"},{"body":"answer","next":"S2(2)"}]},"S3":{"kind":"dialogue","root_node":false,"body":"Спасибо вам большое! Приведите её ко мне живой, прошу вас!","speaker":"Ученый","opposite":"Страйкли","options":[{"body":"answer","next":"S3(1)"},{"body":"answer","next":"S3(2)"}]},"S4":{"kind":"dialogue","root_node":false,"body":"Как вы можете такое говорить? Она не могла умереть! Мы же еще не закончили наш проект!","speaker":"Ученый","opposite":"Страйкли","options":[{"body":"answer","next":"S4(1)"}]},"S5":{"kind":"dialogue","root_node":false,"body":"Пожалуйста, пусть я окажусь прав...","speaker":"Ученый","opposite":"Страйкли","options":[{"body":"answer","next":"S5(1)"}]},"S1(1)":{"kind":"dialogue","root_node":false,"body":"Что такое?","speaker":"Страйкли","opposite":"Ученый","next":"S2"},"S2(1)":{"kind":"dialogue","root_node":false,"body":"Хорошо, я найду её","speaker":"Ученый","opposite":"Страйкли","next":"S3"},"S2(2)":{"kind":"dialogue","root_node":false,"body":"Смиритесь, её уже не спасти","speaker":"Ученый","opposite":"Страйкли","next":"S4"},"S3(1)":{"kind":"dialogue","root_node":false,"body":"Обещаю, она будет целой и невредимой","speaker":"Страйкли","opposite":"Ученый"},"S3(2)":{"kind":"dialogue","root_node":false,"body":"Ничего не могу обещать","speaker":"Страйкли","opposite":"Ученый"},"S4(1)":{"kind":"dialogue","root_node":false,"body":"Ладно, ладно. Я проверю","speaker":"Страйкли","opposite":"Ученый","next":"S5"},"S5(1)":{"kind":"dialogue","root_node":false,"body":"...","speaker":"Страйкли","opposite":"Ученый"}},"speakers":{"Ученый":{"color":{"r":0,"g":0,"b":0,"a":0}},"Страйкли":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Помогите мне!",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Моя аспирантка, Даск. Я видел, как она убежала в холл на первом этаже и слышал выстрелы оттуда!",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S2(2)"
+        }
+      ]
+    },
+    "S3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо вам большое! Приведите её ко мне живой, прошу вас!",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S3(2)"
+        }
+      ]
+    },
+    "S4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Как вы можете такое говорить? Она не могла умереть! Мы же еще не закончили наш проект!",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S4(1)"
+        }
+      ]
+    },
+    "S5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Пожалуйста, пусть я окажусь прав...",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S5(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что такое?",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S2"
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Хорошо, я найду её",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "next": "S3"
+    },
+    "S2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Смиритесь, её уже не спасти",
+      "speaker": "Ученый",
+      "opposite": "Страйкли",
+      "next": "S4"
+    },
+    "S3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Обещаю, она будет целой и невредимой",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S5(1.1)"
+    },
+    "S3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ничего не могу обещать",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S5(1.1)"
+    },
+    "S4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ладно, ладно. Я проверю",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S5"
+    },
+    "S5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S5(1.1)"
+    },
+    "S5(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Ученый": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

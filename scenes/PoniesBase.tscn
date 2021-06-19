@@ -970,7 +970,7 @@ ItemToTake = "nucBattery"
 ]]
 script = ExtResource( 98 )
 onlyChangeCode = true
-npcPath = NodePath("../../npc/armored_soldier")
+npcPath = "../../npc/armored_soldier"
 otherDialogueCode = "help2"
 
 [node name="changeDialogueHelping" type="Node" parent="triggers" groups=[
@@ -978,7 +978,7 @@ otherDialogueCode = "help2"
 ]]
 script = ExtResource( 98 )
 onlyChangeCode = true
-npcPath = NodePath("../../npc/armored_soldier")
+npcPath = "../../npc/armored_soldier"
 otherDialogueCode = "helping"
 
 [node name="MakeArmoredSoldierMove" type="Node" parent="triggers" groups=[

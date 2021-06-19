@@ -2,9 +2,9 @@
 
 //перемещает непися к двери в помещение
 //затем телепортирует в точку
-public class MoveNpcToDoorTrigger: TriggerBase
+public class MoveNpcToDoorTrigger: ActivateOtherTrigger
 { 
-    [Export] public NodePath NpcPath; 
+    [Export] public string NpcPath; 
     [Export] public NodePath doorPath;
     [Export] public NodePath teleportPointPath;
     

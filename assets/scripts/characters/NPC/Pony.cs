@@ -30,6 +30,12 @@ public class Pony: NpcWithWeapons
             return;
         }
 
+        if (stayInPoint)
+        {
+            state = NPCState.Idle;
+            return;
+        }
+
         base.SetState(newState);
 
         switch(newState) {
@@ -62,20 +68,20 @@ public class Pony: NpcWithWeapons
     public override void SetNewStartPos(Vector3 newPos, bool run = false)
     {
         RunToPoint = run;
+        stayInPoint = false;
         base.SetNewStartPos(newPos, run);
     }
-    
-    private void FinishGoingTo()
+
+    public override void SetFollowTarget(Character newTarget)
     {
-        Stop();
+        stayInPoint = false;
+        base.SetFollowTarget(newTarget);
+    }
+    
+    protected override void FinishGoingTo()
+    {
         RunToPoint = false;
-        cameToPlace = true;
-        if (stayInPoint)
-        {
-            stayInPoint = false;
-            SetProcess(false);
-        }
-        EmitSignal(nameof(IsCame));
+        base.FinishGoingTo();
     }
 
     protected override void MoveToPoint(float tempDistance, bool mayRun)
@@ -125,8 +131,7 @@ public class Pony: NpcWithWeapons
             body.PlayAnim(IdleAnim);
         }
     }
-
-
+    
     public void _on_lookArea_body_entered(Node body)
     {
         this.body._on_lookArea_body_entered(body);
