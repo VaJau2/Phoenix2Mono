@@ -7,6 +7,7 @@
 class ChangeNPCStatesTrigger: ActivateOtherTrigger
 {
     [Export] public NodePath npcPath;
+    [Export] public string followPath;
     [Export] public string[] showObjects;
     [Export] public string[] hideObjects;
     [Export] public string newAnimation;
@@ -26,6 +27,8 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
     private void ChangeObjectsVisible(ref string[] objects, bool active)
     {
+        if (objects == null) return;
+        
         foreach (var showObjectPath in objects)
         {
             var showobject = npc.GetNode<Spatial>(showObjectPath);
@@ -42,7 +45,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
         ChangeObjectsVisible(ref showObjects, true);
         ChangeObjectsVisible(ref hideObjects, false);
-        if (newAnimation != null)
+        if (!string.IsNullOrEmpty(newAnimation))
         {
             npc.IdleAnim = newAnimation;
         }
@@ -55,6 +58,12 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         if (npc is Pony pony && newRunSpeed != -1)
         {
             pony.RunSpeed = newRunSpeed;
+        }
+
+        if (npc is NpcWithWeapons npcWithWeapons && !string.IsNullOrEmpty(followPath))
+        {
+            Character followTarget = GetNode<Character>(followPath);
+            npcWithWeapons.SetFollowTarget(followTarget);
         }
 
         base._on_activate_trigger();

@@ -30,9 +30,9 @@ public class Pony: NpcWithWeapons
             return;
         }
 
-        if (stayInPoint)
+        if (stayInPoint && (newState == NPCState.Idle || newState == NPCState.Talk))
         {
-            state = NPCState.Idle;
+            state = newState;
             return;
         }
 

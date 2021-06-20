@@ -29,7 +29,7 @@ public class NPC : Character
     [Export]
     public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
-    public NPCState state;
+    [Export]  public NPCState state;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
@@ -189,6 +189,7 @@ public class NPC : Character
             Convert.ToSingle(data["myStartRot_y"]), 
             Convert.ToSingle(data["myStartRot_z"])
         );
+        IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
         
         base.LoadData(data);
@@ -207,6 +208,7 @@ public class NPC : Character
         saveData["lastSeePos"] = lastSeePos;
         saveData["relation"] = relation.ToString();
         saveData["aggressiveAgainstPlayer"] = aggressiveAgainstPlayer;
+        saveData["idleAnim"] = IdleAnim;
         
         saveData["myStartPos_x"] = myStartPos.x;
         saveData["myStartPos_y"] = myStartPos.y;

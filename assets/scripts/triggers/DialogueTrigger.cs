@@ -49,6 +49,7 @@ public class DialogueTrigger : TriggerBase
         }
         if (goToPlayer)
         {
+            GD.Print(npc.Name + " set follow target to player");
             npc.SetFollowTarget(Global.Get().player);
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
             npc.SetFollowTarget(null);

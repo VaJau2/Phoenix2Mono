@@ -999,7 +999,6 @@ newRunSpeed = 11
 ]]
 script = ExtResource( 100 )
 IsActive = false
-NpcPath = NodePath("../../npc/armored_soldier")
 doorPath = NodePath("../../terrain/props/KP/DoorTeleport2")
 teleportPointPath = NodePath("../../rooms/kp/npcPos")
 
@@ -1009,7 +1008,7 @@ teleportPointPath = NodePath("../../rooms/kp/npcPos")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3173, 0, -97.5483 )
 script = ExtResource( 101 )
 IsActive = false
-NewLevelNum = 3
+NewLevelNum = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/exit"]
 shape = SubResource( 14 )
