@@ -29,6 +29,7 @@ public class NPC : Character
     [Export]
     public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
+    public bool ingoreDamager;
     [Export]  public NPCState state;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
@@ -82,14 +83,19 @@ public class NPC : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle) {
-            aggressiveAgainstPlayer = true;
-            seekArea.AddEnemyInArea(player);
-        }
-        
-        if (state != NPCState.Attack) {
-            tempVictim = damager;
-            SetState(NPCState.Attack);
+        if (!ingoreDamager)
+        {
+            if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle)
+            {
+                aggressiveAgainstPlayer = true;
+                seekArea.AddEnemyInArea(player);
+            }
+
+            if (state != NPCState.Attack)
+            {
+                tempVictim = damager;
+                SetState(NPCState.Attack);
+            }
         }
 
         if (IsImmortal)
@@ -191,6 +197,25 @@ public class NPC : Character
         );
         IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
+
+        if (data["signals"] is Godot.Collections.Array signals)
+        {
+            foreach (Dictionary signalData in signals)
+            {
+                var signalName = signalData["signal"].ToString();
+                var method = signalData["method"].ToString();
+                var binds = signalData["binds"] as Godot.Collections.Array;
+                
+                var targetPath = signalData["target_path"].ToString();
+                var target = GetNodeOrNull(targetPath);
+                if (target == null) continue;
+
+                if (!IsConnected(signalName, target, method))
+                {
+                    Connect(signalName, target, method, binds);
+                }
+            }
+        }
         
         base.LoadData(data);
 
@@ -219,6 +244,30 @@ public class NPC : Character
         saveData["myStartRot_z"] = myStartRot.z;
         
         saveData["dialogueCode"] = dialogueCode;
+
+        var signals = new Godot.Collections.Array();
+        foreach (var signal in GetSignalList())
+        {
+            if (!(signal is Dictionary signalDict)) continue;
+
+            var connectionList = GetSignalConnectionList(signalDict["name"].ToString());
+            if (connectionList == null || connectionList.Count == 0) continue;
+
+            foreach (var connectionData in connectionList)
+            {
+                if (!(connectionData is Dictionary connectionDict)) continue;
+
+                signals.Add(new Dictionary
+                {
+                    {"signal", signalDict["name"].ToString()},
+                    {"method", connectionDict["method"].ToString()},
+                    {"target_path", (connectionDict["target"] as Node)?.GetPath()},
+                    {"binds", connectionDict["binds"]}
+                });
+            }
+        }
+
+        saveData["signals"] = signals;
         
         return saveData;
     }
