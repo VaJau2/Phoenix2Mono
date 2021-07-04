@@ -88,7 +88,7 @@ public class ChestMode: InventoryMode
                 if (!TakeTempItem()) return;
             }
         }
-        await Global.Get().ToTimer(0.1f);
+        await Global.Get().ToTimer(0.1f, null, true);
         if (Object.IsInstanceValid(tempChest)) UpdateChestPositions();
         MenuManager.CloseMenu(menu);
     }

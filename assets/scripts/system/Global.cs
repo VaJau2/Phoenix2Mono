@@ -49,6 +49,7 @@ public class Global {
         while (queue.Count > 0)
         {
             var node = queue.Dequeue();
+            if (node == null) continue;
 
             if (node.Name == name)
                 return node;
@@ -155,11 +156,11 @@ public class Global {
         return tempTrans;
     }
 
-    public SignalAwaiter ToTimer(float time, Node _object = null)
+    public SignalAwaiter ToTimer(float time, Node _object = null, bool pauseProcess = false)
     {
         return _object != null ? 
-            _object.ToSignal(_object.GetTree().CreateTimer(time), "timeout") 
-            : player?.ToSignal(player.GetTree().CreateTimer(time), "timeout");
+            _object.ToSignal(_object.GetTree().CreateTimer(time, pauseProcess), "timeout") 
+            : player?.ToSignal(player.GetTree().CreateTimer(time, pauseProcess), "timeout");
     }
 
     //nominativ - 1 бит

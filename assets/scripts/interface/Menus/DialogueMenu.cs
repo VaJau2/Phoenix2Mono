@@ -230,7 +230,7 @@ public class DialogueMenu : Control, IMenu
         if (tempAnswer != GetContinueText()) {
             text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
             text.BbcodeText += GetSpacedText(tempAnswer) + "\n\n";
-            await(Global.Get().ToTimer(0.5f));
+            await Global.Get().ToTimer(0.5f, null, true);
         } else {
             isContinue = true;
         }

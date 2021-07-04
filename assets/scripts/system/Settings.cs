@@ -35,7 +35,7 @@ public class Settings
 
     public void SetSoundVolume(float volume) 
     {
-        updateAudioBus(0, volume);
+        updateAudioBus(2, volume);
         soundVolume = volume;
     }
 

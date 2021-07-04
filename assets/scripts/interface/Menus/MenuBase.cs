@@ -71,7 +71,7 @@ public class MenuBase : Control
         downLabel.PercentVisible = 0;
         while(downLabel.PercentVisible < 1) {
             downLabel.PercentVisible += 0.1f;
-            await global.ToTimer(0.01f, this);
+            await global.ToTimer(0.01f, this, true);
         }
     }
 

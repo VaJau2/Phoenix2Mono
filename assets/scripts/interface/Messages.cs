@@ -9,12 +9,12 @@ public class Messages: VBoxContainer {
     public string currentTaskLink = "none";
 
     private async void waitAndDissapear(Label label, float time) {
-        await global.ToTimer(time);
+        await global.ToTimer(time, null, true);
         var tempA = label.GetColor("font_color").a;
         while(tempA > 0) {
             tempA -= 0.1f; 
             label.AddColorOverride("font_color", new Color(1,1,1,tempA));
-            await global.ToTimer(0.05f);
+            await global.ToTimer(0.05f, null, true);
         }
         label.QueueFree();
     }
