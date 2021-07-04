@@ -26,6 +26,14 @@ public class NPCWeapons : Node
     {
         this.npc = npc;
 
+        if (string.IsNullOrEmpty(weaponCode))
+        {
+            tempWeapon?.QueueFree();
+            tempWeapon = null;
+            SetWeapon(false);
+            return;
+        }
+
         //грузим префаб оружия
         string path = "res://objects/guns/prefabs/" + weaponCode + ".tscn";
         PackedScene weaponPrefab = GD.Load<PackedScene>(path);

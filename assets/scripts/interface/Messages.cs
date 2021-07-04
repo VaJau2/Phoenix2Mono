@@ -1,6 +1,7 @@
 using Godot;
+using Godot.Collections;
 
-public class Messages: VBoxContainer {
+public class Messages: VBoxContainer, ISavable {
     Global global = Global.Get();
     const float HINT_TIMER = 2.5f;
     [Export]
@@ -83,5 +84,18 @@ public class Messages: VBoxContainer {
             ShowMessageRaw(header, 3);
             ShowMessageRaw(tasks, 3);
         }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            {"task", currentTaskLink}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        currentTaskLink = data["task"].ToString();
     }
 }

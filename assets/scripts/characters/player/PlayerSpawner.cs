@@ -48,6 +48,12 @@ public class PlayerSpawner : Spatial
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
 
+        //если единорог спавнится в помещении
+        if (player is Player_Unicorn unicorn && spawningInside)
+        {
+            unicorn.teleportInside = true;
+        }
+        
         if (loadStartItems)
         {
             //загрузка инвентаря во время перехода между уровнями
@@ -71,12 +77,6 @@ public class PlayerSpawner : Spatial
             if (clothCode != "" && clothCode != "empty")
             {
                 player.inventory.LoadWearItem(clothCode, "armor");
-            }
-
-            //если единорог спавнится в помещении
-            if (player is Player_Unicorn unicorn && spawningInside)
-            {
-                unicorn.teleportInside = true;
             }
         }
 

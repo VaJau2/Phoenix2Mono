@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/textures/magic/shield.png" type="Texture" id=1]
 
 [resource]
-render_priority = 4
+render_priority = 5
 flags_transparent = true
 flags_unshaded = true
 albedo_texture = ExtResource( 1 )
