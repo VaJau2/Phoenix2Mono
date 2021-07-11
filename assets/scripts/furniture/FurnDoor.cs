@@ -1,7 +1,8 @@
+using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnDoor: FurnBase {
+public class FurnDoor: FurnBase, ISavable {
     [Export]
     public string myKey;
     [Export]
@@ -103,6 +104,26 @@ public class FurnDoor: FurnBase {
     public void _on_otherside_body_exited(Node body) {
         if (body is Player) {
             standingOtherSide = false;
+        }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary()
+        {
+            {"open", IsOpen},
+            {"otherSided", OtherSided}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        bool open = Convert.ToBoolean(data["open"]);
+        bool otherSided = Convert.ToBoolean(data["otherSided"]);
+        if (open)
+        {
+            LoadOpenTrue(otherSided);
+            setCollision(2);
         }
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Godot.Collections;
 
 //Класс для пней-неписей
 //Также включает в себя единорогов, которые умеют только в левитацию
@@ -30,9 +32,9 @@ public class Pony: NpcWithWeapons
             return;
         }
 
-        if (stayInPoint && (newState == NPCState.Idle || newState == NPCState.Talk))
+        if (stayInPoint)
         {
-            state = newState;
+            state = newState == NPCState.Talk ? newState : NPCState.Idle;
             return;
         }
 
@@ -67,6 +69,7 @@ public class Pony: NpcWithWeapons
 
     public override void SetNewStartPos(Vector3 newPos, bool run = false)
     {
+        cameToPlace = false;
         RunToPoint = run;
         stayInPoint = false;
         base.SetNewStartPos(newPos, run);
@@ -74,6 +77,7 @@ public class Pony: NpcWithWeapons
 
     public override void SetFollowTarget(Character newTarget)
     {
+        cameToPlace = false;
         stayInPoint = false;
         base.SetFollowTarget(newTarget);
     }
@@ -130,6 +134,19 @@ public class Pony: NpcWithWeapons
         {
             body.PlayAnim(IdleAnim);
         }
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["runSpeed"] = RunSpeed;
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        RunSpeed = Convert.ToInt16(data["runSpeed"]);
     }
     
     public void _on_lookArea_body_entered(Node body)

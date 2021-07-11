@@ -22,6 +22,7 @@ public class SeekArea : Area
     public void MakeAlliesAttack()
     {
         foreach(NPC ally in alliesInArea) {
+            if (!IsInstanceValid(ally)) continue;
             if (ally.state == NPCState.Idle) {
                 ally.seekArea.AddEnemyInArea(npc.tempVictim);
                 ally.aggressiveAgainstPlayer = npc.aggressiveAgainstPlayer;

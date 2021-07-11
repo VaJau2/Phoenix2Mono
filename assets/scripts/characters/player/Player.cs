@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -456,16 +457,25 @@ public class Player : Character
         RotateY(-horizontalAngle);
     }
 
-    public override void LoadData(Dictionary data)
+    public override async void LoadData(Dictionary data)
     {
         inventory.LoadData((Dictionary)data["inventory"]);
         base.LoadData(data);
+        
+        bool sittingOnChair = Convert.ToBoolean(data["sitOnChair"]);
+        if (sittingOnChair)
+        {
+            //await нужен, чтоб PlayerBody успел загрузиться
+            await ToSignal(GetTree(), "idle_frame");
+            SitOnChair(true);
+        }
     }
 
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
         saveData["inventory"] = inventory.GetSaveData();
+        saveData["sitOnChair"] = IsSitting;
         return saveData;
     }
 

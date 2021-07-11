@@ -871,12 +871,14 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "Audio"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
 volume_db = -3.0
 bus = "Music"
+
 [connection signal="mouse_entered" from="chooseLanguage/russian" to="." method="_on_mouse_entered" binds= [ "main", "chooseRussian" ]]
 [connection signal="mouse_exited" from="chooseLanguage/russian" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="chooseLanguage/russian" to="." method="_on_language_pressed" binds= [ false ]]

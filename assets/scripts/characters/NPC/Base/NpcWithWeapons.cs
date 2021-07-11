@@ -41,6 +41,24 @@ public class NpcWithWeapons: NPC
     
     private RandomNumberGenerator rand = new RandomNumberGenerator();
     
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["followTarget"] = followTarget?.GetPath();
+        return saveData;
+    }
+
+    public override async void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        
+        if (!data.Contains("followTarget") || data["followTarget"] == null) return;
+        
+        await ToSignal(GetTree(), "idle_frame");
+        var newFollowTarget = GetNode<Character>(data["followTarget"].ToString());
+        SetFollowTarget(newFollowTarget);
+    }
+    
     public override void SetState(NPCState newState)
     {
         if (Health <= 0)
@@ -215,12 +233,13 @@ public class NpcWithWeapons: NPC
         var bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
         var tempBag = (FurnChest)bagPrefab.Instance();
 
-        tempBag.Name = "Created_" + tempBag.Name;
         tempBag.itemCodes = itemCodes;
         tempBag.ammoCount = ammoCount;
 
         Node parent = GetNode("/root/Main/Scene");
         parent.AddChild(tempBag);
+        
+        tempBag.Name = "Created_" + tempBag.Name;
         tempBag.Translation = Translation;
         tempBag.Translate(Vector3.Up / 4f);
     }

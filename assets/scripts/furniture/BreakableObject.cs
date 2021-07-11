@@ -61,6 +61,7 @@ public class BreakableObject: StaticBody
             audi.Play();
 
             await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+            Global.AddDeletedObject(Name);
             QueueFree();
         }
     }

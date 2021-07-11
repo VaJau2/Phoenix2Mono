@@ -142,46 +142,38 @@ public class LevelsLoader : Node
 
 		foreach (string objKey in levelData.Keys)
 		{
-			Dictionary objData = (Dictionary) levelData[objKey];
-			
 			//создание создаваемых в сохранении объектов
-			if (objKey.BeginsWith("Created_"))
-			{
-				var filename = objData["fileName"].ToString();
-				var parentName = objData["parent"].ToString();
-
-				PackedScene newNode = (PackedScene)GD.Load(filename);
-				Node newInstance = newNode.Instance();
-				if (!(newInstance is ISavable savable)) continue;
-				newInstance.Name = objKey;
-				savable.LoadData(objData);
-				var parent = Global.FindNodeInScene(scene, parentName);
-				parent?.AddChild(newInstance);
-			}
+			if (!objKey.BeginsWith("Created_")) continue;
 			
-			//загрузка загружаемых объектов
-			else
-			{
-				if (objKey == "Player")
-				{
-					playerData = objData;
-				}
-				else
-				{
-					Node node = scene.GetNode(objKey);
-					if (node is ISavable savable)
-					{
-						savable.LoadData(objData);
-					}
-				}
-			}
+			Dictionary objData = (Dictionary) levelData[objKey];
+			var filename = objData["fileName"].ToString();
+			var parentName = objData["parent"].ToString();
+
+			PackedScene newNode = (PackedScene)GD.Load(filename);
+			Node newInstance = newNode.Instance();
+			if (!(newInstance is ISavable savable)) continue;
+			newInstance.Name = objKey;
+			savable.LoadData(objData);
+			var parent = Global.FindNodeInScene(scene, parentName);
+			parent?.AddChild(newInstance);
 		}
 
-		//игрок ни в какую не хочет спавниться вручную, поэтому ждем, пока он не соизволит наспавниться сам
+		//ждем загрузки сцены
 		await ToSignal(this, nameof(LevelLoaded));
 		await ToSignal(GetTree(), "idle_frame");
-		
-		global.player.LoadData(playerData);
+
+		foreach (string objKey in levelData.Keys)
+		{
+			//загрузка загружаемых объектов
+			if (objKey.BeginsWith("Created_")) continue;
+			
+			Node node = scene.GetNode(objKey);
+			if (node is ISavable savable)
+			{
+				Dictionary objData = (Dictionary) levelData[objKey];
+				savable.LoadData(objData);
+			}
+		}
 		
 		levelData = null;
 		deletedObjects = null;

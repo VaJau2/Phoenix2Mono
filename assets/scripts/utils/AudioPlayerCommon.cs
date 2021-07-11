@@ -44,6 +44,18 @@ public class AudioPlayerCommon
         }
     }
 
+    public void Stop()
+    {
+        if (audio3D)
+        {
+            player3D.Stop();
+        }
+        else
+        {
+            player.Stop();
+        }
+    }
+
     public float Volume
     {
         get => audio3D ? player3D.UnitDb : player.VolumeDb;
@@ -59,4 +71,6 @@ public class AudioPlayerCommon
             }
         }
     }
+
+    public bool IsPlaying => audio3D ? player3D.Playing : player.Playing;
 }

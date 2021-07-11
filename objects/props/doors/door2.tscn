@@ -127,7 +127,9 @@ unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="anim" type="AnimationPlayer" parent="." groups=[
+"savable",
+]]
 anims/close = SubResource( 3 )
 anims/close-2 = SubResource( 4 )
 anims/open = SubResource( 5 )

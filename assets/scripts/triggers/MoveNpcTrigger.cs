@@ -1,4 +1,5 @@
-﻿using Godot;
+using System;
+using Godot;
 using Godot.Collections;
 
 public class MoveNpcTrigger: ActivateOtherTrigger
@@ -15,6 +16,16 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     private Array<Spatial> points = new Array<Spatial>();
     private bool activated;
     
+    private SavableTimers timers;
+    private int step;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
+    }
+
+
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
@@ -27,7 +38,29 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         if (!IsActive) return;
         
         if (NpcPaths == null || pointPaths == null) return;
+
+        if (npc.Count == 0 || points.Count == 0)
+        {
+            LoadNpcAndPoints();
+        }
         
+        if (step < npc.Count)
+        {
+            SetNpcAndWait();
+            return;
+        }
+        
+        if (step < npc.Count + 1)
+        {
+            WaitLastTimer();
+            return;
+        }
+        
+        base._on_activate_trigger();
+    }
+
+    private void LoadNpcAndPoints()
+    {
         for (int i = 0; i < NpcPaths.Count; i++)
         {
             npc.Add(GetNode<NpcWithWeapons>(NpcPaths[i]));
@@ -35,10 +68,13 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         }
         
         activated = true;
+    }
 
-        for (int i = 0; i < npc.Count; i++)
+    private async void SetNpcAndWait()
+    {
+        int i = step;
+        if (IsInstanceValid(npc[i]))
         {
-            if (!IsInstanceValid(npc[i])) continue;
             npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
             npc[i].myStartRot = points[i].Rotation;
             if (idleAnims != null && idleAnims.Count > i)
@@ -50,13 +86,43 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             {
                 pony.stayInPoint = stayThere[i];
             }
-
-            await Global.Get().ToTimer(timer);
+            
+            while (timers.CheckTimer(Name + "_timer_" + i, timer))
+            {
+                await ToSignal(GetTree(), "idle_frame");
+            }
         }
-            
-        await Global.Get().ToTimer(lastTimer);
-            
-        base._on_activate_trigger();
+
+        step++;
+        _on_activate_trigger();
+    }
+
+    private async void WaitLastTimer()
+    {
+        while (timers.CheckTimer(Name + "_timerLast", lastTimer))
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+        
+        step++;
+        _on_activate_trigger();
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["step"] = step;
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        step = Convert.ToInt16(data["step"]);
+        if (step > 0)
+        {
+            _on_activate_trigger();
+        }
     }
     
     public void _on_body_entered(Node body)

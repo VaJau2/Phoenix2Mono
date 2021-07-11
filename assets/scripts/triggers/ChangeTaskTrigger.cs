@@ -9,6 +9,7 @@ class ChangeTaskTrigger: TriggerBase
 
     public override void _Ready()
     {
+        if (IsQueuedForDeletion()) return;
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         if (IsActive)
         {

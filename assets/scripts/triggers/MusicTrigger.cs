@@ -27,7 +27,23 @@ public class MusicTrigger: TriggerBase
 
     public override async void _on_activate_trigger()
     {
-        if (!IsActive) return;
+        if (!IsActive)
+        {
+            if (audi.IsPlaying)
+            {
+                if (volumeSpeed > 0)
+                {
+                    while (audi.Volume > -8f)
+                    {
+                        audi.Volume -= volumeSpeed;
+                        await Global.Get().ToTimer(0.1f, this);
+                    }
+                } 
+                audi.Stop();
+                base._on_activate_trigger();
+                return;
+            }
+        }
         
         audi.Play(track);
 
@@ -36,7 +52,7 @@ public class MusicTrigger: TriggerBase
             while (audi.Volume < 2)
             {
                 audi.Volume += volumeSpeed;
-                await Global.Get().ToTimer(0.1f);
+                await Global.Get().ToTimer(0.1f, this);
             }
         }
 

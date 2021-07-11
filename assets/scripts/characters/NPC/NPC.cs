@@ -35,6 +35,7 @@ public class NPC : Character
     protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
+    private Dictionary<string, bool> objectsChangeActive = new Dictionary<string, bool>();
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
@@ -125,6 +126,21 @@ public class NPC : Character
         tempShotgunShot = isShotgun;
     }
 
+    public void SetObjectActive(string objectPath, bool active)
+    {
+        var showobject = GetNode<Spatial>(objectPath);
+        if (showobject == null) return;
+        showobject.Visible = active;
+        if (objectsChangeActive.ContainsKey(objectPath))
+        {
+            objectsChangeActive[objectPath] = active;
+        }
+        else
+        {
+            objectsChangeActive.Add(objectPath, active);
+        }
+    }
+
     protected virtual async void AnimateDealth(Character killer, int shapeID)
     {
         CollisionLayer = 0;
@@ -197,6 +213,7 @@ public class NPC : Character
         );
         IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
+        WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
 
         if (data["signals"] is Godot.Collections.Array signals)
         {
@@ -214,6 +231,15 @@ public class NPC : Character
                 {
                     Connect(signalName, target, method, binds);
                 }
+            }
+        }
+
+        if (data.Contains("showObjects") && data["showObjects"] is Dictionary showObjects)
+        {
+            foreach (string objectPath in showObjects.Keys)
+            {
+                bool showObject = Convert.ToBoolean(showObjects[objectPath]);
+                SetObjectActive(objectPath, showObject);
             }
         }
         
@@ -234,7 +260,8 @@ public class NPC : Character
         saveData["relation"] = relation.ToString();
         saveData["aggressiveAgainstPlayer"] = aggressiveAgainstPlayer;
         saveData["idleAnim"] = IdleAnim;
-        
+        saveData["walkSpeed"] = WalkSpeed;
+
         saveData["myStartPos_x"] = myStartPos.x;
         saveData["myStartPos_y"] = myStartPos.y;
         saveData["myStartPos_z"] = myStartPos.z;
@@ -244,6 +271,7 @@ public class NPC : Character
         saveData["myStartRot_z"] = myStartRot.z;
         
         saveData["dialogueCode"] = dialogueCode;
+        saveData["showObjects"] = objectsChangeActive;
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())
@@ -256,6 +284,7 @@ public class NPC : Character
             foreach (var connectionData in connectionList)
             {
                 if (!(connectionData is Dictionary connectionDict)) continue;
+                if (!(connectionDict["target"] is Node)) continue;
 
                 signals.Add(new Dictionary
                 {

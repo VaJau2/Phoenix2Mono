@@ -8,6 +8,9 @@
         "talkToCommander": "Report to the colonel",
         "goToTheater": "Go to the theater for a presentation",
         "protectTwilight": "Protect Minister Twilight",
-        "sitOnChair": "Take an empty seat"
+        "sitOnChair": "Take an empty seat",
+        "killAllEnemies": "Kill all enemies",
+        "saveDusk": "Save Dusk",
+        "takeDusk": "Take Dusk to scientist"
     }
 }

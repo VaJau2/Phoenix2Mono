@@ -63,4 +63,12 @@ public class FurnBase: StaticBody {
             }
         }
     }
+
+    protected void LoadOpenTrue(bool otherSided)
+    {
+        IsOpen = true;
+        string openAnim = otherSided ? "open-force-2" : "open";
+        animator.Play(openAnim);
+        animator.Seek(animator.CurrentAnimationLength, true);
+    }
 }

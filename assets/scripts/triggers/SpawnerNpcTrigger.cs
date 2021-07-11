@@ -1,5 +1,7 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public class SpawnerNpcTrigger: ActivateOtherTrigger
 {
@@ -16,12 +18,18 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     private Array<string> itemCodes = new Array<string>();
     [Export]
     private Dictionary<string, int> ammoCount = new Dictionary<string, int>();
-
-    [Export] private Array<NodePath> triggersWhenDeadPaths;
-    private Array<TriggerBase> triggersWhenDead = new Array<TriggerBase>();
+    
+    //0 - путь до триггера, строка
+    //1 - сигнал нпц, строка
+    //2 - метод триггера, строка
+    //3 - binds, массив
+    [Export] private Array triggerConnections;
 
     private Spatial spawnPoint;
     private Spatial movePoint;
+    
+    private SavableTimers timers;
+    private int step;
 
     public override void _Ready()
     {
@@ -34,13 +42,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             movePoint = GetNode<Spatial>(movePointPath);
         }
 
-        if (triggersWhenDeadPaths != null)
-        {
-            foreach (var triggerPath in triggersWhenDeadPaths)
-            {
-                triggersWhenDead.Add(GetNode<TriggerBase>(triggerPath));
-            }
-        }
+        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
         base._Ready();
     }
 
@@ -50,15 +52,38 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         base.SetActive(newActive);
     }
 
-    public override async void _on_activate_trigger()
+    public override void _on_activate_trigger()
     {
         if (!IsActive) return;
 
-        if (spawnDelay > 0)
+        switch (step)
         {
-            await Global.Get().ToTimer(spawnDelay);
+            case 0:
+            case 1:
+                WaitStartDelay();
+                return;
+            case 2:
+                SpawnNpc();
+                break;
         }
-        
+
+        base._on_activate_trigger();
+    }
+
+    private async void WaitStartDelay()
+    {
+        step = 1;
+        while (timers.CheckTimer(Name + "_timer", spawnDelay))
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+
+        step = 2;
+        _on_activate_trigger();
+    }
+
+    private void SpawnNpc()
+    {
         if (npcPrefab.Instance() is NpcWithWeapons npcInstance)
         {
             npcInstance.Name = "Created_" + npcInstance.Name;
@@ -80,14 +105,38 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
                 npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.origin, run);
                 npcInstance.myStartRot = new Vector3(0, spawnPoint.Rotation.y, 0);
             }
-            foreach (var trigger in triggersWhenDead)
+            
+            if (triggerConnections != null)
             {
-                var binds = new Array {true};
-                npcInstance.Connect(nameof(Character.Die), trigger, nameof(TriggerBase.SetActive), binds);
+                foreach (var triggerDataPrimary in triggerConnections)
+                {
+                    if (!(triggerDataPrimary is Array triggerData) || triggerData.Count != 4) continue;
+
+                    var trigger = GetNode(triggerData[0].ToString());
+                    var signal = triggerData[1].ToString();
+                    var method = triggerData[2].ToString();
+                    var binds = triggerData[3] as Array;
+                    npcInstance.Connect(signal, trigger, method, binds);
+                }
             }
         }
-       
-        base._on_activate_trigger();
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["step"] = step;
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        step = Convert.ToInt16(data["step"]);
+        if (step > 0)
+        {
+            _on_activate_trigger();
+        }
     }
 
     public void _on_body_entered(Node body)

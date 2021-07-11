@@ -3125,7 +3125,7 @@ collision_layer = 2
 collision_mask = 0
 joint_type = 2
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783044, 0.00691291, 0.876067 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151283, -0.00427702, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618345, 0.870623, -0.0978941 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151283, -0.00427703, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618345, 0.870623, -0.0978941 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -3363,12 +3363,14 @@ script = ExtResource( 8 )
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 4.0
 unit_size = 4.0
+bus = "Audio"
 
 [node name="audiShoot" type="AudioStreamPlayer3D" parent="."]
 unit_db = 5.0
 unit_size = 13.0
 max_db = 5.0
 max_distance = 2000.0
+bus = "Audio"
 
 [connection signal="body_entered" from="seekArea" to="seekArea" method="_on_seekArea_body_entered"]
 [connection signal="body_exited" from="seekArea" to="seekArea" method="_on_seekArea_body_exited"]
