@@ -140,6 +140,8 @@ public class Pony: NpcWithWeapons
     {
         var saveData = base.GetSaveData();
         saveData["runSpeed"] = RunSpeed;
+        saveData["runToPoint"] = RunToPoint;
+        saveData["stayInPoint"] = stayInPoint;
         return saveData;
     }
 
@@ -147,6 +149,8 @@ public class Pony: NpcWithWeapons
     {
         base.LoadData(data);
         RunSpeed = Convert.ToInt16(data["runSpeed"]);
+        RunToPoint = Convert.ToBoolean(data["runToPoint"]);
+        stayInPoint = Convert.ToBoolean(data["stayInPoint"]);
     }
     
     public void _on_lookArea_body_entered(Node body)

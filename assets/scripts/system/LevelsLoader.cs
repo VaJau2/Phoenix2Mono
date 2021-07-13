@@ -53,6 +53,7 @@ public class LevelsLoader : Node
 	private async void updateScene()
 	{
 		Global.deletedObjects.Clear();
+		deletedObjects.Clear();
 		if (currentScene != null) {
 			global.player = null;
 			currentScene.QueueFree();

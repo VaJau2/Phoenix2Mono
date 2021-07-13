@@ -65,7 +65,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         }
 
         npc.relation = newRelation;
-        npc.ingoreDamager = ignoreDamager;
+        npc.ignoreDamager = ignoreDamager;
         ChangeObjectsVisible(ref showObjects, true);
         ChangeObjectsVisible(ref hideObjects, false);
         if (!string.IsNullOrEmpty(newAnimation))

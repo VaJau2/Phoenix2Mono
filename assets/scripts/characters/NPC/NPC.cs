@@ -29,7 +29,7 @@ public class NPC : Character
     [Export]
     public int WalkSpeed = 5;
     public bool aggressiveAgainstPlayer;
-    public bool ingoreDamager;
+    public bool ignoreDamager;
     [Export]  public NPCState state;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
@@ -84,7 +84,7 @@ public class NPC : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        if (!ingoreDamager)
+        if (!ignoreDamager)
         {
             if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle)
             {
@@ -214,6 +214,7 @@ public class NPC : Character
         IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
         WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
+        ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
 
         if (data["signals"] is Godot.Collections.Array signals)
         {
@@ -272,6 +273,7 @@ public class NPC : Character
         
         saveData["dialogueCode"] = dialogueCode;
         saveData["showObjects"] = objectsChangeActive;
+        saveData["ignoreDamager"] = ignoreDamager;
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())

@@ -45,12 +45,14 @@ public class NpcWithWeapons: NPC
     {
         var saveData = base.GetSaveData();
         saveData["followTarget"] = followTarget?.GetPath();
+        saveData["weaponCode"] = weaponCode;
         return saveData;
     }
 
     public override async void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        weaponCode = data["weaponCode"].ToString();
         
         if (!data.Contains("followTarget") || data["followTarget"] == null) return;
         
