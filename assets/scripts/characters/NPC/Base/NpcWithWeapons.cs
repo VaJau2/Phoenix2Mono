@@ -53,6 +53,7 @@ public class NpcWithWeapons: NPC
     {
         base.LoadData(data);
         weaponCode = data["weaponCode"].ToString();
+        weapons.LoadWeapon(this, weaponCode);
         
         if (!data.Contains("followTarget") || data["followTarget"] == null) return;
         

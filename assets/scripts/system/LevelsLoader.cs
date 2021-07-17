@@ -52,8 +52,6 @@ public class LevelsLoader : Node
 
 	private async void updateScene()
 	{
-		Global.deletedObjects.Clear();
-		deletedObjects.Clear();
 		if (currentScene != null) {
 			global.player = null;
 			currentScene.QueueFree();
@@ -113,6 +111,13 @@ public class LevelsLoader : Node
 	public void LoadLevel(int levelNum) 
 	{
 		tempLevelNum = levelNum;
+		Global.deletedObjects.Clear();
+		if (!loadSavedData)
+		{
+			levelData = null;
+			deletedObjects = null;
+		}
+		
 		updateScene();
 		updateMenu();
 	}
@@ -131,7 +136,6 @@ public class LevelsLoader : Node
 		//очищаем спавнер от предзаполненных вещей и создаем объект игрока в спавнере
 		var playerSpawner = scene.GetNode<PlayerSpawner>("PlayerSpawner");
 		playerSpawner.loadStartItems = false;
-		Dictionary playerData = null;
 
 		//удаление удаленных в сохранении объектов
 		foreach (string objName in deletedObjects)
@@ -152,9 +156,7 @@ public class LevelsLoader : Node
 
 			PackedScene newNode = (PackedScene)GD.Load(filename);
 			Node newInstance = newNode.Instance();
-			if (!(newInstance is ISavable savable)) continue;
 			newInstance.Name = objKey;
-			savable.LoadData(objData);
 			var parent = Global.FindNodeInScene(scene, parentName);
 			parent?.AddChild(newInstance);
 		}
@@ -166,9 +168,12 @@ public class LevelsLoader : Node
 		foreach (string objKey in levelData.Keys)
 		{
 			//загрузка загружаемых объектов
-			if (objKey.BeginsWith("Created_")) continue;
-			
-			Node node = scene.GetNode(objKey);
+
+			//если это created-нод, у него хранится только имя
+			//если это существующий нод, у него хранится путь от /root/Main...
+			Node node = !objKey.BeginsWith("Created_") 
+				? scene.GetNode(objKey) 
+				: Global.FindNodeInScene(scene, objKey);
 			if (node is ISavable savable)
 			{
 				Dictionary objData = (Dictionary) levelData[objKey];
@@ -179,12 +184,6 @@ public class LevelsLoader : Node
 		levelData = null;
 		deletedObjects = null;
 		loadSavedData = false;
-	}
-
-	public void ReloadLevel()
-	{
-		updateScene();
-		updateMenu();
 	}
 
 	public void LoadNextLevel()

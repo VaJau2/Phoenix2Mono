@@ -1561,7 +1561,7 @@ otherDialogueCode = "presentation2"
 "savable",
 ]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgates"), NodePath("../dialoguesOff/shloer"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killAllTask") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killAllTask") ]
 
 [node name="killAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1614,7 +1614,7 @@ shape = SubResource( 26 )
 
 [node name="dialoguesOff" type="Node" parent="triggers"]
 
-[node name="bellgates" type="Node" parent="triggers/dialoguesOff" groups=[
+[node name="bellgatesDialogueOff" type="Node" parent="triggers/dialoguesOff" groups=[
 "savable",
 ]]
 script = ExtResource( 13 )
@@ -1622,7 +1622,7 @@ onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/bellgates"
 otherDialogueCode = ""
 
-[node name="shloer" type="Node" parent="triggers/dialoguesOff" groups=[
+[node name="shloerDialogueOff" type="Node" parent="triggers/dialoguesOff" groups=[
 "savable",
 ]]
 script = ExtResource( 13 )
