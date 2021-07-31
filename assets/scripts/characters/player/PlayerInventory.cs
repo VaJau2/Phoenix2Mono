@@ -233,14 +233,6 @@ public class PlayerInventory {
             }
         }
 
-        string weaponBind = data["weaponBind"].ToString();
-        if (!string.IsNullOrEmpty(weaponBind))
-        {
-            var weaponButton = GetWearButton("weapon");
-            weaponButton.SetBindKey(weaponBind);
-            menu.bindedButtons[Convert.ToInt32(weaponBind)] = weaponButton;
-        }
-        
         //загрузка денег и надетых вещей
         money = Convert.ToInt32(data["money"]);
         
@@ -251,6 +243,15 @@ public class PlayerInventory {
         if (!string.IsNullOrEmpty(weapon)) LoadWearItem(weapon, "weapon");
         if (!string.IsNullOrEmpty(cloth) && cloth != "empty") LoadWearItem(cloth, "armor");
         if (!string.IsNullOrEmpty(artifact)) LoadWearItem(artifact, "artifact");
+        
+        string weaponBind = data["weaponBind"].ToString();
+        if (!string.IsNullOrEmpty(weaponBind))
+        {
+            var weaponButton = GetWearButton("weapon");
+            weaponButton.SetBindKey(weaponBind);
+            menu.bindedButtons[Convert.ToInt32(weaponBind)] = weaponButton;
+            bindsList.AddIcon(weaponButton);
+        }
 
         //загрузка эффектов
         Array effectNames = (Array) data["effectNames"];
