@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/scripts/background/Water.cs" type="Script" id=1]
+[ext_resource path="res://assets/materials/props/materials/water.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/props/materials/water-parts.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/physics/water.phymat" type="PhysicsMaterial" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.251136, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 1024
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 0.2, 2 )
+direction = Vector3( 0.2, 1, 0.2 )
+spread = 40.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 15.0
+scale = 0.5
+scale_curve = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=4]
+material = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 1.34018, 0.0354537, 1.75689 )
+
+[node name="water" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="particles" type="Particles" parent="."]
+transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.0386767, -0.0134228, -0.649276 )
+emitting = false
+amount = 40
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.81
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="water" type="MeshInstance" parent="."]
+transform = Transform( 3, 0, 3.45993e-17, 1.0093e-20, -1.74846e-07, 3, -8.32667e-17, -4, -1.31134e-07, 0, -0.0750582, 0 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 2 )
+
+[node name="area" type="Area" parent="."]
+
+[node name="shape" type="CollisionShape" parent="area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.140804, 0 )
+shape = SubResource( 6 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource( 4 )
+
+[node name="shape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.140804, 0 )
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]

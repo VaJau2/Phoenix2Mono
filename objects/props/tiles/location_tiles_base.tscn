@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/props/locations/land-material.material" type="Material" id=1]
 
-[sub_resource type="ArrayMesh" id=13]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "grass1"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -17,7 +17,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=14]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "grass1001"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -32,7 +32,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=15]
+[sub_resource type="ArrayMesh" id=3]
 resource_name = "sand1"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -47,7 +47,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=16]
+[sub_resource type="ArrayMesh" id=4]
 resource_name = "grass2"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -62,7 +62,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=17]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "grass2001"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -77,7 +77,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=18]
+[sub_resource type="ArrayMesh" id=6]
 resource_name = "sand1001"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -92,7 +92,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=19]
+[sub_resource type="ArrayMesh" id=7]
 resource_name = "grass2002"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -107,7 +107,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=20]
+[sub_resource type="ArrayMesh" id=8]
 resource_name = "grass2003"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -122,7 +122,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=21]
+[sub_resource type="ArrayMesh" id=9]
 resource_name = "grass2004"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -137,7 +137,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=22]
+[sub_resource type="ArrayMesh" id=10]
 resource_name = "grass2005"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -152,7 +152,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=23]
+[sub_resource type="ArrayMesh" id=11]
 resource_name = "grass2006"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -182,7 +182,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=24]
+[sub_resource type="ArrayMesh" id=13]
 resource_name = "grass2008"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -197,7 +197,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=25]
+[sub_resource type="ArrayMesh" id=14]
 resource_name = "grass2009"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2.00001 ),
@@ -216,57 +216,57 @@ surfaces/0 = {
 
 [node name="grass1" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 0 )
-mesh = SubResource( 13 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="grass1001" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 0.5 )
-mesh = SubResource( 14 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="sand1" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 0.5 )
-mesh = SubResource( 15 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="grass2" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 0 )
-mesh = SubResource( 16 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="grass2001" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.4, 0, 0 )
-mesh = SubResource( 17 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="sand1001" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.4, 0, 0.5 )
-mesh = SubResource( 18 )
+mesh = SubResource( 6 )
 material/0 = null
 
 [node name="dirt1" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.1, 0, 0 )
-mesh = SubResource( 19 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="dirt2" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.6, 0, 0 )
-mesh = SubResource( 20 )
+mesh = SubResource( 8 )
 material/0 = null
 
 [node name="grass2004" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.1, 0, 0 )
-mesh = SubResource( 21 )
+mesh = SubResource( 9 )
 material/0 = null
 
 [node name="sand3" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.1, 0, 0.5 )
-mesh = SubResource( 22 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="sand2" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.6, 0, 0.5 )
-mesh = SubResource( 23 )
+mesh = SubResource( 11 )
 material/0 = null
 
 [node name="stone1" type="MeshInstance" parent="."]
@@ -276,10 +276,10 @@ material/0 = null
 
 [node name="lightstone" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 1 )
-mesh = SubResource( 24 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="road" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 1 )
-mesh = SubResource( 25 )
+mesh = SubResource( 14 )
 material/0 = null

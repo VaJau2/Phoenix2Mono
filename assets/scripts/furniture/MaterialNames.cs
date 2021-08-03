@@ -12,7 +12,8 @@ public static class MatNames {
         {40, "wood"},
         {20, "fence"},
         {56, "stone"},
-        {60, "grass_stairs"}
+        {60, "grass_stairs"},
+        {70, "water"}
     };
 
     public static string GetMatName(float friction) {
