@@ -28,6 +28,8 @@ public class NPC : Character
     public string dialogueCode = "";
     [Export]
     public int WalkSpeed = 5;
+
+    [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
     public bool ignoreDamager;
     [Export]  public NPCState state;
@@ -150,9 +152,9 @@ public class NPC : Character
         float force = tempShotgunShot ? RAGDOLL_IMPULSE * 2 : RAGDOLL_IMPULSE;
 
         if (shapeID == 0) {
-            bodyBone.ApplyCentralImpulse(-dir * force);
+            bodyBone?.ApplyCentralImpulse(-dir * force);
         } else {
-            headBone.ApplyCentralImpulse(-dir * force);
+            headBone?.ApplyCentralImpulse(-dir * force);
         }
         
         await Global.Get().ToTimer(5f);
@@ -309,10 +311,10 @@ public class NPC : Character
         skeleton = GetNode<Skeleton>("Armature/Skeleton");
         seekArea = GetNode<SeekArea>("seekArea");
 
-        headBone = headBonePath != null ? GetNode<PhysicalBone>(headBonePath) 
-            : GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
-        bodyBone = bodyBonePath != null ? GetNode<PhysicalBone>(bodyBonePath) 
-            : GetNode<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+        headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
+            : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
+        bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
+            : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
 
         SetStartHealth(StartHealth);
         BaseSpeed = WalkSpeed;

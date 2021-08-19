@@ -63,6 +63,13 @@
         "price": "100",
         "questItem": "true"
     },
+    "suitcase_vacation": {
+        "name": "Suitcase with Strikely's things",
+        "description": "Suitcase that contains all your things",
+        "type": "staff",
+        "icon": "suitcase",
+        "price": "300"
+    },
 
 
     "agent1Note": {
@@ -72,6 +79,15 @@
         "icon": "note",
         "text": "agent1",
         "price": "6",
+        "questItem": "true"
+    },
+    "vacationNote": {
+        "name": "The order on granting leave",
+        "description": "You had to work hard for this vacation",
+        "type": "note",
+        "icon": "note",
+        "text": "vacationNote",
+        "price": "10",
         "questItem": "true"
     },
 

@@ -86,7 +86,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (npc is NpcWithWeapons npcWithWeapons)
         {
-            if (followPath != null)
+            if (!string.IsNullOrEmpty(followPath))
             {
                 Character followTarget = GetNode<Character>(followPath);
                 npcWithWeapons.SetFollowTarget(followTarget);

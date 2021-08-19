@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/scripts/furns/furn-chest.gd" type="Script" id=1]
+[ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/props/furniture/box-down.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=3]
 [ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/futniture/FurnClose.wav" type="AudioStream" id=5]
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.998034, 1.23813, 1.00235 )
 
-[sub_resource type="ArrayMesh" id=3]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "box-up"
 surfaces/0 = {
 "aabb": AABB( -1, -1.0837, -1, 2.00001, 1.92537, 2.00001 ),
@@ -24,7 +24,7 @@ surfaces/0 = {
 "vertex_count": 234
 }
 
-[sub_resource type="ArrayMesh" id=4]
+[sub_resource type="ArrayMesh" id=3]
 resource_name = "box-down-door1"
 surfaces/0 = {
 "aabb": AABB( -0.944055, -1.1826, -0.0073311, 0.954532, 2.03422, 0.196758 ),
@@ -39,7 +39,7 @@ surfaces/0 = {
 "vertex_count": 66
 }
 
-[sub_resource type="ArrayMesh" id=5]
+[sub_resource type="ArrayMesh" id=4]
 resource_name = "box-down-door2"
 surfaces/0 = {
 "aabb": AABB( -0.0200037, -1.1826, -0.0073311, 1.00952, 2.03422, 0.196758 ),
@@ -54,7 +54,7 @@ surfaces/0 = {
 "vertex_count": 66
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("box-down-door1:rotation_degrees")
@@ -81,7 +81,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 20, 0 ), Vector3( 0, 90, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("box-down-door1:rotation_degrees")
@@ -111,28 +111,27 @@ tracks/1/keys = {
 [node name="box-up" type="StaticBody"]
 physics_material_override = ExtResource( 3 )
 script = ExtResource( 1 )
-openSound = ExtResource( 4 )
-closeSound = ExtResource( 5 )
-drop_side = Vector3( 1, 0, 0 )
-item_height = 5.0
+OpenSound = ExtResource( 4 )
+CloseSound = ExtResource( 5 )
+chestCode = "cabinet"
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.372067, 0, -0.0527583 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="box-up" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.42, -0.048, -0.05 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="box-down-door1" type="MeshInstance" parent="."]
-transform = Transform( -1.62921e-07, 0, 0.50806, 0, 0.9, 0, -1, 0, -8.27735e-08, 0.564582, 1.19209e-07, -1.0137 )
-mesh = SubResource( 4 )
+transform = Transform( -4.37114e-08, 0, 0.50806, 0, 0.9, 0, -1, 0, -2.2208e-08, 0.564582, 1.19209e-07, -1.0137 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="box-down-door2" type="MeshInstance" parent="."]
-transform = Transform( -1.62921e-07, 0, 0.50806, 0, 0.9, 0, -1, 0, -8.27735e-08, 0.537259, 1.19209e-07, 0.905689 )
-mesh = SubResource( 5 )
+transform = Transform( -4.37114e-08, 0, 0.50806, 0, 0.9, 0, -1, 0, -2.2208e-08, 0.537259, 1.19209e-07, 0.905689 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
@@ -141,5 +140,5 @@ unit_size = 2.0
 max_distance = 500.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/close = SubResource( 7 )
-anims/open = SubResource( 8 )
+anims/close = SubResource( 5 )
+anims/open = SubResource( 6 )

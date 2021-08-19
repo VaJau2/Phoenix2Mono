@@ -223,6 +223,8 @@ public class DialogueMenu : Control, IMenu
 
     public async void _on_answer_pressed(int i)
     {
+        tempAnswer = answers[i].Text;
+        
         foreach(Button temp in answers) {
             temp.Visible = false;
         }
@@ -251,29 +253,27 @@ public class DialogueMenu : Control, IMenu
             GetNode<Button>("answer3"),
             GetNode<Button>("answer4")
         };
-        answerCodes = new string[] {"", "", "", ""};
+        answerCodes = new[] {"", "", "", ""};
     }
 
     public override void _Process(float delta)
     {
-        if (MenuOn) {
-            if (npc == null || npc.state != NPCState.Talk) {
-                MenuManager.CloseMenu(this);
-            } else {
-                player.LookAt(npc.GlobalTransform.origin);
-            }
+        if (!MenuOn) return;
+        
+        if (npc == null || npc.state != NPCState.Talk) {
+            MenuManager.CloseMenu(this);
+        } else {
+            player.LookAt(npc.GlobalTransform.origin);
+        }
 
-            if (tempAnswerI != -1)
-            {
-                if (answers[tempAnswerI].Text.Length > MAX_ANSWER_LENGTH) {
-                    if (tempAnswerCooldown > 0) {
-                        tempAnswerCooldown -= delta;
-                    } else {
-                        answers[tempAnswerI].Text = answers[tempAnswerI].Text.Substring(1);
-                        tempAnswerCooldown = 0.05f;
-                    }
-                }
-            }
+        if (tempAnswerI == -1) return;
+        if (answers[tempAnswerI].Text.Length <= MAX_ANSWER_LENGTH) return;
+            
+        if (tempAnswerCooldown > 0) {
+            tempAnswerCooldown -= delta;
+        } else {
+            answers[tempAnswerI].Text = answers[tempAnswerI].Text.Substring(1);
+            tempAnswerCooldown = 0.05f;
         }
     }
 }

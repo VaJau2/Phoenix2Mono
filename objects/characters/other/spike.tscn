@@ -564,6 +564,7 @@ extents = Vector3( 3.71017, 3.62098, 4.73551 )
 script = ExtResource( 6 )
 IdleAnim = "Idle1"
 IsImmortal = true
+lookHeightFactor = -20.0
 headBonePath = NodePath("")
 bodyBonePath = NodePath("")
 

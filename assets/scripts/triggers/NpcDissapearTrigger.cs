@@ -24,7 +24,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
     public void _on_body_entered(Node body)
     {
         if (!IsActive) return;
-        Pony npc = GetNode<Pony>(npcPath);
+        Pony npc = GetNodeOrNull<Pony>(npcPath);
         if (body != npc) return;
 
         if (npc.Health > 0)

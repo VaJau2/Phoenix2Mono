@@ -16,15 +16,6 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     
     private int step;
 
-    public override void _Ready()
-    {
-
-        if (IsActive)
-        {
-            _on_activate_trigger();
-        }
-    }
-
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
@@ -106,6 +97,18 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {
+            SetActive(true);
+        }
+    }
+    
+    public void _on_body_entered(Node body)
+    {
+        if (!(body is Player)) return;
+        
+        Pony npc = GetNode<Pony>(NpcPath);
+        if (IsInstanceValid(npc) && npc.Health > 0)
+        {
+            SetActive(true);
             _on_activate_trigger();
         }
     }

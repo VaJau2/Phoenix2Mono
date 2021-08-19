@@ -64,4 +64,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.140804, 0 )
 shape = SubResource( 6 )
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
-[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]

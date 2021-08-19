@@ -22,8 +22,8 @@ public class PlayerInventory {
     public PlayerInventory(Player player) 
     {
         this.player = player;
-        this.messages = player.GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        this.effects = player.GetNode<EffectHandler>("/root/Main/Scene/canvas/effects");
+        messages = player.GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        effects = player.GetNode<EffectHandler>("/root/Main/Scene/canvas/effects");
     }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)

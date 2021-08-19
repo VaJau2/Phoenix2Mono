@@ -247,6 +247,7 @@ public class Player : Character
     public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
+        Weapons.ClearWeapon();
         MayMove = !sitOn;
         IsSitting = sitOn;
     }

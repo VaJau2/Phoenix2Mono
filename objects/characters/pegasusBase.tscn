@@ -1,11 +1,14 @@
 [gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://assets/materials/characters/shotgun-bag.material" type="Material" id=1]
+[ext_resource path="res://assets/models/characters/ponies/player/Look-Left.anim" type="Animation" id=2]
+[ext_resource path="res://assets/models/characters/ponies/player/Look-Up.anim" type="Animation" id=3]
+[ext_resource path="res://assets/models/characters/ponies/player/Look-Right.anim" type="Animation" id=4]
 [ext_resource path="res://assets/scripts/characters/NPC/Pony.cs" type="Script" id=5]
 [ext_resource path="res://assets/scripts/characters/player/SoundSteps.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/SeekArea.cs" type="Script" id=7]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCWeapons.cs" type="Script" id=8]
-[ext_resource path="res://assets/animations/LookLeft.anim" type="Animation" id=9]
+[ext_resource path="res://assets/models/characters/ponies/player/Look-Down.anim" type="Animation" id=9]
 
 [sub_resource type="Image" id=1]
 data = {
@@ -2238,46 +2241,6 @@ tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, -3.57512e-17, -0.00697102, 0.0242126, -0.0476814, 1.36398e-18, 8.26909e-18, 0.998863, 1, 1, 1, 0.0666667, 1, -3.57512e-17, -0.0169006, 0.0587013, -0.0235271, 1.36517e-18, 8.27622e-18, 0.999723, 1, 1, 1, 0.133333, 1, -3.57512e-17, -0.040511, 0.140708, 0.019035, 1.36529e-18, 8.27703e-18, 0.999819, 1, 1, 1, 0.2, 1, -6.78447e-17, -0.0738038, 0.256345, 0.0459473, -8.24021e-19, -4.9956e-18, 0.998944, 1, 1, 1, 0.266667, 1, -7.58681e-17, -0.111408, 0.386957, 0.0217898, -1.37388e-18, -8.32909e-18, 0.999763, 1, 1, 1, 0.4, 1, -7.58681e-17, -0.187787, 0.652248, -0.105661, -1.37398e-18, -8.32972e-18, 0.994402, 1, 1, 1, 0.466667, 1, 1.25147e-16, -0.221841, 0.770529, -0.136324, 3.88362e-18, 2.35443e-17, 0.990664, 1, 1, 1, 0.533333, 1, 1.25147e-16, -0.247435, 0.859426, -0.139402, 3.88358e-18, 2.3544e-17, 0.990236, 1, 1, 1, 0.6, 1, 2.415e-16, -0.239295, 0.831151, -0.125371, 3.96231e-18, 2.31795e-17, 0.99211, 1, 1, 1, 0.666667, 1, 2.415e-16, -0.127624, 0.443281, -0.0530647, 3.54106e-18, 2.03853e-17, 0.998591, 1, 1, 1, 0.733333, 1, 9.65999e-17, -0.015953, 0.05541, -0.00600058, 1.41618e-18, 8.15271e-18, 0.999982, 1, 1, 1, 0.8, 1, -7.15024e-18, -0.00418262, 0.0145275, -0.0286158, 2.72825e-19, 1.65397e-18, 0.999591, 1, 1, 1, 0.833333, 1, -3.57512e-17, -0.00697102, 0.0242126, -0.0476814, 1.36398e-18, 8.26909e-18, 0.998863, 1, 1, 1 )
 
 [sub_resource type="Animation" id=32]
-resource_name = "LookDown"
-length = 0.208333
-tracks/0/type = "transform"
-tracks/0/path = NodePath("Armature/Skeleton:head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, -0.555607, 2.05101e-13, -1.45714e-06, 0.831445, 1, 1, 1, 0.208333, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, -0.555607, 2.05101e-13, -1.45714e-06, 0.831445, 1, 1, 1 )
-tracks/1/type = "transform"
-tracks/1/path = NodePath("Armature/Skeleton:neck")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/keys = PoolRealArray( 0, 1, 1.13687e-13, 0, 1.19209e-07, -0.201596, 5.44078e-14, -5.2871e-07, 0.979469, 1, 1, 1, 0.208333, 1, 1.13687e-13, 0, 1.19209e-07, -0.201596, 1.37833e-13, -5.2871e-07, 0.979469, 1, 1, 1 )
-
-[sub_resource type="Animation" id=33]
-resource_name = "LookRight"
-length = 0.208333
-tracks/0/type = "transform"
-tracks/0/path = NodePath("Armature/Skeleton:head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, 5.26836e-07, -0.685255, -0.174429, 0.707107, 1, 1, 1, 0.208333, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, 5.26836e-07, -0.685255, -0.174429, 0.707107, 1, 1, 1 )
-
-[sub_resource type="Animation" id=34]
-resource_name = "LookUp"
-length = 0.208333
-tracks/0/type = "transform"
-tracks/0/path = NodePath("Armature/Skeleton:head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, 0.499231, 1.64009e-13, 1.30929e-06, 0.866469, 1, 1, 1, 0.208333, 1, 2.27374e-13, 1.19209e-07, 1.49012e-08, 0.499231, 2.29612e-13, 1.30929e-06, 0.866469, 1, 1, 1 )
-
-[sub_resource type="Animation" id=35]
 resource_name = "Run"
 length = 0.833333
 loop = true
@@ -2443,7 +2406,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, -3.57512e-17, -0.00697102, 0.0242126, -0.0476814, 1.36398e-18, 8.26909e-18, 0.998863, 1, 1, 1, 0.0666667, 1, -3.57512e-17, -0.00750807, 0.0260779, -0.0419709, 1.364e-18, 8.2692e-18, 0.999119, 1, 1, 1, 0.133333, 1, -3.41513e-17, -0.0110733, 0.0387706, -0.0388978, 1.06599e-18, 6.4625e-18, 0.999243, 1, 1, 1, 0.266667, 1, -3.25469e-17, -0.0408587, 0.144701, -0.0846402, 1.66415e-18, 1.00888e-17, 0.996412, 1, 1, 1, 0.333333, 1, -3.01403e-17, -0.0457583, 0.1401, -0.0755862, 2.56185e-18, 1.55311e-17, 0.997139, 1, 1, 1, 0.4, 1, -2.82579e-17, -0.0465326, 0.103586, -0.0412557, 1.63687e-18, 9.9236e-18, 0.999149, 1, 1, 1, 0.466667, 1, -2.7003e-17, -0.0674755, 0.112272, -0.0356628, 1.02015e-18, 6.18484e-18, 0.999364, 1, 1, 1, 0.533333, 1, -1.35334e-17, -0.0991895, 0.152043, -0.0356628, 1.02015e-18, 6.18484e-18, 0.999364, 1, 1, 1, 0.6, 1, -1.0166e-17, -0.101815, 0.184661, -0.0456536, 1.02028e-18, 6.18557e-18, 0.998957, 1, 1, 1, 0.666667, 1, -1.0166e-17, -0.101098, 0.202276, -0.0643482, 1.02023e-18, 6.1853e-18, 0.997928, 1, 1, 1, 0.733333, 1, -6.10153e-17, -0.0850932, 0.176963, -0.0662385, 1.99259e-18, 1.20802e-17, 0.997804, 1, 1, 1, 0.8, 1, -5.59625e-17, -0.0259922, 0.0617303, -0.0522409, 1.86689e-18, 1.13181e-17, 0.998635, 1, 1, 1, 0.833333, 1, -3.57512e-17, -0.00697102, 0.0242126, -0.0476814, 1.36398e-18, 8.26909e-18, 0.998863, 1, 1, 1 )
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=33]
 resource_name = "Sit"
 length = 0.416667
 loop = true
@@ -2609,7 +2572,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, -5.72725e-16, 0.69442, -1.29767, 0.417548, -1.19445e-17, -7.24127e-17, 0.908655, 1, 1, 1, 0.416667, 1, -5.72725e-16, 0.69442, -1.29767, 0.417548, -1.19445e-17, -7.24127e-17, 0.908655, 1, 1, 1 )
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=34]
 resource_name = "Walk"
 length = 1.04167
 loop = true
@@ -2775,47 +2738,56 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 6.20385e-25, 1, 1, 1, 1, 0.0666667, 1, 3.30872e-24, 0.0226311, 0.0573535, 0.00507024, 4.99552e-24, 6.3854e-24, 0.999987, 1, 1, 1, 0.133333, 1, 5.32327e-17, 0.0590293, 0.13844, 0.0122384, -8.00204e-20, -4.85117e-19, 0.999925, 1, 1, 1, 0.2, 1, 2.66163e-16, 0.0784009, 0.152617, 0.0127566, -4.00104e-19, -2.4256e-18, 0.999919, 1, 1, 1, 0.266667, 1, 2.66163e-16, 0.0842849, 0.129661, 0.00563241, -4.00118e-19, -2.42566e-18, 0.999984, 1, 1, 1, 0.333333, 1, 2.92453e-16, 0.0853328, 0.113423, -0.00625961, 1.79059e-19, 1.08558e-18, 0.999981, 1, 1, 1, 0.4, 1, 2.92453e-16, 0.0729092, 0.159615, -0.0202381, 1.79057e-19, 1.08557e-18, 0.999795, 1, 1, 1, 0.466667, 1, 3.04036e-16, 0.0470603, 0.225963, -0.0303126, 3.27821e-19, 1.98747e-18, 0.99954, 1, 1, 1, 0.533333, 1, 3.50368e-16, 0.0184592, 0.244706, -0.0302926, 9.22907e-19, 5.59518e-18, 0.999541, 1, 1, 1, 0.6, 1, 3.50368e-16, -0.00430878, 0.246438, -0.0211238, 9.22954e-19, 5.59545e-18, 0.999777, 1, 1, 1, 0.666667, 1, 3.50368e-16, -0.0186489, 0.247, -0.0110437, 9.22909e-19, 5.59521e-18, 0.999939, 1, 1, 1, 0.733333, 1, 3.53307e-16, -0.0134851, 0.245742, -0.0105392, 2.45441e-19, 1.48812e-18, 0.999944, 1, 1, 1, 0.8, 1, 3.53307e-16, 0.0261337, 0.231345, -0.0204628, 2.45457e-19, 1.48818e-18, 0.999791, 1, 1, 1, 0.866667, 1, 9.9741e-17, 0.0594968, 0.185091, -0.028818, 7.23525e-19, 4.38636e-18, 0.999585, 1, 1, 1, 0.933333, 1, 3.63496e-17, 0.0438605, 0.100615, -0.0208154, 8.43121e-19, 5.11137e-18, 0.999783, 1, 1, 1, 1, 1, 3.63496e-17, 0.00970364, 0.0190832, -0.00460505, 8.43094e-19, 5.11119e-18, 0.999989, 1, 1, 1, 1.04167, 1, 0, 0, 0, 0, 0, 6.20385e-25, 1, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeBlend2" id=38]
+[sub_resource type="AnimationNodeBlend2" id=35]
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "Look-Up"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "Look-Down"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "Look-Right"
 
 [sub_resource type="AnimationNodeAnimation" id=39]
-animation = "LookUp"
+animation = "Look-Left"
 
-[sub_resource type="AnimationNodeAnimation" id=40]
-animation = "LookDown"
-
-[sub_resource type="AnimationNodeAnimation" id=41]
-animation = "LookRight"
-
-[sub_resource type="AnimationNodeAnimation" id=42]
-animation = "LookLeft"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id=43]
-blend_point_0/node = SubResource( 39 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=40]
+blend_point_0/node = SubResource( 36 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 40 )
+blend_point_1/node = SubResource( 37 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 41 )
+blend_point_2/node = SubResource( 38 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 42 )
+blend_point_3/node = SubResource( 39 )
 blend_point_3/pos = Vector2( -1, 0 )
 
-[sub_resource type="AnimationNodeAnimation" id=44]
+[sub_resource type="AnimationNodeAnimation" id=41]
 animation = "Idle1"
 
-[sub_resource type="AnimationNodeAnimation" id=45]
+[sub_resource type="AnimationNodeAnimation" id=42]
 animation = "Run"
 
-[sub_resource type="AnimationNodeAnimation" id=46]
+[sub_resource type="AnimationNodeAnimation" id=43]
 animation = "Shotgun"
 
-[sub_resource type="AnimationNodeAnimation" id=47]
+[sub_resource type="AnimationNodeAnimation" id=44]
 animation = "Sit"
 
-[sub_resource type="AnimationNodeAnimation" id=48]
+[sub_resource type="AnimationNodeAnimation" id=45]
 animation = "Sleep"
 
-[sub_resource type="AnimationNodeAnimation" id=49]
+[sub_resource type="AnimationNodeAnimation" id=46]
 animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 xfade_time = 0.1
@@ -2827,13 +2799,11 @@ xfade_time = 0.1
 xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
-xfade_time = 0.1
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
-xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
-xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
 xfade_time = 0.5
@@ -2841,52 +2811,45 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
-xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=62]
-states/Idle1/node = SubResource( 44 )
+[sub_resource type="AnimationNodeStateMachine" id=59]
+states/Idle1/node = SubResource( 41 )
 states/Idle1/position = Vector2( 396, 221 )
-states/Run/node = SubResource( 45 )
+states/Run/node = SubResource( 42 )
 states/Run/position = Vector2( 176, 293 )
-states/Shoot/node = SubResource( 46 )
+states/Shoot/node = SubResource( 43 )
 states/Shoot/position = Vector2( 644, 284 )
-states/Sit/node = SubResource( 47 )
+states/Sit/node = SubResource( 44 )
 states/Sit/position = Vector2( 649, 147 )
-states/Sleep/node = SubResource( 48 )
+states/Sleep/node = SubResource( 45 )
 states/Sleep/position = Vector2( 460, 83 )
-states/Walk/node = SubResource( 49 )
+states/Walk/node = SubResource( 46 )
 states/Walk/position = Vector2( 378, 385 )
-transitions = [ "Idle1", "Walk", SubResource( 50 ), "Walk", "Idle1", SubResource( 51 ), "Idle1", "Run", SubResource( 52 ), "Run", "Idle1", SubResource( 53 ), "Walk", "Run", SubResource( 54 ), "Run", "Walk", SubResource( 55 ), "Idle1", "Sleep", SubResource( 56 ), "Idle1", "Sit", SubResource( 57 ), "Sit", "Idle1", SubResource( 58 ), "Sleep", "Idle1", SubResource( 59 ), "Idle1", "Shoot", SubResource( 60 ), "Shoot", "Idle1", SubResource( 61 ) ]
+transitions = [ "Idle1", "Walk", SubResource( 47 ), "Walk", "Idle1", SubResource( 48 ), "Idle1", "Run", SubResource( 49 ), "Run", "Idle1", SubResource( 50 ), "Walk", "Run", SubResource( 51 ), "Run", "Walk", SubResource( 52 ), "Idle1", "Sleep", SubResource( 53 ), "Idle1", "Sit", SubResource( 54 ), "Sit", "Idle1", SubResource( 55 ), "Sleep", "Idle1", SubResource( 56 ), "Idle1", "Shoot", SubResource( 57 ), "Shoot", "Idle1", SubResource( 58 ) ]
 graph_offset = Vector2( -63, 117 )
 
-[sub_resource type="AnimationNodeBlendTree" id=63]
-graph_offset = Vector2( -492, 8 )
-nodes/Blend2/node = SubResource( 38 )
+[sub_resource type="AnimationNodeBlendTree" id=60]
+graph_offset = Vector2( -552, 376 )
+nodes/Blend2/node = SubResource( 35 )
 nodes/Blend2/position = Vector2( 61, 157 )
-nodes/BlendSpace2D/node = SubResource( 43 )
+nodes/BlendSpace2D/node = SubResource( 40 )
 nodes/BlendSpace2D/position = Vector2( -280, 280 )
-nodes/StateMachine/node = SubResource( 62 )
+nodes/StateMachine/node = SubResource( 59 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
 node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=64]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=61]
 
-[sub_resource type="BoxShape" id=65]
+[sub_resource type="BoxShape" id=62]
 extents = Vector3( 14.4008, 11.5559, 29.3611 )
 
-[sub_resource type="BoxShape" id=66]
+[sub_resource type="BoxShape" id=63]
 extents = Vector3( 6.24065, 3.62098, 6.65832 )
 
-[sub_resource type="BoxShape" id=67]
+[sub_resource type="BoxShape" id=64]
 extents = Vector3( 0.817892, 1.53714, 0.549436 )
 
 [node name="npc" type="KinematicBody" groups=[
@@ -3017,7 +2980,7 @@ bones/22/enabled = true
 bones/22/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999689, 0.00596473, -0.0242084, -0.0245339, 0.0624184, -0.997749, -0.00444027, 0.998033, 0.0625444, -5.33925e-13, 1.69933, 1.11108 )
+transform = Transform( 0.999979, -0.00175837, -0.00630604, -0.00500169, -0.826697, -0.562626, -0.00422388, 0.562645, -0.826688, -1.5585e-08, 1.71156, 1.06652 )
 bone_name = "head"
 
 [node name="weapons" type="Spatial" parent="Armature/Skeleton/BoneAttachment"]
@@ -3042,7 +3005,7 @@ input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48807e-17, -0.284132, -0.388924 )
-body_offset = Transform( 1, 7.91703e-18, 8.39012e-17, -8.25417e-17, 0.292822, 0.956165, -1.69978e-17, -0.956165, 0.292822, 0, 0.455076, -0.157791 )
+body_offset = Transform( 1, 7.91702e-18, 8.39012e-17, -8.25417e-17, 0.292822, 0.956165, -1.69978e-17, -0.956165, 0.292822, 0, 0.455076, -0.157791 )
 mass = 90.0
 weight = 882.0
 friction = 0.5
@@ -3054,12 +3017,12 @@ transform = Transform( 1, 1.08567e-24, 0, 1.03398e-24, 1, -1.86265e-09, 0, 1.862
 shape = SubResource( 5 )
 
 [node name="Physical Bone back_2" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.999995, -1.87618e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.975869, 5.53318e-08, 0.975868, -0.21835, -7.82311e-08, 1.47895, -0.0324879 )
+transform = Transform( 0.999995, -1.87616e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.975869, 5.53318e-08, 0.975868, -0.21835, -7.82311e-08, 1.47895, -0.0324879 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41916e-09, 0.0075088, 0.311087 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41915e-09, 0.0075088, 0.311087 )
 body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.969599, 1.80284e-07, 0.969599, 0.244692, -5.7742e-08, 0.299792, -0.083401 )
 mass = 20.0
 weight = 196.0
@@ -3080,7 +3043,7 @@ input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07407e-06, 0.00575402, 1.62523 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07407e-06, 0.00575396, 1.62523 )
 body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.972872, 2.00461e-06, 0.972876, 0.231321, -1.13621e-07, 1.57981, -0.381548 )
 mass = 90.0
 weight = 882.0
@@ -3102,8 +3065,8 @@ input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125077, -0.014076, 0.446929 )
-body_offset = Transform( 0.992634, -0.0828153, -0.0884291, -0.0828149, 0.0689421, -0.994177, 0.0884293, 0.994177, 0.0615754, 0.0395974, 0.445193, -0.0134152 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125074, -0.014076, 0.446929 )
+body_offset = Transform( 0.992634, -0.0828153, -0.0884291, -0.0828149, 0.0689421, -0.994177, 0.0884293, 0.994177, 0.0615754, 0.0395973, 0.445193, -0.0134152 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_1_l"
@@ -3119,13 +3082,13 @@ transform = Transform( 1, 0, 1.86265e-09, 7.45058e-09, 1, 0, 9.31323e-10, 0, 1, 
 shape = SubResource( 8 )
 
 [node name="Physical Bone leg_2_l" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.988607, -0.114836, 0.097238, 0.116484, 0.99313, -0.0114236, -0.0952571, 0.0226189, 0.995197, -0.407885, 1.81143, -1.81374 )
+transform = Transform( 0.988607, -0.114836, 0.097238, 0.116484, 0.99313, -0.0114236, -0.095257, 0.0226189, 0.995197, -0.407885, 1.81143, -1.81374 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783044, 0.00691291, 0.876067 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151283, -0.00427703, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618345, 0.870623, -0.0978941 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0078304, 0.00691295, 0.876067 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151283, -0.00427706, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618348, 0.870623, -0.0978941 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -3139,13 +3102,13 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 9 )
 
 [node name="Physical Bone leg_1_r" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.996064, 0.0885971, -1.97773e-07, -0.0883894, 0.993732, 0.0684588, 0.006065, -0.0681891, 0.997657, 0.287084, 1.79373, -0.756682 )
+transform = Transform( 0.996064, 0.0885971, -1.97773e-07, -0.0883894, 0.993732, 0.0684588, 0.00606498, -0.0681891, 0.997657, 0.287084, 1.79373, -0.756682 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00065259, -0.00733583, 0.451344 )
-body_offset = Transform( 0.992586, 0.0833252, 0.0884594, 0.0833253, 0.0632026, -0.99452, -0.0884594, 0.994518, 0.0557915, -0.0399621, 0.44928, -0.0178278 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00065259, -0.00733582, 0.451344 )
+body_offset = Transform( 0.992586, 0.0833252, 0.0884594, 0.0833253, 0.0632025, -0.99452, -0.0884594, 0.994518, 0.0557915, -0.0399621, 0.44928, -0.0178278 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_1_r"
@@ -3167,7 +3130,7 @@ collision_layer = 2
 collision_mask = 0
 joint_type = 2
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163461, 0.143863, 0.868981 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934091, -0.993354, -0.112854, 0.993362, -0.0223682, -0.0984325, 0.866424, -0.125315 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.0093409, -0.993354, -0.112854, 0.993362, -0.0223682, -0.0984324, 0.866424, -0.125315 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_r"
@@ -3181,7 +3144,7 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 11 )
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.989938, -0.141448, 6.05387e-05, 0.141038, 0.98703, -0.0765898, 0.0107717, 0.075831, 0.997048, -0.259933, 0.497917, -0.990158 )
+transform = Transform( 0.989938, -0.141448, 6.05234e-05, 0.141038, 0.98703, -0.0765898, 0.0107717, 0.075831, 0.997048, -0.259933, 0.497917, -0.990158 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
@@ -3203,12 +3166,12 @@ transform = Transform( 1, 0, 9.31323e-10, 1.49012e-08, 1, 0, 0, 7.45058e-09, 1, 
 shape = SubResource( 12 )
 
 [node name="Physical Bone b_leg_2_l" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.984243, -0.176716, -0.00633609, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366937, 0.541537, -2.04397 )
+transform = Transform( 0.984242, -0.176716, -0.00633609, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366937, 0.541538, -2.04397 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357095, 0.167883, 0.826285 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357096, 0.167883, 0.826285 )
 body_offset = Transform( 0.948202, -0.299618, -0.10557, -0.299395, -0.731759, -0.612288, 0.1062, 0.612177, -0.783556, 0.103672, 0.639466, 0.540874 )
 mass = 5.0
 weight = 49.0
@@ -3245,7 +3208,7 @@ transform = Transform( 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 1.86265e-09, 0, 1,
 shape = SubResource( 14 )
 
 [node name="Physical Bone b_leg_2_r" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.986867, 0.161484, 0.00130984, -0.160218, 0.980091, -0.117242, -0.0202166, 0.115495, 0.993099, 0.394408, 0.54231, -2.04484 )
+transform = Transform( 0.986867, 0.161484, 0.00130982, -0.160218, 0.980091, -0.117241, -0.0202167, 0.115495, 0.993099, 0.394408, 0.54231, -2.04484 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
@@ -3265,12 +3228,12 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 15 )
 
 [node name="Physical Bone tail_1" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.999999, -1.93865e-12, 2.38416e-07, -2.30519e-07, 0.255271, 0.966858, -6.08612e-08, -0.966869, 0.255269, 0.0147703, -0.659206, -0.115395 )
+transform = Transform( 0.999999, -1.9678e-12, 2.38416e-07, -2.30519e-07, 0.255271, 0.966858, -6.08613e-08, -0.966869, 0.255269, 0.0147703, -0.659206, -0.115395 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41725e-08, -0.0298524, 0.637073 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41726e-08, -0.0298524, 0.637073 )
 body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148897, -0.988841, 2.73919e-07, 0.988856, -0.148897, -1.3737e-07, 0.625519, 0.124378 )
 mass = 15.0
 weight = 147.0
@@ -3314,21 +3277,21 @@ anims/HitFront-2 = SubResource( 28 )
 anims/Idle1 = SubResource( 29 )
 anims/Jump = SubResource( 30 )
 anims/Jump-Run = SubResource( 31 )
-anims/LookDown = SubResource( 32 )
-anims/LookLeft = ExtResource( 9 )
-anims/LookRight = SubResource( 33 )
-anims/LookUp = SubResource( 34 )
-anims/Run = SubResource( 35 )
-anims/Sit = SubResource( 36 )
-anims/Walk = SubResource( 37 )
+anims/Look-Down = ExtResource( 9 )
+anims/Look-Left = ExtResource( 2 )
+anims/Look-Right = ExtResource( 4 )
+anims/Look-Up = ExtResource( 3 )
+anims/Run = SubResource( 32 )
+anims/Sit = SubResource( 33 )
+anims/Walk = SubResource( 34 )
 
 [node name="animTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 63 )
+tree_root = SubResource( 60 )
 anim_player = NodePath("../anim")
 active = true
 parameters/Blend2/blend_amount = 0.99
-parameters/BlendSpace2D/blend_position = Vector2( 0.0149516, 0.00956941 )
-parameters/StateMachine/playback = SubResource( 64 )
+parameters/BlendSpace2D/blend_position = Vector2( 0.00803208, 1 )
+parameters/StateMachine/playback = SubResource( 61 )
 
 [node name="seekArea" type="Area" parent="."]
 monitorable = false
@@ -3336,7 +3299,7 @@ script = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="seekArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8097, -17.9081 )
-shape = SubResource( 65 )
+shape = SubResource( 62 )
 
 [node name="ray" type="RayCast" parent="seekArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21756, -1.21516 )
@@ -3348,14 +3311,14 @@ monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="lookArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48777, -5.37711 )
-shape = SubResource( 66 )
+shape = SubResource( 63 )
 
 [node name="stopArea" type="Area" parent="."]
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="stopArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41206, -3.38013 )
-shape = SubResource( 67 )
+shape = SubResource( 64 )
 
 [node name="weapons" type="Node" parent="."]
 script = ExtResource( 8 )

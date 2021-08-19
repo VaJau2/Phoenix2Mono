@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://assets/materials/environments/theater.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -72,6 +72,7 @@
 [ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=70]
 [ext_resource path="res://objects/props/furniture/table.tscn" type="PackedScene" id=71]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=72]
+[ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -440,7 +441,7 @@ WalkSpeed = 4
 RunSpeed = 11
 
 [node name="shloer" parent="npc" instance=ExtResource( 26 )]
-transform = Transform( 0.110168, 0, 0.993913, 0, 1, 0, -0.993913, 0, 0.110168, 47.457, 7.89757, 42.3877 )
+transform = Transform( 0.110168, 0, 0.993913, 0, 1, 0, -0.993913, 0, 0.110168, 47.457, 7.89757, 42.4962 )
 IdleAnim = "Idle1"
 
 [node name="twilight" parent="npc" instance=ExtResource( 21 )]
@@ -541,7 +542,7 @@ shape = SubResource( 9 )
 transform = Transform( 5.68658, 0, 0, 0, 5.68658, 0, 0, 0, 5.68658, 32.1721, 9.70319, 40.5555 )
 
 [node name="curtain2" parent="terrain" instance=ExtResource( 35 )]
-transform = Transform( -5.68658, 0, -4.97137e-07, 0, 5.68658, 0, 4.97137e-07, 0, -5.68658, 47.6727, 9.70319, 40.5867 )
+transform = Transform( -5.68658, 0, -4.97137e-07, 0, 5.68658, 0, 4.97137e-07, 0, -5.68658, 48.6396, 9.70319, 40.5867 )
 
 [node name="stair" type="StaticBody" parent="terrain"]
 transform = Transform( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 1.381, 1.809, -3.674 )
@@ -1294,52 +1295,31 @@ startAmmoCount = {
 [node name="doors" type="Spatial" parent="terrain/props"]
 transform = Transform( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 1.38066, 1.80855, 0.458871 )
 
-[node name="door" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1.888, 0, 1.659, 0, -1, 0, -8.25271e-08, 50.2985, 5.77611, -29.5443 )
-script = null
+[node name="door" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( -5.62566e-08, 0, 1.821, 0, 1.631, 0, -1.287, 0, -7.95984e-08, 50.1872, 5.84987, -29.7868 )
+
+[node name="door2" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( -5.62565e-08, 0, 1.749, 0, 1.631, 0, -1.287, 0, -7.64512e-08, -57.4237, 5.84987, -29.7868 )
+
+[node name="door3" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( -5.62565e-08, 0, 1.749, 0, 1.631, 0, -1.287, 0, -7.64512e-08, -57.4237, 5.84987, -12.3692 )
+
+[node name="door4" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( -5.62565e-08, 0, 1.749, 0, 1.631, 0, -1.287, 0, -7.64512e-08, -26.475, 5.84987, -12.3692 )
+
+[node name="door7" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( -5.62565e-08, 0, 1.871, 0, 1.631, 0, -1.287, 0, -8.1784e-08, 4.98647, 5.84987, -12.3692 )
+
+[node name="door5" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( 1.287, 0, 0, 0, 1.631, 0, 0, 0, 1.749, -86.9365, 5.84987, -44.7398 )
+
+[node name="door6" parent="terrain/props/doors" instance=ExtResource( 73 )]
+transform = Transform( 1.287, 0, 0, 0, 1.631, 0, 0, 0, 1.749, -71.5456, 5.94856, -44.8319 )
 
 [node name="door12" parent="terrain/props/doors" groups=[
 "savable",
 ] instance=ExtResource( 14 )]
 transform = Transform( -8.25271e-08, 0, 1.888, 0, 1.659, 0, -1.888, 0, -8.25271e-08, 50.2985, 5.77611, -11.866 )
-
-[node name="door2" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1.712, 0, 1.664, 0, -1, 0, -7.48339e-08, -57.4609, 5.77611, -29.7435 )
-script = null
-
-[node name="door3" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( 0.999999, 0, 0, 0, 1.664, 0, 0, 0, 1.81, -71.3926, 5.7761, -44.5782 )
-script = null
-
-[node name="door4" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( 0.999999, 0, 0, 0, 1.664, 0, 0, 0, 1.81, -86.7583, 5.7761, -44.5782 )
-script = null
-
-[node name="door5" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1.754, 0, 1.664, 0, -1, 0, -7.66698e-08, -57.3351, 5.71003, -12.008 )
-script = null
-
-[node name="door6" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1.754, 0, 1.664, 0, -1, 0, -7.66698e-08, -26.4074, 5.71003, -12.008 )
-script = null
-
-[node name="door7" parent="terrain/props/doors" groups=[
-"savable",
-] instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1.925, 0, 1.664, 0, -1, 0, -8.41444e-08, 5.14602, 5.71003, -12.008 )
-script = null
 
 [node name="door8" parent="terrain/props/doors" groups=[
 "savable",
@@ -1465,7 +1445,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.1471
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55365, -1.36845, 21.4914 )
 
 [node name="shloer" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92269, -1.36845, 21.7505 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48237, -1.36845, 21.1498 )
 
 [node name="after" type="Spatial" parent="terrain/npcPlaces"]
 
@@ -1476,7 +1456,7 @@ transform = Transform( 0.366306, 0, 0.930494, 0, 1, 0, -0.930494, 0, 0.366306, -
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.3417, -1.69033, 27.6623 )
 
 [node name="shloer" type="Spatial" parent="terrain/npcPlaces/after"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.024, -1.69, 27.662 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.024, -1.69, 28.4629 )
 
 [node name="dusk" type="Spatial" parent="terrain/npcPlaces/after"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.7302, -14.7066, -0.0724516 )
@@ -1565,7 +1545,7 @@ otherDialogueCode = "presentation2"
 "savable",
 ]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killAllTask") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killAllTask"), NodePath("../shloerDissapear") ]
 
 [node name="killAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1598,7 +1578,7 @@ charPaths = [ NodePath("../../npc/twilight"), NodePath("../../npc/spike") ]
 "savable",
 ]]
 script = ExtResource( 52 )
-otherTriggerPaths = [ NodePath("../spawners/spawner1"), NodePath("../spawners/spawner2"), NodePath("../spawners/spawner3"), NodePath("../spawners/spawner4"), NodePath("../spawnerRedPunch"), NodePath("../redPunchDialogue"), NodePath("../shloerDissapear") ]
+otherTriggerPaths = [ NodePath("../spawners/spawner1"), NodePath("../spawners/spawner2"), NodePath("../spawners/spawner3"), NodePath("../spawners/spawner4"), NodePath("../spawnerRedPunch"), NodePath("../redPunchDialogue") ]
 NpcPaths = [ "../../npc/bellgates", "../../npc/scientist1", "../../npc/dusk", "../../npc/shloer", "../../npc/security1", "../../npc/security_mare" ]
 pointPaths = [ NodePath("../../terrain/npcPlaces/after/bellgates"), NodePath("../../terrain/npcPlaces/after/scientist1"), NodePath("../../terrain/npcPlaces/after/dusk"), NodePath("../../terrain/npcPlaces/after/shloer"), NodePath("../../terrain/npcPlaces/after/security1"), NodePath("../../terrain/npcPlaces/after/security_mare") ]
 idleAnims = [ "Idle1", "Idle1", "Sit", "Idle1", "Idle1", "Idle1" ]
@@ -1608,7 +1588,7 @@ lastTimer = 0.5
 runToPoint = true
 
 [node name="shloerDissapear" type="Area" parent="triggers"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.7852, 8.81994, 42.7536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5287, 8.81994, 43.5433 )
 script = ExtResource( 65 )
 IsActive = false
 npcPath = "/root/Main/Scene/npc/shloer"
@@ -1631,7 +1611,7 @@ otherDialogueCode = ""
 ]]
 script = ExtResource( 13 )
 onlyChangeCode = true
-npcPath = "/root/Main/Scene/npc/bellgates"
+npcPath = "/root/Main/Scene/npc/shloer"
 otherDialogueCode = ""
 
 [node name="spawners" type="Node" parent="triggers"]

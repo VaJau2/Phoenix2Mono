@@ -63,6 +63,13 @@
         "price": "100",
         "questItem": "true"
     },
+    "suitcase_vacation": {
+        "name": "Чемодан с вещами Страйкли",
+        "description": "Чемодан, в котором лежат все твои вещи",
+        "type": "staff",
+        "icon": "suitcase",
+        "price": "300"
+    },
 
 
     "agent1Note": {
@@ -72,6 +79,15 @@
         "icon": "note",
         "text": "agent1",
         "price": "6",
+        "questItem": "true"
+    },
+    "vacationNote": {
+        "name": "Приказ о предоставлении отпуска",
+        "description": "Долгожданный отпуск, для которого тебе пришлось попотеть",
+        "type": "note",
+        "icon": "note",
+        "text": "vacationNote",
+        "price": "10",
         "questItem": "true"
     },
 

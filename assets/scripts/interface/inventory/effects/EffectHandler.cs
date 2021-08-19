@@ -119,18 +119,31 @@ public class EffectHandler: Node
                 return new ManaEffect();
             case "buck":
                 return new BuckEffect();
+            case "buckPost":
+                return new BuckPostEffect();
             case "dash":
                 return new DashEffect();
+            case "dashPost":
+                return new DashPostEffect();
             case "hydra":
                 return new HydraEffect();
+            case "hydraPost":
+                return new HydraPostEffect();
             case "rage":
                 return new RageEffect();
+            case "ragePost":
+                return new RagePostEffect();
             case "medX":
                 return new MedXEffect();
+            case "medXPost":
+                return new MedXPostEffect();
             case "mentats":
                 return new MentatsEffect();
+            case "mentatsPost":
+                return new MentatsPostEffect();
             case "detoxine":
                 return new DetoxineEffect();
+            
         }
         return null;
     }
@@ -142,13 +155,18 @@ public class EffectHandler: Node
             case "HealEffect": return "heal";
             case "ManaEffect": return "mana";
             case "BuckEffect": return "buck";
+            case "BuckPostEffect": return "buckPost";
             case "DashEffect": return "dash";
+            case "DashPostEffect": return "dashPost";
             case "HydraEffect": return "hydra";
+            case "HydraPostEffect": return "hydraPost";
             case "RageEffect": return "rage";
+            case "RagePostEffect": return "ragePost";
             case "MedXEffect": return "medX";
+            case "MedXPostEffect": return "medXPost";
             case "MentatsEffect": return "mentats";
+            case "MentatsPostEffect": return "mentatsPost";
             case "DetoxineEffect": return "detoxine";
-            
         }
 
         return null;

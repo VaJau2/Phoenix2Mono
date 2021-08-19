@@ -74,7 +74,7 @@ public class NPCBody
             var targetY = lookTarget.GlobalTransform.origin.y;
             //точка центра игрока чуть выше, тк он умеет красться и приседать с:
             if (lookTarget is Player) {
-                targetY -= 0.8f;
+                targetY -= 0.8f * npc.lookHeightFactor;
             }
 
             float diffY = targetY - npc.GlobalTransform.origin.y;

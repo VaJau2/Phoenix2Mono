@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/models/props/plants/apple_tree/03 - Default.material" type="Material" id=1]
 [ext_resource path="res://assets/models/props/plants/apple_tree/Material #1.material" type="Material" id=2]
 [ext_resource path="res://assets/models/props/plants/apple_tree/Material #0.material" type="Material" id=3]
+[ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Foliage001"
@@ -80,6 +81,9 @@ extents = Vector3( 11.9313, 4.51155, 12.1036 )
 extents = Vector3( 9.57928, 5.75389, 8.43478 )
 
 [node name="AppleTree" type="StaticBody"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = ExtResource( 4 )
 
 [node name="Foliage001" type="MeshInstance" parent="."]
 transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.014586, 0, -0.061692 )
