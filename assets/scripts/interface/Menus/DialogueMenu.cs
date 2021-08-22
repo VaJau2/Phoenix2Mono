@@ -21,6 +21,7 @@ public class DialogueMenu : Control, IMenu
     int tempAnswerI = -1;
     float tempAnswerCooldown;
     bool signalConnected = false;
+    private bool updateTempAnswer = true;
     
     [Signal]
     public delegate void FinishTalking();
@@ -158,7 +159,6 @@ public class DialogueMenu : Control, IMenu
         }
 
         //грузим варианты ответов
-        tempAnswerI = -1;
         if (tempNode.Contains("options")) {
             var options = tempNode["options"] as Array;
             for(int i = 0; i < answers.Length; i++) {
@@ -223,7 +223,13 @@ public class DialogueMenu : Control, IMenu
 
     public async void _on_answer_pressed(int i)
     {
-        tempAnswer = answers[i].Text;
+        if (updateTempAnswer)
+        {
+            tempAnswer = answers[i].Text;
+        }
+
+        updateTempAnswer = true;
+        tempAnswerI = -1;
         
         foreach(Button temp in answers) {
             temp.Visible = false;
@@ -269,9 +275,13 @@ public class DialogueMenu : Control, IMenu
         if (tempAnswerI == -1) return;
         if (answers[tempAnswerI].Text.Length <= MAX_ANSWER_LENGTH) return;
             
-        if (tempAnswerCooldown > 0) {
+        if (tempAnswerCooldown > 0) 
+        {
             tempAnswerCooldown -= delta;
-        } else {
+        } 
+        else
+        {
+            updateTempAnswer = false;
             answers[tempAnswerI].Text = answers[tempAnswerI].Text.Substring(1);
             tempAnswerCooldown = 0.05f;
         }
