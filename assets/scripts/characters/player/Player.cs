@@ -67,6 +67,8 @@ public class Player : Character
     public delegate void TakenDamage();
     [Signal]
     public delegate void TakeItem(string itemCode);
+    [Signal]
+    public delegate void UseItem(string itemCode);
 
 
     public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }

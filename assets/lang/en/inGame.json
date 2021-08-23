@@ -41,7 +41,8 @@
         "talk": " - talk",
         "terminal": " - manage",
         "exitLocation": " - leave location",
-        "sit": " - sit here"
+        "sit": " - sit here",
+        "putSuitcase": " - put suitcase"
     },
 
     "hints": {

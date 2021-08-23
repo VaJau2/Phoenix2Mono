@@ -165,4 +165,23 @@ public class FurnChest: FurnBase, ISavable {
             itemPositions.Add(intKey, newItemPositions[key].ToString());
         }
     }
+
+    public void AddNewItem(string newItemCode)
+    {
+        //если сундук уже открывался, используется itemPositions, а не itemCodes
+        if (itemPositions.Count > 0)
+        {
+            foreach (int i in itemPositions.Keys)
+            {
+                if (!string.IsNullOrEmpty(itemPositions[i])) continue;
+                itemPositions.Add(i, newItemCode);
+                return;
+            }
+            itemPositions.Add(itemPositions.Count, newItemCode);
+        }
+        else
+        {
+            itemCodes.Add(newItemCode);
+        }
+    }
 }

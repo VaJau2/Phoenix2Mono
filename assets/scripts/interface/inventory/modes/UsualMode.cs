@@ -213,6 +213,8 @@ public class UsualMode: InventoryMode {
     {
         if (player.Health <= 0) return;
         
+        player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
+        
         string itemType = tempItemData["type"].ToString();
         if (inventory.itemIsUsable(itemType)) {
             switch(itemType) {

@@ -371,6 +371,15 @@
         "heal": "5",
         "sound": "eating1"
     },
+    "pie": {
+        "name": "Apple Pie",
+        "description": "A masterpiece of culinary apple art",
+        "type": "food",
+        "icon": "pie",
+        "price": "50",
+        "heal": "40",
+        "sound": "eating1"
+    },
 
 
     "heal-potion": {

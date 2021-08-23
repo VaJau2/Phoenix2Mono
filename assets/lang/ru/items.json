@@ -68,7 +68,8 @@
         "description": "Чемодан, в котором лежат все твои вещи",
         "type": "staff",
         "icon": "suitcase",
-        "price": "300"
+        "price": "300",
+        "questItem": "true"
     },
 
 
@@ -369,6 +370,15 @@
         "icon": "maffin",
         "price": "20",
         "heal": "5",
+        "sound": "eating1"
+    },
+    "pie": {
+        "name": "Яблочный пирог",
+        "description": "Шедевр кулинарного яблочного искусства",
+        "type": "food",
+        "icon": "pie",
+        "price": "50",
+        "heal": "40",
         "sound": "eating1"
     },
 

@@ -11,6 +11,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public float timer = 1f;
     [Export] public float lastTimer = 1f;
     [Export] public bool runToPoint;
+    [Export] public bool teleportToPoint;
 
     private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
     private Array<Spatial> points = new Array<Spatial>();
@@ -33,7 +34,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         _on_activate_trigger();
     }
     
-    public override async void _on_activate_trigger()
+    public override void _on_activate_trigger()
     {
         if (!IsActive) return;
         
@@ -85,6 +86,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             if (stayThere != null && stayThere.Count == npc.Count && npc[i] is Pony pony)
             {
                 pony.stayInPoint = stayThere[i];
+            }
+
+            if (teleportToPoint)
+            {
+                npc[i].GlobalTransform = Global.setNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.origin);
             }
             
             while (timers.CheckTimer(Name + "_timer_" + i, timer))

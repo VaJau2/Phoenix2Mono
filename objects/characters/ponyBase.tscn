@@ -1703,7 +1703,7 @@ transitions = [ "Idle1", "Walk", SubResource( 43 ), "Walk", "Idle1", SubResource
 graph_offset = Vector2( -116, -33 )
 
 [sub_resource type="AnimationNodeBlendTree" id=58]
-graph_offset = Vector2( -492, 257.25 )
+graph_offset = Vector2( -87, 143 )
 nodes/Blend2/node = SubResource( 30 )
 nodes/Blend2/position = Vector2( 61, 157 )
 nodes/BlendSpace2D/node = SubResource( 35 )
@@ -1832,7 +1832,7 @@ bones/18/enabled = true
 bones/18/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.964337, 0.112541, -0.239559, -0.264658, 0.420878, -0.867651, 0.00317861, 0.90011, 0.435652, -5.15806e-08, 1.70934, 1.07685 )
+transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )
 bone_name = "head"
 
 [node name="weapons" type="Spatial" parent="Armature/Skeleton/BoneAttachment"]
@@ -1940,7 +1940,7 @@ collision_layer = 2
 collision_mask = 0
 joint_type = 2
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783027, 0.00691319, 0.876067 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427697, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978943 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427698, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978943 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -1996,13 +1996,13 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 11 )
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.989938, -0.141448, 6.05387e-05, 0.141038, 0.98703, -0.0765898, 0.0107717, 0.0758309, 0.997048, -0.259933, 0.497918, -0.990159 )
+transform = Transform( 0.989938, -0.141448, 6.05387e-05, 0.141038, 0.98703, -0.0765898, 0.0107717, 0.0758309, 0.997048, -0.259933, 0.497917, -0.990159 )
 input_ray_pickable = false
 collision_layer = 2
 collision_mask = 0
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143269, 0.0446099, 0.58022 )
-body_offset = Transform( 0.981232, -0.131362, -0.141116, -0.131237, 0.08108, -0.988015, 0.141232, 0.988006, 0.0623202, 0.0736803, 0.571529, -0.0822577 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014327, 0.04461, 0.580219 )
+body_offset = Transform( 0.981232, -0.131362, -0.141116, -0.131237, 0.08108, -0.988015, 0.141232, 0.988006, 0.0623202, 0.0736802, 0.571529, -0.0822577 )
 mass = 5.0
 weight = 49.0
 bone_name = "b_leg_1_l"
@@ -2136,7 +2136,7 @@ anims/Walk = SubResource( 29 )
 tree_root = SubResource( 58 )
 anim_player = NodePath("../anim")
 active = true
-parameters/Blend2/blend_amount = 0.99
+parameters/Blend2/blend_amount = 0.9
 parameters/BlendSpace2D/blend_position = Vector2( 0.156626, -0.25 )
 parameters/StateMachine/playback = SubResource( 59 )
 
