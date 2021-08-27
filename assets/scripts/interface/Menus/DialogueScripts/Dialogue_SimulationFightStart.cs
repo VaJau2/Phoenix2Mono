@@ -88,7 +88,7 @@ namespace DialogueScripts
             pony.dialogueCode = newDialogueCode;
         }
 
-        public void initiate(DialogueMenu dialogueMenu, string parameter)
+        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
             LoadParameters(dialogueMenu);
             SendPonyToPath(korporal, korporalPath, "win");

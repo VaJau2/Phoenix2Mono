@@ -3,7 +3,7 @@ namespace DialogueScripts
 {
     public class Dialogue_Trade : IDialogueScript
     {
-        public async void initiate(DialogueMenu dialogueMenu, string parameter)
+        public async void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
             if (dialogueMenu.npc is ITrader trader)
             {

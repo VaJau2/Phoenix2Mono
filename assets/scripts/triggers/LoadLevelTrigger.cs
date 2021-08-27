@@ -22,9 +22,7 @@ public class LoadLevelTrigger: TriggerBase
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
         if (SaveInventory)
         {
-            var newSaveNode = new SaveNode();
-            levelsLoader.AddChild(newSaveNode);
-            newSaveNode.Name = "SavedData";
+            var newSaveNode = GetNode<SaveNode>("/root/Main/SaveNode");
             newSaveNode.InventoryData = player.inventory.GetSaveData(false);
         }
 

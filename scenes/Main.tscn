@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/interface/menus/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/menus/SettingsMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=3]
+[ext_resource path="res://assets/scripts/utils/SaveNode.cs" type="Script" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -15,3 +16,8 @@ layer = 2
 [node name="SettingsMenu" parent="Menu" instance=ExtResource( 2 )]
 pause_mode = 2
 visible = false
+
+[node name="SaveNode" type="Node" parent="." groups=[
+"savable",
+]]
+script = ExtResource( 4 )

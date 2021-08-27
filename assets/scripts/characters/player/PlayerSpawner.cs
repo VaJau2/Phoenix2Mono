@@ -14,6 +14,7 @@ public class PlayerSpawner : Spatial
     public string clothCode = "";
 
     [Export] public bool checkSavedData = true;
+    [Export] public bool checkSavedMoney = true;
     [Export] public bool spawningInside = false;
 
     public bool loadStartItems = true;
@@ -56,21 +57,33 @@ public class PlayerSpawner : Spatial
         
         if (loadStartItems)
         {
-            //загрузка инвентаря во время перехода между уровнями
-            if (checkSavedData)
+            //загрузка сохраненного инвентаря во время перехода между уровнями
+            if (checkSavedData || checkSavedMoney)
             {
-                var savedData = GetNodeOrNull<SaveNode>("/root/Main/SavedData");
+                var savedData = GetNodeOrNull<SaveNode>("/root/Main/SaveNode");
                 if (savedData != null)
                 {
-                    player.inventory.LoadData(savedData.InventoryData);
-                    savedData.QueueFree();
-                    QueueFree();
-                    return;
+                    if (checkSavedMoney && savedData.InventoryData.Contains("money"))
+                    {
+                        var loadedMoney = savedData.InventoryData["money"].ToString();
+                        player.inventory.LoadMoney(loadedMoney);
+                    }
+                    if (checkSavedData)
+                    {
+                        player.inventory.LoadData(savedData.InventoryData);
+                        QueueFree();
+                        return;
+                    }
                 }
             }
-
+            
+            //если деньги не переносятся между уровнями, загружается стартовое значение
+            if (!checkSavedMoney)
+            {
+                player.inventory.money = moneyCount;
+            }
+            
             //загрузка стартовых вещей
-            player.inventory.money = moneyCount;
             player.inventory.LoadItems(itemCodes, ammo);
 
             //загрузка надетой на ГГ брони

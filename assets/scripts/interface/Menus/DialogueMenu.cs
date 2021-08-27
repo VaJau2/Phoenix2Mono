@@ -72,12 +72,12 @@ public class DialogueMenu : Control, IMenu
 
     }
 
-    private void initDialogueScript(string scriptName, string parameter)
+    private void initDialogueScript(string scriptName, string parameter, string key = "")
     {
         var scriptType = System.Type.GetType("DialogueScripts." + scriptName);
         if (scriptType == null) return;
         var scriptObj = System.Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
-        scriptObj?.initiate(this, parameter);
+        scriptObj?.initiate(this, parameter, key);
     }
 
     private void MoveToNode(string code)
@@ -116,12 +116,14 @@ public class DialogueMenu : Control, IMenu
                 string scriptName = tempNode["body"].ToString();
                 
                 string parameter = null;
+                string key = null;
                 if (tempNode.Contains("set")) {
                     if (tempNode["set"] is Array paramsArray)
                     {
                         if (paramsArray[0] is Dictionary paramsDict)
                         {
                             parameter = paramsDict["value"].ToString();
+                            key = paramsDict["key"].ToString();
                         }
                     }
                     else
@@ -136,13 +138,13 @@ public class DialogueMenu : Control, IMenu
                     string[] scriptNames = scriptName.Split('\n');
                     foreach (var tempScriptName in scriptNames)
                     {
-                        initDialogueScript(tempScriptName, parameter);
+                        initDialogueScript(tempScriptName, parameter, key);
                     }
                 }
                 //если указан только один скрипт
                 else
                 {
-                    initDialogueScript(scriptName, parameter);
+                    initDialogueScript(scriptName, parameter, key);
                 }
 
                 //после выполнения скрипта сразу отправляемся на следующий нод

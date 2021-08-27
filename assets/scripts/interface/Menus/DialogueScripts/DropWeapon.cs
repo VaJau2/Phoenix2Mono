@@ -2,7 +2,7 @@
 {
     public class DropWeapon : IDialogueScript
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter)
+        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
             Player player = Global.Get().player;
             string weapon = player.inventory.weapon;

@@ -4,7 +4,7 @@ namespace DialogueScripts
 {
     public class GiveItem : IDialogueScript
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter)
+        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
             if (string.IsNullOrEmpty(parameter)) return;
             Dictionary itemData = ItemJSON.GetItemData(parameter);

@@ -32,7 +32,7 @@ public class NPC : Character
     [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
     public bool ignoreDamager;
-    [Export]  public NPCState state;
+    public NPCState state;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
     private Skeleton skeleton;
@@ -86,6 +86,10 @@ public class NPC : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
+        EmitSignal(nameof(TakenDamage));
+        
+        if (IsImmortal) return;
+
         if (!ignoreDamager)
         {
             if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle)
@@ -100,12 +104,7 @@ public class NPC : Character
                 SetState(NPCState.Attack);
             }
         }
-
-        if (IsImmortal)
-        {
-            EmitSignal(nameof(TakenDamage));
-            return;
-        }
+        
 
         if (shapeID != 0) {
             damage = (int)(damage * 1.5f);

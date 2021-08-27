@@ -6,7 +6,7 @@ namespace DialogueScripts
     //(если нет места, предмет положится в сумку
     public class TakeItem: IDialogueScript
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter)
+        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
             if (string.IsNullOrEmpty(parameter)) return;
             Dictionary itemData = ItemJSON.GetItemData(parameter);

@@ -187,7 +187,7 @@ public class PlayerInventory {
         }
 
         var weaponButton = GetWearButton("weapon");
-        return new Dictionary()
+        return new Dictionary
         {
             {"money", money},
             {"weapon", weapon},
@@ -207,6 +207,11 @@ public class PlayerInventory {
         WearItem(item, false);
         var wearButton = GetWearButton(button);
         wearButton.SetItem(item);
+    }
+
+    public void LoadMoney(string loadedMoney)
+    {
+        money = Convert.ToInt32(loadedMoney);
     }
     
     public void LoadData(Dictionary data)
@@ -234,8 +239,8 @@ public class PlayerInventory {
         }
 
         //загрузка денег и надетых вещей
-        money = Convert.ToInt32(data["money"]);
-        
+        LoadMoney(data["money"].ToString());
+
         weapon = data["weapon"].ToString();
         cloth = data["cloth"].ToString();
         artifact = data["artifact"].ToString();

@@ -59,6 +59,13 @@ public class Table : VBoxContainer
             foundButton.Text = GetLine(fileData.name, fileData.date, 
                 InterfaceLang.GetPhrase("levels", "levelNames",fileData.level));
         }
+
+        for (int i = 0; i < filesArray.Count; i++)
+        {
+            if (filesArray[i].name != fileData.name) continue;
+            filesArray[i] = fileData;
+            break;
+        }
     }
 
     //находит первую кнопку в таблице по названию сохранения и выделяет её

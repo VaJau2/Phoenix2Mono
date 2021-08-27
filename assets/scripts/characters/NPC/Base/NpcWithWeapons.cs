@@ -186,6 +186,8 @@ public class NpcWithWeapons: NPC
     
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
+        if (IsImmortal) return;
+        
         base.TakeDamage(damager, damage, shapeID);
         coverTimer -= damage / 10;
         if (string.IsNullOrEmpty(weaponCode))
