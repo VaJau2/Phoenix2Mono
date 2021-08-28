@@ -19,16 +19,18 @@ public class TerminalReadMode: TerminalMode {
     public TerminalReadMode(Terminal terminal, string fileName = null): 
     base(terminal) { 
         //добавляем в список только текстовые файлы
-        foreach(string tempCode in terminal.files) {
-            Dictionary fileData = InterfaceLang.GetPhrasesSection("files", tempCode);
-            textFiles.Add(tempCode);
-            
-            if (fileName != null) {
+        if (terminal.files != null)
+        {
+            foreach (string tempCode in terminal.files)
+            {
+                Dictionary fileData = InterfaceLang.GetPhrasesSection("files", tempCode);
+                textFiles.Add(tempCode);
+
+                if (fileName == null) continue;
                 string tempName = fileData["name"].ToString();
-                if (tempName == fileName) {
-                    this.fileCode = tempCode;
-                    this.fileName = tempName;
-                }
+                if (tempName != fileName) continue;
+                this.fileCode = tempCode;
+                this.fileName = tempName;
             }
         }
 

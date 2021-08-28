@@ -372,6 +372,24 @@
         "heal": "5",
         "sound": "eating1"
     },
+    "sparkle-cola": {
+        "name": "Спаркл-кола",
+        "description": "Холодная газировка с морковным вкусом",
+        "type": "food",
+        "icon": "sparkle-cola",
+        "price": "40",
+        "heal": "15",
+        "sound": "colaDrink"
+    },
+    "apple": {
+        "name": "Яблоко",
+        "description": "Сочный и полезный фрукт",
+        "type": "food",
+        "icon": "apple",
+        "price": "20",
+        "heal": "15",
+        "sound": "eating1"
+    },
     "pie": {
         "name": "Яблочный пирог",
         "description": "Шедевр кулинарного яблочного искусства",

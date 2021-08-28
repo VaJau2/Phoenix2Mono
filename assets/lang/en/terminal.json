@@ -50,6 +50,10 @@
         ]
     },
 
+    "dir": {
+        "isEmpty": "There is no any file"
+    },
+
     "door": {
         "isEmpty": "There are no doors attached to the terminal",
         "opened": " | unlocked",

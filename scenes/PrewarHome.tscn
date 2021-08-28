@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=164 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -94,6 +94,10 @@
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=92]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=93]
 [ext_resource path="res://objects/characters/ponies/old_trader.tscn" type="PackedScene" id=94]
+[ext_resource path="res://objects/props/furniture/bag.tscn" type="PackedScene" id=95]
+[ext_resource path="res://assets/audio/futniture/bagClose.wav" type="AudioStream" id=96]
+[ext_resource path="res://assets/audio/futniture/bagOpen.wav" type="AudioStream" id=97]
+[ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=98]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -919,7 +923,7 @@ IsImmortal = true
 
 [node name="old_trader" parent="npc" instance=ExtResource( 94 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.4232, -100.374, 21.2447 )
-dialogueCode = "trade"
+startItemCodes = [ "sparkle-cola", "maffin", "maffin", "apple" ]
 
 [node name="terrain" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21084, 0, -22.013 )
@@ -932,7 +936,7 @@ transform = Transform( 8.90769, 0, 0, 0, 8.90769, 0, 0, 0, 8.90769, -117.95, -0.
 shape = SubResource( 1 )
 
 [node name="terrain" type="GridMap" parent="terrain"]
-transform = Transform( 1.7, 0.000119011, -0.000129675, -0.000119009, 1.7, 2.67149e-05, 0.000129677, -2.67058e-05, 1.7, 0, -1.986, -22.1951 )
+transform = Transform( 1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, -1.986, -22.1951 )
 mesh_library = ExtResource( 15 )
 collision_layer = 0
 collision_mask = 0
@@ -1171,6 +1175,48 @@ transform = Transform( -1.22343e-07, 0, 2.13965, 0, 1.97501, 0, -2.79888, 0, -9.
 
 [node name="bush3" parent="terrain/props/bushes" instance=ExtResource( 78 )]
 transform = Transform( -1.22343e-07, 0, 2.13965, 0, 1.97501, 0, -2.79888, 0, -9.35271e-08, -54.4181, -0.814394, 68.6256 )
+
+[node name="bags" type="Spatial" parent="terrain/props"]
+
+[node name="bag" type="StaticBody" parent="terrain/props/bags" groups=[
+"savable",
+] instance=ExtResource( 95 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.1591, -0.0987163, -88.4743 )
+collision_layer = 2
+collision_mask = 0
+physics_material_override = ExtResource( 93 )
+script = ExtResource( 98 )
+OpenSound = ExtResource( 97 )
+CloseSound = ExtResource( 96 )
+isBag = true
+SpawnRandomItems = true
+chestCode = "bag"
+startAmmoCount = {
+}
+
+[node name="bag2" parent="terrain/props/bags" instance=ExtResource( 95 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2743, -0.273733, 31.67 )
+SpawnRandomItems = true
+startAmmoCount = {
+}
+
+[node name="bag3" parent="terrain/props/bags" instance=ExtResource( 95 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1412, 2.35943, 157.287 )
+SpawnRandomItems = true
+startAmmoCount = {
+}
+
+[node name="bag4" parent="terrain/props/bags" instance=ExtResource( 95 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -154.033, -0.157109, 126.487 )
+SpawnRandomItems = true
+startAmmoCount = {
+}
+
+[node name="bag5" parent="terrain/props/bags" instance=ExtResource( 95 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.4775, -0.157109, -192.837 )
+SpawnRandomItems = true
+startAmmoCount = {
+}
 
 [node name="background" type="Spatial" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9195 )
@@ -2009,13 +2055,10 @@ shape = SubResource( 64 )
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
+maxItemsCount = 3
 moneyChance = 0.4
-maxMoneyCount = 40
-itemCodes = [ "mentats", "dash", "maffin", "ammoEnergy", "ammo32", "pencil", "book1", "heal-potion", "laserPistol", "plasmaPistol" ]
-ammoCount = {
-"ammo32": 20,
-"ammoEnergy": 20
-}
+maxMoneyCount = 90
+itemCodes = [ "sparkle-cola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "heal-potion", "apple" ]
 
 [node name="Navigation" type="Navigation" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )

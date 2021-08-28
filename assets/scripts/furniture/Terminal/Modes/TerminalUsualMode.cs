@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -127,12 +128,11 @@ public class TerminalUsualMode: TerminalMode {
     private string GetFilesList()
     {
         string result = "";
-        foreach(string fileCode in terminal.files) {
-            Dictionary fileData = InterfaceLang.GetPhrasesSection("files", fileCode);
-            string fileName = fileData["name"].ToString();
-            result += " - " + fileName + "\n";
-        }
-        return result;
+        return terminal.files == null 
+            ? InterfaceLang.GetPhrase("terminal", "dir", "isEmpty") 
+            : terminal.files.Select(fileCode => InterfaceLang.GetPhrasesSection("files", fileCode))
+                .Select(fileData => fileData["name"].ToString())
+                .Aggregate(result, (current, fileName) => current + (" - " + fileName + "\n"));
     }
    
     private bool IsLetterKey(uint keyCode)

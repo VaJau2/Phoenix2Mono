@@ -488,6 +488,7 @@ ammoCount = {
 [node name="cookie" parent="npc" instance=ExtResource( 74 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3566, -99.6825, 105.787 )
 dialogueCode = "talk"
+itemCodes = [ "sparkle-cola", "sparkle-cola" ]
 
 [node name="lucky_diamond" parent="npc" instance=ExtResource( 47 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -23.8954, -98.6917, -65.087 )
@@ -1941,6 +1942,7 @@ doorCode = ""
 [node name="fridge" parent="rooms/stolovaya/props" instance=ExtResource( 81 )]
 transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 7.80683, 1.94347, 2.27048 )
 SpawnRandomItems = true
+startItemCodes = [ "sparkle-cola" ]
 
 [node name="fridge2" parent="rooms/stolovaya/props" instance=ExtResource( 81 )]
 transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 7.80683, 1.94347, 5.658 )
@@ -2333,7 +2335,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.82566
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra" ]
+itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola" ]
 ammoCount = {
 "ammo20": 20,
 "ammo307": 10,

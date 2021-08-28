@@ -371,6 +371,24 @@
         "heal": "5",
         "sound": "eating1"
     },
+    "sparkle-cola": {
+        "name": "Sparkle-Cola",
+        "description": "Cold soda with carrot flavor",
+        "type": "food",
+        "icon": "sparkle-cola",
+        "price": "40",
+        "heal": "15",
+        "sound": "colaDrink"
+    },
+    "apple": {
+        "name": "Apple",
+        "description": "Juicy and healthy fruit",
+        "type": "food",
+        "icon": "apple",
+        "price": "20",
+        "heal": "15",
+        "sound": "eating1"
+    },
     "pie": {
         "name": "Apple Pie",
         "description": "A masterpiece of culinary apple art",
