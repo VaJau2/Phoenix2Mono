@@ -90,6 +90,14 @@
         "price": "10",
         "questItem": "true"
     },
+    "bellgatesPaper": {
+        "name": "Bellgates's letter",
+        "description": "A letter that somepony planted near your house. How did he figure out where you live?",
+        "type": "note",
+        "icon": "note",
+        "text": "bellgatesPaper",
+        "price": "10"
+    },
 
 
     "revolver32": {

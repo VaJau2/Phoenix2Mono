@@ -91,6 +91,14 @@
         "price": "10",
         "questItem": "true"
     },
+    "bellgatesPaper": {
+        "name": "Письмо от Бельгетса",
+        "description": "Письмо, которое кто-то подложил у твоего дома. Как он вычислил, где ты живешь?",
+        "type": "note",
+        "icon": "note",
+        "text": "bellgatesPaper",
+        "price": "10"
+    },
 
 
     "revolver32": {
