@@ -1,1 +1,166 @@
-{"nodes":{"M1":{"kind":"dialogue","root_node":false,"body":"Это, конечно, хорошо, что ты здесь, живая и здоровая. Но я не могу не задать один вопрос..","speaker":"Мама","opposite":"Страйкли","options":[{"body":"answer","next":"M1(1)"}]},"M1(1)":{"kind":"dialogue","root_node":false,"body":"Что за вопрос? ","speaker":"Страйкли","opposite":"Мама","next":"M2"},"M2":{"kind":"dialogue","root_node":false,"body":"Ты же не скрываешься?","speaker":"Мама","opposite":"Страйкли","options":[{"body":"answer","next":"M2(1)"}]},"M2(1)":{"kind":"dialogue","root_node":false,"body":"Нет, конечно, ты что! [показать документ об отпуске]","speaker":"Страйкли","opposite":"Мама","next":"M2(1.1)"},"M2(1.1)":{"kind":"narration","root_node":false,"body":"GiveItem","set":[{"key":"itemCode","op":"set","value":"vacationNote"}],"next":"M3"},"M3":{"kind":"dialogue","root_node":false,"body":"Ну, ладно… “Блестящим”? Страйкли, тебе надо было показать мне это письмо с самого начала! Какая же ты у меня молодец! Я горжусь тобой!","speaker":"Мама","opposite":"Страйкли","options":[{"body":"answer","next":"M3(1)"}]},"M3(1)":{"kind":"dialogue","root_node":false,"body":"Спасибо","speaker":"Страйкли","opposite":"Мама","next":"M4"},"M4":{"kind":"dialogue","root_node":false,"body":"Вот бы твой отец это увидел. Ты не против, если я это оставлю у себя?","speaker":"Мама","opposite":"Страйкли","options":[{"body":"answer","next":"M4(1)"}]},"M4(1)":{"kind":"dialogue","root_node":false,"body":"Да, конечно. Мне это все равно уже не нужно","speaker":"Страйкли","opposite":"Мама","next":"M5"},"M5":{"kind":"dialogue","root_node":false,"body":"Спасибо. Сохраню, чтобы Тандер тоже увидел.","speaker":"Мама","opposite":"Страйкли","options":[{"body":"answer","next":"M5(1)"}]},"M5(1)":{"kind":"dialogue","root_node":false,"body":"Ну ладно, мне пора спать. Спокойной ночи. ","speaker":"Страйкли","opposite":"Мама","next":"M6"},"M6":{"kind":"dialogue","root_node":false,"body":"И тебе.","speaker":"Мама","opposite":"Страйкли"}},"speakers":{"Страйкли":{"color":{"r":0,"g":0,"b":0,"a":0}},"Мама":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Это, конечно, хорошо, что ты здесь, живая и здоровая. Но я не могу не задать один вопрос..",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что за вопрос? ",
+      "speaker": "Страйкли",
+      "opposite": "Мама",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты же не скрываешься?",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, конечно, ты что! [показать документ об отпуске]",
+      "speaker": "Страйкли",
+      "opposite": "Мама",
+      "next": "M2(1.1)"
+    },
+    "M2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "GiveItem",
+      "set": [
+        {
+          "key": "itemCode",
+          "op": "set",
+          "value": "vacationNote"
+        }
+      ],
+      "next": "M3"
+    },
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну, ладно… “Блестящим”? Страйкли, тебе надо было показать мне это письмо с самого начала! Какая же ты у меня молодец! Я горжусь тобой!",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо",
+      "speaker": "Страйкли",
+      "opposite": "Мама",
+      "next": "M4"
+    },
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вот бы твой отец это увидел. Ты не против, если я это оставлю у себя?",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M4(1)"
+        }
+      ]
+    },
+    "M4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да, конечно. Мне это все равно уже не нужно",
+      "speaker": "Страйкли",
+      "opposite": "Мама",
+      "next": "M5"
+    },
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо. Сохраню, чтобы Тандер тоже увидел.",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M5(1)"
+        }
+      ]
+    },
+    "M5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну ладно, мне пора спать. Спокойной ночи. ",
+      "speaker": "Страйкли",
+      "opposite": "Мама",
+      "next": "M6"
+    },
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "И тебе.",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
+      "next": "M7"
+    },
+    "M7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "M8"
+    },
+    "M8": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "activateLeaveLocation"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Мама": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

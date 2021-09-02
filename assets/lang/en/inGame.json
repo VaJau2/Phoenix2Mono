@@ -42,7 +42,8 @@
         "terminal": " - manage",
         "exitLocation": " - leave location",
         "sit": " - sit here",
-        "putSuitcase": " - put suitcase"
+        "putSuitcase": " - put suitcase",
+        "sleep": " - sleep"
     },
 
     "hints": {

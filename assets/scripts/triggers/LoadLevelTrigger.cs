@@ -6,6 +6,8 @@ public class LoadLevelTrigger: TriggerBase
 {
     [Export] public int NewLevelNum;
     [Export] public bool SaveInventory = true;
+    [Export] public bool SaveOldInventorySave = false;
+    [Export] public string HintCode = "exitLocation";
     
     private static Player player => Global.Get().player;
 
@@ -16,14 +18,19 @@ public class LoadLevelTrigger: TriggerBase
 
     public override void _Process(float delta)
     {
-        player.Camera.ShowHint("exitLocation", false);
+        player.Camera.ShowHint(HintCode, false);
         
         if (!Input.IsActionJustPressed("use")) return;
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
+        var saveNode = GetNode<SaveNode>("/root/Main/SaveNode");
+        
+        if (SaveOldInventorySave)
+        {
+           saveNode.CloneSaveData(levelsLoader);
+        }
         if (SaveInventory)
         {
-            var newSaveNode = GetNode<SaveNode>("/root/Main/SaveNode");
-            newSaveNode.InventoryData = player.inventory.GetSaveData(false);
+            saveNode.InventoryData = player.inventory.GetSaveData(false);
         }
 
         levelsLoader.LoadLevel(NewLevelNum);

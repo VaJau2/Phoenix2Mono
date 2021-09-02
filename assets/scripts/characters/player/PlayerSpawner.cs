@@ -71,6 +71,7 @@ public class PlayerSpawner : Spatial
                     if (checkSavedData)
                     {
                         player.inventory.LoadData(savedData.InventoryData);
+                        savedData.CheckClonedSaveData();
                         QueueFree();
                         return;
                     }

@@ -12,6 +12,10 @@
         "killAllEnemies": "Kill all enemies",
         "saveDusk": "Save Dusk",
         "takeDusk": "Take Dusk to scientist",
-        "takeVacation": "Spend a vacation with your family"
+        "takeVacation": "Spend a vacation with your family",
+        "putSuitcase": "Leave suitcase on your bed",
+        "followWindy": "Follow Windy",
+        "eatPie": "Taste the pie",
+        "goToSleep": "Go to sleep"
     }
 }
