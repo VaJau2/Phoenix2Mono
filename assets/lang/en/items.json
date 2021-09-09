@@ -98,6 +98,14 @@
         "text": "bellgatesPaper",
         "price": "10"
     },
+    "firewood": {
+        "name": "Firewood",
+        "description": "A small bundle of firewood. Enough to light a fireplace",
+        "type": "staff",
+        "icon": "firewood",
+        "price": "20",
+        "questItem": "true"
+    },
 
 
     "revolver32": {

@@ -71,6 +71,14 @@
         "price": "300",
         "questItem": "true"
     },
+    "firewood": {
+        "name": "Дрова для камина",
+        "description": "Небольшая связка дров. Хватит, чтобы растопить камин",
+        "type": "staff",
+        "icon": "firewood",
+        "price": "20",
+        "questItem": "true"
+    },
 
 
     "agent1Note": {

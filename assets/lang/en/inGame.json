@@ -43,6 +43,7 @@
         "exitLocation": " - leave location",
         "sit": " - sit here",
         "putSuitcase": " - put suitcase",
+        "putFirewood": " - put firewood",
         "sleep": " - sleep",
         "pick": " - pick"
     },
