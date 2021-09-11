@@ -1,0 +1,166 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's certainly good that you're here, alive and well. But I can't help but ask one question..",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What's the question?",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You are not hiding here, right?",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, of course not! [show the document about the vacation]",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M2(1.1)"
+    },
+    "M2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "GiveItem",
+      "set": [
+        {
+          "key": "itemCode",
+          "op": "set",
+          "value": "vacationNote"
+        }
+      ],
+      "next": "M3"
+    },
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright… “brilliant”? Strikely, you should have shown me this letter from the very beginning! What a good pony you are! I'm so proud of you!",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thanks",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M4"
+    },
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I wish your father could see this. Do you mind if I keep this?",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M4(1)"
+        }
+      ]
+    },
+    "M4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Of course. I don't need it anyway",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M5"
+    },
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thank you. I'll keep it, so Thunder could see it.",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M5(1)"
+        }
+      ]
+    },
+    "M5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well, it's time for me to go to bed. Good night. ",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M6"
+    },
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You too.",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "next": "M7"
+    },
+    "M7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "M8"
+    },
+    "M8": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "activateLeaveLocation"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Mother": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

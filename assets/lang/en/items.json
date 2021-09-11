@@ -422,7 +422,7 @@
         "type": "meds",
         "icon": "heal-potion",
         "price": "50",
-        "effect": "mana",
+        "medsEffect": "heal",
         "sound": "heal-potion"
     },
     "mana-potion": {

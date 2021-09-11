@@ -1,0 +1,236 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Strikely! What a pleasant surprise! Been a long time.",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi, mom.",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "So how long you here?",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M2(2)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "For two weeks.",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M3"
+    },
+    "M2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "For long.",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M4"
+    },
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Not for very long. However, okay. The main thing is that you are with us.",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And how much is this in days?",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "So, how's Dad?",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M5"
+    },
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Just recently we received a letter from him. He's fine. Fights againts zebras with other pegasuses. And how are you?",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M5(1)"
+        }
+      ]
+    },
+    "M5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I haven't seen zebras for a long time. All we've been doing lately is unraveling various intrigues.",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M6"
+    },
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It must be very interesting. In addition, it is far from the front and safer. ",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M6(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M6(2)"
+        }
+      ]
+    },
+    "M6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Maybe",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M7"
+    },
+    "M6(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "In the front it will be much more interesting",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M8"
+    },
+    "M7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright. Make yourself comfortable. Do you also remember where your room is?",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M7(1)"
+        }
+      ]
+    },
+    "M7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Second floor, left door",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M10"
+    },
+    "M8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well, we're not in some kind of game, right? There is nothing but death at the front. I won't find a place for myself if they send you there.",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M8(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M8(2)"
+        }
+      ]
+    },
+    "M8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You right",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M7"
+    },
+    "M8(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's not better here. Sometimes it can also be dangerous",
+      "speaker": "Skrikely",
+      "opposite": "Mother",
+      "next": "M9"
+    },
+    "M9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What can we do. In our time, it is generally difficult to find a job without risking your life. We can only be glad that you are still alive.",
+      "speaker": "Mother",
+      "opposite": "Skrikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M8(1)"
+        }
+      ]
+    },
+    "M10": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Skrikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Mother": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

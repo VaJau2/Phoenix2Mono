@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "..?",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(2)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good morning, sleepyhead.",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B2"
+    },
+    "B1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's time for me to go.",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B3"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Morning. Did I miss something?",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B2(1)"
+        }
+      ]
+    },
+    "B2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, I just came to say goodbye",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B4"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What? No! You promised that you would be with us longer! ",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B3(1)"
+        }
+      ]
+    },
+    "B3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll be back soon, I promise.",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B6"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Say goodbye? Are you going somewhere?",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B4(1)"
+        }
+      ]
+    },
+    "B4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll be quick. Back and forth. A 20-minute adventure, you know?",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B5"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, I don't...",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B5(1)"
+        }
+      ]
+    },
+    "B5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll be back soon, I promise.",
+      "speaker": "Strikely",
+      "opposite": "Windy Cloud",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "All right… good luck out there.",
+      "speaker": "Windy Cloud",
+      "opposite": "Strikely"
+    }
+  },
+  "speakers": {
+    "Windy Cloud": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

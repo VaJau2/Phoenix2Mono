@@ -542,7 +542,7 @@ shape = SubResource( 9 )
 transform = Transform( 5.68658, 0, 0, 0, 5.68658, 0, 0, 0, 5.68658, 32.1721, 9.70319, 40.5555 )
 
 [node name="curtain2" parent="terrain" instance=ExtResource( 35 )]
-transform = Transform( -5.68658, 0, -4.97137e-07, 0, 5.68658, 0, 4.97137e-07, 0, -5.68658, 48.6396, 9.70319, 40.5867 )
+transform = Transform( -4.94013, 0, -4.3188e-07, 0, 5.68658, 0, 4.97137e-07, 0, -5.68658, 48.4859, 9.70319, 40.5867 )
 
 [node name="stair" type="StaticBody" parent="terrain"]
 transform = Transform( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 1.381, 1.809, -3.674 )

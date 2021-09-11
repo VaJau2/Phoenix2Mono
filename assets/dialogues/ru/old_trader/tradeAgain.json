@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Привет еще раз. Хочешь поторговать?",
+      "speaker": "Торговец",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T1(2)"
+        }
+      ]
+    },
+    "T1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да. Покажи, что есть на продажу.",
+      "speaker": "Страйкли",
+      "opposite": "Торговец",
+      "next": "T3"
+    },
+    "T1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, пока не хочу.",
+      "speaker": "Страйкли",
+      "opposite": "Торговец"
+    },
+    "T3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade"
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Торговец": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

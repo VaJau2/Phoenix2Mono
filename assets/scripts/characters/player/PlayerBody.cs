@@ -252,7 +252,9 @@ public class PlayerBody : Spatial
 
     public void MakeSitting(bool sitting)
     {
-        if (sitting) {
+        if (sitting)
+        {
+            SetRotZero();
             playback.Travel("Sit");
         } else {
             playback.Travel("Idle1");

@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thanks. Put it in the fireplace, I'll light it later.",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Mom, a letter has arrived. I have to go again",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M1(1.1)"
+    },
+    "M1(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "give_letter",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well … I understand.",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M2(2)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes… I'll be back soon, I promise. Bye.",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M6"
+    },
+    "M2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Or maybe I should stay with you? This is not so necessary… ",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M3"
+    },
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Have you already forgotten what you promised your father?",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No I don't.",
+      "speaker": "Strikely",
+      "opposite": "Mother",
+      "next": "M4"
+    },
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Then go and do everything in your power to end this war. ",
+      "speaker": "Mother",
+      "opposite": "Strikely",
+      "next": "M5"
+    },
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And don't forget your stuff. Love you. ",
+      "speaker": "Mother",
+      "opposite": "Strikely"
+    },
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't forget your stuff before leaving. Love you. ",
+      "speaker": "Mother",
+      "opposite": "Strikely"
+    }
+  },
+  "speakers": {
+    "Mother": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

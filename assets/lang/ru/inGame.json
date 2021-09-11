@@ -68,5 +68,9 @@
         "tradeTerminal": "Торговый терминал",
         "mrHandy": "Мистер помощник",
         "ponyTrader": "Торговец"
+    },
+    
+    "labels": {
+        "nextWeek": "Спустя неделю..."
     }
 }

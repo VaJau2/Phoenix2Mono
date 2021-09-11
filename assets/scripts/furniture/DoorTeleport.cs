@@ -11,11 +11,12 @@ public class DoorTeleport : StaticBody
     [Export] private NodePath otherDoorPath;
 
     [Export] private AudioStreamSample openSound;
-    private DoorTeleport otherDoor;
+    public DoorTeleport otherDoor { get; private set; }
     AudioStreamPlayer3D audi;
     Spatial newPlace, oldLocation, newLocation;
 
     private static Player player => Global.Get().player;
+    private CheckFall checkFall;
 
     public override void _Ready()
     {
@@ -24,6 +25,7 @@ public class DoorTeleport : StaticBody
         oldLocation = GetNode<Spatial>(oldLocationPath);
         newLocation = GetNode<Spatial>(newLocationPath);
         otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
+        checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
         SetProcess(false);
     }
 
@@ -66,6 +68,10 @@ public class DoorTeleport : StaticBody
             oldLocation.Visible = false;
             newLocation.Visible = true;
         }
+
+        if (checkFall == null) return;
+        checkFall.tempDoorTeleport = this;
+        checkFall.inside = Inside;
     }
 
     public void _on_body_entered(Node body)

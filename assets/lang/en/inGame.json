@@ -68,5 +68,9 @@
         "tradeTerminal": "Trade terminal",
         "mrHandy": "Mister Handy",
         "ponyTrader": "Trader"
+    },
+    
+    "labels": {
+        "nextWeek": "A week later..."
     }
 }
