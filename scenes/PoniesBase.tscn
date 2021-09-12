@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=149 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -103,6 +103,9 @@
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=101]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
 [ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=103]
+[ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=104]
+[ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=105]
+[ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=106]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )
@@ -744,6 +747,9 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 40.8094
 [node name="truck" parent="terrain/props/cars" instance=ExtResource( 38 )]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 44.1233, -2.25424, -10.5137 )
 
+[node name="car_future" parent="terrain/props/cars" instance=ExtResource( 105 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.6878, -0.324089, -50.8369 )
+
 [node name="light" type="Spatial" parent="terrain/props"]
 
 [node name="Light" parent="terrain/props/light" instance=ExtResource( 32 )]
@@ -882,6 +888,18 @@ newPlacePath = NodePath("../../../../rooms/kazarma/spawn")
 oldLocationPath = NodePath("../../..")
 newLocationPath = NodePath("../../../../rooms/kazarma")
 otherDoorPath = NodePath("../../../../rooms/kazarma/DoorTeleport4")
+
+[node name="pulovsky" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
+transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 82.2422, 0.132471, -13.9755 )
+
+[node name="pulovsky2" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
+transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 92.2095, 0.132471, -13.9755 )
+
+[node name="pulovsky3" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
+transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 62.028, 0.132471, -13.9755 )
+
+[node name="pulovsky4" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
+transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 71.9953, 0.132471, -13.9755 )
 
 [node name="towers" type="Spatial" parent="terrain/props"]
 
@@ -1158,6 +1176,9 @@ transparent = false
 shaded = true
 double_sided = false
 texture = ExtResource( 48 )
+
+[node name="fusion_air" parent="rooms/kpp" instance=ExtResource( 104 )]
+transform = Transform( -1.1034e-07, 0, 2.52429, 0, 2.52429, 0, -2.52429, 0, -1.1034e-07, -4.85427, 2.8166, 8.20242 )
 
 [node name="kp" type="Spatial" parent="rooms" groups=[
 "savable",
@@ -1447,6 +1468,12 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.37488
 files = PoolStringArray( "lostArmor", "terrorists", "terrorists2", "tradeRobot" )
 doorsPath = [ NodePath("../../doors/door3"), NodePath("../../doors/door") ]
 
+[node name="fusion_air" parent="rooms/kp/props" instance=ExtResource( 104 )]
+transform = Transform( -1.1034e-07, 0, -2.52429, 0, 2.52429, 0, 2.52429, 0, -1.1034e-07, 10.1768, 2.36053, 5.05767 )
+
+[node name="fusion_air2" parent="rooms/kp/props" instance=ExtResource( 104 )]
+transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 7.2969, 2.80017, -10.1211 )
+
 [node name="notes" type="Spatial" parent="rooms/kp"]
 
 [node name="note100" type="Sprite3D" parent="rooms/kp/notes"]
@@ -1653,6 +1680,9 @@ material/1 = null
 [node name="CollisionShape" type="CollisionShape" parent="rooms/storage/shelf2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05972, 0 )
 shape = SubResource( 33 )
+
+[node name="fusion_air" parent="rooms/storage" instance=ExtResource( 104 )]
+transform = Transform( 2.52429, 0, 0, 0, 2.52429, 0, 0, 0, 2.52429, -3.46054, -7.14153, -31.7056 )
 
 [node name="stolovaya" type="Spatial" parent="rooms" groups=[
 "savable",
@@ -1974,6 +2004,9 @@ transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 7.58245, 2.52104, -15
 [node name="colaBottle2" parent="rooms/stolovaya/props" instance=ExtResource( 84 )]
 transform = Transform( -6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 7.92858, 2.52104, -16.3954 )
 
+[node name="fusion_air" parent="rooms/stolovaya/props" instance=ExtResource( 104 )]
+transform = Transform( -1.1034e-07, 0, -2.52429, 0, 2.52429, 0, 2.52429, 0, -1.1034e-07, 18.7878, 2.49876, -7.93665 )
+
 [node name="plakats" type="Spatial" parent="rooms/stolovaya"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72132, 0, 11.093 )
 
@@ -2224,6 +2257,9 @@ mesh = SubResource( 17 )
 material/0 = null
 
 [node name="props" type="Spatial" parent="rooms/kazarma"]
+
+[node name="fusion_air" parent="rooms/kazarma/props" instance=ExtResource( 104 )]
+transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, -1.27651, 3.04097, 20.7298 )
 
 [node name="bed-2" parent="rooms/kazarma/props" instance=ExtResource( 89 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.1467, 1.05231, -18.347 )

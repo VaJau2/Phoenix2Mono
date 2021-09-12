@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -40,6 +40,11 @@
 [ext_resource path="res://assets/audio/music/street.ogg" type="AudioStream" id=38]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=39]
 [ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=40]
+[ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=41]
+[ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=42]
+[ext_resource path="res://objects/props/hydrant.tscn" type="PackedScene" id=43]
+[ext_resource path="res://objects/props/buildings/ostanovka.tscn" type="PackedScene" id=44]
+[ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=45]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -286,8 +291,14 @@ shape = SubResource( 5 )
 [node name="house" parent="terrain/props/houses" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9964, -0.453678, -154.663 )
 
+[node name="fusion_air" parent="terrain/props/houses/house" instance=ExtResource( 42 )]
+transform = Transform( -2.86737, 0, -2.50673e-07, 0, 2.86737, 0, 2.50673e-07, 0, -2.86737, 11.6399, 3.87871, -14.3679 )
+
 [node name="house11" parent="terrain/props/houses" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 37.1483, -0.49048, -0.886333 )
+
+[node name="fusion_air" parent="terrain/props/houses/house11" instance=ExtResource( 42 )]
+transform = Transform( -3.61351, 0, -3.15903e-07, 0, 3.61351, 0, 3.15903e-07, 0, -3.61351, 9.63006, 3.48763, -14.6249 )
 
 [node name="house2" parent="terrain/props/houses" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3735, -0.550278, -130.644 )
@@ -345,6 +356,9 @@ transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -9.45423 )
 [node name="Light3" parent="terrain/props/lights" instance=ExtResource( 13 )]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -71.4542 )
 
+[node name="hydrant" parent="terrain/props/lights/Light3" instance=ExtResource( 43 )]
+transform = Transform( 2.50372, 0, 0, 0, 2.50372, 0, 0, 0, 2.50372, 0.0833645, -0.452236, -5.56851 )
+
 [node name="Light4" parent="terrain/props/lights" instance=ExtResource( 13 )]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -109 )
 
@@ -371,6 +385,9 @@ transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, 26.8458 )
 
 [node name="Light10" parent="terrain/props/lights" instance=ExtResource( 13 )]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 59.8648, -0.291404, -101.422 )
+
+[node name="hydrant" parent="terrain/props/lights/Light10" instance=ExtResource( 43 )]
+transform = Transform( 2.504, 0, 0, 0, 2.504, 0, 0, 0, 2.504, 5.60963, -0.140702, 0 )
 
 [node name="Light11" parent="terrain/props/lights" instance=ExtResource( 13 )]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 119.277, -0.291404, -101.339 )
@@ -474,6 +491,19 @@ autoplay = true
 max_distance = 500.0
 bus = "Audio"
 
+[node name="car_future" parent="terrain/props/cars" instance=ExtResource( 41 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.356, -0.178429, -99.6749 )
+
+[node name="rainDrops7" type="AudioStreamPlayer3D" parent="terrain/props/cars/car_future"]
+transform = Transform( 2.50344e-07, 0, 1, 0, 1, 0, -1, 0, 2.50344e-07, 0.958622, 4.53613, 0 )
+stream = ExtResource( 24 )
+unit_db = 5.0
+unit_size = 4.0
+max_db = 0.0
+autoplay = true
+max_distance = 500.0
+bus = "Audio"
+
 [node name="benches" type="Node" parent="terrain/props"]
 
 [node name="Bench" parent="terrain/props/benches" instance=ExtResource( 12 )]
@@ -522,6 +552,20 @@ transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1,
 SpawnRandomItems = true
 startAmmoCount = {
 }
+
+[node name="ostanovka" parent="terrain/props" instance=ExtResource( 44 )]
+transform = Transform( -1.44112e-07, 0, -3.29691, 0, 3.7, 0, 3.7, 0, -1.61732e-07, 20.8264, -0.240612, -133.339 )
+
+[node name="pulovsky4" type="Node" parent="terrain/props"]
+
+[node name="pulovsky" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 94.4729, -0.338154, -61.8438 )
+
+[node name="pulovsky2" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 103.78, -0.338154, -61.8438 )
+
+[node name="pulovsky3" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 113.918, -0.338153, -61.8453 )
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 11 )

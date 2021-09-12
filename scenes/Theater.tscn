@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://assets/materials/environments/theater.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://objects/props/furniture/table.tscn" type="PackedScene" id=71]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=72]
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
+[ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=74]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -571,6 +572,15 @@ mesh = SubResource( 12 )
 material/0 = null
 
 [node name="props" type="Spatial" parent="terrain"]
+
+[node name="fusion_air" parent="terrain/props" instance=ExtResource( 74 )]
+transform = Transform( 2.52429, 0, 0, 0, 2.52429, 0, 0, 0, 2.52429, 30.4958, 8.79286, -6.74028 )
+
+[node name="fusion_air2" parent="terrain/props" instance=ExtResource( 74 )]
+transform = Transform( -1.1034e-07, 0, 2.52429, 0, 2.52429, 0, -2.52429, 0, -1.1034e-07, -63.3765, 8.79286, -15.1647 )
+
+[node name="fusion_air3" parent="terrain/props" instance=ExtResource( 74 )]
+transform = Transform( -1.1034e-07, 0, -2.52429, 0, 2.52429, 0, 2.52429, 0, -1.1034e-07, 2.47432, -2.38339, 10.5874 )
 
 [node name="Bench" parent="terrain/props" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.30805, -5.49234, 29.8199 )
