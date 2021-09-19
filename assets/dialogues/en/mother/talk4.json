@@ -108,6 +108,12 @@
     "M7": {
       "kind": "narration",
       "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "M8"
+    },
+    "M8": {
+      "kind": "narration",
+      "root_node": false,
       "body": "ActivateTrigger",
       "set": [
         {

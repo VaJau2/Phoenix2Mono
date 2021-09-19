@@ -73,12 +73,10 @@ public class InventoryMenu : Control, IMenu
 
     public void RemoveItemIfExists(string itemCode)
     {
-        foreach (var button in mode.itemButtons)
+        var button = mode.FindButtonWithItem(itemCode);
+        if (button != null)
         {
-            if (button.myItemCode == itemCode)
-            {
-                mode.RemoveItemFromButton(button);
-            }
+            mode.RemoveItemFromButton(button);
         }
     }
 

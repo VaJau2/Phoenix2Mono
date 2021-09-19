@@ -61,7 +61,8 @@
         "cabinet": "Cabinet",
         "small_cabinet": "Locker",
         "bag": "Bag",
-        "fridge": "Fridge"
+        "fridge": "Fridge",
+        "suitcase": "Suitcase"
     },
 
     "tradeNames": {

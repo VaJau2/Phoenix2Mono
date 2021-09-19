@@ -25,6 +25,11 @@ public class PlayerInventory {
         messages = player.GetNode<Messages>("/root/Main/Scene/canvas/messages");
         effects = player.GetNode<EffectHandler>("/root/Main/Scene/canvas/effects");
     }
+
+    public bool HasItem(string itemCode)
+    {
+        return menu.mode.FindButtonWithItem(itemCode) != null;
+    }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {

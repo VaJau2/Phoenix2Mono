@@ -18,7 +18,13 @@
       "root_node": false,
       "body": "Okay",
       "speaker": "Strikely",
-      "opposite": "Mother"
+      "opposite": "Mother",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
     }
   },
   "speakers": {

@@ -101,7 +101,13 @@
       "root_node": false,
       "body": "Don't forget your stuff before leaving. Love you. ",
       "speaker": "Mother",
-      "opposite": "Strikely"
+      "opposite": "Strikely",
+      "next": "M7"
+    },
+    "M7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
     }
   },
   "speakers": {

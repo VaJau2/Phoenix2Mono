@@ -61,7 +61,8 @@
         "cabinet": "Шкаф",
         "small_cabinet": "Шкафчик",
         "bag": "Сумка",
-        "fridge": "Холодильник"
+        "fridge": "Холодильник",
+        "suitcase": "Чемодан"
     },
 
     "tradeNames": {

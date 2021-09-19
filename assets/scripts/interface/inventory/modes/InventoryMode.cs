@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -74,11 +75,18 @@ public abstract class InventoryMode
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
     }
 
+    public ItemIcon FindButtonWithItem(string itemCode)
+    {
+        return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
+    }
+
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
-        for (int i = 0; i < newItems.Count; i++) {
-            AddNewItem(newItems[i]);
+        foreach (var item in newItems)
+        {
+            AddNewItem(item);
         }
+
         foreach(string ammoItem in ammo.Keys) {
             ItemIcon newAmmoButton = AddNewItem(ammoItem);
             newAmmoButton.SetCount(ammo[ammoItem]);
@@ -114,15 +122,9 @@ public abstract class InventoryMode
         );
     }
 
-    public ItemIcon FirstEmptyButton {
-        get {
-            foreach(ItemIcon button in itemButtons) {
-                if (button.myItemCode == null) {
-                    return button;
-                }
-            }
-            return null;
-        }
+    public ItemIcon FirstEmptyButton
+    {
+        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
     }
 
     public FurnChest SpawnItemBag()
