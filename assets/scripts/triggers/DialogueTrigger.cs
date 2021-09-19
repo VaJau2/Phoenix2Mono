@@ -20,7 +20,7 @@ public class DialogueTrigger : TriggerBase
 
     private SavableTimers timers;
     private int step;
-    private Pony npc;
+    private NpcWithWeapons npc;
 
     public override void _Ready()
     {
@@ -45,7 +45,7 @@ public class DialogueTrigger : TriggerBase
 
         if (npc == null)
         {
-            npc = GetNodeOrNull<Pony>(npcPath);
+            npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
             if (npc == null)
             {
                 base._on_activate_trigger();
@@ -182,7 +182,7 @@ public class DialogueTrigger : TriggerBase
         if (!IsActive) return;
         if (!(body is Player)) return;
         
-        Pony npc = GetNode<Pony>(npcPath);
+        NpcWithWeapons npc = GetNode<NpcWithWeapons>(npcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             _on_activate_trigger();
