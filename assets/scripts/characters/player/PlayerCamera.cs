@@ -12,15 +12,14 @@ public class PlayerCamera: Camera
 
     public bool eyesClosed = false;
     public bool isUpdating = true;
-
-    Messages messages;
+    public float closedTimer = 0;
+    
     DialogueMenu dialogueMenu;
 
     Player player;
 
     Control labelBack;
     Label label;
-    float closedTimer = 0;
     string closedTextLink = "closed";
 
     Spatial tempObject;
@@ -205,7 +204,6 @@ public class PlayerCamera: Camera
 
     public override void _Ready()
     {
-        messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         player = GetNode<Player>("../../");
         labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");

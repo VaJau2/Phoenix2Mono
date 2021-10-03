@@ -3,7 +3,7 @@ using Godot;
 //дверь, перемещающая в отдельную подлокацию
 public class DoorTeleport : StaticBody
 {
-    [Export] private bool Closed;
+    [Export] public bool Closed;
     [Export] private bool Inside;
     [Export] private NodePath newPlacePath;
     [Export] private NodePath oldLocationPath;
@@ -11,6 +11,7 @@ public class DoorTeleport : StaticBody
     [Export] private NodePath otherDoorPath;
 
     [Export] private AudioStreamSample openSound;
+    [Export] private AudioStreamSample closedSound;
     public DoorTeleport otherDoor { get; private set; }
     AudioStreamPlayer3D audi;
     Spatial newPlace, oldLocation, newLocation;
@@ -34,7 +35,6 @@ public class DoorTeleport : StaticBody
         player.Camera.ShowHint("open", false);
         if (!Input.IsActionJustPressed("use")) return;
         Open(player, true);
-        player.Camera.HideHint();
     }
 
     public void SoundOpening()
@@ -53,6 +53,14 @@ public class DoorTeleport : StaticBody
 
     public void Open(Spatial character, bool makeVisible)
     {
+        if (Closed)
+        {
+            player.Camera.closedTimer = 1;
+            audi.Stream = closedSound;
+            audi.Play();
+            SetProcess(false);
+            return;
+        }
         
         SoundOpening();
 
@@ -72,6 +80,8 @@ public class DoorTeleport : StaticBody
         if (checkFall == null) return;
         checkFall.tempDoorTeleport = this;
         checkFall.inside = Inside;
+        
+        player.Camera.HideHint();
     }
 
     public void _on_body_entered(Node body)

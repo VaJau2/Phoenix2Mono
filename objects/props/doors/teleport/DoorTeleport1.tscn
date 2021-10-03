@@ -54,6 +54,8 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Audio"
+
 [connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_body_exited"]
 [connection signal="body_entered" from="Area2" to="." method="_on_body_entered"]

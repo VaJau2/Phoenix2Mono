@@ -80,9 +80,7 @@ public class FurnDoor: FurnBase, ISavable {
         return 0;
     }
 
-    ///<summary>
-    /// Открывает дверь без проверки ключа
-    ///</summary>
+    // Открывает дверь без проверки ключа
     public void ClickFurn() {
         if (!opening) {
             if (!string.IsNullOrEmpty(myKey) && !IsOpen) {

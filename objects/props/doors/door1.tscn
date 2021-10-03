@@ -127,6 +127,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Audio"
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 3 )
@@ -142,5 +143,6 @@ monitorable = false
 [node name="shape" type="CollisionShape" parent="other-side"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212071, 2.14918, 0 )
 shape = SubResource( 8 )
+
 [connection signal="body_entered" from="other-side" to="." method="_on_otherside_body_entered"]
 [connection signal="body_exited" from="other-side" to="." method="_on_otherside_body_exited"]
