@@ -45,7 +45,8 @@
         "putSuitcase": " - put suitcase",
         "putFirewood": " - put firewood",
         "sleep": " - sleep",
-        "pick": " - pick"
+        "pick": " - pick",
+        "clickButton": " - click button"
     },
 
     "hints": {
