@@ -3,13 +3,14 @@ using Godot.Collections;
 
 public class SeekArea : Area
 {
-    const float ATTACK_TIME = 3f;
+    const float ATTACK_TIME = 3.5f;
 
     const float INCREASE_TIMER = 0.3f;
     const float CROUCH_MULTIPLY = 0.5f;
     const float WALK_MULTIPLY = 4f;
     const float LIGHT_MULTIPLY = 4f;
     const float NPC_MULTIPLY = 10f;
+    const float SPEALTH_BUCK_MULTIPLY = 0.01f;
 
     Array<Character> enemiesInArea = new Array<Character>();
     Array<NPC> alliesInArea = new Array<NPC>();
@@ -160,6 +161,7 @@ public class SeekArea : Area
             if (player.IsCrouching) speed *= CROUCH_MULTIPLY;
             if (player.Velocity.Length() > 7f) speed *= WALK_MULTIPLY;
             if (player.GetNode<LightsCheck>("lightsCheck").OnLight) speed *= LIGHT_MULTIPLY;
+            if (player.IsStealthBuck) speed *= SPEALTH_BUCK_MULTIPLY;
         } else {
             speed *= NPC_MULTIPLY;
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/materials/characters/agents/agent3/mouth.material" type="Material" id=6]
 [ext_resource path="res://assets/materials/characters/agents/agent3/body.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=8]
+[ext_resource path="res://assets/audio/enemies/hitted/shotgunDead.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/enemies/hitted/shotgunHit2.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/enemies/hitted/shotgunHit1.wav" type="AudioStream" id=11]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"
@@ -229,14 +232,15 @@ bind/18/pose = Transform( 1.26706, -4.78518e-08, 2.98276e-07, 2.57638e-12, -1.25
 
 [node name="agent3" instance=ExtResource( 2 )]
 IdleAnim = "Idle1"
+hittedSounds = [ ExtResource( 11 ), ExtResource( 10 ) ]
+dieSounds = [ ExtResource( 9 ) ]
 COME_DISTANCE = 2.0
 
 [node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
+bones/3/bound_children = [ NodePath("BoneAttachment"), NodePath("BoneAttachment 3") ]
 
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
-transform = Transform( 0.999941, 0.002854, -0.010523, -0.010771, 0.108756, -0.99401, -0.00169247, 0.994065, 0.10878, -3.92458e-13, 1.69933, 1.11108 )
+transform = Transform( 0.999941, 0.002854, -0.0105229, -0.0107709, 0.108756, -0.99401, -0.00169248, 0.994065, 0.10878, -6.66017e-13, 1.69933, 1.11108 )
 
 [node name="hair" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631587, 1.30521, 0.429072 )
@@ -244,7 +248,7 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="BoneAttachment 3" type="BoneAttachment" parent="Armature/Skeleton" index="2"]
-transform = Transform( 0.999941, 0.002854, -0.010523, -0.010771, 0.108756, -0.99401, -0.00169247, 0.994065, 0.10878, -3.92458e-13, 1.69933, 1.11108 )
+transform = Transform( 0.999941, 0.002854, -0.0105229, -0.0107709, 0.108756, -0.99401, -0.00169248, 0.994065, 0.10878, -6.66017e-13, 1.69933, 1.11108 )
 bone_name = "head"
 
 [node name="hat" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment 3" index="0"]
@@ -275,7 +279,7 @@ body_offset = Transform( 0.992634, -0.0828153, -0.0884288, -0.0828149, 0.0689416
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="7"]
 transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116484, 0.993129, -0.0114235, -0.0952569, 0.0226187, 0.995197, -0.407885, 1.81143, -1.81374 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783078, 0.00691355, 0.876063 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427717, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.0061833, 0.870618, -0.0978943 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427718, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.0061833, 0.870618, -0.0978943 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="8"]
 transform = Transform( 0.996064, 0.088597, -2.20027e-08, -0.0883893, 0.993732, 0.0684583, 0.00606469, -0.0681891, 0.997655, 0.287084, 1.79373, -0.756682 )

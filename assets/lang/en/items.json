@@ -496,5 +496,14 @@
         "price": "100",
         "medsEffect": "detoxine",
         "sound": "mentats"
+    },
+    "stealth-buck": {
+        "name": "Stealth-buck",
+        "description": "A device developed on the basis of Zebra technologies that generates a stealth field when using",
+        "type": "meds",
+        "icon": "stealthbuck",
+        "price": "500",
+        "medsEffect": "stealthbuck",
+        "sound": "stealthbuck"
     }
 }

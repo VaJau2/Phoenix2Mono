@@ -35,6 +35,10 @@ public class NPC : Character
     public NPCState state;
     public SeekArea seekArea {get; private set;}
     protected AudioStreamPlayer3D audi;
+    [Export] protected Array<AudioStreamSample> hittedSounds;
+    [Export] protected Array<AudioStreamSample> dieSounds;
+    
+    [Export] protected bool hasSkeleton = true;
     private Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
     private Dictionary<string, bool> objectsChangeActive = new Dictionary<string, bool>();
@@ -105,6 +109,7 @@ public class NPC : Character
             }
         }
         
+        PlayRandomSound(hittedSounds);
 
         if (shapeID != 0) {
             damage = (int)(damage * 1.5f);
@@ -114,7 +119,6 @@ public class NPC : Character
 
         if (Health <= 0) {
             if (tempVictim == player) {
-                player.Stealth.RemoveAttackEnemy(this);
                 player.Stealth.RemoveSeekEnemy(this);
             }
 
@@ -142,21 +146,36 @@ public class NPC : Character
         }
     }
 
+    protected void PlayRandomSound(Array<AudioStreamSample> array)
+    {
+        if (array == null || array.Count <= 0) return;
+        var rand = new RandomNumberGenerator();
+        rand.Randomize();
+        int randomNum = rand.RandiRange(0, array.Count - 1);
+        audi.Stream = array[randomNum];
+        audi.Play();
+    }
+
     protected virtual async void AnimateDealth(Character killer, int shapeID)
     {
+        PlayRandomSound(dieSounds);
         CollisionLayer = 0;
         CollisionMask = 0;
-        skeleton.PhysicalBonesStartSimulation();
-        Vector3 dir = Translation.DirectionTo(killer.Translation);
-        float force = tempShotgunShot ? RAGDOLL_IMPULSE * 2 : RAGDOLL_IMPULSE;
+        if (hasSkeleton)
+        {
+            skeleton.PhysicalBonesStartSimulation();
+            Vector3 dir = Translation.DirectionTo(killer.Translation);
+            float force = tempShotgunShot ? RAGDOLL_IMPULSE * 2 : RAGDOLL_IMPULSE;
 
-        if (shapeID == 0) {
-            bodyBone?.ApplyCentralImpulse(-dir * force);
-        } else {
-            headBone?.ApplyCentralImpulse(-dir * force);
+            if (shapeID == 0) {
+                bodyBone?.ApplyCentralImpulse(-dir * force);
+            } else {
+                headBone?.ApplyCentralImpulse(-dir * force);
+            }
         }
-        
+
         await Global.Get().ToTimer(5f);
+        if (!IsInstanceValid(this)) return;
         Global.AddDeletedObject(Name);
         QueueFree();
     }
@@ -307,13 +326,16 @@ public class NPC : Character
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        skeleton = GetNode<Skeleton>("Armature/Skeleton");
         seekArea = GetNode<SeekArea>("seekArea");
+        if (hasSkeleton)
+        {
+            skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
-        headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
-            : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
-        bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
-            : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+            headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
+                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
+            bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
+                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+        }
 
         SetStartHealth(StartHealth);
         BaseSpeed = WalkSpeed;

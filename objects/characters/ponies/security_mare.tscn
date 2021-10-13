@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/characters/ponies/security_mare/mouth.material" type="Material" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/models/characters/ponies/security_mare/hair.material" type="Material" id=4]
 [ext_resource path="res://assets/models/characters/ponies/security_mare/eyes.material" type="Material" id=5]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=6]
+[ext_resource path="res://assets/audio/enemies/hitted/mareHit1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/enemies/hitted/mareHit2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/enemies/hitted/mareDead.wav" type="AudioStream" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "mane"
@@ -142,10 +145,12 @@ surfaces/0 = {
 [node name="security_mare" instance=ExtResource( 1 )]
 IdleAnim = "Idle1"
 StartHealth = 150
+hittedSounds = [ ExtResource( 7 ), ExtResource( 8 ) ]
+dieSounds = [ ExtResource( 9 ) ]
 weaponCode = "submachine10"
 
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
-transform = Transform( 0.99999, 0.00128411, -0.0042297, -0.00438519, 0.167779, -0.985815, -0.000556243, 0.985824, 0.167782, -3.92458e-13, 1.69933, 1.11108 )
+transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )
 
 [node name="mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.0063157, 1.27099, 0.493893 )
@@ -175,7 +180,7 @@ body_offset = Transform( 0.992634, -0.0828153, -0.0884287, -0.0828149, 0.0689414
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116484, 0.993129, -0.0114235, -0.0952569, 0.0226187, 0.995197, -0.407885, 1.81143, -1.81373 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783085, 0.00691359, 0.876062 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427722, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618321, 0.870617, -0.0978943 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427723, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618321, 0.870617, -0.0978943 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="7"]
 transform = Transform( 0.996064, 0.088597, -1.43605e-08, -0.0883893, 0.993732, 0.0684583, 0.0060645, -0.0681891, 0.997655, 0.287084, 1.79373, -0.756682 )
@@ -184,8 +189,8 @@ body_offset = Transform( 0.992585, 0.0833251, 0.0884594, 0.0833257, 0.0632026, -
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="8"]
 transform = Transform( 0.993608, 0.112883, 1.12832e-06, -0.111816, 0.984227, -0.137092, -0.0154752, 0.136216, 0.990551, 0.343713, 1.78491, -1.82309 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163474, 0.143863, 0.868982 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934093, -0.993353, -0.112854, 0.99336, -0.0223682, -0.0984313, 0.866425, -0.125315 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163475, 0.143863, 0.868982 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934093, -0.993353, -0.112854, 0.99336, -0.0223682, -0.0984312, 0.866425, -0.125315 )
 
 [node name="Physical Bone b_leg_1_l" parent="Armature/Skeleton" index="9"]
 transform = Transform( 0.989938, -0.141448, 6.02788e-05, 0.141038, 0.98703, -0.0765897, 0.0107717, 0.0758309, 0.997046, -0.259934, 0.497918, -0.990163 )

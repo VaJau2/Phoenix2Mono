@@ -60,7 +60,8 @@
         "rage": "60 sec. increading damage",
         "medX": "60 sec. + 20% to block damage",
         "mentats": "Reducing the difference in price when trading",
-        "detoxine": "Resetting all current effects"
+        "detoxine": "Resetting all current effects",
+        "stealthbuck": "60 sec. invisibility"
     },
 
     "effectIconsText": {
@@ -77,7 +78,8 @@
         "MentatsPostEffect": "You have a hard time even thinking about simple things",
         "MedXEffect": "You hardly feel any pain",
         "RageEffect": "Your bullets have somehow miraculously become more powerful",
-        "RagePostEffect": "You don't want to fight at all right now"
+        "RagePostEffect": "You don't want to fight at all right now",
+        "StealthBuckEffect": "You're so transparent that you don't even cast shadows"
     },
 
     "modalAsk": {

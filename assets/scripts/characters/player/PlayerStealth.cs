@@ -92,7 +92,7 @@ public class PlayerStealth: Node {
 
     public void RemoveSeekEnemy(Character enemy)
     {
-        checkEmpty();
+        RemoveAttackEnemy(enemy);
         if (seekEnemies.Contains(enemy)) {
             seekEnemies.Remove(enemy);
             if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {

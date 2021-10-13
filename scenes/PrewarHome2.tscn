@@ -415,7 +415,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=33]
-extents = Vector3( 8.81672, 5.61842, 8.87285 )
+extents = Vector3( 21.5635, 5.61842, 11.4253 )
 
 [sub_resource type="BoxShape" id=34]
 extents = Vector3( 7.09798, 3.21642, 6.3166 )
@@ -478,6 +478,7 @@ dialogueCode = "talk3"
 [node name="terrain" type="Spatial" parent="." groups=[
 "savable",
 ]]
+visible = false
 script = ExtResource( 29 )
 
 [node name="terrain_body" type="StaticBody" parent="terrain"]
@@ -1144,12 +1145,16 @@ script = ExtResource( 29 )
 [node name="triggers" type="Node" parent="."]
 
 [node name="motherTalk1" type="Area" parent="triggers"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.3522, -102.254, 31.914 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.6011, -102.254, 26.9776 )
 script = ExtResource( 69 )
 npcPath = "../../npc/mother"
 otherDialogueCode = "talk3"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/motherTalk1"]
+shape = SubResource( 33 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="triggers/motherTalk1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.699, 0, 4.38354 )
 shape = SubResource( 33 )
 
 [node name="pickPaper" type="Area" parent="triggers" groups=[

@@ -88,8 +88,16 @@ public class PlayerInventory {
         }
     }
 
+    private void CheckStealthBuck()
+    {
+        Effect stealthBuckEffect = effects.GetTheSameEffect(new StealthBuckEffect());
+        stealthBuckEffect?.SetOff(false);
+    }
+
     public void WearItem(string itemCode, bool sound = true)
     {
+        CheckStealthBuck();
+        
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         if (sound) {
             SoundUsingItem(itemData);
@@ -115,6 +123,8 @@ public class PlayerInventory {
 
     public void UnwearItem(string itemCode, bool changeModel = true)
     {
+        CheckStealthBuck();
+        
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         SoundUsingItem(itemData);
 

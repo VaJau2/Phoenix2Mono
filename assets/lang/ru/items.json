@@ -497,5 +497,14 @@
         "price": "100",
         "medsEffect": "detoxine",
         "sound": "mentats"
+    },
+    "stealth-buck": {
+        "name": "Стелс-бак",
+        "description": "Разработанное на основе зебринских технологий устройство, генерирующее стелс-поле при использовании",
+        "type": "meds",
+        "icon": "stealthbuck",
+        "price": "500",
+        "medsEffect": "stealthbuck",
+        "sound": "stealthbuck"
     }
 }
