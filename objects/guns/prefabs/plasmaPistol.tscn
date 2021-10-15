@@ -77,10 +77,10 @@ visibility_aabb = AABB( -0.385807, -0.657526, 0.169458, 0.569466, 1.19005, 0.692
 process_material = SubResource( 3 )
 draw_pass_1 = SubResource( 4 )
 
-[node name="Gun-Armature" type="Spatial" parent="."]
+[node name="Gun-armature" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.517782, -0.461199, -0.861174 )
 
-[node name="Box001" type="MeshInstance" parent="Gun-Armature"]
+[node name="Box001" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, 0.0105322, 0, 0.249904 )
 mesh = SubResource( 5 )
 material/0 = null

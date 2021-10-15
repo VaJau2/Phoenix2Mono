@@ -8,7 +8,7 @@
 resource_name = "shoot"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Gun-Armature/Object001:translation")
+tracks/0/path = NodePath("Gun-armature/Object001:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -71,15 +71,15 @@ material = ExtResource( 2 )
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 1 )
 
-[node name="Gun-Armature" type="Spatial" parent="."]
+[node name="Gun-armature" type="Spatial" parent="."]
 transform = Transform( -1.8, 0, 7.00946e-07, 0, 1.8, 0, -7.00946e-07, 0, -1.8, 0.0653492, -0.476744, 0.180629 )
 
-[node name="Cylinder001" type="MeshInstance" parent="Gun-Armature"]
+[node name="Cylinder001" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, -3.02792e-09, -0.0254, 0, 0.0254, -3.02792e-09, -0.300819, 0.403026, 0.11793 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Object001" type="MeshInstance" parent="Gun-Armature"]
+[node name="Object001" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 1.5956e-05, -0.0254, 0, 0.0254, 1.5956e-05, -0.300819, 0.403026, 0.11793 )
 mesh = SubResource( 3 )
 material/0 = null

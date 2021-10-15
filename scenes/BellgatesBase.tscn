@@ -672,10 +672,6 @@ dialogueCode = "talk2"
 ]]
 script = ExtResource( 49 )
 
-[node name="bag" parent="terrain" instance=ExtResource( 79 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.035, -0.0160387, -21.4631 )
-startItemCodes = [ "stealth-buck" ]
-
 [node name="terrain_body" type="StaticBody" parent="terrain"]
 collision_layer = 3
 collision_mask = 3
@@ -1832,7 +1828,7 @@ beepSound = ExtResource( 72 )
 npcPrefab = ExtResource( 82 )
 bagPrefab = ExtResource( 79 )
 bagSpawnPath = NodePath("../../rooms/stels-house/bagSpawn")
-itemInBag = "maffin"
+itemInBag = "stealth-buck"
 roboPinkiePath = NodePath("../../npc/mrHandyPinkie")
 winDialogue = "win"
 
