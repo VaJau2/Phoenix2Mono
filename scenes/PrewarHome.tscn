@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=2]
+[gd_scene load_steps=179 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -106,6 +106,7 @@
 [ext_resource path="res://assets/textures/props/furniture/posters/open_closed/open.png" type="Texture" id=104]
 [ext_resource path="res://assets/audio/background/forest_day.ogg" type="AudioStream" id=105]
 [ext_resource path="res://assets/audio/music/prewarHome.ogg" type="AudioStream" id=106]
+[ext_resource path="res://assets/scripts/triggers/PlayerCanMoveTrigger.cs" type="Script" id=107]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -937,7 +938,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=64]
-extents = Vector3( 2.10507, 3.63556, 29.8521 )
+extents = Vector3( 12.5848, 3.63556, 53.5202 )
 
 [sub_resource type="BoxShape" id=65]
 extents = Vector3( 4.50378, 1, 5.39672 )
@@ -986,7 +987,7 @@ checkSavedData = false
 script = ExtResource( 10 )
 
 [node name="windy_cloud" parent="npc" instance=ExtResource( 67 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -65.5474, -102.479, 25.4167 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -63.8213, -102.558, 25.4167 )
 IsImmortal = true
 dialogueCode = "talk1"
 headBonePath = NodePath("")
@@ -1386,7 +1387,6 @@ script = SubResource( 13 )
 "savable",
 ]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 30.88 )
-visible = false
 script = ExtResource( 98 )
 
 [node name="walls" type="MeshInstance" parent="rooms/mansion"]
@@ -2052,18 +2052,23 @@ NewTaskCode = "takeVacation"
 script = ExtResource( 99 )
 SaveName = "autosave3"
 
-[node name="windyTeleport" type="Area" parent="triggers" groups=[
+[node name="PlayerCantMove" type="Area" parent="triggers" groups=[
 "savable",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.069, 5.30697, -1.63797 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6862, 5.30697, -1.63797 )
+script = ExtResource( 107 )
+otherTriggerPaths = [ NodePath("../windyTeleport") ]
+
+[node name="CollisionShape" type="CollisionShape" parent="triggers/PlayerCantMove"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34942, 0, 0 )
+shape = SubResource( 64 )
+
+[node name="windyTeleport" type="Node" parent="triggers"]
 script = ExtResource( 68 )
 otherTriggerPaths = [ NodePath("../windyDialogue1") ]
 NpcPath = "../../npc/windy_cloud"
 doorPath = NodePath("../../rooms/mansion/doors/DoorTeleport")
 teleportPointPath = NodePath("../../terrain/props/houses/mansion/spawn")
-
-[node name="CollisionShape" type="CollisionShape" parent="triggers/windyTeleport"]
-shape = SubResource( 64 )
 
 [node name="windyDialogue1" type="Node" parent="triggers" groups=[
 "savable",
@@ -2080,6 +2085,10 @@ otherTriggerPaths = [ NodePath("../putSuitcaseTask") ]
 NpcPath = "../../npc/windy_cloud"
 doorPath = NodePath("../../terrain/props/houses/mansion/DoorTeleport2")
 teleportPointPath = NodePath("../../rooms/mansion/windyPoints/windyPoint1")
+
+[node name="playerCanMove" type="Node" parent="triggers"]
+script = ExtResource( 107 )
+MakeMayMove = true
 
 [node name="putSuitcaseTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
@@ -2207,8 +2216,13 @@ transform = Transform( 0.680056, 0, 0.73316, 0, 1, 0, -0.73316, 0, 0.680056, -57
 ]]
 script = ExtResource( 76 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../windyDialogue4"), NodePath("../motherDialogue") ]
+otherTriggerPaths = [ NodePath("../windyDialogue4"), NodePath("../motherDialogue"), NodePath("../talkToMomTask") ]
 ItemToUse = "pie"
+
+[node name="talkToMomTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+NewTaskCode = "talkToMom"
 
 [node name="windyDialogue4" type="Node" parent="triggers" groups=[
 "savable",
@@ -2243,6 +2257,10 @@ npcPath = "../../npc/mother"
 otherDialogueCode = "talk2"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/motherDialogue"]
+shape = SubResource( 68 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="triggers/motherDialogue"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2685, 0, -6.17377 )
 shape = SubResource( 68 )
 
 [node name="activateLeaveLocation" type="Node" parent="triggers"]
@@ -2315,7 +2333,7 @@ script = SubResource( 71 )
 [connection signal="body_exited" from="rooms/mansion/doors/DoorTeleport/Area2" to="rooms/mansion/doors/DoorTeleport" method="_on_body_exited"]
 [connection signal="body_entered" from="rooms/market/DoorTeleport/Area2" to="rooms/market/DoorTeleport" method="_on_body_entered"]
 [connection signal="body_exited" from="rooms/market/DoorTeleport/Area2" to="rooms/market/DoorTeleport" method="_on_body_exited"]
-[connection signal="body_entered" from="triggers/windyTeleport" to="triggers/windyTeleport" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/PlayerCantMove" to="triggers/PlayerCantMove" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/putSuitcase" to="triggers/putSuitcase" method="_on_body_entered"]
 [connection signal="body_exited" from="triggers/putSuitcase" to="triggers/putSuitcase" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/windyDialogue2" to="triggers/windyDialogue2" method="_on_body_entered"]

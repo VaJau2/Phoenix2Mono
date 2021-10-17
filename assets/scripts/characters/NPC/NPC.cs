@@ -146,6 +146,12 @@ public class NPC : Character
         }
     }
 
+    protected void CleanPatrolArray()
+    {
+        patrolArray?.Clear();
+        patrolPoints = null;
+    }
+
     protected void PlayRandomSound(Array<AudioStreamSample> array)
     {
         if (array == null || array.Count <= 0) return;
@@ -263,6 +269,19 @@ public class NPC : Character
                 SetObjectActive(objectPath, showObject);
             }
         }
+
+        if (data.Contains("patrolPaths") && data["patrolPaths"] is Godot.Collections.Array patrolPaths)
+        {
+            patrolPoints = new Spatial[patrolPaths.Count];
+            for (int i = 0; i < patrolPaths.Count; i++)
+            {
+                patrolPoints[i] = GetNode<Spatial>(patrolPaths[i].ToString());
+            }
+        }
+        else
+        {
+            CleanPatrolArray();
+        }
         
         base.LoadData(data);
 
@@ -294,6 +313,17 @@ public class NPC : Character
         saveData["dialogueCode"] = dialogueCode;
         saveData["showObjects"] = objectsChangeActive;
         saveData["ignoreDamager"] = ignoreDamager;
+
+        if (patrolPoints != null)
+        {
+            string[] patrolPaths = new string[patrolPoints.Length];
+            for (int i = 0; i < patrolPaths.Length; i++)
+            {
+                patrolPaths[i] = patrolPoints[i].GetPath().ToString();
+            }
+
+            saveData["patrolPaths"] = patrolPaths;
+        }
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())
@@ -346,7 +376,7 @@ public class NPC : Character
             
             myStartPos = GlobalTransform.origin;
             myStartRot = Rotation;
-        } else {
+        } else if (patrolPoints == null) {
             patrolPoints = new Spatial[patrolArray.Count];
             for(int i = 0; i < patrolArray.Count; i++) {
                 patrolPoints[i] = GetNode<Spatial>(patrolArray[i]);

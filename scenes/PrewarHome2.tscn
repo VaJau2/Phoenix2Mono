@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -77,6 +77,7 @@
 [ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=75]
 [ext_resource path="res://assets/scripts/triggers/PutItemTrigger.cs" type="Script" id=76]
 [ext_resource path="res://objects/props/hydrant.tscn" type="PackedScene" id=77]
+[ext_resource path="res://assets/scripts/triggers/ChangeTaskTrigger.cs" type="Script" id=78]
 [ext_resource path="res://assets/materials/props/materials/lightstone.tres" type="Material" id=79]
 [ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=80]
 [ext_resource path="res://objects/props/buildings/ostanovka.tscn" type="PackedScene" id=81]
@@ -1157,6 +1158,11 @@ shape = SubResource( 33 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.699, 0, 4.38354 )
 shape = SubResource( 33 )
 
+[node name="takeFirewoodTask" type="Node" parent="triggers"]
+script = ExtResource( 78 )
+IsActive = false
+NewTaskCode = "takeFirewood"
+
 [node name="pickPaper" type="Area" parent="triggers" groups=[
 "savable",
 ]]
@@ -1211,6 +1217,11 @@ otherDialogueCode = "talk4(1)"
 [node name="disactiveFirewoodTrigger" type="Node" parent="triggers"]
 script = ExtResource( 75 )
 disactiveTriggerPaths = [ NodePath("../pickFirewood") ]
+
+[node name="goToCarTask" type="Node" parent="triggers"]
+script = ExtResource( 78 )
+IsActive = false
+NewTaskCode = "sitInAVan"
 
 [node name="pickCase" type="Area" parent="triggers" groups=[
 "savable",

@@ -16,6 +16,11 @@
         "putSuitcase": "Leave suitcase on your bed",
         "followWindy": "Follow Windy",
         "eatPie": "Taste the pie",
-        "goToSleep": "Go to sleep"
+        "goToSleep": "Go to sleep",
+        "talkToMom": "Talk to mom",
+        "takeFirewood": "Take firewood from street",
+        "sitInAVan": "Sit in a van",
+        "waitForBellgates": "Wait for Bellgates in main house",
+        "getGearFromRarity": "Get gear from Rarity"
     }
 }

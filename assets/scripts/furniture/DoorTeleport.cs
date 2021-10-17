@@ -1,7 +1,8 @@
 using Godot;
+using Godot.Collections;
 
 //дверь, перемещающая в отдельную подлокацию
-public class DoorTeleport : StaticBody
+public class DoorTeleport : StaticBody, ISavable
 {
     [Export] public bool Closed;
     [Export] private bool Inside;
@@ -95,5 +96,18 @@ public class DoorTeleport : StaticBody
         if (!(body is Player)) return;
         player?.Camera.HideHint();
         SetProcess(false);
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            {"Closed", Closed}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        Closed = (bool) data["Closed"];
     }
 }

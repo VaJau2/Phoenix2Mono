@@ -109,6 +109,19 @@
           "op": "set",
           "value": "windyTeleport2"
         }
+      ],
+      "next": "B7.1"
+    },
+    "B7.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "playerCanMove"
+        }
       ]
     }
   },

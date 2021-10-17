@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public class RoboEye : NPC
 {
@@ -17,6 +18,23 @@ public class RoboEye : NPC
     
     [Signal]
     public delegate void FoundEnemy();
+
+    public override Dictionary GetSaveData()
+    {
+        var data = base.GetSaveData();
+        data["IsActive"] = IsActive;
+        return data;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        var active = (bool) data["IsActive"];
+        if (!active)
+        {
+            MakeActive(false);
+        }
+    }
 
     public void MakeActive(bool active)
     {

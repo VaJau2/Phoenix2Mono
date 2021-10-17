@@ -1,0 +1,160 @@
+{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi, friend! I have to brief you on your assignment. Are you ready to listen to me?",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A1(2)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes",
+      "speaker": "Strikely",
+      "opposite": "Robo-Applejack",
+      "next": "A2"
+    },
+    "A1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Not yet",
+      "speaker": "Strikely",
+      "opposite": "Robo-Applejack"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Than listen closely.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A3"
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The base you will get to is located in the glaciers. Another reason why you really should put on gear from Rarity - it will be warmer for you in it than without it.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A4"
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "This base is closed from the world, but there are several moves to it.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A5"
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The first one - through the ventilation. They need fresh air in their base, right? If you find an entrance in the snow, you'll have access to almost anywhere in the base.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A6"
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The difficulty is that this entrance is hidden in the snow. You will have to try hard to find it.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A7"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Second - through deliveries. Not far from the entrance to the base there is a small and poorly guarded warehouse with boxes in which extra supplies are stored.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A8"
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Every evening these boxes are delivered to the base. If you get into one of these boxes, you can get inside as easy as courier delivery to your home.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A9"
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Also, you can just break into the base with a fight, but I doubt that you alone will be able to fight with the guards, there are quite a lot of them there.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A10"
+    },
+    "A10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "As soon as you get to the base, look for the room that is shown on the map with a cross.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A11"
+    },
+    "A11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The blueprints must be out there somewhere.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "next": "A12"
+    },
+    "A12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And try not to kill the scientists, okay? After all, these are former colleagues of my master.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A12(1)"
+        }
+      ]
+    },
+    "A12(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Understood",
+      "speaker": "Strikely",
+      "opposite": "Robo-Applejack",
+      "next": "A12(1.1)"
+    },
+    "A12(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Robo-Applejack": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

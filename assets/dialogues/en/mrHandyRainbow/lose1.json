@@ -1,0 +1,115 @@
+{
+  "nodes": {
+    "D1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ha, it didn't work out! Well, it happens.",
+      "speaker": "Robo-Dash",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "D1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "D1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "D1(3)"
+        }
+      ]
+    },
+    "D1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm just trying half-heartedly! Wait, now I'll show you how to shoot!",
+      "speaker": "Strikely",
+      "opposite": "Robo-Dash"
+    },
+    "D1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hey, it's not five seconds! Make a normal timer for an honest five seconds!",
+      "speaker": "Strikely",
+      "opposite": "Robo-Dash",
+      "next": "D3"
+    },
+    "D1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well, that's fine. I have more important things to do.",
+      "speaker": "Strikely",
+      "opposite": "Robo-Dash"
+    },
+    "D3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you think I'm cheating? Me?",
+      "speaker": "Robo-Dash",
+      "opposite": "Strikely",
+      "next": "D4"
+    },
+    "D4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "There were always five seconds, it just seemed to you!",
+      "speaker": "Robo-Dash",
+      "opposite": "Strikely",
+      "next": "D5"
+    },
+    "D4.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    },
+    "D5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "*imperceptibly tweaks the timer*",
+      "speaker": "Robo-Dash",
+      "opposite": "Strikely",
+      "next": "D5.1"
+    },
+    "D5.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "dashChangeTimer"
+        }
+      ],
+      "next": "D6"
+    },
+    "D6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Press the button again and see for yourself!",
+      "speaker": "Robo-Dash",
+      "opposite": "Strikely",
+      "next": "D4.1"
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Robo-Dash": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

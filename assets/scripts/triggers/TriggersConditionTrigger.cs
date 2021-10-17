@@ -6,8 +6,10 @@ using Godot.Collections;
 //только если досчитает до счетчика собственных активаций
 public class TriggersConditionTrigger: ActivateOtherTrigger
 {
-    [Export] private int TriggersCount; 
+    [Export] private int TriggersCount;
+    [Export] private bool CheckPlayerEnterArea;
     public int triggersCounter;
+    private bool playerEnterCounted;
 
     public override Dictionary GetSaveData()
     {
@@ -34,5 +36,14 @@ public class TriggersConditionTrigger: ActivateOtherTrigger
         if (triggersCounter != TriggersCount) return;
         
         base._on_activate_trigger();
+    }
+
+    public void _on_body_entered(Node body)
+    {
+        if (!CheckPlayerEnterArea) return;
+        if (!(body is Player)) return;
+        if (playerEnterCounted) return;
+        playerEnterCounted = true;
+        _on_activate_trigger();
     }
 }

@@ -62,6 +62,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         step = 1;
         npc.SetNewStartPos(door.GlobalTransform.origin);
         await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+        if (npc.state == NPCState.Attack) return;
 
         step = 2;
         _on_activate_trigger();
@@ -105,7 +106,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     {
         if (!(body is Player)) return;
         
-        Pony npc = GetNode<Pony>(NpcPath);
+        npc = GetNode<NpcWithWeapons>(NpcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             SetActive(true);

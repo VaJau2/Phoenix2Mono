@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "R1(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeItem",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "stealth-armor"
+        }
+      ],
+      "next": "R1"
+    },
+    "R1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Here you are, darling! I sewed this suit especially for you. In it, you will be irresistible on this... task!",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      
+      "options": [
+        {
+          "body": "answer",
+          "next": "R1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R1(2)"
+        }
+      ]
+    },
+    "R1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thanks",
+      "speaker": "Strikely",
+      "opposite": "Robo-Rarity",
+      "next": "R2"
+    },
+    "R1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "An eye patch? And it will prevent them from recognizing me?",
+      "speaker": "Strikely",
+      "opposite": "Robo-Rarity",
+      "next": "R3"
+    },
+    "R2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Wear it with pleasure!",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      "next": "R2(1.1)"
+    },
+    "R3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Trust me, nopony will recognize you! You'll be incognito in this blindfold.",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R3(2)"
+        }
+      ]
+    },
+    "R3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay..",
+      "speaker": "Strikely",
+      "opposite": "Robo-Rarity",
+      "next": "R2"
+    },
+    "R3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Is there something better?",
+      "speaker": "Strikely",
+      "opposite": "Robo-Rarity",
+      "next": "R4"
+    },
+    "R4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Just look at it! I've spent so much effort on it, and you're complaining!",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      "next": "R5"
+    },
+    "R5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "There have been so many connoisseurs lately. Maybe you needed a beautiful dress with curlicues on your secret mission?",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R5(1)"
+        }
+      ]
+    },
+    "R5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay, okay. Thanks.",
+      "speaker": "Strikely",
+      "opposite": "Robo-Rarity",
+      "next": "R6"
+    },
+    "R6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Take it and don't even try not to wear it on your mission! I'll find you and kill you personally with my own hoo... robo-hands!",
+      "speaker": "Robo-Rarity",
+      "opposite": "Strikely",
+      "next": "R2(1.1)"
+    },
+    "R2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "R2(1.2)"
+    },
+    "R2(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "leaveLocationTask"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Robo-Rarity": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

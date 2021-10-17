@@ -52,9 +52,12 @@ public class NpcWithWeapons: NPC
     public override async void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        weaponCode = data["weaponCode"].ToString();
-        weapons.LoadWeapon(this, weaponCode);
-        
+        if (data["weaponCode"] != null)
+        {
+            weaponCode = data["weaponCode"].ToString();
+            weapons.LoadWeapon(this, weaponCode);
+        }
+
         if (!data.Contains("followTarget") || data["followTarget"] == null) return;
         
         await ToSignal(GetTree(), "idle_frame");
@@ -102,6 +105,7 @@ public class NpcWithWeapons: NPC
 
     public virtual void SetNewStartPos(Vector3 newPos, bool run = false)
     {
+        CleanPatrolArray();
         cameToPlace = false;
         myStartPos = newPos;
     }

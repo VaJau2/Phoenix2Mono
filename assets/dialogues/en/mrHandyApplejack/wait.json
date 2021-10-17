@@ -1,0 +1,69 @@
+{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi! I'll instruct you later, master asked me to wait until he talks to you himself.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A1(2)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Instruct? What?",
+      "speaker": "Strikely",
+      "opposite": "Robo-Applejack",
+      "next": "A2"
+    },
+    "A1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Where is he anyway?",
+      "speaker": "Strikely",
+      "opposite": "Robo-Applejack",
+      "next": "A3"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ask all your questions to Mister Bellgates, friend. He should be here soon.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely"
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He's a little late. He should be here any minute.",
+      "speaker": "Robo-Applejack",
+      "opposite": "Strikely"
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Robo-Applejack": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

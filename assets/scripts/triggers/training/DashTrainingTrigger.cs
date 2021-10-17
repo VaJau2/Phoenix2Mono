@@ -14,6 +14,7 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     private MrHandy roboDash;
     private Array<Target> targets = new Array<Target>();
     private int tempTargetsCount;
+    private bool isCounting;
     
     public override void _Ready()
     {
@@ -49,7 +50,9 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     
     private async void CountTimer()
     {
+        isCounting = true;
         await Global.Get().ToTimer(StartTime);
+        isCounting = false;
         foreach (var target in targets)
         {
             target.Off();
@@ -73,6 +76,28 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
             {
                 _on_body_entered(player);
             }
+        }
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        var data = base.GetSaveData();
+        data["timer"] = StartTime;
+        data["isCounting"] = isCounting;
+
+        return data;
+    }
+    
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        StartTime = (float) data["timer"];
+        
+        //при сохранении не во время включенного тира его таймер не сохраняется, и он загружается выключенным
+        //при этом нужно вернуть ему возможность включения
+        if ((bool) data["isCounting"])
+        {
+            checkButton = true;
         }
     }
 }

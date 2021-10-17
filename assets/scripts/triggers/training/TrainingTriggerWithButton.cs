@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System.Diagnostics.Tracing;
+using Godot;
+using Godot.Collections;
 
 public abstract class TrainingTriggerWithButton: TriggerBase
 {
@@ -65,4 +67,17 @@ public abstract class TrainingTriggerWithButton: TriggerBase
     }
     
     protected virtual void PressButton() {}
+
+    public override Dictionary GetSaveData()
+    {
+        var data = base.GetSaveData();
+        data["checkButton"] = checkButton;
+        return data;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        checkButton = (bool)data["checkButton"];
+    }
 }

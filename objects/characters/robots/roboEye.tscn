@@ -270,9 +270,11 @@ tracks/4/keys = {
 }
 
 [sub_resource type="BoxShape" id=13]
-extents = Vector3( 8.7428, 8.12693, 23.6742 )
+extents = Vector3( 7.9354, 8.12693, 20.8776 )
 
-[node name="roboEye" type="KinematicBody"]
+[node name="roboEye" type="KinematicBody" groups=[
+"savable",
+]]
 script = ExtResource( 2 )
 IdleAnim = "idle"
 StartHealth = 50
@@ -332,11 +334,11 @@ monitorable = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="seekArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.27021, -17.9081 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.27021, -18.3623 )
 shape = SubResource( 13 )
 
 [node name="ray" type="RayCast" parent="seekArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21756, -1.21516 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01954, -1.34605 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
 

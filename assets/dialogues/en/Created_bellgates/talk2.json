@@ -1,0 +1,493 @@
+{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thank you for coming. Here we can speak openly and without fear of extra ears.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(3)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Why do you need robotic Ministers?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B2"
+    },
+    "B1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What is this place?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B17"
+    },
+    "B1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Let's get to the point.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B5"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B3"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B4"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay, that's not why you're here...",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B4(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B4(1)"
+        }
+      ]
+    },
+    "B4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What is this place?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B18"
+    },
+    "B4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Let's get to the point.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B5"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's time to tell you the reason, why I left MAS. One of the most awful secrets of Twilight's Ministry is that they created a Megaspell using Ministry of Peace developments.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "This megaspell may burn out a huge area in one blow, and its remnants will hinder the existence of most organisms for a very long time.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B7"
+    },
+    "B7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Their use implies the complete and almost instantaneous destruction of one or even several countries.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B7(2)"
+        }
+      ]
+    },
+    "B7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "This is horrible.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B8"
+    },
+    "B7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "So the war will soon end in victory?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B9"
+    },
+    "B8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I totally agree. I didn't want to be a participant in mass destruction and so I left.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B8.1"
+    },
+    "B9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You don't realize what it can lead to. I've done the calculations. After this megaspells we may well fight the next war with sticks and stones. No one should have such power, they must be stopped.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B10"
+    },
+    "B10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I contacted some acquaintances and found that blueprints to this megaspell are now in one of the MAS bases. This base is very well guarded, but you shouldn't have any problems with it…",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B10(1)"
+        }
+      ]
+    },
+    "B10(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Are you suggesting me to break in there and steal the blueprints?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B11"
+    },
+    "B11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I propose to sneak into this base, find the blueprints and destroy them in such a way that not a trace of them remains.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B11(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B11(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B11(3)"
+        }
+      ]
+    },
+    "B11(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's a betrayal. If I'm discovered…",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B12"
+    },
+    "B11(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And if I refuse?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B13"
+    },
+    "B11(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay. I'm in.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B16"
+    },
+    "B12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're a professional, aren't you? Besides, I'm going to give you equipment of our own design specially for you. They won't find you with it, and if they do, they won't recognize you.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B12(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B12(2)"
+        }
+      ]
+    },
+    "B12(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And if I refuse?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B15"
+    },
+    "B12(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B16"
+    },
+    "B13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Then, I'm afraid, very soon the whole world will be engulfed in the fire of hundreds of such megaspells. Almost none of us will survive. And in part it will already be your fault, because you knew about it, but decided to do nothing.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B13(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B13(2)"
+        }
+      ]
+    },
+    "B13(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's a betrayal. If I'm discovered…",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B14"
+    },
+    "B13(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B16"
+    },
+    "B14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're a professional, aren't you? Besides, I'm going to give you equipment of our own design specially for you. They won't find you with it, and if they do, they won't recognize you.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B14(1)"
+        }
+      ]
+    },
+    "B14(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B16"
+    },
+    "B15": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Then, I'm afraid, very soon the whole world will be engulfed in the fire of hundreds of such megaspells. Almost none of us will survive. And in part it will already be your fault, because you knew about it, but decided to do nothing.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B15(1)"
+        }
+      ]
+    },
+    "B15(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B16"
+    },
+    "B16": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Great. I knew you'd agree. Come to Rarity for an equipment, and Applejack instruct you about the details.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B16(1.1)"
+    },
+    "B18": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "My little and remote house from the whole world. It took me a lot of work to build all this here, but believe me, it's worth it.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B18(1)"
+        }
+      ]
+    },
+    "B17": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "My little and remote house from the whole world. It took me a lot of work to build all this here, but believe me, it's worth it.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B17(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B17(1)"
+        }
+      ]
+    },
+    "B17(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Why do you need robotic Ministers?",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B19"
+    },
+    "B17(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright, let's get to the point",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B5"
+    },
+    "B18(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright, let's get to the point",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B5"
+    },
+    "B19": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B20"
+    },
+    "B20": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B21"
+    },
+    "B21": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay, that's not why you're here...",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B21(1)"
+        }
+      ]
+    },
+    "B21(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Let's get to the point.",
+      "speaker": "Strikely",
+      "opposite": "Bellgates",
+      "next": "B5"
+    },
+    "B16(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "openDoors"
+        }
+      ],
+      "next": "B16(1.2)"
+    },
+    "B8.1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But thanks to you, we can not only not interfere, but also prevent them.",
+      "speaker": "Bellgates",
+      "opposite": "Strikely",
+      "next": "B10"
+    },
+    "B16(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "B16(1.3)"
+    },
+    "B16(1.3)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "bellgatesMoveToTerminal"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Bellgates": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}
