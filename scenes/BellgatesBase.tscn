@@ -1095,7 +1095,7 @@ bus = "Audio"
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.8763, 1.13126, 33.9265 )
 
 [node name="bunker_entry" parent="terrain/props/houses" instance=ExtResource( 101 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 160.826, 0, 98.101 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 160.826, -0.318, 98.101 )
 
 [node name="DoorTeleport" type="StaticBody" parent="terrain/props/houses/bunker_entry"]
 transform = Transform( -2.67767, 0, -2.3409e-07, 0, 2.67767, 0, 2.3409e-07, 0, -2.67767, -5.72516, 5.59571, 5.03199 )

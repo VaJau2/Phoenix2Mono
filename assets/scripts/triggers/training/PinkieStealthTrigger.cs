@@ -91,7 +91,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         foreach (var eye in eyes)
         {
-            eye.MakeActive(false);
+            eye?.MakeActive(false);
         }
         
         audi.Stream = beepSound;
@@ -114,7 +114,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         if (itemCode != itemInBag) return;
         foreach (var eye in eyes)
         {
-            eye.MakeActive(false);
+            eye?.MakeActive(false);
         }
         audi.Stream = beepSound;
         audi.Play();

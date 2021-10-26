@@ -1,1 +1,164 @@
-{"nodes":{"R1":{"kind":"dialogue","root_node":false,"body":"О, а вот и ты, дорогуша! Я шила этот костюм специально для тебя. В нем ты будешь неотразимой на этом… задании!","speaker":"Робо-Рарити","opposite":"Страйкли","next":"R1(1.1)"},"R1(1.1)":{"kind":"narration","root_node":false,"body":"TakeItem","set":[{"key":"name","op":"set","value":"stealth-armor"}],"options":[{"body":"answer","next":"R1(1)"},{"body":"answer","next":"R1(2)"}]},"R1(1)":{"kind":"dialogue","root_node":false,"body":"Спасибо","speaker":"Страйкли","opposite":"Робо-Рарити","next":"R2"},"R1(2)":{"kind":"dialogue","root_node":false,"body":"Повязка на глаз? И это помешает им узнать меня?","speaker":"Страйкли","opposite":"Робо-Рарити","next":"R3"},"R2":{"kind":"dialogue","root_node":false,"body":"Носи его с удовольствием! ","speaker":"Робо-Рарити","opposite":"Страйкли","next":"R2(1.1)"},"R3":{"kind":"dialogue","root_node":false,"body":"Поверь мне, тебя точно никто не узнает! Ты будешь инкогнито в этой повязке.","speaker":"Робо-Рарити","opposite":"Страйкли","options":[{"body":"answer","next":"R3(1)"},{"body":"answer","next":"R3(2)"}]},"R3(1)":{"kind":"dialogue","root_node":false,"body":"Ну ладно..","speaker":"Страйкли","opposite":"Робо-Рарити","next":"R2"},"R3(2)":{"kind":"dialogue","root_node":false,"body":"А ничего получше нет?","speaker":"Страйкли","opposite":"Робо-Рарити","next":"R4"},"R4":{"kind":"dialogue","root_node":false,"body":"Вы только посмотрите! Я потратила столько сил на него, а ты жалуешься!","speaker":"Робо-Рарити","opposite":"Страйкли","next":"R5"},"R5":{"kind":"dialogue","root_node":false,"body":"Столько в последнее время завелось ценителей. Может, тебе нужно было прекрасное платье с завитушками на твоем тайном задании?","speaker":"Робо-Рарити","opposite":"Страйкли","options":[{"body":"answer","next":"R5(1)"}]},"R5(1)":{"kind":"dialogue","root_node":false,"body":"Ладно, ладно. Спасибо.","speaker":"Страйкли","opposite":"Робо-Рарити","next":"R6"},"R6":{"kind":"dialogue","root_node":false,"body":"То-то же. Бери его и только попробуй не надеть, когда отправишься на задание! Я найду тебя и лично убью этими копы...робо-руками!","speaker":"Робо-Рарити","opposite":"Страйкли","next":"R2(1.1)"},"R2(1.1)":{"kind":"narration","root_node":false,"body":"ChangeDialogueCode","next":"R2(1.2)"},"R2(1.2)":{"kind":"narration","root_node":false,"body":"ActivateTrigger","set":[{"key":"name","op":"set","value":"leaveLocationTask"}]}},"speakers":{"Робо-Рарити":{"color":{"r":0,"g":0,"b":0,"a":0}},"Страйкли":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "R1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeItem",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "stealth-armor"
+        }
+      ],
+      "next": "R1(1.1)"
+    },
+    "R1(1.1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "О, а вот и ты, дорогуша! Я шила этот костюм специально для тебя. В нем ты будешь неотразимой на этом… задании!",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R1(2)"
+        }
+      ]
+    },
+    "R1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо",
+      "speaker": "Страйкли",
+      "opposite": "Робо-Рарити",
+      "next": "R2"
+    },
+    "R1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Повязка на глаз? И это помешает им узнать меня?",
+      "speaker": "Страйкли",
+      "opposite": "Робо-Рарити",
+      "next": "R3"
+    },
+    "R2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Носи его с удовольствием! ",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "next": "R2(1.1)"
+    },
+    "R3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Поверь мне, тебя точно никто не узнает! Ты будешь инкогнито в этой повязке.",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "R3(2)"
+        }
+      ]
+    },
+    "R3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну ладно..",
+      "speaker": "Страйкли",
+      "opposite": "Робо-Рарити",
+      "next": "R2"
+    },
+    "R3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "А ничего получше нет?",
+      "speaker": "Страйкли",
+      "opposite": "Робо-Рарити",
+      "next": "R4"
+    },
+    "R4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вы только посмотрите! Я потратила столько сил на него, а ты жалуешься!",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "next": "R5"
+    },
+    "R5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Столько в последнее время завелось ценителей. Может, тебе нужно было прекрасное платье с завитушками на твоем тайном задании?",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "R5(1)"
+        }
+      ]
+    },
+    "R5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ладно, ладно. Спасибо.",
+      "speaker": "Страйкли",
+      "opposite": "Робо-Рарити",
+      "next": "R6"
+    },
+    "R6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "То-то же. Бери его и только попробуй не надеть, когда отправишься на задание! Я найду тебя и лично убью этими копы...робо-руками!",
+      "speaker": "Робо-Рарити",
+      "opposite": "Страйкли",
+      "next": "R2(1.1)"
+    },
+    "R2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "R2(1.2)"
+    },
+    "R2(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "leaveLocationTask"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Робо-Рарити": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

@@ -88,6 +88,7 @@ public class DialogueTrigger : TriggerBase
             {
                 npc.aggressiveAgainstPlayer = false;
                 npc.SetState(NPCState.Idle);
+                npc.seekArea._on_seekArea_body_exited(Global.Get().player);
             }
             else
             {

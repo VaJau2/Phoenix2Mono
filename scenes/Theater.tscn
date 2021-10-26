@@ -437,7 +437,6 @@ script = ExtResource( 51 )
 
 [node name="bellgates" parent="npc" instance=ExtResource( 20 )]
 transform = Transform( 0.0433928, 0, -0.999058, 0, 1, 0, 0.999058, 0, 0.0433928, 28.3947, 7.95282, 43.4191 )
-IdleAnim = "Idle1"
 WalkSpeed = 4
 RunSpeed = 11
 

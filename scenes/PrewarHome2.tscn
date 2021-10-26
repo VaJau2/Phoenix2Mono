@@ -1168,7 +1168,7 @@ NewTaskCode = "takeFirewood"
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3028, -3.8147e-06, -23.1003 )
 script = ExtResource( 71 )
-otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickCase"), NodePath("../changeWindyDialogue"), NodePath("../exit") ]
+otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickCase"), NodePath("../changeWindyDialogue"), NodePath("../exit"), NodePath("../goToCarTask") ]
 itemModelPath = NodePath("../../terrain/props/paper")
 itemCode = "bellgatesPaper"
 hintCode = "pick"

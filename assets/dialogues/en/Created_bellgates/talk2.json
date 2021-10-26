@@ -448,7 +448,7 @@
     "B8.1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "But thanks to you, we can not only not interfere, but also prevent them.",
+      "body": "But thanks to you, we can not only not interfere, but also prevent this.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B10"

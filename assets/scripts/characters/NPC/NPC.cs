@@ -215,6 +215,7 @@ public class NPC : Character
 
     public override void LoadData(Dictionary data)
     {
+        base.LoadData(data);
         string tempVictimName = data["tempVictim"].ToString();
         if (tempVictimName != "")
         {
@@ -282,8 +283,6 @@ public class NPC : Character
         {
             CleanPatrolArray();
         }
-        
-        base.LoadData(data);
 
         if (Health <= 0)
         {
