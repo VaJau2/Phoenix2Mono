@@ -35,7 +35,17 @@ public class LoadLevelTrigger: TriggerBase
 
         levelsLoader.LoadLevel(NewLevelNum);
     }
-    
+
+    public override void _on_activate_trigger()
+    {
+        if (!IsActive)
+        {
+            SetActive(true);
+            return;
+        }
+        base._on_activate_trigger();
+    }
+
     public void _on_body_entered(Node body)
     {
         if (!IsActive) return;
