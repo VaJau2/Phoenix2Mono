@@ -2,7 +2,7 @@
 //класс отвечает за управление открытием/закрытием менюшек, чтобы они не перекрывали друг друга
 public static class MenuManager {
 
-    static IMenu openedMenu;
+    public static IMenu openedMenu { get; private set; }
     static IMenu backgroundMenu = null;
 
     public static bool SomeMenuOpen => openedMenu != null;

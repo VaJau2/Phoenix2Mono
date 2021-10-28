@@ -28,6 +28,13 @@ public class DialogueMenu : Control, IMenu
 
     public void StartTalkingTo(NPC npc)
     {
+        //диалог должен закрывать любое открытое меню
+        //прим. - меню терминала, которое имеет mustBeClosed = false
+        if (MenuManager.SomeMenuOpen)
+        {
+            MenuManager.CloseMenu(MenuManager.openedMenu);
+        }
+        
         if (!MenuManager.TryToOpenMenu(this, true)) return;
         this.npc = npc;
         npc.SetState(NPCState.Talk);

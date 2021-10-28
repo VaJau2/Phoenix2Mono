@@ -9,6 +9,7 @@ using Godot.Collections;
 //которые реализованы через TerminalMode
 public class Terminal : StaticBody, IMenu
 {
+    //при открытии инвентаря, включенный терминал переходит на фон, но не закрывается
     public bool mustBeClosed {get => false;}
     [Export]
     public string startPhraseCode = "personal";
