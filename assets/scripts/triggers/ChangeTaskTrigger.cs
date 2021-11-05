@@ -5,6 +5,7 @@
 class ChangeTaskTrigger: TriggerBase
 {
     [Export] public string NewTaskCode;
+    [Export] public bool showMessage = true;
     Messages messages;
 
     public override void _Ready()
@@ -28,7 +29,7 @@ class ChangeTaskTrigger: TriggerBase
 
     public override void _on_activate_trigger()
     {
-        messages.currentTaskLink = NewTaskCode;
+        messages.ChangeTaskCode(NewTaskCode, showMessage);
         base._on_activate_trigger();
     }
 }

@@ -7,7 +7,7 @@ public class Messages: VBoxContainer, ISavable {
     [Export]
     public Theme tempTheme;
 
-    public string currentTaskLink = "none";
+    private string currentTaskLink = "none";
 
     private async void waitAndDissapear(Label label, float time) {
         await global.ToTimer(time, null, true);
@@ -39,6 +39,15 @@ public class Messages: VBoxContainer, ISavable {
         tempLabel.Align = Label.AlignEnum.Left;
         AddChild(tempLabel);
         return tempLabel;
+    }
+
+    public void ChangeTaskCode(string newTaskCode, bool showMessage = true)
+    {
+        currentTaskLink = newTaskCode;
+        if (!showMessage) return;
+        
+        string taskText = InterfaceLang.GetPhrase("tasks", "tasks", newTaskCode);
+        ShowMessage("newTask", taskText, "messages");
     }
 
     // Все фразы лежат в lang/inGame.json
