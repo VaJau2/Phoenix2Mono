@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi again. Want to buy something?",
+      "speaker": "Mare",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi. Yes, I want.",
+      "speaker": "Strikely",
+      "opposite": "Mare",
+      "next": "M1.1"
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I don't want yet. I'll come back later.",
+      "speaker": "Strikely",
+      "opposite": "Mare",
+      "next": "M2"
+    },
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes, of course",
+      "speaker": "Mare",
+      "opposite": "Strikely"
+    },
+    "M1.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgain"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Mare": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

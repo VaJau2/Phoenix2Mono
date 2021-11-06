@@ -21,6 +21,9 @@
         "takeFirewood": "Взять дрова на улице",
         "sitInAVan": "Сесть в фургон",
         "waitForBellgates": "Подождать Бельгетса в главном доме",
-        "getGearFromRarity": "Взять снаряжение у Рарити"
+        "getGearFromRarity": "Взять снаряжение у Рарити",
+        "findBlueprints": "Найти чертежи",
+        "leaveLocation": "Покинуть базу",
+        "talkToCoronel": "Поговорить с полковником"
     }
 }

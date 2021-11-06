@@ -68,7 +68,23 @@
         "description": "Suitcase that contains all your things",
         "type": "staff",
         "icon": "suitcase",
-        "price": "300"
+        "price": "300",
+        "questItem": "true"
+    },
+    "blueprints1": {
+        "name": "Megaspell blueprints",
+        "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Highly important.",
+        "type": "staff",
+        "icon": "note",
+        "price": "99999999999",
+        "questItem": "true"
+    },
+    "blueprints2": {
+        "name": "Megaspell blueprints",
+        "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Useless.",
+        "type": "staff",
+        "icon": "note",
+        "price": "1"
     },
 
 

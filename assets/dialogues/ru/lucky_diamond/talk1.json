@@ -1,0 +1,139 @@
+{
+  "nodes": {
+    "L1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Привет, лейтенант. Чего так поздно?",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L1(1)"
+        }
+      ]
+    },
+    "L1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Привет, Лаки. Полковник у себя?",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L2"
+    },
+    "L2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Тебе повезло, он до сих пор у себя. Обычно он так долго не задерживается.",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L2(1)"
+        }
+      ]
+    },
+    "L2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Не уверена, что повезло, но спасибо",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L3"
+    },
+    "L3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "А что такое?",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "L3(2)"
+        }
+      ]
+    },
+    "L3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кажется, он задерживается из-за меня. Я провинилась, причем гораздо сильнее, чем ты",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L5"
+    },
+    "L3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Это не важно. Я пойду к нему, удачной службы",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L4"
+    },
+    "L4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну, ладно... тебе тоже удачи",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "next": "L7"
+    },
+    "L5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что? Как?",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L5(1)"
+        }
+      ]
+    },
+    "L5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Прости, но, боюсь, я не могу тебе сказать. Не здесь и не сейчас",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L6"
+    },
+    "L6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну... Ладно. Удачи там, Страйкли",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "next": "L7"
+    },
+    "L7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n"
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Лаки Даймонд": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
 [resource]
 flags_transparent = true
 params_diffuse_mode = 1
-params_depth_draw_mode = 1
+params_depth_draw_mode = 3
 albedo_color = Color( 0.901961, 0.901961, 0.901961, 1 )
 albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 4, 1, 1 )

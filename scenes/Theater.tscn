@@ -1496,6 +1496,7 @@ ItemToCheck = "nucBattery"
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 NewTaskCode = "protectTwilight"
+showMessage = false
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 39 )

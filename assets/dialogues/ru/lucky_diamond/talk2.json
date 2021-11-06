@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "L1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Как все прошло, лейтенант?",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L1(1)"
+        }
+      ]
+    },
+    "L1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Плохо, Лаки. Боюсь, мы больше не увидимся",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L2"
+    },
+    "L2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Почему?",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L2(1)"
+        }
+      ]
+    },
+    "L2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я ухожу на фронт",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L3"
+    },
+    "L3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Но ты же была единственной, с кем можно было нормально пообщаться... Не оставляй меня здесь...",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L3(1)"
+        }
+      ]
+    },
+    "L3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Прости, Лаки. Тебе лучше оставаться здесь, чем идти со мной. Это все выше всех нас...",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L4"
+    },
+    "L4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Как же это все несправедливо",
+      "speaker": "Лаки Даймонд",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L4(1)"
+        }
+      ]
+    },
+    "L4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да...прощай",
+      "speaker": "Страйкли",
+      "opposite": "Лаки Даймонд",
+      "next": "L5"
+    },
+    "L5": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n"
+    }
+  },
+  "speakers": {
+    "Лаки Даймонд": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

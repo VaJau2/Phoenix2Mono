@@ -1,0 +1,349 @@
+{
+  "nodes": {
+    "C1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Did you know that I was training you to be my replacement, Lieutenant?",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C1(2)"
+        }
+      ]
+    },
+    "C1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No…",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C2"
+    },
+    "C1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I guessed.",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C2"
+    },
+    "C2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You won't be coronel, Strikely. Not after what you did last night.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C2(2)"
+        }
+      ]
+    },
+    "C2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He promised that eye patch would help…",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C3"
+    },
+    "C2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry…",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C4"
+    },
+    "C3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "An eye patch? Seriously!? Did you think that nopony would recognize you because of it? Are you an intelligence lieutenant, Strikely?",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C4"
+    },
+    "C4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Tell me everything that happened there in detail. I don't believe you snuck into one of the MAS bases for no reason.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C4(1)"
+        }
+      ]
+    },
+    "C4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It was that scientist, Bellgates. ",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C5"
+    },
+    "C5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What did he say to you? Why didn't you report it right away?",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C5(1)"
+        }
+      ]
+    },
+    "C5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He said, that in a base there are blueprints of megaspell, that would destroy the whole world. I couldn't report, because he sended me there after briefing",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C6"
+    },
+    "C6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Merciful Celestia… He told you to burn them, right?",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C6(1)"
+        }
+      ]
+    },
+    "C6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes…",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C7"
+    },
+    "C7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You've always been ideological, now I understand. You don't have to continue. It was a mistake to send you to him.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C7(1)"
+        }
+      ]
+    },
+    "C7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What now?",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C8"
+    },
+    "C8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "The law obliges me to send you to the tribunal, since you fought against our ponies. Even though they were mercenaries. ",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C9"
+    },
+    "C9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But I am against such an outcome. And not only me. Did you know that you have some very important friends?",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C9(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C9(2)"
+        }
+      ]
+    },
+    "C9(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Who?",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C10"
+    },
+    "C9(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What will happen to me?",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C11"
+    },
+    "C10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Very important somepony. I don't know who exactly, but the orders of such ponies are always obeyed implicitly.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C11"
+    },
+    "C11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You will go to the front and do what intelligence should do - sabotage operations on enemy territory.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C11(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C11(2)"
+        }
+      ]
+    },
+    "C11(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What about my family?",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C12"
+    },
+    "C11(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes sir.",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C13"
+    },
+    "C12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I sent them to a safe place and gave them other names. I'm afraid you'll never see them again. This is a forced measure.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C12(1)"
+        }
+      ]
+    },
+    "C12(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Strikely",
+      "opposite": "Coronel",
+      "next": "C13"
+    },
+    "C13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll brief you on your first assignment..",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C14"
+    },
+    "C14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Some captured zebras during interrogation frighten our soldiers, that they have some secret weapon on one of their bases.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C15"
+    },
+    "C15": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We are already tired of listening this shit. Sneak into this base and find out what kind of weapon it is. If possible, destroy it.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C16"
+    },
+    "C16": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "If I were you, I would sneak into the base secretly and try not to catch their eye. You are only one, and they are many. However, if you think you can handle it, you can give them a fight.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C17"
+    },
+    "C17": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Try to eliminate the snipers guarding the perimeter before entering the base.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C18"
+    },
+    "C18": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good luck and farewell.",
+      "speaker": "Coronel",
+      "opposite": "Strikely",
+      "next": "C18.1"
+    },
+    "C18.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n",
+      "next": "C18.2"
+    },
+    "C18.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "afterCoronelTalk"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Coronel": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "L1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "How did it go, Lieutenant?",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L1(1)"
+        }
+      ]
+    },
+    "L1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It was bad, Lucky. I'm afraid we won't see each other again",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L2"
+    },
+    "L2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Why?",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L2(1)"
+        }
+      ]
+    },
+    "L2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm going to the front",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L3"
+    },
+    "L3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But you were the only one with whom it was possible to communicate normally... Don't leave me here...",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L3(1)"
+        }
+      ]
+    },
+    "L3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry, Lucky. It's better for you to stay here than to come with me. It's all above all of us...",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L4"
+    },
+    "L4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's so unfair",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L4(1)"
+        }
+      ]
+    },
+    "L4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes...goodbye",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L5"
+    },
+    "L5": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n"
+    }
+  },
+  "speakers": {
+    "Lucky Diamond": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

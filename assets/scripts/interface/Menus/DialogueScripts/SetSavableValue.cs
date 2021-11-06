@@ -1,6 +1,4 @@
-﻿using Godot;
-
-namespace DialogueScripts
+﻿namespace DialogueScripts
 {
     public class SetSavableValue: IDialogueScript
     {
@@ -12,7 +10,6 @@ namespace DialogueScripts
             if (saveNode == null) return;
             
             saveNode.SavedVariables[key] = parameter;
-            GD.Print("saved " + key + " to " + parameter);
         }
     }
 }

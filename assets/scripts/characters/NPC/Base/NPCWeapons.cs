@@ -85,7 +85,7 @@ public class NPCWeapons : Node
 
         if (npc is Pony pony)
         {
-            var eyes = pony.GetNode<NPCFace>("Armature/Skeleton/Body");
+            var eyes = pony.GetNodeOrNull<NPCFace>("Armature/Skeleton/Body");
             eyes?.CloseEyes();
         }
 

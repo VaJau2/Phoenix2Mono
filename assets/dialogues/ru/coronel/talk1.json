@@ -1,1 +1,223 @@
-{"nodes":{"A1":{"kind":"dialogue","root_node":false,"body":"Вернулась живой и здоровой, это хорошо. Как прошло?","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A1(1)"}]},"A2":{"kind":"dialogue","root_node":false,"body":"Каким образом он это узнал?","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A2(1)"}]},"A3":{"kind":"dialogue","root_node":false,"body":"Сильное заявление. Чем ты его докажешь?","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A3(1)"}]},"A4":{"kind":"dialogue","root_node":false,"body":"Хм… Здесь не говорится, что он из наших. Зато здесь говорится о покушении на Министра. А вот это уже очень серьёзно.","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A4(1)"},{"body":"answer","next":"A4(2)"}]},"A5":{"kind":"dialogue","root_node":false,"body":" Я проведу расследование, если тебе будет так спокойнее, хорошо? Но не сейчас, у нас есть проблема гораздо важнее.","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A4(2)"}]},"A6":{"kind":"dialogue","root_node":false,"body":"В театре в городе скоро будет проходить закрытая презентация. Один ученый собирается показывать Министру Твайлайт свои последние разработки.","speaker":"Полковник","opposite":"Страйкли","next":"A7"},"A7":{"kind":"dialogue","root_node":false,"body":"Я хочу, чтобы ты была там на случай, если что-то произойдет.","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A7(1)"},{"body":"answer","next":"A7(2)"}]},"A8":{"kind":"dialogue","root_node":false,"body":"Никто из других Министров не планирует посещать наш город в ближайшие несколько месяцев, так что я бы не рассчитывал, что он собирается организовывать покушение именно на них. ","speaker":"Полковник","opposite":"Страйкли","next":"A9"},"A9":{"kind":"dialogue","root_node":false,"body":"А вот Министр Твайлайт приезжает уже через несколько дней, и у неё в это время будет минимальное количество охраны. Здесь и пригодишься ты.","speaker":"Полковник","opposite":"Страйкли","options":[{"body":"answer","next":"A9(1)"}]},"A10":{"kind":"dialogue","root_node":false,"body":"Эквестрия рассчитывает на тебя, лейтенант. Можешь идти.","speaker":"Полковник","opposite":"Страйкли","next":"A10(1)"},"A1(1)":{"kind":"dialogue","root_node":false,"body":"Докладываю: Вражеский агент успешно устранен, но денег он не принес. Он изначально знал, кто я.","speaker":"Страйкли","opposite":"Полковник","next":"A2"},"A2(1)":{"kind":"dialogue","root_node":false,"body":"Я думаю, в наших рядах завелся предатель.","speaker":"Страйкли","opposite":"Полковник","next":"A3"},"A3(1)":{"kind":"dialogue","root_node":false,"body":"У него с собой была записка [отдать записку]","speaker":"Страйкли","opposite":"Полковник","next":"A3(1.1)"},"A4(1)":{"kind":"dialogue","root_node":false,"body":"Среди нас действительно есть предатель, иначе он бы никак не узнал, что я подставной агент!","speaker":"Страйкли","opposite":"Полковник","next":"A5"},"A4(2)":{"kind":"dialogue","root_node":false,"body":"Что вы предлагаете?","speaker":"Страйкли","opposite":"Полковник","next":"A6"},"A7(1)":{"kind":"dialogue","root_node":false,"body":"Так точно!","speaker":"Страйкли","opposite":"Полковник","next":"A10"},"A7(2)":{"kind":"dialogue","root_node":false,"body":"Что насчет других Министров?","speaker":"Страйкли","opposite":"Полковник","next":"A8"},"A9(1)":{"kind":"dialogue","root_node":false,"body":"Есть, сэр!","speaker":"Страйкли","opposite":"Полковник","next":"A10"},"A3(1.1)":{"kind":"narration","root_node":false,"body":"GiveItem","set":[{"key":"itemCode","op":"set","value":"agent1Note"}],"next":"A4"},"A10(1)":{"kind":"narration","root_node":false,"body":"ChangeDialogueCode","next":"A10(2)"},"A10(2)":{"kind":"narration","root_node":false,"body":"ActivateTrigger","set":[{"key":"trigger","op":"set","value":"talkToCoronel"}]}},"speakers":{}}
+{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вернулась живой и здоровой, это хорошо. Как прошло?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        }
+      ]
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Каким образом он это узнал?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A2(1)"
+        }
+      ]
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Сильное заявление. Чем ты его докажешь?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A3(1)"
+        }
+      ]
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Хм… Здесь не говорится, что он из наших. Зато здесь говорится о покушении на Министра. А вот это уже очень серьёзно.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(2)"
+        }
+      ]
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": " Я проведу расследование, если тебе будет так спокойнее, хорошо? Но не сейчас, у нас есть проблема гораздо важнее.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A4(2)"
+        }
+      ]
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "В театре в городе скоро будет проходить закрытая презентация. Один ученый собирается показывать Министру Твайлайт свои последние разработки.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "A7"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я хочу, чтобы ты была там на случай, если что-то произойдет.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(2)"
+        }
+      ]
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Никто из других Министров не планирует посещать наш город в ближайшие несколько месяцев, так что я бы не рассчитывал, что он собирается организовывать покушение именно на них. ",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "A9"
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "А вот Министр Твайлайт приезжает уже через несколько дней, и у неё в это время будет минимальное количество охраны. Здесь и пригодишься ты.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A9(1)"
+        }
+      ]
+    },
+    "A10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Эквестрия рассчитывает на тебя, лейтенант. Можешь идти.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "A10(1)"
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Докладываю: Вражеский агент успешно устранен, но денег он не принес. Он изначально знал, кто я.",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A2"
+    },
+    "A2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я думаю, в наших рядах завелся предатель.",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A3"
+    },
+    "A3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "У него с собой была записка [отдать записку]",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A3(1.1)"
+    },
+    "A4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Среди нас действительно есть предатель, иначе он бы никак не узнал, что я подставной агент!",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A5"
+    },
+    "A4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что вы предлагаете?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A6"
+    },
+    "A7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Так точно!",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A10"
+    },
+    "A7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что насчет других Министров?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A8"
+    },
+    "A9(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Есть, сэр!",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "A10"
+    },
+    "A3(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "GiveItem",
+      "set": [
+        {
+          "key": "itemCode",
+          "op": "set",
+          "value": "agent1Note"
+        }
+      ],
+      "next": "A4"
+    },
+    "A10(1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "A10(2)"
+    },
+    "A10(2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "trigger",
+          "op": "set",
+          "value": "talkToCoronel"
+        }
+      ]
+    }
+  },
+  "speakers": {}
+}

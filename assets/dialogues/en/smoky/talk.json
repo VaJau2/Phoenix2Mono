@@ -1,0 +1,209 @@
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Here you are. I hope you won't do stupid things? You know, I have a date tomorrow..",
+      "speaker": "Soldier in a coat",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What are you doing in my house, Smoky? Where is my family?",
+      "speaker": "Strikely",
+      "opposite": "Soldier in a coat",
+      "next": "S2"
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "They are in safe, I assure you. And you have very serious conversation with Green Blood. Pack your things and let's go.",
+      "speaker": "Smoky",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S2(2)"
+        },
+        {
+          "body": "answer",
+          "next": "S2(3)"
+        }
+      ]
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S3"
+    },
+    "S2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What kind of conversation?",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S4"
+    },
+    "S2(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I won't go anywhere.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S5"
+    },
+    "S3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll wait for you outside.",
+      "speaker": "Smoky",
+      "opposite": "Strikely",
+      "next": "S3.1"
+    },
+    "S4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm not aware of all the details. He said that you were very guilty of something, and he was very upset. I hope you won't get fired, it was a pleasure working with you…",
+      "speaker": "Smoky",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S4(2)"
+        }
+      ]
+    },
+    "S4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Me too. Fine, I'll go to him.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S3"
+    },
+    "S4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm not going anywhere.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S5"
+    },
+    "S5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You don't have to complicate everything. Don't be afraid. He is a good pony, he won't torture and kill you. Swear at you, scold with a hoof, fire at last. You were too valuable an employee.",
+      "speaker": "Smoky",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S5(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S5(2)"
+        }
+      ]
+    },
+    "S5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Fine, I'll go to him.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S3"
+    },
+    "S5(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You can't make me.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S6"
+    },
+    "S6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Of course I can't. This will be handled by our colleagues who are not as friendly to you as I am. You know them, right? The military police will not stand on ceremony. If I were you, I would go on my own hooves.",
+      "speaker": "Smoky",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S6(1)"
+        }
+      ]
+    },
+    "S6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay, fine.",
+      "speaker": "Strikely",
+      "opposite": "Smoky",
+      "next": "S3"
+    },
+    "S3.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "S3.2"
+    },
+    "S3.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "afterSmokyDialogue"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Soldier in a coat": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Smoky": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

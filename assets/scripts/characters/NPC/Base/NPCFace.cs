@@ -1,17 +1,20 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Godot.Collections;
 
 //класс отвечает за лицо НПЦ
 //за текстуры глаз и рта
-public class NPCFace : MeshInstance
+public class NPCFace : MeshInstance, ISavable
 {
     [Export]
     public string npcName;
     [Export]
-    public string startEyesVariant = "";
+    protected string startEyesVariant = "";
+    [Export] 
+    protected string startMouthVariant = "A";
 
-    private Dictionary<string, StreamTexture> mouthTextures = new Dictionary<string, StreamTexture>();
+    private System.Collections.Generic.Dictionary<string, StreamTexture> mouthTextures = new System.Collections.Generic.Dictionary<string, StreamTexture>();
     
     NPC npc;
     private SpatialMaterial eyesMaterial;
@@ -42,6 +45,22 @@ public class NPCFace : MeshInstance
             await global.ToTimer(animTime.time - lastTime);
             lastTime = animTime.time;
         }
+    }
+
+    public void ChangeMouthVariant(string variant)
+    {
+        StreamTexture mouthTexture = GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
+        mouthMaterial.AlbedoTexture = mouthTexture;
+        startMouthVariant = variant;
+    }
+    
+    public void ChangeEyesVariant(string variantName)
+    {
+        string path = "res://assets/textures/characters/" + npcName + "/eyes/" + variantName;
+        openEyes = GD.Load<StreamTexture>(path + "/0.png");
+        closedEyes = GD.Load<StreamTexture>(path + "/1.png");
+        eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
+        startEyesVariant = variantName;
     }
 
     private List<AnimTime> LoadTimingFile(string fileName)
@@ -76,14 +95,6 @@ public class NPCFace : MeshInstance
             StreamTexture mouthTexture = GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant + ".png");
             mouthTextures.Add(tempVariant, mouthTexture);
         }
-    }
-
-    private void ChangeEyesVariant(string variantName)
-    {
-        string path = "res://assets/textures/characters/" + npcName + "/eyes/" + variantName;
-        openEyes = GD.Load<StreamTexture>(path + "/0.png");
-        closedEyes = GD.Load<StreamTexture>(path + "/1.png");
-        eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
     }
 
     private void UpdateOpenEyes(float delta)
@@ -121,6 +132,28 @@ public class NPCFace : MeshInstance
         if (Visible)
         {
             UpdateOpenEyes(delta);
+        }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            {"startEyes", startEyesVariant},
+            {"startMouth", startMouthVariant},
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (startEyesVariant != data["startEyes"].ToString())
+        {
+            ChangeEyesVariant(data["startEyes"].ToString());
+        }
+
+        if (startMouthVariant != data["startMouth"].ToString())
+        {
+            ChangeMouthVariant(startMouthVariant);
         }
     }
 }

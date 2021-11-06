@@ -107,8 +107,7 @@
     "M7": {
       "kind": "narration",
       "root_node": false,
-      "body": "ChangeDialogueCode",
-      "next": "M7.1"
+      "body": "ChangeDialogueCode"
     }
   },
   "speakers": {

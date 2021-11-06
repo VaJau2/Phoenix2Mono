@@ -81,10 +81,12 @@ public class Character : KinematicBody, ISavable
     {
         Vector3 newPos = new Vector3(Convert.ToSingle(data["pos_x"]), Convert.ToSingle(data["pos_y"]), Convert.ToSingle(data["pos_z"]));
         Vector3 newRot = new Vector3(Convert.ToSingle(data["rot_x"]), Convert.ToSingle(data["rot_y"]), Convert.ToSingle(data["rot_z"]));
+        Vector3 oldScale = Scale;
 
         Basis newBasis = new Basis(newRot);
         Transform newTransform = new Transform(newBasis, newPos);
         GlobalTransform = newTransform;
+        Scale = oldScale;
 
         Health = Convert.ToInt32(data["health"]);
     }

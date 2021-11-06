@@ -121,8 +121,7 @@
           "op": "set",
           "value": "disactiveFirewoodTrigger"
         }
-      ],
-      "next": "M8.1"
+      ]
     }
   },
   "speakers": {

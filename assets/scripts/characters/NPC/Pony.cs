@@ -142,6 +142,11 @@ public class Pony: NpcWithWeapons
         saveData["runSpeed"] = RunSpeed;
         saveData["runToPoint"] = RunToPoint;
         saveData["stayInPoint"] = stayInPoint;
+        if (GetNodeOrNull<NPCFace>("Armature/Skeleton/Body") is NPCFace npcFace)
+        {
+            saveData["face"] = npcFace.GetSaveData();
+        }
+        
         return saveData;
     }
 
@@ -151,6 +156,10 @@ public class Pony: NpcWithWeapons
         RunSpeed = Convert.ToInt16(data["runSpeed"]);
         RunToPoint = Convert.ToBoolean(data["runToPoint"]);
         stayInPoint = Convert.ToBoolean(data["stayInPoint"]);
+        if (!data.Contains("face")) return;
+        
+        Dictionary faceData = data["face"] as Dictionary;
+        GetNode<NPCFace>("Armature/Skeleton/Body").LoadData(faceData);
     }
     
     public void _on_lookArea_body_entered(Node body)

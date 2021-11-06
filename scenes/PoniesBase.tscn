@@ -25,7 +25,7 @@
 [ext_resource path="res://assets/audio/guns/result/box_brake2.wav" type="AudioStream" id=23]
 [ext_resource path="res://assets/audio/guns/result/box_brake1.wav" type="AudioStream" id=24]
 [ext_resource path="res://objects/props/furniture/light/lamp.tscn" type="PackedScene" id=25]
-[ext_resource path="res://objects/props/box.tscn" type="PackedScene" id=26]
+[ext_resource path="res://objects/props/boxes/box.tscn" type="PackedScene" id=26]
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/materials/props/furniture/kaktus.tres" type="Material" id=29]
@@ -978,6 +978,7 @@ SaveName = "autosave1"
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 50 )
 NewTaskCode = "talkToCommander"
+showMessage = false
 
 [node name="talkToCoronel" type="Node" parent="triggers" groups=[
 "savable",

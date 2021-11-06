@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/light/halo.material" type="Material" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=7]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=8]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=9]
-[ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=11]
-
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.573285, 10.5258, 0.772525 )
@@ -108,12 +105,6 @@ material/0 = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.75, 19, 0 )
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 7 )
-brake_damage = 1
-lamp = true
-sound = {
-"brake1": ExtResource( 11 ),
-"brake2": ExtResource( 10 )
-}
 
 [node name="shape" type="CollisionShape" parent="lightSource"]
 shape = SubResource( 4 )
@@ -147,7 +138,7 @@ material/0 = null
 transform = Transform( 1.41509, 3.18969e-08, -0.195781, 0.195781, -2.30548e-07, 1.41509, 0, -1.42857, -2.32744e-07, 6.68756, 20.8751, -0.234133 )
 light_color = Color( 0.968627, 0.909804, 0.6, 1 )
 light_bake_mode = 2
-spot_range = 16.8752
+spot_range = 30.0
 spot_angle = 23.9892
 
 [node name="halo" type="MeshInstance" parent="lightSource/window"]

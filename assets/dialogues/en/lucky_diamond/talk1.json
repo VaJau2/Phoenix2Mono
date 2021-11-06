@@ -1,0 +1,139 @@
+{
+  "nodes": {
+    "L1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hello, Lieutenant. Why so late?",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L1(1)"
+        }
+      ]
+    },
+    "L1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi, Lucky. Is coronel in?",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L2"
+    },
+    "L2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You are lucky, he is. He doesn't usually stay that long.",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L2(1)"
+        }
+      ]
+    },
+    "L2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm not so sure, that I'm lucky, but thanks",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L3"
+    },
+    "L3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What is it?",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "L3(2)"
+        }
+      ]
+    },
+    "L3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Seems like he is staying because of me. I was guilty, and much more so than you",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L5"
+    },
+    "L3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It doesn't matter. I'll go to him, good night",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L4"
+    },
+    "L4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Alright... good luck there",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "next": "L7"
+    },
+    "L5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What? How?",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "L5(1)"
+        }
+      ]
+    },
+    "L5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry, but I can't tell you. Not here and not now",
+      "speaker": "Strikely",
+      "opposite": "Lucky Diamond",
+      "next": "L6"
+    },
+    "L6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well... Okay. Good luck out there, Strikely",
+      "speaker": "Lucky Diamond",
+      "opposite": "Strikely",
+      "next": "L7"
+    },
+    "L7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n"
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Lucky Diamond": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

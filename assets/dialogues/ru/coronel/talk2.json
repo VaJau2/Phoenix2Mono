@@ -1,0 +1,349 @@
+{
+  "nodes": {
+    "C1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты знаешь, что я готовил из тебя свою замену, лейтенант?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C1(2)"
+        }
+      ]
+    },
+    "C1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет…",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C2"
+    },
+    "C1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я догадывалась.",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C2"
+    },
+    "C2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Не быть тебе полковником, Страйкли. Только не после того, что ты вытворила прошлой ночью.\n",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C2(2)"
+        }
+      ]
+    },
+    "C2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Он обещал, что повязка поможет…",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C3"
+    },
+    "C2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Простите…",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C4"
+    },
+    "C3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Повязка на глаз? Серьёзно!? Ты думала, что тебя никто не узнает из-за неё? Ты точно лейтенант разведки, Страйкли?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C4"
+    },
+    "C4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Выкладывай мне все, что там произошло, в подробностях. Я не верю, чтобы ты пробралась на одну из баз МТН без причины.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C4(1)"
+        }
+      ]
+    },
+    "C4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Это был тот самый ученый, Бельгетс. ",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C5"
+    },
+    "C5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что он тебе сказал? Почему ты не доложила об этом сразу?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C5(1)"
+        }
+      ]
+    },
+    "C5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Он сказал, что на базе находятся чертежи мегазаклинания, которое уничтожит мир. У меня не было возможности доложить, так как он отправил меня туда сразу после инструктажа",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C6"
+    },
+    "C6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Селестия милостивая… Он сказал тебе сжечь их, правильно?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C6(1)"
+        }
+      ]
+    },
+    "C6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да…",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C7"
+    },
+    "C7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты всегда была идейной, теперь я понимаю. Можешь не продолжать. Было ошибкой отправлять тебя к нему.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C7(1)"
+        }
+      ]
+    },
+    "C7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что теперь?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C8"
+    },
+    "C8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Закон обязывает меня отправить тебя на трибунал, так как ты подняла оружие на своих. Даже не смотря на то, что это были наемники. ",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C9"
+    },
+    "C9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Но я против такого исхода. И не только я. Ты знала, что у тебя есть друзья сверху?",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C9(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C9(2)"
+        }
+      ]
+    },
+    "C9(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кто?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C10"
+    },
+    "C9(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что со мной будет?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C11"
+    },
+    "C10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кто-то из самого верха. Не знаю, кто именно, но приказы таких пони всегда исполняются беспрекословно.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C11"
+    },
+    "C11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты отправишься на фронт и будешь делать то, что должна делать разведка - диверсионные операции на территории противника.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C11(1)"
+        },
+        {
+          "body": "answer",
+          "next": "C11(2)"
+        }
+      ]
+    },
+    "C11(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что насчет моей семьи?",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C12"
+    },
+    "C11(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Есть.",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C13"
+    },
+    "C12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я отправил их в безопасное место и дал им другие имена. Боюсь, ты их никогда больше не увидишь. Это вынужденная мера.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "C12(1)"
+        }
+      ]
+    },
+    "C12(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Страйкли",
+      "opposite": "Полковник",
+      "next": "C13"
+    },
+    "C13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я проинструктирую тебя насчет твоего первого задания.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C14"
+    },
+    "C14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Некоторые плененные зебры на допросе пугают наших тем, что на одной из баз у них есть какое-то тайное оружие.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C15"
+    },
+    "C15": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Уже все уши прожужжали этим оружием. Проберись на эту базу и узнай, что это за оружие. По возможности, уничтожь его.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C16"
+    },
+    "C16": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "На твоем месте я бы пробрался на базу скрытно и постарался бы не попасться зебрам на глаза. Ты одна, а их много. Однако, если ты посчитаешь, что справишься, можешь дать им бой.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C17"
+    },
+    "C17": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Постарайся устранить снайперов, охраняющих периметр, прежде чем проникнуть на базу.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C18"
+    },
+    "C18": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Удачи и прощай.",
+      "speaker": "Полковник",
+      "opposite": "Страйкли",
+      "next": "C18.1"
+    },
+    "C18.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\n",
+      "next": "C18.2"
+    },
+    "C18.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "afterCoronelTalk"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Полковник": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}
