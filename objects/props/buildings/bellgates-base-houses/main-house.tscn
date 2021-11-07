@@ -52,27 +52,27 @@ collision_mask = 3
 physics_material_override = ExtResource( 1 )
 
 [node name="Box001" type="MeshInstance" parent="."]
-transform = Transform( 0.401491, 0, 0, 0, 0.401491, 0, 0, 0, 0.401491, 0.294316, 0.225955, -4.97757 )
+transform = Transform( 0.389273, 0, 0, 0, 0.389273, 0, 0, 0, 0.389273, 0.0703125, 0.461201, -4.94894 )
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Cylinder001" type="MeshInstance" parent="."]
-transform = Transform( -0.273816, 0, 0.293632, 0, 0.401491, 0, -0.293632, 0, -0.273816, -0.939645, 12.2762, -8.65813 )
+transform = Transform( -0.265484, 0, 0.284697, 0, 0.389273, 0, -0.284697, 0, -0.265484, -1.1261, 12.1447, -8.5175 )
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.944281, 0, 0, 0, 0.944281, 0, 0, 0, 0.944281, -14.9517, 6.03444, 1.11213 )
+transform = Transform( 0.915546, 0, 0, 0, 0.915546, 0, 0, 0, 0.915546, -14.7118, 6.09293, 0.955444 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 0.944281, 0, 0, 0, 0.944281, 0, 0, 0, 0.944281, 0.387665, 6.03444, -4.97071 )
+transform = Transform( 0.915546, 0, 0, 0, 0.915546, 0, 0, 0, 0.915546, 0.16082, 6.09293, -4.94229 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="."]
-transform = Transform( 0.914637, 0.0046948, -0.404249, -0.00431567, 0.999989, 0.00184905, 0.404253, 5.33935e-05, 0.914647, 0.818108, 15.6871, -7.73279 )
+transform = Transform( 0.886804, 0.00455193, -0.391947, -0.00418434, 0.969559, 0.00179278, 0.391951, 5.17687e-05, 0.886814, 0.578165, 15.4519, -7.62032 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="."]
-transform = Transform( 0.914637, 0.0046948, -0.404249, -0.00431567, 0.999989, 0.00184905, 0.404253, 5.33935e-05, 0.914647, -2.21351, 14.1782, -9.18576 )
+transform = Transform( 0.886804, 0.00455193, -0.391947, -0.00418434, 0.969559, 0.00179278, 0.391951, 5.17687e-05, 0.886814, -2.3612, 13.9889, -9.02907 )
 shape = SubResource( 6 )

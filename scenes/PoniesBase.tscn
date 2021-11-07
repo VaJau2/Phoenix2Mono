@@ -551,8 +551,8 @@ transform = Transform( -1.62923e-07, 7.49772e-11, 1, 0, 1, -6.79828e-11, -1, -2.
 shape = SubResource( 4 )
 
 [node name="road" type="StaticBody" parent="terrain/terrain_body"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 physics_material_override = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/terrain_body/road"]
@@ -973,7 +973,7 @@ script = SubResource( 14 )
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 85 )
-SaveName = "autosave1"
+SaveName = "autosave2"
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 50 )

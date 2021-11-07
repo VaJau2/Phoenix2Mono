@@ -35,6 +35,8 @@ public class Terminal : StaticBody, IMenu
         player.MayRotateHead = false;
         player.Camera.isUpdating = false;
         mode.startKeyPressed = true;
+
+        ShowExitHint();
     }
 
     public void CloseMenu()
@@ -45,9 +47,22 @@ public class Terminal : StaticBody, IMenu
         player.MayRotateHead = true;
     }
 
-    private bool IsExitKey(uint keyCode)
+    private void ShowExitHint()
     {
-        return keyCode == (uint)KeyList.Tab;
+        var saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
+        var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        if (saveNode == null || messages == null) return;
+        if (saveNode.SavedVariables.Contains("terminalHint")) return;
+        
+        string message = InterfaceLang.GetPhrase("inGame", "hints", "5");
+        message = HintTrigger.ReplaceKeys(message);
+        messages.ShowMessageRaw(message);
+        saveNode.SavedVariables["terminalHint"] = true;
+    }
+
+    private bool IsExitKey()
+    {
+        return Input.IsActionJustPressed("inventory");
     }
 
     public async void StartClosing()
@@ -86,7 +101,7 @@ public class Terminal : StaticBody, IMenu
     {
         if (isUsing && @event is InputEventKey) {
             var keyEvent = @event as InputEventKey;
-            if (IsExitKey(keyEvent.Scancode)) {
+            if (IsExitKey()) {
                 StartClosing();
             } else {
                 mode.UpdateInput(keyEvent);

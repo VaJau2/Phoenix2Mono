@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=15]
 [ext_resource path="res://objects/interface/DialogueMenu.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/scripts/interface/BindsList.cs" type="Script" id=17]
+[ext_resource path="res://assets/materials/fonts/hint_theme.tres" type="Theme" id=18]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -324,7 +325,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tempTheme = ExtResource( 2 )
+tempTheme = ExtResource( 18 )
 
 [node name="black" type="ColorRect" parent="."]
 anchor_right = 1.0

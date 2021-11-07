@@ -10,7 +10,7 @@ public class HintTrigger : TriggerBase
     private Messages messages;
 
     //заменяет все #ui_jump#-значения с кодами кнопок на текущие кнопки из настроек управления
-    private static string ReplaceKeys(string message)
+    public static string ReplaceKeys(string message)
     {
         string[] codes = message.Split('#');
         foreach (string tempCode in codes)

@@ -210,6 +210,7 @@ public class Player_Unicorn : Player
                     if (tempTeleportMark != null) 
                     {
                         var place = tempRay.GetCollisionPoint();
+                        place += tempRay.GetCollisionNormal() * 2f;
 
                         tempTeleportMark.GlobalTransform = Global.setNewOrigin(
                             tempTeleportMark.GlobalTransform,

@@ -1,8 +1,8 @@
 {
     "main": {
         "page": "/Phoenix2/Death_menu",
-        "again": "               [Agsain]",
-        "load": "               [Load save]",
+        "again": "               [Last save]",
+        "load": "               [Choose save]",
         "exit": "               [To main menu]"
     },
 

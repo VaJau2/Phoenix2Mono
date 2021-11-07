@@ -96,7 +96,7 @@ margin_top = -76.0
 margin_right = -44.0
 margin_bottom = -51.0
 theme = ExtResource( 2 )
-text = "               [Заново]"
+text = "               [Последнее сохранение]"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,7 +111,7 @@ margin_top = -44.0
 margin_right = -44.0
 margin_bottom = -19.0
 theme = ExtResource( 2 )
-text = "               [Загрузить сохранение]"
+text = "               [Выбрать сохранение]"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false

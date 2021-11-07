@@ -136,6 +136,18 @@
         }
       ]
     },
+    "M4.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgain"
+        }
+      ]
+    },
     "M1(3)": {
       "kind": "dialogue",
       "root_node": false,

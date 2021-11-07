@@ -32,4 +32,10 @@ class ChangeTaskTrigger: TriggerBase
         messages.ChangeTaskCode(NewTaskCode, showMessage);
         base._on_activate_trigger();
     }
+    
+    public void _on_body_entered(Node body)
+    {
+        if (!(body is Player)) return;
+        _on_activate_trigger();
+    }
 }

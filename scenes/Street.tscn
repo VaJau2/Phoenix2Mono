@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -47,6 +47,7 @@
 [ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=45]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=46]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
+[ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=48]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -221,8 +222,8 @@ __meta__ = {
 
 [node name="grass" type="StaticBody" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.613, -1.353, -150.087 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 physics_material_override = ExtResource( 47 )
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/grass"]
@@ -647,6 +648,10 @@ shape = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 150.656, 6.3243 )
 
 [node name="triggers" type="Node" parent="."]
+
+[node name="autosave" type="Node" parent="triggers"]
+script = ExtResource( 48 )
+SaveName = "autosave1"
 
 [node name="talkTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )

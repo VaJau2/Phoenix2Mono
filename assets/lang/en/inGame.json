@@ -56,7 +56,8 @@
         "1_unicorn": "#jump# - teleportation, #ui_shift# - shield",
         "2": "#task# - current task",
         "3": "#inventory# - inventory",
-        "4": "You can assign weapons to the number keys for quick access. It is better to do this in advance"
+        "4": "You can assign weapons to the number keys for quick access. It is better to do this in advance",
+        "5": "#inventory# - exit terminal mode"
     },
 
     "chestNames": {
