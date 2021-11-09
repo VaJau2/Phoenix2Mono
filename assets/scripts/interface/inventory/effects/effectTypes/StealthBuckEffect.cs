@@ -54,11 +54,10 @@ public class StealthBuckEffect : Effect
     private void ChangePlayerVisibility(bool visible)
     {
         var bodyMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        //вернуть, если у гг от 3 лица есть материалы, которых нет у гг от 1 лица
-        // var bodyThirdMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        var bodyThirdMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
 
         ChangeMeshVisibility(bodyMesh, visible);
-        // ChangeMeshVisibility(bodyThirdMesh, visible);
+        ChangeMeshVisibility(bodyThirdMesh, visible);
         
         //смена прозрачности для оружия
         if (player.Weapons.GunOn)
@@ -76,6 +75,12 @@ public class StealthBuckEffect : Effect
                 var weaponBag = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
                 ChangeMeshVisibility(weaponBag, visible);
             }
+        }
+        
+        var artifact = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
+        if (artifact.Visible)
+        {
+            ChangeMeshVisibility(artifact, visible);
         }
 
         //смена прозрачности у "тени крыльев" для пегаса
