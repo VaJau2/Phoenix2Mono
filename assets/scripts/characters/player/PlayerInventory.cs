@@ -19,6 +19,12 @@ public class PlayerInventory {
     
     private InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
+    private string tempClothDataName;
+    private Dictionary tempClothData;
+
+    private string tempWeaponDataName;
+    private Dictionary tempWeaponData;
+
     public PlayerInventory(Player player) 
     {
         this.player = player;
@@ -58,12 +64,22 @@ public class PlayerInventory {
 
     public Dictionary GetArmorProps() 
     {
-        return ItemJSON.GetItemData(cloth);
+        if (cloth == tempClothDataName) return tempClothData;
+        
+        tempClothData = ItemJSON.GetItemData(cloth);
+        tempClothDataName = cloth;
+
+        return tempClothData;
     }
 
     public Dictionary GetWeaponProps()
     {
-        return ItemJSON.GetItemData(weapon);
+        if (weapon == tempWeaponDataName) return tempWeaponData;
+        
+        tempWeaponData = ItemJSON.GetItemData(weapon);
+        tempWeaponDataName = weapon;
+
+        return tempWeaponData;
     }
 
     public bool itemIsUsable(string itemType) {

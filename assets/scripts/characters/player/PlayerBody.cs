@@ -65,20 +65,21 @@ public class PlayerBody : Spatial
         }
     }
 
-    private bool playerMakingShy {
-        get {
-            if (player.IsHitting && !Legs.getTempFront) {
-                if (bodyRot > 17f && bodyRot < 44f && headBlend.y > 0.4f) {
-                    return true;
-                }
-            } else {
-                if (bodyRot < 61 && bodyRot > 27 && headBlend.y > 1) {
-                    return true;
-                }
+    private bool playerMakingShy
+    {
+        get
+        {
+            var rotYvalue = 1f;
+            
+            if (player.inventory.GetArmorProps().Contains("shyHeadYRot"))
+            {
+                rotYvalue = Global.ParseFloat(player.inventory.GetArmorProps()["shyHeadYRot"].ToString());
             }
-            return false;
+            
+            return bodyRot > 27 && bodyRot < 61 && headBlend.y > rotYvalue;
         }
     }
+    
 
     private bool checkPegasusFlying {
         get {
@@ -297,7 +298,7 @@ public class PlayerBody : Spatial
     }
 
     public override void _Process(float delta)
-    {  
+    {
         if (player.Health > 0) {
             updateHeadRotation(delta);
 

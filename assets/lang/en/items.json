@@ -373,6 +373,16 @@
         "damageBlock": "0.2",
         "sound": "coat"
     },
+    "school_uniform": {
+        "name": "School uniform",
+        "description": "You don't want to wear it at all",
+        "type": "armor",
+        "icon": "school_uniform",
+        "price:": "1000",
+        "damageBlock": "0.1",
+        "makeShy": "true",
+        "sound": "coat"
+    },
 
     
     "bow-ribbon": {

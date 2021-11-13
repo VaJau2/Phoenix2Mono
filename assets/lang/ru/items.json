@@ -351,6 +351,7 @@
         "damageBlock": "0.5",
         "speedDecrease": "3",
         "makeShy": "true",
+        "shyHeadYRot": "1",
         "sound": "coat"
     },
     "stealth-armor": {
@@ -371,6 +372,17 @@
         "icon": "private_uniform",
         "price": "150",
         "damageBlock": "0.2",
+        "sound": "coat"
+    },
+    "school_uniform": {
+        "name": "Школьная форма",
+        "description": "Ты же не будешь надевать это на себя, правда?",
+        "type": "armor",
+        "icon": "school_uniform",
+        "price": "1000",
+        "damageBlock": "0.1",
+        "makeShy": "true",
+        "shyHeadYRot": "0.1",
         "sound": "coat"
     },
 
