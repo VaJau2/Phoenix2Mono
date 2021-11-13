@@ -379,10 +379,10 @@
         "description": "Ты же не будешь надевать это на себя, правда?",
         "type": "armor",
         "icon": "school_uniform",
-        "price": "1000",
+        "price": "500",
         "damageBlock": "0.1",
         "makeShy": "true",
-        "shyHeadYRot": "0.1",
+        "shyHeadYRot": "0.4",
         "sound": "coat"
     },
 

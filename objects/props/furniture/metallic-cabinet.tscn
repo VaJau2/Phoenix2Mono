@@ -99,6 +99,7 @@ physics_material_override = ExtResource( 5 )
 script = ExtResource( 6 )
 OpenSound = ExtResource( 3 )
 CloseSound = ExtResource( 4 )
+chestCode = "cabinet"
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.43739, 0, 0, 0, 1.43739, 0, 0, 0, 1.43739, -0.0488558, 0, -0.00664511 )

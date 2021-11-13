@@ -137,6 +137,7 @@ tracks/1/keys = {
 script = ExtResource( 6 )
 OpenSound = ExtResource( 7 )
 CloseSound = ExtResource( 8 )
+chestCode = "cabinet"
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06917, 0 )
