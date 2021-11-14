@@ -1,3 +1,4 @@
+using System.Collections;
 using Godot;
 using Godot.Collections;
 using System.Globalization;
@@ -266,6 +267,16 @@ public class Global {
     public static void DeleteSaveFile(string fileName)
     {
         new Directory().Remove("user://saves/" + fileName);
+    }
+
+    public static Dictionary MergeDictionaries(Dictionary dicA, Dictionary dicB)
+    {
+        foreach (DictionaryEntry tempB in dicB)
+        {
+            dicA.Add(tempB.Key, tempB.Value);
+        }
+
+        return dicA;
     }
 }
 

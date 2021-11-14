@@ -16,48 +16,33 @@ public class MrHandyTrader: MrHandy, ITrader
     public new Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
-    
-    InventoryMenu menu;
-    bool isTrading = false;
 
     public override void _Ready()
     {
         base._Ready();
-        
-        menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-
-        RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
-        items.LoadRandomItems(itemCodes, ammoCount);
-
-        foreach(string itemCode in startItemCodes) {
-            itemCodes.Add(itemCode);
-        }
-        foreach(string ammoKey in startAmmoCount.Keys) {
-            if (!ammoCount.ContainsKey(ammoKey))
-            {
-                ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
-            }
-        }
+        BaseTrading.LoadTradingData(this);
     }
     
     public void StartTrading()
     {
-        if (isTrading) {
-            MenuManager.CloseMenu(menu);
-            isTrading = false;
-        } else {
-            menu.ChangeMode(NewInventoryMode.Trade);
-            TradeMode tempMode = menu.mode as TradeMode;
-            tempMode.SetTrader(this);
-            MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
-            isTrading = true;
-        }
+        BaseTrading.StartTrading();
     }
 
     public void StopTrading()
     {
-        isTrading = false;
-        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
+        BaseTrading.StopTrading();
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        BaseTrading.LoadData(data);
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        Dictionary saveData = base.GetSaveData();
+        Dictionary tradeSaveData = BaseTrading.GetSaveData();
+        return Global.MergeDictionaries(saveData, tradeSaveData);
     }
 }

@@ -4,6 +4,8 @@ public interface ITrader
 {
     int moneyCount {get; set;}
     string traderCode {get; set;}
+    Array<string> startItemCodes {get; set;}
+    Dictionary<string, int> startAmmoCount {get; set;}
     Array<string> itemCodes {get; set;}
     Dictionary<string, int> ammoCount {get; set;}
     Dictionary<string, ItemIcon> ammoButtons {get; set;}
