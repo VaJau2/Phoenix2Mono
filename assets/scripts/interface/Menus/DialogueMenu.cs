@@ -9,7 +9,7 @@ public class DialogueMenu : Control, IMenu
     const int MAX_ANSWER_LENGTH = 65;
     public NPC npc {get; private set;}
     public Player player => Global.Get().player;
-    public bool MenuOn = false;
+    public bool MenuOn => (GetParent() as Control).Visible;
     Dictionary nodes = null;
 
     RichTextLabel text;
@@ -32,7 +32,10 @@ public class DialogueMenu : Control, IMenu
         //прим. - меню терминала, которое имеет mustBeClosed = false
         if (MenuManager.SomeMenuOpen)
         {
-            MenuManager.CloseMenu(MenuManager.openedMenu);
+            if (MenuManager.openedMenu is Object && IsInstanceValid(MenuManager.openedMenu as Object))
+            {
+                MenuManager.CloseMenu(MenuManager.openedMenu);
+            }
         }
         
         if (!MenuManager.TryToOpenMenu(this, true)) return;
@@ -41,6 +44,7 @@ public class DialogueMenu : Control, IMenu
         npc.tempVictim = player;
         text.BbcodeText = "";
         LoadDialogueFile(npc.Name, npc.dialogueCode);
+        GD.Print("-- dialogue is on --");
     }
 
     private void LoadDialogueFile(string npcName, string code)
@@ -200,7 +204,6 @@ public class DialogueMenu : Control, IMenu
     {
         global.SetPause(this, true, false);
         (GetParent() as Control).Visible = true;
-        MenuOn = true;
     }
 
     public void CloseMenu()
@@ -213,7 +216,6 @@ public class DialogueMenu : Control, IMenu
 
         text.BbcodeText = "";
         (GetParent() as Control).Visible = false;
-        MenuOn = false;
         EmitSignal(nameof(FinishTalking));
     }
 

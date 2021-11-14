@@ -56,7 +56,7 @@ public class Terminal : StaticBody, IMenu
         
         string message = InterfaceLang.GetPhrase("inGame", "hints", "5");
         message = HintTrigger.ReplaceKeys(message);
-        messages.ShowMessageRaw(message);
+        messages.ShowMessageRaw(message, 3.5f);
         saveNode.SavedVariables["terminalHint"] = true;
     }
 

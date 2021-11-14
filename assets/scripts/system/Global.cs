@@ -77,6 +77,7 @@ public class Global {
         if (pause) {
             Input.SetMouseMode(Input.MouseMode.Visible);
         } else {
+            GD.Print("cursor is captured");
             Input.SetMouseMode(Input.MouseMode.Captured);
         }
     }

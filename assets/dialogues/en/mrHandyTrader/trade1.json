@@ -95,12 +95,19 @@
       "body": "No, I was just wondering. Keep working.",
       "speaker": "Strikely",
       "opposite": "Mister Handy",
-      "next": "script"
+      "next": "script1"
     },
     "script": {
       "kind": "narration",
       "root_node": false,
-      "body": "ChangeDialogueCode\nDialogue_Trade"
+      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "set": "tradeAgain"
+    },
+    "script1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": "tradeAgain"
     }
   },
   "speakers": {}

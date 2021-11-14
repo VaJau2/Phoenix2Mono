@@ -131,7 +131,7 @@ public class TradeMode: InventoryMode
                 }
             } else {
                 //если у торговца нет места, предмет пропадает
-                RemoveTempItem();
+                RemoveItemFromButton(tempButton);
             }
         } else {
             if (inventory.money < itemPrice)

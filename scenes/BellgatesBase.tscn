@@ -802,7 +802,6 @@ startAmmoCount = {
 [node name="mrHandyRarity" parent="npc" instance=ExtResource( 57 )]
 transform = Transform( 0.876324, 0, -0.481723, 0, 1, 0, 0.481723, 0, 0.876324, 140.513, -98.5574, 39.9065 )
 patrolArray = [ NodePath("../../rooms/armor-house/rarityPatrol/1"), NodePath("../../rooms/armor-house/rarityPatrol/2"), NodePath("../../rooms/armor-house/rarityPatrol/3") ]
-dialogueCode = "talk"
 
 [node name="mrHandyRainbow" parent="npc" instance=ExtResource( 70 )]
 transform = Transform( 0.9412, 0, -0.337851, 0, 1, 0, 0.337851, 0, 0.9412, 1.9371, 0.0616479, 97.8309 )
@@ -1616,13 +1615,13 @@ texture = ExtResource( 60 )
 [node name="rarityPatrol" type="Spatial" parent="rooms/armor-house"]
 
 [node name="1" type="Spatial" parent="rooms/armor-house/rarityPatrol"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2092, 0, -1.74795 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9904, 0, -1.74795 )
 
 [node name="2" type="Spatial" parent="rooms/armor-house/rarityPatrol"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.455, 0, 4.34962 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38863, 0, 3.73422 )
 
 [node name="3" type="Spatial" parent="rooms/armor-house/rarityPatrol"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221405, 0, -2.07933 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99615, 0, -3.36648 )
 
 [node name="stels-house" type="Spatial" parent="rooms" groups=[
 "savable",

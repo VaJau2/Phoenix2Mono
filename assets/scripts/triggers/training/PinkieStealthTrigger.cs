@@ -138,7 +138,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         data["eyesPath"] = eyesPath;
 
         //сохраняем сумку
-        if (bag != null)
+        if (bag != null && IsInstanceValid(bag))
         {
             data["bagPath"] = bag.GetPath().ToString();
         }

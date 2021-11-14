@@ -98,9 +98,10 @@ public class UsualMode: InventoryMode {
         {
             if (!Input.IsKeyPressed(48 + i)) continue;
             //если клавиша уже забиндена
-            if (menu.bindedButtons.Keys.Contains(i)) {
+            var buttonIsBinded = menu.bindedButtons.Keys.Contains(i);
+            if (buttonIsBinded || menu.bindedButtons.Values.Contains(tempButton)) {
                 //если нажата та же кнопка, она стирается
-                if (menu.bindedButtons[i] == tempButton)
+                if (buttonIsBinded && menu.bindedButtons[i] == tempButton)
                 {
                     ClearBind(tempButton);
                     return;

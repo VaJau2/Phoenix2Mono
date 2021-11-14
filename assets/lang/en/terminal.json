@@ -18,10 +18,10 @@
 
     "helpAnswer": [
         "clear         - clear output",
-        "dir           - show files list",
         "help [command]- show command help",
         "read [file]   - read file",
-        "doors         - lock/unlock door"
+        "doors         - lock/unlock door",
+        "(tab - finish work with terminal)"
     ],
 
     "helpCommands": {

@@ -39,9 +39,12 @@ public class PauseMenu : MenuBase, IMenu
 
     public void CloseMenu()
     {
+        GD.Print("close pause menu, dialogue is visible = " + dialogueMenu.MenuOn);
         if (!dialogueMenu.MenuOn) {
+            GD.Print("global set game pause to false");
             global.SetPause(this, false);
         } else {
+            GD.Print("global set music pause to false");
             global.SetPauseMusic(false);
         }
         
