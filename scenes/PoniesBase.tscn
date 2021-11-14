@@ -1370,12 +1370,10 @@ texture = ExtResource( 48 )
 [node name="cabinet-books" parent="rooms/kp/props" instance=ExtResource( 56 )]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -13.1296, 0.877037, -21.2007 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 
 [node name="cabinet-books2" parent="rooms/kp/props" instance=ExtResource( 55 )]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -12.875, -0.697304, -15.7173 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 
 [node name="cabinet" parent="rooms/kp/props" instance=ExtResource( 58 )]
 transform = Transform( -1.3, 0, -5.06239e-07, 0, 1.3, 0, 5.06239e-07, 0, -1.3, 27.9456, 3.03883, -7.41648 )
@@ -1960,20 +1958,17 @@ transform = Transform( 1.4, 0, 0, 0, 1.3, 0, 0, 0, 1.4, 18.692, 2.112, 15.8482 )
 [node name="metallic-cabinet3" parent="rooms/stolovaya/props" instance=ExtResource( 77 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47836, 3.22919, 12.9817 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="metallic-cabinet4" parent="rooms/stolovaya/props" instance=ExtResource( 77 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47836, 3.22919, 17.2828 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="metallic-cabinet5" parent="rooms/stolovaya/props" instance=ExtResource( 77 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47836, 3.22919, 21.7686 )
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
@@ -2386,7 +2381,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.82566
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola" ]
+itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola", "mana-potion" ]
 ammoCount = {
 "ammo20": 20,
 "ammo307": 10,

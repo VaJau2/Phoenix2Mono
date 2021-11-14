@@ -182,19 +182,23 @@ public abstract class InventoryMode
             if (itemPropNames.Contains(prop)) {
                 string propName = itemPropNames[prop].ToString();
                 string propValue = itemProps[prop].ToString();
-                if (prop == "medsEffect") {
-                    propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
-                }
-                if (prop == "damageBlock") {
-                    //выводим блокирование урона в процентах
-                    float blockValue = Global.ParseFloat(propValue);
-                    propValue = (blockValue * 100f).ToString() + "%";
-                }
-                if (prop == "questItem")
+                switch (prop)
                 {
-                    propValue = "";
+                    case "medsEffect":
+                        propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
+                        break;
+                    case "damageBlock":
+                    {
+                        //выводим блокирование урона в процентах
+                        float blockValue = Global.ParseFloat(propValue);
+                        propValue = (blockValue * 100f) + "%";
+                        break;
+                    }
+                    case "questItem":
+                        propValue = "";
+                        break;
                 }
-                
+
                 result += "> " + propName + propValue + "\n";
             }
         }
@@ -298,6 +302,10 @@ public abstract class InventoryMode
 
     public virtual async void CloseMenu()
     {
+        if (isDragging)
+        {
+            FinishDradding();
+        }
         CheckTempIcon();
         if (!player.IsSitting)
         {
@@ -321,33 +329,48 @@ public abstract class InventoryMode
         isAnimating = false;
     }
 
+    private void FinishDradding()
+    {
+        tempButton.SetIcon((StreamTexture) dragIcon.Texture);
+        dragIcon.Texture = null;
+        dragIcon.RectGlobalPosition = Vector2.Zero;
+        isDragging = false;
+    }
+
     protected bool UpdateDragging(InputEvent @event)
     {
-         if (Input.IsActionPressed("ui_click") && @event is InputEventMouseMotion) {
-                if (!isDragging) {
-                    dragIcon.Texture = tempButton.GetIcon();
-                    tempButton.SetIcon(null);
-                    isDragging = true;
-                }
-                if (dragTimer < 1) {
-                    dragTimer += 0.5f;
-                }
-                dragIcon.RectGlobalPosition = menu.GetGlobalMousePosition();
+        if (Input.IsActionPressed("ui_click") && @event is InputEventMouseMotion)
+        {
+            if (!isDragging)
+            {
+                dragIcon.Texture = tempButton.GetIcon();
+                tempButton.SetIcon(null);
+                isDragging = true;
             }
-            if (Input.IsActionJustReleased("ui_click")) {
-                if (isDragging) {
-                    tempButton.SetIcon((StreamTexture)dragIcon.Texture);
-                    dragIcon.Texture = null;
-                    dragIcon.RectGlobalPosition = Vector2.Zero;
-                    isDragging = false;
-                }
 
-                if (dragTimer >= 1) {
-                    dragTimer = 0;
-                    CheckDragItem();
-                    return true;
-                }
+            if (dragTimer < 1)
+            {
+                dragTimer += 0.5f;
             }
+
+            dragIcon.RectGlobalPosition = menu.GetGlobalMousePosition();
+        }
+
+        if (Input.IsActionJustReleased("ui_click"))
+        {
+            if (isDragging)
+            {
+                FinishDradding();
+            }
+
+            if (dragTimer >= 1)
+            {
+                dragTimer = 0;
+                CheckDragItem();
+                return true;
+            }
+        }
+
         return false;
     }
 

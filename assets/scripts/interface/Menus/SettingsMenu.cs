@@ -240,6 +240,16 @@ public class SettingsMenu : MenuBase
         this.Visible = true;
     }
 
+    public void CloseMenu()
+    {
+        Visible = false;
+        _on_mouse_exited();
+        global.Settings.SaveSettings();
+        if (colorChanged) {
+            ReloadAllColors(GetTree());
+        }
+    }
+
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer>("audi");
@@ -252,16 +262,14 @@ public class SettingsMenu : MenuBase
     {
         otherMenu.SoundClick();
 
-        if (controlsSubmenu.Visible) {
+        if (controlsSubmenu.Visible) 
+        {
             controlsSubmenu.Visible = false;
             settingsSubmenu.Visible = true;
-        } else {
-            this.Visible = false;
-            _on_mouse_exited();
-            global.Settings.SaveSettings();
-            if (colorChanged) {
-                ReloadAllColors(GetTree());
-            }
+        } 
+        else
+        {
+            CloseMenu();
         }
     }
 

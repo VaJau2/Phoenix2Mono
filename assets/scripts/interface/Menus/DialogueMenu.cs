@@ -44,7 +44,6 @@ public class DialogueMenu : Control, IMenu
         npc.tempVictim = player;
         text.BbcodeText = "";
         LoadDialogueFile(npc.Name, npc.dialogueCode);
-        GD.Print("-- dialogue is on --");
     }
 
     private void LoadDialogueFile(string npcName, string code)

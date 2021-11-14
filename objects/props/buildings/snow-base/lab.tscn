@@ -33,22 +33,22 @@ collision_mask = 3
 physics_material_override = ExtResource( 2 )
 
 [node name="Box001" type="MeshInstance" parent="."]
-transform = Transform( 0.30451, 0, 0, 0, 0.30451, 0, 0, 0, 0.30451, -1.36908, 0.192259, -2.60536e-06 )
+transform = Transform( 0.395595, 0, 0, 0, 0.395595, 0, 0, 0, 0.395595, -2.3782, -0.132447, -4.95642e-06 )
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 5.67299, 0, 0, 0, 1.68298, 0, 0, 0, 5.67299, -1.36908, 3.15899, -2.60536e-06 )
+transform = Transform( 7.36989, 0, 0, 0, 2.18639, 0, 0, 0, 7.36989, -2.3782, 3.72169, -4.95642e-06 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 5.67299, 0, 0, 0, 1.68298, 0, 0, 0, 5.67299, 4.15288, 3.15899, 14.2261 )
+transform = Transform( 7.36989, 0, 0, 0, 2.18639, 0, 0, 0, 7.36989, 4.79547, 3.72169, 18.4813 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="."]
-transform = Transform( 5.67299, 0, 0, 0, 1.68298, 0, 0, 0, 5.67299, 4.15288, 3.15899, -14.2261 )
+transform = Transform( 7.36989, 0, 0, 0, 2.18639, 0, 0, 0, 7.36989, 4.79547, 3.72169, -18.4813 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="."]
-transform = Transform( 5.67299, 0, 0, 0, 1.68298, 0, 0, 0, 5.67299, 5.37823, 2.08707, -1.42223 )
+transform = Transform( 7.36989, 0, 0, 0, 2.18639, 0, 0, 0, 7.36989, 6.38735, 2.32913, -1.84764 )
 shape = SubResource( 4 )

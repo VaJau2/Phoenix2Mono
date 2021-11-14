@@ -39,17 +39,14 @@ public class PauseMenu : MenuBase, IMenu
 
     public void CloseMenu()
     {
-        GD.Print("close pause menu, dialogue is visible = " + dialogueMenu.MenuOn);
         if (!dialogueMenu.MenuOn) {
-            GD.Print("global set game pause to false");
             global.SetPause(this, false);
         } else {
-            GD.Print("global set music pause to false");
             global.SetPauseMusic(false);
         }
         
         this.Visible = false;
-        settingsMenu.Visible = false;
+        settingsMenu.CloseMenu();
         loadMenu.Visible = false;
         saveMenu.Visible = false;
         global.Settings.SaveSettings();
@@ -86,7 +83,7 @@ public class PauseMenu : MenuBase, IMenu
             return;
         }
 
-        if (dialogueMenu == null) {
+        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) {
             dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         }
             
