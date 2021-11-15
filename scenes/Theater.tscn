@@ -455,11 +455,13 @@ dialogueCode = "talk1"
 [node name="dusk" parent="npc" instance=ExtResource( 15 )]
 transform = Transform( -0.267795, 0, 0.806713, 0, 0.85, 0, -0.806713, 0, -0.267795, 37.6572, 6.31634, -17.8221 )
 IdleAnim = "Idle1"
+IsImmortal = true
 COME_DISTANCE = 3.0
 RunSpeed = 15
 
 [node name="scientist1" parent="npc" instance=ExtResource( 11 )]
 transform = Transform( -0.310743, 0, -0.950494, 0, 1, 0, 0.950494, 0, -0.310743, 30.6128, 6.39129, -18.034 )
+IsImmortal = true
 
 [node name="security1" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.2017, 6.30189, -11.0818 )

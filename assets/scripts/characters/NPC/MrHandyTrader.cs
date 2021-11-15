@@ -16,15 +16,10 @@ public class MrHandyTrader: MrHandy, ITrader
     public new Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
     public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
-
-    public override void _Ready()
-    {
-        base._Ready();
-        BaseTrading.LoadTradingData(this);
-    }
     
     public void StartTrading()
     {
+        BaseTrading.LoadTradingData(this);
         BaseTrading.StartTrading();
     }
 
@@ -36,13 +31,13 @@ public class MrHandyTrader: MrHandy, ITrader
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        BaseTrading.LoadData(data);
+        BaseTrading.LoadData(this, data);
     }
     
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
-        Dictionary tradeSaveData = BaseTrading.GetSaveData();
+        Dictionary tradeSaveData = BaseTrading.GetSaveData(this);
         return Global.MergeDictionaries(saveData, tradeSaveData);
     }
 }

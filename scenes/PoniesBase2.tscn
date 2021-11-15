@@ -352,6 +352,7 @@ ammoCount = {
 "savable",
 ] instance=ExtResource( 36 )]
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
+IsImmortal = true
 dialogueCode = "trade1"
 moneyCount = 2000
 startItemCodes = [ "private_uniform", "private_uniform", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12" ]
@@ -377,6 +378,7 @@ ammoCount = {
 [node name="lucky_diamond" parent="npc" instance=ExtResource( 47 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 10.2297, -98.6917, 60.399 )
 IdleAnim = "Sit"
+IsImmortal = true
 dialogueCode = "talk1"
 
 [node name="private1" parent="npc" instance=ExtResource( 74 )]

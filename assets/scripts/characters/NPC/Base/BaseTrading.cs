@@ -19,18 +19,25 @@ public static class BaseTrading
         }
 
         tempNpc = npc;
-        menu = npc.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        
+        if (menu == null)
+        {
+            menu = npc.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+        }
 
         RandomItems items = npc.GetNode<RandomItems>("/root/Main/Scene/randomItems");
-        items.LoadRandomItems(trader.itemCodes, trader.ammoCount);
+        if (trader.itemCodes.Count == 0 && trader.ammoCount.Count == 0)
+        {
+            items.LoadRandomItems(trader.itemCodes, trader.ammoCount);
 
-        foreach(string itemCode in trader.startItemCodes) {
-            trader.itemCodes.Add(itemCode);
-        }
-        foreach(string ammoKey in trader.startAmmoCount.Keys) {
-            if (!trader.ammoCount.ContainsKey(ammoKey))
-            {
-                trader.ammoCount.Add(ammoKey, trader.startAmmoCount[ammoKey]);
+            foreach(string itemCode in trader.startItemCodes) {
+                trader.itemCodes.Add(itemCode);
+            }
+            foreach(string ammoKey in trader.startAmmoCount.Keys) {
+                if (!trader.ammoCount.ContainsKey(ammoKey))
+                {
+                    trader.ammoCount.Add(ammoKey, trader.startAmmoCount[ammoKey]);
+                }
             }
         }
     }
@@ -61,9 +68,9 @@ public static class BaseTrading
         menu.Disconnect("MenuIsClosed", tempNpc, nameof(ITrader.StopTrading));
     }
 
-    public static void LoadData(Dictionary data)
+    public static void LoadData(NPC npc, Dictionary data)
     {
-        if (!(tempNpc is ITrader trader))
+        if (!(npc is ITrader trader))
         {
             throw new ArgumentException();
         }
@@ -93,7 +100,7 @@ public static class BaseTrading
         trader.ammoButtons.Clear();
         
         //текущая сцена во время загрузки данных еще не добавлена на уровень
-        var scene = tempNpc.GetOwner<Node>();
+        var scene = npc.GetOwner<Node>();
         foreach (string key in newAmmoButtonNames.Keys)
         {
             ItemIcon tempButton = (ItemIcon)Global.FindNodeInScene(scene, newAmmoButtonNames[key].ToString());
@@ -108,9 +115,9 @@ public static class BaseTrading
         }
     }
 
-    public static Dictionary GetSaveData()
+    public static Dictionary GetSaveData(NPC npc)
     {
-        if (!(tempNpc is ITrader trader))
+        if (!(npc is ITrader trader))
         {
             throw new ArgumentException();
         }

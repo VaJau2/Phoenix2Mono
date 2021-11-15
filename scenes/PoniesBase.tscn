@@ -461,6 +461,7 @@ ammoCount = {
 "savable",
 ] instance=ExtResource( 36 )]
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
+IsImmortal = true
 moneyCount = 2000
 startItemCodes = [ "private_uniform", "private_uniform", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12" ]
 startAmmoCount = {
@@ -493,16 +494,19 @@ ammoCount = {
 
 [node name="cookie" parent="npc" instance=ExtResource( 74 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3566, -99.6825, 105.787 )
+IsImmortal = true
 dialogueCode = "talk"
 itemCodes = [ "sparkle-cola", "sparkle-cola" ]
 
 [node name="lucky_diamond" parent="npc" instance=ExtResource( 47 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -23.8954, -98.6917, -65.087 )
 IdleAnim = "Sit"
+IsImmortal = true
 dialogueCode = "talk"
 
 [node name="armored_soldier" parent="npc" instance=ExtResource( 90 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.01483, -0.257269, 148.517 )
+IsImmortal = true
 
 [node name="terrain" type="Spatial" parent="." groups=[
 "savable",
