@@ -928,6 +928,7 @@ script = ExtResource( 10 )
 
 [node name="smoky" parent="npc" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -75.7699, -103.076, 37.1998 )
+IsImmortal = true
 
 [node name="trader_daughter" parent="npc" instance=ExtResource( 71 )]
 transform = Transform( -3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 63.3716, -96.4466, 39.562 )
@@ -1568,6 +1569,12 @@ material/0 = null
 transform = Transform( -0.0168292, -0.117755, 3.50938e-09, -6.43387e-09, 0, -0.215885, 0.215228, -0.00920762, 2.74407e-10, 1.63091, -0.369308, 0.882412 )
 mesh = SubResource( 35 )
 material/0 = null
+
+[node name="table2" parent="rooms/mansion/props" instance=ExtResource( 65 )]
+transform = Transform( 1.47696, 0, 0, 0, 1.47696, 0, 0, 0, 1.47696, -16.6766, 7.68946, -1.5183 )
+
+[node name="chair3" parent="rooms/mansion/props" instance=ExtResource( 53 )]
+transform = Transform( -0.65887, 0, -5.76003e-08, 0, 0.65887, 0, 5.76003e-08, 0, -0.65887, -15.0098, 6.84016, -1.46176 )
 
 [node name="windows" type="Spatial" parent="rooms/mansion"]
 transform = Transform( 1.16824, 0, 0, 0, 1.16824, 0, 0, 0, 1.16824, 0.0936565, -0.0413895, 0.101593 )

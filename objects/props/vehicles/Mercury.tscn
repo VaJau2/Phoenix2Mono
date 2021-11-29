@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/models/props/vehicles/Mercuriy/Mercuriy.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/materials/props/vehicles/mercury.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 8.45105, 1.34104, 2.81422 )

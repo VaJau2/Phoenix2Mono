@@ -1,11 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/audio/futniture/stableDoorClose.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/audio/futniture/stableDoorOpen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/scripts/furniture/StableDoors/KillArea.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/props/buildings/bunker/bunker-door.material" type="Material" id=6]
-[ext_resource path="res://assets/scripts/furns/furn-door.gd" type="Script" id=7]
+[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=7]
 [ext_resource path="res://assets/materials/props/buildings/bunker/bunker-door-border.material" type="Material" id=8]
+[ext_resource path="res://assets/materials/props/buildings/bunker/bunker-door_eng.material" type="Material" id=9]
+[ext_resource path="res://assets/scripts/furniture/StableDoors/DoorTimer.cs" type="Script" id=10]
+[ext_resource path="res://assets/scripts/utils/TextureTranslation.cs" type="Script" id=11]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.286684, 1.60566, 0.356152 )
@@ -39,58 +44,19 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97303,
 "index_count": 0,
+"material": ExtResource( 6 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 66
 }
 
-[sub_resource type="GDScript" id=6]
-script/source = "extends MeshInstance
-
-var eng_material = preload(\"res://assets/materials/props/buildings/bunker/bunker-door_eng.material\")
-
-func _ready():
-	if G.english:
-		set_surface_material(0, eng_material)
-"
-
-[sub_resource type="GDScript" id=7]
-script/source = "extends Area
-
-onready var door = get_node(\"../../..\")
-var bodyHere = null
-var timer = 0.5
-
-
-func _on_killArea_body_entered(body):
-	if !door.open && door.opening:
-		bodyHere = body
-
-
-func _on_killArea_body_exited(body):
-	bodyHere = null
-
-
-func _process(delta):
-	if bodyHere != null:
-		if timer > 0:
-			timer -= delta
-		else:
-			timer = 0.5
-		
-		if bodyHere.name == \"Player\":
-			bodyHere.stats.TakeDamage(50, Vector2.ZERO)
-		elif bodyHere is Character:
-			bodyHere.TakeDamage(50)
-"
-
-[sub_resource type="BoxShape" id=8]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.815563, 0.078823, 0.083255 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 2.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("bunker-door/bunker-door001:translation")
+tracks/0/path = NodePath("bunker-door/bunker-door:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -114,12 +80,12 @@ tracks/1/keys = {
 "values": [ Vector3( 0.248, 4.153, -0.87 ), Vector3( 0.248, 4.053, -0.87 ), Vector3( 0.248, 1.553, -0.87 ), Vector3( 0.248377, 1.45318, -0.869806 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=9]
 length = 2.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("bunker-door/bunker-door001:translation")
+tracks/0/path = NodePath("bunker-door/bunker-door:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -143,34 +109,17 @@ tracks/1/keys = {
 "values": [ Vector3( 0.248377, 1.45318, -0.869806 ), Vector3( 0.248, 1.553, -0.87 ), Vector3( 0.248, 4.053, -0.87 ), Vector3( 0.248, 4.153, -0.87 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 
-[sub_resource type="Animation" id=13]
-
-[sub_resource type="GDScript" id=14]
-script/source = "extends Node
-
-var timer = 10
-onready var door = get_parent()
-
-
-func _process(delta):
-	if door.open:
-		if timer > 0:
-			timer -= delta
-		else:
-			door.clickFurn()
-	else:
-		timer = 10
-"
+[sub_resource type="Animation" id=11]
 
 [node name="stable-door" type="StaticBody"]
 physics_material_override = ExtResource( 1 )
 script = ExtResource( 7 )
-openSound = ExtResource( 3 )
-closeSound = ExtResource( 2 )
-force_opening = false
-open_timer = 2.5
+OpenSound = ExtResource( 3 )
+CloseSound = ExtResource( 2 )
+closedSound = ExtResource( 4 )
+openTimer = 2.0
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241902, 1.61747, -2.21552 )
@@ -193,33 +142,36 @@ transform = Transform( -2.13467e-07, 0, 1.26148, 0, 1.02163, 0, -1.31025, 0, -2.
 mesh = SubResource( 4 )
 material/0 = ExtResource( 8 )
 
-[node name="bunker-door001" type="MeshInstance" parent="bunker-door"]
+[node name="bunker-door" type="MeshInstance" parent="bunker-door"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.184183 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 6 )
-script = SubResource( 6 )
+material/0 = null
+script = ExtResource( 11 )
+engMaterial = ExtResource( 9 )
 
-[node name="killArea" type="Area" parent="bunker-door/bunker-door001"]
+[node name="killArea" type="Area" parent="bunker-door/bunker-door"]
 transform = Transform( 1, 0, 0, 0, 1, 0, -2.84217e-14, 0, 1, 0, -0.0356019, 0 )
-script = SubResource( 7 )
+script = ExtResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="bunker-door/bunker-door001/killArea"]
+[node name="CollisionShape" type="CollisionShape" parent="bunker-door/bunker-door/killArea"]
 transform = Transform( 0.999999, 3.14833e-10, 4.83169e-13, -5.17848e-10, 0.999996, 0.00306021, 4.26326e-13, -0.00200714, 0.999997, 0, -0.0149972, -0.0123415 )
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
-unit_db = 10.0
-unit_size = 5.0
+unit_db = 3.0
+unit_size = 2.0
+max_db = 1.0
 max_distance = 500.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/close = SubResource( 9 )
-anims/close-2 = SubResource( 10 )
-anims/open = SubResource( 11 )
-anims/open-force = SubResource( 12 )
-anims/open-force-2 = SubResource( 13 )
+anims/close = SubResource( 7 )
+anims/close-2 = SubResource( 8 )
+anims/open = SubResource( 9 )
+anims/open-force = SubResource( 10 )
+anims/open-force-2 = SubResource( 11 )
 
 [node name="stable-door-timer" type="Node" parent="."]
-script = SubResource( 14 )
-[connection signal="body_entered" from="bunker-door/bunker-door001/killArea" to="bunker-door/bunker-door001/killArea" method="_on_killArea_body_entered"]
-[connection signal="body_exited" from="bunker-door/bunker-door001/killArea" to="bunker-door/bunker-door001/killArea" method="_on_killArea_body_exited"]
+script = ExtResource( 10 )
+
+[connection signal="body_entered" from="bunker-door/bunker-door/killArea" to="bunker-door/bunker-door/killArea" method="_on_killArea_body_entered"]
+[connection signal="body_exited" from="bunker-door/bunker-door/killArea" to="bunker-door/bunker-door/killArea" method="_on_killArea_body_exited"]

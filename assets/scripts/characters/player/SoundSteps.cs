@@ -98,7 +98,8 @@ public class SoundSteps: RayCast {
             {"wood", LoadSounds("wood", "stepWoodFast")},
             {"stone", LoadSounds("stone", "StoneStep")},
             {"water", LoadSounds("water", "stepWaterFast")},
-            {"snow", LoadSounds("snow", "stepSnowFast")}
+            {"snow", LoadSounds("snow", "stepSnowFast")},
+            {"metal", LoadSounds("metal", "stepMetalFast")}
         };
 
         stepsRun = new Dictionary<string, Array<AudioStreamSample>>()
@@ -108,7 +109,8 @@ public class SoundSteps: RayCast {
             {"wood", LoadSounds("dirt", "stepDirtRun")},
             {"stone", LoadSounds("stone", "StoneStepRun")},
             {"water", LoadSounds("water", "stepWaterFast")},
-            {"snow", LoadSounds("snow", "stepSnowRun")}
+            {"snow", LoadSounds("snow", "stepSnowRun")},
+            {"metal", LoadSounds("metal", "stepMetalFast")}
         };
 
         stepsCrouch = new Dictionary<string, Array<AudioStreamSample>>()
@@ -118,7 +120,8 @@ public class SoundSteps: RayCast {
             {"wood", LoadSounds("wood", "stepWoodFast")},
             {"stone", LoadSounds("stone", "StoneStep")},
             {"water", LoadSounds("water", "stepWaterFast")},
-            {"snow", LoadSounds("snow", "stepSnow")}
+            {"snow", LoadSounds("snow", "stepSnow")},
+            {"metal", LoadSounds("metal", "stepMetalFast")}
         };
 
         global = Global.Get();

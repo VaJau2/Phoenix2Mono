@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/materials/props/vehicles/helicopter.material" type="Material" id=2]
 
 [sub_resource type="ArrayMesh" id=1]

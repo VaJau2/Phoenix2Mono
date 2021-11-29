@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/vehicles/jeep.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 lightmap_size_hint = Vector2( 124, 128 )
@@ -35,7 +35,7 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 1.04865, 0.658572, 2.37875 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 0.967836, 0.658572, 1.24737 )
 
 [sub_resource type="BoxShape" id=5]
@@ -60,7 +60,7 @@ shape = SubResource( 3 )
 
 [node name="shape2" type="CollisionShape" parent="."]
 transform = Transform( 2.06937, 0, 0, 0, 2.06925, -0.0226451, 0, 0.0226451, 2.06925, -0.0762798, 3.0837, -1.68041 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="shape3" type="CollisionShape" parent="."]
 transform = Transform( 2.06937, 0, 0, 0, 1.8534, 0.920437, 0, -0.920437, 1.8534, -0.107592, 2.59117, 0.434462 )

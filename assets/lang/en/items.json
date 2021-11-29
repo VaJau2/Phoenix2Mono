@@ -55,6 +55,20 @@
         "icon": "key0",
         "price": "2" 
     },
+    "key-lab": {
+        "name": "Lab cabinets key",
+        "description": "Key, which opens closed doors in MAS's laboratories",
+        "type": "staff",
+        "icon": "key0",
+        "price": "100"
+    },
+    "lab-key-card1": {
+        "name": "Lab key-card",
+        "description": "Plastic card, which is used to opening doors",
+        "type": "staff",
+        "icon": "swipe-card",
+        "price": "50"
+    },
     "nucBattery": {
         "name": "Nuclear battery",
         "description": "Power source for energy-magical devices, such as power armor",

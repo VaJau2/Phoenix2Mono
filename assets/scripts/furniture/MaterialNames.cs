@@ -13,6 +13,7 @@ public static class MatNames {
         {50, "grass"},
         {55, "stairs"},
         {56, "stone"},
+        {57, "metal"},
         {60, "grass_stairs"},
         {70, "water"},
     };
