@@ -52,7 +52,7 @@ public class DoorTeleport : StaticBody, ISavable
         }
     }
 
-    public void Open(Spatial character, bool makeVisible)
+    public void Open(Spatial character, bool makeVisible, bool soundOpening = true)
     {
         if (Closed)
         {
@@ -62,16 +62,22 @@ public class DoorTeleport : StaticBody, ISavable
             SetProcess(false);
             return;
         }
-        
-        SoundOpening();
 
-        character.GlobalTransform = newPlace.GlobalTransform;
-        
-        if (character is Player_Unicorn unicorn)
+        if (soundOpening)
         {
-            unicorn.teleportInside = Inside;
+            SoundOpening();
         }
+
+        if (character != null)
+        {
+            character.GlobalTransform = newPlace.GlobalTransform;
         
+            if (character is Player_Unicorn unicorn)
+            {
+                unicorn.teleportInside = Inside;
+            } 
+        }
+
         if (makeVisible)
         {
             oldLocation.Visible = false;

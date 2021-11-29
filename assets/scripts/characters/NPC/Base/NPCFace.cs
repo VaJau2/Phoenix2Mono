@@ -7,15 +7,13 @@ using Godot.Collections;
 //за текстуры глаз и рта
 public class NPCFace : MeshInstance, ISavable
 {
-    [Export]
-    public string npcName;
-    [Export]
-    protected string startEyesVariant = "";
-    [Export] 
-    protected string startMouthVariant = "A";
+    [Export] public string npcName;
+    [Export] protected string startEyesVariant = "";
+    [Export] protected string startMouthVariant = "A";
 
-    private System.Collections.Generic.Dictionary<string, StreamTexture> mouthTextures = new System.Collections.Generic.Dictionary<string, StreamTexture>();
-    
+    private System.Collections.Generic.Dictionary<string, StreamTexture> mouthTextures =
+        new System.Collections.Generic.Dictionary<string, StreamTexture>();
+
     NPC npc;
     private SpatialMaterial eyesMaterial;
     private SpatialMaterial mouthMaterial;
@@ -40,7 +38,8 @@ public class NPCFace : MeshInstance, ISavable
         List<AnimTime> animation = LoadTimingFile(fileName + "_mouth.txt");
         float lastTime = 0;
 
-        foreach(AnimTime animTime in animation) {
+        foreach (AnimTime animTime in animation)
+        {
             mouthMaterial.AlbedoTexture = mouthTextures[animTime.name];
             await global.ToTimer(animTime.time - lastTime);
             lastTime = animTime.time;
@@ -49,11 +48,12 @@ public class NPCFace : MeshInstance, ISavable
 
     public void ChangeMouthVariant(string variant)
     {
-        StreamTexture mouthTexture = GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
+        StreamTexture mouthTexture =
+            GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
         mouthMaterial.AlbedoTexture = mouthTexture;
         startMouthVariant = variant;
     }
-    
+
     public void ChangeEyesVariant(string variantName)
     {
         string path = "res://assets/textures/characters/" + npcName + "/eyes/" + variantName;
@@ -70,17 +70,20 @@ public class NPCFace : MeshInstance, ISavable
         string path = "res://assets/audio/dialogue/" + npcName + "/" + fileName;
         var file = new File();
         file.Open(path, File.ModeFlags.Read);
-        while (!file.EofReached()) {
+        while (!file.EofReached())
+        {
             string line = file.GetLine();
             if (line.Length <= 0) continue;
 
             string[] parts = line.Split("	");
             float newTime = Global.ParseFloat(parts[0]);
-            animation.Add(new AnimTime {
+            animation.Add(new AnimTime
+            {
                 time = newTime,
                 name = parts[1]
             });
         }
+
         file.Close();
 
         return animation;
@@ -91,27 +94,39 @@ public class NPCFace : MeshInstance, ISavable
     private void LoadMouthTextures()
     {
         string[] mouthVariants = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "X"};
-        foreach(string tempVariant in mouthVariants) {
-            StreamTexture mouthTexture = GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant + ".png");
+        foreach (string tempVariant in mouthVariants)
+        {
+            StreamTexture mouthTexture =
+                GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant +
+                                       ".png");
             mouthTextures.Add(tempVariant, mouthTexture);
         }
     }
 
     private void UpdateOpenEyes(float delta)
     {
-        if (npc.Health > 0) {
-            if (eyesOpenCooldown > 0) {
+        if (npc.Health > 0)
+        {
+            if (eyesOpenCooldown > 0)
+            {
                 eyesOpenCooldown -= delta;
-            } else {
+            }
+            else
+            {
                 eyesAreOpen = !eyesAreOpen;
                 eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
-                if (eyesAreOpen) {
-                    eyesOpenCooldown = (float)rand.Next(3, 6);
-                } else {
+                if (eyesAreOpen)
+                {
+                    eyesOpenCooldown = (float) rand.Next(3, 6);
+                }
+                else
+                {
                     eyesOpenCooldown = 0.2f;
                 }
             }
-        } else {
+        }
+        else
+        {
             eyesAreOpen = false;
             eyesMaterial.AlbedoTexture = closedEyes;
             SetProcess(false);
@@ -121,8 +136,8 @@ public class NPCFace : MeshInstance, ISavable
     public override void _Ready()
     {
         npc = GetNode<NPC>("../../../");
-        eyesMaterial  = (SpatialMaterial)Mesh.SurfaceGetMaterial(1);
-        mouthMaterial = (SpatialMaterial)Mesh.SurfaceGetMaterial(2);
+        eyesMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(1);
+        mouthMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(2);
 
         ChangeEyesVariant(startEyesVariant);
     }

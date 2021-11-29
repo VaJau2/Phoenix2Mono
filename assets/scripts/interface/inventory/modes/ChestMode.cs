@@ -267,6 +267,9 @@ public class ChestMode: InventoryMode
             ItemIcon chestButton = FirstEmptyChestButton;
             if (chestButton != null) {
                 if (checkAmmoInChest()) return true;
+                if (tempButton.myItemCode.Contains("key")) {
+                    inventory.RemoveKey(tempButton.myItemCode);
+                }
                 ChangeItemButtons(tempButton, chestButton);
                 SetTempButton(null, false);
                 UpdateChestPositions();
@@ -285,9 +288,13 @@ public class ChestMode: InventoryMode
             ItemIcon itemButton = FirstEmptyButton;
             if (itemButton != null) {
                 if (checkAmmoInInventory()) return true;
+                if (tempButton.myItemCode.Contains("key")) {
+                    inventory.AddKey(tempButton.myItemCode);
+                }
                 ChangeItemButtons(tempButton, itemButton);
                 SetTempButton(null, false);
                 UpdateChestPositions();
+                
             } else {
                 inventory.ItemsMessage("space");
                 return false;

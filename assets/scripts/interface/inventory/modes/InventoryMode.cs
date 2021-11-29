@@ -170,6 +170,9 @@ public abstract class InventoryMode
    
     protected void RemoveTempItem()
     {
+        if (tempButton.myItemCode.Contains("key")) {
+            inventory.RemoveKey(tempButton.myItemCode);
+        }
         RemoveItemFromButton(tempButton);
         tempButton = null;
     }

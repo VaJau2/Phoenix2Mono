@@ -129,6 +129,7 @@ public class PlayerCamera: Camera
     private void UpdateInteracting(float delta) {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
+        if (!player.MayMove) return;
         
         tempObject = (Spatial)tempRay.GetCollider();
 

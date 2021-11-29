@@ -40,10 +40,8 @@ public class PlayerWeapons: CollisionShape
     float tempShake = 0;
     bool shakeUp = true;
     float cooldown = 0.6f;
-    float changeWeaponCooldown = 0f;
 
     //--звуки-------------
-    AudioStreamPlayer audi;
     AudioStreamPlayer audiShoot;
     AudioStreamSample tryShootSound;
     AudioStreamSample shootSound;
@@ -83,7 +81,9 @@ public class PlayerWeapons: CollisionShape
     
     public void ClearWeapon()
     {
-        if (tempWeapon != null) {
+        if (tempWeapon != null)
+        {
+            cooldown = 0;
             Disabled = true;
             tempWeapon.QueueFree();
             tempWeapon = null;
@@ -119,7 +119,6 @@ public class PlayerWeapons: CollisionShape
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
         particlesParent = GetNode("/root/Main/Scene");
 
-        audi = GetNode<AudioStreamPlayer>("../sound/audi_weapons");
         audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
         tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
 
@@ -378,10 +377,6 @@ public class PlayerWeapons: CollisionShape
 
             if (cooldown > 0) {
                 cooldown -= delta;
-            }
-
-            if (changeWeaponCooldown > 0) {
-                changeWeaponCooldown -= delta;
             }
         }
     }

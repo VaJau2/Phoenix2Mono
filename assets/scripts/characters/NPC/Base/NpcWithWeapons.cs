@@ -1,36 +1,32 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class NpcWithWeapons: NPC
+public class NpcWithWeapons : NPC
 {
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
-    
-    [Export]
-    public float COME_DISTANCE = 4f;
-    
-    [Export]
-    public string weaponCode = "";
-    [Export]
-    public Array<string> itemCodes = new Array<string>();
-    [Export]
-    public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+
+    [Export] public float COME_DISTANCE = 4f;
+
+    [Export] public string weaponCode = "";
+    [Export] public Array<string> itemCodes = new Array<string>();
+    [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
 
     private Character followTarget;
-    
+
     private Navigation navigation;
     protected bool cameToPlace = false;
     private bool updatePath = false;
     private float updatePathTimer = 0;
     protected Vector3[] path;
     protected int pathI;
-    
+
     public NPCWeapons weapons;
     private CoversManager covers;
     protected Cover tempCover;
     protected Vector3 tempCoverPlace;
     public float coverTimer = 0;
-    
+
     private float shootCooldown = 0;
     public bool IsHidingInCover => tempCover != null;
     public bool InCover = false;
@@ -38,9 +34,9 @@ public class NpcWithWeapons: NPC
 
     [Signal]
     public delegate void IsCame();
-    
+
     private RandomNumberGenerator rand = new RandomNumberGenerator();
-    
+
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
@@ -59,12 +55,12 @@ public class NpcWithWeapons: NPC
         }
 
         if (!data.Contains("followTarget") || data["followTarget"] == null) return;
-        
+
         await ToSignal(GetTree(), "idle_frame");
         var newFollowTarget = GetNode<Character>(data["followTarget"].ToString());
         SetFollowTarget(newFollowTarget);
     }
-    
+
     public override void SetState(NPCState newState)
     {
         if (Health <= 0)
@@ -77,15 +73,16 @@ public class NpcWithWeapons: NPC
         {
             StopHidingInCover();
         }
-        
+
         cameToPlace = false;
         path = null;
 
-        switch(newState) {
+        switch (newState)
+        {
             case NPCState.Idle:
                 weapons.SetWeapon(false);
                 break;
-            
+
             case NPCState.Attack:
                 seekArea.MakeAlliesAttack();
                 weapons.SetWeapon(true);
@@ -97,7 +94,7 @@ public class NpcWithWeapons: NPC
     {
         followTarget = newTarget;
     }
-    
+
     public virtual Spatial GetWeaponParent(bool isPistol)
     {
         return null;
@@ -109,7 +106,7 @@ public class NpcWithWeapons: NPC
         cameToPlace = false;
         myStartPos = newPos;
     }
-    
+
     protected virtual void FinishGoingTo()
     {
         Stop();
@@ -121,7 +118,7 @@ public class NpcWithWeapons: NPC
     {
         MoveTo(path[pathI], COME_DISTANCE, WalkSpeed);
     }
-    
+
     private void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
         cameToPlace = false;
@@ -175,6 +172,7 @@ public class NpcWithWeapons: NPC
                 tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.origin);
                 cameToPlace = false;
             }
+
             InCover = false;
             coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
         }
@@ -187,11 +185,11 @@ public class NpcWithWeapons: NPC
         coverTimer = rand.RandfRange(UNCOVER_TIMER[0], UNCOVER_TIMER[1]);
         InCover = false;
     }
-    
+
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         if (IsImmortal) return;
-        
+
         base.TakeDamage(damager, damage, shapeID);
         coverTimer -= damage / 10;
         if (string.IsNullOrEmpty(weaponCode))
@@ -199,10 +197,11 @@ public class NpcWithWeapons: NPC
             StopHidingInCover();
         }
     }
-    
+
     protected override void AnimateDealth(Character killer, int shapeID)
     {
-        if (itemCodes.Count > 0 || ammoCount.Count > 0) {
+        if (itemCodes.Count > 0 || ammoCount.Count > 0)
+        {
             SpawnItemsBag();
         }
 
@@ -216,8 +215,10 @@ public class NpcWithWeapons: NPC
         victimPos.y = GlobalTransform.origin.y;
         LookAt(victimPos, Vector3.Up);
     }
-    
-    protected virtual void PlayStopAnim() {}
+
+    protected virtual void PlayStopAnim()
+    {
+    }
 
     protected void Stop(bool MoveDown = false)
     {
@@ -236,18 +237,18 @@ public class NpcWithWeapons: NPC
             }
         }
     }
-    
+
     protected void SpawnItemsBag()
     {
         var bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
-        var tempBag = (FurnChest)bagPrefab.Instance();
+        var tempBag = (FurnChest) bagPrefab.Instance();
 
         tempBag.itemCodes = itemCodes;
         tempBag.ammoCount = ammoCount;
 
         Node parent = GetNode("/root/Main/Scene");
         parent.AddChild(tempBag);
-        
+
         tempBag.Name = "Created_" + tempBag.Name;
         tempBag.Translation = Translation;
         tempBag.Translate(Vector3.Up / 4f);
@@ -255,43 +256,55 @@ public class NpcWithWeapons: NPC
 
     protected void UpdatePath(float delta)
     {
-        if (updatePath) {
-            if (updatePathTimer > 0) {
+        if (updatePath)
+        {
+            if (updatePathTimer > 0)
+            {
                 updatePathTimer -= delta;
-            } else {
+            }
+            else
+            {
                 path = null;
                 updatePathTimer = 1;
                 updatePath = false;
             }
         }
     }
-    
+
     protected void UpdateShooting(float victimDistance, float delta)
     {
-        if (shootCooldown > 0) {
+        if (shootCooldown > 0)
+        {
             shootCooldown -= delta;
-        } else {
+        }
+        else
+        {
             shootCooldown = weapons.MakeShoot(victimDistance);
             coverTimer *= 0.75f;
         }
     }
-    
+
     protected void AttackEnemy(float delta)
     {
-        if (string.IsNullOrEmpty(weaponCode)) {
+        if (string.IsNullOrEmpty(weaponCode))
+        {
             //если нет оружия
             //бегаем по укрытиям и молимся Селестии
             coverTimer = 0;
             return;
         }
+
         Vector3 victimPos = tempVictim.GlobalTransform.origin;
         float shootDistance = weapons.GetStatsFloat("shootDistance");
         float tempDistance = GlobalTransform.origin.DistanceTo(victimPos);
-        if (cameToPlace && tempDistance < shootDistance) {
+        if (cameToPlace && tempDistance < shootDistance)
+        {
             UpdateShooting(tempDistance, delta);
             LookAtTarget();
             Stop();
-        } else {
+        }
+        else
+        {
             GoTo(victimPos, shootDistance / 1.5f);
             updatePath = tempVictim.Velocity.Length() > 2;
         }
@@ -303,19 +316,24 @@ public class NpcWithWeapons: NPC
         GoTo(targetPos, COME_DISTANCE * 2f);
         updatePath = followTarget?.Velocity.Length() > 2;
     }
-    
-    protected virtual void PlayIdleAnim() {}
+
+    protected virtual void PlayIdleAnim()
+    {
+    }
 
     protected void UpdateAI(float delta)
     {
-        switch (state) {
+        switch (state)
+        {
             case NPCState.Idle:
                 if (followTarget != null)
                 {
                     FollowTarget();
                 }
-                else if (patrolPoints == null || patrolPoints.Length == 0) {
-                    if (!cameToPlace) {
+                else if (patrolPoints == null || patrolPoints.Length == 0)
+                {
+                    if (!cameToPlace)
+                    {
                         if (stopAreaEntered)
                         {
                             Stop();
@@ -324,8 +342,9 @@ public class NpcWithWeapons: NPC
                         {
                             GoTo(myStartPos, COME_DISTANCE, false);
                         }
-                        
-                    } else {
+                    }
+                    else
+                    {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
                         Rotation = new Vector3(
                             Rotation.x,
@@ -334,10 +353,15 @@ public class NpcWithWeapons: NPC
                         );
                         PlayIdleAnim();
                     }
-                } else {
-                    if (patrolWaitTimer > 0) {
+                }
+                else
+                {
+                    if (patrolWaitTimer > 0)
+                    {
                         patrolWaitTimer -= delta;
-                    } else {
+                    }
+                    else
+                    {
                         if (stopAreaEntered)
                         {
                             Stop();
@@ -346,13 +370,18 @@ public class NpcWithWeapons: NPC
                         {
                             GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
                         }
-                        
-                        if (cameToPlace) {
-                            if (patrolI < patrolPoints.Length - 1) {
+
+                        if (cameToPlace)
+                        {
+                            if (patrolI < patrolPoints.Length - 1)
+                            {
                                 patrolI += 1;
-                            } else {
+                            }
+                            else
+                            {
                                 patrolI = 0;
                             }
+
                             patrolWaitTimer = PATROL_WAIT;
                         }
                     }
@@ -361,45 +390,66 @@ public class NpcWithWeapons: NPC
                 break;
             case NPCState.Attack:
 
-                if (tempVictim.Health <= 0) {
+                if (tempVictim.Health <= 0)
+                {
                     SetState(NPCState.Idle);
                     return;
                 }
-                if (coverTimer > 0) {
+
+                if (coverTimer > 0)
+                {
                     coverTimer -= delta;
-                    if (tempCover == null) {
+                    if (tempCover == null)
+                    {
                         //идем в атаку
                         AttackEnemy(delta);
-                    } else {
+                    }
+                    else
+                    {
                         //прячемся в укрытии
-                        if (!cameToPlace) {
+                        if (!cameToPlace)
+                        {
                             GoTo(tempCoverPlace, COME_DISTANCE);
-                        } else {
+                        }
+                        else
+                        {
                             LookAtTarget();
                             InCover = true;
                         }
                     }
-                } else {
-                    if (tempCover == null) {
+                }
+                else
+                {
+                    if (tempCover == null)
+                    {
                         FindCover();
-                    } else if (!string.IsNullOrEmpty(weaponCode)) {
+                    }
+                    else if (!string.IsNullOrEmpty(weaponCode))
+                    {
                         StopHidingInCover();
                     }
                 }
-                
+
                 break;
             case NPCState.Search:
-                if (cameToPlace) {
-                    if (searchTimer > 0) {
+                if (cameToPlace)
+                {
+                    if (searchTimer > 0)
+                    {
                         searchTimer -= delta;
-                    } else {
+                    }
+                    else
+                    {
                         SetState(NPCState.Idle);
                     }
-                } else {
+                }
+                else
+                {
                     GoTo(lastSeePos, COME_DISTANCE);
                 }
+
                 break;
-            
+
             case NPCState.Talk:
                 Stop();
                 LookAtTarget(false);
@@ -412,9 +462,11 @@ public class NpcWithWeapons: NPC
         navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         weapons = GetNode<NPCWeapons>("weapons");
-        if (weaponCode != "") {
+        if (weaponCode != "")
+        {
             weapons.LoadWeapon(this, weaponCode);
-        } 
+        }
+
         base._Ready();
     }
 }

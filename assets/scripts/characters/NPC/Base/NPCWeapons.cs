@@ -52,7 +52,7 @@ public class NPCWeapons : Node
         var weapon = weaponPrefab.Instance();
         tempParent.AddChild(weapon);
 
-        tempWeapon = (Spatial)weapon;
+        tempWeapon = (Spatial) weapon;
         LoadGunEffects();
 
         SetWeapon(false);
@@ -62,10 +62,12 @@ public class NPCWeapons : Node
     {
         GunOn = on;
         if (tempWeapon != null) tempWeapon.Visible = on;
-        
-        if (npc is Pony) {
+
+        if (npc is Pony)
+        {
             Pony tempPony = npc as Pony;
-            if (tempPony.IsUnicorn) {
+            if (tempPony.IsUnicorn)
+            {
                 tempPony.MagicParticles.Emitting = on;
             }
         }
@@ -73,13 +75,15 @@ public class NPCWeapons : Node
 
     public float MakeShoot(float victimDistance)
     {
-        if (tempWeapon == null) {
+        if (tempWeapon == null)
+        {
             return 1f;
         }
 
         audiShoot.Stream = shootSound;
         audiShoot.Play();
-        if (gunAnim != null) {
+        if (gunAnim != null)
+        {
             gunAnim.Play("shoot");
         }
 
@@ -91,9 +95,12 @@ public class NPCWeapons : Node
 
         var statsDistance = GetStatsInt("shootDistance");
 
-        if (tempWeaponStats.Contains("bullet")) {
+        if (tempWeaponStats.Contains("bullet"))
+        {
             SpawnBullet();
-        } else {
+        }
+        else
+        {
             var victim = npc.tempVictim;
 
             float shootChance = 1.0f - (victimDistance / statsDistance * 0.5f);
@@ -101,30 +108,34 @@ public class NPCWeapons : Node
 
             AnimGunEffects();
 
-            if (rand.Randf() < shootChance) {
+            if (rand.Randf() < shootChance)
+            {
                 Vector3 shootPos = victim.GlobalTransform.origin + Vector3.Up;
-                var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                var gunParticles = (Spatial) gunParticlesPrefab.Instance();
                 GetNode("/root/Main/Scene").AddChild(gunParticles);
                 gunParticles.GlobalTransform = Global.setNewOrigin(
                     gunParticles.GlobalTransform,
                     shootPos
                 );
                 gunParticles.Call(
-                    "_startEmitting", 
-                    npc.GlobalTransform.basis.z, 
+                    "_startEmitting",
+                    npc.GlobalTransform.basis.z,
                     "blood"
                 );
 
                 npc.MakeDamage(victim);
-            } else {
-                if (victim is Player) {
+            }
+            else
+            {
+                if (victim is Player)
+                {
                     var playerAudi = (victim as Player).GetAudi(true);
                     playerAudi.Stream = missSound;
                     playerAudi.Play();
                 }
             }
-            
         }
+
         return GetStatsFloat("cooldown");
     }
 
@@ -135,15 +146,16 @@ public class NPCWeapons : Node
     {
         string bullet = tempWeaponStats["bullet"].ToString();
         var bulletPrefab = GD.Load<PackedScene>("res://objects/guns/bullets/" + bullet + ".tscn");
-        Bullet newBullet = (Bullet)bulletPrefab.Instance();
+        Bullet newBullet = (Bullet) bulletPrefab.Instance();
         newBullet.Damage = npc.GetDamage();
         newBullet.Shooter = npc;
         newBullet.Timer = GetStatsFloat("shootDistance");
-        
+
         GetNode("/root/Main/Scene").AddChild(newBullet);
         newBullet.GlobalTransform = gunFire.GlobalTransform;
 
-        if (rand.Randf() < 0.4f){
+        if (rand.Randf() < 0.4f)
+        {
             var rotXDelta = (rand.Randf() - 0.5f) / 10f;
             var rotYDelta = (rand.Randf() - 0.5f) / 10f;
             newBullet.Rotation = new Vector3(
@@ -154,14 +166,17 @@ public class NPCWeapons : Node
         }
     }
 
-    private void LoadGunEffects() 
+    private void LoadGunEffects()
     {
-        if (tempWeapon.HasNode("anim")) {
+        if (tempWeapon.HasNode("anim"))
+        {
             gunAnim = tempWeapon.GetNode<AnimationPlayer>("anim");
-        } else {
+        }
+        else
+        {
             gunAnim = null;
         }
-        
+
         gunLight = tempWeapon.GetNode<Spatial>("light");
         gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");

@@ -8,7 +8,7 @@ using System;
 public class NPCFaceMat : NPCFace
 {
     const int EYES_MATERIAL = 0;
-    
+
     NPC npc;
     private SpatialMaterial openEyes;
     private SpatialMaterial closedEyes;
@@ -35,19 +35,28 @@ public class NPCFaceMat : NPCFace
 
     private void UpdateOpenEyes(float delta)
     {
-        if (npc.Health > 0) {
-            if (eyesOpenCooldown > 0) {
+        if (npc.Health > 0)
+        {
+            if (eyesOpenCooldown > 0)
+            {
                 eyesOpenCooldown -= delta;
-            } else {
+            }
+            else
+            {
                 eyesAreOpen = !eyesAreOpen;
                 Mesh.SurfaceSetMaterial(EYES_MATERIAL, eyesAreOpen ? openEyes : closedEyes);
-                if (eyesAreOpen) {
-                    eyesOpenCooldown = (float)rand.Next(3, 6);
-                } else {
+                if (eyesAreOpen)
+                {
+                    eyesOpenCooldown = (float) rand.Next(3, 6);
+                }
+                else
+                {
                     eyesOpenCooldown = 0.2f;
                 }
             }
-        } else {
+        }
+        else
+        {
             eyesAreOpen = false;
             Mesh.SurfaceSetMaterial(EYES_MATERIAL, closedEyes);
             SetProcess(false);

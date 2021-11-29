@@ -18,6 +18,11 @@ public static class InterfaceLang {
         lang = savedLanguage;
     }
 
+    public static Language GetLanguage()
+    {
+        return lang == "en" ? Language.English : Language.Russian;
+    }
+
     public static void ChangeLanguage(Language language)
     {
         switch (language) {

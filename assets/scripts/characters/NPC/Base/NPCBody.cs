@@ -1,6 +1,6 @@
 using Godot;
 
-public class NPCBody 
+public class NPCBody
 {
     private NPC npc;
     private AnimationTree animTree;
@@ -10,17 +10,17 @@ public class NPCBody
     public Character lookTarget = null;
     private float lookTimer = 1.5f;
 
-    public NPCBody(NPC npc) {
+    public NPCBody(NPC npc)
+    {
         this.npc = npc;
 
         animTree = npc.GetNode<AnimationTree>("animTree");
-        playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
-        headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
+        playback = (AnimationNodeStateMachinePlayback) animTree.Get("parameters/StateMachine/playback");
+        headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
         if (!string.IsNullOrEmpty(npc.IdleAnim))
         {
             playback.Start(npc.IdleAnim);
         }
-        
     }
 
     public void PlayAnim(string animName)
@@ -48,8 +48,9 @@ public class NPCBody
         {
             return;
         }
-        
-        if (lookTarget != null) {
+
+        if (lookTarget != null)
+        {
             if (npc.state == NPCState.Idle)
             {
                 if (lookTimer > 0)
@@ -67,22 +68,26 @@ public class NPCBody
             Vector3 dir = GetDirToTarget(lookTarget);
 
             float angle = npcForward.AngleTo(dir);
-            if (npc.GlobalTransform.basis.x.Dot(dir) < 0) {
+            if (npc.GlobalTransform.basis.x.Dot(dir) < 0)
+            {
                 angle = -angle;
             }
 
             var targetY = lookTarget.GlobalTransform.origin.y;
             //точка центра игрока чуть выше, тк он умеет красться и приседать с:
-            if (lookTarget is Player) {
+            if (lookTarget is Player)
+            {
                 targetY -= 0.8f * npc.lookHeightFactor;
             }
 
             float diffY = targetY - npc.GlobalTransform.origin.y;
-            
+
 
             SetValueTo(ref headBlend.x, angle / 1.5f, delta * 4);
             SetValueTo(ref headBlend.y, diffY / 50, delta * 4);
-        } else {
+        }
+        else
+        {
             SetValueTo(ref headBlend.x, 0, delta * 2);
             SetValueTo(ref headBlend.y, 0, delta * 2);
         }
@@ -100,18 +105,24 @@ public class NPCBody
 
     public void _on_lookArea_body_exited(Node body)
     {
-        if (npc.state == NPCState.Idle && body == lookTarget) {
+        if (npc.state == NPCState.Idle && body == lookTarget)
+        {
             lookTarget = null;
         }
     }
 
-    private void SetValueTo(ref float value, float to, float delta) 
+    private void SetValueTo(ref float value, float to, float delta)
     {
-        if (value > to + 0.05f) {
+        if (value > to + 0.05f)
+        {
             value -= delta;
-        } else if (value < to - 0.05f) {
+        }
+        else if (value < to - 0.05f)
+        {
             value += delta;
-        } else {
+        }
+        else
+        {
             value = to;
         }
     }

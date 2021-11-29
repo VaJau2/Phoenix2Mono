@@ -18,7 +18,7 @@ public class FurnDoor: FurnBase, ISavable {
 
     public string KeyToRemember;
 
-    bool opening = false;
+    public bool opening { get; private set; }
     bool standingOtherSide = false;
     
     void setCollision(uint level) {

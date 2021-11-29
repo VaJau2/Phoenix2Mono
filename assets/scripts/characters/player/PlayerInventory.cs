@@ -230,6 +230,7 @@ public class PlayerInventory {
             {"weaponBind", weaponButton.GetBindKey()},
             {"effectNames", effectNames},
             {"effectTimes", effectTimes},
+            {"tempKeys", tempKeys}
         };
     }
 
@@ -288,6 +289,15 @@ public class PlayerInventory {
             menu.bindedButtons[Convert.ToInt32(weaponBind)] = weaponButton;
             bindsList.AddIcon(weaponButton);
         }
+
+        if (data.Contains("tempKeys") && data["tempKeys"] is Array)
+        {
+            foreach (string key in (Array)data["tempKeys"])
+            {
+                tempKeys.Add(key);
+            }
+        }
+        
 
         //загрузка эффектов
         Array effectNames = (Array) data["effectNames"];

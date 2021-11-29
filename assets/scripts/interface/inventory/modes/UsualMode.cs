@@ -98,6 +98,13 @@ public class UsualMode: InventoryMode {
         {
             if (!Input.IsKeyPressed(48 + i)) continue;
             
+            //если нажали ту же кнопку на той же клавише
+            if (tempButton.GetBindKey() == i.ToString())
+            {
+                ClearBind(tempButton);
+                return;
+            }
+            
             //если кнопка уже забиндена на какую-то клавишу
             if (menu.bindedButtons.Values.Contains(tempButton))
             {
