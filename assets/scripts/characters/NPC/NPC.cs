@@ -6,7 +6,7 @@ using Godot.Collections;
 public class NPC : Character
 {
     const int RAGDOLL_IMPULSE = 700;
-    const float SEARCH_TIMER = 5f;
+    const float SEARCH_TIMER = 12f;
     private float ROTATION_SPEED = 0.15f;
     protected float GRAVITY = 6;
     protected float PATROL_WAIT = 4f;
@@ -77,15 +77,33 @@ public class NPC : Character
                 break;
             
             case NPCState.Search:
+                searchTimer = SEARCH_TIMER;
+                
+                if (!IsInstanceValid(tempVictim))
+                {
+                    if (lastSeePos == Vector3.Zero)
+                    {
+                        //врага нет, позиции нет, искать нечего
+                        SetState(NPCState.Idle);
+                        return;
+                    }
+
+                    break;
+                }
+                
                 if (tempVictim == player) {
                     player.Stealth.AddSeekEnemy(this);
                 }
-
                 lastSeePos = tempVictim.GlobalTransform.origin;
-                searchTimer = SEARCH_TIMER;
+                
                 break;
         }
         state = newState;
+    }
+
+    public void SetLastSeePos(Vector3 newPos)
+    {
+        lastSeePos = newPos;
     }
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
@@ -164,6 +182,14 @@ public class NPC : Character
 
     protected virtual async void AnimateDealth(Character killer, int shapeID)
     {
+        if (GetParent() is EnemiesManager manager)
+        {
+            if (manager.enemies.Contains(this))
+            {
+                manager.enemies.Remove(this);
+            }
+        }
+        
         PlayRandomSound(dieSounds);
         CollisionLayer = 0;
         CollisionMask = 0;
@@ -387,14 +413,6 @@ public class NPC : Character
     {
         if (Health <= 0) {
             return;
-        }
-
-        if (state == NPCState.Search) {
-            if (searchTimer > 0) {
-                searchTimer -= delta;
-            } else {
-                SetState(NPCState.Idle);
-            }
         }
 
         if (Velocity.Length() > 0) {

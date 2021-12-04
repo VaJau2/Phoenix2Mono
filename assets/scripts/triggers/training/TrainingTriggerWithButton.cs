@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Tracing;
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
 public abstract class TrainingTriggerWithButton: TriggerBase

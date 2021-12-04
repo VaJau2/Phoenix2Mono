@@ -136,6 +136,11 @@ public class NPCWeapons : Node
             }
         }
 
+        if (tempWeaponStats.Contains("isSilence")) return GetStatsFloat("cooldown");
+        
+        EnemiesManager enemiesManager = npc.GetParent() as EnemiesManager;
+        enemiesManager?.LoudShoot(GetStatsInt("shootDistance") * 0.75f, npc.GlobalTransform.origin);
+
         return GetStatsFloat("cooldown");
     }
 

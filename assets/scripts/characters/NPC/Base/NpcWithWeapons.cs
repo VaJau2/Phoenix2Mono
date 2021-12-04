@@ -432,18 +432,16 @@ public class NpcWithWeapons : NPC
 
                 break;
             case NPCState.Search:
-                if (cameToPlace)
+                if (searchTimer > 0)
                 {
-                    if (searchTimer > 0)
-                    {
-                        searchTimer -= delta;
-                    }
-                    else
-                    {
-                        SetState(NPCState.Idle);
-                    }
+                    searchTimer -= delta;
                 }
                 else
+                {
+                    SetState(NPCState.Idle);
+                }
+                
+                if (!cameToPlace)
                 {
                     GoTo(lastSeePos, COME_DISTANCE);
                 }
