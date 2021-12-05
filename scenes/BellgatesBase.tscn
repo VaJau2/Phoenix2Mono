@@ -789,7 +789,7 @@ patrolArray = [ NodePath("../../terrain/twilightPatrol/1"), NodePath("../../terr
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.47528, -99.2007, 28.056 )
 dialogueCode = "trade"
 moneyCount = 1000
-startItemCodes = [ "bow-ribbon", "school_uniform" ]
+startItemCodes = [ "bow-ribbon", "school_uniform", "pistol10-silenced" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,

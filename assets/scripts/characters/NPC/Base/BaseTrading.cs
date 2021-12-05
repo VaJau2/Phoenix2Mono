@@ -20,7 +20,7 @@ public static class BaseTrading
 
         tempNpc = npc;
         
-        if (menu == null)
+        if (!Godot.Object.IsInstanceValid(menu))
         {
             menu = npc.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         }

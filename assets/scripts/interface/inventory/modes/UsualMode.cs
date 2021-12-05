@@ -1,5 +1,6 @@
+using System;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public class UsualMode: InventoryMode {
 
@@ -90,6 +91,33 @@ public class UsualMode: InventoryMode {
         return itemType == "weapon" || itemType == "food" || itemType == "meds";
     }
 
+    private void BindButtonWithKey(ItemIcon button, int key)
+    {
+        //если нажали ту же кнопку на той же клавише
+        if (button.GetBindKey() == key.ToString())
+        {
+            ClearBind(tempButton);
+            return;
+        }
+            
+        //если кнопка уже забиндена на какую-то клавишу
+        if (menu.bindedButtons.Values.Contains(button))
+        {
+            ClearBind(button);
+        }
+            
+        //если на кнопку забита другая клавиша
+        if (menu.bindedButtons.Keys.Contains(key))
+        {
+            ClearBind(menu.bindedButtons[key]);
+        }
+
+        //бинд кнопки
+        menu.bindedButtons[key] = button;
+        button.SetBindKey(key.ToString());
+        bindsList.AddIcon(button);
+    }
+
     private void BindHotkeys()
     {
         if (tempButton.myItemCode == null) return;
@@ -97,30 +125,7 @@ public class UsualMode: InventoryMode {
         for (int i = 0; i < 10; i++)
         {
             if (!Input.IsKeyPressed(48 + i)) continue;
-            
-            //если нажали ту же кнопку на той же клавише
-            if (tempButton.GetBindKey() == i.ToString())
-            {
-                ClearBind(tempButton);
-                return;
-            }
-            
-            //если кнопка уже забиндена на какую-то клавишу
-            if (menu.bindedButtons.Values.Contains(tempButton))
-            {
-                ClearBind(tempButton);
-            }
-            
-            //если на кнопку забита другая клавиша
-            if (menu.bindedButtons.Keys.Contains(i))
-            {
-                ClearBind(menu.bindedButtons[i]);
-            }
-
-            //бинд кнопки
-            menu.bindedButtons[i] = tempButton;
-            tempButton.SetBindKey(i.ToString());
-            bindsList.AddIcon(tempButton);
+            BindButtonWithKey(tempButton, i);
         }
     }
 
@@ -245,12 +250,28 @@ public class UsualMode: InventoryMode {
                     WearTempItem(artifactButton);
                     break;
                 default:
+                    string oldBind = tempButton.GetBindKey();
+                    string itemCode = tempButton.myItemCode;
+                    
                     inventory.UseItem(tempItemData);
                     RemoveTempItem();
+
+                    //если использовался забинденный предмет
+                    //биндим на тот же бинд такой же
+                    BindTheSameItem(oldBind, itemCode);
                     break;
             }
         }
         tempButton = null;
+    }
+
+    private void BindTheSameItem(string bind, string itemCode)
+    {
+        if (string.IsNullOrEmpty(bind)) return;
+        int bindKey = Convert.ToInt16(bind);
+        var otherButton = FindButtonWithItem(itemCode);
+        if (otherButton == null) return;
+        BindButtonWithKey(otherButton, bindKey);
     }
 
     private void DropTempItem() 

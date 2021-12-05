@@ -747,7 +747,7 @@ extents = Vector3( 187.605, 25.6156, 84.17 )
 extents = Vector3( 5.47316, 5.95107, 6.70299 )
 
 [sub_resource type="BoxShape" id=86]
-extents = Vector3( 205.518, 57.0667, 18.2471 )
+extents = Vector3( 205.518, 57.0667, 252.139 )
 
 [sub_resource type="BoxShape" id=87]
 extents = Vector3( 2.31944, 1, 1.94527 )
@@ -3619,7 +3619,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -259.612, 0, 60.8604 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -204.288, -3.28911, 120.739 )
 
 [node name="5" type="Spatial" parent="rooms/2floor/patrol/4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 122.317, 0, -17.1513 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2056, 0, -17.1513 )
 
 [node name="6" type="Spatial" parent="rooms/2floor/patrol/4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.095, 0, -68.6861 )
@@ -3637,7 +3637,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4585, 0, -53.285 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1154, 0, -52.2736 )
 
 [node name="alarm3" type="AudioStreamPlayer3D" parent="rooms/2floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -89.9921, 24.8468, 41.2817 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.606, 14.7994, -31.3253 )
 stream = ExtResource( 126 )
 unit_size = 10.0
 max_distance = 1500.0
@@ -3735,7 +3735,7 @@ script = ExtResource( 125 )
 VertibirdPath = NodePath("../../terrain/props/Vertibird")
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/vertibirdStartFly"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.0321, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.0321, -227.296 )
 shape = SubResource( 86 )
 
 [node name="stopAlarmButton" type="Area" parent="triggers"]

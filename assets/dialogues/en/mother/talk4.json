@@ -64,8 +64,8 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Have you already forgotten what you promised your father?",
-      "speaker": "Strikely",
-      "opposite": "Mother",
+      "speaker": "Mother",
+      "opposite": "Strikely",
       "options": [
         {
           "body": "answer",
