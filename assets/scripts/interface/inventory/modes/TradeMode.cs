@@ -364,20 +364,9 @@ public class TradeMode: InventoryMode
                 } else {
                     propValue = itemProps[prop].ToString();
                 }
-                
-                if (prop == "medsEffect") {
-                    propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
-                }
-                if (prop == "damageBlock") {
-                    //выводим блокирование урона в процентах
-                    float blockValue = Global.ParseFloat(propValue);
-                    propValue = (blockValue * 100f) + "%";
-                }
-                if (prop == "questItem")
-                {
-                    propValue = "";
-                }
-                
+
+                propValue = ConvertPropValue(prop, propValue);
+
                 result += "> " + propName + propValue + "\n";
             }
         }

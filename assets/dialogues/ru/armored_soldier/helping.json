@@ -1,1 +1,103 @@
-{"nodes":{"S1":{"kind":"dialogue","root_node":false,"body":"Я кого-то слышу... Это вы, лейтенант?","speaker":"Солдат в броне","opposite":"Страйкли","options":[{"body":"answer","next":"S1(1)"}]},"S2":{"kind":"dialogue","root_node":false,"body":"Ох, Селестия, наконец-то! Вы моя спасительница, лейтенант! Спасибо вам огромное!","speaker":"Солдат в броне","opposite":"Страйкли","options":[{"body":"answer","next":"S2(1)"}]},"S3":{"kind":"dialogue","root_node":false,"body":"Так точно! До свидания, лейтенант.","speaker":"Солдат в броне","opposite":"Страйкли","next":"S3(1)"},"S1(1)":{"kind":"dialogue","root_node":false,"body":"Да, солдат. Сейчас я заменю тебе батарейку... *заменить батарею*","speaker":"Страйкли","opposite":"Солдат в броне","next":"S1(1.1)"},"S2(1)":{"kind":"dialogue","root_node":false,"body":"Пожалуйста. В следующий раз проверяй батареи, прежде чем их вставлять. ","speaker":"Страйкли","opposite":"Солдат в броне","next":"S3"},"S1(1.1)":{"kind":"narration","root_node":false,"body":"ActivateTrigger","set":[{"key":"name","op":"set","value":"MakeArmoredSoldierMove"}],"next":"S1(1.2)"},"S1(1.2)":{"kind":"narration","root_node":false,"body":"GiveItem","set":[{"key":"item","op":"set","value":"nucBattery"}],"next":"S2"},"S3(1)":{"kind":"narration","root_node":false,"body":"ChangeDialogueCode"}},"speakers":{"Страйкли":{"color":{"r":0,"g":0,"b":0,"a":0}},"Солдат в броне":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я кого-то слышу... Это вы, лейтенант?",
+      "speaker": "Солдат в броне",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ох, Селестия, наконец-то! Вы моя спасительница, лейтенант! Спасибо вам огромное!",
+      "speaker": "Солдат в броне",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        }
+      ]
+    },
+    "S3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Так точно! До свидания, лейтенант.",
+      "speaker": "Солдат в броне",
+      "opposite": "Страйкли",
+      "next": "S3(1)"
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да, солдат. Сейчас я заменю тебе батарейку... *заменить батарею*",
+      "speaker": "Страйкли",
+      "opposite": "Солдат в броне",
+      "next": "S1(1.1)"
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Пожалуйста. В следующий раз проверяй батареи, прежде чем их вставлять. ",
+      "speaker": "Страйкли",
+      "opposite": "Солдат в броне",
+      "next": "S3"
+    },
+    "S1(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "MakeArmoredSoldierMove"
+        }
+      ],
+      "next": "S1(1.2)"
+    },
+    "S1(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "GiveItem",
+      "set": [
+        {
+          "key": "item",
+          "op": "set",
+          "value": "nucBattery-quest"
+        }
+      ],
+      "next": "S2"
+    },
+    "S3(1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Солдат в броне": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

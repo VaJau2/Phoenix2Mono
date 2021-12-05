@@ -74,8 +74,15 @@
         "description": "Источник энергии для энергомагических устройств, таких как силовая броня",
         "type": "staff",
         "icon": "nucBattery",
-        "price": "100",
-        "questItem": "true"
+        "price": "100"
+    },
+    "nucBattery-quest": {
+        "name": "Запасная ядерная батарея",
+        "description": "Ядерная батарея с наклейкой \"запасная\"",
+        "type": "staff",
+        "questItem": "true",
+        "icon": "nucBattery",
+        "price": "100"
     },
     "suitcase_vacation": {
         "name": "Чемодан с вещами Страйкли",
@@ -226,7 +233,7 @@
         "description": "Винтовка, стреляющая автоматическим огнем на дальних дистанциях, наносит не очень много урона",
         "type": "weapon",
         "icon": "autorifle762",
-        "price": "1600",
+        "price": "1100",
         "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
@@ -398,6 +405,18 @@
         "makeShy": "true",
         "shyHeadYRot": "0.4",
         "sound": "coat"
+    },
+    "power-armor": {
+        "name": "Силовая броня",
+        "description": "Разработка МВТ, превращает земных пони в ходячие танки. Для работы необходима ядерная батарея.",
+        "type": "armor",
+        "icon": "power-armor",
+        "onlyForEarthponies": "true",
+        "checkHasItem": "nucBattery",
+        "speedDecrease": "5",
+        "price": "1500",
+        "damageBlock": "0.9",
+        "sound": "armor"
     },
 
 

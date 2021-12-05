@@ -447,7 +447,7 @@ ammoCount = {
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
 IsImmortal = true
 moneyCount = 2000
-startItemCodes = [ "private_uniform", "private_uniform", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12" ]
+startItemCodes = [ "private_uniform", "power-armor", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
@@ -986,7 +986,7 @@ NewTaskCode = "goToTheater"
 ]]
 script = ExtResource( 97 )
 otherTriggerPaths = [ NodePath("../changeDialogueHelp2") ]
-ItemToTake = "nucBattery"
+ItemToTake = "nucBattery-quest"
 
 [node name="changeTakeBattery" type="Node" parent="triggers" groups=[
 "savable",
@@ -1001,7 +1001,7 @@ disactiveTriggerPaths = [ NodePath("../takeBatteryBefore") ]
 script = ExtResource( 97 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../changeDialogueHelping") ]
-ItemToTake = "nucBattery"
+ItemToTake = "nucBattery-quest"
 
 [node name="changeDialogueHelp2" type="Node" parent="triggers" groups=[
 "savable",
@@ -2311,7 +2311,7 @@ startAmmoCount = {
 [node name="cabinet4" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, 10.7308 )
 chestCode = "cabinet"
-startItemCodes = [ "nucBattery" ]
+startItemCodes = [ "nucBattery", "nucBattery-quest" ]
 startAmmoCount = {
 }
 

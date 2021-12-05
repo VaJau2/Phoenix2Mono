@@ -48,7 +48,9 @@
 
         "heal": "Heal: ",
         "medsEffect": "Effect: ",
-        "questItem": "Quest item"
+        "questItem": "Quest item",
+        "checkHasItem": "Requires: ",
+        "onlyForEarthponies": "Only for earthponies"
     },
 
     "medsEffects": {

@@ -74,8 +74,15 @@
         "description": "Power source for energy-magical devices, such as power armor",
         "type": "staff",
         "icon": "nucBattery",
-        "price": "100",
-        "questItem": "true"
+        "price": "100"
+    },
+    "nucBattery-quest": {
+        "name": "Spare nuclear battery",
+        "description": "Nuclear battery with a \"spare\" sticker on it",
+        "type": "staff",
+        "questItem": "true",
+        "icon": "nucBattery",
+        "price": "100"
     },
     "suitcase_vacation": {
         "name": "Suitcase with Strikely's things",
@@ -226,7 +233,7 @@
         "description": "A rifle that fires automatic fire at long ranges, deals not mane damage",
         "type": "weapon",
         "icon": "autorifle762",
-        "price": "1600",
+        "price": "1100",
         "damage": "20",
         "shootDistance": "110",
         "cooldown": "0.1",
@@ -397,6 +404,18 @@
         "makeShy": "true",
         "shyHeadYRot": "0.4",
         "sound": "coat"
+    },
+    "power-armor": {
+        "name": "Power armor",
+        "description": "Developed my MWT, turns earthponies to a walking tanks. Needs nuclear battery to work.",
+        "type": "armor",
+        "icon": "power-armor",
+        "onlyForEarthponies": "true",
+        "checkHasItem": "nucBattery",
+        "speedDecrease": "5",
+        "price": "1500",
+        "damageBlock": "0.9",
+        "sound": "armor"
     },
 
     

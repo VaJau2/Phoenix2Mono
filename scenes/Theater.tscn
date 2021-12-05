@@ -1496,7 +1496,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.1203
 
 [node name="deleteItem" type="Node" parent="triggers"]
 script = ExtResource( 40 )
-ItemToCheck = "nucBattery"
+ItemToCheck = "nucBattery-quest"
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )

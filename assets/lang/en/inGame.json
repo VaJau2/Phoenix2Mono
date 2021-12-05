@@ -14,6 +14,7 @@
         "useFood": "Eat: ",
         "wearItem": "Wear: ",
         "unwearItem": "Unwear: ",
+        "cantWear": "Can't wear: ",
         "cantUnwear": "Can't take off: ",
         "cantDrop": "Can't drop quest item: ",
         "cantSell": "Can't sell quest item: ",

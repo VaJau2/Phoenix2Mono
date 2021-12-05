@@ -177,6 +177,29 @@ public abstract class InventoryMode
         tempButton = null;
     }
 
+    protected static string ConvertPropValue(string propName, string propValue)
+    {
+        switch (propName)
+        {
+            case "medsEffect":
+                return InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
+            case "damageBlock":
+            {
+                //выводим блокирование урона в процентах
+                float blockValue = Global.ParseFloat(propValue);
+                return (blockValue * 100f) + "%";
+            }
+            case "checkHasItem":
+                var itemData = ItemJSON.GetItemData(propValue);
+                return itemData["name"].ToString();
+            case "questItem":
+            case "onlyForEarthponies":
+                return "";
+        }
+
+        return propValue;
+    }
+
     protected virtual string GetItemPropsString(Dictionary itemProps)
     {
         string result = "";
@@ -185,23 +208,8 @@ public abstract class InventoryMode
             if (itemPropNames.Contains(prop)) {
                 string propName = itemPropNames[prop].ToString();
                 string propValue = itemProps[prop].ToString();
-                switch (prop)
-                {
-                    case "medsEffect":
-                        propValue = InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
-                        break;
-                    case "damageBlock":
-                    {
-                        //выводим блокирование урона в процентах
-                        float blockValue = Global.ParseFloat(propValue);
-                        propValue = (blockValue * 100f) + "%";
-                        break;
-                    }
-                    case "questItem":
-                        propValue = "";
-                        break;
-                }
-
+                propValue = ConvertPropValue(prop, propValue);
+                
                 result += "> " + propName + propValue + "\n";
             }
         }

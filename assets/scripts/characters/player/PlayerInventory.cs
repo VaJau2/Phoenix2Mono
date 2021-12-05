@@ -110,6 +110,27 @@ public class PlayerInventory {
         stealthBuckEffect?.SetOff(false);
     }
 
+    public bool CheckCanWearItem(string itemCode)
+    {
+        Dictionary itemData = ItemJSON.GetItemData(itemCode);
+
+        //если предмет только для земных пней
+        if (itemData.Contains("onlyForEarthponies")
+            && Global.Get().playerRace != Race.Earthpony)
+        {
+            return false;
+        }
+
+        //если для предмета требуется наличие другого предмета
+        if (itemData.Contains("checkHasItem"))
+        {
+            string checkItem = itemData["checkHasItem"].ToString();
+            if (!HasItem(checkItem)) return false;
+        }
+
+        return true;
+    }
+
     public void WearItem(string itemCode, bool sound = true)
     {
         CheckStealthBuck();
@@ -171,6 +192,11 @@ public class PlayerInventory {
     public void MessageCantDrop(string itemName)
     {
         messages.ShowMessage("cantDrop", itemName, "items");
+    }
+    
+    public void MessageCantWear(string itemName) 
+    {
+        messages.ShowMessage("cantWear", itemName, "items");
     }
 
     public void MessageCantUnwear(string itemName) 

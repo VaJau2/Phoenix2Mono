@@ -171,6 +171,15 @@ public class UsualMode: InventoryMode {
         if (tempButton != wearButton)
         {
             if (player.IsSitting) return;
+            
+            //если предмет нельзя надеть
+            if (!inventory.CheckCanWearItem(tempButton.myItemCode))
+            {
+                var itemData = ItemJSON.GetItemData(tempButton.myItemCode);
+                inventory.MessageCantWear(itemData["name"].ToString());
+                return;
+            }
+            
             //если уже надета другая вещь
             if (wearButton.myItemCode != null) {
                 if (!canTakeItemOff()) return;

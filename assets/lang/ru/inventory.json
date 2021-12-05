@@ -48,7 +48,9 @@
 
         "heal": "+ к Здоровью: ",
         "medsEffect": "Эффект: ",
-        "questItem": "Квестовый предмет"
+        "questItem": "Квестовый предмет",
+        "checkHasItem": "Требуется: ",
+        "onlyForEarthponies": "Только для земнопони"
     },
 
     "medsEffects": {

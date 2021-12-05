@@ -64,8 +64,8 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Ты уже забыла, что обещала отцу?",
-      "speaker": "Страйкли",
-      "opposite": "Мама",
+      "speaker": "Мама",
+      "opposite": "Страйкли",
       "options": [
         {
           "body": "answer",
