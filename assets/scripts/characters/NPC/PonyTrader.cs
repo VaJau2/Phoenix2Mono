@@ -17,6 +17,12 @@ public class PonyTrader: Pony, ITrader
     public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
     public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
     
+    public override void _Ready()
+    {
+        BaseTrading.LoadTradingData(this);
+        base._Ready();
+    }
+    
     public void StartTrading()
     {
         BaseTrading.LoadTradingData(this);

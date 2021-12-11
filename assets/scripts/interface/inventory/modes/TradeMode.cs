@@ -132,6 +132,7 @@ public class TradeMode: InventoryMode
             } else {
                 //если у торговца нет места, предмет пропадает
                 RemoveItemFromButton(tempButton);
+                UpdateMoneyCount();
             }
         } else {
             if (inventory.money < itemPrice)
@@ -301,6 +302,11 @@ public class TradeMode: InventoryMode
             }
         }
 
+        UpdateMoneyCount();
+    }
+
+    private void UpdateMoneyCount()
+    {
         moneyCount.Text = inventory.money.ToString();
         traderMoneyCount.Text = tempTrader.moneyCount.ToString();
     }

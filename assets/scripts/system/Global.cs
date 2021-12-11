@@ -271,9 +271,9 @@ public class Global {
 
     public static Dictionary MergeDictionaries(Dictionary dicA, Dictionary dicB)
     {
-        foreach (DictionaryEntry tempB in dicB)
+        foreach (string bKey in dicB.Keys)
         {
-            dicA.Add(tempB.Key, tempB.Value);
+            dicA.Add(bKey, dicB[bKey]);
         }
 
         return dicA;
