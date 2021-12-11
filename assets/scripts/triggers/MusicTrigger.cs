@@ -1,14 +1,19 @@
 ﻿using Godot;
+using Godot.Collections;
 
+//Работает с одним "боевым" треком или с одним "спокойным" и одним "боевым" треком
+//При запуске действует в зависимости от активности
+//Если активен, врубает первый "боевой" трек
+//Если неактивен, вырубает его и, если есть второй "спокойный" трек, врубает его
 public class MusicTrigger: TriggerBase
 {
     [Export] public NodePath audiPath;
-    [Export] public AudioStreamSample track;
+    [Export] public AudioStream track;
+    [Export] public AudioStream otherTrack;
     [Export] private bool Audio3d;
     [Export] private float volumeSpeed = 0.1f;
 
     private AudioPlayerCommon audi;
-    
 
     public override void _Ready()
     {
@@ -18,44 +23,92 @@ public class MusicTrigger: TriggerBase
             _on_activate_trigger();
         }
     }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        if (IsActive || otherTrack != null)
+        {
+            _on_activate_trigger();
+        }
+    }
     
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        SetProcess(true);
     }
 
-    public override async void _on_activate_trigger()
+    public override void _Process(float delta)
     {
+        //если не активен, заглушаем первый трек
+        //если есть второй трек, врубаем его
         if (!IsActive)
         {
-            if (audi.IsPlaying)
+            if (audi.GetStream == track && audi.IsPlaying)
             {
                 if (volumeSpeed > 0)
                 {
-                    while (audi.Volume > -8f)
+                    if (audi.Volume > -8f)
                     {
                         audi.Volume -= volumeSpeed;
-                        await Global.Get().ToTimer(0.1f, this);
+                        return;
                     }
                 } 
                 audi.Stop();
-                base._on_activate_trigger();
-                return;
             }
-        }
-        
-        audi.Play(track);
 
-        if (volumeSpeed > 0)
-        {
-            while (audi.Volume < 2)
+            if (otherTrack != null)
             {
-                audi.Volume += volumeSpeed;
-                await Global.Get().ToTimer(0.1f, this);
+                if (!audi.IsPlaying)
+                {
+                    audi.Play(otherTrack);
+                }
+
+                if (volumeSpeed > 0)
+                {
+                    if (audi.Volume < 2)
+                    {
+                        audi.Volume += volumeSpeed;
+                        return;
+                    }
+                }
             }
         }
+        //если активен, заглушаем второй трек
+        //врубаем первый трек
+        else
+        {
+            if (audi.GetStream == otherTrack && audi.IsPlaying)
+            {
+                if (volumeSpeed > 0)
+                {
+                    if (audi.Volume > -8f)
+                    {
+                        audi.Volume -= volumeSpeed;
+                        return;
+                    }
+                } 
+                audi.Stop();
+            }
+            
+            if (!audi.IsPlaying)
+            {
+                audi.Play(track);
+            }
 
-        base._on_activate_trigger();
+            if (volumeSpeed > 0)
+            {
+                if (audi.Volume < 2)
+                {
+                    audi.Volume += volumeSpeed;
+                    return;
+                }
+            }
+            
+        }
+
+        SetProcess(false);
+        _on_activate_trigger();
     }
 }

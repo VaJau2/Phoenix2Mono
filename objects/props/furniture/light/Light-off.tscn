@@ -1,7 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=2]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.573285, 10.5258, 0.772525 )

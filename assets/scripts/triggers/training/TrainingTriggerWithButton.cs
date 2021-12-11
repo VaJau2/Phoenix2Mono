@@ -12,6 +12,7 @@ public abstract class TrainingTriggerWithButton: TriggerBase
     
     protected bool checkButton;
     protected bool playerHere;
+    protected bool trainingIsDone;
 
     public override void _Ready()
     {

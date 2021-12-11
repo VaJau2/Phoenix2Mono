@@ -20,7 +20,7 @@ public class AudioPlayerCommon
         }
     }
     
-    public void Play(AudioStreamSample sample = null)
+    public void Play(AudioStream sample = null)
     {
         if (sample != null)
         {
@@ -73,4 +73,6 @@ public class AudioPlayerCommon
     }
 
     public bool IsPlaying => audio3D ? player3D.Playing : player.Playing;
+
+    public AudioStream GetStream => audio3D ? player3D.Stream : player.Stream;
 }

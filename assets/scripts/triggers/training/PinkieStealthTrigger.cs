@@ -112,6 +112,8 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     public void _on_player_take_item(string itemCode)
     {
         if (itemCode != itemInBag) return;
+        if (trainingIsDone) return;
+        
         foreach (var eye in eyes)
         {
             eye?.MakeActive(false);
@@ -119,6 +121,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         audi.Stream = beepSound;
         audi.Play();
         roboPinkie.dialogueCode = winDialogue;
+        trainingIsDone = true;
     }
     
     public override Dictionary GetSaveData()

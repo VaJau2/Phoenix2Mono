@@ -1585,6 +1585,7 @@ script = ExtResource( 61 )
 IsActive = false
 DeleteAfterTrigger = false
 audiPath = NodePath("../../music")
+track = ExtResource( 62 )
 
 [node name="twilightSpikeTeleport" type="Node" parent="triggers" groups=[
 "savable",

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/materials/props/buildings/stone.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/furniture/sink.tres" type="Material" id=3]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=6]

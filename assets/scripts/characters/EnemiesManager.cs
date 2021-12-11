@@ -23,6 +23,9 @@ public class EnemiesManager : Node, ISavable
     private List<AudioPlayerCommon> audi;
     private List<VisibilityNotifier> spawnPoints;
     private float spawnCooldown;
+    
+    [Signal] public delegate void AlarmStarted();
+    [Signal] public delegate void AlarmEnded();
 
     private void StartAlarm()
     {
@@ -34,6 +37,7 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = true;
+        EmitSignal(nameof(AlarmStarted));
         SetProcess(true);
     }
 
@@ -45,6 +49,7 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = false;
+        EmitSignal(nameof(AlarmEnded));
         SetProcess(false);
     }
 

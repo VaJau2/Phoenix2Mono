@@ -4,9 +4,10 @@
 [ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=5]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/scripts/furns/furn-door.gd" type="Script" id=7]
+
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "bars-door"

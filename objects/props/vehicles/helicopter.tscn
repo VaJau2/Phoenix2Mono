@@ -43,6 +43,8 @@ extents = Vector3( 0.924512, 2.11784, 1.33784 )
 extents = Vector3( 0.252449, 0.203914, 6.03599 )
 
 [node name="helicopter" type="StaticBody"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 1 )
 
 [node name="Helicopter001" type="MeshInstance" parent="."]

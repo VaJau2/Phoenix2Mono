@@ -58,24 +58,29 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
             target.Off();
         }
         audi.Play();
-        
-        if (tempTargetsCount == targets.Count)
+
+        if (!trainingIsDone)
         {
-            roboDash.dialogueCode = (timerIsSmall) ? win1Dialogue : win2Dialogue;
+            if (tempTargetsCount == targets.Count)
+            {
+                roboDash.dialogueCode = (timerIsSmall) ? win1Dialogue : win2Dialogue;
+                trainingIsDone = true;
+            }
+            else
+            {
+                if (timerIsSmall)
+                {
+                    roboDash.dialogueCode = loseDialogue;
+                }
+            }
         }
-        else
+       
+        
+        checkButton = true;
+            
+        if (playerHere)
         {
-            if (timerIsSmall)
-            {
-                roboDash.dialogueCode = loseDialogue;
-            }
-            
-            checkButton = true;
-            
-            if (playerHere)
-            {
-                _on_body_entered(player);
-            }
+            _on_body_entered(player);
         }
     }
     

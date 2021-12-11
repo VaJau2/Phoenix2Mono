@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/materials/props/light/metal.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/vehicles/jeep.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=3]
 
@@ -42,6 +42,8 @@ extents = Vector3( 0.967836, 0.658572, 1.24737 )
 extents = Vector3( 1.04865, 0.658572, 0.622075 )
 
 [node name="Jeep" type="StaticBody"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 3 )
 
 [node name="jeap2" type="MeshInstance" parent="."]
