@@ -122,6 +122,12 @@ public class NpcWithWeapons : NPC
 
     private void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
+        if (WalkSpeed == 0)
+        {
+            FinishGoingTo();
+            return;
+        }
+        
         cameToPlace = false;
         var pos = GlobalTransform.origin;
 

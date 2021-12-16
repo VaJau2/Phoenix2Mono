@@ -1,0 +1,136 @@
+{
+  "nodes": {
+    "O1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "A pony is on a base! Mafal Alz’li! How did you manage to get through the guards?",
+      "speaker": "Officer",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "O1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "O1(2)"
+        }
+      ]
+    },
+    "O1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh, hi. Are you the Officer?",
+      "speaker": "Strikely",
+      "opposite": "Officer",
+      "next": "O2"
+    },
+    "O1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Where is your \"secret\" weapon?",
+      "speaker": "Strikely",
+      "opposite": "Officer",
+      "next": "O3"
+    },
+    "O2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Your sneaking ability is as staggering as your foolishness. Why you are here, pony?",
+      "speaker": "Officer",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "O2(1)"
+        }
+      ]
+    },
+    "O2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm looking for some sort of a secret weapon. You are hiding it somewhere here…",
+      "speaker": "Strikely",
+      "opposite": "Officer",
+      "next": "O3"
+    },
+    "O3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh, don't worry about it. This weapon is not hiding anymore. It was summoned by me and is already flying here.",
+      "speaker": "Officer",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "O3(1)"
+        }
+      ]
+    },
+    "O3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What?",
+      "speaker": "Strikely",
+      "opposite": "Officer",
+      "next": "O4"
+    },
+    "O4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Al’tinin will eat you, then it will fly to your cities and burn them to hell! That was our deal.",
+      "speaker": "Officer",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "O4(1)"
+        }
+      ]
+    },
+    "O4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Al...who?",
+      "speaker": "Strikely",
+      "opposite": "Officer",
+      "next": "O5"
+    },
+    "O5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're fighting on the front line and you don't know our language? Kharuf ghabiun! Souf tamut’o kariban, pony!",
+      "speaker": "Officer",
+      "opposite": "Strikely",
+      "next": "O6"
+    },
+    "O6": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "combat"
+    },
+    "combat": {
+      "kind": "combat",
+      "root_node": false
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Officer": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

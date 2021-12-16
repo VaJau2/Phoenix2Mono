@@ -121,6 +121,13 @@ public class SeekArea : Area
             alliesInArea.Add(body as NPC);
             return;
         };
+
+        //если нпц вообще не должен ни с кем сражаться
+        if (npc.relation == Relation.Neitral 
+            || body is NPC npc1 && npc1.relation == Relation.Neitral)
+        {
+            return;
+        }
             
         AddEnemyInArea(body as Character);
     }

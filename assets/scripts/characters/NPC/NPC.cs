@@ -423,7 +423,8 @@ public class NPC : Character
 
 public enum Relation {
     Friend,
-    Enemy
+    Enemy,
+    Neitral
 }
 
 public enum NPCState {
