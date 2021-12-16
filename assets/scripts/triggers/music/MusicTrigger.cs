@@ -17,10 +17,11 @@ public class MusicTrigger: TriggerBase
 
     public override void _Ready()
     {
+        SetProcess(false);
         audi = new AudioPlayerCommon(Audio3d, audiPath, this);
         if (IsActive)
         {
-            _on_activate_trigger();
+            SetActive(true);
         }
     }
 
@@ -29,7 +30,7 @@ public class MusicTrigger: TriggerBase
         base.LoadData(data);
         if (IsActive || otherTrack != null)
         {
-            _on_activate_trigger();
+            SetActive(true);
         }
     }
     

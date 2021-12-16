@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "*trembling in terror*",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you know, where the megaspell blueprints are?",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S2"
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "W... What?",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S2(2)"
+        }
+      ]
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Doesn't matter, I'll find it by myself. Run, save yourself.",
+      "speaker": "Strikely",
+      "opposite": "Scientist"
+    },
+    "S2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Megaspell. Blurprints. Where?",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S3"
+    },
+    "S3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "They are in d..director's office, b...but he has a day off today and he always takes his k... key-card with him",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S3(1)"
+        }
+      ]
+    },
+    "S3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "That means, I can't get in?",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S4"
+    },
+    "S4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Y...yes! I mean, n...no!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S4(2)"
+        }
+      ]
+    },
+    "S4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Are you hiding something, don't you?",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S5"
+    },
+    "S4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'll find the way to get in anyway",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S999"
+    },
+    "S5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "N.. no, I'm absolutely not hiding anything! There are no spare key cards here!... Oops...",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S5(1)"
+        }
+      ]
+    },
+    "S5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thanks for the tip. Now run for your life.",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S999"
+    },
+    "S999": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Scientist": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

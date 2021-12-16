@@ -81,7 +81,7 @@ public class FurnDoor: FurnBase, ISavable {
     }
 
     // Открывает дверь без проверки ключа
-    public void ClickFurn() {
+    public float ClickFurn() {
         if (!opening) {
             if (!string.IsNullOrEmpty(myKey) && !IsOpen) {
                 setOpen(openWithKeySound, 0.5f);
@@ -91,6 +91,8 @@ public class FurnDoor: FurnBase, ISavable {
                 setOpen();
             }
         }
+
+        return openTimer;
     }
 
     public void _on_otherside_body_entered(Node body) {

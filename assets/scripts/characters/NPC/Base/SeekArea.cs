@@ -172,7 +172,7 @@ public class SeekArea : Area
     {
         if (npc is Pony) {
             var pony = npc as Pony;
-            if (pony.IsHidingInCover) {
+            if (pony.IsHidingInCover && !string.IsNullOrEmpty(pony.weaponCode)) {
                 return true;
             }
         }

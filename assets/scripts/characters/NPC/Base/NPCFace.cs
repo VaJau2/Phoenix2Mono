@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Generic = System.Collections.Generic;
 using Godot.Collections;
 
 //класс отвечает за лицо НПЦ
@@ -11,8 +11,8 @@ public class NPCFace : MeshInstance, ISavable
     [Export] protected string startEyesVariant = "";
     [Export] protected string startMouthVariant = "A";
 
-    private System.Collections.Generic.Dictionary<string, StreamTexture> mouthTextures =
-        new System.Collections.Generic.Dictionary<string, StreamTexture>();
+    private Generic.Dictionary<string, StreamTexture> mouthTextures =
+        new Generic.Dictionary<string, StreamTexture>();
 
     NPC npc;
     private SpatialMaterial eyesMaterial;
@@ -35,7 +35,7 @@ public class NPCFace : MeshInstance, ISavable
     //загружаем файл с анимациями рта и тут же его анимируем
     public async void AnimateMouth(string fileName)
     {
-        List<AnimTime> animation = LoadTimingFile(fileName + "_mouth.txt");
+        var animation = LoadTimingFile(fileName + "_mouth.txt");
         float lastTime = 0;
 
         foreach (AnimTime animTime in animation)
@@ -63,9 +63,9 @@ public class NPCFace : MeshInstance, ISavable
         startEyesVariant = variantName;
     }
 
-    private List<AnimTime> LoadTimingFile(string fileName)
+    private Generic.IEnumerable<AnimTime> LoadTimingFile(string fileName)
     {
-        List<AnimTime> animation = new List<AnimTime>();
+        var animation = new Generic.List<AnimTime>();
 
         string path = "res://assets/audio/dialogue/" + npcName + "/" + fileName;
         var file = new File();

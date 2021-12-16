@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 public class UsualMode: InventoryMode {
 
@@ -141,6 +142,7 @@ public class UsualMode: InventoryMode {
 
     private void CheckAutoheal()
     {
+        if (!Object.IsInstanceValid(player)) return;
         if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
         if (player.Health == player.HealthMax) {
             inventory.ItemsMessage("youAreHealthy");

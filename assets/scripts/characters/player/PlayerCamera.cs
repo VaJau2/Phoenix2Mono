@@ -152,7 +152,7 @@ public class PlayerCamera: Camera
                 default:
                 {
                     if (!dialogueMenu.MenuOn && tempObject is NPC npc) {
-                        if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
+                        if (npc.dialogueCode != "") {
                             ShowHint("talk");
                         }
                     }
@@ -194,7 +194,7 @@ public class PlayerCamera: Camera
             }
             case NPC npc:
             {
-                if (npc.state == NPCState.Idle && npc.dialogueCode != "") {
+                if (npc.dialogueCode != "") {
                     dialogueMenu.StartTalkingTo(npc);
                 }
 

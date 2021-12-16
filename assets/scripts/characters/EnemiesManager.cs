@@ -6,9 +6,9 @@ using Godot.Collections;
 
 public class EnemiesManager : Node, ISavable
 {
-    private const int MIN_ENEMIES_COUNT_TO_SPAWN = 14;
+    [Export] private int MIN_ENEMIES_COUNT_TO_SPAWN = 14;
+    [Export] private float SPAWN_COOLDOWN = 5f;
     private const int MIN_HEALTH_TO_SPAWN = 20;
-    private const float SPAWN_COOLDOWN = 5f;
     private const float SPAWN_MIN_DIST = 15f;
     private const float SPAWN_MAX_DIST = 60f;
 
@@ -78,6 +78,8 @@ public class EnemiesManager : Node, ISavable
         npcInstance.GlobalTransform =
             Global.setNewOrigin(npcInstance.GlobalTransform, point.GlobalTransform.origin);
         npcInstance.Rotation = new Vector3(0, point.Rotation.y, 0);
+        npcInstance.SetNewStartPos(point.GlobalTransform.origin);
+        npcInstance.myStartRot = new Vector3(0, point.Rotation.y, 0);
         npcInstance.tempVictim = player;
         npcInstance.SetState(NPCState.Attack);
 

@@ -19,6 +19,10 @@ public class StartSmoothMusic : AudioStreamPlayer, ISavable
     public void LoadData(Dictionary data)
     {
         if (!loadLoudMusic) return;
+        if (!Playing)
+        {
+            Play();
+        }
         VolumeDb = maxVolume;
         SetProcess(false);
     }

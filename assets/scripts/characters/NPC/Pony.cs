@@ -181,7 +181,7 @@ public class Pony: NpcWithWeapons
 
         if (body is FurnDoor door)
         {
-            door.ClickFurn();
+            SetDoorWait(door.ClickFurn());
         }
     }
     

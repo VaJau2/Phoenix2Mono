@@ -112,6 +112,7 @@ surfaces/0 = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="winter_merc" instance=ExtResource( 1 )]
+collision_mask = 0
 IdleAnim = "Idle1"
 relation = 1
 weaponCode = "revolver32"
@@ -121,6 +122,10 @@ ammoCount = {
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.9, 0, 0, 0, -0.153435, 0.886824, 0, -0.886824, -0.153435, -0.0198563, 2.42013, 0.630795 )
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [  ]
+bones/3/bound_children = [  ]
 
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
 transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )

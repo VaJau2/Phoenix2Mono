@@ -28,6 +28,7 @@ public class NpcWithWeapons : NPC
     public float coverTimer = 0;
 
     private float shootCooldown = 0;
+    protected float doorWait;
     public bool IsHidingInCover => tempCover != null;
     public bool InCover = false;
     protected bool stopAreaEntered;
@@ -321,8 +322,20 @@ public class NpcWithWeapons : NPC
     {
     }
 
+    protected void SetDoorWait(float value)
+    {
+        doorWait = value;
+    }
+
     protected void UpdateAI(float delta)
     {
+        if (doorWait > 0)
+        {
+            doorWait -= delta;
+            Stop();
+            return;
+        }
+        
         switch (state)
         {
             case NPCState.Idle:
@@ -432,13 +445,14 @@ public class NpcWithWeapons : NPC
 
                 break;
             case NPCState.Search:
-                if (searchTimer > 0)
+                if (searchTimer > 0 && !string.IsNullOrEmpty(weaponCode))
                 {
                     searchTimer -= delta;
                 }
                 else
                 {
                     SetState(NPCState.Idle);
+                    return;
                 }
                 
                 if (!cameToPlace)
