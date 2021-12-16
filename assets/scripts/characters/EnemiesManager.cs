@@ -109,7 +109,7 @@ public class EnemiesManager : Node, ISavable
         //враги с уровня
         foreach (Node temp in GetChildren())
         {
-            if (!(temp is NPC npc)) continue;
+            if (!(temp is NPC npc) || temp.IsQueuedForDeletion()) continue;
             if (npc.relation == Relation.Enemy)
             {
                 enemies.Add(npc);

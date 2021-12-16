@@ -225,6 +225,15 @@ public class Player : Character
     private async void AnimateDealth()
     {
         while (blackScreen.Color.a < 1) {
+            //затухание всей музыки на уровне
+            foreach (Node node in GetTree().GetNodesInGroup("unpaused_sound"))
+            {
+                if (node is AudioStreamPlayer musicAudi && musicAudi.VolumeDb > -20f)
+                {
+                    musicAudi.VolumeDb -= 0.5f;
+                }
+            }
+            
             Color temp = blackScreen.Color;
             temp.a += 0.01f;
             blackScreen.Color = temp;
