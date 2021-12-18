@@ -12,7 +12,8 @@ public class Character : KinematicBody, ISavable
     public int BaseRecoil;
 
     public Vector3 Velocity;
-    
+    public Vector3 impulse;
+    public bool MayMove = true;
         
     [Signal]
     public delegate void TakenDamage();
@@ -54,6 +55,16 @@ public class Character : KinematicBody, ISavable
 
     public void MakeDamage(Character victim, int shapeID = 0) {
         victim.TakeDamage(this, GetDamage(), shapeID);
+    }
+    
+    protected void HandleImpulse() 
+    {
+        if(impulse.Length() > 0) {
+            MoveAndCollide(impulse);
+            Vector3 newImpulse = impulse;
+            newImpulse /= 1.5f;
+            impulse = newImpulse;
+        }
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character

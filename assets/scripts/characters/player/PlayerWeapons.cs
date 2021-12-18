@@ -351,7 +351,7 @@ public class PlayerWeapons: CollisionShape
             gunLight.Visible = false;
 
             if (!tempWeaponStats.Contains("isSilence")) {
-                enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.75f, player.GlobalTransform.origin);
+                enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
             }
 
             onetimeShoot = false;

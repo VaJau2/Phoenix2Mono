@@ -39,7 +39,7 @@ public class PlayerBody : Spatial
     private float smileCooldown;
     private float shyCooldown = 1.5f;
 
-    public float bodyRot {get; private set;} = 0;
+    public float bodyRot = 0;
     private bool onetimeBodyRotBack;
 
     public bool RotClumpsMin { get  => bodyRot > -MAX_ANGLE + 1; }

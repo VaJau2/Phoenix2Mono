@@ -122,7 +122,7 @@ public class NpcWithWeapons : NPC
 
     private void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
-        if (WalkSpeed == 0)
+        if (WalkSpeed == 0 || !MayMove)
         {
             FinishGoingTo();
             return;
@@ -216,11 +216,16 @@ public class NpcWithWeapons : NPC
         base.AnimateDealth(killer, shapeID);
     }
 
+    private void LookAtTarget(Vector3 target)
+    {
+        target.y = GlobalTransform.origin.y;
+        LookAt(target, Vector3.Up);
+    }
+
     protected virtual void LookAtTarget(bool rotateBody = true)
     {
         Vector3 victimPos = tempVictim.GlobalTransform.origin;
-        victimPos.y = GlobalTransform.origin.y;
-        LookAt(victimPos, Vector3.Up);
+        LookAtTarget(victimPos);
     }
 
     protected virtual void PlayStopAnim()
@@ -461,7 +466,11 @@ public class NpcWithWeapons : NPC
                     return;
                 }
                 
-                if (!cameToPlace)
+                if (WalkSpeed == 0)
+                {
+                    LookAtTarget(lastSeePos);
+                }
+                else if (!cameToPlace)
                 {
                     GoTo(lastSeePos, COME_DISTANCE);
                 }

@@ -15,7 +15,6 @@ public class Player : Character
     const float SHAKE_TIME = 0.1f;
 
     //Переменные состояния
-    public bool MayMove = true;
     public bool MayRotateHead = true;
     public bool IsCrouching;
     public bool IsHitting;
@@ -48,7 +47,6 @@ public class Player : Character
 
     //Переменные для передвижения
     private Vector3 dir;
-    public Vector3 impulse;
 
     private CollisionShape sphereCollider;
     private CollisionShape bodyCollider;
@@ -190,16 +188,7 @@ public class Player : Character
             artifact.Skin = loadedSkin;
         }
     }
-
-    private void HandleImpulse() 
-    {
-        if(impulse.Length() > 0) {
-            MoveAndCollide(impulse);
-            Vector3 newImpulse = impulse;
-            newImpulse /= 1.5f;
-            impulse = newImpulse;
-        }
-    }
+    
 
     public override int GetSpeed()
     {

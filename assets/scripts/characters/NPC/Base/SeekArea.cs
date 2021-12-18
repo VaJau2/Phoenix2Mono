@@ -186,9 +186,11 @@ public class SeekArea : Area
         return false;
     }
 
-    private bool SeeCharacter(Character character) 
+    private bool SeeCharacter(Character character)
     {
-        var dir = character.GlobalTransform.origin - ray.GlobalTransform.origin;
+        var charPos = character.GlobalTransform.origin;
+        charPos.y += 0.5f;
+        var dir = charPos - ray.GlobalTransform.origin;
         ray.CastTo = dir;
         return ray.GetCollider() == character;
     }

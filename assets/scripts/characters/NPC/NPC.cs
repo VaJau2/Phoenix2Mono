@@ -7,7 +7,7 @@ public class NPC : Character
 {
     const int RAGDOLL_IMPULSE = 700;
     const float SEARCH_TIMER = 12f;
-    private float ROTATION_SPEED = 0.15f;
+    protected float ROTATION_SPEED = 0.15f;
     protected float GRAVITY = 6;
     protected float PATROL_WAIT = 4f;
     [Export]
@@ -415,6 +415,7 @@ public class NPC : Character
             return;
         }
 
+        HandleImpulse();
         if (Velocity.Length() > 0) {
             MoveAndSlide(Velocity);
         }
@@ -424,7 +425,8 @@ public class NPC : Character
 public enum Relation {
     Friend,
     Enemy,
-    Neitral
+    Neitral,
+    Monster
 }
 
 public enum NPCState {

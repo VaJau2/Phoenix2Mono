@@ -18,6 +18,7 @@ public class EnemiesManager : Node, ISavable
     [Export] private List<PackedScene> npcPrefabs;
 
     public List<NPC> enemies = new List<NPC>();
+    public bool maySpawn = true;
     public bool isAlarming { get; private set; }
     Player player => Global.Get().player;
     private List<AudioPlayerCommon> audi;
@@ -137,6 +138,7 @@ public class EnemiesManager : Node, ISavable
     public override void _Process(float delta)
     {
         if (!isAlarming) return;
+        if (!maySpawn) return;
 
         if (spawnCooldown > 0)
         {
