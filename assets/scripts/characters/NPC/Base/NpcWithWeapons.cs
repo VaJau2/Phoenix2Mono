@@ -21,6 +21,7 @@ public class NpcWithWeapons : NPC
     protected Vector3[] path;
     protected int pathI;
 
+    protected SoundSteps soundSteps;
     public NPCWeapons weapons;
     private CoversManager covers;
     protected Cover tempCover;
@@ -37,6 +38,8 @@ public class NpcWithWeapons : NPC
     public delegate void IsCame();
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
+    
+    private bool OnFloor() {return soundSteps.landMaterial != null; }
 
     public override Dictionary GetSaveData()
     {
@@ -234,19 +237,16 @@ public class NpcWithWeapons : NPC
 
     protected void Stop(bool MoveDown = false)
     {
-        if (Velocity.Length() > 0)
+        PlayStopAnim();
+        path = null;
+        pathI = 0;
+        if (MayMove && MoveDown && !OnFloor() )
         {
-            PlayStopAnim();
-            path = null;
-            pathI = 0;
-            if (MoveDown)
-            {
-                Velocity = new Vector3(0, -GRAVITY, 0);
-            }
-            else
-            {
-                Velocity = Vector3.Zero;
-            }
+            Velocity = new Vector3(0, -GRAVITY, 0);
+        }
+        else
+        {
+            Velocity = Vector3.Zero;
         }
     }
 
@@ -313,7 +313,7 @@ public class NpcWithWeapons : NPC
         {
             UpdateShooting(tempDistance, delta);
             LookAtTarget();
-            Stop();
+            Stop(true);
         }
         else
         {
@@ -343,7 +343,7 @@ public class NpcWithWeapons : NPC
         if (doorWait > 0)
         {
             doorWait -= delta;
-            Stop();
+            Stop(true);
             return;
         }
         
@@ -360,7 +360,7 @@ public class NpcWithWeapons : NPC
                     {
                         if (stopAreaEntered)
                         {
-                            Stop();
+                            Stop(true);
                         }
                         else
                         {
@@ -388,7 +388,7 @@ public class NpcWithWeapons : NPC
                     {
                         if (stopAreaEntered)
                         {
-                            Stop();
+                            Stop(true);
                         }
                         else
                         {
@@ -489,6 +489,7 @@ public class NpcWithWeapons : NPC
         navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         weapons = GetNode<NPCWeapons>("weapons");
+        soundSteps = GetNode<SoundSteps>("Armature/Skeleton/floorRay");
         if (weaponCode != "")
         {
             weapons.LoadWeapon(this, weaponCode);

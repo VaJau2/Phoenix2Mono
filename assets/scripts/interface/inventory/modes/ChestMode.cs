@@ -264,9 +264,9 @@ public class ChestMode: InventoryMode
                 return false;
             }
 
+            if (checkAmmoInChest()) return true;
             ItemIcon chestButton = FirstEmptyChestButton;
             if (chestButton != null) {
-                if (checkAmmoInChest()) return true;
                 if (tempButton.myItemCode.Contains("key")) {
                     inventory.RemoveKey(tempButton.myItemCode);
                 }
@@ -285,9 +285,9 @@ public class ChestMode: InventoryMode
             bool isMoney = tempItemData["type"].ToString() == "money";
             if (checkMoneyInInventory(isMoney)) return true;
 
+            if (checkAmmoInInventory()) return true;
             ItemIcon itemButton = FirstEmptyButton;
             if (itemButton != null) {
-                if (checkAmmoInInventory()) return true;
                 if (tempButton.myItemCode.Contains("key")) {
                     inventory.AddKey(tempButton.myItemCode);
                 }

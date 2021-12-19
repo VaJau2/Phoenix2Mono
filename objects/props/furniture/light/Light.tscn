@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/materials/props/metal.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/light/halo.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/light/lightglass.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=4]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=6]
 [ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=7]
@@ -91,6 +91,8 @@ surfaces/0 = {
 
 [node name="Light" type="StaticBody"]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 4 )
 
 [node name="shape" type="CollisionShape" parent="."]
@@ -129,19 +131,19 @@ unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 
-[node name="window" type="MeshInstance" parent="lightSource"]
+[node name="mesh" type="MeshInstance" parent="lightSource"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75041, -19.0267, 0 )
 mesh = SubResource( 9 )
 material/0 = null
 
-[node name="SpotLight" type="SpotLight" parent="lightSource/window"]
+[node name="SpotLight" type="SpotLight" parent="lightSource/mesh"]
 transform = Transform( 1.41509, 3.18969e-08, -0.195781, 0.195781, -2.30548e-07, 1.41509, 0, -1.42857, -2.32744e-07, 6.68756, 20.8751, -0.234133 )
 light_color = Color( 0.968627, 0.909804, 0.6, 1 )
 light_bake_mode = 2
 spot_range = 30.0
 spot_angle = 23.9892
 
-[node name="halo" type="MeshInstance" parent="lightSource/window"]
+[node name="halo" type="MeshInstance" parent="lightSource/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57591, 18.1533, 2.43906e-06 )
 mesh = SubResource( 10 )
 material/0 = null

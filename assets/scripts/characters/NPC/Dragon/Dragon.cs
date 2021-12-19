@@ -9,7 +9,8 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
         public const int MOUTH_DAMAGE = 40;
         private const int FIRE_DAMAGE = 30;
         private const float FIRE_DISTANCE = 50;
-        private const int IDLE_FLY_HEIGHT = 35;
+        private const int IDLE_FLY_HEIGHT = 40;
+        private const float SMACH_ATTACK_CHANCE = 0.5f;
 
         public bool IsAttacking;
         public bool isFalling;
@@ -22,8 +23,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
         private float idleSoundTimer = 5f;
     
         public AudioStreamPlayer3D GetAudi() => audi;
-
-        [Export] private NodePath healthBarObjPath;
+        
         [Export] private Array<AudioStreamSample> idleSounds;
         [Export] private AudioStreamSample fireSound;
     
@@ -48,7 +48,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
         public override void _Ready()
         {
             base._Ready();
-            healthBarObj = GetNode<Control>(healthBarObjPath);
+            healthBarObj = GetNode<Control>("/root/Main/Scene/canvas/dragonHealth");
             healthBar = healthBarObj.GetNode<ProgressBar>("ProgressBar");
             anim = GetNode<AnimationPlayer>("anim");
             fireObj = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
@@ -123,7 +123,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
                 {
                     var rand = new RandomNumberGenerator();
                     rand.Randomize();
-                    isSmashAttack = rand.Randf() > 0.6;
+                    isSmashAttack = rand.Randf() < SMACH_ATTACK_CHANCE;
                     damageTimer = isSmashAttack ? 0.5f : 3;
                 }
                 else
@@ -184,11 +184,11 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
 
         private void UpdateHeight(float speed, float newHeight)
         {
-            if (Translation.y > newHeight + 1)
+            if (Translation.y > newHeight + 2f)
             {
                 GRAVITY = speed;
             } 
-            else if (Translation.y < newHeight - 1)
+            else if (Translation.y < newHeight - 2f)
             {
                 GRAVITY = -speed;
             }
@@ -307,7 +307,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
             enemyInMouth.CollisionLayer = 1;
             enemyInMouth.CollisionMask = 1;
             enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.y, 0);
-            enemyInMouth.impulse = -GlobalTransform.basis.z * 3 + new Vector3(0, -1, 0);
+            enemyInMouth.impulse = -GlobalTransform.basis.z * 3 + new Vector3(0, -2, 0);
             enemyInMouth = null;
             
             IsAttacking = false;
@@ -420,7 +420,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
                 {
                     PlayIdleSounds(delta);
                     UpdatePatrolPoints();
-                    UpdateHeight(BaseSpeed, IDLE_FLY_HEIGHT);
+                    UpdateHeight(BaseSpeed / 4f, IDLE_FLY_HEIGHT);
                 }
                 else
                 {
@@ -428,6 +428,10 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
                     if (enemyDistance > 0 && enemyDistance < 60)
                     {
                         UpdateHeight(BaseSpeed, tempVictim.Translation.y + newHeight);
+                    }
+                    else
+                    {
+                        UpdateHeight(BaseSpeed / 4f, IDLE_FLY_HEIGHT);
                     }
 
                     if (!CloseToPoint)

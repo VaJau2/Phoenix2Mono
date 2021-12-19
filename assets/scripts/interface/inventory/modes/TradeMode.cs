@@ -116,23 +116,30 @@ public class TradeMode: InventoryMode
             tempTrader.moneyCount -= itemPrice;
             inventory.money += itemPrice;
 
-            ItemIcon traderButton = FirstEmptyTradeButton;
-            if (traderButton != null) {
-                if (!checkAmmoInTrader()) {
-                    if (tempCount == tempCountMax) {
+            if (!checkAmmoInTrader())
+            {
+                ItemIcon traderButton = FirstEmptyTradeButton;
+                if (traderButton != null)
+                {
+                    if (tempCount == tempCountMax)
+                    {
                         ChangeItemButtons(tempButton, traderButton);
-                    } else {
+                    }
+                    else
+                    {
                         traderButton.SetItem(tempButton.myItemCode);
                         traderButton.SetCount(tempCount);
                         tempButton.SetCount(tempButton.GetCount() - tempCount, true);
                     }
-                    
+
                     UpdateTraderPositions();
                 }
-            } else {
-                //если у торговца нет места, предмет пропадает
-                RemoveItemFromButton(tempButton);
-                UpdateMoneyCount();
+                else
+                {
+                    //если у торговца нет места, предмет пропадает
+                    RemoveItemFromButton(tempButton);
+                    UpdateMoneyCount();
+                }
             }
         } else {
             if (inventory.money < itemPrice)

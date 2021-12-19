@@ -59,8 +59,9 @@ public class Character : KinematicBody, ISavable
     
     protected void HandleImpulse() 
     {
-        if(impulse.Length() > 0) {
-            MoveAndCollide(impulse);
+        if(impulse.Length() > 0)
+        {
+            Velocity += impulse;
             Vector3 newImpulse = impulse;
             newImpulse /= 1.5f;
             impulse = newImpulse;

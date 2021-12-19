@@ -158,12 +158,15 @@ public class EnemiesManager : Node, ISavable
         return new Dictionary
         {
             {"isAlarming", isAlarming},
-            {"spawnCooldown", spawnCooldown}
+            {"spawnCooldown", spawnCooldown},
+            {"maySpawn", maySpawn}
         };
     }
 
     public void LoadData(Dictionary data)
     {
+        maySpawn = Convert.ToBoolean(data["maySpawn"]);
+        
         if (!hasAlarm) return;
         if (!data.Contains("isAlarming")) return;
 

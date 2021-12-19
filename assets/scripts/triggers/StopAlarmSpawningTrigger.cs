@@ -1,7 +1,7 @@
 using Godot;
 
 //При активации выключает спавн врагов по тревоге
-public class StopAlarmSpawningTrigger : TriggerBase
+public class StopAlarmSpawningTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath managerPath;
     private EnemiesManager enemiesManager;
