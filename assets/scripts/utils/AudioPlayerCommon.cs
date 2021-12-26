@@ -75,4 +75,20 @@ public class AudioPlayerCommon
     public bool IsPlaying => audio3D ? player3D.Playing : player.Playing;
 
     public AudioStream GetStream => audio3D ? player3D.Stream : player.Stream;
+
+    public float PlayTime
+    {
+        get => audio3D ? player3D.GetPlaybackPosition() : player.GetPlaybackPosition();
+        set
+        {
+            if (audio3D)
+            {
+                player3D.Seek(value);
+            }
+            else
+            {
+                player.Seek(value);
+            }
+        }
+    }
 }

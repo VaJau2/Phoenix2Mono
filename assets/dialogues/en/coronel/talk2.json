@@ -23,7 +23,7 @@
       "body": "No…",
       "speaker": "Strikely",
       "opposite": "Coronel",
-      "next": "C2"
+      "next": "C18.3"
     },
     "C1(2)": {
       "kind": "dialogue",
@@ -31,7 +31,7 @@
       "body": "I guessed.",
       "speaker": "Strikely",
       "opposite": "Coronel",
-      "next": "C2"
+      "next": "C18.3"
     },
     "C2": {
       "kind": "dialogue",
@@ -326,6 +326,19 @@
           "value": "afterCoronelTalk"
         }
       ]
+    },
+    "C18.3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "loopingMusicPartChange"
+        }
+      ],
+      "next": "C2"
     }
   },
   "speakers": {
