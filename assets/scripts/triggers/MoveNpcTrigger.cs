@@ -131,7 +131,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         }
     }
     
-    public void _on_body_entered(Node body)
+    public override void _on_body_entered(Node body)
     {
         if (activated) return;
         if (!IsActive) return;

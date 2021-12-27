@@ -113,7 +113,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     }
     
     
-    public void _on_body_entered(Node body)
+    public override void _on_body_entered(Node body)
     {
         if (!IsActive) return;
         if (!(body is Player)) return;

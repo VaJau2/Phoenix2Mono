@@ -80,6 +80,11 @@ public abstract class InventoryMode
         return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
     }
 
+    public int SameItemCount(string itemCode)
+    {
+        return itemButtons.Count(inventoryButton => inventoryButton.myItemCode == itemCode);
+    }
+
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
         foreach (var item in newItems)

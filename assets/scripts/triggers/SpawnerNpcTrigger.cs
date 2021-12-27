@@ -138,12 +138,4 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             _on_activate_trigger();
         }
     }
-
-    public void _on_body_entered(Node body)
-    {
-        if (body is Player)
-        {
-            _on_activate_trigger();
-        }
-    }
 }

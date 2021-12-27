@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scripts/triggers/zebra_base/NuclearManagerTrigger.cs" type="Script" id=2]
+[ext_resource path="res://assets/audio/background/nuclear/nuclear_alarm.ogg" type="AudioStream" id=3]
+[ext_resource path="res://objects/props/nuclear/nuclear.tscn" type="PackedScene" id=4]
+
+[node name="bombs" type="Spatial"]
+script = ExtResource( 2 )
+NewLevelNum = 11
+
+[node name="nuclear" parent="." instance=ExtResource( 4 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 7.05008, 3.05154, -169.902 )
+timer = 3.0
+
+[node name="nuclear2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0371218, 0, -2.99977, 0, 3, 0, 2.99977, 0, 0.0371218, 198.138, 3.05154, -62.3753 )
+timer = 4.0
+
+[node name="nuclear3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2.97207, 0, -2.67709, 0, 4, 0, 2.67709, 0, 2.97207, 189.962, 3.05154, -147.773 )
+timer = 7.0
+
+[node name="nuclear4" parent="." instance=ExtResource( 4 )]
+transform = Transform( -3.98876, 0, 0.299638, 0, 4, 0, -0.299638, 0, -3.98876, -32.9394, 3.05154, 187.225 )
+timer = 4.5
+
+[node name="nuclear5" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1.90492, 0, 2.3176, 0, 3, 0, -2.3176, 0, -1.90492, -216.182, 3.05154, 185.163 )
+timer = 8.0
+
+[node name="nuclear6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.71448, 0, -1.02984, 0, 2, 0, 1.02984, 0, 1.71448, 158.915, 3.05154, -184.459 )
+timer = 5.5
+
+[node name="nuclear7" parent="." instance=ExtResource( 4 )]
+transform = Transform( -2.49979, 0, 0.0323314, 0, 2.5, 0, -0.0323314, 0, -2.49979, -6.11816, 3.05154, 158.237 )
+timer = 6.5
+
+[node name="nuclear8" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.094316, 0, 3.99888, 0, 4, 0, -3.99888, 0, -0.094316, -263.374, 3.05154, -104.073 )
+timer = 8.5
+
+[node name="nuclear9" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1.86307, 0, -3.53963, 0, 4, 0, 3.53963, 0, -1.86307, 197.336, 3.05154, 152.658 )
+timer = 10.0
+
+[node name="nuclear10" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.69497, 0, -3.0622, 0, 3.5, 0, 3.0622, 0, 1.69497, 248.658, 3.05154, -154.797 )
+timer = 12.0
+
+[node name="nuclear11" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0217887, 0, -3.99994, 0, 4, 0, 3.99994, 0, 0.0217887, 255.164, 5.34353, -73.7223 )
+timer = 11.8
+
+[node name="nuclear12" parent="." instance=ExtResource( 4 )]
+transform = Transform( 3.97813, 0, -0.417759, 0, 4, 0, 0.417759, 0, 3.97813, 76.6139, 5.34353, 169.554 )
+timer = 12.5
+
+[node name="alarm" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -286.369 )
+stream = ExtResource( 3 )
+unit_size = 90.0
+max_db = 6.0
+max_distance = 3000.0

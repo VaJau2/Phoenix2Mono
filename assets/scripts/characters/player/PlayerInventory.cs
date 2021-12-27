@@ -54,6 +54,11 @@ public class PlayerInventory {
     }
 
     public void RemoveKey(string key) {
+        if (menu.mode.SameItemCount(key) > 1)
+        {
+            return;
+        }
+        
         if (tempKeys.Contains(key)) {
             tempKeys.Remove(key);
         }

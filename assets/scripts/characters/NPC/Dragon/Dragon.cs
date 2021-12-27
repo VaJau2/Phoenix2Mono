@@ -74,6 +74,7 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
             }
             else
             {
+                isFalling = true;
                 SetFireOn(false);
                 LetMouthEnemyGo();
                 GetNode<AudioStreamPlayer3D>("audi-wings").Stop();
@@ -323,14 +324,18 @@ namespace Phoenix2Mono.assets.scripts.characters.NPC.Dragon
             if (Health <= 0) {
                 if (isFalling)
                 {
-                    anim.Play("die1");
-                    if (!startFalling) return;
+                    if (!startFalling)
+                    {
+                        anim.Play("die1");
+                        return;
+                    }
                     Velocity.x /= 2;
-                    Velocity.y = -2;
+                    Velocity.y = -10;
                     Velocity.z /= 2;
                 }
                 else
                 {
+                    Velocity = Vector3.Zero;
                     if (onetimeDie) return;
                 
                     anim.Play("die2");

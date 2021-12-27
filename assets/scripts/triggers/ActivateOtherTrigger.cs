@@ -44,4 +44,12 @@ public class ActivateOtherTrigger: TriggerBase
             base._on_activate_trigger();
         }
     }
+
+    public virtual void _on_body_entered(Node body)
+    {
+        if (body is Player)
+        {
+            _on_activate_trigger();
+        }
+    }
 }

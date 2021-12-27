@@ -21,7 +21,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
         base._on_activate_trigger();
     }
     
-    public void _on_body_entered(Node body)
+    public override void _on_body_entered(Node body)
     {
         if (!IsActive) return;
         Pony npc = GetNodeOrNull<Pony>(npcPath);

@@ -3,10 +3,9 @@
 [resource]
 background_mode = 1
 background_sky_custom_fov = 75.0
-background_color = Color( 0.341176, 0.321569, 0.321569, 1 )
-background_energy = 0.6
+background_energy = 0.5
 ambient_light_color = Color( 0.337255, 0.337255, 0.356863, 1 )
-ambient_light_energy = 0.7
+ambient_light_energy = 0.5
 ambient_light_sky_contribution = 0.69
 fog_color = Color( 0.105882, 0.105882, 0.12549, 1 )
 fog_sun_color = Color( 0, 0, 0, 1 )

@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/textures/background/nuclear.png" type="Texture" id=1]
 [ext_resource path="res://assets/materials/weapon/result/white-smoke.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/light/lightwhite.material" type="Material" id=3]
-[ext_resource path="res://assets/scripts/nuclear/nuclear-bomb.gd" type="Script" id=4]
+[ext_resource path="res://assets/scripts/triggers/zebra_base/NuclearBombTrigger.cs" type="Script" id=4]
 [ext_resource path="res://assets/audio/background/nuclear/rocket_fly.wav" type="AudioStream" id=5]
-
+[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion2.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion.wav" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 1.1
@@ -66,13 +68,14 @@ size = Vector2( 2, 2 )
 
 [node name="nuclear" type="Spatial"]
 script = ExtResource( 4 )
+explosionSounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 
 [node name="sprite" type="Sprite3D" parent="."]
 transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 1, 0, 7.43599, 0 )
 visible = false
 texture = ExtResource( 1 )
-vframes = 2
 hframes = 7
+vframes = 2
 
 [node name="light" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.0078, 0 )
