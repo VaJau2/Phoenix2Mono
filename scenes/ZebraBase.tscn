@@ -97,7 +97,7 @@
 [ext_resource path="res://assets/audio/music/distruktiv.ogg" type="AudioStream" id=95]
 [ext_resource path="res://assets/audio/music/razryad.ogg" type="AudioStream" id=96]
 [ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=97]
-[ext_resource path="res://assets/scripts/triggers/music/MusicTriggerChangeTrigger.cs" type="Script" id=98]
+[ext_resource path="res://assets/scripts/triggers/DeleteNodeTrigger.cs" type="Script" id=98]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -1914,13 +1914,14 @@ shape = SubResource( 30 )
 "savable",
 ]]
 script = ExtResource( 45 )
-otherTriggerPaths = [ NodePath("../dragonSpawn") ]
+otherTriggerPaths = [ NodePath("../dragonBegin") ]
 managerPath = NodePath("../../npc")
 
 [node name="dragonBegin" type="Area" parent="triggers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1169, 14.4651, 0.551914 )
 script = ExtResource( 97 )
-otherTriggerPaths = [ NodePath("../dragonSpawn"), NodePath("../DragonMusic") ]
+IsActive = false
+otherTriggerPaths = [ NodePath("../dragonSpawn"), NodePath("../deleteAlarmMusic"), NodePath("../DragonMusic") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/dragonBegin"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247875, -5.85937, 4.05937 )
@@ -1933,10 +1934,10 @@ script = ExtResource( 50 )
 dragonPrefab = ExtResource( 48 )
 spawnPointPath = NodePath("point")
 patrolArray = [ NodePath("../../terrain/dragonPoints/1"), NodePath("../../terrain/dragonPoints/2"), NodePath("../../terrain/dragonPoints/3"), NodePath("../../terrain/dragonPoints/4") ]
-triggerConnections = [ [ "../nuclearTrigger", "Die", "StartWar", [  ] ] ]
+triggerConnections = [ [ "../nuclearTrigger", "Die", "StartWar", [  ] ], [ "../DragonMusic", "Die", "SetActive", [ false ] ] ]
 
 [node name="point" type="Spatial" parent="triggers/dragonSpawn"]
-transform = Transform( -0.767982, 0, 0.640472, 0, 1, 0, -0.640472, 0, -0.767982, 0, 0, 0 )
+transform = Transform( -0.767982, 0, 0.640472, 0, 1, 0, -0.640472, 0, -0.767982, 101.237, 40, -172.394 )
 
 [node name="nuclearTrigger" type="Spatial" parent="triggers"]
 script = ExtResource( 88 )
@@ -2002,6 +2003,10 @@ max_distance = 3000.0
 stream = ExtResource( 92 )
 volume_db = -4.0
 
+[node name="deleteAlarmMusic" type="Node" parent="triggers"]
+script = ExtResource( 98 )
+objToDeletePaths = [ NodePath("../AlarmMusic") ]
+
 [node name="AlarmMusic" type="Node" parent="triggers"]
 script = ExtResource( 94 )
 IsActive = false
@@ -2011,11 +2016,11 @@ track = ExtResource( 95 )
 volumeSpeed = 0.5
 
 [node name="DragonMusic" type="Node" parent="triggers"]
-script = ExtResource( 98 )
-musicTriggerPath = NodePath("../AlarmMusic")
-newTrack = ExtResource( 96 )
-changeActive = true
-changeActiveTo = true
+script = ExtResource( 94 )
+IsActive = false
+DeleteAfterTrigger = false
+audiPath = NodePath("../../music")
+track = ExtResource( 96 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.94562, -0.149298, -0.288985, 0.14183, -0.61028, 0.779386, -0.292722, -0.77799, -0.555919, 0, 8.63824, -21.8162 )
@@ -2064,6 +2069,7 @@ bus = "Music"
 [connection signal="AlarmEnded" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ false ]]
 [connection signal="AlarmStarted" from="npc" to="triggers/commanderAlarmDialogue" method="_on_activate_trigger" flags=6]
 [connection signal="AlarmStarted" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ true ]]
+[connection signal="Die" from="npc/zebra-commander" to="triggers/stopAlarmSpawning" method="_on_activate_trigger"]
 [connection signal="body_entered" from="terrain/props/houses/KP/DoorTeleport/Area" to="terrain/props/houses/KP/DoorTeleport" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/KP/DoorTeleport/Area" to="terrain/props/houses/KP/DoorTeleport" method="_on_body_exited"]
 [connection signal="body_entered" from="terrain/props/houses/KP/DoorTeleport2/Area" to="terrain/props/houses/KP/DoorTeleport2" method="_on_body_entered"]
@@ -2076,3 +2082,4 @@ bus = "Music"
 [connection signal="body_entered" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_entered"]
 [connection signal="body_exited" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_exited"]
 [connection signal="body_entered" from="triggers/commanderStartDialogue" to="triggers/commanderStartDialogue" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/dragonBegin" to="triggers/dragonBegin" method="_on_body_entered"]

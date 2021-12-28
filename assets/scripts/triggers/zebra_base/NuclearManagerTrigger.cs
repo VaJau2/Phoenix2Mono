@@ -30,7 +30,6 @@ public class NuclearManagerTrigger : TriggerBase
     private bool gameOver;
 
     private SavableTimers timers;
-    private int step;
 
     public override void _Ready()
     {
@@ -61,10 +60,26 @@ public class NuclearManagerTrigger : TriggerBase
         fogDepthBegin = environment.FogDepthBegin;
     }
 
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        if (IsActive)
+        {
+            StartWar();
+        }
+    }
+
     public async void StartWar()
     {
+        SetActive(true);
         enemiesManager.StopAlarm();
         enemiesManager.hasAlarm = false;
+        
+        while (timers.CheckTimer(Name + "_timer0", 6))
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+        
         alarm.Play();
         foreach (var bomb in bombs)
         {
