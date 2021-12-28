@@ -68,24 +68,12 @@ public class BreakableObject: StaticBody
 
     public void _on_enemyArea_body_entered(Spatial body)
     {
-        if (body is Character)
-        {
-            GD.Print("someone walked inside hearing area, but I dont't know what to do :c");
-            GD.Print("please go to BreakableObject.cs to fix this");
-        }
+        
     }
 
     public void _on_enemyArea_body_exited(Spatial body)
     {
-        if (body is Character)
-        {
-            Character character = body as Character;
-            if (HearingEnemies.Contains(character))
-            {
-                GD.Print("I guess you know what happened");
-                GD.Print("please go to BreakableObject.cs to fix this");
-            }
-        }
+        
     }
 
     public override void _Ready()
