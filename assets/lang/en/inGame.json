@@ -78,7 +78,6 @@
     
     "labels": {
         "nextWeek": "A week later...",
-        "endLabel1": "Thank you for playing!",
         "endLabel2": "press Space button to exit to main menu",
         "endLabel3": "to be continued..."
     }

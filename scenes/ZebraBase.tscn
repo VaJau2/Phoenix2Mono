@@ -2020,6 +2020,7 @@ showMessage = false
 "savable",
 ]]
 script = ExtResource( 88 )
+IsActive = false
 afterAudiPath = NodePath("after")
 NewLevelNum = 11
 

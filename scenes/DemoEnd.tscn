@@ -1,8 +1,22 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/scripts/DemoEnd.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends ColorRect
+
+var timer = 2
+
+func _process(delta):
+	if timer > 0:
+		timer -= delta
+	else:
+		if (color.a > 0):
+			color.a -= delta
+		else:
+			queue_free()
+"
 
 [node name="DemoEnd" type="Control"]
 anchor_right = 1.0
@@ -16,18 +30,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
-
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -128.0
-margin_top = -76.0
-margin_right = 125.0
-margin_bottom = 8.0
-theme = ExtResource( 2 )
-text = "Спасибо за прохождение!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,6 +57,15 @@ margin_right = 92.0
 margin_bottom = 8.5
 theme = ExtResource( 3 )
 text = "продолжение следует..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
