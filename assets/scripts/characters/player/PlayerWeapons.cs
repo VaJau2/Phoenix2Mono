@@ -242,30 +242,37 @@ public class PlayerWeapons: CollisionShape
     private string handleVictim(Spatial victim, int shapeID = 0)
     {
         string name = null;
-        if(victim is Character) {
-            if (victim.Name.Contains("target") ||
-                victim.Name.Contains("roboEye") ||
-                victim.Name.Contains("MrHandy")) {
+        switch (victim)
+        {
+            case Character character:
+            {
+                if (character.Name.Contains("target") ||
+                    character.Name.Contains("roboEye") ||
+                    character.Name.Contains("MrHandy")) {
                     name = "black";
                 } else {
                     name = "blood";
                 }
-            var character = victim as Character;
-            character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
-            player.MakeDamage(character, shapeID);
-            ShowCrossHitted(shapeID != 0);
 
-        } else if (victim is StaticBody) {
-            var body = victim as StaticBody;
-            if (body != null && body.PhysicsMaterialOverride != null) {
-                name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
-                if (victim is BreakableObject) {
-                    var obj = victim as BreakableObject;
-                    obj.Brake(player.GetDamage());
+                character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
+                player.MakeDamage(character, shapeID);
+                ShowCrossHitted(shapeID != 0);
+                break;
+            }
+            case StaticBody body:
+            {
+                if (body.PhysicsMaterialOverride != null) {
+                    name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
+                    
+                    if (body is BreakableObject obj) {
+                        obj.Brake(player.GetDamage());
+                    }
                 }
+
+                break;
             }
         }
-
+        
         return name;
     }  
 

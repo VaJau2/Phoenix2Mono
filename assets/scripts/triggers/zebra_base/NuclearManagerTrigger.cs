@@ -30,10 +30,10 @@ public class NuclearManagerTrigger : TriggerBase
     private bool gameOver;
 
     private SavableTimers timers;
+    private Environment clonedEnvironment;
 
     public override void _Ready()
     {
-        base._Ready();
         timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
         enemiesManager = GetNode<EnemiesManager>("/root/Main/Scene/npc");
         alarm = GetNode<AudioStreamPlayer3D>("alarm");
@@ -58,6 +58,7 @@ public class NuclearManagerTrigger : TriggerBase
         ambientEnergy = environment.AmbientLightEnergy;
         fogColor = environment.FogColor;
         fogDepthBegin = environment.FogDepthBegin;
+        SetProcess(false);
     }
 
     public override void LoadData(Dictionary data)
@@ -72,6 +73,7 @@ public class NuclearManagerTrigger : TriggerBase
     public async void StartWar()
     {
         SetActive(true);
+        SetProcess(true);
         enemiesManager.StopAlarm();
         enemiesManager.hasAlarm = false;
         
@@ -91,6 +93,7 @@ public class NuclearManagerTrigger : TriggerBase
             await ToSignal(GetTree(), "idle_frame");
         }
 
+        clonedEnvironment = (Environment)environment.Duplicate();
         warStarted = true;
         
         while (timers.CheckTimer(Name + "_timer2", 11))
@@ -158,6 +161,14 @@ public class NuclearManagerTrigger : TriggerBase
         environment.FogDepthBegin = fogDepthBegin;
     }
 
+    private void ResetEnvironment()
+    {
+        environment.AmbientLightColor = clonedEnvironment.AmbientLightColor;
+        environment.AmbientLightEnergy = clonedEnvironment.AmbientLightEnergy;
+        environment.FogColor = clonedEnvironment.FogColor;
+        environment.FogDepthBegin = clonedEnvironment.FogDepthBegin;
+    }
+
     public override void _Process(float delta)
     {
         if (warStarted)
@@ -182,6 +193,7 @@ public class NuclearManagerTrigger : TriggerBase
         }
         else
         {
+            ResetEnvironment();
             var levelsLoader = GetNode<LevelsLoader>("/root/Main");
             levelsLoader.LoadLevel(NewLevelNum);
         }

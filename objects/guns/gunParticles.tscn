@@ -18,6 +18,7 @@ var materials = {
 	\"snow\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
 	\"water\": preload(\"res://assets/materials/weapon/result/water.tres\"),
 	\"metal\": preload(\"res://assets/materials/weapon/result/black.tres\"),
+	\"fence\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
 }
 
 

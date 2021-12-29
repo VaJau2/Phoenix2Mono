@@ -24,6 +24,7 @@
         "getGearFromRarity": "Get gear from Rarity",
         "findBlueprints": "Find blueprints",
         "leaveLocation": "Leave the base",
-        "talkToCoronel": "Talk to coronel"
+        "talkToCoronel": "Talk to coronel",
+        "findSecretWeapon": "Find information about zebra's secret weapon"
     }
 }

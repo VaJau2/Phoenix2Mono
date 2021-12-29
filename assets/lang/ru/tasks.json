@@ -24,6 +24,7 @@
         "getGearFromRarity": "Взять снаряжение у Рарити",
         "findBlueprints": "Найти чертежи",
         "leaveLocation": "Покинуть базу",
-        "talkToCoronel": "Поговорить с полковником"
+        "talkToCoronel": "Поговорить с полковником",
+        "findSecretWeapon": "Найти сведения про секретное оружие зебр",
     }
 }
