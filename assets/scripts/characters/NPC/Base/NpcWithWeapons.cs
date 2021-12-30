@@ -21,7 +21,6 @@ public class NpcWithWeapons : NPC
     protected Vector3[] path;
     protected int pathI;
 
-    protected SoundSteps soundSteps;
     public NPCWeapons weapons;
     private CoversManager covers;
     protected Cover tempCover;
@@ -39,7 +38,6 @@ public class NpcWithWeapons : NPC
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
     
-    private bool OnFloor() {return soundSteps.landMaterial != null; }
 
     public override Dictionary GetSaveData()
     {
@@ -72,14 +70,21 @@ public class NpcWithWeapons : NPC
             return;
         }
 
+        //если непись входит в диалог или выходит из него
+        //он должен оставаться на месте и не дергаться
+        if ((state != NPCState.Talk || newState != NPCState.Idle)
+        && (state != NPCState.Idle || newState != NPCState.Talk))
+        {
+            cameToPlace = false;
+            path = null;
+        }
+
         base.SetState(newState);
         if (!string.IsNullOrEmpty(weaponCode))
         {
             StopHidingInCover();
         }
-
-        cameToPlace = false;
-        path = null;
+        
 
         switch (newState)
         {
@@ -240,7 +245,7 @@ public class NpcWithWeapons : NPC
         PlayStopAnim();
         path = null;
         pathI = 0;
-        if (MayMove && MoveDown && !OnFloor() )
+        if (MayMove && MoveDown)
         {
             Velocity = new Vector3(0, -GRAVITY, 0);
         }
@@ -478,7 +483,6 @@ public class NpcWithWeapons : NPC
                 break;
 
             case NPCState.Talk:
-                Stop();
                 LookAtTarget(false);
                 break;
         }
@@ -489,7 +493,6 @@ public class NpcWithWeapons : NPC
         navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         weapons = GetNode<NPCWeapons>("weapons");
-        soundSteps = GetNode<SoundSteps>("Armature/Skeleton/floorRay");
         if (weaponCode != "")
         {
             weapons.LoadWeapon(this, weaponCode);

@@ -90,7 +90,9 @@ public class MoveNpcTrigger: ActivateOtherTrigger
 
             if (teleportToPoint)
             {
+                Vector3 oldScale = npc[i].Scale;
                 npc[i].GlobalTransform = Global.setNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.origin);
+                npc[i].Scale = oldScale;
             }
             
             while (timers.CheckTimer(Name + "_timer_" + i, timer))

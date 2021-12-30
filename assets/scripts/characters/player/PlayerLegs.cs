@@ -84,10 +84,9 @@ public class PlayerLegs: Node
                         if (!door.ForceOpening) {
                             door.audi.Stream = materaiSounds["stone"];
                             door.audi.Play();
-                        } else if(door.myKey != "" && 
-                            damage < DOOR_OPEN_DAMAGE) {
-                                door.audi.Stream = materaiSounds["door"];
-                                door.audi.Play();
+                        } else if(damage < DOOR_OPEN_DAMAGE) {
+                            door.audi.Stream = materaiSounds["door"];
+                            door.audi.Play();
                         } else {
                             door.setOpen(materaiSounds["door_open"], 0, true);
                         }

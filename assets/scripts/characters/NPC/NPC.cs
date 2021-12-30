@@ -8,7 +8,7 @@ public class NPC : Character
     const int RAGDOLL_IMPULSE = 700;
     const float SEARCH_TIMER = 12f;
     protected float ROTATION_SPEED = 0.15f;
-    protected float GRAVITY = 30;
+    protected float GRAVITY = 0;
     protected float PATROL_WAIT = 4f;
     [Export]
     public Array<NodePath> patrolArray;
@@ -239,6 +239,21 @@ public class NPC : Character
         CloseToPoint = temp_distance <= distance;
     }
 
+    private void HandleGravity()
+    {
+        if (!IsOnFloor())
+        {
+            if (GRAVITY < 30)
+            {
+                GRAVITY += 0.5f;
+            }
+        }
+        else
+        {
+            GRAVITY = 0;
+        }
+    }
+
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
@@ -416,8 +431,9 @@ public class NPC : Character
         }
 
         HandleImpulse();
+        HandleGravity();
         if (Velocity.Length() > 0) {
-            MoveAndSlide(Velocity);
+            MoveAndSlide(Velocity, new Vector3(0, 1, 0), true);
         }
     }
 }

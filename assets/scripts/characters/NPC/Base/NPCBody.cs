@@ -25,6 +25,11 @@ public class NPCBody
 
     public void PlayAnim(string animName)
     {
+        if (playback.GetCurrentNode() == animName)
+        {
+            return;
+        }
+        
         if (playback.IsPlaying())
         {
             playback.Travel(animName);

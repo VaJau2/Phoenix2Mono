@@ -47,7 +47,7 @@ public class Player_Unicorn : Player
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        if (shield.shieldOn) {
+        if (shield.shieldOn && (int)Mana > 0) {
             damage /= (int)Mana;
             if (damage <= 0) {
                 return;

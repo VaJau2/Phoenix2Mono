@@ -419,7 +419,7 @@ public class Dragon: NPC
         }
         else //fireClose == false
         {
-            if (!IsAttacking)
+            if (!IsAttacking || !IsInstanceValid(tempVictim))
             {
                 PlayIdleSounds(delta);
                 UpdatePatrolPoints();

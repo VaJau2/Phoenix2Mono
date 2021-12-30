@@ -453,7 +453,7 @@ IdleAnim = "Idle1"
 dialogueCode = "talk1"
 
 [node name="dusk" parent="npc" instance=ExtResource( 15 )]
-transform = Transform( -0.267795, 0, 0.806713, 0, 0.85, 0, -0.806713, 0, -0.267795, 37.6572, 6.31634, -17.8221 )
+transform = Transform( -0.283548, 0, 0.854167, 0, 0.9, 0, -0.854167, 0, -0.283548, 37.6572, 6.31634, -17.8221 )
 IdleAnim = "Idle1"
 IsImmortal = true
 COME_DISTANCE = 3.0
@@ -1842,6 +1842,7 @@ npcPrefab = ExtResource( 63 )
 spawnPointPath = NodePath("positionRedPunch")
 StartHealth = 120
 weaponCode = "pistol10-silenced"
+relation = 2
 triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]

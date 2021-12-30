@@ -111,6 +111,7 @@ CloseSound = ExtResource( 6 )
 myKey = ""
 closedSound = ExtResource( 3 )
 openWithKeySound = ExtResource( 5 )
+ForceOpening = true
 
 [node name="Cube" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0 )
