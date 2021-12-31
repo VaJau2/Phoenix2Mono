@@ -5,9 +5,9 @@ using Godot;
 //или с неписем-единорогом класса Pony
 public class UnicornLevitation : Spatial
 {   
-    const float HEIGHT_MIN = 2.5f;
-    const float HEIGHT_MAX = 2.8f;
-    const float SPEED = 0.002f;
+    const float HEIGHT_MIN = -0.1f;
+    const float HEIGHT_MAX = 0.2f;
+    const float SPEED = 0.1f;
     const float CLOSING_SPEED = 10f;
 
     Particles cloud;
@@ -38,8 +38,10 @@ public class UnicornLevitation : Spatial
     public override void _Process(float delta)
     {
         if (CheckGunOn()) {
-            AnimateUpDown();
-            UpdateWeaponNode(delta);
+            Vector3 weaponPos = weaponNode.Translation;
+            AnimateUpDown(ref weaponPos, delta);
+            UpdateWeaponNode(ref weaponPos, delta);
+            weaponNode.Translation = weaponPos;
 
             Vector3 oldRot = Rotation;
             oldRot.x = GetPlayerRotation();
@@ -85,42 +87,69 @@ public class UnicornLevitation : Spatial
     private Character getOwner()
     {
         if (player == null) return npc;
-        else return player;
+        return player;
     }
 
-    private void AnimateUpDown()
+    //анимация движения оружия вверх-вниз
+    private void AnimateUpDown(ref Vector3 weaponPos, float delta)
     {
         if (moveUp) {
-            if(Translation.y < HEIGHT_MAX)
-                Translate(Vector3.Up * SPEED);
+            if (weaponPos.y < HEIGHT_MAX)
+            {
+                weaponPos.y += SPEED * delta;
+            }
             else
+            {
                 moveUp = false;
+            }
         } else {
-            if(Translation.y > HEIGHT_MIN)
-                Translate(Vector3.Down * SPEED);
+            if (weaponPos.y > HEIGHT_MIN)
+            {
+                weaponPos.y -= SPEED * delta;
+            }
             else
+            {
                 moveUp = true;
+            }
         }
+        // GD.Print(weaponPos.y);
     }
 
-    private void UpdateWeaponNode(float delta)
+    //анимация приближения оружия при столкновении со стенами
+    private void UpdateWeaponNode(ref Vector3 weaponPos, float delta)
     {
-        Vector3 weaponPos = weaponNode.Translation;
         if (weaponClose) {
             if (weaponPos.x > 0) {
                 weaponPos.x -= CLOSING_SPEED * delta; 
             }
+            else
+            {
+                weaponPos.x = 0;
+            }
+            
             if (weaponPos.z < 0) {
                 weaponPos.z += CLOSING_SPEED * delta; 
+            }
+            else
+            {
+                weaponPos.z = 0;
             }
         } else {
             if (weaponPos.x < startXPos) {
                 weaponPos.x += CLOSING_SPEED * delta; 
             }
+            else
+            {
+                weaponPos.x = startXPos;
+            }
+            
             if (weaponPos.z > startZPos) {
                 weaponPos.z -= CLOSING_SPEED * delta; 
             }
+            else
+            {
+                weaponPos.z = startZPos;
+            }
         }
-        weaponNode.Translation = weaponPos;
     }
 }

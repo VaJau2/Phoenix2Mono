@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=2]
+[gd_scene load_steps=158 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -113,6 +113,7 @@
 [ext_resource path="res://assets/textures/props/furniture/pics/marks/cross.png" type="Texture" id=111]
 [ext_resource path="res://assets/textures/props/furniture/pics/marks/doubt.png" type="Texture" id=112]
 [ext_resource path="res://assets/textures/props/furniture/pics/marks/check.png" type="Texture" id=113]
+[ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=114]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -465,9 +466,11 @@ margin_bottom = 20.0
 theme = ExtResource( 49 )
 text = "Дракон"
 valign = 2
+script = ExtResource( 114 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+phraseCode = "dragon"
 
 [node name="ProgressBar" type="ProgressBar" parent="canvas/dragonHealth"]
 anchor_top = 1.0

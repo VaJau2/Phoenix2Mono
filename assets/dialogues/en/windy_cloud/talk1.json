@@ -116,6 +116,7 @@
       "kind": "narration",
       "root_node": false,
       "body": "ActivateTrigger",
+      "next": "B8",
       "set": [
         {
           "key": "name",
@@ -123,6 +124,11 @@
           "value": "playerCanMove"
         }
       ]
+    },
+    "B8": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
     }
   },
   "speakers": {
