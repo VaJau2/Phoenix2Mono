@@ -59,27 +59,28 @@ public class PlayerLegs: Node
 
     private void handleVictim(PhysicsBody victim, int damage)
     {
-        if (victim != null) {
-            if (victim is Character) {
-                audi.Stream = hit;
-                Character character = victim as Character;
-                character.TakeDamage(player, damage);
-            } else {
-                if (victim is StaticBody) {
-                    var body = victim as StaticBody;
-                    var friction = body.PhysicsMaterialOverride.Friction;
-                    var materialName = MatNames.GetMatName(friction);
-                    if (materaiSounds.ContainsKey(materialName)) {
-                        audi.Stream = materaiSounds[materialName];
-                    }
+        if (!IsInstanceValid(victim)) return;
+        
+        if (victim is Character character) {
+            audi.Stream = hit;
+            character.TakeDamage(player, damage);
+        } else
+        {
+            if (victim is StaticBody body) {
+                var friction = body.PhysicsMaterialOverride.Friction;
+                var materialName = MatNames.GetMatName(friction);
+                if (materaiSounds.ContainsKey(materialName)) {
+                    audi.Stream = materaiSounds[materialName];
                 }
+            }
 
-                if (victim is BreakableObject) {
-                    var obj = victim as BreakableObject;
+            switch (victim)
+            {
+                case BreakableObject obj:
                     obj.Brake(damage);
-                }
-                else if (victim is FurnDoor) {
-                    var door = victim as FurnDoor;
+                    break;
+                case FurnDoor door:
+                {
                     if (!door.IsOpen) {
                         if (!door.ForceOpening) {
                             door.audi.Stream = materaiSounds["stone"];
@@ -91,6 +92,8 @@ public class PlayerLegs: Node
                             door.setOpen(materaiSounds["door_open"], 0, true);
                         }
                     }
+
+                    break;
                 }
             }
         }

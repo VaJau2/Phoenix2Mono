@@ -40,12 +40,13 @@ public class DoorTeleport : StaticBody, ISavable
 
     public void SoundOpening()
     {
-        if (otherDoor?.audi != null)
+        if (IsInstanceValid(otherDoor) && IsInstanceValid(otherDoor.audi))
         {
             otherDoor.audi.Stream = openSound;
             otherDoor.audi.Play();
         }
-        if (audi != null)
+        
+        if (IsInstanceValid(audi))
         {
             audi.Stream = openSound;
             audi.Play();

@@ -17,7 +17,7 @@ public class ChangeEnvironmentTrigger : TriggerBase
         if (!IsActive) return;
         
         env = GetNode<WorldEnvironment>(envPath);
-        if (env != null)
+        if (!IsInstanceValid(env))
         {
             env.Environment = envResource;
         }

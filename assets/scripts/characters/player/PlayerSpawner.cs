@@ -61,7 +61,7 @@ public class PlayerSpawner : Spatial
             if (checkSavedData || checkSavedMoney)
             {
                 var savedData = GetNodeOrNull<SaveNode>("/root/Main/SaveNode");
-                if (savedData != null)
+                if (IsInstanceValid(savedData))
                 {
                     if (checkSavedMoney && savedData.InventoryData.Contains("money"))
                     {

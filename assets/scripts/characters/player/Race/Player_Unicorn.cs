@@ -122,6 +122,7 @@ public class Player_Unicorn : Player
                 }
                 else
                 {
+                    Camera.ReturnRayBack();
                     messages.ShowMessage("notEnoughMana");
                     ClearTeleportMark();
                 }

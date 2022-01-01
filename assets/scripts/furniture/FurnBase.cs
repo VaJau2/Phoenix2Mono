@@ -26,7 +26,7 @@ public class FurnBase: StaticBody {
 
     private async void setOpen(string anim, AudioStreamSample sound, float timer = 0,
                                bool otherSide = false) {
-        if (audi != null) {
+        if (IsInstanceValid(audi)) {
             audi.Stream = sound;
             audi.Play();
         }

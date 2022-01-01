@@ -61,15 +61,15 @@ public class NPCWeapons : Node
     public void SetWeapon(bool on)
     {
         GunOn = on;
-        if (tempWeapon != null) tempWeapon.Visible = on;
-
-        if (npc is Pony)
+        if (IsInstanceValid(tempWeapon))
         {
-            Pony tempPony = npc as Pony;
-            if (tempPony.IsUnicorn)
-            {
-                tempPony.MagicParticles.Emitting = on;
-            }
+            tempWeapon.Visible = on;
+        }
+
+        if (!(npc is Pony tempPony)) return;
+        if (tempPony.IsUnicorn)
+        {
+            tempPony.MagicParticles.Emitting = @on;
         }
     }
 
@@ -82,10 +82,7 @@ public class NPCWeapons : Node
 
         audiShoot.Stream = shootSound;
         audiShoot.Play();
-        if (gunAnim != null)
-        {
-            gunAnim.Play("shoot");
-        }
+        gunAnim?.Play("shoot");
 
         if (npc is Pony pony)
         {

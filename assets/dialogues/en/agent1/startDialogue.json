@@ -76,11 +76,12 @@
       "body": "You're busted! Prepare to die!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "combat": {
       "kind": "combat",
-      "root_node": false
+      "root_node": false,
+      "next": "A30"
     },
     "A5": {
       "kind": "dialogue",
@@ -146,7 +147,7 @@
       "body": "You're wrong. I'm here to kill you!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A6": {
       "kind": "dialogue",
@@ -208,7 +209,7 @@
       "body": "I'm here to kill you!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A4(3)": {
       "kind": "dialogue",
@@ -216,7 +217,7 @@
       "body": "You're going in there now, you bastard!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A5(1)": {
       "kind": "dialogue",
@@ -240,7 +241,7 @@
       "body": "Give me the suitcase, or you'll die!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A6(2)": {
       "kind": "dialogue",
@@ -301,7 +302,7 @@
       "body": "I'm sick of it. You're going to die now!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A9": {
       "kind": "dialogue",
@@ -354,7 +355,7 @@
       "body": "Do you want to know why I want to shoot you right now? Let me tell you!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A11": {
       "kind": "dialogue",
@@ -399,7 +400,7 @@
       "body": "Damned saviors. Nopony will save toy, when my bullets hit you!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A12": {
       "kind": "dialogue",
@@ -592,7 +593,7 @@
       "body": "...Being in a grave.",
       "speaker": "Agent",
       "opposite": "Strikely",
-      "next": "combat"
+      "next": "A30"
     },
     "A14(1)": {
       "kind": "dialogue",
@@ -616,7 +617,7 @@
       "body": "Princesses are infallible! The only thing to end here is your life, heretic!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A19(1)": {
       "kind": "dialogue",
@@ -640,7 +641,7 @@
       "body": "You're too talkative for a corpse. Let's fix it!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A21(1)": {
       "kind": "dialogue",
@@ -680,7 +681,7 @@
       "body": "Enough talking then. Get your weapons out!",
       "speaker": "Strikely",
       "opposite": "Agent",
-      "next": "combat"
+      "next": "A30"
     },
     "A26(1)": {
       "kind": "dialogue",
@@ -696,6 +697,12 @@
       "body": "Stop it! Time to die!",
       "speaker": "Strikely",
       "opposite": "Agent",
+      "next": "A30"
+    },
+    "A30": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
       "next": "combat"
     }
   },

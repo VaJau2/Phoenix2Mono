@@ -3,9 +3,7 @@
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/LoadingMenu.cs" type="Script" id=2]
 
-[node name="LoadingMenu" type="Control" groups=[
-"ignore_color",
-]]
+[node name="LoadingMenu" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -26,9 +24,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

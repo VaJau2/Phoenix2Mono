@@ -54,7 +54,7 @@ public class Table : VBoxContainer
     public void UpdateButton(FileTableLine fileData)
     {
         Button foundButton = FindButton(fileData.name);
-        if (foundButton != null)
+        if (IsInstanceValid(foundButton))
         {
             foundButton.Text = GetLine(fileData.name, fileData.date, 
                 InterfaceLang.GetPhrase("levels", "levelNames",fileData.level));
@@ -72,11 +72,11 @@ public class Table : VBoxContainer
     public bool LineExists(string saveName)
     {
         Button foundButton = FindButton(saveName);
-        if (foundButton != null)
+        if (IsInstanceValid(foundButton))
         {
             if (foundButton == tempButton) return true;
             foundButton.Pressed = true;
-            if (tempButton != null) tempButton.Pressed = false;
+            if (IsInstanceValid(tempButton)) tempButton.Pressed = false;
             tempButton = foundButton;
             return true;
         }
@@ -184,12 +184,12 @@ public class Table : VBoxContainer
 
     public void _on_table_button_click(string buttonName)
     {
-        if (tempButton != null) {
+        if (IsInstanceValid(tempButton)) {
             tempButton.Pressed = false;
         }
 
         tempButton = GetNodeOrNull<Button>(buttonName);
-        if (tempButton == null) return;
+        if (!IsInstanceValid(tempButton)) return;
         
         var fileI = int.Parse(buttonName);
         parent.EmitSignal(nameof(TableSignals.TableButtonPressed), filesArray[fileI].name);

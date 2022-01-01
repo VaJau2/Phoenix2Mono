@@ -209,7 +209,7 @@ public class SettingsMenu : MenuBase
         if (tempAction != "") {
             setEditOn(tempEditBack, false);
             var key = Global.GetKeyName(tempAction);
-            if (tempEdit != null) {
+            if (IsInstanceValid(tempEdit)) {
                 WriteKeyToEdit(key, tempEdit);
             }
             tempAction = "";
@@ -294,7 +294,7 @@ public class SettingsMenu : MenuBase
     public void _on_mouse_slider_value_changed(float value)
     {
         global.Settings.mouseSensivity = value;
-        if (global.player != null) {
+        if (IsInstanceValid(global.player)) {
             global.player.MouseSensivity = value;
         } 
     }

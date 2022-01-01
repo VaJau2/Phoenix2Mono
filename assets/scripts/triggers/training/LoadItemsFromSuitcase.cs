@@ -31,7 +31,7 @@ public class LoadItemsFromSuitcase : TriggerBase
         bool suitcaseEmpty = true;
         bool playerHasSuitcase = Global.Get().player.inventory.HasItem("suitcase_vacation");
         
-        if (saveNode != null && playerHasSuitcase)
+        if (IsInstanceValid(saveNode) && playerHasSuitcase)
         {
             InventoryMenu menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
             menu.RemoveItemIfExists("suitcase_vacation");

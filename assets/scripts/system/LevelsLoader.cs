@@ -118,7 +118,7 @@ public class LevelsLoader : Node
 			deletedObjects = null;
 		}
 		
-		updateScene();
+		CallDeferred("updateScene");
 		updateMenu();
 	}
 

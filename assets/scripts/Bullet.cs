@@ -8,34 +8,44 @@ public class Bullet : Area
     public float Timer;
     public Character Shooter;
 
-    PackedScene gunParticlesPrefab;
+    private PackedScene gunParticlesPrefab;
 
     private string handleVictim(Spatial victim, int shapeID = 0)
     {
         string name = null;
-        if(victim is Character) {
-            if (victim.Name.Contains("target") ||
-                victim.Name.Contains("roboEye") ||
-                victim.Name.Contains("MrHandy")) {
+        switch (victim)
+        {
+            case Character character:
+            {
+                if (character.Name.Contains("target") ||
+                    character.Name.Contains("roboEye") ||
+                    character.Name.Contains("MrHandy")) 
+                {
                     name = "black";
-                } else {
+                } 
+                else 
+                {
                     name = "blood";
                 }
-            var character = victim as Character;
-            character.CheckShotgunShot(false);
-            Shooter.MakeDamage(character, shapeID);
-            if (Shooter is Player) {
-                Global.Get().player.Weapons.ShowCrossHitted(shapeID != 0);
-            }
 
-        } else if (victim is StaticBody) {
-            var body = victim as StaticBody;
-            if (body != null && body.PhysicsMaterialOverride != null) {
+                character.CheckShotgunShot(false);
+                Shooter.MakeDamage(character, shapeID);
+                if (Shooter is Player) {
+                    Global.Get().player.Weapons.ShowCrossHitted(shapeID != 0);
+                }
+
+                break;
+            }
+            case StaticBody body when body.PhysicsMaterialOverride == null:
+                return null;
+            case StaticBody body:
+            {
                 name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
-                if (victim is BreakableObject) {
-                    var obj = victim as BreakableObject;
+                if (body is BreakableObject obj) {
                     obj.Brake(Damage);
                 }
+
+                break;
             }
         }
 

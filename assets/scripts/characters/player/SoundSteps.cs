@@ -45,12 +45,12 @@ public class SoundSteps: RayCast {
     private bool parentRunning {
         get {
             var player = parent as Player_Earthpony;
-            if (player != null) {
+            if (IsInstanceValid(player)) {
                 return player.IsRunning;
             } 
 
             var npc = parent as Pony;
-            if (npc != null) {
+            if (IsInstanceValid(npc)) {
                 return npc.IsRunning;
             }
             return false;
@@ -59,7 +59,7 @@ public class SoundSteps: RayCast {
 
     private void PlaySound(AudioStreamSample sound)
     {
-        if (audi != null) {
+        if (IsInstanceValid(audi)) {
             audi.Stream = sound;
             audi.Play();
         } else {
@@ -192,7 +192,7 @@ public class SoundSteps: RayCast {
             }
         }
 
-        bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && landMaterial != null;
+        bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && !string.IsNullOrEmpty(landMaterial);
 
         if (sounding) {
             if (timer > 0) {

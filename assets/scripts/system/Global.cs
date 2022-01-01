@@ -159,8 +159,8 @@ public class Global {
 
     public SignalAwaiter ToTimer(float time, Node _object = null, bool pauseProcess = false)
     {
-        return _object != null ? 
-            _object.ToSignal(_object.GetTree().CreateTimer(time, pauseProcess), "timeout") 
+        return Object.IsInstanceValid(_object) ? 
+            _object?.ToSignal(_object.GetTree().CreateTimer(time, pauseProcess), "timeout") 
             : player?.ToSignal(player.GetTree().CreateTimer(time, pauseProcess), "timeout");
     }
 

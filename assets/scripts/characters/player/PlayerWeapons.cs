@@ -81,16 +81,14 @@ public class PlayerWeapons: CollisionShape
     
     public void ClearWeapon()
     {
-        if (tempWeapon != null)
-        {
-            cooldown = 0;
-            Disabled = true;
-            tempWeapon.QueueFree();
-            tempWeapon = null;
-            shootInterface.Visible = false;
-            player.SetWeaponOff();
-            GunOn = false;
-        }
+        if (!IsInstanceValid(tempWeapon)) return;
+        cooldown = 0;
+        Disabled = true;
+        tempWeapon.QueueFree();
+        tempWeapon = null;
+        shootInterface.Visible = false;
+        player.SetWeaponOff();
+        GunOn = false;
     }
 
     public void СheckThirdView() 

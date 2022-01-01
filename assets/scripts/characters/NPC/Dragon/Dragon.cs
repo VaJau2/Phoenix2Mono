@@ -142,7 +142,7 @@ public class Dragon: NPC
 
     private async void UpdateFlyAnims()
     {
-        if (enemyInMouth != null)
+        if (IsInstanceValid(enemyInMouth))
         {
             if (anim.CurrentAnimation != "fly-open-mouth")
             {
@@ -220,7 +220,7 @@ public class Dragon: NPC
 
     private float GetEnemyDistance()
     {
-        if (tempVictim != null && IsInstanceValid(tempVictim))
+        if (IsInstanceValid(tempVictim))
         {
             return GlobalTransform.origin.DistanceTo(tempVictim.GlobalTransform.origin);
         }
@@ -351,7 +351,7 @@ public class Dragon: NPC
             UpdateFlyAnims();
         }
 
-        if (enemyInMouth != null)
+        if (IsInstanceValid(enemyInMouth))
         {
             if (enemyMouthTimer > 0)
             {

@@ -17,7 +17,5 @@ layer = 2
 pause_mode = 2
 visible = false
 
-[node name="SaveNode" type="Node" parent="." groups=[
-"savable",
-]]
+[node name="SaveNode" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 4 )

@@ -60,7 +60,7 @@ public class InventoryMenu : Control, IMenu
     public bool AddOrDropItem(string itemCode)
     {
         var emptyButton = mode.FirstEmptyButton;
-        if (emptyButton != null)
+        if (IsInstanceValid(emptyButton))
         {
             emptyButton.SetItem(itemCode);
             return true;
@@ -74,7 +74,7 @@ public class InventoryMenu : Control, IMenu
     public void RemoveItemIfExists(string itemCode)
     {
         var button = mode.FindButtonWithItem(itemCode);
-        if (button != null)
+        if (IsInstanceValid(button))
         {
             mode.RemoveItemFromButton(button);
         }

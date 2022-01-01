@@ -65,11 +65,7 @@ public class UnicornLevitation : Spatial
     {
         bool gunOn = false;
 
-        if (player != null) {
-            gunOn = player.Weapons.GunOn;
-        } else {
-            gunOn = npc.weapons.GunOn;
-        }
+        gunOn = IsInstanceValid(player) ? player.Weapons.GunOn : npc.weapons.GunOn;
 
         cloud.Emitting = gunOn;
         return gunOn;
@@ -77,17 +73,13 @@ public class UnicornLevitation : Spatial
 
     private float GetPlayerRotation()
     {
-        if (player != null) {
-            return player.RotationHelper.Rotation.x;
-        } else {
-            return npc.RotationToVictim;
-        }
+        return IsInstanceValid(player) ? player.RotationHelper.Rotation.x : npc.RotationToVictim;
     }   
 
     private Character getOwner()
     {
-        if (player == null) return npc;
-        return player;
+        if (IsInstanceValid(player)) return player;
+        return npc;
     }
 
     //анимация движения оружия вверх-вниз

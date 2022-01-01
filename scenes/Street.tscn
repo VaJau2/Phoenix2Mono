@@ -59,7 +59,7 @@ export var speed = 2.0
 func _ready() -> void:
 	blackScreen.color.a = 1.0
 	set_process(false)
-	yield(get_tree().create_timer(timer), \"timeout\")
+	yield(get_tree().create_timer(timer, true), \"timeout\")
 	set_process(true)
 
 
@@ -109,11 +109,17 @@ export var maxVolume = 2
 
 
 func _ready():
+	set_process(false)
 	yield(get_tree().create_timer(0.5, false), \"timeout\")
 	play()
-	while(volume_db < maxVolume):
-		volume_db += 0.1
-		yield(get_tree().create_timer(0.1, false), \"timeout\")
+	set_process(true)
+
+
+func _process(delta):
+	if (volume_db < maxVolume):
+		volume_db += delta
+	else:
+		set_process(false)
 "
 
 [sub_resource type="ParticlesMaterial" id=51]
@@ -695,9 +701,7 @@ hintTime = 4.5
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint4"]
 shape = SubResource( 48 )
 
-[node name="dialogue" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="dialogue" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -147.694 )
 script = ExtResource( 30 )
 npcPath = "../../npc/agent1"
@@ -726,9 +730,7 @@ script = ExtResource( 35 )
 IsActive = false
 NewTaskCode = "talkToCommander"
 
-[node name="exit" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="exit" type="Area" parent="triggers" groups=["savable"]]
 script = ExtResource( 32 )
 IsActive = false
 NewLevelNum = 2
@@ -780,9 +782,7 @@ navmesh = SubResource( 50 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 21 )
 
-[node name="music" type="AudioStreamPlayer" parent="." groups=[
-"unpaused_sound",
-]]
+[node name="music" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
 pause_mode = 2
 stream = ExtResource( 38 )
 volume_db = -20.0
@@ -798,9 +798,7 @@ process_material = SubResource( 51 )
 draw_pass_1 = SubResource( 53 )
 script = SubResource( 54 )
 
-[node name="rainSound" type="AudioStreamPlayer" parent="rain" groups=[
-"unpaused_sound",
-]]
+[node name="rainSound" type="AudioStreamPlayer" parent="rain" groups=["unpaused_sound"]]
 pause_mode = 2
 stream = ExtResource( 23 )
 volume_db = 2.0
@@ -817,9 +815,7 @@ process_material = SubResource( 55 )
 draw_pass_1 = SubResource( 56 )
 script = SubResource( 57 )
 
-[node name="timers" type="Node" parent="." groups=[
-"savable",
-]]
+[node name="timers" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 40 )
 
 [connection signal="Die" from="npc/agent1" to="triggers/npcDie" method="_on_activate_trigger"]

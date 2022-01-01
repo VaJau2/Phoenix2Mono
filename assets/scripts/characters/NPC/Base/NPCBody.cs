@@ -54,7 +54,7 @@ public class NPCBody
             return;
         }
 
-        if (lookTarget != null)
+        if (Object.IsInstanceValid(lookTarget))
         {
             if (npc.state == NPCState.Idle)
             {
@@ -102,7 +102,7 @@ public class NPCBody
 
     public void _on_lookArea_body_entered(Node body)
     {
-        if (npc.state != NPCState.Idle || lookTarget != null || body == npc) return;
+        if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
         if (!(body is Character character)) return;
         lookTimer = 1.5f;
         lookTarget = character;

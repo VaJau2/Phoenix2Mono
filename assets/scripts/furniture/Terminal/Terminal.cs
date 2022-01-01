@@ -86,7 +86,7 @@ public class Terminal : StaticBody, IMenu
         foreach (var doorPath in doorsPath)
         {
             var tempDoor = GetNode<FurnDoor>(doorPath);
-            if (tempDoor != null)
+            if (IsInstanceValid(tempDoor))
             {
                 doors.Add(tempDoor);
             }

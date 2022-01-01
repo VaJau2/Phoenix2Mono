@@ -21,9 +21,16 @@ var materials = {
 	\"fence\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
 }
 
+var parts
+var deleteParts = false
+var timerParts = 1.0
+
+var deleteSelf = false
+var timerSelf = 9.0
+
 
 func _startEmitting(direction, material_name = null, obj_name = \"\"):
-	var parts = $Particles
+	parts = $Particles
 	parts.get_process_material().direction = direction
 	if material_name != null && materials.has(material_name):
 		parts.get_draw_pass_mesh(0).surface_set_material(0, materials[material_name])
@@ -37,10 +44,23 @@ func _startEmitting(direction, material_name = null, obj_name = \"\"):
 	else:
 		hole.visible = false
 	
-	yield(get_tree().create_timer(1),\"timeout\")
-	parts.queue_free()
-	yield(get_tree().create_timer(9),\"timeout\")
-	self.queue_free()
+	deleteParts = true
+	deleteSelf  = true
+
+
+func _process(delta):
+	if deleteParts:
+		if timerParts > 0:
+			timerParts -= delta
+		else:
+			parts.queue_free()
+			deleteParts = false
+	
+	if deleteSelf:
+		if timerSelf > 0:
+			timerSelf -= delta
+		else:
+			queue_free()
 "
 
 [sub_resource type="Curve" id=2]
