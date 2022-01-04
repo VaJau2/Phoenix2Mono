@@ -84,7 +84,7 @@ public class TerminalReadMode: TerminalMode {
                 }
 
                 //обрабатываем enter
-                if(keyEvent.Scancode == (uint)KeyList.Enter) {
+                if(keyEvent.Scancode == (uint)KeyList.Enter && textFiles.Count > 0) {
                     fileCode = textFiles[tempChoose];
                 }
             } else {

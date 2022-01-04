@@ -100,7 +100,11 @@ public class Global {
         {
             foreach (string saveFileName in GetSaveFiles())
             {
-                saveFilesArray.Add(GetFileMetadata(saveFileName));
+                var fileData = GetFileMetadata(saveFileName);
+                if (fileData is FileTableLine line)
+                {
+                    saveFilesArray.Add(line);
+                }
             }
             
             Settings = new Settings(menu);
@@ -253,10 +257,16 @@ public class Global {
         return files;
     }
 
-    private static FileTableLine GetFileMetadata(string fileName)
+    private static FileTableLine? GetFileMetadata(string fileName)
     {
         var file = new File();
         file.OpenCompressed(fileName, File.ModeFlags.Read);
+        
+        if (!file.IsOpen() || file.EofReached())
+        {
+            return null;
+        }
+        
         string name = file.GetLine();
         string date = file.GetLine();
         string level = file.GetLine();

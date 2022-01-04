@@ -30,7 +30,7 @@ public class Settings
     private void updateAudioBus(int num, float value)
     {
         AudioServer.SetBusVolumeDb(num, value);
-        AudioServer.SetBusMute(num, (value == -8));
+        AudioServer.SetBusMute(num, value == -20);
     }
 
     public void SetSoundVolume(float volume) 
