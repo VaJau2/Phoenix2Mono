@@ -44,7 +44,7 @@ public class LoadItemsFromSuitcase : TriggerBase
                 suitcase.AddNewItem(data["weapon"].ToString());
                 suitcaseEmpty = false;
             }
-            if (!string.IsNullOrEmpty(data["cloth"].ToString()))
+            if (!string.IsNullOrEmpty(data["cloth"].ToString()) && data["cloth"].ToString() != "empty")
             {
                 suitcase.AddNewItem(data["cloth"].ToString());
                 suitcaseEmpty = false;

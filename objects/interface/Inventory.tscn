@@ -6,9 +6,7 @@
 [ext_resource path="res://assets/scripts/interface/inventory/InventoryMenu.cs" type="Script" id=4]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
 
-[node name="inventory" type="Control" groups=[
-"ignore_color",
-]]
+[node name="inventory" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -17,9 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="helper" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="helper" type="Control" parent="." groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,9 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="helper" groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="helper" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,9 +33,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="items" type="GridContainer" parent="helper/back" groups=[
-"ignore_color",
-]]
+[node name="items" type="GridContainer" parent="helper/back" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -267,9 +259,7 @@ anchor_bottom = 1.0
 margin_top = -256.0
 margin_bottom = -255.0
 
-[node name="itemInfo" type="Control" parent="helper/back" groups=[
-"ignore_color",
-]]
+[node name="itemInfo" type="Control" parent="helper/back" groups=["ignore_color"]]
 visible = false
 margin_top = 352.0
 margin_right = 272.0
@@ -339,9 +329,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="wearBack" type="ColorRect" parent="helper/back" groups=[
-"ignore_color",
-]]
+[node name="wearBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
 visible = false
 anchor_left = 0.734
 anchor_right = 0.734
@@ -451,9 +439,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chestBack" type="ColorRect" parent="helper/back" groups=[
-"ignore_color",
-]]
+[node name="chestBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -525,9 +511,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="items" type="GridContainer" parent="helper/back/chestBack" groups=[
-"ignore_color",
-]]
+[node name="items" type="GridContainer" parent="helper/back/chestBack" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -646,9 +630,7 @@ margin_top = 150.0
 margin_right = 242.0
 margin_bottom = 192.0
 
-[node name="tradeBack" type="ColorRect" parent="helper/back" groups=[
-"ignore_color",
-]]
+[node name="tradeBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -734,9 +716,7 @@ __meta__ = {
 anchor_right = 1.0
 margin_bottom = 1.0
 
-[node name="items" type="GridContainer" parent="helper/back/tradeBack" groups=[
-"ignore_color",
-]]
+[node name="items" type="GridContainer" parent="helper/back/tradeBack" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -951,9 +931,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="modalAsk" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="modalAsk" type="ColorRect" parent="." groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1018,9 +996,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sliderBack" type="Control" parent="modalAsk" groups=[
-"ignore_color",
-]]
+[node name="sliderBack" type="Control" parent="modalAsk" groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1075,9 +1051,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="modalRead" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="modalRead" type="ColorRect" parent="." groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5

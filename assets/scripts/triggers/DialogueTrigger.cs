@@ -183,7 +183,7 @@ public class DialogueTrigger : TriggerBase
         if (!IsActive) return;
         if (!(body is Player)) return;
         
-        NpcWithWeapons npc = GetNode<NpcWithWeapons>(npcPath);
+        NpcWithWeapons npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             _on_activate_trigger();

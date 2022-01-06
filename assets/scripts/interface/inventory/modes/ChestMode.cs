@@ -4,7 +4,7 @@ using Godot;
 using Godot.Collections;
 using Object = Godot.Object;
 
-public class ChestMode: InventoryMode 
+public class ChestMode: InventoryMode
 {
     private Control chestBack;
     private Label chestLabel;
@@ -104,11 +104,19 @@ public class ChestMode: InventoryMode
     private void LoadChestButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
         ClearChestButtons();
-        for (int i = 0; i < newItems.Count; i++) {
-            AddChestItem(newItems[i]);
+        foreach (var item in newItems)
+        {
+            if (string.IsNullOrEmpty(item))
+            {
+                continue;
+            }
+            
+            AddChestItem(item);
         }
         foreach(string ammoItem in ammo.Keys) {
             ItemIcon newAmmoButton = AddChestItem(ammoItem);
+            if (newAmmoButton == null) continue;
+            
             newAmmoButton.SetCount(ammo[ammoItem]);
             tempChest.ammoButtons.Add(ammoItem, newAmmoButton);
         }
