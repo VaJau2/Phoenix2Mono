@@ -42,9 +42,17 @@ public class LevelsLoader : Node
 		dealthMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DealthMenu.tscn");
 	}
 
+	private void handleCustomEvents()
+	{
+		if (IsInstanceValid(Global.Get().player))
+		{
+			Global.Get().player.inventory.effects.OnLoadOtherLevel();
+		}
+	}
+
 	private void respawnMenu(PackedScene newMenu) 
 	{
-		currentMenu.QueueFree();
+		currentMenu.Free();
 		currentMenu = (Control)newMenu.Instance();
 		menuParent.AddChild(currentMenu);
 		menuParent.MoveChild(currentMenu, 0);
@@ -108,8 +116,15 @@ public class LevelsLoader : Node
 	}
 
 	//загрузка уровня
-	public void LoadLevel(int levelNum) 
+	public void LoadLevel(int levelNum)
 	{
+		handleCustomEvents();
+		
+		if (loadSavedData && levelNum == 0)
+		{
+			loadSavedData = false;
+		}
+		
 		tempLevelNum = levelNum;
 		Global.deletedObjects.Clear();
 		if (!loadSavedData)
@@ -119,7 +134,7 @@ public class LevelsLoader : Node
 		}
 		
 		CallDeferred("updateScene");
-		updateMenu();
+		CallDeferred("updateMenu");
 	}
 
 	//загрузка уровня с сохраненными данными
@@ -142,7 +157,7 @@ public class LevelsLoader : Node
 		{
 			Global.AddDeletedObject(objName);
 			var foundedObject = Global.FindNodeInScene(scene, objName);
-			foundedObject?.QueueFree();
+			foundedObject?.Free();
 		}
 
 		foreach (string objKey in levelData.Keys)
@@ -186,21 +201,13 @@ public class LevelsLoader : Node
 		loadSavedData = false;
 	}
 
-	public void LoadNextLevel()
-	{
-		tempLevelNum += 1;
-		updateScene();
-		updateMenu();
-	}
-
 	private async void deleteLoadingMenu() 
 	{
 		await ToSignal(GetTree(), "idle_frame");
 		currentLoading.QueueFree();
 		currentLoading = null;
 	}
-
-
+	
 	public override void _Process(float delta)
 	{
 		if (loader == null) {

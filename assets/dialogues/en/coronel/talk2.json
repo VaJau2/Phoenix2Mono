@@ -161,7 +161,7 @@
     "C8": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "The law obliges me to send you to the tribunal, since you fought against our ponies. Even though they were mercenaries. ",
+      "body": "The law obliges me to send you to the tribunal for attempted theft of strategic resources in wartime.",
       "speaker": "Coronel",
       "opposite": "Strikely",
       "next": "C9"

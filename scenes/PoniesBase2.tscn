@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=2]
+[gd_scene load_steps=133 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -79,6 +79,8 @@
 [ext_resource path="res://assets/audio/music/after-mtn/dramatic-2.mp3" type="AudioStream" id=77]
 [ext_resource path="res://assets/scripts/triggers/music/LoopingMusicPartTrigger.cs" type="Script" id=78]
 [ext_resource path="res://assets/scripts/triggers/music/LoopingMusicPartChangeTrigger.cs" type="Script" id=79]
+[ext_resource path="res://objects/props/fire.tscn" type="PackedScene" id=80]
+[ext_resource path="res://objects/characters/ponies/armored_soldier.tscn" type="PackedScene" id=81]
 [ext_resource path="res://objects/props/buildings/base-houses/kazarma.tscn" type="PackedScene" id=87]
 [ext_resource path="res://objects/props/doors/door2.tscn" type="PackedScene" id=88]
 [ext_resource path="res://objects/props/furniture/bed-2.tscn" type="PackedScene" id=89]
@@ -93,7 +95,6 @@
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
 [ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=103]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=104]
-[ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
 
 [sub_resource type="BoxShape" id=1]
@@ -355,9 +356,7 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -10.209
 [node name="npc" type="Node" parent="."]
 script = ExtResource( 10 )
 
-[node name="mrHandyArmy" parent="npc" groups=[
-"savable",
-] instance=ExtResource( 35 )]
+[node name="mrHandyArmy" parent="npc" groups=["savable"] instance=ExtResource( 35 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5348, 1.30727, 7.50198 )
 patrolArray = [ NodePath("../../terrain/patrolPoints2/1"), NodePath("../../terrain/patrolPoints2/2"), NodePath("../../terrain/patrolPoints2/3"), NodePath("../../terrain/patrolPoints2/4") ]
 IdleAnim = "Idle"
@@ -365,9 +364,7 @@ ammoCount = {
 "ammoEnergy": 20
 }
 
-[node name="mrHandyTrader" parent="npc" groups=[
-"savable",
-] instance=ExtResource( 36 )]
+[node name="mrHandyTrader" parent="npc" groups=["savable"] instance=ExtResource( 36 )]
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
 IsImmortal = true
 dialogueCode = "trade1"
@@ -409,12 +406,17 @@ IdleAnim = "Sleep"
 weaponCode = "revolver32"
 
 [node name="private_mare" parent="npc" instance=ExtResource( 46 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38.8204, -98.3345, 115.434 )
-IdleAnim = "Sleep"
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -45.7862, -0.178429, 50.847 )
+IdleAnim = "Sit"
+WalkSpeed = 4
 
-[node name="terrain" type="Spatial" parent="." groups=[
-"savable",
-]]
+[node name="armored_soldier" parent="npc" instance=ExtResource( 81 )]
+transform = Transform( 0.443541, 0, 0.896254, 0, 1, 0, -0.896254, 0, 0.443541, -36.1053, -0.30198, 53.723 )
+IdleAnim = "Sit"
+dialogueCode = ""
+WalkSpeed = 5
+
+[node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 49 )
 
 [node name="terrain_body" type="StaticBody" parent="terrain"]
@@ -731,6 +733,10 @@ otherDoorPath = NodePath("../../../../rooms/storage/DoorTeleport1")
 [node name="spawn" type="Spatial" parent="terrain/props/storage"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.879, 0.224957, -5.59553 )
 
+[node name="SpotLight3" type="OmniLight" parent="terrain/props/storage"]
+transform = Transform( 4.88762e-07, 0, -1, 0, 1, 0, 1, 0, 4.88762e-07, 26.8635, 3.45725, -4.94302 )
+omni_range = 9.45522
+
 [node name="KPP" parent="terrain/props" instance=ExtResource( 39 )]
 transform = Transform( -1, 0, -3.89414e-07, 0, 1.1, 0, 3.89414e-07, 0, -1, -24.8307, -0.63764, -61.1156 )
 
@@ -763,6 +769,10 @@ otherDoorPath = NodePath("../../../../rooms/kp/DoorTeleport3")
 
 [node name="spawn" type="Spatial" parent="terrain/props/KP"]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 26.3296, 0.027534, -0.0206947 )
+
+[node name="SpotLight" type="OmniLight" parent="terrain/props/KP"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7697, 3.80348, 0.592098 )
+omni_range = 9.45522
 
 [node name="stolovaya" parent="terrain/props" instance=ExtResource( 73 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 23.7552, -0.339801, 117.898 )
@@ -817,17 +827,9 @@ oldLocationPath = NodePath("../../..")
 newLocationPath = NodePath("../../../../rooms/kazarma")
 otherDoorPath = NodePath("../../../../rooms/kazarma/DoorTeleport4")
 
-[node name="pulovsky" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 82.2422, 0.132471, -13.9755 )
-
-[node name="pulovsky2" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 92.2095, 0.132471, -13.9755 )
-
-[node name="pulovsky3" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 62.028, 0.132471, -13.9755 )
-
-[node name="pulovsky4" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 71.9953, 0.132471, -13.9755 )
+[node name="SpotLight2" type="OmniLight" parent="terrain/props/kazarma"]
+transform = Transform( -2.8213e-07, 0, 1, 0, 1, 0, -1, 0, -2.8213e-07, 26.3797, 3.7984, 0.370171 )
+omni_range = 9.45522
 
 [node name="towers" type="Spatial" parent="terrain/props"]
 
@@ -842,6 +844,9 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 91.2943
 
 [node name="Tower4" parent="terrain/props/towers" instance=ExtResource( 18 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -128.853, -0.18239, 140.85 )
+
+[node name="fire" parent="terrain/props" instance=ExtResource( 80 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -40.9898, -0.199396, 51.5121 )
 
 [node name="sky" type="StaticBody" parent="terrain"]
 transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 4.30721, 0, -40.5188 )
@@ -886,9 +891,7 @@ script = SubResource( 14 )
 
 [node name="rooms" type="Node" parent="."]
 
-[node name="kp" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="kp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.914, -100, 56.778 )
 visible = false
 script = ExtResource( 49 )
@@ -940,6 +943,8 @@ material/0 = null
 
 [node name="floor" type="StaticBody" parent="rooms/kp"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0787735, 0 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 61 )
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/kp/floor"]
@@ -992,32 +997,20 @@ brakeSounds = {
 
 [node name="doors" type="Spatial" parent="rooms/kp"]
 
-[node name="door" parent="rooms/kp/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -4.08106e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.048, 16.4736, -0.451363, 8.03846 )
 myKey = "key0"
-ForceOpening = true
 doorCode = "door103"
 
-[node name="door2" parent="rooms/kp/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door2" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.139, 0, 0, 0, 1.048, 11.3722, -0.451363, 11.3242 )
-ForceOpening = true
 
-[node name="door3" parent="rooms/kp/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door3" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1.19249e-08, 0, -1.111, 0, 1.139, 0, 1, 0, 1.32485e-08, 11.7927, -0.38636, -9.0904 )
-ForceOpening = true
 doorCode = "door100"
 
-[node name="door4" parent="rooms/kp/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door4" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -4.45101e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.143, 16.471, -0.441154, -7.44612 )
-ForceOpening = true
 
 [node name="plakats" type="Spatial" parent="rooms/kp"]
 
@@ -1211,9 +1204,7 @@ texture = ExtResource( 63 )
 [node name="npcPos" type="Spatial" parent="rooms/kp"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.3646, 1.03709, -14.8893 )
 
-[node name="storage" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="storage" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -96.4992, -101.707, 60.3737 )
 visible = false
 script = ExtResource( 49 )
@@ -1388,9 +1379,7 @@ shape = SubResource( 29 )
 [node name="fusion_air" parent="rooms/storage" instance=ExtResource( 104 )]
 transform = Transform( 2.52429, 0, 0, 0, 2.52429, 0, 0, 0, 2.52429, -3.46054, -7.14153, -31.7056 )
 
-[node name="kazarma" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="kazarma" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0879, -100, 117.169 )
 visible = false
 script = ExtResource( 49 )
@@ -1421,60 +1410,37 @@ shape = SubResource( 33 )
 
 [node name="doors" type="Spatial" parent="rooms/kazarma"]
 
-[node name="door" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -14.2822 )
 
-[node name="door2" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door2" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.13576 )
 
-[node name="door3" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door3" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.126, 1.08 )
 
-[node name="door4" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door4" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.69949 )
 
-[node name="door5" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door5" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.9468 )
 
-[node name="door6" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door6" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, 5.92506 )
 myKey = "closed"
-ForceOpening = true
 
-[node name="door7" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door7" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -1.66734 )
 
-[node name="door8" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door8" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -9.80475 )
 myKey = "closed"
-ForceOpening = true
 
-[node name="door9" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 54 )]
+[node name="door9" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.9578 )
 myKey = "closed"
-ForceOpening = true
 
-[node name="door10" parent="rooms/kazarma/doors" groups=[
-"savable",
-] instance=ExtResource( 88 )]
+[node name="door10" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 88 )]
 transform = Transform( -4.37114e-08, 0, -1.181, 0, 1, 0, 1, 0, -5.16232e-08, 12.6274, 8.97787, 11.8246 )
 myKey = "closed"
 
@@ -1724,9 +1690,7 @@ script = ExtResource( 50 )
 NewTaskCode = "talkToCoronel"
 showMessage = false
 
-[node name="afterCoronelTalk" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="afterCoronelTalk" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
 otherTriggerPaths = [ NodePath("../exitTask"), NodePath("../luckyDialogueChangeCode"), NodePath("../exit") ]
 
@@ -1748,17 +1712,13 @@ script = ExtResource( 50 )
 IsActive = false
 NewTaskCode = "leaveLocation"
 
-[node name="luckyDialogueChangeCode" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="luckyDialogueChangeCode" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 98 )
 onlyChangeCode = true
 npcPath = "../../npc/lucky_diamond"
 otherDialogueCode = "talk2"
 
-[node name="exit" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="exit" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3173, 0, -97.5483 )
 script = ExtResource( 101 )
 IsActive = false
@@ -1789,14 +1749,10 @@ navmesh = SubResource( 35 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 41 )
 
-[node name="timers" type="Node" parent="." groups=[
-"savable",
-]]
+[node name="timers" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 103 )
 
-[node name="music" type="AudioStreamPlayer" parent="." groups=[
-"unpaused_sound",
-]]
+[node name="music" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
 pause_mode = 2
 stream = ExtResource( 77 )
 volume_db = -15.0

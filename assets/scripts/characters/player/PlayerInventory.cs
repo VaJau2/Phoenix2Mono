@@ -4,7 +4,7 @@ using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 public class PlayerInventory {
-    EffectHandler effects;
+    public EffectHandler effects;
     Messages messages;
     Player player;
     public int money = 0;

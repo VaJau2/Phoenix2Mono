@@ -39,7 +39,7 @@ public class DamageEffects : TextureRect
         float randY = rand.Next(0, 180);
         Vector2 angles = new Vector2(randX, randY);
 
-        Vector3 dir = GetRotateSide(angles);
+        Vector3 dir = GetRotateSide(angles).Normalized();
         if (isEffecting) {
             return;
         }

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using System.Collections.Generic;
 
@@ -18,6 +19,26 @@ public class PlayerStealth: Node {
 
     List<Character> seekEnemies = new List<Character>();
     List<Character> attackEnemies = new List<Character>();
+
+    private void SetNewStage(StealthStage newStage)
+    {
+        Stage = newStage;
+        var enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
+        if (!IsInstanceValid(enemiesManager)) return;
+        
+        switch (newStage)
+        {
+            case StealthStage.Caution:
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthCaution));
+                break;
+            case StealthStage.Danger:
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthDanger));
+                break;
+            case StealthStage.Safe:
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthSafe));
+                break;
+        }
+    }
 
     private void checkEmpty() 
     {
@@ -43,11 +64,11 @@ public class PlayerStealth: Node {
             if (seekEnemies.Count == 0) {
                 StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
-                Stage = StealthStage.Safe;
+                SetNewStage(StealthStage.Safe);
             } else {
                 StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
                 StealthLabel.Modulate = Colors.Orange;
-                Stage = StealthStage.Caution;
+                SetNewStage(StealthStage.Caution);
             }
         }
     }
@@ -60,7 +81,7 @@ public class PlayerStealth: Node {
             attackEnemies.Add(enemy);
             StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "danger");
             StealthLabel.Modulate = Colors.Red;
-            Stage = StealthStage.Danger;
+            SetNewStage(StealthStage.Danger);
         }
     }
 
@@ -72,7 +93,7 @@ public class PlayerStealth: Node {
             if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
                 StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
-                Stage = StealthStage.Safe;
+                SetNewStage(StealthStage.Safe);
             }
         }
     }
@@ -85,7 +106,7 @@ public class PlayerStealth: Node {
             if (attackEnemies.Count == 0) {
                 StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
                 StealthLabel.Modulate = Colors.Orange;
-                Stage = StealthStage.Caution;
+                SetNewStage(StealthStage.Caution);
             }
         }
     }
@@ -98,7 +119,7 @@ public class PlayerStealth: Node {
             if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
                 StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
                 StealthLabel.Modulate = Colors.White;
-                Stage = StealthStage.Safe;
+                SetNewStage(StealthStage.Safe);
             }
         }
     }

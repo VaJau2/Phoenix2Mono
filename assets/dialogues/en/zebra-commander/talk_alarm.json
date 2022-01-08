@@ -3,7 +3,7 @@
     "O1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Lanet almahr al’azrak! You killed almost everyone! You won this fight. But you won't win the war!",
+      "body": "Lanet almahr al’azrak! Did the alarm start because of you? I was afraid that your army attacked us, but I see only one little pony.",
       "speaker": "Officer",
       "opposite": "Strikely",
       "options": [
@@ -36,7 +36,7 @@
     "O2": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "You better kill me now, pony! Le’n estalama.",
+      "body": "Your confidence in victory is always so amusing. Le’n estalama!",
       "speaker": "Officer",
       "opposite": "Strikely",
       "options": [

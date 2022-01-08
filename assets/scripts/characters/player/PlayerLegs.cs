@@ -66,7 +66,7 @@ public class PlayerLegs: Node
             character.TakeDamage(player, damage);
         } else
         {
-            if (victim is StaticBody body) {
+            if (victim is StaticBody body && body.PhysicsMaterialOverride != null) {
                 var friction = body.PhysicsMaterialOverride.Friction;
                 var materialName = MatNames.GetMatName(friction);
                 if (materaiSounds.ContainsKey(materialName)) {
@@ -111,11 +111,11 @@ public class PlayerLegs: Node
 
     private async void finishHit()
     {
-        if (tempFront && (player.Weapons.isPistol || !player.Weapons.GunOn)) {
+        await global.ToTimer(0.15f);
+        
+        if (tempFront && (player.Weapons.isPistol || !player.Weapons.GunOn || Global.Get().playerRace == Race.Unicorn)) {
             player.BodyFollowsCamera = false;
         }
-
-        await global.ToTimer(0.15f);
 
         audi.Stream = tryHit;
         audi.Play();

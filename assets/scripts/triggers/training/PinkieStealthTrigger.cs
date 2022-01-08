@@ -121,6 +121,10 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         audi.Stream = beepSound;
         audi.Play();
         roboPinkie.dialogueCode = winDialogue;
+        
+        player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        connected = false;
+        
         trainingIsDone = true;
     }
     

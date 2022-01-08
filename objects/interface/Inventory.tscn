@@ -219,13 +219,11 @@ __meta__ = {
 
 [node name="moneyLabel" type="Label" parent="helper/back"]
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 margin_left = -96.0
-margin_top = -544.0
+margin_top = 56.0
 margin_right = 37.0
-margin_bottom = -529.0
+margin_bottom = 71.0
 theme = ExtResource( 3 )
 text = "Количество денег:"
 align = 1
@@ -235,13 +233,11 @@ __meta__ = {
 
 [node name="moneyCount" type="Label" parent="helper/back"]
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 margin_left = 56.0
-margin_top = -544.0
+margin_top = 56.0
 margin_right = 120.0
-margin_bottom = -529.0
+margin_bottom = 71.0
 theme = ExtResource( 3 )
 text = "0"
 __meta__ = {
@@ -261,9 +257,10 @@ margin_bottom = -255.0
 
 [node name="itemInfo" type="Control" parent="helper/back" groups=["ignore_color"]]
 visible = false
-margin_top = 352.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -248.0
 margin_right = 272.0
-margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -981,6 +978,7 @@ margin_top = 80.0
 margin_right = 156.0
 margin_bottom = 100.0
 theme = ExtResource( 3 )
+disabled = true
 text = "Да (enter)"
 
 [node name="no" type="Button" parent="modalAsk"]
@@ -991,6 +989,7 @@ margin_top = 80.0
 margin_right = -64.0
 margin_bottom = 100.0
 theme = ExtResource( 3 )
+disabled = true
 text = "Нет (shift)"
 __meta__ = {
 "_edit_use_anchors_": false

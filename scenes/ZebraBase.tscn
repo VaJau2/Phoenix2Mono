@@ -183,7 +183,7 @@ extents = Vector3( 181.74, 1, 230.957 )
 script/source = "extends AudioStreamPlayer
 
 
-func _process(delta):
+func _process(_delta):
 	var parentVisible = get_parent().visible
 	if (playing != parentVisible):
 		playing = parentVisible
@@ -490,10 +490,9 @@ visible = false
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -105.565, 0.655687, -177.243 )
 
-[node name="npc" type="Node" parent="." groups=[
-"savable",
-]]
+[node name="npc" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 10 )
+MAX_SPAWN_COUNT = 13.0
 hasAlarm = true
 isAudi3D = true
 alarmSoundsPath = [ NodePath("../terrain/alarm") ]
@@ -617,9 +616,7 @@ aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.4179, -99.1132, 83.4926 )
 aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
 
-[node name="terrain" type="Spatial" parent="." groups=[
-"savable",
-]]
+[node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 26 )
 
 [node name="terrainBody" type="StaticBody" parent="terrain"]
@@ -835,7 +832,7 @@ shape = SubResource( 10 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 23.1034, 0.871612, 1.90735e-06 )
 
 [node name="DoorTeleport2" type="StaticBody" parent="terrain/props/houses/KP"]
-transform = Transform( -3.94714e-08, 0, -0.848, 0, 0.826, 0, 0.903, 0, -3.70673e-08, 14.5238, 10.4262, 0.406879 )
+transform = Transform( -3.94714e-08, 0, -0.848, 0, 0.826, 0, 0.903, 0, -3.70673e-08, 14.5238, 13.0973, 0.406881 )
 script = ExtResource( 63 )
 Inside = true
 newPlacePath = NodePath("../../../../../rooms/cp/spawn2")
@@ -863,7 +860,7 @@ transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, 
 shape = SubResource( 10 )
 
 [node name="spawn2" type="Spatial" parent="terrain/props/houses/KP"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.4325, 9.76025, 0.34646 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.4325, 11.9915, 0.346466 )
 
 [node name="KPP" parent="terrain/props/houses" instance=ExtResource( 93 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.8029, -0.903033, 102.66 )
@@ -955,7 +952,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2071, -0.0664039, -29.0594
 [node name="button2" type="MeshInstance" parent="terrain/props"]
 transform = Transform( 5.24504e-16, -2.82625e-09, -0.312787, -0.274511, -2.82625e-09, 0, -1.19993e-08, 0.064657, -1.36724e-08, 28.821, 4.16841, 21.0254 )
 mesh = SubResource( 11 )
-skeleton = NodePath("../../kpp")
 material/0 = null
 
 [node name="button2" type="MeshInstance" parent="terrain/props/button2"]
@@ -1258,9 +1254,7 @@ max_distance = 1500.0
 
 [node name="rooms" type="Node" parent="."]
 
-[node name="storage1" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="storage1" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.72, -100, 33.235 )
 visible = false
 script = ExtResource( 26 )
@@ -1417,9 +1411,7 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/storage/DoorTeleport2")
 
-[node name="storage2" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="storage2" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 95.72, -100, -89.8324 )
 visible = false
 script = ExtResource( 26 )
@@ -1612,16 +1604,12 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/storage2/DoorTeleport3")
 
-[node name="cp" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="cp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.109, -100, 33.956 )
 visible = false
 script = ExtResource( 26 )
 
 [node name="walls" type="StaticBody" parent="rooms/cp"]
-collision_layer = 3
-collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
 [node name="Box001001" type="MeshInstance" parent="rooms/cp/walls"]
@@ -1689,7 +1677,7 @@ brakeSounds = {
 }
 
 [node name="lamp2" parent="rooms/cp/props/light" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.534, 7.853, 13.4156 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.534, 7.853, 16.0998 )
 brakeSounds = {
 "brake1": ExtResource( 21 ),
 "brake2": ExtResource( 22 )
@@ -2038,9 +2026,7 @@ shape = SubResource( 33 )
 [node name="spawn2" type="Spatial" parent="rooms/cp"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.947, 10.1196, -0.446213 )
 
-[node name="cpp" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="cpp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.63, -100, 80.201 )
 visible = false
 script = ExtResource( 26 )
@@ -2231,9 +2217,7 @@ script = ExtResource( 102 )
 NewTaskCode = "findSecretWeapon"
 showMessage = false
 
-[node name="stopAlarmButton" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="stopAlarmButton" type="Area" parent="triggers" groups=["savable"]]
 script = ExtResource( 35 )
 DeleteAfterTrigger = false
 
@@ -2241,9 +2225,7 @@ DeleteAfterTrigger = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6691, 0.411675, 1.12651 )
 shape = SubResource( 39 )
 
-[node name="blockAlarmArea" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="blockAlarmArea" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3381, -86.5011, 32.9672 )
 script = ExtResource( 104 )
 managerPath = NodePath("../../npc")
@@ -2251,9 +2233,7 @@ managerPath = NodePath("../../npc")
 [node name="CollisionShape" type="CollisionShape" parent="triggers/blockAlarmArea"]
 shape = SubResource( 40 )
 
-[node name="commanderAlarmDialogue" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="commanderAlarmDialogue" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 44 )
 onlyChangeCode = true
 npcPath = "../../npc/zebra-commander"
@@ -2270,15 +2250,13 @@ changeStateToIdle = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.370419, 2.78024, -5.53674 )
 shape = SubResource( 41 )
 
-[node name="stopAlarmSpawning" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="stopAlarmSpawning" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 45 )
 otherTriggerPaths = [ NodePath("../dragonBegin") ]
 disactiveTriggerPaths = [  ]
 managerPath = NodePath("../../npc")
 
-[node name="dragonBegin" type="Area" parent="triggers"]
+[node name="dragonBegin" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1169, 14.4651, 0.551914 )
 script = ExtResource( 97 )
 IsActive = false
@@ -2288,9 +2266,7 @@ otherTriggerPaths = [ NodePath("../dragonSpawn"), NodePath("../deleteAlarmMusic"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247875, -5.85937, 4.05937 )
 shape = SubResource( 42 )
 
-[node name="dragonSpawn" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="dragonSpawn" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 50 )
 dragonPrefab = ExtResource( 48 )
 spawnPointPath = NodePath("point")
@@ -2306,9 +2282,7 @@ IsActive = false
 NewTaskCode = "none"
 showMessage = false
 
-[node name="nuclearTrigger" type="Spatial" parent="triggers" groups=[
-"savable",
-]]
+[node name="nuclearTrigger" type="Spatial" parent="triggers" groups=["savable"]]
 script = ExtResource( 88 )
 IsActive = false
 afterAudiPath = NodePath("after")
@@ -2377,9 +2351,7 @@ volume_db = -4.0
 script = ExtResource( 98 )
 objToDeletePaths = [ NodePath("../AlarmMusic") ]
 
-[node name="AlarmMusic" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="AlarmMusic" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 94 )
 IsActive = false
 DeleteAfterTrigger = false
@@ -2387,9 +2359,7 @@ audiPath = NodePath("../../music")
 track = ExtResource( 95 )
 volumeSpeed = 0.5
 
-[node name="DragonMusic" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="DragonMusic" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 96 )
 IsActive = false
 DeleteAfterTrigger = false
@@ -2429,15 +2399,10 @@ navmesh = SubResource( 43 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 24 )
 
-[node name="timers" type="Node" parent="." groups=[
-"savable",
-]]
+[node name="timers" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 40 )
 
-[node name="music" type="AudioStreamPlayer" parent="." groups=[
-"savable",
-"unpaused_sound",
-]]
+[node name="music" type="AudioStreamPlayer" parent="." groups=["savable", "unpaused_sound"]]
 pause_mode = 2
 volume_db = -30.0
 bus = "Music"

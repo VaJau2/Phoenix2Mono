@@ -96,8 +96,7 @@ public class TradeMode: InventoryMode
 
     public override void _on_modal_no_pressed()
     {
-        modalAsk.Visible = false;
-        tempButton?._on_itemIcon_mouse_exited();
+        CloseModalAsk();
     }
 
     public override void _on_modal_yes_pressed()
@@ -166,8 +165,7 @@ public class TradeMode: InventoryMode
             } 
         }
 
-        modalAsk.Visible = false;
-        tempButton._on_itemIcon_mouse_exited();
+        CloseModalAsk();
     }
 
     public override void _on_count_value_changed(float newCount)
@@ -176,6 +174,14 @@ public class TradeMode: InventoryMode
         string askPhrase = GetAskPhrase();
         askLabel.Text = askPhrase;
         sliderCount.Text = newCount.ToString();
+    }
+
+    private void CloseModalAsk()
+    {
+        askYes.Disabled = true;
+        askNo.Disabled = true;
+        modalAsk.Visible = false;
+        tempButton?._on_itemIcon_mouse_exited();
     }
 
     private string GetMoneyName()
@@ -199,7 +205,7 @@ public class TradeMode: InventoryMode
         return askPhrase;
     }
     
-    private void OpenModalAsk(string action)
+    private async void OpenModalAsk(string action)
     {
         //грузим фразу: купить "предмет" за 42 бита?
         tempAction = action;
@@ -218,6 +224,10 @@ public class TradeMode: InventoryMode
         slider.MaxValue = tempCountMax;
         sliderBack.Visible = tempCountMax > tempCount;
         modalAsk.Visible = true;
+
+        await player.ToSignal(player.GetTree(), "idle_frame");
+        askYes.Disabled = false;
+        askNo.Disabled = false;
     }
 
     private void ClearTraderButtons()

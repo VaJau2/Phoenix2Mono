@@ -17,6 +17,17 @@ public class EffectHandler: Node
     private Dictionary<string, int> startParameters = new Dictionary<string, int>();
     private Dictionary<string, float> startFloatParameters = new Dictionary<string, float>();
 
+    //если загружается другой уровень
+    public void OnLoadOtherLevel()
+    {
+        foreach (var effect in tempEffects)
+        {
+            if (!(effect is StealthBuckEffect stealthBuckEffect)) continue;
+            stealthBuckEffect.SetOff();
+            break;
+        }
+    }
+
     //параметр передается по ссылке, чтоб изменяться прям внутри метода
     //и одновременно сохранять стартовое значение в переменную
     public void SetPlayerParameter(string parameterName, ref int playerParameter, int delta) 

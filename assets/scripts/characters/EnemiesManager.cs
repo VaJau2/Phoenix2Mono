@@ -8,6 +8,7 @@ public class EnemiesManager : Node, ISavable
 {
     [Export] private int MIN_ENEMIES_COUNT_TO_SPAWN = 14;
     [Export] private float SPAWN_COOLDOWN = 5f;
+    [Export] private float MAX_SPAWN_COUNT = 10;
     private const int MIN_HEALTH_TO_SPAWN = 20;
     private const float SPAWN_MIN_DIST = 15f;
     private const float SPAWN_MAX_DIST = 60f;
@@ -19,18 +20,25 @@ public class EnemiesManager : Node, ISavable
 
     public List<NPC> enemies = new List<NPC>();
     public bool maySpawn = true;
+    public bool allEnemiesSpawned;
     public bool isAlarming { get; private set; }
     Player player => Global.Get().player;
     private List<AudioPlayerCommon> audi;
     private List<VisibilityNotifier> spawnPoints;
     private float spawnCooldown;
+    private int spawnedCount;
     
     [Signal] public delegate void AlarmStarted();
     [Signal] public delegate void AlarmEnded();
 
+    [Signal] public delegate void PlayerStealthSafe();
+    [Signal] public delegate void PlayerStealthCaution();
+    [Signal] public delegate void PlayerStealthDanger();
+
     private void StartAlarm()
     {
         if (!hasAlarm) return;
+        if (allEnemiesSpawned) return;
         if (isAlarming) return;
         foreach (var tempAudi in audi)
         {
@@ -139,6 +147,7 @@ public class EnemiesManager : Node, ISavable
     {
         if (!isAlarming) return;
         if (!maySpawn) return;
+        if (allEnemiesSpawned) return;
 
         if (spawnCooldown > 0)
         {
@@ -151,6 +160,12 @@ public class EnemiesManager : Node, ISavable
         var spawnPoint = GetRandomSpawnPoint();
         SpawnEnemy(spawnPoint);
         spawnCooldown = SPAWN_COOLDOWN;
+
+        spawnedCount++;
+        if (spawnedCount >= MAX_SPAWN_COUNT)
+        {
+            allEnemiesSpawned = true;
+        }
     }
 
     public Dictionary GetSaveData()
@@ -159,14 +174,24 @@ public class EnemiesManager : Node, ISavable
         {
             {"isAlarming", isAlarming},
             {"spawnCooldown", spawnCooldown},
-            {"maySpawn", maySpawn}
+            {"maySpawn", maySpawn},
+            {"allEnemiesSpawned", allEnemiesSpawned},
+            {"alarmTimer", spawnedCount}
         };
     }
 
     public void LoadData(Dictionary data)
     {
         maySpawn = Convert.ToBoolean(data["maySpawn"]);
-        
+        if (data.Contains("allEnemiesSpawned"))
+        {
+            allEnemiesSpawned = Convert.ToBoolean(data["allEnemiesSpawned"]);
+        }
+        if (data.Contains("alarmTimer"))
+        {
+            spawnedCount = Convert.ToInt32(data["alarmTimer"]);
+        }
+
         if (!hasAlarm) return;
         if (!data.Contains("isAlarming")) return;
 

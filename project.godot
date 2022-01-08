@@ -164,6 +164,7 @@ file_logging/enable_file_logging=true
 
 profiler/enabled=true
 export/include_scripts_content=true
+export/aot/use_interpreter=false
 
 [rendering]
 

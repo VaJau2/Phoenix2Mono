@@ -404,7 +404,7 @@ public class Player : Character
         hvel = hvel.LinearInterpolate(target, acceleration * delta);
         Velocity.x = hvel.x;
         Velocity.z = hvel.z;
-        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), true, 4);
+        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4);
     }
 
     private void RotateBodyClumped(float speedX)

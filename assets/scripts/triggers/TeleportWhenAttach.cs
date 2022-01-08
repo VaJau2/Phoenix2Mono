@@ -51,9 +51,9 @@ public class TeleportWhenAttach: TriggerBase
             npc.Disconnect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
             if (teleportEffect.Instance() is Spatial effect)
             {
+                GetNode("/root/Main/Scene").AddChild(effect);
                 effect.GlobalTransform =
                     Global.setNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
-                GetNode("/root/Main/Scene").AddChild(effect);
             }
 
             Global.AddDeletedObject(npc.Name);

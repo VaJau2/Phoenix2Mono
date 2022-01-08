@@ -373,7 +373,7 @@ extents = Vector3( 181.74, 1, 230.957 )
 script/source = "extends AudioStreamPlayer
 
 
-func _process(delta):
+func _process(_delta):
 	var parentVisible = get_parent().visible
 	if (playing != parentVisible):
 		playing = parentVisible
@@ -792,11 +792,17 @@ export var maxVolume = 2
 
 
 func _ready():
+	set_process(false)
 	yield(get_tree().create_timer(0.5, false), \"timeout\")
 	play()
-	while(volume_db < maxVolume):
-		volume_db += 0.1
-		yield(get_tree().create_timer(0.1, false), \"timeout\")
+	set_process(true)
+
+
+func _process(delta):
+	if (volume_db < maxVolume):
+		volume_db += delta
+	else:
+		set_process(false)
 "
 
 [node name="Scene" type="Node"]
@@ -2368,7 +2374,7 @@ NpcPath = "../../npc/mrHandyTwilight"
 doorPath = NodePath("../../terrain/props/houses/bunker_entry/DoorTeleport")
 teleportPointPath = NodePath("../../rooms/bunker/twilightTeleport")
 
-[node name="ConditionTrigger" type="Area" parent="triggers"]
+[node name="ConditionTrigger" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.392, -95.7436, 87.9816 )
 script = ExtResource( 107 )
 otherTriggerPaths = [ NodePath("../bellgatesSpawn") ]

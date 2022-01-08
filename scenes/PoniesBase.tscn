@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=2]
+[gd_scene load_steps=147 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -105,7 +105,6 @@
 [ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=103]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=104]
 [ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=105]
-[ext_resource path="res://objects/props/buildings/pulovsky.tscn" type="PackedScene" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
 [ext_resource path="res://assets/materials/environments/green_with_fog.tres" type="Environment" id=108]
 
@@ -394,11 +393,17 @@ export var maxVolume = 2
 
 
 func _ready():
+	set_process(false)
 	yield(get_tree().create_timer(0.5, false), \"timeout\")
 	play()
-	while(volume_db < maxVolume):
-		volume_db += 0.1
-		yield(get_tree().create_timer(0.1, false), \"timeout\")
+	set_process(true)
+
+
+func _process(delta):
+	if (volume_db < maxVolume):
+		volume_db += delta
+	else:
+		set_process(false)
 "
 
 [node name="Scene" type="Node"]
@@ -869,18 +874,6 @@ oldLocationPath = NodePath("../../..")
 newLocationPath = NodePath("../../../../rooms/kazarma")
 otherDoorPath = NodePath("../../../../rooms/kazarma/DoorTeleport4")
 
-[node name="pulovsky" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 82.2422, 0.132471, -13.9755 )
-
-[node name="pulovsky2" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 92.2095, 0.132471, -13.9755 )
-
-[node name="pulovsky3" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 62.028, 0.132471, -13.9755 )
-
-[node name="pulovsky4" parent="terrain/props/kazarma" instance=ExtResource( 106 )]
-transform = Transform( -3.76129, 0, -3.28822e-07, 0, 3.76129, 0, 3.28822e-07, 0, -3.76129, 71.9953, 0.132471, -13.9755 )
-
 [node name="towers" type="Spatial" parent="terrain/props"]
 
 [node name="Tower" parent="terrain/props/towers" instance=ExtResource( 18 )]
@@ -1192,6 +1185,8 @@ material/0 = null
 
 [node name="floor" type="StaticBody" parent="rooms/kp"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0787735, 0 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 61 )
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/kp/floor"]
@@ -2259,7 +2254,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.82566
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola", "mana-potion" ]
+itemCodes = [ "mentats", "dash", "med-x", "ammo307", "ammo32", "revolver32", "private_uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola", "mana-potion", "submachine10" ]
 ammoCount = {
 "ammo20": 20,
 "ammo307": 10,
