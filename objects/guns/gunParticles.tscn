@@ -26,7 +26,7 @@ var deleteParts = false
 var timerParts = 1.0
 
 var deleteSelf = false
-var timerSelf = 9.0
+var timerSelf = 4.0
 
 
 func _startEmitting(direction, material_name = null, obj_name = \"\"):

@@ -46,6 +46,7 @@ public class PlayerCamera: Camera
         float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGH;
         tempRay.CollisionMask = 2147483651; //слой 1 и 2
         tempRay.CastTo = new Vector3(0, 0, -oldLength);
+        tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
     

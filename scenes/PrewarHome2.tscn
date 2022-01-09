@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=2]
+[gd_scene load_steps=132 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -39,7 +39,6 @@
 [ext_resource path="res://assets/materials/props/materials/stone.tres" type="Material" id=37]
 [ext_resource path="res://objects/props/furniture/light/lamp.tscn" type="PackedScene" id=38]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=39]
-[ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=40]
 [ext_resource path="res://objects/props/doors/door1.tscn" type="PackedScene" id=41]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=42]
 [ext_resource path="res://assets/materials/physics/stairs.phymat" type="PhysicsMaterial" id=43]
@@ -86,7 +85,6 @@
 [ext_resource path="res://assets/scripts/background/StartBlackScreen.cs" type="Script" id=84]
 [ext_resource path="res://assets/audio/background/forest_morning.ogg" type="AudioStream" id=85]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=86]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=87]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -462,9 +460,7 @@ agent/radius = 1.4
 
 [node name="Scene" type="Node"]
 
-[node name="canvas" parent="." groups=[
-"savable",
-] instance=ExtResource( 2 )]
+[node name="canvas" parent="." groups=["savable"] instance=ExtResource( 2 )]
 script = ExtResource( 84 )
 
 [node name="Label" type="Label" parent="canvas"]
@@ -507,9 +503,7 @@ transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.99988
 IsImmortal = true
 dialogueCode = "talk3"
 
-[node name="terrain" type="Spatial" parent="." groups=[
-"savable",
-]]
+[node name="terrain" type="Spatial" parent="." groups=["savable"]]
 visible = false
 script = ExtResource( 29 )
 
@@ -742,9 +736,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.9120
 [node name="ambar" parent="terrain/props/houses" instance=ExtResource( 22 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35.261, 1.90735e-06, -28.7433 )
 
-[node name="firewood" type="Spatial" parent="terrain/props/houses/ambar" groups=[
-"savable",
-]]
+[node name="firewood" type="Spatial" parent="terrain/props/houses/ambar" groups=["savable"]]
 script = ExtResource( 29 )
 
 [node name="Cylinder012" type="MeshInstance" parent="terrain/props/houses/ambar/firewood"]
@@ -811,9 +803,7 @@ transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -121.14
 [node name="Bench2" parent="terrain/props/benches" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6141, -0.469403, 63.4056 )
 
-[node name="paper" type="MeshInstance" parent="terrain/props" groups=[
-"savable",
-]]
+[node name="paper" type="MeshInstance" parent="terrain/props" groups=["savable"]]
 transform = Transform( 0.925785, 0, 0.378051, 0, 1, 0, -0.378051, 0, 0.925785, -30.0889, -0.257272, -0.959719 )
 mesh = SubResource( 21 )
 material/0 = null
@@ -879,9 +869,7 @@ script = SubResource( 24 )
 
 [node name="rooms" type="Node" parent="."]
 
-[node name="mansion" type="Spatial" parent="rooms" groups=[
-"savable",
-]]
+[node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -65.7189, -100, 33.7569 )
 script = ExtResource( 29 )
 
@@ -955,31 +943,21 @@ shape = SubResource( 34 )
 [node name="doors" type="Spatial" parent="rooms/mansion"]
 transform = Transform( 1.16824, 0, 0, 0, 1.16824, 0, 0, 0, 1.16824, 0.0936565, -0.0413895, 0.101593 )
 
-[node name="door" parent="rooms/mansion/doors" groups=[
-"savable",
-] instance=ExtResource( 41 )]
+[node name="door" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
 transform = Transform( -3.0598e-08, 0, 0.955, 0, 1.026, 0, -0.7, 0, -4.17444e-08, -5.99541, -2.82487, 5.85835 )
 
-[node name="door2" parent="rooms/mansion/doors" groups=[
-"savable",
-] instance=ExtResource( 41 )]
+[node name="door2" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
 transform = Transform( -0.7, 0, -1.31064e-07, 0, 0.986, 0, 1.05697e-07, 0, -0.868, 16.419, -2.66595, -5.88505 )
 myKey = "closed"
 
-[node name="door3" parent="rooms/mansion/doors" groups=[
-"savable",
-] instance=ExtResource( 41 )]
+[node name="door3" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
 transform = Transform( -0.7, 0, -1.31064e-07, 0, 0.986, 0, 1.05697e-07, 0, -0.868, 16.419, 4.86504, -5.88505 )
 myKey = "closed"
 
-[node name="door4" parent="rooms/mansion/doors" groups=[
-"savable",
-] instance=ExtResource( 41 )]
+[node name="door4" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
 transform = Transform( 0.7, 0, 0, 0, 1.011, 0, 0, 0, 0.978, 0.483358, 4.86504, -2.74091 )
 
-[node name="door5" parent="rooms/mansion/doors" groups=[
-"savable",
-] instance=ExtResource( 41 )]
+[node name="door5" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
 transform = Transform( 0.7, 0, 0, 0, 1.011, 0, 0, 0, 0.978, 0.483351, 4.86504, 12.9243 )
 
 [node name="DoorTeleport" type="StaticBody" parent="rooms/mansion/doors"]
@@ -1130,9 +1108,7 @@ transform = Transform( -5.56189e-08, 0, 1.37628, 0, 1.57633, 0, -1.48014, 0, -6.
 [node name="chair2" parent="rooms/mansion/props" instance=ExtResource( 53 )]
 transform = Transform( 0.230892, 0, 0.617089, 0, 0.65887, 0, -0.617089, 0, 0.230892, -5.94274, 6.84016, 8.27145 )
 
-[node name="firewood" type="Spatial" parent="rooms/mansion/props" groups=[
-"savable",
-]]
+[node name="firewood" type="Spatial" parent="rooms/mansion/props" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.5857, -1.18574, -11.0354 )
 visible = false
 
@@ -1151,17 +1127,11 @@ transform = Transform( -0.0168292, -0.117755, 3.50938e-09, -6.43387e-09, 0, -0.2
 mesh = SubResource( 38 )
 material/0 = null
 
-[node name="table2" type="StaticBody" parent="rooms/mansion/props" instance=ExtResource( 65 )]
+[node name="table2" parent="rooms/mansion/props" instance=ExtResource( 65 )]
 transform = Transform( 1.47696, 0, 0, 0, 1.47696, 0, 0, 0, 1.47696, -16.6766, 7.68946, -1.5183 )
-collision_layer = 3
-collision_mask = 2147483651
-physics_material_override = ExtResource( 87 )
 
-[node name="chair3" type="StaticBody" parent="rooms/mansion/props" instance=ExtResource( 53 )]
+[node name="chair3" parent="rooms/mansion/props" instance=ExtResource( 53 )]
 transform = Transform( -0.65887, 0, -5.76003e-08, 0, 0.65887, 0, 5.76003e-08, 0, -0.65887, -15.0098, 6.84016, -1.46176 )
-collision_layer = 3
-collision_mask = 3
-physics_material_override = ExtResource( 87 )
 
 [node name="windows" type="Spatial" parent="rooms/mansion"]
 transform = Transform( 1.16824, 0, 0, 0, 1.16824, 0, 0, 0, 1.16824, 0.0936565, -0.0413895, 0.101593 )
@@ -1224,9 +1194,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8059, -2.29842, -4.99361 )
 [node name="windySpawn" type="Spatial" parent="rooms/mansion/windyPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75049, -2.95937, 14.9262 )
 
-[node name="suitcase" type="MeshInstance" parent="rooms/mansion" groups=[
-"savable",
-]]
+[node name="suitcase" type="MeshInstance" parent="rooms/mansion" groups=["savable"]]
 transform = Transform( 0.268948, 0.0381716, 0, -0.0381716, 0.268948, 0, 0, 0, 0.271643, 0.329033, 6.03143, 9.12888 )
 mesh = SubResource( 42 )
 material/0 = null
@@ -1252,9 +1220,7 @@ script = ExtResource( 78 )
 IsActive = false
 NewTaskCode = "takeFirewood"
 
-[node name="pickPaper" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="pickPaper" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3028, -3.8147e-06, -23.1003 )
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickCase"), NodePath("../changeWindyDialogue"), NodePath("../exit"), NodePath("../goToCarTask") ]
@@ -1265,9 +1231,7 @@ hintCode = "pick"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/pickPaper"]
 shape = SubResource( 44 )
 
-[node name="pickFirewood" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="pickFirewood" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5932, -2.72848e-12, -45.3359 )
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../conditionalTrigger"), NodePath("../putFirewood") ]
@@ -1290,9 +1254,7 @@ onlyChangeCode = true
 npcPath = "../../npc/windy_cloud"
 otherDialogueCode = "talk5"
 
-[node name="conditionalTrigger" type="Node" parent="triggers" groups=[
-"savable",
-]]
+[node name="conditionalTrigger" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 74 )
 otherTriggerPaths = [ NodePath("../changeMotherDialogue2") ]
 TriggersCount = 2
@@ -1312,9 +1274,7 @@ script = ExtResource( 78 )
 IsActive = false
 NewTaskCode = "sitInAVan"
 
-[node name="pickCase" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="pickCase" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.4664, -92.5156, 40.4068 )
 script = ExtResource( 71 )
 IsActive = false
@@ -1326,9 +1286,7 @@ hintCode = "pick"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/pickCase"]
 shape = SubResource( 44 )
 
-[node name="putFirewood" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="putFirewood" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.0824, -100.217, 46.5877 )
 script = ExtResource( 76 )
 IsActive = false
@@ -1339,9 +1297,7 @@ hintCode = "putFirewood"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/putFirewood"]
 shape = SubResource( 44 )
 
-[node name="exit" type="Area" parent="triggers" groups=[
-"savable",
-]]
+[node name="exit" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2398, 2.74836, -79.4012 )
 script = ExtResource( 83 )
 IsActive = false
@@ -1375,11 +1331,6 @@ light_color = Color( 0.847059, 0.854902, 0.760784, 1 )
 light_energy = 0.9
 shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
-
-[node name="timers" type="Node" parent="." groups=[
-"savable",
-]]
-script = ExtResource( 40 )
 
 [connection signal="body_entered" from="terrain/props/houses/mansion/DoorTeleport2/Area2" to="terrain/props/houses/mansion/DoorTeleport2" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/mansion/DoorTeleport2/Area2" to="terrain/props/houses/mansion/DoorTeleport2" method="_on_body_exited"]

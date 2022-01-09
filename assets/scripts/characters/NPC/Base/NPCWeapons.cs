@@ -69,7 +69,7 @@ public class NPCWeapons : Node
         if (!(npc is Pony tempPony)) return;
         if (tempPony.IsUnicorn)
         {
-            tempPony.MagicParticles.Emitting = @on;
+            tempPony.MagicParticles.Emitting = on;
         }
     }
 

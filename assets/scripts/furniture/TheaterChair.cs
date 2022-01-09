@@ -17,7 +17,7 @@ public class TheaterChair : StaticBody, ISavable
     {
         SetProcess(false);
         if (!isActive) return;
-        otherTrigger = GetNode<TriggerBase>(otherTriggerPath);
+        otherTrigger = GetNodeOrNull<TriggerBase>(otherTriggerPath);
         strikelyPlace = GetNode<Spatial>("strikelyPlace");
     }
     
@@ -55,6 +55,7 @@ public class TheaterChair : StaticBody, ISavable
     {
         return new Dictionary
         {
+            {"isActive", isActive},
             {"step", step},
             {"tempTimer", tempTimer}
         };
@@ -62,6 +63,10 @@ public class TheaterChair : StaticBody, ISavable
 
     public void LoadData(Dictionary data)
     {
+        if (data.Contains("isActive"))
+        {
+            isActive = Convert.ToBoolean(data["isActive"]);
+        }
         if (data.Contains("tempTimer"))
         {
             tempTimer = Convert.ToSingle(data["tempTimer"]);

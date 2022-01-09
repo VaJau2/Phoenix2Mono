@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class PegasusSmash : Area
 {
@@ -17,16 +16,16 @@ public class PegasusSmash : Area
         if (body is Player) return;
 
         
-        if(player.MaySmash) {
+        if(player.MaySmash && player.GetSpeed() > 6) {
             var audiHitted = player.GetAudi(true);
             audiHitted.Stream = hitSound;
             audiHitted.Play();
 
             if (body is Character) {
                 var victim = body as Character;
-                victim.TakeDamage(player, (int)player.GetSpeed() * 3);
+                victim.TakeDamage(player, player.GetSpeed() * 3);
             } else {
-                player.TakeDamage(player, (int)player.GetSpeed() / 2);
+                player.TakeDamage(player, player.GetSpeed() / 2);
                 player.wingsAudi.Stop();
                 player.IsFlying = false;
             }

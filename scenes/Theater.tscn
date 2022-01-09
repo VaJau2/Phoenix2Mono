@@ -69,7 +69,6 @@
 [ext_resource path="res://assets/scripts/triggers/RotateGunTrigger.cs" type="Script" id=67]
 [ext_resource path="res://assets/scripts/triggers/DialogueCheckGunTrigger.cs" type="Script" id=68]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=69]
-[ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=70]
 [ext_resource path="res://objects/props/furniture/table.tscn" type="PackedScene" id=71]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=72]
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
@@ -407,6 +406,9 @@ extents = Vector3( 2.25527, 1.62461, 2.17647 )
 
 [sub_resource type="BoxShape" id=28]
 extents = Vector3( 2.98599, 6.90715, 5.69376 )
+
+[sub_resource type="BoxShape" id=34]
+extents = Vector3( 9.20322, 6.90715, 10.5828 )
 
 [sub_resource type="BoxShape" id=29]
 extents = Vector3( 3.45111, 3.99542, 2.43803 )
@@ -1702,8 +1704,8 @@ relation = 2
 triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55.4063, 1.94469, -3.38138 )
-shape = SubResource( 28 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763, 1.94469, -9.8311 )
+shape = SubResource( 34 )
 
 [node name="positionRedPunch" type="Spatial" parent="triggers/spawnerRedPunch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1481, -11.9025, 47.1757 )
@@ -1881,9 +1883,6 @@ pause_mode = 2
 stream = ExtResource( 62 )
 volume_db = -10.0
 bus = "Music"
-
-[node name="timers" type="Node" parent="." groups=["savable"]]
-script = ExtResource( 70 )
 
 [connection signal="body_entered" from="terrain/checkFall" to="terrain/checkFall" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/moveNPC" to="triggers/moveNPC" method="_on_body_entered"]

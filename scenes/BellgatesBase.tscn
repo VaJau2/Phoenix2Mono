@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=2]
+[gd_scene load_steps=193 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -102,7 +102,6 @@
 [ext_resource path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" type="Script" id=100]
 [ext_resource path="res://objects/props/buildings/bellgates-base-houses/bunker_entry.tscn" type="PackedScene" id=101]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
-[ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=103]
 [ext_resource path="res://assets/audio/futniture/stableDoorOpen.wav" type="AudioStream" id=104]
 [ext_resource path="res://objects/characters/ponies/bellgates.tscn" type="PackedScene" id=105]
 [ext_resource path="res://assets/scripts/triggers/SpawnerNpcTrigger.cs" type="Script" id=106]
@@ -2476,9 +2475,6 @@ material/0 = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
-
-[node name="timers" type="Node" parent="." groups=["savable"]]
-script = ExtResource( 103 )
 
 [node name="music" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
 pause_mode = 2

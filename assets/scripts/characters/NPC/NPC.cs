@@ -73,7 +73,10 @@ public class NPC : Character
             
             case NPCState.Attack:
                 if (tempVictim == player) {
-                    player.Stealth.AddAttackEnemy(this);
+                    if (!(this is NpcWithWeapons npcWeapons) || !string.IsNullOrEmpty(npcWeapons.weaponCode))
+                    {
+                        player.Stealth.AddAttackEnemy(this);
+                    }
                 }
                 break;
             

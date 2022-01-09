@@ -223,7 +223,7 @@ public class Player_Unicorn : Player
                             tempTeleportMark.Translation.y > Translation.y + 3)
                         {
                             Vector3 newPos = tempTeleportMark.Translation;
-                            newPos.y -= 3;
+                            newPos.y -= 0.75f;
                             tempTeleportMark.Translation = newPos;
                         }
 
