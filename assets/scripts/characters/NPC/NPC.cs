@@ -50,6 +50,7 @@ public class NPC : Character
     public Character tempVictim;
     protected Vector3 lastSeePos;
     protected float searchTimer = 0;
+    private float deadTimer = 5f;
 
     protected bool CloseToPoint = false;
 
@@ -205,11 +206,6 @@ public class NPC : Character
                 headBone?.ApplyCentralImpulse(-dir * force);
             }
         }
-
-        await Global.Get().ToTimer(5f);
-        if (!IsInstanceValid(this)) return;
-        Global.AddDeletedObject(Name);
-        QueueFree();
     }
 
     protected void RotateTo(Vector3 place)
@@ -427,6 +423,15 @@ public class NPC : Character
     public override void _Process(float delta)
     {
         if (Health <= 0) {
+            if (deadTimer > 0)
+            {
+                deadTimer -= delta;
+            }
+            else
+            {
+                QueueFree();
+                Global.AddDeletedObject(Name);
+            }
             return;
         }
 

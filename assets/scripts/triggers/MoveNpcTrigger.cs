@@ -16,14 +16,26 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
     private Array<Spatial> points = new Array<Spatial>();
     private bool activated;
-    
-    private SavableTimers timers;
+
+    private float tempTimer = 0;
     private int step;
 
     public override void _Ready()
     {
         base._Ready();
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
+        SetProcess(false);
+    }
+
+    public override void _Process(float delta)
+    {
+        if (tempTimer > 0)
+        {
+            tempTimer -= delta;
+            return;
+        }
+
+        SetProcess(false);
+        _on_activate_trigger();
     }
 
 
@@ -71,7 +83,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         activated = true;
     }
 
-    private async void SetNpcAndWait()
+    private void SetNpcAndWait()
     {
         int i = step;
         if (IsInstanceValid(npc[i]))
@@ -95,37 +107,37 @@ public class MoveNpcTrigger: ActivateOtherTrigger
                 npc[i].Scale = oldScale;
             }
             
-            while (timers.CheckTimer(Name + "_timer_" + i, timer))
-            {
-                await ToSignal(GetTree(), "idle_frame");
-            }
-        }
-
-        step++;
-        _on_activate_trigger();
-    }
-
-    private async void WaitLastTimer()
-    {
-        while (timers.CheckTimer(Name + "_timerLast", lastTimer))
-        {
-            await ToSignal(GetTree(), "idle_frame");
         }
         
         step++;
-        _on_activate_trigger();
+        tempTimer = timer;
+        SetProcess(true);
+    }
+
+    private void WaitLastTimer()
+    {
+        step++;
+        tempTimer = lastTimer;
+        SetProcess(true);
     }
     
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
         saveData["step"] = step;
+        saveData["tempTimer"] = tempTimer;
         return saveData;
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        
+        if (data.Contains("tempTimer"))
+        {
+            tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
+        
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {

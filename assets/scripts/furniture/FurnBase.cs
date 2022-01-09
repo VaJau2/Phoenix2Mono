@@ -35,10 +35,8 @@ public class FurnBase: StaticBody {
             await global.ToTimer(timer);
         }
 
-        if (animator != null) {
-            animator.Play(anim);
-        }
-        
+        animator?.Play(anim);
+
         IsOpen = !IsOpen;
     }
 
@@ -56,11 +54,8 @@ public class FurnBase: StaticBody {
             if (openAnim != null) {
                 anim = openAnim;
             }
-            if (openSound == null) {
-                setOpen(anim, OpenSound, timer);
-            } else {
-                setOpen(anim, openSound, timer);
-            }
+
+            setOpen(anim, openSound ?? OpenSound, timer);
         }
     }
 

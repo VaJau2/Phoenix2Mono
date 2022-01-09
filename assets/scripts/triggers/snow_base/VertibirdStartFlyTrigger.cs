@@ -4,12 +4,11 @@ using Godot.Collections;
 
 public class VertibirdStartFlyTrigger : TriggerBase
 {
-    private const float animTimer = 19f;
+    private float animTimer = 19f;
     [Export] private NodePath VertibirdPath;
     private Spatial Vertibird;
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
-    private SavableTimers timers;
     private int step;
 
     public override void _Ready()
@@ -17,7 +16,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
         Vertibird = GetNode<Spatial>(VertibirdPath);
         anim = Vertibird.GetNode<AnimationPlayer>("anim");
         audi = Vertibird.GetNode<AudioStreamPlayer3D>("Box001/audi");
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
+        SetProcess(false);
         base._Ready();
     }
 
@@ -32,6 +31,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
+        saveData["animTimer"] = animTimer;
         saveData["animTime"] = anim.CurrentAnimationPosition;
         saveData["audiTime"] = audi.GetPlaybackPosition();
         saveData["step"] = step;
@@ -50,11 +50,16 @@ public class VertibirdStartFlyTrigger : TriggerBase
 
         float audiTime = Convert.ToSingle(data["audiTime"]);
         audi.Play(audiTime);
+
+        if (data.Contains("animTimer"))
+        {
+            animTimer = Convert.ToSingle(data["animTimer"]);
+        }
         
         _on_activate_trigger();
     }
 
-    public override async void _on_activate_trigger()
+    public override void _on_activate_trigger()
     {
         if (step == 1)
         {
@@ -63,12 +68,19 @@ public class VertibirdStartFlyTrigger : TriggerBase
             step = 2;
         }
         
-        while (timers.CheckTimer(Name + "_timer", animTimer))
+        SetProcess(true);
+    }
+
+    public override void _Process(float delta)
+    {
+        if (animTimer > 0)
         {
-            await ToSignal(GetTree(), "idle_frame");
+            animTimer -= delta;
         }
-    
-        Vertibird.QueueFree();
-        base._on_activate_trigger();
+        else
+        {
+            Vertibird.QueueFree();
+            base._on_activate_trigger();
+        }
     }
 }

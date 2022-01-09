@@ -6,9 +6,9 @@ public class Player_Earthpony : Player
     const float DASH_BLOCK_TIMER = 1;
 
     public bool IsRunning = false;
-    public bool IsDashing = false;
 
     private float dashCooldown = 0;
+    private float dashBlockTimer;
 
     public override void _Ready()
     {
@@ -25,6 +25,15 @@ public class Player_Earthpony : Player
         }
     }
 
+    public override void TakeDamage(Character damager, int damage, int shapeID = 0)
+    {
+        if (dashBlockTimer > 0)
+        {
+            damage /= 2;
+        }
+        base.TakeDamage(damager, damage, shapeID);
+    }
+
     public override void UpdateStand()
     {
         IsRunning = false;
@@ -38,38 +47,28 @@ public class Player_Earthpony : Player
         return base.GetSpeed();
     }
 
-    public async void DashBlock() 
+    private void DashBlock() 
     {
-        IsDashing = true;
-        await global.ToTimer(DASH_BLOCK_TIMER);
-        IsDashing = false;
+        dashBlockTimer = DASH_BLOCK_TIMER;
     }
 
-    public bool IsDashKeyPressed
-    {
-       get => (Velocity.Length() > 0.5f && Input.IsActionJustPressed("dash") && dashCooldown <= 0);
-    }
+    private bool IsDashKeyPressed => (Velocity.Length() > 0.5f && Input.IsActionJustPressed("dash") && dashCooldown <= 0);
 
     public override void Crouch()
     {
-        bool dash = false;
-        if (IsDashKeyPressed) {
-            dash = true;
-        }
+        bool dash = IsDashKeyPressed;
 
-        if (Input.IsActionJustReleased("crouch") || dash) {
-            if (crouchCooldown <= 0 || !IsCrouching) {
-                Sit(!IsCrouching);
+        if (!Input.IsActionJustReleased("crouch") && !dash) return;
+        if (!(crouchCooldown <= 0) && IsCrouching) return;
+        Sit(!IsCrouching);
 
-                if (IsCrouching && dash) {
-                    soundSteps.SoundDash();
-                    Velocity = Velocity.Normalized();
-                    Velocity *= 130f;
-                    dashCooldown = DASH_COOLDOWN;
-                    DashBlock();
-                }
-            }
-        }
+        if (!IsCrouching || !dash) return;
+        soundSteps.SoundDash();
+        Velocity = Velocity.Normalized();
+        Velocity.y = 0;
+        Velocity *= 120f;
+        dashCooldown = DASH_COOLDOWN;
+        DashBlock();
     }
 
     public override void Jump()
@@ -90,6 +89,11 @@ public class Player_Earthpony : Player
         
         if (dashCooldown > 0) {
             dashCooldown -= delta;
+        }
+
+        if (dashBlockTimer > 0)
+        {
+            dashBlockTimer -= delta;
         }
     }
 }

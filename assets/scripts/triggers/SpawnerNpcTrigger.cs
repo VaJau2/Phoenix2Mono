@@ -27,12 +27,13 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
 
     private Spatial spawnPoint;
     private Spatial movePoint;
-    
-    private SavableTimers timers;
+
+    private float tempTimer;
     private int step;
 
     public override void _Ready()
     {
+        SetProcess(false);
         if (spawnPointPath != null)
         {
             spawnPoint = GetNode<Spatial>(spawnPointPath);
@@ -42,8 +43,20 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             movePoint = GetNode<Spatial>(movePointPath);
         }
 
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
         base._Ready();
+    }
+    
+    public override void _Process(float delta)
+    {
+        if (tempTimer > 0)
+        {
+            tempTimer -= delta;
+            return;
+        }
+
+        SetProcess(false);
+        step = 2;
+        _on_activate_trigger();
     }
 
     public override void SetActive(bool newActive)
@@ -70,16 +83,11 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         base._on_activate_trigger();
     }
 
-    private async void WaitStartDelay()
+    private void WaitStartDelay()
     {
         step = 1;
-        while (timers.CheckTimer(Name + "_timer", spawnDelay))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
-
-        step = 2;
-        _on_activate_trigger();
+        tempTimer = spawnDelay;
+        SetProcess(true);
     }
 
     private void SpawnNpc()
@@ -126,12 +134,19 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     {
         var saveData = base.GetSaveData();
         saveData["step"] = step;
+        saveData["tempTimer"] = tempTimer;
         return saveData;
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        
+        if (data.Contains("tempTimer"))
+        {
+            tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
+        
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {

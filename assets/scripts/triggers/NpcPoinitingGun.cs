@@ -7,18 +7,30 @@ public class NpcPoinitingGun: TriggerBase
     [Export] public string npcPath;
     [Export] public float delayTimer;
     private NpcWithWeapons npc;
-    
-    private SavableTimers timers;
+
+    private float tempTimer;
     private int step;
 
     public override void _Ready()
     {
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
-        
+        SetProcess(false);
         if (IsActive)
         {
             _on_activate_trigger();
         }
+    }
+    
+    public override void _Process(float delta)
+    {
+        if (tempTimer > 0)
+        {
+            tempTimer -= delta;
+            return;
+        }
+
+        SetProcess(false);
+        step = 2;
+        _on_activate_trigger();
     }
 
     public override void SetActive(bool newActive)
@@ -49,29 +61,30 @@ public class NpcPoinitingGun: TriggerBase
         base._on_activate_trigger();
     }
 
-    private async void WaitDelayTimer()
+    private  void WaitDelayTimer()
     {
         step = 1;
-        if (!(delayTimer > 0)) return;
-        while (timers.CheckTimer(Name + "_timer", delayTimer))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
-
-        step = 2;
-        _on_activate_trigger();
+        tempTimer = delayTimer;
+        SetProcess(true);
     }
     
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
         saveData["step"] = step;
+        saveData["tempTimer"] = tempTimer;
         return saveData;
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        
+        if (data.Contains("tempTimer"))
+        {
+            tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
+        
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {

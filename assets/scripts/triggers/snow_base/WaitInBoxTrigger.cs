@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -18,6 +19,9 @@ public class WaitInBoxTrigger : TriggerBase
     private DoorTeleport doorToParking;
     private bool isAnimating;
 
+    private float timer;
+    private int step;
+
     public void _on_body_entered(Node body)
     {
         if (!(body is Player player)) return;
@@ -36,6 +40,8 @@ public class WaitInBoxTrigger : TriggerBase
     {
         var saveData = base.GetSaveData();
         saveData["animating"] = isAnimating;
+        saveData["timer"] = timer;
+        saveData["step"] = step;
         return saveData;
     }
     
@@ -43,9 +49,10 @@ public class WaitInBoxTrigger : TriggerBase
     {
         base.LoadData(data);
         if (!(bool)data["animating"]) return;
+        timer = Convert.ToSingle(data["timer"]);
+        step = Convert.ToInt16(data["step"]);
         playerHere = Global.Get().player;
         playerHere.SitOnChair(true);
-        SetProcess(false);
         AnimateMoving(false);
     }
 
@@ -62,39 +69,69 @@ public class WaitInBoxTrigger : TriggerBase
     {
         if (playerHere == null) return;
         if (myBox.IsOpen) return;
-        isAnimating = true;
-        playerHere.SitOnChair(true);
+
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            playerHere.SitOnChair(true);
+        }
+
+        if (timer > 0)
+        {
+            timer -= delta;
+            return;
+        }
+        
         AnimateMoving();
-        SetProcess(false);
     }
 
-    private async void AnimateMoving(bool startWait = true)
+    private void AnimateMoving(bool startWait = true)
     {
-        //перемещаем коробку и игрока заранее, чтобы анимация движения коробки не залезала за текстуры
-        if (startWait)
+        switch (step)
         {
-            await Global.Get().ToTimer(3f, this);
+            case 0:
+                //перемещаем коробку и игрока заранее, чтобы анимация движения коробки не залезала за текстуры
+                if (startWait)
+                {
+                    timer = 3;
+                    step = 1;
+                }
+                else
+                {
+                    step = 1;
+                }
+
+                return;
+            
+            case 1:
+                myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                playerHere.GlobalTransform =
+                    Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+        
+                movingBoxAudi.Stream = movingSound;
+                movingBoxAudi.Play();
+                timer = 2f;
+                step = 2;
+                return;
+            
+            case 2:
+                movingBoxAnim.Play("moving");
+                timer = 20f;
+                step = 3;
+                return;
+            
+            case 3:
+                movingBoxAnim.Stop();
+                myBox.GetParent().RemoveChild(myBox);
+                GetNode("/root/Main/Scene/rooms/2floor").AddChild(myBox);
+                myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                playerHere.GlobalTransform =
+                    Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                doorToParking.Open(null, true, false);
+                playerHere.SitOnChair(false);
+                SetProcess(false);
+                _on_activate_trigger();
+                return;
         }
-       
-        myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
-        playerHere.GlobalTransform =
-            Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
-        
-        movingBoxAudi.Stream = movingSound;
-        movingBoxAudi.Play();
-        await Global.Get().ToTimer(2f, this);
-        
-        movingBoxAnim.Play("moving");
-        await Global.Get().ToTimer(20f, this);
-        
-        movingBoxAnim.Stop();
-        myBox.GetParent().RemoveChild(myBox);
-        GetNode("/root/Main/Scene/rooms/2floor").AddChild(myBox);
-        myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
-        playerHere.GlobalTransform =
-            Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
-        doorToParking.Open(null, true, false);
-        playerHere.SitOnChair(false);
-        _on_activate_trigger();
     }
 }

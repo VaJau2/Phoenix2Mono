@@ -28,13 +28,11 @@ public class NuclearManagerTrigger : TriggerBase
     private float fogSpeed = 0;
 
     private bool gameOver;
-
-    private SavableTimers timers;
+    
     private Environment clonedEnvironment;
 
     public override void _Ready()
     {
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
         enemiesManager = GetNode<EnemiesManager>("/root/Main/Scene/npc");
         alarm = GetNode<AudioStreamPlayer3D>("alarm");
         afterAudi = GetNode <AudioStreamPlayer>(afterAudiPath);
@@ -76,46 +74,31 @@ public class NuclearManagerTrigger : TriggerBase
         SetProcess(true);
         enemiesManager.StopAlarm();
         enemiesManager.hasAlarm = false;
-        
-        while (timers.CheckTimer(Name + "_timer0", 6))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
-        
+
+        await Global.Get().ToTimer(6, this);
+
         alarm.Play();
         foreach (var bomb in bombs)
         {
             bomb.Explode();
         }
         
-        while (timers.CheckTimer(Name + "_timer1", 10))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
+        await Global.Get().ToTimer(10, this);
 
         clonedEnvironment = (Environment)environment.Duplicate();
         warStarted = true;
         
-        while (timers.CheckTimer(Name + "_timer2", 11))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
+        await Global.Get().ToTimer(11, this);
         
         afterAudi.Play();
         
-        while (timers.CheckTimer(Name + "_timer3", 2))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
+        await Global.Get().ToTimer(2, this);
 
         noise.Visible = true;
         noiseAnim.Play("noise");
         isNoising = true;
         
-        while (timers.CheckTimer(Name + "_timer4", 3.5f))
-        {
-            await ToSignal(GetTree(), "idle_frame");
-        }
+        await Global.Get().ToTimer(3.5f, this);
 
         gameOver = true;
     }

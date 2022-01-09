@@ -127,6 +127,7 @@ public class LevelsLoader : Node
 		
 		tempLevelNum = levelNum;
 		Global.deletedObjects.Clear();
+		
 		if (!loadSavedData)
 		{
 			levelData = null;
@@ -146,7 +147,7 @@ public class LevelsLoader : Node
 		LoadLevel(levelNum);
 	}
 
-	private async void LoadLevelData(Node scene)
+	private void LoadLevelData(Node scene)
 	{
 		//очищаем спавнер от предзаполненных вещей и создаем объект игрока в спавнере
 		var playerSpawner = scene.GetNode<PlayerSpawner>("PlayerSpawner");
@@ -175,9 +176,11 @@ public class LevelsLoader : Node
 			var parent = Global.FindNodeInScene(scene, parentName);
 			parent?.AddChild(newInstance);
 		}
+	}
 
+	private async void LoadLevelObjects(Node scene)
+	{
 		//ждем загрузки сцены
-		await ToSignal(this, nameof(LevelLoaded));
 		await ToSignal(GetTree(), "idle_frame");
 
 		foreach (string objKey in levelData.Keys)
@@ -222,15 +225,22 @@ public class LevelsLoader : Node
 			loader = null;
 			
 			var newScene = resource.Instance();
+			
 			if (loadSavedData)
 			{
 				LoadLevelData(newScene);
 			}
+			
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
-
 			deleteLoadingMenu();
 			EmitSignal(nameof(LevelLoaded));
+
+			if (loadSavedData)
+			{
+				LoadLevelObjects(newScene);
+			}
+			
 		}
 		else if(err != Error.Ok) {
 			GD.PrintErr(err);

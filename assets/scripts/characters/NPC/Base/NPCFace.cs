@@ -32,20 +32,6 @@ public class NPCFace : MeshInstance, ISavable
         eyesOpenCooldown = 0.2f;
     }
 
-    //загружаем файл с анимациями рта и тут же его анимируем
-    public async void AnimateMouth(string fileName)
-    {
-        var animation = LoadTimingFile(fileName + "_mouth.txt");
-        float lastTime = 0;
-
-        foreach (AnimTime animTime in animation)
-        {
-            mouthMaterial.AlbedoTexture = mouthTextures[animTime.name];
-            await global.ToTimer(animTime.time - lastTime);
-            lastTime = animTime.time;
-        }
-    }
-
     public void ChangeMouthVariant(string variant)
     {
         StreamTexture mouthTexture =

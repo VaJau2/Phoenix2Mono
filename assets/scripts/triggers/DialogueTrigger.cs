@@ -18,16 +18,15 @@ public class DialogueTrigger : TriggerBase
 
     private DialogueMenu dialogueMenu;
 
-    private SavableTimers timers;
+    private float tempTimer;
     private int step;
     private NpcWithWeapons npc;
 
     public override void _Ready()
     {
+        SetProcess(false);
         dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
-        
-        
+
         if (dialogueStartPointPath != null)
         {
             startPoint = GetNode<Spatial>(dialogueStartPointPath);
@@ -37,6 +36,18 @@ public class DialogueTrigger : TriggerBase
         {
             afterDialoguePoint = GetNode<Spatial>(afterDialoguePointPath);
         }
+    }
+
+    public override void _Process(float delta)
+    {
+        if (tempTimer > 0)
+        {
+            tempTimer -= delta;
+            return;
+        }
+
+        SetProcess(false);
+        _on_activate_trigger();
     }
 
     public override void _on_activate_trigger()
@@ -114,18 +125,11 @@ public class DialogueTrigger : TriggerBase
         _on_activate_trigger();
     }
 
-    private async void WaitStartTimer()
+    private void WaitStartTimer()
     {
-        if (dialogueStartTimer > 0)
-        {
-            while (timers.CheckTimer(Name + "_timer", dialogueStartTimer))
-            {
-                await ToSignal(GetTree(), "idle_frame");
-            }
-        }
-
+        tempTimer = dialogueStartTimer;
         step = 3;
-        _on_activate_trigger();
+        SetProcess(true);
     }
 
     private async void GoToPlayerAndWait()
@@ -159,12 +163,19 @@ public class DialogueTrigger : TriggerBase
     {
         var saveData = base.GetSaveData();
         saveData["step"] = step;
+        saveData["tempTimer"] = tempTimer;
         return saveData;
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        
+        if (data.Contains("tempTimer"))
+        {
+            tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
+        
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {

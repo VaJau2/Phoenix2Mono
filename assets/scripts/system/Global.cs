@@ -163,9 +163,23 @@ public class Global {
 
     public SignalAwaiter ToTimer(float time, Node _object = null, bool pauseProcess = false)
     {
-        return Object.IsInstanceValid(_object) ? 
-            _object?.ToSignal(_object.GetTree().CreateTimer(time, pauseProcess), "timeout") 
-            : player?.ToSignal(player.GetTree().CreateTimer(time, pauseProcess), "timeout");
+        var newTimer = new Timer {Autostart = true, OneShot = true, WaitTime = time};
+        if (pauseProcess)
+        {
+            newTimer.PauseMode = Node.PauseModeEnum.Process;
+        }
+
+        if (Object.IsInstanceValid(_object))
+        {
+            _object?.AddChild(newTimer);
+        }
+        else
+        {
+            player.GetNode("/root/Main/Scene").AddChild(newTimer);
+        }
+
+        newTimer.Connect("timeout", newTimer, "queue_free");
+        return newTimer.ToSignal(newTimer, "timeout");
     }
 
     //nominativ - 1 бит

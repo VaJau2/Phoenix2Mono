@@ -39,8 +39,6 @@ public class Dragon: NPC
     public Spatial mouthPos;
     public Character enemyInMouth;
     public float enemyMouthTimer;
-    
-    public bool startFalling { get; private set; }
     private bool onetimeDie;
 
     public override void _Ready()
@@ -60,7 +58,7 @@ public class Dragon: NPC
         ROTATION_SPEED = 0.05f;
     }
 
-    public override async void TakeDamage(Character damager, int damage, int shapeID = 0)
+    public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         base.TakeDamage(damager, damage, shapeID);
 
@@ -76,12 +74,7 @@ public class Dragon: NPC
             SetFireOn(false);
             LetMouthEnemyGo();
             GetNode<AudioStreamPlayer3D>("audi-wings").Stop();
-            Velocity.x /= 1.5f;
-            Velocity.z /= 1.5f;
-            await Global.Get().ToTimer(.7f, this);
-            startFalling = true;
-            await Global.Get().ToTimer(3, this);
-            isFalling = false;
+            anim.Play("die1");
         }
     }
 
@@ -322,11 +315,6 @@ public class Dragon: NPC
         if (Health <= 0) {
             if (isFalling)
             {
-                if (!startFalling)
-                {
-                    anim.Play("die1");
-                    return;
-                }
                 Velocity.x /= 2;
                 Velocity.y = -10;
                 Velocity.z /= 2;

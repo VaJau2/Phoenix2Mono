@@ -18,19 +18,13 @@ public class BreakableObject: StaticBody
         {"brake2", null}
     };
 
-    private float itemHeight = 0.4f;
-    private List<Character> HearingEnemies = new List<Character>();
+    private bool isDeleting;
+    private float deleteTimer = 1.5f;
 
     private AudioStreamPlayer3D audi;
 
-    public async void Brake(float damage)
+    public void Brake(float damage)
     {
-        foreach(Character enemy in HearingEnemies)
-        {
-            GD.Print(enemy.Name + " heard your noise, but can't react now :c");
-            GD.Print("please go to BreakableObject.cs to fix this");
-        }
-
         if (!Broken && damage < BrakeDamage)
         {
             if (BrokenMaterial != null)
@@ -59,21 +53,8 @@ public class BreakableObject: StaticBody
             GetNode<CollisionShape>("shape").Disabled = true;
             GetNode<Particles>("Particles").Emitting = true;
             audi.Play();
-
-            await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
-            Global.AddDeletedObject(Name);
-            QueueFree();
+            isDeleting = true;
         }
-    }
-
-    public void _on_enemyArea_body_entered(Spatial body)
-    {
-        
-    }
-
-    public void _on_enemyArea_body_exited(Spatial body)
-    {
-        
     }
 
     public override void _Ready()
@@ -81,6 +62,20 @@ public class BreakableObject: StaticBody
         audi = GetNode<AudioStreamPlayer3D>("audi");
     }
 
+    public override void _Process(float delta)
+    {
+        if (!isDeleting) return;
+
+        if (deleteTimer > 0)
+        {
+            deleteTimer -= delta;
+        }
+        else
+        {
+            Global.AddDeletedObject(Name);
+            QueueFree();
+        }
+    }
 }
 
 public enum BreakableObjectType {

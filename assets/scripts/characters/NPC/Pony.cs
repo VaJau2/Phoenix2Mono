@@ -206,11 +206,11 @@ public class Pony: NpcWithWeapons
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
         if (Health <= 0) {
             return;
         }
-
-        base._Process(delta);
+        
         body.Update(delta);
         UpdatePath(delta);
         UpdateAI(delta);

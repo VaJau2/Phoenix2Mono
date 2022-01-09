@@ -10,18 +10,28 @@ public class TheaterChair : StaticBody, ISavable
     private TriggerBase otherTrigger;
     private Spatial strikelyPlace;
 
-    private SavableTimers timers;
+    private float tempTimer;
     private int step = 0;
 
     public override void _Ready()
     {
-        timers = GetNode<SavableTimers>("/root/Main/Scene/timers");
-        
-        if (isActive)
+        SetProcess(false);
+        if (!isActive) return;
+        otherTrigger = GetNode<TriggerBase>(otherTriggerPath);
+        strikelyPlace = GetNode<Spatial>("strikelyPlace");
+    }
+    
+    public override void _Process(float delta)
+    {
+        if (tempTimer > 0)
         {
-            otherTrigger = GetNode<TriggerBase>(otherTriggerPath);
-            strikelyPlace = GetNode<Spatial>("strikelyPlace");
+            tempTimer -= delta;
+            return;
         }
+
+        SetProcess(false);
+        otherTrigger.SetActive(true);
+        step = 0;
     }
 
     public void Sit(Player player)
@@ -38,43 +48,28 @@ public class TheaterChair : StaticBody, ISavable
             step = 1;
         }
 
-        WaitAndSetTriggers();
+        SetProcess(true);
     }
 
-    private async void WaitAndSetTriggers()
-    {
-        if (step == 1)
-        {
-            while (timers.CheckTimer(Name + "_timer", triggerTimer))
-            {
-                await ToSignal(GetTree(), "idle_frame");
-            }
-            step = 2;
-        }
-
-        if (step == 2)
-        {
-            otherTrigger.SetActive(true);
-        }
-
-        step = 0;
-    }
-    
-    
     public Dictionary GetSaveData()
     {
         return new Dictionary
         {
-            {"step", step}
+            {"step", step},
+            {"tempTimer", tempTimer}
         };
     }
 
     public void LoadData(Dictionary data)
     {
+        if (data.Contains("tempTimer"))
+        {
+            tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {
-            WaitAndSetTriggers();
+            SetProcess(true);
         }
     }
 }
