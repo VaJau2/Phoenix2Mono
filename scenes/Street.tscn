@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -39,7 +39,7 @@
 [ext_resource path="res://objects/props/buildings/houses/house6.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/audio/music/street.ogg" type="AudioStream" id=38]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=39]
-[ext_resource path="res://assets/scripts/utils/SavableTimers.cs" type="Script" id=40]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=40]
 [ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=41]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=42]
 [ext_resource path="res://objects/props/hydrant.tscn" type="PackedScene" id=43]
@@ -48,6 +48,7 @@
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=46]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=48]
+[ext_resource path="res://assets/scripts/interface/Menus/HintMenu.cs" type="Script" id=49]
 
 [sub_resource type="GDScript" id=40]
 script/source = "extends CanvasLayer
@@ -186,6 +187,117 @@ func _process(_delta):
 
 [node name="canvas" parent="." instance=ExtResource( 2 )]
 script = SubResource( 40 )
+
+[node name="hintModal" type="Control" parent="canvas" groups=["ignore_color"]]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+mouse_filter = 1
+script = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+canceledHintsPaths = [ NodePath("../../triggers/hint1"), NodePath("../../triggers/hint2"), NodePath("../../triggers/hint3"), NodePath("../../triggers/hint4") ]
+
+[node name="back" type="ColorRect" parent="canvas/hintModal" groups=["ignore_color"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.0
+margin_top = -106.0
+margin_right = 226.0
+margin_bottom = 102.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="header" type="Label" parent="canvas/hintModal/back"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -207.5
+margin_top = 7.0
+margin_right = 208.5
+margin_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource( 40 )
+text = "Мета-подсказка"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="Label" parent="canvas/hintModal/back"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -207.5
+margin_top = 39.0
+margin_right = 208.5
+margin_bottom = 158.0
+grow_horizontal = 2
+theme = ExtResource( 40 )
+text = "Чтобы прочитать подсказку, прочтите этот текст.
+Для чтения текста необходимо смотреть на его буквы.
+Желательно, но не обязательно проговаривать их вслух.
+Чтобы было проще понять их значение, и, соответственно,
+текст подсказки."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ok" type="Label" parent="canvas/hintModal/back"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -34.0
+margin_right = 226.0
+grow_horizontal = 2
+theme = ExtResource( 40 )
+text = "ок - space"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="skip" type="Label" parent="canvas/hintModal/back"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -238.0
+margin_top = -34.0
+grow_horizontal = 2
+theme = ExtResource( 40 )
+text = "пропустить обучение - enter"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border-right" type="ColorRect" parent="canvas/hintModal/back"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+
+[node name="border-left" type="ColorRect" parent="canvas/hintModal/back"]
+anchor_bottom = 1.0
+margin_right = 1.0
+
+[node name="border-down" type="ColorRect" parent="canvas/hintModal/back"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+
+[node name="border-up" type="ColorRect" parent="canvas/hintModal/back"]
+anchor_right = 1.0
+margin_bottom = 1.0
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.655687, -15.4919 )
@@ -671,39 +783,43 @@ script = ExtResource( 35 )
 NewTaskCode = "talkToAgent"
 showMessage = false
 
-[node name="hint1" type="Area" parent="triggers"]
+[node name="hint1" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35.7933 )
 script = ExtResource( 31 )
 HintCode = "1"
 DiffRacesHints = true
 hintTime = 4.0
+UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint1"]
 shape = SubResource( 48 )
 
-[node name="hint2" type="Area" parent="triggers"]
+[node name="hint2" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.71153, -59.5182 )
 script = ExtResource( 31 )
 HintCode = "2"
 hintTime = 3.0
+UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint2"]
 shape = SubResource( 48 )
 
-[node name="hint3" type="Area" parent="triggers"]
+[node name="hint3" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.366, 9.45018, -84.5295 )
 script = ExtResource( 31 )
 HintCode = "3"
 hintTime = 3.0
+UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint3"]
 shape = SubResource( 48 )
 
-[node name="hint4" type="Area" parent="triggers"]
+[node name="hint4" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48425, 9.45018, -105.133 )
 script = ExtResource( 31 )
 HintCode = "4"
 hintTime = 4.5
+UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint4"]
 shape = SubResource( 48 )
@@ -821,9 +937,6 @@ local_coords = false
 process_material = SubResource( 55 )
 draw_pass_1 = SubResource( 56 )
 script = SubResource( 57 )
-
-[node name="timers" type="Node" parent="." groups=["savable"]]
-script = ExtResource( 40 )
 
 [connection signal="Die" from="npc/agent1" to="triggers/npcDie" method="_on_activate_trigger"]
 [connection signal="body_entered" from="terrain/checkFall" to="terrain/checkFall" method="_on_body_entered"]

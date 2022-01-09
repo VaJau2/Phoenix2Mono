@@ -6,8 +6,13 @@ public class HintTrigger : TriggerBase
     [Export] public string HintCode;
     [Export] public bool DiffRacesHints = false;
     [Export] public float hintTime = 2.5f;
+    [Export] public bool UseModal;
 
     private Messages messages;
+
+    private bool modalOn;
+    private HintMenu hintModal;
+    
 
     //заменяет все #ui_jump#-значения с кодами кнопок на текущие кнопки из настроек управления
     public static string ReplaceKeys(string message)
@@ -24,7 +29,16 @@ public class HintTrigger : TriggerBase
 
     public override void _Ready()
     {
-        messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        if (UseModal)
+        {
+            hintModal = GetNode<HintMenu>("/root/Main/Scene/canvas/hintModal");
+        }
+        else
+        {
+            messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        }
+
+        SetProcess(false);
     }
 
     public override void _on_activate_trigger()
@@ -36,13 +50,19 @@ public class HintTrigger : TriggerBase
         }
         
         string message = InterfaceLang.GetPhrase("inGame", HintSection, hintCode);
-        if (message != null)
+        if (message == null) return;
+        if (message.Contains("#"))
         {
-            if (message.Contains("#"))
-            {
-                message = ReplaceKeys(message);
-            }
-
+            message = ReplaceKeys(message);
+        }
+            
+        if (UseModal)
+        {
+            hintModal.hintMessage = message;
+            MenuManager.TryToOpenMenu(hintModal);
+        }
+        else
+        {
             messages.ShowMessageRaw(message, hintTime);
         }
         

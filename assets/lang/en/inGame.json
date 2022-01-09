@@ -61,6 +61,12 @@
         "5": "#inventory# - exit terminal mode"
     },
 
+    "hintsModal": {
+        "header": "Controls",
+        "ok": "ok - #use#",
+        "skip": "skip training - #ui_shift#"
+    },
+
     "chestNames": {
         "cabinet": "Cabinet",
         "small_cabinet": "Locker",
