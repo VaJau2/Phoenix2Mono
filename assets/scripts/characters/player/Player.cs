@@ -272,6 +272,9 @@ public class Player : Character
         if (Input.IsActionJustPressed("jump")) {
             if (IsCrouching) {
                 Sit(false);
+            } else {
+                OnStairs = false;
+                Velocity.y = JUMP_SPEED;
             }
         }
     }

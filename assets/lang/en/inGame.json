@@ -54,7 +54,7 @@
     "hints": {
         "1_earthpony": "#ui_shift# - run, #jump# - jump, #dash# - dash",
         "1_pegasus": "#jump# - jump/flying, #ui_shift# - in-flight descent",
-        "1_unicorn": "#jump# - teleportation, #ui_shift# - shield",
+        "1_unicorn": "#jump# - jump, #dash# - teleportation, #ui_shift# - shield",
         "2": "#task# - current task",
         "3": "#inventory# - inventory",
         "4": "You can assign weapons to the number keys for quick access. It is better to do this in advance",

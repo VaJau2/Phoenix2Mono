@@ -189,58 +189,58 @@ public class Player_Unicorn : Player
 
     public override void Jump() 
     {
-        if (Input.IsActionPressed("jump") && !JumpHint.Visible) 
+        base.Jump();
+
+        if (!Input.IsActionPressed("dash") || JumpHint.Visible) return;
+        if (Health > 0)
         {
-            if (Health > 0)
+            var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
+            if(!teleportPressed) 
             {
-                var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
-                if(!teleportPressed) 
+                teleportPressed = true;
+                SpawnTeleportMark();
+                tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+                    tempTeleportMark.GlobalTransform,
+                    GlobalTransform.origin
+                );
+            }
+            else if (tempRay.IsColliding())
+            {
+                Spatial collider = (Spatial)tempRay.GetCollider();
+                if (collider.Name == "sky") return;
+                //оно может внезапно стереться даже здесь
+                if (tempTeleportMark != null) 
                 {
-                    teleportPressed = true;
-                    SpawnTeleportMark();
+                    var place = tempRay.GetCollisionPoint();
+                    place += tempRay.GetCollisionNormal() * 2f;
+
                     tempTeleportMark.GlobalTransform = Global.setNewOrigin(
                         tempTeleportMark.GlobalTransform,
-                        GlobalTransform.origin
+                        place
                     );
+
+                    //чтоб не перемещаться наружу в помещениях
+                    if (teleportInside && 
+                        tempTeleportMark.Translation.y > Translation.y + 3)
+                    {
+                        Vector3 newPos = tempTeleportMark.Translation;
+                        newPos.y -= 0.75f;
+                        tempTeleportMark.Translation = newPos;
+                    }
+
+                    tempTeleportSprite.Modulate = ManaIsEnough(GetTeleportCost()) ? Colors.White : Colors.Red;
                 }
-                else if (tempRay.IsColliding())
+                else 
                 {
-                    Spatial collider = (Spatial)tempRay.GetCollider();
-                    if (collider.Name == "sky") return;
-                    //оно может внезапно стереться даже здесь
-                    if (tempTeleportMark != null) 
-                    {
-                        var place = tempRay.GetCollisionPoint();
-                        place += tempRay.GetCollisionNormal() * 2f;
-
-                        tempTeleportMark.GlobalTransform = Global.setNewOrigin(
-                            tempTeleportMark.GlobalTransform,
-                            place
-                        );
-
-                        //чтоб не перемещаться наружу в помещениях
-                        if (teleportInside && 
-                            tempTeleportMark.Translation.y > Translation.y + 3)
-                        {
-                            Vector3 newPos = tempTeleportMark.Translation;
-                            newPos.y -= 0.75f;
-                            tempTeleportMark.Translation = newPos;
-                        }
-
-                        tempTeleportSprite.Modulate = ManaIsEnough(GetTeleportCost()) ? Colors.White : Colors.Red;
-                    }
-                    else 
-                    {
-                        SpawnTeleportMark();
-                    }
+                    SpawnTeleportMark();
                 }
             }
-            else //Health <= 0
-            {
-                if (!teleportPressed) return;
-                teleportPressed = false;
-                ClearTeleportMark();
-            }
+        }
+        else //Health <= 0
+        {
+            if (!teleportPressed) return;
+            teleportPressed = false;
+            ClearTeleportMark();
         }
     }
     

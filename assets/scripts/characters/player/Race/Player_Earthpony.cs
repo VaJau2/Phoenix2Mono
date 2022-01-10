@@ -71,18 +71,6 @@ public class Player_Earthpony : Player
         DashBlock();
     }
 
-    public override void Jump()
-    {
-        if (Input.IsActionJustPressed("jump")) {
-            if (IsCrouching) {
-                Sit(false);
-            } else {
-                OnStairs = false;
-                Velocity.y = JUMP_SPEED;
-            }
-        }
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);

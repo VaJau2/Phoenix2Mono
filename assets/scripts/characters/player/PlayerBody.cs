@@ -196,6 +196,16 @@ public class PlayerBody : Spatial
         }
     }
 
+    private void AnimateWalkUnicorn()
+    {
+        if (checkJumpKey && jumpingCooldown <= 0) {
+            playback.Start("Jump");
+            jumpingCooldown = JUMP_COOLDOWN;
+        } else {
+            playback.Travel("Walk");
+        }
+    }
+    
     private void AnimateIdlePegasus(Player_Pegasus pegasus) 
     {
         if (pegasus.IsFlying) {
@@ -210,7 +220,7 @@ public class PlayerBody : Spatial
         }
     }
 
-    private void AnimateIdleEarthpony(Player_Earthpony earthpony) 
+    private void AnimateIdleEarthpony() 
     {
         if (jumpingCooldown <= 0) {
             if(checkJumpKey) {
@@ -355,7 +365,7 @@ public class PlayerBody : Spatial
                             AnimateWalkEarthpony(player as Player_Earthpony);
                             break;
                         case Race.Unicorn:
-                            playback.Travel("Walk");
+                            AnimateWalkUnicorn();
                             break;
                     }
                 }
@@ -377,10 +387,10 @@ public class PlayerBody : Spatial
                             AnimateIdlePegasus(player as Player_Pegasus);
                             break;
                         case Race.Earthpony:
-                            AnimateIdleEarthpony(player as Player_Earthpony);
+                            AnimateIdleEarthpony();
                             break;
                         case Race.Unicorn:
-                            playback.Travel("Idle1");
+                            AnimateIdleEarthpony();
                             break;
                     }
                 }

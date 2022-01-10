@@ -95,14 +95,7 @@ public class Player_Pegasus : Player
         }
 
         //on_jump
-        if (Input.IsActionJustPressed("jump")) {
-            if (IsCrouching) {
-                Sit(false);
-            } else {
-                OnStairs = false;
-                Velocity.y = JUMP_SPEED;
-            }
-        }
+        base.Jump();
     }
 
     public override void Fly()
