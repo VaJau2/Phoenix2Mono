@@ -1,12 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/textures/magic/teleport-mark.png" type="Texture" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Spatial
-
-func _ready():
-	$anim.play(\"idle\")"
+[ext_resource path="res://assets/scripts/characters/player/Unicorn/TeleportMark.cs" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -24,18 +19,29 @@ tracks/0/keys = {
 }
 
 [node name="TeleportMark" type="Spatial"]
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2, 0 )
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.72902, 0 )
 layers = 8
 cast_shadow = 0
+generate_lightmap = false
 modulate = Color( 1, 1, 1, 0.666667 )
 billboard = 1
+alpha_cut = 2
 texture = ExtResource( 1 )
-vframes = 3
 hframes = 5
-frame = 3
+vframes = 3
+frame = 6
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 2 )
+
+[node name="ray-down" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0 )
+enabled = true
+cast_to = Vector3( 0, -3.4, 0 )
+
+[node name="ray-up" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 3.4, 0 )
