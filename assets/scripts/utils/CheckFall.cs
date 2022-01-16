@@ -1,27 +1,29 @@
 using Godot;
 
-public class CheckFall : Area
+public class CheckFall : Node
 {
     [Export] private NodePath teleportPointPath;
+    [Export] private float fallHeight = -100f;
+    private Player player;
     private Spatial teleportPoint;
 
     public DoorTeleport tempDoorTeleport;
     public bool inside;
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         teleportPoint = GetNode<Spatial>(teleportPointPath);
+        await ToSignal(GetTree(), "idle_frame");
+        player = Global.Get().player;
     }
 
-    public void _on_body_entered(Node body)
+    public override void _Process(float delta)
     {
-        if (body is Player player)
+        if (!(player.GlobalTransform.origin.y <= fallHeight)) return;
+        player.GlobalTransform = Global.setNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
+        if (inside && tempDoorTeleport != null)
         {
-            player.GlobalTransform = Global.setNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
-            if (inside && tempDoorTeleport != null)
-            {
-                tempDoorTeleport.otherDoor.Open(player, true);
-            }
+            tempDoorTeleport.otherDoor.Open(player, true);
         }
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -174,9 +174,6 @@ material = SubResource( 12 )
 extents = Vector3( 193.404, 136.659, 4.6054 )
 
 [sub_resource type="QuadMesh" id=15]
-
-[sub_resource type="BoxShape" id=16]
-extents = Vector3( 181.74, 1, 230.957 )
 
 [sub_resource type="GDScript" id=17]
 script/source = "extends AudioStreamPlayer
@@ -971,7 +968,7 @@ transform = Transform( 1, 0, 0, 0, 0.959697, -0.281035, 0, 0.281035, 0.959697, 0
 shape = SubResource( 14 )
 
 [node name="shape3" type="CollisionShape" parent="terrain/sky"]
-transform = Transform( -1.62921e-07, 0.281035, 0.959697, 0, 0.959697, -0.281035, -1, -4.57865e-08, -1.56355e-07, -167.251, 72.3808, 0.729561 )
+transform = Transform( -1.62921e-07, 0.281035, 0.959697, 0, 0.959697, -0.281035, -1, -4.57865e-08, -1.56355e-07, -155.449, 72.3808, 0.729561 )
 shape = SubResource( 14 )
 
 [node name="shape4" type="CollisionShape" parent="terrain/sky"]
@@ -1227,16 +1224,13 @@ transform = Transform( -1.74846e-05, 0, 23.841, 0, 55.517, 0, -400, 0, -1.04212e
 mesh = SubResource( 15 )
 material/0 = ExtResource( 19 )
 
-[node name="checkFall" type="Area" parent="terrain"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, -21.8162 )
+[node name="checkFall" type="Node" parent="terrain"]
 script = ExtResource( 39 )
 teleportPointPath = NodePath("UpPoint")
-
-[node name="CollisionShape" type="CollisionShape" parent="terrain/checkFall"]
-shape = SubResource( 16 )
+fallHeight = -150.0
 
 [node name="UpPoint" type="Spatial" parent="terrain/checkFall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 150.656, 6.3243 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.656006, -15.4919 )
 
 [node name="ambient" type="AudioStreamPlayer" parent="terrain"]
 stream = ExtResource( 7 )
@@ -2413,7 +2407,6 @@ bus = "Music"
 [connection signal="body_exited" from="terrain/props/houses/KP/DoorTeleport2/Area" to="terrain/props/houses/KP/DoorTeleport2" method="_on_body_exited"]
 [connection signal="body_entered" from="terrain/props/houses/KPP/DoorTeleport3/Area" to="terrain/props/houses/KPP/DoorTeleport3" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/KPP/DoorTeleport3/Area" to="terrain/props/houses/KPP/DoorTeleport3" method="_on_body_exited"]
-[connection signal="body_entered" from="terrain/checkFall" to="terrain/checkFall" method="_on_body_entered"]
 [connection signal="body_entered" from="rooms/cp/DoorTeleport/Area" to="rooms/cp/DoorTeleport" method="_on_body_entered"]
 [connection signal="body_exited" from="rooms/cp/DoorTeleport/Area" to="rooms/cp/DoorTeleport" method="_on_body_exited"]
 [connection signal="body_entered" from="rooms/cp/DoorTeleport2/Area" to="rooms/cp/DoorTeleport2" method="_on_body_entered"]

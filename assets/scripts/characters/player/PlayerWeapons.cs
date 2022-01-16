@@ -287,6 +287,23 @@ public class PlayerWeapons: CollisionShape
         newBullet.GlobalTransform = gunFire.GlobalTransform;
     }
 
+    private void SetGunEffects(bool on)
+    {
+        if (!IsInstanceValid(gunLight)
+            || !IsInstanceValid(gunFire)
+            || !IsInstanceValid(gunSmoke))
+        {
+            return;
+        }
+        
+        gunLight.Visible = on;
+        gunFire.Visible = on;
+        if (on)
+        {
+            gunSmoke.Restart();
+        }
+    }
+
     private async void handleShoot() {
         onetimeShoot = true;
         int ammo = GetAmmo();
@@ -347,13 +364,10 @@ public class PlayerWeapons: CollisionShape
             }
             player.Camera.ReturnRayBack();
 
-            gunLight.Visible = true;
-            gunSmoke.Restart();
-            gunFire.Visible = true;
+            SetGunEffects(true);
             shakeCameraUp();
             await global.ToTimer(0.06f);
-            gunFire.Visible = false;
-            gunLight.Visible = false;
+            SetGunEffects(false);
 
             if (!tempWeaponStats.Contains("isSilence")) {
                 enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);

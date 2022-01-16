@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -81,10 +81,6 @@
 [ext_resource path="res://assets/scripts/triggers/music/LoopingMusicPartChangeTrigger.cs" type="Script" id=79]
 [ext_resource path="res://objects/props/fire.tscn" type="PackedScene" id=80]
 [ext_resource path="res://objects/characters/ponies/armored_soldier.tscn" type="PackedScene" id=81]
-[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=82]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=83]
-[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=84]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=85]
 [ext_resource path="res://objects/props/buildings/base-houses/kazarma.tscn" type="PackedScene" id=87]
 [ext_resource path="res://objects/props/doors/door2.tscn" type="PackedScene" id=88]
 [ext_resource path="res://objects/props/furniture/bed-2.tscn" type="PackedScene" id=89]
@@ -142,7 +138,7 @@ extents = Vector3( 181.74, 1, 230.957 )
 script/source = "extends AudioStreamPlayer
 
 
-func _process(delta):
+func _process(_delta):
 	var parentVisible = get_parent().visible
 	if (playing != parentVisible):
 		playing = parentVisible
@@ -356,7 +352,7 @@ transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91
 IsImmortal = true
 dialogueCode = "trade1"
 moneyCount = 2000
-startItemCodes = [ "private_uniform", "power-armor", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12" ]
+startItemCodes = [ "private_uniform", "power-armor", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12", "ak47" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
@@ -1418,15 +1414,9 @@ myKey = "closed"
 transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.9578 )
 myKey = "closed"
 
-[node name="door10" type="StaticBody" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 88 )]
+[node name="door10" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 88 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.181, 17.5858, 0.207603, 18.8248 )
-physics_material_override = ExtResource( 61 )
-script = ExtResource( 82 )
-OpenSound = ExtResource( 83 )
-CloseSound = ExtResource( 85 )
 myKey = "closed"
-closedSound = ExtResource( 76 )
-openWithKeySound = ExtResource( 84 )
 
 [node name="notes" type="Spatial" parent="rooms/kazarma"]
 
@@ -1654,9 +1644,8 @@ chestCode = "cabinet"
 startAmmoCount = {
 }
 
-[node name="fusion_air" type="StaticBody" parent="rooms/kazarma/props" instance=ExtResource( 104 )]
+[node name="fusion_air" parent="rooms/kazarma/props" instance=ExtResource( 104 )]
 transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 1.43192, 3.04097, 20.7298 )
-physics_material_override = ExtResource( 6 )
 
 [node name="DoorTeleport4" parent="rooms/kazarma" instance=ExtResource( 52 )]
 transform = Transform( -4.77328e-08, 0, 1.139, 0, 1.315, 0, -1.092, 0, -4.97873e-08, 1.95312, 0.424095, -20.143 )

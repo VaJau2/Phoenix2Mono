@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=2]
+[gd_scene load_steps=192 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -362,9 +362,6 @@ extents = Vector3( 193.404, 136.659, 4.6054 )
 
 [sub_resource type="BoxShape" id=36]
 extents = Vector3( 295.774, 208.464, 4.6054 )
-
-[sub_resource type="BoxShape" id=37]
-extents = Vector3( 181.74, 1, 230.957 )
 
 [sub_resource type="QuadMesh" id=38]
 
@@ -788,17 +785,12 @@ agent/radius = 1.4
 script/source = "extends AudioStreamPlayer
 
 export var maxVolume = 2
-
-
-func _ready():
-	set_process(false)
-	yield(get_tree().create_timer(0.5, false), \"timeout\")
-	play()
-	set_process(true)
-
+var startTimer = 1
 
 func _process(delta):
-	if (volume_db < maxVolume):
+	if (startTimer > 0):
+		startTimer -= delta
+	elif (volume_db < maxVolume):
 		volume_db += delta
 	else:
 		set_process(false)
@@ -1289,16 +1281,13 @@ shape = SubResource( 35 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -39.0199, 208.29, 36.9095 )
 shape = SubResource( 36 )
 
-[node name="checkFall" type="Area" parent="terrain"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0 )
+[node name="checkFall" type="Node" parent="terrain"]
 script = ExtResource( 102 )
 teleportPointPath = NodePath("UpPoint")
-
-[node name="CollisionShape" type="CollisionShape" parent="terrain/checkFall"]
-shape = SubResource( 37 )
+fallHeight = -150.0
 
 [node name="UpPoint" type="Spatial" parent="terrain/checkFall"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -28.9814, 150.789, 25.5706 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -28.9814, 0.789001, 25.5706 )
 
 [node name="background" type="Spatial" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.5631, 0, 23.9769 )
@@ -2497,7 +2486,6 @@ script = SubResource( 81 )
 [connection signal="Die" from="terrain/props/shootingRange/targets/target2" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="Die" from="terrain/props/shootingRange/targets/target3" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="Die" from="terrain/props/shootingRange/targets/target4" to="triggers/DashTrainingTrigger" method="_on_target_die"]
-[connection signal="body_entered" from="terrain/checkFall" to="terrain/checkFall" method="_on_body_entered"]
 [connection signal="body_entered" from="rooms/sklad/DoorTeleport/Area" to="rooms/sklad/DoorTeleport" method="_on_body_entered"]
 [connection signal="body_exited" from="rooms/sklad/DoorTeleport/Area" to="rooms/sklad/DoorTeleport" method="_on_body_exited"]
 [connection signal="body_entered" from="rooms/armor-house/DoorTeleport/Area" to="rooms/armor-house/DoorTeleport" method="_on_body_entered"]

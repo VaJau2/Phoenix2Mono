@@ -144,7 +144,7 @@ public class SoundSteps: RayCast {
         }
 
         var collideObj = GetCollider();
-        if (collideObj is StaticBody collideBody) {
+        if (collideObj is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null) {
             var friction = collideBody.PhysicsMaterialOverride.Friction;
             var materialName = MatNames.GetMatName(friction);
             

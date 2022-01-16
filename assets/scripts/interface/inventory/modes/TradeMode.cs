@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class TradeMode: InventoryMode 
 {
-    const float PRICE_DIFF = 0.75f;
+    const float PRICE_DIFF = 0.8f;
 
     private Control tradeBack;
     private Label tradeLabel;

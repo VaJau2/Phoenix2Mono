@@ -5,7 +5,7 @@ public class MentatsEffect: Effect
     const float BRIGHTNESS = 0.1f;
     const float CONTRAST = 1.25f;
     const float SATURATION = 1.25f;
-    const float PRICE_DELTA = 0.5f;
+    const float PRICE_DELTA = 0.25f;
     const float MANA_DELTA = -0.6f;
     private Player player;
     private Global global => Global.Get();
