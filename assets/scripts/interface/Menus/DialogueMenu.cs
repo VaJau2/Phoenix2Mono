@@ -15,6 +15,7 @@ public class DialogueMenu : Control, IMenu
     RichTextLabel text;
     Button[] answers;
     string[] answerCodes;
+    Array answerText;
     Label leftName, rightName;
     bool isContinue = false;
     string tempAnswer = "";
@@ -171,17 +172,21 @@ public class DialogueMenu : Control, IMenu
         }
 
         //грузим варианты ответов
+        answerText.Clear();
         if (tempNode.Contains("options")) {
-            var options = tempNode["options"] as Array;
+            if (!(tempNode["options"] is Array options)) return;
             for(int i = 0; i < answers.Length; i++) {
                 if (i < options.Count) {
                     var option = options[i] as Dictionary;
+                    if (option == null) continue;
                     var optionCode = option["next"].ToString();
 
                     var optionNode = nodes[optionCode] as Dictionary;
+                    if (optionNode == null) continue;
                     var optionText = optionNode["body"].ToString();
 
-                    answers[i].Text = optionText;
+                    answerText.Add(optionText);
+                    answers[i].Text = (i + 1) + ": " + optionText;
                     answers[i].Visible = true;
 
                     if (optionNode.Contains("next")) {
@@ -194,7 +199,8 @@ public class DialogueMenu : Control, IMenu
             }
         } else {
             answers[0].Visible = true;
-            answers[0].Text = GetContinueText();
+            answerText.Add(GetContinueText());
+            answers[0].Text = "1: " + GetContinueText();
             answerCodes[0] = tempNode.Contains("next") ? tempNode["next"].ToString() : "";
         } 
     }
@@ -235,7 +241,7 @@ public class DialogueMenu : Control, IMenu
     {
         if (updateTempAnswer)
         {
-            tempAnswer = answers[i].Text;
+            tempAnswer = answerText[i].ToString();
         }
 
         updateTempAnswer = true;
@@ -270,6 +276,7 @@ public class DialogueMenu : Control, IMenu
             GetNode<Button>("answer4")
         };
         answerCodes = new[] {"", "", "", ""};
+        answerText = new Array();
     }
 
     public override void _Process(float delta)
@@ -294,6 +301,29 @@ public class DialogueMenu : Control, IMenu
             updateTempAnswer = false;
             answers[tempAnswerI].Text = answers[tempAnswerI].Text.Substring(1);
             tempAnswerCooldown = 0.05f;
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!MenuOn) return;
+        if (!(@event is InputEventKey eventKey)) return;
+        if (!eventKey.Pressed) return;
+
+        switch (eventKey.Scancode)
+        {
+            case (uint)KeyList.Key1:
+                _on_answer_pressed(0);
+                break;
+            case (uint)KeyList.Key2:
+                _on_answer_pressed(1);
+                break;
+            case (uint)KeyList.Key3:
+                _on_answer_pressed(2);
+                break;
+            case (uint)KeyList.Key4:
+                _on_answer_pressed(3);
+                break;
         }
     }
 }

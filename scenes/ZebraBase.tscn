@@ -1630,8 +1630,8 @@ transform = Transform( 4.414, 0, 0, 0, 4.414, 0, 0, 0, 4.414, -0.199, -0.001, 0.
 shape = SubResource( 27 )
 
 [node name="floor" type="StaticBody" parent="rooms/cp"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 physics_material_override = ExtResource( 53 )
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cp/floor"]
@@ -1647,6 +1647,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0178, 8.84338, 41.0265 )
 shape = SubResource( 29 )
 
 [node name="stair" type="StaticBody" parent="rooms/cp"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 54 )
 
 [node name="Stair" type="MeshInstance" parent="rooms/cp/stair"]
