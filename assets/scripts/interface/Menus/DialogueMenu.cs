@@ -22,6 +22,7 @@ public class DialogueMenu : Control, IMenu
     int tempAnswerI = -1;
     float tempAnswerCooldown;
     bool signalConnected = false;
+    private bool mayAnswer = true;
     private bool updateTempAnswer = true;
     
     [Signal]
@@ -173,6 +174,7 @@ public class DialogueMenu : Control, IMenu
 
         //грузим варианты ответов
         answerText.Clear();
+        mayAnswer = true;
         if (tempNode.Contains("options")) {
             if (!(tempNode["options"] is Array options)) return;
             for(int i = 0; i < answers.Length; i++) {
@@ -239,6 +241,9 @@ public class DialogueMenu : Control, IMenu
 
     public async void _on_answer_pressed(int i)
     {
+        if (answerText.Count <= i) return;
+        mayAnswer = false;
+        
         if (updateTempAnswer)
         {
             tempAnswer = answerText[i].ToString();
@@ -307,6 +312,7 @@ public class DialogueMenu : Control, IMenu
     public override void _Input(InputEvent @event)
     {
         if (!MenuOn) return;
+        if (!mayAnswer) return;
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
 

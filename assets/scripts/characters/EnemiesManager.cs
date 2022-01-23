@@ -62,12 +62,29 @@ public class EnemiesManager : Node, ISavable
         SetProcess(false);
     }
 
+    private bool PositionIsCloseToPlayer(Vector3 position)
+    {
+        var tempDistance = player.GlobalTransform.origin.DistanceTo(position);
+        return tempDistance > SPAWN_MIN_DIST && tempDistance < SPAWN_MAX_DIST;
+    }
+
     private VisibilityNotifier GetRandomSpawnPoint()
     {
         return (from tempSpawner in spawnPoints
-            let tempDistance = player.GlobalTransform.origin.DistanceTo(tempSpawner.GlobalTransform.origin)
-            where tempDistance > SPAWN_MIN_DIST && tempDistance < SPAWN_MAX_DIST && !tempSpawner.IsOnScreen()
+            where PositionIsCloseToPlayer(tempSpawner.GlobalTransform.origin) && !tempSpawner.IsOnScreen()
             select tempSpawner).FirstOrDefault();
+    }
+
+    private void MakeCloseEnemyAttack()
+    {
+        foreach (var enemy in enemies.Where(enemy => 
+            enemy.state == NPCState.Idle && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
+        )
+        {
+            enemy.tempVictim = player;
+            enemy.SetState(NPCState.Attack);
+            break;
+        }
     }
 
     private void SpawnEnemy(VisibilityNotifier point)
@@ -159,6 +176,8 @@ public class EnemiesManager : Node, ISavable
 
         var spawnPoint = GetRandomSpawnPoint();
         SpawnEnemy(spawnPoint);
+        //уже наспавненные враги тоже будут атаковать
+        MakeCloseEnemyAttack();
         spawnCooldown = SPAWN_COOLDOWN;
 
         spawnedCount++;
