@@ -370,15 +370,21 @@ agent/radius = 1.55
 script/source = "extends AudioStreamPlayer
 
 export var maxVolume = 2
-var startTimer = 0.5
+var startTimer = 1
+var played = false
 
 func _process(delta):
 	if (startTimer > 0):
 		startTimer -= delta
-	elif (volume_db < maxVolume):
-		volume_db += delta
 	else:
-		set_process(false)
+		if (!played):
+			play()
+			played = true
+		
+		if (volume_db < maxVolume):
+			volume_db += delta
+		else:
+			set_process(false)
 "
 
 [node name="Scene" type="Node"]
