@@ -201,7 +201,7 @@ surfaces/0 = {
 script/source = "extends AudioStreamPlayer
 
 
-func _process(delta):
+func _process(_delta):
 	var parentVisible = get_parent().visible
 	if (playing != parentVisible):
 		playing = parentVisible

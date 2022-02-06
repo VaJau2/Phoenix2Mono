@@ -63,6 +63,7 @@ public class LoadItemsFromSuitcase : TriggerBase
                 var itemCode = itemCodes[i].ToString();
                 if (itemCode == "_") continue;
 
+                suitcaseEmpty = false;
                 var itemCount = Convert.ToInt32(itemCounts[i]);
                 if (itemCount > 1)
                 {

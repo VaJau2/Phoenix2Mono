@@ -714,7 +714,7 @@ newLocationPath = NodePath("../../../../rooms/storage")
 otherDoorPath = NodePath("../../../../rooms/storage/DoorTeleport1")
 
 [node name="spawn" type="Spatial" parent="terrain/props/storage"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.879, 0.224957, -5.59553 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.879, 0.224957, -5.59554 )
 
 [node name="SpotLight3" type="OmniLight" parent="terrain/props/storage"]
 transform = Transform( 4.88762e-07, 0, -1, 0, 1, 0, 1, 0, 4.88762e-07, 26.8635, 3.45725, -4.94302 )
@@ -858,6 +858,7 @@ shape = SubResource( 12 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0 )
 script = ExtResource( 102 )
 teleportPointPath = NodePath("UpPoint")
+fallHeight = -150.0
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/checkFall"]
 shape = SubResource( 13 )
@@ -1145,7 +1146,7 @@ transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 1
 
 [node name="terminal" parent="rooms/kp/props" instance=ExtResource( 62 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.374886, 2.78462, -18.7965 )
-files = PoolStringArray( "lostArmor", "terrorists", "terrorists2", "tradeRobot" )
+files = PoolStringArray(  )
 doorsPath = [ NodePath("../../doors/door3"), NodePath("../../doors/door") ]
 
 [node name="fusion_air" parent="rooms/kp/props" instance=ExtResource( 104 )]
@@ -1193,7 +1194,7 @@ visible = false
 script = ExtResource( 49 )
 
 [node name="spawn" type="Spatial" parent="rooms/storage"]
-transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, 6.25745, -8.4872, 11.2573 )
+transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, 5.98739, -8.4872, 11.0336 )
 
 [node name="DoorTeleport1" parent="rooms/storage" instance=ExtResource( 20 )]
 transform = Transform( -2.15914e-07, 0, -2.09119, 0, 1.98, 0, 1.405, 0, -3.61196e-07, 3.94427, -9.73831, 18.6662 )
