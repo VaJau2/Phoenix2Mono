@@ -92,13 +92,12 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, -180 ), Vector3( 0, -100, -180 ) ]
 }
 
-[node name="cabinet" type="StaticBody" groups=[
-"savable",
-]]
+[node name="cabinet" type="StaticBody" groups=["savable"]]
 physics_material_override = ExtResource( 6 )
 script = ExtResource( 5 )
 OpenSound = ExtResource( 1 )
 CloseSound = ExtResource( 3 )
+chestCode = "cabinet"
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.46387, 0, 0, 0, 1.46387, 0, 0, 0, 1.46387, -0.0549704, 0, -0.0070473 )
