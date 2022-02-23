@@ -1044,14 +1044,20 @@ script/source = "extends AudioStreamPlayer
 
 export var maxVolume = 2
 var startTimer = 2
+var onetimePlay = false
 
 func _process(delta):
 	if (startTimer > 0):
 		startTimer -= delta
-	elif (volume_db < maxVolume):
-		volume_db += delta
 	else:
-		set_process(false)
+		if (!onetimePlay):
+			play()
+			onetimePlay = true
+		
+		if (volume_db < maxVolume):
+			volume_db += delta
+		else:
+			set_process(false)
 "
 
 [node name="Scene" type="Node"]

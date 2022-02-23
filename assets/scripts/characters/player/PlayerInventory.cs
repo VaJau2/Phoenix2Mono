@@ -64,6 +64,11 @@ public class PlayerInventory {
         }
     }
 
+    public void SetBindsCooldown(float cooldown)
+    {
+        menu.SetBindsCooldown(cooldown);
+    }
+
     public Array<string> GetKeys() => tempKeys;
     
 

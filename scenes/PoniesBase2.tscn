@@ -396,7 +396,7 @@ WalkSpeed = 4
 [node name="armored_soldier" parent="npc" instance=ExtResource( 81 )]
 transform = Transform( 0.443541, 0, 0.896254, 0, 1, 0, -0.896254, 0, 0.443541, -36.1053, -0.30198, 53.723 )
 IdleAnim = "Sit"
-dialogueCode = ""
+dialogueCode = "talk"
 WalkSpeed = 5
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
@@ -1046,12 +1046,10 @@ SpawnRandomItems = true
 [node name="cabinet" parent="rooms/kp/props" instance=ExtResource( 58 )]
 transform = Transform( -1.3, 0, -5.06239e-07, 0, 1.3, 0, 5.06239e-07, 0, -1.3, 27.9456, 3.03883, -7.41648 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 
 [node name="cabinet3" parent="rooms/kp/props" instance=ExtResource( 58 )]
 transform = Transform( -1.3, 0, -5.06239e-07, 0, 1.3, 0, 5.06239e-07, 0, -1.3, 27.9456, 3.37461, 17.8245 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startItemCodes = [ "laserRifle" ]
 startAmmoCount = {
 "ammoEnergy": 20
@@ -1582,66 +1580,56 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.0886
 [node name="cabinet" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, -13.1515 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 
 [node name="cabinet2" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, -5.29491 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet3" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, 2.51974 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet4" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, 10.7308 )
-chestCode = "cabinet"
 startItemCodes = [ "nucBattery" ]
 startAmmoCount = {
 }
 
 [node name="cabinet5" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.58931, 2.81065, 20.3763 )
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet6" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.58931, 2.81065, 12.9257 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet7" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.50232, 2.68923, 10.8333 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet8" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.50232, 2.68923, 2.83714 )
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet9" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.50232, 2.68923, -5.18206 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet10" parent="rooms/kazarma/props" instance=ExtResource( 58 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.50232, 2.68923, -13.0624 )
 SpawnRandomItems = true
-chestCode = "cabinet"
 startAmmoCount = {
 }
 

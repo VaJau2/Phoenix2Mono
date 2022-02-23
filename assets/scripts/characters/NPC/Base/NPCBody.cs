@@ -40,6 +40,11 @@ public class NPCBody
         }
     }
 
+    public void StopAnim()
+    {
+        playback.Stop();
+    }
+
     public Vector3 GetDirToTarget(Spatial target)
     {
         Vector3 targetDirPos = target.GlobalTransform.origin;

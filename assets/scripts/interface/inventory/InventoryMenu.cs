@@ -30,6 +30,14 @@ public class InventoryMenu : Control, IMenu
         mode.CloseMenu();
     }
 
+    public void SetBindsCooldown(float cooldown)
+    {
+        if (mode is UsualMode usual)
+        {
+            usual.bindsCooldown = cooldown;
+        }
+    }
+
     public void ChangeMode(NewInventoryMode newMode = NewInventoryMode.Usual)
     {
         switch (newMode) {

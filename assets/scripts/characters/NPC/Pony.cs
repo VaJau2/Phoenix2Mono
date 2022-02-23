@@ -133,6 +133,10 @@ public class Pony: NpcWithWeapons
         if (!string.IsNullOrEmpty(IdleAnim))
         {
             body.PlayAnim(IdleAnim);
+        } 
+        else
+        {
+            body.StopAnim();
         }
     }
 

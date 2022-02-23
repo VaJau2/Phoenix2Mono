@@ -5,6 +5,8 @@ using Object = Godot.Object;
 
 public class UsualMode: InventoryMode {
 
+    public float bindsCooldown;
+
     private FurnChest tempBag = null;
     private Control wearBack;
 
@@ -132,6 +134,8 @@ public class UsualMode: InventoryMode {
 
     private void UseHotkeys() 
     {
+        if (bindsCooldown > 0) return;
+
         for (var i = 0; i < 10; i++)
         {
             if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
@@ -329,6 +333,11 @@ public class UsualMode: InventoryMode {
         else
         {
             clickTimer = 0;
+        }
+
+        if (bindsCooldown > 0)
+        {
+            bindsCooldown -= delta;
         }
     }
 
