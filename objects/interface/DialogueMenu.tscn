@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/DialogueMenu.cs" type="Script" id=2]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
+[ext_resource path="res://assets/scripts/interface/Menus/DialogueAudio.cs" type="Script" id=4]
 
 [node name="DialogueMenu" type="Control"]
 pause_mode = 2
@@ -211,6 +212,11 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="audi" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
+volume_db = -5.0
+bus = "Voice"
+script = ExtResource( 4 )
 
 [connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [ 0 ]]
 [connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [ 0 ]]

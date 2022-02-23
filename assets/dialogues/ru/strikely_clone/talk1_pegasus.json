@@ -1,0 +1,597 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[Ты смотришь на свою точную копию. Она выглядит озадаченной]",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C1(2)"
+                }
+            ]
+        },
+        "C1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[Ткнуть её копытом]",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C2"
+        },
+        "C1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Привет?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C3"
+        },
+        "C2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[Ты делаешь *буп* копытом ей в мордочку. Она выглядит возмущенной и очень мило морщится. Это определенно стоило того]",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C2(1)"
+                }
+            ]
+        },
+        "C2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Привет?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Эм… привет. Не обижайся, но я хочу проверить, что ты - действительно я.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C3(2)"
+                }
+            ]
+        },
+        "C3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я же выгляжу так же, как ты…",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C4"
+        },
+        "C3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно, давай.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C5"
+        },
+        "C4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Внешность можно изменить, но характер - вряд ли.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "next": "C5"
+        },
+        "C5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " Простой вопрос. Что ты сделаешь с Бельгетсом, если увидишь его?",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C5(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C5(3)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C5(4)"
+                }
+            ]
+        },
+        "C5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я прикончу ублюдка.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C6"
+        },
+        "C5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я заставлю его страдать.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C6"
+        },
+        "C5(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Моя месть будет страшной.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C6"
+        },
+        "C5(4)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я поздороваюсь и спрошу, как дела.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "С7"
+        },
+        "C6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Жестоко, но правда. Хотя в том, что он сделал, можно найти плюсы.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "next": "С8"
+        },
+        "С7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Глупые шутки… Да, ты - определенно я.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "next": "С8"
+        },
+        "С8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Интересно, что сказала бы мама, если бы увидела нас двоих, хи-хи",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "С8(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "С8(2)"
+                }
+            ]
+        },
+        "С8(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нам бы пришлось перекопать весь огород вдвоем.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "С9"
+        },
+        "С8(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты знаешь, что не увидела бы…",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C10"
+        },
+        "С9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да, она всегда была рациональной. Пора бы и нам перенять от неё эту черту, как думаешь?",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "С9(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "С9(2)"
+                }
+            ]
+        },
+        "С9(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нам нужно сбежать отсюда",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C15"
+        },
+        "С9(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Как же я скучаю по ней…",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C13"
+        },
+        "C10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да… Этот старикашка нас провел как жеребят! Но несмотря на это, он оказался прав, да ведь? Мегазаклинания действительно упали.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C10(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C10(2)"
+                }
+            ]
+        },
+        "C10(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Интересно, сколько лет прошло с того момента?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C11"
+        },
+        "C10(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Как же я скучаю по ней…",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C13"
+        },
+        "C11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Жеребец, который привел меня сюда, говорил, что двести. Как это вообще возможно?",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C11(1)"
+                }
+            ]
+        },
+        "C11(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Думаю, это из-за “Феникса 1”.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C12"
+        },
+        "C12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Страйкли-подопытная-пони. Абсолютно не звучит.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C12(1)"
+                }
+            ]
+        },
+        "C12(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нам нужно сбежать отсюда.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C15"
+        },
+        "C13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я понимаю тебя, как никто другой. Иди сюда…",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C13(1)"
+                }
+            ]
+        },
+        "C13(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[обнять клона]",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C14"
+        },
+        "C14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[обнимашки]",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C14(1)"
+                }
+            ]
+        },
+        "C14(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нам нужно сбежать отсюда.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C15"
+        },
+        "C15": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Пока на нас эти ошейники, а у них детонаторы от них, нам не стоит рисковать.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C15(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C15(2)"
+                }
+            ]
+        },
+        "C15(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Просто сдадимся и не будем делать ничего?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C16"
+        },
+        "C15(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да. Дождемся удобного случая, и тогда будем действовать.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли"
+        },
+        "C16": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты же знаешь, как нужно действовать в подобных ситуациях. Не высовываться, сидеть тихо и ждать подмоги.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C16(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C16(2)"
+                }
+            ]
+        },
+        "C16(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да какая здесь подмога, о чем ты вообще?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C17"
+        },
+        "C16(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Точно. Тогда будем ждать.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C18"
+        },
+        "C17": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И правда… но у меня больше нет вариантов, и почему-то я уверена, что у тебя тоже. ",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C17(1)"
+                }
+            ]
+        },
+        "C17(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да, ты права. Не хочется признавать, но мы должны ждать. ",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C18"
+        },
+        "C18": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы должны определиться с тем, что мы будем делать, когда появится возможность сбежать.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C18(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C18(2)"
+                }
+            ]
+        },
+        "C18(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нужен четкий план действий.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C19"
+        },
+        "C18(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Будем импровизировать.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "С21"
+        },
+        "C19": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Как насчет того, что я буду использовать оружие дальнего боя и прикрывать тебя с воздуха?",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "С19(1)"
+                }
+            ]
+        },
+        "С19(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Где ты здесь достанешь оружие дальнего боя? Держись на земле. Мы должны прикрывать друг друга.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "С20"
+        },
+        "С20": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно, ты права... ",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "next": "С22"
+        },
+        "С21": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ситуация действительно не из простых, четкого плана и не придумаешь. Надеюсь, мы выживем. ",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "next": "С22"
+        },
+        "С22": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ещё мы должны как-то отличать друг друга в будущем. Есть какие-нибудь идеи?",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C22(1)"
+                }
+            ]
+        },
+        "C22(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Есть одна - измени форму своей гривы.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C23"
+        },
+        "C23": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хорошая идея. [Она тормошит копытом свою гриву и придает ей другую форму]",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C23(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "C23(2)"
+                }
+            ]
+        },
+        "C23(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Сойдет.",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C24"
+        },
+        "C23(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Так ты гораздо милее. ",
+            "speaker": "Страйкли",
+            "opposite": "другая Страйкли",
+            "next": "C25"
+        },
+        "C24": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да...тогда ждем.",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли"
+        },
+        "C25": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[Она краснеет и молча отворачивается]",
+            "speaker": "другая Страйкли",
+            "opposite": "Страйкли"
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "другая Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

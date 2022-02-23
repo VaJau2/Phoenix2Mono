@@ -1,0 +1,121 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Итак… мы убили всех, да?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C1(1)"
+                }
+            ]
+        },
+        "C1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "На базе осталась только одна Страйкли",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C2"
+        },
+        "C2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И какой теперь у нас… план действий?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C2(1)"
+                }
+            ]
+        },
+        "C2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Кто-нибудь из вас знает, как отсюда попасть в город?",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы все знаем столько же, сколько и ты. И ты вообще уверена, что этот город еще существует?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C3(1)"
+                }
+            ]
+        },
+        "C3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А что ты предлагаешь? Остаться на этой базе?",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C4"
+        },
+        "C4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А почему бы и нет? Если эти … пони … находились здесь, значит, у них где-то должны быть припасы?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "next": "C5"
+        },
+        "C5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тише… слышите? Звук двигателя? Кто-то едет к нам?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C5(1)"
+                }
+            ]
+        },
+        "C5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Один из них говорил, что за нами приедут. Похоже, это они.",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C6"
+        },
+        "C6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нужно устроить засаду! Найдите укрытие!",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли"
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "другие Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

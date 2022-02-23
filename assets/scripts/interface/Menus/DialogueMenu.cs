@@ -24,6 +24,8 @@ public class DialogueMenu : Control, IMenu
     bool signalConnected = false;
     private bool mayAnswer = true;
     private bool updateTempAnswer = true;
+
+    private DialogueAudio dialogueAudio;
     
     [Signal]
     public delegate void FinishTalking();
@@ -53,6 +55,7 @@ public class DialogueMenu : Control, IMenu
         string lang = InterfaceLang.GetLang();
         string path = "assets/dialogues/" + lang + "/" + npcName + "/" + code + ".json";
         nodes = Global.loadJsonFile(path)["nodes"] as Dictionary;
+        dialogueAudio.LoadNpc(npcName, code);
         MoveToNode((nodes.Keys as Array)[0].ToString());
     }
 
@@ -117,6 +120,8 @@ public class DialogueMenu : Control, IMenu
                 //грузим имена персонажей
                 leftName.Text  = tempNode["opposite"].ToString();
                 rightName.Text = tempNode["speaker"].ToString();
+
+                dialogueAudio.TryToPlayAudio(code);
                 break;
             case "combat":
                 npc.aggressiveAgainstPlayer = true;
@@ -215,6 +220,8 @@ public class DialogueMenu : Control, IMenu
 
     public void CloseMenu()
     {
+        dialogueAudio.Stop();
+        global.player.inventory.SetBindsCooldown(0.5f);
         global.SetPause(this, false, false);
         if (npc != null) {
             npc.SetState(NPCState.Idle);
@@ -271,6 +278,7 @@ public class DialogueMenu : Control, IMenu
     {
         MenuBase.LoadColorForChildren(this);
 
+        dialogueAudio = GetNode<DialogueAudio>("../audi");
         text      = GetNode<RichTextLabel>("text");
         leftName  = GetNode<Label>("leftName");
         rightName = GetNode<Label>("rightName");
@@ -282,6 +290,7 @@ public class DialogueMenu : Control, IMenu
         };
         answerCodes = new[] {"", "", "", ""};
         answerText = new Array();
+
     }
 
     public override void _Process(float delta)

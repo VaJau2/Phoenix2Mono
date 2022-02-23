@@ -18,6 +18,7 @@
         "fullscreen": "Set fullscreen",
         "sound": "Set sound volume",
         "music": "Set music volume",
+        "voice": "Set voice volume",
         "language": "Set other language",
         "controls": "Set controls",
         "color_r": "Set red for interface color",
@@ -36,6 +37,7 @@
         "fullscreen": "Fullscreen:",
         "sound": "Sound volume:",
         "music": "Music volume:",
+        "voice": "Voice volume:",
         "color": "Interface color:"
     },
 

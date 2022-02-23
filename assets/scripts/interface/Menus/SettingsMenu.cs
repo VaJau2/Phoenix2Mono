@@ -24,12 +24,14 @@ public class SettingsMenu : MenuBase
     private Label fullscreenLabel;
     private Label soundLabel;
     private Label musicLabel;
+    private Label voiceLabel;
     private Button controlsButton;
     private Slider mouseSlider;
     private Slider distanceSlider;
     private Button fullscreenButton;
     private Slider soundSlider;
     private Slider musicSlider;
+    private Slider voiceSlider;
     private Button defaultButton;
     private Dictionary<string, Label> controlLabels;
 
@@ -60,11 +62,13 @@ public class SettingsMenu : MenuBase
         fullscreenButton = GetNode<Button>("Settings/fullscreen_button");
         soundLabel = GetNode<Label>("Settings/sound_label");
         musicLabel = GetNode<Label>("Settings/music_label");
+        voiceLabel = GetNode<Label>("Settings/voice_label");
         controlsButton = GetNode<Button>("Settings/controls");
         mouseSlider = GetNode<Slider>("Settings/mouse_slider");
         distanceSlider = GetNode<Slider>("Settings/distance_slider");
         soundSlider = GetNode<Slider>("Settings/sound_slider");
         musicSlider = GetNode<Slider>("Settings/music_slider");
+        voiceSlider = GetNode<Slider>("Settings/voice_slider");
 
         colorLabel = GetNode<Label>("Settings/colorBlock/label");
         rSlider = GetNode<Slider>("Settings/colorBlock/r_slider");
@@ -107,6 +111,7 @@ public class SettingsMenu : MenuBase
         fullscreenLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "fullscreen");
         soundLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "sound");
         musicLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "music");
+        voiceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "voice");
         controlsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "controls");
 
         shadowsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "shadows", 
@@ -157,6 +162,7 @@ public class SettingsMenu : MenuBase
         distanceSlider.Value = global.Settings.distance;
         soundSlider.Value = global.Settings.soundVolume;
         musicSlider.Value = global.Settings.musicVolume;
+        voiceSlider.Value = global.Settings.voiceVolume;
     }
 
     private void loadControlButtons()
@@ -333,6 +339,11 @@ public class SettingsMenu : MenuBase
     public void _on_music_slider_value_changed(float value)
     {
         global.Settings.SetMusicVolume(value);
+    }
+
+    public void _on_voice_slider_value_changed(float value)
+    {
+        global.Settings.SetVoiceVolume(value);
     }
 
     public void _on_controls_pressed()

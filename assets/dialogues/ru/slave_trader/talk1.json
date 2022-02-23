@@ -1,0 +1,358 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[Ты чувствуешь, как на твою шею надели какое-то устройство. Ты слышишь щелчок замка и тихий писк.]",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S2"
+        },
+        "S2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Говорить умеешь?",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S2(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S2(2)"
+                }
+            ]
+        },
+        "S2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S3"
+        },
+        "S2(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[промолчать]",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S10"
+        },
+        "S3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Это хорошо. Тогда слушай меня внимательно, два раза я повторять не буду.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S4"
+        },
+        "S4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "На тебе взрывающийся ошейник, так что на твоем месте я бы не делал никаких глупостей.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S5"
+        },
+        "S5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И под глупостями я имею вообще все. Любой шаг в сторону, и я нажму на детонатор, понятно?",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S5(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S5(3)"
+                }
+            ]
+        },
+        "S5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Понятно",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S7"
+        },
+        "S5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[промолчать]",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S6"
+        },
+        "S5(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вот же ублюдок",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S13"
+        },
+        "S6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Будем считать, что ты поняла. ",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S7"
+        },
+        "S7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тогда прими мои поздравления - я только что нашел тебе новую официальную работу. Добро пожаловать в нашу организацию.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S8"
+        },
+        "S8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Условия работы будут рабскими. Буквально.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S9"
+        },
+        "S9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А теперь давай за мной. Я отведу тебя в твой временный кабинет. ",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S9(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S9(2)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S9(3)"
+                }
+            ]
+        },
+        "S9(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец"
+        },
+        "S9(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[промолчать]",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S21"
+        },
+        "S9(3)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Никуда я не пойду",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S20"
+        },
+        "S10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А мне почему-то кажется, что умеешь. Но, может, так даже лучше. Некоторым особо говорливым приходилось отрезать языки, лишь бы они заткнулись.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S10(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S10(2)"
+                }
+            ]
+        },
+        "S10(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Отрезать языки? Куда я, Луна меня забери, попала?",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S12"
+        },
+        "S10(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[промолчать]",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S11"
+        },
+        "S11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Слушай меня внимательно, два раза я повторять не буду.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S4"
+        },
+        "S12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "*смешок* Луна тебя уже не заберет, она уже двести лет как мертва. А ты еще можешь выжить. Слушай внимательно, два раза я повторять не буду. ",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S4"
+        },
+        "S13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ох...ты только что нарушила единственное правило. На первый раз я тебя прощу. Второй будет последним, ясно?",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S13(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S13(2)"
+                }
+            ]
+        },
+        "S13(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ясно",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S7"
+        },
+        "S13(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не ясно",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S14"
+        },
+        "S14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты настолько тупая? Как бы мне попроще объяснить…",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S15"
+        },
+        "S15": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[активно жестикулирует] Ты делать глупые вещи... ",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S16"
+        },
+        "S16": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Твой ошейник взрываться...",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S17"
+        },
+        "S17": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты умирать.",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S18"
+        },
+        "S18": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты слушать меня и не делать глупые вещи...",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S19"
+        },
+        "S19": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты жить долго и счастливо. Теперь ясно?",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S19(1)"
+                }
+            ]
+        },
+        "S19(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно, я поняла. Я не тупая",
+            "speaker": "Страйкли",
+            "opposite": "Работорговец",
+            "next": "S7"
+        },
+        "S20": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты все еще не поняла? У меня детонатор от твоего ошейника! Я сейчас пойду наверх, и если не увижу тебя за собой, тут же нажму на него, и ты умрешь нахер!",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S22"
+        },
+        "S21": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И да, чуть не забыл. Если я не увижу тебя за собой, я тут же нажму на детонатор, понятно?",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли",
+            "next": "S22"
+        },
+        "S22": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Лучше бы тебе пойти за мной…",
+            "speaker": "Работорговец",
+            "opposite": "Страйкли"
+        }
+    },
+    "speakers": {
+        "Работорговец": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

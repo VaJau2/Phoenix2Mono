@@ -1,0 +1,113 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Пф… всего лишь трое. И это вся их армия?",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C1(1)"
+                }
+            ]
+        },
+        "C1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Это было легко.",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C2"
+        },
+        "C2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И теперь у нас есть целый грузовик на ходу!",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C2(1)"
+                }
+            ]
+        },
+        "C2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А ты знаешь, куда мы могли бы поехать на нём?",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да куда угодно, лишь бы подальше отсюда!",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C3(1)"
+                }
+            ]
+        },
+        "C3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Звучит как план! Чур - ты за рулем!",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C4"
+        },
+        "C4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну блин… у меня же было всего лишь три дня на обучение вождению… два из которых я болела!",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C4(1)"
+                }
+            ]
+        },
+        "C4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не правда, у тебя было больше. Или ты забыла второй курс?",
+            "speaker": "Страйкли",
+            "opposite": "другие Страйкли",
+            "next": "C5"
+        },
+        "C5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ничего я не забыла. Ладно, я за рулем. Поехали отсюда.",
+            "speaker": "другие Страйкли",
+            "opposite": "Страйкли"
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "другие Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

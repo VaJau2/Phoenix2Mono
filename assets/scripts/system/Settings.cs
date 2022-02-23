@@ -16,6 +16,7 @@ public class Settings
 
     public float soundVolume {get; private set;}
     public float musicVolume {get; private set;}
+    public float voiceVolume {get; private set;}
 
     public bool fullscreen {get; private set;} = false;
 
@@ -43,6 +44,12 @@ public class Settings
     {
         updateAudioBus(1, volume);
         musicVolume = volume;
+    }
+
+    public void SetVoiceVolume(float volume)
+    {
+        updateAudioBus(3, volume);
+        voiceVolume = volume;
     }
 
     public void ChangeShadows(int settingNum) 
@@ -84,7 +91,8 @@ public class Settings
 
         config.SetValue("audio", "sound_volume", soundVolume);
         config.SetValue("audio", "music_volume", musicVolume);
-        
+        config.SetValue("audio", "voice_volume", voiceVolume);
+
         config.Save("res://settings.cfg");
     }
 
@@ -119,6 +127,7 @@ public class Settings
 
             SetSoundVolume((float)config.GetValue("audio", "sound_volume"));
             SetMusicVolume((float)config.GetValue("audio", "music_volume"));
+            SetVoiceVolume((float)config.GetValue("audio", "voice_volume"));
             
             SettingsLoaded = true;
         }

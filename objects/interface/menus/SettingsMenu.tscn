@@ -359,9 +359,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 74.0
+margin_top = 76.0
 margin_right = 64.0
-margin_bottom = 96.0
+margin_bottom = 98.0
 theme = ExtResource( 2 )
 text = "Громкость музыки:"
 align = 2
@@ -375,9 +375,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 74.0
+margin_top = 76.0
 margin_right = 398.0
-margin_bottom = 94.0
+margin_bottom = 96.0
 theme = ExtResource( 2 )
 min_value = -20.0
 max_value = 2.0
@@ -402,6 +402,69 @@ __meta__ = {
 }
 
 [node name="music_border2" type="Label" parent="Settings/music_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.00018
+margin_top = -7.00002
+margin_right = 9.00018
+margin_bottom = 7.99998
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="voice_label" type="Label" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = 108.0
+margin_right = 64.0
+margin_bottom = 130.0
+theme = ExtResource( 2 )
+text = "Громкость озвучки:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="voice_slider" type="HSlider" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 98.0
+margin_top = 108.0
+margin_right = 398.0
+margin_bottom = 128.0
+theme = ExtResource( 2 )
+min_value = -20.0
+max_value = 2.0
+step = 0.1
+value = 2.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="voice_border" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -7.50002
+margin_right = -3.0
+margin_bottom = 7.49998
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="voice_border2" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1450,6 +1513,9 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
 [connection signal="mouse_exited" from="Settings/music_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="mouse_entered" from="Settings/voice_slider" to="." method="_on_mouse_entered" binds= [ "choose", "voice" ]]
+[connection signal="mouse_exited" from="Settings/voice_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/voice_slider" to="." method="_on_voice_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
 [connection signal="mouse_exited" from="Settings/language_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/language_button" to="." method="_on_language_button_pressed"]
