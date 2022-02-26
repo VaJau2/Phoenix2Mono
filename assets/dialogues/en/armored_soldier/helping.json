@@ -79,6 +79,19 @@
     "S3(1)": {
       "kind": "narration",
       "root_node": false,
+      "body": "SetSavableValue",
+      "set": [
+        {
+          "key": "save_armored_soldier",
+          "op": "set",
+          "value": 1
+        }
+      ],
+      "next": "S3(1.1)"
+    },
+    "S3(1.1)": {
+      "kind": "narration",
+      "root_node": false,
       "body": "ChangeDialogueCode"
     }
   },

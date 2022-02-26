@@ -175,20 +175,17 @@ public class SoundSteps: RayCast {
         }
     }
 
+    public void PlayJumpSound()
+    {
+        PlaySound(jump);
+        timer = STEP_COOLDOWN;
+    }
+
     public override void _Process(float delta)
     {
         if (isPlayer) {
             if (!(parent as Player).MayMove) {
                 return;
-            }
-
-            if (global.playerRace != Race.Unicorn && !playerCrouching) {
-                var pegasus = parent as Player_Pegasus;
-                if (Input.IsActionJustPressed("jump") && (pegasus == null || !pegasus.IsFlying)) {
-                    PlaySound(jump);
-                    timer = STEP_COOLDOWN;
-                    return;
-                }
             }
         }
 

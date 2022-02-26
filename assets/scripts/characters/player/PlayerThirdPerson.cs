@@ -8,6 +8,7 @@ public class PlayerThirdPerson : Spatial
     public Camera thirdCamera;
     public Camera firstCamera;
     public RayCast TempRay;
+    public bool MayChange = true;
 
     private Player player;
     private Control eyePartsInterface;
@@ -27,8 +28,13 @@ public class PlayerThirdPerson : Spatial
     private GeometryInstance Body_third;
 
 
-    private void SetThirdView(bool on) 
+    public void SetThirdView(bool on) 
     {
+        if (!MayChange)
+        {
+            return;
+        }
+
         firstCamera.Current = !on;
         thirdCamera.Current = on;
         RayFirst.Enabled = !on;

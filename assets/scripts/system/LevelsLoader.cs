@@ -190,7 +190,7 @@ public class LevelsLoader : Node
 			//если это created-нод, у него хранится только имя
 			//если это существующий нод, у него хранится путь от /root/Main...
 			Node node = !objKey.BeginsWith("Created_") 
-				? scene.GetNode(objKey) 
+				? scene.GetNodeOrNull(objKey) 
 				: Global.FindNodeInScene(scene, objKey);
 			if (node is ISavable savable)
 			{

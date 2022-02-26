@@ -231,8 +231,13 @@ public class Player : Character
         GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
     }
 
-    protected void Sit(bool sitOn) 
+    public void Sit(bool sitOn) 
     {
+        if (IsCrouching == sitOn)
+        {
+            return;
+        }
+
         IsCrouching = sitOn;
         Stealth.SetLabelVisible(sitOn);
         if (sitOn) {
@@ -275,6 +280,7 @@ public class Player : Character
             } else {
                 OnStairs = false;
                 Velocity.y = JUMP_SPEED;
+                soundSteps.PlayJumpSound();
             }
         }
     }

@@ -82,8 +82,8 @@ public class PlayerCamera: Camera
         }
 
         if (eyesClosed) {
-            eyePartUp.RectPosition = setRectY(eyePartUp.RectPosition, -200);
-            eyePartDown.RectPosition = setRectY(eyePartDown.RectPosition, -200);
+            eyePartUp.RectPosition = setRectY(eyePartUp.RectPosition, 0);
+            eyePartDown.RectPosition = setRectY(eyePartDown.RectPosition, 0);
         } else if(fovClosing) {
             float closeFov = 42f;
 

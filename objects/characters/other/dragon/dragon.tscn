@@ -1453,9 +1453,7 @@ extents = Vector3( 5.24435, 2.18318, 14.3875 )
 [sub_resource type="BoxShape" id=18]
 extents = Vector3( 129.802, 113.829, 172.043 )
 
-[node name="dragon" type="KinematicBody" groups=[
-"savable",
-]]
+[node name="dragon" type="KinematicBody" groups=["savable"]]
 collision_layer = 5
 collision_mask = 4
 script = ExtResource( 4 )
@@ -1696,9 +1694,9 @@ myPosPath = NodePath("../Armature/Skeleton/BoneAttachment 3/wingR")
 
 [node name="smash-area" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.333096, 0 )
-monitorable = false
 collision_layer = 5
 collision_mask = 4
+monitorable = false
 script = ExtResource( 7 )
 eatSound = ExtResource( 8 )
 
@@ -1715,9 +1713,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152558, -2.35014, -2.43509 )
 shape = SubResource( 17 )
 
 [node name="fall-area" type="Area" parent="."]
-monitorable = false
 collision_layer = 3
 collision_mask = 2
+monitorable = false
 script = ExtResource( 15 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="fall-area"]

@@ -196,6 +196,19 @@
     "S9(1)": {
       "kind": "narration",
       "root_node": false,
+      "body": "SetSavableValue",
+      "set": [
+        {
+          "key": "save_armored_soldier",
+          "op": "set",
+          "value": 1
+        }
+      ],
+      "next": "S9(1.1)"
+    },
+    "S9(1.1)": {
+      "kind": "narration",
+      "root_node": false,
       "body": "ChangeDialogueCode"
     }
   },
