@@ -488,7 +488,9 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -105.56
 
 [node name="npc" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 10 )
-MAX_SPAWN_COUNT = 13.0
+MIN_ENEMIES_COUNT_TO_SPAWN = 15
+SPAWN_COOLDOWN = 4.0
+MAX_SPAWN_COUNT = 15.0
 hasAlarm = true
 isAudi3D = true
 alarmSoundsPath = [ NodePath("../terrain/alarm") ]
@@ -610,6 +612,10 @@ aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
 
 [node name="13" type="VisibilityNotifier" parent="spawnPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.4179, -99.1132, 83.4926 )
+aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
+
+[node name="14" type="VisibilityNotifier" parent="spawnPoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.3511, 0.116381, -99.7819 )
 aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]

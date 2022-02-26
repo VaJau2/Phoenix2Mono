@@ -110,6 +110,12 @@ public class EnemiesManager : Node, ISavable
         npcInstance.SetState(NPCState.Attack);
 
         enemies.Add(npcInstance);
+
+        spawnedCount++;
+        if (spawnedCount >= MAX_SPAWN_COUNT)
+        {
+            allEnemiesSpawned = true;
+        }
     }
 
     public void LoudShoot(float distance, Vector3 shootPos)
@@ -179,12 +185,6 @@ public class EnemiesManager : Node, ISavable
         //уже наспавненные враги тоже будут атаковать
         MakeCloseEnemyAttack();
         spawnCooldown = SPAWN_COOLDOWN;
-
-        spawnedCount++;
-        if (spawnedCount >= MAX_SPAWN_COUNT)
-        {
-            allEnemiesSpawned = true;
-        }
     }
 
     public Dictionary GetSaveData()

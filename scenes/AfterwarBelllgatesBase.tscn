@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=2]
+[gd_scene load_steps=146 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -34,9 +34,9 @@
 [ext_resource path="res://objects/props/furniture/light/Light-off.tscn" type="PackedScene" id=32]
 [ext_resource path="res://objects/props/furniture/light/ElectricLine.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/materials/physics/dirt.phymat" type="PhysicsMaterial" id=34]
-[ext_resource path="res://objects/props/furniture/laboratory/flasks/cloneFlask-pegasus.tscn" type="PackedScene" id=35]
-[ext_resource path="res://objects/props/furniture/laboratory/flasks/cloneFlask-unicorn.tscn" type="PackedScene" id=36]
-[ext_resource path="res://objects/props/furniture/laboratory/flasks/cloneFlask-earthpony.tscn" type="PackedScene" id=37]
+[ext_resource path="res://assets/scripts/triggers/wasteland/CloneFlaskTrigger.cs" type="Script" id=35]
+[ext_resource path="res://objects/props/furniture/laboratory/cloneFlask.tscn" type="PackedScene" id=36]
+[ext_resource path="res://assets/audio/underwater.wav" type="AudioStream" id=37]
 [ext_resource path="res://assets/scripts/furniture/Terminal/Terminal.cs" type="Script" id=38]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=39]
 [ext_resource path="res://assets/materials/props/furniture/flask.material" type="Material" id=40]
@@ -78,6 +78,8 @@
 [ext_resource path="res://assets/textures/props/furniture/stable-front-door.png" type="Texture" id=76]
 [ext_resource path="res://assets/materials/props/furniture/terminal-table.material" type="Material" id=77]
 [ext_resource path="res://objects/interface/terminal.tscn" type="PackedScene" id=78]
+[ext_resource path="res://assets/audio/futniture/flaskOpen.wav" type="AudioStream" id=79]
+[ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=80]
 [ext_resource path="res://assets/materials/physics/fence.phymat" type="PhysicsMaterial" id=88]
 [ext_resource path="res://objects/props/buildings/bellgates-base-houses/bunker_entry.tscn" type="PackedScene" id=101]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
@@ -576,7 +578,7 @@ agent/radius = 1.4
 [node name="canvas" parent="." instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 180.416, -104.842, 208.897 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 183.884, -103.69, 194.688 )
 checkSavedData = false
 checkSavedMoney = false
 spawningInside = true
@@ -1148,23 +1150,27 @@ transform = Transform( -5.2742e-08, 0, 1.2066, 0, 1.2066, 0, -1.2066, 0, -5.2742
 [node name="stable-table4" parent="rooms/bunker/props/frame-room" instance=ExtResource( 30 )]
 transform = Transform( -5.2742e-08, 0, 1.2066, 0, 1.2066, 0, -1.2066, 0, -5.2742e-08, 9.48613, -2.94399, 57.8161 )
 
-[node name="cloneFlask" parent="rooms/bunker/props/frame-room" instance=ExtResource( 37 )]
-transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.8257, -2.93, 79.7962 )
+[node name="cloneFlask" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
+transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.826, -2.93, 79.796 )
 
-[node name="cloneFlask2" parent="rooms/bunker/props/frame-room" instance=ExtResource( 35 )]
-transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.8257, -2.93, 91.7872 )
+[node name="cloneFlask2" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
+transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.826, -2.93, 91.787 )
+cloneRace = 1
 
 [node name="cloneFlask3" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
-transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.8257, -2.93, 104.592 )
+transform = Transform( 4.1, 0, 0, 0, 4.1, 0, 0, 0, 4.1, 28.826, -2.93, 104.592 )
+cloneRace = 2
 
-[node name="cloneFlask4" parent="rooms/bunker/props/frame-room" instance=ExtResource( 37 )]
-transform = Transform( -4.1, 0, -6.19083e-07, 0, 4.1, 0, 6.19083e-07, 0, -4.1, 4.33272, -2.9303, 79.7963 )
+[node name="cloneFlask4" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
+transform = Transform( -4.1, 0, 3.58433e-07, 0, 4.1, 0, -3.58433e-07, 0, -4.1, 4.333, -2.93, 79.796 )
 
-[node name="cloneFlask5" parent="rooms/bunker/props/frame-room" instance=ExtResource( 35 )]
-transform = Transform( -4.1, 0, -6.19083e-07, 0, 4.1, 0, 6.19083e-07, 0, -4.1, 4.33263, -2.93, 91.7872 )
+[node name="cloneFlask5" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
+transform = Transform( -4.1, 0, 3.58433e-07, 0, 4.1, 0, -3.58433e-07, 0, -4.1, 4.333, -2.93, 91.787 )
+cloneRace = 1
 
 [node name="cloneFlask6" parent="rooms/bunker/props/frame-room" instance=ExtResource( 36 )]
-transform = Transform( -4.1, 0, -6.19083e-07, 0, 4.1, 0, 6.19083e-07, 0, -4.1, 4.33263, -2.93, 104.592 )
+transform = Transform( -4.1, 0, 3.58433e-07, 0, 4.1, 0, -3.58433e-07, 0, -4.1, 4.333, -2.93, 104.592 )
+cloneRace = 2
 
 [node name="terminal" type="StaticBody" parent="rooms/bunker/props/frame-room"]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 5.16518, -2.30284, 57.5428 )
@@ -1540,6 +1546,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 126.402, 19.5118, 33.2961 )
 shape = SubResource( 111 )
 
 [node name="triggers" type="Node" parent="."]
+
+[node name="autosave" type="Node" parent="triggers"]
+script = ExtResource( 80 )
+SaveName = "autosave9"
+
+[node name="cloneFlaskStart" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 35 )
+flaskPath = NodePath("../../rooms/bunker/props/frame-room/cloneFlask")
+underwater = ExtResource( 37 )
+flaskOpen = ExtResource( 79 )
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
