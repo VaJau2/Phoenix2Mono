@@ -63,11 +63,7 @@ public class CloneFlaskTrigger : TriggerBase
                 player.MayMove = false;
                 player.Sit(false);
                 player.Camera.eyesClosed = true;
-                player.GlobalTransform = Global.setNewOrigin(
-                    player.GlobalTransform,
-                    cloneFlask.playerPos.GlobalTransform.origin
-                );
-                player.Rotation = new Vector3(0, cloneFlask.playerPos.Rotation.y, 0);
+               
                 cloneFlask.camera.MakeCurrent(true);
                 cloneFlask.PrepareFlaskForPlayer();
                 blackScreen.Color = new Color(0, 0, 0, 1);
@@ -101,6 +97,11 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 4:
+                player.GlobalTransform = Global.setNewOrigin(
+                    player.GlobalTransform,
+                    cloneFlask.playerPos.GlobalTransform.origin
+                );
+                player.Rotation = new Vector3(0, cloneFlask.playerPos.Rotation.y, 0);
                 player.Visible = true;
                 player.MayMove = true;
                 player.Camera.Current = true;
