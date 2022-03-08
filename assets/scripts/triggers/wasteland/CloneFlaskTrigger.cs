@@ -4,10 +4,12 @@ using Godot;
 public class CloneFlaskTrigger : TriggerBase
 {
     [Export] private NodePath flaskPath;
+    [Export] private NodePath moveNpcTriggerPath;
     [Export] AudioStreamSample underwater;
     [Export] AudioStreamSample flaskOpen;
     private CloneFlask cloneFlask;
     private ColorRect blackScreen;
+    private TriggerBase moveNpcTrigger;
     private int step;
     private float timer;
     private bool changeBlackScreen;
@@ -17,6 +19,7 @@ public class CloneFlaskTrigger : TriggerBase
         SetProcess(false);
         cloneFlask = GetNode<CloneFlask>(flaskPath);
         blackScreen = GetNode<ColorRect>("/root/Main/Scene/canvas/black");
+        moveNpcTrigger = GetNode<TriggerBase>(moveNpcTriggerPath);
 
         await ToSignal(GetTree(), "idle_frame");
 
@@ -90,6 +93,7 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 3:
+                moveNpcTrigger.SetActive(true);
                 cloneFlask.audi.Play();
                 cloneFlask.AnimateWater();
                 timer = 4f;

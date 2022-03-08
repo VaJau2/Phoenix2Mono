@@ -1,5 +1,31 @@
 {
     "nodes": {
+        "S0": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "trigger",
+                    "op": "set",
+                    "value": "changeTraderState"
+                }
+            ],
+            "next": "S0.1"
+        },
+        "S0.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "WearItem",
+            "set": [
+                {
+                    "key": "trigger",
+                    "op": "set",
+                    "value": "collar"
+                }
+            ],
+            "next": "S1"
+        },
         "S1": {
             "kind": "dialogue",
             "root_node": false,
@@ -152,7 +178,8 @@
             "root_node": false,
             "body": "Ладно",
             "speaker": "Страйкли",
-            "opposite": "Работорговец"
+            "opposite": "Работорговец",
+            "next": "S23"
         },
         "S9(2)": {
             "kind": "dialogue",
@@ -334,7 +361,13 @@
             "root_node": false,
             "body": "Лучше бы тебе пойти за мной…",
             "speaker": "Работорговец",
-            "opposite": "Страйкли"
+            "opposite": "Страйкли",
+            "next": "S23"
+        },
+        "S23": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
         }
     },
     "speakers": {

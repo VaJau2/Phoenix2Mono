@@ -224,7 +224,7 @@ public class PlayerInventory {
         menu.LoadItemButtons(items, ammo);
     }
     
-    private ItemIcon GetWearButton(string wearButtonName)
+    public ItemIcon GetWearButton(string wearButtonName)
     {
         const string buttonsPath = "/root/Main/Scene/canvas/inventory/helper/back/wearBack/";
         return player.GetNode<ItemIcon>(buttonsPath + wearButtonName);
