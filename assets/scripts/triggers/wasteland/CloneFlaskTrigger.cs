@@ -101,11 +101,13 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 4:
+                var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
                 player.GlobalTransform = Global.setNewOrigin(
                     player.GlobalTransform,
-                    cloneFlask.playerPos.GlobalTransform.origin
+                    playerPosTransform.origin
                 );
-                player.Rotation = new Vector3(0, cloneFlask.playerPos.Rotation.y, 0);
+                var flaskRotation = playerPosTransform.basis.GetEuler();
+                player.Rotation = new Vector3(0, flaskRotation.y, 0);
                 player.Visible = true;
                 player.MayMove = true;
                 player.Camera.Current = true;

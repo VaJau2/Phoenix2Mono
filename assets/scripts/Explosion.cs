@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class Explosion : Spatial, ISavable
 {
+    public bool checkWalls = true;
+
     private Array<Particles> parts = new Array<Particles>();
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
@@ -24,8 +26,13 @@ public class Explosion : Spatial, ISavable
     {
         anim.Play("explode");
         audi.Play();
-        GetNode<AnimationPlayer>("../wallparts/anim").Play("explode");
-        GetNode<CollisionShape>("../WallShape").Disabled = true;
+
+        if (checkWalls)
+        {
+            GetNode<AnimationPlayer>("../wallparts/anim").Play("explode");
+            GetNode<CollisionShape>("../WallShape").Disabled = true;
+        }
+       
         foreach (var part in parts)
         {
             part.Emitting = true;
@@ -42,14 +49,22 @@ public class Explosion : Spatial, ISavable
     {
         return new Dictionary
         {
-            {"exploded", exploded}
+            {"exploded", exploded},
+            {"checkWalls", checkWalls},
         };
     }
 
     public void LoadData(Dictionary savedData)
     {
         exploded = System.Convert.ToBoolean(savedData["exploded"]);
+        if (savedData.Contains("checkWalls"))
+        {
+            checkWalls = System.Convert.ToBoolean(savedData["checkWalls"]);
+        }
+
         if (!exploded) return;
+        if (!checkWalls) return;
+
         var wallsAnim = GetNode<AnimationPlayer>("../wallparts/anim");
         wallsAnim.Play("explode");
         wallsAnim.Seek(wallsAnim.CurrentAnimationLength, true);

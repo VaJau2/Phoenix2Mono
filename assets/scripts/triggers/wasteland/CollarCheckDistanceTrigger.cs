@@ -1,4 +1,4 @@
-using Godot;
+п»їusing Godot;
 
 public class CollarCheckDistanceTrigger: TriggerBase
 {
@@ -6,16 +6,38 @@ public class CollarCheckDistanceTrigger: TriggerBase
     const int COLOR_ORANGE = 1;
     const int COLOR_GREEN = 0;
 
+    const int EXPLOSION_DAMAGE = 200;
+
     [Export] private NodePath pointPath;
     [Export] private float[] distances = new float[3];
     [Export] private SpatialMaterial[] colors = new SpatialMaterial[3];
+    [Export] private float[] peekTimers = new float[3];
+    [Export] private AudioStreamSample peekSound;
+    [Export] private PackedScene explosionPrefab;
     [Export] private string collarPath;
     [Export] private int colorIndex;
-   
+
+    float peekTimer;
     int tempColor;
     Player player;
     MeshInstance collar;
     Spatial point;
+
+    private void UpdatePeeking(float delta)
+    {
+        if (tempColor == COLOR_GREEN) return;
+
+        if (peekTimer > 0)
+        {
+            peekTimer -= delta;
+        } 
+        else
+        {
+            player.GetAudi(true).Stream = peekSound;
+            player.GetAudi(true).Play();
+            peekTimer = peekTimers[tempColor];
+        }
+    }
 
     public void SetCollarColor(int newColor)
     {
@@ -25,31 +47,35 @@ public class CollarCheckDistanceTrigger: TriggerBase
         tempColor = newColor;
     }
 
-    public override void SetActive(bool newActive)
-    {
-        player = Global.Get().player;
-        collar = player.GetNode<MeshInstance>(collarPath);
-        base.SetActive(newActive);
-    }
-
     public override void _on_activate_trigger()
     {
-        //TODO: запрогать взрыв
+        Explosion explosion = explosionPrefab.Instance() as Explosion;
+        explosion.checkWalls = false;
+        collar.AddChild(explosion);
+        explosion.Translation = Vector3.Zero;
+        explosion.Explode();
+
+        player.TakeDamage(player, EXPLOSION_DAMAGE);
         base._on_activate_trigger();
     }
 
-    public override void _Ready()
+    public override async void _Ready()
     {
-        base._Ready();
+        SetProcess(false);
+        await ToSignal(GetTree(), "idle_frame");
+
         point = GetNode<Spatial>(pointPath);
+        player = Global.Get().player;
+        collar = player.GetNode<MeshInstance>(collarPath);
+        peekTimer = peekTimers[COLOR_GREEN];
+
+        SetProcess(true);
     }
 
     public override void _Process(float delta)
     {
         if (distances == null) return;
         if (!IsActive) return;
-
-        //TODO: запрогать писк в зависимости от расстояния
 
         float tempDistance = player.GlobalTransform.origin.DistanceTo(point.GlobalTransform.origin);
 
@@ -69,5 +95,7 @@ public class CollarCheckDistanceTrigger: TriggerBase
         {
             SetCollarColor(COLOR_GREEN);
         }
+
+        UpdatePeeking(delta);
     }
 }

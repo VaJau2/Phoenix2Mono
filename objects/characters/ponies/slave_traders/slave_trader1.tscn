@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/1/test.material" type="Material" id=2]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/1/bodyArmor.material" type="Material" id=3]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/1/Material.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=6]
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "slave_trader1_Cube013"
@@ -142,7 +143,6 @@ surfaces/0 = {
 [node name="slave_trader1" instance=ExtResource( 1 )]
 IdleAnim = "Idle1"
 StartHealth = 150
-relation = 2
 weaponCode = "pistol10-silenced"
 itemCodes = [ "pistol10-silenced" ]
 ammoCount = {
@@ -172,7 +172,7 @@ body_offset = Transform( 0.992634, -0.0828152, -0.088429, -0.0828149, 0.0689418,
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114836, 0.0972379, 0.116484, 0.99313, -0.0114236, -0.0952569, 0.0226189, 0.995198, -0.407885, 1.81143, -1.81374 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783024, 0.00691295, 0.876067 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427719, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978941 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427721, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978941 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.088597, -1.06067e-07, -0.0883894, 0.993732, 0.0684588, 0.0060649, -0.0681891, 0.997656, 0.287084, 1.79373, -0.756682 )
@@ -229,6 +229,9 @@ material/1 = null
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
 material/0 = null
+script = ExtResource( 6 )
+npcName = "slave_trader1"
+startEyesVariant = "neitral"
 
 [node name="tail" type="MeshInstance" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 6 )
