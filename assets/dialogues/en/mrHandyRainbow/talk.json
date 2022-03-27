@@ -3,7 +3,7 @@
     "D1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Hy! Let's check how cool you are! I bet you won't hit all these targets in five seconds!",
+      "body": "Hi! Let's check how cool you are! I bet you won't hit all these targets in five seconds!",
       "speaker": "Robo-Dash",
       "opposite": "Strikely",
       "options": [

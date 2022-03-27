@@ -45,7 +45,7 @@
 [ext_resource path="res://objects/props/furniture/trash/microscope.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/scripts/utils/VisibleArea.cs" type="Script" id=44]
 [ext_resource path="res://assets/scripts/furniture/DoorTeleport.cs" type="Script" id=45]
-[ext_resource path="res://objects/props/buildings/bellgates-base-houses/armor-house.tscn" type="PackedScene" id=46]
+[ext_resource path="res://objects/props/buildings/bellgates-base-houses/armor-house-afterwar.tscn" type="PackedScene" id=46]
 [ext_resource path="res://objects/props/vehicles/truck.tscn" type="PackedScene" id=47]
 [ext_resource path="res://assets/textures/props/furniture/posters/rusted/stable.png" type="Texture" id=48]
 [ext_resource path="res://assets/scripts/utils/SaveActive.cs" type="Script" id=49]
@@ -678,6 +678,7 @@ ammoCount = {
 }
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
+visible = false
 script = ExtResource( 49 )
 
 [node name="terrain_body" type="StaticBody" parent="terrain"]
@@ -844,11 +845,8 @@ material/0 = ExtResource( 19 )
 
 [node name="houses" type="Spatial" parent="terrain/props"]
 
-[node name="armor-house" parent="terrain/props/houses" instance=ExtResource( 46 )]
+[node name="armor-house2" parent="terrain/props/houses" instance=ExtResource( 46 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 123.58, -0.652166, 37.2014 )
-
-[node name="spawn" type="Spatial" parent="terrain/props/houses/armor-house"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.03974, 0.901009, 30.5989 )
 
 [node name="sklad" parent="terrain/props/houses" instance=ExtResource( 8 )]
 transform = Transform( -2.67767, 0, -2.34089e-07, 0, 2.67767, 0, 2.34089e-07, 0, -2.67767, 5.41788, -0.344166, 33.1119 )
@@ -1266,6 +1264,7 @@ cloneRace = 2
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 5.16518, -2.30284, 57.5428 )
 physics_material_override = ExtResource( 25 )
 script = ExtResource( 38 )
+files = PoolStringArray( "phoenix2_1", "phoenix2_2", "phoenix2_3", "phoenix2_4", "phoenix2_5", "phoenix2_6", "phoenix2_7" )
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/bunker/props/frame-room/terminal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590237, 0.638412, -9.6162e-08 )
@@ -1472,6 +1471,7 @@ transform = Transform( 0.545852, 0.435109, -1.90192e-08, 0, -3.05128e-08, -0.698
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.3288, -1.72899, 0.161011 )
 physics_material_override = ExtResource( 25 )
 script = ExtResource( 38 )
+files = PoolStringArray( "phoenix1_1", "phoenix1_2" )
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/bunker/props/sleep-room/terminal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590237, 0.638412, -9.6162e-08 )

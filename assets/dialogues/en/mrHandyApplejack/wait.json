@@ -36,7 +36,7 @@
     "A2": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Ask all your questions to Mister Bellgates, friend. He should be here soon.",
+      "body": "Ask all your questions to Mister Bellgates, partner. He should be here soon.",
       "speaker": "Robo-Applejack",
       "opposite": "Strikely"
     },

@@ -169,7 +169,7 @@
     "P7": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I have a gift for such a stealthy pony like you - stealth-buck! ",
+      "body": "I have a gift for such a stealthy pony like you - stealth-buck!",
       "speaker": "Robo-Pinkie",
       "opposite": "Strikely",
       "options": [
@@ -210,7 +210,7 @@
     "P9": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Stealth buck generates an invisible stealth field around pony, making her transparent and allowing you to sneak in unnoticed right in front of enemy's face!",
+      "body": "Stealth buck generates an invisible stealth field around pony, making her transparent and allowing her to sneak in unnoticed right in front of enemy's face!",
       "speaker": "Robo-Pinkie",
       "opposite": "Strikely",
       "options": [
@@ -247,7 +247,7 @@
     "P12": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "He's lying behind that door, but he's being guarded by robo-eyes.",
+      "body": "It's lying behind that door, but it's being guarded by robo-eyes.",
       "speaker": "Robo-Pinkie",
       "opposite": "Strikely",
       "next": "P13"
@@ -255,7 +255,7 @@
     "P13": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Don't get caught in their robo-eyes, and this stealth-buck will be yours!",
+      "body": "Don't get caught by their robo-eyes, and this stealth-buck will be yours!",
       "speaker": "Robo-Pinkie",
       "opposite": "Strikely",
       "next": "P14"

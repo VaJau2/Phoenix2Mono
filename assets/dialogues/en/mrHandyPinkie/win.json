@@ -3,7 +3,7 @@
     "P1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Congratulations, you'll make a great Solid Snake!",
+      "body": "Congratulations, you'll make a great Sneaky Snake!",
       "speaker": "Robo-Pinkie",
       "opposite": "Strikely",
       "options": [

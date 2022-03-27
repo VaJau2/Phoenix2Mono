@@ -156,10 +156,10 @@ public class TerminalReadMode: TerminalMode {
         //считаем данные для постранички
         if (lines.Count > MAX_LINES_COUNT) {
             pagesMax = Mathf.CeilToInt(lines.Count / MAX_LINES_COUNT);
-            tempPage = 0;
         } else {
             pagesMax = 0;
         }
+        tempPage = 0;
 
         UpdateFileText();
     }
