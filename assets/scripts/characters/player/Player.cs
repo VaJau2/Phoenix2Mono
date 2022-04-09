@@ -47,6 +47,7 @@ public class Player : Character
 
     //Переменные для передвижения
     private Vector3 dir;
+    private float sideAngle;
 
     private CollisionShape sphereCollider;
     private CollisionShape bodyCollider;
@@ -189,6 +190,10 @@ public class Player : Character
         }
     }
     
+    public float GetCurrentSpeed()
+    {
+        return Velocity.Length();
+    }
 
     public override int GetSpeed()
     {
@@ -307,8 +312,8 @@ public class Player : Character
     protected void ProcessInput(float delta) 
     {
         dir = new Vector3();
-
         Vector2 inputMovementVector = new Vector2();
+        int goSide = 0;
         UpdateStand();
         
         if (Input.IsActionPressed("ui_up")) {
@@ -320,10 +325,29 @@ public class Player : Character
         }
         if (Input.IsActionPressed("ui_left")) {
             inputMovementVector.x -= 1;
+            goSide = 1;
         }
         if (Input.IsActionPressed("ui_right")) {
             inputMovementVector.x += 1;
+            goSide = -1;
         }
+
+        //наклон камеры при движении вбок
+        if (goSide != 0)
+        {
+            sideAngle += GetCurrentSpeed() * goSide * delta;
+            sideAngle = Mathf.Clamp(sideAngle, -2, 2);
+        } 
+        else
+        {
+            sideAngle = Mathf.Lerp(sideAngle, 0, 5 * delta);
+        }
+
+        Camera.RotationDegrees = new Vector3(
+            Camera.RotationDegrees.x,
+            Camera.RotationDegrees.y,
+            sideAngle
+        );
 
         inputMovementVector = inputMovementVector.Normalized();
         IsWalking = inputMovementVector.Length() > 0;
@@ -332,7 +356,8 @@ public class Player : Character
         dir += -camXForm.basis.z * inputMovementVector.y;
 	    dir += camXForm.basis.x * inputMovementVector.x;
 
-        if (OnFloor()) {
+        if (OnFloor()) 
+        {
             Jump();
 
             if (crouchCooldown > 0) {
@@ -340,11 +365,14 @@ public class Player : Character
             }
 
             Crouch();
-        } else {
+        } 
+        else 
+        {
             Fly();
         }
 
-        if (bodyCollider.Scale.y != bodyColliderSize) {
+        if (bodyCollider.Scale.y != bodyColliderSize) 
+        {
             Vector3 bodyScale = bodyCollider.Scale;
             Vector3 sphereScale = sphereCollider.Scale;
             bodyScale.y = bodyColliderSize;
@@ -354,16 +382,21 @@ public class Player : Character
         }
     }
 
-    float GetTempShake(float delta) {
+    float GetTempShake(float delta) 
+    {
         float tempShake = shakingSpeed;
 
-        if (!shakeUp) {
+        if (!shakeUp) 
+        {
             tempShake *= -1;
         }
 
-        if (shakeTimer > 0) {
+        if (shakeTimer > 0) 
+        {
             shakeTimer -= delta;
-        } else {
+        } 
+        else 
+        {
             shakeTimer = SHAKE_TIME;
             shakeUp = !shakeUp;
         }
@@ -387,13 +420,17 @@ public class Player : Character
         dir = dir.Normalized();
 
         float tempShake = 0;
-        if (shakingSpeed > 0) {
+        if (shakingSpeed > 0) 
+        {
             tempShake = GetTempShake(delta);
         }
 
-        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0) {
+        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0) 
+        {
             Velocity.y = 0;
-        } else {
+        } 
+        else 
+        {
             Velocity.y = GetGravitySpeed(tempShake, delta);
         }
 
@@ -404,9 +441,12 @@ public class Player : Character
         target *= GetSpeed();
 
         float acceleration;
-        if (dir.Dot(hvel) > 0) {
+        if (dir.Dot(hvel) > 0) 
+        {
             acceleration = ACCEL;
-        } else {
+        } 
+        else 
+        {
             acceleration = GetDeacceleration();
         }
 
@@ -418,16 +458,19 @@ public class Player : Character
 
     private void RotateBodyClumped(float speedX)
     {
-        if (IsSitting) 
+        if (IsSitting)
         {
-            if(speedX > 0 && Body.RotClumpsMin) {
+            if(speedX > 0 && Body.RotClumpsMin) 
+            {
                 RotateY(Mathf.Deg2Rad(speedX));
             }
-            if(speedX < 0 && Body.RotClumpsMax) {
+            if(speedX < 0 && Body.RotClumpsMax) 
+            {
                 RotateY(Mathf.Deg2Rad(speedX));
             }
         }
-        else {
+        else
+        {
             RotateY(Mathf.Deg2Rad(speedX));
         }
     }
@@ -438,7 +481,8 @@ public class Player : Character
     {
         if (@event is InputEventMouseMotion
             && Input.GetMouseMode() == Input.MouseMode.Captured
-            && MayRotateHead) {
+            && MayRotateHead) 
+        {
 
             var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
@@ -447,7 +491,7 @@ public class Player : Character
             Vector3 cameraRot = RotationHelper.RotationDegrees;
             cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
             cameraRot.y = 0;
-            cameraRot.z = 0;
+            cameraRot.z = sideAngle;
             RotationHelper.RotationDegrees = cameraRot;
 
             OnCameraRotatingX(mouseEvent.Relative.x);
@@ -532,15 +576,18 @@ public class Player : Character
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Health > 0) {
-            if (MayMove) {
+        if (Health > 0) 
+        {
+            if (MayMove) 
+            {
                 ProcessInput(delta);
                 HandleImpulse();
             }
             
             ProcessMovement(delta);
         }
-        if (Health < 0 || !MayMove) {
+        if (Health < 0 || !MayMove) 
+        {
             dir = Vector3.Zero;
         }
 
@@ -549,7 +596,8 @@ public class Player : Character
 
     public override void _Input(InputEvent @event)
     {
-        if (Health > 0) {
+        if (Health > 0) 
+        {
             RotateCamera(@event);
         }
     }
