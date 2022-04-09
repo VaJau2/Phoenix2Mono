@@ -678,7 +678,6 @@ ammoCount = {
 }
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
-visible = false
 script = ExtResource( 49 )
 
 [node name="terrain_body" type="StaticBody" parent="terrain"]

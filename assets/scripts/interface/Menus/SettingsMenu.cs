@@ -131,6 +131,11 @@ public class SettingsMenu : MenuBase
         loadOnOffText(fullscreenButton, global.Settings.fullscreen);
         loadSliders();
         loadControlButtons();
+
+        //временное скрытие громкости озвучки для англ языка
+        bool showVoice = InterfaceLang.GetLanguage() == Language.Russian;
+        voiceLabel.Visible = showVoice;
+        voiceSlider.Visible = showVoice;
     }
 
     private Label getControlEdit(string action) 
