@@ -36,6 +36,7 @@ public class PlayerWeapons: CollisionShape
     Particles gunSmoke;
     PackedScene gunParticlesPrefab;
     Node particlesParent;
+    WeaponShellSpawner shellSpawner;
 
     float tempShake = 0;
     bool shakeUp = true;
@@ -193,6 +194,7 @@ public class PlayerWeapons: CollisionShape
         gunLight = tempWeapon.GetNode<Spatial>("light");
         gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");
+        shellSpawner = tempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
     private Vector3 SetRotX(Vector3 origin, float newRotX) 
@@ -301,6 +303,7 @@ public class PlayerWeapons: CollisionShape
         if (on)
         {
             gunSmoke.Restart();
+            shellSpawner?.StartSpawning();
         }
     }
 

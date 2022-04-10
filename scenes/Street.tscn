@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -49,6 +49,7 @@
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=48]
 [ext_resource path="res://assets/scripts/interface/Menus/HintMenu.cs" type="Script" id=49]
+[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=50]
 
 [sub_resource type="GDScript" id=40]
 script/source = "extends CanvasLayer
@@ -300,7 +301,7 @@ margin_bottom = 1.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.655687, -15.4919 )
 itemCodes = [ "revolver32", "suitcase_empty" ]
 ammo = {
-"ammo32": 30.0
+"ammo32": 30
 }
 clothCode = "coat"
 checkSavedData = false
@@ -764,6 +765,9 @@ teleportPointPath = NodePath("UpPoint")
 
 [node name="UpPoint" type="Spatial" parent="terrain/checkFall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.656006, -15.4919 )
+
+[node name="shells" type="Spatial" parent="." groups=["savable"]]
+script = ExtResource( 50 )
 
 [node name="triggers" type="Node" parent="."]
 

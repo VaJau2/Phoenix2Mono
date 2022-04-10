@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/materials/weapon/ak47.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=2]
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=3]
+[ext_resource path="res://objects/guns/shells/762.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/scripts/background/shells/WeaponShellSpawner.cs" type="Script" id=5]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.451724, 0.706818 ), 0.0, -0.467204, 0, 0, Vector2( 1, 0.0795454 ), -0.282468, 0.0, 0, 0 ]
@@ -169,6 +171,13 @@ mesh = SubResource( 8 )
 material/0 = null
 
 [node name="Box002" type="MeshInstance" parent="Gun-armature"]
-transform = Transform( 0.0250435, -0.00424073, -5.80838e-11, 0.00424073, 0.0250435, 6.90903e-10, -5.80833e-11, -6.90903e-10, 0.0254, -0.264114, 0.653375, 0.00632079 )
+transform = Transform( 0.0250435, -0.00424074, -5.80838e-11, 0.00424074, 0.0250435, 6.90904e-10, -5.80835e-11, -6.90905e-10, 0.0254, -0.264114, 0.653375, 0.00632079 )
 mesh = SubResource( 9 )
 material/0 = null
+
+[node name="shells" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.167498, 0.068677, -0.301518 )
+script = ExtResource( 5 )
+shellPrefab = ExtResource( 4 )
+spawnDelay = 0.01
+forceDirection = Vector3( 0, 1, -2 )

@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=1]
 [ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/weapon/rifle307.material" type="Material" id=3]
+[ext_resource path="res://assets/scripts/background/shells/WeaponShellSpawner.cs" type="Script" id=4]
+[ext_resource path="res://objects/guns/shells/308.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.451724, 0.706818 ), 0.0, -0.467204, 0, 0, Vector2( 1, 0.0795454 ), -0.282468, 0.0, 0, 0 ]
@@ -179,12 +181,12 @@ mesh = SubResource( 8 )
 material/0 = null
 
 [node name="Box002" type="MeshInstance" parent="Gun-armature"]
-transform = Transform( 0.0254, 0, 0, 0, 0.0254, 1.11027e-09, 0, -1.11027e-09, 0.0254, -0.00011481, 0.0204894, -0.09111 )
+transform = Transform( 0.0254, 0, 0, 0, 0.0254, 1.11027e-09, 0, -1.11027e-09, 0.0254, -0.00011481, 0.0204894, -0.0911144 )
 mesh = SubResource( 9 )
 material/0 = null
 
 [node name="Cylinder003" type="MeshInstance" parent="Gun-armature"]
-transform = Transform( 0.0254, -3.7849e-09, -4.51195e-16, 3.7849e-09, 0.0254, 4.13819e-09, -1.65443e-16, -4.13819e-09, 0.0254, 0.00010078, 0.0266022, -0.08266 )
+transform = Transform( 0.0254, -3.78489e-09, -4.51195e-16, 3.78489e-09, 0.0254, 4.13818e-09, -1.65443e-16, -4.13818e-09, 0.0254, 0.00010078, 0.0266022, -0.08266 )
 mesh = SubResource( 10 )
 material/0 = null
 
@@ -192,3 +194,10 @@ material/0 = null
 transform = Transform( 0.0253033, 0.00221376, 0, -0.00221376, 0.0253033, 1.11027e-09, 9.67663e-11, -1.10604e-09, 0.0254, 0.00179444, 0.00723637, -0.0827003 )
 mesh = SubResource( 11 )
 material/0 = null
+
+[node name="shells" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.104888, 0.19627, 0.44518 )
+script = ExtResource( 4 )
+shellPrefab = ExtResource( 5 )
+spawnDelay = 0.7
+forceDirection = Vector3( 0, 1, -2 )

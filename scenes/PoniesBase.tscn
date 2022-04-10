@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=2]
+[gd_scene load_steps=146 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -102,6 +102,7 @@
 [ext_resource path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" type="Script" id=100]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=101]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
+[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=103]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=104]
 [ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=105]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
@@ -288,6 +289,12 @@ material = ExtResource( 21 )
 
 [sub_resource type="QuadMesh" id=31]
 material = ExtResource( 19 )
+
+[sub_resource type="PhysicsMaterial" id=42]
+friction = 40.0
+
+[sub_resource type="BoxShape" id=43]
+extents = Vector3( 21.5169, 1, 28.8276 )
 
 [sub_resource type="ArrayMesh" id=32]
 surfaces/0 = {
@@ -982,6 +989,9 @@ NewLevelNum = 3
 [node name="CollisionShape" type="CollisionShape" parent="triggers/exit"]
 shape = SubResource( 15 )
 
+[node name="shells" type="Spatial" parent="." groups=["savable"]]
+script = ExtResource( 103 )
+
 [node name="rooms" type="Node" parent="."]
 
 [node name="kpp" type="Spatial" parent="rooms" groups=["savable"]]
@@ -1608,6 +1618,16 @@ otherDoorPath = NodePath("../../../terrain/props/stolovaya/DoorTeleport5")
 [node name="spawn2" type="Spatial" parent="rooms/stolovaya"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 13.9086, 0.886002, 23.05 )
 
+[node name="floor2" type="StaticBody" parent="rooms/stolovaya"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.507494, 0.0744324, 4.517 )
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource( 42 )
+
+[node name="CollisionShape" type="CollisionShape" parent="rooms/stolovaya/floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94561, -4.05651 )
+shape = SubResource( 43 )
+
 [node name="walls" type="StaticBody" parent="rooms/stolovaya"]
 collision_layer = 3
 collision_mask = 3
@@ -1941,6 +1961,16 @@ material/1 = null
 [node name="CollisionShape" type="CollisionShape" parent="rooms/kazarma/walls2"]
 transform = Transform( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 shape = SubResource( 41 )
+
+[node name="floor3" type="StaticBody" parent="rooms/kazarma"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.354683, 0.0744324, 6.50928 )
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource( 42 )
+
+[node name="CollisionShape" type="CollisionShape" parent="rooms/kazarma/floor3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94561, -4.05651 )
+shape = SubResource( 43 )
 
 [node name="doors" type="Spatial" parent="rooms/kazarma"]
 

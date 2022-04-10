@@ -1,0 +1,24 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://objects/guns/shells/shell-base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/guns/shells/meshes/762.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/audio/guns/shells/762_3.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/shells/762_4.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/shells/762_5.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/shells/762_1.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/guns/shells/762_2.mp3" type="AudioStream" id=7]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.160137, 0.043027, 0.0386166 )
+
+[node name="762-shell" instance=ExtResource( 1 )]
+shellSound = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+
+[node name="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034463, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="mesh" type="MeshInstance" parent="." index="2"]
+transform = Transform( 0.045, 0, 0, 0, 0.045, 0, 0, 0, 0.045, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = null

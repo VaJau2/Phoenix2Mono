@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://assets/materials/environments/inside.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -69,6 +69,7 @@
 [ext_resource path="res://assets/scripts/triggers/RotateGunTrigger.cs" type="Script" id=67]
 [ext_resource path="res://assets/scripts/triggers/DialogueCheckGunTrigger.cs" type="Script" id=68]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=69]
+[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=70]
 [ext_resource path="res://objects/props/furniture/table.tscn" type="PackedScene" id=71]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=72]
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
@@ -1208,17 +1209,14 @@ transform = Transform( -0.331087, 0, 0.63936, 0, 0.6, 0, -0.63936, 0, -0.331087,
 
 [node name="cabinet" parent="terrain/props" instance=ExtResource( 28 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 59.6649, 8.26913, 54.7156 )
-chestCode = "cabinet"
 
 [node name="cabinet2" parent="terrain/props" instance=ExtResource( 28 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 63.4717, 8.26913, 46.1548 )
-chestCode = "cabinet"
 startAmmoCount = {
 }
 
 [node name="cabinet3" parent="terrain/props" instance=ExtResource( 28 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 63.4717, 8.26913, 51.0112 )
-chestCode = "cabinet"
 startItemCodes = [ "bow-ribbon" ]
 startAmmoCount = {
 }
@@ -1393,6 +1391,10 @@ fallHeight = -40.0
 
 [node name="UpPoint" type="Spatial" parent="terrain/checkFall"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.12033, 6.813, -15.1302 )
+
+[node name="shells" type="Spatial" parent="." groups=["savable"]]
+script = ExtResource( 70 )
+shellsLimit = 30
 
 [node name="triggers" type="Node" parent="."]
 

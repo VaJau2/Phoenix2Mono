@@ -73,7 +73,7 @@ public class Character : KinematicBody, ISavable
     {
         Dictionary savingData = new Dictionary
         {
-            {"parent", GetParent().Name},
+            {"parent", GetParent().Name},  //используется в LevelsLoader
             {"fileName", Filename},
             
             {"pos_x", GlobalTransform.origin.x},

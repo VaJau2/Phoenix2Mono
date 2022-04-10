@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=1]
 [ext_resource path="res://assets/materials/weapon/revolver.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=3]
+[ext_resource path="res://assets/scripts/background/shells/WeaponShellSpawner.cs" type="Script" id=4]
+[ext_resource path="res://objects/guns/shells/32.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "revolver001"
@@ -101,7 +103,7 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.0702328, -0.856937 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27911e-16, -0.243077, -0.166491 )
 
 [node name="Bone002" type="Spatial" parent="Gun-armature/Bone"]
-transform = Transform( 1, 0, -8.74228e-08, 0, -1, 0, -8.74228e-08, 0, -1, 0.00159196, 0.487447, 0.159219 )
+transform = Transform( 0.971134, 1.47032e-08, -0.238534, 1.48897e-08, -1, -1.02005e-09, -0.238534, -2.56109e-09, -0.971134, 0.00159197, 0.487447, 0.159219 )
 
 [node name="revolver001" type="MeshInstance" parent="Gun-armature/Bone/Bone002"]
 transform = Transform( 0.299969, -2.62241e-08, 1.0657e-15, -1.0657e-15, 0, 0.299969, -2.62241e-08, -0.299969, 0, -0.00159194, -0.0625917, 0.248412 )
@@ -110,7 +112,7 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Bone003" type="Spatial" parent="Gun-armature/Bone"]
-transform = Transform( 1, -2.84217e-14, -7.15256e-07, -4.79531e-07, -0.74197, -0.670434, -5.30698e-07, 0.670434, -0.74197, -5.34923e-15, 0.0600826, 0.179837 )
+transform = Transform( 1, 1.46372e-12, -7.15256e-07, -4.69271e-07, -0.754683, -0.656089, -5.39793e-07, 0.656089, -0.754683, -6.05977e-15, 0.0600826, 0.179837 )
 
 [node name="revolver002" type="MeshInstance" parent="Gun-armature/Bone/Bone003"]
 transform = Transform( 0.299969, -1.59193e-07, 1.43845e-07, 1.70513e-14, 0.201109, 0.222568, -2.14555e-07, -0.222568, 0.201109, -9.21754e-08, -0.543899, -0.128871 )
@@ -123,6 +125,13 @@ transform = Transform( 0.299969, 6.66066e-17, -6.66066e-17, -6.66066e-17, 0, -0.
 layers = 1024
 mesh = SubResource( 3 )
 material/0 = null
+
+[node name="shells" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0885176, 0.221035, -0.955624 )
+script = ExtResource( 4 )
+shellPrefab = ExtResource( 5 )
+spawnDelay = 0.04
+forceDirection = Vector3( 0, 1, 2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 4 )

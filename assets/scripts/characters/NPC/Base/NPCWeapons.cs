@@ -11,6 +11,7 @@ public class NPCWeapons : Node
     Spatial gunFire;
     Particles gunSmoke;
     PackedScene gunParticlesPrefab;
+    WeaponShellSpawner shellSpawner;
 
     //--звуки-------------
     AudioStreamPlayer3D audiShoot;
@@ -182,6 +183,7 @@ public class NPCWeapons : Node
         gunLight = tempWeapon.GetNode<Spatial>("light");
         gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");
+        shellSpawner = tempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
     private async void AnimGunEffects()
@@ -189,6 +191,7 @@ public class NPCWeapons : Node
         gunLight.Visible = true;
         gunSmoke.Restart();
         gunFire.Visible = true;
+        shellSpawner?.StartSpawning();
         await Global.Get().ToTimer(0.06f);
         gunFire.Visible = false;
         gunLight.Visible = false;

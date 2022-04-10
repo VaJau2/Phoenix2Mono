@@ -52,12 +52,14 @@ public class UnicornLevitation : Spatial
     public void _on_collisionArea_body_entered(PhysicsBody body)
     {
         if (body == getOwner()) return;
+        if (body.Name.Contains("shell")) return;
         weaponClose = true;
     }
 
     public void _on_collisionArea_body_exited(PhysicsBody body)
     {
         if (body == getOwner()) return;
+        if (body.Name.Contains("shell")) return;
         weaponClose = false;
     }
 
