@@ -111,7 +111,7 @@ light_bake_mode = 0
 light_cull_mask = 4293919744
 
 [node name="fire" type="Spatial" parent="."]
-transform = Transform( 0.339683, 0, 0, 0, 0.339683, 0, 0, 0, 0.339683, -0.0320427, 0.0186869, -2.32459 )
+transform = Transform( 0.339683, 0, 0, 0, 0.339683, 0, 0, 0, 0.339683, -0.0574409, 0.0186869, -2.54261 )
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="fire"]

@@ -11,7 +11,7 @@ public class MrHandy : NpcWithWeapons
 
     protected override void AnimateDealth(Character killer, int shapeID)
     {
-        GetNode<Spatial>("Armature/Skeleton/mrHandy/fire").QueueFree();
+        GetNode<Spatial>("Armature/Skeleton/BoneAttachment/fire").QueueFree();
         base.AnimateDealth(killer, shapeID);
     }
 

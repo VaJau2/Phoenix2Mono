@@ -10,6 +10,7 @@ public class WeaponShell : RigidBody
 {
     const float STATIC_TIME = 1;
     const float FALL_TIME = 20;
+    const float AUDI_COOLDOWN = 2;
 
     [Export]
     public Array<AudioStream> shellSound;
@@ -17,6 +18,7 @@ public class WeaponShell : RigidBody
     private MeshInstance mesh;
     private AudioStreamPlayer3D audi;
 
+    float audiCooldown;
     float fallTimer;
     float timer;
 
@@ -28,6 +30,11 @@ public class WeaponShell : RigidBody
 
     public override void _Process(float delta)
     {
+        if (audiCooldown > 0)
+        {
+            audiCooldown -= delta;
+        }
+
         if (LinearVelocity.Length() > 0)
         {
             if (fallTimer < FALL_TIME)
@@ -69,10 +76,8 @@ public class WeaponShell : RigidBody
 
     public void OnBodyEntered(Node body)
     {
-        if (shellSound.Count == 0)
-        {
-            return;
-        }
+        if (shellSound.Count == 0) return;
+        if (audiCooldown > 0) return;
 
         if (body is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null)
         {
@@ -89,6 +94,7 @@ public class WeaponShell : RigidBody
                 int randI = rand.Next(0, shellSound.Count);
                 audi.Stream = shellSound[randI];
                 audi.Play();
+                audiCooldown = AUDI_COOLDOWN;
             }
         }
     }

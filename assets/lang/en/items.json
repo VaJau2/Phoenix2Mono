@@ -196,7 +196,7 @@
         "price": "500",
         "damage": "100",
         "shootDistance": "40",
-        "cooldown": "2",
+        "cooldown": "1.7",
         "recoil": "0.5",
         "ammoType": "ammo20",
         "isShotgun": "true",
