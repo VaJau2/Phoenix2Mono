@@ -167,7 +167,7 @@ material/0 = null
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0348008, 0.0695577, -0.111186 )
 script = ExtResource( 5 )
 shellPrefab = ExtResource( 4 )
-spawnDelay = 1.1
+spawnDelay = 1.0
 forceDirection = Vector3( 0, 1, -2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]

@@ -363,7 +363,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.46672, -0.0257951, 5.2497 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.467, -0.2, 5.25 )
 shape = SubResource( 42 )
 
 [node name="sky" type="StaticBody" parent="terrain"]
