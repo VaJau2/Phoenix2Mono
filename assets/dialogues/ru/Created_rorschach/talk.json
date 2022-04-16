@@ -1,0 +1,406 @@
+{
+    "nodes": {
+        "E1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты совершаешь большую ошибку. Слишком большую для тебя, лейтенант Страйкли Клауд.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E1(2)"
+                }
+            ]
+        },
+        "E1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты кто?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E3"
+        },
+        "E1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Откуда ты меня знаешь?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E2"
+        },
+        "E2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Это часть моих обязанностей - знать все, что происходит внутри страны. Контролировать каждый аспект. Чтобы такие как ты все не уничтожили.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E2(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E2(2)"
+                }
+            ]
+        },
+        "E2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Кто ты?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E3"
+        },
+        "E2(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я не уничтожаю. Наоборот, я вас спасаю.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E4"
+        },
+        "E3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я твой последний шанс. Ты знаешь, что будет, если эти чертежи окажутся в копытах твоих полосатых нанимателей?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E3(2)"
+                }
+            ]
+        },
+        "E3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E5"
+        },
+        "E3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Меня наняли не зебры.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E6"
+        },
+        "E4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Как самонадеянно. Чем же ты спасешь нас, если эти чертежи окажутся в копытах врага?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E4(2)"
+                }
+            ]
+        },
+        "E4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E5"
+        },
+        "E4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я не собираюсь отдавать их врагу. ",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E7"
+        },
+        "E5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Весь мир будет объят огнем, и всему виной один маленький лейтенант. К этому ты стремишься? Чтобы твое имя тоже отпечаталось в истории? *тяжелый кашель* Страйкли-уничтожитель-мира?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E5(1)"
+                }
+            ]
+        },
+        "E5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я не собираюсь отдавать чертежи зебрам. Я хочу их сжечь.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E8"
+        },
+        "E6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А кто тебя нанял?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E6(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E6(2)"
+                }
+            ]
+        },
+        "E6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ученый по имени Бельгетс. Он хочет предотвратить уничтожение мира.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E9"
+        },
+        "E6(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не буду называть имен. Меня наняли, чтобы эти чертежи не оказались в копытах врага.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E10"
+        },
+        "E7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что еще ты можешь с ними сделать?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E7(1)"
+                }
+            ]
+        },
+        "E7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я хочу их уничтожить. ",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E8"
+        },
+        "E8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Подожди… серьёзно? Ты здесь только за тем, чтобы сжечь эти жалкие бумажки?",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E8(1)"
+                }
+            ]
+        },
+        "E8(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да, а что?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E6"
+        },
+        "E9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Этот старикашка? *тяжелый кашель* Он обвел тебя вокруг копыта как жеребенка! Ты для него лишь инструмент.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E9(1)"
+                }
+            ]
+        },
+        "E9(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Почему?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E11"
+        },
+        "E10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " Ты или твой наниматель оказались *тяжелый кашель* глупее, чем я думал. Уничтожение этих чертежей не имеет абсолютно никакого смысла.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E9(1)"
+                }
+            ]
+        },
+        "E11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Неужели ты думаешь, что это единственная копия? Расскажу тебе небольшой секрет: чертежи, лежащие в этой базе - это запасной вариант мегазаклинания. Основной вариант уже давно запущен в производство.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E11(1)"
+                }
+            ]
+        },
+        "E11(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тогда … зачем он меня сюда отправил?",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E12"
+        },
+        "E12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Он использует тебя в своих целях. Прости, но с этим я тебе не смогу помочь. Единственное, что ты можешь сделать сейчас - оборвать с ним все контакты и забыть о том, что здесь произошло.",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "E12(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "E12(2)"
+                }
+            ]
+        },
+        "E12(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно. Тогда я оставлю эти чертежи здесь.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E12.1"
+        },
+        "E12(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно. Но чертежи я все равно уничтожу.",
+            "speaker": "Страйкли",
+            "opposite": "Единорог",
+            "next": "E14"
+        },
+        "E13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не завидую я тебе, лейтенант Страйкли… Прощай.\n",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "next": "E13.1"
+        },
+        "E14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я уже говорил, что в этом нет смысла? Но ладно, если тебе так спокойнее, то … ",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "next": "E14.1"
+        },
+        "E14.1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "*сжигает чертежи магией прямо в твоих копытах*",
+            "speaker": "Единорог",
+            "opposite": "Страйкли",
+            "next": "E14.2"
+        },
+        "E14.2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "GiveItem",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "blueprints1"
+                }
+            ],
+            "next": "E13"
+        },
+        "E12.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeItemName",
+            "set": [
+                {
+                    "key": "blueprints1",
+                    "op": "set",
+                    "value": "blueprints2"
+                }
+            ],
+            "next": "E13"
+        },
+        "E13.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "E13.2"
+        },
+        "E13.2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "goldenMove"
+                }
+            ]
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Единорог": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}
