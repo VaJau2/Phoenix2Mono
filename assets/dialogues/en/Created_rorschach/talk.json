@@ -4,7 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "You are making a big mistake. Too big for you, lieutenant Strikely Cloud.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -22,7 +22,7 @@
       "root_node": false,
       "body": "Who are you?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E3"
     },
     "E1(2)": {
@@ -30,14 +30,14 @@
       "root_node": false,
       "body": "How do you know me",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E2"
     },
     "E2": {
       "kind": "dialogue",
       "root_node": false,
       "body": "This is a part of my duties - to know everything, what is happening inside the country. To control every aspect. So that ponies like you didn't destroy everything.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -55,7 +55,7 @@
       "root_node": false,
       "body": "Who are you?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E3"
     },
     "E2(2)": {
@@ -63,14 +63,14 @@
       "root_node": false,
       "body": "I'm not destroying. I'm saving you all.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E4"
     },
     "E3": {
       "kind": "dialogue",
       "root_node": false,
       "body": "I am your last chance. Do you know what will happen if these blueprints end up in the hooves of your striped employers?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -88,7 +88,7 @@
       "root_node": false,
       "body": "What?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E5"
     },
     "E3(2)": {
@@ -96,14 +96,14 @@
       "root_node": false,
       "body": "I've been hired not by zebras.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E6"
     },
     "E4": {
       "kind": "dialogue",
       "root_node": false,
       "body": "How presumptuous. How will you save us, giving this blueprints to our enemies?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -121,7 +121,7 @@
       "root_node": false,
       "body": "What?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E5"
     },
     "E4(2)": {
@@ -129,14 +129,14 @@
       "root_node": false,
       "body": "I'm not going to give them to enemies.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E7"
     },
     "E5": {
       "kind": "dialogue",
       "root_node": false,
       "body": "The whole world will be on fire, and it's all the fault of one little lieutenant. Is that what you're aiming for? So that your name is also imprinted in history? *nagging cough* Strikely-destroyer-of-the-world?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -150,14 +150,14 @@
       "root_node": false,
       "body": "I'm not going to give this blueprints to zebras. I want to burn them.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E8"
     },
     "E6": {
       "kind": "dialogue",
       "root_node": false,
       "body": "Who hired you?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -175,7 +175,7 @@
       "root_node": false,
       "body": "Scientist named Bellgates. He wants to prevent the destruction of the world.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E9"
     },
     "E6(2)": {
@@ -183,14 +183,14 @@
       "root_node": false,
       "body": "I won't name names. I was hired so that these drawings would not end up in enemy's hooves.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E10"
     },
     "E7": {
       "kind": "dialogue",
       "root_node": false,
       "body": "What else can you do with it?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -204,14 +204,14 @@
       "root_node": false,
       "body": "I want to destroy it.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E8"
     },
     "E8": {
       "kind": "dialogue",
       "root_node": false,
       "body": "Wait… really? You're only here to burn these pathetic pieces of paper?",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -225,14 +225,14 @@
       "root_node": false,
       "body": "Yes, why not?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E6"
     },
     "E9": {
       "kind": "dialogue",
       "root_node": false,
       "body": "This old pony? *nagging cough* He tricked you around his hoof like a foal! You're just a tool for him.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -246,14 +246,14 @@
       "root_node": false,
       "body": "Why?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E11"
     },
     "E10": {
       "kind": "dialogue",
       "root_node": false,
       "body": "You or your employer are *nagging cough* dumber than I thought. Destroying of this blueprints makes no sense.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -266,7 +266,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Are you really think that this is the only copy? I'll tell you a little secret: the blueprints in this base are a backup option megaspell. The main version has long been put into production.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -280,14 +280,14 @@
       "root_node": false,
       "body": "Then … Why did he send me here?",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E12"
     },
     "E12": {
       "kind": "dialogue",
       "root_node": false,
       "body": "He's using you for his own purposes. Sorry, I can't help you with that. The only thing you can do now - cut off all contact with him and forget about what happened here.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
         {
@@ -305,7 +305,7 @@
       "root_node": false,
       "body": "Alright. I'm leaving this blueprints here.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E12.1"
     },
     "E12(2)": {
@@ -313,14 +313,14 @@
       "root_node": false,
       "body": "Alright. But I'll destroy this blueprints anyway.",
       "speaker": "Strikely",
-      "opposite": "Unicorn",
+      "opposite": "Mysterious Stranger",
       "next": "E14"
     },
     "E13": {
       "kind": "dialogue",
       "root_node": false,
       "body": "I don't envy you, Lieutenant Strikely… Farewell.",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "next": "E13.1"
     },
@@ -328,7 +328,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Have I already said that there is no point in this? But okay, if it makes you feel better, then … ",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "next": "E14.1"
     },
@@ -336,7 +336,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "*burns blueprints with magic right in your hooves*",
-      "speaker": "Unicorn",
+      "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "next": "E14.2"
     },
@@ -394,7 +394,7 @@
         "a": 0
       }
     },
-    "Unicorn": {
+    "Mysterious Stranger": {
       "color": {
         "r": 0,
         "g": 0,
