@@ -45,7 +45,7 @@ public class WeaponShellSpawner : Spatial
             shell.Rotation = GlobalTransform.basis.GetEuler();
 
             var dir = shell.Transform.basis.Xform(forceDirection);
-            shell.AddCentralForce(dir * 900);
+            shell.AddCentralForce(dir * 950);
         }
     }
 }

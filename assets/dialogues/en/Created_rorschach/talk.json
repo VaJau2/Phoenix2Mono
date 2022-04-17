@@ -135,7 +135,7 @@
     "E5": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "The whole world will be on fire, and it's all the fault of one little lieutenant. Is that what you're aiming for? So that your name is also imprinted in history? *nagging cough* Strikely-destroyer-of-the-world?",
+      "body": "The whole world will be on fire, and it's all the fault of one little lieutenant. Is that what you're aiming for? So that your name is also imprinted in history? Strikely-destroyer-of-the-world?",
       "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
@@ -231,7 +231,7 @@
     "E9": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "This old pony? *nagging cough* He tricked you around his hoof like a foal! You're just a tool for him.",
+      "body": "This old pony? He tricked you around his hoof like a foal! You're just a tool for him.",
       "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
@@ -335,7 +335,7 @@
     "E14.1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "*burns blueprints with magic right in your hooves*",
+      "body": "*burns blueprints with a lighter right in your hooves*",
       "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "next": "E14.2"
@@ -380,7 +380,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "goldenMove"
+          "value": "rorschachMove"
         }
       ]
     }

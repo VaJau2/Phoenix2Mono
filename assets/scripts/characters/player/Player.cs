@@ -66,6 +66,8 @@ public class Player : Character
     [Signal]
     public delegate void TakenDamage();
     [Signal]
+    public delegate void FireWithWeapon();
+    [Signal]
     public delegate void TakeItem(string itemCode);
     [Signal]
     public delegate void UseItem(string itemCode);

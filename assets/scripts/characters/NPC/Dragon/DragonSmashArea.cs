@@ -30,7 +30,7 @@ public class DragonSmashArea : Area
                 dragon.mouthPos.GlobalTransform.origin
             );
 
-            dragon.enemyMouthTimer = 2;
+            dragon.enemyMouthTimer = 3;
             dragon.enemyInMouth = character;
             dragon.isFireClose = false;
             dragon.GetAudi().Stream = eatSound;

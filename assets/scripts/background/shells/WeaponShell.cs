@@ -8,8 +8,9 @@ using System;
 //перемещает меш в ShellsManager, чтобы он там сохранялся
 public class WeaponShell : RigidBody
 {
-    const float STATIC_TIME = 1;
-    const float FALL_TIME = 20;
+    const float STATIC_TIME = 0.5f;
+    const float MIN_STATIC_SPEED = 0.5f;
+    const float FALL_TIME = 10f;
     const float AUDI_COOLDOWN = 2;
 
     [Export]
@@ -35,7 +36,7 @@ public class WeaponShell : RigidBody
             audiCooldown -= delta;
         }
 
-        if (LinearVelocity.Length() > 0)
+        if (LinearVelocity.Length() > MIN_STATIC_SPEED)
         {
             if (fallTimer < FALL_TIME)
             {

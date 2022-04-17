@@ -316,6 +316,7 @@ public class PlayerWeapons: CollisionShape
             audiShoot.Play();
             onetimeShoot = false;
         } else {
+            player.EmitSignal(nameof(Player.FireWithWeapon));
             ammo -= 1;
             SetAmmo(ammo);
 

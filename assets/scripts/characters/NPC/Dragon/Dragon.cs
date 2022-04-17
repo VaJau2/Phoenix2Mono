@@ -41,7 +41,7 @@ public class Dragon: NPC
     public float enemyMouthTimer;
     private bool onetimeDie;
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         base._Ready();
         healthBarObj = GetNode<Control>("/root/Main/Scene/canvas/dragonHealth");
@@ -56,6 +56,18 @@ public class Dragon: NPC
         mouthPos = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
         GRAVITY = 0;
         ROTATION_SPEED = 0.05f;
+
+        await ToSignal(GetTree(), "idle_frame");
+        Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
+    }
+
+    private void CheckPlayerShooting()
+    {
+        //игроку достаточно пострелять два раза, чтобы выбраться из пасти дракона
+        if (enemyInMouth is Player)
+        {
+            enemyMouthTimer -= 1;
+        }
     }
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
@@ -66,7 +78,6 @@ public class Dragon: NPC
         if (Health > 0)
         {
             healthBar.Value = Health;
-            enemyMouthTimer -= 1;
         }
         else
         {
