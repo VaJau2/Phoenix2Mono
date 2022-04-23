@@ -276,7 +276,7 @@ public class MainMenu : MenuBase
     public void _on_settings_pressed()
     {
         SoundClick();
-        settingsMenu.OpenMenu(this, "main");
+        settingsMenu.OpenMenu(this);
     }
 
     public void _on_about_pressed()

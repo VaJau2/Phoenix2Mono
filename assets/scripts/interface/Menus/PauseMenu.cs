@@ -73,6 +73,9 @@ public class PauseMenu : MenuBase, IMenu
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
         loadMenu = GetNode<LoadMenu>("Load");
         saveMenu = GetNode<SaveMenu>("Save");
+
+        //на тестовых сценах нельзя сохраняться, т.к. их нет в списке сцен
+        saveButton.Disabled = LevelsLoader.tempLevelNum == 0;
     }
 
     public override void _Input(InputEvent @event)
@@ -102,8 +105,7 @@ public class PauseMenu : MenuBase, IMenu
         loadMenu.Visible = false;
         saveMenu.Visible = false;
     }
-
-
+    
     public void _on_continue_pressed() 
     {
         SoundClick();
@@ -127,7 +129,7 @@ public class PauseMenu : MenuBase, IMenu
     public void _on_settings_pressed()
     {
         SoundClick();
-        settingsMenu.OpenMenu(this, "main");
+        settingsMenu.OpenMenu(this);
     }
 
     public void _on_exit_pressed()

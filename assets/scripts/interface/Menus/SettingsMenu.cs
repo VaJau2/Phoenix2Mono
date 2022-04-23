@@ -217,15 +217,14 @@ public class SettingsMenu : MenuBase
 
     private void cancelControlEdit()
     {
-        if (tempAction != "") {
-            setEditOn(tempEditBack, false);
-            var key = Global.GetKeyName(tempAction);
-            if (IsInstanceValid(tempEdit)) {
-                WriteKeyToEdit(key, tempEdit);
-            }
-            tempAction = "";
-            tempEdit = null;
+        if (tempAction == "") return;
+        setEditOn(tempEditBack, false);
+        var key = Global.GetKeyName(tempAction);
+        if (IsInstanceValid(tempEdit)) {
+            WriteKeyToEdit(key, tempEdit);
         }
+        tempAction = "";
+        tempEdit = null;
     }
 
     private void UpdateInterfaceColor()
@@ -244,11 +243,11 @@ public class SettingsMenu : MenuBase
     }
 
 
-    public void OpenMenu(MenuBase self, string menuName)
+    public void OpenMenu(MenuBase self)
     {
         otherMenu = self;
         loadInterfaceLanguage();
-        this.Visible = true;
+        Visible = true;
     }
 
     public void CloseMenu()
@@ -295,11 +294,7 @@ public class SettingsMenu : MenuBase
 
     private void loadOnOffText(Button button, bool on)
     {
-        if (on) {
-            button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", "on");
-        } else {
-            button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", "off");
-        }
+        button.Text = InterfaceLang.GetPhrase("settingsMenu", "buttonOn", @on ? "on" : "off");
     }
 
     public void _on_mouse_slider_value_changed(float value)
@@ -360,34 +355,28 @@ public class SettingsMenu : MenuBase
 
     public void _on_controls_mouse_entered(string editName, string section, string phrase)
     {
-        if (tempEdit == null) {
-            base._on_mouse_entered(section, phrase);
-            var editBack = GetNode<ColorRect>("Controls/" + editName);
-            setEditOn(editBack, true);
-        }
+        if (tempEdit != null) return;
+        _on_mouse_entered(section, phrase);
+        var editBack = GetNode<ColorRect>("Controls/" + editName);
+        setEditOn(editBack, true);
     }
 
     public void _on_controls_mouse_exited()
     {
-        if (tempEdit == null && tempEditBack != null) {
-            base._on_mouse_exited();
-            setEditOn(tempEditBack, false);
-        }
+        if (tempEdit != null || tempEditBack == null) return;
+        _on_mouse_exited();
+        setEditOn(tempEditBack, false);
     }
 
     public void _on_controls_gui_input(InputEvent @event, string action)
     {
-        if (tempEdit == null) {
-            if (@event is InputEventMouseButton) {
-                var mouseEv = @event as InputEventMouseButton;
-                if (mouseEv.Pressed) {
-                    cancelControlEdit();
-                    tempEdit = tempEditBack.GetNode<Label>("edit");
-                    tempEdit.Text = "[            ]";
-                    tempAction = action;
-                }
-            }
-        }
+        if (tempEdit != null) return;
+        if (!(@event is InputEventMouseButton mouseEv)) return;
+        if (!mouseEv.Pressed) return;
+        cancelControlEdit();
+        tempEdit = tempEditBack.GetNode<Label>("edit");
+        tempEdit.Text = "[            ]";
+        tempAction = action;
     }
 
     private bool checkDarkColor(float newValue, string color)
@@ -414,7 +403,8 @@ public class SettingsMenu : MenuBase
         float colorSum = tempR + tempG + tempB;
 
         //если сумма меньше, возвращаем новое значение обратно
-        if (colorSum < MIN_COLOR_SUM) {
+        if (colorSum < MIN_COLOR_SUM) 
+        {
             switch(color) 
             {
                 case "Red":
@@ -433,7 +423,8 @@ public class SettingsMenu : MenuBase
 
     public void _on_color_slider_value_changed(float value, string color)
     {
-        if (!checkDarkColor(value, color)) {
+        if (!checkDarkColor(value, color)) 
+        {
             return;
         }
         float tempR = global.Settings.interfaceColor.r;
@@ -464,7 +455,8 @@ public class SettingsMenu : MenuBase
     public void _on_default_pressed()
     {
         InputMap.LoadFromGlobals();
-        foreach(string action in global.Settings.controlActions) {
+        foreach(string action in global.Settings.controlActions) 
+        {
             var actions = InputMap.GetActionList(action);
             var tempAction = actions[0] as InputEventKey;
             var key = OS.GetScancodeString(tempAction.Scancode);
@@ -475,23 +467,23 @@ public class SettingsMenu : MenuBase
 
     public override void _Input(InputEvent @event)
     {
-        if (tempEdit != null) {
-            if (@event is InputEventKey) {
-                var eventKey = @event as InputEventKey;
-                if (eventKey.Pressed) {
-                    if (eventKey.Scancode == (uint)KeyList.Escape) {
-                        cancelControlEdit();
-                    } else {
-                        InputMap.ActionEraseEvents(tempAction);
-                        InputMap.ActionAddEvent(tempAction, eventKey);
-                        var key = OS.GetScancodeString(eventKey.Scancode);
-                        WriteKeyToEdit(key, tempEdit);
-                        tempAction = "";
-                        setEditOn(tempEditBack, false);
-                        tempEdit = null;
-                    }
-                }
-            }
+        if (tempEdit == null) return;
+        if (!(@event is InputEventKey eventKey)) return;
+        if (!eventKey.Pressed) return;
+        
+        if (eventKey.Scancode == (uint)KeyList.Escape) 
+        {
+            cancelControlEdit();
+        } 
+        else 
+        {
+            InputMap.ActionEraseEvents(tempAction);
+            InputMap.ActionAddEvent(tempAction, eventKey);
+            var key = OS.GetScancodeString(eventKey.Scancode);
+            WriteKeyToEdit(key, tempEdit);
+            tempAction = "";
+            setEditOn(tempEditBack, false);
+            tempEdit = null;
         }
     }
 }

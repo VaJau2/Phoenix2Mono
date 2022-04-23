@@ -6,12 +6,10 @@
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
 
 [node name="SettingsMenu" type="Control" groups=["ignore_color"]]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 4 )
@@ -1462,9 +1460,6 @@ margin_right = 1.55197
 margin_bottom = 1.0
 theme = ExtResource( 2 )
 text = "[Назад]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label5" type="Label" parent="."]
 anchor_top = 1.0

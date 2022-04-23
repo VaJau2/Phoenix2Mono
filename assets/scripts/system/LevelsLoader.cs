@@ -27,19 +27,31 @@ public class LevelsLoader : Node
 	private Dictionary levelData;
 	private Godot.Collections.Array deletedObjects;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
-		var levelData = Global.loadJsonFile("scenes/levels.json");
+		var levelsData = Global.loadJsonFile("scenes/levels.json");
 		levelPaths.Add("menu");
-		foreach(string filePath in levelData.Values) {
+		foreach(string filePath in levelsData.Values) {
 			levelPaths.Add("res://scenes/" + filePath);
 		}
-		currentMenu = GetNode<Control>("Menu/MainMenu");
-		menuParent = GetNode<Node>("Menu");
+		
 		mainMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/MainMenu.tscn");
 		pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/PauseMenu.tscn");
 		loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
 		dealthMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DealthMenu.tscn");
+
+		await ToSignal(GetTree(), "idle_frame");
+		
+		menuParent = GetNode<Node>("Menu");
+		currentMenu = menuParent.GetNode<Control>(
+			menuParent.HasNode("MainMenu") ? "MainMenu" : "PauseMenu"
+		);
+
+		if (!HasNode("/root/Main/Scene")) return;
+		
+		//если загружена тестовая сцена
+		currentScene = GetNode("/root/Main/Scene");
+		mainMenuOn = false;
 	}
 
 	private void handleCustomEvents()

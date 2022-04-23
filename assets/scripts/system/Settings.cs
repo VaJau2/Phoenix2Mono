@@ -65,8 +65,8 @@ public class Settings
         OS.WindowFullscreen = on;
     }
 
-    public Settings(Node menu) {
-        root = menu.GetTree().Root;
+    public Settings(Node node) {
+        root = node.GetTree().Root;
         shadowVariantsCount = shadowSettings.Length - 1;
     }
 

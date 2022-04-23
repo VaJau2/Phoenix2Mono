@@ -7,20 +7,13 @@
 [ext_resource path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/interface/menus/saves/SaveMenu.tscn" type="PackedScene" id=6]
 
-[node name="PauseMenu" type="Control" groups=[
-"ignore_color",
-]]
+[node name="PauseMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,9 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background2" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
