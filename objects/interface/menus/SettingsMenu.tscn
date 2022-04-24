@@ -51,9 +51,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -170.0
+margin_top = -172.0
 margin_right = 64.0
-margin_bottom = -148.0
+margin_bottom = -150.0
 theme = ExtResource( 2 )
 text = "Чувствительность мыши:"
 align = 2
@@ -67,9 +67,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0001
-margin_top = -170.0
+margin_top = -172.0
 margin_right = 398.0
-margin_bottom = -150.0
+margin_bottom = -152.0
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 0.8
@@ -84,9 +84,9 @@ __meta__ = {
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
-margin_top = -5.0
-margin_right = -4.0
-margin_bottom = 17.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
 theme = ExtResource( 2 )
 text = "["
 __meta__ = {
@@ -99,9 +99,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = -5.0
-margin_right = 10.0
-margin_bottom = 17.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -114,9 +114,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -108.0
+margin_top = -132.0
 margin_right = 64.0
-margin_bottom = -91.0
+margin_bottom = -114.0
 theme = ExtResource( 2 )
 text = "Дальность прорисовки:"
 align = 2
@@ -129,26 +129,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 98.0
-margin_top = -108.0
-margin_right = 398.0
-margin_bottom = -87.9999
+margin_left = 96.0
+margin_top = -132.0
+margin_right = 396.0
+margin_bottom = -112.0
 theme = ExtResource( 2 )
 min_value = 200.0
 max_value = 600.0
 value = 600.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="distance_border" type="Label" parent="Settings/distance_slider" groups=["ignore_color"]]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
-margin_top = -5.00006
+margin_top = -7.93205
 margin_right = 306.0
-margin_bottom = 16.9999
+margin_bottom = 14.0679
 theme = ExtResource( 2 )
 text = "["
 __meta__ = {
@@ -161,9 +160,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 2.0
-margin_top = -5.00006
+margin_top = -7.93205
 margin_right = 10.0
-margin_bottom = 9.99994
+margin_bottom = 10.0679
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -176,9 +175,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -68.0
+margin_top = -84.0
 margin_right = 64.0
-margin_bottom = -46.0
+margin_bottom = -62.0
 theme = ExtResource( 2 )
 text = "Качество теней:"
 align = 2
@@ -192,9 +191,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0001
-margin_top = -68.0
+margin_top = -84.0
 margin_right = 403.0
-margin_bottom = -51.0001
+margin_bottom = -66.0
 theme = ExtResource( 2 )
 text = "Максимальное"
 __meta__ = {
@@ -235,9 +234,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -28.0
+margin_top = -44.0
 margin_right = 64.0
-margin_bottom = -6.0
+margin_bottom = -22.0
 theme = ExtResource( 2 )
 text = "Полноэкранный режим:"
 align = 2
@@ -251,9 +250,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -28.0
+margin_top = -44.0
 margin_right = 403.0
-margin_bottom = -11.0
+margin_bottom = -26.0
 theme = ExtResource( 2 )
 text = "Выключен"
 __meta__ = {
@@ -288,15 +287,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="cameraAngle" type="Label" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -4.0
+margin_right = 64.0
+margin_bottom = 18.0
+theme = ExtResource( 2 )
+text = "Поворот камеры в движении:"
+align = 2
+
+[node name="cameraAngle_button" type="Button" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 88.0
+margin_top = -4.0
+margin_right = 403.0
+margin_bottom = 14.0
+theme = ExtResource( 2 )
+text = "Включен"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="fullscreeen_border" type="Label" parent="Settings/cameraAngle_button" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.5
+margin_right = 6.0
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreeen_border2" type="Label" parent="Settings/cameraAngle_button" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -6.00021
+margin_top = -8.5
+margin_right = -0.000213623
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="sound_label" type="Label" parent="Settings"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 44.0
+margin_top = 52.0
 margin_right = 64.0
-margin_bottom = 65.999
+margin_bottom = 73.999
 theme = ExtResource( 2 )
 text = "Громкость звуков:"
 align = 2
@@ -310,9 +364,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 44.0
+margin_top = 52.0
 margin_right = 398.0
-margin_bottom = 63.999
+margin_bottom = 71.999
 theme = ExtResource( 2 )
 min_value = -20.0
 max_value = 2.0
@@ -357,9 +411,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 76.0
+margin_top = 84.0
 margin_right = 64.0
-margin_bottom = 98.0
+margin_bottom = 106.0
 theme = ExtResource( 2 )
 text = "Громкость музыки:"
 align = 2
@@ -373,9 +427,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 76.0
+margin_top = 84.0
 margin_right = 398.0
-margin_bottom = 96.0
+margin_bottom = 104.0
 theme = ExtResource( 2 )
 min_value = -20.0
 max_value = 2.0
@@ -420,9 +474,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 108.0
+margin_top = 116.0
 margin_right = 64.0
-margin_bottom = 130.0
+margin_bottom = 138.0
 theme = ExtResource( 2 )
 text = "Громкость озвучки:"
 align = 2
@@ -436,9 +490,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 108.0
+margin_top = 116.0
 margin_right = 398.0
-margin_bottom = 128.0
+margin_bottom = 136.0
 theme = ExtResource( 2 )
 min_value = -20.0
 max_value = 2.0
@@ -537,17 +591,16 @@ __meta__ = {
 }
 
 [node name="colorBlock" type="Control" parent="Settings" groups=["ignore_color"]]
-anchor_left = 0.07
+anchor_left = 0.062
 anchor_top = 0.467
-anchor_right = 0.32
+anchor_right = 0.312
 anchor_bottom = 0.653
-margin_left = 0.32
+margin_left = 0.511997
 margin_top = -0.199982
-margin_right = 0.319946
+margin_right = 0.511932
 margin_bottom = 0.199982
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="label" type="Label" parent="Settings/colorBlock"]
@@ -748,7 +801,8 @@ __meta__ = {
 anchor_top = 0.747
 anchor_right = 1.0
 anchor_bottom = 0.8
-margin_top = 7.79999
+margin_top = 31.8
+margin_bottom = 24.0001
 theme = ExtResource( 2 )
 text = "[Настройки управления]"
 __meta__ = {
@@ -1502,6 +1556,9 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/fullscreen_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
 [connection signal="mouse_exited" from="Settings/fullscreen_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/fullscreen_button" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
+[connection signal="mouse_exited" from="Settings/cameraAngle_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Settings/cameraAngle_button" to="." method="_on_cameraAngle_button_pressed"]
 [connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]
 [connection signal="mouse_exited" from="Settings/sound_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/sound_slider" to="." method="_on_sound_slider_value_changed"]

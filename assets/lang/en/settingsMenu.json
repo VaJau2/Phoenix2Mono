@@ -35,6 +35,7 @@
         "distance": "Render distance:",
         "shadows": "Shadows quality:",
         "fullscreen": "Fullscreen:",
+        "cameraAngle": "Camera rotation in motion:",
         "sound": "Sound volume:",
         "music": "Music volume:",
         "voice": "Voice volume:",

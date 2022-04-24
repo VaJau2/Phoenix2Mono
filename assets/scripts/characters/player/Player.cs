@@ -348,7 +348,7 @@ public class Player : Character
         Camera.RotationDegrees = new Vector3(
             Camera.RotationDegrees.x,
             Camera.RotationDegrees.y,
-            sideAngle
+            global.Settings.cameraAngle ? sideAngle : 0
         );
 
         inputMovementVector = inputMovementVector.Normalized();

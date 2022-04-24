@@ -19,6 +19,7 @@ public class Settings
     public float voiceVolume {get; private set;}
 
     public bool fullscreen {get; private set;} = false;
+    public bool cameraAngle;
 
     public string[] controlActions = new string[] 
     {
@@ -83,6 +84,7 @@ public class Settings
         config.SetValue("screen", "distance", distance);
         config.SetValue("screen", "shadows", shadows);
         config.SetValue("screen", "fullscreen", fullscreen);
+        config.SetValue("screen", "cameraAngle", cameraAngle);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
         var screenSize = OS.WindowSize;
         config.SetValue("screen", "width", screenSize.x);
@@ -117,6 +119,7 @@ public class Settings
             ChangeShadows(shadows);
             var tempFullscreen = (bool)config.GetValue("screen", "fullscreen");
             SetFullscreen(tempFullscreen);
+            cameraAngle = (bool)config.GetValue("screen", "cameraAngle");
             InterfaceLang.LoadLanguage(config.GetValue("screen", "language").ToString());
             var screenSize = new Vector2();
             screenSize.x = (float)config.GetValue("screen", "width");

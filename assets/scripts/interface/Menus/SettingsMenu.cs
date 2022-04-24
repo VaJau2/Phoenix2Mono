@@ -18,20 +18,22 @@ public class SettingsMenu : MenuBase
     private Label languageLabel;
     private Button languageButton;
     private Label mouseLabel;
+    private Slider mouseSlider;
     private Label distanceLabel;
+    private Slider distanceSlider;
     private Label shadowsLabel;
     private Button shadowsButton;
     private Label fullscreenLabel;
-    private Label soundLabel;
-    private Label musicLabel;
-    private Label voiceLabel;
-    private Button controlsButton;
-    private Slider mouseSlider;
-    private Slider distanceSlider;
     private Button fullscreenButton;
+    private Label cameraAngleLabel;
+    private Button cameraAngleButton;
+    private Label soundLabel;
     private Slider soundSlider;
+    private Label musicLabel;
     private Slider musicSlider;
+    private Label voiceLabel;
     private Slider voiceSlider;
+    private Button controlsButton;
     private Button defaultButton;
     private Dictionary<string, Label> controlLabels;
 
@@ -55,20 +57,22 @@ public class SettingsMenu : MenuBase
         languageLabel = GetNode<Label>("Settings/language");
         languageButton = GetNode<Button>("Settings/language_button");
         mouseLabel = GetNode<Label>("Settings/mouse_label");
+        mouseSlider = GetNode<Slider>("Settings/mouse_slider");
         distanceLabel = GetNode<Label>("Settings/distance_label");
+        distanceSlider = GetNode<Slider>("Settings/distance_slider");
         shadowsLabel = GetNode<Label>("Settings/shadows_label");
         shadowsButton = GetNode<Button>("Settings/shadows_button");
         fullscreenLabel = GetNode<Label>("Settings/fullscreen");
         fullscreenButton = GetNode<Button>("Settings/fullscreen_button");
+        cameraAngleLabel = GetNode<Label>("Settings/cameraAngle");
+        cameraAngleButton = GetNode<Button>("Settings/cameraAngle_button");
         soundLabel = GetNode<Label>("Settings/sound_label");
-        musicLabel = GetNode<Label>("Settings/music_label");
-        voiceLabel = GetNode<Label>("Settings/voice_label");
-        controlsButton = GetNode<Button>("Settings/controls");
-        mouseSlider = GetNode<Slider>("Settings/mouse_slider");
-        distanceSlider = GetNode<Slider>("Settings/distance_slider");
         soundSlider = GetNode<Slider>("Settings/sound_slider");
+        musicLabel = GetNode<Label>("Settings/music_label");
         musicSlider = GetNode<Slider>("Settings/music_slider");
+        voiceLabel = GetNode<Label>("Settings/voice_label");
         voiceSlider = GetNode<Slider>("Settings/voice_slider");
+        controlsButton = GetNode<Button>("Settings/controls");
 
         colorLabel = GetNode<Label>("Settings/colorBlock/label");
         rSlider = GetNode<Slider>("Settings/colorBlock/r_slider");
@@ -109,6 +113,7 @@ public class SettingsMenu : MenuBase
         distanceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "distance");
         shadowsLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "shadows");
         fullscreenLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "fullscreen");
+        cameraAngleLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "cameraAngle");
         soundLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "sound");
         musicLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "music");
         voiceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "voice");
@@ -128,6 +133,7 @@ public class SettingsMenu : MenuBase
         gSlider.Value = tempColor.g;
         bSlider.Value = tempColor.b;
 
+        loadOnOffText(cameraAngleButton, global.Settings.cameraAngle);
         loadOnOffText(fullscreenButton, global.Settings.fullscreen);
         loadSliders();
         loadControlButtons();
@@ -185,9 +191,9 @@ public class SettingsMenu : MenuBase
     {
         if (value < max) {
             return value + 1;
-        } else {
-            return 0;
         }
+        
+        return 0;
     }
 
     private void setEditOn(ColorRect editBack, bool on)
@@ -329,6 +335,14 @@ public class SettingsMenu : MenuBase
         bool fullscreen = global.Settings.fullscreen;
         global.Settings.SetFullscreen(!fullscreen);
         loadOnOffText(fullscreenButton, !fullscreen);
+    }
+    
+    public void _on_cameraAngle_button_pressed()
+    {
+        otherMenu.SoundClick();
+        bool cameraAngle = global.Settings.cameraAngle;
+        global.Settings.cameraAngle = !cameraAngle;
+        loadOnOffText(cameraAngleButton, !cameraAngle);
     }
 
     public void _on_sound_slider_value_changed(float value)
