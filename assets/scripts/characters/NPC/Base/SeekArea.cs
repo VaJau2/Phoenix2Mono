@@ -188,6 +188,8 @@ public class SeekArea : Area
 
     private bool SeeCharacter(Character character)
     {
+        if (character == null) return false;
+        
         var charPos = character.GlobalTransform.origin;
         charPos.y += 0.5f;
         var dir = charPos - ray.GlobalTransform.origin;

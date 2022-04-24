@@ -493,7 +493,7 @@ public class Player : Character
             Vector3 cameraRot = RotationHelper.RotationDegrees;
             cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
             cameraRot.y = 0;
-            cameraRot.z = sideAngle;
+            cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
             RotationHelper.RotationDegrees = cameraRot;
 
             OnCameraRotatingX(mouseEvent.Relative.x);
