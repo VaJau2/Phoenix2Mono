@@ -19,11 +19,7 @@ class DialogueAudio: AudioStreamPlayer
 
     public void TryToPlayAudio(string nodeCode)
     {
-        string path = string.Format(
-            "res://assets/audio/dialogues/{0}/{1}/{2}/{3}.{4}", 
-            lang, npcName, dialogueCode, nodeCode, FILE_EXT
-        );
-
+        string path = $"res://assets/audio/dialogues/{lang}/{npcName}/{dialogueCode}/{nodeCode}.{FILE_EXT}";
         if (!ResourceLoader.Exists(path)) return;
         Stream = GD.Load<AudioStream>(path);
         Play();
