@@ -19,7 +19,7 @@ public class Settings
     public float voiceVolume {get; private set;}
 
     public bool fullscreen {get; private set;} = false;
-    public bool cameraAngle;
+    public bool cameraAngle = true;
 
     public string[] controlActions = new string[] 
     {
