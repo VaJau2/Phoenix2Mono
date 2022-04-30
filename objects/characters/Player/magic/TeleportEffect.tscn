@@ -11,10 +11,11 @@ func _ready():
 	$anim.play(\"idle\")
 
 func _process(delta):
-	if (timer > 1):
+	if (timer > 0):
 		timer -= delta
 	else:
-		queue_free()"
+		queue_free()
+"
 
 [sub_resource type="Animation" id=2]
 length = 0.9

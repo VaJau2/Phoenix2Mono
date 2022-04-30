@@ -108,25 +108,26 @@ public class Player_Unicorn : Player
     {
         base._Input(@event);
         if (Health <= 0) return;
-        if (@event is InputEventKey keyEvent)
+        if (!(@event is InputEventKey keyEvent)) return;
+        if (keyEvent.Pressed || Input.IsActionPressed("dash")) return;
+        if (!teleportPressed) return;
+        
+        teleportPressed = false;
+        var manaIsEnough = ManaIsEnough(GetTeleportCost());
+        if (!manaIsEnough || !tempTeleportMark.MayTeleport)
         {
-            if (!keyEvent.Pressed && !Input.IsActionPressed("dash"))
-            {
-                if (!teleportPressed) return;
+            Camera.ReturnRayBack();
+            ClearTeleportMark();
 
-                teleportPressed = false;
-                if (ManaIsEnough(GetTeleportCost()))
-                {
-                    startTeleporting = true; 
-                }
-                else
-                {
-                    Camera.ReturnRayBack();
-                    messages.ShowMessage("notEnoughMana");
-                    ClearTeleportMark();
-                }
-            };
+            if (!manaIsEnough)
+            {
+                messages.ShowMessage("notEnoughMana");
+            }
+
+            return;
         }
+            
+        startTeleporting = true;
     }
 
     private void SpawnTeleportMark()
@@ -152,8 +153,10 @@ public class Player_Unicorn : Player
         var effect = (Spatial)teleportEffect.Instance();
         GetParent().AddChild(effect);
 
-        effect.GlobalTransform = 
-            Global.setNewOrigin(effect.GlobalTransform, GlobalTransform.origin);
+        effect.GlobalTransform = Global.setNewOrigin(
+            effect.GlobalTransform, 
+            GlobalTransform.origin
+        );
     }
 
     private float GetTeleportCost()
@@ -164,28 +167,26 @@ public class Player_Unicorn : Player
 
     public override async void UpdateStand()
     {
-        if (startTeleporting) 
-        {
-            OnStairs = false;
-            audiHorn.Stream = teleportSound;
-            audiHorn.Play();
-            DecreaseMana(GetTeleportCost());
+        if (!startTeleporting) return;
+        OnStairs = false;
+        audiHorn.Stream = teleportSound;
+        audiHorn.Play();
+        DecreaseMana(GetTeleportCost());
 
-            SpawnTeleportEffect();
+        SpawnTeleportEffect();
 
-            GlobalTransform = 
-                Global.setNewOrigin(GlobalTransform, tempTeleportMark.GetTeportPoint());
+        GlobalTransform = 
+            Global.setNewOrigin(GlobalTransform, tempTeleportMark.GetTeleportPoint());
 
-            ClearTeleportMark();
-            SpawnTeleportEffect();
+        ClearTeleportMark();
+        SpawnTeleportEffect();
 
-            Camera.ReturnRayBack();
-            startTeleporting = false;
+        Camera.ReturnRayBack();
+        startTeleporting = false;
 
-            SetMagicEmit(true);
-            await Global.Get().ToTimer(0.5f);
-            SetMagicEmit(false);
-        }
+        SetMagicEmit(true);
+        await Global.Get().ToTimer(0.5f);
+        SetMagicEmit(false);
     }
 
     public override void Jump() 
