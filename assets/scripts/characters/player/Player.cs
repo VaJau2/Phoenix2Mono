@@ -20,6 +20,8 @@ public class Player : Character
     public bool IsHitting;
     public bool IsSitting;
     public bool IsStealthBuck;
+    public bool IsInvisibleForEnemy;
+    
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
     public float PriceDelta = 1;
