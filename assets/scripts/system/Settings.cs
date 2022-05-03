@@ -2,14 +2,13 @@ using Godot;
 
 public class Settings 
 {
-    public bool SettingsLoaded = false;
-    Viewport root;
+    public bool SettingsLoaded;
     public Color interfaceColor = new Color(0.226f, 0.75f, 0.144f);
     public float mouseSensivity = 0.1f;
     public float distance = 600;
     public int shadows {get; private set;} = 3;
-    public int shadowVariantsCount {get; private set;}
-    private int[] shadowSettings = new int[] 
+    public int shadowVariantsCount {get;}
+    private int[] shadowSettings =
     {
         1024, 2048, 2560, 4096
     };
@@ -18,16 +17,25 @@ public class Settings
     public float musicVolume {get; private set;}
     public float voiceVolume {get; private set;}
 
-    public bool fullscreen {get; private set;} = false;
+    public bool fullscreen {get; private set;}
     public bool cameraAngle = true;
 
-    public string[] controlActions = new string[] 
+    public string[] controlActions = 
     {
         "ui_up", "ui_down", "ui_left", "ui_right",
         "jump", "ui_shift", "use", "crouch", "dash",
         "legsHit", "changeView", "task", "inventory",
         "autoheal", "ui_quicksave", "ui_quickload"
     };
+
+    public float playerDamage = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
+    public float npcDamage = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
+    public float npcAggressive = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
+    public float npcAccuracy = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
+    public float inflation = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
+    public bool deathScreen = DifficultySubmenu.DEFAULT_DEATH_SCREEN;
+    
+    Viewport root;
 
     private void updateAudioBus(int num, float value)
     {
@@ -94,6 +102,13 @@ public class Settings
         config.SetValue("audio", "sound_volume", soundVolume);
         config.SetValue("audio", "music_volume", musicVolume);
         config.SetValue("audio", "voice_volume", voiceVolume);
+        
+        config.SetValue("difficulty", "player_damage", playerDamage);
+        config.SetValue("difficulty", "npc_damage", npcDamage);
+        config.SetValue("difficulty", "npc_aggressive", npcAggressive);
+        config.SetValue("difficulty", "npc_accuracy", npcAccuracy);
+        config.SetValue("difficulty", "inflation", inflation);
+        config.SetValue("difficulty", "death_screen", deathScreen);
 
         config.Save("res://settings.cfg");
     }
@@ -131,6 +146,13 @@ public class Settings
             SetSoundVolume((float)config.GetValue("audio", "sound_volume"));
             SetMusicVolume((float)config.GetValue("audio", "music_volume"));
             SetVoiceVolume((float)config.GetValue("audio", "voice_volume"));
+
+            playerDamage = (float) config.GetValue("difficulty", "player_damage");
+            npcDamage = (float) config.GetValue("difficulty", "npc_damage");
+            npcAggressive = (float) config.GetValue("difficulty", "npc_aggressive");
+            npcAccuracy = (float) config.GetValue("difficulty", "npc_accuracy");
+            inflation = (float) config.GetValue("difficulty", "inflation");
+            deathScreen = (bool)config.GetValue("difficulty", "death_screen");
             
             SettingsLoaded = true;
         }

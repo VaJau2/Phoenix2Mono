@@ -103,6 +103,7 @@ public class NPCWeapons : Node
 
             float shootChance = 1.0f - (victimDistance / statsDistance * 0.5f);
             shootChance /= (victim.Velocity.Length() / 5);
+            shootChance *= Global.Get().Settings.npcAccuracy;
 
             AnimGunEffects();
 

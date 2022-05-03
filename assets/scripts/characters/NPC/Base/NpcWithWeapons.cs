@@ -173,11 +173,18 @@ public class NpcWithWeapons : NPC
         }
     }
 
+    private float GetCoverTime()
+    {
+        float tempTime = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
+        tempTime *= 1 / Global.Get().Settings.npcAggressive;
+        return tempTime;
+    }
+
     private void FindCover()
     {
         if (InCover)
         {
-            coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
+            coverTimer = GetCoverTime();
         }
         else
         {
@@ -189,7 +196,7 @@ public class NpcWithWeapons : NPC
             }
 
             InCover = false;
-            coverTimer = rand.RandfRange(COVER_TIMER[0], COVER_TIMER[1]);
+            coverTimer = GetCoverTime();
         }
     }
 

@@ -21,11 +21,20 @@
         "voice": "Set voice volume",
         "language": "Set other language",
         "controls": "Set controls",
+        "difficulty": "Set difficulty of the game",
         "color_r": "Set red for interface color",
         "color_g": "Set green for interface color",
         "color_b": "Set blue for interface color",
 
-        "default": "Reset defalut settings"
+        "player_damage": "Affects the damage that the player deals to all NPC",
+        "npc_damage": "Affects the damage that NPC inflict on the player and each other",
+        "npc_aggressive": "The more, the less NPC will be in hiding",
+        "npc_accuracy": "Affects the probability of NPC hitting the player and each other",
+        "inflation": "Affects the purchase/sale price of any item in the game",
+        "death_screen": "If turned off, after the death it will be impossible to reboot, the game will continue until the end",
+
+        "default": "Reset default settings",
+        "default_difficulty": "Reset the difficulty to standard"
     },
 
     "labels": {
@@ -39,13 +48,21 @@
         "sound": "Sound volume:",
         "music": "Music volume:",
         "voice": "Voice volume:",
-        "color": "Interface color:"
+        "color": "Interface color:",
+
+        "player_damage": "Player damage coefficient:",
+        "npc_damage": "NPC damage coefficient:",
+        "npc_aggressive": "NPC Aggressiveness:",
+        "npc_accuracy": "NPC Accuracy:",
+        "inflation": "Inflation rate in Equestria:",
+        "death_screen": "Loading screen after death:"
     },
 
     "buttons": {
         "back": "[Back]",
         "language": "English",
         "controls": "[Controls settings]",
+        "difficulty": "[Difficulty settings]",
         "default": "[Default]"
     },
 

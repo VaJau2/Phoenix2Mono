@@ -70,6 +70,13 @@ public class Dragon: NPC
         }
     }
 
+    private int GetDamage(int baseDamage)
+    {
+        float tempDamage = baseDamage;
+        tempDamage *= Global.Get().Settings.npcDamage;
+        return (int) tempDamage;
+    }
+
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         base.TakeDamage(damager, damage, shapeID);
@@ -289,7 +296,7 @@ public class Dragon: NPC
         else
         {
             damageTimer = 0.5f;
-            enemyInMouth.TakeDamage(this, MOUTH_DAMAGE);
+            enemyInMouth.TakeDamage(this, GetDamage(MOUTH_DAMAGE));
         }
 
         if (enemyInMouth.Health <= 0)
@@ -400,7 +407,7 @@ public class Dragon: NPC
                         }
                         else
                         {
-                            tempVictim.TakeDamage(this, FIRE_DAMAGE);
+                            tempVictim.TakeDamage(this, GetDamage(FIRE_DAMAGE));
                             damageTimer = 0.1f;
                         }
                     }

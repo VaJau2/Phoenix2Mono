@@ -1,15 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/scripts/interface/Menus/SettingsMenu.cs" type="Script" id=3]
+[ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsMenu.cs" type="Script" id=3]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
+[ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsSubmenu.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/interface/Menus/Settings/ControlsSubmenu.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/interface/Menus/Settings/DifficultySubmenu.cs" type="Script" id=7]
 
 [node name="SettingsMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+submenuPaths = {
+"Controls": NodePath("Controls"),
+"Difficulty": NodePath("Difficulty"),
+"Settings": NodePath("Settings")
+}
 
 [node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 4 )
@@ -41,9 +49,7 @@ __meta__ = {
 [node name="Settings" type="Control" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 5 )
 
 [node name="mouse_label" type="Label" parent="Settings"]
 anchor_left = 0.5
@@ -181,9 +187,6 @@ margin_bottom = -62.0
 theme = ExtResource( 2 )
 text = "Качество теней:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="shadows_button" type="Button" parent="Settings"]
 anchor_left = 0.5
@@ -798,34 +801,41 @@ __meta__ = {
 }
 
 [node name="controls" type="Button" parent="Settings"]
-anchor_top = 0.747
+anchor_top = 0.773
 anchor_right = 1.0
-anchor_bottom = 0.8
-margin_top = 31.8
-margin_bottom = 24.0001
+anchor_bottom = 0.813
+margin_top = 0.199951
+margin_bottom = 0.199982
 theme = ExtResource( 2 )
 text = "[Настройки управления]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="difficulty" type="Button" parent="Settings"]
+anchor_top = 0.827
+anchor_right = 1.0
+anchor_bottom = 0.867
+margin_top = -0.200012
+margin_bottom = -0.200012
+theme = ExtResource( 2 )
+text = "[Настройки сложности]"
 
 [node name="Controls" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="default" type="Button" parent="Controls"]
 anchor_left = 0.07
-anchor_top = 0.293
+anchor_top = 0.267
 anchor_right = 0.352
-anchor_bottom = 0.333
+anchor_bottom = 0.307
 margin_left = 0.32
-margin_top = 0.199997
+margin_top = -0.200012
 margin_right = -0.448029
-margin_bottom = 2.07201
+margin_bottom = 1.672
 theme = ExtResource( 2 )
 text = " [Сбросить]"
 __meta__ = {
@@ -1504,6 +1514,434 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Difficulty" type="Control" parent="." groups=["ignore_color"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+
+[node name="default" type="Button" parent="Difficulty"]
+anchor_left = 0.07
+anchor_top = 0.267
+anchor_right = 0.352
+anchor_bottom = 0.31
+margin_left = 0.32
+margin_top = -0.200012
+margin_right = -0.448029
+margin_bottom = -0.127991
+theme = ExtResource( 2 )
+text = " [Сбросить]"
+
+[node name="player_damage_label" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -224.0
+margin_top = -100.0
+margin_bottom = -78.0
+theme = ExtResource( 2 )
+text = "Коэффициент урона игрока:"
+align = 2
+
+[node name="player_damage_slider" type="HSlider" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -100.0
+margin_right = 316.0
+margin_bottom = -80.0
+theme = ExtResource( 2 )
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="Label" parent="Difficulty/player_damage_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/player_damage_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_damage_number" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = -100.0
+margin_right = 384.0
+margin_bottom = -78.0
+theme = ExtResource( 2 )
+text = "1,00"
+align = 2
+
+[node name="npc_damage_label" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = -68.0
+margin_bottom = -46.0
+theme = ExtResource( 2 )
+text = "Коэффициент урона персонажей:"
+align = 2
+
+[node name="npc_damage_slider" type="HSlider" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -68.0
+margin_right = 316.0
+margin_bottom = -48.0
+theme = ExtResource( 2 )
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="border" type="Label" parent="Difficulty/npc_damage_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/npc_damage_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="npc_damage_number" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = -68.0
+margin_right = 384.0
+margin_bottom = -46.0
+theme = ExtResource( 2 )
+text = "1,00"
+align = 2
+
+[node name="npc_aggressive_label" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -224.0
+margin_top = -36.0
+margin_bottom = -14.0
+theme = ExtResource( 2 )
+text = "Агрессивность персонажей:"
+align = 2
+
+[node name="npc_aggressive_slider" type="HSlider" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -36.0
+margin_right = 316.0
+margin_bottom = -16.0
+theme = ExtResource( 2 )
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="border" type="Label" parent="Difficulty/npc_aggressive_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/npc_aggressive_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="npc_aggressive_number" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = -36.0
+margin_right = 384.0
+margin_bottom = -14.0
+theme = ExtResource( 2 )
+text = "1,00"
+align = 2
+
+[node name="npc_accuracy_label" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -224.0
+margin_top = -4.0
+margin_bottom = 18.0
+theme = ExtResource( 2 )
+text = "Точность персонажей:"
+align = 2
+
+[node name="npc_accuracy_slider" type="HSlider" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -4.0
+margin_right = 316.0
+margin_bottom = 16.0
+theme = ExtResource( 2 )
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="border" type="Label" parent="Difficulty/npc_accuracy_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/npc_accuracy_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="npc_accuracy_number" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = -4.0
+margin_right = 384.0
+margin_bottom = 18.0
+theme = ExtResource( 2 )
+text = "1,00"
+align = 2
+
+[node name="inflation_label" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = 60.0
+margin_bottom = 82.0
+theme = ExtResource( 2 )
+text = "Уровень инфляции в Эквестрии:"
+align = 2
+
+[node name="inflation_slider" type="HSlider" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = 60.0
+margin_right = 316.0
+margin_bottom = 80.0
+theme = ExtResource( 2 )
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="border" type="Label" parent="Difficulty/inflation_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -8.43
+margin_right = -2.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/inflation_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -8.43
+margin_right = 12.0
+margin_bottom = 13.57
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inflation_number" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 336.0
+margin_top = 60.0
+margin_right = 384.0
+margin_bottom = 82.0
+theme = ExtResource( 2 )
+text = "1,00"
+align = 2
+
+[node name="death_screen" type="Label" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -224.0
+margin_top = 116.0
+margin_bottom = 138.0
+theme = ExtResource( 2 )
+text = "Экран загрузки после смерти:"
+align = 2
+
+[node name="death_button" type="Button" parent="Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = 116.0
+margin_right = 323.0
+margin_bottom = 134.0
+theme = ExtResource( 2 )
+text = "Включен"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="border" type="Label" parent="Difficulty/death_button" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -8.5
+margin_right = 6.0
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border2" type="Label" parent="Difficulty/death_button" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -6.00021
+margin_top = -8.5
+margin_right = -0.000213623
+margin_bottom = 6.5
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="back" type="Button" parent="."]
 anchor_left = 0.078
 anchor_top = 0.2
@@ -1546,94 +1984,118 @@ bus = "Audio"
 
 [connection signal="mouse_entered" from="Settings/mouse_slider" to="." method="_on_mouse_entered" binds= [ "choose", "mouse" ]]
 [connection signal="mouse_exited" from="Settings/mouse_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/mouse_slider" to="." method="_on_mouse_slider_value_changed"]
+[connection signal="value_changed" from="Settings/mouse_slider" to="Settings" method="_on_mouse_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/distance_slider" to="." method="_on_mouse_entered" binds= [ "choose", "distance" ]]
 [connection signal="mouse_exited" from="Settings/distance_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/distance_slider" to="." method="_on_distance_slider_value_changed"]
+[connection signal="value_changed" from="Settings/distance_slider" to="Settings" method="_on_distance_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/shadows_button" to="." method="_on_mouse_entered" binds= [ "choose", "shadows" ]]
 [connection signal="mouse_exited" from="Settings/shadows_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/shadows_button" to="." method="_on_shadows_button_pressed"]
+[connection signal="pressed" from="Settings/shadows_button" to="Settings" method="_on_shadows_button_pressed"]
 [connection signal="mouse_entered" from="Settings/fullscreen_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
 [connection signal="mouse_exited" from="Settings/fullscreen_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/fullscreen_button" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="Settings/fullscreen_button" to="Settings" method="_on_fullscreen_button_pressed"]
 [connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
 [connection signal="mouse_exited" from="Settings/cameraAngle_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/cameraAngle_button" to="." method="_on_cameraAngle_button_pressed"]
+[connection signal="pressed" from="Settings/cameraAngle_button" to="Settings" method="_on_cameraAngle_button_pressed"]
 [connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]
 [connection signal="mouse_exited" from="Settings/sound_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/sound_slider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="Settings/sound_slider" to="Settings" method="_on_sound_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
 [connection signal="mouse_exited" from="Settings/music_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Settings/music_slider" to="Settings" method="_on_music_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/voice_slider" to="." method="_on_mouse_entered" binds= [ "choose", "voice" ]]
 [connection signal="mouse_exited" from="Settings/voice_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/voice_slider" to="." method="_on_voice_slider_value_changed"]
+[connection signal="value_changed" from="Settings/voice_slider" to="Settings" method="_on_voice_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
 [connection signal="mouse_exited" from="Settings/language_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/language_button" to="." method="_on_language_button_pressed"]
+[connection signal="pressed" from="Settings/language_button" to="Settings" method="_on_language_button_pressed"]
 [connection signal="mouse_entered" from="Settings/colorBlock/r_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_r" ]]
 [connection signal="mouse_exited" from="Settings/colorBlock/r_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/r_slider" to="." method="_on_color_slider_value_changed" binds= [ "Red" ]]
+[connection signal="value_changed" from="Settings/colorBlock/r_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Red" ]]
 [connection signal="mouse_entered" from="Settings/colorBlock/g_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_g" ]]
 [connection signal="mouse_exited" from="Settings/colorBlock/g_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/g_slider" to="." method="_on_color_slider_value_changed" binds= [ "Green" ]]
+[connection signal="value_changed" from="Settings/colorBlock/g_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Green" ]]
 [connection signal="mouse_entered" from="Settings/colorBlock/b_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_b" ]]
 [connection signal="mouse_exited" from="Settings/colorBlock/b_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/b_slider" to="." method="_on_color_slider_value_changed" binds= [ "Blue" ]]
+[connection signal="value_changed" from="Settings/colorBlock/b_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Blue" ]]
 [connection signal="mouse_entered" from="Settings/controls" to="." method="_on_mouse_entered" binds= [ "choose", "controls" ]]
 [connection signal="mouse_exited" from="Settings/controls" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Settings/controls" to="." method="_on_submenu_pressed" binds= [ "Controls" ]]
+[connection signal="mouse_entered" from="Settings/difficulty" to="." method="_on_mouse_entered" binds= [ "choose", "difficulty" ]]
+[connection signal="mouse_exited" from="Settings/difficulty" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Settings/difficulty" to="." method="_on_submenu_pressed" binds= [ "Difficulty" ]]
 [connection signal="mouse_entered" from="Controls/default" to="." method="_on_mouse_entered" binds= [ "choose", "default" ]]
 [connection signal="mouse_exited" from="Controls/default" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Controls/default" to="." method="_on_default_pressed"]
-[connection signal="gui_input" from="Controls/forwardBack" to="." method="_on_controls_gui_input" binds= [ "ui_up" ]]
-[connection signal="mouse_entered" from="Controls/forwardBack" to="." method="_on_controls_mouse_entered" binds= [ "forwardBack", "controls", "forward" ]]
-[connection signal="mouse_exited" from="Controls/forwardBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/backBack" to="." method="_on_controls_gui_input" binds= [ "ui_down" ]]
-[connection signal="mouse_entered" from="Controls/backBack" to="." method="_on_controls_mouse_entered" binds= [ "backBack", "controls", "back" ]]
-[connection signal="mouse_exited" from="Controls/backBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/leftBack" to="." method="_on_controls_gui_input" binds= [ "ui_left" ]]
-[connection signal="mouse_entered" from="Controls/leftBack" to="." method="_on_controls_mouse_entered" binds= [ "leftBack", "controls", "left" ]]
-[connection signal="mouse_exited" from="Controls/leftBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/rightBack" to="." method="_on_controls_gui_input" binds= [ "ui_right" ]]
-[connection signal="mouse_entered" from="Controls/rightBack" to="." method="_on_controls_mouse_entered" binds= [ "rightBack", "controls", "right" ]]
-[connection signal="mouse_exited" from="Controls/rightBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/jumpBack" to="." method="_on_controls_gui_input" binds= [ "jump" ]]
-[connection signal="mouse_entered" from="Controls/jumpBack" to="." method="_on_controls_mouse_entered" binds= [ "jumpBack", "controls", "jump" ]]
-[connection signal="mouse_exited" from="Controls/jumpBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/runBack" to="." method="_on_controls_gui_input" binds= [ "ui_shift" ]]
-[connection signal="mouse_entered" from="Controls/runBack" to="." method="_on_controls_mouse_entered" binds= [ "runBack", "controls", "run" ]]
-[connection signal="mouse_exited" from="Controls/runBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/useBack" to="." method="_on_controls_gui_input" binds= [ "use" ]]
-[connection signal="mouse_entered" from="Controls/useBack" to="." method="_on_controls_mouse_entered" binds= [ "useBack", "controls", "use" ]]
-[connection signal="mouse_exited" from="Controls/useBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/crouchBack" to="." method="_on_controls_gui_input" binds= [ "crouch" ]]
-[connection signal="mouse_entered" from="Controls/crouchBack" to="." method="_on_controls_mouse_entered" binds= [ "crouchBack", "controls", "sit" ]]
-[connection signal="mouse_exited" from="Controls/crouchBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/dashBack" to="." method="_on_controls_gui_input" binds= [ "dash" ]]
-[connection signal="mouse_entered" from="Controls/dashBack" to="." method="_on_controls_mouse_entered" binds= [ "dashBack", "controls", "dash" ]]
-[connection signal="mouse_exited" from="Controls/dashBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/legsBack" to="." method="_on_controls_gui_input" binds= [ "legsHit" ]]
-[connection signal="mouse_entered" from="Controls/legsBack" to="." method="_on_controls_mouse_entered" binds= [ "legsBack", "controls", "choseHit" ]]
-[connection signal="mouse_exited" from="Controls/legsBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/cameraBack" to="." method="_on_controls_gui_input" binds= [ "changeView" ]]
-[connection signal="mouse_entered" from="Controls/cameraBack" to="." method="_on_controls_mouse_entered" binds= [ "cameraBack", "controls", "changeView" ]]
-[connection signal="mouse_exited" from="Controls/cameraBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/taskBack" to="." method="_on_controls_gui_input" binds= [ "task" ]]
-[connection signal="mouse_entered" from="Controls/taskBack" to="." method="_on_controls_mouse_entered" binds= [ "taskBack", "controls", "seeTasks" ]]
-[connection signal="mouse_exited" from="Controls/taskBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/inventoryBack" to="." method="_on_controls_gui_input" binds= [ "inventory" ]]
-[connection signal="mouse_entered" from="Controls/inventoryBack" to="." method="_on_controls_mouse_entered" binds= [ "inventoryBack", "controls", "inventory" ]]
-[connection signal="mouse_exited" from="Controls/inventoryBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/autohealBack" to="." method="_on_controls_gui_input" binds= [ "autoheal" ]]
-[connection signal="mouse_entered" from="Controls/autohealBack" to="." method="_on_controls_mouse_entered" binds= [ "autohealBack", "controls", "autoheal" ]]
-[connection signal="mouse_exited" from="Controls/autohealBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/quicksaveBack" to="." method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
-[connection signal="mouse_entered" from="Controls/quicksaveBack" to="." method="_on_controls_mouse_entered" binds= [ "quicksaveBack", "controls", "quicksave" ]]
-[connection signal="mouse_exited" from="Controls/quicksaveBack" to="." method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/quickloadBack" to="." method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
-[connection signal="mouse_entered" from="Controls/quickloadBack" to="." method="_on_controls_mouse_entered" binds= [ "quickloadBack", "controls", "quickload" ]]
-[connection signal="mouse_exited" from="Controls/quickloadBack" to="." method="_on_controls_mouse_exited"]
+[connection signal="pressed" from="Controls/default" to="Controls" method="_on_default_pressed"]
+[connection signal="gui_input" from="Controls/forwardBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_up" ]]
+[connection signal="mouse_entered" from="Controls/forwardBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "forwardBack", "controls", "forward" ]]
+[connection signal="mouse_exited" from="Controls/forwardBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/backBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_down" ]]
+[connection signal="mouse_entered" from="Controls/backBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "backBack", "controls", "back" ]]
+[connection signal="mouse_exited" from="Controls/backBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/leftBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_left" ]]
+[connection signal="mouse_entered" from="Controls/leftBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "leftBack", "controls", "left" ]]
+[connection signal="mouse_exited" from="Controls/leftBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/rightBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_right" ]]
+[connection signal="mouse_entered" from="Controls/rightBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "rightBack", "controls", "right" ]]
+[connection signal="mouse_exited" from="Controls/rightBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/jumpBack" to="Controls" method="_on_controls_gui_input" binds= [ "jump" ]]
+[connection signal="mouse_entered" from="Controls/jumpBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "jumpBack", "controls", "jump" ]]
+[connection signal="mouse_exited" from="Controls/jumpBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/runBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_shift" ]]
+[connection signal="mouse_entered" from="Controls/runBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "runBack", "controls", "run" ]]
+[connection signal="mouse_exited" from="Controls/runBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/useBack" to="Controls" method="_on_controls_gui_input" binds= [ "use" ]]
+[connection signal="mouse_entered" from="Controls/useBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "useBack", "controls", "use" ]]
+[connection signal="mouse_exited" from="Controls/useBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/crouchBack" to="Controls" method="_on_controls_gui_input" binds= [ "crouch" ]]
+[connection signal="mouse_entered" from="Controls/crouchBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "crouchBack", "controls", "sit" ]]
+[connection signal="mouse_exited" from="Controls/crouchBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/dashBack" to="Controls" method="_on_controls_gui_input" binds= [ "dash" ]]
+[connection signal="mouse_entered" from="Controls/dashBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "dashBack", "controls", "dash" ]]
+[connection signal="mouse_exited" from="Controls/dashBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/legsBack" to="Controls" method="_on_controls_gui_input" binds= [ "legsHit" ]]
+[connection signal="mouse_entered" from="Controls/legsBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "legsBack", "controls", "choseHit" ]]
+[connection signal="mouse_exited" from="Controls/legsBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/cameraBack" to="Controls" method="_on_controls_gui_input" binds= [ "changeView" ]]
+[connection signal="mouse_entered" from="Controls/cameraBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "cameraBack", "controls", "changeView" ]]
+[connection signal="mouse_exited" from="Controls/cameraBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/taskBack" to="Controls" method="_on_controls_gui_input" binds= [ "task" ]]
+[connection signal="mouse_entered" from="Controls/taskBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "taskBack", "controls", "seeTasks" ]]
+[connection signal="mouse_exited" from="Controls/taskBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/inventoryBack" to="Controls" method="_on_controls_gui_input" binds= [ "inventory" ]]
+[connection signal="mouse_entered" from="Controls/inventoryBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "inventoryBack", "controls", "inventory" ]]
+[connection signal="mouse_exited" from="Controls/inventoryBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/autohealBack" to="Controls" method="_on_controls_gui_input" binds= [ "autoheal" ]]
+[connection signal="mouse_entered" from="Controls/autohealBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "autohealBack", "controls", "autoheal" ]]
+[connection signal="mouse_exited" from="Controls/autohealBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/quicksaveBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
+[connection signal="mouse_entered" from="Controls/quicksaveBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "quicksaveBack", "controls", "quicksave" ]]
+[connection signal="mouse_exited" from="Controls/quicksaveBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/quickloadBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
+[connection signal="mouse_entered" from="Controls/quickloadBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "quickloadBack", "controls", "quickload" ]]
+[connection signal="mouse_exited" from="Controls/quickloadBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="mouse_entered" from="Difficulty/default" to="." method="_on_mouse_entered" binds= [ "choose", "default_difficulty" ]]
+[connection signal="mouse_exited" from="Difficulty/default" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Difficulty/default" to="Difficulty" method="_on_default_pressed"]
+[connection signal="mouse_entered" from="Difficulty/player_damage_slider" to="." method="_on_mouse_entered" binds= [ "choose", "player_damage" ]]
+[connection signal="mouse_exited" from="Difficulty/player_damage_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Difficulty/player_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "player_damage" ]]
+[connection signal="mouse_entered" from="Difficulty/npc_damage_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_damage" ]]
+[connection signal="mouse_exited" from="Difficulty/npc_damage_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Difficulty/npc_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_damage" ]]
+[connection signal="mouse_entered" from="Difficulty/npc_aggressive_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_aggressive" ]]
+[connection signal="mouse_exited" from="Difficulty/npc_aggressive_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Difficulty/npc_aggressive_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_aggressive" ]]
+[connection signal="mouse_entered" from="Difficulty/npc_accuracy_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_accuracy" ]]
+[connection signal="mouse_exited" from="Difficulty/npc_accuracy_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Difficulty/npc_accuracy_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_accuracy" ]]
+[connection signal="mouse_entered" from="Difficulty/inflation_slider" to="." method="_on_mouse_entered" binds= [ "choose", "inflation" ]]
+[connection signal="mouse_exited" from="Difficulty/inflation_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Difficulty/inflation_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "inflation" ]]
+[connection signal="mouse_entered" from="Difficulty/death_button" to="." method="_on_mouse_entered" binds= [ "choose", "death_screen" ]]
+[connection signal="mouse_exited" from="Difficulty/death_button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Difficulty/death_button" to="Difficulty" method="_on_death_button_pressed"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "back", "mainMenu" ]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

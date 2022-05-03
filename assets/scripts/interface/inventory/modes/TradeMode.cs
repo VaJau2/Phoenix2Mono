@@ -356,6 +356,30 @@ public class TradeMode: InventoryMode
         base.ChangeItemButtons(oldButton, newButton);
     }
 
+    private int GetItemPrice(Dictionary tempItemProps, bool buyPrice)
+    {
+        int tempPrice = int.Parse(tempItemProps["price"].ToString());
+        float priceDelta = player.PriceDelta;
+        
+        if (buyPrice) {
+            //стоимость покупки
+            tempPrice = (int)(tempPrice / (PRICE_DIFF * priceDelta));
+        } else {
+            //стоимость продажи
+            tempPrice = (int)(tempPrice * (PRICE_DIFF * priceDelta));
+            if (tempPrice == 0)
+            {
+                tempPrice = 1;
+            }
+        }
+
+        //уровень инфляции из настроек сложности
+        var inflationPrice = (float)tempPrice;
+        inflationPrice *= Global.Get().Settings.inflation;
+
+        return (int)inflationPrice;
+    }
+
     protected override string GetItemPropsString(Dictionary itemProps)
     {
         string result = "";
@@ -368,21 +392,10 @@ public class TradeMode: InventoryMode
                 //выводим стоимость покупки/продажи предмета
                 if (prop == "price") {
                     tempItemName = itemProps["name"].ToString();
-                    tempItemPrice = int.Parse(itemProps[prop].ToString());
-                    float priceDelta = player.PriceDelta;
-
-                    if (itemButtons.Contains(tempButton)) {
-                        //стоимость продажи
-                        tempItemPrice = (int)(tempItemPrice * (PRICE_DIFF * priceDelta));
-                        if (tempItemPrice == 0)
-                        {
-                            tempItemPrice = 1;
-                        }
-                    } else {
-                        //стоимость покупки
-                        tempItemPrice = (int)(tempItemPrice / (PRICE_DIFF * priceDelta));
-                    }
-
+                    
+                    bool isBuyPrice = !itemButtons.Contains(tempButton);
+                    tempItemPrice = GetItemPrice(itemProps, isBuyPrice);
+                    
                     propValue = tempItemPrice.ToString(); 
                 } else {
                     propValue = itemProps[prop].ToString();

@@ -110,6 +110,13 @@ public class NPC : Character
         lastSeePos = newPos;
     }
 
+    public override int GetDamage()
+    {
+        float tempDamage = base.GetDamage();
+        tempDamage *= Global.Get().Settings.npcDamage;
+        return (int) tempDamage;
+    }
+
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
         EmitSignal(nameof(TakenDamage));
@@ -184,7 +191,7 @@ public class NPC : Character
         audi.Play();
     }
 
-    protected virtual async void AnimateDealth(Character killer, int shapeID)
+    protected virtual void AnimateDealth(Character killer, int shapeID)
     {
         if (GetParent() is EnemiesManager manager)
         {

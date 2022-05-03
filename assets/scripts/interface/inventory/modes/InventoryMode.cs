@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Godot.Collections;
@@ -186,8 +187,17 @@ public abstract class InventoryMode
     {
         switch (propName)
         {
+            case "damage":
+            {
+                //добавляем настройки урона игрока в выводе урона от оружия
+                float damageValue = Global.ParseFloat(propValue) * Global.Get().Settings.playerDamage;
+                int intDamage = (int) damageValue;
+                return intDamage.ToString();
+            }
             case "medsEffect":
+            {
                 return InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
+            }
             case "damageBlock":
             {
                 //выводим блокирование урона в процентах
@@ -195,11 +205,15 @@ public abstract class InventoryMode
                 return (blockValue * 100f) + "%";
             }
             case "checkHasItem":
+            {
                 var itemData = ItemJSON.GetItemData(propValue);
                 return itemData["name"].ToString();
+            }
             case "questItem":
             case "onlyForEarthponies":
+            {
                 return "";
+            }
         }
 
         return propValue;

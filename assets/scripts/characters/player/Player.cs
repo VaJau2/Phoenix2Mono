@@ -95,11 +95,15 @@ public class Player : Character
 
     public override int GetDamage()
     {
-        int tempDamage = base.GetDamage();
+        float tempDamage = base.GetDamage();
+        
         if (inventory.weapon != "") {
             tempDamage += Weapons.GetStatsInt("damage");
         }
-        return tempDamage;
+
+        tempDamage *= global.Settings.playerDamage;
+        
+        return (int)tempDamage;
     }
 
     public override float GetDamageBlock() 
