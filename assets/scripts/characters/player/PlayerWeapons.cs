@@ -18,6 +18,7 @@ public class PlayerWeapons: CollisionShape
     //head -> body.head
 
     //---интерфейс-------
+    InteractionPoint point;
     Control shootInterface;
 
     public Label ammoLabel;
@@ -27,7 +28,6 @@ public class PlayerWeapons: CollisionShape
     Dictionary tempWeaponStats;
 
     //--эффекты и анимания выстрела
-
     public ItemIcon tempAmmoButton {get; private set;}
     Spatial tempWeapon;
     AnimationPlayer gunAnim;
@@ -76,6 +76,7 @@ public class PlayerWeapons: CollisionShape
         LoadGunEffects();
         
         shootInterface.Visible = true;
+        point.SetInteractionVariant(InteractionVariant.Cross);
         player.SetWeaponOn(isPistol);
         GunOn = true;
     }
@@ -88,6 +89,7 @@ public class PlayerWeapons: CollisionShape
         tempWeapon.QueueFree();
         tempWeapon = null;
         shootInterface.Visible = false;
+        point.SetInteractionVariant(InteractionVariant.Point);
         player.SetWeaponOff();
         GunOn = false;
     }
@@ -110,10 +112,11 @@ public class PlayerWeapons: CollisionShape
     {
         global = Global.Get();
 
+        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<TextureRect>("ammoBack/icon");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
-        crossHitted = shootInterface.GetNode<TextureRect>("cross/hitted");
+        crossHitted = shootInterface.GetNode<TextureRect>("hitted");
 
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
         particlesParent = GetNode("/root/Main/Scene");

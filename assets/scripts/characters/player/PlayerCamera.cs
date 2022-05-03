@@ -14,6 +14,7 @@ public class PlayerCamera: Camera
     public bool isUpdating = true;
     public float closedTimer = 0;
     
+    InteractionPoint point;
     DialogueMenu dialogueMenu;
 
     Player player;
@@ -51,6 +52,7 @@ public class PlayerCamera: Camera
     }
     
     public void ShowHint(string textLink, bool triggerClosing = true) {
+        point.SetInteractionVariant(InteractionVariant.Square);
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
@@ -76,6 +78,9 @@ public class PlayerCamera: Camera
             }
         } else {
             if (onetimeHint) {
+                point.SetInteractionVariant(
+                    player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
+                );  
                 labelBack.Visible = false;
                 onetimeHint = false;
             }
@@ -206,6 +211,7 @@ public class PlayerCamera: Camera
 
     public override void _Ready()
     {
+        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
         dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         player = GetNode<Player>("../../");
         labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
