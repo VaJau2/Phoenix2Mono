@@ -24,7 +24,7 @@ public class PlayerCamera: Camera
     string closedTextLink = "closed";
 
     Spatial tempObject;
-    bool onetimeHint = false;
+    bool onetimeHint, onetimeCross;
 
     bool fovClosing = false;
     Control eyePartUp;
@@ -60,7 +60,7 @@ public class PlayerCamera: Camera
         label.Text += InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
         labelBack.Visible = true;
         if (!triggerClosing) return;
-        onetimeHint = true;
+        onetimeHint = onetimeCross = true;
     }
 
     public void HideHint()
@@ -78,9 +78,6 @@ public class PlayerCamera: Camera
             }
         } else {
             if (onetimeHint) {
-                point.SetInteractionVariant(
-                    player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
-                );  
                 labelBack.Visible = false;
                 onetimeHint = false;
             }
@@ -168,6 +165,12 @@ public class PlayerCamera: Camera
             }
         } else {
             tempObject = null;
+
+            if (!onetimeCross) return;
+            point.SetInteractionVariant(
+                player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
+            );
+            onetimeCross = false;
         }
     }
 
