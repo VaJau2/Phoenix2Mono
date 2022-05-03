@@ -1760,7 +1760,7 @@ tracks/15/keys = {
 "values": [ Vector2( 64, 8 ), Vector2( 16, 16 ) ]
 }
 
-[node name="point" type="Control"]
+[node name="point" type="Control" groups=["ignore_color"]]
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
