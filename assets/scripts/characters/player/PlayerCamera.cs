@@ -66,6 +66,14 @@ public class PlayerCamera: Camera
     public void HideHint()
     {
         onetimeHint = true;
+        ReturnInteractionPoint();
+    }
+
+    private void ReturnInteractionPoint()
+    {
+        point.SetInteractionVariant(
+            player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
+        );
     }
 
     private void UpdateFov(float delta) {
@@ -165,12 +173,7 @@ public class PlayerCamera: Camera
             }
         } else {
             tempObject = null;
-
-            if (!onetimeCross) return;
-            point.SetInteractionVariant(
-                player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
-            );
-            onetimeCross = false;
+            ReturnInteractionPoint();
         }
     }
 

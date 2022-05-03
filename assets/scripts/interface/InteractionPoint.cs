@@ -14,9 +14,9 @@ public class InteractionPoint : Control
 
     public void SetInteractionVariant(InteractionVariant newVariant)
     {
-        Visible = true;
-        
         if (tempVariant == newVariant) return;
+        
+        Visible = true;
         
         string animName = GetAnimName(newVariant);
         anim.Play(animName);
