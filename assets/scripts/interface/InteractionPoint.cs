@@ -11,12 +11,14 @@ public class InteractionPoint : Control
     private InteractionVariant tempVariant = InteractionVariant.Point;
     
     private Timer fadeTimer;
-
+    private bool isHidden;
+    
     public void SetInteractionVariant(InteractionVariant newVariant)
     {
         if (tempVariant == newVariant) return;
         
         Visible = true;
+        isHidden = false;
         
         string animName = GetAnimName(newVariant);
         anim.Play(animName);
@@ -45,6 +47,20 @@ public class InteractionPoint : Control
         
         fadeTimer.QueueFree();
         fadeTimer = null;
+    }
+
+    public void HideSquare()
+    {
+        if (tempVariant != InteractionVariant.Square) return;
+        Visible = false;
+        isHidden = true;
+    }
+
+    public void ShowSquareAgain()
+    {
+        if (!isHidden) return;
+        Visible = true;
+        isHidden = false;
     }
 
     public override async void _Ready()

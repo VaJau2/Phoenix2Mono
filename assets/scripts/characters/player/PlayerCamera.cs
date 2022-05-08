@@ -184,6 +184,7 @@ public class PlayerCamera: Camera
         {
             case TheaterChair chair when chair.isActive && !player.IsSitting:
             {
+                point.HideSquare();
                 chair.Sit(player);
                 break;
             }
@@ -196,11 +197,13 @@ public class PlayerCamera: Camera
             }
             case FurnBase furn:
             {
+                point.HideSquare();
                 furn.ClickFurn();
                 break;
             }
             case Terminal tempTerminal:
             {
+                point.HideSquare();
                 MenuManager.TryToOpenMenu(tempTerminal);
                 break;
             }

@@ -41,6 +41,9 @@ public class Terminal : StaticBody, IMenu
 
     public void CloseMenu()
     {
+        var point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        point.ShowSquareAgain();
+        
         isUsing = false;
         player.MayMove = true;
         player.Camera.isUpdating = true;

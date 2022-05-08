@@ -48,6 +48,9 @@ public class ChestMode: InventoryMode
 
     public override void CloseMenu()
     {
+        var point = menu.GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        point.ShowSquareAgain();
+        
         menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
         chestBack.Visible = false;
         base.CloseMenu();
