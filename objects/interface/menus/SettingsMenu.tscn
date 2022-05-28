@@ -1994,7 +1994,7 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/fullscreen_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
 [connection signal="mouse_exited" from="Settings/fullscreen_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/fullscreen_button" to="Settings" method="_on_fullscreen_button_pressed"]
-[connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
+[connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= [ "choose", "cameraAngle" ]]
 [connection signal="mouse_exited" from="Settings/cameraAngle_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/cameraAngle_button" to="Settings" method="_on_cameraAngle_button_pressed"]
 [connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]

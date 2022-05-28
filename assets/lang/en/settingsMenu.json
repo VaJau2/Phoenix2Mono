@@ -16,6 +16,7 @@
         "distance": "Set render distance",
         "shadows": "Set shadows quality",
         "fullscreen": "Set fullscreen",
+        "cameraAngle": "Set camera tilts while moving sideways",
         "sound": "Set sound volume",
         "music": "Set music volume",
         "voice": "Set voice volume",
