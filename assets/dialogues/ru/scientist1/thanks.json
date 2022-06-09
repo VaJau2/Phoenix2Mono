@@ -19,18 +19,10 @@
       "body": "Даже не знаю, как благодарить вас…",
       "speaker": "Ученый",
       "opposite": "Страйкли",
-      "next": "S3"
-    },
-    "S3": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "...Если когда-нибудь вам потребуется моя помощь, я с радостью помогу!",
-      "speaker": "Ученый",
-      "opposite": "Страйкли",
       "options": [
         {
           "body": "answer",
-          "next": "S3(1)"
+          "next": "S2(1)"
         }
       ]
     },
@@ -42,15 +34,15 @@
       "opposite": "Ученый",
       "next": "S2"
     },
-    "S3(1)": {
+    "S2(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Хорошо. Удачи вам",
+      "body": "Отблагодарите своей работой на благо Эквестрии",
       "speaker": "Страйкли",
       "opposite": "Ученый",
-      "next": "S3(1.1)"
+      "next": "S2(1.1)"
     },
-    "S3(1.1)": {
+    "S2(1.1)": {
       "kind": "narration",
       "root_node": false,
       "body": "SetSavableValue",
@@ -61,9 +53,9 @@
           "value": 1
         }
       ],
-      "next": "S3(1.2)"
+      "next": "S2(1.2)"
     },
-    "S3(1.2)": {
+    "S2(1.2)": {
       "kind": "narration",
       "root_node": false,
       "body": "ChangeDialogueCode"

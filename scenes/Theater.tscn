@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://assets/materials/environments/inside.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -74,6 +74,9 @@
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=72]
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=74]
+[ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=75]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=76]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr LP.tscn" type="PackedScene" id=77]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -1268,6 +1271,15 @@ transform = Transform( -4.37114e-08, 0, 1.464, 0, 1.473, 0, -1, 0, -6.39935e-08,
 [node name="door14" parent="terrain/props/doors" instance=ExtResource( 31 )]
 transform = Transform( -5.76045e-08, 0, 1.31784, 0, 1.31784, 0, -1.31784, 0, -5.76045e-08, 12.874, 6.085, 54.255 )
 myKey = "closed"
+
+[node name="Radio" parent="terrain/props" instance=ExtResource( 75 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.898, -2.35974, 9.48969 )
+
+[node name="Radio Jr" parent="terrain/props" instance=ExtResource( 76 )]
+transform = Transform( 0.85954, 0, -0.511068, 0, 1, 0, 0.511068, 0, 0.85954, -14.2004, -2.35735, 10.9277 )
+
+[node name="Radio Jr LP" parent="terrain/props" instance=ExtResource( 77 )]
+transform = Transform( 0.823384, 0, 0.567484, 0, 1, 0, -0.567484, 0, 0.823384, -8.11394, -2.35735, 11.0229 )
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 53 )

@@ -2256,6 +2256,7 @@ material/0 = null
 
 [node name="bunker" type="Spatial" parent="rooms"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 166.786, -100, 107.832 )
+visible = false
 
 [node name="floor" type="StaticBody" parent="rooms/bunker"]
 physics_material_override = ExtResource( 25 )
