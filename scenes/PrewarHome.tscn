@@ -2103,7 +2103,7 @@ transform = Transform( 0.122531, 0, -0.726838, 0, 0.737094, 0, 0.726838, 0, 0.12
 transform = Transform( -5.56189e-08, 0, 1.37628, 0, 1.57633, 0, -1.48014, 0, -6.92391e-08, -7.96738, -0.490227, 24.5228 )
 
 [node name="fire" parent="rooms/mansion/props" instance=ExtResource( 58 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.5857, -1.03014, -11.336 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, -1, -11 )
 
 [node name="chair2" parent="rooms/mansion/props" instance=ExtResource( 53 )]
 transform = Transform( 0.230892, 0, 0.617089, 0, 0.65887, 0, -0.617089, 0, 0.230892, -5.94274, 6.84016, 8.27145 )

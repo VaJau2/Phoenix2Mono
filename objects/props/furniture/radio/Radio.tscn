@@ -9,6 +9,7 @@
 material/0 = ExtResource( 2 )
 
 [node name="Volume Lever" parent="RootNode/Radio" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, -8.52651e-14, 0, 8.52651e-14, 1, 0.00659214, 0.00487588, 0.00268321 )
 material/0 = ExtResource( 2 )
 
 [node name="Frequency Lever" parent="RootNode/Radio" index="1"]
