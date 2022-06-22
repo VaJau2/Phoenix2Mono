@@ -106,7 +106,6 @@ public class UnicornLevitation : Spatial
                 moveUp = true;
             }
         }
-        // GD.Print(weaponPos.y);
     }
 
     //анимация приближения оружия при столкновении со стенами
