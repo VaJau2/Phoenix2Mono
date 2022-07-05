@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 //включает другие триггеры

@@ -136,6 +136,7 @@ surfaces/0 = {
 extents = Vector3( 0.989256, 0.593993, 0.589485 )
 
 [node name="Radio" type="StaticBody"]
+pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="Radio" type="MeshInstance" parent="."]

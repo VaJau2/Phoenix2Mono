@@ -1669,6 +1669,7 @@ transform = Transform( -1.77689e-08, 0, -0.109064, 0, 0.109064, 0, 0.109064, 0, 
 [node name="Radio" parent="rooms/market/props" instance=ExtResource( 110 )]
 transform = Transform( 0.0209443, 0, -0.0818752, 0, 0.0845116, 0, 0.0818752, 0, 0.0209443, 0.0944893, 0.242645, 1.00163 )
 isOn = false
+frequency = 0.25
 frequencyRange = 3
 playlist = [ ExtResource( 109 ), ExtResource( 112 ), ExtResource( 111 ) ]
 

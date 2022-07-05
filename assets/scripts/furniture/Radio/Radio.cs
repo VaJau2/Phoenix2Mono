@@ -185,9 +185,33 @@ public class Radio : StaticBody
 		noise.MaxDb = Global.Get().paused ? -24 : 3;
 	}
 
-	public void Update(List<AudioStream> newPlaylist)
+	public float GetVolume()
+    {
+		return musicPlayer.MaxDb;
+    }
+
+	public void SetVolume(float volume)
+    {
+		musicPlayer.MaxDb = volume;
+    }
+
+	public List<AudioStream> GetPlaylist()
+    {
+		return playlist;
+    }
+
+	public void SetPlaylist(AudioStream music)
+	{
+		playlist.Clear();
+		playlist.Add(music);
+		musicPlayer.Stream = playlist[0];
+		musicPlayer.Play();
+	}
+
+	public void SetPlaylist(List<AudioStream> newPlaylist)
 	{
 		playlist = newPlaylist;
+		musicPlayer.Stream = playlist[0];
 		musicPlayer.Play();
 	}
 
@@ -211,47 +235,51 @@ public class Radio : StaticBody
 
 	public void Interactive()
     {
-		if (isOn)
-		{
-			musicPlayer.UnitDb = -80;
-
-			noise.Stream = switchSound;
-			noise.Play();
-
-			switch (model)
-			{
-				case "Radio":
-					MoveTo(volumeLever, new Vector3(0.659f, -0.258f, -0.488f));
-					break;
-
-				case "Radio Jr":
-					MoveTo(volumeLever, new Vector3(0.58f, 0.19f, 0));
-					break;
-			}
-
-			isOn = false;
-		}
-		else
-        {
-			isOn = true;
-
-			switch (model)
-			{
-				case "Radio":
-					MoveTo(volumeLever, new Vector3(0.659f, 0.268f, -0.488f));
-					break;
-
-				case "Radio Jr":
-					MoveTo(volumeLever, new Vector3(0.58f, 0.34f, 0));
-					break;
-			}
-
-			noise.Stream = switchSound;
-			noise.Play();
-
-			musicPlayer.UnitDb = 0;
-		}
+		if (isOn) SwitchOff();
+		else SwitchOn();
     }
+
+	public void SwitchOn()
+    {
+		isOn = true;
+
+		switch (model)
+		{
+			case "Radio":
+				MoveTo(volumeLever, new Vector3(0.659f, 0.268f, -0.488f));
+				break;
+
+			case "Radio Jr":
+				MoveTo(volumeLever, new Vector3(0.58f, 0.34f, 0));
+				break;
+		}
+
+		noise.Stream = switchSound;
+		noise.Play();
+
+		musicPlayer.UnitDb = 0;
+	}
+
+	public void SwitchOff()
+    {
+		musicPlayer.UnitDb = -80;
+
+		noise.Stream = switchSound;
+		noise.Play();
+
+		switch (model)
+		{
+			case "Radio":
+				MoveTo(volumeLever, new Vector3(0.659f, -0.258f, -0.488f));
+				break;
+
+			case "Radio Jr":
+				MoveTo(volumeLever, new Vector3(0.58f, 0.19f, 0));
+				break;
+		}
+
+		isOn = false;
+	}
 
 	void MoveTo(Spatial obj, Vector3 target)
     {
