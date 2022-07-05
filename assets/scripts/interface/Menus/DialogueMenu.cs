@@ -263,9 +263,9 @@ public class DialogueMenu : Control, IMenu
             temp.Visible = false;
         }
 
-        if (tempAnswer != GetContinueText()) {
+        if (answerText[i].ToString() != GetContinueText()) {
             text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
-            text.BbcodeText += GetSpacedText(tempAnswer) + "\n\n";
+            text.BbcodeText += GetSpacedText(answerText[i].ToString()) + "\n\n";
             await Global.Get().ToTimer(0.5f, null, true);
         } else {
             isContinue = true;

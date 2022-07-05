@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -50,6 +50,12 @@
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=48]
 [ext_resource path="res://assets/scripts/interface/Menus/HintMenu.cs" type="Script" id=49]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=50]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=51]
+[ext_resource path="res://assets/audio/radio/I. Street/The Ink Spots - Easy Living.mp3" type="AudioStream" id=52]
+[ext_resource path="res://assets/audio/radio/I. Street/The Ink Spots - I Don't Want To Set The World On Fire.mp3" type="AudioStream" id=53]
+[ext_resource path="res://assets/audio/radio/I. Street/The Ink Spots - Maybe.mp3" type="AudioStream" id=54]
+[ext_resource path="res://assets/audio/radio/I. Street/The Ink Spots - It's A Sin To Tell A Lie.mp3" type="AudioStream" id=55]
+[ext_resource path="res://assets/audio/radio/I. Street/The Ink Spots - Into each Life Some Rain Must Fall.mp3" type="AudioStream" id=56]
 
 [sub_resource type="GDScript" id=40]
 script/source = "extends CanvasLayer
@@ -704,6 +710,12 @@ transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1,
 SpawnRandomItems = true
 startAmmoCount = {
 }
+
+[node name="Radio" parent="terrain/props" instance=ExtResource( 51 )]
+transform = Transform( 0.226328, 0, 0.974051, 0, 1, 0, -0.974051, 0, 0.226328, 21.873, 0.197378, -130.602 )
+frequency = 0.25
+frequencyRange = 4
+playlist = [ ExtResource( 52 ), ExtResource( 53 ), ExtResource( 56 ), ExtResource( 55 ), ExtResource( 54 ) ]
 
 [node name="ostanovka" parent="terrain/props" instance=ExtResource( 44 )]
 transform = Transform( -1.44112e-07, 0, -3.29691, 0, 3.7, 0, 3.7, 0, -1.61732e-07, 20.8264, -0.240612, -133.339 )

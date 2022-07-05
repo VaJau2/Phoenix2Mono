@@ -1,6 +1,6 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=114 format=2]
 
-[ext_resource path="res://assets/materials/environments/inside.tres" type="Environment" id=1]
+[ext_resource path="res://assets/materials/environments/cloudy_day_env.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/props/furniture/posters/magic.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/props/furniture/posters/pinkie.png" type="Texture" id=4]
@@ -75,8 +75,11 @@
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=74]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=75]
-[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=76]
-[ext_resource path="res://objects/props/furniture/radio/Radio Jr LP.tscn" type="PackedScene" id=77]
+[ext_resource path="res://assets/audio/radio/III. Theater/Dean Martin - Ain`t That A Kick In The Head.mp3" type="AudioStream" id=76]
+[ext_resource path="res://assets/audio/radio/III. Theater/Frank Sinatra - Blue Moon.mp3" type="AudioStream" id=77]
+[ext_resource path="res://assets/audio/radio/III. Theater/Louis & Ella Armstrong - Dream A Little Dream Of Me.mp3" type="AudioStream" id=78]
+[ext_resource path="res://assets/audio/radio/III. Theater/Louis Armstrong - A Kiss To Build A Dream On.mp3" type="AudioStream" id=79]
+[ext_resource path="res://assets/audio/radio/III. Theater/Nat King Cole - This Cant Be Love.mp3" type="AudioStream" id=80]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -1273,13 +1276,9 @@ transform = Transform( -5.76045e-08, 0, 1.31784, 0, 1.31784, 0, -1.31784, 0, -5.
 myKey = "closed"
 
 [node name="Radio" parent="terrain/props" instance=ExtResource( 75 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.898, -2.35974, 9.48969 )
-
-[node name="Radio Jr" parent="terrain/props" instance=ExtResource( 76 )]
-transform = Transform( 0.85954, 0, -0.511068, 0, 1, 0, 0.511068, 0, 0.85954, -14.2004, -2.35735, 10.9277 )
-
-[node name="Radio Jr LP" parent="terrain/props" instance=ExtResource( 77 )]
-transform = Transform( 0.823384, 0, 0.567484, 0, 1, 0, -0.567484, 0, 0.823384, -8.11394, -2.35735, 11.0229 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1679, -2.39644, 9.48969 )
+frequencyRange = 4
+playlist = [ ExtResource( 76 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 80 ) ]
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 53 )

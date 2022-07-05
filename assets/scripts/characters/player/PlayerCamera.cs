@@ -160,6 +160,12 @@ public class PlayerCamera: Camera
                 case Terminal _:
                     ShowHint("terminal");
                     break;
+                case Radio radio when radio.isOn:
+                    ShowHint("turnOff");
+                    break;
+                case Radio radio:
+                    ShowHint("turnOn");
+                    break;
                 default:
                 {
                     if (!dialogueMenu.MenuOn && tempObject is NPC npc) {
@@ -206,6 +212,11 @@ public class PlayerCamera: Camera
                 point.HideSquare();
                 MenuManager.TryToOpenMenu(tempTerminal);
                 break;
+            }
+            case Radio radio:
+            {
+                    radio.Interactive();
+                    break;
             }
             case NPC npc:
             {

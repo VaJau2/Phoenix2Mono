@@ -18,6 +18,8 @@ public class PauseMenu : MenuBase, IMenu
     
     private SettingsMenu settingsMenu;
 
+    static PauseMenu instance;
+
     public override void loadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");

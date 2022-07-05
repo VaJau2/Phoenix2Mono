@@ -20,6 +20,9 @@ public class Global {
     }
     //-----------------------------
 
+    public static event PauseChangeEvent OnPauseChange;
+    public delegate void PauseChangeEvent();
+
     public bool paused;
     public bool mainMenuFirstTime = true;
 
@@ -74,11 +77,11 @@ public class Global {
 
         self.GetTree().Paused = pause;
         paused = pause;
-        if (pause) {
-            Input.SetMouseMode(Input.MouseMode.Visible);
-        } else {
-            Input.SetMouseMode(Input.MouseMode.Captured);
-        }
+
+        if (pause) Input.SetMouseMode(Input.MouseMode.Visible);
+        else Input.SetMouseMode(Input.MouseMode.Captured);
+
+        OnPauseChange?.Invoke();
     }
 
     public void SetPauseMusic(bool pause)
