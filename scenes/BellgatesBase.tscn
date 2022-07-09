@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=2]
+[gd_scene load_steps=205 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -112,6 +112,18 @@
 [ext_resource path="res://assets/scripts/triggers/ChangeTaskTrigger.cs" type="Script" id=110]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=111]
 [ext_resource path="res://assets/audio/music/base-calm-back.mp3" type="AudioStream" id=112]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=113]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Johnny Bond - Stars of the Midnight Range.mp3" type="AudioStream" id=114]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/The Lost Weekend Western - Shadow in the Valley.mp3" type="AudioStream" id=115]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/The Lost Weekend Western - Lone Star.mp3" type="AudioStream" id=116]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Tony Vice & Jerry Burnham - Lets Ride Into The Sunset Together.mp3" type="AudioStream" id=117]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Jerry Irby - Answer To Drivin Nails In My Coffin.mp3" type="AudioStream" id=118]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Bob Wills - Bubbles In My Beer.mp3" type="AudioStream" id=119]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Guy Mitchell - Heartache by the Numbers.mp3" type="AudioStream" id=120]
+[ext_resource path="res://assets/audio/radio/V. Belgates Base/Ernie Ford - Dark As A Dungeon.mp3" type="AudioStream" id=121]
+[ext_resource path="res://objects/props/furniture/stable-table-2.tscn" type="PackedScene" id=122]
+[ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=123]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=124]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 282.845, 0.1, 191.884 )
@@ -1265,6 +1277,13 @@ StartLie = true
 transform = Transform( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 7.57247, 0, -14.7123 )
 StartLie = true
 
+[node name="Radio Street" parent="terrain/props" instance=ExtResource( 113 )]
+transform = Transform( -0.464471, 0, -0.885588, 0, 1, 0, 0.885588, 0, -0.464471, -13.3414, 2.00387, 70.0776 )
+frequency = 0.66
+frequencyRange = 1
+randomize = false
+playlist = [ ExtResource( 119 ), ExtResource( 121 ), ExtResource( 120 ), ExtResource( 118 ), ExtResource( 114 ), ExtResource( 116 ), ExtResource( 115 ), ExtResource( 117 ) ]
+
 [node name="sky" type="StaticBody" parent="terrain"]
 transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 4.30721, 0, -40.5188 )
 
@@ -1494,6 +1513,13 @@ brakeSounds = {
 "brake2": ExtResource( 23 )
 }
 
+[node name="Radio Warehouse" parent="rooms/sklad/props" instance=ExtResource( 113 )]
+transform = Transform( -0.222535, 0, -0.974925, 0, 1, 0, 0.974925, 0, -0.222535, -7.89139, 2.8555, 0.687901 )
+frequency = 0.66
+frequencyRange = 1
+randomize = false
+playlist = [ ExtResource( 119 ), ExtResource( 121 ), ExtResource( 120 ), ExtResource( 118 ), ExtResource( 114 ), ExtResource( 116 ), ExtResource( 115 ), ExtResource( 117 ) ]
+
 [node name="armor-house" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129.941, -100, 36.888 )
 visible = false
@@ -1650,6 +1676,13 @@ transparent = false
 shaded = true
 double_sided = false
 texture = ExtResource( 60 )
+
+[node name="Radio Sewing" parent="rooms/armor-house/props" instance=ExtResource( 113 )]
+transform = Transform( 0.993183, 0, 0.116567, 0, 1, 0, -0.116567, 0, 0.993183, 5.38701, 7.6479, 6.8964 )
+frequency = 0.66
+frequencyRange = 1
+randomize = false
+playlist = [ ExtResource( 119 ), ExtResource( 121 ), ExtResource( 120 ), ExtResource( 118 ), ExtResource( 114 ), ExtResource( 116 ), ExtResource( 115 ), ExtResource( 117 ) ]
 
 [node name="rarityPatrol" type="Spatial" parent="rooms/armor-house"]
 
@@ -1975,6 +2008,12 @@ transform = Transform( 0.763775, 0, 0, 0, 1.88255, 0, 0, 0, 0.609529, 0, 1.40017
 mesh = SubResource( 32 )
 material/0 = null
 
+[node name="Radio Stels" parent="rooms/stels-house/props" instance=ExtResource( 113 )]
+transform = Transform( -0.775465, 0, 0.836108, 0, 1.14036, 0, -0.836108, 0, -0.775465, 22.4882, -1.76475, -20.4061 )
+frequency = 0.66
+frequencyRange = 1
+playlist = [ ExtResource( 119 ), ExtResource( 121 ), ExtResource( 120 ), ExtResource( 118 ), ExtResource( 114 ), ExtResource( 116 ), ExtResource( 115 ), ExtResource( 117 ) ]
+
 [node name="pinkiePatrol" type="Spatial" parent="rooms/stels-house"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.30493, -1.92957, -9.43125 )
 
@@ -2152,6 +2191,9 @@ brakeSounds = {
 "brake2": ExtResource( 43 )
 }
 
+[node name="stable-table2" parent="rooms/main-house/props" instance=ExtResource( 122 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -26.1148, 1.66724, 22.806 )
+
 [node name="box-down" parent="rooms/main-house/props" instance=ExtResource( 87 )]
 transform = Transform( -5.22472e-08, 0, -1.19528, 0, 1.19528, 0, 1.19528, 0, -5.22472e-08, 3.08293, 1.50173, -14.2583 )
 
@@ -2205,7 +2247,7 @@ material/0 = ExtResource( 95 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05849, 3.94334, 1.37274 )
 
 [node name="flower" parent="rooms/main-house/props" instance=ExtResource( 51 )]
-transform = Transform( 0.739684, 0, 0, 0, 0.739684, 0, 0, 0, 0.739684, -24.1523, 0.744896, 27.4623 )
+transform = Transform( 0.739684, 0, 0, 0, 0.739684, 0, 0, 0, 0.739684, -24.5175, 0.744896, 28.2892 )
 
 [node name="sofa" parent="rooms/main-house/props" instance=ExtResource( 52 )]
 transform = Transform( -5.32776e-08, 0, 1.21885, 0, 1.21885, 0, -1.21885, 0, -5.32776e-08, -1.00229, 1.29915, 24.9701 )
@@ -2253,6 +2295,13 @@ material/0 = null
 transform = Transform( 0.374, 0, -3.55271e-15, 0, 0.356, 0, 3.73235e-15, 0, 0.356, 0.025, 0.044, 1.991 )
 mesh = SubResource( 71 )
 material/0 = null
+
+[node name="Radio Main" parent="rooms/main-house/props" instance=ExtResource( 123 )]
+transform = Transform( -0.0220069, 0, -0.999758, 0, 1, 0, 0.999758, 0, -0.0220069, -25.952, 2.4232, 22.7469 )
+frequency = 0.66
+frequencyRange = 1
+randomize = false
+playlist = [ ExtResource( 119 ), ExtResource( 121 ), ExtResource( 120 ), ExtResource( 118 ), ExtResource( 114 ), ExtResource( 116 ), ExtResource( 115 ), ExtResource( 117 ) ]
 
 [node name="bunker" type="Spatial" parent="rooms"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 166.786, -100, 107.832 )
@@ -2482,6 +2531,10 @@ stream = ExtResource( 112 )
 volume_db = -20.0
 bus = "Music"
 script = SubResource( 81 )
+
+[node name="Radio Controller" type="Node" parent="."]
+script = ExtResource( 124 )
+radioPaths = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/sklad/props/Radio Warehouse"), NodePath("../rooms/armor-house/props/Radio Sewing"), NodePath("../rooms/main-house/props/Radio Main"), NodePath("../rooms/stels-house/props/Radio Stels") ]
 
 [connection signal="body_entered" from="terrain/props/houses/armor-house/DoorTeleport3/Area2" to="terrain/props/houses/armor-house/DoorTeleport3" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/armor-house/DoorTeleport3/Area2" to="terrain/props/houses/armor-house/DoorTeleport3" method="_on_body_exited"]

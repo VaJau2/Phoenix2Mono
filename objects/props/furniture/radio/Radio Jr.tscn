@@ -174,13 +174,11 @@ shape = SubResource( 4 )
 [node name="Music Player" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
 unit_size = 10.0
-max_distance = 600.0
 bus = "Radio"
 
 [node name="Noise" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
 unit_size = 10.0
-max_distance = 600.0
 bus = "Radio"
 
 [connection signal="finished" from="Music Player" to="." method="OnMusicFinished"]

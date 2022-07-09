@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -105,8 +105,18 @@
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=103]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=104]
 [ext_resource path="res://objects/props/vehicles/car_future.tscn" type="PackedScene" id=105]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
 [ext_resource path="res://assets/materials/environments/green_with_fog.tres" type="Environment" id=108]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=109]
+[ext_resource path="res://assets/audio/radio/II. Work/High Hatters & Frank Luther - What Would I Care.mp3" type="AudioStream" id=110]
+[ext_resource path="res://assets/audio/radio/II. Work/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3" type="AudioStream" id=111]
+[ext_resource path="res://assets/audio/radio/II. Work/Chick Webb - I Cant Dance I Got Ants In My Pants.mp3" type="AudioStream" id=112]
+[ext_resource path="res://assets/audio/radio/II. Work/Ben Selvin and the Crooners - Happy Days are Here Again.mp3" type="AudioStream" id=113]
+[ext_resource path="res://assets/audio/radio/II. Work/Eva Eastwood - Dont Love Me.mp3" type="AudioStream" id=114]
+[ext_resource path="res://assets/audio/radio/II. Work/Richard Gere - All I Care About.mp3" type="AudioStream" id=115]
+[ext_resource path="res://assets/audio/radio/II. Work/Jean Goldkette and His Orchestra - Sunday.mp3" type="AudioStream" id=116]
+[ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=117]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )
@@ -1121,6 +1131,12 @@ texture = ExtResource( 48 )
 [node name="fusion_air" parent="rooms/kpp" instance=ExtResource( 104 )]
 transform = Transform( -1.1034e-07, 0, 2.52429, 0, 2.52429, 0, -2.52429, 0, -1.1034e-07, -4.85427, 2.8166, 8.20242 )
 
+[node name="Radio" parent="rooms/kpp" instance=ExtResource( 106 )]
+transform = Transform( 0.730854, 0, 0.682534, 0, 1, 0, -0.682534, 0, 0.730854, 5.2219, 4.17296, -0.119934 )
+frequency = 0.05
+frequencyRange = 2
+playlist = [ ExtResource( 113 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 110 ), ExtResource( 116 ), ExtResource( 111 ), ExtResource( 115 ) ]
+
 [node name="kp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.914, -100, 56.778 )
 visible = false
@@ -1399,6 +1415,12 @@ transform = Transform( -1.1034e-07, 0, -2.52429, 0, 2.52429, 0, 2.52429, 0, -1.1
 [node name="fusion_air2" parent="rooms/kp/props" instance=ExtResource( 104 )]
 transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 7.2969, 2.80017, -10.1211 )
 
+[node name="Radio" parent="rooms/kp/props" instance=ExtResource( 117 )]
+transform = Transform( 0.997447, 0, 0.0714104, 0, 1, 0, -0.0714104, 0, 0.997447, 22.6355, 2.98816, 1.70095 )
+frequency = 0.05
+frequencyRange = 2
+playlist = [ ExtResource( 113 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 110 ), ExtResource( 116 ), ExtResource( 111 ), ExtResource( 115 ) ]
+
 [node name="notes" type="Spatial" parent="rooms/kp"]
 
 [node name="note100" type="Sprite3D" parent="rooms/kp/notes"]
@@ -1552,6 +1574,7 @@ brakeSounds = {
 
 [node name="box4" parent="rooms/storage" instance=ExtResource( 26 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7708, -8.359, 7.40528 )
+BrakeDamage = 8.80056e+10
 brakeSounds = {
 "brake1": ExtResource( 24 ),
 "brake2": ExtResource( 23 )
@@ -1577,6 +1600,12 @@ brakeSounds = {
 "brake1": ExtResource( 24 ),
 "brake2": ExtResource( 23 )
 }
+
+[node name="Radio" parent="rooms/storage" instance=ExtResource( 106 )]
+transform = Transform( -0.752162, 0, 0.658978, 0, 1, 0, -0.658978, 0, -0.752162, 10.8884, -5.61082, 8.47535 )
+frequency = 0.05
+frequencyRange = 2
+playlist = [ ExtResource( 113 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 110 ), ExtResource( 116 ), ExtResource( 111 ), ExtResource( 115 ) ]
 
 [node name="shelf" parent="rooms/storage" instance=ExtResource( 29 )]
 
@@ -1668,6 +1697,12 @@ brakeSounds = {
 }
 
 [node name="props" type="Spatial" parent="rooms/stolovaya"]
+
+[node name="Radio" parent="rooms/stolovaya/props" instance=ExtResource( 117 )]
+transform = Transform( 0.997447, 0, 0.0714104, 0, 1, 0, -0.0714104, 0, 0.997447, 7.729, 2.90031, -7.297 )
+frequency = 0.05
+frequencyRange = 2
+playlist = [ ExtResource( 113 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 110 ), ExtResource( 116 ), ExtResource( 111 ), ExtResource( 115 ) ]
 
 [node name="table" type="Spatial" parent="rooms/stolovaya/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0612, 0, 22.0298 )
@@ -1944,7 +1979,6 @@ texture = ExtResource( 60 )
 
 [node name="kazarma" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0879, -100, 117.169 )
-visible = false
 script = ExtResource( 49 )
 
 [node name="walls2" type="StaticBody" parent="rooms/kazarma"]
@@ -2138,6 +2172,12 @@ material/0 = null
 
 [node name="props" type="Spatial" parent="rooms/kazarma"]
 
+[node name="Radio" parent="rooms/kazarma/props" instance=ExtResource( 106 )]
+transform = Transform( 0.836716, 0, 0.547636, 0, 1, 0, -0.547636, 0, 0.836716, -7.18103, 5.78105, 10.6455 )
+frequency = 0.05
+frequencyRange = 2
+playlist = [ ExtResource( 113 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 110 ), ExtResource( 116 ), ExtResource( 111 ), ExtResource( 115 ) ]
+
 [node name="fusion_air" parent="rooms/kazarma/props" instance=ExtResource( 104 )]
 transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 1.43192, 3.04097, 20.7298 )
 
@@ -2265,6 +2305,10 @@ stream = ExtResource( 30 )
 volume_db = -20.0
 bus = "Music"
 script = SubResource( 39 )
+
+[node name="RadioController" type="Node" parent="."]
+script = ExtResource( 109 )
+radioPaths = [ NodePath("../rooms/kpp/Radio"), NodePath("../rooms/kp/props/Radio"), NodePath("../rooms/storage/Radio"), NodePath("../rooms/stolovaya/props/Radio"), NodePath("../rooms/kazarma/props/Radio") ]
 
 [connection signal="body_entered" from="triggers/exit" to="triggers/exit" method="_on_body_entered"]
 [connection signal="body_exited" from="triggers/exit" to="triggers/exit" method="_on_body_exited"]

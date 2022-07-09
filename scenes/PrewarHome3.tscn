@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=2]
+[gd_scene load_steps=175 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -94,6 +94,11 @@
 [ext_resource path="res://assets/models/props/buildings/street-houses/market/inside/Material.material" type="Material" id=92]
 [ext_resource path="res://assets/models/props/buildings/street-houses/market/inside/black.material" type="Material" id=93]
 [ext_resource path="res://assets/audio/music/after-mtn/dramatic-1.mp3" type="AudioStream" id=94]
+[ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=95]
+[ext_resource path="res://assets/audio/radio/VII. Home/The Boppers - They Never Know.mp3" type="AudioStream" id=96]
+[ext_resource path="res://assets/audio/radio/VII. Home/Bob Crosby and the Bobcats - Happy Times.mp3" type="AudioStream" id=97]
+[ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=98]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=99]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -1339,6 +1344,12 @@ material/0 = null
 material/1 = null
 material/2 = null
 
+[node name="Radio" parent="rooms/mansion/fireplate" instance=ExtResource( 95 )]
+transform = Transform( -0.267576, 0, -0.321977, 0, 0.418648, 0, 0.321977, 0, -0.267576, 1.178, 0.562, 1.103 )
+frequency = 0.25
+frequencyRange = 3
+playlist = [ ExtResource( 97 ), ExtResource( 96 ) ]
+
 [node name="walls-inside001" type="MeshInstance" parent="rooms/mansion"]
 transform = Transform( 4.52163, 0, -1.42109e-14, 0, 4.52163, 0, 1.42109e-14, 0, 4.52163, 9.51356, 4.69642, 8.60892 )
 mesh = SubResource( 27 )
@@ -1868,6 +1879,12 @@ mesh = SubResource( 65 )
 material/0 = null
 material/1 = null
 
+[node name="Radio" parent="rooms/market/props" instance=ExtResource( 98 )]
+transform = Transform( 0.0210653, 0, -0.0823484, 0, 0.085, 0, 0.0823484, 0, 0.0210653, 0.094, 0.243, 1.002 )
+frequency = 0.25
+frequencyRange = 4
+playlist = [ ExtResource( 97 ), ExtResource( 96 ) ]
+
 [node name="light" type="Spatial" parent="rooms/market"]
 transform = Transform( 11.8327, 0, 0, 0, 11.8327, 0, 0, 0, 11.8327, 8.14049, -0.345161, -0.0744476 )
 
@@ -2058,6 +2075,10 @@ stream = ExtResource( 94 )
 volume_db = -15.0
 bus = "Music"
 script = SubResource( 76 )
+
+[node name="RadioController" type="Node" parent="."]
+script = ExtResource( 99 )
+radioPaths = [ NodePath("../rooms/mansion/fireplate/Radio"), NodePath("../rooms/market/props/Radio") ]
 
 [connection signal="body_entered" from="terrain/props/houses/mansion/DoorTeleport2/Area2" to="terrain/props/houses/mansion/DoorTeleport2" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/mansion/DoorTeleport2/Area2" to="terrain/props/houses/mansion/DoorTeleport2" method="_on_body_exited"]

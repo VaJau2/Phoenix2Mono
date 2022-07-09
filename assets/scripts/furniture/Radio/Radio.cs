@@ -67,48 +67,48 @@ public class Radio : StaticBody
 		switch (model)
         {
 			case "Radio":
-				MoveTo(frequencyLever, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
+				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						MoveTo(l, new Vector3(0.127f, -0.273f, -0.48f));
+						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
 						break;
 					case FrequencyRange.M:
-						MoveTo(m, new Vector3(-0.053f, -0.273f, -0.48f));
+						m.Transform = Global.setNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
 						break;
 					case FrequencyRange.K:
-						MoveTo(k, new Vector3(-0.233f, -0.273f, -0.48f));
+						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
 						break;
 					case FrequencyRange.U1:
-						MoveTo(u1, new Vector3(-0.413f, -0.273f, -0.48f));
+						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
 						break;
 					case FrequencyRange.U2:
-						MoveTo(u2, new Vector3(-0.592f, -0.273f, -0.48f));
+						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
 						break;
 				}
 				break;
 
 			case "Radio Jr":
-				MoveTo(frequencyLever, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
+				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
 				arrow.Rotate(Vector3.Back, (frequency * 160 + 10) * (float)(Math.PI / 180));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						MoveTo(l, new Vector3(0.35f, 0.66f, 0f));
+						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
 						break;
 					case FrequencyRange.M:
-						MoveTo(m, new Vector3(0.175f, 0.66f, 0f));
+						m.Transform =Global.setNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
 						break;
 					case FrequencyRange.K:
-						MoveTo(k, new Vector3(0f, 0.66f, 0f));
+						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
 						break;
 					case FrequencyRange.U1:
-						MoveTo(u1, new Vector3(-0.175f, 0.66f, 0f));
+						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
 						break;
 					case FrequencyRange.U2:
-						MoveTo(u2, new Vector3(-0.35f, 0.66f, 0f));
+						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
 						break;
 				}
 				break;
@@ -121,11 +121,11 @@ public class Radio : StaticBody
 			switch (model)
             {
 				case "Radio":
-					MoveTo(volumeLever, new Vector3(0.659f, 0.268f, -0.488f));
+					volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, 0.268f, -0.488f));
 					break;
 
 				case "Radio Jr":
-					MoveTo(volumeLever, new Vector3(0.58f, 0.34f, 0));
+					volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.34f, 0));
 					break;
 			}
 		}
@@ -136,11 +136,11 @@ public class Radio : StaticBody
 			switch (model)
 			{
 				case "Radio":
-					MoveTo(volumeLever, new Vector3(0.659f, -0.258f, -0.488f));
+					volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, -0.258f, -0.488f));
 					break;
 
 				case "Radio Jr":
-					MoveTo(volumeLever, new Vector3(0.58f, 0.19f, 0));
+					volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.19f, 0));
 					break;
 			}
 		}
@@ -161,7 +161,12 @@ public class Radio : StaticBody
 		}
 	}
 
-	public void OnMusicFinished()
+    public override void _ExitTree()
+    {
+		Global.OnPauseChange -= OnPauseChange;
+    }
+
+    public void OnMusicFinished()
 	{
 		if (musicID < playlist.Count - 1) musicID++;
 		else musicID = 0;
@@ -246,11 +251,11 @@ public class Radio : StaticBody
 		switch (model)
 		{
 			case "Radio":
-				MoveTo(volumeLever, new Vector3(0.659f, 0.268f, -0.488f));
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, 0.268f, -0.488f));
 				break;
 
 			case "Radio Jr":
-				MoveTo(volumeLever, new Vector3(0.58f, 0.34f, 0));
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.34f, 0));
 				break;
 		}
 
@@ -270,21 +275,14 @@ public class Radio : StaticBody
 		switch (model)
 		{
 			case "Radio":
-				MoveTo(volumeLever, new Vector3(0.659f, -0.258f, -0.488f));
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, -0.258f, -0.488f));
 				break;
 
 			case "Radio Jr":
-				MoveTo(volumeLever, new Vector3(0.58f, 0.19f, 0));
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.19f, 0));
 				break;
 		}
 
 		isOn = false;
-	}
-
-	void MoveTo(Spatial obj, Vector3 target)
-    {
-		Transform trans = obj.Transform;
-		trans.origin = target;
-		obj.Transform = trans;
 	}
 }
