@@ -418,6 +418,15 @@
         "damageBlock": "0.9",
         "sound": "armor"
     },
+    "anti-radio": {
+        "name": "Антирадиационный костюм",
+        "description": "Никто не скажет что ты выглядишь глупо, если вокруг радиоактивные пустоши.",
+        "type": "armor",
+        "icon": "private_uniform",
+        "price": "1000",
+        "damageBlock": "0.2",
+        "sound": "coat"
+    },
 
 
     "bow-ribbon": {

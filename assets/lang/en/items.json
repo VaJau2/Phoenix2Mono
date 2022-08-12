@@ -417,6 +417,15 @@
         "damageBlock": "0.9",
         "sound": "armor"
     },
+    "anti-radio": {
+        "name": "Anti-Radiation Suit",
+        "description": "Radiation don't care what you look like",
+        "type": "armor",
+        "icon": "private_uniform",
+        "price": "1000",
+        "damageBlock": "0.2",
+        "sound": "coat"
+    },
 
     
     "bow-ribbon": {
