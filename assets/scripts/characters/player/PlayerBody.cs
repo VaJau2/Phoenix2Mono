@@ -451,7 +451,7 @@ public class PlayerBody : Spatial
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseMotion && 
-            Input.GetMouseMode() == Input.MouseMode.Captured
+            Input.MouseMode == Input.MouseModeEnum.Captured
             && player.MayRotateHead) {
                 var mouseEvent = @event as InputEventMouseMotion;
                 float mouseSensivity = player.MouseSensivity;
