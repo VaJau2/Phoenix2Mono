@@ -74,11 +74,7 @@ public class Global {
 
         self.GetTree().Paused = pause;
         paused = pause;
-        if (pause) {
-            Input.SetMouseMode(Input.MouseMode.Visible);
-        } else {
-            Input.SetMouseMode(Input.MouseMode.Captured);
-        }
+        Input.MouseMode = pause ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
     }
 
     public void SetPauseMusic(bool pause)

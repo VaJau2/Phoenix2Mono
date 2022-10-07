@@ -28,7 +28,7 @@ public class CloneFlaskCamera : Camera
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion motion && Input.GetMouseMode() == Input.MouseMode.Captured)
+        if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
             RotateZ(Mathf.Deg2Rad(motion.Relative.y * Global.Get().Settings.mouseSensivity));
             RotateY(Mathf.Deg2Rad(-motion.Relative.x * Global.Get().Settings.mouseSensivity));

@@ -82,7 +82,7 @@ public class LevelsLoader : Node
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
 		if (levelPaths[tempLevelNum] == "menu") {
-			Input.SetMouseMode(Input.MouseMode.Visible);
+			Input.MouseMode = Input.MouseModeEnum.Visible;
 			return;
 		}
 

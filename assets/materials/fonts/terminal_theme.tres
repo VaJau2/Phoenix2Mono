@@ -3,6 +3,10 @@
 [ext_resource path="res://assets/materials/fonts/ds_pixel_cyr.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/empty_image.png" type="Texture" id=2]
 
+[sub_resource type="DynamicFont" id=19]
+size = 13
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
@@ -76,10 +80,6 @@ bg_color = Color( 0, 0, 0, 1 )
 expand_margin_left = 8.0
 expand_margin_right = 8.0
 
-[sub_resource type="DynamicFont" id=19]
-size = 13
-font_data = ExtResource( 1 )
-
 [resource]
 default_font = SubResource( 19 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -87,7 +87,7 @@ Button/colors/font_color_disabled = Color( 0.478431, 0.478431, 0.478431, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
-Button/fonts/font = null
+Button/fonts/font = SubResource( 19 )
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 3 )
@@ -107,7 +107,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/fonts/font = null
+Label/fonts/font = SubResource( 19 )
 Label/styles/normal = null
 LineEdit/colors/clear_button_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
@@ -117,7 +117,7 @@ LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
 LineEdit/colors/font_color_uneditable = Color( 0.752941, 0.752941, 0.752941, 0.576471 )
 LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
-LineEdit/fonts/font = null
+LineEdit/fonts/font = SubResource( 19 )
 LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource( 9 )
 LineEdit/styles/normal = SubResource( 10 )
@@ -132,11 +132,11 @@ RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = null
-RichTextLabel/fonts/bold_italics_font = null
-RichTextLabel/fonts/italics_font = null
-RichTextLabel/fonts/mono_font = null
-RichTextLabel/fonts/normal_font = null
+RichTextLabel/fonts/bold_font = SubResource( 19 )
+RichTextLabel/fonts/bold_italics_font = SubResource( 19 )
+RichTextLabel/fonts/italics_font = SubResource( 19 )
+RichTextLabel/fonts/mono_font = SubResource( 19 )
+RichTextLabel/fonts/normal_font = SubResource( 19 )
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = null
 VScrollBar/icons/decrement = null

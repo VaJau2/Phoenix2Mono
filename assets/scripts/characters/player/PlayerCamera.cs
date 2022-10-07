@@ -256,7 +256,7 @@ public class PlayerCamera: Camera
         }
 
         if (!player.ThirdView && @event is InputEventMouseButton 
-                && Input.GetMouseMode() == Input.MouseMode.Captured) {
+                && Input.MouseMode == Input.MouseModeEnum.Captured) {
             var mouseEv = @event as InputEventMouseButton;
             if (mouseEv.ButtonIndex == 2) {
                 if (mouseEv.Pressed) {

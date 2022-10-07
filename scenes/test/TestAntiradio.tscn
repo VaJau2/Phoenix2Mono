@@ -62,7 +62,6 @@ physics_material_override = ExtResource( 11 )
 [node name="MeshInstance" type="MeshInstance" parent="Scene/terrain"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Scene/terrain"]
 shape = SubResource( 2 )
@@ -109,34 +108,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 transform = Transform( -0.670724, 0, -0.741707, 0, 1, 0, 0.741707, 0, -0.670724, -28.339, 1.86797, -5.73543 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("../pegasus")
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
-material/7 = null
 
 [node name="pegasus" type="MeshInstance" parent="Scene/terrain"]
 transform = Transform( -0.0542706, 0, -0.998526, 0, 1, 0, 0.998526, 0, -0.0542706, -32.5951, 7.59664, 1.16199 )
 mesh = ExtResource( 4 )
 skeleton = NodePath("../earthpony")
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
 
 [node name="earthpony" type="MeshInstance" parent="Scene/terrain"]
-transform = Transform( 0.601313, 0, -0.799013, 0, 1, 0, 0.799013, 0, 0.601313, -27.0136, 1.872, 8.31128 )
+transform = Transform( 0.601313, 0, -0.799013, 0, 1, 0, 0.799013, 0, 0.601313, -27.014, 0, 8.311 )
 mesh = ExtResource( 8 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
