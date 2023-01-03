@@ -323,7 +323,7 @@ public abstract class InventoryMode
                 await player.ToSignal(player.GetTree(), "idle_frame");
             }
 
-            Input.SetMouseMode(Input.MouseMode.Visible);
+            Input.MouseMode = Input.MouseModeEnum.Visible;
             isAnimating = false;
         }
 
@@ -344,7 +344,8 @@ public abstract class InventoryMode
         
 
         isAnimating = true;
-        while (back.RectPosition.x < 0) {
+        while (back.RectPosition.x < 0) 
+        {
             Vector2 newPos = back.RectPosition;
             newPos.x += MENU_SPEED;
             back.RectPosition = newPos;
@@ -352,8 +353,9 @@ public abstract class InventoryMode
         }
         menu.Visible = false;
         menu.isOpen = false;
-        if (!Global.Get().paused) {
-            Input.SetMouseMode(Input.MouseMode.Captured);
+        if (!Global.Get().paused) 
+        {
+            Input.MouseMode = Input.MouseModeEnum.Captured;
         }
 
         isAnimating = false;

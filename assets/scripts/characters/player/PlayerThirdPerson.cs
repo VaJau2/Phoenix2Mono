@@ -232,7 +232,7 @@ public class PlayerThirdPerson : Spatial
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton
-        && Input.GetMouseMode() == Input.MouseMode.Captured) {
+        && Input.MouseMode == Input.MouseModeEnum.Captured) {
             var mouseEvent = @event as InputEventMouseButton;
 
             if (mouseEvent.IsPressed()) {

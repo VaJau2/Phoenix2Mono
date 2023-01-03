@@ -488,7 +488,7 @@ public class Player : Character
     protected void RotateCamera(InputEvent @event) 
     {
         if (@event is InputEventMouseMotion
-            && Input.GetMouseMode() == Input.MouseMode.Captured
+            && Input.MouseMode == Input.MouseModeEnum.Captured
             && MayRotateHead) 
         {
 
@@ -574,7 +574,7 @@ public class Player : Character
         bodyCollider = GetNode<CollisionShape>("body_shape");
 
         MouseSensivity = global.Settings.mouseSensivity;
-        Input.SetMouseMode(Input.MouseMode.Captured);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
     public override void _Process(float delta)

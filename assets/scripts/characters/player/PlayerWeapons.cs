@@ -386,7 +386,7 @@ public class PlayerWeapons: CollisionShape
 
     public override void _Process(float delta)
     {
-        if (!global.paused && player.Health > 0 && Input.GetMouseMode() == Input.MouseMode.Captured) 
+        if (!global.paused && player.Health > 0 && Input.MouseMode == Input.MouseModeEnum.Captured) 
         {
             if (GunOn) {
                 //вращаем коллизию пистолета вместе с пистолетом
