@@ -157,6 +157,9 @@ public class PlayerCamera: Camera
                 case FurnBase furn:
                     ShowHint("open");
                     break;
+                case DoorTeleport furn:
+                    ShowHint("open");
+                    break;
                 case Terminal _:
                     ShowHint("terminal");
                     break;

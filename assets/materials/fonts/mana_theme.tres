@@ -15,6 +15,6 @@ anti_aliasing = false
 default_font = ExtResource( 1 )
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-ProgressBar/fonts/font = null
+ProgressBar/fonts/font = ExtResource( 1 )
 ProgressBar/styles/bg = null
 ProgressBar/styles/fg = SubResource( 1 )
