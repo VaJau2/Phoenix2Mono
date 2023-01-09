@@ -14,6 +14,7 @@ public class Settings
     };
 
     public float soundVolume {get; private set;}
+    public float radioVolume {get; private set;}
     public float musicVolume {get; private set;}
     public float voiceVolume {get; private set;}
 
@@ -47,6 +48,12 @@ public class Settings
     {
         updateAudioBus(2, volume);
         soundVolume = volume;
+    }
+
+    public void SetRadioVolume(float volume)
+    {
+        updateAudioBus(4, volume);
+        radioVolume = volume;
     }
 
     public void SetMusicVolume(float volume)
@@ -100,6 +107,7 @@ public class Settings
         config.SetValue("screen", "color", interfaceColor);
 
         config.SetValue("audio", "sound_volume", soundVolume);
+        config.SetValue("audio", "radio_volume", radioVolume);
         config.SetValue("audio", "music_volume", musicVolume);
         config.SetValue("audio", "voice_volume", voiceVolume);
         
@@ -144,6 +152,7 @@ public class Settings
             interfaceColor = (Color)config.GetValue("screen", "color");
 
             SetSoundVolume((float)config.GetValue("audio", "sound_volume"));
+            SetRadioVolume((float)config.GetValue("audio", "radio_volume"));
             SetMusicVolume((float)config.GetValue("audio", "music_volume"));
             SetVoiceVolume((float)config.GetValue("audio", "voice_volume"));
 

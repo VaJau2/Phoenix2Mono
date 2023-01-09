@@ -1,25 +1,57 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public class RadioController : Node
 {
-    [Export] List<NodePath> radioPaths = new List<NodePath>();
-    List<Radio> radios = new List<Radio>();
-    List<AudioStream> playlist; 
+    [Export] public bool playerInside;
+
+    [Export] bool monoStation = true;
+    [Export] Radiostation.Name radiostation;
+    [Export] float frequency;
+    [Export] Radio.FrequencyRange frequencyRange;
+
+    [Export] List<NodePath> radioListPath = new List<NodePath>();
+    List<Radio> radioList = new List<Radio>();
 
     public override void _Ready()
     {
-        foreach (NodePath tempPath in radioPaths)
+        var stations = GetChildren();
+        foreach (Radiostation station in stations)
         {
-            radios.Add(GetNode<Radio>(tempPath));
+            station.Initialize();
         }
 
-        playlist = radios[0].GetPlaylist();
-        foreach (Radio radio in radios)
+        foreach (NodePath tempPath in radioListPath)
         {
-            radio.SetPlaylist(playlist);
+            Radio radio = GetNode<Radio>(tempPath);
+            if (monoStation) radio.Initialize(radiostation, frequencyRange, frequency);
+            else radio.Initialize();
+            radioList.Add(radio);
         }
+    }
 
-        SetProcess(false);
+    public void EnterToRoom(List<Radio> roomRadioList)
+    {
+        foreach (Radio radio in radioList)
+        {
+            foreach (Radio roomRadio in roomRadioList)
+            {
+                if (radio == roomRadio) radio.RepeaterMode(false);
+                else if (radio.isOn) radio.SetMute(true);
+            }
+        }
+    }
+
+    public void ExitFromRoom(List<Radio> roomRadioList)
+    {
+        foreach (Radio radio in radioList)
+        {
+            foreach (Radio roomRadio in roomRadioList)
+            {
+                if (radio == roomRadio) radio.RepeaterMode(true);
+                else if (radio.isOn) radio.SetMute(false);
+            }
+        }
     }
 }

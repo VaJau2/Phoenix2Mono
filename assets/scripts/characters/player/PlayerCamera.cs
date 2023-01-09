@@ -204,6 +204,11 @@ public class PlayerCamera: Camera
                 onetimeHint = false;
                 break;
             }
+            case DoorTeleport door:
+            {
+                door.Open(player, true);
+                break;
+            }
             case FurnBase furn:
             {
                 point.HideSquare();

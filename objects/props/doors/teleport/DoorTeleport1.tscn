@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/materials/props/door2.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
@@ -20,10 +20,8 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ConvexPolygonShape" id=2]
-points = PoolVector3Array( -0.133413, 4.03629, -1.87413, -0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, 0.125874, -0.133413, 4.03629, 0.125874, 0.133413, 4.03629, -1.87413, 0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, -1.87413, -0.133413, 4.03629, -1.87413, 0.133413, 4.03629, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, -1.87413, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, 0.125874, -0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, 0.125874, -0.133413, -0.0371488, 0.125874, -0.133413, -0.0371488, -1.87413, 0.133413, -0.0371488, -1.87413, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, 0.125874, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, -1.87413, -0.133413, 4.03629, 0.125874 )
-
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.997181, 2.04162, 0.998238 )
 
 [node name="DoorTeleport1" type="StaticBody"]
 physics_material_override = ExtResource( 2 )
@@ -32,22 +30,10 @@ openSound = ExtResource( 4 )
 
 [node name="Cube" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0069, -0.874335 )
 shape = SubResource( 2 )
-
-[node name="Area" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32529, 1.02264, -0.909013 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
-
-[node name="Area2" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28812, 1.02264, -0.909013 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Area2"]
-shape = SubResource( 3 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
@@ -55,8 +41,3 @@ unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 bus = "Audio"
-
-[connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_body_exited"]
-[connection signal="body_entered" from="Area2" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area2" to="." method="_on_body_exited"]

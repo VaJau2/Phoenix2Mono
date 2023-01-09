@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/models/props/furniture/Radio/Button/Button.material" type="Material" id=1]
 [ext_resource path="res://assets/models/props/furniture/Radio/Antenna/Antenna.material" type="Material" id=2]
 [ext_resource path="res://assets/models/props/furniture/Radio/Lever/Lever.material" type="Material" id=3]
 [ext_resource path="res://assets/models/props/furniture/Radio/Radio.material" type="Material" id=4]
 [ext_resource path="res://assets/scripts/furniture/Radio/Radio.cs" type="Script" id=5]
+[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 blend_shape_mode = 0
@@ -135,7 +136,7 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 0.989256, 0.593993, 0.589485 )
 
-[node name="Radio" type="StaticBody"]
+[node name="Radio" type="StaticBody" groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 5 )
 
@@ -196,15 +197,19 @@ material/0 = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0206837 )
 shape = SubResource( 10 )
 
-[node name="Music Player" type="AudioStreamPlayer3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
+[node name="Music Player" type="AudioStreamPlayer3D" parent="." groups=["unpaused_sound"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.111388, -0.148266 )
 unit_size = 10.0
+max_distance = 120.0
 bus = "Radio"
+emission_angle_enabled = true
 
-[node name="Noise" type="AudioStreamPlayer3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
+[node name="Noise Player" type="AudioStreamPlayer3D" parent="." groups=["unpaused_sound"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.111388, -0.148266 )
+stream = ExtResource( 6 )
 unit_size = 10.0
+max_distance = 120.0
 bus = "Radio"
+emission_angle_enabled = true
 
-[connection signal="finished" from="Music Player" to="." method="OnMusicFinished"]
-[connection signal="finished" from="Noise" to="." method="OnNoiseFinished"]
+[connection signal="finished" from="Noise Player" to="." method="OnSwitchSoundFinished"]

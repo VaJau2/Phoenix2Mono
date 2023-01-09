@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
@@ -35,10 +35,8 @@ surfaces/0 = {
 "vertex_count": 80
 }
 
-[sub_resource type="ConvexPolygonShape" id=3]
-points = PoolVector3Array( 2.86511e-06, -10.1244, -0.189803, -4.33838e-07, 10.1244, -0.189803, -2.88547e-06, 10.1244, 14.8582, 4.1348e-07, -10.1244, 14.8582, -0.850224, -10.1244, -0.189803, -0.850227, -10.1244, 14.8582, -0.85023, 10.1244, 14.8582, -0.850228, 10.1244, -0.189803, 2.86511e-06, -10.1244, -0.189803, 4.1348e-07, -10.1244, 14.8582, -0.850227, -10.1244, 14.8582, -0.850224, -10.1244, -0.189803, 4.1348e-07, -10.1244, 14.8582, -2.88547e-06, 10.1244, 14.8582, -0.85023, 10.1244, 14.8582, -0.850227, -10.1244, 14.8582, -2.88547e-06, 10.1244, 14.8582, -4.33838e-07, 10.1244, -0.189803, -0.850228, 10.1244, -0.189803, -0.85023, 10.1244, 14.8582, -4.33838e-07, 10.1244, -0.189803, 2.86511e-06, -10.1244, -0.189803, -0.850224, -10.1244, -0.189803, -0.850228, 10.1244, -0.189803 )
-
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2.55189, 10.1228, 7.48394 )
 
 [node name="DoorTeleport2" type="StaticBody"]
 physics_material_override = ExtResource( 2 )
@@ -48,28 +46,14 @@ openSound = ExtResource( 1 )
 [node name="Box002" type="MeshInstance" parent="."]
 transform = Transform( 0.240647, 0, 0, 0, 0.240647, 0, 0, 0, 0.240647, 0.0556159, 2.12901, -2.56769 )
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="Box003" type="MeshInstance" parent="Box002"]
 transform = Transform( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, 0.744057, 0, 13.5953 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.240647, 0, 0, 0, 0.240647, 0, 0, 0, 0.240647, 0.0556159, 2.12901, -2.56769 )
+transform = Transform( 0.240647, 0, 0, 0, 0.240647, 0, 0, 0, 0.240647, -0.0338938, 2.129, -0.796588 )
 shape = SubResource( 3 )
-
-[node name="Area" type="Area" parent="."]
-transform = Transform( 1.27801, 0, 0, 0, 1.27801, 0, 0, 0, 1.27801, 1.68857, 0.887618, -0.706586 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 4 )
-
-[node name="Area2" type="Area" parent="."]
-transform = Transform( 1.27801, 0, 0, 0, 1.27801, 0, 0, 0, 1.27801, -1.6514, 0.887618, -0.706586 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Area2"]
-shape = SubResource( 4 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
@@ -77,8 +61,3 @@ unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 bus = "Audio"
-
-[connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_body_exited"]
-[connection signal="body_entered" from="Area2" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area2" to="." method="_on_body_exited"]

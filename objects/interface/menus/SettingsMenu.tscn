@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsMenu.cs" type="Script" id=3]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
@@ -57,15 +57,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -172.0
+margin_top = -204.0
 margin_right = 64.0
-margin_bottom = -150.0
+margin_bottom = -182.0
 theme = ExtResource( 2 )
 text = "Чувствительность мыши:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="mouse_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -73,17 +70,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0001
-margin_top = -172.0
+margin_top = -204.0
 margin_right = 398.0
-margin_bottom = -152.0
+margin_bottom = -184.0
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 0.8
 step = 0.01
 value = 0.1
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="mouse_border" type="Label" parent="Settings/mouse_slider" groups=["ignore_color"]]
@@ -120,15 +116,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -132.0
+margin_top = -164.0
 margin_right = 64.0
-margin_bottom = -114.0
+margin_bottom = -146.0
 theme = ExtResource( 2 )
 text = "Дальность прорисовки:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="distance_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -136,9 +129,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 96.0
-margin_top = -132.0
+margin_top = -164.0
 margin_right = 396.0
-margin_bottom = -112.0
+margin_bottom = -144.0
 theme = ExtResource( 2 )
 min_value = 200.0
 max_value = 600.0
@@ -181,9 +174,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -84.0
+margin_top = -116.0
 margin_right = 64.0
-margin_bottom = -62.0
+margin_bottom = -94.0
 theme = ExtResource( 2 )
 text = "Качество теней:"
 align = 2
@@ -194,14 +187,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0001
-margin_top = -84.0
+margin_top = -116.0
 margin_right = 403.0
-margin_bottom = -66.0
+margin_bottom = -98.0
 theme = ExtResource( 2 )
 text = "Максимальное"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="shadows_border" type="Label" parent="Settings/shadows_button" groups=["ignore_color"]]
@@ -237,15 +229,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -44.0
+margin_top = -76.0
 margin_right = 64.0
-margin_bottom = -22.0
+margin_bottom = -54.0
 theme = ExtResource( 2 )
 text = "Полноэкранный режим:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="fullscreen_button" type="Button" parent="Settings"]
 anchor_left = 0.5
@@ -253,14 +242,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -44.0
+margin_top = -76.0
 margin_right = 403.0
-margin_bottom = -26.0
+margin_bottom = -58.0
 theme = ExtResource( 2 )
 text = "Выключен"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="fullscreeen_border" type="Label" parent="Settings/fullscreen_button" groups=["ignore_color"]]
@@ -296,9 +284,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -4.0
+margin_top = -36.0
 margin_right = 64.0
-margin_bottom = 18.0
+margin_bottom = -14.0
 theme = ExtResource( 2 )
 text = "Поворот камеры в движении:"
 align = 2
@@ -309,9 +297,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -4.0
+margin_top = -36.0
 margin_right = 403.0
-margin_bottom = 14.0
+margin_bottom = -18.0
 theme = ExtResource( 2 )
 text = "Включен"
 __meta__ = {
@@ -351,15 +339,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 52.0
+margin_top = 20.0
 margin_right = 64.0
-margin_bottom = 73.999
+margin_bottom = 41.999
 theme = ExtResource( 2 )
 text = "Громкость звуков:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="sound_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -367,17 +352,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 52.0
+margin_top = 20.0
 margin_right = 398.0
-margin_bottom = 71.999
+margin_bottom = 39.999
 theme = ExtResource( 2 )
 min_value = -20.0
 max_value = 2.0
 step = 0.1
 value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="sound_border" type="Label" parent="Settings/sound_slider" groups=["ignore_color"]]
@@ -408,6 +392,65 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="radio_label" type="Label" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = 52.0
+margin_right = 64.0
+margin_bottom = 74.0
+theme = ExtResource( 2 )
+text = "Громкость радио:"
+align = 2
+
+[node name="radio_slider" type="HSlider" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 98.0
+margin_top = 52.0
+margin_right = 398.0
+margin_bottom = 72.0
+theme = ExtResource( 2 )
+min_value = -20.0
+max_value = 2.0
+step = 0.1
+value = 2.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="music_border" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -7.50002
+margin_right = -3.0
+margin_bottom = 7.49998
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_border2" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.00018
+margin_top = -7.00002
+margin_right = 9.00018
+margin_bottom = 7.99998
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="music_label" type="Label" parent="Settings"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -420,9 +463,6 @@ margin_bottom = 106.0
 theme = ExtResource( 2 )
 text = "Громкость музыки:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="music_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -439,8 +479,7 @@ max_value = 2.0
 step = 0.1
 value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="music_border" type="Label" parent="Settings/music_slider" groups=["ignore_color"]]
@@ -502,8 +541,7 @@ max_value = 2.0
 step = 0.1
 value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="voice_border" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
@@ -540,15 +578,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -472.0
-margin_top = -120.0
+margin_top = -152.0
 margin_right = -232.0
-margin_bottom = -98.0
+margin_bottom = -130.0
 theme = ExtResource( 2 )
 text = "Язык:"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="language_button" type="Button" parent="Settings"]
 anchor_left = 0.5
@@ -556,14 +591,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -432.0
-margin_top = -90.0
+margin_top = -122.0
 margin_right = -273.0
-margin_bottom = -73.0
+margin_bottom = -104.0
 theme = ExtResource( 2 )
 text = "Русский"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="border1" type="Label" parent="Settings/language_button" groups=["ignore_color"]]
@@ -598,10 +632,10 @@ anchor_left = 0.062
 anchor_top = 0.467
 anchor_right = 0.312
 anchor_bottom = 0.653
-margin_left = 0.511997
-margin_top = -0.199982
+margin_left = 0.512001
+margin_top = -32.2
 margin_right = 0.511932
-margin_bottom = 0.199982
+margin_bottom = -31.8
 __meta__ = {
 "_edit_group_": true
 }
@@ -1948,8 +1982,9 @@ anchor_top = 0.2
 anchor_right = 0.352
 anchor_bottom = 0.24
 margin_left = -7.872
+margin_top = -32.0
 margin_right = 1.55197
-margin_bottom = 1.0
+margin_bottom = -31.0
 theme = ExtResource( 2 )
 text = "[Назад]"
 
@@ -2000,6 +2035,9 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]
 [connection signal="mouse_exited" from="Settings/sound_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/sound_slider" to="Settings" method="_on_sound_slider_value_changed"]
+[connection signal="mouse_entered" from="Settings/radio_slider" to="." method="_on_mouse_entered" binds= [ "choose", "radio" ]]
+[connection signal="mouse_exited" from="Settings/radio_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/radio_slider" to="Settings" method="_on_radio_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
 [connection signal="mouse_exited" from="Settings/music_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/music_slider" to="Settings" method="_on_music_slider_value_changed"]

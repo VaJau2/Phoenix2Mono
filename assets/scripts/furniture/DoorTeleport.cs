@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
 
 //дверь, перемещающая в отдельную подлокацию
 public class DoorTeleport : StaticBody, ISavable
@@ -13,6 +14,11 @@ public class DoorTeleport : StaticBody, ISavable
 
     [Export] private AudioStreamSample openSound;
     [Export] private AudioStreamSample closedSound;
+
+    RadioController radioController;
+    [Export] List<NodePath> radioPaths = new List<NodePath>();
+    List<Radio> radioList = new List<Radio>();
+
     public DoorTeleport otherDoor { get; private set; }
     AudioStreamPlayer3D audi;
     Spatial newPlace, oldLocation, newLocation;
@@ -28,14 +34,16 @@ public class DoorTeleport : StaticBody, ISavable
         newLocation = GetNode<Spatial>(newLocationPath);
         otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
-        SetProcess(false);
-    }
 
-    public override void _Process(float delta)
-    {
-        player.Camera.ShowHint("open", false);
-        if (!Input.IsActionJustPressed("use")) return;
-        Open(player, true);
+        radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
+        foreach (NodePath tempPath in radioPaths)
+        {
+            Radio radio = GetNode<Radio>(tempPath);
+            radio.inRoom = true;
+            radioList.Add(radio);
+        }
+
+        SetProcess(false);
     }
 
     public void SoundOpening()
@@ -88,21 +96,12 @@ public class DoorTeleport : StaticBody, ISavable
         if (checkFall == null) return;
         checkFall.tempDoorTeleport = this;
         checkFall.inside = Inside;
-        
+
         player.Camera.HideHint();
-    }
 
-    public void _on_body_entered(Node body)
-    {
-        if (!(body is Player)) return;
-        SetProcess(true);
-    }
-
-    public void _on_body_exited(Node body)
-    {
-        if (!(body is Player)) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
+        if (radioController == null) return;
+        if (Inside) radioController.EnterToRoom(radioList);
+        else radioController.ExitFromRoom(radioList);
     }
 
     public Dictionary GetSaveData()
