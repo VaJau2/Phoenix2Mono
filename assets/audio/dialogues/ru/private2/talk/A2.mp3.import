@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A2.mp3-694b245af1167b274c8cc6dc08c5d847.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/private2/talk/A2.mp3"
+dest_files=[ "res://.import/A2.mp3-694b245af1167b274c8cc6dc08c5d847.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

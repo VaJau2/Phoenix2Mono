@@ -46,6 +46,16 @@ public class DoorTeleport : StaticBody, ISavable
         SetProcess(false);
     }
 
+    public void _on_body_entered()
+    {
+
+    }
+
+    public void _on_body_exited()
+    {
+
+    }
+
     public void SoundOpening()
     {
         if (IsInstanceValid(otherDoor) && IsInstanceValid(otherDoor.audi))

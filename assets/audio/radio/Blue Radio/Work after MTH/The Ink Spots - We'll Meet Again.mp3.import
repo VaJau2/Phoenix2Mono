@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Ink Spots - We'll Meet Again.mp3-987bb154bf7c821749be7fb3a0c805bf.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Blue Radio/Work after MTH/The Ink Spots - We'll Meet Again.mp3"
+dest_files=[ "res://.import/The Ink Spots - We'll Meet Again.mp3-987bb154bf7c821749be7fb3a0c805bf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

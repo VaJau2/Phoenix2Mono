@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/background/forest_morning.ogg"
+dest_files=[ "res://.import/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

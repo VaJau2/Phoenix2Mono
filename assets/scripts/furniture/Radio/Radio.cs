@@ -6,12 +6,12 @@ public class Radio : StaticBody, ISavable
 {
 	string model;
 
-	[Export] public bool isOn { private set; get; } = true;
 	public bool inRoom = false;
-	bool repeaterMode = false;
+	[Export] public bool isOn { private set; get; } = true;
+	public bool repeaterMode { private set; get; } = false;
 
+	public Radiostation station { private set; get; }
 	[Export] Radiostation.Name radiostation;
-	Radiostation station;
 	[Export] FrequencyRange frequencyRange;
 	[Export] float frequency = 0.5f;
 	
@@ -28,8 +28,8 @@ public class Radio : StaticBody, ISavable
 		U2
 	}
 
-	AudioStreamPlayer3D musicPlayer;
-	AudioStreamPlayer3D noisePlayer;
+	public AudioStreamPlayer3D musicPlayer { private set; get; }
+	public AudioStreamPlayer3D noisePlayer { private set; get; }
 	AudioStream noiseSound;
 	AudioStream switchSound;
 
@@ -44,7 +44,16 @@ public class Radio : StaticBody, ISavable
 
 	RadioController radioController;
 
-	float depthOfRoom = 100 / 1.5f;
+	public readonly float depthOfRoom = 100 / 1.5f;
+
+	public event ChangeMusicEvent OnChangeMusic;
+	public delegate void ChangeMusicEvent();
+
+	public event ChangeNoiseEvent OnChangeNoise;
+	public delegate void ChangeNoiseEvent();
+
+	public event ChangeRepeaterModeEvent OnChangeRepeaterMode;
+	public delegate void ChangeRepeaterModeEvent();
 
 	public void Initialize()
 	{
@@ -72,7 +81,7 @@ public class Radio : StaticBody, ISavable
 		if (saveSettingsLoaded) return;
 
 		if (inRoom && !radioController.playerInside) RepeaterMode(true);
-				
+		
 		if (isOn) SwitchOn(false);
 		else SwitchOff(false);
 	}
@@ -213,15 +222,19 @@ public class Radio : StaticBody, ISavable
 	{
 		musicPlayer.Stream = station.song;
 		musicPlayer.Play();
+
+		if (OnChangeMusic != null) OnChangeMusic.Invoke();
 	}
 
-	public void OnSwitchSoundFinished()
+	void OnSwitchSoundFinished()
     {
 		if (isOn && noisePlayer.Stream != noiseSound)
         {
 			noisePlayer.Stream = noiseSound;
 			noisePlayer.UnitDb = noiseDb;
 			noisePlayer.Play();
+
+			if (OnChangeNoise != null) OnChangeNoise.Invoke();
 		}
     }
 
@@ -229,6 +242,9 @@ public class Radio : StaticBody, ISavable
 	{
 		musicPlayer.MaxDb = Global.Get().paused ? -24 : 0;
 		noisePlayer.MaxDb = Global.Get().paused ? -24 : 0;
+
+		if (OnChangeMusic != null) OnChangeMusic.Invoke();
+		if (OnChangeNoise != null) OnChangeNoise.Invoke();
 	}
 
 	public void Interactive()
@@ -257,12 +273,16 @@ public class Radio : StaticBody, ISavable
 			noisePlayer.Stream = switchSound;
 			noisePlayer.UnitDb = 0;
 			noisePlayer.Play();
+
+			if (OnChangeNoise != null) OnChangeNoise.Invoke();
 		}
 		else OnSwitchSoundFinished();
 
 		musicPlayer.Stream = station.song;
 		musicPlayer.UnitDb = 0;
 		musicPlayer.Play(station.timer);
+
+		if (OnChangeMusic != null) OnChangeMusic.Invoke();
 	}
 
 	void SwitchOff(bool withSwitchSound = true)
@@ -272,9 +292,12 @@ public class Radio : StaticBody, ISavable
 			noisePlayer.Stream = switchSound;
 			noisePlayer.UnitDb = 0;
 			noisePlayer.Play();
+
+			if (OnChangeNoise != null) OnChangeNoise.Invoke();
 		}
 
 		musicPlayer.UnitDb = -80;
+		if (OnChangeMusic != null) OnChangeMusic.Invoke();
 
 		switch (model)
 		{
@@ -302,6 +325,9 @@ public class Radio : StaticBody, ISavable
 			musicPlayer.UnitDb = 0;
 			noisePlayer.UnitDb = noiseDb;
 		}
+
+		if (OnChangeMusic != null) OnChangeMusic.Invoke();
+		if (OnChangeNoise != null) OnChangeNoise.Invoke();
 	}
 
 	public void RepeaterMode(bool value)
@@ -312,7 +338,10 @@ public class Radio : StaticBody, ISavable
 		else transform.origin -= new Vector3(0, depthOfRoom, 0);
 
 		musicPlayer.GlobalTransform = transform;
+		noisePlayer.GlobalTransform = transform;
 		repeaterMode = value;
+
+		if (OnChangeRepeaterMode != null) OnChangeRepeaterMode.Invoke();
 	}
 
     public Dictionary GetSaveData()
@@ -331,8 +360,9 @@ public class Radio : StaticBody, ISavable
 		bool tempIsOn = (bool)data["isOn"];
 		if (tempIsOn) SwitchOn(false);
 		else SwitchOff(false);
-		
-		RepeaterMode((bool)data["repeat_mode"]);
+
+		repeaterMode = (bool)data["repeat_mode"];
+		if (repeaterMode) RepeaterMode(true);
 
 		saveSettingsLoaded = true;
 	}

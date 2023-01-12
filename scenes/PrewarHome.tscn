@@ -1593,7 +1593,7 @@ transform = Transform( -0.109064, 0, -9.5347e-09, 0, 0.109064, 0, 9.5347e-09, 0,
 [node name="terminal" parent="rooms/market/props" instance=ExtResource( 92 )]
 transform = Transform( -1.77689e-08, 0, -0.109064, 0, 0.109064, 0, 0.109064, 0, -1.77689e-08, 0.387362, 0.361554, -1.40526 )
 
-[node name="Radio" parent="rooms/market/props" groups=["savable"] instance=ExtResource( 110 )]
+[node name="Radio" parent="rooms/market/props" instance=ExtResource( 110 )]
 transform = Transform( -0.00652482, 0, 0.0842594, 0, 0.0845116, 0, -0.0842594, 0, -0.00652482, 0.66012, 0.498148, -0.363731 )
 radiostation = 2
 frequencyRange = 3

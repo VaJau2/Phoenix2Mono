@@ -177,7 +177,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
 unit_size = 10.0
 max_distance = 100.0
 bus = "Radio"
-emission_angle_enabled = true
 
 [node name="Noise Player" type="AudioStreamPlayer3D" parent="." groups=["unpaused_sound"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229709, 0.354698, 0 )
@@ -185,6 +184,5 @@ stream = ExtResource( 1 )
 unit_size = 10.0
 max_distance = 100.0
 bus = "Radio"
-emission_angle_enabled = true
 
 [connection signal="finished" from="Noise Player" to="." method="OnSwitchSoundFinished"]

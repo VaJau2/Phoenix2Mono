@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vertibird.mp3-26fcd75c6f8bb7e4a07fbed5991aade3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/background/vertibird.mp3"
+dest_files=[ "res://.import/vertibird.mp3-26fcd75c6f8bb7e4a07fbed5991aade3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

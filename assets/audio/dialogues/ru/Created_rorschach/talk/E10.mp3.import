@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/E10.mp3-35e7880974ffc2a84f97876c6af54854.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/Created_rorschach/talk/E10.mp3"
+dest_files=[ "res://.import/E10.mp3-35e7880974ffc2a84f97876c6af54854.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

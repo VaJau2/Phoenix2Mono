@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Ink Spots - Maybe.mp3-9363f132ef348d6b851d92c049e504a2.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Blue Radio/The Ink Spots - Maybe.mp3"
+dest_files=[ "res://.import/The Ink Spots - Maybe.mp3-9363f132ef348d6b851d92c049e504a2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Guy Mitchell - Heartache by the Numbers.mp3-9dcab16ff8a5bfcfd580f9f8c48dbb77.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/Guy Mitchell - Heartache by the Numbers.mp3"
+dest_files=[ "res://.import/Guy Mitchell - Heartache by the Numbers.mp3-9dcab16ff8a5bfcfd580f9f8c48dbb77.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

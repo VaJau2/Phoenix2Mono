@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mtn_fight.mp3-16c919e000215f7ff326d4493f18e015.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/mtn_fight.mp3"
+dest_files=[ "res://.import/mtn_fight.mp3-16c919e000215f7ff326d4493f18e015.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

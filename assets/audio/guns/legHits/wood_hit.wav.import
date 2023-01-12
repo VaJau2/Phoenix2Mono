@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wood_hit.wav-4b443ff139e270dd27355d13aabac408.sample"
+
+[deps]
+
+source_file="res://assets/audio/guns/legHits/wood_hit.wav"
+dest_files=[ "res://.import/wood_hit.wav-4b443ff139e270dd27355d13aabac408.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

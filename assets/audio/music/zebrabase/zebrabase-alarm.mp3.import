@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/zebrabase/zebrabase-alarm.mp3"
+dest_files=[ "res://.import/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

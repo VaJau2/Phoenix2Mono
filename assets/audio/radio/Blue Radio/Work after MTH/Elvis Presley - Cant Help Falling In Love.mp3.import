@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Elvis Presley - Cant Help Falling In Love.mp3-c57a97f2dc65e36f3aa469ebf50f575e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Blue Radio/Work after MTH/Elvis Presley - Cant Help Falling In Love.mp3"
+dest_files=[ "res://.import/Elvis Presley - Cant Help Falling In Love.mp3-c57a97f2dc65e36f3aa469ebf50f575e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/High Hatters & Frank Luther - What Would I Care.mp3-937f0f6c930586e4520f5ec21df9753e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work before Theater/High Hatters & Frank Luther - What Would I Care.mp3"
+dest_files=[ "res://.import/High Hatters & Frank Luther - What Would I Care.mp3-937f0f6c930586e4520f5ec21df9753e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

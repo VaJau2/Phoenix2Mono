@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Hillbilly Moon Explosion - Little Lil.mp3-684311c8b083fd73f07cdc743512a63c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Easy-Greasy FM/The Hillbilly Moon Explosion - Little Lil.mp3"
+dest_files=[ "res://.import/The Hillbilly Moon Explosion - Little Lil.mp3-684311c8b083fd73f07cdc743512a63c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

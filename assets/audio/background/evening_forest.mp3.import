@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/evening_forest.mp3-3c97903fc3d6a4152b59ae2200873c38.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/background/evening_forest.mp3"
+dest_files=[ "res://.import/evening_forest.mp3-3c97903fc3d6a4152b59ae2200873c38.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

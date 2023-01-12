@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/D4.mp3-26c91cc85a900ed858fd1f71e95d96af.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/mrHandyRainbow/talk/D4.mp3"
+dest_files=[ "res://.import/D4.mp3-26c91cc85a900ed858fd1f71e95d96af.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

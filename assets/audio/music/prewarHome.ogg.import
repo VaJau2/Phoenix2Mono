@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/prewarHome.ogg-679e045c9bbc0627f12224a30308f30f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/prewarHome.ogg"
+dest_files=[ "res://.import/prewarHome.ogg-679e045c9bbc0627f12224a30308f30f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

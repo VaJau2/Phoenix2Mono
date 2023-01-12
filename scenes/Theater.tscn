@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://assets/materials/environments/cloudy_day_env.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -75,6 +75,7 @@
 [ext_resource path="res://objects/props/doors/door-static.tscn" type="PackedScene" id=73]
 [ext_resource path="res://objects/props/fusion_air.tscn" type="PackedScene" id=74]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=75]
+[ext_resource path="res://objects/props/furniture/radio/Speaker.tscn" type="PackedScene" id=76]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -1197,6 +1198,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1679, -2.39644, 9.48969 )
 radiostation = 3
 frequencyRange = 4
 frequency = 0.55
+
+[node name="Speaker" parent="terrain/props" instance=ExtResource( 76 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.15, 20, -7 )
+radioPath = NodePath("../Radio")
+
+[node name="Speaker2" parent="terrain/props" instance=ExtResource( 76 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 63.704, 20, -7.00746 )
+radioPath = NodePath("../Radio")
+
+[node name="Speaker3" parent="terrain/props" instance=ExtResource( 76 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.704, 20, 33.9722 )
+radioPath = NodePath("../Radio")
+
+[node name="Speaker4" parent="terrain/props" instance=ExtResource( 76 )]
+transform = Transform( 1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 14.15, 20, 33.9797 )
+radioPath = NodePath("../Radio")
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 53 )

@@ -1,0 +1,22 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/scripts/furniture/Radio/Radiostation.cs" type="Script" id=1]
+[ext_resource path="res://assets/audio/radio/Blue Radio/The Ink Spots - Easy Living.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/radio/Blue Radio/The Ink Spots - I Don't Want To Set The World On Fire.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/radio/Blue Radio/The Ink Spots - Maybe.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/radio/Blue Radio/The Ink Spots - It's A Sin To Tell A Lie.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/radio/Blue Radio/The Ink Spots - Into each Life Some Rain Must Fall.mp3" type="AudioStream" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+export(Array, AudioStream) var songs
+"
+
+[node name="Blue Radio" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Default Songs" type="Node" parent="."]
+script = SubResource( 1 )
+songs = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ) ]

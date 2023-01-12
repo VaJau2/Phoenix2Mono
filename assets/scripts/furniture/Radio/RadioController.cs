@@ -22,9 +22,9 @@ public class RadioController : Node
             station.Initialize();
         }
 
-        foreach (NodePath tempPath in radioListPath)
+        foreach (NodePath radioPath in radioListPath)
         {
-            Radio radio = GetNode<Radio>(tempPath);
+            Radio radio = GetNode<Radio>(radioPath);
             if (monoStation) radio.Initialize(radiostation, frequencyRange, frequency);
             else radio.Initialize();
             radioList.Add(radio);

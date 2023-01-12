@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Doris Day - Que Sera Sera.mp3-cba8ad48a0f5f73eba5188d670d86649.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work after Theater/Doris Day - Que Sera Sera.mp3"
+dest_files=[ "res://.import/Doris Day - Que Sera Sera.mp3-cba8ad48a0f5f73eba5188d670d86649.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

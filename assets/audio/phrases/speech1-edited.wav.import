@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/speech1-edited.wav-9f1c52809eb6b882879bc00c2e4fdb20.sample"
+
+[deps]
+
+source_file="res://assets/audio/phrases/speech1-edited.wav"
+dest_files=[ "res://.import/speech1-edited.wav-9f1c52809eb6b882879bc00c2e4fdb20.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

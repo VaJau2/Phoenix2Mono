@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/forest_day.ogg-3999ce0666eb68d8565b784b4b747fc4.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/background/forest_day.ogg"
+dest_files=[ "res://.import/forest_day.ogg-3999ce0666eb68d8565b784b4b747fc4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

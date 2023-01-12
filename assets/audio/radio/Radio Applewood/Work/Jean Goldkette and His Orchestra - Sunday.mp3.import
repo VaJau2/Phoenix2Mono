@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Jean Goldkette and His Orchestra - Sunday.mp3-b4874e5607953e98b8e66346f5610f21.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work/Jean Goldkette and His Orchestra - Sunday.mp3"
+dest_files=[ "res://.import/Jean Goldkette and His Orchestra - Sunday.mp3-b4874e5607953e98b8e66346f5610f21.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

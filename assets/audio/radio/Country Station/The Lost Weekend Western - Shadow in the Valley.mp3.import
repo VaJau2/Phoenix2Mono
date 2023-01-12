@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Lost Weekend Western - Shadow in the Valley.mp3-90a46dec36dc67b19b0a67dac5428346.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/The Lost Weekend Western - Shadow in the Valley.mp3"
+dest_files=[ "res://.import/The Lost Weekend Western - Shadow in the Valley.mp3-90a46dec36dc67b19b0a67dac5428346.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

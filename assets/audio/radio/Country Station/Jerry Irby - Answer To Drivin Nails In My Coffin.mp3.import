@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Jerry Irby - Answer To Drivin Nails In My Coffin.mp3-2506c8a1245d619c2f91998ae34adf41.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/Jerry Irby - Answer To Drivin Nails In My Coffin.mp3"
+dest_files=[ "res://.import/Jerry Irby - Answer To Drivin Nails In My Coffin.mp3-2506c8a1245d619c2f91998ae34adf41.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

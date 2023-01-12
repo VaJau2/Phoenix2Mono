@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/E3.mp3-ff88b2dcb974de4ca4fe77af19854c4b.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/Created_rorschach/talk/E3.mp3"
+dest_files=[ "res://.import/E3.mp3-ff88b2dcb974de4ca4fe77af19854c4b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

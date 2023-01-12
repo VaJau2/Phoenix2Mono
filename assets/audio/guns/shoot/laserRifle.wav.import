@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/laserRifle.wav-5bc17944f94b0f571314400a5e5fc15b.sample"
+
+[deps]
+
+source_file="res://assets/audio/guns/shoot/laserRifle.wav"
+dest_files=[ "res://.import/laserRifle.wav-5bc17944f94b0f571314400a5e5fc15b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

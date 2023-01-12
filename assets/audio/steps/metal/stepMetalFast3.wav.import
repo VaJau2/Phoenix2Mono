@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stepMetalFast3.wav-800f46e4a2380a4d5ecef5b291b19ff1.sample"
+
+[deps]
+
+source_file="res://assets/audio/steps/metal/stepMetalFast3.wav"
+dest_files=[ "res://.import/stepMetalFast3.wav-800f46e4a2380a4d5ecef5b291b19ff1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

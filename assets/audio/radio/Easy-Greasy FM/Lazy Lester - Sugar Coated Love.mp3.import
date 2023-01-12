@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lazy Lester - Sugar Coated Love.mp3-188e2ac0061dacbbab410f27f42aa132.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Easy-Greasy FM/Lazy Lester - Sugar Coated Love.mp3"
+dest_files=[ "res://.import/Lazy Lester - Sugar Coated Love.mp3-188e2ac0061dacbbab410f27f42aa132.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

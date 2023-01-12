@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Chords - Sh-Boom.mp3-59c17a4d45e6ce0edc28a027f58f9b49.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/The Chords - Sh-Boom.mp3"
+dest_files=[ "res://.import/The Chords - Sh-Boom.mp3-59c17a4d45e6ce0edc28a027f58f9b49.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
