@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=2]
+[gd_scene load_steps=196 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -339,9 +339,6 @@ extents = Vector3( 0.752456, 0.96398, 0.093307 )
 
 [sub_resource type="BoxShape" id=95]
 extents = Vector3( 0.839471, 1.16516, 0.139011 )
-
-[sub_resource type="BoxShape" id=96]
-extents = Vector3( 0.871682, 1.19249, 0.076362 )
 
 [sub_resource type="BoxShape" id=86]
 extents = Vector3( 1.14462, 1.19594, 0.115698 )
@@ -1085,10 +1082,6 @@ radioPaths = [ NodePath("../../../../../rooms/sklad/props/Radio Warehouse") ]
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/sklad/DoorTeleport2"]
 transform = Transform( 1, 0, -2.62901e-13, 0, 1, 0, 2.62901e-13, 0, 1, 0.39554, -0.945274, 0.766987 )
 shape = SubResource( 95 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="terrain/props/houses/sklad/DoorTeleport2"]
-transform = Transform( 0.371335, 0, -0.928499, 0, 1, 0, 0.928499, 0, 0.371335, 0.99282, -0.927194, -0.153839 )
-shape = SubResource( 96 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="terrain/props/houses/sklad/DoorTeleport2"]
 unit_db = 10.0

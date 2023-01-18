@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/models/props/furniture/Radio/Button/Button.material" type="Material" id=1]
 [ext_resource path="res://assets/models/props/furniture/Radio/Antenna/Antenna.material" type="Material" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/models/props/furniture/Radio/Radio.material" type="Material" id=4]
 [ext_resource path="res://assets/scripts/furniture/Radio/Radio.cs" type="Script" id=5]
 [ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 blend_shape_mode = 0
@@ -138,6 +139,7 @@ extents = Vector3( 0.989256, 0.593993, 0.589485 )
 
 [node name="Radio" type="StaticBody" groups=["savable"]]
 pause_mode = 2
+physics_material_override = ExtResource( 7 )
 script = ExtResource( 5 )
 
 [node name="Radio" type="MeshInstance" parent="."]

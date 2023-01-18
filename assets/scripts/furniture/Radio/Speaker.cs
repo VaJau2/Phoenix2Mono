@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Speaker : Node
+public class Speaker : StaticBody
 {
     [Export] NodePath radioPath;
     Radio radio;
