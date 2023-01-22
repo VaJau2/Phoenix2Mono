@@ -23,14 +23,19 @@ public class Receiver : RadioBase, ISavable
 		U2
 	}
 
-	Spatial volumeLever;
-	Spatial frequencyLever;
-	Spatial arrow;
 	Spatial l;
 	Spatial m;
 	Spatial k;
 	Spatial u1;
 	Spatial u2;
+	Spatial arrow;
+	Spatial frequencyLever;
+	Spatial volumeLever;
+
+	float minVolume;
+	float maxVolume;
+	Global global = Global.Get();
+
 
 	[Signal]
 	public delegate void ChangeMusicEvent();
@@ -40,6 +45,11 @@ public class Receiver : RadioBase, ISavable
 
 	public override void Initialize()
     {
+		var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
+		settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(UpdateVolumeLever));
+		minVolume = (float)settings.radioSlider.MinValue;
+		maxVolume = (float)settings.radioSlider.MaxValue;
+
 		frequency = Mathf.Clamp(frequency, 0, 1);
 
 		InitBase();
@@ -60,11 +70,6 @@ public class Receiver : RadioBase, ISavable
 	{
 		bool hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
 		model = hasRadio ? "Radio" : "Radio Jr";
-
-		if (model == "Radio Jr")
-		{
-			arrow = GetNode<Spatial>("Arrow");
-		}
 	}
 
 	void InitControls()
@@ -109,8 +114,10 @@ public class Receiver : RadioBase, ISavable
 				break;
 
 			case "Radio Jr":
-				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
+				arrow = GetNode<Spatial>("Arrow");
 				arrow.Rotate(Vector3.Back, (frequency * 160 + 10) * (float)(Math.PI / 180));
+
+				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
 
 				switch (frequencyRange)
 				{
@@ -210,67 +217,54 @@ public class Receiver : RadioBase, ISavable
 	void SwitchOn(bool withSwitchSound = true)
 	{
 		isOn = true;
+		UpdateVolumeLever(global.Settings.radioVolume);
 
-		switch (model)
-		{
-			case "Radio":
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, 0.268f, -0.488f));
-
-				// 0.268
-				// -0.26
-				break;
-
-			case "Radio Jr":
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.34f, 0));
-
-				// 0.34
-				// 0.19
-				break;
-		}
-
-		if (withSwitchSound)
-        {
-			noisePlayer.Stream = switchSound;
-			noisePlayer.UnitDb = 0;
-			noisePlayer.Play();
-
-			EmitSignal(nameof(ChangeNoiseEvent));
-		}
+		if (withSwitchSound) PlaySwitchSound();
 		else OnSwitchSoundFinished();
 
 		musicPlayer.Stream = station.song;
 		musicPlayer.UnitDb = 0;
 		musicPlayer.Play(station.timer);
-
 		EmitSignal(nameof(ChangeMusicEvent));
 	}
 
 	void SwitchOff(bool withSwitchSound = true)
 	{
-		if (withSwitchSound)
-		{
-			noisePlayer.Stream = switchSound;
-			noisePlayer.UnitDb = 0;
-			noisePlayer.Play();
-
-			EmitSignal(nameof(ChangeNoiseEvent));
-		}
+		if (withSwitchSound) PlaySwitchSound();
 
 		musicPlayer.UnitDb = -80;
 		EmitSignal(nameof(ChangeMusicEvent));
+		
+		UpdateVolumeLever(minVolume);
+		isOn = false;
+	}
+
+	void PlaySwitchSound()
+    {
+		noisePlayer.Stream = switchSound;
+		noisePlayer.UnitDb = 0;
+		noisePlayer.Play();
+
+		EmitSignal(nameof(ChangeNoiseEvent));
+	}
+
+	void UpdateVolumeLever(float value)
+    {
+		float normalizeLever;
+		value = (value - minVolume) / (Mathf.Abs(maxVolume) + Mathf.Abs(minVolume));
 
 		switch (model)
 		{
 			case "Radio":
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, -0.258f, -0.488f));
+				normalizeLever = value * 0.526f - 0.26f;
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
 				break;
 
 			case "Radio Jr":
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, 0.19f, 0));
+				normalizeLever = value * 0.15f + 0.19f;
+				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
 				break;
 		}
-
-		isOn = false;
 	}
 
 	public override void SetMute(bool value)

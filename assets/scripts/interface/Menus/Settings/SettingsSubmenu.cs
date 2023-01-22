@@ -22,7 +22,7 @@ public class SettingsSubmenu : SubmenuBase
     private Label soundLabel;
     private Slider soundSlider;
     private Label radioLabel;
-    private Slider radioSlider;
+    public Slider radioSlider { private set; get; }
     private Label musicLabel;
     private Slider musicSlider;
     private Label voiceLabel;
@@ -34,7 +34,10 @@ public class SettingsSubmenu : SubmenuBase
     private Slider rSlider;
     private Slider gSlider;
     private Slider bSlider;
-    
+
+    [Signal]
+    public delegate void ChangeRadioVolumeEvent(float value);
+
     public override void LoadSubmenu(SettingsMenu parent)
     {
         base.LoadSubmenu(parent);
@@ -167,6 +170,7 @@ public class SettingsSubmenu : SubmenuBase
     public void _on_radio_slider_value_changed(float value)
     {
         global.Settings.SetRadioVolume(value);
+        EmitSignal(nameof(ChangeRadioVolumeEvent), value);
     }
 
     public void _on_music_slider_value_changed(float value)

@@ -1349,6 +1349,7 @@ script = SubResource( 22 )
 
 [node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 30.88 )
+visible = false
 script = ExtResource( 97 )
 radioPaths = [ NodePath("fireplate/Radio") ]
 

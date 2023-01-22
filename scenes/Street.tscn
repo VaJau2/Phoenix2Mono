@@ -460,6 +460,7 @@ transform = Transform( -3.61351, 0, -3.15903e-07, 0, 3.61351, 0, 3.15903e-07, 0,
 
 [node name="Radio" parent="terrain/props/houses/house11" instance=ExtResource( 56 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.1, 0 )
+maxDb = -34.0
 radiostation = 2
 frequencyRange = 4
 frequency = 0.69
@@ -469,6 +470,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3735, -0.550278, -130.644 
 
 [node name="Radio" parent="terrain/props/houses/house2" instance=ExtResource( 56 )]
 transform = Transform( 3.69552e-07, 0, -1, 0, 1, 0, 1, 0, 3.69552e-07, 6.68498, 11, -0.0789795 )
+maxDb = -34.0
 radiostation = 1
 frequencyRange = 4
 frequency = 0.57
@@ -484,6 +486,7 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 63.0535
 
 [node name="Radio" parent="terrain/props/houses/house8" instance=ExtResource( 56 )]
 transform = Transform( -4.01339e-07, 0, 1, 0, 1, 0, -1, 0, -4.01339e-07, -11.898, 9.86149, 10.4496 )
+maxDb = -34.0
 radiostation = 4
 frequencyRange = 4
 frequency = 0.47
