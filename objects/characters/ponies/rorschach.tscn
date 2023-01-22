@@ -115,8 +115,13 @@ bind/19/pose = Transform( 0.531138, -1.15031, 0.0104028, 1.01392, 0.462709, -0.6
 
 [node name="rorschach" instance=ExtResource( 4 )]
 IdleAnim = "Idle1"
+IsImmortal = true
 StartHealth = 200
 weaponCode = "pistol10-silenced"
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [  ]
+bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -141,7 +146,7 @@ body_offset = Transform( 0.992634, -0.0828152, -0.088429, -0.0828149, 0.0689418,
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114836, 0.0972379, 0.116484, 0.99313, -0.0114236, -0.0952569, 0.0226189, 0.995198, -0.407885, 1.81143, -1.81374 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783024, 0.00691295, 0.876067 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427718, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978941 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427719, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978941 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.088597, -1.06067e-07, -0.0883894, 0.993732, 0.0684588, 0.0060649, -0.0681891, 0.997656, 0.287084, 1.79373, -0.756682 )
@@ -185,13 +190,10 @@ transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86
 transform = Transform( 1.2668, -0.0171439, -0.0162903, 0.0156344, 1.26305, -0.0871584, 0.0198711, 0.0991837, 1.1071, 0.00297838, 1.71755, 0.0373015 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
-material/0 = null
-material/1 = null
 script = ExtResource( 1 )
 npcName = "rorschach"
 startEyesVariant = "neitral"

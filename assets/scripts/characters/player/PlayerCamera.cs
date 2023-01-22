@@ -163,10 +163,10 @@ public class PlayerCamera: Camera
                 case Terminal _:
                     ShowHint("terminal");
                     break;
-                case Radio radio when radio.isOn:
+                case Receiver radio when radio.isOn:
                     ShowHint("turnOff");
                     break;
-                case Radio radio:
+                case Receiver radio:
                     ShowHint("turnOn");
                     break;
                 default:
@@ -221,7 +221,7 @@ public class PlayerCamera: Camera
                 MenuManager.TryToOpenMenu(tempTerminal);
                 break;
             }
-            case Radio radio:
+            case Receiver radio:
             {
                     radio.Interactive();
                     break;

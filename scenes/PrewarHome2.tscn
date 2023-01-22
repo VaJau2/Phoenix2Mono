@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=2]
+[gd_scene load_steps=133 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -88,6 +88,7 @@
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=86]
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=87]
 [ext_resource path="res://assets/models/props/furniture/trash/bread.glb" type="PackedScene" id=88]
+[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=89]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -743,7 +744,6 @@ oldLocationPath = NodePath("../../../..")
 newLocationPath = NodePath("../../../../../rooms/mansion")
 otherDoorPath = NodePath("../../../../../rooms/mansion/DoorTeleport")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../../../../../rooms/mansion/fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/mansion/DoorTeleport2"]
 transform = Transform( 1, 0, 5.68434e-14, 0, 1, 0, -5.68434e-14, 0, 1, 0.146695, 0.512289, -2.14738 )
@@ -890,7 +890,9 @@ script = SubResource( 24 )
 
 [node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 30.88 )
-script = ExtResource( 29 )
+script = ExtResource( 89 )
+radioPaths = [ NodePath("fireplate/Radio") ]
+doorTeleportPaths = [ NodePath("DoorTeleport"), NodePath("../../terrain/props/houses/mansion/DoorTeleport2") ]
 
 [node name="walls" type="MeshInstance" parent="rooms/mansion"]
 transform = Transform( 18.0892, 0, 0, 0, 18.0892, 0, 0, 0, 18.0892, 9.51356, -4.20438, 8.60892 )
@@ -992,7 +994,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/mansion/DoorTeleport2")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/mansion/DoorTeleport"]
 transform = Transform( 0.330495, 0, 4.3154e-09, 0, 0.424027, 0, 4.3154e-09, 0, 0.231771, 0.0102177, 0.459869, -0.47562 )
@@ -1382,11 +1383,10 @@ light_energy = 0.9
 shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 
-[node name="RadioController" type="Node" parent="."]
+[node name="RadioController" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 44 )
 playerInside = true
-monoStation = false
 radioListPath = [ NodePath("../rooms/mansion/fireplate/Radio") ]
 
 [node name="Radio Applewood" parent="RadioController" instance=ExtResource( 45 )]

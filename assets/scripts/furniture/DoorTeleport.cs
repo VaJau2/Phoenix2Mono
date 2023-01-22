@@ -15,9 +15,8 @@ public class DoorTeleport : StaticBody, ISavable
     [Export] private AudioStreamSample openSound;
     [Export] private AudioStreamSample closedSound;
 
-    RadioController radioController;
-    [Export] List<NodePath> radioPaths = new List<NodePath>();
-    List<Radio> radioList = new List<Radio>();
+    Room oldRoom;
+    Room newRoom;
 
     public DoorTeleport otherDoor { get; private set; }
     AudioStreamPlayer3D audi;
@@ -28,32 +27,17 @@ public class DoorTeleport : StaticBody, ISavable
 
     public override void _Ready()
     {
+        oldRoom = GetNodeOrNull<Room>(oldLocationPath);
+        newRoom = GetNodeOrNull<Room>(newLocationPath);
+
         audi = GetNode<AudioStreamPlayer3D>("audi");
         newPlace = GetNode<Spatial>(newPlacePath);
         oldLocation = GetNode<Spatial>(oldLocationPath);
         newLocation = GetNode<Spatial>(newLocationPath);
         otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
-
-        radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
-        foreach (NodePath tempPath in radioPaths)
-        {
-            Radio radio = GetNode<Radio>(tempPath);
-            radio.inRoom = true;
-            radioList.Add(radio);
-        }
-
+                
         SetProcess(false);
-    }
-
-    public void _on_body_entered()
-    {
-
-    }
-
-    public void _on_body_exited()
-    {
-
     }
 
     public void SoundOpening()
@@ -109,9 +93,8 @@ public class DoorTeleport : StaticBody, ISavable
 
         player.Camera.HideHint();
 
-        if (radioController == null) return;
-        if (Inside) radioController.EnterToRoom(radioList);
-        else radioController.ExitFromRoom(radioList);
+        oldRoom?.Exit();
+        newRoom?.Enter();
     }
 
     public Dictionary GetSaveData()

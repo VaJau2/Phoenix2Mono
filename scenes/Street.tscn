@@ -925,10 +925,9 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 39 )
 
-[node name="RadioController" type="Node" parent="."]
+[node name="RadioController" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 57 )
-monoStation = false
 radioListPath = [ NodePath("../terrain/props/houses/house8/Radio"), NodePath("../terrain/props/houses/house2/Radio"), NodePath("../terrain/props/houses/house11/Radio") ]
 
 [node name="Blue Radio" parent="RadioController" instance=ExtResource( 52 )]

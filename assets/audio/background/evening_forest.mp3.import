@@ -11,5 +11,5 @@ dest_files=[ "res://.import/evening_forest.mp3-3c97903fc3d6a4152b59ae2200873c38.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

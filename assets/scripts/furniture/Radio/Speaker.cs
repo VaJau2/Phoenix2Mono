@@ -1,62 +1,39 @@
 using Godot;
 using System;
 
-public class Speaker : StaticBody
+public class Speaker : RadioBase
 {
-    [Export] NodePath radioPath;
-    Radio radio;
+    [Export] NodePath receiverPath;
+    Receiver receiver;
 
-    AudioStreamPlayer3D musicPlayer;
-    AudioStreamPlayer3D noisePlayer;
-
-    public override void _Ready()
+    public override void Initialize()
     {
-        musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
-        noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
+        InitBase();
 
-        radio = GetNode<Radio>(radioPath);
-        radio.OnChangeRepeaterMode += OnChangeRepeaterMode;
-        radio.OnChangeMusic += OnChangeMusic;
-        radio.OnChangeNoise += OnChangeNoise;
+        receiver = GetNode<Receiver>(receiverPath);
+        receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
+        receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
 
-        if (radio.musicPlayer != null)
+        if (receiver.musicPlayer != null)
         {
             OnChangeMusic();
             OnChangeNoise();
         }
-    }
 
-    public override void _ExitTree()
-    {
-        radio.OnChangeRepeaterMode -= OnChangeRepeaterMode;
-        radio.OnChangeMusic -= OnChangeMusic;
-        radio.OnChangeNoise -= OnChangeNoise;
+        if (inRoom && !radioController.playerInside) RepeaterMode(true);
     }
 
     void OnChangeMusic()
     {
-        musicPlayer.Stream = radio.musicPlayer.Stream;
-        musicPlayer.UnitDb = radio.musicPlayer.UnitDb;
-        musicPlayer.MaxDb = radio.musicPlayer.MaxDb;
-        if (radio.isOn) musicPlayer.Play(radio.station.timer);
+        musicPlayer.Stream = receiver.musicPlayer.Stream;
+        musicPlayer.UnitDb = receiver.musicPlayer.UnitDb;
+        if (receiver.isOn) musicPlayer.Play(receiver.station.timer);
     }
 
     void OnChangeNoise()
     {
-        noisePlayer.Stream = radio.noisePlayer.Stream;
-        noisePlayer.UnitDb = radio.noisePlayer.UnitDb;
-        noisePlayer.MaxDb = radio.noisePlayer.MaxDb;
-        if (radio.isOn) noisePlayer.Play();
-    }
-
-    void OnChangeRepeaterMode()
-    {
-        var transform = musicPlayer.GlobalTransform;
-
-        if (radio.repeaterMode) transform.origin += new Vector3(0, radio.depthOfRoom, 0);
-        else transform.origin -= new Vector3(0, radio.depthOfRoom, 0);
-
-        musicPlayer.GlobalTransform = transform;
-        noisePlayer.GlobalTransform = transform;
+        noisePlayer.Stream = receiver.noisePlayer.Stream;
+        noisePlayer.UnitDb = receiver.noisePlayer.UnitDb;
+        if (receiver.isOn) noisePlayer.Play();
     }
 }

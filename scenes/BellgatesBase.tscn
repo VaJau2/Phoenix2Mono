@@ -1,4 +1,4 @@
-[gd_scene load_steps=196 format=2]
+[gd_scene load_steps=197 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=21]
 [ext_resource path="res://assets/audio/background/desert_wind.ogg" type="AudioStream" id=22]
 [ext_resource path="res://objects/props/furniture/radio/Radiostation/Country Station.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=24]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=25]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=26]
 [ext_resource path="res://objects/props/furniture/light/lamp.tscn" type="PackedScene" id=27]
@@ -1046,7 +1047,6 @@ newLocationPath = NodePath("../../../../../rooms/armor-house")
 otherDoorPath = NodePath("../../../../../rooms/armor-house/DoorTeleport")
 openSound = ExtResource( 58 )
 closedSound = ExtResource( 63 )
-radioPaths = [ NodePath("../../../../../rooms/armor-house/props/Radio Sewing") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/armor-house/DoorTeleport3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.397659, -0.489285, 0.916771 )
@@ -1077,7 +1077,6 @@ newLocationPath = NodePath("../../../../../rooms/sklad")
 otherDoorPath = NodePath("../../../../../rooms/sklad/DoorTeleport")
 openSound = ExtResource( 29 )
 closedSound = ExtResource( 63 )
-radioPaths = [ NodePath("../../../../../rooms/sklad/props/Radio Warehouse") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/sklad/DoorTeleport2"]
 transform = Transform( 1, 0, -2.62901e-13, 0, 1, 0, 2.62901e-13, 0, 1, 0.39554, -0.945274, 0.766987 )
@@ -1107,7 +1106,6 @@ newLocationPath = NodePath("../../../../../rooms/stels-house")
 otherDoorPath = NodePath("../../../../../rooms/stels-house/props/doors/DoorTeleport")
 openSound = ExtResource( 58 )
 closedSound = ExtResource( 63 )
-radioPaths = [ NodePath("../../../../../rooms/stels-house/props/Radio Stels") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/stealth_house/DoorTeleport"]
 transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0.0313816, 0.0256215, 0.207228 )
@@ -1137,7 +1135,6 @@ newLocationPath = NodePath("../../../../../rooms/main-house")
 otherDoorPath = NodePath("../../../../../rooms/main-house/props/doors/DoorTeleport2")
 openSound = ExtResource( 58 )
 closedSound = ExtResource( 63 )
-radioPaths = [ NodePath("../../../../../rooms/main-house/props/Radio Main") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/main-house/DoorTeleport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315678, 0.475931, 1.33473 )
@@ -1330,7 +1327,8 @@ script = SubResource( 39 )
 [node name="sklad" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.661, -100, 30.107 )
 visible = false
-script = ExtResource( 49 )
+script = ExtResource( 24 )
+radioPaths = [ NodePath("props/Radio Warehouse") ]
 
 [node name="spawn" type="Spatial" parent="rooms/sklad"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889786, 0.933769, 9.90912 )
@@ -1342,7 +1340,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/sklad/DoorTeleport2")
 openSound = ExtResource( 29 )
-radioPaths = [ NodePath("../props/Radio Warehouse") ]
 
 [node name="door" type="MeshInstance" parent="rooms/sklad/DoorTeleport"]
 transform = Transform( -0.415, 0, -6.13043e-08, 0, 0.428, 0, 6.26633e-08, 0, -0.406, 0, -0.0472488, 0.319796 )
@@ -1436,13 +1433,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602019, 3.95217, -12.5319 )
 
 [node name="Radio Warehouse" parent="rooms/sklad/props" instance=ExtResource( 113 )]
 transform = Transform( -0.222535, 0, -0.974925, 0, 1, 0, 0.974925, 0, -0.222535, -7.89139, 2.8555, 0.687901 )
+radiostation = 5
 frequencyRange = 1
 frequency = 0.66
 
 [node name="armor-house" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129.941, -100, 36.888 )
 visible = false
-script = ExtResource( 49 )
+script = ExtResource( 24 )
+radioPaths = [ NodePath("props/Radio Sewing") ]
 
 [node name="spawn" type="Spatial" parent="rooms/armor-house"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.4292, 2.44427, 2.43874 )
@@ -1455,7 +1454,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/armor-house/DoorTeleport3")
 openSound = ExtResource( 58 )
-radioPaths = [ NodePath("../props/Radio Sewing") ]
 
 [node name="door" type="MeshInstance" parent="rooms/armor-house/DoorTeleport"]
 transform = Transform( -6.0195e-07, 0, 14.194, 0, 14.278, 0, -13.771, 0, -6.20439e-07, -50.831, 0.035, 4.317 )
@@ -1577,6 +1575,7 @@ texture = ExtResource( 60 )
 
 [node name="Radio Sewing" parent="rooms/armor-house/props" instance=ExtResource( 113 )]
 transform = Transform( 0.993183, 0, 0.116567, 0, 1, 0, -0.116567, 0, 0.993183, 5.38701, 7.6479, 6.8964 )
+radiostation = 5
 frequencyRange = 1
 frequency = 0.66
 
@@ -1594,7 +1593,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99615, 0, -3.36648 )
 [node name="stels-house" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.1272, -100, 26.305 )
 visible = false
-script = ExtResource( 49 )
+script = ExtResource( 24 )
+radioPaths = [ NodePath("props/Radio Stels") ]
 
 [node name="spawn" type="Spatial" parent="rooms/stels-house"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7595, -2.96816, 1.65883 )
@@ -1636,7 +1636,6 @@ oldLocationPath = NodePath("../../../../sklad")
 newLocationPath = NodePath("../../../../../terrain")
 otherDoorPath = NodePath("../../../../../terrain/props/houses/sklad/DoorTeleport2")
 openSound = ExtResource( 29 )
-radioPaths = [ NodePath("../../Radio Stels") ]
 
 [node name="door" type="MeshInstance" parent="rooms/stels-house/props/doors/DoorTeleport"]
 transform = Transform( 5.13209, 0, 0, 0, 5.13209, 0, 0, 0, 5.13209, 1.00064, 3.0095, 1.14713 )
@@ -1832,6 +1831,7 @@ mesh = SubResource( 32 )
 
 [node name="Radio Stels" parent="rooms/stels-house/props" instance=ExtResource( 113 )]
 transform = Transform( -0.775465, 0, 0.836108, 0, 1.14036, 0, -0.836108, 0, -0.775465, 22.4882, -1.76475, -20.4061 )
+radiostation = 5
 frequencyRange = 1
 frequency = 0.66
 
@@ -1903,7 +1903,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9569, 0, 19.8437 )
 [node name="main-house" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 107.636, -100, 101.653 )
 visible = false
-script = ExtResource( 49 )
+script = ExtResource( 24 )
+radioPaths = [ NodePath("props/Radio Main") ]
 
 [node name="spawn" type="Spatial" parent="rooms/main-house"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6727, 0.74044, 26.1215 )
@@ -1954,7 +1955,6 @@ newLocationPath = NodePath("../../../../../terrain")
 otherDoorPath = NodePath("../../../../../terrain/props/houses/main-house/DoorTeleport")
 openSound = ExtResource( 58 )
 closedSound = ExtResource( 63 )
-radioPaths = [ NodePath("../../Radio Main") ]
 
 [node name="door" type="MeshInstance" parent="rooms/main-house/props/doors/DoorTeleport2"]
 transform = Transform( -0.375816, 0, -3.28549e-08, 0, 0.375816, 0, 3.28549e-08, 0, -0.375816, -15.6159, -0.0797577, 31.9959 )
@@ -2086,6 +2086,7 @@ mesh = SubResource( 71 )
 
 [node name="Radio Main" parent="rooms/main-house/props" instance=ExtResource( 123 )]
 transform = Transform( -0.0220069, 0, -0.999758, 0, 1, 0, 0.999758, 0, -0.0220069, -25.952, 2.4232, 22.7469 )
+radiostation = 5
 frequencyRange = 1
 frequency = 0.66
 
@@ -2316,12 +2317,9 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 81 )
 
-[node name="RadioController" type="Node" parent="."]
+[node name="RadioController" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 124 )
-radiostation = 5
-frequency = 0.66
-frequencyRange = 1
 radioListPath = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/sklad/props/Radio Warehouse"), NodePath("../rooms/main-house/props/Radio Main"), NodePath("../rooms/armor-house/props/Radio Sewing"), NodePath("../rooms/stels-house/props/Radio Stels") ]
 
 [node name="Country Station" parent="RadioController" instance=ExtResource( 23 )]

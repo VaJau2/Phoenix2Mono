@@ -1,4 +1,4 @@
-[gd_scene load_steps=195 format=2]
+[gd_scene load_steps=196 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -110,6 +110,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=108]
 [ext_resource path="res://objects/props/furniture/trash/colaBottle.tscn" type="PackedScene" id=109]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=110]
+[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=111]
 [ext_resource path="res://objects/props/vehicles/Pontiac.tscn" type="PackedScene" id=114]
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=115]
 
@@ -1061,7 +1062,7 @@ bodyBonePath = NodePath("")
 COME_DISTANCE = 3.0
 
 [node name="mother" parent="npc" instance=ExtResource( 66 )]
-transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.999886, -85.3095, -101.619, 30.5102 )
+transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.999886, -85.6788, -101.587, 30.7032 )
 IsImmortal = true
 
 [node name="old_trader" parent="npc" instance=ExtResource( 94 )]
@@ -1279,7 +1280,6 @@ oldLocationPath = NodePath("../../../..")
 newLocationPath = NodePath("../../../../../rooms/mansion")
 otherDoorPath = NodePath("../../../../../rooms/mansion/DoorTeleport")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../../../../../rooms/mansion/fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/mansion/DoorTeleport2"]
 transform = Transform( 1, 0, 3.55271e-14, 0, 1, 0, -3.55271e-14, 0, 1, 0.177029, 0.493316, -2.29264 )
@@ -1325,7 +1325,6 @@ oldLocationPath = NodePath("../../../..")
 newLocationPath = NodePath("../../../../../rooms/market")
 otherDoorPath = NodePath("../../../../../rooms/market/DoorTeleport")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../../../../../rooms/market/props/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/market/DoorTeleport3"]
 transform = Transform( 1, 0, 3.55271e-14, 0, 1, 0, -3.55271e-14, 0, 1, -0.038331, 0.13026, -2.43001 )
@@ -1470,7 +1469,9 @@ script = SubResource( 23 )
 [node name="market" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.261, -100, 21.022 )
 visible = false
-script = ExtResource( 98 )
+script = ExtResource( 111 )
+radioPaths = [ NodePath("props/Radio") ]
+doorTeleportPaths = [ NodePath("DoorTeleport"), NodePath("../../terrain/props/houses/market/DoorTeleport3") ]
 
 [node name="door2" type="MeshInstance" parent="rooms/market"]
 transform = Transform( 0.300551, 0, 0, 0, 0.300551, 0, 0, 0, 0.300551, 8.14049, -0.345161, 0.0993366 )
@@ -1737,7 +1738,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/market/DoorTeleport3")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../props/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/market/DoorTeleport"]
 transform = Transform( 0.442051, 0, -3.02634e-09, 0, 0.452327, 0, 5.77204e-09, 0, 0.231771, -0.0848751, -0.427544, 0.633692 )
@@ -1759,8 +1759,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.61609
 
 [node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 30.88 )
-visible = false
-script = ExtResource( 98 )
+script = ExtResource( 111 )
+radioPaths = [ NodePath("fireplate/Radio") ]
+doorTeleportPaths = [ NodePath("DoorTeleport"), NodePath("../../terrain/props/houses/mansion/DoorTeleport2") ]
 
 [node name="walls" type="MeshInstance" parent="rooms/mansion"]
 transform = Transform( 18.0892, 0, 0, 0, 18.0892, 0, 0, 0, 18.0892, 9.51356, -4.20438, 8.60892 )
@@ -1849,7 +1850,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/mansion/DoorTeleport2")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/mansion/DoorTeleport"]
 transform = Transform( 0.330495, 0, 4.3154e-09, 0, 0.424027, 0, 4.3154e-09, 0, 0.231771, 0.0102177, 0.459869, -0.47562 )
@@ -2369,12 +2369,9 @@ volume_db = -15.0
 bus = "Music"
 script = SubResource( 83 )
 
-[node name="RadioController" type="Node" parent="."]
+[node name="RadioController" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 115 )
-monoStation = false
-frequency = 0.77
-frequencyRange = 3
 radioListPath = [ NodePath("../rooms/mansion/fireplate/Radio"), NodePath("../rooms/market/props/Radio") ]
 
 [node name="Radio Applewood" parent="RadioController" instance=ExtResource( 29 )]

@@ -1,18 +1,16 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
-public class RadioController : Node
+public class RadioController : Node, ISavable
 {
     [Export] public bool playerInside;
 
-    [Export] bool monoStation = true;
-    [Export] Radiostation.Name radiostation;
-    [Export] float frequency;
-    [Export] Radio.FrequencyRange frequencyRange;
-
     [Export] List<NodePath> radioListPath = new List<NodePath>();
-    List<Radio> radioList = new List<Radio>();
+    List<RadioBase> radioList = new List<RadioBase>();
+
+    public string currentRoom;
 
     public override void _Ready()
     {
@@ -24,34 +22,61 @@ public class RadioController : Node
 
         foreach (NodePath radioPath in radioListPath)
         {
-            Radio radio = GetNode<Radio>(radioPath);
-            if (monoStation) radio.Initialize(radiostation, frequencyRange, frequency);
-            else radio.Initialize();
+            RadioBase radio = GetNode<RadioBase>(radioPath);
+            radio.Initialize();
             radioList.Add(radio);
         }
     }
 
-    public void EnterToRoom(List<Radio> roomRadioList)
+    public void EnterToRoom(List<RadioBase> roomRadioList)
     {
-        foreach (Radio radio in radioList)
+        List<RadioBase> outerRadioList = radioList;
+
+        foreach (RadioBase roomRadio in roomRadioList)
         {
-            foreach (Radio roomRadio in roomRadioList)
-            {
-                if (radio == roomRadio) radio.RepeaterMode(false);
-                else if (radio.isOn) radio.SetMute(true);
-            }
+            roomRadio.RepeaterMode(false);
+            outerRadioList.Remove(roomRadio);
+        }
+
+        foreach (RadioBase radio in outerRadioList)
+        {
+            radio.SetMute(true);
         }
     }
 
-    public void ExitFromRoom(List<Radio> roomRadioList)
+    public void ExitFromRoom(List<RadioBase> roomRadioList)
     {
-        foreach (Radio radio in radioList)
+        List<RadioBase> outerRadioList = radioList;
+
+        foreach (RadioBase roomRadio in roomRadioList)
         {
-            foreach (Radio roomRadio in roomRadioList)
-            {
-                if (radio == roomRadio) radio.RepeaterMode(true);
-                else if (radio.isOn) radio.SetMute(false);
-            }
+            roomRadio.RepeaterMode(true);
+            outerRadioList.Remove(roomRadio);
+        }
+
+        foreach (RadioBase radio in outerRadioList)
+        {
+            radio.SetMute(false);
+        }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary()
+        {
+            {"current_room", currentRoom}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (!data.Contains("current_room")) return;
+        currentRoom = (string)data["current_room"];
+
+        if (!string.IsNullOrEmpty(currentRoom))
+        {
+            Room room = GetNode<Room>(currentRoom);
+            room.Enter();
         }
     }
 }

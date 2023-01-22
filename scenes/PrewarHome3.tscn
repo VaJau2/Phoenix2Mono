@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=2]
+[gd_scene load_steps=173 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -96,6 +96,7 @@
 [ext_resource path="res://assets/audio/music/after-mtn/dramatic-1.mp3" type="AudioStream" id=94]
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=95]
 [ext_resource path="res://assets/audio/radio/Blue Radio/Home after MTH/Bob Crosby and the Bobcats - Happy Times.mp3" type="AudioStream" id=96]
+[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=97]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=98]
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=99]
 
@@ -1198,7 +1199,6 @@ oldLocationPath = NodePath("../../../..")
 newLocationPath = NodePath("../../../../../rooms/mansion")
 otherDoorPath = NodePath("../../../../../rooms/mansion/DoorTeleport")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../../../../../rooms/mansion/fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/mansion/DoorTeleport2"]
 transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, -4.26326e-14, 0, 1, 0.155081, 0.470513, -2.21225 )
@@ -1237,7 +1237,6 @@ oldLocationPath = NodePath("../../../..")
 newLocationPath = NodePath("../../../../../rooms/market")
 otherDoorPath = NodePath("../../../../../rooms/market/DoorTeleport")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../../../../../rooms/market/props/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/market/DoorTeleport3"]
 transform = Transform( 1, 0, 2.4869e-14, 0, 1, 0, -2.4869e-14, 0, 1, 0, 0.102599, -2.1814 )
@@ -1350,8 +1349,8 @@ script = SubResource( 22 )
 
 [node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 30.88 )
-visible = false
-script = ExtResource( 29 )
+script = ExtResource( 97 )
+radioPaths = [ NodePath("fireplate/Radio") ]
 
 [node name="walls" type="MeshInstance" parent="rooms/mansion"]
 transform = Transform( 18.0892, 0, 0, 0, 18.0892, 0, 0, 0, 18.0892, 9.51356, -4.20438, 8.60892 )
@@ -1453,7 +1452,6 @@ oldLocationPath = NodePath("..")
 newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/mansion/DoorTeleport2")
 openSound = ExtResource( 61 )
-radioPaths = [ NodePath("../fireplate/Radio") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/mansion/DoorTeleport"]
 transform = Transform( 0.330495, 0, 4.3154e-09, 0, 0.424027, 0, 4.3154e-09, 0, 0.231771, 0.0102177, 0.459869, -0.47562 )
@@ -1690,7 +1688,8 @@ script = ExtResource( 29 )
 [node name="market" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51.1914, -96.0521, 39.9293 )
 visible = false
-script = ExtResource( 29 )
+script = ExtResource( 97 )
+radioPaths = [ NodePath("props/Radio") ]
 
 [node name="door2" type="MeshInstance" parent="rooms/market"]
 transform = Transform( 0.300551, 0, 0, 0, 0.300551, 0, 0, 0, 0.300551, 8.14049, -0.345161, 0.0993366 )
@@ -1996,7 +1995,7 @@ otherDialogueCode = "talk"
 shape = SubResource( 73 )
 
 [node name="point" type="Spatial" parent="triggers/smokyDialogue"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55829, -2.32673, 2.94276 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.55829, -2.32673, 0.945988 )
 
 [node name="checkTraderSavableVariable" type="Node" parent="triggers"]
 script = ExtResource( 73 )
@@ -2071,12 +2070,8 @@ volume_db = -15.0
 bus = "Music"
 script = SubResource( 76 )
 
-[node name="RadioController" type="Node" parent="."]
+[node name="RadioController" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 99 )
-monoStation = false
-radiostation = 4
-frequency = 0.73
-frequencyRange = 3
 radioListPath = [ NodePath("../rooms/mansion/fireplate/Radio"), NodePath("../rooms/market/props/Radio") ]
 
 [node name="Blue Radio" parent="RadioController" instance=ExtResource( 44 )]

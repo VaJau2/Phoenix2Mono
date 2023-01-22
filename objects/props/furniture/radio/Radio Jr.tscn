@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/models/props/furniture/Radio/Antenna/Antenna.material" type="Material" id=7]
 [ext_resource path="res://assets/models/props/furniture/Radio/Lever/Lever.material" type="Material" id=8]
 [ext_resource path="res://assets/materials/props/aluminum.material" type="Material" id=9]
-[ext_resource path="res://assets/scripts/furniture/Radio/Radio.cs" type="Script" id=10]
+[ext_resource path="res://assets/scripts/furniture/Radio/Receiver.cs" type="Script" id=10]
 
 [sub_resource type="ArrayMesh" id=1]
 blend_shape_mode = 0

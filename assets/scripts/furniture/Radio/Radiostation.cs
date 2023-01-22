@@ -18,7 +18,7 @@ public class Radiostation : Node
 	public float timer { private set; get; }
 	int songID = 0;
 
-	public event ChangeSongEvent OnChangeSong;
+	[Signal]
 	public delegate void ChangeSongEvent();
 
 	public new enum Name
@@ -89,7 +89,7 @@ public class Radiostation : Node
 		else songID = 0;
 
 		song = songs[songID];
-		OnChangeSong.Invoke();
+		EmitSignal(nameof(ChangeSongEvent));
 	}
 
 	public static string GetRadiostation(Name stationName)
