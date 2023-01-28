@@ -42,9 +42,6 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="bgPic" type="TextureRect" parent="." groups=["ignore_color"]]
 modulate = Color( 0.439216, 0.411765, 0.411765, 1 )
@@ -785,7 +782,7 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "Audio"
+bus = "Sound"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
