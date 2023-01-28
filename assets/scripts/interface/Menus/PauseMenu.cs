@@ -18,6 +18,11 @@ public class PauseMenu : MenuBase, IMenu
     
     private SettingsMenu settingsMenu;
 
+    static PauseMenu instance;
+
+    [Signal]
+    public delegate void ChangePause(bool value);
+
     public override void loadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
@@ -32,7 +37,7 @@ public class PauseMenu : MenuBase, IMenu
 
     public void OpenMenu()
     {
-        global.SetPause(this, true);
+        SetPause(true);
         this.Visible = true;
         loadInterfaceLanguage();
     }
@@ -40,7 +45,7 @@ public class PauseMenu : MenuBase, IMenu
     public void CloseMenu()
     {
         if (!dialogueMenu.MenuOn) {
-            global.SetPause(this, false);
+            SetPause(false);
         } else {
             global.SetPauseMusic(false);
         }
@@ -137,5 +142,11 @@ public class PauseMenu : MenuBase, IMenu
         MenuManager.ClearMenus();
         SoundClick();
         GetNode<LevelsLoader>("/root/Main").LoadLevel(0);
+    }
+
+    private void SetPause(bool value)
+    {
+        global.SetPause(this, value);
+        EmitSignal(nameof(ChangePause), value);
     }
 }

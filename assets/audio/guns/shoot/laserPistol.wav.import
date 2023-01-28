@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/laserPistol.wav-7edb9274f4f95ff8f749d5a4bfa73a4d.sample"
+
+[deps]
+
+source_file="res://assets/audio/guns/shoot/laserPistol.wav"
+dest_files=[ "res://.import/laserPistol.wav-7edb9274f4f95ff8f749d5a4bfa73a4d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

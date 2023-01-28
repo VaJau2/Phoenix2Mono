@@ -15,11 +15,6 @@ layer = 2
 
 [node name="SettingsMenu" parent="Menu" instance=ExtResource( 2 )]
 visible = false
-submenuPaths = {
-"Controls": NodePath("Controls"),
-"Difficulty": NodePath("Difficulty"),
-"Settings": NodePath("Settings")
-}
 
 [node name="SaveNode" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 4 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LiftOpen.wav-5a2b8a38d0985b02a323642f57ec8b19.sample"
+
+[deps]
+
+source_file="res://assets/audio/futniture/LiftOpen.wav"
+dest_files=[ "res://.import/LiftOpen.wav-5a2b8a38d0985b02a323642f57ec8b19.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

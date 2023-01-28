@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/guns/shells/762_5.mp3"
+dest_files=[ "res://.import/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

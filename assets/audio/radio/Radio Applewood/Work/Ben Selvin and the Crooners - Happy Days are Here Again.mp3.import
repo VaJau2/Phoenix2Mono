@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ben Selvin and the Crooners - Happy Days are Here Again.mp3-3cc5cc93621baf85957969963f588013.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work/Ben Selvin and the Crooners - Happy Days are Here Again.mp3"
+dest_files=[ "res://.import/Ben Selvin and the Crooners - Happy Days are Here Again.mp3-3cc5cc93621baf85957969963f588013.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

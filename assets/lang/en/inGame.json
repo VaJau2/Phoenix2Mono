@@ -48,7 +48,9 @@
         "putFirewood": " - put firewood",
         "sleep": " - sleep",
         "pick": " - pick",
-        "clickButton": " - click button"
+        "clickButton": " - click button",
+        "turnOn": " - turn on",
+        "turnOff": " - turn off"
     },
 
     "hints": {

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3"
+dest_files=[ "res://.import/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

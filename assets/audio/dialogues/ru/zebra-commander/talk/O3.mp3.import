@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/O3.mp3-abea742f00d00bd34c570a033ac36ce3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/zebra-commander/talk/O3.mp3"
+dest_files=[ "res://.import/O3.mp3-abea742f00d00bd34c570a033ac36ce3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

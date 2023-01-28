@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/C15.mp3-cc8c2e0f52814338adb466d88a72e590.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/coronel/talk2/C15.mp3"
+dest_files=[ "res://.import/C15.mp3-cc8c2e0f52814338adb466d88a72e590.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

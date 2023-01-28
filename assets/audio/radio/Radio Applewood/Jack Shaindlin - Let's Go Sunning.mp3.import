@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Jack Shaindlin - Let's Go Sunning.mp3-0181cbe3b5b1c77b15515558e3ca5c95.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Jack Shaindlin - Let's Go Sunning.mp3"
+dest_files=[ "res://.import/Jack Shaindlin - Let's Go Sunning.mp3-0181cbe3b5b1c77b15515558e3ca5c95.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

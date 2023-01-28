@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Lost Weekend Western - Lone Star.mp3-850012069a60f966baeec5e86b005755.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/The Lost Weekend Western - Lone Star.mp3"
+dest_files=[ "res://.import/The Lost Weekend Western - Lone Star.mp3-850012069a60f966baeec5e86b005755.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

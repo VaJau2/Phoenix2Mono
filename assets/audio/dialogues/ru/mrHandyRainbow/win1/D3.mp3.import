@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/D3.mp3-53f04a92bc0469b0fad22f7aaaa0d800.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/mrHandyRainbow/win1/D3.mp3"
+dest_files=[ "res://.import/D3.mp3-53f04a92bc0469b0fad22f7aaaa0d800.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -21,8 +21,10 @@ public class SettingsSubmenu : SubmenuBase
     private Button cameraAngleButton;
     private Label soundLabel;
     private Slider soundSlider;
+    private Label radioLabel;
+    public Slider radioSlider { private set; get; }
     private Label musicLabel;
-    private Slider musicSlider;
+    public Slider musicSlider { private set; get; }
     private Label voiceLabel;
     private Slider voiceSlider;
     private Button controlsButton;
@@ -32,7 +34,10 @@ public class SettingsSubmenu : SubmenuBase
     private Slider rSlider;
     private Slider gSlider;
     private Slider bSlider;
-    
+
+    [Signal]
+    public delegate void ChangeRadioVolumeEvent(float value);
+
     public override void LoadSubmenu(SettingsMenu parent)
     {
         base.LoadSubmenu(parent);
@@ -50,6 +55,8 @@ public class SettingsSubmenu : SubmenuBase
         cameraAngleButton = GetNode<Button>("cameraAngle_button");
         soundLabel = GetNode<Label>("sound_label");
         soundSlider = GetNode<Slider>("sound_slider");
+        radioLabel = GetNode<Label>("radio_label");
+        radioSlider = GetNode<Slider>("radio_slider");
         musicLabel = GetNode<Label>("music_label");
         musicSlider = GetNode<Slider>("music_slider");
         voiceLabel = GetNode<Label>("voice_label");
@@ -73,6 +80,7 @@ public class SettingsSubmenu : SubmenuBase
         fullscreenLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "fullscreen");
         cameraAngleLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "cameraAngle");
         soundLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "sound");
+        radioLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "radio");
         musicLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "music");
         voiceLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "voice");
         controlsButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "controls");
@@ -103,6 +111,7 @@ public class SettingsSubmenu : SubmenuBase
         mouseSlider.Value = global.Settings.mouseSensivity;
         distanceSlider.Value = global.Settings.distance;
         soundSlider.Value = global.Settings.soundVolume;
+        radioSlider.Value = global.Settings.radioVolume;
         musicSlider.Value = global.Settings.musicVolume;
         voiceSlider.Value = global.Settings.voiceVolume;
     }
@@ -156,6 +165,12 @@ public class SettingsSubmenu : SubmenuBase
     public void _on_sound_slider_value_changed(float value)
     {
         global.Settings.SetSoundVolume(value);
+    }
+
+    public void _on_radio_slider_value_changed(float value)
+    {
+        global.Settings.SetRadioVolume(value);
+        EmitSignal(nameof(ChangeRadioVolumeEvent), value);
     }
 
     public void _on_music_slider_value_changed(float value)

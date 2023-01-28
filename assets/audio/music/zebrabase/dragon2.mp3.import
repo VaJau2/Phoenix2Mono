@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dragon2.mp3-a3813fff7f0cb7f4b3400bd30f4345b1.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/zebrabase/dragon2.mp3"
+dest_files=[ "res://.import/dragon2.mp3-a3813fff7f0cb7f4b3400bd30f4345b1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

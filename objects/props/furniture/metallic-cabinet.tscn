@@ -92,9 +92,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, -180 ), Vector3( 0, -100, -180 ) ]
 }
 
-[node name="metallic-cabinet" type="StaticBody" groups=[
-"savable",
-]]
+[node name="metallic-cabinet" type="StaticBody" groups=["savable"]]
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 6 )
 OpenSound = ExtResource( 3 )

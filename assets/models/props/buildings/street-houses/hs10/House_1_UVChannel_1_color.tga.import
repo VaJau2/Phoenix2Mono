@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/House_1_UVChannel_1_color.tga-49b64aca907128b2c85f0ddcac135f16.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/models/props/buildings/street-houses/hs10/House_1_UVChannel_1_color.tga"
+dest_files=[ "res://.import/House_1_UVChannel_1_color.tga-49b64aca907128b2c85f0ddcac135f16.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=1
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=1
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

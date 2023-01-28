@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/S5.mp3-0d4af6daf95d207d238b9afcc64eef88.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/scientist1/help/S5.mp3"
+dest_files=[ "res://.import/S5.mp3-0d4af6daf95d207d238b9afcc64eef88.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -6,7 +6,7 @@
 /saves/*
 /Backup/*
 
-*.import
+
 *.DotSettings.user
 UpgradeLog.htm
 /Phoenix 2 Mono.csproj.user

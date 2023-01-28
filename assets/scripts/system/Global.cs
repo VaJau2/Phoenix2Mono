@@ -23,6 +23,9 @@ public class Global {
     public bool paused;
     public bool mainMenuFirstTime = true;
 
+    public static event PauseChangeEvent OnPauseChange;
+    public delegate void PauseChangeEvent();
+
     public Player player;
     public Race playerRace = Race.Earthpony;
 
@@ -75,6 +78,8 @@ public class Global {
         self.GetTree().Paused = pause;
         paused = pause;
         Input.MouseMode = pause ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
+        
+        OnPauseChange?.Invoke();
     }
 
     public void SetPauseMusic(bool pause)

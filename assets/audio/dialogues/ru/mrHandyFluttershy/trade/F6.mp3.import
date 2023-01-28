@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/F6.mp3-3540bba2b9daf4da95750279ac30e96f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/mrHandyFluttershy/trade/F6.mp3"
+dest_files=[ "res://.import/F6.mp3-3540bba2b9daf4da95750279ac30e96f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

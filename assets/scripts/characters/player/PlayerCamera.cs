@@ -157,8 +157,17 @@ public class PlayerCamera: Camera
                 case FurnBase furn:
                     ShowHint("open");
                     break;
+                case DoorTeleport furn:
+                    ShowHint("open");
+                    break;
                 case Terminal _:
                     ShowHint("terminal");
+                    break;
+                case Receiver radio when radio.isOn:
+                    ShowHint("turnOff");
+                    break;
+                case Receiver radio:
+                    ShowHint("turnOn");
                     break;
                 default:
                 {
@@ -195,6 +204,11 @@ public class PlayerCamera: Camera
                 onetimeHint = false;
                 break;
             }
+            case DoorTeleport door:
+            {
+                door.Open(player, true);
+                break;
+            }
             case FurnBase furn:
             {
                 point.HideSquare();
@@ -206,6 +220,11 @@ public class PlayerCamera: Camera
                 point.HideSquare();
                 MenuManager.TryToOpenMenu(tempTerminal);
                 break;
+            }
+            case Receiver radio:
+            {
+                    radio.Interactive();
+                    break;
             }
             case NPC npc:
             {

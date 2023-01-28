@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/The Chordettes - Mr. Sandman.mp3"
+dest_files=[ "res://.import/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/O5.mp3-171b36faf7d0810f166a94b66428ea57.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/zebra-commander/talk_alarm/O5.mp3"
+dest_files=[ "res://.import/O5.mp3-171b36faf7d0810f166a94b66428ea57.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

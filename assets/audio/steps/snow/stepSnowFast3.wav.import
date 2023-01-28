@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stepSnowFast3.wav-83e2d4e0b26ae4d6e38fbe1014664340.sample"
+
+[deps]
+
+source_file="res://assets/audio/steps/snow/stepSnowFast3.wav"
+dest_files=[ "res://.import/stepSnowFast3.wav-83e2d4e0b26ae4d6e38fbe1014664340.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

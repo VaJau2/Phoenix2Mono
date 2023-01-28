@@ -111,7 +111,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             else
             {
                 npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.origin, run);
-                npcInstance.myStartRot = new Vector3(0, spawnPoint.Rotation.y, 0);
+                npcInstance.myStartRot = spawnPoint.Rotation;
             }
             
             if (triggerConnections != null)

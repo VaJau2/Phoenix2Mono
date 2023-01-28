@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A1.mp3-51495b2de6b0d16115ed4d71f5c4a433.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/ru/agent1/startDialogue/A1.mp3"
+dest_files=[ "res://.import/A1.mp3-51495b2de6b0d16115ed4d71f5c4a433.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/after-mtn/dramatic-1.mp3"
+dest_files=[ "res://.import/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

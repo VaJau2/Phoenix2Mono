@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
 
 //дверь, перемещающая в отдельную подлокацию
 public class DoorTeleport : StaticBody, ISavable
@@ -13,6 +14,10 @@ public class DoorTeleport : StaticBody, ISavable
 
     [Export] private AudioStreamSample openSound;
     [Export] private AudioStreamSample closedSound;
+
+    Room oldRoom;
+    Room newRoom;
+
     public DoorTeleport otherDoor { get; private set; }
     AudioStreamPlayer3D audi;
     Spatial newPlace, oldLocation, newLocation;
@@ -22,20 +27,17 @@ public class DoorTeleport : StaticBody, ISavable
 
     public override void _Ready()
     {
+        oldRoom = GetNodeOrNull<Room>(oldLocationPath);
+        newRoom = GetNodeOrNull<Room>(newLocationPath);
+
         audi = GetNode<AudioStreamPlayer3D>("audi");
         newPlace = GetNode<Spatial>(newPlacePath);
         oldLocation = GetNode<Spatial>(oldLocationPath);
         newLocation = GetNode<Spatial>(newLocationPath);
         otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
+                
         SetProcess(false);
-    }
-
-    public override void _Process(float delta)
-    {
-        player.Camera.ShowHint("open", false);
-        if (!Input.IsActionJustPressed("use")) return;
-        Open(player, true);
     }
 
     public void SoundOpening()
@@ -88,21 +90,11 @@ public class DoorTeleport : StaticBody, ISavable
         if (checkFall == null) return;
         checkFall.tempDoorTeleport = this;
         checkFall.inside = Inside;
-        
+
         player.Camera.HideHint();
-    }
 
-    public void _on_body_entered(Node body)
-    {
-        if (!(body is Player)) return;
-        SetProcess(true);
-    }
-
-    public void _on_body_exited(Node body)
-    {
-        if (!(body is Player)) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
+        oldRoom?.Exit();
+        newRoom?.Enter();
     }
 
     public Dictionary GetSaveData()
