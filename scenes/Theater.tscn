@@ -1470,7 +1470,7 @@ npcPrefab = ExtResource( 58 )
 spawnPointPath = NodePath("../position1")
 movePointPath = NodePath("../position1/movePoint")
 StartHealth = 120
-weaponCode = "revolver32"
+weaponCode = "shotgun20"
 relation = 1
 itemCodes = [ "buck" ]
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
@@ -1480,7 +1480,7 @@ script = ExtResource( 57 )
 npcPrefab = ExtResource( 59 )
 spawnPointPath = NodePath("../position2")
 movePointPath = NodePath("../position2/movePoint")
-weaponCode = "pistol10-silenced"
+weaponCode = "shotgun20"
 relation = 1
 itemCodes = [ "dash" ]
 ammoCount = {
@@ -1494,7 +1494,7 @@ npcPrefab = ExtResource( 60 )
 spawnPointPath = NodePath("../position2")
 spawnDelay = 4.0
 movePointPath = NodePath("../position2/movePoint")
-weaponCode = "pistol10-silenced"
+weaponCode = "shotgun20"
 relation = 1
 ammoCount = {
 "ammo10": 13
@@ -1508,7 +1508,7 @@ spawnPointPath = NodePath("../position1")
 spawnDelay = 5.0
 movePointPath = NodePath("../position1/movePoint")
 StartHealth = 120
-weaponCode = "revolver32"
+weaponCode = "shotgun20"
 relation = 1
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
 
@@ -1596,7 +1596,7 @@ IsActive = false
 npcPrefab = ExtResource( 59 )
 spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
-weaponCode = "revolver32"
+weaponCode = "shotgun20"
 relation = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/corridorSpawner2"]
@@ -1615,7 +1615,7 @@ IsActive = false
 npcPrefab = ExtResource( 60 )
 spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
-weaponCode = "laserPistol"
+weaponCode = "shotgun20"
 relation = 1
 ammoCount = {
 "ammoEnergy": 12

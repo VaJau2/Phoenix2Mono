@@ -38,33 +38,33 @@ public class Settings
     
     Viewport root;
 
-    private void updateAudioBus(int num, float value)
+    public void UpdateAudioBus(AudioBus bus, float value)
     {
-        AudioServer.SetBusVolumeDb(num, value);
-        AudioServer.SetBusMute(num, value == -20);
+        AudioServer.SetBusVolumeDb((int)bus, value);
+        AudioServer.SetBusMute((int)bus, value <= -80);
     }
 
     public void SetSoundVolume(float volume) 
     {
-        updateAudioBus(2, volume);
+        UpdateAudioBus(AudioBus.Sound, volume);
         soundVolume = volume;
     }
 
     public void SetRadioVolume(float volume)
     {
-        updateAudioBus(4, volume);
+        UpdateAudioBus(AudioBus.Radio, volume);
         radioVolume = volume;
     }
 
     public void SetMusicVolume(float volume)
     {
-        updateAudioBus(1, volume);
+        UpdateAudioBus(AudioBus.Music, volume);
         musicVolume = volume;
     }
 
     public void SetVoiceVolume(float volume)
     {
-        updateAudioBus(3, volume);
+        UpdateAudioBus(AudioBus.Voice, volume);
         voiceVolume = volume;
     }
 
@@ -166,4 +166,13 @@ public class Settings
             SettingsLoaded = true;
         }
     }
+}
+
+public enum AudioBus
+{
+    Master,
+    Music,
+    Sound,
+    Voice,
+    Radio
 }

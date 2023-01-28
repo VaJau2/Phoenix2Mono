@@ -503,11 +503,12 @@ npcPrefabs = [ ExtResource( 38 ), ExtResource( 41 ), ExtResource( 37 ), ExtResou
 [node name="zebra-mane" parent="npc" instance=ExtResource( 32 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.187, -0.183066, -50.7126 )
 IdleAnim = "Sit"
-weaponCode = "revolver32"
+weaponCode = "ak47"
 
 [node name="zebra-helmet" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.8773, -0.168295, -50.8459 )
 IdleAnim = "Sit"
+weaponCode = "ak47"
 
 [node name="zebra-sniper" parent="npc" instance=ExtResource( 34 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -137.885, 8.09144, -136.95 )
@@ -524,20 +525,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -133.998, 8.09145, 91.3403 )
 [node name="zebra-mane2" parent="npc" instance=ExtResource( 38 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.0165, 0, -14.8073 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/1"), NodePath("../../terrain/patrolPoints/1/2"), NodePath("../../terrain/patrolPoints/1/3") ]
+weaponCode = "ak47"
 
 [node name="zebra-helmet2" parent="npc" instance=ExtResource( 41 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9263, 0, -8.42519 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/2"), NodePath("../../terrain/patrolPoints/2/3"), NodePath("../../terrain/patrolPoints/2/4") ]
+weaponCode = "ak47"
 
 [node name="zebra-mane3" parent="npc" instance=ExtResource( 38 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2907, 0, -18.5677 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/3"), NodePath("../../terrain/patrolPoints/3/4"), NodePath("../../terrain/patrolPoints/3/5"), NodePath("../../terrain/patrolPoints/3/4") ]
+weaponCode = "ak47"
 
 [node name="zebra-commander" parent="npc" instance=ExtResource( 43 )]
 transform = Transform( -0.0159865, 0, 0.999872, 0, 1, 0, -0.999872, 0, -0.0159865, 32.487, -90.8212, 45.0021 )
 IdleAnim = "Idle1"
 relation = 2
-weaponCode = "autorifle762"
+weaponCode = "ak47"
 itemCodes = [ "heal-potion", "mana-potion" ]
 ammoCount = {
 "ammo762": 12
@@ -798,7 +802,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KP/DoorTeleport"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.38924, 6.88347, 3.73178 )
@@ -823,7 +826,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KP/DoorTeleport2"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.320581, 2.75925, 0.838511 )
@@ -851,7 +853,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KPP/DoorTeleport3"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.223244, 2.08163, 1.58583 )
@@ -1202,7 +1203,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.656006, -15.4919 )
 stream = ExtResource( 7 )
 volume_db = -2.0
 autoplay = true
-bus = "Audio"
 script = SubResource( 17 )
 
 [node name="alarm" type="AudioStreamPlayer3D" parent="terrain"]
@@ -1215,6 +1215,7 @@ max_distance = 1500.0
 
 [node name="storage1" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.72, -100, 33.235 )
+visible = false
 script = ExtResource( 26 )
 
 [node name="spawn" type="Spatial" parent="rooms/storage1"]
@@ -1347,6 +1348,7 @@ otherDoorPath = NodePath("../../../terrain/props/houses/storage/DoorTeleport2")
 
 [node name="storage2" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 95.72, -100, -89.8324 )
+visible = false
 script = ExtResource( 26 )
 
 [node name="spawn" type="Spatial" parent="rooms/storage2"]
@@ -1488,6 +1490,7 @@ otherDoorPath = NodePath("../../../terrain/props/houses/storage2/DoorTeleport3")
 
 [node name="cp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.109, -100, 33.956 )
+visible = false
 script = ExtResource( 26 )
 
 [node name="walls" type="StaticBody" parent="rooms/cp"]
@@ -1775,7 +1778,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cp/DoorTeleport"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.0185547, 2.829, -0.0865974 )
@@ -1799,7 +1801,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cp/DoorTeleport2"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, 0.334332, 2.14836, -0.0690155 )
@@ -1810,6 +1811,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.947,
 
 [node name="cpp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.63, -100, 80.201 )
+visible = false
 script = ExtResource( 26 )
 
 [node name="walls" type="StaticBody" parent="rooms/cpp"]
@@ -1956,7 +1958,6 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cpp/DoorTeleport3"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.559517, 3.43057, -0.489868 )

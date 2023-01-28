@@ -919,7 +919,6 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -28.981
 stream = ExtResource( 86 )
 volume_db = -2.0
 autoplay = true
-bus = "Audio"
 script = SubResource( 14 )
 
 [node name="triggers" type="Node" parent="."]
@@ -1006,7 +1005,7 @@ script = ExtResource( 103 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.94, -100, -65.087 )
 visible = false
 script = ExtResource( 113 )
-radioPaths = [ NodePath("Speaker") ]
+radioPaths = [ NodePath("Speaker KPP") ]
 
 [node name="DoorTeleport3" parent="rooms/kpp" instance=ExtResource( 43 )]
 transform = Transform( -1, 0, -7.97348e-07, 0, 1.254, 0, 6.27833e-07, 0, -1.27, 6.534, 0.346, -9.077 )
@@ -1106,15 +1105,15 @@ texture = ExtResource( 48 )
 [node name="fusion_air" parent="rooms/kpp" instance=ExtResource( 104 )]
 transform = Transform( -1.1034e-07, 0, 2.52429, 0, 2.52429, 0, -2.52429, 0, -1.1034e-07, -4.85427, 2.8166, 8.20242 )
 
-[node name="Speaker" parent="rooms/kpp" instance=ExtResource( 114 )]
+[node name="Speaker KPP" parent="rooms/kpp" instance=ExtResource( 114 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.907, 7.8, 12.53 )
-receiverPath = NodePath("../../kp/props/Radio")
+receiverPath = NodePath("../../kp/props/Radio Main")
 
 [node name="kp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.914, -100, 56.778 )
 visible = false
 script = ExtResource( 113 )
-radioPaths = [ NodePath("props/Radio") ]
+radioPaths = [ NodePath("props/Radio Main") ]
 
 [node name="spawn" type="Spatial" parent="rooms/kp"]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -22.0952, 0.652527, -4.746 )
@@ -1355,7 +1354,7 @@ transform = Transform( -1.1034e-07, 0, -2.52429, 0, 2.52429, 0, 2.52429, 0, -1.1
 [node name="fusion_air2" parent="rooms/kp/props" instance=ExtResource( 104 )]
 transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 7.2969, 2.80017, -10.1211 )
 
-[node name="Radio" parent="rooms/kp/props" instance=ExtResource( 117 )]
+[node name="Radio Main" parent="rooms/kp/props" instance=ExtResource( 117 )]
 transform = Transform( 0.997447, 0, 0.0714104, 0, 1, 0, -0.0714104, 0, 0.997447, 22.6355, 2.98816, 1.70095 )
 radiostation = 1
 frequencyRange = 2
@@ -1398,7 +1397,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.364
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -96.4992, -101.707, 60.3737 )
 visible = false
 script = ExtResource( 113 )
-radioPaths = [ NodePath("shelf2/Radio") ]
+radioPaths = [ NodePath("shelf2/Radio Storage") ]
 
 [node name="spawn" type="Spatial" parent="rooms/storage"]
 transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, 6.25745, -8.4872, 11.2573 )
@@ -1515,7 +1514,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.55059, -8.44857, 12.0876 )
 [node name="shelf2" parent="rooms/storage" instance=ExtResource( 29 )]
 transform = Transform( -9.77524e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -9.77524e-08, 9.53735, -8.76218, -12.7499 )
 
-[node name="Radio" parent="rooms/storage/shelf2" instance=ExtResource( 106 )]
+[node name="Radio Storage" parent="rooms/storage/shelf2" instance=ExtResource( 106 )]
 transform = Transform( 1.58509, 0, 0.515028, 0, 1.66667, 0, -0.515028, 0, 1.58509, -27.3031, 4.10661, -3.06677 )
 radiostation = 1
 frequencyRange = 2
@@ -1595,7 +1594,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6532, 10.6983, 11.8779 )
 
 [node name="Speaker" parent="rooms/stolovaya/props" instance=ExtResource( 114 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.264, 9.7, -5.601 )
-receiverPath = NodePath("../../../kp/props/Radio")
+receiverPath = NodePath("../../../kp/props/Radio Main")
 
 [node name="table" type="Spatial" parent="rooms/stolovaya/props"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0612, 0, 22.0298 )
@@ -1864,7 +1863,7 @@ texture = ExtResource( 60 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0879, -100, 117.169 )
 visible = false
 script = ExtResource( 113 )
-radioPaths = [ NodePath("props/Speaker") ]
+radioPaths = [ NodePath("props/Speaker Barracks") ]
 
 [node name="walls2" type="StaticBody" parent="rooms/kazarma"]
 collision_layer = 3
@@ -2038,9 +2037,9 @@ mesh = SubResource( 17 )
 
 [node name="props" type="Spatial" parent="rooms/kazarma"]
 
-[node name="Speaker" parent="rooms/kazarma/props" instance=ExtResource( 114 )]
+[node name="Speaker Barracks" parent="rooms/kazarma/props" instance=ExtResource( 114 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.092, 7.8, 12.664 )
-receiverPath = NodePath("../../../kp/props/Radio")
+receiverPath = NodePath("../../../kp/props/Radio Main")
 
 [node name="fusion_air" parent="rooms/kazarma/props" instance=ExtResource( 104 )]
 transform = Transform( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 1.43192, 3.04097, 20.7298 )
@@ -2154,7 +2153,7 @@ script = SubResource( 39 )
 
 [node name="RadioController" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 109 )
-radioListPath = [ NodePath("../rooms/kp/props/Radio"), NodePath("../rooms/storage/shelf2/Radio"), NodePath("../rooms/kpp/Speaker"), NodePath("../rooms/stolovaya/props/Speaker"), NodePath("../rooms/kazarma/props/Speaker") ]
+radioListPath = [ NodePath("../rooms/kp/props/Radio Main"), NodePath("../rooms/storage/shelf2/Radio Storage"), NodePath("../rooms/kpp/Speaker KPP"), NodePath("../rooms/stolovaya/props/Speaker"), NodePath("../rooms/kazarma/props/Speaker Barracks") ]
 
 [node name="Radio Applewood" parent="RadioController" instance=ExtResource( 23 )]
 scriptSongs = [ ExtResource( 28 ), ExtResource( 24 ), ExtResource( 110 ), ExtResource( 112 ), ExtResource( 111 ), ExtResource( 27 ) ]

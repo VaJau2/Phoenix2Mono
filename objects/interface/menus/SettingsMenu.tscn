@@ -356,10 +356,9 @@ margin_top = 20.0
 margin_right = 398.0
 margin_bottom = 39.999
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -415,10 +414,9 @@ margin_top = 52.0
 margin_right = 398.0
 margin_bottom = 72.0
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -474,10 +472,9 @@ margin_top = 84.0
 margin_right = 398.0
 margin_bottom = 104.0
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -536,10 +533,9 @@ margin_top = 116.0
 margin_right = 398.0
 margin_bottom = 136.0
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
 "_edit_group_": true
 }

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/mtn_stealth.mp3-019ba54fce1cc0020b999f0905cd0dfe.mp3
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

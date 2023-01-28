@@ -7,7 +7,6 @@ public class Receiver : RadioBase, ISavable
 	string model;
 
 	[Export] public bool isOn { protected set; get; } = true;
-	bool saveSettingsLoaded;
 
 	public Radiostation station { private set; get; }
 	[Export] Radiostation.Name radiostation;
@@ -32,10 +31,9 @@ public class Receiver : RadioBase, ISavable
 	Spatial frequencyLever;
 	Spatial volumeLever;
 
-	float minVolume;
-	float maxVolume;
 	Global global = Global.Get();
-
+	float minRadioVolume;
+	float maxRadioVolume;
 
 	[Signal]
 	public delegate void ChangeMusicEvent();
@@ -47,8 +45,8 @@ public class Receiver : RadioBase, ISavable
     {
 		var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
 		settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(UpdateVolumeLever));
-		minVolume = (float)settings.radioSlider.MinValue;
-		maxVolume = (float)settings.radioSlider.MaxValue;
+		minRadioVolume = (float)settings.radioSlider.MinValue;
+		maxRadioVolume = (float)settings.radioSlider.MaxValue;
 
 		frequency = Mathf.Clamp(frequency, 0, 1);
 
@@ -58,10 +56,8 @@ public class Receiver : RadioBase, ISavable
 		InitRadiostation();
 		InitPlayer();
 
-		if (saveSettingsLoaded) return;
-
 		if (inRoom && !radioController.playerInside) RepeaterMode(true);
-		
+
 		if (isOn) SwitchOn(false);
 		else SwitchOff(false);
 	}
@@ -175,6 +171,8 @@ public class Receiver : RadioBase, ISavable
 				break;
 
 		}
+
+		station.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 	}
 
 	void InitPlayer()
@@ -188,55 +186,43 @@ public class Receiver : RadioBase, ISavable
 		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
 	}
 
-	void OnMusicFinished()
-	{
-		musicPlayer.Stream = station.song;
-		musicPlayer.Play();
-
-		EmitSignal(nameof(ChangeMusicEvent));
-	}
-
-	void OnSwitchSoundFinished()
-    {
-		if (isOn && noisePlayer.Stream != noiseSound)
-        {
-			noisePlayer.Stream = noiseSound;
-			noisePlayer.UnitDb = noiseDb;
-			noisePlayer.Play();
-
-			EmitSignal(nameof(ChangeNoiseEvent));
-		}
-    }
-
 	public void Interactive()
 	{
 		if (isOn) SwitchOff();
 		else SwitchOn();
 	}
 
-	void SwitchOn(bool withSwitchSound = true)
+	public void SwitchOn(bool withSwitchSound = true)
 	{
 		isOn = true;
+
 		UpdateVolumeLever(global.Settings.radioVolume);
+
+		musicPlayer.Stream = station.song;
+		station.SyncTimer();
 
 		if (withSwitchSound) PlaySwitchSound();
 		else OnSwitchSoundFinished();
 
-		musicPlayer.Stream = station.song;
-		musicPlayer.UnitDb = 0;
-		musicPlayer.Play(station.timer);
 		EmitSignal(nameof(ChangeMusicEvent));
+		EmitSignal(nameof(ChangeOnline), this);
 	}
 
-	void SwitchOff(bool withSwitchSound = true)
+	public void SwitchOff(bool withSwitchSound = true)
 	{
-		if (withSwitchSound) PlaySwitchSound();
-
-		musicPlayer.UnitDb = -80;
+		musicPlayer.Stop();
 		EmitSignal(nameof(ChangeMusicEvent));
-		
-		UpdateVolumeLever(minVolume);
+		EmitSignal(nameof(ChangeOnline), this);
+
+		if (withSwitchSound) PlaySwitchSound();
+		UpdateVolumeLever(minRadioVolume);
+
 		isOn = false;
+	}
+
+	void SyncTimer()
+    {
+		if (isOn) musicPlayer.Play(station.timer);
 	}
 
 	void PlaySwitchSound()
@@ -248,10 +234,33 @@ public class Receiver : RadioBase, ISavable
 		EmitSignal(nameof(ChangeNoiseEvent));
 	}
 
+	void OnSwitchSoundFinished()
+	{
+		if (isOn)
+        {
+			noisePlayer.Stream = noiseSound;
+			noisePlayer.UnitDb = noiseDb;
+			noisePlayer.Play();
+
+			EmitSignal(nameof(ChangeNoiseEvent));
+		}
+	}
+
+	void OnMusicFinished()
+	{
+		if (isOn)
+        {
+			musicPlayer.Stream = station.song;
+			musicPlayer.Play();
+
+			EmitSignal(nameof(ChangeMusicEvent));
+		}
+	}
+
 	void UpdateVolumeLever(float value)
     {
 		float normalizeLever;
-		value = (value - minVolume) / (Mathf.Abs(maxVolume) + Mathf.Abs(minVolume));
+		value = (value - minRadioVolume) / (Mathf.Abs(maxRadioVolume) + Mathf.Abs(minRadioVolume));
 
 		switch (model)
 		{
@@ -267,25 +276,11 @@ public class Receiver : RadioBase, ISavable
 		}
 	}
 
-	public override void SetMute(bool value)
-	{
-		if (value && isOn)
-		{
-			musicPlayer.UnitDb = -80;
-			noisePlayer.UnitDb = -80;
-		}
-		else if (!value && isOn)
-		{
-			musicPlayer.UnitDb = 0;
-			noisePlayer.UnitDb = noiseDb;
-		}
-	}
-
 	public Dictionary GetSaveData()
     {
 		return new Dictionary()
 		{
-			{"isOn", isOn},
+			{"isOn", isOn}
 		};
     }
 
@@ -299,7 +294,5 @@ public class Receiver : RadioBase, ISavable
 			if (tempIsOn) SwitchOn(false);
 			else SwitchOff(false);
 		}
-
-		saveSettingsLoaded = true;
 	}
 }

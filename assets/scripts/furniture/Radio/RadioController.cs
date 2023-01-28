@@ -11,6 +11,8 @@ public class RadioController : Node, ISavable
     List<RadioBase> radioList = new List<RadioBase>();
 
     public string currentRoom;
+    
+    EnemiesManager enemiesManager;
 
     public override void _Ready()
     {
@@ -20,17 +22,35 @@ public class RadioController : Node, ISavable
             station.Initialize();
         }
 
+        for (int i = 0; i < radioListPath.Count; i++)
+        {
+            RadioBase radio = GetNode<RadioBase>(radioListPath[i]);
+            if (radio is Receiver)
+            {
+                radio.Initialize();
+                radioList.Add(radio);
+                radioListPath.Remove(radioListPath[i]);
+            }
+        }
+
         foreach (NodePath radioPath in radioListPath)
         {
             RadioBase radio = GetNode<RadioBase>(radioPath);
             radio.Initialize();
             radioList.Add(radio);
         }
+
+        radioListPath.Clear();
+
+        enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
+        enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));
+        enemiesManager?.Connect(nameof(EnemiesManager.AlarmEnded), this, nameof(OnAlarmEnd));
     }
 
     public void EnterToRoom(List<RadioBase> roomRadioList)
     {
-        List<RadioBase> outerRadioList = radioList;
+        List<RadioBase> outerRadioList = new List<RadioBase>();
+        outerRadioList.AddRange(radioList);
 
         foreach (RadioBase roomRadio in roomRadioList)
         {
@@ -46,7 +66,8 @@ public class RadioController : Node, ISavable
 
     public void ExitFromRoom(List<RadioBase> roomRadioList)
     {
-        List<RadioBase> outerRadioList = radioList;
+        List<RadioBase> outerRadioList = new List<RadioBase>();
+        outerRadioList.AddRange(radioList);
 
         foreach (RadioBase roomRadio in roomRadioList)
         {
@@ -57,6 +78,26 @@ public class RadioController : Node, ISavable
         foreach (RadioBase radio in outerRadioList)
         {
             radio.SetMute(false);
+        }
+    }
+
+    void OnAlarmStart()
+    {
+        foreach (RadioBase radio in radioList)
+        {
+            if (radio is Receiver receiver && receiver.isOn)
+            {
+                receiver.SwitchOff();
+                receiver.AddToGroup("Alarm Mode");
+            }
+        }
+    }
+
+    void OnAlarmEnd()
+    {
+        foreach (Node node in GetTree().GetNodesInGroup("Alarm Mode"))
+        {
+            if (node is Receiver receiver) receiver.SwitchOn();
         }
     }
 

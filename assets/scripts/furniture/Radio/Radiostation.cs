@@ -19,6 +19,9 @@ public class Radiostation : Node
 	int songID = 0;
 
 	[Signal]
+	public delegate void SyncTimeEvent();
+
+	[Signal]
 	public delegate void ChangeSongEvent();
 
 	public new enum Name
@@ -46,7 +49,6 @@ public class Radiostation : Node
 		defaultSongsNode = GetNode("Default Songs");
 		Godot.Collections.Array defaultSongsArray = defaultSongsNode.Get("songs") as Godot.Collections.Array;
 		
-
 		foreach (AudioStream defaultSong in defaultSongsArray)
         {
 			defaultSongs.Add(defaultSong);
@@ -82,6 +84,11 @@ public class Radiostation : Node
 
 		return newPlaylist;
 	}
+
+	public void SyncTimer()
+    {
+		EmitSignal(nameof(SyncTimeEvent));
+    }
 
 	public void OnMusicFinished()
 	{

@@ -104,6 +104,9 @@ public class WaitInBoxTrigger : TriggerBase
                 return;
             
             case 1:
+                AmbientVolSync ambientSync = GetNode<AmbientVolSync>(playerHere.GetPath() + "/radioCheck");
+                ambientSync.Clear();
+
                 myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 playerHere.GlobalTransform =
                     Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);

@@ -11,29 +11,35 @@ public class Speaker : RadioBase
         InitBase();
 
         receiver = GetNode<Receiver>(receiverPath);
+        receiverPath = null;
+
         receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
         receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
 
-        if (receiver.musicPlayer != null)
+        if (inRoom && !radioController.playerInside) RepeaterMode(true);
+
+        if (receiver.noisePlayer.Playing)
         {
             OnChangeMusic();
             OnChangeNoise();
         }
-
-        if (inRoom && !radioController.playerInside) RepeaterMode(true);
     }
 
     void OnChangeMusic()
     {
         musicPlayer.Stream = receiver.musicPlayer.Stream;
-        musicPlayer.UnitDb = receiver.musicPlayer.UnitDb;
-        if (receiver.isOn) musicPlayer.Play(receiver.station.timer);
+
+        if (receiver.musicPlayer.Playing) musicPlayer.Play(receiver.station.timer);
+        else musicPlayer.Stop();
     }
 
     void OnChangeNoise()
     {
+        noiseDb = receiver.noisePlayer.UnitDb;
+        noisePlayer.UnitDb = noiseDb;
         noisePlayer.Stream = receiver.noisePlayer.Stream;
-        noisePlayer.UnitDb = receiver.noisePlayer.UnitDb;
-        if (receiver.isOn) noisePlayer.Play();
+
+        if (receiver.noisePlayer.Playing) noisePlayer.Play();
+        else noisePlayer.Stop();
     }
 }

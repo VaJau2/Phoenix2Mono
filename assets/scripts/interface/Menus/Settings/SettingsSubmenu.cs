@@ -24,7 +24,7 @@ public class SettingsSubmenu : SubmenuBase
     private Label radioLabel;
     public Slider radioSlider { private set; get; }
     private Label musicLabel;
-    private Slider musicSlider;
+    public Slider musicSlider { private set; get; }
     private Label voiceLabel;
     private Slider voiceSlider;
     private Button controlsButton;

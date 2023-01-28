@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class RadioBase : StaticBody
+public abstract class RadioBase : StaticBody
 {
     public bool inRoom = false;
 
@@ -20,10 +20,10 @@ public class RadioBase : StaticBody
     public bool repeaterMode { protected set; get; } = false;
     public float depthOfRoom = 100 / 1.5f;
 
-    public virtual void Initialize()
-    {
+    [Signal]
+    public delegate void ChangeOnline(RadioBase radio);
 
-    }
+    public abstract void Initialize();
 
     protected void InitBase()
     {
@@ -41,13 +41,12 @@ public class RadioBase : StaticBody
 
     public void RepeaterMode(bool value)
     {
-        var transform = musicPlayer.GlobalTransform;
+        var transform = GlobalTransform;
 
         if (value) transform.origin += new Vector3(0, depthOfRoom, 0);
         else transform.origin -= new Vector3(0, depthOfRoom, 0);
 
-        musicPlayer.GlobalTransform = transform;
-        noisePlayer.GlobalTransform = transform;
+        GlobalTransform = transform;
         repeaterMode = value;
     }
 

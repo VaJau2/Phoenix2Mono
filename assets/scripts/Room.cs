@@ -21,19 +21,25 @@ public class Room : SaveActive
                 radioList.Add(radio);
             }
 
-            radioController = GetNode<RadioController>("/root/Main/Scene/RadioController");
+            radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
         }
     }
 
     public void Enter()
     {
-        if (radioController != null) radioController.EnterToRoom(radioList);
-        radioController.currentRoom = GetPath();
+        if (radioController != null)
+        {
+            radioController.EnterToRoom(radioList);
+            radioController.currentRoom = GetPath();
+        }
     }
 
     public void Exit()
     {
-        if (radioController != null) radioController.ExitFromRoom(radioList);
-        radioController.currentRoom = null;
+        if (radioController != null)
+        {
+            radioController.ExitFromRoom(radioList);
+            radioController.currentRoom = null;
+        }
     }
 }
