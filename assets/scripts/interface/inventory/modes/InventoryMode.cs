@@ -12,6 +12,7 @@ public abstract class InventoryMode
     protected Control back;
     protected Label moneyCount;
 
+    protected UseHandler useHandler;
     protected BindsHandler bindsHandler;
 
     protected Control itemInfo;
@@ -22,13 +23,14 @@ public abstract class InventoryMode
 
     public bool isAnimating;
     public bool isDragging {get; private set;}
-    public bool ModalOpened {get; protected set;}
+    public bool ModalOpened => useHandler.ModalOpened;
     public Control modalAsk {get; }
     public Control modalRead {get; }
 
-    protected ItemIcon tempButton { get; private set; }
-    protected Dictionary tempItemData;
+    public ItemIcon tempButton { get; private set; }
+    public Dictionary tempItemData { get; private set; }
     public Array<ItemIcon> itemButtons {get;} = new Array<ItemIcon>();
+    
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
@@ -56,7 +58,6 @@ public abstract class InventoryMode
             menu.menuLoaded = true;
         }
 
-        bindsHandler = new BindsHandler(menu);
         back = menu.GetNode<Control>("helper/back");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk   = menu.GetNode<Control>("modalAsk");
@@ -77,6 +78,9 @@ public abstract class InventoryMode
         labels.Add("artifact", back.GetNode<Label>("wearBack/artifactLabel"));
         
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
+        
+        bindsHandler = new BindsHandler(menu, this);
+        useHandler = new UseHandler(menu, this, bindsHandler);
     }
 
     public ItemIcon FindButtonWithItem(string itemCode)
@@ -106,7 +110,6 @@ public abstract class InventoryMode
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
         tempButton = newButton;
-        bindsHandler.tempButton = newButton;
         if (newButton != null)
         {
             string itemCode = newButton.myItemCode;
@@ -125,6 +128,12 @@ public abstract class InventoryMode
             itemInfo.Visible = false;
             tempItemData = new Dictionary();
         }
+    }
+
+    public void UseTempItem()
+    {
+        useHandler.HideLoadingIcon();
+        useHandler.UseTempItem();
     }
 
     //грузим подсказки по управлению предметом
@@ -173,17 +182,17 @@ public abstract class InventoryMode
         return emptyButton;
     }
 
-    public void RemoveItemFromButton(ItemIcon button)
+    public virtual void RemoveItemFromButton(ItemIcon button)
     {
         if (button.myItemCode.Contains("key")) 
         {
             inventory.RemoveKey(button.myItemCode);
         }
-        bindsHandler.RemoveItem(button);
+        bindsHandler.ClearBind(button);
         button.ClearItem();
     }
    
-    protected void RemoveTempItem()
+    public void RemoveTempItem()
     {
         if (tempButton.myItemCode.Contains("key")) 
         {
@@ -254,7 +263,7 @@ public abstract class InventoryMode
         tempButton = null;
     }
 
-    protected bool CheckMouseInButton(Control button) 
+    public bool CheckMouseInButton(Control button) 
     {
         var mouse = button.GetLocalMousePosition();
         return mouse.x >= 0 && mouse.x <= button.RectSize.x 
@@ -266,7 +275,7 @@ public abstract class InventoryMode
         return itemButtons.Contains(oldButton) && itemButtons.Contains(newButton);
     }
 
-    protected virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    public virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         //меняем местами бинды клавиш на кнопках
         string tempBind = oldButton.GetBindKey();
@@ -383,25 +392,35 @@ public abstract class InventoryMode
 
     protected bool UpdateDragging(InputEvent @event)
     {
-        if (Input.IsActionPressed("ui_click") && @event is InputEventMouseMotion)
+        var itemType = tempItemData["type"].ToString();
+        
+        if (Input.IsActionPressed("ui_click"))
         {
-            if (!isDragging)
+            if (!MouseIsMoving(@event))
             {
-                dragIcon.Texture = tempButton.GetIcon();
-                tempButton.SetIcon(null);
-                isDragging = true;
+                if (inventory.itemIsUsable(itemType))
+                {
+                    useHandler.ShowLoadingIcon();
+                }
             }
-
-            if (dragTimer < 1)
+            else
             {
-                dragTimer += 0.5f;
-            }
+                if (!isDragging)
+                {
+                    useHandler.HideLoadingIcon();
+                    dragIcon.Texture = tempButton.GetIcon();
+                    tempButton.SetIcon(null);
+                    isDragging = true;
+                }
 
-            dragIcon.RectGlobalPosition = menu.GetGlobalMousePosition();
+                dragIcon.RectGlobalPosition = menu.GetGlobalMousePosition();
+            }
         }
 
         if (Input.IsActionJustReleased("ui_click"))
         {
+            useHandler.HideLoadingIcon();
+            
             if (isDragging)
             {
                 FinishDradding();
@@ -413,13 +432,38 @@ public abstract class InventoryMode
                 CheckDragItem();
                 return true;
             }
+            
+            MoveTempItem();
         }
 
         return false;
     }
 
+    private bool MouseIsMoving(InputEvent @event)
+    {
+        if (dragTimer >= 1) return true;
+        
+        if (@event is InputEventMouseMotion)
+        {
+            dragTimer += 0.5f;
+        }
+        else
+        {
+            dragTimer = 0;
+        }
+        
+        return false;
+    }
+    
+    public void CloseModal()
+    {
+        useHandler.CloseModal();
+    }
+
     public virtual void Process(float delta) {}
-    public virtual void CloseModal() {}
+
+    public virtual void MoveTempItem() { }
+
     public virtual void UpdateInput(InputEvent @event) {}
 
     public virtual void _on_modal_no_pressed() {}

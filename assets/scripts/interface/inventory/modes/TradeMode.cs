@@ -376,7 +376,7 @@ public class TradeMode: InventoryMode
         return base.IconsInSameArray(oldButton, newButton);
     }
 
-    protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
         {
@@ -504,7 +504,7 @@ public class TradeMode: InventoryMode
     {
         if (tradeButtons.Contains(tempButton)) return false;
 
-        if (tempTrader.ammoCount.Keys.Contains(tempButton.myItemCode)) 
+        if (tempTrader.ammoButtons.Keys.Contains(tempButton.myItemCode)) 
         {
             ItemIcon ammoButton = tempTrader.ammoButtons[tempButton.myItemCode];
             int addCount = tempCount;

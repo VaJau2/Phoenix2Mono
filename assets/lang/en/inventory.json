@@ -27,8 +27,8 @@
         "meds": "LMB - use, RMB - drop, 0-9 - bind"
     },
     "chestControlHints": {
-        "take": "LMB - take",
-        "put": "LMB - put"
+        "take": "LMB - use/take",
+        "put": "LMB - use/put"
     },
     "tradeControlHints": {
         "take": "ЛКМ - buy",

@@ -20,6 +20,12 @@ public class InventoryMenu : Control, IMenu
         mode.SetTempButton(newButton, showInfo);
     }
 
+    public void IconAnimFinished(string animation)
+    {
+        if (animation != "load") return;
+        mode.UseTempItem();
+    }
+
     public void OpenMenu() 
     {
         mode.OpenMenu();

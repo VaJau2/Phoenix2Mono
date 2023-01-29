@@ -7,14 +7,14 @@ public class BindsHandler
     
     public readonly InventoryMenu menu;
     public readonly BindsList bindsList;
-    public ItemIcon tempButton;
+    private ItemIcon tempButton => mode.tempButton;
 
     private readonly InventoryMode mode;
 
-    public BindsHandler(InventoryMenu menu)
+    public BindsHandler(InventoryMenu menu, InventoryMode mode)
     {
         this.menu = menu;
-        mode = menu.mode;
+        this.mode = mode;
         bindsList = menu.GetNode<BindsList>("/root/Main/Scene/canvas/binds");
     }
 
@@ -25,17 +25,10 @@ public class BindsHandler
             useCooldown -= delta;
         }
     }
-
-    public void RemoveItem(ItemIcon button)
-    {
-        if (button.GetBindKey() == "") return;
-        int keyId = int.Parse(button.GetBindKey());
-        menu.bindedButtons.Remove(keyId);
-        bindsList.RemoveIcon(button);
-    }
     
     public void ClearBind(ItemIcon button)
     {
+        if (button.GetBindKey() == "") return;
         menu.bindedButtons.Remove(int.Parse(button.GetBindKey()));
         bindsList.RemoveIcon(button);
         button.SetBindKey(null);

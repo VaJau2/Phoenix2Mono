@@ -1,19 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/scripts/interface/inventory/InventoryMenu.cs" type="Script" id=4]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
+[ext_resource path="res://objects/interface/UseItemLoadingIcon.tscn" type="PackedScene" id=6]
 
 [node name="inventory" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="helper" type="Control" parent="." groups=["ignore_color"]]
 anchor_left = 1.0
@@ -927,6 +925,13 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="loadingIcon" parent="helper/back" instance=ExtResource( 6 )]
+visible = false
+anchor_right = 0.136
+anchor_bottom = 0.06
+margin_right = 0.00799942
+margin_bottom = 0.0
 
 [node name="modalAsk" type="ColorRect" parent="." groups=["ignore_color"]]
 visible = false

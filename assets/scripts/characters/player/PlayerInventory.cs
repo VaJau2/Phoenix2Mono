@@ -92,18 +92,22 @@ public class PlayerInventory {
         return tempWeaponData;
     }
 
-    public bool itemIsUsable(string itemType) {
-        return itemType != "staff" && itemType != "ammo";
+    public bool itemIsUsable(string itemType) 
+    {
+        return itemType != "staff" && itemType != "ammo" && itemType != "money";
     }
 
     public void UseItem(Dictionary itemData)
     {
         SoundUsingItem(itemData);
 
-        switch(itemData["type"]) {
+        switch(itemData["type"]) 
+        {
             case "food":
                 if (player.FoodCanHeal)
+                {
                     player.HealHealth(int.Parse(itemData["heal"].ToString()));
+                }
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
             case "meds":
@@ -348,7 +352,8 @@ public class PlayerInventory {
 
     private void SoundUsingItem(Dictionary itemData) 
     {
-        if(itemData.Contains("sound")) {
+        if(itemData.Contains("sound")) 
+        {
             string path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
             var sound = GD.Load<AudioStreamSample>(path);
             
@@ -359,7 +364,8 @@ public class PlayerInventory {
 
     private void CheckSpeed(Dictionary effects, int factor = 1)
     {
-        if (effects.Contains("speedDecrease")) {
+        if (effects.Contains("speedDecrease")) 
+        {
             string speedEffect = effects["speedDecrease"].ToString();
             player.BaseSpeed -= int.Parse(speedEffect) * factor;
         }

@@ -68,11 +68,7 @@ public class ChestMode: InventoryMode
             if (tempButton != null) 
             {
                 if (UpdateDragging(@event)) return;
-                if (Input.IsActionJustReleased("ui_click")) 
-                {
-                    TakeTempItem();
-                }
-                
+
                 if (@event is InputEventKey && itemButtons.Contains(tempButton)) 
                 {
                     bindsHandler.BindHotkeys(tempItemData["type"].ToString());
@@ -87,6 +83,15 @@ public class ChestMode: InventoryMode
             {
                 MenuManager.CloseMenu(menu);
             }
+        }
+    }
+
+    public override void RemoveItemFromButton(ItemIcon button)
+    {
+        base.RemoveItemFromButton(button);
+        if (chestButtons.Contains(button))
+        {
+            UpdateChestPositions();
         }
     }
 
@@ -289,13 +294,24 @@ public class ChestMode: InventoryMode
         );
     }
 
-    protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
         {
             bindsHandler.ClearBind(oldButton);
         }
+        
         base.ChangeItemButtons(oldButton, newButton);
+
+        if (chestButtons.Contains(oldButton) || chestButtons.Contains(newButton))
+        {
+            UpdateChestPositions();
+        }
+    }
+
+    public override void MoveTempItem()
+    {
+        TakeTempItem();
     }
 
     private bool TakeTempItem()
@@ -319,7 +335,6 @@ public class ChestMode: InventoryMode
                 }
                 ChangeItemButtons(tempButton, chestButton);
                 SetTempButton(null, false);
-                UpdateChestPositions();
             } 
             else 
             {
@@ -334,8 +349,8 @@ public class ChestMode: InventoryMode
         {
             bool isMoney = tempItemData["type"].ToString() == "money";
             if (CheckMoneyInInventory(isMoney)) return true;
-
             if (CheckAmmoInInventory()) return true;
+            
             ItemIcon itemButton = FirstEmptyButton;
             if (itemButton != null) 
             {
@@ -345,7 +360,6 @@ public class ChestMode: InventoryMode
                 }
                 ChangeItemButtons(tempButton, itemButton);
                 SetTempButton(null, false);
-                UpdateChestPositions();
             } 
             else
             {
