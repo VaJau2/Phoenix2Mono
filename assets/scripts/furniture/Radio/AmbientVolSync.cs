@@ -11,12 +11,13 @@ public class AmbientVolSync : Spatial
     RadioBase nearestRadio;
 
     Global global = Global.Get();
-    float minAmbientVolume;
+    float minVolume;
 
     public override void _Ready()
     {
         var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
-        minAmbientVolume = (float)settings.radioSlider.MinValue;
+        settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(OnChangeRadioVolume));
+        minVolume = (float)settings.musicSlider.MinValue;
 
         SetProcess(false);
     }
@@ -41,7 +42,7 @@ public class AmbientVolSync : Spatial
             }
         }
 
-        if (isEmpty)
+        if (isEmpty || global.Settings.radioVolume == minVolume)
         {
             global.Settings.UpdateAudioBus(AudioBus.Music, global.Settings.musicVolume);
             SetProcess(false);
@@ -49,7 +50,7 @@ public class AmbientVolSync : Spatial
         else
         {
             float distanceRatio = distance / 100;
-            float volume = minAmbientVolume + (distanceRatio * (global.Settings.musicVolume + Mathf.Abs(minAmbientVolume)));
+            float volume = minVolume + (distanceRatio * (global.Settings.musicVolume + Mathf.Abs(minVolume)));
             global.Settings.UpdateAudioBus(AudioBus.Music, volume);
         }
     }
@@ -60,7 +61,7 @@ public class AmbientVolSync : Spatial
 
         radioList.Add(radio);
         radio.Connect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
-        if (!IsProcessing()) SetProcess(true);
+        if (!IsProcessing() && global.Settings.radioVolume > minVolume) SetProcess(true);
     }
 
     void _on_body_exited(Node body)
@@ -88,7 +89,15 @@ public class AmbientVolSync : Spatial
 
     void OnRadioChangeOnline(RadioBase radio)
     {
-        if (isEmpty && radio.musicPlayer.Playing)
+        if (isEmpty && radio.musicPlayer.Playing && global.Settings.radioVolume > minVolume)
+        {
+            SetProcess(true);
+        }
+    }
+
+    public void OnChangeRadioVolume(float value)
+    {
+        if (!isEmpty && value > minVolume)
         {
             SetProcess(true);
         }
