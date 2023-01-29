@@ -330,7 +330,7 @@ public class NpcWithWeapons : NPC
         else
         {
             GoTo(victimPos, shootDistance / 1.5f);
-            updatePath = tempVictim.Velocity.Length() > 2;
+            updatePath = tempVictim.Velocity.Length() > MIN_WALKING_SPEED;
         }
     }
 
@@ -338,7 +338,7 @@ public class NpcWithWeapons : NPC
     {
         Vector3 targetPos = followTarget.GlobalTransform.origin;
         GoTo(targetPos, COME_DISTANCE * 2f);
-        updatePath = followTarget?.Velocity.Length() > 2;
+        updatePath = followTarget?.Velocity.Length() > MIN_WALKING_SPEED;
     }
 
     protected virtual void PlayIdleAnim()

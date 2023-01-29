@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -89,9 +89,8 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=87]
 [ext_resource path="res://assets/models/props/furniture/trash/bread.glb" type="PackedScene" id=88]
 [ext_resource path="res://assets/scripts/Room.cs" type="Script" id=89]
-[ext_resource path="res://assets/audio/background/bushes/0.mp3" type="AudioStream" id=90]
-[ext_resource path="res://assets/audio/background/bushes/1.mp3" type="AudioStream" id=91]
-[ext_resource path="res://assets/audio/background/bushes/2.mp3" type="AudioStream" id=92]
+[ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=90]
+[ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=91]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=93]
 
 [sub_resource type="ConcavePolygonShape" id=1]
@@ -652,7 +651,12 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
-enterSounds = [ ExtResource( 90 ), ExtResource( 91 ), ExtResource( 92 ) ]
+walkingSound = ExtResource( 90 )
+crouchingSound = ExtResource( 91 )
+
+[node name="sound" type="AudioStreamPlayer3D" parent="terrain/bushes"]
+attenuation_model = 3
+unit_size = 4.0
 
 [node name="sky" type="StaticBody" parent="terrain"]
 transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 3.09637, 0, -62.5318 )
