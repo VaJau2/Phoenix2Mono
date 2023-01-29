@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsSubmenu.cs" type="Script" id=5]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/ControlsSubmenu.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/DifficultySubmenu.cs" type="Script" id=7]
+[ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=8]
 
 [node name="SettingsMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
@@ -2012,6 +2013,7 @@ __meta__ = {
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 bus = "Sound"
+script = ExtResource( 8 )
 
 [connection signal="mouse_entered" from="Settings/mouse_slider" to="." method="_on_mouse_entered" binds= [ "choose", "mouse" ]]
 [connection signal="mouse_exited" from="Settings/mouse_slider" to="." method="_on_mouse_exited"]

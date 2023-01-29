@@ -2,9 +2,9 @@ using Godot;
 
 public class PauseMenu : MenuBase, IMenu
 {
-    public bool mustBeClosed {get => true;}
+    public bool mustBeClosed => true;
     Global global = Global.Get();
-    AudioStreamPlayer audi;
+    private MenuAudi audi;
     private DialogueMenu dialogueMenu;
     private Label pageLabel;
     private Button continueButton;
@@ -18,12 +18,11 @@ public class PauseMenu : MenuBase, IMenu
     
     private SettingsMenu settingsMenu;
 
-    static PauseMenu instance;
 
     [Signal]
     public delegate void ChangePause(bool value);
 
-    public override void loadInterfaceLanguage()
+    public override void LoadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
         continueButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "continue");
@@ -38,19 +37,22 @@ public class PauseMenu : MenuBase, IMenu
     public void OpenMenu()
     {
         SetPause(true);
-        this.Visible = true;
-        loadInterfaceLanguage();
+        Visible = true;
+        LoadInterfaceLanguage();
     }
 
     public void CloseMenu()
     {
-        if (!dialogueMenu.MenuOn) {
+        if (!dialogueMenu.MenuOn) 
+        {
             SetPause(false);
-        } else {
+        } 
+        else 
+        {
             global.SetPauseMusic(false);
         }
         
-        this.Visible = false;
+        Visible = false;
         settingsMenu.CloseMenu();
         loadMenu.Visible = false;
         saveMenu.Visible = false;
@@ -59,12 +61,17 @@ public class PauseMenu : MenuBase, IMenu
 
     public override void SoundClick()
     {
-        audi.Play();
+        audi.PlayClick();
+    }
+
+    protected override void SoundHover()
+    {
+        audi.PlayHover();
     }
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<MenuAudi>("audi");
         base._Ready();
         menuName = "pauseMenu";
         
@@ -87,19 +94,24 @@ public class PauseMenu : MenuBase, IMenu
     {
         if (!Input.IsActionJustPressed("ui_cancel")) return;
         //меню паузы загружается раньше уровня
-        if (global.player == null) {
+        if (global.player == null) 
+        {
             return;
         }
 
-        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) {
+        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) 
+        {
             dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         }
             
-        if (Visible) {
+        if (Visible) 
+        {
             loadMenu.Visible = false;
             saveMenu.Visible = false;
             MenuManager.CloseMenu(this);
-        } else {
+        } 
+        else 
+        {
             MenuManager.TryToOpenMenu(this, true);
         }
     }

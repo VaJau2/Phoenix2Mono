@@ -1,18 +1,18 @@
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Godot.Collections;
 
 public abstract class InventoryMode
 {
-    protected const float MENU_SPEED = 16f;
-    protected const float MENU_SIZE = 272f;
+    private const float MENU_SPEED = 16f;
+    private const float MENU_SIZE = 272f;
 
     protected Player player => Global.Get().player;
     protected InventoryMenu menu;
-    protected BindsList bindsList;
     protected Control back;
     protected Label moneyCount;
+
+    protected BindsHandler bindsHandler;
 
     protected Control itemInfo;
     protected Label itemName;
@@ -20,19 +20,19 @@ public abstract class InventoryMode
     protected Label itemProps;
     protected Label controlHints;
 
-    public bool isAnimating = false;
-    public bool isDragging {get; protected set;} = false;
-    public bool ModalOpened {get; protected set;} = false;
-    public Control modalAsk {get; protected set;}
-    public Control modalRead {get; protected set;}
+    public bool isAnimating;
+    public bool isDragging {get; private set;}
+    public bool ModalOpened {get; protected set;}
+    public Control modalAsk {get; }
+    public Control modalRead {get; }
 
-    protected ItemIcon tempButton;
+    protected ItemIcon tempButton { get; private set; }
     protected Dictionary tempItemData;
     public Array<ItemIcon> itemButtons {get;} = new Array<ItemIcon>();
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
-    protected float dragTimer = 0;
+    protected float dragTimer;
     protected TextureRect dragIcon;
     protected PlayerInventory inventory => player.inventory;
     private PackedScene bagPrefab;
@@ -41,19 +41,22 @@ public abstract class InventoryMode
     {
         this.menu = menu;
 
-        foreach(object button in menu.GetNode<Control>("helper/back/items").GetChildren()) {
+        foreach(object button in menu.GetNode<Control>("helper/back/items").GetChildren()) 
+        {
             itemButtons.Add(button as ItemIcon); 
         }
         
-        if (!menu.menuLoaded && Global.Get().playerRace != Race.Earthpony) {
-            for(int i = 0; i < 5; i++) {
+        if (!menu.menuLoaded && Global.Get().playerRace != Race.Earthpony) 
+        {
+            for(int i = 0; i < 5; i++) 
+            {
                 itemButtons[itemButtons.Count - 1].QueueFree();
                 itemButtons.RemoveAt(itemButtons.Count - 1);
             }
             menu.menuLoaded = true;
         }
 
-        bindsList = menu.GetNode<BindsList>("/root/Main/Scene/canvas/binds");
+        bindsHandler = new BindsHandler(menu);
         back = menu.GetNode<Control>("helper/back");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk   = menu.GetNode<Control>("modalAsk");
@@ -93,7 +96,8 @@ public abstract class InventoryMode
             AddNewItem(item);
         }
 
-        foreach(string ammoItem in ammo.Keys) {
+        foreach (string ammoItem in ammo.Keys) 
+        {
             ItemIcon newAmmoButton = AddNewItem(ammoItem);
             newAmmoButton.SetCount(ammo[ammoItem]);
         }
@@ -102,17 +106,22 @@ public abstract class InventoryMode
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
         tempButton = newButton;
-        if (newButton != null) {
+        bindsHandler.tempButton = newButton;
+        if (newButton != null)
+        {
             string itemCode = newButton.myItemCode;
             tempItemData = ItemJSON.GetItemData(itemCode);
-            if (showInfo) {
+            if (showInfo) 
+            {
                 itemInfo.Visible = true;
                 itemName.Text = tempItemData["name"].ToString();
                 itemDesc.Text = tempItemData["description"].ToString();
                 itemProps.Text = GetItemPropsString(tempItemData);
                 LoadControlHint(newButton.isInventoryIcon);
             }
-        } else {
+        } 
+        else 
+        {
             itemInfo.Visible = false;
             tempItemData = new Dictionary();
         }
@@ -144,15 +153,20 @@ public abstract class InventoryMode
         return newBag;
     }
 
-    private ItemIcon AddNewItem(string itemCode) {
+    private ItemIcon AddNewItem(string itemCode) 
+    {
         ItemIcon emptyButton = FirstEmptyButton;
-        if (emptyButton != null) {
+        if (emptyButton != null) 
+        {
             emptyButton.SetItem(itemCode);
 
-            if (itemCode.Contains("key")) {
+            if (itemCode.Contains("key")) 
+            {
                 inventory.AddKey(itemCode);
             }
-        } else {
+        } 
+        else 
+        {
             inventory.ItemsMessage("space");
         }
         
@@ -161,22 +175,18 @@ public abstract class InventoryMode
 
     public void RemoveItemFromButton(ItemIcon button)
     {
-        if (button.myItemCode.Contains("key")) {
-            PlayerInventory inventory = Global.Get().player.inventory;
+        if (button.myItemCode.Contains("key")) 
+        {
             inventory.RemoveKey(button.myItemCode);
         }
-        if (button.GetBindKey() != "") {
-            int keyId = int.Parse(button.GetBindKey());
-            menu.bindedButtons.Remove(keyId);
-            bindsList.RemoveIcon(button);
-        }
-
+        bindsHandler.RemoveItem(button);
         button.ClearItem();
     }
    
     protected void RemoveTempItem()
     {
-        if (tempButton.myItemCode.Contains("key")) {
+        if (tempButton.myItemCode.Contains("key")) 
+        {
             inventory.RemoveKey(tempButton.myItemCode);
         }
         RemoveItemFromButton(tempButton);
@@ -223,8 +233,10 @@ public abstract class InventoryMode
     {
         string result = "";
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
-        foreach(string prop in itemProps.Keys) {
-            if (itemPropNames.Contains(prop)) {
+        foreach(string prop in itemProps.Keys) 
+        {
+            if (itemPropNames.Contains(prop)) 
+            {
                 string propName = itemPropNames[prop].ToString();
                 string propValue = itemProps[prop].ToString();
                 propValue = ConvertPropValue(prop, propValue);
@@ -237,13 +249,12 @@ public abstract class InventoryMode
 
     protected void CheckTempIcon()
     {
-        if (tempButton != null) {
-            tempButton._on_itemIcon_mouse_exited();
-            tempButton = null;
-        }
+        if (tempButton == null) return;
+        tempButton._on_itemIcon_mouse_exited();
+        tempButton = null;
     }
 
-    protected bool checkMouseInButton(Control button) 
+    protected bool CheckMouseInButton(Control button) 
     {
         var mouse = button.GetLocalMousePosition();
         return mouse.x >= 0 && mouse.x <= button.RectSize.x 
@@ -255,13 +266,6 @@ public abstract class InventoryMode
         return itemButtons.Contains(oldButton) && itemButtons.Contains(newButton);
     }
 
-    protected void ClearBind(ItemIcon button)
-    {
-        menu.bindedButtons.Remove(int.Parse(button.GetBindKey()));
-        bindsList.RemoveIcon(button);
-        button.SetBindKey(null);
-    }
-
     protected virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         //меняем местами бинды клавиш на кнопках
@@ -269,11 +273,13 @@ public abstract class InventoryMode
         oldButton.SetBindKey(newButton.GetBindKey());
         newButton.SetBindKey(tempBind);
 
-        if (oldButton.GetBindKey() != "") {
+        if (oldButton.GetBindKey() != "") 
+        {
             int keyId = int.Parse(oldButton.GetBindKey());
             menu.bindedButtons[keyId] = oldButton;
         }
-        if (newButton.GetBindKey() != "") {
+        if (newButton.GetBindKey() != "") 
+        {
             int keyId = int.Parse(newButton.GetBindKey());
             menu.bindedButtons[keyId] = newButton;
         }
@@ -284,11 +290,14 @@ public abstract class InventoryMode
         newButton.SetCount(tempCount, false);
         
         //меняем местами вещи на кнопках
-        if (newButton.myItemCode == null) {
+        if (newButton.myItemCode == null) 
+        {
             var tempItemCode = oldButton.myItemCode;
             oldButton.ClearItem();
             newButton.SetItem(tempItemCode);
-        } else {
+        } 
+        else 
+        {
             var tempItemCode = oldButton.myItemCode;
             oldButton.SetItem(newButton.myItemCode);
             newButton.SetItem(tempItemCode);
@@ -299,7 +308,8 @@ public abstract class InventoryMode
 
     private void LoadLabels()
     {
-        foreach(string labelName in labels.Keys) {
+        foreach(string labelName in labels.Keys) 
+        {
             Label tempLabel = labels[labelName];
             tempLabel.Text = InterfaceLang.GetPhrase("inventory", "labels", labelName);
         }
@@ -314,9 +324,11 @@ public abstract class InventoryMode
 
         menu.Visible = true;
         
-        if (!isAnimating) {
+        if (!isAnimating) 
+        {
             isAnimating = true;
-            while (back.RectPosition.x > -MENU_SIZE) {
+            while (back.RectPosition.x > -MENU_SIZE) 
+            {
                 Vector2 newPos = back.RectPosition;
                 newPos.x -= MENU_SPEED;
                 back.RectPosition = newPos;

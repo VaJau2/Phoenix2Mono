@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -59,27 +59,6 @@
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=57]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=58]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=60]
-
-[sub_resource type="GDScript" id=40]
-script/source = "extends CanvasLayer
-
-onready var blackScreen: ColorRect = $black
-export var timer = 1.0
-export var speed = 2.0
-
-func _ready() -> void:
-	blackScreen.color.a = 1.0
-	set_process(false)
-	yield(get_tree().create_timer(timer, true), \"timeout\")
-	set_process(true)
-
-
-func _process(delta) -> void:
-	if blackScreen.color.a > 0:
-		blackScreen.color.a -= speed * delta
-	else:
-		set_process(false)
-"
 
 [sub_resource type="BoxShape" id=41]
 extents = Vector3( 63.8741, 1.43553, 61.719 )
@@ -193,7 +172,6 @@ func _process(_delta):
 [node name="Scene" type="Node"]
 
 [node name="canvas" parent="." instance=ExtResource( 2 )]
-script = SubResource( 40 )
 
 [node name="hintModal" type="Control" parent="canvas" groups=["ignore_color"]]
 pause_mode = 2

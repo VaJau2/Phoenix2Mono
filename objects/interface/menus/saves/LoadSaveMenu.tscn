@@ -7,9 +7,7 @@
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=6]
 
-[node name="Load" type="Control" groups=[
-"ignore_color",
-]]
+[node name="Load" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -17,9 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,9 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background2" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
@@ -93,9 +87,7 @@ theme = ExtResource( 5 )
 disabled = true
 text = "Удалить"
 
-[node name="modalError" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="modalError" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -103,9 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="modalError" groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="modalError" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -174,6 +164,7 @@ margin_right = 232.0
 margin_bottom = 124.0
 theme = ExtResource( 1 )
 text = "[ну блин]"
+
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "choose", "back" ]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

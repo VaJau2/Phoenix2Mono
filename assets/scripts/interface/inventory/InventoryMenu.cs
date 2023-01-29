@@ -6,7 +6,7 @@ using Godot.Collections;
 //режимы устанавливаются переменной mode
 public class InventoryMenu : Control, IMenu
 {
-    public bool mustBeClosed {get => true;}
+    public bool mustBeClosed => true;
     public InventoryMode mode;
     public bool isOpen = false;
     public bool menuLoaded = false;
@@ -34,27 +34,22 @@ public class InventoryMenu : Control, IMenu
     {
         if (mode is UsualMode usual)
         {
-            usual.bindsCooldown = cooldown;
+            usual.SetUseBindsCooldown(cooldown);
         }
     }
 
     public void ChangeMode(NewInventoryMode newMode = NewInventoryMode.Usual)
     {
-        switch (newMode) {
-            case NewInventoryMode.Usual:
-                if (!(mode is UsualMode)) {
-                    mode = new UsualMode(this);
-                }
+        switch (newMode) 
+        {
+            case NewInventoryMode.Usual when !(mode is UsualMode):
+                mode = new UsualMode(this);
                 break;
-            case NewInventoryMode.Chest:
-                if (!(mode is ChestMode)) {
-                    mode = new ChestMode(this);
-                }
+            case NewInventoryMode.Chest when !(mode is ChestMode):
+                mode = new ChestMode(this);
                 break;
-            case NewInventoryMode.Trade:
-                if (!(mode is TradeMode)) {
-                    mode = new TradeMode(this);
-                }
+            case NewInventoryMode.Trade when !(mode is TradeMode):
+                mode = new TradeMode(this);
                 break;
         }
     }
@@ -105,15 +100,21 @@ public class InventoryMenu : Control, IMenu
         mode.UpdateInput(@event);
 
         if (mode.isAnimating || !(@event is InputEventKey)) return;
-        if (Input.IsActionJustPressed("inventory")) {
-            if (isOpen) {
-                if (mode.ModalOpened) {
+        if (Input.IsActionJustPressed("inventory")) 
+        {
+            if (isOpen) 
+            {
+                if (mode.ModalOpened) 
+                {
                     mode.CloseModal();
-                } else {
+                } 
+                else 
+                {
                     MenuManager.CloseMenu(this);
                 }
-                        
-            } else {
+            }
+            else 
+            {
                 MenuManager.TryToOpenMenu(this);
             }
         }

@@ -3,11 +3,9 @@ using Godot;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
 
-public class UsualMode: InventoryMode {
-
-    public float bindsCooldown;
-
-    private FurnChest tempBag = null;
+public class UsualMode: InventoryMode 
+{
+    private FurnChest tempBag;
     private Control wearBack;
 
     private ItemIcon weaponButton;
@@ -34,6 +32,11 @@ public class UsualMode: InventoryMode {
         closeHint      = modalRead.GetNode<Label>("closeHint");
     }
 
+    public void SetUseBindsCooldown(float cooldown)
+    {
+        bindsHandler.useCooldown = cooldown;
+    }
+
     public override void OpenMenu()
     {
         base.OpenMenu();
@@ -54,7 +57,7 @@ public class UsualMode: InventoryMode {
         base.CloseMenu();
     }
 
-    private bool isUnwearingItem(string itemType)
+    private bool IsUnwearingItem(string itemType)
     {
         return (itemType == "weapon" && tempButton == weaponButton)
         || (itemType == "armor" && tempButton == armorButton)
@@ -65,21 +68,23 @@ public class UsualMode: InventoryMode {
     {
         string itemType = tempItemData["type"].ToString();
         
-        if (itemType == "weapon" && checkMouseInButton(weaponButton)) {
-            WearTempItem(weaponButton); return;
-        }
-        if (itemType == "armor" && checkMouseInButton(armorButton)) {
-            WearTempItem(armorButton); return;
-        }
-        if (itemType == "artifact" && checkMouseInButton(artifactButton)) {
-            WearTempItem(artifactButton); return;
+        switch (itemType)
+        {
+            case "weapon" when CheckMouseInButton(weaponButton):
+                WearTempItem(weaponButton); return;
+            case "armor" when CheckMouseInButton(armorButton):
+                WearTempItem(armorButton); return;
+            case "artifact" when CheckMouseInButton(artifactButton):
+                WearTempItem(artifactButton); return;
         }
 
-        foreach(var otherButton in itemButtons) {
+        foreach (var otherButton in itemButtons) 
+        {
             var buttonControl = (Control) otherButton;
-            if (tempButton == otherButton || !checkMouseInButton(buttonControl)) continue;
-            if(isUnwearingItem(itemType)) {
-                if (!canTakeItemOff()) return;
+            if (tempButton == otherButton || !CheckMouseInButton(buttonControl)) continue;
+            if (IsUnwearingItem(itemType)) 
+            {
+                if (!CanTakeItemOff()) return;
                 inventory.UnwearItem(tempButton.myItemCode);
             }
 
@@ -89,52 +94,9 @@ public class UsualMode: InventoryMode {
         }
     }
 
-    private static bool ItemIsBindable(string itemType) 
-    {
-        return itemType == "weapon" || itemType == "food" || itemType == "meds";
-    }
-
-    private void BindButtonWithKey(ItemIcon button, int key)
-    {
-        //если нажали ту же кнопку на той же клавише
-        if (button.GetBindKey() == key.ToString())
-        {
-            ClearBind(tempButton);
-            return;
-        }
-            
-        //если кнопка уже забиндена на какую-то клавишу
-        if (menu.bindedButtons.Values.Contains(button))
-        {
-            ClearBind(button);
-        }
-            
-        //если на кнопку забита другая клавиша
-        if (menu.bindedButtons.Keys.Contains(key))
-        {
-            ClearBind(menu.bindedButtons[key]);
-        }
-
-        //бинд кнопки
-        menu.bindedButtons[key] = button;
-        button.SetBindKey(key.ToString());
-        bindsList.AddIcon(button);
-    }
-
-    private void BindHotkeys()
-    {
-        if (tempButton.myItemCode == null) return;
-        if (!ItemIsBindable(tempItemData["type"].ToString())) return;
-        for (int i = 0; i < 10; i++)
-        {
-            if (!Input.IsKeyPressed(48 + i)) continue;
-            BindButtonWithKey(tempButton, i);
-        }
-    }
-
     private void UseHotkeys() 
     {
-        if (bindsCooldown > 0) return;
+        if (bindsHandler.useCooldown > 0) return;
 
         for (var i = 0; i < 10; i++)
         {
@@ -148,12 +110,13 @@ public class UsualMode: InventoryMode {
     {
         if (!Object.IsInstanceValid(player)) return;
         if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
-        if (player.Health == player.HealthMax) {
+        if (player.Health == player.HealthMax) 
+        {
             inventory.ItemsMessage("youAreHealthy");
             return;
         }
 
-        foreach(var newTempButton in itemButtons)
+        foreach (var newTempButton in itemButtons)
         {
             if (newTempButton.myItemCode == null) continue;
             SetTempButton(newTempButton);
@@ -165,7 +128,7 @@ public class UsualMode: InventoryMode {
         CheckTempIcon();
     }
 
-    private bool canTakeItemOff() 
+    private bool CanTakeItemOff() 
     {
         string itemType = tempItemData["type"].ToString();
         if (itemType != "artifact" || inventory.artifact == "") return true;
@@ -192,23 +155,28 @@ public class UsualMode: InventoryMode {
             }
             
             //если уже надета другая вещь
-            if (wearButton.myItemCode != null) {
-                if (!canTakeItemOff()) return;
+            if (wearButton.myItemCode != null) 
+            {
+                if (!CanTakeItemOff()) return;
                 inventory.UnwearItem(wearButton.myItemCode, false);
             }
             ChangeItemButtons(tempButton, wearButton);
             inventory.WearItem(wearButton.myItemCode);
         } //если вещь снимается 
-        else {
-            if (!canTakeItemOff()) return;
+        else 
+        {
+            if (!CanTakeItemOff()) return;
 
             ItemIcon otherButton = FirstEmptyButton;
             inventory.UnwearItem(wearButton.myItemCode);
 
             //если в инвентаре есть место
-            if (otherButton != null) {
+            if (otherButton != null) 
+            {
                 ChangeItemButtons(wearButton, otherButton);
-            } else {
+            } 
+            else 
+            {
                 DropTempItem();
             }
         }
@@ -222,7 +190,8 @@ public class UsualMode: InventoryMode {
         Array text = InterfaceLang.GetPhrasesAsArray("notes", code);
         
         noteName.Text = tempItemData["name"].ToString();
-        foreach(string line in text) {
+        foreach (string line in text) 
+        {
             noteText.Text += line + "\n";
         }
 
@@ -241,8 +210,10 @@ public class UsualMode: InventoryMode {
         player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
         
         string itemType = tempItemData["type"].ToString();
-        if (inventory.itemIsUsable(itemType)) {
-            switch(itemType) {
+        if (inventory.itemIsUsable(itemType)) 
+        {
+            switch(itemType) 
+            {
                 case "note":
                     ReadTempNote();
                     break;
@@ -264,20 +235,11 @@ public class UsualMode: InventoryMode {
 
                     //если использовался забинденный предмет
                     //биндим на тот же бинд такой же
-                    BindTheSameItem(oldBind, itemCode);
+                    bindsHandler.BindTheSameItem(oldBind, itemCode);
                     break;
             }
         }
-        tempButton = null;
-    }
-
-    private void BindTheSameItem(string bind, string itemCode)
-    {
-        if (string.IsNullOrEmpty(bind)) return;
-        int bindKey = Convert.ToInt16(bind);
-        var otherButton = FindButtonWithItem(itemCode);
-        if (otherButton == null) return;
-        BindButtonWithKey(otherButton, bindKey);
+        SetTempButton(null);
     }
 
     private void DropTempItem() 
@@ -293,19 +255,24 @@ public class UsualMode: InventoryMode {
             tempBag = SpawnItemBag();
         }
 
-        if (tempButton.GetCount() > 0) {
+        if (tempButton.GetCount() > 0) 
+        {
             tempBag.ammoCount.Add(tempButton.myItemCode, tempButton.GetCount());
-        } else {
+        } else 
+        {
             tempBag.itemCodes.Add(tempButton.myItemCode);
         }
 
-        if (checkMouseInButton(weaponButton)) {
+        if (CheckMouseInButton(weaponButton)) 
+        {
             inventory.UnwearItem(weaponButton.myItemCode);
         }
-        if (checkMouseInButton(armorButton)) {
+        if (CheckMouseInButton(armorButton)) 
+        {
             inventory.UnwearItem(armorButton.myItemCode);
         }
-        if (checkMouseInButton(artifactButton)) {
+        if (CheckMouseInButton(artifactButton)) 
+        {
             inventory.UnwearItem(artifactButton.myItemCode);
         }
         
@@ -335,30 +302,33 @@ public class UsualMode: InventoryMode {
             clickTimer = 0;
         }
 
-        if (bindsCooldown > 0)
-        {
-            bindsCooldown -= delta;
-        }
+        bindsHandler.UpdateUseCooldown(delta);
     }
 
     public override void UpdateInput(InputEvent @event)
     {
-        if (menu.isOpen && tempButton != null) {
+        if (menu.isOpen && tempButton != null) 
+        {
             if (UpdateDragging(@event)) return;
             
-            if (Input.IsActionJustReleased("ui_click") && clickTimer < 0.2f) {
+            if (Input.IsActionJustReleased("ui_click") && clickTimer < 0.2f) 
+            {
                 UseTempItem();
             }
 
-            if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) {
+            if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) 
+            {
                 DropTempItem();
             }
 
-            if (@event is InputEventKey) {
-                BindHotkeys();
+            if (@event is InputEventKey) 
+            {
+                bindsHandler.BindHotkeys(tempItemData["type"].ToString());
             }
         }
-        if(@event is InputEventKey && tempButton == null) {
+        
+        if (@event is InputEventKey && tempButton == null) 
+        {
             UseHotkeys();
             CheckAutoheal();
         }

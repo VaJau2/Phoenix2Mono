@@ -4,7 +4,7 @@ using Godot;
 public class MainMenu : MenuBase
 {
     Global global = Global.Get();
-    AudioStreamPlayer audi;
+    MenuAudi audi;
     AudioStreamPlayer music;
 
     ColorRect backgroundRect;
@@ -92,11 +92,12 @@ public class MainMenu : MenuBase
         bgPic.Texture = bgPicRes;
     }
 
-    private string getMenuText(string phrase, string section = "main") {
+    private string GetMenuText(string phrase, string section = "main") 
+    {
         return InterfaceLang.GetPhrase(menuName, section, phrase);
     }
 
-    private async void changeLabel(Label label) 
+    private async void ChangeLabel(Label label) 
     {
         label.PercentVisible = 0;
         while(label.PercentVisible < 1) 
@@ -107,14 +108,14 @@ public class MainMenu : MenuBase
         EmitSignal(nameof(labelChanged));
     }
 
-    public override void loadInterfaceLanguage()
+    public override void LoadInterfaceLanguage()
     {
-        continueButton.Text = getMenuText("continue");
-        startButton.Text = getMenuText("start");
-        loadButton.Text = getMenuText("load");
-        settingsButton.Text = getMenuText("settings");
-        aboutButton.Text = getMenuText("about");
-        exitButton.Text = getMenuText("exit");
+        continueButton.Text = GetMenuText("continue");
+        startButton.Text = GetMenuText("start");
+        loadButton.Text = GetMenuText("load");
+        settingsButton.Text = GetMenuText("settings");
+        aboutButton.Text = GetMenuText("about");
+        exitButton.Text = GetMenuText("exit");
         
         modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
         modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
@@ -122,28 +123,33 @@ public class MainMenu : MenuBase
         loadMenu.LoadInterfaceLanguage();
     }
 
-    private void loadAboutLanguage()
+    private void LoadAboutLanguage()
     {
-        aboutPage.Text = getMenuText("page", "about");
-        aboutLabel.Text = getMenuText("label", "about");
-        aboutBack.Text = getMenuText("back");
+        aboutPage.Text = GetMenuText("page", "about");
+        aboutLabel.Text = GetMenuText("label", "about");
+        aboutBack.Text = GetMenuText("back");
     }
 
-    private void loadRaceLanguage()
+    private void LoadRaceLanguage()
     {
-        racePage.Text = getMenuText("page", "race");
-        raceBack.Text = getMenuText("back");
+        racePage.Text = GetMenuText("page", "race");
+        raceBack.Text = GetMenuText("back");
 
         for(int i = 0; i < raceButtons.Length; i++) 
         {
-            raceButtons[i].Text = getMenuText("button" + i.ToString(), "race");
-            raceLabels[i].Text = getMenuText("label" + i.ToString(), "race");
+            raceButtons[i].Text = GetMenuText("button" + i.ToString(), "race");
+            raceLabels[i].Text = GetMenuText("label" + i.ToString(), "race");
         }
     }
 
     public override void SoundClick()
     {
-        audi.Play();
+        audi.PlayClick();
+    }
+
+    protected override void SoundHover()
+    {
+        audi.PlayHover();
     }
 
     public override async void SetMenuVisible(bool animating = false)
@@ -155,15 +161,15 @@ public class MainMenu : MenuBase
         {
             downLabel.Visible = false;
             label5.Visible = false;
-            pageLabel.Text = getMenuText("loading");
+            pageLabel.Text = GetMenuText("loading");
             await global.ToTimer(1, this);
 
-            pageLabel.Text = getMenuText("welcome");
-            changeLabel(pageLabel);
+            pageLabel.Text = GetMenuText("welcome");
+            ChangeLabel(pageLabel);
             await global.ToTimer(1.5f, this);
 
-            pageLabel.Text = getMenuText("page");
-            changeLabel(pageLabel);
+            pageLabel.Text = GetMenuText("page");
+            ChangeLabel(pageLabel);
 
             while(backgroundRect.Color.a > 0) {
                 backgroundRect.Color = new Color(
@@ -175,7 +181,7 @@ public class MainMenu : MenuBase
         }
         else
         {
-            pageLabel.Text = getMenuText("page");
+            pageLabel.Text = GetMenuText("page");
             backgroundRect.Color = new Color(0, 0, 0, 0);
         }
     
@@ -183,7 +189,7 @@ public class MainMenu : MenuBase
         downLabel.Visible = true;
         label5.Visible = true;
 
-        loadInterfaceLanguage();
+        LoadInterfaceLanguage();
         continueButton.Visible = Global.saveFilesArray.Count > 0;
         startButton.Visible = true;
         loadButton.Visible = true;
@@ -209,7 +215,7 @@ public class MainMenu : MenuBase
     {
         global.LoadSettings(this);
         base._Ready();
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<MenuAudi>("audi");
         music = GetNode<AudioStreamPlayer>("music");
 
         if (global.mainMenuFirstTime && Global.saveFilesArray.Count > 0)
@@ -262,7 +268,7 @@ public class MainMenu : MenuBase
     public void _on_start_pressed()
     {
         SoundClick();
-        loadRaceLanguage();
+        LoadRaceLanguage();
         changeRaceMenu.Visible = true;
     }
 
@@ -281,7 +287,7 @@ public class MainMenu : MenuBase
 
     public void _on_about_pressed()
     {
-        loadAboutLanguage();
+        LoadAboutLanguage();
         SoundClick();
         aboutMenu.Visible = true;
     }

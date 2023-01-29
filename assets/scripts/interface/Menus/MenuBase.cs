@@ -21,41 +21,42 @@ public class MenuBase : Control
     //загрузка цвета для интерфейса из настроек
     public static void LoadColorForChildren(Node node)
     {
-        if (node is CanvasItem) {
-            LoadCanvasColor(node as CanvasItem);
+        if (node is CanvasItem item) 
+        {
+            LoadCanvasColor(item);
         }
 
-        foreach(var child in node.GetChildren()) {
-            if (child is CanvasItem) {
-                var canvasChild = child as CanvasItem;
-                LoadColorForChildren(canvasChild);
-            }
+        foreach(var child in node.GetChildren())
+        {
+            if (!(child is CanvasItem canvasChild)) continue;
+            LoadColorForChildren(canvasChild);
         }
     }
 
-    public static void ReloadAllColors(SceneTree tree)
+    protected static void ReloadAllColors(SceneTree tree)
     {
-        foreach(var node in tree.GetNodesInGroup("color_loaded")) {
+        foreach(var node in tree.GetNodesInGroup("color_loaded")) 
+        {
             LoadCanvasColor(node as CanvasItem);
         }
     }
 
     private static void LoadCanvasColor(CanvasItem item)
     {
-        if (!item.IsInGroup("ignore_color")) {
-            if (!item.IsInGroup("color_loaded")) {
-                item.AddToGroup("color_loaded");
-            }
-            
-            float tempA = item.Modulate.a;
-            Color newColor = Global.Get().Settings.interfaceColor;
-            item.Modulate = new Color (
-                newColor.r,
-                newColor.g,
-                newColor.b,
-                tempA
-            );
+        if (item.IsInGroup("ignore_color")) return;
+        if (!item.IsInGroup("color_loaded")) 
+        {
+            item.AddToGroup("color_loaded");
         }
+            
+        float tempA = item.Modulate.a;
+        Color newColor = Global.Get().Settings.interfaceColor;
+        item.Modulate = new Color (
+            newColor.r,
+            newColor.g,
+            newColor.b,
+            tempA
+        );
     }
 
     public virtual void SetMenuVisible(bool animate = false)
@@ -63,24 +64,29 @@ public class MenuBase : Control
         Visible = true;
     }
 
+    protected virtual void SoundHover() {}
+
     public virtual void SoundClick() {}
 
-    public virtual void loadInterfaceLanguage() {}
+    public virtual void LoadInterfaceLanguage() {}
 
-    private async void changeDownLabel() {
+    private async void ChangeDownLabel() 
+    {
         downLabel.PercentVisible = 0;
-        while(downLabel.PercentVisible < 1) {
+        while(downLabel.PercentVisible < 1) 
+        {
             downLabel.PercentVisible += 0.1f;
             await global.ToTimer(0.01f, this, true);
         }
     }
 
-    private void updateDownLabel(string section, string messageLink)
+    private void UpdateDownLabel(string section, string messageLink)
     {
-        if (downAdded) {
+        if (downAdded) 
+        {
             downLabel.Text += "_";
         }
-        changeDownLabel();
+        ChangeDownLabel();
 
         tempSection = section;
         tempPhrase = messageLink;
@@ -89,37 +95,41 @@ public class MenuBase : Control
     public void _on_mouse_entered(string section, string messageLink)
     {
         downLabel.Text = InterfaceLang.GetPhrase(menuName, section, messageLink);
-        updateDownLabel(section, messageLink);
+        UpdateDownLabel(section, messageLink);
+        SoundHover();
     }
 
     public void _on_mouse_entered(string section, string messageLink, string customMenuName)
     {
         downLabel.Text = InterfaceLang.GetPhrase(customMenuName, section, messageLink);
-        updateDownLabel(section, messageLink);
+        UpdateDownLabel(section, messageLink);
     }
 
-    public void ReloadMouseEntered()
+    protected void ReloadMouseEntered()
     {
         _on_mouse_entered(tempSection, tempPhrase);
     }
 
-    public void _on_mouse_exited() {
-        if (downAdded) {
-            downLabel.Text = "_";
-        } else {
-            downLabel.Text = "";
-        }
+    public void _on_mouse_exited()
+    {
+        downLabel.Text = downAdded ? "_" : "";
     }
 
     public override void _Process(float delta)
     {
-        if (downLabelTimer > 0) {
+        if (downLabelTimer > 0) 
+        {
             downLabelTimer -= delta;
-        } else {
+        } 
+        else 
+        {
             downAdded = !downAdded;
-            if (downAdded) {
+            if (downAdded) 
+            {
                 downLabel.Text += "_";
-            } else {
+            } 
+            else 
+            {
                 downLabel.Text = downLabel.Text.Replace("_", "");
             }
             downLabelTimer = DOWN_LABEL_TIME;
