@@ -9,6 +9,7 @@ public class SoundSteps: RayCast {
     [Export]
     public NodePath parentPath;
     const float STEP_COOLDOWN = 0.4f;
+    const float STEP_JUMP_COOLDOWN = 0.7f;
     const float STEP_CROUCH_COOLDOWN = 0.8f;
     const float STEP_RUN_COOLDOWN = 0.6f;
 
@@ -24,8 +25,8 @@ public class SoundSteps: RayCast {
 
     AudioStreamPlayer audi;
     AudioStreamPlayer3D audi3D;
-    AudioStreamSample dash;
-    AudioStreamSample jump;
+    AudioStream dash;
+    AudioStream jump;
 
     Dictionary<string, Array<AudioStreamSample>> steps;
     Dictionary<string, Array<AudioStreamSample>> stepsRun;
@@ -57,7 +58,7 @@ public class SoundSteps: RayCast {
         }
     }
 
-    private void PlaySound(AudioStreamSample sound)
+    private void PlaySound(AudioStream sound)
     {
         if (IsInstanceValid(audi)) {
             audi.Stream = sound;
@@ -88,8 +89,8 @@ public class SoundSteps: RayCast {
             audi3D = parent.GetNode<AudioStreamPlayer3D>("audi");
         }
        
-        dash = GD.Load<AudioStreamSample>("res://assets/audio/steps/dash.wav");
-        jump = GD.Load<AudioStreamSample>("res://assets/audio/steps/jump.wav");
+        dash = GD.Load<AudioStream>("res://assets/audio/steps/dash.wav");
+        jump = GD.Load<AudioStream>("res://assets/audio/steps/jump.mp3");
 
         steps = new Dictionary<string, Array<AudioStreamSample>>()
         {
@@ -178,7 +179,7 @@ public class SoundSteps: RayCast {
     public void PlayJumpSound()
     {
         PlaySound(jump);
-        timer = STEP_COOLDOWN;
+        timer = STEP_JUMP_COOLDOWN;
     }
 
     public override void _Process(float delta)
