@@ -9,7 +9,7 @@ public class DialogueMenu : Control, IMenu
     const int MAX_ANSWER_LENGTH = 65;
     public NPC npc {get; private set;}
     public Player player => Global.Get().player;
-    public bool MenuOn => (GetParent() as Control).Visible;
+    public bool MenuOn => ((Control)GetParent()).Visible;
     Dictionary nodes = null;
 
     RichTextLabel text;

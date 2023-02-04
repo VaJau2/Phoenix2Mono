@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 //класс отвечает за поведение НПЦ
-public class NPC : Character
+public class NPC : Character, IInteractable
 {
     const int RAGDOLL_IMPULSE = 700;
     const float SEARCH_TIMER = 12f;
@@ -47,6 +47,7 @@ public class NPC : Character
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
 
     private Player player => Global.Get().player;
+    private DialogueMenu dialogueMenu;
     public Character tempVictim;
     protected Vector3 lastSeePos;
     protected float searchTimer = 0;
@@ -56,23 +57,31 @@ public class NPC : Character
 
     public Vector3 myStartPos, myStartRot;
 
-
+    public bool MayInteract => !dialogueMenu.MenuOn && !string.IsNullOrEmpty(dialogueCode);
+    public string InteractionHintCode => "talk";
+    
+    public void Interact(PlayerCamera interactor)
+    {
+        dialogueMenu.StartTalkingTo(this);
+    }
+    
     public virtual void SetState(NPCState newState)
     {
-        if (Health <= 0) {
-            return;
-        }
+        if (Health <= 0) return;
 
-        switch(newState) {
+        switch(newState) 
+        {
             case NPCState.Idle:
-                if (tempVictim == player) {
+                if (tempVictim == player) 
+                {
                     player.Stealth.RemoveSeekEnemy(this);
                 }
                 tempVictim = null;
                 break;
             
             case NPCState.Attack:
-                if (tempVictim == player) {
+                if (tempVictim == player) 
+                {
                     if (!(this is NpcWithWeapons npcWeapons) || !string.IsNullOrEmpty(npcWeapons.weaponCode))
                     {
                         player.Stealth.AddAttackEnemy(this);
@@ -95,7 +104,8 @@ public class NPC : Character
                     break;
                 }
                 
-                if (tempVictim == player) {
+                if (tempVictim == player) 
+                {
                     player.Stealth.AddSeekEnemy(this);
                 }
                 lastSeePos = tempVictim.GlobalTransform.origin;
@@ -140,14 +150,17 @@ public class NPC : Character
         
         PlayRandomSound(hittedSounds);
 
-        if (shapeID != 0) {
+        if (shapeID != 0) 
+        {
             damage = (int)(damage * 1.5f);
         }
 
         base.TakeDamage(damager, damage, shapeID);
 
-        if (Health <= 0) {
-            if (tempVictim == player) {
+        if (Health <= 0) 
+        {
+            if (tempVictim == player) 
+            {
                 player.Stealth.RemoveSeekEnemy(this);
             }
 
@@ -210,9 +223,12 @@ public class NPC : Character
             Vector3 dir = Translation.DirectionTo(killer.Translation);
             float force = tempShotgunShot ? RAGDOLL_IMPULSE * 2 : RAGDOLL_IMPULSE;
 
-            if (shapeID == 0) {
+            if (shapeID == 0)
+            {
                 bodyBone?.ApplyCentralImpulse(-dir * force);
-            } else {
+            }
+            else
+            {
                 headBone?.ApplyCentralImpulse(-dir * force);
             }
         }
@@ -403,6 +419,7 @@ public class NPC : Character
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
         seekArea = GetNode<SeekArea>("seekArea");
+        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         if (hasSkeleton)
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");
@@ -422,9 +439,12 @@ public class NPC : Character
             
             myStartPos = GlobalTransform.origin;
             myStartRot = Rotation;
-        } else if (patrolPoints == null) {
+        } 
+        else if (patrolPoints == null) 
+        {
             patrolPoints = new Spatial[patrolArray.Count];
-            for(int i = 0; i < patrolArray.Count; i++) {
+            for (int i = 0; i < patrolArray.Count; i++) 
+            {
                 patrolPoints[i] = GetNode<Spatial>(patrolArray[i]);
             }
         }
@@ -432,7 +452,8 @@ public class NPC : Character
 
     public override void _Process(float delta)
     {
-        if (Health <= 0) {
+        if (Health <= 0) 
+        {
             if (deadTimer > 0)
             {
                 deadTimer -= delta;
@@ -447,7 +468,9 @@ public class NPC : Character
 
         HandleImpulse();
         HandleGravity();
-        if (Velocity.Length() > 0) {
+        
+        if (Velocity.Length() > 0) 
+        {
             MoveAndSlide(Velocity, new Vector3(0, 1, 0), true);
         }
     }
@@ -456,8 +479,7 @@ public class NPC : Character
 public enum Relation {
     Friend,
     Enemy,
-    Neitral,
-    Monster
+    Neitral
 }
 
 public enum NPCState {

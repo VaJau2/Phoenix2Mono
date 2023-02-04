@@ -1,37 +1,49 @@
 using Godot;
 
-public class FurnBase: StaticBody {
+public class FurnBase: StaticBody, IInteractable
+{
     protected Global global;
 
-    [Export]
-    public AudioStreamSample OpenSound;
-    [Export]
-    public AudioStreamSample CloseSound;
+    [Export] public AudioStreamSample OpenSound;
+    [Export] public AudioStreamSample CloseSound;
 
     public bool IsOpen {get; private set;}
-    public bool OtherSided = false;
+    protected bool OtherSided;
 
     public AudioStreamPlayer3D audi;
     private AnimationPlayer animator;
 
+    public bool MayInteract => true;
+    public string InteractionHintCode => IsOpen ? "close" : "open";
+
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        if (HasNode("anim")) {
+        if (HasNode("anim")) 
+        {
             animator = GetNode<AnimationPlayer>("anim");
         }
         
         global = Global.Get();
     }
+    
+    public virtual void Interact(PlayerCamera interactor)
+    {
+        interactor.HideInteractionSquare();
+        ClickFurn();
+    }
 
     private async void setOpen(string anim, AudioStreamSample sound, float timer = 0,
-                               bool otherSide = false) {
-        if (IsInstanceValid(audi)) {
+                               bool otherSide = false) 
+    {
+        if (IsInstanceValid(audi)) 
+        {
             audi.Stream = sound;
             audi.Play();
         }
         
-        if (timer != 0) {
+        if (timer != 0) 
+        {
             await global.ToTimer(timer);
         }
 
@@ -40,18 +52,25 @@ public class FurnBase: StaticBody {
         IsOpen = !IsOpen;
     }
 
-    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) {
-        if (IsOpen) {
-            if (OtherSided) {
+    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) 
+    {
+        if (IsOpen) 
+        {
+            if (OtherSided) 
+            {
                 setOpen("close-2", CloseSound, timer);
                 OtherSided = false;
-            } else {
+            } 
+            else 
+            {
                 setOpen("close", CloseSound, timer);
             }
         }
-        else {
+        else 
+        {
             var anim = "open";
-            if (openAnim != null) {
+            if (openAnim != null) 
+            {
                 anim = openAnim;
             }
 

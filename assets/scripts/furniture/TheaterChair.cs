@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class TheaterChair : StaticBody, ISavable
+public class TheaterChair : StaticBody, ISavable, IInteractable
 {
     [Export] public bool isActive;
     [Export] private string otherTriggerPath;
@@ -11,7 +11,11 @@ public class TheaterChair : StaticBody, ISavable
     private Spatial strikelyPlace;
 
     private float tempTimer;
-    private int step = 0;
+    private int step;
+
+    private Player player => Global.Get().player;
+    public bool MayInteract => isActive && !player.IsSitting;
+    public string InteractionHintCode => "sit";
 
     public override void _Ready()
     {
@@ -34,8 +38,10 @@ public class TheaterChair : StaticBody, ISavable
         step = 0;
     }
 
-    public void Sit(Player player)
+    public void Interact(PlayerCamera interactor)
     {
+        interactor.HideInteractionSquare();
+        
         if (step == 0)
         {
             player.SitOnChair(true);

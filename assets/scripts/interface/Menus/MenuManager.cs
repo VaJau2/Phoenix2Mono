@@ -9,14 +9,21 @@ public static class MenuManager {
 
     public static bool TryToOpenMenu(IMenu menu, bool closeOther = false)
     {
-        if (openedMenu != null) {
-            if (closeOther) {
-                if (openedMenu.mustBeClosed) {
+        if (openedMenu != null) 
+        {
+            if (closeOther) 
+            {
+                if (openedMenu.mustBeClosed) 
+                {
                     openedMenu.CloseMenu();
-                } else {
+                } 
+                else 
+                {
                     backgroundMenu = openedMenu;
                 }
-            } else {
+            } 
+            else 
+            {
                 return false;
             }
         }
@@ -27,7 +34,8 @@ public static class MenuManager {
 
     public static void CloseMenu(IMenu menu)
     {
-        if (menu == openedMenu) {
+        if (menu == openedMenu) 
+        {
             openedMenu.CloseMenu();
             openedMenu = backgroundMenu;
             backgroundMenu = null;
@@ -41,7 +49,8 @@ public static class MenuManager {
     }
 }
 
-public interface IMenu {
+public interface IMenu 
+{
     bool mustBeClosed {get;}
     void OpenMenu();
     void CloseMenu();

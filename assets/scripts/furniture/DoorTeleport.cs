@@ -1,9 +1,8 @@
 using Godot;
 using Godot.Collections;
-using System.Collections.Generic;
 
 //дверь, перемещающая в отдельную подлокацию
-public class DoorTeleport : StaticBody, ISavable
+public class DoorTeleport : StaticBody, ISavable, IInteractable
 {
     [Export] public bool Closed;
     [Export] private bool Inside;
@@ -25,6 +24,10 @@ public class DoorTeleport : StaticBody, ISavable
     private static Player player => Global.Get().player;
     private CheckFall checkFall;
 
+    public bool MayInteract => true;
+    public string InteractionHintCode => "open";
+    
+
     public override void _Ready()
     {
         oldRoom = GetNodeOrNull<Room>(oldLocationPath);
@@ -38,6 +41,11 @@ public class DoorTeleport : StaticBody, ISavable
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
                 
         SetProcess(false);
+    }
+    
+    public void Interact(PlayerCamera interactor)
+    {
+        Open(player, true);
     }
 
     public void SoundOpening()
