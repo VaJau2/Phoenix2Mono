@@ -3,7 +3,8 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class PlayerInventory {
+public class PlayerInventory 
+{
     public EffectHandler effects;
     Messages messages;
     Player player;
@@ -39,27 +40,33 @@ public class PlayerInventory {
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {
-        if (ammoButtons.ContainsKey(ammoType)) {
+        if (ammoButtons.ContainsKey(ammoType)) 
+        {
             ammoButtons[ammoType] = button;
-        } else {
+        } 
+        else 
+        {
             ammoButtons.Add(ammoType, button);
         }
     }
 
     public void AddKey(string key) 
     {
-        if (!tempKeys.Contains(key)) {
+        if (!tempKeys.Contains(key)) 
+        {
             tempKeys.Add(key);
         }
     }
 
-    public void RemoveKey(string key) {
+    public void RemoveKey(string key) 
+    {
         if (menu.mode.SameItemCount(key) > 1)
         {
             return;
         }
         
-        if (tempKeys.Contains(key)) {
+        if (tempKeys.Contains(key)) 
+        {
             tempKeys.Remove(key);
         }
     }
@@ -71,7 +78,6 @@ public class PlayerInventory {
 
     public Array<string> GetKeys() => tempKeys;
     
-
     public Dictionary GetArmorProps() 
     {
         if (cloth == tempClothDataName) return tempClothData;
@@ -150,12 +156,14 @@ public class PlayerInventory {
         CheckStealthBuck();
         
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if (sound) {
+        if (sound) 
+        {
             SoundUsingItem(itemData);
             messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
         }
 
-        switch(itemData["type"]) {
+        switch(itemData["type"]) 
+        {
             case "weapon":
                 weapon = itemCode;
                 player.Weapons.LoadNewWeapon(itemCode, itemData);
@@ -181,7 +189,8 @@ public class PlayerInventory {
 
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
-        switch(itemData["type"]) {
+        switch(itemData["type"]) 
+        {
             case "weapon":
                 weapon = "";
                 player.Weapons.ClearWeapon();

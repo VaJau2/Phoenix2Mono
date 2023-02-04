@@ -66,6 +66,8 @@ public class InventoryMenu : Control, IMenu
         mode.LoadItemButtons(newItems, ammo);
     }
 
+    public bool HasEmptyButton => mode.FirstEmptyButton != null;
+
     public bool AddOrDropItem(string itemCode)
     {
         var emptyButton = mode.FirstEmptyButton;

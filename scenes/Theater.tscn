@@ -1494,7 +1494,7 @@ npcPrefab = ExtResource( 60 )
 spawnPointPath = NodePath("../position2")
 spawnDelay = 4.0
 movePointPath = NodePath("../position2/movePoint")
-weaponCode = "shotgun20"
+weaponCode = "shotgun12"
 relation = 1
 ammoCount = {
 "ammo10": 13

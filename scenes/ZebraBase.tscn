@@ -448,6 +448,8 @@ agent_radius = 1.55
 
 [node name="canvas" parent="." instance=ExtResource( 2 )]
 script = SubResource( 1 )
+timer = 1.0
+speed = 2.0
 
 [node name="dragonHealth" type="Control" parent="canvas"]
 visible = false
@@ -506,7 +508,7 @@ npcPrefabs = [ ExtResource( 38 ), ExtResource( 41 ), ExtResource( 37 ), ExtResou
 [node name="zebra-mane" parent="npc" instance=ExtResource( 32 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.187, -0.183066, -50.7126 )
 IdleAnim = "Sit"
-weaponCode = "ak47"
+weaponCode = "rifle307"
 
 [node name="zebra-helmet" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.8773, -0.168295, -50.8459 )
@@ -533,12 +535,12 @@ weaponCode = "ak47"
 [node name="zebra-helmet2" parent="npc" instance=ExtResource( 41 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9263, 0, -8.42519 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/2"), NodePath("../../terrain/patrolPoints/2/3"), NodePath("../../terrain/patrolPoints/2/4") ]
-weaponCode = "ak47"
+weaponCode = "shotgun12"
 
 [node name="zebra-mane3" parent="npc" instance=ExtResource( 38 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2907, 0, -18.5677 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/3"), NodePath("../../terrain/patrolPoints/3/4"), NodePath("../../terrain/patrolPoints/3/5"), NodePath("../../terrain/patrolPoints/3/4") ]
-weaponCode = "ak47"
+weaponCode = "rifle307"
 
 [node name="zebra-commander" parent="npc" instance=ExtResource( 43 )]
 transform = Transform( -0.0159865, 0, 0.999872, 0, 1, 0, -0.999872, 0, -0.0159865, 32.487, -90.8212, 45.0021 )

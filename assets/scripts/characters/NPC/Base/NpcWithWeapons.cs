@@ -228,6 +228,7 @@ public class NpcWithWeapons : NPC
         }
 
         weapons.SetWeapon(false);
+        weapons.SpawnPickableItem(weaponCode);
         base.AnimateDealth(killer, shapeID);
     }
 
