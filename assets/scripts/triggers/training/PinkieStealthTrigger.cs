@@ -75,7 +75,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         //спавн сумки
         if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
         bagInstance.Name = "Created_" + bagInstance.Name;
-        bagInstance.itemCodes.Add(itemInBag);
+        bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
         GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
         Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
         bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);

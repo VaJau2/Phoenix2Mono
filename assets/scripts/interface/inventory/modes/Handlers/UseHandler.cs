@@ -12,7 +12,7 @@ public class UseHandler
     public ItemIcon armorButton;
     public ItemIcon artifactButton;
     
-    public FurnChest tempBag;
+    public IChest tempBag;
 
     private ItemIcon tempButton => mode.tempButton;
     private InventoryMenu menu;
@@ -202,11 +202,11 @@ public class UseHandler
 
         if (tempButton.GetCount() > 0) 
         {
-            tempBag.ammoCount.Add(tempButton.myItemCode, tempButton.GetCount());
+            tempBag.ChestHandler.AmmoCount.Add(tempButton.myItemCode, tempButton.GetCount());
         } 
         else 
         {
-            tempBag.itemCodes.Add(tempButton.myItemCode);
+            tempBag.ChestHandler.ItemCodes.Add(tempButton.myItemCode);
         }
 
         if (mode.CheckMouseInButton(weaponButton)) 

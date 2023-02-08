@@ -1,114 +1,72 @@
 using System;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
 
-public class FurnChest: FurnBase, ISavable {
+public class FurnChest: FurnBase, ISavable, IChest {
+    
+    [Export] private bool isBag;
+    [Export] private bool SpawnRandomItems;
+    [Export] private string chestCode;
 
-    InventoryMenu menu;
-    [Export]
-    public bool isBag;
-    [Export]
-    public bool SpawnRandomItems;
-
-    [Export]
-    public string chestCode;
-    [Export]
+    [Export] 
     public Array<string> startItemCodes = new Array<string>();
     [Export]
     public Dictionary<string, int> startAmmoCount = new Dictionary<string, int>();
-
-    //каким-то образом export-массивы сохраняются между сессиями
-    //и если уровень перезагружается, игра получает их уже заполненными
-    public Array<string> itemCodes = new Array<string>();
-    //патроны считаются отдельно и не должны лежать в массиве вещей
-    public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
-    public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
-    public Dictionary<int, string> itemPositions = new Dictionary<int, string>();
-    public int moneyCount = 0;
-    RandomNumberGenerator random = new RandomNumberGenerator();
+    
+    public string ChestCode => chestCode;
+    public ChestHandler ChestHandler { get; private set; }
 
     public override void _Ready()
     {
         base._Ready();
-        menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
-        if (SpawnRandomItems) {
-            RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
-            items.LoadRandomItems(itemCodes, ammoCount);
-            
-            random.Randomize();
-            if (random.Randf() < items.moneyChance) {
-                itemCodes.Add(items.moneyNameCode);
-                moneyCount = random.RandiRange(0, items.maxMoneyCount);
-            }
-        }
+        ChestHandler = new ChestHandler(this)
+            .SetCode(ChestCode)
+            .SetIsBag(isBag)
+            .LoadStartItems(startItemCodes, startAmmoCount);
 
-        foreach(string itemCode in startItemCodes) {
-            itemCodes.Add(itemCode);
-        }
-        foreach(string ammoKey in startAmmoCount.Keys) {
-            if (!ammoCount.ContainsKey(ammoKey)) 
-            {
-                ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
-            }
+        if (SpawnRandomItems)
+        {
+            ChestHandler.SpawnRandomItems();
         }
     }
 
-    private bool mayOpen => (IsOpen == menu.isOpen);
+    public bool MayOpen => (IsOpen == ChestHandler.Menu.isOpen);
 
     public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null)
     {
-        if (!mayOpen) return;
+        if (!MayOpen) return;
 
         if (IsOpen) return;
         base.ClickFurn();
-        menu.ChangeMode(NewInventoryMode.Chest);
-        ChestMode tempMode = menu.mode as ChestMode;
-        tempMode?.SetChest(this);
-        MenuManager.TryToOpenMenu(menu);
-        menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Open();
+        ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
     }
 
     public void CloseFurn()
     {
         base.ClickFurn();
-        menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
     }
 
     public Dictionary GetSaveData()
     {
-        //переводим массив патронных кнопок в массив имен кнопок
-        var ammoButtonNames = new Dictionary<string, string>(); 
-        foreach (string ammoType in ammoButtons.Keys)
-        {
-            string buttonName = ammoButtons[ammoType].Name;
-            ammoButtonNames.Add(ammoType, buttonName);
-        }
-
-        Dictionary savedData = new Dictionary()
-        {
-            {"itemCodes", itemCodes},
-            {"ammoCount", ammoCount},
-            {"ammoButtons", ammoButtonNames},
-            {"itemPositions", itemPositions},
-            {"moneyCount", moneyCount},
-        };
+        Dictionary saveData = ChestHandler.GetSaveData();
 
         if (Name.BeginsWith("Created_"))
         {
-            savedData.Add("parent", GetParent().Name);
-            savedData.Add("fileName", Filename);
+            saveData.Add("parent", GetParent().Name);
+            saveData.Add("fileName", Filename);
             
-            savedData.Add("pos_x", Transform.origin.x);
-            savedData.Add("pos_y", Transform.origin.y);
-            savedData.Add("pos_z", Transform.origin.z);
-            savedData.Add("rot_x", Transform.basis.GetEuler().x);
-            savedData.Add("rot_y", Transform.basis.GetEuler().y);
-            savedData.Add("rot_z", Transform.basis.GetEuler().z);
+            saveData.Add("pos_x", Transform.origin.x);
+            saveData.Add("pos_y", Transform.origin.y);
+            saveData.Add("pos_z", Transform.origin.z);
+            saveData.Add("rot_x", Transform.basis.GetEuler().x);
+            saveData.Add("rot_y", Transform.basis.GetEuler().y);
+            saveData.Add("rot_z", Transform.basis.GetEuler().z);
         }
 
-        return savedData;
+        return saveData;
     }
 
     public void LoadData(Dictionary data)
@@ -129,59 +87,6 @@ public class FurnChest: FurnBase, ISavable {
             Transform = newTransform;
         }
 
-        Array newItemCodes = (Array) data["itemCodes"];
-        Dictionary newAmmoCount = (Dictionary) data["ammoCount"];
-        Dictionary newAmmoButtonNames = (Dictionary) data["ammoButtons"];
-        Dictionary newItemPositions = (Dictionary) data["itemPositions"];
-
-        moneyCount = Convert.ToInt32(data["moneyCount"]);
-        
-        itemCodes.Clear();
-        foreach (string itemCode in newItemCodes)
-        {
-            itemCodes.Add(itemCode);
-        }
-
-        ammoCount.Clear();
-        foreach (string key in newAmmoCount.Keys)
-        {
-            ammoCount.Add(key, Convert.ToInt32(newAmmoCount[key]));
-        }
-        
-        ammoButtons.Clear();
-        
-        //текущая сцена во время загрузки данных еще не добавлена на уровень
-        var scene = GetOwner<Node>();
-        foreach (string key in newAmmoButtonNames.Keys)
-        {
-            ItemIcon tempButton = (ItemIcon)Global.FindNodeInScene(scene, newAmmoButtonNames[key].ToString());
-            ammoButtons.Add(key, tempButton);
-        }
-        
-        itemPositions.Clear();
-        foreach (string key in newItemPositions.Keys)
-        {
-            int intKey = Convert.ToInt32(key);
-            itemPositions.Add(intKey, newItemPositions[key].ToString());
-        }
-    }
-
-    public void AddNewItem(string newItemCode)
-    {
-        //если сундук уже открывался, используется itemPositions, а не itemCodes
-        if (itemPositions.Count > 0)
-        {
-            foreach (int i in itemPositions.Keys)
-            {
-                if (!string.IsNullOrEmpty(itemPositions[i])) continue;
-                itemPositions.Add(i, newItemCode);
-                return;
-            }
-            itemPositions.Add(itemPositions.Count, newItemCode);
-        }
-        else
-        {
-            itemCodes.Add(newItemCode);
-        }
+        ChestHandler.LoadData(data);
     }
 }

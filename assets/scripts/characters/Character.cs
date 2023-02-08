@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class Character : KinematicBody, ISavable
+public abstract class Character : KinematicBody, ISavable
 {
     public const float MIN_WALKING_SPEED = 2;
     public int Health {get; private set;}

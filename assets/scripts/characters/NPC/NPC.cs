@@ -3,37 +3,37 @@ using Godot;
 using Godot.Collections;
 
 //класс отвечает за поведение НПЦ
-public class NPC : Character, IInteractable
+public abstract class NPC : Character, IInteractable
 {
-    const int RAGDOLL_IMPULSE = 700;
+    const int RAGDOLL_IMPULSE = 1000;
     const float SEARCH_TIMER = 12f;
     protected float ROTATION_SPEED = 0.15f;
     protected float GRAVITY = 0;
     protected float PATROL_WAIT = 4f;
-    [Export]
-    public Array<NodePath> patrolArray;
+    
+    [Export] public Array<NodePath> patrolArray;
     protected Spatial[] patrolPoints;
     protected int patrolI = 0;
     protected float patrolWaitTimer = 0;
-    [Export]
-    public string IdleAnim = "";
+    [Export] public string IdleAnim = "";
 
-    [Export] 
-    public bool IsImmortal;
-    [Export]
-    public int StartHealth = 100;
-    [Export]
-    public Relation relation;
-    [Export]
-    public string dialogueCode = "";
-    [Export]
-    public int WalkSpeed = 5;
+    [Export] public bool IsImmortal;
+    [Export] public int StartHealth = 100;
+    [Export] public Relation relation;
+    [Export] public string dialogueCode = "";
+    [Export] public int WalkSpeed = 5;
 
     [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
     public bool ignoreDamager;
     public NPCState state;
     public SeekArea seekArea {get; private set;}
+    
+    public Vector3 myStartPos, myStartRot;
+
+    public virtual bool MayInteract => !dialogueMenu.MenuOn && !string.IsNullOrEmpty(dialogueCode);
+    public virtual string InteractionHintCode => "talk";
+
     protected AudioStreamPlayer3D audi;
     [Export] protected Array<AudioStreamSample> hittedSounds;
     [Export] protected Array<AudioStreamSample> dieSounds;
@@ -41,6 +41,7 @@ public class NPC : Character, IInteractable
     [Export] protected bool hasSkeleton = true;
     private Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
+    
     private Dictionary<string, bool> objectsChangeActive = new Dictionary<string, bool>();
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
@@ -55,12 +56,7 @@ public class NPC : Character, IInteractable
 
     protected bool CloseToPoint = false;
 
-    public Vector3 myStartPos, myStartRot;
-
-    public bool MayInteract => !dialogueMenu.MenuOn && !string.IsNullOrEmpty(dialogueCode);
-    public string InteractionHintCode => "talk";
-    
-    public void Interact(PlayerCamera interactor)
+    public virtual void Interact(PlayerCamera interactor)
     {
         dialogueMenu.StartTalkingTo(this);
     }
@@ -164,7 +160,7 @@ public class NPC : Character, IInteractable
                 player.Stealth.RemoveSeekEnemy(this);
             }
 
-            AnimateDealth(damager, shapeID);
+            AnimateDeath(damager, shapeID);
         }
     }
 
@@ -204,7 +200,7 @@ public class NPC : Character, IInteractable
         audi.Play();
     }
 
-    protected virtual void AnimateDealth(Character killer, int shapeID)
+    protected virtual void AnimateDeath(Character killer, int shapeID)
     {
         if (GetParent() is EnemiesManager manager)
         {
@@ -219,9 +215,10 @@ public class NPC : Character, IInteractable
         CollisionMask = 0;
         if (hasSkeleton)
         {
+            
             skeleton.PhysicalBonesStartSimulation();
             Vector3 dir = Translation.DirectionTo(killer.Translation);
-            float force = tempShotgunShot ? RAGDOLL_IMPULSE * 2 : RAGDOLL_IMPULSE;
+            float force = tempShotgunShot ? RAGDOLL_IMPULSE * 1.5f : RAGDOLL_IMPULSE;
 
             if (shapeID == 0)
             {
@@ -349,7 +346,7 @@ public class NPC : Character, IInteractable
 
         if (Health <= 0)
         {
-            AnimateDealth(this, 0);
+            AnimateDeath(this, 0);
         }
     }
 
@@ -454,15 +451,6 @@ public class NPC : Character, IInteractable
     {
         if (Health <= 0) 
         {
-            if (deadTimer > 0)
-            {
-                deadTimer -= delta;
-            }
-            else
-            {
-                QueueFree();
-                Global.AddDeletedObject(Name);
-            }
             return;
         }
 

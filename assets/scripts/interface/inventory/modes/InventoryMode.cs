@@ -151,7 +151,7 @@ public abstract class InventoryMode
         get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
     }
 
-    public FurnChest SpawnItemBag()
+    public IChest SpawnItemBag()
     {
         var newBag = (FurnChest)bagPrefab.Instance();
         Node parent = player.GetNode("/root/Main/Scene");

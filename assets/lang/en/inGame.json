@@ -39,6 +39,7 @@
         "closed": "Locked",
         "close": " - close",
         "open": " - open",
+        "search": " - search",
         "trade": " - trade",
         "talk": " - talk",
         "terminal": " - manage",
@@ -74,7 +75,8 @@
         "small_cabinet": "Locker",
         "bag": "Bag",
         "fridge": "Fridge",
-        "suitcase": "Suitcase"
+        "suitcase": "Suitcase",
+        "body": "Body"
     },
 
     "tradeNames": {

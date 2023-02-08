@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 
 //поддержка патронов не добавлена
@@ -7,7 +6,7 @@ public class AddItemInChestTrigger : TriggerBase
 {
     [Export] private string[] itemsCode;
     [Export] private NodePath chestPath;
-    private FurnChest chest;
+    private IChest chest;
     
     public override void SetActive(bool newActive)
     {
@@ -24,7 +23,7 @@ public class AddItemInChestTrigger : TriggerBase
         {
             foreach(string itemCode in itemsCode)
             {
-                chest.AddNewItem(itemCode);
+                chest.ChestHandler.AddNewItem(itemCode);
             }
         }
         base._on_activate_trigger();

@@ -52,6 +52,8 @@ public class DamageEffects : TextureRect
 
     public override void _Process(float delta)
     {
+        if (dir == Vector3.Zero) return;
+        
         if (moveUp)
         {
             if (Modulate.a < 1)

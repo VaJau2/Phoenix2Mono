@@ -82,10 +82,10 @@ public class RoboEye : NPC
         tempMaterial = materialName;
     }
     
-    protected override void AnimateDealth(Character killer, int shapeID)
+    protected override void AnimateDeath(Character killer, int shapeID)
     {
         anim.Play("Die");
-        base.AnimateDealth(killer, shapeID);
+        base.AnimateDeath(killer, shapeID);
     }
     
     private void Stop(bool MoveDown = false)

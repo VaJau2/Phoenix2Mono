@@ -171,6 +171,11 @@ public class PlayerCamera: Camera
 
         if (mayUseRay && tempObject != null)
         {
+            if (tempObject is PhysicalBone)
+            {
+                tempObject = tempObject.GetNode<Spatial>("../../../");
+            }
+            
             if (tempObject is IInteractable interactable && interactable.MayInteract)
             {
                 ShowHint(interactable.InteractionHintCode);

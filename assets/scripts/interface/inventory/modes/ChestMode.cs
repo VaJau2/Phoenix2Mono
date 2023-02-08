@@ -12,7 +12,7 @@ public class ChestMode: InventoryMode
 
     private Array<ItemIcon> chestButtons = new Array<ItemIcon>();
 
-    private FurnChest tempChest;
+    private IChest tempChest;
 
     public ChestMode (InventoryMenu menu)
     : base(menu)
@@ -26,18 +26,18 @@ public class ChestMode: InventoryMode
         }
     }
 
-    public void SetChest(FurnChest chest)
+    public void SetChest(IChest chest)
     {
         tempChest = chest;
-        string chestName = InterfaceLang.GetPhrase("inGame", "chestNames", chest.chestCode);
+        string chestName = InterfaceLang.GetPhrase("inGame", "chestNames", chest.ChestCode);
         chestLabel.Text = chestName;
-        if(chest.itemPositions.Count > 0) 
+        if(chest.ChestHandler.ItemPositions.Count > 0) 
         {
-            LoadChestButtons(chest.itemPositions, chest.ammoCount);
+            LoadChestButtons(chest.ChestHandler.ItemPositions, chest.ChestHandler.AmmoCount);
         } 
         else 
         {
-            LoadChestButtons(chest.itemCodes, chest.ammoCount);
+            LoadChestButtons(chest.ChestHandler.ItemCodes, chest.ChestHandler.AmmoCount);
         }
     }
 
@@ -112,7 +112,7 @@ public class ChestMode: InventoryMode
             }
         }
         await Global.Get().ToTimer(0.1f, null, true);
-        if (Object.IsInstanceValid(tempChest)) UpdateChestPositions();
+        if (tempChest == null) UpdateChestPositions();
         MenuManager.CloseMenu(menu);
     }
 
@@ -143,19 +143,19 @@ public class ChestMode: InventoryMode
             if (newAmmoButton == null) continue;
             
             newAmmoButton.SetCount(ammo[ammoItem]);
-            tempChest.ammoButtons.Add(ammoItem, newAmmoButton);
+            tempChest.ChestHandler.AmmoButtons.Add(ammoItem, newAmmoButton);
         }
     }
 
     //загружаем предметы, если сундук уже открывался
-    private void LoadChestButtons(Dictionary<int, string> itemPositions, Dictionary<string, int> ammo)
+    private void LoadChestButtons(Dictionary<int, string> ItemPositions, Dictionary<string, int> ammo)
     {
         ClearChestButtons();
         
-        //в массиве itemPositions также лежат патроны
-        foreach(int buttonId in itemPositions.Keys) 
+        //в массиве ItemPositions также лежат патроны
+        foreach(int buttonId in ItemPositions.Keys) 
         {
-            string itemCode = itemPositions[buttonId];
+            string itemCode = ItemPositions[buttonId];
             ItemIcon tempChestButton = chestButtons[buttonId];
             CheckAddMoney(tempChestButton, itemCode);
 
@@ -177,9 +177,9 @@ public class ChestMode: InventoryMode
             CheckAddMoney(emptyButton, itemCode);
             
             int buttonId = chestButtons.IndexOf(emptyButton);
-            if (!tempChest.itemPositions.ContainsKey(buttonId)) 
+            if (!tempChest.ChestHandler.ItemPositions.ContainsKey(buttonId)) 
             {
-                tempChest.itemPositions.Add(buttonId, itemCode);
+                tempChest.ChestHandler.ItemPositions.Add(buttonId, itemCode);
             }
             
         } 
@@ -198,7 +198,7 @@ public class ChestMode: InventoryMode
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         if (itemData["type"].ToString() == "money") 
         {
-            button.SetCount(tempChest.moneyCount);
+            button.SetCount(tempChest.ChestHandler.MoneyCount);
         }
     }
 
@@ -206,10 +206,10 @@ public class ChestMode: InventoryMode
     private void UpdateChestPositions() 
     {
         //очищаем все массивы сундука
-        tempChest.itemCodes.Clear();
-        tempChest.itemPositions.Clear();
-        tempChest.ammoCount.Clear();
-        tempChest.ammoButtons.Clear();
+        tempChest.ChestHandler.ItemCodes.Clear();
+        tempChest.ChestHandler.ItemPositions.Clear();
+        tempChest.ChestHandler.AmmoCount.Clear();
+        tempChest.ChestHandler.AmmoButtons.Clear();
         bool isEmpty = true;
 
         //проходим по иконкам
@@ -221,24 +221,26 @@ public class ChestMode: InventoryMode
 
                 //сохраняем позицию иконки
                 int iconId = chestButtons.IndexOf(tempIcon);
-                tempChest.itemPositions.Add(iconId, tempIcon.myItemCode);
+                tempChest.ChestHandler.ItemPositions.Add(iconId, tempIcon.myItemCode);
                 //сохраняем количество, если это патроны
                 if (tempIcon.GetCount() != -1) 
                 {
-                    tempChest.ammoCount.Add(tempIcon.myItemCode, tempIcon.GetCount());
-                    tempChest.ammoButtons.Add(tempIcon.myItemCode, tempIcon);
+                    tempChest.ChestHandler.AmmoCount.Add(tempIcon.myItemCode, tempIcon.GetCount());
+                    tempChest.ChestHandler.AmmoButtons.Add(tempIcon.myItemCode, tempIcon);
                 }
             }
         }
 
         //если сундук - это сумка, и она опустошается
         //то она удаляется
-        if (isEmpty && tempChest.isBag) 
-        { 
-            Global.AddDeletedObject(tempChest.Name);
-            tempChest.QueueFree();
-            MenuManager.CloseMenu(menu);
+        if (!isEmpty || !tempChest.ChestHandler.IsBag) return;
+        if (tempChest is Node chestNode)
+        {
+            Global.AddDeletedObject(chestNode.Name);
+            chestNode.QueueFree();
         }
+
+        MenuManager.CloseMenu(menu);
     }
 
     private bool CheckDragIn(Array<ItemIcon> iconsArray, string ammoName)
@@ -376,9 +378,9 @@ public class ChestMode: InventoryMode
     {
         if (chestButtons.Contains(tempButton)) return false;
 
-        if (tempChest.ammoCount.Keys.Contains(tempButton.myItemCode)) 
+        if (tempChest.ChestHandler.AmmoCount.Keys.Contains(tempButton.myItemCode)) 
         {
-            ItemIcon ammoButton = tempChest.ammoButtons[tempButton.myItemCode];
+            ItemIcon ammoButton = tempChest.ChestHandler.AmmoButtons[tempButton.myItemCode];
             int addCount = tempButton.GetCount();
             ammoButton.SetCount(ammoButton.GetCount() + addCount);
             tempButton.ClearItem();
@@ -413,14 +415,12 @@ public class ChestMode: InventoryMode
 
     private bool CheckMoneyInInventory(bool isMoney)
     {
-        if (isMoney) 
-        {
-            inventory.money += tempChest.moneyCount;
-            tempChest.moneyCount = 0;
-            moneyCount.Text = inventory.money.ToString();
-            tempButton.ClearItem();
-            UpdateChestPositions();
-        }
-        return isMoney;
+        if (!isMoney) return false;
+        inventory.money += tempChest.ChestHandler.MoneyCount;
+        tempChest.ChestHandler.MoneyCount = 0;
+        moneyCount.Text = inventory.money.ToString();
+        tempButton.ClearItem();
+        UpdateChestPositions();
+        return true;
     }
 }

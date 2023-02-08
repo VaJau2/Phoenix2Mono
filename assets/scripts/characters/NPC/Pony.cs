@@ -40,7 +40,8 @@ public class Pony: NpcWithWeapons
 
         base.SetState(newState);
 
-        switch(newState) {
+        switch(newState) 
+        {
             case NPCState.Idle:
                 body.lookTarget = null;
                 break;
@@ -57,10 +58,12 @@ public class Pony: NpcWithWeapons
     
     public override Spatial GetWeaponParent(bool isPistol)
     {
-        if (IsUnicorn) {
+        if (IsUnicorn) 
+        {
             return GetNode<Spatial>("levitation/weapons");
         }
-        if (isPistol) {
+        if (isPistol) 
+        {
             return GetNode<Spatial>("Armature/Skeleton/BoneAttachment/weapons");
         } 
         
@@ -90,11 +93,14 @@ public class Pony: NpcWithWeapons
 
     protected override void MoveToPoint(float tempDistance, bool mayRun)
     {
-        if ((RunToPoint || mayRun) && tempDistance > RUN_DISTANCE) {
+        if ((RunToPoint || mayRun) && tempDistance > RUN_DISTANCE) 
+        {
             body.PlayAnim("Run");
             MoveTo(path[pathI], COME_DISTANCE, RunSpeed);
             IsRunning = true;
-        } else {
+        } 
+        else 
+        {
             body.PlayAnim("Walk");
             MoveTo(path[pathI], COME_DISTANCE, WalkSpeed);
             IsRunning = false;
@@ -103,7 +109,8 @@ public class Pony: NpcWithWeapons
 
     protected override void LookAtTarget(bool rotateBody = true)
     {
-        if (tempVictim == null) {
+        if (tempVictim == null) 
+        {
             RotationToVictim = 0;
             return;
         }
@@ -112,8 +119,10 @@ public class Pony: NpcWithWeapons
         var npcDir = body.GetDirToTarget(tempVictim);
         RotationToVictim = npcForward.AngleTo(npcDir);
 
-        if (weapons.isPistol || !rotateBody) {
-            if (Mathf.Rad2Deg(RotationToVictim) < 80) {
+        if (weapons.isPistol || !rotateBody) 
+        {
+            if (Mathf.Rad2Deg(RotationToVictim) < 80) 
+            {
                 return;
             }
         }
@@ -199,7 +208,8 @@ public class Pony: NpcWithWeapons
 
     public override void _Ready()
     {
-        if (IsUnicorn) {
+        if (IsUnicorn) 
+        {
             MagicParticles = GetNode<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         }
         
@@ -211,7 +221,9 @@ public class Pony: NpcWithWeapons
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if (Health <= 0) {
+        if (Health <= 0) 
+        {
+            body.StopAnim();
             return;
         }
         

@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class NpcWithWeapons : NPC
+public class NpcWithWeapons : NPC, IChest
 {
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
@@ -11,6 +11,12 @@ public class NpcWithWeapons : NPC
     [Export] public string weaponCode = "";
     [Export] public Array<string> itemCodes = new Array<string>();
     [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+
+    public ChestHandler ChestHandler { get; private set; }
+    public string ChestCode => "body";
+
+    public override bool MayInteract => base.MayInteract || Health <= 0;
+    public override string InteractionHintCode => Health > 0 ? base.InteractionHintCode : "search";
 
     private Character followTarget;
 
@@ -37,19 +43,34 @@ public class NpcWithWeapons : NPC
     public delegate void IsCame();
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
-    
+
+    public override void Interact(PlayerCamera interactor)
+    {
+        if (Health > 0)
+        {
+            base.Interact(interactor);
+        }
+        else
+        {
+            ChestHandler.Open();
+        }
+    }
 
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
+        
         saveData["followTarget"] = followTarget?.GetPath();
         saveData["weaponCode"] = weaponCode;
-        return saveData;
+        
+        return DictionaryHelper.Merge(saveData, ChestHandler.GetSaveData());
     }
 
     public override async void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        ChestHandler.LoadData(data);
+        
         if (data["weaponCode"] != null)
         {
             weaponCode = data["weaponCode"].ToString();
@@ -213,23 +234,18 @@ public class NpcWithWeapons : NPC
         if (IsImmortal) return;
 
         base.TakeDamage(damager, damage, shapeID);
-        coverTimer -= damage / 10;
+        coverTimer -= damage / 10f;
         if (string.IsNullOrEmpty(weaponCode))
         {
             StopHidingInCover();
         }
     }
 
-    protected override void AnimateDealth(Character killer, int shapeID)
+    protected override void AnimateDeath(Character killer, int shapeID)
     {
-        if (itemCodes.Count > 0 || ammoCount.Count > 0)
-        {
-            SpawnItemsBag();
-        }
-
         weapons.SetWeapon(false);
         weapons.SpawnPickableItem(weaponCode);
-        base.AnimateDealth(killer, shapeID);
+        base.AnimateDeath(killer, shapeID);
     }
 
     private void LookAtTarget(Vector3 target)
@@ -244,11 +260,9 @@ public class NpcWithWeapons : NPC
         LookAtTarget(victimPos);
     }
 
-    protected virtual void PlayStopAnim()
-    {
-    }
+    protected virtual void PlayStopAnim() { }
 
-    protected void Stop(bool MoveDown = false)
+    private void Stop(bool MoveDown = false)
     {
         PlayStopAnim();
         path = null;
@@ -261,22 +275,6 @@ public class NpcWithWeapons : NPC
         {
             Velocity = Vector3.Zero;
         }
-    }
-
-    protected void SpawnItemsBag()
-    {
-        var bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
-        var tempBag = (FurnChest) bagPrefab.Instance();
-
-        tempBag.itemCodes = itemCodes;
-        tempBag.ammoCount = ammoCount;
-
-        Node parent = GetNode("/root/Main/Scene");
-        parent.AddChild(tempBag);
-
-        tempBag.Name = "Created_" + tempBag.Name;
-        tempBag.Translation = Translation;
-        tempBag.Translate(Vector3.Up / 4f);
     }
 
     protected void UpdatePath(float delta)
@@ -296,7 +294,7 @@ public class NpcWithWeapons : NPC
         }
     }
 
-    protected void UpdateShooting(float victimDistance, float delta)
+    private void UpdateShooting(float victimDistance, float delta)
     {
         if (shootCooldown > 0)
         {
@@ -309,7 +307,7 @@ public class NpcWithWeapons : NPC
         }
     }
 
-    protected void AttackEnemy(float delta)
+    private void AttackEnemy(float delta)
     {
         if (string.IsNullOrEmpty(weaponCode))
         {
@@ -342,9 +340,7 @@ public class NpcWithWeapons : NPC
         updatePath = followTarget?.Velocity.Length() > MIN_WALKING_SPEED;
     }
 
-    protected virtual void PlayIdleAnim()
-    {
-    }
+    protected virtual void PlayIdleAnim() { }
 
     protected void SetDoorWait(float value)
     {
@@ -505,6 +501,10 @@ public class NpcWithWeapons : NPC
         {
             weapons.LoadWeapon(this, weaponCode);
         }
+
+        ChestHandler = new ChestHandler(this)
+            .SetCode(ChestCode)
+            .LoadStartItems(itemCodes, ammoCount);
 
         base._Ready();
     }
