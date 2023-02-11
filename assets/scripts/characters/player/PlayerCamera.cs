@@ -191,7 +191,7 @@ public class PlayerCamera: Camera
     private void UpdateInput()
     {
         if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
-        if (tempObject is IInteractable interactable)
+        if (tempObject is IInteractable interactable && interactable.MayInteract)
         {
             interactable.Interact(this);
         }

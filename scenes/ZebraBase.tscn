@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -35,15 +35,12 @@
 [ext_resource path="res://objects/characters/zebras/zebra-sniper.tscn" type="PackedScene" id=34]
 [ext_resource path="res://assets/scripts/triggers/StopAlarmButtonTrigger.cs" type="Script" id=35]
 [ext_resource path="res://assets/audio/background/alarm.wav" type="AudioStream" id=36]
-[ext_resource path="res://objects/characters/zebras/prefabs/zebra-shotgun12.tscn" type="PackedScene" id=37]
 [ext_resource path="res://objects/characters/zebras/prefabs/zebra-revolver32.tscn" type="PackedScene" id=38]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=39]
 [ext_resource path="res://assets/materials/props/furniture/pics/picture-pod.tres" type="Material" id=40]
 [ext_resource path="res://objects/characters/zebras/prefabs/zebra-rifle307.tscn" type="PackedScene" id=41]
-[ext_resource path="res://objects/characters/zebras/prefabs/zebra-shotgun20.tscn" type="PackedScene" id=42]
 [ext_resource path="res://objects/characters/zebras/zebra-commander.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=44]
-[ext_resource path="res://assets/scripts/triggers/StopAlarmSpawningTrigger.cs" type="Script" id=45]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=46]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
 [ext_resource path="res://objects/characters/other/dragon/dragon.tscn" type="PackedScene" id=48]
@@ -497,23 +494,23 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -105.56
 
 [node name="npc" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 10 )
-MIN_ENEMIES_COUNT_TO_SPAWN = 15
-SPAWN_COOLDOWN = 4.0
-MAX_SPAWN_COUNT = 15.0
 hasAlarm = true
 isAudi3D = true
 alarmSoundsPath = [ NodePath("../terrain/alarm") ]
-npcPrefabs = [ ExtResource( 38 ), ExtResource( 41 ), ExtResource( 37 ), ExtResource( 42 ) ]
 
 [node name="zebra-mane" parent="npc" instance=ExtResource( 32 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.187, -0.183066, -50.7126 )
 IdleAnim = "Sit"
 weaponCode = "rifle307"
+itemCodes = [ "heal-potion" ]
 
 [node name="zebra-helmet" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.8773, -0.168295, -50.8459 )
 IdleAnim = "Sit"
 weaponCode = "ak47"
+ammoCount = {
+"ammo762": 20
+}
 
 [node name="zebra-sniper" parent="npc" instance=ExtResource( 34 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -137.885, 8.09144, -136.95 )
@@ -523,6 +520,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 108.866
 
 [node name="zebra-sniper3" parent="npc" instance=ExtResource( 34 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 104.642, 8.09145, 95.0564 )
+itemCodes = [ "mana-potion" ]
 
 [node name="zebra-sniper4" parent="npc" instance=ExtResource( 34 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -133.998, 8.09145, 91.3403 )
@@ -531,16 +529,55 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -133.998, 8.09145, 91.3403 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.0165, 0, -14.8073 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/1"), NodePath("../../terrain/patrolPoints/1/2"), NodePath("../../terrain/patrolPoints/1/3") ]
 weaponCode = "ak47"
+ammoCount = {
+"ammo762": 15
+}
 
 [node name="zebra-helmet2" parent="npc" instance=ExtResource( 41 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9263, 0, -8.42519 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/2"), NodePath("../../terrain/patrolPoints/2/3"), NodePath("../../terrain/patrolPoints/2/4") ]
 weaponCode = "shotgun12"
+ammoCount = {
+"ammo12": 6
+}
+
+[node name="zebra-helmet3" parent="npc" instance=ExtResource( 41 )]
+transform = Transform( -0.036417, 0, -0.999337, 0, 1, 0, 0.999337, 0, -0.036417, 2.8914, -90.8493, 21.8432 )
+weaponCode = "shotgun12"
+ammoCount = {
+"ammo12": 6
+}
+
+[node name="zebra-helmet4" parent="npc" instance=ExtResource( 41 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5967, -97.3645, 27.6017 )
+IdleAnim = "Sit"
+weaponCode = "shotgun12"
+ammoCount = {
+"ammo12": 6
+}
 
 [node name="zebra-mane3" parent="npc" instance=ExtResource( 38 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2907, 0, -18.5677 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/3"), NodePath("../../terrain/patrolPoints/3/4"), NodePath("../../terrain/patrolPoints/3/5"), NodePath("../../terrain/patrolPoints/3/4") ]
 weaponCode = "rifle307"
+ammoCount = {
+"ammo307": 8
+}
+
+[node name="zebra-mane4" parent="npc" instance=ExtResource( 38 )]
+transform = Transform( -0.130993, 0, 0.991383, 0, 1, 0, -0.991383, 0, -0.130993, -51.4939, 5.72205e-06, -88.9018 )
+weaponCode = "shotgun12"
+ammoCount = {
+"ammo12": 10
+}
+
+[node name="zebra-mane5" parent="npc" instance=ExtResource( 38 )]
+transform = Transform( -0.999935, 0, 0.0113619, 0, 1, 0, -0.0113619, 0, -0.999935, 88.9561, -101.296, 50.447 )
+weaponCode = "shotgun12"
+itemCodes = [ "apple" ]
+ammoCount = {
+"ammo12": 10
+}
 
 [node name="zebra-commander" parent="npc" instance=ExtResource( 43 )]
 transform = Transform( -0.0159865, 0, 0.999872, 0, 1, 0, -0.999872, 0, -0.0159865, 32.487, -90.8212, 45.0021 )
@@ -551,64 +588,6 @@ itemCodes = [ "heal-potion", "mana-potion" ]
 ammoCount = {
 "ammo762": 12
 }
-
-[node name="spawnPoints" type="Node" parent="."]
-
-[node name="1" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7166, 0.116381, -85.257 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="2" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2735, 0.116381, -85.0283 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="3" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15175, 0.116381, -85.0283 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="4" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7689, 0.116379, -99.9269 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="5" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97397, 0.116379, -99.9269 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="6" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.6474, 0.116379, -14.914 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="7" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.8989, 0.116379, -1.71431 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="8" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.7152, 0.116379, 96.0058 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="9" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -103.998, 0.116375, 7.14612 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="10" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -111.453, 0.116374, -47.1921 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="11" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.283834, -90.6061, 23.7045 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="12" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1567, -99.1132, 33.3285 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="13" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.4179, -99.1132, 83.4926 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
-
-[node name="14" type="VisibilityNotifier" parent="spawnPoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.3511, 0.116381, -99.7819 )
-aabb = AABB( -1, 0.5, -1, 2, 2, 2 )
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 26 )
@@ -1502,7 +1481,6 @@ otherDoorPath = NodePath("../../../terrain/props/houses/storage2/DoorTeleport3")
 
 [node name="cp" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.109, -100, 33.956 )
-visible = false
 script = ExtResource( 26 )
 
 [node name="walls" type="StaticBody" parent="rooms/cp"]
@@ -2026,12 +2004,6 @@ changeStateToIdle = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.370419, 2.78024, -5.53674 )
 shape = SubResource( 41 )
 
-[node name="stopAlarmSpawning" type="Node" parent="triggers" groups=["savable"]]
-script = ExtResource( 45 )
-otherTriggerPaths = [ NodePath("../dragonBegin") ]
-disactiveTriggerPaths = [  ]
-managerPath = NodePath("../../npc")
-
 [node name="dragonBegin" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1169, 14.4651, 0.551914 )
 script = ExtResource( 97 )
@@ -2169,7 +2141,6 @@ ammoCount = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
 
 [node name="mesh" type="NavigationMeshInstance" parent="Navigation"]
-visible = false
 navmesh = SubResource( 43 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -2183,7 +2154,6 @@ bus = "Music"
 [connection signal="AlarmEnded" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ false ]]
 [connection signal="AlarmStarted" from="npc" to="triggers/commanderAlarmDialogue" method="_on_activate_trigger" flags=6]
 [connection signal="AlarmStarted" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ true ]]
-[connection signal="Die" from="npc/zebra-commander" to="triggers/stopAlarmSpawning" method="_on_activate_trigger"]
 [connection signal="body_entered" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_entered"]
 [connection signal="body_exited" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_exited"]
 [connection signal="body_entered" from="triggers/blockAlarmArea" to="triggers/blockAlarmArea" method="_on_body_entered"]

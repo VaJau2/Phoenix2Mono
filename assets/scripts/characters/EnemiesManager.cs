@@ -6,28 +6,21 @@ using Godot.Collections;
 
 public class EnemiesManager : Node, ISavable
 {
-    [Export] private int MIN_ENEMIES_COUNT_TO_SPAWN = 14;
-    [Export] private float SPAWN_COOLDOWN = 5f;
-    [Export] private float MAX_SPAWN_COUNT = 10;
-    private const int MIN_HEALTH_TO_SPAWN = 20;
-    private const float SPAWN_MIN_DIST = 15f;
-    private const float SPAWN_MAX_DIST = 60f;
-
+    [Export] private float TRIGGER_COOLDOWN = 5f;
+    private const float PLAYER_MIN_DIST = 15f;
+    private const float PLAYER_MAX_DIST = 60f;
     [Export] public bool hasAlarm;
     [Export] public bool isAudi3D;
     [Export] public List<NodePath> alarmSoundsPath;
-    [Export] private List<PackedScene> npcPrefabs;
 
     public List<NPC> enemies = new List<NPC>();
-    public bool maySpawn = true;
-    public bool allEnemiesSpawned;
+    
     public bool isAlarming { get; private set; }
     Player player => Global.Get().player;
     private List<AudioPlayerCommon> audi;
-    private List<VisibilityNotifier> spawnPoints;
-    private float spawnCooldown;
-    private int spawnedCount;
     
+    private float triggerCooldown;
+
     [Signal] public delegate void AlarmStarted();
     [Signal] public delegate void AlarmEnded();
 
@@ -38,7 +31,6 @@ public class EnemiesManager : Node, ISavable
     private void StartAlarm()
     {
         if (!hasAlarm) return;
-        if (allEnemiesSpawned) return;
         if (isAlarming) return;
         foreach (var tempAudi in audi)
         {
@@ -65,56 +57,20 @@ public class EnemiesManager : Node, ISavable
     private bool PositionIsCloseToPlayer(Vector3 position)
     {
         var tempDistance = player.GlobalTransform.origin.DistanceTo(position);
-        return tempDistance > SPAWN_MIN_DIST && tempDistance < SPAWN_MAX_DIST;
+        return tempDistance > PLAYER_MIN_DIST && tempDistance < PLAYER_MAX_DIST;
     }
 
-    private VisibilityNotifier GetRandomSpawnPoint()
-    {
-        return (from tempSpawner in spawnPoints
-            where PositionIsCloseToPlayer(tempSpawner.GlobalTransform.origin) && !tempSpawner.IsOnScreen()
-            select tempSpawner).FirstOrDefault();
-    }
 
     private void MakeCloseEnemyAttack()
     {
         foreach (var enemy in enemies.Where(enemy => 
-            enemy.state == NPCState.Idle && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
+            enemy.state == NPCState.Idle 
+            && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
         )
         {
             enemy.tempVictim = player;
             enemy.SetState(NPCState.Attack);
             break;
-        }
-    }
-
-    private void SpawnEnemy(VisibilityNotifier point)
-    {
-        if (point == null) return;
-        if (point.IsOnScreen()) return;
-        if (npcPrefabs.Count == 0) return;
-        if (player.Health < MIN_HEALTH_TO_SPAWN) return;
-
-        Random rand = new Random();
-        int randNum = rand.Next(npcPrefabs.Count);
-        PackedScene npcPrefab = npcPrefabs[randNum];
-
-        if (!(npcPrefab.Instance() is NpcWithWeapons npcInstance)) return;
-        npcInstance.Name = "Created_" + npcInstance.Name;
-        GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-        npcInstance.GlobalTransform =
-            Global.setNewOrigin(npcInstance.GlobalTransform, point.GlobalTransform.origin);
-        npcInstance.Rotation = new Vector3(0, point.Rotation.y, 0);
-        npcInstance.SetNewStartPos(point.GlobalTransform.origin);
-        npcInstance.myStartRot = new Vector3(0, point.Rotation.y, 0);
-        npcInstance.tempVictim = player;
-        npcInstance.SetState(NPCState.Attack);
-
-        enemies.Add(npcInstance);
-
-        spawnedCount++;
-        if (spawnedCount >= MAX_SPAWN_COUNT)
-        {
-            allEnemiesSpawned = true;
         }
     }
 
@@ -156,35 +112,21 @@ public class EnemiesManager : Node, ISavable
         {
             audi.Add(new AudioPlayerCommon(isAudi3D, tempAlarmPath, this));
         }
-
-        //спавнеры врагов
-        spawnPoints = new List<VisibilityNotifier>();
-        foreach (Node temp in GetNode<Node>("/root/Main/Scene/spawnPoints").GetChildren())
-        {
-            if (!(temp is VisibilityNotifier notifier)) continue;
-            spawnPoints.Add(notifier);
-        }
     }
 
     public override void _Process(float delta)
     {
         if (!isAlarming) return;
-        if (!maySpawn) return;
-        if (allEnemiesSpawned) return;
 
-        if (spawnCooldown > 0)
+        if (triggerCooldown > 0)
         {
-            spawnCooldown -= delta;
+            triggerCooldown -= delta;
             return;
         }
-
-        if (enemies.Count >= MIN_ENEMIES_COUNT_TO_SPAWN) return;
-
-        var spawnPoint = GetRandomSpawnPoint();
-        SpawnEnemy(spawnPoint);
+        
         //уже наспавненные враги тоже будут атаковать
         MakeCloseEnemyAttack();
-        spawnCooldown = SPAWN_COOLDOWN;
+        triggerCooldown = TRIGGER_COOLDOWN;
     }
 
     public Dictionary GetSaveData()
@@ -192,32 +134,17 @@ public class EnemiesManager : Node, ISavable
         return new Dictionary
         {
             {"isAlarming", isAlarming},
-            {"spawnCooldown", spawnCooldown},
-            {"maySpawn", maySpawn},
-            {"allEnemiesSpawned", allEnemiesSpawned},
-            {"alarmTimer", spawnedCount}
         };
     }
 
     public void LoadData(Dictionary data)
     {
-        maySpawn = Convert.ToBoolean(data["maySpawn"]);
-        if (data.Contains("allEnemiesSpawned"))
-        {
-            allEnemiesSpawned = Convert.ToBoolean(data["allEnemiesSpawned"]);
-        }
-        if (data.Contains("alarmTimer"))
-        {
-            spawnedCount = Convert.ToInt32(data["alarmTimer"]);
-        }
-
         if (!hasAlarm) return;
         if (!data.Contains("isAlarming")) return;
 
         var alarming = Convert.ToBoolean(data["isAlarming"]);
         if (!alarming) return;
-
-        spawnCooldown = Convert.ToSingle(data["spawnCooldown"]);
+        
         StartAlarm();
     }
 }

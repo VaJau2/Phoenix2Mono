@@ -220,12 +220,12 @@ public abstract class NPC : Character, IInteractable
         if (hasSkeleton)
         {
             skeleton.PhysicalBonesStartSimulation();
-        }
-
-        foreach (Node node in GetChildren())
-        {
-            if (node.Name == "Armature") continue;
-            node.QueueFree();
+            
+            foreach (Node node in GetChildren())
+            {
+                if (node.Name == "Armature") continue;
+                node.QueueFree();
+            }
         }
     }
 

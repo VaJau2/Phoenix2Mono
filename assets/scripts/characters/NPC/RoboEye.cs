@@ -150,13 +150,18 @@ public class RoboEye : NPC
     
     private void UpdateAI(float delta)
     {
-        switch (state) {
+        switch (state) 
+        {
             case NPCState.Idle:
-                if (patrolPoints == null || patrolPoints.Length == 0) {
-                    if (!cameToPlace) {
+                if (patrolPoints == null || patrolPoints.Length == 0) 
+                {
+                    if (!cameToPlace)
+                    {
                         GoTo(myStartPos, COME_DISTANCE, false);
                         
-                    } else {
+                    } 
+                    else 
+                    {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
                         Rotation = new Vector3(
                             Rotation.x,
@@ -165,16 +170,25 @@ public class RoboEye : NPC
                         );
                         anim.Play(IdleAnim);
                     }
-                } else {
-                    if (patrolWaitTimer > 0) {
+                } 
+                else 
+                {
+                    if (patrolWaitTimer > 0)
+                    {
                         patrolWaitTimer -= delta;
-                    } else {
+                    } 
+                    else 
+                    {
                         GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
                         
-                        if (cameToPlace) {
-                            if (patrolI < patrolPoints.Length - 1) {
+                        if (cameToPlace) 
+                        {
+                            if (patrolI < patrolPoints.Length - 1)
+                            {
                                 patrolI += 1;
-                            } else {
+                            } 
+                            else 
+                            {
                                 patrolI = 0;
                             }
                             patrolWaitTimer = PATROL_WAIT;
@@ -184,7 +198,8 @@ public class RoboEye : NPC
 
                 break;
             case NPCState.Attack:
-                if (tempVictim.Health <= 0) {
+                if (tempVictim.Health <= 0) 
+                {
                     SetState(NPCState.Idle);
                     return;
                 }
@@ -193,13 +208,19 @@ public class RoboEye : NPC
                 
                 break;
             case NPCState.Search:
-                if (cameToPlace) {
-                    if (searchTimer > 0) {
+                if (cameToPlace) 
+                {
+                    if (searchTimer > 0) 
+                    {
                         searchTimer -= delta;
-                    } else {
+                    } 
+                    else 
+                    {
                         SetState(NPCState.Idle);
                     }
-                } else {
+                }
+                else 
+                {
                     GoTo(lastSeePos, COME_DISTANCE);
                 }
                 break;

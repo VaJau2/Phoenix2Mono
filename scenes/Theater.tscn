@@ -1486,7 +1486,7 @@ weaponCode = "shotgun20"
 relation = 1
 itemCodes = [ "dash" ]
 ammoCount = {
-"ammo10": 13
+"ammo20": 10
 }
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
 
@@ -1500,7 +1500,7 @@ movePointPath = NodePath("../position2/movePoint")
 weaponCode = "shotgun12"
 relation = 1
 ammoCount = {
-"ammo10": 13
+"ammo12": 10
 }
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
 
@@ -1514,6 +1514,7 @@ movePointPath = NodePath("../position1/movePoint")
 StartHealth = 120
 weaponCode = "shotgun20"
 relation = 1
+itemCodes = [ "heal-potion" ]
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
 
 [node name="position1" type="Spatial" parent="triggers/spawners"]
@@ -1624,8 +1625,9 @@ spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
 weaponCode = "shotgun20"
 relation = 1
+itemCodes = [ "med-x" ]
 ammoCount = {
-"ammoEnergy": 12
+"ammo20": 4
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/corridorSpawner3"]
@@ -1648,6 +1650,7 @@ spawnPointPath = NodePath("positionRedPunch")
 StartHealth = 120
 weaponCode = "pistol10-silenced"
 relation = 2
+itemCodes = [ "mana-potion" ]
 triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]

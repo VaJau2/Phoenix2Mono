@@ -71,18 +71,22 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
             eyeInstance.Connect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
             eyes.Add(eyeInstance);
         }
-
-        //спавн сумки
-        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
-        bagInstance.Name = "Created_" + bagInstance.Name;
-        bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
-        GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
-        Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
-        bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
-        bag = bagInstance;
+        
+        SpawnBag();
         
         player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         connected = true;
+    }
+
+    private void SpawnBag()
+    {
+        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
+        bagInstance.Name = "Created_" + bagInstance.Name;
+        GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
+        bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
+        Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
+        bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
+        bag = bagInstance;
     }
 
     public void _on_found_enemy()
