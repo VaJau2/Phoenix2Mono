@@ -55,9 +55,6 @@ public class FurnChest: FurnBase, ISavable, IChest {
 
         if (Name.BeginsWith("Created_"))
         {
-            saveData.Add("parent", GetParent().Name);
-            saveData.Add("fileName", Filename);
-            
             saveData.Add("pos_x", Transform.origin.x);
             saveData.Add("pos_y", Transform.origin.y);
             saveData.Add("pos_z", Transform.origin.z);

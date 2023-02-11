@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -7,6 +8,8 @@ public abstract class NPC : Character, IInteractable
 {
     const int RAGDOLL_IMPULSE = 1000;
     const float SEARCH_TIMER = 12f;
+    readonly string[] SKIP_SIGNALS = {"tree_entered", "tree_exiting"};
+
     protected float ROTATION_SPEED = 0.15f;
     protected float GRAVITY = 0;
     protected float PATROL_WAIT = 4f;
@@ -160,6 +163,7 @@ public abstract class NPC : Character, IInteractable
                 player.Stealth.RemoveSeekEnemy(this);
             }
 
+            MakeDead();
             AnimateDeath(damager, shapeID);
         }
     }
@@ -200,7 +204,7 @@ public abstract class NPC : Character, IInteractable
         audi.Play();
     }
 
-    protected virtual void AnimateDeath(Character killer, int shapeID)
+    private void MakeDead()
     {
         if (GetParent() is EnemiesManager manager)
         {
@@ -210,13 +214,27 @@ public abstract class NPC : Character, IInteractable
             }
         }
         
-        PlayRandomSound(dieSounds);
         CollisionLayer = 0;
         CollisionMask = 0;
+        
         if (hasSkeleton)
         {
-            
             skeleton.PhysicalBonesStartSimulation();
+        }
+
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "Armature") continue;
+            node.QueueFree();
+        }
+    }
+
+    protected virtual void AnimateDeath(Character killer, int shapeID)
+    {
+        PlayRandomSound(dieSounds);
+        
+        if (hasSkeleton)
+        {
             Vector3 dir = Translation.DirectionTo(killer.Translation);
             float force = tempShotgunShot ? RAGDOLL_IMPULSE * 1.5f : RAGDOLL_IMPULSE;
 
@@ -288,20 +306,29 @@ public abstract class NPC : Character, IInteractable
         lastSeePos = data["lastSeePos"] as Vector3? ?? default;
         relation = (Relation)Enum.Parse(typeof(Relation), data["relation"].ToString());
         aggressiveAgainstPlayer = Convert.ToBoolean(data["aggressiveAgainstPlayer"]);
-        myStartPos = new Vector3(
-            Convert.ToSingle(data["myStartPos_x"]), 
-            Convert.ToSingle(data["myStartPos_y"]), 
-            Convert.ToSingle(data["myStartPos_z"])
-        );
-        myStartRot = new Vector3(
-            Convert.ToSingle(data["myStartRot_x"]), 
-            Convert.ToSingle(data["myStartRot_y"]), 
-            Convert.ToSingle(data["myStartRot_z"])
-        );
+        myStartPos = SaveToVector3(data, "myStartPos");
+        myStartRot = SaveToVector3(data, "myStartRot");
         IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
         WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
         ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
+
+        if (hasSkeleton && Health <= 0)
+        {
+            foreach (Spatial bone in skeleton.GetChildren())
+            {
+                if (!(bone is PhysicalBone)) continue;
+
+                Vector3 newPos = SaveToVector3(data, $"rb_{bone.Name}_pos");
+                Vector3 newRot = SaveToVector3(data, $"rb_{bone.Name}_rot");
+                Vector3 oldScale = bone.Scale;
+
+                Basis newBasis = new Basis(newRot);
+                Transform newTransform = new Transform(newBasis, newPos);
+                bone.GlobalTransform = newTransform;
+                bone.Scale = oldScale;
+            }
+        }
 
         if (data["signals"] is Godot.Collections.Array signals)
         {
@@ -346,7 +373,7 @@ public abstract class NPC : Character, IInteractable
 
         if (Health <= 0)
         {
-            AnimateDeath(this, 0);
+            MakeDead();
         }
     }
 
@@ -361,14 +388,9 @@ public abstract class NPC : Character, IInteractable
         saveData["idleAnim"] = IdleAnim;
         saveData["walkSpeed"] = WalkSpeed;
 
-        saveData["myStartPos_x"] = myStartPos.x;
-        saveData["myStartPos_y"] = myStartPos.y;
-        saveData["myStartPos_z"] = myStartPos.z;
-        
-        saveData["myStartRot_x"] = myStartRot.x;
-        saveData["myStartRot_y"] = myStartRot.y;
-        saveData["myStartRot_z"] = myStartRot.z;
-        
+        DictionaryHelper.Merge(ref saveData, Vector3ToSave(myStartPos, "myStartPos"));
+        DictionaryHelper.Merge(ref saveData, Vector3ToSave(myStartRot, "myStartRot"));
+
         saveData["dialogueCode"] = dialogueCode;
         saveData["showObjects"] = objectsChangeActive;
         saveData["ignoreDamager"] = ignoreDamager;
@@ -384,6 +406,16 @@ public abstract class NPC : Character, IInteractable
             saveData["patrolPaths"] = patrolPaths;
         }
 
+        if (hasSkeleton && Health <= 0)
+        {
+            foreach (Spatial bone in skeleton.GetChildren())
+            {
+                if (!(bone is PhysicalBone)) continue;
+                DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.origin, $"rb_{bone.Name}_pos"));
+                DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.basis.GetEuler(), $"rb_{bone.Name}_rot"));
+            }
+        }
+
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())
         {
@@ -395,13 +427,15 @@ public abstract class NPC : Character, IInteractable
             foreach (var connectionData in connectionList)
             {
                 if (!(connectionData is Dictionary connectionDict)) continue;
-                if (!(connectionDict["target"] is Node)) continue;
+                if (!(connectionDict["target"] is Node target)) continue;
+                var signalName = signalDict["name"].ToString();
+                if (SKIP_SIGNALS.Contains(signalName)) continue;
 
                 signals.Add(new Dictionary
                 {
-                    {"signal", signalDict["name"].ToString()},
+                    {"signal", signalName},
                     {"method", connectionDict["method"].ToString()},
-                    {"target_path", (connectionDict["target"] as Node)?.GetPath()},
+                    {"target_path", target.GetPath()},
                     {"binds", connectionDict["binds"]}
                 });
             }

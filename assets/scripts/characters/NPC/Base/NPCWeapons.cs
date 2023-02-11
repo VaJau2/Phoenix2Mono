@@ -85,6 +85,7 @@ public class NPCWeapons : Node
         Spatial tempParent = npcWithWeapons.GetWeaponParent(isPistol);
         PackedScene itemPrefab = GD.Load<PackedScene>(path);
         var item = (Spatial)itemPrefab.Instance();
+        item.Name = "Created_" + npc.Name + "s_" + item.Name;
         var itemsParent = GetNode<Node>("/root/Main/Scene");
         itemsParent.AddChild(item);
         item.GlobalTransform = Global.setNewOrigin(item.GlobalTransform, tempParent.GlobalTransform.origin);

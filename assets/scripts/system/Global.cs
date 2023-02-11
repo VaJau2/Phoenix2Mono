@@ -22,10 +22,7 @@ public class Global {
 
     public bool paused;
     public bool mainMenuFirstTime = true;
-
-    public static event PauseChangeEvent OnPauseChange;
-    public delegate void PauseChangeEvent();
-
+    
     public Player player;
     public Race playerRace = Race.Earthpony;
 
@@ -33,8 +30,10 @@ public class Global {
     
     //массив файлов сохранений
     public static List<FileTableLine> saveFilesArray = new List<FileTableLine>();
-
     public static Array<string> deletedObjects { get; private set; } = new Array<string>();
+
+    private static Dictionary jsonCache;
+    private static string jsonCachePath;
 
     public static void AddDeletedObject(string name)
     {
@@ -78,18 +77,19 @@ public class Global {
         self.GetTree().Paused = pause;
         paused = pause;
         Input.MouseMode = pause ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
-        
-        OnPauseChange?.Invoke();
     }
 
     public void SetPauseMusic(bool pause)
     {
-        if (player == null) {
+        if (player == null) 
+        {
             return;
         }
 
-        foreach(var tempObj in player.GetTree().GetNodesInGroup("unpaused_sound")) {
-            if (tempObj is AudioStreamPlayer tempAudi) {
+        foreach(var tempObj in player.GetTree().GetNodesInGroup("unpaused_sound")) 
+        {
+            if (tempObj is AudioStreamPlayer tempAudi) 
+            {
                 tempAudi.StreamPaused = pause;
             }
         }
@@ -116,7 +116,8 @@ public class Global {
 
     public static Race RaceFromString(string raceString) 
     {
-        switch(raceString) {
+        switch(raceString) 
+        {
             case "earthpony": return Race.Earthpony;
             case "pegasus": return Race.Pegasus;
             case "unicorn": return Race.Unicorn;
@@ -126,7 +127,8 @@ public class Global {
 
     public static string RaceToString(Race race)
     {
-        switch(race) {
+        switch(race) 
+        {
             case Race.Earthpony: return "earthpony";
             case Race.Pegasus:   return "pegasus";
             case Race.Unicorn:   return "unicorn";
@@ -136,21 +138,32 @@ public class Global {
 
     public static Dictionary loadJsonFile(string filePath)
     {
+        if (jsonCachePath == filePath)
+        {
+            return jsonCache;
+        }
+        
         File tempFile = new File();
         string path = "res://" + filePath;
 
         Error fileError = tempFile.Open(path, File.ModeFlags.Read);
-        if (fileError == Error.Ok) {
-            var text_json = tempFile.GetAsText();
+        if (fileError == Error.Ok) 
+        {
+            var textJson = tempFile.GetAsText();
             tempFile.Close();
-            var result_json = JSON.Parse(text_json);
+            var resultJson = JSON.Parse(textJson);
 
-            if (result_json.Error == Error.Ok) {  
-                return (Dictionary)result_json.Result;
+            if (resultJson.Error == Error.Ok) 
+            {  
+                jsonCachePath = filePath;
+                jsonCache = (Dictionary)resultJson.Result;
+                return jsonCache;
             }
-            GD.PrintErr("parse json (" + filePath  + ") error: " + result_json.ErrorString + ", in line: " + result_json.ErrorLine);
+            
+            GD.PrintErr("parse json (" + filePath  + ") error: " + resultJson.ErrorString + ", in line: " + resultJson.ErrorLine);
             return null;
         }
+        
         GD.PrintErr("error loading JSON file in: " + path);
         return null;
     }
@@ -292,16 +305,6 @@ public class Global {
     public static void DeleteSaveFile(string fileName)
     {
         new Directory().Remove("user://saves/" + fileName);
-    }
-
-    public static Dictionary MergeDictionaries(Dictionary dicA, Dictionary dicB)
-    {
-        foreach (string bKey in dicB.Keys)
-        {
-            dicA.Add(bKey, dicB[bKey]);
-        }
-
-        return dicA;
     }
 }
 

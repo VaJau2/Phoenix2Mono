@@ -44,6 +44,6 @@ public class MrHandyTrader: MrHandy, ITrader
     {
         Dictionary saveData = base.GetSaveData();
         Dictionary tradeSaveData = BaseTrading.GetSaveData(this);
-        return Global.MergeDictionaries(saveData, tradeSaveData);
+        return DictionaryHelper.Merge(saveData, tradeSaveData);
     }
 }

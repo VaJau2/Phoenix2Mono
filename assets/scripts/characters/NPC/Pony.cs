@@ -55,6 +55,12 @@ public class Pony: NpcWithWeapons
                 break;
         }
     }
+
+    protected override void AnimateDeath(Character killer, int shapeID)
+    {
+        PlayStopAnim();
+        base.AnimateDeath(killer, shapeID);
+    }
     
     public override Spatial GetWeaponParent(bool isPistol)
     {
@@ -223,7 +229,6 @@ public class Pony: NpcWithWeapons
         base._Process(delta);
         if (Health <= 0) 
         {
-            body.StopAnim();
             return;
         }
         

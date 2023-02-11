@@ -208,8 +208,15 @@ public class SaveMenu : Control
         {
             if (!(tempNode is ISavable savableNode)) continue;
             Dictionary tempData = savableNode.GetSaveData();
+            bool isCreated = tempNode.Name.BeginsWith("Created_");
+
+            if (isCreated)
+            {
+                tempData.Add("parent", tempNode.GetParent().Name);
+                tempData.Add("fileName", tempNode.Filename);
+            }
             
-            if (tempNode.Name.BeginsWith("Created_") || tempNode.Name == "Player")
+            if (isCreated || tempNode.Name == "Player")
             {
                 objectsData.Add(tempNode.Name, tempData);
             }
