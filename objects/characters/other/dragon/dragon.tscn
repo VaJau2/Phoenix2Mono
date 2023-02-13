@@ -1631,7 +1631,6 @@ bone_name = "body"
 layers = 8
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = null
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 3 )
@@ -1649,18 +1648,21 @@ unit_size = 50.0
 max_db = 5.0
 autoplay = true
 max_distance = 1500.0
+bus = "Sound"
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.0207622, 0.999784, 0, -0.999784, 0.0207622, 0.0218654, 0.216351, 1.47433 )
 unit_size = 90.0
 max_db = 6.0
 max_distance = 1500.0
+bus = "Sound"
 
 [node name="audi-fire" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.0207622, 0.999784, 0, -0.999784, 0.0207622, 0.0218654, 0.216351, 1.47433 )
 unit_size = 95.0
 max_db = 6.0
 max_distance = 1500.0
+bus = "Sound"
 
 [node name="shape-head" type="CollisionShape" parent="."]
 transform = Transform( 3.5, 4.45954e-16, -2.63014e-16, 3.21344e-16, -0.477074, 3.46734, 4.05942e-16, -3.46734, -0.477074, 0.0218654, -1.09923, -19.4676 )

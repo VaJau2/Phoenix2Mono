@@ -62,4 +62,4 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
+bus = "Sound"

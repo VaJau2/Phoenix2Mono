@@ -9,7 +9,6 @@ public class RoboEye : NPC
     public bool IsActive { get; private set; } = true;
     
     private AnimationPlayer anim;
-    private Navigation navigation;
     private bool cameToPlace;
     private Vector3[] path;
     private int pathI;
@@ -117,7 +116,7 @@ public class RoboEye : NPC
 
         if (path == null)
         {
-            path = navigation.GetSimplePath(pos, place, true);
+            path = NavigationServer.MapGetPath(GetWorld().NavigationMap, pos, place, true);
             pathI = 0;
         }
 
@@ -231,7 +230,6 @@ public class RoboEye : NPC
     {
         base._Ready();
         
-        navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         anim = GetNode<AnimationPlayer>("anim");
         anim.Play(IdleAnim);
     }

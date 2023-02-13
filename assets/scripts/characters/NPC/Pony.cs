@@ -28,7 +28,8 @@ public class Pony: NpcWithWeapons
     
     public override void SetState(NPCState newState)
     {
-        if (Health <= 0) {
+        if (Health <= 0) 
+        {
             return;
         }
 

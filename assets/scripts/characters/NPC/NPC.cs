@@ -54,7 +54,7 @@ public abstract class NPC : Character, IInteractable
     private DialogueMenu dialogueMenu;
     public Character tempVictim;
     protected Vector3 lastSeePos;
-    protected float searchTimer = 0;
+    protected float searchTimer;
     private float deadTimer = 5f;
 
     protected bool CloseToPoint = false;

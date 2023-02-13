@@ -14,5 +14,6 @@ stream = ExtResource( 1 )
 unit_db = 1.0
 unit_size = 4.0
 max_db = 2.0
+bus = "Sound"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -46,3 +46,4 @@ shape = SubResource( 2 )
 unit_db = 5.0
 unit_size = 2.0
 max_distance = 500.0
+bus = "Sound"

@@ -25,9 +25,6 @@ public class RandomItems : Node
         RandomNumberGenerator rand = new RandomNumberGenerator();
         rand.Randomize();
 
-        chestItems.Clear();
-        chestAmmo.Clear();
-
         int tempMax = maxItems != 0 ? maxItems : maxItemsCount;
         int itemsCount = rand.RandiRange(1, tempMax); //специально для плечачника не 0, а 1
 

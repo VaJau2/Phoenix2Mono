@@ -323,6 +323,7 @@ anims/walk = SubResource( 12 )
 stream = ExtResource( 6 )
 unit_size = 8.0
 max_distance = 950.0
+bus = "Sound"
 
 [node name="seekArea" type="Area" parent="."]
 monitorable = false

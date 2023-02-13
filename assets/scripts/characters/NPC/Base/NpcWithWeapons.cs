@@ -20,10 +20,9 @@ public class NpcWithWeapons : NPC, IChest
 
     private Character followTarget;
 
-    private Navigation navigation;
-    protected bool cameToPlace = false;
-    private bool updatePath = false;
-    private float updatePathTimer = 0;
+    protected bool cameToPlace;
+    private bool updatePath;
+    private float updatePathTimer;
     protected Vector3[] path;
     protected int pathI;
 
@@ -31,12 +30,12 @@ public class NpcWithWeapons : NPC, IChest
     private CoversManager covers;
     protected Cover tempCover;
     protected Vector3 tempCoverPlace;
-    public float coverTimer = 0;
+    public float coverTimer;
 
-    private float shootCooldown = 0;
+    private float shootCooldown;
     protected float doorWait;
     public bool IsHidingInCover => tempCover != null;
-    public bool InCover = false;
+    public bool InCover;
     protected bool stopAreaEntered;
 
     [Signal]
@@ -106,7 +105,6 @@ public class NpcWithWeapons : NPC, IChest
             StopHidingInCover();
         }
         
-
         switch (newState)
         {
             case NPCState.Idle:
@@ -169,7 +167,7 @@ public class NpcWithWeapons : NPC, IChest
 
         if (path == null)
         {
-            path = navigation.GetSimplePath(pos, place, true);
+            path = NavigationServer.MapGetPath(GetWorld().NavigationMap, pos, place, true);
             pathI = 0;
         }
 
@@ -379,11 +377,7 @@ public class NpcWithWeapons : NPC, IChest
                     else
                     {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
-                        Rotation = new Vector3(
-                            Rotation.x,
-                            myStartRot.y,
-                            Rotation.z
-                        );
+                        Rotation = new Vector3(0, myStartRot.y, 0);
                         PlayIdleAnim();
                     }
                 }
@@ -494,7 +488,6 @@ public class NpcWithWeapons : NPC, IChest
 
     public override void _Ready()
     {
-        navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         weapons = GetNode<NPCWeapons>("weapons");
         if (weaponCode != "")

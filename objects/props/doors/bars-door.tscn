@@ -1,13 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=1]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/materials/props/metal.material" type="Material" id=5]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=6]
-[ext_resource path="res://assets/scripts/furns/furn-door.gd" type="Script" id=7]
-
+[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=7]
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "bars-door"
@@ -110,10 +105,6 @@ extents = Vector3( 2.28331, 2.32394, 1.33791 )
 [node name="bars-door" type="StaticBody"]
 physics_material_override = ExtResource( 6 )
 script = ExtResource( 7 )
-openSound = ExtResource( 1 )
-closeSound = ExtResource( 2 )
-closed_sound = ExtResource( 3 )
-open_with_key_sound = ExtResource( 4 )
 
 [node name="bars-door" type="MeshInstance" parent="."]
 transform = Transform( 4.379, 0, 0, 0, 4.379, 0, 0, 0, 4.379, -0.0394928, 0.791722, -3.67371 )
@@ -129,6 +120,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 3 )
@@ -143,5 +135,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02012, 0.707591, -1.37034 )
 [node name="shape" type="CollisionShape" parent="other-side"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212071, 2.14918, 0 )
 shape = SubResource( 8 )
+
 [connection signal="body_entered" from="other-side" to="." method="_on_otherside_body_entered"]
 [connection signal="body_exited" from="other-side" to="." method="_on_otherside_body_exited"]

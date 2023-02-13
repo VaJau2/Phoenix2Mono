@@ -60,6 +60,7 @@ shape = SubResource( 2 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_size = 5.0
+bus = "Sound"
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.347872, 0.0979506 )

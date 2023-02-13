@@ -131,9 +131,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 100, 0 ) ]
 }
 
-[node name="cabinet-books" type="StaticBody" groups=[
-"savable",
-]]
+[node name="cabinet-books" type="StaticBody" groups=["savable"]]
 script = ExtResource( 6 )
 OpenSound = ExtResource( 7 )
 CloseSound = ExtResource( 8 )
@@ -179,6 +177,7 @@ unit_db = 5.0
 unit_size = 2.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 7 )

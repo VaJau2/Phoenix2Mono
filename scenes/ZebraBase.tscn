@@ -684,6 +684,7 @@ crouchingSound = ExtResource( 22 )
 [node name="sound" type="AudioStreamPlayer3D" parent="terrain/bushes"]
 attenuation_model = 3
 unit_size = 4.0
+bus = "Sound"
 
 [node name="fence" type="GridMap" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.311, -0.605, -21.8162 )
@@ -793,6 +794,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KP/DoorTeleport"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.38924, 6.88347, 3.73178 )
@@ -817,6 +819,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KP/DoorTeleport2"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.320581, 2.75925, 0.838511 )
@@ -844,6 +847,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/houses/KPP/DoorTeleport3"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.223244, 2.08163, 1.58583 )
@@ -1194,6 +1198,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.656006, -15.4919 )
 stream = ExtResource( 7 )
 volume_db = -2.0
 autoplay = true
+bus = "Sound"
 script = SubResource( 17 )
 
 [node name="alarm" type="AudioStreamPlayer3D" parent="terrain"]
@@ -1768,6 +1773,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cp/DoorTeleport"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.0185547, 2.829, -0.0865974 )
@@ -1791,6 +1797,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cp/DoorTeleport2"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, 0.334332, 2.14836, -0.0690155 )
@@ -1948,6 +1955,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="rooms/cpp/DoorTeleport3"]
 transform = Transform( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.559517, 3.43057, -0.489868 )
@@ -2137,10 +2145,8 @@ ammoCount = {
 "ammoEnergy": 20
 }
 
-[node name="Navigation" type="Navigation" parent="."]
+[node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-
-[node name="mesh" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 43 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -59,6 +59,28 @@ public class NPCBody
             return;
         }
 
+        UpdateHeadRotation(delta);
+        animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
+    }
+
+    public void _on_lookArea_body_entered(Node body)
+    {
+        if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
+        if (!(body is Character character)) return;
+        lookTimer = 1.5f;
+        lookTarget = character;
+    }
+
+    public void _on_lookArea_body_exited(Node body)
+    {
+        if (npc.state == NPCState.Idle && body == lookTarget)
+        {
+            lookTarget = null;
+        }
+    }
+
+    private void UpdateHeadRotation(float delta)
+    {
         if (Object.IsInstanceValid(lookTarget))
         {
             if (npc.state == NPCState.Idle)
@@ -100,24 +122,6 @@ public class NPCBody
         {
             SetValueTo(ref headBlend.x, 0, delta * 2);
             SetValueTo(ref headBlend.y, 0, delta * 2);
-        }
-
-        animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
-    }
-
-    public void _on_lookArea_body_entered(Node body)
-    {
-        if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
-        if (!(body is Character character)) return;
-        lookTimer = 1.5f;
-        lookTarget = character;
-    }
-
-    public void _on_lookArea_body_exited(Node body)
-    {
-        if (npc.state == NPCState.Idle && body == lookTarget)
-        {
-            lookTarget = null;
         }
     }
 

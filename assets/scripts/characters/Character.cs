@@ -54,7 +54,8 @@ public abstract class Character : KinematicBody, ISavable
         if (Health > 0) decreaseHealth(-healing);
     }
 
-    public void MakeDamage(Character victim, int shapeID = 0) {
+    public void MakeDamage(Character victim, int shapeID = 0) 
+    {
         victim.TakeDamage(this, GetDamage(), shapeID);
     }
     

@@ -137,9 +137,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 100, 0 ) ]
 }
 
-[node name="cabinet-books" type="StaticBody" groups=[
-"savable",
-]]
+[node name="cabinet-books" type="StaticBody" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.885597, 0 )
 physics_material_override = ExtResource( 6 )
 script = ExtResource( 7 )
@@ -193,6 +191,7 @@ unit_db = 5.0
 unit_size = 2.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 7 )

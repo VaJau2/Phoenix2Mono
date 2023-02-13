@@ -67,6 +67,7 @@ shape = SubResource( 2 )
 unit_size = 5.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.347872, 0.0979506 )
