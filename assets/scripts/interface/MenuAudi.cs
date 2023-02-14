@@ -22,6 +22,7 @@ public class MenuAudi : AudioStreamPlayer
 
     public void PlayHover()
     {
+        if (Playing) return;
         Stream = hoverSound;
         Play();
     }

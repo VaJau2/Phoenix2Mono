@@ -165,6 +165,7 @@ public class LoadMenu : Control
             saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
+            Global.Get().autosaveName = saveFile.GetLine();
             Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
             var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
             var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;

@@ -27,6 +27,7 @@ public class Global {
     public Race playerRace = Race.Earthpony;
 
     public Settings Settings;
+    public string autosaveName;
     
     //массив файлов сохранений
     public static List<FileTableLine> saveFilesArray = new List<FileTableLine>();

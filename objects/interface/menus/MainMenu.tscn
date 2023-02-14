@@ -250,13 +250,87 @@ theme = ExtResource( 1 )
 text = "               [Выйти]"
 align = 0
 
+[node name="ChooseAutosaveName" type="Control" parent="." groups=["ignore_color"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background" type="ColorRect" parent="ChooseAutosaveName" groups=["ignore_color"]]
+material = ExtResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background2" type="ColorRect" parent="ChooseAutosaveName" groups=["ignore_color"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="page_label" type="Label" parent="ChooseAutosaveName"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Название_автосохранения"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="ChooseAutosaveName"]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "[Назад]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="header" type="Label" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -148.0
+margin_top = -46.0
+margin_right = 148.0
+margin_bottom = -28.0
+theme = ExtResource( 1 )
+text = "Введите название файла автосохранения"
+
+[node name="input" type="LineEdit" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.0
+margin_top = -12.5
+margin_right = 158.0
+margin_bottom = 12.5
+theme = ExtResource( 1 )
+text = "autosave"
+align = 1
+
+[node name="next" type="Button" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = 34.0
+margin_right = 148.0
+margin_bottom = 54.0
+theme = ExtResource( 1 )
+text = "[Далее]"
+
 [node name="ChangeRace" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="background" type="ColorRect" parent="ChangeRace" groups=["ignore_color"]]
 material = ExtResource( 5 )
@@ -816,6 +890,12 @@ bus = "Music"
 [connection signal="mouse_entered" from="exit" to="." method="_on_mouse_entered" binds= [ "main", "chooseExit" ]]
 [connection signal="mouse_exited" from="exit" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="ChooseAutosaveName/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="ChooseAutosaveName/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChooseAutosaveName/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="ChooseAutosaveName/next" to="." method="_on_mouse_entered" binds= [ "main", "chooseNext" ]]
+[connection signal="mouse_exited" from="ChooseAutosaveName/next" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChooseAutosaveName/next" to="." method="_on_autosave_next_pressed"]
 [connection signal="mouse_entered" from="ChangeRace/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
 [connection signal="mouse_exited" from="ChangeRace/back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ChangeRace/back" to="." method="_on_back_pressed"]

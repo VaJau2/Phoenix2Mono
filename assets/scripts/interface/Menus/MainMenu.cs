@@ -9,6 +9,7 @@ public class MainMenu : MenuBase
 
     ColorRect backgroundRect;
 
+    Control autosaveMenu;
     Control changeRaceMenu;
     LoadMenu loadMenu;
     Control aboutMenu;
@@ -27,6 +28,12 @@ public class MainMenu : MenuBase
     Label aboutPage;
     Label aboutLabel;
     Button aboutBack;
+
+    Label autosavePage;
+    Label autosaveHeader;
+    LineEdit autosaveInput;
+    Button autosaveNext;
+    Button autosaveBack;
 
     Label racePage;
     Button raceBack;
@@ -62,6 +69,13 @@ public class MainMenu : MenuBase
         aboutPage = GetNode<Label>("About/page_label");
         aboutLabel = GetNode<Label>("About/about_label");
         aboutBack = GetNode<Button>("About/back");
+
+        autosaveMenu = GetNode<Control>("ChooseAutosaveName");
+        autosavePage = autosaveMenu.GetNode<Label>("page_label");
+        autosaveBack = autosaveMenu.GetNode<Button>("back");
+        autosaveHeader = autosaveMenu.GetNode<Label>("header");
+        autosaveInput = autosaveMenu.GetNode<LineEdit>("input");
+        autosaveNext = autosaveMenu.GetNode<Button>("next");
 
         changeRaceMenu = GetNode<Control>("ChangeRace");
         racePage = GetNode<Label>("ChangeRace/page_label");
@@ -128,6 +142,14 @@ public class MainMenu : MenuBase
         aboutPage.Text = GetMenuText("page", "about");
         aboutLabel.Text = GetMenuText("label", "about");
         aboutBack.Text = GetMenuText("back");
+    }
+
+    private void LoadChooseAutosaveLanguage()
+    {
+        autosavePage.Text = GetMenuText("page", "autosave");
+        autosaveHeader.Text = GetMenuText("header", "autosave");
+        autosaveBack.Text = GetMenuText("back");
+        autosaveNext.Text = GetMenuText("next");
     }
 
     private void LoadRaceLanguage()
@@ -268,8 +290,8 @@ public class MainMenu : MenuBase
     public void _on_start_pressed()
     {
         SoundClick();
-        LoadRaceLanguage();
-        changeRaceMenu.Visible = true;
+        LoadChooseAutosaveLanguage();
+        autosaveMenu.Visible = true;
     }
 
     public void _on_load_pressed()
@@ -294,11 +316,21 @@ public class MainMenu : MenuBase
 
     public void _on_back_pressed() 
     {
-        continueButton.Visible = Global.saveFilesArray.Count > 0;
         SoundClick();
-        aboutMenu.Visible = false;
-        changeRaceMenu.Visible = false;
-        loadMenu.Visible = false;
+        
+        if (changeRaceMenu.Visible)
+        {
+            changeRaceMenu.Visible = false;
+            autosaveMenu.Visible = true;
+        }
+        else
+        {
+            continueButton.Visible = Global.saveFilesArray.Count > 0;
+            aboutMenu.Visible = false;
+            autosaveMenu.Visible = false;
+            loadMenu.Visible = false;
+        }
+        
         _on_mouse_exited();
     }
 
@@ -307,6 +339,15 @@ public class MainMenu : MenuBase
         SoundClick();
         await global.ToTimer(0.3f, this);
         GetTree().Quit();
+    }
+
+    public void _on_autosave_next_pressed()
+    {
+        SoundClick();
+        LoadRaceLanguage();
+        autosaveMenu.Visible = false;
+        changeRaceMenu.Visible = true;
+        Global.Get().autosaveName = autosaveInput.Text;
     }
 
     public void _on_choose_pressed(InputEvent @event, string raceName)

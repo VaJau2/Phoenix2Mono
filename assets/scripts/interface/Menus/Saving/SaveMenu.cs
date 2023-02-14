@@ -197,6 +197,7 @@ public class SaveMenu : Control
         saveFile.StoreLine(fileName);                            //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
+        saveFile.StoreLine(Global.Get().autosaveName);                    //название слота автосохранения
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
         
         //данные удаленных объектов

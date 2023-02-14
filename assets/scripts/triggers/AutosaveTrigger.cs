@@ -2,7 +2,6 @@
 
 public class AutosaveTrigger: TriggerBase
 {
-    [Export] public string SaveName;
     private Messages messages;
     private SaveMenu saveMenu;
     
@@ -30,9 +29,11 @@ public class AutosaveTrigger: TriggerBase
         messages.ShowMessage("gameAutosaved");
         
         //добавляем триггер в удаленные объекты заранее, чтобы не сохранял второй раз
-        Global.AddDeletedObject(Name); 
-        saveMenu.SaveGame(SaveName, GetTree());
-        saveMenu.CreateTableLine(SaveName);
+        Global.AddDeletedObject(Name);
+
+        var saveName = Global.Get().autosaveName;
+        saveMenu.SaveGame(saveName, GetTree());
+        saveMenu.CreateTableLine(saveName);
         base._on_activate_trigger();
     }
 }
