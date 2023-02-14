@@ -35,7 +35,8 @@
 
     "autosave": {
         "page": "/Phoenix2/Main_menu/autosave_name",
-        "header": "Enter the name of the autosave file"
+        "header": "Enter the name of the autosave file",
+        "placeholder": "fill autosave slot name to continue"
     },
 
     "race": {

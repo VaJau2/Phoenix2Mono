@@ -314,6 +314,7 @@ margin_bottom = 12.5
 theme = ExtResource( 1 )
 text = "autosave"
 align = 1
+placeholder_text = "заполните название автосохранения"
 
 [node name="next" type="Button" parent="ChooseAutosaveName"]
 anchor_left = 0.5

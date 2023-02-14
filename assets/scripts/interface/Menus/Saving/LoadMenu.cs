@@ -165,8 +165,20 @@ public class LoadMenu : Control
             saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
-            Global.Get().autosaveName = saveFile.GetLine();
-            Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
+
+            //для поддержки старых сохранений, в которых не было строчки с названием автосейва
+            var checkLine = saveFile.GetLine();
+            if (checkLine.BeginsWith(SaveMenu.AUTOSAVE_PREFIX))
+            {
+                Global.Get().autosaveName = checkLine.Remove(0, SaveMenu.AUTOSAVE_PREFIX.Length);
+                Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
+            }
+            else
+            {
+                Global.Get().autosaveName = "old_autosave";
+                Global.Get().playerRace = Global.RaceFromString(checkLine);
+            }
+            
             var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
             var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
             saveFile.Close();

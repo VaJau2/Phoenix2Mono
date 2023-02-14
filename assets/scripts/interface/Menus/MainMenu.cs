@@ -148,6 +148,7 @@ public class MainMenu : MenuBase
     {
         autosavePage.Text = GetMenuText("page", "autosave");
         autosaveHeader.Text = GetMenuText("header", "autosave");
+        autosaveInput.PlaceholderText = GetMenuText("placeholder", "autosave");
         autosaveBack.Text = GetMenuText("back");
         autosaveNext.Text = GetMenuText("next");
     }
@@ -344,6 +345,9 @@ public class MainMenu : MenuBase
     public void _on_autosave_next_pressed()
     {
         SoundClick();
+
+        if (string.IsNullOrEmpty(autosaveInput.Text)) return;
+        
         LoadRaceLanguage();
         autosaveMenu.Visible = false;
         changeRaceMenu.Visible = true;
