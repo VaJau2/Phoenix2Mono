@@ -1588,7 +1588,7 @@ bones/22/enabled = true
 bones/22/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 1.27416e-16, -7.51469e-17, -1.14052e-16, 0.987624, 0.156846, 9.42007e-17, -0.156846, 0.987624, 7.8603e-16, 5.0292, -0.27128 )
+transform = Transform( 1, 9.95538e-17, -8.31388e-17, -8.49093e-17, 0.987019, 0.160604, 9.80476e-17, -0.160604, 0.987019, 9.26521e-16, 5.03155, -0.258173 )
 bone_name = "head"
 
 [node name="head" type="Spatial" parent="Armature/Skeleton/BoneAttachment"]
@@ -1601,21 +1601,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31323e-09, 1.52951, -0.4036
 transform = Transform( 0.285714, 8.5954e-18, -3.85096e-18, 5.65886e-18, -0.0632753, 0.278619, 7.52908e-18, -0.278619, -0.0632751, -0.0155727, -0.258711, -0.0402011 )
 
 [node name="BoneAttachment 2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 1.61505e-16, -1.31327e-16, -1.43503e-16, 0.991889, 0.127106, 1.5079e-16, -0.127106, 0.991889, 3.70657e-16, 2.91364, -0.182904 )
+transform = Transform( 1, 1.38629e-16, -1.33992e-16, -1.19856e-16, 0.99136, 0.131168, 1.51018e-16, -0.131168, 0.99136, 5.64203e-16, 2.91641, -0.161332 )
 bone_name = "neck_1"
 
 [node name="neck" type="Spatial" parent="Armature/Skeleton/BoneAttachment 2"]
 transform = Transform( 1, -5.29396e-23, -5.45939e-23, 0, 1, 0, 0, 0, 1, 0, 1.09799, -0.0356353 )
 
 [node name="BoneAttachment 3" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.0240972, 0.996449, 0.0806799, -0.163782, 0.0835479, -0.982952, -0.986203, 0.0104726, 0.165213, 0.688279, 2.23623, 0.346637 )
+transform = Transform( -0.088611, 0.992739, 0.0813517, -0.164939, 0.0659214, -0.984098, -0.982316, -0.10062, 0.1579, 0.688279, 2.2309, 0.357696 )
 bone_name = "wing_1_r"
 
 [node name="wingR" type="Spatial" parent="Armature/Skeleton/BoneAttachment 3"]
 transform = Transform( -0.323713, 0.0297605, 0.945686, 0.0816844, 0.996652, -0.00340348, -0.942622, 0.0761466, -0.325061, 0.380448, 2.32158, 1.53048 )
 
 [node name="BoneAttachment 4" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.0654275, -0.996449, 0.0530018, 0.846549, 0.0835481, 0.525714, -0.528276, 0.0104724, 0.849009, -0.720828, 2.23623, 0.346637 )
+transform = Transform( 0.115596, -0.991455, -0.0604506, 0.848028, 0.066819, 0.525722, -0.517191, -0.112035, 0.848506, -0.720828, 2.2309, 0.357696 )
 bone_name = "wing_1_l"
 
 [node name="wingL" type="Spatial" parent="Armature/Skeleton/BoneAttachment 4"]

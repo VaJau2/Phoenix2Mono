@@ -1,0 +1,103 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Lieutenant, stop!",
+            "speaker": "Armored soldier",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                }
+            ]
+        },
+        "S1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Wh...what is it?",
+            "speaker": "Strikely",
+            "opposite": "Armored soldier",
+            "next": "S2"
+        },
+        "S2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I know you! You saved me out there! If you weren't there, I'd be standing like that until the evening!",
+            "speaker": "Armored soldier",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S2(1)"
+                }
+            ]
+        },
+        "S2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes it was me.",
+            "speaker": "Strikely",
+            "opposite": "Armored soldier",
+            "next": "S3.1"
+        },
+        "S3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I want to thank you again and give this as a gift.",
+            "speaker": "Armored soldier",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S3(1)"
+                }
+            ]
+        },
+        "S3.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "TakeItem",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "ak47"
+                }
+            ],
+            "next": "S3"
+        },
+        "S3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Well, thanks...",
+            "speaker": "Strikely",
+            "opposite": "Armored soldier",
+            "next": "S3.2"
+        },
+        "S3.2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    },
+    "speakers": {
+        "Armored soldier": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Strikely": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

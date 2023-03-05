@@ -1972,7 +1972,6 @@ shellsLimit = 30
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 103 )
-SaveName = "autosave8"
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 102 )
@@ -2042,7 +2041,7 @@ showMessage = false
 script = ExtResource( 88 )
 IsActive = false
 afterAudiPath = NodePath("after")
-NewLevelNum = 11
+NewLevelNum = 12
 
 [node name="nuclear" parent="triggers/nuclearTrigger" instance=ExtResource( 90 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 7.05008, 3.05154, -169.902 )
@@ -2160,6 +2159,7 @@ bus = "Music"
 [connection signal="AlarmEnded" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ false ]]
 [connection signal="AlarmStarted" from="npc" to="triggers/commanderAlarmDialogue" method="_on_activate_trigger" flags=6]
 [connection signal="AlarmStarted" from="npc" to="triggers/AlarmMusic" method="SetActive" binds= [ true ]]
+[connection signal="Die" from="npc/zebra-commander" to="triggers/dragonBegin" method="SetActive" binds= [ true ]]
 [connection signal="body_entered" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_entered"]
 [connection signal="body_exited" from="triggers/stopAlarmButton" to="triggers/stopAlarmButton" method="_on_body_exited"]
 [connection signal="body_entered" from="triggers/blockAlarmArea" to="triggers/blockAlarmArea" method="_on_body_entered"]

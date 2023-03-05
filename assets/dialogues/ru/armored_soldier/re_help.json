@@ -4,6 +4,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Это вы, лейтенант?",
+            "config": "armored_soldier_phone",
             "speaker": "Солдат в броне",
             "opposite": "Страйкли",
             "options": [
@@ -17,6 +18,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "104, шкаф слева.",
+            "config": "armored_soldier_phone",
             "speaker": "Солдат в броне",
             "opposite": "Страйкли",
             "options": [

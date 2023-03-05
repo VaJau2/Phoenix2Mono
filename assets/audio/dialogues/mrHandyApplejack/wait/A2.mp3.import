@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A2.mp3-fa557f73b2db79eddfab1557b65cc43a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyApplejack/wait/A2.mp3"
+dest_files=[ "res://.import/A2.mp3-fa557f73b2db79eddfab1557b65cc43a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

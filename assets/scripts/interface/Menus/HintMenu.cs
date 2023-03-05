@@ -66,13 +66,7 @@ public class HintMenu: Control, IMenu
     
     private string getKeysMessage(string tempHintCode, string hintSection = null)
     {
-        var message = InterfaceLang.GetPhrase("inGame", hintSection ?? "hintsModal", tempHintCode);
-        if (message == null) return null;
-        if (message.Contains("#"))
-        {
-            message = HintTrigger.ReplaceKeys(message);
-        }
-        return message;
+        return InterfaceLang.GetPhrase("inGame", hintSection ?? "hintsModal", tempHintCode);
     }
     
     private void loadInterfaceLanguage()

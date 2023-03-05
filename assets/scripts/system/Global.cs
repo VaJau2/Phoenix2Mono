@@ -226,26 +226,42 @@ public class Global {
         Array result = new Array();
         foreach(string line in lines)
         {
-            if (line.Length <= maxLineLength) {
+            if (line.Length <= maxLineLength) 
+            {
                 result.Add(line);
-            } else {
+            } 
+            else 
+            {
                 Array<char> charsForEOL = new Array<char>() {'.', ',', ' '};
                 var sourceString = line;
 
                 do
                 {
-                    for (int i = maxLineLength; i >= 1; i--) {
-                        if (charsForEOL.Contains(sourceString[i])) {
+                    for (int i = maxLineLength; i >= 1; i--) 
+                    {
+                        if (charsForEOL.Contains(sourceString[i])) 
+                        {
                             result.Add(sourceString.Substring(0, i)); //здесь был перенос в конце строки
                             sourceString = sourceString.Substring(i + 1);
 
-                            if (sourceString.Length <= maxLineLength) {
+                            if (sourceString.Length <= maxLineLength) 
+                            {
                                 result.Add(sourceString);
                             }
                             break;
                         }
-                        if (i == 1) {
-                            result[result.Count - 1] += " " + sourceString.Substring(0, maxLineLength);
+                        
+                        if (i == 1) 
+                        {
+                            if (result.Count == 0)
+                            {
+                                result.Add(sourceString.Substring(0, maxLineLength));
+                            }
+                            else
+                            {
+                                result[result.Count - 1] += " " + sourceString.Substring(0, maxLineLength);
+                            }
+                            
                             sourceString = sourceString.Substring(maxLineLength + 1);
                         }
                     }

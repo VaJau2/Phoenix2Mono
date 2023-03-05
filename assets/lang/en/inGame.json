@@ -1,6 +1,7 @@
 {
     "dialogue": {
-        "continue": "[continue]"
+        "continue": "[continue]",
+        "skip": "#jump# - skip"
     },
 
     "stealth": {

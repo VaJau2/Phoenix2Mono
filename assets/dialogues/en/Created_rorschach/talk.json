@@ -335,7 +335,7 @@
     "E14.1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "*burns blueprints with a lighter right in your hooves*",
+      "body": "[burns blueprints with a lighter right in your hooves]",
       "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "next": "E14.2"

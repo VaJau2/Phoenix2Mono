@@ -53,6 +53,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Винд! Пора спать!",
+      "config": "mother",
       "speaker": "Мама",
       "opposite": "Винди Клауд",
       "next": "B5"
@@ -69,6 +70,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Винди Клауд! Иди в кровать!",
+      "config": "mother",
       "speaker": "Мама",
       "opposite": "Винди Клауд",
       "next": "B7"

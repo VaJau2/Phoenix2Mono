@@ -60,9 +60,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         if (saveNode == null || messages == null) return;
         if (saveNode.SavedVariables.Contains("terminalHint")) return;
         
-        string message = InterfaceLang.GetPhrase("inGame", "hints", "5");
-        message = HintTrigger.ReplaceKeys(message);
-        messages.ShowMessageRaw(message, 3.5f);
+        messages.ShowMessage("5", "hints", 3.5f);
         saveNode.SavedVariables["terminalHint"] = true;
     }
 

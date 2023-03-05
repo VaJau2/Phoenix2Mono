@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/P1.mp3-050cf64001af1b92a6e95443b0367417.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyPinkie/talk/P1.mp3"
+dest_files=[ "res://.import/P1.mp3-050cf64001af1b92a6e95443b0367417.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

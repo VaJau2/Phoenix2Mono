@@ -86,7 +86,8 @@ public class Messages: VBoxContainer, ISavable {
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("task") && global.player.MayMove) {
+        if (Input.IsActionJustPressed("task") && global.player.MayMove) 
+        {
             //задачи лежат в файле tasks.json
             string header = InterfaceLang.GetPhrase("tasks", "tasks", "tasksHeader");
             string tasks = InterfaceLang.GetPhrase("tasks", "tasks", currentTaskLink);

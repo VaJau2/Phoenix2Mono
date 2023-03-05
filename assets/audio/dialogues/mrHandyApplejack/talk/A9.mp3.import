@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A9.mp3-10bfd688b03981d26746f65d5f7511bc.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyApplejack/talk/A9.mp3"
+dest_files=[ "res://.import/A9.mp3-10bfd688b03981d26746f65d5f7511bc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

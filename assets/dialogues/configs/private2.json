@@ -1,0 +1,9 @@
+﻿{
+    "sounds": {
+        "0": "sound_o",
+        "1": "sound_i"
+    },
+    "min_pitch": "0.8",
+    "max_pitch": "1",
+    "chars_to_sound": "4"
+}

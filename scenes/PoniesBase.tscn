@@ -937,7 +937,6 @@ script = SubResource( 14 )
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 85 )
-SaveName = "autosave2"
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 50 )

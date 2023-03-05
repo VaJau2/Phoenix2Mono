@@ -12,20 +12,6 @@ public class HintTrigger : TriggerBase
 
     private bool modalOn;
     private HintMenu hintModal;
-    
-
-    //заменяет все #ui_jump#-значения с кодами кнопок на текущие кнопки из настроек управления
-    public static string ReplaceKeys(string message)
-    {
-        string[] codes = message.Split('#');
-        foreach (string tempCode in codes)
-        {
-            if (!(Global.GetKeyName(tempCode) is string newKey)) continue;
-            message = message.Replace("#" + tempCode + "#", newKey);
-        }
-
-        return message;
-    }
 
     public override void _Ready()
     {
@@ -51,11 +37,7 @@ public class HintTrigger : TriggerBase
         
         string message = InterfaceLang.GetPhrase("inGame", HintSection, hintCode);
         if (message == null) return;
-        if (message.Contains("#"))
-        {
-            message = ReplaceKeys(message);
-        }
-            
+
         if (UseModal)
         {
             hintModal.hintMessage = message;
