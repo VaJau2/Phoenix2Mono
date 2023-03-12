@@ -13,9 +13,9 @@ public class PlayerCamera: Camera
     public bool eyesClosed = false;
     public bool isUpdating = true;
     public float closedTimer = 0;
+    public bool onetimeHint;
     
     InteractionPoint point;
-    DialogueMenu dialogueMenu;
 
     Player player;
 
@@ -24,7 +24,7 @@ public class PlayerCamera: Camera
     string closedTextLink = "closed";
 
     Spatial tempObject;
-    bool onetimeHint, onetimeCross;
+    bool onetimeCross;
 
     bool fovClosing = false;
     Control eyePartUp;
@@ -50,8 +50,14 @@ public class PlayerCamera: Camera
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
+
+    public void HideInteractionSquare()
+    {
+        point.HideSquare();
+    }
     
-    public void ShowHint(string textLink, bool triggerClosing = true) {
+    public void ShowHint(string textLink, bool triggerClosing = true) 
+    {
         point.SetInteractionVariant(InteractionVariant.Square);
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
@@ -76,60 +82,78 @@ public class PlayerCamera: Camera
         );
     }
 
-    private void UpdateFov(float delta) {
-        if (closedTimer > 0) {
+    private void UpdateFov(float delta) 
+    {
+        if (closedTimer > 0) 
+        {
             closedTimer -= delta;
-            if (!onetimeHint) {
+            if (!onetimeHint) 
+            {
                 label.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
                 labelBack.Visible = true;
                 onetimeHint = true;
             }
-        } else {
-            if (onetimeHint) {
+        } 
+        else 
+        {
+            if (onetimeHint) 
+            {
                 labelBack.Visible = false;
                 onetimeHint = false;
             }
         }
 
-        if (eyesClosed) {
-            eyePartUp.RectPosition = setRectY(eyePartUp.RectPosition, 0);
-            eyePartDown.RectPosition = setRectY(eyePartDown.RectPosition, 0);
-        } else if(fovClosing) {
+        if (eyesClosed) 
+        {
+            eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
+            eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
+        } 
+        else if(fovClosing) 
+        {
             float closeFov = 42f;
 
             Dictionary armorProps = player.inventory.GetArmorProps();
-            if (armorProps.Contains("closeFov")) {
+            if (armorProps.Contains("closeFov")) 
+            {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());
             }
 
-            if (Fov > closeFov) {
+            if (Fov > closeFov) 
+            {
                 Fov -= FOV_SPEED * delta;
             }
-            if (eyePartUp.RectPosition.y < -220) {
-                eyePartUp.RectPosition = setRectY(
+            if (eyePartUp.RectPosition.y < -220) 
+            {
+                eyePartUp.RectPosition = SetRectY(
                     eyePartUp.RectPosition, 
                     eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
                 );
             }
-            if (eyePartDown.RectPosition.y > 220) {
-                eyePartDown.RectPosition = setRectY(
+            if (eyePartDown.RectPosition.y > 220) 
+            {
+                eyePartDown.RectPosition = SetRectY(
                     eyePartDown.RectPosition, 
                     eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
                 );
             }
-        } else {
-            if (Fov < 70) {
+        } 
+        else 
+        {
+            if (Fov < 70) 
+            {
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.RectPosition.y > -650) {
-                eyePartUp.RectPosition = setRectY(
+            if (eyePartUp.RectPosition.y > -650) 
+            {
+                eyePartUp.RectPosition = SetRectY(
                     eyePartUp.RectPosition, 
                     eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
-            if (eyePartDown.RectPosition.y < 650) {
-                eyePartDown.RectPosition = setRectY(
+            if (eyePartDown.RectPosition.y < 650) 
+            {
+                eyePartDown.RectPosition = SetRectY(
                     eyePartDown.RectPosition, 
                     eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
                 );
@@ -137,7 +161,8 @@ public class PlayerCamera: Camera
         }
     }
 
-    private void UpdateInteracting(float delta) {
+    private void UpdateInteracting() 
+    {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
         if (!player.MayMove) return;
@@ -146,101 +171,35 @@ public class PlayerCamera: Camera
 
         if (mayUseRay && tempObject != null)
         {
-            switch (tempObject)
+            if (tempObject is PhysicalBone)
             {
-                case TheaterChair chair when chair.isActive && !player.IsSitting:
-                    ShowHint("sit");
-                    break;
-                case FurnBase furn when furn.IsOpen:
-                    ShowHint("close");
-                    break;
-                case FurnBase furn:
-                    ShowHint("open");
-                    break;
-                case DoorTeleport furn:
-                    ShowHint("open");
-                    break;
-                case Terminal _:
-                    ShowHint("terminal");
-                    break;
-                case Receiver radio when radio.isOn:
-                    ShowHint("turnOff");
-                    break;
-                case Receiver radio:
-                    ShowHint("turnOn");
-                    break;
-                default:
-                {
-                    if (!dialogueMenu.MenuOn && tempObject is NPC npc) {
-                        if (npc.dialogueCode != "") {
-                            ShowHint("talk");
-                        }
-                    }
-
-                    break;
-                }
+                tempObject = tempObject.GetNode<Spatial>("../../../");
             }
-        } else {
+            
+            if (tempObject is IInteractable interactable && interactable.MayInteract)
+            {
+                ShowHint(interactable.InteractionHintCode);
+            }
+        } 
+        else 
+        {
             tempObject = null;
             ReturnInteractionPoint();
         }
     }
 
-    public void UpdateInput()
+    private void UpdateInput()
     {
         if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
-        switch (tempObject)
+        if (tempObject is IInteractable interactable && interactable.MayInteract)
         {
-            case TheaterChair chair when chair.isActive && !player.IsSitting:
-            {
-                point.HideSquare();
-                chair.Sit(player);
-                break;
-            }
-            case FurnDoor furn1:
-            {
-                var keys = player.inventory.GetKeys();
-                closedTimer = furn1.ClickFurn(keys);
-                onetimeHint = false;
-                break;
-            }
-            case DoorTeleport door:
-            {
-                door.Open(player, true);
-                break;
-            }
-            case FurnBase furn:
-            {
-                point.HideSquare();
-                furn.ClickFurn();
-                break;
-            }
-            case Terminal tempTerminal:
-            {
-                point.HideSquare();
-                MenuManager.TryToOpenMenu(tempTerminal);
-                break;
-            }
-            case Receiver radio:
-            {
-                    radio.Interactive();
-                    break;
-            }
-            case NPC npc:
-            {
-                if (npc.dialogueCode != "") {
-                    dialogueMenu.StartTalkingTo(npc);
-                }
-
-                break;
-            }
+            interactable.Interact(this);
         }
     }
 
     public override void _Ready()
     {
         point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
-        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         player = GetNode<Player>("../../");
         labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
@@ -249,41 +208,39 @@ public class PlayerCamera: Camera
         label = labelBack.GetNode<Label>("label");
     }
 
-    public Vector2 setRectY(Vector2 oldPosition, float newY) {
+    private Vector2 SetRectY(Vector2 oldPosition, float newY) 
+    {
         oldPosition.y = newY;
         return oldPosition;
     }
 
     public override void _Process(float delta)
     {
-        if (!isUpdating) {
+        if (!isUpdating) 
+        {
             labelBack.Visible = false;
             return;
         }
         
         UpdateFov(delta);
-        UpdateInteracting(delta);
+        UpdateInteracting();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (!isUpdating) {
-            return;
-        }
-        if (@event is InputEventKey && Input.IsActionJustPressed("use")) {
+        if (!isUpdating) return;
+
+        if (@event is InputEventKey && Input.IsActionJustPressed("use")) 
+        {
             UpdateInput();
         }
 
-        if (!player.ThirdView && @event is InputEventMouseButton 
-                && Input.MouseMode == Input.MouseModeEnum.Captured) {
-            var mouseEv = @event as InputEventMouseButton;
-            if (mouseEv.ButtonIndex == 2) {
-                if (mouseEv.Pressed) {
-                    fovClosing = true;
-                } else {
-                    fovClosing = false;
-                }
-            }
+        if (player.ThirdView) return;
+        if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
+        if (!(@event is InputEventMouseButton mouseEv)) return;
+        if (mouseEv.ButtonIndex == 2) 
+        {
+            fovClosing = mouseEv.Pressed;
         }
     }
 }

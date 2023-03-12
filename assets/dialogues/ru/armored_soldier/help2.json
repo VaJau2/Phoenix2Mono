@@ -4,6 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Эй! Здесь кто-то есть?.. Помогите кто-нибудь!",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "options": [
@@ -17,6 +18,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Лейтенант, помогите мне! Эти придурки опять подсунули мне бракованную ядерную батарею!",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "next": "S3"
@@ -25,6 +27,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Броня просто внезапно выключилась, и теперь я не могу пошевелиться...",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "options": [
@@ -42,6 +45,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Уже несколько часов. Я уж думал, мне никто не поможет...",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "options": [
@@ -55,6 +59,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Давайте я лучше сам об этом доложу, лейтенант. Только помогите мне с этой броней, пожалуйста...",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "options": [
@@ -68,6 +73,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Да, они должны быть в моем шкафу в 104 комнате. Шкаф слева.",
+      "config": "armored_soldier_phone",
       "speaker": "Солдат в броне",
       "opposite": "Страйкли",
       "options": [

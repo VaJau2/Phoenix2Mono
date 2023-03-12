@@ -66,6 +66,8 @@ public class InventoryMenu : Control, IMenu
         mode.LoadItemButtons(newItems, ammo);
     }
 
+    public bool HasEmptyButton => mode.FirstEmptyButton != null;
+
     public bool AddOrDropItem(string itemCode)
     {
         var emptyButton = mode.FirstEmptyButton;
@@ -75,8 +77,8 @@ public class InventoryMenu : Control, IMenu
             return true;
         }
  
-        FurnChest tempBag = mode.SpawnItemBag();
-        tempBag.itemCodes.Add(itemCode);
+        IChest tempBag = mode.SpawnItemBag();
+        tempBag.ChestHandler.ItemCodes.Add(itemCode);
         return false;
     }
 

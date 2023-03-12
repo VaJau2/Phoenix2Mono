@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class Receiver : RadioBase, ISavable
+public class Receiver : RadioBase, ISavable, IInteractable
 {
 	string model;
 
@@ -40,6 +40,9 @@ public class Receiver : RadioBase, ISavable
 
 	[Signal]
 	public delegate void ChangeNoiseEvent();
+
+	public bool MayInteract => true;
+	public string InteractionHintCode => isOn ? "turnOff" : "turnOn";
 
 	public override void Initialize()
     {
@@ -185,7 +188,7 @@ public class Receiver : RadioBase, ISavable
 		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
 	}
 
-	public void Interactive()
+	public void Interact(PlayerCamera interactor)
 	{
 		if (isOn) SwitchOff();
 		else SwitchOn();

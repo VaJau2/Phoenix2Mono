@@ -338,18 +338,22 @@ public class Player : Character
         int goSide = 0;
         UpdateStand();
         
-        if (Input.IsActionPressed("ui_up")) {
+        if (Input.IsActionPressed("ui_up")) 
+        {
             inputMovementVector.y += 1;
             UpdateGoForward();
         }
-        if (Input.IsActionPressed("ui_down")) {
+        if (Input.IsActionPressed("ui_down")) 
+        {
             inputMovementVector.y -= 1;
         }
-        if (Input.IsActionPressed("ui_left")) {
+        if (Input.IsActionPressed("ui_left")) 
+        {
             inputMovementVector.x -= 1;
             goSide = 1;
         }
-        if (Input.IsActionPressed("ui_right")) {
+        if (Input.IsActionPressed("ui_right")) 
+        {
             inputMovementVector.x += 1;
             goSide = -1;
         }
@@ -362,7 +366,7 @@ public class Player : Character
         } 
         else
         {
-            sideAngle = Mathf.Lerp(sideAngle, 0, 5 * delta);
+            sideAngle = Mathf.Lerp(sideAngle, 0, 10 * delta);
         }
 
         Camera.RotationDegrees = new Vector3(

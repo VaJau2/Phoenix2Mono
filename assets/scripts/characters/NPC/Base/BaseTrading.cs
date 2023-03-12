@@ -30,10 +30,12 @@ public static class BaseTrading
         {
             items.LoadRandomItems(trader.itemCodes, trader.ammoCount);
 
-            foreach(string itemCode in trader.startItemCodes) {
+            foreach (string itemCode in trader.startItemCodes) 
+            {
                 trader.itemCodes.Add(itemCode);
             }
-            foreach(string ammoKey in trader.startAmmoCount.Keys) {
+            foreach (string ammoKey in trader.startAmmoCount.Keys) 
+            {
                 if (!trader.ammoCount.ContainsKey(ammoKey))
                 {
                     trader.ammoCount.Add(ammoKey, trader.startAmmoCount[ammoKey]);
@@ -49,10 +51,13 @@ public static class BaseTrading
             throw new ArgumentException();
         }
         
-        if (isTrading) {
+        if (isTrading) 
+        {
             MenuManager.CloseMenu(menu);
             isTrading = false;
-        } else {
+        } 
+        else 
+        {
             menu.ChangeMode(NewInventoryMode.Trade);
             TradeMode tempMode = menu.mode as TradeMode;
             tempMode.SetTrader(trader);

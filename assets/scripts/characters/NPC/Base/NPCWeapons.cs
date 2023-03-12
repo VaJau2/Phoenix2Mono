@@ -74,6 +74,24 @@ public class NPCWeapons : Node
         }
     }
 
+    public void SpawnPickableItem(string weaponCode)
+    {
+        if (string.IsNullOrEmpty(weaponCode))return;
+        if (!(npc is NpcWithWeapons npcWithWeapons)) return;
+        
+        string path = "res://objects/guns/items/" + weaponCode + ".tscn";
+        if (!ResourceLoader.Exists(path)) return;
+        
+        Spatial tempParent = npcWithWeapons.GetWeaponParent(isPistol);
+        PackedScene itemPrefab = GD.Load<PackedScene>(path);
+        var item = (Spatial)itemPrefab.Instance();
+        item.Name = "Created_" + npc.Name + "s_" + item.Name;
+        var itemsParent = GetNode<Node>("/root/Main/Scene");
+        itemsParent.AddChild(item);
+        item.GlobalTransform = Global.setNewOrigin(item.GlobalTransform, tempParent.GlobalTransform.origin);
+        item.GlobalRotation = tempParent.GlobalRotation;
+    }
+
     public float MakeShoot(float victimDistance)
     {
         if (tempWeapon == null)

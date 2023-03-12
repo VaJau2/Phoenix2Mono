@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/D6.mp3-69c03ac18a5ced08a21003814e7deb3b.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyRainbow/lose1/D6.mp3"
+dest_files=[ "res://.import/D6.mp3-69c03ac18a5ced08a21003814e7deb3b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

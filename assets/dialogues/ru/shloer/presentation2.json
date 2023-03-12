@@ -4,6 +4,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Этот замечательный экземпляр юридически имеет возраст около двенадцати лет… ",
+            "config": "bellgates",
             "speaker": "Бельгетс",
             "opposite": "Публика",
             "next": "T2"
@@ -12,6 +13,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Извините, что прерываю вас, но позвольте сэкономить ваше и мое время. Это единственное, что вы собирались презентовать мне?",
+            "config": "twilight",
             "speaker": "Министр Твайлайт",
             "opposite": "Бельгетс",
             "next": "B3"
@@ -20,6 +22,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Да",
+            "config": "bellgates",
             "speaker": "Бельгетс",
             "opposite": "Министр Твайлайт",
             "next": "T4"
@@ -28,6 +31,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Это устройство позволяет только старить жеребят и омолаживать стариков?",
+            "config": "twilight",
             "speaker": "Министр Твайлайт",
             "opposite": "Бельгетс",
             "next": "B5"
@@ -36,6 +40,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Нет, оно не омолаживает, оно замедляет старение, я это говорил...",
+            "config": "bellgates",
             "speaker": "Бельгетс",
             "opposite": "Министр Твайлайт",
             "next": "T5.1"
@@ -52,6 +57,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Но...",
+            "config": "bellgates",
             "speaker": "Бельгетс",
             "opposite": "Министр Твайлайт",
             "next": "T8"
@@ -60,6 +66,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Вы впустую потратили мое время, а теперь собираетесь тратить ещё больше на какие-то оправдания? Забудьте, я не буду вас финансировать и..",
+            "config": "twilight",
             "speaker": "Министр Твайлайт",
             "opposite": "Бельгетс",
             "next": "B9(1)"
@@ -80,6 +87,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "*вздох* Вы ушли из моего министерства и теперь просите у меня финансирование вот этого? Вы знаете, сколько подобных изобретений мне кладут на стол ежедневно?",
+            "config": "twilight",
             "speaker": "Министр Твайлайт",
             "opposite": "Бельгетс",
             "next": "P6"

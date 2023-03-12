@@ -1,316 +1,330 @@
 {
-  "nodes": {
-    "P1": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Hi! I'm here to check how good are you at sneaking. Are you?",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P1(1)"
+    "nodes": {
+        "P1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hi! I'm here to check how good are you at sneaking. Are you?",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P1(2)"
+                }
+            ]
         },
-        {
-          "body": "answer",
-          "next": "P1(2)"
-        }
-      ]
-    },
-    "P1(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Of course, we are taught this well in the army!",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P2"
-    },
-    "P1(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Why hide if you have a gun and you can shoot everypony?",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P3"
-    },
-    "P2": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Okie-dokie, you've passed the test! Congratulations!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P2(1)"
-        }
-      ]
-    },
-    "P3": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "That's a weird question, silly! There are a lot of reasons for stealth. Look...",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P3(1)"
+        "P1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Of course, we are taught this well in the army!",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P2"
         },
-        {
-          "body": "answer",
-          "next": "P3(2)"
-        }
-      ]
-    },
-    "P3(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "I'm looking",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P4"
-    },
-    "P3(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "I take your word for it",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P4"
-    },
-    "P4": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "First of all, there can be many enemies, and you are the only one little pony...",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P4(1)"
+        "P1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Why hide if you have a gun and you can shoot everypony?",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P3"
         },
-        {
-          "body": "answer",
-          "next": "P4(2)"
-        }
-      ]
-    },
-    "P4(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Next?",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P5"
-    },
-    "P4(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "All right, I believe you.",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P5"
-    },
-    "P5": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Secondly, not all of the enemies are bad ponies and deserve death, some of them don't wand to fight themselves, but they have to...",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P5(1)"
+        "P2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Okie-dokie, you've passed the test! Congratulations!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P2(1)"
+                }
+            ]
         },
-        {
-          "body": "answer",
-          "next": "P5(2)"
-        }
-      ]
-    },
-    "P5(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "More?",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P6"
-    },
-    "P5(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Okay, okay, that's enough",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P6"
-    },
-    "P6": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Third, this way you will save ammo for stronger opponents who may be waiting for you in the future!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P6(1)"
-        }
-      ]
-    },
-    "P6(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "I see",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P7"
-    },
-    "P7": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "I have a gift for such a stealthy pony like you - stealth-buck!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P7(1)"
+        "P3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "That's a weird question, silly! There are a lot of reasons for stealth. Look...",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P3(2)"
+                }
+            ]
         },
-        {
-          "body": "answer",
-          "next": "P7(2)"
+        "P3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I'm looking",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P4"
+        },
+        "P3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I take your word for it",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P4"
+        },
+        "P4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "First of all, there can be many enemies, and you are the only one little pony...",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P4(2)"
+                }
+            ]
+        },
+        "P4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Next?",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P5"
+        },
+        "P4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "All right, I believe you.",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P5"
+        },
+        "P5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Secondly, not all of the enemies are bad ponies and deserve death, some of them don't wand to fight themselves, but they have to...",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P5(2)"
+                }
+            ]
+        },
+        "P5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "More?",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P6"
+        },
+        "P5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Okay, okay, that's enough",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P6"
+        },
+        "P6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Third, this way you will save ammo for stronger opponents who may be waiting for you in the future!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P6(1)"
+                }
+            ]
+        },
+        "P6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I see",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P7"
+        },
+        "P7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I have a gift for such a stealthy pony like you - stealth-buck!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P7(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P7(2)"
+                }
+            ]
+        },
+        "P7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What's this?",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P8"
+        },
+        "P7(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Give it to me!",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P10"
+        },
+        "P8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "They were recently invented in MAS, and one of the prototypes has been ... borrowed my my master just before escaping from there",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P9"
+        },
+        "P9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Stealth buck generates an invisible stealth field around pony, making her transparent and allowing her to sneak in unnoticed right in front of enemy's face!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P9(1)"
+                }
+            ]
+        },
+        "P9(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Give it here!",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P10"
+        },
+        "P10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "It's not that simple!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P11"
+        },
+        "P11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You must proove that you can sneak, and get it unnoticed!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P12"
+        },
+        "P12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "It's lying behind that door, but it's being guarded by robo-eyes.",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P13"
+        },
+        "P13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Don't get caught by their robo-eyes, and this stealth-buck will be yours!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P14"
+        },
+        "P14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Click on the red button next to the door to start the test!",
+            "speaker": "Robo-Pinkie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P14.1"
+        },
+        "P14.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "P14.2"
+        },
+        "P2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "...",
+            "speaker": "Strikely",
+            "opposite": "Robo-Pinkie",
+            "next": "P7"
+        },
+        "P14.2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "PinkieStealthTrigger"
+                }
+            ]
         }
-      ]
     },
-    "P7(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "What's this?",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P8"
-    },
-    "P7(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Give it to me!",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P10"
-    },
-    "P8": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "They were recently invented in MAS, and one of the prototypes has been ... borrowed my my master just before escaping from there",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P9"
-    },
-    "P9": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Stealth buck generates an invisible stealth field around pony, making her transparent and allowing her to sneak in unnoticed right in front of enemy's face!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "options": [
-        {
-          "body": "answer",
-          "next": "P9(1)"
+    "speakers": {
+        "Strikely": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Robo-Pinkie": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
         }
-      ]
-    },
-    "P9(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Give it here!",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P10"
-    },
-    "P10": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "It's not that simple!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P11"
-    },
-    "P11": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "You must proove that you can sneak, and get it unnoticed!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P12"
-    },
-    "P12": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "It's lying behind that door, but it's being guarded by robo-eyes.",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P13"
-    },
-    "P13": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Don't get caught by their robo-eyes, and this stealth-buck will be yours!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P14"
-    },
-    "P14": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Click on the red button next to the door to start the test!",
-      "speaker": "Robo-Pinkie",
-      "opposite": "Strikely",
-      "next": "P14.1"
-    },
-    "P14.1": {
-      "kind": "narration",
-      "root_node": false,
-      "body": "ChangeDialogueCode",
-      "next": "P14.2"
-    },
-    "P2(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "...",
-      "speaker": "Strikely",
-      "opposite": "Robo-Pinkie",
-      "next": "P7"
-    },
-    "P14.2": {
-      "kind": "narration",
-      "root_node": false,
-      "body": "ActivateTrigger",
-      "set": [
-        {
-          "key": "name",
-          "op": "set",
-          "value": "PinkieStealthTrigger"
-        }
-      ]
     }
-  },
-  "speakers": {
-    "Strikely": {
-      "color": {
-        "r": 0,
-        "g": 0,
-        "b": 0,
-        "a": 0
-      }
-    },
-    "Robo-Pinkie": {
-      "color": {
-        "r": 0,
-        "g": 0,
-        "b": 0,
-        "a": 0
-      }
-    }
-  }
 }

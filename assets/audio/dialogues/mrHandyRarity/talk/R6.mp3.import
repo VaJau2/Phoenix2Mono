@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/R6.mp3-e7f52dae855b27b3ed5593cdb2a53989.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyRarity/talk/R6.mp3"
+dest_files=[ "res://.import/R6.mp3-e7f52dae855b27b3ed5593cdb2a53989.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

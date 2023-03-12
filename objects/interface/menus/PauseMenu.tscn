@@ -148,6 +148,7 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Sound"
 script = ExtResource( 7 )
 
 [connection signal="mouse_entered" from="continue" to="." method="_on_mouse_entered" binds= [ "choose", "continue" ]]

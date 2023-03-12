@@ -108,19 +108,6 @@
       "kind": "narration",
       "root_node": false,
       "body": "ChangeDialogueCode",
-      "next": "O7"
-    },
-    "O7": {
-      "kind": "narration",
-      "root_node": false,
-      "body": "ActivateTrigger",
-      "set": [
-        {
-          "key": "name",
-          "op": "set",
-          "value": "stopAlarmSpawning"
-        }
-      ],
       "next": "combat"
     },
     "combat": {

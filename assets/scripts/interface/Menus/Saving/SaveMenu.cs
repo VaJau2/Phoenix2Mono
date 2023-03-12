@@ -5,6 +5,8 @@ using Godot.Collections;
 
 public class SaveMenu : Control
 {
+    public const string AUTOSAVE_PREFIX = "autosave";
+    
     [Signal]
     public delegate void BackPressed();
 
@@ -197,6 +199,7 @@ public class SaveMenu : Control
         saveFile.StoreLine(fileName);                            //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
+        saveFile.StoreLine(AUTOSAVE_PREFIX + Global.Get().autosaveName);      //название слота автосохранения
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
         
         //данные удаленных объектов
@@ -208,8 +211,15 @@ public class SaveMenu : Control
         {
             if (!(tempNode is ISavable savableNode)) continue;
             Dictionary tempData = savableNode.GetSaveData();
+            bool isCreated = tempNode.Name.BeginsWith("Created_");
+
+            if (isCreated)
+            {
+                tempData.Add("parent", tempNode.GetParent().Name);
+                tempData.Add("fileName", tempNode.Filename);
+            }
             
-            if (tempNode.Name.BeginsWith("Created_") || tempNode.Name == "Player")
+            if (isCreated || tempNode.Name == "Player")
             {
                 objectsData.Add(tempNode.Name, tempData);
             }

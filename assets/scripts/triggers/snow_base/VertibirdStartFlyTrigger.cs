@@ -32,7 +32,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
     {
         Dictionary saveData = base.GetSaveData();
         saveData["animTimer"] = animTimer;
-        saveData["animTime"] = anim.CurrentAnimationPosition;
+        saveData["animTime"] = anim.IsPlaying() ? anim.CurrentAnimationPosition : 0;
         saveData["audiTime"] = audi.GetPlaybackPosition();
         saveData["step"] = step;
         return saveData;

@@ -53,6 +53,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Wind! It's time to sleep!",
+      "config": "mother",
       "speaker": "Mother",
       "opposite": "Windy Cloud",
       "next": "B5"
@@ -69,6 +70,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Windy Cloud! Go to bed!",
+      "config": "mother",
       "speaker": "Mother",
       "opposite": "Windy Cloud",
       "next": "B7"

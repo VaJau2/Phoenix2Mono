@@ -1058,6 +1058,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="spawn" type="Spatial" parent="terrain/props/houses/armor-house"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.03974, 0.901009, 30.5989 )
@@ -1086,6 +1087,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="sklad_spawn" type="Spatial" parent="terrain/props/houses"]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 5.53823, 0.604879, 57.2476 )
@@ -1114,6 +1116,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="stealth_spawn" type="Spatial" parent="terrain/props/houses"]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -27.0124, 0.604879, 51.0839 )
@@ -1142,6 +1145,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="spawn" type="Spatial" parent="terrain/props/houses/main-house"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.8763, 1.13126, 33.9265 )
@@ -1171,6 +1175,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="shootingRange" type="Spatial" parent="terrain/props"]
 
@@ -1207,6 +1212,7 @@ mesh = SubResource( 32 )
 unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
+bus = "Sound"
 
 [node name="table4" parent="terrain/props/shootingRange" instance=ExtResource( 47 )]
 transform = Transform( 1.47983, 0, 0, 0, 1.47983, 0, 0, 0, 1.47983, -13.6147, 1.90673, 103.96 )
@@ -1313,6 +1319,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9677, 0.392906, 7.61598 )
 stream = ExtResource( 22 )
 volume_db = -2.0
 autoplay = true
+bus = "Sound"
 script = SubResource( 39 )
 
 [node name="rooms" type="Node" parent="."]
@@ -1348,6 +1355,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="walls" type="StaticBody" parent="rooms/sklad"]
 transform = Transform( -16, 0, -1.39876e-06, 0, 16, 0, 1.39876e-06, 0, -16, 0, 0, 0 )
@@ -1461,6 +1469,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="walls" type="StaticBody" parent="rooms/armor-house"]
 collision_layer = 3
@@ -1642,6 +1651,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="door4" parent="rooms/stels-house/props/doors" groups=["savable"] instance=ExtResource( 76 )]
 transform = Transform( -4.37114e-08, 0, 1.279, 0, 1.275, 0, -1, 0, -5.59069e-08, -22.103, -4.327, -23.058 )
@@ -1960,6 +1970,7 @@ unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="door" parent="rooms/main-house/props/doors" instance=ExtResource( 89 )]
 transform = Transform( -4.37114e-08, 0, 1.278, 0, 1.131, 0, -1, 0, -5.58632e-08, -16.9253, 0, 6.34578 )
@@ -2186,6 +2197,7 @@ loseDialogue = "lose"
 unit_db = 20.0
 unit_size = 20.0
 max_db = 5.0
+bus = "Sound"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/PinkieStealthTrigger"]
 shape = SubResource( 76 )
@@ -2279,19 +2291,17 @@ ammoCount = {
 "ammoEnergy": 20
 }
 
-[node name="Navigation" type="Navigation" parent="."]
+[node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-
-[node name="mesh" type="NavigationMeshInstance" parent="Navigation"]
 visible = false
 navmesh = SubResource( 79 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Navigation/mesh"]
+[node name="MeshInstance" type="MeshInstance" parent="navMesh"]
 transform = Transform( -0.348327, 0, -9.9499, 0, 9.95599, 0, 9.9499, 0, -0.348327, 158.818, 0, 37.0158 )
 visible = false
 mesh = SubResource( 80 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="Navigation/mesh"]
+[node name="MeshInstance2" type="MeshInstance" parent="navMesh"]
 transform = Transform( -0.348327, 0, -9.9499, 0, 9.95599, 0, 9.9499, 0, -0.348327, 113.11, 0, 37.0158 )
 visible = false
 mesh = SubResource( 80 )

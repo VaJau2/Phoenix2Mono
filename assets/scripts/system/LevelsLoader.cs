@@ -81,12 +81,14 @@ public class LevelsLoader : Node
 
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
-		if (levelPaths[tempLevelNum] == "menu") {
+		if (levelPaths[tempLevelNum] == "menu") 
+		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 			return;
 		}
 
-		if (loader == null) {
+		if (loader == null) 
+		{
 			currentLoading = (Control)loadingMenuPrefab.Instance();
 			menuParent.AddChild(currentLoading);
 
@@ -97,9 +99,11 @@ public class LevelsLoader : Node
 
 	private void updateMenu()
 	{
-		if (tempLevelNum != 0) {
+		if (tempLevelNum != 0) 
+		{
 			//грузим меню паузы
-			if (currentMenu.Name != "PauseMenu") {
+			if (currentMenu.Name != "PauseMenu") 
+			{
 				respawnMenu(pauseMenuPrefab);
 				mainMenuOn = false;
 			}
@@ -109,9 +113,11 @@ public class LevelsLoader : Node
 			}
 
 			currentMenu.Visible = false;
-		} else {
+		} else 
+		{
 			//грузим главное меню
-			if (!mainMenuOn) {
+			if (!mainMenuOn) 
+			{
 				respawnMenu(mainMenuPrefab);
 				mainMenuOn = true;
 			}

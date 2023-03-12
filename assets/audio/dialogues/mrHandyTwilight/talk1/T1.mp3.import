@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/T1.mp3-e0b2bf5979e79c9a6cf5395e400e2782.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/mrHandyTwilight/talk1/T1.mp3"
+dest_files=[ "res://.import/T1.mp3-e0b2bf5979e79c9a6cf5395e400e2782.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

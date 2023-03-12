@@ -4,6 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "I hear somepony... It's you, lieutenant?",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [
@@ -37,7 +38,7 @@
     "S1(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Yes, soldier. I'll replace your battery now... *replace battery*",
+      "body": "Yes, soldier. I'll replace your battery now... [replace battery]",
       "speaker": "Strikely",
       "opposite": "Armored soldier",
       "next": "S1(1.1)"

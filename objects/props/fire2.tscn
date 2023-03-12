@@ -120,18 +120,16 @@ stream = ExtResource( 3 )
 unit_db = 2.0
 unit_size = 3.0
 autoplay = true
+bus = "Sound"
 
 [node name="Cylinder001" type="MeshInstance" parent="."]
 transform = Transform( -2.81607e-08, -0.118115, 3.52009e-09, -6.43387e-09, 0, -0.215885, 0.215885, -5.79048e-08, 0, 1.63091, -0.369311, -0.919297 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="Cylinder002" type="MeshInstance" parent="."]
 transform = Transform( 0.0118064, -0.117938, 3.51482e-09, -6.43387e-09, 0, -0.215885, 0.215562, 0.00645948, -1.92509e-10, 1.91372, -0.369311, -0.27945 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="Cylinder003" type="MeshInstance" parent="."]
 transform = Transform( -0.0168292, -0.117755, 3.50938e-09, -6.43387e-09, 0, -0.215885, 0.215228, -0.00920762, 2.74407e-10, 1.63091, -0.369311, 0.882412 )
 mesh = SubResource( 7 )
-material/0 = null

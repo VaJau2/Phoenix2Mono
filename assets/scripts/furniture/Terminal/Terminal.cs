@@ -7,10 +7,10 @@ using Godot.Collections;
 
 //работает в нескольких режимах
 //которые реализованы через TerminalMode
-public class Terminal : StaticBody, IMenu
+public class Terminal : StaticBody, IMenu, IInteractable
 {
     //при открытии инвентаря, включенный терминал переходит на фон, но не закрывается
-    public bool mustBeClosed {get => false;}
+    public bool mustBeClosed => false;
     [Export]
     public string startPhraseCode = "personal";
     [Export]
@@ -25,7 +25,10 @@ public class Terminal : StaticBody, IMenu
     Player player => Global.Get().player;
     
     public TerminalMode mode;
-    public bool isUsing = false;
+    public bool isUsing;
+
+    public bool MayInteract => true;
+    public string InteractionHintCode => "terminal";
 
     
     public void OpenMenu()
@@ -57,9 +60,7 @@ public class Terminal : StaticBody, IMenu
         if (saveNode == null || messages == null) return;
         if (saveNode.SavedVariables.Contains("terminalHint")) return;
         
-        string message = InterfaceLang.GetPhrase("inGame", "hints", "5");
-        message = HintTrigger.ReplaceKeys(message);
-        messages.ShowMessageRaw(message, 3.5f);
+        messages.ShowMessage("5", "hints", 3.5f);
         saveNode.SavedVariables["terminalHint"] = true;
     }
 
@@ -102,13 +103,22 @@ public class Terminal : StaticBody, IMenu
 
     public override void _Input(InputEvent @event)
     {
-        if (isUsing && @event is InputEventKey) {
-            var keyEvent = @event as InputEventKey;
-            if (IsExitKey()) {
+        if (isUsing && @event is InputEventKey keyEvent) 
+        {
+            if (IsExitKey()) 
+            {
                 StartClosing();
-            } else {
+            } 
+            else 
+            {
                 mode.UpdateInput(keyEvent);
             }
         }
+    }
+    
+    public void Interact(PlayerCamera interactor)
+    {
+        interactor.HideInteractionSquare();
+        MenuManager.TryToOpenMenu(this);
     }
 }

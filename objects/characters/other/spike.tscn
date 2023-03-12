@@ -548,7 +548,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 36 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
+node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
@@ -558,12 +558,10 @@ extents = Vector3( 14.4008, 11.5559, 29.3611 )
 [sub_resource type="BoxShape" id=40]
 extents = Vector3( 3.71017, 3.62098, 4.73551 )
 
-[node name="spike" type="KinematicBody" groups=[
-"savable",
-]]
+[node name="spike" type="KinematicBody" groups=["savable"]]
 script = ExtResource( 6 )
 IdleAnim = "Idle1"
-IsImmortal = true
+WalkSpeed = 6
 lookHeightFactor = -20.0
 headBonePath = NodePath("")
 bodyBonePath = NodePath("")
@@ -652,7 +650,6 @@ bones/14/bound_children = [  ]
 [node name="spike" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = null
 script = ExtResource( 1 )
 npcName = "spike"
 startEyesVariant = "neitral"
@@ -708,14 +705,14 @@ script = ExtResource( 8 )
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 4.0
 unit_size = 4.0
-bus = "Audio"
+bus = "Sound"
 
 [node name="audiShoot" type="AudioStreamPlayer3D" parent="."]
 unit_db = 5.0
 unit_size = 13.0
 max_db = 5.0
 max_distance = 2000.0
-bus = "Audio"
+bus = "Sound"
 
 [connection signal="body_entered" from="seekArea" to="seekArea" method="_on_seekArea_body_entered"]
 [connection signal="body_exited" from="seekArea" to="seekArea" method="_on_seekArea_body_exited"]

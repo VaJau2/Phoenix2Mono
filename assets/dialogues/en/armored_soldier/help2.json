@@ -4,6 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Hey! Somepony here?.. Help me!",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [
@@ -17,6 +18,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Lieutenant, help me! Those assholes gave me a defective nuclear battery again!",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "next": "S3"
@@ -25,6 +27,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "The armor just suddenly shut down, and now I can't move...",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [
@@ -42,6 +45,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "It's been hours. I thought no one would help me...",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [
@@ -55,6 +59,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Let me report it myself, Lieutenant. Just help me with this armor, please...",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [
@@ -68,6 +73,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Yes, they should be in my closet in the 104th room. Cabinet on the left.",
+      "config": "armored_soldier_phone",
       "speaker": "Armored soldier",
       "opposite": "Strikely",
       "options": [

@@ -37,6 +37,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Spike, don't get distracted! We have an important meeting, and we will soon have to run to another one!",
+      "config": "twilight",
       "speaker": "Minister Twilight",
       "opposite": "Strikely",
       "next": "S5"

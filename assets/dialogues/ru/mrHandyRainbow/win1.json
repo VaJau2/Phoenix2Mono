@@ -1,1 +1,71 @@
-{"nodes":{"D1":{"kind":"dialogue","root_node":false,"body":"Но...как? Это же невозможно! Ты что, сломала игру ради какой-то снайперки?..","speaker":"Робо-Деш","opposite":"Страйкли","options":[{"body":"answer","next":"D1(2)"}]},"D1(2)":{"kind":"dialogue","root_node":false,"body":"Давай сюда свою снайперку!","speaker":"Страйкли","opposite":"Робо-Деш","next":"D3"},"D3":{"kind":"dialogue","root_node":false,"body":"*обиженное робо-фыркание*","speaker":"Робо-Деш","opposite":"Страйкли","next":"D5.1"},"D4.1":{"kind":"narration","root_node":false,"body":"ChangeDialogueCode"},"D5.1":{"kind":"narration","root_node":false,"body":"TakeItem","set":[{"key":"name","op":"set","value":"sniper307"}],"next":"D4.1"}},"speakers":{"Страйкли":{"color":{"r":0,"g":0,"b":0,"a":0}},"Робо-Деш":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+    "nodes": {
+        "D1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но...как? Это же невозможно! Ты что, сломала игру ради какой-то снайперки?..",
+            "speaker": "Робо-Деш",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "D1(2)"
+                }
+            ]
+        },
+        "D1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Давай сюда свою снайперку!",
+            "speaker": "Страйкли",
+            "opposite": "Робо-Деш",
+            "next": "D3"
+        },
+        "D3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "*обиженное робо-фыркание*",
+            "speaker": "Робо-Деш",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "D5.1"
+        },
+        "D4.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        },
+        "D5.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "TakeItem",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "sniper307"
+                }
+            ],
+            "next": "D4.1"
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Робо-Деш": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

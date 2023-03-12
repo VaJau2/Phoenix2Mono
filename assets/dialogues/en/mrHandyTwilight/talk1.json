@@ -5,6 +5,7 @@
       "root_node": false,
       "body": "Hi! Where are you from?",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "options": [
         {
@@ -22,6 +23,7 @@
       "root_node": false,
       "body": "He's in his room. Come into the biggest building, I'll call him!",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "next": "T2(1.1)"
     },
@@ -30,6 +32,7 @@
       "root_node": false,
       "body": "Hi again! What are you doing here?",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "options": [
         {
@@ -47,6 +50,7 @@
       "root_node": false,
       "body": "Oh, I could tell you a lot about Minister Twilight, but I'm afraid all of the interesting stories were removed from my program. And you still haven't answered my questions.",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "options": [
         {
@@ -64,6 +68,7 @@
       "root_node": false,
       "body": "Yeah, how do you know it?",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "options": [
         {
@@ -81,6 +86,7 @@
       "root_node": false,
       "body": "Sorry, I can't answer this question. Maybe you'll ask him?",
       "speaker": "Robo-Twilight",
+      "timer": "0.01",
       "opposite": "Strikely",
       "options": [
         {
