@@ -86,7 +86,7 @@
         "T5.1": {
             "kind": "dialogue",
             "root_node": false,
-            "body": "*sign* You left my ministry and now ask me funding this? Do you know how many similar inventions are put on my desk every day?",
+            "body": "[sign] You left my ministry and now ask me funding this? Do you know how many similar inventions are put on my desk every day?",
             "config": "twilight",
             "speaker": "Minister Twilight",
             "opposite": "Bellgates",

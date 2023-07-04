@@ -200,7 +200,7 @@
         "R7(1)": {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Allright. I'll put it on the floor *put the gun down*",
+            "body": "Allright. I'll put it on the floor [put the gun down]",
             "speaker": "Strikely",
             "opposite": "Red Punch",
             "next": "R7(1.1)"
