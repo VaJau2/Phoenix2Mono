@@ -25,7 +25,7 @@
         "D3": {
             "kind": "dialogue",
             "root_node": false,
-            "body": "*offended robo-snort*",
+            "body": "[offended robo-snort]",
             "speaker": "Robo-Dash",
             "timer": "0.01",
             "opposite": "Strikely",

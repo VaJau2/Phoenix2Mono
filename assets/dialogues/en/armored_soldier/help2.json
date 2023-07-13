@@ -118,7 +118,7 @@
     "S6(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Oh, yes... I have an extra battery here. Let me replace it... * replace the battery*",
+      "body": "Oh, yes... I have an extra battery here. Let me replace it... [replace the battery]",
       "speaker": "Strikely",
       "opposite": "Armored soldier",
       "next": "S6(1.1)"

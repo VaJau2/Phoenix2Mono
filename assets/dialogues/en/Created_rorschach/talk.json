@@ -252,7 +252,7 @@
     "E10": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "You or your employer are *nagging cough* dumber than I thought. Destroying of this blueprints makes no sense.",
+      "body": "You or your employer are dumber than I thought. Destroying of this blueprints makes no sense.",
       "speaker": "Mysterious Stranger",
       "opposite": "Strikely",
       "options": [
