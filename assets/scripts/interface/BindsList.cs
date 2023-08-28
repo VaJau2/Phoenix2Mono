@@ -27,7 +27,11 @@ public class BindsList : Node
         bindIcons.Sort(delegate(ItemIcon x, ItemIcon y)
         {
             int bindX = Convert.ToInt16(x.GetBindKey());
+            if (bindX == 0) bindX = 10;
+
             int bindY = Convert.ToInt16(y.GetBindKey());
+            if (bindY == 0) bindY = 10;
+
             return bindX > bindY ? 1 : -1;
         });
         

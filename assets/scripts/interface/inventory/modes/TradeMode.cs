@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Godot.Collections;
@@ -84,6 +85,11 @@ public class TradeMode: InventoryMode
     {
         if (menu.isOpen && tempButton != null) 
         {
+            if (tempButton.isInventoryIcon)
+            {
+                if (UpdateDragging(@event)) return;
+            }
+
             if (modalAsk.Visible) 
             {
                 if (Input.IsActionJustPressed("jump")) 
@@ -97,18 +103,29 @@ public class TradeMode: InventoryMode
             } 
             else 
             {
-                if (Input.IsActionJustPressed("ui_click")) 
+                if (Input.IsActionJustReleased("ui_click")) 
                 {
-                    if (CheckSellItem()) return;
-                    CheckBuyItem();
+                    if (IsMouseOutsideDeadZone())
+                    {
+                        if (CheckSellItem()) return;
+                        CheckBuyItem();
+                    }
                 }
                 
-                if (@event is InputEventKey && itemButtons.Contains(tempButton)) 
+                if (@event is InputEventKey && !tradeButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys(tempItemData["type"].ToString());
+                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
                 }
             }
         }
+        
+        base.UpdateInput(@event);
+    }
+
+    public override void MoveTempItem()
+    {
+        if (CheckSellItem()) return;
+        CheckBuyItem();
     }
 
     public override void _on_modal_no_pressed()
@@ -196,7 +213,7 @@ public class TradeMode: InventoryMode
         tempCount = (int)newCount;
         string askPhrase = GetAskPhrase();
         askLabel.Text = askPhrase;
-        sliderCount.Text = newCount.ToString();
+        sliderCount.Text = newCount.ToString(CultureInfo.InvariantCulture);
     }
 
     private void CloseModalAsk()
@@ -359,12 +376,42 @@ public class TradeMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        string phraseName = isInventoryIcon ? "put" : "take";
-        controlHints.Text = InterfaceLang.GetPhrase(
-            "inventory", 
-            "tradeControlHints", 
-            phraseName
-        );
+        var type = (ItemType)tempItemData["type"];
+        ControlText[] controlTexts;
+
+        if (isInventoryIcon)
+        {
+            switch (type)
+            {
+                case ItemType.weapon:
+                    controlTexts = new[] { ControlText.equip, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.armor:
+                case ItemType.artifact:
+                    controlTexts = new[] { ControlText.equip, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.note:
+                    controlTexts = new[] { ControlText.read, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.food:
+                    controlTexts = new[] { ControlText.eat, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.meds:
+                    controlTexts = new[] { ControlText.use, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                default:
+                    controlTexts = new[] { ControlText.move, ControlText.sell };
+                    break;
+            }
+        }
+        else controlTexts = new[] { ControlText.buy };
+
+        controlHints.LoadHits(controlTexts);
     }
 
     protected override bool IconsInSameArray(ItemIcon oldButton, ItemIcon newButton) 
@@ -378,10 +425,11 @@ public class TradeMode: InventoryMode
 
     public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
-        if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        if (tradeButtons.Contains(newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
         {
             bindsHandler.ClearBind(oldButton);
         }
+
         base.ChangeItemButtons(oldButton, newButton);
     }
 
@@ -444,7 +492,7 @@ public class TradeMode: InventoryMode
             }
         }
         
-        tempCountMax = itemProps["type"].ToString() == "ammo" ? tempButton.GetCount() : 1;
+        tempCountMax = (ItemType)itemProps["type"] == ItemType.ammo ? tempButton.GetCount() : 1;
         return result;
     } 
 

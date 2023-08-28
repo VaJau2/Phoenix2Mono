@@ -77,9 +77,14 @@ public class InventoryMenu : Control, IMenu
             return true;
         }
  
+        DropItem(itemCode);
+        return false;
+    }
+
+    public void DropItem(string itemCode)
+    {
         IChest tempBag = mode.SpawnItemBag();
         tempBag.ChestHandler.ItemCodes.Add(itemCode);
-        return false;
     }
 
     public void RemoveItemIfExists(string itemCode)

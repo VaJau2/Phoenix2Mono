@@ -63,17 +63,20 @@ public class ChestMode: InventoryMode
 
     public override void UpdateInput(InputEvent @event)
     {
-        if (menu.isOpen) 
+        base.UpdateInput(@event);
+        
+        if (menu.isOpen)
         {
             if (tempButton != null) 
             {
                 if (UpdateDragging(@event)) return;
 
-                if (@event is InputEventKey && itemButtons.Contains(tempButton)) 
+                if (@event is InputEventKey && !chestButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys(tempItemData["type"].ToString());
+                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
                 }
             }
+
             if (Input.IsActionJustPressed("ui_shift"))
             {
                 _on_takeAll_pressed();
@@ -196,7 +199,7 @@ public class ChestMode: InventoryMode
         button.SetItem(itemCode);
 
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if (itemData["type"].ToString() == "money") 
+        if ((ItemType)itemData["type"] == ItemType.money)
         {
             button.SetCount(tempChest.ChestHandler.MoneyCount);
         }
@@ -272,6 +275,8 @@ public class ChestMode: InventoryMode
 
     protected override void CheckDragItem()
     {
+        base.CheckDragItem();
+        
         //перетащить из сундука
         if (CheckDragIn(itemButtons, "inventory")) return;
 
@@ -288,17 +293,55 @@ public class ChestMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        string phraseName = isInventoryIcon ? "put" : "take";
-        controlHints.Text = InterfaceLang.GetPhrase(
-            "inventory", 
-            "chestControlHints", 
-            phraseName
-        );
+        var type = (ItemType)tempItemData["type"];
+        ControlText[] controlTexts;
+
+        switch (type)
+        {
+            case ItemType.weapon:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.equip, ControlText.bind, ControlText.move, ControlText.put } 
+                    : new [] { ControlText.equip, ControlText.move, ControlText.take };
+                break;
+
+            case ItemType.armor:
+            case ItemType.artifact:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.equip, ControlText.move, ControlText.put } 
+                    : new [] { ControlText.equip, ControlText.move, ControlText.take };
+                break;
+
+            case ItemType.note:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.read, ControlText.move, ControlText.put } 
+                    : new [] { ControlText.read, ControlText.move, ControlText.take };
+                break;
+
+            case ItemType.food:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.eat, ControlText.bind, ControlText.move, ControlText.put } 
+                    : new [] { ControlText.eat, ControlText.bind, ControlText.move, ControlText.take };
+                break;
+
+            case ItemType.meds:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.use, ControlText.bind, ControlText.move, ControlText.put } 
+                    : new [] { ControlText.use, ControlText.bind, ControlText.move, ControlText.take };
+                break;
+
+            default:
+                controlTexts = isInventoryIcon 
+                    ? new[] { ControlText.move, ControlText.put }
+                    : new [] { ControlText.move, ControlText.take };
+                break;
+        }
+        
+        controlHints.LoadHits(controlTexts);
     }
 
     public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
-        if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        if (chestButtons.Contains(newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
         {
             bindsHandler.ClearBind(oldButton);
         }
@@ -349,7 +392,7 @@ public class ChestMode: InventoryMode
         //взять из сундука
         if(chestButtons.Contains(tempButton)) 
         {
-            bool isMoney = tempItemData["type"].ToString() == "money";
+            bool isMoney = (ItemType)tempItemData["type"] == ItemType.money;
             if (CheckMoneyInInventory(isMoney)) return true;
             if (CheckAmmoInInventory()) return true;
             

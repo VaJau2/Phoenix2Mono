@@ -105,11 +105,20 @@
         "back": "Back:",
         "left": "Left:",
         "right": "Right:",
-        "jump": "Jump/Teleport/Fly:",
-        "run": "Run/Magic shield/Descent:",
+
+        "jump": "Jump:",
+        "fly": "Takeoff:",
+        
+        "run": "Run:",
+        "shield": "Shield:",
+        "descent": "Descent:",
+        
         "use": "Use:",
         "sit": "Sit:",
+        
         "dash": "Dash:",
+        "teleport": "Teleport:",
+        
         "choseHit": "Close hit:",
         "changeView": "Change view:",
         "seeTasks": "See tasks:",

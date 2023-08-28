@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ]
 }
 
-[node name="LoadingIcon" type="Control"]
+[node name="LoadingIcon" type="Control" groups=["ignore_color"]]
 anchor_right = 0.021
 anchor_bottom = 0.033
 margin_right = 0.495998
@@ -43,6 +43,7 @@ margin_bottom = 0.200001
 position = Vector2( 11, 10 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
+flip_h = true
 hframes = 7
 vframes = 4
 

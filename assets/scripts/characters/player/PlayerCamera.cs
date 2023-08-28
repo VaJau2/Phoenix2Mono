@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 // скрипт взаимодействия с предметами
-public class PlayerCamera: Camera 
+public class PlayerCamera : Camera
 {
     const float RAY_LENGH = 6;
     const float RAY_THIRD_LENGTH = 9;
@@ -19,8 +19,9 @@ public class PlayerCamera: Camera
 
     Player player;
 
-    Control labelBack;
-    Label label;
+    Label interactionHint;
+    TextureRect interactionIcon;
+    TextureRect interactionIcon_shadow;
     string closedTextLink = "closed";
 
     Spatial tempObject;
@@ -34,7 +35,7 @@ public class PlayerCamera: Camera
 
     RayCast tempRay => player.RotationHelperThird.TempRay;
 
-    public RayCast UseRay(float newDistance) 
+    public RayCast UseRay(float newDistance)
     {
         tempRay.CollisionMask = 2147483649; //слой 1
         tempRay.CastTo = new Vector3(0, 0, -newDistance);
@@ -56,15 +57,19 @@ public class PlayerCamera: Camera
         point.HideSquare();
     }
     
-    public void ShowHint(string textLink, bool triggerClosing = true) 
+    public void ShowHint(string textLink, bool triggerClosing = true)
     {
         point.SetInteractionVariant(InteractionVariant.Square);
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
-        label.Text = key;
-        label.Text += InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
-        labelBack.Visible = true;
+
+        interactionIcon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
+        interactionIcon_shadow.Texture = interactionIcon.Texture;
+
+        interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
+
+        SetHintVisible(true);
         if (!triggerClosing) return;
         onetimeHint = onetimeCross = true;
     }
@@ -82,91 +87,91 @@ public class PlayerCamera: Camera
         );
     }
 
-    private void UpdateFov(float delta) 
+    private void UpdateFov(float delta)
     {
-        if (closedTimer > 0) 
+        if (closedTimer > 0)
         {
             closedTimer -= delta;
-            if (!onetimeHint) 
+            if (!onetimeHint)
             {
-                label.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
-                labelBack.Visible = true;
+                interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
+                SetHintVisible(true);
                 onetimeHint = true;
             }
-        } 
-        else 
+        }
+        else
         {
-            if (onetimeHint) 
+            if (onetimeHint)
             {
-                labelBack.Visible = false;
+                SetHintVisible(false);
                 onetimeHint = false;
             }
         }
 
-        if (eyesClosed) 
+        if (eyesClosed)
         {
             eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
             eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
-        } 
-        else if(fovClosing) 
+        }
+        else if (fovClosing)
         {
             float closeFov = 42f;
 
             Dictionary armorProps = player.inventory.GetArmorProps();
-            if (armorProps.Contains("closeFov")) 
+            if (armorProps.Contains("closeFov"))
             {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());
             }
 
-            if (Fov > closeFov) 
+            if (Fov > closeFov)
             {
                 Fov -= FOV_SPEED * delta;
             }
-            if (eyePartUp.RectPosition.y < -220) 
+            if (eyePartUp.RectPosition.y < -220)
             {
                 eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition, 
+                    eyePartUp.RectPosition,
                     eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
                 );
             }
-            if (eyePartDown.RectPosition.y > 220) 
+            if (eyePartDown.RectPosition.y > 220)
             {
                 eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition, 
+                    eyePartDown.RectPosition,
                     eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
                 );
             }
-        } 
-        else 
+        }
+        else
         {
-            if (Fov < 70) 
+            if (Fov < 70)
             {
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.RectPosition.y > -650) 
+            if (eyePartUp.RectPosition.y > -650)
             {
                 eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition, 
+                    eyePartUp.RectPosition,
                     eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
-            if (eyePartDown.RectPosition.y < 650) 
+            if (eyePartDown.RectPosition.y < 650)
             {
                 eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition, 
+                    eyePartDown.RectPosition,
                     eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
                 );
             }
         }
     }
 
-    private void UpdateInteracting() 
+    private void UpdateInteracting()
     {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
         if (!player.MayMove) return;
-        
+
         tempObject = (Spatial)tempRay.GetCollider();
 
         if (mayUseRay && tempObject != null)
@@ -180,8 +185,8 @@ public class PlayerCamera: Camera
             {
                 ShowHint(interactable.InteractionHintCode);
             }
-        } 
-        else 
+        }
+        else
         {
             tempObject = null;
             ReturnInteractionPoint();
@@ -190,22 +195,32 @@ public class PlayerCamera: Camera
 
     private void UpdateInput()
     {
-        if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
+        if (!interactionHint.Visible || !(closedTimer <= 0) || tempObject == null) return;
         if (tempObject is IInteractable interactable && interactable.MayInteract)
         {
             interactable.Interact(this);
         }
     }
 
+    void SetHintVisible(bool value)
+    {
+        interactionHint.Visible = value;
+        interactionIcon.Visible = value;
+    }
+
     public override void _Ready()
     {
         point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        interactionHint = point.GetNode<Label>("interactionHint");
+
+        interactionIcon = GetNode<TextureRect>("/root/Main/Scene/canvas/interactionIcon");
+        interactionIcon_shadow = interactionIcon.GetNode<TextureRect>("shadow");
+        MenuBase.LoadColorForChildren(interactionIcon);
+
         player = GetNode<Player>("../../");
-        labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
+
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
         eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
-
-        label = labelBack.GetNode<Label>("label");
     }
 
     private Vector2 SetRectY(Vector2 oldPosition, float newY) 
@@ -216,12 +231,12 @@ public class PlayerCamera: Camera
 
     public override void _Process(float delta)
     {
-        if (!isUpdating) 
+        if (!isUpdating)
         {
-            labelBack.Visible = false;
+            SetHintVisible(false);
             return;
         }
-        
+
         UpdateFov(delta);
         UpdateInteracting();
     }
@@ -238,7 +253,7 @@ public class PlayerCamera: Camera
         if (player.ThirdView) return;
         if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
         if (!(@event is InputEventMouseButton mouseEv)) return;
-        if (mouseEv.ButtonIndex == 2) 
+        if (mouseEv.ButtonIndex == 2)
         {
             fovClosing = mouseEv.Pressed;
         }

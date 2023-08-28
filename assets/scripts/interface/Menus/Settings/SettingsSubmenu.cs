@@ -65,9 +65,9 @@ public class SettingsSubmenu : SubmenuBase
         difficultyButton = GetNode<Button>("difficulty");
         
         colorLabel = GetNode<Label>("colorBlock/label");
-        rSlider = GetNode<Slider>("colorBlock/r_slider");
-        gSlider = GetNode<Slider>("colorBlock/g_slider");
-        bSlider = GetNode<Slider>("colorBlock/b_slider");
+        rSlider = GetNode<Slider>("colorBlock/r_label/r_slider");
+        gSlider = GetNode<Slider>("colorBlock/g_label/g_slider");
+        bSlider = GetNode<Slider>("colorBlock/b_label/b_slider");
     }
 
     public override void LoadInterfaceLanguage()

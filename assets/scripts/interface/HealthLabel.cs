@@ -1,15 +1,12 @@
 using Godot;
-using System;
 
-public class HealthLabel : Label
+public class HealthLabel : TextureRect
 {
     Player player;
 
-    public override void _Process(float delta)
+    public override void _Ready()
     {
-        if (player == null) player = Global.Get().player;
-        else {
-            Text = player.Health.ToString();
-        }
+        player = Global.Get().player;
+        MenuBase.LoadColorForChildren(this);
     }
 }

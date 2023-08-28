@@ -6,9 +6,11 @@ public abstract class InventoryMode
 {
     private const float MENU_SPEED = 16f;
     private const float MENU_SIZE = 272f;
+    private const float DEAD_ZONE = 10f;
 
     protected Player player => Global.Get().player;
     protected InventoryMenu menu;
+    protected Control wearBack;
     protected Control back;
     protected Label moneyCount;
 
@@ -19,13 +21,13 @@ public abstract class InventoryMode
     protected Label itemName;
     protected Label itemDesc;
     protected Label itemProps;
-    protected Label controlHints;
+    protected ControlHintsController controlHints;
 
     public bool isAnimating;
-    public bool isDragging {get; private set;}
+    
     public bool ModalOpened => useHandler.ModalOpened;
-    public Control modalAsk {get; }
-    public Control modalRead {get; }
+    public Control modalAsk { get; }
+    public Control modalRead { get; }
 
     public ItemIcon tempButton { get; private set; }
     public Dictionary tempItemData { get; private set; }
@@ -34,8 +36,12 @@ public abstract class InventoryMode
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
 
-    protected float dragTimer;
+    private Vector2 savedMousePos;
+    
+    public bool isDragging { get; private set; }
     protected TextureRect dragIcon;
+    readonly Vector2 dragIconOffset = new Vector2(21, 21);
+
     protected PlayerInventory inventory => player.inventory;
     private PackedScene bagPrefab;
 
@@ -59,6 +65,7 @@ public abstract class InventoryMode
         }
 
         back = menu.GetNode<Control>("helper/back");
+        wearBack = back.GetNode<Control>("wearBack");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk   = menu.GetNode<Control>("modalAsk");
         modalRead  = menu.GetNode<Control>("modalRead");
@@ -67,10 +74,9 @@ public abstract class InventoryMode
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
         itemProps = itemInfo.GetNode<Label>("props");
-        controlHints = itemInfo.GetNode<Label>("hints");
+        controlHints = itemInfo.GetNode<ControlHintsController>("hints");
         dragIcon = back.GetNode<TextureRect>("dragIcon");
 
-        labels.Add("name", back.GetNode<Label>("Label"));
         labels.Add("money", back.GetNode<Label>("moneyLabel"));
         labels.Add("wear", back.GetNode<Label>("wearBack/Label"));
         labels.Add("weapon", back.GetNode<Label>("wearBack/weaponLabel"));
@@ -139,11 +145,38 @@ public abstract class InventoryMode
     //грузим подсказки по управлению предметом
     protected virtual void LoadControlHint(bool isInventoryIcon)
     {
-        controlHints.Text = InterfaceLang.GetPhrase(
-            "inventory", 
-            "inventoryControlHints", 
-            tempItemData["type"].ToString()
-        );
+        var type = (ItemType)tempItemData["type"];
+        ControlText[] controlTexts;
+
+        switch (type)
+        {
+            case ItemType.weapon:
+                controlTexts = new[] { ControlText.equip, ControlText.bind, ControlText.move, ControlText.drop };
+                break;
+
+            case ItemType.armor:
+            case ItemType.artifact:
+                controlTexts = new[] { ControlText.equip, ControlText.move, ControlText.drop };
+                break;
+
+            case ItemType.note:
+                controlTexts = new[] { ControlText.read, ControlText.move, ControlText.drop };
+                break;
+
+            case ItemType.food:
+                controlTexts = new[] { ControlText.eat, ControlText.bind, ControlText.move, ControlText.drop };
+                break;
+
+            case ItemType.meds:
+                controlTexts = new[] { ControlText.use, ControlText.bind, ControlText.move, ControlText.drop };
+                break;
+
+            default:
+                controlTexts = new[] { ControlText.move, ControlText.drop };
+                break;
+        }
+
+        controlHints.LoadHits(controlTexts);
     }
 
     public ItemIcon FirstEmptyButton
@@ -313,7 +346,42 @@ public abstract class InventoryMode
         }
     }
 
-    protected virtual void CheckDragItem() {}
+    protected virtual void CheckDragItem()
+    {
+        var itemType = (ItemType)tempItemData["type"];
+
+        switch (itemType)
+        {
+            case ItemType.weapon when CheckMouseInButton(useHandler.weaponButton):
+                useHandler.WearTempItem(useHandler.weaponButton); return;
+            case ItemType.armor when CheckMouseInButton(useHandler.armorButton):
+                useHandler.WearTempItem(useHandler.armorButton); return;
+            case ItemType.artifact when CheckMouseInButton(useHandler.artifactButton):
+                useHandler.WearTempItem(useHandler.artifactButton); return;
+        }
+
+        foreach (var otherButton in itemButtons)
+        {
+            var buttonControl = (Control)otherButton;
+            if (tempButton == otherButton || !CheckMouseInButton(buttonControl)) continue;
+            if (IsUnwearingItem(itemType))
+            {
+                if (!useHandler.CanTakeItemOff()) return;
+                inventory.UnwearItem(tempButton.myItemCode);
+            }
+
+            ChangeItemButtons(tempButton, otherButton);
+            SetTempButton(otherButton, false);
+            dragIcon.Texture = null;
+        }
+    }
+
+    private bool IsUnwearingItem(ItemType itemType)
+    {
+        return (itemType == ItemType.weapon && tempButton == useHandler.weaponButton)
+        || (itemType == ItemType.armor && tempButton == useHandler.armorButton)
+        || (itemType == ItemType.artifact && tempButton == useHandler.artifactButton);
+    }
 
     private void LoadLabels()
     {
@@ -332,6 +400,7 @@ public abstract class InventoryMode
         moneyCount.Text = inventory.money.ToString();
 
         menu.Visible = true;
+        wearBack.Visible = true;
         
         if (!isAnimating) 
         {
@@ -355,7 +424,7 @@ public abstract class InventoryMode
     {
         if (isDragging)
         {
-            FinishDradding();
+            FinishDragging();
         }
         CheckTempIcon();
         if (!player.IsSitting)
@@ -372,6 +441,7 @@ public abstract class InventoryMode
             back.RectPosition = newPos;
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
+        wearBack.Visible = false;
         menu.Visible = false;
         menu.isOpen = false;
         if (!Global.Get().paused) 
@@ -382,7 +452,7 @@ public abstract class InventoryMode
         isAnimating = false;
     }
 
-    private void FinishDradding()
+    private void FinishDragging()
     {
         tempButton.SetIcon((StreamTexture) dragIcon.Texture);
         dragIcon.Texture = null;
@@ -392,28 +462,42 @@ public abstract class InventoryMode
 
     protected bool UpdateDragging(InputEvent @event)
     {
-        var itemType = tempItemData["type"].ToString();
+        var itemType = (ItemType)tempItemData["type"];
+
+        if (Input.IsActionJustPressed("ui_click"))
+        {
+            if (itemType == ItemType.money)
+            {
+                MoveTempItem();
+                return false;
+            }
+            
+            savedMousePos = menu.GetGlobalMousePosition();
+        }
         
         if (Input.IsActionPressed("ui_click"))
         {
-            if (!MouseIsMoving(@event))
+            if (MouseIsMoving(@event) && IsMouseOutsideDeadZone())
+            {
+                if (!isDragging)
+                {
+                    useHandler.HideLoadingIcon();
+
+                    dragIcon.Texture = tempButton.GetIcon();
+                    dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
+
+                    tempButton.SetIcon(null);
+                    isDragging = true;
+                }
+
+                dragIcon.RectGlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
+            }
+            else
             {
                 if (inventory.itemIsUsable(itemType))
                 {
                     useHandler.ShowLoadingIcon();
                 }
-            }
-            else
-            {
-                if (!isDragging)
-                {
-                    useHandler.HideLoadingIcon();
-                    dragIcon.Texture = tempButton.GetIcon();
-                    tempButton.SetIcon(null);
-                    isDragging = true;
-                }
-
-                dragIcon.RectGlobalPosition = menu.GetGlobalMousePosition();
             }
         }
 
@@ -423,36 +507,30 @@ public abstract class InventoryMode
             
             if (isDragging)
             {
-                FinishDradding();
+                FinishDragging();
             }
 
-            if (dragTimer >= 1)
+            if (IsMouseOutsideDeadZone())
             {
-                dragTimer = 0;
                 CheckDragItem();
                 return true;
             }
-            
+
             MoveTempItem();
         }
 
         return false;
     }
 
+    protected bool IsMouseOutsideDeadZone()
+    {
+        var mousePos = menu.GetGlobalMousePosition();
+        return mousePos.DistanceTo(savedMousePos) > DEAD_ZONE;
+    }
+    
     private bool MouseIsMoving(InputEvent @event)
     {
-        if (dragTimer >= 1) return true;
-        
-        if (@event is InputEventMouseMotion)
-        {
-            dragTimer += 0.5f;
-        }
-        else
-        {
-            dragTimer = 0;
-        }
-        
-        return false;
+        return @event is InputEventMouseMotion;
     }
     
     public void CloseModal()
@@ -460,11 +538,52 @@ public abstract class InventoryMode
         useHandler.CloseModal();
     }
 
+    protected void UseHotkeys() 
+    {
+        if (bindsHandler.useCooldown > 0) return;
+
+        for (var i = 0; i < 10; i++)
+        {
+            if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
+            SetTempButton(menu.bindedButtons[i], false);
+            useHandler.UseTempItem();
+        }
+    }
+
+    protected void CheckAutoheal()
+    {
+        if (!Godot.Object.IsInstanceValid(player)) return;
+        if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
+        if (player.Health == player.HealthMax) 
+        {
+            inventory.ItemsMessage("youAreHealthy");
+            return;
+        }
+
+        foreach (var newTempButton in itemButtons)
+        {
+            if (newTempButton.myItemCode == null) continue;
+            SetTempButton(newTempButton);
+            if (tempButton.myItemCode != "heal-potion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
+            useHandler.UseTempItem();
+            return;
+        }
+        inventory.ItemsMessage("cantFindHeal");
+        CheckTempIcon();
+    }
+    
     public virtual void Process(float delta) {}
 
     public virtual void MoveTempItem() { }
 
-    public virtual void UpdateInput(InputEvent @event) {}
+    public virtual void UpdateInput(InputEvent @event)
+    {
+        if (@event is InputEventKey && tempButton == null) 
+        {
+            UseHotkeys();
+            CheckAutoheal();
+        }
+    }
 
     public virtual void _on_modal_no_pressed() {}
     public virtual void _on_modal_yes_pressed() {}

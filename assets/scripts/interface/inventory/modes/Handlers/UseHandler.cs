@@ -1,5 +1,5 @@
 ﻿using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 public class UseHandler
 {
@@ -75,23 +75,27 @@ public class UseHandler
         
         Player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
 
-        var itemType = mode.tempItemData["type"].ToString();
+        var itemType = (ItemType)mode.tempItemData["type"];
         if (Inventory.itemIsUsable(itemType)) 
         {
             switch(itemType) 
             {
-                case "note":
+                case ItemType.note:
                     ReadTempNote();
                     break;
-                case "weapon":
+                
+                case ItemType.weapon:
                     WearTempItem(weaponButton);
                     break;
-                case "armor":
+                
+                case ItemType.armor:
                     WearTempItem(armorButton);
                     break;
-                case "artifact":
+                
+                case ItemType.artifact:
                     WearTempItem(artifactButton);
                     break;
+                
                 default:
                     string oldBind = tempButton.GetBindKey();
                     string itemCode = tempButton.myItemCode;
@@ -139,16 +143,22 @@ public class UseHandler
 
             //если игрок берет оружие в режиме сундука из сундука
             //оружие, которое он до этого носил, должно остаться у него
-            if (mode is ChestMode)
+            if (mode is ChestMode && !string.IsNullOrEmpty(wearButton.myItemCode))
             {
-                if (!string.IsNullOrEmpty(wearButton.myItemCode))
+                if (menu.HasEmptyButton)
                 {
-                    menu.AddOrDropItem(wearButton.myItemCode);
-                    bindsHandler.ClearBind(wearButton);
+                    ItemIcon otherButton = mode.FirstEmptyButton;
+                    mode.ChangeItemButtons(wearButton, otherButton);
+                    mode.ChangeItemButtons(tempButton, wearButton);
                 }
+                else
+                {
+                    menu.DropItem(wearButton.myItemCode);
+                    bindsHandler.ClearBind(wearButton);
                 
-                wearButton.SetItem(tempButton.myItemCode);
-                mode.RemoveItemFromButton(tempButton);
+                    wearButton.SetItem(tempButton.myItemCode);
+                    mode.RemoveItemFromButton(tempButton);
+                }
             }
             else
             {
@@ -178,8 +188,8 @@ public class UseHandler
     
     public bool CanTakeItemOff() 
     {
-        string itemType = mode.tempItemData["type"].ToString();
-        if (itemType != "artifact" || Inventory.artifact == "") return true;
+        var itemType = (ItemType)mode.tempItemData["type"];
+        if (itemType != ItemType.artifact || Inventory.artifact == "") return true;
         
         var artifactData = ItemJSON.GetItemData(Inventory.artifact);
         if (!artifactData.Contains("cantUnwear")) return true;

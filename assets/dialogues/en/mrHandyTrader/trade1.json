@@ -4,7 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Good day, Lieutenant.",
-      "speaker": "Mister Handy",
+      "speaker": "Mister Gutsy",
       "opposite": "Strikely",
       "options": [
         {
@@ -22,7 +22,7 @@
       "root_node": false,
       "body": "Hi. They didn't replace you yet?",
       "speaker": "Strikely",
-      "opposite": "Mister Handy",
+      "opposite": "Mister Gutsy",
       "next": "T2"
     },
     "Т1(2)": {
@@ -30,13 +30,13 @@
       "root_node": false,
       "body": "Sorry, wrong door.",
       "speaker": "Strikely",
-      "opposite": "Mister Handy"
+      "opposite": "Mister Gutsy"
     },
     "T2": {
       "kind": "dialogue",
       "root_node": false,
       "body": "Yes, lieutenant. They couldn't change my program, and have no one to replace me. All new robots are sent immediately to the front.",
-      "speaker": "Mister Handy",
+      "speaker": "Mister Gutsy",
       "opposite": "Strikely",
       "options": [
         {
@@ -54,7 +54,7 @@
       "root_node": false,
       "body": "Excellent. So, there is something to trade?",
       "speaker": "Strikely",
-      "opposite": "Mister Handy",
+      "opposite": "Mister Gutsy",
       "next": "Т3"
     },
     "Т2(2)": {
@@ -62,13 +62,13 @@
       "root_node": false,
       "body": "I see. I'll come back later.",
       "speaker": "Strikely",
-      "opposite": "Mister Handy"
+      "opposite": "Mister Gutsy"
     },
     "Т3": {
       "kind": "dialogue",
       "root_node": false,
       "body": "That's right. Would you like to buy or sell something?",
-      "speaker": "Mister Handy",
+      "speaker": "Mister Gutsy",
       "opposite": "Strikely",
       "options": [
         {
@@ -86,7 +86,7 @@
       "root_node": false,
       "body": "Yes. Show me what's for sale.",
       "speaker": "Strikely",
-      "opposite": "Mister Handy",
+      "opposite": "Mister Gutsy",
       "next": "script"
     },
     "T3(2)": {
@@ -94,7 +94,7 @@
       "root_node": false,
       "body": "No, I was just wondering. Keep working.",
       "speaker": "Strikely",
-      "opposite": "Mister Handy",
+      "opposite": "Mister Gutsy",
       "next": "script1"
     },
     "script": {

@@ -38,21 +38,21 @@
 
     "cameraHints": {
         "closed": "Locked",
-        "close": " - close",
-        "open": " - open",
-        "search": " - search",
-        "trade": " - trade",
-        "talk": " - talk",
-        "terminal": " - manage",
-        "exitLocation": " - leave location",
-        "sit": " - sit here",
-        "putSuitcase": " - put suitcase",
-        "putFirewood": " - put firewood",
-        "sleep": " - sleep",
-        "pick": " - pick",
-        "clickButton": " - click button",
-        "turnOn": " - turn on",
-        "turnOff": " - turn off"
+        "close": "Close",
+        "open": "Open",
+        "trade": "Trade",
+        "talk": "Talk",
+        "terminal": "Manage",
+        "exitLocation": "Leave location",
+        "sit": "Sit",
+        "putSuitcase": "Put suitcase",
+        "putFirewood": "Put firewood",
+        "sleep": "Sleep",
+        "pick": "Pick",
+        "clickButton": "Press button",
+        "turnOn": "Turn on",
+        "turnOff": "Turn off",
+        "search": "Search"
     },
 
     "hints": {
@@ -82,9 +82,9 @@
 
     "tradeNames": {
         "tradeTerminal": "Trade terminal",
-        "mrHandy": "Mister Handy",
-        "ponyTrader": "Trader",
-        "roboFluttershy": "Robo-Fluttershy"
+        "mrHandy": "Mister Gutsy",
+        "ponyTrader": "Opal",
+        "roboFluttershy": "Assistant Shy"
     },
     
     "labels": {

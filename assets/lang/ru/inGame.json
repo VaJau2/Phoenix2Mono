@@ -38,21 +38,21 @@
 
     "cameraHints": {
         "closed": "Закрыто",
-        "close": " - закрыть",
-        "open": " - открыть",
-        "search": " - осмотреть",
-        "trade": " - торговать",
-        "talk": " - поговорить",
-        "terminal": " - управлять",
-        "exitLocation": " - покинуть локацию",
-        "sit": " - сесть",
-        "putSuitcase": " - положить чемодан",
-        "putFirewood": " - положить дрова",
-        "sleep": " - лечь спать",
-        "pick": " - взять",
-        "clickButton": " - нажать на кнопку",
-        "turnOn": " - включить",
-        "turnOff": " - выключить"
+        "close": "Закрыть",
+        "open": "Открыть",
+        "trade": "Торговать",
+        "talk": "Поговорить",
+        "terminal": "Управлять",
+        "exitLocation": "Покинуть локацию",
+        "sit": "Сесть",
+        "putSuitcase": "Положить чемодан",
+        "putFirewood": "Положить дрова",
+        "sleep": "Лечь спать",
+        "pick": "Взять",
+        "clickButton": "Нажать",
+        "turnOn": "Включить",
+        "turnOff": "Выключить",
+        "search": "Осмотреть"
     },
 
     "hints": {
@@ -67,7 +67,7 @@
     
     "hintsModal": {
         "header": "Управление",
-        "ok": "ок - #use#",
+        "ok": "Ок - #use#",
         "skip": "пропустить обучение - #ui_shift#"
     },
 
@@ -82,9 +82,9 @@
 
     "tradeNames": {
         "tradeTerminal": "Торговый терминал",
-        "mrHandy": "Мистер помощник",
-        "ponyTrader": "Торговец",
-        "roboFluttershy": "Робо-Флаттершай"
+        "mrHandy": "Мистер Храбрец",
+        "ponyTrader": "Опал",
+        "roboFluttershy": "Помощница Шай"
     },
     
     "labels": {

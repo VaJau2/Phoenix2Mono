@@ -43,10 +43,11 @@ public class BindsHandler
         BindButtonWithKey(otherButton, bindKey);
     }
     
-    public void BindHotkeys(string itemType)
+    public void BindHotkeys(ItemType itemType)
     {
         if (tempButton.myItemCode == null) return;
         if (!ItemIsBindable(itemType)) return;
+        
         for (int i = 0; i < 10; i++)
         {
             if (!Input.IsKeyPressed(48 + i)) continue;
@@ -54,9 +55,9 @@ public class BindsHandler
         }
     }
     
-    private static bool ItemIsBindable(string itemType) 
+    private static bool ItemIsBindable(ItemType itemType) 
     {
-        return itemType == "weapon" || itemType == "food" || itemType == "meds";
+        return itemType == ItemType.weapon || itemType == ItemType.food || itemType == ItemType.meds;
     }
     
     private void BindButtonWithKey(ItemIcon button, int key)
