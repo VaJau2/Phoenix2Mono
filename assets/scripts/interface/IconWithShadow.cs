@@ -1,6 +1,6 @@
 using Godot;
 
-public class DragIcon : TextureRect
+public class IconWithShadow : TextureRect
 {
     private TextureRect shadow;
     

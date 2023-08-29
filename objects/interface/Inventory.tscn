@@ -9,7 +9,7 @@
 [ext_resource path="res://objects/interface/controlHints/buy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture" id=8]
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
-[ext_resource path="res://assets/scripts/interface/inventory/DragIcon.cs" type="Script" id=10]
+[ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
 
 [node name="inventory" type="Control" groups=["ignore_color"]]

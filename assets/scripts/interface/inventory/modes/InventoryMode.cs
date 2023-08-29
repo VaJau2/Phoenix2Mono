@@ -39,7 +39,7 @@ public abstract class InventoryMode
     private Vector2 savedMousePos;
     
     public bool isDragging { get; private set; }
-    protected DragIcon dragIcon;
+    protected IconWithShadow dragIcon;
     readonly Vector2 dragIconOffset = new Vector2(21, 21);
 
     protected PlayerInventory inventory => player.inventory;
@@ -75,7 +75,7 @@ public abstract class InventoryMode
         itemDesc = itemInfo.GetNode<Label>("description");
         itemProps = itemInfo.GetNode<Label>("props");
         controlHints = itemInfo.GetNode<ControlHintsManager>("hints");
-        dragIcon = back.GetNode<DragIcon>("dragIcon");
+        dragIcon = back.GetNode<IconWithShadow>("dragIcon");
 
         labels.Add("money", back.GetNode<Label>("moneyLabel"));
         labels.Add("wear", back.GetNode<Label>("wearBack/Label"));

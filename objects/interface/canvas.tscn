@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=21]
 [ext_resource path="res://assets/textures/interface/icons/buttons/E.png" type="Texture" id=22]
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
+[ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -37,7 +38,7 @@ font_data = ExtResource( 21 )
 font_data = ExtResource( 21 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 22
+size = 28
 font_data = ExtResource( 21 )
 
 [node name="canvas" type="CanvasLayer"]
@@ -130,14 +131,12 @@ __meta__ = {
 
 [node name="interactionIcon" type="TextureRect" parent="."]
 visible = false
-anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -52.0
-margin_top = -38.0
-margin_right = -4.0
-margin_bottom = -6.0
+margin_left = 42.0
+margin_top = -75.0
+margin_right = 90.0
+margin_bottom = -43.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 theme = ExtResource( 2 )
@@ -225,11 +224,14 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="shootInterface/ammoBack" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 36.0
-margin_right = -47.0
-margin_bottom = -6.10352e-05
+margin_left = -97.0
+margin_top = -50.0001
+margin_right = -49.0
+margin_bottom = -2.00006
 theme = ExtResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
@@ -238,15 +240,26 @@ custom_fonts/font = SubResource( 4 )
 text = "0"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="icon" type="TextureRect" parent="shootInterface/ammoBack" groups=["ignore_color"]]
-margin_left = 80.0
-margin_top = 3.0
-margin_right = 120.0
-margin_bottom = 43.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -50.0001
+margin_right = -2.0
+margin_bottom = -2.00006
+expand = true
+script = ExtResource( 24 )
+
+[node name="shadow" type="TextureRect" parent="shootInterface/ammoBack/icon" groups=["ignore_color"]]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 49.0
+margin_bottom = 49.0
 expand = true
 
 [node name="hitted" type="TextureRect" parent="shootInterface"]
@@ -316,9 +329,9 @@ stretch_mode = 5
 [node name="effects" type="VBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 8.0
+margin_left = 18.0
 margin_top = -300.0
-margin_right = 40.0
+margin_right = 50.0
 margin_bottom = 252.0
 alignment = 2
 script = ExtResource( 12 )
@@ -343,14 +356,14 @@ __meta__ = {
 }
 
 [node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
-anchor_left = 0.07
+anchor_left = 0.066
 anchor_top = 0.923
-anchor_right = 0.805
+anchor_right = 0.801
 anchor_bottom = 0.993
-margin_left = 0.32
+margin_left = 0.416
 margin_top = 0.199951
-margin_right = -0.320129
-margin_bottom = 0.199951
+margin_right = -0.224182
+margin_bottom = 0.200012
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_group_": true
