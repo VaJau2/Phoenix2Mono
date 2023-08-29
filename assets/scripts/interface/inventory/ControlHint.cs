@@ -17,27 +17,30 @@ public class ControlHint : Control
     private float changeTimer = 1f;
     private float time = 0;
 
-    private Sprite holdIcon;
-    private int indexHold = 24;
+    private AnimationPlayer anim;
 
     private Label label;
     [Export] private ControlText textKey;
 
+    private InventoryMenu menu;
+    
     public override void _Ready()
     {
         icon = GetNode<TextureRect>("Icon");
         label = GetNode<Label>("Label");
-        holdIcon = icon.GetNodeOrNull<Sprite>("Hold");
+        anim = GetNodeOrNull<AnimationPlayer>("anim");
+
+        menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
         if (isMove) SetProcessInput(true);
-        if (icons.Count > 0 || isMove || holdIcon != null) SetProcess(true);
+        if (icons.Count > 0 || isMove || anim != null) SetProcess(true);
     }
 
     public override void _Process(float delta)
     {
         if (icons.Count > 0) Iconshow(delta);
         if (isMove) MoveIcon(delta);
-        if (holdIcon != null) UpdateHoldIcon();
+        if (anim != null) UpdateHoldIcon();
     }
 
     public void Initialize()
@@ -100,28 +103,21 @@ public class ControlHint : Control
 
     private void UpdateHoldIcon()
     {
-        if (Input.IsActionPressed("ui_click"))
+        if (Input.IsActionJustPressed("ui_click"))
         {
-            if (holdDelay)
-            {
-                if (indexHold < 23) indexHold++;
-                else if (indexHold == 24) indexHold = 0;
-            }
-            else indexHold = 23;
-
-            if (!isMove && isMouseMoving) indexHold = 24;
+            anim.Play("hold");
         }
-        else indexHold = 24;
 
-        holdIcon.Frame = indexHold;
+        if (Input.IsActionJustReleased("ui_click") || menu.mode.isDragging)
+        {
+            anim.Play("RESET");
+        }
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion)
+        if (@event is InputEventMouseMotion mouseMotion)
         {
-            InputEventMouseMotion mouseMotion = (InputEventMouseMotion)@event;
-
             if (mouseMotion.Relative.Length() > deadZone)
             {
                 isMouseMoving = true;

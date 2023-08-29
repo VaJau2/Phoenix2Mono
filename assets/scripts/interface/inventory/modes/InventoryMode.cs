@@ -21,7 +21,7 @@ public abstract class InventoryMode
     protected Label itemName;
     protected Label itemDesc;
     protected Label itemProps;
-    protected ControlHintsController controlHints;
+    protected ControlHintsManager controlHints;
 
     public bool isAnimating;
     
@@ -39,7 +39,7 @@ public abstract class InventoryMode
     private Vector2 savedMousePos;
     
     public bool isDragging { get; private set; }
-    protected TextureRect dragIcon;
+    protected DragIcon dragIcon;
     readonly Vector2 dragIconOffset = new Vector2(21, 21);
 
     protected PlayerInventory inventory => player.inventory;
@@ -74,8 +74,8 @@ public abstract class InventoryMode
         itemName = itemInfo.GetNode<Label>("name");
         itemDesc = itemInfo.GetNode<Label>("description");
         itemProps = itemInfo.GetNode<Label>("props");
-        controlHints = itemInfo.GetNode<ControlHintsController>("hints");
-        dragIcon = back.GetNode<TextureRect>("dragIcon");
+        controlHints = itemInfo.GetNode<ControlHintsManager>("hints");
+        dragIcon = back.GetNode<DragIcon>("dragIcon");
 
         labels.Add("money", back.GetNode<Label>("moneyLabel"));
         labels.Add("wear", back.GetNode<Label>("wearBack/Label"));
@@ -303,11 +303,6 @@ public abstract class InventoryMode
             && mouse.y >= 0 && mouse.y <= button.RectSize.y;
     }
 
-    protected virtual bool IconsInSameArray(ItemIcon oldButton, ItemIcon newButton) 
-    {
-        return itemButtons.Contains(oldButton) && itemButtons.Contains(newButton);
-    }
-
     public virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
     {
         //меняем местами бинды клавиш на кнопках
@@ -372,7 +367,7 @@ public abstract class InventoryMode
 
             ChangeItemButtons(tempButton, otherButton);
             SetTempButton(otherButton, false);
-            dragIcon.Texture = null;
+            dragIcon.SetTexture(null);
         }
     }
 
@@ -454,8 +449,8 @@ public abstract class InventoryMode
 
     private void FinishDragging()
     {
-        tempButton.SetIcon((StreamTexture) dragIcon.Texture);
-        dragIcon.Texture = null;
+        tempButton?.SetIcon((StreamTexture) dragIcon.Texture);
+        dragIcon.SetTexture(null);
         dragIcon.RectGlobalPosition = Vector2.Zero;
         isDragging = false;
     }
@@ -466,7 +461,7 @@ public abstract class InventoryMode
 
         if (Input.IsActionJustPressed("ui_click"))
         {
-            if (itemType == ItemType.money)
+            if (itemType == ItemType.money || itemType == ItemType.ammo)
             {
                 MoveTempItem();
                 return false;
@@ -477,13 +472,13 @@ public abstract class InventoryMode
         
         if (Input.IsActionPressed("ui_click"))
         {
-            if (MouseIsMoving(@event) && IsMouseOutsideDeadZone())
+            if (MouseIsMoving(@event) && IsMouseOutsideDeadZone() || isDragging)
             {
                 if (!isDragging)
                 {
                     useHandler.HideLoadingIcon();
 
-                    dragIcon.Texture = tempButton.GetIcon();
+                    dragIcon.SetTexture(tempButton.GetIcon());
                     dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
 
                     tempButton.SetIcon(null);

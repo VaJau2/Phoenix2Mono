@@ -44,7 +44,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
 
     public void CloseMenu()
     {
-        var point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        var point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         point.ShowSquareAgain();
         
         isUsing = false;

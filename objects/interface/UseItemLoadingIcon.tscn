@@ -81,6 +81,6 @@ hframes = 5
 vframes = 5
 
 [node name="anim" type="AnimationPlayer" parent="."]
-playback_speed = 2.0
+playback_speed = 4.0
 anims/RESET = SubResource( 1 )
 anims/load = SubResource( 2 )

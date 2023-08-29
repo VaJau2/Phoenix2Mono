@@ -85,11 +85,6 @@ public class TradeMode: InventoryMode
     {
         if (menu.isOpen && tempButton != null) 
         {
-            if (tempButton.isInventoryIcon)
-            {
-                if (UpdateDragging(@event)) return;
-            }
-
             if (modalAsk.Visible) 
             {
                 if (Input.IsActionJustPressed("jump")) 
@@ -103,6 +98,11 @@ public class TradeMode: InventoryMode
             } 
             else 
             {
+                if (tempButton.isInventoryIcon)
+                {
+                    if (UpdateDragging(@event)) return;
+                }
+                
                 if (Input.IsActionJustReleased("ui_click")) 
                 {
                     if (IsMouseOutsideDeadZone())
@@ -412,15 +412,6 @@ public class TradeMode: InventoryMode
         else controlTexts = new[] { ControlText.buy };
 
         controlHints.LoadHits(controlTexts);
-    }
-
-    protected override bool IconsInSameArray(ItemIcon oldButton, ItemIcon newButton) 
-    {
-        if (tradeButtons.Contains(oldButton) && tradeButtons.Contains(newButton)) 
-        {
-            return true;
-        }
-        return base.IconsInSameArray(oldButton, newButton);
     }
 
     public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)

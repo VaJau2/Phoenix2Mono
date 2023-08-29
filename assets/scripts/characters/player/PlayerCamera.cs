@@ -15,7 +15,7 @@ public class PlayerCamera : Camera
     public float closedTimer = 0;
     public bool onetimeHint;
     
-    InteractionPoint point;
+    private InteractionPointManager point;
 
     Player player;
 
@@ -60,6 +60,7 @@ public class PlayerCamera : Camera
     public void ShowHint(string textLink, bool triggerClosing = true)
     {
         point.SetInteractionVariant(InteractionVariant.Square);
+
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
@@ -210,7 +211,7 @@ public class PlayerCamera : Camera
 
     public override void _Ready()
     {
-        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         interactionHint = point.GetNode<Label>("interactionHint");
 
         interactionIcon = GetNode<TextureRect>("/root/Main/Scene/canvas/interactionIcon");

@@ -18,7 +18,7 @@ public class PlayerWeapons: CollisionShape
     //head -> body.head
 
     //---интерфейс-------
-    InteractionPoint point;
+    InteractionPointManager point;
     Control shootInterface;
 
     public Label ammoLabel;
@@ -112,7 +112,7 @@ public class PlayerWeapons: CollisionShape
     {
         global = Global.Get();
 
-        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
         ammoIcon = shootInterface.GetNode<TextureRect>("ammoBack/icon");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");

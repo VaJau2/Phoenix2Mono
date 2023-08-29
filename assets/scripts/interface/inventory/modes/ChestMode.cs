@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
 using Godot;
 using Godot.Collections;
-using Object = Godot.Object;
 
 public class ChestMode: InventoryMode
 {
@@ -52,7 +50,7 @@ public class ChestMode: InventoryMode
 
     public override void CloseMenu()
     {
-        var point = menu.GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        var point = menu.GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         point.ShowSquareAgain();
         
         menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
@@ -265,7 +263,7 @@ public class ChestMode: InventoryMode
 
                 ChangeItemButtons(tempButton, otherButton);
                 SetTempButton(null, false);
-                dragIcon.Texture = null;
+                dragIcon.SetTexture(null);
                 UpdateChestPositions();
                 return true;
             }

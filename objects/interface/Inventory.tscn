@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://objects/interface/UseItemLoadingIcon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/interface/controlHints/buy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture" id=8]
-[ext_resource path="res://assets/scripts/interface/inventory/ControlHintsController.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/interface/inventory/DragIcon.cs" type="Script" id=10]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
 
 [node name="inventory" type="Control" groups=["ignore_color"]]
@@ -906,6 +907,20 @@ anchor_bottom = 0.9
 margin_right = -202.8
 margin_bottom = -498.0
 rect_scale = Vector2( 0.9, 0.9 )
+rect_pivot_offset = Vector2( 21, 21 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 10 )
+
+[node name="shadow" type="TextureRect" parent="helper/back/dragIcon"]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+anchor_right = 0.9
+anchor_bottom = 0.9
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 6.20002
+margin_bottom = 6.2
 rect_pivot_offset = Vector2( 21, 21 )
 expand = true
 stretch_mode = 6

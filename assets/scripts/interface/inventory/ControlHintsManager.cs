@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public class ControlHintsController : Control
+public class ControlHintsManager : Control
 {
     List<ControlHint> controlHints = new List<ControlHint>();
 
@@ -16,7 +16,7 @@ public class ControlHintsController : Control
 
         foreach(ControlText controlText in controlTexts)
         {
-            var scene = GD.Load<PackedScene>("res://objects/interface/controlHints/" + controlText.ToString() + ".tscn");
+            var scene = GD.Load<PackedScene>("res://objects/interface/controlHints/" + controlText + ".tscn");
             var instance = scene.Instance();
             AddChild(instance);
 
