@@ -1,13 +1,13 @@
 using Godot;
 
-public class HealthLabel : TextureRect
+public class HealthLabel : Control
 {
     private Player player;
-    private TextureRect mask;
+    private Control mask;
 
     public override void _Ready()
     {
-        mask = GetNode<TextureRect>("mask");
+        mask = GetNode<Control>("mask");
         MenuBase.LoadColorForChildren(this);
     }
 

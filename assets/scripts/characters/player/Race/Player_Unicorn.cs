@@ -27,7 +27,7 @@ public class Player_Unicorn : Player
     private bool startTeleporting = false;
     public bool teleportInside = false;
 
-    private ProgressBar manaBar;
+    private Control mana;
 
     public bool ManaIsEnough(float cost) 
     {
@@ -81,26 +81,22 @@ public class Player_Unicorn : Player
         teleportEffect = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportEffect.tscn");
 
         Mana = MANA_MAX;
-        manaBar = GetNode<ProgressBar>("/root/Main/Scene/canvas/manaBar");
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
+        mana = GetNode<Control>("/root/Main/Scene/canvas/mana/mask");
+        MenuBase.LoadColorForChildren(mana.GetParentControl());
     }
     
 
     public override void _Process(float delta)
     {
         base._Process(delta);
+        
         if (Mana < MANA_MAX)
         {
             Mana += MANA_SPEED * delta * (1/ManaDelta) * (1 - GetDamageBlock());
-            manaBar.Visible = true;
-            manaBar.Value = Mana;
-        }
-        else 
-        {
-            if(manaBar.Visible) 
-            {
-                manaBar.Visible = false;
-            }
+
+            float ratio = Mana / MANA_MAX;
+            mana.RectSize = new Vector2(128, ratio * 128);
         }
     }
 
