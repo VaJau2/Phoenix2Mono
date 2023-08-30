@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/scripts/interface/Messages.cs" type="Script" id=5]
 [ext_resource path="res://objects/interface/point.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/interface/icons/HP (50 alt).png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/interface/icons/Health Bar.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
 [ext_resource path="res://assets/scripts/interface/HealthLabel.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/interface/DamageEffects.cs" type="Script" id=11]
@@ -19,11 +19,12 @@
 [ext_resource path="res://assets/scripts/interface/BindsList.cs" type="Script" id=17]
 [ext_resource path="res://assets/materials/fonts/hint_theme.tres" type="Theme" id=18]
 [ext_resource path="res://assets/scripts/interface/Canvas.cs" type="Script" id=19]
-[ext_resource path="res://assets/textures/interface/icons/HP.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/interface/icons/Mana Bar.png" type="Texture" id=20]
 [ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=21]
 [ext_resource path="res://assets/textures/interface/icons/buttons/E.png" type="Texture" id=22]
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture" id=25]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -85,6 +86,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="redScreen" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+script = ExtResource( 11 )
+
 [node name="stealthLabel" type="Label" parent="."]
 visible = false
 anchor_left = 0.5
@@ -133,10 +142,10 @@ __meta__ = {
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 42.0
-margin_top = -75.0
-margin_right = 90.0
-margin_bottom = -43.0
+margin_left = 44.0
+margin_top = -74.0
+margin_right = 92.0
+margin_bottom = -42.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 theme = ExtResource( 2 )
@@ -156,7 +165,7 @@ margin_right = 2.0
 margin_bottom = 2.0
 rect_pivot_offset = Vector2( 24, 16 )
 theme = ExtResource( 2 )
-texture = ExtResource( 22 )
+texture = ExtResource( 25 )
 stretch_mode = 6
 
 [node name="pointManager" type="Control" parent="."]
@@ -278,24 +287,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="redScreen" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
-script = ExtResource( 11 )
-
 [node name="manaBar" type="ProgressBar" parent="."]
 visible = false
-anchor_left = 0.039
-anchor_top = 0.88
-anchor_right = 0.039
-anchor_bottom = 0.903
-margin_left = 0.0639992
-margin_top = -0.00012207
-margin_right = 229.064
-margin_bottom = 0.199951
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -72.0
+margin_right = 293.0
+margin_bottom = -57.9999
 theme = ExtResource( 3 )
 percent_visible = false
 __meta__ = {
@@ -308,9 +307,9 @@ anchor_bottom = 1.0
 margin_left = 8.0
 margin_top = -58.0
 margin_right = 136.0
-margin_bottom = 72.0
+margin_bottom = 70.0
 rect_scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 8 )
+texture = ExtResource( 20 )
 stretch_mode = 4
 script = ExtResource( 10 )
 
@@ -323,21 +322,42 @@ margin_left = 5.0
 margin_top = -125.0
 margin_right = 133.0
 margin_bottom = 3.0
-texture = ExtResource( 20 )
+texture = ExtResource( 8 )
+stretch_mode = 5
+
+[node name="mask" type="TextureRect" parent="health" groups=["ignore_color"]]
+show_behind_parent = true
+anchor_left = 0.195
+anchor_top = 0.859
+anchor_right = 0.195
+anchor_bottom = 0.859
+margin_left = 0.039999
+margin_top = 0.0479965
+margin_right = 65.04
+margin_bottom = 80.048
+rect_scale = Vector2( 1, -1 )
+rect_clip_content = true
+stretch_mode = 5
+
+[node name="heart" type="TextureRect" parent="health/mask" groups=["ignore_color"]]
+show_behind_parent = true
+margin_left = -25.0
+margin_top = 110.0
+margin_right = 103.0
+margin_bottom = 238.0
+rect_scale = Vector2( 1, -1 )
+texture = ExtResource( 8 )
 stretch_mode = 5
 
 [node name="effects" type="VBoxContainer" parent="."]
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 18.0
-margin_top = -300.0
+margin_top = -582.0
 margin_right = 50.0
-margin_bottom = 252.0
+margin_bottom = -60.0
 alignment = 2
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="subtitles" type="Label" parent="."]
 anchor_left = 0.5
@@ -356,14 +376,12 @@ __meta__ = {
 }
 
 [node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
-anchor_left = 0.066
-anchor_top = 0.923
-anchor_right = 0.801
-anchor_bottom = 0.993
-margin_left = 0.416
-margin_top = 0.199951
-margin_right = -0.224182
-margin_bottom = 0.200012
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -46.0
+margin_right = 816.0
+margin_bottom = -3.99994
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_group_": true

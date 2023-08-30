@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HP (50).png-3f6c2d82339c454e0e9908d927d390e8.stex"
+path="res://.import/Mana Bar.png-37291117e7c4d04124366b89c390cffa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/HP (50).png"
-dest_files=[ "res://.import/HP (50).png-3f6c2d82339c454e0e9908d927d390e8.stex" ]
+source_file="res://assets/textures/interface/icons/Mana Bar.png"
+dest_files=[ "res://.import/Mana Bar.png-37291117e7c4d04124366b89c390cffa.stex" ]
 
 [params]
 

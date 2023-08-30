@@ -9,9 +9,6 @@ margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="borders" type="Control" parent="."]
 anchor_right = 1.0
@@ -78,9 +75,9 @@ __meta__ = {
 
 [node name="bindLabel" type="Label" parent="." groups=["ignore_color"]]
 margin_left = 1.0
-margin_top = 1.0
+margin_top = -2.0
 margin_right = 9.0
-margin_bottom = 16.0
+margin_bottom = 15.0
 theme = ExtResource( 2 )
 
 [node name="countLabel" type="Label" parent="." groups=["ignore_color"]]
@@ -88,6 +85,7 @@ visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -8.0
+margin_top = -2.0
 margin_bottom = 15.0
 grow_horizontal = 0
 theme = ExtResource( 2 )

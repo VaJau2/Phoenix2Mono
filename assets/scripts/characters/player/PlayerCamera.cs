@@ -21,7 +21,7 @@ public class PlayerCamera : Camera
 
     Label interactionHint;
     TextureRect interactionIcon;
-    TextureRect interactionIcon_shadow;
+    TextureRect interactionIconShadow;
     string closedTextLink = "closed";
 
     Spatial tempObject;
@@ -66,8 +66,11 @@ public class PlayerCamera : Camera
         var key = OS.GetScancodeString(action.Scancode);
 
         interactionIcon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
-        interactionIcon_shadow.Texture = interactionIcon.Texture;
-
+        
+        interactionIconShadow.Texture = (key == "BackSpace" || key == "CapsLock" || key == "Kp 0" || key == "Shift" || key == "Space" || key == "Tab")
+            ? GD.Load<Texture>("res://assets/textures/interface/icons/buttons/Empty 48x32.png")
+            : GD.Load<Texture>("res://assets/textures/interface/icons/buttons/Empty 32x32.png");
+        
         interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
 
         SetHintVisible(true);
@@ -215,7 +218,7 @@ public class PlayerCamera : Camera
         interactionHint = point.GetNode<Label>("interactionHint");
 
         interactionIcon = GetNode<TextureRect>("/root/Main/Scene/canvas/interactionIcon");
-        interactionIcon_shadow = interactionIcon.GetNode<TextureRect>("shadow");
+        interactionIconShadow = interactionIcon.GetNode<TextureRect>("shadow");
         MenuBase.LoadColorForChildren(interactionIcon);
 
         player = GetNode<Player>("../../");
