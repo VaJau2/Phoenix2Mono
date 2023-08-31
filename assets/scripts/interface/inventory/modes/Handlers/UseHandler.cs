@@ -69,7 +69,7 @@ public class UseHandler
         loadingAnim.Stop();
     }
     
-    public void UseTempItem()
+    public async void UseTempItem()
     {
         if (Player.Health <= 0) return;
         
@@ -102,6 +102,12 @@ public class UseHandler
                     
                     Inventory.UseItem(mode.tempItemData);
                     mode.RemoveTempItem();
+
+                    var tempDeletingItem = bindsHandler.TempDeletingIcon;
+                    if (tempDeletingItem != null)
+                    {
+                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeleting));
+                    }
 
                     //если использовался забинденный предмет
                     //биндим на тот же бинд такой же

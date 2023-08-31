@@ -1,6 +1,6 @@
 using Godot;
 
-public class HealthLabel : Control
+public class HealthBar : Control
 {
     private Player player;
     private Control mask;

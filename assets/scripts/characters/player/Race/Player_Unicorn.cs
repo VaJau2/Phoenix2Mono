@@ -27,8 +27,6 @@ public class Player_Unicorn : Player
     private bool startTeleporting = false;
     public bool teleportInside = false;
 
-    private Control mana;
-
     public bool ManaIsEnough(float cost) 
     {
         return Mana > cost;
@@ -82,8 +80,6 @@ public class Player_Unicorn : Player
 
         Mana = MANA_MAX;
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        mana = GetNode<Control>("/root/Main/Scene/canvas/mana/mask");
-        MenuBase.LoadColorForChildren(mana.GetParentControl());
     }
     
 
@@ -94,9 +90,6 @@ public class Player_Unicorn : Player
         if (Mana < MANA_MAX)
         {
             Mana += MANA_SPEED * delta * (1/ManaDelta) * (1 - GetDamageBlock());
-
-            float ratio = Mana / MANA_MAX;
-            mana.RectSize = new Vector2(128, ratio * 128);
         }
     }
 

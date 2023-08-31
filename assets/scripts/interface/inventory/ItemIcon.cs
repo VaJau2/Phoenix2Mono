@@ -18,7 +18,7 @@ public class ItemIcon : ColorRect
 
     public StreamTexture GetIcon() => (StreamTexture)icon.Texture;
 
-    public void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
+    public virtual void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
 
     public int GetCount() => int.Parse(countLabel.Text);
 
@@ -77,6 +77,11 @@ public class ItemIcon : ColorRect
         }
     }
 
+    public void SetItemCode(string itemCode)
+    {
+        myItemCode = itemCode;
+    }
+
     public void ClearItem()
     {
         //если очищается инвентарная иконка с патронами
@@ -105,11 +110,13 @@ public class ItemIcon : ColorRect
         _on_itemIcon_mouse_exited();
     }
 
-    public void SetBindKey(string text) {
+    public void SetBindKey(string text)
+    {
         bindLabel.Text = text;
     }
 
-    public string GetBindKey() {
+    public string GetBindKey() 
+    {
         return bindLabel.Text;
     }
 

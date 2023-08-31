@@ -69,9 +69,14 @@ margin_bottom = 2.0
 rect_scale = Vector2( 0.9, 0.9 )
 expand = true
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="shadow" type="TextureRect" parent="icon"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.9, 0.9 )
+expand = true
+stretch_mode = 6
 
 [node name="bindLabel" type="Label" parent="." groups=["ignore_color"]]
 margin_left = 1.0
@@ -93,3 +98,5 @@ text = "0"
 
 [connection signal="mouse_entered" from="icon" to="." method="_on_itemIcon_mouse_entered"]
 [connection signal="mouse_exited" from="icon" to="." method="_on_itemIcon_mouse_exited"]
+[connection signal="mouse_entered" from="icon/shadow" to="." method="_on_itemIcon_mouse_entered"]
+[connection signal="mouse_exited" from="icon/shadow" to="." method="_on_itemIcon_mouse_exited"]

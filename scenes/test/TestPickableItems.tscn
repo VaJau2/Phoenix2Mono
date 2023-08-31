@@ -24,7 +24,7 @@ agent_radius = 1.55
 [node name="Main" instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
-itemCodes = [ "shotgun12", "ak47" ]
+itemCodes = [ "shotgun12", "ak47", "heal-potion", "heal-potion", "heal-potion" ]
 ammo = {
 "ammo12": 50,
 "ammo762": 50

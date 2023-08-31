@@ -11,6 +11,8 @@ public class BindsHandler
 
     private readonly InventoryMode mode;
 
+    public BindIcon TempDeletingIcon => bindsList.TempDeletingIcon;
+
     public BindsHandler(InventoryMenu menu, InventoryMode mode)
     {
         this.menu = menu;
