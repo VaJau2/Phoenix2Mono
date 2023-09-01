@@ -32,10 +32,12 @@ public class EffectHandler: Node
     //и одновременно сохранять стартовое значение в переменную
     public void SetPlayerParameter(string parameterName, ref int playerParameter, int delta) 
     {
-        if (startParameters.ContainsKey(parameterName)) {
+        if (startParameters.ContainsKey(parameterName)) 
+        {
             GD.Print("someone is trying to set the same effect!");
             return;
         }
+        
         startParameters.Add(parameterName, playerParameter);
         playerParameter += delta;
         if (playerParameter < 0) playerParameter = 0;
@@ -50,10 +52,12 @@ public class EffectHandler: Node
     //копия для float-параметров
     public void SetPlayerParameter(string parameterName, ref float playerParameter, float delta) 
     {
-        if (startParameters.ContainsKey(parameterName)) {
+        if (startParameters.ContainsKey(parameterName)) 
+        {
             GD.Print("someone is trying to set the same effect!");
             return;
         }
+        
         startFloatParameters.Add(parameterName, playerParameter);
         playerParameter += delta;
         if (playerParameter < 0) playerParameter = 0;
@@ -92,7 +96,9 @@ public class EffectHandler: Node
     public void RemoveEffect(Effect oldEffect, bool changeHeartbeat = true)
     {
         tempEffects.Remove(oldEffect);
-        if (changeHeartbeat) {
+        
+        if (changeHeartbeat) 
+        {
             heartbeat.CheckRemoveEffect(oldEffect);
             CheckEmotions("empty");
         }
@@ -100,9 +106,11 @@ public class EffectHandler: Node
 
     public void ClearEffects()
     {
-        while(tempEffects.Count > 0) {
+        while(tempEffects.Count > 0) 
+        {
             tempEffects[0].SetOff(false);
         }
+        
         tempEffects.Clear();
         heartbeat.ClearEffects();
         CheckEmotions("empty");
@@ -123,40 +131,57 @@ public class EffectHandler: Node
 
     public static Effect GetEffectByName(string name)
     {
-        switch(name) {
+        switch(name) 
+        {
             case "heal":
                 return new HealEffect();
+            
             case "mana":
                 return new ManaEffect();
+            
             case "buck":
                 return new BuckEffect();
+            
             case "buckPost":
                 return new BuckPostEffect();
+            
             case "dash":
                 return new DashEffect();
+            
             case "dashPost":
                 return new DashPostEffect();
+            
             case "hydra":
                 return new HydraEffect();
+            
             case "hydraPost":
                 return new HydraPostEffect();
+            
             case "rage":
                 return new RageEffect();
+            
             case "ragePost":
                 return new RagePostEffect();
+            
             case "medX":
                 return new MedXEffect();
+            
             case "medXPost":
                 return new MedXPostEffect();
+            
             case "mentats":
                 return new MentatsEffect();
+            
             case "mentatsPost":
                 return new MentatsPostEffect();
+            
             case "detoxine":
                 return new DetoxineEffect();
+            
             case "stealthbuck":
                 return new StealthBuckEffect();
         }
+        
         return null;
     }
 
@@ -187,18 +212,22 @@ public class EffectHandler: Node
 
     private void CheckEmotions(string newEmotion) 
     {
-        switch (newEmotion) {
+        switch (newEmotion) 
+        {
             case "empty":
-                if (!HasEffectWithEmotion("meds") && 
-                    !HasEffectWithEmotion("meds_after")) {
+                if (!HasEffectWithEmotion("meds") && !HasEffectWithEmotion("meds_after")) 
+                {
                     player.Body.Head.SetEmptyFace();
                 }
                 break;
+            
             case "meds":
                 player.Body.Head.MedsOn();
                 break;
+            
             case "meds_after":
-                if (!HasEffectWithEmotion("meds")) {
+                if (!HasEffectWithEmotion("meds")) 
+                {
                     player.Body.Head.MedsAfterOn();
                 }
                 break;
@@ -213,12 +242,13 @@ public class EffectHandler: Node
 
     public override void _Process(float delta)
     {
-        if (tempEffects.Count > 0) {
-            foreach(Effect effect in tempEffects) {
-                if (!effect.Count(delta)) {
-                    break;
-                }
+        if (tempEffects.Count > 0) 
+        {
+            foreach(Effect effect in tempEffects) 
+            {
+                if (!effect.Count(delta)) break;
             }
+            
             heartbeat.CheckOverdose(delta);
         }
     }

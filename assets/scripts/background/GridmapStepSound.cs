@@ -8,8 +8,7 @@ public class GridmapStepSound : GridMap
 {
     private const float CHECK_DELAY_TIME = 0.5f;
     
-    private const float MAX_VOLUME = -2;
-    private const float MIN_VOLUME = -40;
+    private const float MIN_VOLUME = -80;
     private const float VOLUME_SPEED = 15f;
 
     [Export] private AudioStream walkingSound;
@@ -33,47 +32,41 @@ public class GridmapStepSound : GridMap
     
     public override void _Process(float delta)
     {
-        var tempIsOnGridItem = CheckGridWithDelay(delta);
-        if (!tempIsOnGridItem || Player.GetCurrentSpeed() <= Character.MIN_WALKING_SPEED)
-        {
-            StopPlaying(delta);
-            return;
-        }
-        
-        UpdatePlaying();
+        bool tempIsOnGridItem = CheckGridWithDelay(delta);
+        bool isMove = Player.GetCurrentSpeed() > Character.MIN_WALKING_SPEED;
+        bool isRotate = Player.IsRotating() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
+
+        if (tempIsOnGridItem && (isMove || isRotate)) UpdatePlaying();
+        else StopPlaying(delta);
     }
 
     private void UpdatePlaying()
     {
-        audi.UnitDb = MAX_VOLUME;
+        audi.UnitDb = Player.IsCrouching ? 4 : -2;
         audi.GlobalTransform = Global.setNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
-        
-        if (audi.Playing && audi.Stream == TempSound) return;
-        
-        audi.Stream = TempSound;
-        audi.Play();
+
+        if (!audi.Playing || audi.Stream != TempSound)
+        {
+            audi.Stream = TempSound;
+            audi.Play();
+        }
     }
 
     private void StopPlaying(float delta)
     {
-        if (!audi.Playing) return;
-        
-        if (audi.UnitDb > MIN_VOLUME)
+        if (audi.Playing)
         {
-            audi.UnitDb -= VOLUME_SPEED * delta;
-        }
-        else
-        {
-            audi.Stop();
+            if (audi.UnitDb > MIN_VOLUME) audi.UnitDb -= VOLUME_SPEED * delta;
+            else audi.Stop();
         }
     }
 
     private bool CheckGridWithDelay(float delta)
     {
-        var tempIsOnGrid = playerIsOnGridItem();
-        if (isInGridItem == tempIsOnGrid) return isInGridItem;
+        var tempIsOnGridItem = playerIsOnGridItem();
+        if (isInGridItem == tempIsOnGridItem) return isInGridItem;
         
-        if (tempIsOnGrid)
+        if (tempIsOnGridItem)
         {
             delayTimer = CHECK_DELAY_TIME;
             isInGridItem = true;
@@ -99,7 +92,7 @@ public class GridmapStepSound : GridMap
         var playerGlobalPos = Global.Get().player.GlobalTransform.origin;
         var playerLocalPos = playerGlobalPos - GlobalTransform.origin;
         var mapPos = WorldToMap(playerLocalPos);
-        mapPos.y -= 1;
+        if (!Player.IsCrouching) mapPos.y -= 1;
         var cellItem = GetCellItem((int)mapPos.x, (int)mapPos.y, (int)mapPos.z);
         return cellItem > -1;
     }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/characters/robots/mrHandyTrader.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/characters/ponies/agents/agent1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=6]
 
@@ -23,7 +24,7 @@ agent_radius = 1.55
 [node name="Main" instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
-itemCodes = [ "shotgun12", "ak47" ]
+itemCodes = [ "shotgun12", "ak47", "heal-potion", "heal-potion", "heal-potion" ]
 ammo = {
 "ammo12": 50,
 "ammo762": 50
@@ -54,6 +55,18 @@ dialogueCode = "startDialogue"
 itemCodes = [ "agent1Note", "suitcase_empty" ]
 ammoCount = {
 "ammo32": 10
+}
+
+[node name="mrHandyTrader" parent="Scene/npc" index="3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71291, 0.100002, 2.54451 )
+dialogueCode = "tradeAgain"
+startItemCodes = [ "private_uniform", "power-armor", "heal-potion", "mana-potion", "med-x", "rifle307", "shotgun20", "autorifle762", "pistol10-silenced", "shotgun12", "ak47" ]
+startAmmoCount = {
+"ammo10": 50,
+"ammo12": 20,
+"ammo20": 40,
+"ammo307": 20,
+"ammo762": 50
 }
 
 [node name="terrain" type="StaticBody" parent="Scene" index="6"]

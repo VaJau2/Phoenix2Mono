@@ -3,9 +3,7 @@
 [ext_resource path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
 
-[node name="EffectIcon" type="Control" groups=[
-"ignore_color",
-]]
+[node name="EffectIcon" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -993.0
@@ -17,9 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -30,27 +26,40 @@ margin_right = 14.5
 margin_bottom = 14.5
 rect_min_size = Vector2( 30, 30 )
 mouse_filter = 1
-color = Color( 0, 0, 0, 0.784314 )
+color = Color( 0, 0, 0, 0 )
 
-[node name="icon" type="TextureRect" parent="back"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="shadow" type="TextureRect" parent="back"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.033
+anchor_top = 1.033
+anchor_right = 0.033
+anchor_bottom = 1.033
+margin_left = 0.00999999
+margin_top = -29.99
+margin_right = 30.01
+margin_bottom = 0.0100002
 expand = true
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="timer" type="ColorRect" parent="back" groups=[
-"ignore_color",
-]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -30.0
-color = Color( 0, 0, 0, 0.784314 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="timer" type="ColorRect" parent="back" groups=["ignore_color"]]
+anchor_top = 1.033
+anchor_bottom = 1.033
+margin_top = 0.0100002
+margin_right = 31.0
+margin_bottom = 31.01
+rect_scale = Vector2( 1, -1 )
+rect_clip_content = true
+color = Color( 0, 0, 0, 0 )
+
+[node name="icon" type="TextureRect" parent="back/timer"]
+anchor_top = 0.032
+anchor_bottom = 0.032
+margin_top = 30.008
+margin_right = 30.0
+margin_bottom = 60.008
+rect_scale = Vector2( 1, -1 )
+expand = true
+stretch_mode = 7
 
 [node name="message" type="Label" parent="."]
 visible = false
@@ -65,9 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="message" groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="message" groups=["ignore_color"]]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -79,5 +86,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="mouse_entered" from="back/icon" to="." method="_on_EffectIcon_mouse_entered"]
-[connection signal="mouse_exited" from="back/icon" to="." method="_on_EffectIcon_mouse_exited"]
+[connection signal="mouse_entered" from="back/shadow" to="." method="_on_EffectIcon_mouse_entered"]
+[connection signal="mouse_exited" from="back/shadow" to="." method="_on_EffectIcon_mouse_exited"]
+[connection signal="mouse_entered" from="back/timer/icon" to="." method="_on_EffectIcon_mouse_entered"]
+[connection signal="mouse_exited" from="back/timer/icon" to="." method="_on_EffectIcon_mouse_exited"]

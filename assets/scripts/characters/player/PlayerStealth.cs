@@ -2,30 +2,36 @@ using System;
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerStealth: Node {
+public class PlayerStealth : Node
+{
     public StealthStage Stage;
     private Label StealthLabel;
-
-    public override void _Ready()
-    {
-        StealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
-        StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
-    }
-
-    public void SetLabelVisible(bool visible) 
-    {
-        StealthLabel.Visible = visible;
-    }
+    private string currentState = "safe";
 
     List<Character> seekEnemies = new List<Character>();
     List<Character> attackEnemies = new List<Character>();
+    
+    public override void _Ready()
+    {
+        StealthLabel = GetNode<Label>("/root/Main/Scene/canvas/stealthLabel");
+    }
+
+    public void SetLabelVisible(bool visible)
+    {
+        StealthLabel.Visible = visible;
+        
+        if (visible)
+        {
+            ChangeLabelState(currentState);
+        }
+    }
 
     private void SetNewStage(StealthStage newStage)
     {
         Stage = newStage;
         var enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
         if (!IsInstanceValid(enemiesManager)) return;
-        
+
         switch (newStage)
         {
             case StealthStage.Caution:
@@ -40,33 +46,43 @@ public class PlayerStealth: Node {
         }
     }
 
-    private void checkEmpty() 
+    private void checkEmpty()
     {
-        for(int i = 0; i < seekEnemies.Count; i++) {
-            if (seekEnemies.Count > i) {
-                if (seekEnemies[i] == null || !IsInstanceValid(seekEnemies[i])) {
+        for (int i = 0; i < seekEnemies.Count; i++)
+        {
+            if (seekEnemies.Count > i)
+            {
+                if (seekEnemies[i] == null || !IsInstanceValid(seekEnemies[i]))
+                {
                     seekEnemies.RemoveAt(i);
                     continue;
                 }
             }
         }
 
-        for(int i = 0; i < attackEnemies.Count; i++) {
-            if (attackEnemies.Count > i) {
-                if (attackEnemies[i] == null || !IsInstanceValid(attackEnemies[i])) {
+        for (int i = 0; i < attackEnemies.Count; i++)
+        {
+            if (attackEnemies.Count > i)
+            {
+                if (attackEnemies[i] == null || !IsInstanceValid(attackEnemies[i]))
+                {
                     attackEnemies.RemoveAt(i);
                     continue;
                 }
             }
         }
 
-        if (attackEnemies.Count == 0) {
-            if (seekEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
+        if (attackEnemies.Count == 0)
+        {
+            if (seekEnemies.Count == 0)
+            {
+                ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
                 SetNewStage(StealthStage.Safe);
-            } else {
-                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
+            }
+            else
+            {
+                ChangeLabelState("caution");
                 StealthLabel.Modulate = Colors.Orange;
                 SetNewStage(StealthStage.Caution);
             }
@@ -76,35 +92,39 @@ public class PlayerStealth: Node {
     public void AddAttackEnemy(Character enemy)
     {
         checkEmpty();
-        if (!attackEnemies.Contains(enemy)) 
+        if (!attackEnemies.Contains(enemy))
         {
             attackEnemies.Add(enemy);
-            StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "danger");
+            ChangeLabelState("danger");
             StealthLabel.Modulate = Colors.Red;
             SetNewStage(StealthStage.Danger);
         }
     }
 
-    public void RemoveAttackEnemy(Character enemy) 
+    public void RemoveAttackEnemy(Character enemy)
     {
         checkEmpty();
-        if (attackEnemies.Contains(enemy)) {
+        if (attackEnemies.Contains(enemy))
+        {
             attackEnemies.Remove(enemy);
-            if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
+            if (seekEnemies.Count == 0 && attackEnemies.Count == 0)
+            {
+                ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
                 SetNewStage(StealthStage.Safe);
             }
         }
     }
 
-    public void AddSeekEnemy(Character enemy) 
+    public void AddSeekEnemy(Character enemy)
     {
         RemoveAttackEnemy(enemy);
-        if (!seekEnemies.Contains(enemy)) {
+        if (!seekEnemies.Contains(enemy))
+        {
             seekEnemies.Add(enemy);
-            if (attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "caution");
+            if (attackEnemies.Count == 0)
+            {
+                ChangeLabelState("caution");
                 StealthLabel.Modulate = Colors.Orange;
                 SetNewStage(StealthStage.Caution);
             }
@@ -114,20 +134,27 @@ public class PlayerStealth: Node {
     public void RemoveSeekEnemy(Character enemy)
     {
         RemoveAttackEnemy(enemy);
-        if (seekEnemies.Contains(enemy)) {
+        if (seekEnemies.Contains(enemy))
+        {
             seekEnemies.Remove(enemy);
-            if (seekEnemies.Count == 0 && attackEnemies.Count == 0) {
-                StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", "safe");
+            if (seekEnemies.Count == 0 && attackEnemies.Count == 0)
+            {
+                ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
                 SetNewStage(StealthStage.Safe);
             }
         }
     }
+
+    private void ChangeLabelState(string state)
+    {
+        currentState = state;
+        StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", state);
+    }
 }
 
 
-
-public enum StealthStage 
+public enum StealthStage
 {
     Safe,
     Caution,

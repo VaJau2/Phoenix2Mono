@@ -63,12 +63,10 @@ public class InteractionPoint : Control
         isHidden = false;
     }
 
-    public override async void _Ready()
+    public override void _Ready()
     {
         anim = GetNode<AnimationPlayer>("anim");
         anim.Play("point");
-        await ToSignal(GetTree(), "idle_frame");
-        MenuBase.LoadColorForChildren(this);
     }
 
     private string VariantToString(InteractionVariant variant)

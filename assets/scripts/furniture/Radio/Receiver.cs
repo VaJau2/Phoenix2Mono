@@ -150,7 +150,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		switch (radiostation)
 		{
 			case Radiostation.Name.Noise:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Noise");
+				station = null;
 				break;
 
 			case Radiostation.Name.RadioApplewood:
@@ -175,13 +175,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 
 		}
 
-		station.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
+		station?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
+		station?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
 	}
 
 	void InitPlayer()
 	{
-		station.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
-
 		noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
 		switchSound = (AudioStream)GD.Load("res://assets/audio/radio/Switch.ogg");
 		noiseSound = (AudioStream)GD.Load("res://assets/audio/radio/Noise.ogg");
@@ -201,26 +200,32 @@ public class Receiver : RadioBase, ISavable, IInteractable
 
 		UpdateVolumeLever(global.Settings.radioVolume);
 
-		musicPlayer.Stream = station.song;
-		station.SyncTimer();
+		if (station != null)
+        {
+			musicPlayer.Stream = station.song;
+			station.SyncTimer();
+			EmitSignal(nameof(ChangeMusicEvent));
+		}
 
 		if (withSwitchSound) PlaySwitchSound();
 		else OnSwitchSoundFinished();
 
-		EmitSignal(nameof(ChangeMusicEvent));
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
 	public void SwitchOff(bool withSwitchSound = true)
 	{
-		musicPlayer.Stop();
-		EmitSignal(nameof(ChangeMusicEvent));
-		EmitSignal(nameof(ChangeOnline), this);
+		if (station != null)
+        {
+			musicPlayer.Stop();
+			EmitSignal(nameof(ChangeMusicEvent));
+		}
 
 		if (withSwitchSound) PlaySwitchSound();
 		UpdateVolumeLever(minRadioVolume);
 
 		isOn = false;
+		EmitSignal(nameof(ChangeOnline), this);
 	}
 
 	void SyncTimer()

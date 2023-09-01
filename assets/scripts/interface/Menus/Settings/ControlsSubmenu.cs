@@ -9,10 +9,39 @@ public class ControlsSubmenu : SubmenuBase
     private Button defaultButton;
     private Dictionary<string, Label> controlLabels;
     
-    private Label tempEdit;
-    private ColorRect tempEditBack;
+    private TextureRect changeIcon;
+    private Texture backupIcon;
     private string tempAction = "";
-    
+
+    private Array<TextureRect> selectedIconList = new Array<TextureRect>();
+    private TextureRect selectedIcon;
+    private Vector2 speedSize = new Vector2(0.1f, 0.1f);
+
+    public override void _Process(float delta)
+    {
+        SelectIcon();
+    }
+
+    private void SelectIcon()
+    {
+        if (selectedIconList.Count > 0)
+        {
+            for (int i = 0; i < selectedIconList.Count; i++)
+            {
+                if (selectedIconList[i] == selectedIcon)
+                {
+                    if (selectedIconList[i].RectScale.x < 1) selectedIconList[i].RectScale += speedSize;
+                }
+                else
+                {
+                    if (selectedIconList[i].RectScale.x > 0.6f) selectedIconList[i].RectScale -= speedSize;
+                    else selectedIconList.Remove(selectedIconList[i]);
+                }
+            }
+        }
+        else SetProcess(false);
+    }
+
     public override void LoadSubmenu(SettingsMenu parent)
     {
         base.LoadSubmenu(parent);
@@ -47,27 +76,52 @@ public class ControlsSubmenu : SubmenuBase
         }
         
         LoadControlButtons();
+        LoadRaceLabel();
     }
     
-    private Label GetControlEdit(string action) 
+    public void LoadRaceLabel()
+    {
+        switch (global.playerRace)
+        {
+            case Race.Earthpony:
+                controlLabels["jump"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "jump");
+                controlLabels["run"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "run");
+                controlLabels["dash"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "dash");
+                break;
+
+            case Race.Pegasus:
+                controlLabels["jump"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "fly");
+                controlLabels["run"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "descent");
+                controlLabels["dash"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "useless");
+                break;
+
+            case Race.Unicorn:
+                controlLabels["jump"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "jump");
+                controlLabels["run"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "shield");
+                controlLabels["dash"].Text = InterfaceLang.GetPhrase("settingsMenu", "controlLabels", "teleport");
+                break;
+        }
+    }
+
+    private TextureRect GetIcon(string action) 
     {
         switch(action) {
-            case "ui_up": return GetNode<Label>("forwardBack/edit");
-            case "ui_down": return GetNode<Label>("backBack/edit");
-            case "ui_left": return GetNode<Label>("leftBack/edit");
-            case "ui_right": return GetNode<Label>("rightBack/edit");
-            case "jump": return GetNode<Label>("jumpBack/edit");
-            case "ui_shift": return GetNode<Label>("runBack/edit");
-            case "use": return GetNode<Label>("useBack/edit");
-            case "crouch": return GetNode<Label>("crouchBack/edit");
-            case "dash": return GetNode<Label>("dashBack/edit");
-            case "legsHit": return GetNode<Label>("legsBack/edit");
-            case "changeView": return GetNode<Label>("cameraBack/edit");
-            case "task": return GetNode<Label>("taskBack/edit");
-            case "inventory": return GetNode<Label>("inventoryBack/edit");
-            case "autoheal": return GetNode<Label>("autohealBack/edit");
-            case "ui_quicksave": return GetNode<Label>("quicksaveBack/edit");
-            case "ui_quickload": return GetNode<Label>("quickloadBack/edit");
+            case "ui_up": return GetNode<TextureRect>("keyForwardIcon");
+            case "ui_down": return GetNode<TextureRect>("keyBackIcon");
+            case "ui_left": return GetNode<TextureRect>("keyLeftIcon");
+            case "ui_right": return GetNode<TextureRect>("keyRightIcon");
+            case "jump": return GetNode<TextureRect>("keyJumpIcon");
+            case "ui_shift": return GetNode<TextureRect>("keyRunIcon");
+            case "use": return GetNode<TextureRect>("keyUseIcon");
+            case "crouch": return GetNode<TextureRect>("keyCrouchIcon");
+            case "dash": return GetNode<TextureRect>("keyDashIcon");
+            case "legsHit": return GetNode<TextureRect>("keyLegsIcon");
+            case "changeView": return GetNode<TextureRect>("keyCameraIcon");
+            case "task": return GetNode<TextureRect>("keyTaskIcon");
+            case "inventory": return GetNode<TextureRect>("keyInventoryIcon");
+            case "autoheal": return GetNode<TextureRect>("keyAutohealIcon");
+            case "ui_quicksave": return GetNode<TextureRect>("keyQuicksaveIcon");
+            case "ui_quickload": return GetNode<TextureRect>("keyQuickloadIcon");
         }
         return null;
     }
@@ -78,46 +132,19 @@ public class ControlsSubmenu : SubmenuBase
             var actions = InputMap.GetActionList(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
             var key = OS.GetScancodeString(eventKey.Scancode);
-            var edit = GetControlEdit(action);
-            WriteKeyToEdit(key, edit);
+            var icon = GetIcon(action);
+            WriteKeyToEdit(key, icon);
         }
     }
 
-    private void WriteKeyToEdit(string key, Label edit)
+    private void WriteKeyToEdit(string key, TextureRect icon)
     {
-        edit.Text = "["  + key.Capitalize() + "]";
+        icon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
     }
 
     private void CancelControlEdit()
     {
-        if (tempAction == "") return;
-        SetEditOn(tempEditBack, false);
-        var key = Global.GetKeyName(tempAction);
-        if (IsInstanceValid(tempEdit)) {
-            WriteKeyToEdit(key, tempEdit);
-        }
-        tempAction = "";
-        tempEdit = null;
-    }
-    
-    private void SetEditOn(ColorRect editBack, bool on)
-    {
-        var editButton = editBack.GetNode<Label>("edit");
-        if (on) {
-            Color tempColor = editBack.Color;
-            tempColor.a = 1;
-            editBack.Color = tempColor;
-
-            editButton.Modulate = Colors.Black;
-            tempEditBack = editBack;
-        } else {
-            Color tempColor = editBack.Color;
-            tempColor.a = 0;
-            editBack.Color = tempColor;
-
-            editButton.Modulate = Colors.White;
-            tempEditBack = null;
-        }
+        changeIcon.Texture = backupIcon;
     }
     
     public void _on_default_pressed()
@@ -128,41 +155,49 @@ public class ControlsSubmenu : SubmenuBase
             var actions = InputMap.GetActionList(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
             var key = OS.GetScancodeString(eventKey.Scancode);
-            var edit = GetControlEdit(action);
-            WriteKeyToEdit(key, edit);
+            var icon = GetIcon(action);
+            WriteKeyToEdit(key, icon);
         }
     }
     
-    public void _on_controls_mouse_entered(string editName, string section, string phrase)
+    public void _on_controls_mouse_entered(string editName, string phrase)
     {
-        if (tempEdit != null) return;
-        parentMenu._on_mouse_entered(section, phrase);
-        var editBack = GetNode<ColorRect>(editName);
-        SetEditOn(editBack, true);
+        parentMenu._on_mouse_entered("controls", phrase);
+
+        selectedIcon = GetNode<TextureRect>(editName);
+        selectedIconList.Add(selectedIcon);
+        SetProcess(true);
     }
 
     public void _on_controls_mouse_exited()
     {
-        if (tempEdit != null || tempEditBack == null) return;
         parentMenu._on_mouse_exited();
-        SetEditOn(tempEditBack, false);
+
+        selectedIcon = null;
+        SetProcess(true);
     }
 
     public void _on_controls_gui_input(InputEvent @event, string action)
     {
-        if (tempEdit != null) return;
-        if (!(@event is InputEventMouseButton mouseEv)) return;
-        if (!mouseEv.Pressed) return;
-        CancelControlEdit();
-        tempEdit = tempEditBack.GetNode<Label>("edit");
-        tempEdit.Text = "[            ]";
-        tempAction = action;
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+        {
+            tempAction = action;
+
+            if (changeIcon != null && backupIcon != null)
+            {
+                changeIcon.Texture = backupIcon;
+            }
+
+            changeIcon = GetIcon(action);
+            backupIcon = changeIcon.Texture;
+            changeIcon.Texture = null;
+        }
     }
 
     public override void _Input(InputEvent @event)
     {
         if (!Visible) return;
-        if (tempEdit == null) return;
+        if (changeIcon == null) return;
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
         
@@ -175,10 +210,11 @@ public class ControlsSubmenu : SubmenuBase
             InputMap.ActionEraseEvents(tempAction);
             InputMap.ActionAddEvent(tempAction, eventKey);
             var key = OS.GetScancodeString(eventKey.Scancode);
-            WriteKeyToEdit(key, tempEdit);
-            tempAction = "";
-            SetEditOn(tempEditBack, false);
-            tempEdit = null;
+            WriteKeyToEdit(key, changeIcon);
         }
+
+        tempAction = null;
+        backupIcon = null;
+        changeIcon = null;
     }
 }

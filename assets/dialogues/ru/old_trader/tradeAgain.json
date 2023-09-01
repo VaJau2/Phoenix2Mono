@@ -4,7 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Привет еще раз. Хочешь поторговать?",
-      "speaker": "Торговец",
+      "speaker": "Опал",
       "opposite": "Страйкли",
       "options": [
         {
@@ -22,7 +22,7 @@
       "root_node": false,
       "body": "Да. Покажи, что есть на продажу.",
       "speaker": "Страйкли",
-      "opposite": "Торговец",
+      "opposite": "Опал",
       "next": "T3"
     },
     "T1(2)": {
@@ -30,7 +30,7 @@
       "root_node": false,
       "body": "Нет, пока не хочу.",
       "speaker": "Страйкли",
-      "opposite": "Торговец"
+      "opposite": "Опал"
     },
     "T3": {
       "kind": "narration",
@@ -47,7 +47,7 @@
         "a": 0
       }
     },
-    "Торговец": {
+    "Опал": {
       "color": {
         "r": 0,
         "g": 0,

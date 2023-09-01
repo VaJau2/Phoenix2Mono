@@ -98,25 +98,25 @@ public class PlayerInventory
         return tempWeaponData;
     }
 
-    public bool itemIsUsable(string itemType) 
+    public bool itemIsUsable(ItemType itemType) 
     {
-        return itemType != "staff" && itemType != "ammo" && itemType != "money";
+        return itemType != ItemType.staff && itemType != ItemType.ammo && itemType != ItemType.money;
     }
 
     public void UseItem(Dictionary itemData)
     {
         SoundUsingItem(itemData);
 
-        switch(itemData["type"]) 
+        switch((ItemType)itemData["type"]) 
         {
-            case "food":
+            case ItemType.food:
                 if (player.FoodCanHeal)
                 {
                     player.HealHealth(int.Parse(itemData["heal"].ToString()));
                 }
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
-            case "meds":
+            case ItemType.meds:
                 Effect newEffect = EffectHandler.GetEffectByName(itemData["medsEffect"].ToString());
                 effects.AddEffect(newEffect);
                 messages.ShowMessage("useItem", itemData["name"].ToString(), "items");
@@ -162,18 +162,18 @@ public class PlayerInventory
             messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
         }
 
-        switch(itemData["type"]) 
+        switch((ItemType)itemData["type"]) 
         {
-            case "weapon":
+            case ItemType.weapon:
                 weapon = itemCode;
                 player.Weapons.LoadNewWeapon(itemCode, itemData);
                 break;
-            case "armor":
+            case ItemType.armor:
                 cloth = itemCode;
                 player.LoadBodyMesh();
                 CheckSpeed(itemData);
                 break;
-            case "artifact":
+            case ItemType.artifact:
                 artifact = itemCode;
                 player.LoadArtifactMesh(itemCode);
                 break;
@@ -189,18 +189,18 @@ public class PlayerInventory
 
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
-        switch(itemData["type"]) 
+        switch((ItemType)itemData["type"]) 
         {
-            case "weapon":
+            case ItemType.weapon:
                 weapon = "";
                 player.Weapons.ClearWeapon();
                 break;
-            case "armor":
+            case ItemType.armor:
                 cloth = "empty";
                 CheckSpeed(itemData, -1);
                 if (changeModel) player.LoadBodyMesh();
                 break;
-            case "artifact":
+            case ItemType.artifact:
                 artifact = "";
                 if (changeModel) player.LoadArtifactMesh();
                 break;

@@ -48,8 +48,11 @@ public class Player : Character
     private AudioStreamPlayer audiHitted;
 
     //Переменные для передвижения
+
     private Vector3 dir;
     private float sideAngle;
+
+    private Vector3 oldRot;
 
     private CollisionShape sphereCollider;
     private CollisionShape bodyCollider;
@@ -198,6 +201,11 @@ public class Player : Character
         }
     }
     
+    public bool IsRotating()
+    {
+        return Mathf.Abs(RotationHelper.RotationDegrees.x - oldRot.x) > 0.01f;
+    }
+
     public float GetCurrentSpeed()
     {
         return Velocity.Length();
@@ -302,16 +310,22 @@ public class Player : Character
 
     private void UpdateCameraPos() 
     {
-        if (ThirdView) {
+        if (ThirdView) 
+        {
             Vector3 thirdRot = RotationHelperThird.Rotation;
             thirdRot.x = RotationHelper.Rotation.x;
             RotationHelperThird.Rotation = thirdRot;
-        } else {
+        } 
+        else 
+        {
             Transform cameraTransf = RotationHelper.GlobalTransform;
             cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
-            if (Health <= 0) {
+            
+            if (Health <= 0) 
+            {
                 cameraTransf.basis = CameraHeadPos.GlobalTransform.basis;
             }
+
             RotationHelper.GlobalTransform = cameraTransf;
             headShape.GlobalTransform = cameraTransf;
         }
@@ -495,6 +509,7 @@ public class Player : Character
             && Input.MouseMode == Input.MouseModeEnum.Captured
             && MayRotateHead) 
         {
+            oldRot = RotationHelper.RotationDegrees;
 
             var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
@@ -570,7 +585,7 @@ public class Player : Character
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
-
+        
         audi = GetAudi();
         audiHitted = GetAudi(true);
 
@@ -584,6 +599,7 @@ public class Player : Character
     public override void _Process(float delta)
     {
         bodyCollider.Rotation = Body.Rotation;
+        oldRot = RotationHelper.RotationDegrees;
     }
 
     public override void _PhysicsProcess(float delta)

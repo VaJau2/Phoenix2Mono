@@ -18,11 +18,11 @@ public class PlayerWeapons: CollisionShape
     //head -> body.head
 
     //---интерфейс-------
-    InteractionPoint point;
+    InteractionPointManager point;
     Control shootInterface;
 
     public Label ammoLabel;
-    TextureRect ammoIcon;
+    IconWithShadow ammoIcon;
     TextureRect crossHitted;
 
     Dictionary tempWeaponStats;
@@ -112,9 +112,9 @@ public class PlayerWeapons: CollisionShape
     {
         global = Global.Get();
 
-        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
-        ammoIcon = shootInterface.GetNode<TextureRect>("ammoBack/icon");
+        ammoIcon = shootInterface.GetNode<IconWithShadow>("ammoBack/icon");
         ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
         crossHitted = shootInterface.GetNode<TextureRect>("hitted");
 
@@ -143,7 +143,7 @@ public class PlayerWeapons: CollisionShape
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
-        ammoIcon.Texture = newIcon;
+        ammoIcon.SetTexture(newIcon);
     }
 
     private int GetAmmo() => (tempAmmoButton != null) ? tempAmmoButton.GetCount() : 0;

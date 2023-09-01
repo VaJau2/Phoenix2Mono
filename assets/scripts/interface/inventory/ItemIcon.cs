@@ -18,19 +18,25 @@ public class ItemIcon : ColorRect
 
     public StreamTexture GetIcon() => (StreamTexture)icon.Texture;
 
-    public void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
+    public virtual void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
 
     public int GetCount() => int.Parse(countLabel.Text);
 
     //если IsAmmo - false, то при нуле кнопка не очищается
     public void SetCount(int count = 0, bool IsAmmo = true) 
     { 
-        if (count > 0) {
+        if (count > 0) 
+        {
             countLabel.Text = count.ToString();
-        } else {
-            if (IsAmmo) {
+        } 
+        else 
+        {
+            if (IsAmmo) 
+            {
                 ClearItem();
-            } else {
+            } 
+            else 
+            {
                 countLabel.Visible = false;
             } 
         }
@@ -44,17 +50,24 @@ public class ItemIcon : ColorRect
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
         SetIcon(newIcon);
         
-        string itemType = itemData["type"].ToString();
-        countLabel.Visible = (itemType == "ammo") || (itemType == "money");
-        if (itemType == "ammo") {
-            if (isInventoryIcon) {
+        var itemType = (ItemType)itemData["type"];
+        countLabel.Visible = (itemType == ItemType.ammo) || (itemType == ItemType.money);
+        
+        if (itemType == ItemType.ammo) 
+        {
+            if (isInventoryIcon) 
+            {
                 player.inventory.SetAmmoButton(itemCode, this);
+                
                 //обновляем интерфейс, если новые патроны добавились для текущего оружия
-                if (player.Weapons.isTempAmmo(itemCode)) {
+                if (player.Weapons.isTempAmmo(itemCode)) 
+                {
                     player.Weapons.LoadNewAmmo();
                 }
             }
-        } else if (itemType != "money") {
+        } 
+        else if (itemType != ItemType.money) 
+        {
             countLabel.Text = "-1";
         }
 
@@ -64,17 +77,26 @@ public class ItemIcon : ColorRect
         }
     }
 
+    public void SetItemCode(string itemCode)
+    {
+        myItemCode = itemCode;
+    }
+
     public void ClearItem()
     {
         //если очищается инвентарная иконка с патронами
         //ссылка на патроны также должна очиститься
-        if (isInventoryIcon) {
+        if (isInventoryIcon) 
+        {
             Dictionary itemData = ItemJSON.GetItemData(myItemCode);
-            string itemType = itemData["type"].ToString();
-            if (itemType == "ammo") {
-                Player player = Global.Get().player;
+            var itemType = (ItemType)itemData["type"];
+            
+            if (itemType == ItemType.ammo) 
+            {
                 player.inventory.ammoButtons.Remove(myItemCode);
-                if (player.Weapons.isTempAmmo(myItemCode)) {
+                
+                if (player.Weapons.isTempAmmo(myItemCode)) 
+                {
                     player.Weapons.LoadNewAmmo();
                 }
             }
@@ -88,11 +110,13 @@ public class ItemIcon : ColorRect
         _on_itemIcon_mouse_exited();
     }
 
-    public void SetBindKey(string text) {
+    public void SetBindKey(string text)
+    {
         bindLabel.Text = text;
     }
 
-    public string GetBindKey() {
+    public string GetBindKey() 
+    {
         return bindLabel.Text;
     }
 

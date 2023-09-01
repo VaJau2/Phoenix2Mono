@@ -2,26 +2,29 @@ using Godot;
 
 public class EffectIcon : Control
 {
-    const float SIZE_Y = 30;
+    private Control timer;
     private TextureRect icon;
-    private Control timerBack;
+    private TextureRect shadow;
     private Label messageLabel;
     public override void _Ready()
     {
         MenuBase.LoadColorForChildren(this);
-        timerBack = GetNode<Control>("back/timer");
-        icon = GetNode<TextureRect>("back/icon");
+        
+        timer = GetNode<Control>("back/timer");
+        icon = GetNode<TextureRect>("back/timer/icon");
+        shadow = GetNode<TextureRect>("back/shadow");
         messageLabel = GetNode<Label>("message");
     }
 
     public void UpdateTime(float time, float maxTime = 1)
     {
-        if (time > 0) {
-            float delta = (SIZE_Y * time) / maxTime;
-            Vector2 tempSize = timerBack.RectSize;
-            tempSize.y = SIZE_Y - delta;
-            timerBack.RectSize = tempSize;
-        } else {
+        if (time > 0) 
+        {
+            var ratio = time / maxTime;
+            timer.RectSize = new Vector2(31, ratio * 31);
+        } 
+        else 
+        {
             QueueFree();
         }
     }
@@ -29,6 +32,7 @@ public class EffectIcon : Control
     public void SetData(string code, StreamTexture newIcon)
     {
         icon.Texture = newIcon;
+        shadow.Texture = newIcon;
         messageLabel.Text = InterfaceLang.GetPhrase("inventory", "effectIconsText", code);
     }
 

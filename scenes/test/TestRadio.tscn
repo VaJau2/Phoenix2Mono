@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -6,13 +6,11 @@
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/props/furniture/radio/Radiostation/Country Station.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
 [ext_resource path="res://objects/interface/menus/PauseMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://objects/interface/menus/SettingsMenu.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/audio/music/base-calm-back.mp3" type="AudioStream" id=16]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -22,27 +20,6 @@ extents = Vector3( 150, 0.1, 150 )
 [sub_resource type="CubeMesh" id=3]
 
 [sub_resource type="BoxShape" id=4]
-
-[sub_resource type="GDScript" id=81]
-script/source = "extends AudioStreamPlayer
-
-export var maxVolume = 2
-var startTimer = 1
-var played = false
-
-func _process(delta):
-	if (startTimer > 0):
-		startTimer -= delta
-	else:
-		if (!played):
-			play()
-			played = true
-		
-		if (volume_db < maxVolume):
-			volume_db += delta
-		else:
-			set_process(false)
-"
 
 [node name="Main" type="Node"]
 script = ExtResource( 12 )
@@ -67,7 +44,7 @@ visible = false
 script = ExtResource( 10 )
 
 [node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53088, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 moneyCount = 500
 itemCodes = [ "shotgun20" ]
 ammo = {
@@ -92,7 +69,7 @@ shape = SubResource( 2 )
 [node name="props" type="Spatial" parent="Scene/terrain"]
 
 [node name="box" type="StaticBody" parent="Scene/terrain/props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.877, 0.982, -50 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982, -5 )
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
@@ -105,38 +82,14 @@ shape = SubResource( 4 )
 
 [node name="Radio" parent="Scene/terrain/props/box" instance=ExtResource( 8 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 1.61459, -9.53674e-07 )
-radiostation = 5
-
-[node name="box2" type="StaticBody" parent="Scene/terrain/props"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.877, 0.982, 50 )
-collision_layer = 3
-collision_mask = 3
-physics_material_override = ExtResource( 6 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/box2"]
-mesh = SubResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/box2"]
-shape = SubResource( 4 )
-
-[node name="Radio" parent="Scene/terrain/props/box2" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 1.61459, -9.53674e-07 )
-radiostation = 5
+frequencyRange = 1
+frequency = 0.66
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain"]
 transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true
 
-[node name="music" type="AudioStreamPlayer" parent="Scene" groups=["music", "unpaused_sound"]]
-pause_mode = 2
-stream = ExtResource( 16 )
-volume_db = -20.0
-bus = "Music"
-script = SubResource( 81 )
-
 [node name="RadioController" type="Node" parent="Scene"]
 pause_mode = 2
 script = ExtResource( 4 )
-radioListPath = [ NodePath("../terrain/props/box/Radio"), NodePath("../terrain/props/box2/Radio") ]
-
-[node name="Country Station" parent="Scene/RadioController" instance=ExtResource( 9 )]
+radioListPath = [ NodePath("../terrain/props/box/Radio") ]
