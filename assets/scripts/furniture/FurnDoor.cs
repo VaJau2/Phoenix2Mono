@@ -31,17 +31,19 @@ public class FurnDoor: FurnBase, ISavable
         interactor.onetimeHint = false;
     }
 
-    public async void setOpen(AudioStreamSample keySound = null, float timer = 0, bool force = false) 
+    public async void SetOpen(AudioStreamSample keySound = null, float timer = 0, bool force = false) 
     {
+        string animForce = null;
+        
         if (timer > 0 || openTimer > 0) 
         {
             opening = true;
         }
 
-        string animForce = null;
         if (force)
         {
             myKey = "";
+            
             if (!standingOtherSide) 
             {
                 animForce = "open-force";
@@ -52,17 +54,20 @@ public class FurnDoor: FurnBase, ISavable
                 OtherSided = true;
             }
         }
+        
         base.ClickFurn(keySound, timer, animForce);
+        
         if (openTimer != 0) 
         {
             await global.ToTimer(openTimer);
         }
+        
         if (timer != 0) 
         {
             await global.ToTimer(timer);
         }
 
-        SetCollision(IsOpen ? (uint)2 : 1);
+        //SetCollision(IsOpen ? (uint)2 : 1);
         opening = false;
     }
 
@@ -75,7 +80,7 @@ public class FurnDoor: FurnBase, ISavable
             {
                 if (keys.Contains(myKey)) 
                 {
-                    setOpen(openWithKeySound, 0.5f);
+                    SetOpen(openWithKeySound, 0.5f);
                     myKey = "";
                     return 0;
                 }
@@ -83,8 +88,9 @@ public class FurnDoor: FurnBase, ISavable
             audi.Stream = closedSound;
             audi.Play();
             return 0.5f;
-        } 
-        setOpen();
+        }
+        
+        SetOpen();
         return 0;
     }
 
@@ -95,13 +101,13 @@ public class FurnDoor: FurnBase, ISavable
         
         if (!string.IsNullOrEmpty(myKey) && !IsOpen) 
         {
-            setOpen(openWithKeySound, 0.5f);
+            SetOpen(openWithKeySound, 0.5f);
             audi.Stream = openWithKeySound;
             audi.Play();
         } 
         else 
         {
-            setOpen();
+            SetOpen();
         }
 
         return openTimer;
@@ -138,6 +144,6 @@ public class FurnDoor: FurnBase, ISavable
         bool otherSided = Convert.ToBoolean(data["otherSided"]);
         if (!open) return;
         LoadOpenTrue(otherSided);
-        SetCollision(2);
+        //SetCollision(2);
     }
 }

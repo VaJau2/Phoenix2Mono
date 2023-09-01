@@ -199,7 +199,7 @@ public class Pony: NpcWithWeapons
             stopAreaEntered = true;
         }
 
-        if (body is FurnDoor door)
+        if (body is FurnDoor door && !door.IsOpen)
         {
             SetDoorWait(door.ClickFurn());
         }

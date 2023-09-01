@@ -33,10 +33,9 @@ public class FurnBase: StaticBody, IInteractable
         ClickFurn();
     }
 
-    private async void setOpen(string anim, AudioStreamSample sound, float timer = 0,
-                               bool otherSide = false) 
+    public async void SetOpen(string anim, AudioStreamSample sound, float timer = 0, bool otherSide = false) 
     {
-        if (IsInstanceValid(audi)) 
+        if (IsInstanceValid(audi))
         {
             audi.Stream = sound;
             audi.Play();
@@ -58,12 +57,12 @@ public class FurnBase: StaticBody, IInteractable
         {
             if (OtherSided) 
             {
-                setOpen("close-2", CloseSound, timer);
+                SetOpen("close-2", CloseSound, timer);
                 OtherSided = false;
             } 
             else 
             {
-                setOpen("close", CloseSound, timer);
+                SetOpen("close", CloseSound, timer);
             }
         }
         else 
@@ -74,7 +73,7 @@ public class FurnBase: StaticBody, IInteractable
                 anim = openAnim;
             }
 
-            setOpen(anim, openSound ?? OpenSound, timer);
+            SetOpen(anim, openSound ?? OpenSound, timer);
         }
     }
 
