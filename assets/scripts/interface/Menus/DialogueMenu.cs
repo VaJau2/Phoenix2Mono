@@ -66,6 +66,12 @@ public class DialogueMenu : Control, IMenu
 
     private void LoadDialogueFile()
     {
+        if (string.IsNullOrEmpty(npc.dialogueCode))
+        {
+            GD.PrintErr($"{npc.Name} dialogue code is empty!");
+            return;
+        }
+        
         string lang = InterfaceLang.GetLang();
         string path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
         nodes = Global.loadJsonFile(path)["nodes"] as Dictionary;
@@ -104,7 +110,7 @@ public class DialogueMenu : Control, IMenu
                     text.BbcodeText += GetBlockText(uName + ":", "right") + "\n";
                 }
                 
-                var spacedText = GetSpacedText(tempNode["body"].ToString());
+                var spacedText = GetSpacedText(tempNode["body"].ToString()) + "\n";
                 StartAnimatingText(spacedText, "right");
                 isContinue = false;
                 

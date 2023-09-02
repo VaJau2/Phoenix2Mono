@@ -34,7 +34,7 @@ public class EffectHandler: Node
     {
         if (startParameters.ContainsKey(parameterName)) 
         {
-            GD.Print("someone is trying to set the same effect!");
+            GD.PrintErr("someone is trying to set the same effect!");
             return;
         }
         
@@ -54,7 +54,7 @@ public class EffectHandler: Node
     {
         if (startParameters.ContainsKey(parameterName)) 
         {
-            GD.Print("someone is trying to set the same effect!");
+            GD.PrintErr("someone is trying to set the same effect!");
             return;
         }
         

@@ -147,7 +147,7 @@ public class DialogueTrigger : TriggerBase
     
     private void StartTalking()
     {
-        if (!onlyChangeCode)
+        if (!onlyChangeCode && !string.IsNullOrEmpty(npc.dialogueCode))
         {
             dialogueMenu.StartTalkingTo(npc);
         }
