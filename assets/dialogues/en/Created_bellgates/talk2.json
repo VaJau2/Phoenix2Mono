@@ -56,7 +56,7 @@
     "B3": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "body": "I bought them at an auction. Once they entertained visitors to the amusement park, but after the opening of the freeway, the park went bankrupt.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B4"
@@ -406,7 +406,7 @@
     "B20": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "body": "I bought them at an auction. Once they entertained visitors to the amusement park, but after the opening of the freeway, the park went bankrupt.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B21"

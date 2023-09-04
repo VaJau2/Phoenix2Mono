@@ -65,7 +65,7 @@ public class LoadItemsFromSuitcase : TriggerBase
 
                 suitcaseEmpty = false;
                 var itemCount = Convert.ToInt32(itemCounts[i]);
-                if (itemCount > 1)
+                if (itemCount > 0)
                 {
                     suitcase.ChestHandler.AmmoCount.Add(itemCode, itemCount);
                 }

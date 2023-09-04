@@ -104,7 +104,7 @@ public class UseHandler
                     mode.RemoveTempItem();
 
                     var tempDeletingItem = bindsHandler.TempDeletingIcon;
-                    if (tempDeletingItem != null)
+                    if (Object.IsInstanceValid(tempDeletingItem))
                     {
                         await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeleting));
                     }
