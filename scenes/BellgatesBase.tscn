@@ -2119,7 +2119,6 @@ ItemToCheck = "firewood"
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 109 )
-SaveName = "autosave5"
 
 [node name="loadItemsFromSuitcase" type="Node" parent="triggers"]
 script = ExtResource( 17 )
