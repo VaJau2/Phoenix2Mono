@@ -140,7 +140,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "activateLeaveLocation"
+          "value": "activateBed"
         }
       ]
     }

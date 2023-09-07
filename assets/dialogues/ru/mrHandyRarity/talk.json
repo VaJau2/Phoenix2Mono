@@ -157,7 +157,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "exit"
+          "value": "activateVan"
         }
       ]
     }

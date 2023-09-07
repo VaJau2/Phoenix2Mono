@@ -2,7 +2,7 @@
 using Godot;
 using Godot.Collections;
 
-public class TriggerBase : Node, ISavable
+public class TriggerBase : Node, ISavable, IActivated
 {
     [Export] public bool IsActive { get; private set; } = true;
     [Export] public bool DeleteAfterTrigger = true;

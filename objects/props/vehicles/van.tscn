@@ -22,22 +22,21 @@ surfaces/0 = {
 extents = Vector3( 7.94297, 1.31394, 3.01059 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 5.68422, 1.31394, 2.6443 )
+extents = Vector3( 5.8033, 1.08926, 3.01857 )
 
-[node name="furgon" type="StaticBody"]
+[node name="van" type="StaticBody"]
 collision_layer = 3
 collision_mask = 2147483651
 physics_material_override = ExtResource( 1 )
 
-[node name="Line001" type="MeshInstance" parent="."]
+[node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( -4.57561e-09, 0, -0.104678, 0, 0.104678, 0, 0.104678, 0, -4.57561e-09, -0.890071, 3.09139, 2.31685 )
 mesh = SubResource( 1 )
-material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.885185, 2.45441, 0 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02184, 4.59107, 0.0915709 )
+[node name="shape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.022, 4.80407, 0 )
 shape = SubResource( 3 )
