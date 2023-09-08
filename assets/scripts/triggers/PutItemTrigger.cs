@@ -1,48 +1,60 @@
+using System;
 using Godot;
+using Godot.Collections;
 
-public class PutItemTrigger : ActivateOtherTrigger
+public class PutItemTrigger : StaticBody, IActivated, IInteractable, ISavable
 {
     [Export] public NodePath itemModelPath;
     [Export] public string itemCode;
     [Export] public string hintCode;
 
+    [Export] public bool IsActive { get; private set; }
+    [Export] public bool DeleteAfterPut = true;
+
+    public bool MayInteract => IsActive;
+    public string InteractionHintCode => hintCode;
+
     private Spatial itemModel;
-    private static Player player => Global.Get().player;
 
     public override void _Ready()
     {
-        base._Ready();
         itemModel = GetNode<Spatial>(itemModelPath);
-        SetProcess(false);
     }
-
-    public override void _Process(float delta)
+    
+    public void SetActive(bool newActive)
     {
-        player.Camera.ShowHint(hintCode, false);
-
+        IsActive = newActive;
+    }
+    
+    public void Interact(PlayerCamera interactor)
+    {
         if (string.IsNullOrEmpty(itemCode)) return;
         if (!Input.IsActionJustPressed("use")) return;
         
         itemModel.Visible = true;
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.RemoveItemIfExists(itemCode);
-        player?.Camera.HideHint();
-
-        base._on_activate_trigger();
+        
+        var activateTrigger = GetNodeOrNull<ActivateTrigger>("activateTrigger");
+        activateTrigger?._on_activate_trigger();
+        
+        if (!DeleteAfterPut) return;
+        Global.AddDeletedObject(Name);
+        QueueFree();
+        IsActive = false;
     }
     
-    public override  void _on_body_entered(Node body)
+    public virtual Dictionary GetSaveData()
     {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        SetProcess(true);
+        return new Dictionary()
+        {
+            {"active", IsActive}
+        };
     }
-
-    public void _on_body_exited(Node body)
+    
+    public virtual void LoadData(Dictionary data)
     {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
+        IsActive = Convert.ToBoolean(data["active"]);
+        Visible = IsActive;
     }
 }

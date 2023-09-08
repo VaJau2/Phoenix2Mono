@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class LocationExit : StaticBody, IActivated, IInteractable
+public class LocationExit : StaticBody, IActivated, IInteractable, ISavable
 {
     [Export] private string hintCode = "exitLocation";
     
