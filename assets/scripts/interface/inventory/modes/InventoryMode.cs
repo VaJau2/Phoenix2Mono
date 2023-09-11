@@ -14,7 +14,7 @@ public abstract class InventoryMode
     protected Control back;
     protected Label moneyCount;
 
-    protected UseHandler useHandler;
+    public UseHandler useHandler { get; protected set; }
     protected BindsHandler bindsHandler;
 
     protected Control itemInfo;

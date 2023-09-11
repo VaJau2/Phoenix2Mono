@@ -21,6 +21,7 @@ public class BindIcon : ItemIcon
         
         await ToSignal(GetTree(), "idle_frame");
         player.Connect(nameof(Player.UseItem), this, nameof(OnPlayerUseItem));
+        player.Connect(nameof(Player.SitSignal), this, nameof(ClearWeaponBind));
 
         if (myItemCode == player.inventory.weapon)
         {
@@ -76,9 +77,20 @@ public class BindIcon : ItemIcon
         {
             SetSelect(false);
         }
-        else if (myItemCode == itemCode)
+        else if (myItemCode == itemCode && !player.IsSitting)
         {
             SetSelect(true);
+        }
+    }
+
+    private void ClearWeaponBind()
+    {
+        var itemData = ItemJSON.GetItemData(myItemCode);
+        var type = (ItemType)itemData["type"];
+
+        if (type == ItemType.weapon && isSelected)
+        {
+            SetSelect(false);
         }
     }
 

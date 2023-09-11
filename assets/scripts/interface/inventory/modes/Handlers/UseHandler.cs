@@ -172,24 +172,25 @@ public class UseHandler
             }
 
             Inventory.WearItem(wearButton.myItemCode);
-        } //если вещь снимается 
-        else 
+        } 
+        else //если вещь снимается 
         {
-            if (!CanTakeItemOff()) return;
-
-            ItemIcon otherButton = mode.FirstEmptyButton;
-            Inventory.UnwearItem(wearButton.myItemCode);
-
-            //если в инвентаре есть место
-            if (otherButton != null) 
-            {
-                mode.ChangeItemButtons(wearButton, otherButton);
-            } 
-            else 
-            {
-                DropTempItem();
-            }
+            UnwearItem(wearButton);
         }
+    }
+
+    public void UnwearItem(ItemIcon button)
+    {
+        if (tempButton == null) mode.SetTempButton(button);
+        
+        if (!CanTakeItemOff()) return;
+
+        ItemIcon otherButton = mode.FirstEmptyButton;
+        Inventory.UnwearItem(button.myItemCode);
+
+        //если в инвентаре есть место
+        if (otherButton != null) mode.ChangeItemButtons(button, otherButton);
+        else DropTempItem();
     }
     
     public bool CanTakeItemOff() 
@@ -199,6 +200,7 @@ public class UseHandler
         
         var artifactData = ItemJSON.GetItemData(Inventory.artifact);
         if (!artifactData.Contains("cantUnwear")) return true;
+        
         Inventory.MessageCantUnwear(artifactData["name"].ToString());
         return false;
     }

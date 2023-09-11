@@ -18,7 +18,7 @@ public class PlayerInventory
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
     public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
     
-    private InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+    public InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
     private string tempClothDataName;
     private Dictionary tempClothData;
@@ -195,11 +195,13 @@ public class PlayerInventory
                 weapon = "";
                 player.Weapons.ClearWeapon();
                 break;
+            
             case ItemType.armor:
                 cloth = "empty";
                 CheckSpeed(itemData, -1);
                 if (changeModel) player.LoadBodyMesh();
                 break;
+            
             case ItemType.artifact:
                 artifact = "";
                 if (changeModel) player.LoadArtifactMesh();
