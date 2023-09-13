@@ -1,52 +1,30 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
-public class PickItemTrigger : StaticBody, IActivated, IInteractable, ISavable
+public class PickItemTrigger : ActivateOtherTrigger
 {
-    [Export] public string itemCode;
-    [Export] public string hintCode;
-    [Export] public bool IsActive { get; private set; }
-    
-    public bool MayInteract => IsActive;
-    public string InteractionHintCode => hintCode;
-    
-    public void SetActive(bool newActive)
+    [Export] private string itemCode;
+    [Export] private NodePath itemModelPath;
+    private Spatial itemModel;
+
+    public override void _Ready()
     {
-        IsActive = newActive;
+        itemModel = GetNode<Spatial>(itemModelPath);
+        base._Ready();
     }
 
-    public void Interact(PlayerCamera interactor)
+    public override void _on_activate_trigger()
     {
-        if (string.IsNullOrEmpty(itemCode)) return;
-        if (!Input.IsActionJustPressed("use")) return;
-        
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.AddOrDropItem(itemCode);
+        
+        Global.AddDeletedObject(itemModel.Name);
+        itemModel.QueueFree();
         
         Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         messages.ShowMessage("itemTaken", itemData["name"].ToString(), "items");
-        
-        var activateTrigger = GetNodeOrNull<ActivateTrigger>("activateTrigger");
-        activateTrigger?._on_activate_trigger();
-        
-        Global.AddDeletedObject(Name);
-        QueueFree();
-        IsActive = false;
-    }
 
-    public virtual Dictionary GetSaveData()
-    {
-        return new Dictionary()
-        {
-            {"active", IsActive}
-        };
-    }
-    
-    public virtual void LoadData(Dictionary data)
-    {
-        IsActive = Convert.ToBoolean(data["active"]);
-        Visible = IsActive;
+        base._on_activate_trigger();
     }
 }

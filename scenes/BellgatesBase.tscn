@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=2]
+[gd_scene load_steps=198 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -110,6 +110,7 @@
 [ext_resource path="res://assets/scripts/triggers/MoveNpcTrigger.cs" type="Script" id=108]
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=109]
 [ext_resource path="res://assets/scripts/triggers/ChangeTaskTrigger.cs" type="Script" id=110]
+[ext_resource path="res://assets/scripts/furniture/TriggerInteractionAdapter.cs" type="Script" id=111]
 [ext_resource path="res://assets/audio/music/base-calm-back.mp3" type="AudioStream" id=112]
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=113]
 [ext_resource path="res://objects/props/furniture/stable-table-2.tscn" type="PackedScene" id=122]
@@ -977,9 +978,9 @@ transform = Transform( 0.35209, 0, 0, 0, 0.35209, 0, 0, 0, 0.35209, 91.0979, 0.2
 
 [node name="van" parent="terrain/props/cars" groups=["savable"] instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 86.0485, -0.425156, -36.0167 )
-script = ExtResource( 42 )
-hintCode = "goMAS"
-newLevelNum = 7
+script = ExtResource( 111 )
+hintCodes = [ "goToMAS" ]
+activateTriggerPaths = [ NodePath("../../../../triggers/goToMAS") ]
 
 [node name="truck" parent="terrain/props/cars" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.1695, -2.25424, 17.083 )
@@ -2270,7 +2271,12 @@ NewTaskCode = "sitInAVan"
 
 [node name="activateVan" type="Node" parent="triggers"]
 script = ExtResource( 43 )
-nodePaths = [ NodePath("../../terrain/props/cars/van") ]
+nodePaths = [ NodePath("../goToMAS") ]
+
+[node name="goToMAS" type="Node" parent="triggers"]
+script = ExtResource( 42 )
+IsActive = false
+newLevelNum = 7
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )

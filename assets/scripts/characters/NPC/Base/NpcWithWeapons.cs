@@ -12,11 +12,12 @@ public class NpcWithWeapons : NPC, IChest
     [Export] public Array<string> itemCodes = new Array<string>();
     [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
 
+    [Export] public string customHintCode;
+    [Export] private NodePath customInteractionTriggerPath;
+    public TriggerBase customInteractionTrigger;
+
     public ChestHandler ChestHandler { get; private set; }
     public string ChestCode => "body";
-
-    public override bool MayInteract => base.MayInteract || Health <= 0;
-    public override string InteractionHintCode => Health > 0 ? base.InteractionHintCode : "search";
 
     private Character followTarget;
 
@@ -43,9 +44,35 @@ public class NpcWithWeapons : NPC, IChest
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
 
+    private bool IsUseCustomTrigger => !string.IsNullOrEmpty(customHintCode)
+                                       && customInteractionTrigger != null
+                                       && customInteractionTrigger.IsActive;
+    
+    public override bool MayInteract 
+    {
+        get
+        {
+            if (IsUseCustomTrigger) return customInteractionTrigger.IsActive;
+            return base.MayInteract || Health <= 0;
+        }
+    }
+
+    public override string InteractionHintCode
+    {
+        get
+        {
+            if (IsUseCustomTrigger) return customHintCode;
+            return Health > 0 ? base.InteractionHintCode : "search";
+        }
+    }
+
     public override void Interact(PlayerCamera interactor)
     {
-        if (Health > 0)
+        if (customInteractionTrigger != null && customInteractionTrigger.IsActive)
+        {
+            customInteractionTrigger._on_activate_trigger();
+        }
+        else if (Health > 0)
         {
             base.Interact(interactor);
         }
@@ -498,6 +525,11 @@ public class NpcWithWeapons : NPC, IChest
         ChestHandler = new ChestHandler(this)
             .SetCode(ChestCode)
             .LoadStartItems(itemCodes, ammoCount);
+
+        if (customInteractionTriggerPath != null)
+        {
+            customInteractionTrigger = GetNode<TriggerBase>(customInteractionTriggerPath);
+        }
 
         base._Ready();
     }

@@ -1632,6 +1632,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3173, 0, -97.5483 )
 script = ExtResource( 101 )
 IsActive = false
 NewLevelNum = 10
+HintCode = "goToZebrasBase"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/exit"]
 shape = SubResource( 34 )

@@ -861,6 +861,7 @@ NewTaskCode = "talkToCommander"
 script = ExtResource( 32 )
 IsActive = false
 NewLevelNum = 2
+HintCode = "goToPoniesBase"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/exit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.00322, 22.6723 )

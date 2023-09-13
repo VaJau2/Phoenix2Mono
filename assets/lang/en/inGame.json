@@ -37,24 +37,36 @@
     },
 
     "cameraHints": {
-        "closed": "Locked",
-        "close": "Close",
-        "open": "Open",
-        "trade": "Trade",
-        "talk": "Talk",
-        "terminal": "Manage",
-        "sleep": "Sleep",
-        "enterVan": "Enter van",
-        "exitLocation": "Leave location",
-        "goMAS": "Go to MAS",
-        "sit": "Sit",
+        "pick": "Pick",
+
         "putSuitcase": "Put suitcase",
         "putFirewood": "Put firewood",
-        "pick": "Pick",
-        "clickButton": "Press button",
+
+        "use": "Use",
+        "terminal": "Manage",
+        "pressButton": "Press button",
+        "sit": "Sit",
+
         "turnOn": "Turn on",
         "turnOff": "Turn off",
-        "search": "Search"
+        
+        "open": "Open",
+        "close": "Close",
+        
+        "closed": "Locked",
+        
+        "trade": "Trade",
+        "talk": "Talk",
+        "search": "Search",
+
+        "leaveLocation": "Leave location",
+        "goToPoniesBase": "Go to base",
+        "goToTheater": "Go to theater",
+        "goToHome": "Go to home",
+        "goToSleep": "Go to sleep",
+        "enterVan": "Enter van",
+        "goToMAS": "Go to MAS",
+        "goToZebrasBase": "Go into exile"   
     },
 
     "hints": {

@@ -24,7 +24,7 @@ public class PlayerCamera : Camera
     TextureRect interactionIconShadow;
     string closedTextLink = "closed";
 
-    Spatial tempObject;
+    Node tempObject;
     bool onetimeCross;
 
     bool fovClosing = false;
@@ -64,12 +64,14 @@ public class PlayerCamera : Camera
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
+        var buttonPath = "res://assets/textures/interface/icons/buttons/";
+        var isWideButton = key is "BackSpace" || key is "CapsLock" || key is "Kp 0" || key is "Shift" || key is "Space" || key is "Tab";
 
-        interactionIcon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
+        interactionIcon.Texture = GD.Load<Texture>( buttonPath + key + ".png");
         
-        interactionIconShadow.Texture = (key == "BackSpace" || key == "CapsLock" || key == "Kp 0" || key == "Shift" || key == "Space" || key == "Tab")
-            ? GD.Load<Texture>("res://assets/textures/interface/icons/buttons/Empty 48x32.png")
-            : GD.Load<Texture>("res://assets/textures/interface/icons/buttons/Empty 32x32.png");
+        interactionIconShadow.Texture = (isWideButton)
+            ? GD.Load<Texture>(buttonPath + "Empty 48x32.png")
+            : GD.Load<Texture>(buttonPath + "Empty 32x32.png");
         
         interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
 
@@ -131,6 +133,7 @@ public class PlayerCamera : Camera
             {
                 Fov -= FOV_SPEED * delta;
             }
+            
             if (eyePartUp.RectPosition.y < -220)
             {
                 eyePartUp.RectPosition = SetRectY(
@@ -138,6 +141,7 @@ public class PlayerCamera : Camera
                     eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
                 );
             }
+            
             if (eyePartDown.RectPosition.y > 220)
             {
                 eyePartDown.RectPosition = SetRectY(
@@ -160,6 +164,7 @@ public class PlayerCamera : Camera
                     eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
+            
             if (eyePartDown.RectPosition.y < 650)
             {
                 eyePartDown.RectPosition = SetRectY(
@@ -176,13 +181,13 @@ public class PlayerCamera : Camera
         if (!mayUseRay) return;
         if (!player.MayMove) return;
 
-        tempObject = (Spatial)tempRay.GetCollider();
+        tempObject = (Node)tempRay.GetCollider();
 
         if (mayUseRay && tempObject != null)
         {
             if (tempObject is PhysicalBone)
             {
-                tempObject = tempObject.GetNode<Spatial>("../../../");
+                tempObject = tempObject.GetNode<Node>("../../../");
             }
             
             if (tempObject is IInteractable interactable && interactable.MayInteract)

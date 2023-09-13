@@ -2,28 +2,17 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class LocationExit : StaticBody, IActivated, IInteractable, ISavable
+public class LocationExit : TriggerBase
 {
-    [Export] private string hintCode = "exitLocation";
-    
     [Export] private bool SaveInventory = true;
     [Export] private bool SaveOldInventorySave = false;
 
     [Export] private int newLevelNum;
-    
-    public bool IsActive { get; private set; }
-    
-    public bool MayInteract => IsActive;
 
-    public string InteractionHintCode => hintCode;
+    public override void _on_activate_trigger()
+    {
+        if (!IsActive) return;
 
-    public void SetActive(bool newActive)
-    {
-        IsActive = newActive;
-    }
-    
-    public void Interact(PlayerCamera interactor)
-    {
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
         var saveNode = GetNode<SaveNode>("/root/Main/SaveNode");
         
@@ -38,18 +27,5 @@ public class LocationExit : StaticBody, IActivated, IInteractable, ISavable
         }
         
         levelsLoader.LoadLevel(newLevelNum);
-    }
-    
-    public virtual Dictionary GetSaveData()
-    {
-        return new Dictionary()
-        {
-            {"active", IsActive}
-        };
-    }
-    
-    public virtual void LoadData(Dictionary data)
-    {
-        IsActive = Convert.ToBoolean(data["active"]);
     }
 }

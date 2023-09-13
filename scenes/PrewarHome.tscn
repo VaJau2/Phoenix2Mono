@@ -1,4 +1,4 @@
-[gd_scene load_steps=199 format=2]
+[gd_scene load_steps=200 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -96,6 +96,7 @@
 [ext_resource path="res://objects/characters/ponies/old_trader.tscn" type="PackedScene" id=94]
 [ext_resource path="res://objects/props/furniture/bag.tscn" type="PackedScene" id=95]
 [ext_resource path="res://assets/scripts/furniture/LocationExit.cs" type="Script" id=96]
+[ext_resource path="res://assets/scripts/furniture/TriggerInteractionAdapter.cs" type="Script" id=97]
 [ext_resource path="res://assets/scripts/utils/SaveActive.cs" type="Script" id=98]
 [ext_resource path="res://assets/scripts/triggers/AutosaveTrigger.cs" type="Script" id=99]
 [ext_resource path="res://assets/models/props/buildings/street-houses/ambar/ambar.tres" type="Material" id=100]
@@ -1893,10 +1894,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.907
 
 [node name="Strikley\'s Bed" parent="rooms/mansion/props" groups=["savable"] instance=ExtResource( 55 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.66613, 6.58825, 22.4892 )
-script = ExtResource( 96 )
-hintCode = "sleep"
-SaveOldInventorySave = true
-newLevelNum = 5
+script = ExtResource( 97 )
+hintCodes = [ "putSuitcase", "goToSleep" ]
+activateTriggerPaths = [ NodePath("../../../../triggers/putSuitcase"), NodePath("../../../../triggers/sleep") ]
 
 [node name="suitcase" type="MeshInstance" parent="rooms/mansion/props/Strikley\'s Bed" groups=["savable"]]
 transform = Transform( -0.00202461, -0.171086, -0.210987, 0.271624, -0.00321437, 3.95333e-10, -0.00249663, -0.210972, 0.171098, 0, 0.717461, 0 )
@@ -2156,23 +2156,11 @@ script = ExtResource( 35 )
 IsActive = false
 NewTaskCode = "putSuitcase"
 
-[node name="putSuitcase" parent="triggers" groups=["savable"] instance=ExtResource( 55 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -50.4038, -93.4118, 38.5461 )
+[node name="putSuitcase" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 71 )
-IsActive = true
+otherTriggerPaths = [ NodePath("../changeDayTime"), NodePath("../windyTeleport3"), NodePath("../windyDialogue2") ]
 itemModelPath = NodePath("../../rooms/mansion/props/Strikley\'s Bed/suitcase")
 itemCode = "suitcase_vacation"
-hintCode = "putSuitcase"
-
-[node name="suitcase" type="MeshInstance" parent="triggers/putSuitcase" groups=["savable"]]
-transform = Transform( -0.00202461, -0.171086, -0.210987, 0.271624, -0.00321437, 3.95333e-10, -0.00249663, -0.210972, 0.171098, 0, 0.717461, 0 )
-visible = false
-mesh = SubResource( 69 )
-script = ExtResource( 98 )
-
-[node name="activateTrigger" type="Node" parent="triggers/putSuitcase"]
-script = ExtResource( 117 )
-nodePaths = [ NodePath("../../changeDayTime"), NodePath("../../windyTeleport3") ]
 
 [node name="changeDayTime" type="Node" parent="triggers"]
 script = ExtResource( 74 )
@@ -2314,7 +2302,13 @@ NewTaskCode = "goToSleep"
 
 [node name="activateBed" type="Node" parent="triggers"]
 script = ExtResource( 117 )
-nodePaths = [ NodePath("../../rooms/mansion/props/Strikley\'s Bed") ]
+nodePaths = [ NodePath("../sleep") ]
+
+[node name="sleep" type="Node" parent="triggers"]
+script = ExtResource( 96 )
+IsActive = false
+SaveOldInventorySave = true
+newLevelNum = 5
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
