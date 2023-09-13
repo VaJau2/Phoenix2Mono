@@ -2041,7 +2041,7 @@ script = ExtResource( 68 )
 IsActive = false
 NewTaskCode = "talkToCoronel"
 
-[node name="locationExit" type="Node" parent="triggers"]
+[node name="locationExit" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 83 )
 IsActive = false
 newLevelNum = 9

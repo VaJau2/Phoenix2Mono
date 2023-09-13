@@ -1,4 +1,4 @@
-[gd_scene load_steps=198 format=2]
+[gd_scene load_steps=197 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -772,11 +772,8 @@ extents = Vector3( 18.1554, 1, 15.8265 )
 [sub_resource type="BoxShape" id=74]
 extents = Vector3( 6.67913, 4.08533, 4.27221 )
 
-[sub_resource type="BoxShape" id=75]
-extents = Vector3( 3.00014, 2.8527, 3.69865 )
-
 [sub_resource type="BoxShape" id=76]
-extents = Vector3( 1.20606, 2.81979, 1.83022 )
+extents = Vector3( 0.0665556, 0.183349, 0.167756 )
 
 [sub_resource type="BoxShape" id=77]
 extents = Vector3( 15.4162, 5.20052, 6.44369 )
@@ -1594,7 +1591,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99615, 0, -3.36648 )
 
 [node name="stels-house" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.1272, -100, 26.305 )
-visible = false
 script = ExtResource( 24 )
 radioPaths = [ NodePath("props/Radio Stels") ]
 
@@ -2161,8 +2157,8 @@ doorPaths = [ NodePath("../../terrain/props/houses/armor-house/DoorTeleport3"), 
 doorTypes = [ 1, 1, 1 ]
 doorKeysToOpen = [ "", "", "" ]
 
-[node name="DashTrainingTrigger" type="Area" parent="triggers" groups=["savable"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2676, -0.0541945, 93.7344 )
+[node name="DashTrainingTrigger" type="StaticBody" parent="triggers" groups=["savable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6147, 2.09643, 93.7037 )
 script = ExtResource( 71 )
 clickButtonSound = ExtResource( 72 )
 audiPath = NodePath("../../terrain/props/shootingRange/table3/audi")
@@ -2171,15 +2167,15 @@ beepSound = ExtResource( 72 )
 roboDashPath = NodePath("../../npc/mrHandyRainbow")
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/DashTrainingTrigger"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.107746, 0 )
-shape = SubResource( 75 )
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 76 )
 
 [node name="dashChangeTimer" type="Node" parent="triggers"]
 script = ExtResource( 73 )
 mainTriggerPath = NodePath("../DashTrainingTrigger")
 
-[node name="PinkieStealthTrigger" type="Area" parent="triggers" groups=["savable"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -103.521, -101.154, 21.5449 )
+[node name="PinkieStealthTrigger" type="StaticBody" parent="triggers" groups=["savable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -104.544, -99.8786, 21.556 )
 script = ExtResource( 84 )
 clickButtonSound = ExtResource( 83 )
 audiPath = NodePath("audi")
@@ -2273,7 +2269,7 @@ NewTaskCode = "sitInAVan"
 script = ExtResource( 43 )
 nodePaths = [ NodePath("../goToMAS") ]
 
-[node name="goToMAS" type="Node" parent="triggers"]
+[node name="goToMAS" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 42 )
 IsActive = false
 newLevelNum = 7
@@ -2329,8 +2325,4 @@ radioListPath = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/
 [connection signal="Die" from="terrain/props/shootingRange/targets/target4" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="body_entered" from="triggers/twilightTalk" to="triggers/twilightTalk" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/rarityTalk" to="triggers/rarityTalk" method="_on_body_entered"]
-[connection signal="body_entered" from="triggers/DashTrainingTrigger" to="triggers/DashTrainingTrigger" method="_on_body_entered"]
-[connection signal="body_exited" from="triggers/DashTrainingTrigger" to="triggers/DashTrainingTrigger" method="_on_body_exited"]
-[connection signal="body_entered" from="triggers/PinkieStealthTrigger" to="triggers/PinkieStealthTrigger" method="_on_body_entered"]
-[connection signal="body_exited" from="triggers/PinkieStealthTrigger" to="triggers/PinkieStealthTrigger" method="_on_body_exited"]
 [connection signal="body_entered" from="triggers/ConditionTrigger" to="triggers/ConditionTrigger" method="_on_body_entered"]

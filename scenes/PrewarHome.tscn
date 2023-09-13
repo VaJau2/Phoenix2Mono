@@ -2304,7 +2304,7 @@ NewTaskCode = "goToSleep"
 script = ExtResource( 117 )
 nodePaths = [ NodePath("../sleep") ]
 
-[node name="sleep" type="Node" parent="triggers"]
+[node name="sleep" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 96 )
 IsActive = false
 SaveOldInventorySave = true

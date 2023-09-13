@@ -106,11 +106,6 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         connected = false;
         
         checkButton = true;
-            
-        if (playerHere)
-        {
-            _on_body_entered(player);
-        }
     }
 
     public void _on_player_take_item(string itemCode)

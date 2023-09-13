@@ -1,9 +1,9 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public abstract class TrainingTriggerWithButton: TriggerBase
+public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
 {
-    [Export] public string HintCode = "clickButton";
+    [Export] public string HintCode = "pressButton";
     [Export] public AudioStreamSample clickButtonSound;
     [Export] public NodePath audiPath;
     
@@ -11,8 +11,10 @@ public abstract class TrainingTriggerWithButton: TriggerBase
     protected static Player player => Global.Get().player;
     
     protected bool checkButton;
-    protected bool playerHere;
     protected bool trainingIsDone;
+
+    public bool MayInteract => IsActive;
+    public string InteractionHintCode => HintCode;
 
     public override void _Ready()
     {
@@ -22,6 +24,14 @@ public abstract class TrainingTriggerWithButton: TriggerBase
         audi.Stream = clickButtonSound;
     }
 
+    public void Interact(PlayerCamera interactor)
+    {
+        checkButton = false;
+        audi.Stream = clickButtonSound;
+        audi.Play();
+        PressButton();
+    }
+    
     public override void _on_activate_trigger()
     {
         if (!IsActive) return;
@@ -33,39 +43,7 @@ public abstract class TrainingTriggerWithButton: TriggerBase
         
         base._on_activate_trigger();
     }
-    
-    public void _on_body_entered(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        playerHere = true;
-        if (!checkButton) return;
-        SetProcess(true);
-    }
-    
-    public void _on_body_exited(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        playerHere = false;
-        if (!checkButton) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
-    }
-    
-    public override void _Process(float delta)
-    {
-        player.Camera.ShowHint(HintCode, false);
 
-        if (!Input.IsActionJustPressed("use")) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
-        checkButton = false;
-        audi.Stream = clickButtonSound;
-        audi.Play();
-        PressButton();
-    }
-    
     protected virtual void PressButton() {}
 
     public override Dictionary GetSaveData()

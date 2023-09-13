@@ -74,14 +74,8 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
                 }
             }
         }
-       
         
         checkButton = true;
-            
-        if (playerHere)
-        {
-            _on_body_entered(player);
-        }
     }
     
     public override Dictionary GetSaveData()

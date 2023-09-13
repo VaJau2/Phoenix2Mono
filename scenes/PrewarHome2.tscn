@@ -940,7 +940,7 @@ mesh = SubResource( 53 )
 transform = Transform( -0.0168292, -0.117755, 3.50938e-09, -6.43387e-09, 0, -0.215885, 0.215228, -0.00920762, 2.74407e-10, 1.63091, -0.369311, 0.882412 )
 mesh = SubResource( 53 )
 
-[node name="firewoodInteraction" type="StaticBody" parent="rooms/mansion/fireplate" groups=["savable"]]
+[node name="firewoodInteraction" type="StaticBody" parent="rooms/mansion/fireplate"]
 transform = Transform( -1.82997e-08, 0, -0.418648, 0, 0.418648, 0, 0.418648, 0, -1.82997e-08, 0.133186, 0.123093, 1.07501 )
 script = ExtResource( 75 )
 hintCodes = [ "putFirewood" ]
@@ -1303,13 +1303,13 @@ script = ExtResource( 78 )
 IsActive = false
 NewTaskCode = "takeFirewood"
 
-[node name="pickFirewood" type="Node" parent="triggers" groups=["savable"]]
+[node name="pickFirewood" type="Node" parent="triggers"]
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../conditionalTrigger"), NodePath("../putFirewood") ]
 itemCode = "firewood"
 itemModelPath = NodePath("../../terrain/props/houses/ambar/firewood")
 
-[node name="putFirewood" type="Node" parent="triggers"]
+[node name="putFirewood" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 76 )
 itemModelPath = NodePath("../../rooms/mansion/fireplate/fire")
 itemCode = "firewood"
@@ -1343,7 +1343,7 @@ onlyChangeCode = true
 npcPath = "../../npc/mother"
 otherDialogueCode = "talk4(1)"
 
-[node name="pickSuitcase" type="Node" parent="triggers"]
+[node name="pickSuitcase" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 71 )
 IsActive = false
 itemCode = "suitcase_vacation"
@@ -1354,7 +1354,7 @@ script = ExtResource( 78 )
 IsActive = false
 NewTaskCode = "sitInAVan"
 
-[node name="enterVan" type="Node" parent="triggers"]
+[node name="enterVan" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 92 )
 IsActive = false
 SaveOldInventorySave = true

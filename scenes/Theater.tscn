@@ -1870,7 +1870,7 @@ script = ExtResource( 41 )
 IsActive = false
 NewTaskCode = "talkToCommander"
 
-[node name="locationExit" type="Node" parent="triggers"]
+[node name="locationExit" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
 IsActive = false
 SaveOldInventorySave = true
