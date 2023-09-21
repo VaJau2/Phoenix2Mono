@@ -115,6 +115,13 @@
         "icon": "note",
         "price": "1"
     },
+    "radiationCounter": {
+        "name": "Счетчик радиации",
+        "description": "Его противное щелканье не предвещает ничего хорошего",
+        "type": "staff",
+        "icon": "radiationCounter",
+        "price": "20"
+    },
 
 
     "agent1Note": {
@@ -416,6 +423,7 @@
         "speedDecrease": "5",
         "price": "1500",
         "damageBlock": "0.9",
+        "ignoreRadiation": "1",
         "sound": "armor"
     },
 

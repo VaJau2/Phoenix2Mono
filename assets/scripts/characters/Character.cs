@@ -30,7 +30,7 @@ public abstract class Character : KinematicBody, ISavable
     public virtual int GetDamage() => BaseDamage;
     public virtual int GetRecoil() => BaseRecoil;
 
-    private void decreaseHealth(int decrease) 
+    public void DecreaseHealth(int decrease) 
     {
         Health -= decrease;
         Health = Mathf.Clamp(Health, 0, HealthMax);
@@ -40,7 +40,7 @@ public abstract class Character : KinematicBody, ISavable
     {
         EmitSignal(nameof(TakenDamage));
         damage -= (int)(damage * GetDamageBlock());
-        decreaseHealth(damage);
+        DecreaseHealth(damage);
         if (Health <= 0)
         {
             EmitSignal(nameof(Die));
@@ -51,7 +51,7 @@ public abstract class Character : KinematicBody, ISavable
 
     public virtual void HealHealth(int healing)
     {
-        if (Health > 0) decreaseHealth(-healing);
+        if (Health > 0) DecreaseHealth(-healing);
     }
 
     public void MakeDamage(Character victim, int shapeID = 0) 

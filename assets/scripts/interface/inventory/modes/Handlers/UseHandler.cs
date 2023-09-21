@@ -238,6 +238,8 @@ public class UseHandler
             Inventory.UnwearItem(artifactButton.myItemCode);
         }
         
+        Player.CheckDropItem(tempButton.myItemCode);
+        
         mode.RemoveTempItem();
     }
     
