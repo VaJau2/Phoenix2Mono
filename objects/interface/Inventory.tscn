@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
@@ -10,7 +10,20 @@
 [ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture" id=8]
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
+[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+font_data = ExtResource( 11 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Close"
@@ -403,8 +416,10 @@ margin_top = 18.0
 margin_right = 99.824
 margin_bottom = 44.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Экипировано"
 align = 1
+uppercase = true
 
 [node name="weapon" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
@@ -495,8 +510,10 @@ margin_top = 21.0
 margin_right = 128.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 5 )
 text = "Сундук"
 align = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -683,8 +700,10 @@ margin_top = 21.0
 margin_right = 184.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 6 )
 text = "Торговец"
 align = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

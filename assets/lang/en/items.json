@@ -107,6 +107,13 @@
         "icon": "note",
         "price": "1"
     },
+    "radiationCounter": {
+        "name": "Radiation counter",
+        "description": "His nasty clicking does not bode well",
+        "type": "staff",
+        "icon": "radiationCounter",
+        "price": "20"
+    },
 
 
     "agent-note": {
@@ -415,6 +422,7 @@
         "speedDecrease": "5",
         "price": "1500",
         "damageBlock": "0.9",
+        "ignoreRadiation": "1",
         "sound": "armor"
     },
 

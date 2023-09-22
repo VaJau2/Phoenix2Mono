@@ -43,6 +43,7 @@ public class Player : Character
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
     public PlayerInventory inventory;
+    public PlayerRadiation radiation;
 
     private DamageEffects damageEffects;
     private ColorRect blackScreen;
@@ -119,6 +120,16 @@ public class Player : Character
 
             return audi;
         }
+    }
+
+    public void CheckTakeItem(string itemCode)
+    {
+        radiation.CheckTakeRadiationCounter();
+    }
+
+    public void CheckDropItem(string itemCode)
+    {
+        radiation.CheckDropRadiationCounter(itemCode);
     }
 
     public override int GetDamage()
@@ -270,6 +281,19 @@ public class Player : Character
             AnimateDealth();
             Body.AnimateDealth(damager);
         }
+    }
+
+    public override void HealHealth(int healing)
+    {
+        var tempMaxHealth = HealthMax - radiation.GetRadiationLevel();
+        var healthDiff = tempMaxHealth - Health;
+
+        if (healing > healthDiff)
+        {
+            healing = healthDiff;
+        }
+        
+        base.HealHealth(healing);
     }
 
     private async void AnimateDealth()
@@ -628,6 +652,7 @@ public class Player : Character
     {
         global.player = this;
         inventory = new PlayerInventory(this);
+        radiation = new PlayerRadiation(this);
 
         BaseSpeed = 15;
         BaseRecoil = 2;
@@ -657,6 +682,7 @@ public class Player : Character
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
+        Connect(nameof(TakeItem), this, nameof(CheckTakeItem));
     }
 
     public override void _Process(float delta)
