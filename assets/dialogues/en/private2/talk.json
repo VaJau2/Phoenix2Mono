@@ -1,1 +1,63 @@
-{"nodes":{"A1":{"kind":"dialogue","root_node":false,"body":"Good day, Lieutenant.","speaker":"Private","opposite":"Strikely","options":[{"body":"answer","next":"A1(1)"}]},"A1(1)":{"kind":"dialogue","root_node":false,"body":"Hello. Is the Colonel in?","speaker":"Strikely","opposite":"Private","next":"A2"},"A2":{"kind":"dialogue","root_node":false,"body":"Yes, ma'am.","speaker":"Private","opposite":"Strikely","options":[{"body":"answer","next":"A2(1)"}]},"A2(1)":{"kind":"dialogue","root_node":false,"body":"Thank you, Private. Then I won't bother you.","speaker":"Strikely","opposite":"Private"}},"speakers":{"Private":{"color":{"r":0,"g":0,"b":0,"a":0}},"Strikely":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+    "nodes": {
+        "A1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Good day, Lieutenant.",
+            "speaker": "Private",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A1(1)"
+                }
+            ]
+        },
+        "A1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hello. Is the Colonel in?",
+            "speaker": "Strikely",
+            "opposite": "Private",
+            "next": "A2"
+        },
+        "A2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes, ma'am.",
+            "speaker": "Private",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "A2(1)"
+                }
+            ]
+        },
+        "A2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Thank you, Private. Then I won't bother you.",
+            "speaker": "Strikely",
+            "opposite": "Private"
+        }
+    },
+    "speakers": {
+        "Private": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Strikely": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

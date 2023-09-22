@@ -1467,9 +1467,9 @@ otherDialogueCode = "presentation2"
 
 [node name="explosionTriggers" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killAllTask"), NodePath("../shloerDissapear") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../shloerDissapear") ]
 
-[node name="killAllTask" type="Node" parent="triggers"]
+[node name="killThemAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
 NewTaskCode = "killAllEnemies"
@@ -1627,7 +1627,7 @@ afterDialoguePointPath = NodePath("afterDialogue")
 otherDialogueCode = "help"
 
 [node name="afterDialogue" type="Spatial" parent="triggers/scientistDialogue"]
-transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 54.2624, 6.19538, 0.931599 )
+transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 58.23, 5.35039, 47.707 )
 
 [node name="saveDuskTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1656,7 +1656,7 @@ shape = SubResource( 28 )
 [node name="spawnPoint" type="Spatial" parent="triggers/corridorSpawner"]
 
 [node name="movePoint" type="Spatial" parent="triggers/corridorSpawner"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -65.9673, 0, -7.87836 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -106.849, 0, -21.8588 )
 
 [node name="corridorSpawner2" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.6077, 6.33781, -27.5851 )
@@ -1674,7 +1674,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.3231, 2.26303, -12.2243 )
 shape = SubResource( 28 )
 
 [node name="movePoint" type="Spatial" parent="triggers/corridorSpawner2"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -63.4036, 0, -13.5234 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -123.028, -3.8147e-06, -38.2349 )
 
 [node name="spawnPoint" type="Spatial" parent="triggers/corridorSpawner2"]
 
@@ -1698,7 +1698,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -80.6556, 2.26303, -12.2243 )
 shape = SubResource( 28 )
 
 [node name="movePoint" type="Spatial" parent="triggers/corridorSpawner3"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -63.4036, 0, -13.5234 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -121.546, 0, -58.133 )
 
 [node name="spawnPoint" type="Spatial" parent="triggers/corridorSpawner3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.9159, -11.8135, -6.95746 )
@@ -1837,7 +1837,7 @@ newIdlePointPath = NodePath("movePoint")
 shape = SubResource( 31 )
 
 [node name="movePoint" type="Spatial" parent="triggers/duskFollowEnd"]
-transform = Transform( -0.0448749, 0, -0.998993, 0, 1, 0, 0.998993, 0, -0.0448749, 9.39911, -2.55297, 1.56049 )
+transform = Transform( -0.0448749, 0, -0.998993, 0, 1, 0, 0.998993, 0, -0.0448749, 13.953, -3.52233, 47.707 )
 
 [node name="scientist1Thanks" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )

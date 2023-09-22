@@ -30,6 +30,7 @@ public class TradeMode: InventoryMode
     public TradeMode (InventoryMenu menu)
     : base(menu)
     {
+        var back = menu.GetNode<Control>("helper/back");
         randomItems = menu.GetNode<RandomItems>("/root/Main/Scene/randomItems");
         labels.Add("moneyTrade", back.GetNode<Label>("tradeBack/moneyLabel"));
 

@@ -96,15 +96,18 @@
 
     "tradeNames": {
         "tradeTerminal": "Trade terminal",
-        "mrHandy": "Mister Gutsy",
-        "ponyTrader": "Opal",
-        "roboFluttershy": "Assistant Shy"
+        "mrGutsy": "Mister Gutsy",
+        "opal": "Opal",
+        "filly": "Filly",
+        "opal_daughter": "Opal's daughter",
+        "assistantShy": "Assistant Shy"
     },
     
     "labels": {
         "nextWeek": "A week later...",
         "dragon": "Dragon",
-        "endLabel2": "press Space button to exit to main menu",
-        "endLabel3": "to be continued..."
+        "toBeContinueTitle": "to be continued...",
+        "pressLabel": "press",
+        "toExitToMainMenu": "to exit to main menu"
     }
 }

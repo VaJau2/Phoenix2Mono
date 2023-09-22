@@ -270,6 +270,8 @@ public class NpcWithWeapons : NPC, IChest
     {
         weapons.SetWeapon(false);
         weapons.SpawnPickableItem(weaponCode);
+        weaponCode = null;
+        
         base.AnimateDeath(killer, shapeID);
     }
 
@@ -526,11 +528,11 @@ public class NpcWithWeapons : NPC, IChest
             .SetCode(ChestCode)
             .LoadStartItems(itemCodes, ammoCount);
 
-        if (customInteractionTriggerPath != null)
+        if (!string.IsNullOrEmpty(customHintCode) && customInteractionTriggerPath != null)
         {
             customInteractionTrigger = GetNode<TriggerBase>(customInteractionTriggerPath);
         }
-
+        
         base._Ready();
     }
 }

@@ -66,7 +66,7 @@
 [ext_resource path="res://objects/props/furniture/cabinet.tscn" type="PackedScene" id=64]
 [ext_resource path="res://objects/props/furniture/table.tscn" type="PackedScene" id=65]
 [ext_resource path="res://objects/characters/ponies/42.tscn" type="PackedScene" id=66]
-[ext_resource path="res://objects/characters/ponies/windy_cloud.tscn" type="PackedScene" id=67]
+[ext_resource path="res://objects/characters/ponies/windy.tscn" type="PackedScene" id=67]
 [ext_resource path="res://objects/props/post/Paper.tscn" type="PackedScene" id=68]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=69]
 [ext_resource path="res://assets/models/items/Material.material" type="Material" id=70]
@@ -513,14 +513,13 @@ phraseCode = "nextWeek"
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50.1757, -93.5985, 64.7224 )
-itemCodes = [ "suitcase_vacation", "vacationNote" ]
 checkSavedMoney = false
 spawningInside = true
 
 [node name="npc" type="Node" parent="."]
 script = ExtResource( 10 )
 
-[node name="windy_cloud" parent="npc" instance=ExtResource( 67 )]
+[node name="windy" parent="npc" instance=ExtResource( 67 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -71.3381, -92.8579, 60.5449 )
 IdleAnim = "Sleep"
 IsImmortal = true
@@ -534,6 +533,7 @@ IsImmortal = true
 dialogueCode = "talk3"
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
+visible = false
 script = ExtResource( 29 )
 
 [node name="terrain_body" type="StaticBody" parent="terrain"]
@@ -897,7 +897,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85483, 0.656006, -15.6887 )
 [node name="ambient" type="AudioStreamPlayer" parent="terrain"]
 stream = ExtResource( 85 )
 volume_db = -2.0
-autoplay = true
 bus = "Sound"
 script = SubResource( 24 )
 
@@ -1094,49 +1093,55 @@ script = ExtResource( 29 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.08391, 6.10899, 1.64832 )
 
 [node name="box-up" parent="rooms/mansion/props" instance=ExtResource( 46 )]
-transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -3.79956, 3.5908, 25.2889 )
-
-[node name="box-up2" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -1.01076, 3.5908, 25.2889 )
+SpawnRandomItems = true
 
 [node name="box-up10" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -12.1956, 3.5908, 25.2889 )
+SpawnRandomItems = true
 
 [node name="box-up11" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -8.58031e-15, -2.45, -2.11394e-07, -1.3, -1.66018e-21, -1.4, 1.96295e-07, -1.07093e-07, -16.0984, 3.5908, 25.2888 )
+SpawnRandomItems = true
 
 [node name="box-up12" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -9.3958, 3.5908, 25.2889 )
 
-[node name="box-up4" parent="rooms/mansion/props" instance=ExtResource( 46 )]
+[node name="box-up2" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -3.79956, 3.5908, 25.2889 )
+SpawnRandomItems = true
 
 [node name="box-up5" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 6.11959e-08, -4.96778e-15, -1.4, -1.22392e-07, -1.3, 0, -1.4, 1.1365e-07, -6.11959e-08, -6.59496, 3.5908, 25.2889 )
+SpawnRandomItems = true
 
 [node name="box-up16" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 0.243108, -1.97351e-08, 1.37873, -1.22392e-07, -1.3, 0, 1.37873, -1.11923e-07, -0.243107, -6.76592, 3.62803, 12.1422 )
+SpawnRandomItems = true
 
 [node name="box-up7" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 0.243108, -1.97351e-08, 1.37873, -1.22392e-07, -1.3, 0, 1.37873, -1.11923e-07, -0.243107, -12.2729, 3.62803, 13.118 )
+SpawnRandomItems = true
 
 [node name="box-up8" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 0.243108, -1.97351e-08, 1.37873, -1.22392e-07, -1.3, 0, 1.37873, -1.11923e-07, -0.243107, -9.51874, 3.62803, 12.6282 )
 
 [node name="box-up17" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 0.243108, -1.97351e-08, 1.37873, -1.22392e-07, -1.3, 0, 1.37873, -1.11923e-07, -0.243107, -4.01571, 3.62803, 11.6558 )
+SpawnRandomItems = true
 
 [node name="box-up18" parent="rooms/mansion/props" instance=ExtResource( 46 )]
 transform = Transform( 0.243108, -3.40862e-08, 2.41278, -2.11394e-07, -1.3, -1.66018e-21, 1.37873, -1.93312e-07, -0.425438, -15.9954, 3.62803, 13.7719 )
+SpawnRandomItems = true
 
 [node name="cooker" parent="rooms/mansion/props" instance=ExtResource( 54 )]
-transform = Transform( -1.4, 0, 2.11394e-07, 0, 1.15, 0, -2.11394e-07, 0, -1.4, -3.73269, -1.64318, 25.865 )
+transform = Transform( -1.4, 0, 2.11394e-07, 0, 1.15, 0, -2.11394e-07, 0, -1.4, -3.733, -1.688, 25.865 )
 
 [node name="cooker3" parent="rooms/mansion/props" instance=ExtResource( 54 )]
 transform = Transform( -1.4, 0, 2.11394e-07, 0, 1.15, 0, -2.11394e-07, 0, -1.4, -3.73269, 1.13501, 25.865 )
 
 [node name="cooker2" parent="rooms/mansion/props" instance=ExtResource( 54 )]
-transform = Transform( 1.37873, 0, 0.243107, 0, 1.3, 0, -0.243107, 0, 1.37873, -6.86899, -1.49981, 11.3421 )
+transform = Transform( 1.37873, 0, 0.243107, 0, 1, 0, -0.243107, 0, 1.37873, -6.869, -1.875, 11.342 )
 
 [node name="bread" parent="rooms/mansion/props" instance=ExtResource( 88 )]
 transform = Transform( -0.13162, 0, -0.430321, 0, 0.45, 0, 0.430321, 0, -0.13162, -6.99065, -0.443085, -1.07816 )
@@ -1157,43 +1162,52 @@ transform = Transform( -0.211214, 0, 0.397353, 0, 0.45, 0, -0.397353, 0, -0.2112
 transform = Transform( -0.106066, 0, -0.106066, 0, 0.15, 0, 0.106066, 0, -0.106066, -5.96226, -0.190285, 1.92827 )
 
 [node name="box-down4" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 1.4, 0, 1.58933e-07, 0, 1.3, 0, -8.90022e-08, 0, 2.5, -16.5552, -1.5, 25.1517 )
+transform = Transform( 1.4, 0, 1.58932e-07, 0, 1, 0, -8.90022e-08, 0, 2.5, -16.5552, -1.861, 25.1517 )
+SpawnRandomItems = true
 
 [node name="box-down6" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( -1.50198e-07, 0, 1.4, 0, 1.3, 0, -1.4, 0, -1.50198e-07, -6.44133, -1.5, 25.3079 )
+transform = Transform( -2.28089e-07, 0, 1.4, 0, 1, 0, -1.4, 0, -2.28089e-07, -6.44133, -1.861, 25.3079 )
+SpawnRandomItems = true
 
 [node name="box-down12" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( -1.50198e-07, 0, 1.4, 0, 1.3, 0, -1.4, 0, -1.50198e-07, -12.0351, -1.5, 25.3079 )
+transform = Transform( -2.28089e-07, 0, 1.4, 0, 1, 0, -1.4, 0, -2.28089e-07, -12.0351, -1.861, 25.3079 )
+SpawnRandomItems = true
 
 [node name="box-down14" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( -2.28089e-07, 0, 2.5, 0, 1.3, 0, -1.4, 0, -4.07302e-07, -15.86, -1.501, 25.308 )
+transform = Transform( -2.28089e-07, 0, 2.5, 0, 1, 0, -1.4, 0, -4.07302e-07, -15.86, -1.861, 25.308 )
+SpawnRandomItems = true
 
 [node name="box-down5" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 0.243107, 0, -2.46202, 0, 1.3, 0, 1.37873, 0, 0.434121, -16.2647, -1.50287, 13.5738 )
+transform = Transform( 0.243107, 0, -2.46202, 0, 1, 0, 1.37873, 0, 0.43412, -16.2647, -1.861, 13.5738 )
+SpawnRandomItems = true
 
 [node name="box-down17" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 1.4, 0, 2.86102e-07, 0, 1.3, 0, -1.66893e-07, 0, 2.4, -16.554, -1.5, 14.609 )
+transform = Transform( 1.4, 0, 2.86102e-07, 0, 1, 0, -1.66893e-07, 0, 2.4, -16.554, -1.861, 14.609 )
+SpawnRandomItems = true
 
 [node name="box-down9" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( -1.28025, 0, -0.43412, 0, 1.3, 0, 0.225742, 0, -2.46202, -4.46273, -1.5, 11.9017 )
+transform = Transform( -1.28025, 0, -0.43412, 0, 1, 0, 0.225742, 0, -2.46202, -4.59126, -1.861, 11.9243 )
+SpawnRandomItems = true
 
 [node name="box-down13" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( -1.50198e-07, 0, 1.4, 0, 1.3, 0, -1.4, 0, -1.50198e-07, -9.23736, -1.5, 25.3079 )
+transform = Transform( -2.28089e-07, 0, 1.4, 0, 1, 0, -1.4, 0, -2.28089e-07, -9.23736, -1.861, 25.3079 )
 
 [node name="box-down8" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 0.243108, 0, -1.37873, 0, 1.3, 0, 1.37873, 0, 0.243108, -12.3681, -1.50287, 12.8876 )
+transform = Transform( 0.243108, 0, -1.37873, 0, 1, 0, 1.37873, 0, 0.243108, -12.3681, -1.861, 12.8876 )
 
 [node name="box-down19" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 0.243108, 0, -1.37873, 0, 1.3, 0, 1.37873, 0, 0.243108, -9.61453, -1.50287, 12.4021 )
+transform = Transform( 0.243108, 0, -1.37873, 0, 1, 0, 1.37873, 0, 0.243108, -9.61453, -1.861, 12.4021 )
+SpawnRandomItems = true
 
 [node name="box-down15" parent="rooms/mansion/props" instance=ExtResource( 57 )]
-transform = Transform( 1.4, 0, 8.90022e-08, 0, 1.3, 0, -8.90022e-08, 0, 1.4, -16.5571, -1.5, 18.3468 )
+transform = Transform( 1.4, 0, 8.90022e-08, 0, 1, 0, -8.90022e-08, 0, 1.4, -16.5571, -1.861, 18.3468 )
+SpawnRandomItems = true
 
 [node name="sink" parent="rooms/mansion/props" instance=ExtResource( 51 )]
-transform = Transform( 1.4, 0, 3.33786e-07, 0, 1.4, 0, -3.33786e-07, 0, 1.4, -17.2513, -0.521645, 21.0595 )
+transform = Transform( 1.4, 0, 3.33786e-07, 0, 1, 0, -3.33786e-07, 0, 1.4, -17.2513, -0.989388, 21.0595 )
 
 [node name="fridge" parent="rooms/mansion/props" instance=ExtResource( 49 )]
-transform = Transform( -2.44381e-07, 0, 1.3, 0, 1.5, 0, -1.5, 0, -2.11797e-07, -0.877224, -0.849686, 25.1565 )
+transform = Transform( -2.44381e-07, 0, 1.3, 0, 1.51, 0, -1.5, 0, -2.11797e-07, -0.877224, -0.849686, 25.1565 )
 startItemCodes = [ "pie", "pie" ]
 
 [node name="sofa" parent="rooms/mansion/props" instance=ExtResource( 50 )]
@@ -1207,28 +1221,28 @@ mesh = SubResource( 61 )
 transform = Transform( 0.59291, 0, 0, 0, 0.59291, 0, 0, 0, 0.59291, 12.2109, -2.22544, 15.664 )
 
 [node name="chair" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( 0.122531, 0, -0.726838, 0, 0.737094, 0, 0.726838, 0, 0.122531, -11.4242, -1.33917, -2.06899 )
+transform = Transform( 0.122531, 0, -0.726838, 0, 0.737094, 0, 0.726838, 0, 0.122531, -11.4242, -2, -2.06899 )
 
 [node name="chair4" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( -0.257304, 0, -0.690726, 0, 0.737094, 0, 0.690726, 0, -0.257304, -7.46258, -1.33917, -2.06899 )
+transform = Transform( -0.257304, 0, -0.690726, 0, 0.737094, 0, 0.690726, 0, -0.257304, -7.46258, -2, -2.06899 )
 
 [node name="chair5" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( 0.0553947, 0, 0.735009, 0, 0.737094, 0, -0.735009, 0, 0.0553947, -7.0144, -1.48931, 3.20417 )
+transform = Transform( 0.0553947, 0, 0.735009, 0, 0.737094, 0, -0.735009, 0, 0.0553947, -7.0144, -2, 3.20417 )
 
 [node name="chair6" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( -0.122531, 0, 0.726838, 0, 0.737094, 0, -0.726838, 0, -0.122531, -11.5475, -1.48931, 3.51261 )
+transform = Transform( -0.122531, 0, 0.726838, 0, 0.737094, 0, -0.726838, 0, -0.122531, -11.5475, -2, 3.51261 )
 
 [node name="stable-table" parent="rooms/mansion/props" instance=ExtResource( 48 )]
 transform = Transform( -9.61651e-08, 0, 2.4, 0, 1.5, 0, -2.2, 0, -1.04907e-07, -9.5768, -0.683556, -0.330826 )
 
 [node name="chair2" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( 0.230892, 0, 0.617089, 0, 0.65887, 0, -0.617089, 0, 0.230892, -5.94274, 6.84016, 8.27145 )
+transform = Transform( 0.258272, 0, 0.690264, 0, 0.737, 0, -0.690264, 0, 0.258272, -5.94274, 6.804, 8.27145 )
 
 [node name="table2" parent="rooms/mansion/props" instance=ExtResource( 65 )]
 transform = Transform( 1.47696, 0, 0, 0, 1.47696, 0, 0, 0, 1.47696, -16.6766, 7.68946, -1.5183 )
 
 [node name="chair3" parent="rooms/mansion/props" instance=ExtResource( 53 )]
-transform = Transform( -0.593747, 0, -0.285611, 0, 0.65887, 0, 0.285611, 0, -0.593747, -15.0557, 6.84016, -2.8074 )
+transform = Transform( -0.664155, 0, -0.319479, 0, 0.737, 0, 0.319479, 0, -0.664155, -15.0557, 6.804, -2.8074 )
 
 [node name="windows" type="Spatial" parent="rooms/mansion"]
 transform = Transform( 1.16824, 0, 0, 0, 1.16824, 0, 0, 0, 1.16824, 0.0936565, -0.0413895, 0.101593 )
@@ -1318,7 +1332,7 @@ itemCode = "firewood"
 [node name="pickPaper" type="Node" parent="triggers"]
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickSuitcase"), NodePath("../changeWindyDialogue"), NodePath("../goToVanTask"), NodePath("../enterVan") ]
-itemCode = "bellgatesPaper"
+itemCode = "bellgates-paper"
 itemModelPath = NodePath("../../terrain/props/paper")
 
 [node name="changeMotherDialogue" type="Node" parent="triggers"]
@@ -1334,7 +1348,7 @@ disactiveTriggerPaths = [ NodePath("../pickFirewood") ]
 [node name="changeWindyDialogue" type="Node" parent="triggers"]
 script = ExtResource( 69 )
 onlyChangeCode = true
-npcPath = "../../npc/windy_cloud"
+npcPath = "../../npc/windy"
 otherDialogueCode = "talk5"
 
 [node name="conditionalTrigger" type="Node" parent="triggers" groups=["savable"]]
@@ -1351,7 +1365,7 @@ otherDialogueCode = "talk4(1)"
 [node name="pickSuitcase" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 71 )
 IsActive = false
-itemCode = "suitcase_vacation"
+itemCode = "suitcase-vacation"
 itemModelPath = NodePath("../../rooms/mansion/suitcase")
 
 [node name="goToVanTask" type="Node" parent="triggers"]

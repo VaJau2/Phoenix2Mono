@@ -66,7 +66,7 @@
         "goToSleep": "Лечь спать",
         "enterVan": "Сесть в фургон",
         "goToMAS": "Отправиться в МТН",
-        "goToZebraBase": "Отправиться в ссылку"         
+        "goToZebrasBase": "Отправиться в ссылку"         
     },
 
     "hints": {
@@ -96,15 +96,18 @@
 
     "tradeNames": {
         "tradeTerminal": "Торговый терминал",
-        "mrHandy": "Мистер Храбрец",
-        "ponyTrader": "Опал",
-        "roboFluttershy": "Помощница Шай"
+        "mrGutsy": "Мистер Храбрец",
+        "opal": "Опал",
+        "filly": "Кобылка",
+        "opal_daughter": "Дочь Опала",
+        "assistantShy": "Помощница Шай"
     },
 
     "labels": {
         "nextWeek": "Спустя неделю...",
         "dragon": "Дракон",
-        "endLabel2": "нажмите пробел, чтобы выйти в главное меню",
-        "endLabel3": "продолжение следует..."
+        "toBeContinueTitle": "продолжение следует...",
+        "pressLabel": "нажмите",
+        "toExitToMainMenu": "дабы выйти в главное меню"
     }
 }

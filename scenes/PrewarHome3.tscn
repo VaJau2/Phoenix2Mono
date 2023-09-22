@@ -70,7 +70,7 @@
 [ext_resource path="res://assets/scripts/triggers/ChangeTaskTrigger.cs" type="Script" id=68]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=69]
 [ext_resource path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" type="Script" id=70]
-[ext_resource path="res://objects/characters/ponies/trader_daughter.tscn" type="PackedScene" id=71]
+[ext_resource path="res://objects/characters/ponies/opal_daughter.tscn" type="PackedScene" id=71]
 [ext_resource path="res://assets/models/props/buildings/street-houses/ambar/ambar.tres" type="Material" id=72]
 [ext_resource path="res://assets/scripts/triggers/CheckSavableVariableTrigger.cs" type="Script" id=73]
 [ext_resource path="res://objects/props/furniture/wall-terminal.tscn" type="PackedScene" id=74]
@@ -986,7 +986,6 @@ func _process(delta):
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2118, 0.870018, -12.3248 )
-itemCodes = [ "suitcase_vacation", "vacationNote" ]
 
 [node name="npc" type="Node" parent="."]
 script = ExtResource( 10 )
@@ -997,11 +996,10 @@ IsImmortal = true
 customHintCode = "goToPoniesBase"
 customInteractionTriggerPath = NodePath("../../triggers/locationExit")
 
-[node name="trader_daughter" parent="npc" instance=ExtResource( 71 )]
+[node name="opal_daughter" parent="npc" instance=ExtResource( 71 )]
 transform = Transform( -3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 63.3716, -96.4466, 39.562 )
-dialogueCode = "talk2"
-startAmmoCount = {
-}
+dialogueCode = "beginTrade"
+traderCode = "filly"
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 29 )
@@ -2012,7 +2010,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.5582
 
 [node name="checkTraderSavableVariable" type="Node" parent="triggers"]
 script = ExtResource( 73 )
-variableName = "old_trader"
+variableName = "opal"
 otherTriggerPaths = {
 "1": NodePath("../changeDaugherDialogueCode")
 }
@@ -2020,8 +2018,8 @@ otherTriggerPaths = {
 [node name="changeDaugherDialogueCode" type="Node" parent="triggers"]
 script = ExtResource( 69 )
 onlyChangeCode = true
-npcPath = "../../npc/trader_daughter"
-otherDialogueCode = "talk1"
+npcPath = "../../npc/opal_daughter"
+otherDialogueCode = "beginTradeWithQuest"
 
 [node name="afterSmokyDialogue" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 67 )

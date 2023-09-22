@@ -37,7 +37,7 @@
     "M2(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Нет, конечно, ты что! [показать документ об отпуске]",
+      "body": "Нет, конечно, ты что! [показывает документ об отпуске]",
       "speaker": "Страйкли",
       "opposite": "Мама",
       "next": "M2(1.1)"
@@ -50,7 +50,7 @@
         {
           "key": "itemCode",
           "op": "set",
-          "value": "vacationNote"
+          "value": "vacation-note"
         }
       ],
       "next": "M3"

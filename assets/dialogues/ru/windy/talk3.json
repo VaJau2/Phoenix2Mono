@@ -1,0 +1,131 @@
+{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Смотри, какая большая выросла! Пару дней назад мы собрали с неё первые яблоки!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вау, действительно большая",
+      "speaker": "Страйкли",
+      "opposite": "Винди",
+      "next": "B2"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Еще недавно мы с папой садили такой маленький кустик, а теперь это целое дерево!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B2(2)"
+        }
+      ]
+    },
+    "B2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вот бы он это увидел…",
+      "speaker": "Страйкли",
+      "opposite": "Винди",
+      "next": "B3"
+    },
+    "B2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "А что с яблоками? Вкусные?",
+      "speaker": "Страйкли",
+      "opposite": "Винди",
+      "next": "B4"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да… не переживай, рано или поздно он перебьет всех зебр и вернется! Ему точно понравится яблочный пирог, который приготовила мама, я уверен!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B3(1)"
+        }
+      ]
+    },
+    "B3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кстати насчет пирога. Я тоже хочу попробовать",
+      "speaker": "Страйкли",
+      "opposite": "Винди",
+      "next": "B5"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Конечно! Мама приготовила из них такой пирог, копытца оближешь! Давай за мной на кухню!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "next": "B6"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Тебе повезло, что мы еще не все съели! Давай за мной на кухню!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "B7"
+    },
+    "B7": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "windyTeleport5"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Винди": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

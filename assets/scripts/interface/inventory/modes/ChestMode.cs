@@ -15,6 +15,7 @@ public class ChestMode: InventoryMode
     public ChestMode (InventoryMenu menu)
     : base(menu)
     {
+        var back = menu.GetNode<Control>("helper/back");
         chestBack  = back.GetNode<Control>("chestBack");
         chestLabel = chestBack.GetNode<Label>("Label");
         takeAll    = chestBack.GetNode<Button>("takeAll");

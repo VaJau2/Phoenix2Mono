@@ -1,0 +1,69 @@
+{
+    "nodes": {
+        "F1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hi! It's so nice to see you here!",
+            "speaker": "Assistant Shy",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "F1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "F1(2)"
+                }
+            ]
+        },
+        "F1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hi. Want to trade again?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Shy",
+            "next": "F2"
+        },
+        "F1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hi. Nice to see you too. I'll visit you later.",
+            "speaker": "Strikely",
+            "opposite": "Assistant Shy"
+        },
+        "F2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Sure, let's trade!",
+            "speaker": "Assistant Shy",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "F6(1.1)"
+        },
+        "F6(1.1)": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "Dialogue_Trade"
+        }
+    },
+    "speakers": {
+        "Assistant Shy": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Strikely": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

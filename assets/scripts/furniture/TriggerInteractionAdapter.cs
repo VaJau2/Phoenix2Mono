@@ -29,9 +29,16 @@ public class TriggerInteractionAdapter : StaticBody, IInteractable
 
     public override void _Ready()
     {
+        int index = 0;
+        
         foreach (var path in activateTriggerPaths)
         {
-            triggers.Add(GetNode<TriggerBase>(path));
+            var trigger = GetNodeOrNull<TriggerBase>(path);
+            
+            if (trigger != null) triggers.Add(trigger);
+            else hintCodes.RemoveAt(index);
+            
+            index++;
         }
     }
 

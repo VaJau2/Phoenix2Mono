@@ -1,0 +1,235 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi again. Do you still looking around?",
+      "speaker": "Filly",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(3)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What do you recommend from your range?",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M1.1"
+    },
+    "M1.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithFillyAndQuest"
+        }
+      ]
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Where is Opal?",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M2"
+    },
+    "M1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes, I still do.",
+      "speaker": "Strikely",
+      "opposite": "Filly"
+    },
+
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He... He died. Recently. Because of illness. I'm replacing him here. Until I find an employee...",
+      "speaker": "Filly",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You are his daughter?",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M2(1.1)"
+    },
+    "M2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeTraderCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "opal_daughter"
+        }
+      ],
+      "next": "M3"
+    },
+    
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes...",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I talked to him recently...",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M4"
+    },
+    
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes? What did he say?",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M4(1)"
+        }
+      ]
+    },
+    "M4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He asked me to give you his apologies.",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M4.1"
+    },
+    "M4.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeNpcFaceTexture",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "cry"
+        }
+      ],
+      "next": "M4.2"
+    },
+    "M4.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeNpcMouthTexture",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "B"
+        }
+      ],
+      "next": "M5"
+    },
+
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...really?",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "next": "M6"
+    },
+
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "After all these years, he was still talking about me?",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "next": "M7"
+    },
+
+    "M7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh Sisters, what a fool I am that I have never visited him...",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M7(1)"
+        }
+      ]
+    },
+    "M7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I see you need to be alone. I'll go.",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M7.1"
+    },
+    "M7.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithCryDaughter"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Filly": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

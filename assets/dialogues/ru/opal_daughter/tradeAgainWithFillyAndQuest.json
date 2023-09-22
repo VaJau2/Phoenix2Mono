@@ -1,0 +1,235 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Привет ещё раз. Хочешь что-нибудь докупить?",
+      "speaker": "Кобылка",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(3)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Хочу.",
+      "speaker": "Страйкли",
+      "opposite": "Кобылка",
+      "next": "M1.1"
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Хочу спросить, а где Опал?",
+      "speaker": "Страйкли",
+      "opposite": "Кобылка",
+      "next": "M2"
+    },
+    "M1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Пока нет.",
+      "speaker": "Страйкли",
+      "opposite": "Кобылка"
+    },
+    "M1.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithFilly"
+        }
+      ]
+    },
+
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Он... Он умер. Недавно. Из-за болезни. Я его здесь заменяю. Пока не найду себе работника...",
+      "speaker": "Кобылка",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...ты случаем не его дочь?",
+      "speaker": "Страйкли",
+      "opposite": "Кобылка",
+      "next": "M2(1.1)"
+    },
+    "M2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeTraderCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "opal_daughter"
+        }
+      ],
+      "next": "M3"
+    },
+
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да...",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я с ним недавно общалась.",
+      "speaker": "Страйкли",
+      "opposite": "Дочь Опала",
+      "next": "M4"
+    },
+
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "И что он говорил?",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M4(1)"
+        }
+      ]
+    },
+    "M4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Он просил передать тебе свои извинения",
+      "speaker": "Страйкли",
+      "opposite": "Дочь Опала",
+      "next": "M4.1"
+    },
+    "M4.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeNpcFaceTexture",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "cry"
+        }
+      ],
+      "next": "M4.2"
+    },
+    "M4.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeNpcMouthTexture",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "B"
+        }
+      ],
+      "next": "M5"
+    },
+
+    "M5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...п-правда?",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "next": "M6"
+    },
+
+    "M6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спустя столько лет он все равно говорил обо мне?",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "next": "M7"
+    },
+
+    "M7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "О Сёстры, какая же я дура, что так и не навестила его...",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M7(1)"
+        }
+      ]
+    },
+    "M7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вижу, тебе нужно побыть одной. Пойду я.",
+      "speaker": "Страйкли",
+      "opposite": "Дочь Опала",
+      "next": "M7.1"
+    },
+    "M7.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithCryDaughter"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Кобылка": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

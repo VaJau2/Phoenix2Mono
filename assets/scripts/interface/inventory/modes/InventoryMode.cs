@@ -23,7 +23,9 @@ public abstract class InventoryMode
     protected Label itemProps;
     protected ControlHintsManager controlHints;
 
-    public bool isAnimating;
+    public bool isAnimating => anim.IsPlaying();
+    private bool isOpening;
+    private AnimationPlayer anim;
     
     public bool ModalOpened => useHandler.ModalOpened;
     public Control modalAsk { get; }
@@ -64,7 +66,7 @@ public abstract class InventoryMode
             menu.menuLoaded = true;
         }
 
-        back = menu.GetNode<Control>("helper/back");
+        var back = menu.GetNode<Control>("helper/back");
         wearBack = back.GetNode<Control>("wearBack");
         moneyCount = back.GetNode<Label>("moneyCount");
         modalAsk   = menu.GetNode<Control>("modalAsk");
@@ -82,11 +84,18 @@ public abstract class InventoryMode
         labels.Add("weapon", back.GetNode<Label>("wearBack/weaponLabel"));
         labels.Add("armor", back.GetNode<Label>("wearBack/armorLabel"));
         labels.Add("artifact", back.GetNode<Label>("wearBack/artifactLabel"));
+
+        anim = menu.GetNode<AnimationPlayer>("anim");
         
         bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
         
         bindsHandler = new BindsHandler(menu, this);
         useHandler = new UseHandler(menu, this, bindsHandler);
+        
+        if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
+        {
+            anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
+        }
     }
 
     public ItemIcon FindButtonWithItem(string itemCode)
@@ -387,8 +396,9 @@ public abstract class InventoryMode
         }
     }
     
-    public virtual async void OpenMenu() 
+    public virtual void OpenMenu()
     {
+        isOpening = true;
         player.MayMove = false;
 
         LoadLabels();
@@ -396,27 +406,14 @@ public abstract class InventoryMode
 
         menu.Visible = true;
         wearBack.Visible = true;
-        
-        if (!isAnimating) 
-        {
-            isAnimating = true;
-            while (back.RectPosition.x > -MENU_SIZE) 
-            {
-                Vector2 newPos = back.RectPosition;
-                newPos.x -= MENU_SPEED;
-                back.RectPosition = newPos;
-                await player.ToSignal(player.GetTree(), "idle_frame");
-            }
 
-            Input.MouseMode = Input.MouseModeEnum.Visible;
-            isAnimating = false;
-        }
-
-        menu.isOpen = true;
+        anim.Play("Open");
     }
 
-    public virtual async void CloseMenu()
+    public virtual void CloseMenu()
     {
+        isOpening = false;
+        
         if (isDragging)
         {
             FinishDragging();
@@ -427,26 +424,29 @@ public abstract class InventoryMode
             player.MayMove = true;
         }
         
-
-        isAnimating = true;
-        while (back.RectPosition.x < 0) 
-        {
-            Vector2 newPos = back.RectPosition;
-            newPos.x += MENU_SPEED;
-            back.RectPosition = newPos;
-            await player.ToSignal(player.GetTree(), "idle_frame");
-        }
-        wearBack.Visible = false;
-        menu.Visible = false;
-        menu.isOpen = false;
-        if (!Global.Get().paused) 
-        {
-            Input.MouseMode = Input.MouseModeEnum.Captured;
-        }
-
-        isAnimating = false;
+        anim.Play("Close");
     }
 
+    public void FinishOpening()
+    {
+        if (isOpening)
+        {
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+            menu.isOpen = true;
+        }
+        else
+        {
+            wearBack.Visible = false;
+            menu.Visible = false;
+            menu.isOpen = false;
+        
+            if (!Global.Get().paused) 
+            {
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+        }
+    }
+    
     private void FinishDragging()
     {
         tempButton?.SetIcon((StreamTexture) dragIcon.Texture);

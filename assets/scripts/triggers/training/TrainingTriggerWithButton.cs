@@ -34,14 +34,8 @@ public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
     
     public override void _on_activate_trigger()
     {
-        if (!IsActive) return;
-        if (!checkButton)
-        {
-            checkButton = true;
-            return;
-        }
-        
-        base._on_activate_trigger();
+        if (!checkButton) checkButton = true;
+        SetActive(true);
     }
 
     protected virtual void PressButton() {}

@@ -50,7 +50,7 @@
         {
           "key": "itemCode",
           "op": "set",
-          "value": "vacationNote"
+          "value": "vacation-note"
         }
       ],
       "next": "M3"

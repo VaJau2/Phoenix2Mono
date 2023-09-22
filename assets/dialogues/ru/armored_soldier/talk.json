@@ -63,7 +63,7 @@
                 {
                     "key": "name",
                     "op": "set",
-                    "value": "ak47"
+                    "value": "automatic308"
                 }
             ],
             "next": "S3"

@@ -1,0 +1,330 @@
+{
+    "nodes": {
+        "P1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Привет! Я здесь, чтобы проверить, как хорошо ты умеешь прятаться. Ты хорошо умеешь прятаться?",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P1(2)"
+                }
+            ]
+        },
+        "P1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Конечно, нас в армии этому хорошо учат!",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P2"
+        },
+        "P1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Зачем прятаться, если у тебя есть оружие, и можно всех перестрелять?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P3"
+        },
+        "P2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Оки-доки, ты прошла проверку! Поздравляю!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P2(1)"
+                }
+            ]
+        },
+        "P3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что за странные вопросы, глупышка! Есть очень много причин для стелса. Смотри...",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P3(2)"
+                }
+            ]
+        },
+        "P3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Смотрю",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P4"
+        },
+        "P3(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Верю на слово",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P4"
+        },
+        "P4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Во-первых, врагов может быть много, а ты у мамы одна...",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P4(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P4(2)"
+                }
+            ]
+        },
+        "P4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Дальше?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P5"
+        },
+        "P4(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно, верю",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P5"
+        },
+        "P5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Во-вторых, не все враги - плохие пони и заслуживают смерти, некоторые и сами не хотят сражаться, но вынуждены...",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P5(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P5(2)"
+                }
+            ]
+        },
+        "P5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Еще?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P6"
+        },
+        "P5(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ладно, ладно, хватит",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P6"
+        },
+        "P6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В-третьих, таким образом ты сэкономишь патроны на более сильных противников, которые могут ждать тебя в будущем!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P6(1)"
+                }
+            ]
+        },
+        "P6(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Понятно",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P7"
+        },
+        "P7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "У меня есть подарок как раз под стать такой скрытной пони, как ты - стелс-бак! ",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P7(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "P7(2)"
+                }
+            ]
+        },
+        "P7(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что это такое?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P8"
+        },
+        "P7(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Давай!",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P10"
+        },
+        "P8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Их недавно изобрели в МТН, и один опытный образец мой хозяин ... одолжил как раз перед тем, как сбежать оттуда",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P9"
+        },
+        "P9": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": " Стелс-бак генерирует невидимое стелс-поле вокруг пони, делая его прозрачным и позволяя прокрасться незаметно прямо перед мордочкой врага!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "P9(1)"
+                }
+            ]
+        },
+        "P9(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Давай его сюда! ",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P10"
+        },
+        "P10": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не все так просто!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P11"
+        },
+        "P11": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ты должна доказать, что умеешь красться, и достать его незаметно!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P12"
+        },
+        "P12": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Он лежит за той дверью, но его охраняют робо-глаза.",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P13"
+        },
+        "P13": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не попадись им на их робо-глаза, и стелс-бак будет твой!",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P14"
+        },
+        "P14": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нажми на красную кнопку рядом с дверью, чтобы начать испытание! ",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "next": "P14.1"
+        },
+        "P14.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "P14.2"
+        },
+        "P2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "...",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "P7"
+        },
+        "P14.2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "PieStealthTrigger"
+                }
+            ]
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Помощница Пай": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

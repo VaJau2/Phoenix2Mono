@@ -116,6 +116,7 @@ anims/idle = SubResource( 8 )
 script = SubResource( 9 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
+pause_mode = 2
 stream = ExtResource( 3 )
 unit_db = 2.0
 unit_size = 3.0
