@@ -1,6 +1,7 @@
 namespace DialogueScripts
 {
-    public interface IDialogueScript {
+    public interface IDialogueScript 
+    {
         void initiate(DialogueMenu dialogueMenu, string parameter, string key = "");
     }
 }

@@ -1,0 +1,206 @@
+﻿{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi. Want to buy something?",
+      "speaker": "Filly",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(3)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi. Yes, I want.",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M1.1"
+    },
+    "M1.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithFilly"
+        }
+      ]
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi. Where is Opal?",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M2"
+    },
+    "M1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Just looking around.",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M1.3"
+    },
+    "M1.3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "talkAgainWithFilly"
+        }
+      ]
+    },
+
+    "M2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "He... He died. Recently. Because of illness. I'm replacing him here. Until I find an employee...",
+      "speaker": "Filly",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M2(1)"
+        }
+      ]
+    },
+    "M2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You are his daughter?",
+      "speaker": "Strikely",
+      "opposite": "Filly",
+      "next": "M2(1.1)"
+    },
+    "M2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeTraderCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "opal_daughter"
+        }
+      ],
+      "next": "M3"
+    },
+    
+    "M3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes...",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M3(1)"
+        }
+      ]
+    },
+    "M3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm sorry",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M4"
+    },
+
+    "M4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Thanks... I guess... I didn't even have time to say goodbye...",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M4(2)"
+        }
+      ]
+    },
+    "M4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay... Let's trade",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M4.1"
+    },
+    "M4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...eeyup, we are all here temporarily. It seems like it's time for me to leave too...",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M4.2"
+    },
+    "M4.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithDaughter"
+        }
+      ]
+    },
+    "M4.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "talkAgainWithDaughter"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Filly": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

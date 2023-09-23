@@ -32,6 +32,8 @@ public class GridmapStepSound : GridMap
     
     public override void _Process(float delta)
     {
+        if (Player == null) return;
+
         bool tempIsOnGridItem = CheckGridWithDelay(delta);
         bool isMove = Player.GetCurrentSpeed() > Character.MIN_WALKING_SPEED;
         bool isRotate = Player.IsRotating() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));

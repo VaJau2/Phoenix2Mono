@@ -41,7 +41,7 @@
         "icon": "toaster",
         "price": "40"
     },
-	"suitcase_empty": {
+	"suitcase-empty": {
 		"name": "Suitcase",
         "description": "A medium-sized black suitcase. Empty.",
         "type": "staff",
@@ -55,15 +55,15 @@
         "icon": "key0",
         "price": "2" 
     },
-    "key-lab": {
-        "name": "Lab cabinets key",
+    "key-mas": {
+        "name": "MAS cabinets key",
         "description": "Key, which opens closed doors in MAS's laboratories",
         "type": "staff",
         "icon": "key0",
         "price": "100"
     },
-    "lab-key-card1": {
-        "name": "Lab key-card",
+    "key-card-mas": {
+        "name": "MAS key-card",
         "description": "Plastic card, which is used to opening doors",
         "type": "staff",
         "icon": "swipe-card",
@@ -84,7 +84,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "suitcase_vacation": {
+    "suitcase-vacation": {
         "name": "Suitcase with Strikely's things",
         "description": "Suitcase that contains all your things",
         "type": "staff",
@@ -116,30 +116,30 @@
     },
 
 
-    "agent1Note": {
+    "agent-note": {
         "name": "A drenched note",
         "description": "A rain-soaked note belonging to the stallion in a raincoat. The letters are clearly legible.",
         "type": "note",
         "icon": "note",
-        "text": "agent1",
+        "text": "agent-note",
         "price": "6",
         "questItem": "true"
     },
-    "vacationNote": {
+    "vacation-note": {
         "name": "The order on granting leave",
         "description": "You had to work hard for this vacation",
         "type": "note",
         "icon": "note",
-        "text": "vacationNote",
+        "text": "vacation-note",
         "price": "10",
         "questItem": "true"
     },
-    "bellgatesPaper": {
+    "bellgates-paper": {
         "name": "Bellgates's letter",
         "description": "A letter that somepony planted near your house. How did he figure out where you live?",
         "type": "note",
         "icon": "note",
-        "text": "bellgatesPaper",
+        "text": "bellgates-paper",
         "price": "10"
     },
     "firewood": {
@@ -209,52 +209,52 @@
         "isShotgun": "true",
         "sound": "weapon"
     },
-    "sniper307": {
-        "name": ".307 sniper rifle",
+    "sniper308": {
+        "name": ".308 sniper rifle",
         "description": "How can a pony even use this scope?",
         "type": "weapon",
-        "icon": "sniper307",
+        "icon": "sniper308",
         "price": "800",
         "damage": "75",
         "shootDistance": "200",
         "cooldown": "1.6",
         "recoil": "1",
-        "ammoType": "ammo307",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "rifle307": {
-        "name": ".307 rifle",
+    "rifle308": {
+        "name": ".308 rifle",
         "description": "An inexpensive version of a rifle that shoots quite powerful cartridges at long distances",
         "type": "weapon",
-        "icon": "rifle307",
+        "icon": "rifle308",
         "price": "600",
         "damage": "60",
         "shootDistance": "180",
         "cooldown": "1.5",
         "recoil": "1",
-        "ammoType": "ammo307",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "autorifle762": {
-        "name": "7.62 auto rifle",
-        "description": "A rifle that fires automatic fire at long ranges, deals not mane damage",
+    "automatic308": {
+        "name": ".308 automatic rifle",
+        "description": "A rifle that fires automatic fire at long ranges, deals many damage",
         "type": "weapon",
-        "icon": "autorifle762",
+        "icon": "automatic308",
         "price": "1100",
-        "damage": "20",
+        "damage": "30",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
-        "ammoType": "ammo762",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "ak47": {
-        "name": "7.62 auto rifle",
-        "description": "A rifle that fires automatic fire at meduim ranges, deals many damage",
+    "automatic762": {
+        "name": "7.62mm automatic rifle",
+        "description": "A rifle that fires automatic fire at meduim ranges, deals not many damage",
         "type": "weapon",
-        "icon": "ak47",
+        "icon": "automatic762",
         "price": "1200",
-        "damage": "28",
+        "damage": "20",
         "shootDistance": "80",
         "cooldown": "0.15",
         "recoil": "2",
@@ -263,7 +263,7 @@
     },
     "submachine10": {
         "name": ".10 submachine gun",
-        "description": "Submachine gun for large caliber cartridges, that is hard to hold in mouth, when it shoots",
+        "description": "Submachine gun for large caliber cartridges with appropriate recoil",
         "type": "weapon",
         "icon": "submachine10",
         "price": "700",
@@ -347,11 +347,11 @@
         "icon": "ammo20",
         "price": "3" 
     },
-    "ammo307": {
-        "name": ".307 ammo",
+    "ammo308": {
+        "name": ".308 ammo",
         "description": "Rifle cartridges",
         "type": "ammo",
-        "icon": "ammo307",
+        "icon": "ammo308",
         "price": "5" 
     },
     "ammo762": {
@@ -392,20 +392,20 @@
         "shootDistPlus": "15",
         "sound": "armor"
     },
-    "private_uniform": {
+    "private-uniform": {
         "name": "Military uniform",
         "description": "Equestrian army private uniform. Seems like something is missing...",
         "type": "armor",
-        "icon": "private_uniform",
+        "icon": "private-uniform",
         "price": "150",
         "damageBlock": "0.2",
         "sound": "coat"
     },
-    "school_uniform": {
+    "school-uniform": {
         "name": "School uniform",
         "description": "You don't want to wear it at all",
         "type": "armor",
-        "icon": "school_uniform",
+        "icon": "school-uniform",
         "price": "500",
         "damageBlock": "0.1",
         "makeShy": "true",

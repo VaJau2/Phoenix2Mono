@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "..?",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Извини, а можно я куплю у тебя кое-что?",
+      "speaker": "Страйкли",
+      "opposite": "Дочь Опала",
+      "next": "M1.1"
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Кажется, тебе всё ещё нужно побыть одной.",
+      "speaker": "Страйкли",
+      "opposite": "Дочь Опала"
+    },
+    "M1.1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "...",
+      "speaker": "Дочь Опала",
+      "opposite": "Страйкли",
+      "next": "M1.2"
+    },
+    "M1.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgain"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Дочь Опала": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

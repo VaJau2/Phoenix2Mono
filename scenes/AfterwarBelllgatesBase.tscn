@@ -51,7 +51,7 @@
 [ext_resource path="res://assets/scripts/utils/SaveActive.cs" type="Script" id=49]
 [ext_resource path="res://assets/textures/props/furniture/posters/rusted/pinkie.png" type="Texture" id=50]
 [ext_resource path="res://objects/props/furniture/toilet.tscn" type="PackedScene" id=51]
-[ext_resource path="res://objects/props/vehicles/furgon.tscn" type="PackedScene" id=52]
+[ext_resource path="res://objects/props/vehicles/van.tscn" type="PackedScene" id=52]
 [ext_resource path="res://objects/props/furniture/chair.tscn" type="PackedScene" id=53]
 [ext_resource path="res://objects/props/furniture/sink.tscn" type="PackedScene" id=54]
 [ext_resource path="res://objects/props/furniture/fridge.tscn" type="PackedScene" id=55]
@@ -105,6 +105,7 @@
 [ext_resource path="res://objects/characters/ponies/slave_traders/slave_trader6-1.tscn" type="PackedScene" id=103]
 [ext_resource path="res://assets/audio/futniture/stableDoorOpen.wav" type="AudioStream" id=104]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=105]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 282.845, 0.1, 191.884 )

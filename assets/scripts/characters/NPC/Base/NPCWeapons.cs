@@ -76,7 +76,7 @@ public class NPCWeapons : Node
 
     public void SpawnPickableItem(string weaponCode)
     {
-        if (string.IsNullOrEmpty(weaponCode))return;
+        if (string.IsNullOrEmpty(weaponCode)) return;
         if (!(npc is NpcWithWeapons npcWithWeapons)) return;
         
         string path = "res://objects/guns/items/" + weaponCode + ".tscn";

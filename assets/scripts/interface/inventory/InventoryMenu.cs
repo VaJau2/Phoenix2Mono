@@ -26,6 +26,11 @@ public class InventoryMenu : Control, IMenu
         mode.UseTempItem();
     }
 
+    public void OpenAnimFinished(string animation)
+    {
+        mode.FinishOpening();
+    }
+    
     public void OpenMenu() 
     {
         mode.OpenMenu();
@@ -112,7 +117,7 @@ public class InventoryMenu : Control, IMenu
         if (mode == null) return;
         mode.UpdateInput(@event);
 
-        if (mode.isAnimating || !(@event is InputEventKey)) return;
+        if (!(@event is InputEventKey)) return;
         if (Input.IsActionJustPressed("inventory")) 
         {
             if (isOpen) 

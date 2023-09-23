@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A12.mp3-3fc757a40c867c41e5ec60d7c322ce4d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantApple/talk/A12.mp3"
+dest_files=[ "res://.import/A12.mp3-3fc757a40c867c41e5ec60d7c322ce4d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

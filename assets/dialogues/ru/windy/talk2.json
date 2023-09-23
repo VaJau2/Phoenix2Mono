@@ -1,0 +1,69 @@
+{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ну что, расположилась? ",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ага",
+      "speaker": "Страйкли",
+      "opposite": "Винди",
+      "next": "B2"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Тогда давай за мной! Ты должна это видеть!",
+      "speaker": "Винди",
+      "opposite": "Страйкли",
+      "next": "B3"
+    },
+    "B3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "B4"
+    },
+    "B4": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "windyTeleport4"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Страйкли": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Винди": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

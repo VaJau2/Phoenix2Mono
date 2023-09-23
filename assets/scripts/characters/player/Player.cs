@@ -21,17 +21,21 @@ public class Player : Character
     public bool IsSitting;
     public bool IsStealthBuck;
     public bool IsInvisibleForEnemy;
-    
+
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
+
     public float PriceDelta = 1;
+
     //Ссылки на классы игрока
-    public PlayerCamera Camera {get; private set;}
-    public Spatial RotationHelper {get; private set;}
+    public PlayerCamera Camera { get; private set; }
+    public Spatial RotationHelper { get; private set; }
     private Spatial headShape;
     public PlayerThirdPerson RotationHelperThird;
     private Spatial CameraHeadPos;
+
     public PlayerBody Body;
+
     //сслыки внутри body:
     // - Head
     // - Legs
@@ -71,28 +75,49 @@ public class Player : Character
 
     [Signal]
     public delegate void TakenDamage();
+
     [Signal]
     public delegate void FireWithWeapon();
+
     [Signal]
     public delegate void TakeItem(string itemCode);
+
     [Signal]
     public delegate void UseItem(string itemCode);
+    
+    [Signal]
+    public delegate void SitSignal();
 
 
-    public float GetVerticalLook() { return RotationHelper.RotationDegrees.x; }
-    private bool OnFloor() {return soundSteps.landMaterial != null; }
+    public float GetVerticalLook()
+    {
+        return RotationHelper.RotationDegrees.x;
+    }
+
+    private bool OnFloor()
+    {
+        return soundSteps.landMaterial != null;
+    }
 
     // интерфейс для вытаскивания audi (иногда он пустой)
-    public AudioStreamPlayer GetAudi(bool hitted = false) {
-        if (hitted) {
-            if (audiHitted == null) {
+    public AudioStreamPlayer GetAudi(bool hitted = false)
+    {
+        if (hitted)
+        {
+            if (audiHitted == null)
+            {
                 audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted");
             }
+
             return audiHitted;
-        } else {
-            if (audi == null) {
+        }
+        else
+        {
+            if (audi == null)
+            {
                 audi = GetNode<AudioStreamPlayer>("sound/audi");
             }
+
             return audi;
         }
     }
@@ -110,36 +135,40 @@ public class Player : Character
     public override int GetDamage()
     {
         float tempDamage = base.GetDamage();
-        
-        if (inventory.weapon != "") {
+
+        if (inventory.weapon != "")
+        {
             tempDamage += Weapons.GetStatsInt("damage");
         }
 
         tempDamage *= global.Settings.playerDamage;
-        
+
         return (int)tempDamage;
     }
 
-    public override float GetDamageBlock() 
+    public override float GetDamageBlock()
     {
         Dictionary armorProps = inventory.GetArmorProps();
-        if(armorProps.Contains("damageBlock")) {
+        if (armorProps.Contains("damageBlock"))
+        {
             float armorBlock = Global.ParseFloat(armorProps["damageBlock"].ToString());
             return base.GetDamageBlock() + armorBlock;
-        } else {
+        }
+        else
+        {
             return base.GetDamageBlock();
         }
     }
 
     public virtual Spatial GetWeaponParent(bool isPistol)
     {
-        if (isPistol) {
-            if (ThirdView) {
-                return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            } else {
-                return GetNode<Spatial>("rotation_helper/camera/weapons");
-            }
-        } else {
+        if (isPistol)
+        {
+            if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
+            else return GetNode<Spatial>("rotation_helper/camera/weapons");
+        }
+        else
+        {
             return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
         }
     }
@@ -158,13 +187,13 @@ public class Player : Character
         BodyFollowsCamera = false;
     }
 
-    public void LoadBodyMesh() 
+    public void LoadBodyMesh()
     {
         var bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
         LoadClothMesh(inventory.cloth, "first", bodyMesh);
         var bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
         LoadClothMesh(inventory.cloth, "third", bodyThirdMesh);
-        
+
         PlayerHead head = bodyThirdMesh as PlayerHead;
         head.FindFaceMaterial();
 
@@ -172,26 +201,33 @@ public class Player : Character
         Body.SetHead(head);
     }
 
-    private void LoadClothMesh(string clothName, string viewName, MeshInstance meshInstance) 
+    private void LoadClothMesh(string clothName, string viewName, MeshInstance meshInstance)
     {
         //определяем название расы по текущей Race
         //(у единорогов от первого лица нет своей модельки)
         Race playerRace = global.playerRace;
 
         string raceName = "earthpony";
-        if (viewName == "first") {
-            if (playerRace == Race.Pegasus) {
-                raceName = "pegasus";
-            }
-        } else {
-            if (playerRace == Race.Unicorn) {
-                raceName = "unicorn";
-            }
-            if (playerRace == Race.Pegasus) {
+        if (viewName == "first")
+        {
+            if (playerRace == Race.Pegasus)
+            {
                 raceName = "pegasus";
             }
         }
-        
+        else
+        {
+            if (playerRace == Race.Unicorn)
+            {
+                raceName = "unicorn";
+            }
+
+            if (playerRace == Race.Pegasus)
+            {
+                raceName = "pegasus";
+            }
+        }
+
 
         string path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
         Mesh loadedMesh = GD.Load<Mesh>(path);
@@ -203,7 +239,8 @@ public class Player : Character
         var artifact = GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
         artifact.Visible = artifactName != null;
 
-        if (artifactName != null) {
+        if (artifactName != null)
+        {
             string path = "res://assets/models/player_variants/artifacts/" + artifactName + "/";
             Mesh loadedMesh = GD.Load<Mesh>(path + "mesh.res");
             Skin loadedSkin = GD.Load<Skin>(path + "skin.res");
@@ -211,7 +248,7 @@ public class Player : Character
             artifact.Skin = loadedSkin;
         }
     }
-    
+
     public bool IsRotating()
     {
         return Mathf.Abs(RotationHelper.RotationDegrees.x - oldRot.x) > 0.01f;
@@ -224,9 +261,11 @@ public class Player : Character
 
     public override int GetSpeed()
     {
-        if (IsCrouching) {
+        if (IsCrouching)
+        {
             return BaseSpeed / 2;
         }
+
         return BaseSpeed;
     }
 
@@ -236,7 +275,8 @@ public class Player : Character
         base.TakeDamage(damager, damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
-        if (Health <= 0) {
+        if (Health <= 0)
+        {
             Weapons.ClearWeapon();
             AnimateDealth();
             Body.AnimateDealth(damager);
@@ -258,7 +298,8 @@ public class Player : Character
 
     private async void AnimateDealth()
     {
-        while (blackScreen.Color.a < 1) {
+        while (blackScreen.Color.a < 1)
+        {
             //затухание всей музыки на уровне
             foreach (Node node in GetTree().GetNodesInGroup("unpaused_sound"))
             {
@@ -267,16 +308,17 @@ public class Player : Character
                     musicAudi.VolumeDb -= 0.5f;
                 }
             }
-            
+
             Color temp = blackScreen.Color;
             temp.a += 0.01f;
             blackScreen.Color = temp;
             await global.ToTimer(0.04f);
         }
+
         GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
     }
 
-    public void Sit(bool sitOn) 
+    public void Sit(bool sitOn)
     {
         if (IsCrouching == sitOn)
         {
@@ -285,11 +327,14 @@ public class Player : Character
 
         IsCrouching = sitOn;
         Stealth.SetLabelVisible(sitOn);
-        if (sitOn) {
+        if (sitOn)
+        {
             bodyColliderSize = 0.56f;
             Body.Translate(new Vector3(0, 0.75f, 0));
             crouchCooldown = 0.5f;
-        } else {
+        }
+        else
+        {
             bodyColliderSize = 1;
             Body.Translate(new Vector3(0, -0.75f, 0));
         }
@@ -298,9 +343,18 @@ public class Player : Character
     public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
-        Weapons.ClearWeapon();
         MayMove = !sitOn;
         IsSitting = sitOn;
+
+        if (!sitOn) return;
+        
+        if (inventory.weapon != "")
+        {
+            var useHandler = inventory.menu.mode.useHandler;
+            useHandler.UnwearItem(useHandler.weaponButton);
+        }
+        
+        EmitSignal(nameof(SitSignal));
     }
 
     //для земнопня шоб бегал
@@ -308,21 +362,27 @@ public class Player : Character
 
     public virtual void UpdateStand() {}
 
-    public virtual void Crouch() 
+    public virtual void Crouch()
     {
-        if (Input.IsActionJustPressed("crouch")) {
-            if (crouchCooldown <= 0 || !IsCrouching) {
+        if (Input.IsActionJustPressed("crouch"))
+        {
+            if (crouchCooldown <= 0 || !IsCrouching)
+            {
                 Sit(!IsCrouching);
             }
         }
     }
 
-    public virtual void Jump() 
+    public virtual void Jump()
     {
-        if (Input.IsActionJustPressed("jump")) {
-            if (IsCrouching) {
+        if (Input.IsActionJustPressed("jump"))
+        {
+            if (IsCrouching)
+            {
                 Sit(false);
-            } else {
+            }
+            else
+            {
                 OnStairs = false;
                 Velocity.y = JUMP_SPEED;
                 soundSteps.PlayJumpSound();
@@ -332,20 +392,20 @@ public class Player : Character
 
     public virtual void Fly() {}
 
-    private void UpdateCameraPos() 
+    private void UpdateCameraPos()
     {
-        if (ThirdView) 
+        if (ThirdView)
         {
             Vector3 thirdRot = RotationHelperThird.Rotation;
             thirdRot.x = RotationHelper.Rotation.x;
             RotationHelperThird.Rotation = thirdRot;
-        } 
-        else 
+        }
+        else
         {
             Transform cameraTransf = RotationHelper.GlobalTransform;
             cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
-            
-            if (Health <= 0) 
+
+            if (Health <= 0)
             {
                 cameraTransf.basis = CameraHeadPos.GlobalTransform.basis;
             }
@@ -355,28 +415,31 @@ public class Player : Character
         }
     }
 
-    protected void ProcessInput(float delta) 
+    protected void ProcessInput(float delta)
     {
         dir = new Vector3();
         Vector2 inputMovementVector = new Vector2();
         int goSide = 0;
         UpdateStand();
-        
-        if (Input.IsActionPressed("ui_up")) 
+
+        if (Input.IsActionPressed("ui_up"))
         {
             inputMovementVector.y += 1;
             UpdateGoForward();
         }
-        if (Input.IsActionPressed("ui_down")) 
+
+        if (Input.IsActionPressed("ui_down"))
         {
             inputMovementVector.y -= 1;
         }
-        if (Input.IsActionPressed("ui_left")) 
+
+        if (Input.IsActionPressed("ui_left"))
         {
             inputMovementVector.x -= 1;
             goSide = 1;
         }
-        if (Input.IsActionPressed("ui_right")) 
+
+        if (Input.IsActionPressed("ui_right"))
         {
             inputMovementVector.x += 1;
             goSide = -1;
@@ -387,7 +450,7 @@ public class Player : Character
         {
             sideAngle += GetCurrentSpeed() * goSide * delta;
             sideAngle = Mathf.Clamp(sideAngle, -2, 2);
-        } 
+        }
         else
         {
             sideAngle = Mathf.Lerp(sideAngle, 0, 10 * delta);
@@ -404,24 +467,25 @@ public class Player : Character
 
         Transform camXForm = Camera.GlobalTransform;
         dir += -camXForm.basis.z * inputMovementVector.y;
-	    dir += camXForm.basis.x * inputMovementVector.x;
+        dir += camXForm.basis.x * inputMovementVector.x;
 
-        if (OnFloor()) 
+        if (OnFloor())
         {
             Jump();
 
-            if (crouchCooldown > 0) {
+            if (crouchCooldown > 0)
+            {
                 crouchCooldown -= delta;
             }
 
             Crouch();
-        } 
-        else 
+        }
+        else
         {
             Fly();
         }
 
-        if (bodyCollider.Scale.y != bodyColliderSize) 
+        if (bodyCollider.Scale.y != bodyColliderSize)
         {
             Vector3 bodyScale = bodyCollider.Scale;
             Vector3 sphereScale = sphereCollider.Scale;
@@ -432,20 +496,20 @@ public class Player : Character
         }
     }
 
-    float GetTempShake(float delta) 
+    float GetTempShake(float delta)
     {
         float tempShake = shakingSpeed;
 
-        if (!shakeUp) 
+        if (!shakeUp)
         {
             tempShake *= -1;
         }
 
-        if (shakeTimer > 0) 
+        if (shakeTimer > 0)
         {
             shakeTimer -= delta;
-        } 
-        else 
+        }
+        else
         {
             shakeTimer = SHAKE_TIME;
             shakeUp = !shakeUp;
@@ -454,32 +518,32 @@ public class Player : Character
         return tempShake;
     }
 
-    public virtual float GetGravitySpeed(float tempShake, float delta) 
+    public virtual float GetGravitySpeed(float tempShake, float delta)
     {
         return Velocity.y + (GRAVITY * delta + tempShake);
     }
 
-    public virtual float GetDeacceleration() 
+    public virtual float GetDeacceleration()
     {
         return DEACCCEL;
     }
 
-    private void ProcessMovement(float delta) 
+    private void ProcessMovement(float delta)
     {
         dir.y = 0;
         dir = dir.Normalized();
 
         float tempShake = 0;
-        if (shakingSpeed > 0) 
+        if (shakingSpeed > 0)
         {
             tempShake = GetTempShake(delta);
         }
 
-        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0) 
+        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0)
         {
             Velocity.y = 0;
-        } 
-        else 
+        }
+        else
         {
             Velocity.y = GetGravitySpeed(tempShake, delta);
         }
@@ -491,11 +555,11 @@ public class Player : Character
         target *= GetSpeed();
 
         float acceleration;
-        if (dir.Dot(hvel) > 0) 
+        if (dir.Dot(hvel) > 0)
         {
             acceleration = ACCEL;
-        } 
-        else 
+        }
+        else
         {
             acceleration = GetDeacceleration();
         }
@@ -510,11 +574,12 @@ public class Player : Character
     {
         if (IsSitting)
         {
-            if(speedX > 0 && Body.RotClumpsMin) 
+            if (speedX > 0 && Body.RotClumpsMin)
             {
                 RotateY(Mathf.Deg2Rad(speedX));
             }
-            if(speedX < 0 && Body.RotClumpsMax) 
+
+            if (speedX < 0 && Body.RotClumpsMax)
             {
                 RotateY(Mathf.Deg2Rad(speedX));
             }
@@ -527,11 +592,9 @@ public class Player : Character
 
     public virtual void OnCameraRotatingX(float speedX) {}
 
-    protected void RotateCamera(InputEvent @event) 
+    protected void RotateCamera(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion
-            && Input.MouseMode == Input.MouseModeEnum.Captured
-            && MayRotateHead) 
+        if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured && MayRotateHead)
         {
             oldRot = RotationHelper.RotationDegrees;
 
@@ -567,7 +630,7 @@ public class Player : Character
     {
         inventory.LoadData((Dictionary)data["inventory"]);
         base.LoadData(data);
-        
+
         bool sittingOnChair = Convert.ToBoolean(data["sitOnChair"]);
         if (sittingOnChair)
         {
@@ -610,7 +673,7 @@ public class Player : Character
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");
         CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
-        
+
         audi = GetAudi();
         audiHitted = GetAudi(true);
 
@@ -630,17 +693,18 @@ public class Player : Character
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Health > 0) 
+        if (Health > 0)
         {
-            if (MayMove) 
+            if (MayMove)
             {
                 ProcessInput(delta);
                 HandleImpulse();
             }
-            
+
             ProcessMovement(delta);
         }
-        if (Health < 0 || !MayMove) 
+
+        if (Health < 0 || !MayMove)
         {
             dir = Vector3.Zero;
         }
@@ -650,7 +714,7 @@ public class Player : Character
 
     public override void _Input(InputEvent @event)
     {
-        if (Health > 0) 
+        if (Health > 0)
         {
             RotateCamera(@event);
         }

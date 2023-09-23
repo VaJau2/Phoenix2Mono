@@ -1,0 +1,66 @@
+{
+  "nodes": {
+    "M1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you want to buy anything additional?",
+      "speaker": "Opal's Daughter",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "M1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "M1(2)"
+        }
+      ]
+    },
+    "M1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes, I want.",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter",
+      "next": "M1.1"
+    },
+    "M1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No",
+      "speaker": "Strikely",
+      "opposite": "Opal's Daughter"
+    },
+    "M1.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "tradeAgainWithDaughter"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Opal's Daughter": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

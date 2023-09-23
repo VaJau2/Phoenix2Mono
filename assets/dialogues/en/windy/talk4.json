@@ -1,0 +1,144 @@
+{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Isn't the pie delicious?",
+      "speaker": "Windy",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(2)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It is. Fantastic",
+      "speaker": "Strikely",
+      "opposite": "Windy",
+      "next": "B2"
+    },
+    "B1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's fine",
+      "speaker": "Strikely",
+      "opposite": "Windy",
+      "next": "B3"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I know! These first apples are so sweet!",
+      "speaker": "Windy",
+      "opposite": "Strikely",
+      "next": "B4"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Fine? It's masterpiece!",
+      "speaker": "Windy",
+      "opposite": "Strikely",
+      "next": "B4"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Windy! It's time to sleep!",
+      "config": "mother",
+      "speaker": "Mother",
+      "opposite": "Windy",
+      "next": "B5"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Mom! Why is it so early?",
+      "speaker": "Windy",
+      "opposite": "Mother",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Windy Cloud! Go to bed!",
+      "config": "mother",
+      "speaker": "Mother",
+      "opposite": "Windy",
+      "next": "B7"
+    },
+    "B7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well, you heard her... eh…",
+      "speaker": "Windy",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B7(1)"
+        }
+      ]
+    },
+    "B7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good night",
+      "speaker": "Strikely",
+      "opposite": "Windy",
+      "next": "B8"
+    },
+    "B8": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "B9"
+    },
+    "B9": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "windyGoToSleep"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Windy": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Mother": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

@@ -142,7 +142,7 @@
     "A3(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "У него с собой была записка [отдать записку]",
+      "body": "У него с собой была записка [отдаёт записку]",
       "speaker": "Страйкли",
       "opposite": "Полковник",
       "next": "A3(1.1)"
@@ -195,7 +195,7 @@
         {
           "key": "itemCode",
           "op": "set",
-          "value": "agent1Note"
+          "value": "agent-note"
         }
       ],
       "next": "A4"

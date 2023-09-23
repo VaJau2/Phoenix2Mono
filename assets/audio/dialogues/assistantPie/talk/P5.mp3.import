@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/P5.mp3-599b7eeb93e97fe57d7afdc8fb0c43b6.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk/P5.mp3"
+dest_files=[ "res://.import/P5.mp3-599b7eeb93e97fe57d7afdc8fb0c43b6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

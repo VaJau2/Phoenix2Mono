@@ -48,7 +48,7 @@
     "B2": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "body": "Don't you find them funny? Specially Assistant Shy, she is so cute…",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B3"
@@ -336,7 +336,7 @@
     "B16": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Great. I knew you'd agree. Come to Rarity for an equipment, and Applejack instruct you about the details.",
+      "body": "Great. I knew you'd agree. Come to Assistant Rarity for an equipment, and Assistant Apple instruct you about the details.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B16(1.1)"
@@ -398,7 +398,7 @@
     "B19": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "body": "Don't you find them funny? Specially Assistant Shy, she is so cute…",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B20"

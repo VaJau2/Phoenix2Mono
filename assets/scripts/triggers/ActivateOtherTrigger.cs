@@ -31,18 +31,19 @@ public class ActivateOtherTrigger: TriggerBase
 
     public override void _on_activate_trigger()
     {
-        if (IsActive)
+        if (!IsActive) return;
+        
+        foreach (TriggerBase otherTrigger in otherTriggers)
         {
-            foreach (TriggerBase otherTrigger in otherTriggers)
-            {
-                otherTrigger.SetActive(true);
-            }
-            foreach (TriggerBase otherTrigger in triggersToDisactive)
-            {
-                otherTrigger.SetActive(false);
-            }
-            base._on_activate_trigger();
+            otherTrigger.SetActive(true);
         }
+            
+        foreach (TriggerBase otherTrigger in triggersToDisactive)
+        {
+            otherTrigger.SetActive(false);
+        }
+        
+        base._on_activate_trigger();
     }
 
     public virtual void _on_body_entered(Node body)

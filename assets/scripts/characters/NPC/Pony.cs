@@ -223,6 +223,7 @@ public class Pony: NpcWithWeapons
         base._Ready();
         rand.Randomize();
         body = new NPCBody(this);
+        PlayIdleAnim();
     }
 
     public override void _Process(float delta)

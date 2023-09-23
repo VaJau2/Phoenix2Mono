@@ -280,7 +280,7 @@ public class DialogueMenu : Control, IMenu
         } 
         else 
         {
-            player.LookAt(npc.GlobalTransform.origin);
+            player?.LookAt(npc.GlobalTransform.origin);
         }
 
         UpdateAnswerCooldown(delta);

@@ -156,7 +156,7 @@ public class LevelsLoader : Node
 	}
 
 	//загрузка уровня с сохраненными данными
-	public void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
+	public void LoadLevel(int levelNum, Dictionary levelData, Array deletedObjects)
 	{
 		loadSavedData = true;
 		this.levelData = levelData;
@@ -230,13 +230,15 @@ public class LevelsLoader : Node
 	
 	public override void _Process(float delta)
 	{
-		if (loader == null) {
+		if (loader == null) 
+		{
 			SetProcess(false);
 			return;
 		}
 
 		var err = loader.Poll();
-		if (err == Error.FileEof) {
+		if (err == Error.FileEof) 
+		{
 			var resource = (PackedScene)loader.GetResource();
 			loader.Dispose();
 			loader = null;
@@ -259,7 +261,8 @@ public class LevelsLoader : Node
 			}
 			
 		}
-		else if(err != Error.Ok) {
+		else if (err != Error.Ok) 
+		{
 			GD.PrintErr(err);
 		}
 	}

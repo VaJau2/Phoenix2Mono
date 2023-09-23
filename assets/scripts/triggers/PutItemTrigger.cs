@@ -2,47 +2,23 @@ using Godot;
 
 public class PutItemTrigger : ActivateOtherTrigger
 {
-    [Export] public NodePath itemModelPath;
-    [Export] public string itemCode;
-    [Export] public string hintCode;
+    [Export] private NodePath itemModelPath;
+    [Export] private string itemCode;
 
     private Spatial itemModel;
-    private static Player player => Global.Get().player;
 
     public override void _Ready()
     {
-        base._Ready();
         itemModel = GetNode<Spatial>(itemModelPath);
-        SetProcess(false);
+        base._Ready();
     }
 
-    public override void _Process(float delta)
+    public override void _on_activate_trigger()
     {
-        player.Camera.ShowHint(hintCode, false);
-
-        if (string.IsNullOrEmpty(itemCode)) return;
-        if (!Input.IsActionJustPressed("use")) return;
-        
         itemModel.Visible = true;
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.RemoveItemIfExists(itemCode);
-        player?.Camera.HideHint();
-
+        
         base._on_activate_trigger();
-    }
-    
-    public override  void _on_body_entered(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        SetProcess(true);
-    }
-
-    public void _on_body_exited(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
     }
 }

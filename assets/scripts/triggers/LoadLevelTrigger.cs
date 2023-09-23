@@ -28,6 +28,7 @@ public class LoadLevelTrigger: TriggerBase
         {
            saveNode.CloneSaveData(levelsLoader);
         }
+        
         if (SaveInventory)
         {
             saveNode.InventoryData = player.inventory.GetSaveData(false);
@@ -43,6 +44,7 @@ public class LoadLevelTrigger: TriggerBase
             SetActive(true);
             return;
         }
+        
         base._on_activate_trigger();
     }
 

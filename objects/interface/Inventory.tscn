@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
@@ -10,7 +10,67 @@
 [ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture" id=8]
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
+[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Close"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -272, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -272, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [node name="inventory" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
@@ -356,8 +416,10 @@ margin_top = 18.0
 margin_right = 99.824
 margin_bottom = 44.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Экипировано"
 align = 1
+uppercase = true
 
 [node name="weapon" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
@@ -448,8 +510,10 @@ margin_top = 21.0
 margin_right = 128.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 5 )
 text = "Сундук"
 align = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -636,8 +700,10 @@ margin_top = 21.0
 margin_right = 184.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 6 )
 text = "Торговец"
 align = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1132,6 +1198,11 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 1 )
+anims/Open = SubResource( 2 )
+anims/RESET = SubResource( 3 )
 
 [connection signal="pressed" from="helper/back/chestBack/takeAll" to="." method="_on_takeAll_pressed"]
 [connection signal="pressed" from="modalAsk/yes" to="." method="_on_modal_yes_pressed"]

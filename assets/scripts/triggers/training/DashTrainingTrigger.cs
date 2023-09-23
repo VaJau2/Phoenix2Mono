@@ -6,12 +6,12 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     [Export] public Array<NodePath> TargetPaths;
     [Export] public float StartTime = 1f;
     [Export] public AudioStream beepSound;
-    [Export] public NodePath roboDashPath;
+    [Export] public NodePath assistantDashPath;
     [Export] public string loseDialogue = "lose1";
     [Export] public string win1Dialogue = "win1";
     [Export] public string win2Dialogue = "win2";
    
-    private MrHandy roboDash;
+    private MrHandy assistantDash;
     private Array<Target> targets = new Array<Target>();
     private int tempTargetsCount;
     private bool isCounting;
@@ -20,7 +20,7 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     {
         base._Ready();
         
-        roboDash = GetNode<MrHandy>(roboDashPath);
+        assistantDash = GetNode<MrHandy>(assistantDashPath);
         
         if (TargetPaths == null) return;
         foreach (var targetPath in TargetPaths)
@@ -63,25 +63,20 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
         {
             if (tempTargetsCount == targets.Count)
             {
-                roboDash.dialogueCode = (timerIsSmall) ? win1Dialogue : win2Dialogue;
+                assistantDash.dialogueCode = (timerIsSmall) ? win1Dialogue : win2Dialogue;
                 trainingIsDone = true;
+                SetActive(false);
             }
             else
             {
                 if (timerIsSmall)
                 {
-                    roboDash.dialogueCode = loseDialogue;
+                    assistantDash.dialogueCode = loseDialogue;
                 }
             }
         }
-       
         
         checkButton = true;
-            
-        if (playerHere)
-        {
-            _on_body_entered(player);
-        }
     }
     
     public override Dictionary GetSaveData()

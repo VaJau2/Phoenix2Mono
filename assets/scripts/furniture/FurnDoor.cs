@@ -66,8 +66,7 @@ public class FurnDoor: FurnBase, ISavable
         {
             await global.ToTimer(timer);
         }
-
-        //SetCollision(IsOpen ? (uint)2 : 1);
+        
         opening = false;
     }
 
