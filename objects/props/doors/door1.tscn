@@ -6,7 +6,9 @@
 [ext_resource path="res://assets/materials/props/door1.tres" type="Material" id=4]
 [ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=7]
+
+[sub_resource type="ConvexPolygonShape" id=10]
+points = PoolVector3Array( 0.133413, 4.03629, 0.125874, -0.133413, 4.03629, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, -1.87413, -0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, -1.87413 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -23,13 +25,25 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.118674, 2.84399, 1.73329 )
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("shape:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "close"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -44,7 +58,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "close-2"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -58,7 +72,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -73,7 +87,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=6]
 resource_name = "open-force"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -88,7 +102,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 resource_name = "open-force-2"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -104,7 +118,6 @@ tracks/0/keys = {
 extents = Vector3( 2.28331, 2.32394, 1.33791 )
 
 [node name="door" type="StaticBody"]
-physics_material_override = ExtResource( 7 )
 script = ExtResource( 1 )
 OpenSound = ExtResource( 2 )
 CloseSound = ExtResource( 6 )
@@ -113,24 +126,25 @@ closedSound = ExtResource( 3 )
 openWithKeySound = ExtResource( 5 )
 ForceOpening = true
 
-[node name="Cube" type="MeshInstance" parent="."]
+[node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0 )
+shape = SubResource( 10 )
+
+[node name="mesh" type="MeshInstance" parent="shape"]
 use_in_baked_light = true
 mesh = SubResource( 1 )
+skeleton = NodePath("../..")
 material/0 = ExtResource( 4 )
-
-[node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00236702, 2.86101, -1.50955 )
-shape = SubResource( 2 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 9 )
 anims/close = SubResource( 3 )
 anims/close-2 = SubResource( 4 )
 anims/open = SubResource( 5 )

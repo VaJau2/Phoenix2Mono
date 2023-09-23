@@ -2,9 +2,9 @@ using Godot;
 
 public class PauseMenu : MenuBase, IMenu
 {
-    public bool mustBeClosed {get => true;}
+    public bool mustBeClosed => true;
     Global global = Global.Get();
-    AudioStreamPlayer audi;
+    private MenuAudi audi;
     private DialogueMenu dialogueMenu;
     private Label pageLabel;
     private Button continueButton;
@@ -18,7 +18,11 @@ public class PauseMenu : MenuBase, IMenu
     
     private SettingsMenu settingsMenu;
 
-    public override void loadInterfaceLanguage()
+
+    [Signal]
+    public delegate void ChangePause(bool value);
+
+    public override void LoadInterfaceLanguage()
     {
         pageLabel.Text      = InterfaceLang.GetPhrase("pauseMenu", "main", "page");
         continueButton.Text = InterfaceLang.GetPhrase("pauseMenu", "main", "continue");
@@ -32,20 +36,23 @@ public class PauseMenu : MenuBase, IMenu
 
     public void OpenMenu()
     {
-        global.SetPause(this, true);
-        this.Visible = true;
-        loadInterfaceLanguage();
+        SetPause(true);
+        Visible = true;
+        LoadInterfaceLanguage();
     }
 
     public void CloseMenu()
     {
-        if (!dialogueMenu.MenuOn) {
-            global.SetPause(this, false);
-        } else {
+        if (!dialogueMenu.MenuOn) 
+        {
+            SetPause(false);
+        } 
+        else 
+        {
             global.SetPauseMusic(false);
         }
         
-        this.Visible = false;
+        Visible = false;
         settingsMenu.CloseMenu();
         loadMenu.Visible = false;
         saveMenu.Visible = false;
@@ -54,12 +61,17 @@ public class PauseMenu : MenuBase, IMenu
 
     public override void SoundClick()
     {
-        audi.Play();
+        audi.PlayClick();
+    }
+
+    protected override void SoundHover()
+    {
+        audi.PlayHover();
     }
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<MenuAudi>("audi");
         base._Ready();
         menuName = "pauseMenu";
         
@@ -82,19 +94,24 @@ public class PauseMenu : MenuBase, IMenu
     {
         if (!Input.IsActionJustPressed("ui_cancel")) return;
         //меню паузы загружается раньше уровня
-        if (global.player == null) {
+        if (global.player == null) 
+        {
             return;
         }
 
-        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) {
+        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) 
+        {
             dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         }
             
-        if (Visible) {
+        if (Visible) 
+        {
             loadMenu.Visible = false;
             saveMenu.Visible = false;
             MenuManager.CloseMenu(this);
-        } else {
+        } 
+        else 
+        {
             MenuManager.TryToOpenMenu(this, true);
         }
     }
@@ -137,5 +154,11 @@ public class PauseMenu : MenuBase, IMenu
         MenuManager.ClearMenus();
         SoundClick();
         GetNode<LevelsLoader>("/root/Main").LoadLevel(0);
+    }
+
+    private void SetPause(bool value)
+    {
+        global.SetPause(this, value);
+        EmitSignal(nameof(ChangePause), value);
     }
 }

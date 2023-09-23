@@ -2,7 +2,7 @@ using Godot;
 
 public class DealthMenu : MenuBase
 {
-    AudioStreamPlayer audi;
+    MenuAudi audi;
 
     private Control menuPage;
     private LoadMenu loadPage;
@@ -35,7 +35,7 @@ public class DealthMenu : MenuBase
         modalOk = modalError.GetNode<Button>("back/OK");
     }
 
-    public override void loadInterfaceLanguage()
+    public override void LoadInterfaceLanguage()
     {
         pageLabel.Text   = InterfaceLang.GetPhrase("dealthMenu", "main", "page");
         againButton.Text = InterfaceLang.GetPhrase("dealthMenu", "main", "again");
@@ -97,15 +97,20 @@ public class DealthMenu : MenuBase
 
     public override void SoundClick()
     {
-        audi.Play();
+        audi.PlayClick();
+    }
+
+    protected override void SoundHover()
+    {
+        audi.PlayHover();
     }
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<MenuAudi>("audi");
         base._Ready();
         menuName = "dealthMenu";
         loadMenu();
-        loadInterfaceLanguage();
+        LoadInterfaceLanguage();
     }
 }

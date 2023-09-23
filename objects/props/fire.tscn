@@ -72,7 +72,6 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0198243, -0.143151, -0
 cast_shadow = 0
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
-material/1 = null
 
 [node name="sprite" type="Sprite3D" parent="."]
 transform = Transform( 4.94923, -0.924958, -4.86308, 0, 6.87672, -1.30795, 4.95026, 0.924765, 4.86207, 0.0025053, 1.33985, -0.0143251 )
@@ -113,3 +112,4 @@ stream = ExtResource( 4 )
 unit_db = 2.0
 unit_size = 3.0
 autoplay = true
+bus = "Sound"

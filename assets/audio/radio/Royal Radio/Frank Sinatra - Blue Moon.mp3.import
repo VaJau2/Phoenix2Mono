@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Frank Sinatra - Blue Moon.mp3-e762d3c2e504ca1e5139f9149f18e4f4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Royal Radio/Frank Sinatra - Blue Moon.mp3"
+dest_files=[ "res://.import/Frank Sinatra - Blue Moon.mp3-e762d3c2e504ca1e5139f9149f18e4f4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

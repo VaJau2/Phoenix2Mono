@@ -10,7 +10,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private PackedScene bagPrefab;
     [Export] private NodePath bagSpawnPath;
     [Export] private string itemInBag;
-    [Export] public NodePath roboPinkiePath;
+    [Export] public NodePath assistantPiePath;
     [Export] private string winDialogue;
     [Export] private string loseDialogue;
     
@@ -18,7 +18,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     private Array<Spatial> eyesSpawners = new Array<Spatial>();
     private Array<RoboEye> eyes = new Array<RoboEye>();
     private FurnChest bag;
-    private MrHandy roboPinkie;
+    private MrHandy assistantPie;
     private bool connected;
     
     private void LoadNodePathArray(Array<NodePath> pathArray, ref Array<Spatial> arrayToLoad)
@@ -34,7 +34,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     {
         base._Ready();
         
-        roboPinkie = GetNode<MrHandy>(roboPinkiePath);
+        assistantPie = GetNode<MrHandy>(assistantPiePath);
         audi = GetNode<AudioStreamPlayer3D>(audiPath);
         audi.Stream = beepSound;
 
@@ -71,18 +71,22 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
             eyeInstance.Connect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
             eyes.Add(eyeInstance);
         }
-
-        //спавн сумки
-        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
-        bagInstance.Name = "Created_" + bagInstance.Name;
-        bagInstance.itemCodes.Add(itemInBag);
-        GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
-        Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
-        bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
-        bag = bagInstance;
+        
+        SpawnBag();
         
         player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         connected = true;
+    }
+
+    private void SpawnBag()
+    {
+        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
+        bagInstance.Name = "Created_" + bagInstance.Name;
+        GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
+        bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
+        Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
+        bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
+        bag = bagInstance;
     }
 
     public void _on_found_enemy()
@@ -96,17 +100,12 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         audi.Stream = beepSound;
         audi.Play();
-        roboPinkie.dialogueCode = loseDialogue;
+        assistantPie.dialogueCode = loseDialogue;
         bag.QueueFree();
         player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         connected = false;
         
         checkButton = true;
-            
-        if (playerHere)
-        {
-            _on_body_entered(player);
-        }
     }
 
     public void _on_player_take_item(string itemCode)
@@ -120,12 +119,13 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         }
         audi.Stream = beepSound;
         audi.Play();
-        roboPinkie.dialogueCode = winDialogue;
+        assistantPie.dialogueCode = winDialogue;
         
         player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         connected = false;
         
         trainingIsDone = true;
+        SetActive(false);
     }
     
     public override Dictionary GetSaveData()

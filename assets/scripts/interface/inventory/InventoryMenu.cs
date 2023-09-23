@@ -6,7 +6,7 @@ using Godot.Collections;
 //режимы устанавливаются переменной mode
 public class InventoryMenu : Control, IMenu
 {
-    public bool mustBeClosed {get => true;}
+    public bool mustBeClosed => true;
     public InventoryMode mode;
     public bool isOpen = false;
     public bool menuLoaded = false;
@@ -20,6 +20,17 @@ public class InventoryMenu : Control, IMenu
         mode.SetTempButton(newButton, showInfo);
     }
 
+    public void IconAnimFinished(string animation)
+    {
+        if (animation != "load") return;
+        mode.UseTempItem();
+    }
+
+    public void OpenAnimFinished(string animation)
+    {
+        mode.FinishOpening();
+    }
+    
     public void OpenMenu() 
     {
         mode.OpenMenu();
@@ -34,27 +45,22 @@ public class InventoryMenu : Control, IMenu
     {
         if (mode is UsualMode usual)
         {
-            usual.bindsCooldown = cooldown;
+            usual.SetUseBindsCooldown(cooldown);
         }
     }
 
     public void ChangeMode(NewInventoryMode newMode = NewInventoryMode.Usual)
     {
-        switch (newMode) {
-            case NewInventoryMode.Usual:
-                if (!(mode is UsualMode)) {
-                    mode = new UsualMode(this);
-                }
+        switch (newMode) 
+        {
+            case NewInventoryMode.Usual when !(mode is UsualMode):
+                mode = new UsualMode(this);
                 break;
-            case NewInventoryMode.Chest:
-                if (!(mode is ChestMode)) {
-                    mode = new ChestMode(this);
-                }
+            case NewInventoryMode.Chest when !(mode is ChestMode):
+                mode = new ChestMode(this);
                 break;
-            case NewInventoryMode.Trade:
-                if (!(mode is TradeMode)) {
-                    mode = new TradeMode(this);
-                }
+            case NewInventoryMode.Trade when !(mode is TradeMode):
+                mode = new TradeMode(this);
                 break;
         }
     }
@@ -65,6 +71,8 @@ public class InventoryMenu : Control, IMenu
         mode.LoadItemButtons(newItems, ammo);
     }
 
+    public bool HasEmptyButton => mode.FirstEmptyButton != null;
+
     public bool AddOrDropItem(string itemCode)
     {
         var emptyButton = mode.FirstEmptyButton;
@@ -74,9 +82,14 @@ public class InventoryMenu : Control, IMenu
             return true;
         }
  
-        FurnChest tempBag = mode.SpawnItemBag();
-        tempBag.itemCodes.Add(itemCode);
+        DropItem(itemCode);
         return false;
+    }
+
+    public void DropItem(string itemCode)
+    {
+        IChest tempBag = mode.SpawnItemBag();
+        tempBag.ChestHandler.ItemCodes.Add(itemCode);
     }
 
     public void RemoveItemIfExists(string itemCode)
@@ -104,16 +117,22 @@ public class InventoryMenu : Control, IMenu
         if (mode == null) return;
         mode.UpdateInput(@event);
 
-        if (mode.isAnimating || !(@event is InputEventKey)) return;
-        if (Input.IsActionJustPressed("inventory")) {
-            if (isOpen) {
-                if (mode.ModalOpened) {
+        if (!(@event is InputEventKey)) return;
+        if (Input.IsActionJustPressed("inventory")) 
+        {
+            if (isOpen) 
+            {
+                if (mode.ModalOpened) 
+                {
                     mode.CloseModal();
-                } else {
+                } 
+                else 
+                {
                     MenuManager.CloseMenu(this);
                 }
-                        
-            } else {
+            }
+            else 
+            {
                 MenuManager.TryToOpenMenu(this);
             }
         }

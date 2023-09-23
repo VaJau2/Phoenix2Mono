@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Benni Goodmen - Sing Sing Sing.mp3-0e082ebc72a972671eb8fe894344b498.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Royal Radio/Benni Goodmen - Sing Sing Sing.mp3"
+dest_files=[ "res://.import/Benni Goodmen - Sing Sing Sing.mp3-0e082ebc72a972671eb8fe894344b498.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

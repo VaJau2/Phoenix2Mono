@@ -1,0 +1,10 @@
+﻿{
+    "sounds": {
+        "0": "sound_a_phone",
+        "1": "sound_o_phone",
+        "2": "sound_u_phone"
+    },
+    "min_pitch": "0.8",
+    "max_pitch": "1",
+    "chars_to_sound": "3"
+}

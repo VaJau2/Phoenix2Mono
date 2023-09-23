@@ -10,7 +10,7 @@ public class SettingsMenu : MenuBase
     [Export] private Dictionary<string, NodePath> submenuPaths;
 
     Global global = Global.Get();
-    AudioStreamPlayer audi;
+    MenuAudi audi;
 
     private MenuBase otherMenu;
 
@@ -41,7 +41,7 @@ public class SettingsMenu : MenuBase
         backButton = GetNode<Button>("back");
     }
     
-    public override void loadInterfaceLanguage()
+    public override void LoadInterfaceLanguage()
     {
         string tempPage = InterfaceLang.GetPhrase("settingsMenu", "pages", otherMenu.menuName);
         pageLabel.Text = tempPage;
@@ -54,19 +54,11 @@ public class SettingsMenu : MenuBase
     }
     
     public static int IncreaseInt(int value, int max)
-    {
-        if (value < max) {
-            return value + 1;
-        }
-        
-        return 0;
-    }
+        => value < max ? value + 1 : 0;
 
     public void UpdateInterfaceColor()
     {  
-        if (!Visible) {
-            return;
-        }
+        if (!Visible) return;
 
         LoadColorForChildren(this);
         colorChanged = true;
@@ -74,13 +66,18 @@ public class SettingsMenu : MenuBase
 
     public override void SoundClick()
     {
-        audi.Play();
+        audi.PlayClick();
+    }
+
+    protected override void SoundHover()
+    {
+        audi.PlayHover();
     }
 
     public void OpenMenu(MenuBase self)
     {
         otherMenu = self;
-        loadInterfaceLanguage();
+        LoadInterfaceLanguage();
         Visible = true;
     }
 
@@ -89,7 +86,8 @@ public class SettingsMenu : MenuBase
         Visible = false;
         _on_mouse_exited();
         global.Settings.SaveSettings();
-        if (colorChanged) {
+        if (colorChanged) 
+        {
             ReloadAllColors(GetTree());
         }
     }
@@ -103,14 +101,14 @@ public class SettingsMenu : MenuBase
     {
         otherMenu.SoundClick();
         InterfaceLang.SetNextLanguage();
-        loadInterfaceLanguage();
-        otherMenu.loadInterfaceLanguage();
+        LoadInterfaceLanguage();
+        otherMenu.LoadInterfaceLanguage();
         ReloadMouseEntered();
     }
 
     public override void _Ready()
     {
-        audi = GetNode<AudioStreamPlayer>("audi");
+        audi = GetNode<MenuAudi>("audi");
         base._Ready();
         menuName = "settingsMenu";
         LoadMenu();

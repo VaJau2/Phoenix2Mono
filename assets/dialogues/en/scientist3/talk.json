@@ -3,7 +3,7 @@
     "S1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "*trembling in terror*",
+      "body": "[trembling in terror]",
       "speaker": "Scientist",
       "opposite": "Strikely",
       "options": [

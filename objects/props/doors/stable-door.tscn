@@ -145,13 +145,11 @@ shape = SubResource( 3 )
 transform = Transform( -2.13467e-07, 0, 1.26148, 0, 1.02163, 0, -1.31025, 0, -2.05521e-07, 0, 0, -0.804963 )
 mesh = SubResource( 12 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="bunker-door" type="MeshInstance" parent="bunker-door"]
 transform = Transform( 1, 0, 0, 0, 1, 0, -4.26326e-14, 0, 1, 0, 0, 0.184183 )
 mesh = SubResource( 5 )
 skeleton = NodePath("")
-material/0 = null
 script = ExtResource( 11 )
 engMaterial = ExtResource( 9 )
 
@@ -168,6 +166,7 @@ unit_db = 3.0
 unit_size = 2.0
 max_db = 1.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 7 )

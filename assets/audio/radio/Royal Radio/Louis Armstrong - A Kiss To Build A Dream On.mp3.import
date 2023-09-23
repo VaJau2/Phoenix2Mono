@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Louis Armstrong - A Kiss To Build A Dream On.mp3-ce631efe35ae7215738b5c3cf7b4a26e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Royal Radio/Louis Armstrong - A Kiss To Build A Dream On.mp3"
+dest_files=[ "res://.import/Louis Armstrong - A Kiss To Build A Dream On.mp3-ce631efe35ae7215738b5c3cf7b4a26e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

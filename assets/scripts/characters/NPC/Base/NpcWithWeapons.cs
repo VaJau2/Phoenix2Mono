@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class NpcWithWeapons : NPC
+public class NpcWithWeapons : NPC, IChest
 {
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
@@ -12,12 +12,18 @@ public class NpcWithWeapons : NPC
     [Export] public Array<string> itemCodes = new Array<string>();
     [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
 
+    [Export] public string customHintCode;
+    [Export] private NodePath customInteractionTriggerPath;
+    public TriggerBase customInteractionTrigger;
+
+    public ChestHandler ChestHandler { get; private set; }
+    public string ChestCode => "body";
+
     private Character followTarget;
 
-    private Navigation navigation;
-    protected bool cameToPlace = false;
-    private bool updatePath = false;
-    private float updatePathTimer = 0;
+    protected bool cameToPlace;
+    private bool updatePath;
+    private float updatePathTimer;
     protected Vector3[] path;
     protected int pathI;
 
@@ -25,31 +31,72 @@ public class NpcWithWeapons : NPC
     private CoversManager covers;
     protected Cover tempCover;
     protected Vector3 tempCoverPlace;
-    public float coverTimer = 0;
+    public float coverTimer;
 
-    private float shootCooldown = 0;
+    private float shootCooldown;
     protected float doorWait;
     public bool IsHidingInCover => tempCover != null;
-    public bool InCover = false;
+    public bool InCover;
     protected bool stopAreaEntered;
 
     [Signal]
     public delegate void IsCame();
 
     private RandomNumberGenerator rand = new RandomNumberGenerator();
+
+    private bool IsUseCustomTrigger => !string.IsNullOrEmpty(customHintCode)
+                                       && customInteractionTrigger != null
+                                       && customInteractionTrigger.IsActive;
     
+    public override bool MayInteract 
+    {
+        get
+        {
+            if (IsUseCustomTrigger) return customInteractionTrigger.IsActive;
+            return base.MayInteract || Health <= 0;
+        }
+    }
+
+    public override string InteractionHintCode
+    {
+        get
+        {
+            if (IsUseCustomTrigger) return customHintCode;
+            return Health > 0 ? base.InteractionHintCode : "search";
+        }
+    }
+
+    public override void Interact(PlayerCamera interactor)
+    {
+        if (customInteractionTrigger != null && customInteractionTrigger.IsActive)
+        {
+            customInteractionTrigger._on_activate_trigger();
+        }
+        else if (Health > 0)
+        {
+            base.Interact(interactor);
+        }
+        else
+        {
+            ChestHandler.Open();
+        }
+    }
 
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
+        
         saveData["followTarget"] = followTarget?.GetPath();
         saveData["weaponCode"] = weaponCode;
-        return saveData;
+        
+        return DictionaryHelper.Merge(saveData, ChestHandler.GetSaveData());
     }
 
     public override async void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        ChestHandler.LoadData(data);
+        
         if (data["weaponCode"] != null)
         {
             weaponCode = data["weaponCode"].ToString();
@@ -85,7 +132,6 @@ public class NpcWithWeapons : NPC
             StopHidingInCover();
         }
         
-
         switch (newState)
         {
             case NPCState.Idle:
@@ -148,7 +194,7 @@ public class NpcWithWeapons : NPC
 
         if (path == null)
         {
-            path = navigation.GetSimplePath(pos, place, true);
+            path = NavigationServer.MapGetPath(GetWorld().NavigationMap, pos, place, true);
             pathI = 0;
         }
 
@@ -213,22 +259,20 @@ public class NpcWithWeapons : NPC
         if (IsImmortal) return;
 
         base.TakeDamage(damager, damage, shapeID);
-        coverTimer -= damage / 10;
+        coverTimer -= damage / 10f;
         if (string.IsNullOrEmpty(weaponCode))
         {
             StopHidingInCover();
         }
     }
 
-    protected override void AnimateDealth(Character killer, int shapeID)
+    protected override void AnimateDeath(Character killer, int shapeID)
     {
-        if (itemCodes.Count > 0 || ammoCount.Count > 0)
-        {
-            SpawnItemsBag();
-        }
-
         weapons.SetWeapon(false);
-        base.AnimateDealth(killer, shapeID);
+        weapons.SpawnPickableItem(weaponCode);
+        weaponCode = null;
+        
+        base.AnimateDeath(killer, shapeID);
     }
 
     private void LookAtTarget(Vector3 target)
@@ -243,11 +287,9 @@ public class NpcWithWeapons : NPC
         LookAtTarget(victimPos);
     }
 
-    protected virtual void PlayStopAnim()
-    {
-    }
+    protected virtual void PlayStopAnim() { }
 
-    protected void Stop(bool MoveDown = false)
+    private void Stop(bool MoveDown = false)
     {
         PlayStopAnim();
         path = null;
@@ -260,22 +302,6 @@ public class NpcWithWeapons : NPC
         {
             Velocity = Vector3.Zero;
         }
-    }
-
-    protected void SpawnItemsBag()
-    {
-        var bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
-        var tempBag = (FurnChest) bagPrefab.Instance();
-
-        tempBag.itemCodes = itemCodes;
-        tempBag.ammoCount = ammoCount;
-
-        Node parent = GetNode("/root/Main/Scene");
-        parent.AddChild(tempBag);
-
-        tempBag.Name = "Created_" + tempBag.Name;
-        tempBag.Translation = Translation;
-        tempBag.Translate(Vector3.Up / 4f);
     }
 
     protected void UpdatePath(float delta)
@@ -295,7 +321,7 @@ public class NpcWithWeapons : NPC
         }
     }
 
-    protected void UpdateShooting(float victimDistance, float delta)
+    private void UpdateShooting(float victimDistance, float delta)
     {
         if (shootCooldown > 0)
         {
@@ -308,7 +334,7 @@ public class NpcWithWeapons : NPC
         }
     }
 
-    protected void AttackEnemy(float delta)
+    private void AttackEnemy(float delta)
     {
         if (string.IsNullOrEmpty(weaponCode))
         {
@@ -330,7 +356,7 @@ public class NpcWithWeapons : NPC
         else
         {
             GoTo(victimPos, shootDistance / 1.5f);
-            updatePath = tempVictim.Velocity.Length() > 2;
+            updatePath = tempVictim.Velocity.Length() > MIN_WALKING_SPEED;
         }
     }
 
@@ -338,12 +364,10 @@ public class NpcWithWeapons : NPC
     {
         Vector3 targetPos = followTarget.GlobalTransform.origin;
         GoTo(targetPos, COME_DISTANCE * 2f);
-        updatePath = followTarget?.Velocity.Length() > 2;
+        updatePath = followTarget?.Velocity.Length() > MIN_WALKING_SPEED;
     }
 
-    protected virtual void PlayIdleAnim()
-    {
-    }
+    protected virtual void PlayIdleAnim() { }
 
     protected void SetDoorWait(float value)
     {
@@ -382,11 +406,7 @@ public class NpcWithWeapons : NPC
                     else
                     {
                         GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
-                        Rotation = new Vector3(
-                            Rotation.x,
-                            myStartRot.y,
-                            Rotation.z
-                        );
+                        Rotation = new Vector3(0, myStartRot.y, 0);
                         PlayIdleAnim();
                     }
                 }
@@ -497,7 +517,6 @@ public class NpcWithWeapons : NPC
 
     public override void _Ready()
     {
-        navigation = GetNode<Navigation>("/root/Main/Scene/Navigation");
         covers = GetNode<CoversManager>("/root/Main/Scene/terrain/covers");
         weapons = GetNode<NPCWeapons>("weapons");
         if (weaponCode != "")
@@ -505,6 +524,15 @@ public class NpcWithWeapons : NPC
             weapons.LoadWeapon(this, weaponCode);
         }
 
+        ChestHandler = new ChestHandler(this)
+            .SetCode(ChestCode)
+            .LoadStartItems(itemCodes, ammoCount);
+
+        if (!string.IsNullOrEmpty(customHintCode) && customInteractionTriggerPath != null)
+        {
+            customInteractionTrigger = GetNode<TriggerBase>(customInteractionTriggerPath);
+        }
+        
         base._Ready();
     }
 }

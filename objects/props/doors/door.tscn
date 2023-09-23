@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/materials/props/door.tres" type="Material" id=1]
-[ext_resource path="res://assets/scripts/furns/furn-door.gd" type="Script" id=2]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=2]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=5]
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( 0.133413, 4.03629, 0.125874, -0.133413, 4.03629, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, -1.87413, -0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, -1.87413 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -21,13 +22,25 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.178165, 2.36053, 1.7328 )
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("shape:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=11]
 resource_name = "close"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,10 +52,10 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 100, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=12]
 resource_name = "close-2"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -54,9 +67,9 @@ tracks/0/keys = {
 "values": [ Vector3( 0, -100, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -68,10 +81,10 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 100, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=14]
 resource_name = "open-force"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -83,10 +96,10 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 120, 0 ), Vector3( 0, 100, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=15]
 resource_name = "open-force-2"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -104,31 +117,32 @@ extents = Vector3( 2.28331, 2.32394, 1.33791 )
 [node name="door" type="StaticBody"]
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 2 )
-openSound = ExtResource( 4 )
-closeSound = ExtResource( 3 )
-
-[node name="Cube" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1.14, 0, 0, 0, 1.75, 0.0558281, 0.176927, -0.0139647 )
-use_in_baked_light = true
-mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39864, -1.57452 )
-shape = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, 1.14, 0, 0, 0, 1.75, 0.0558281, 0.176927, -0.0139647 )
+shape = SubResource( 9 )
+
+[node name="mesh" type="MeshInstance" parent="shape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/close = SubResource( 3 )
-anims/close-2 = SubResource( 4 )
-anims/open = SubResource( 5 )
-anims/open-force = SubResource( 6 )
-anims/open-force-2 = SubResource( 7 )
+anims/RESET = SubResource( 10 )
+anims/close = SubResource( 11 )
+anims/close-2 = SubResource( 12 )
+anims/open = SubResource( 13 )
+anims/open-force = SubResource( 14 )
+anims/open-force-2 = SubResource( 15 )
 
 [node name="other-side" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02012, 0.707591, -1.37034 )
@@ -136,5 +150,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02012, 0.707591, -1.37034 )
 [node name="shape" type="CollisionShape" parent="other-side"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212071, 2.14918, 0 )
 shape = SubResource( 8 )
+
 [connection signal="body_entered" from="other-side" to="." method="_on_otherside_body_entered"]
 [connection signal="body_exited" from="other-side" to="." method="_on_otherside_body_exited"]

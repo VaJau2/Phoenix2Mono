@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ella & Louis Armstrong - Lets Call the Whole Thing Off.mp3-39ad205b63dede20ad2a033a00129b35.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Ella & Louis Armstrong - Lets Call the Whole Thing Off.mp3"
+dest_files=[ "res://.import/Ella & Louis Armstrong - Lets Call the Whole Thing Off.mp3-39ad205b63dede20ad2a033a00129b35.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

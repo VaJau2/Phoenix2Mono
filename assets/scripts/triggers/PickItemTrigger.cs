@@ -3,51 +3,28 @@ using Godot.Collections;
 
 public class PickItemTrigger : ActivateOtherTrigger
 {
-    [Export] public NodePath itemModelPath;
-    [Export] public string itemCode;
-    [Export] public string hintCode;
-
+    [Export] private string itemCode;
+    [Export] private NodePath itemModelPath;
     private Spatial itemModel;
-    private static Player player => Global.Get().player;
 
     public override void _Ready()
     {
-        base._Ready();
         itemModel = GetNode<Spatial>(itemModelPath);
-        SetProcess(false);
+        base._Ready();
     }
 
-    public override void _Process(float delta)
+    public override void _on_activate_trigger()
     {
-        player.Camera.ShowHint(hintCode, false);
-
-        if (string.IsNullOrEmpty(itemCode)) return;
-        if (!Input.IsActionJustPressed("use")) return;
-        
-        itemModel.Visible = false;
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.AddOrDropItem(itemCode);
-        player?.Camera.HideHint();
-
+        
+        Global.AddDeletedObject(itemModel.Name);
+        itemModel.QueueFree();
+        
         Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         messages.ShowMessage("itemTaken", itemData["name"].ToString(), "items");
 
         base._on_activate_trigger();
-    }
-    
-    public override void _on_body_entered(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        SetProcess(true);
-    }
-
-    public void _on_body_exited(Node body)
-    {
-        if (!IsActive) return;
-        if (!(body is Player)) return;
-        player?.Camera.HideHint();
-        SetProcess(false);
     }
 }

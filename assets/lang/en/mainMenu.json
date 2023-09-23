@@ -23,12 +23,20 @@
         "chooseExit": "Exit game",
 
         "back": "[Back]",
-        "chooseBack": "Back to main menu"
+        "next": "[Next]",
+        "chooseBack": "Back to main menu",
+        "chooseNext": "Save the name of the autosave slot and continue"
     },
 
     "about": {
         "page": "/Phoenix2/Main_menu/about",
-        "label": "The game is developed during participation in OKI\nAuthor: VaJa72\nComposer: Phelanhik\nModeller: Tankony\n\n2020-2022"
+        "label": "The game is developed during participation in OKI\nProgrammers: VaJa72, McFord\nComposer: Phelanhik\nModeller: Tankony\n\n2020-2023"
+    },
+
+    "autosave": {
+        "page": "/Phoenix2/Main_menu/autosave_name",
+        "header": "Enter the name of the autosave file",
+        "placeholder": "fill autosave slot name to continue"
     },
 
     "race": {

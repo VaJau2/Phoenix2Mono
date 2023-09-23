@@ -29,29 +29,29 @@ public class LoadItemsFromSuitcase : TriggerBase
         }
         
         bool suitcaseEmpty = true;
-        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("suitcase_vacation");
+        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("suitcase-vacation");
         
         if (IsInstanceValid(saveNode) && playerHasSuitcase)
         {
             InventoryMenu menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-            menu.RemoveItemIfExists("suitcase_vacation");
+            menu.RemoveItemIfExists("suitcase-vacation");
             
             Dictionary data = saveNode.InventoryData;
             
             
             if (!string.IsNullOrEmpty(data["weapon"].ToString()))
             {
-                suitcase.AddNewItem(data["weapon"].ToString());
+                suitcase.ChestHandler.AddNewItem(data["weapon"].ToString());
                 suitcaseEmpty = false;
             }
             if (!string.IsNullOrEmpty(data["cloth"].ToString()) && data["cloth"].ToString() != "empty")
             {
-                suitcase.AddNewItem(data["cloth"].ToString());
+                suitcase.ChestHandler.AddNewItem(data["cloth"].ToString());
                 suitcaseEmpty = false;
             }
             if (!string.IsNullOrEmpty(data["artifact"].ToString()))
             {
-                suitcase.AddNewItem(data["artifact"].ToString());
+                suitcase.ChestHandler.AddNewItem(data["artifact"].ToString());
                 suitcaseEmpty = false;
             }
             
@@ -65,19 +65,20 @@ public class LoadItemsFromSuitcase : TriggerBase
 
                 suitcaseEmpty = false;
                 var itemCount = Convert.ToInt32(itemCounts[i]);
-                if (itemCount > 1)
+                if (itemCount > 0)
                 {
-                    suitcase.ammoCount.Add(itemCode, itemCount);
+                    suitcase.ChestHandler.AmmoCount.Add(itemCode, itemCount);
                 }
                 else
                 {
-                    suitcase.AddNewItem(itemCode);
+                    suitcase.ChestHandler.AddNewItem(itemCode);
                 }
             }
         }
 
         if (suitcaseEmpty)
         {
+            Global.AddDeletedObject(suitcase.Name);
             suitcase.QueueFree();
         }
         

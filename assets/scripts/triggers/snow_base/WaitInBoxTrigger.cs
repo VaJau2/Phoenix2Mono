@@ -104,6 +104,9 @@ public class WaitInBoxTrigger : TriggerBase
                 return;
             
             case 1:
+                AmbientVolSync ambientSync = GetNode<AmbientVolSync>(playerHere.GetPath() + "/radioCheck");
+                ambientSync.Clear();
+
                 myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 playerHere.GlobalTransform =
                     Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
@@ -122,11 +125,18 @@ public class WaitInBoxTrigger : TriggerBase
             
             case 3:
                 movingBoxAnim.Stop();
+
                 myBox.GetParent().RemoveChild(myBox);
                 GetNode("/root/Main/Scene/rooms/2floor").AddChild(myBox);
                 myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                Vector3 scale = myBox.Scale;
+                myBox.GlobalRotation = newBoxPosition.GlobalRotation;
+                myBox.Scale = scale;
+
                 playerHere.GlobalTransform =
                     Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                playerHere.GlobalRotation = newBoxPosition.GlobalRotation;
+
                 doorToParking.Open(null, true, false);
                 playerHere.SitOnChair(false);
                 SetProcess(false);

@@ -1,0 +1,40 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/textures/interface/icons/buttons/9.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/interface/icons/buttons/0.png" type="Texture" id=2]
+[ext_resource path="res://assets/scripts/interface/inventory/ControlHint.cs" type="Script" id=3]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/textures/interface/icons/buttons/5.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/interface/icons/buttons/3.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/interface/icons/buttons/1.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/interface/icons/buttons/2.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/interface/icons/buttons/6.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/interface/icons/buttons/7.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/interface/icons/buttons/4.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/interface/icons/buttons/8.png" type="Texture" id=12]
+
+[node name="ControlHint" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+icons = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 2 ) ]
+textKey = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_right = 48.0
+margin_bottom = 32.0
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 4 )
+texture = ExtResource( 7 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_right = 271.0
+margin_bottom = 19.2
+theme = ExtResource( 4 )
+text = "Назначить"
+valign = 1

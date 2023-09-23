@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Ink Spots - I Don't Want To Set The World On Fire.mp3-764dced29ef8b61407a0edc4f9e8f74f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Blue Radio/The Ink Spots - I Don't Want To Set The World On Fire.mp3"
+dest_files=[ "res://.import/The Ink Spots - I Don't Want To Set The World On Fire.mp3-764dced29ef8b61407a0edc4f9e8f74f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

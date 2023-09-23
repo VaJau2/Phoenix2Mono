@@ -93,6 +93,7 @@ anims/fire = SubResource( 1 )
 unit_size = 90.0
 max_db = 6.0
 max_distance = 2500.0
+bus = "Sound"
 
 [node name="rocket" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 300, 40, 0 )
@@ -116,3 +117,4 @@ draw_pass_1 = SubResource( 6 )
 stream = ExtResource( 5 )
 unit_size = 10.0
 max_distance = 1000.0
+bus = "Sound"

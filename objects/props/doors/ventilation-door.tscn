@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/models/props/buildings/snow-base/laba/inside/ventilation-door.material" type="Material" id=1]
 [ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=2]
 [ext_resource path="res://assets/audio/futniture/prisonDoorOpen.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=4]
+
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( -0.574162, -0.0109244, -0.00815541, -0.574162, -0.00213079, -0.00815541, 0.583377, -0.0109244, -0.00815541, -0.574162, -0.0109244, 1.09861, -0.574162, -0.00213079, 1.09861, 0.583377, -0.00213079, -0.00815541, 0.583377, -0.0109244, 1.09861, 0.583377, -0.00213079, 1.09861 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "ventilation-door"
@@ -20,13 +23,10 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ConvexPolygonShape" id=2]
-points = PoolVector3Array( -0.574162, -0.00213079, 1.09861, -0.574162, -0.00213079, 1.09861, -0.574162, -0.00213079, 1.09861, -0.574162, -0.00213079, -0.00815541, -0.574162, -0.00213079, -0.00815541, -0.574162, -0.00213079, -0.00815541, 0.583377, -0.00213079, -0.00815541, 0.583377, -0.00213079, -0.00815541, 0.583377, -0.00213079, -0.00815541, 0.583377, -0.00213079, 1.09861, 0.583377, -0.00213079, 1.09861, 0.583377, -0.00213079, 1.09861, 0.583377, -0.0109244, -0.00815541, 0.583377, -0.0109244, -0.00815541, 0.583377, -0.0109244, -0.00815541, 0.583377, -0.0109244, 1.09861, 0.583377, -0.0109244, 1.09861, 0.583377, -0.0109244, 1.09861, -0.574162, -0.0109244, -0.00815541, -0.574162, -0.0109244, -0.00815541, -0.574162, -0.0109244, -0.00815541, -0.574162, -0.0109244, 1.09861, -0.574162, -0.0109244, 1.09861, -0.574162, -0.0109244, 1.09861 )
-
 [sub_resource type="Animation" id=3]
 resource_name = "close"
 tracks/0/type = "value"
-tracks/0/path = NodePath("mesh:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -38,24 +38,9 @@ tracks/0/keys = {
 "values": [ Vector3( 160, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "close-2"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, -100, 0 ), Vector3( 0, 0, 0 ) ]
-}
-
 [sub_resource type="Animation" id=5]
 tracks/0/type = "value"
-tracks/0/path = NodePath("mesh:rotation_degrees")
+tracks/0/path = NodePath("shape:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -67,36 +52,6 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 160, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "open-force"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 120, 0 ), Vector3( 0, 100, 0 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "open-force-2"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cube:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -120, 0 ), Vector3( 0, -100, 0 ) ]
-}
-
 [node name="ventilation-door" type="StaticBody"]
 collision_layer = 3
 collision_mask = 3
@@ -105,24 +60,20 @@ script = ExtResource( 2 )
 OpenSound = ExtResource( 3 )
 CloseSound = ExtResource( 3 )
 
-[node name="mesh" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = null
-
 [node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1.23423, 0, 0, 0, 1, 0, 0, 0, 1.18902, 0, -0.00261636, -0.0853444 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
+
+[node name="mesh" type="MeshInstance" parent="shape"]
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 3 )
-anims/close-2 = SubResource( 4 )
 anims/open = SubResource( 5 )
-anims/open-force = SubResource( 6 )
-anims/open-force-2 = SubResource( 7 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
-bus = "Audio"
+bus = "Sound"

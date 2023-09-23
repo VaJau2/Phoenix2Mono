@@ -1,6 +1,7 @@
 {
     "dialogue": {
-        "continue": "[continue]"
+        "continue": "[continue]",
+        "skip": "#jump# - skip"
     },
 
     "stealth": {
@@ -36,19 +37,36 @@
     },
 
     "cameraHints": {
+        "pick": "Pick",
+
+        "putSuitcase": "Put suitcase",
+        "putFirewood": "Put firewood",
+
+        "use": "Use",
+        "terminal": "Manage",
+        "pressButton": "Press button",
+        "sit": "Sit",
+
+        "turnOn": "Turn on",
+        "turnOff": "Turn off",
+        
+        "open": "Open",
+        "close": "Close",
+        
         "closed": "Locked",
-        "close": " - close",
-        "open": " - open",
-        "trade": " - trade",
-        "talk": " - talk",
-        "terminal": " - manage",
-        "exitLocation": " - leave location",
-        "sit": " - sit here",
-        "putSuitcase": " - put suitcase",
-        "putFirewood": " - put firewood",
-        "sleep": " - sleep",
-        "pick": " - pick",
-        "clickButton": " - click button"
+        
+        "trade": "Trade",
+        "talk": "Talk",
+        "search": "Search",
+
+        "leaveLocation": "Leave location",
+        "goToPoniesBase": "Go to base",
+        "goToTheater": "Go to theater",
+        "goToHome": "Go to home",
+        "goToSleep": "Go to sleep",
+        "enterVan": "Enter van",
+        "goToMAS": "Go to MAS",
+        "goToZebrasBase": "Go into exile"   
     },
 
     "hints": {
@@ -72,20 +90,24 @@
         "small_cabinet": "Locker",
         "bag": "Bag",
         "fridge": "Fridge",
-        "suitcase": "Suitcase"
+        "suitcase": "Suitcase",
+        "body": "Body"
     },
 
     "tradeNames": {
         "tradeTerminal": "Trade terminal",
-        "mrHandy": "Mister Handy",
-        "ponyTrader": "Trader",
-        "roboFluttershy": "Robo-Fluttershy"
+        "mrGutsy": "Mister Gutsy",
+        "opal": "Opal",
+        "filly": "Filly",
+        "opal_daughter": "Opal's daughter",
+        "assistantShy": "Assistant Shy"
     },
     
     "labels": {
         "nextWeek": "A week later...",
         "dragon": "Dragon",
-        "endLabel2": "press Space button to exit to main menu",
-        "endLabel3": "to be continued..."
+        "toBeContinueTitle": "to be continued...",
+        "pressLabel": "press",
+        "toExitToMainMenu": "to exit to main menu"
     }
 }

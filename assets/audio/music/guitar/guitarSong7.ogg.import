@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/guitarSong7.ogg-6e0755f27873d6c3954bb52b710f9f48.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/guitar/guitarSong7.ogg"
+dest_files=[ "res://.import/guitarSong7.ogg-6e0755f27873d6c3954bb52b710f9f48.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

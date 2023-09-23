@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/interface/bg_pic/bg_pic.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/interface/bg_pic/bg_earthpony.png" type="Texture" id=4]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=5]
-[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/audio/music/mainMenu.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=14]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=15]
+[ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=16]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0.454545 ), 0.0, 1.71599, 0, 0, Vector2( 1, 0.0909091 ), -4.12208, 0.0, 0, 0 ]
@@ -37,20 +38,13 @@ scale = 2.0
 scale_curve = SubResource( 2 )
 color = Color( 0.407843, 0.384314, 0.305882, 1 )
 
-[node name="MainMenu" type="Control" groups=[
-"ignore_color",
-]]
+[node name="MainMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bgPic" type="TextureRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="bgPic" type="TextureRect" parent="." groups=["ignore_color"]]
 modulate = Color( 0.439216, 0.411765, 0.411765, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,16 +55,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="particles" type="Particles2D" parent="." groups=[
-"ignore_color",
-]]
+[node name="particles" type="Particles2D" parent="." groups=["ignore_color"]]
 position = Vector2( 448, 304 )
 amount = 100
 process_material = SubResource( 3 )
 
-[node name="bgPony" type="TextureRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="bgPony" type="TextureRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
@@ -80,9 +70,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bgDust" type="TextureRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="bgDust" type="TextureRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 11 )
@@ -92,9 +80,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GodRaysShader" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="GodRaysShader" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,9 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -112,9 +96,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chooseLanguage" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="chooseLanguage" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -233,6 +215,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = -20.0
+margin_right = -64.0
 margin_bottom = 5.0
 theme = ExtResource( 1 )
 text = "               [Настройки]"
@@ -248,6 +231,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = 12.0
+margin_right = -64.0
 margin_bottom = 37.0
 theme = ExtResource( 1 )
 text = "               [Об игре]"
@@ -263,24 +247,96 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
 margin_top = 44.0
+margin_right = -64.0
 margin_bottom = 69.0
 theme = ExtResource( 1 )
 text = "               [Выйти]"
 align = 0
 
-[node name="ChangeRace" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="ChooseAutosaveName" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="background" type="ColorRect" parent="ChooseAutosaveName" groups=["ignore_color"]]
+material = ExtResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background2" type="ColorRect" parent="ChooseAutosaveName" groups=["ignore_color"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="ChangeRace" groups=[
-"ignore_color",
-]]
+[node name="page_label" type="Label" parent="ChooseAutosaveName"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "/Phoenix2/Главное_меню/Название_автосохранения"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="ChooseAutosaveName"]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 125.0
+theme = ExtResource( 1 )
+text = "[Назад]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="header" type="Label" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -148.0
+margin_top = -46.0
+margin_right = 148.0
+margin_bottom = -28.0
+theme = ExtResource( 1 )
+text = "Введите название файла автосохранения"
+
+[node name="input" type="LineEdit" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.0
+margin_top = -12.5
+margin_right = 158.0
+margin_bottom = 12.5
+theme = ExtResource( 1 )
+text = "autosave"
+align = 1
+placeholder_text = "заполните название автосохранения"
+
+[node name="next" type="Button" parent="ChooseAutosaveName"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = 34.0
+margin_right = 148.0
+margin_bottom = 54.0
+theme = ExtResource( 1 )
+text = "[Далее]"
+
+[node name="ChangeRace" type="Control" parent="." groups=["ignore_color"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background" type="ColorRect" parent="ChangeRace" groups=["ignore_color"]]
 material = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -288,9 +344,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background2" type="ColorRect" parent="ChangeRace" groups=[
-"ignore_color",
-]]
+[node name="background2" type="ColorRect" parent="ChangeRace" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
@@ -335,9 +389,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/earthpony" groups=[
-"ignore_color",
-]]
+[node name="choose" type="Label" parent="ChangeRace/earthpony" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -351,9 +403,7 @@ text = "Земной пони"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/earthpony" groups=[
-"ignore_color",
-]]
+[node name="Label" type="Label" parent="ChangeRace/earthpony" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -373,47 +423,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/earthpony" groups=[
-"ignore_color",
-]]
+[node name="hover" type="Control" parent="ChangeRace/earthpony" groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-right" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -423,9 +461,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -455,9 +491,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/unicorn" groups=[
-"ignore_color",
-]]
+[node name="choose" type="Label" parent="ChangeRace/unicorn" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -471,9 +505,7 @@ text = "Единорог"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/unicorn" groups=[
-"ignore_color",
-]]
+[node name="Label" type="Label" parent="ChangeRace/unicorn" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -493,47 +525,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/unicorn" groups=[
-"ignore_color",
-]]
+[node name="hover" type="Control" parent="ChangeRace/unicorn" groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-right" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -543,9 +563,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -578,9 +596,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="choose" type="Label" parent="ChangeRace/pegasus" groups=[
-"ignore_color",
-]]
+[node name="choose" type="Label" parent="ChangeRace/pegasus" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -594,9 +610,7 @@ text = "Пегас"
 align = 1
 valign = 1
 
-[node name="Label" type="Label" parent="ChangeRace/pegasus" groups=[
-"ignore_color",
-]]
+[node name="Label" type="Label" parent="ChangeRace/pegasus" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -613,47 +627,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hover" type="Control" parent="ChangeRace/pegasus" groups=[
-"ignore_color",
-]]
+[node name="hover" type="Control" parent="ChangeRace/pegasus" groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
 margin_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-right" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-right" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 
-[node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_right = -129.0
 margin_bottom = 2.0
 
-[node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_right = 1.0
 margin_left = 129.0
 margin_bottom = 2.0
 
-[node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -663,9 +665,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="border-down2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=[
-"ignore_color",
-]]
+[node name="border-down2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -686,9 +686,7 @@ __meta__ = {
 [node name="Load" parent="." instance=ExtResource( 10 )]
 visible = false
 
-[node name="About" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="About" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -696,9 +694,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="ColorRect" parent="About" groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="About" groups=["ignore_color"]]
 material = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -706,9 +702,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background2" type="ColorRect" parent="About" groups=[
-"ignore_color",
-]]
+[node name="background2" type="ColorRect" parent="About" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
@@ -760,9 +754,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="modalError" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="modalError" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -770,9 +762,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="modalError" groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="modalError" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -871,7 +861,8 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "Audio"
+bus = "Sound"
+script = ExtResource( 16 )
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
@@ -903,6 +894,12 @@ bus = "Music"
 [connection signal="mouse_entered" from="exit" to="." method="_on_mouse_entered" binds= [ "main", "chooseExit" ]]
 [connection signal="mouse_exited" from="exit" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="ChooseAutosaveName/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
+[connection signal="mouse_exited" from="ChooseAutosaveName/back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChooseAutosaveName/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="ChooseAutosaveName/next" to="." method="_on_mouse_entered" binds= [ "main", "chooseNext" ]]
+[connection signal="mouse_exited" from="ChooseAutosaveName/next" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="ChooseAutosaveName/next" to="." method="_on_autosave_next_pressed"]
 [connection signal="mouse_entered" from="ChangeRace/back" to="." method="_on_mouse_entered" binds= [ "main", "chooseBack" ]]
 [connection signal="mouse_exited" from="ChangeRace/back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ChangeRace/back" to="." method="_on_back_pressed"]

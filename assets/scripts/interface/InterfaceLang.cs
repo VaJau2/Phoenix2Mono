@@ -5,7 +5,8 @@ using Array = Godot.Collections.Array;
 /// <summary>
 /// грузит язык для интерфейса из файлов в папке lang/
 /// </summary>
-public static class InterfaceLang {
+public static class InterfaceLang 
+{
     private static string lang = "ru";
 
     public static string GetLang()
@@ -25,7 +26,8 @@ public static class InterfaceLang {
 
     public static void ChangeLanguage(Language language)
     {
-        switch (language) {
+        switch (language) 
+        {
             case Language.English:
                 lang = "en";
                 break;
@@ -46,11 +48,18 @@ public static class InterfaceLang {
     public static string GetPhrase(string file, string section, string phrase) 
     {
         Dictionary sectionData = GetPhrasesSection(file, section);
-        if (sectionData != null && sectionData.Contains(phrase)) {
-            return sectionData[phrase].ToString();
+        if (sectionData == null || !sectionData.Contains(phrase))
+        {
+            return null;
         }
-       
-        return null;
+            
+        var message = sectionData[phrase].ToString();
+        if (message.Contains("#"))
+        {
+            message = ReplaceKeys(message);
+        }
+            
+        return message;
     }
 
     //Возвращает словарь из фраз из лангового файла
@@ -67,6 +76,19 @@ public static class InterfaceLang {
         Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
         var sectionData = data?[section] as Array;
         return sectionData;
+    }
+    
+    //заменяет все #key#-значения с кодами кнопок на текущие кнопки из настроек управления
+    private static string ReplaceKeys(string message)
+    {
+        var codes = message.Split('#');
+        foreach (var tempCode in codes)
+        {
+            if (!(Global.GetKeyName(tempCode) is string newKey)) continue;
+            message = message.Replace("#" + tempCode + "#", newKey);
+        }
+
+        return message;
     }
 }
 

@@ -41,7 +41,7 @@
         "icon": "toaster",
         "price": "40" 
     },
-	"suitcase_empty": {
+	"suitcase-empty": {
 		"name": "Чемодан",
         "description": "Черный чемодан средних размеров. Пустой.",
         "type": "staff",
@@ -55,15 +55,15 @@
         "icon": "key0",
         "price": "2" 
     },
-    "key-lab": {
+    "key-mas": {
         "name": "Ключ от дверей кабинетов",
         "description": "Ключ, который открывает закрытые двери кабинетов лаборатории МТН",
         "type": "staff",
         "icon": "key0",
         "price": "100"
     },
-    "lab-key-card1": {
-        "name": "Ключ-карта",
+    "key-card-mas": {
+        "name": "Ключ-карта МТН",
         "description": "Пластиковая карта, которая используется для открывания закрытых дверей",
         "type": "staff",
         "icon": "swipe-card",
@@ -84,7 +84,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "suitcase_vacation": {
+    "suitcase-vacation": {
         "name": "Чемодан с вещами Страйкли",
         "description": "Чемодан, в котором лежат все твои вещи",
         "type": "staff",
@@ -115,32 +115,39 @@
         "icon": "note",
         "price": "1"
     },
+    "radiationCounter": {
+        "name": "Счетчик радиации",
+        "description": "Его противное щелканье не предвещает ничего хорошего",
+        "type": "staff",
+        "icon": "radiationCounter",
+        "price": "20"
+    },
 
 
-    "agent1Note": {
+    "agent-note": {
         "name": "Промокшая записка",
         "description": "Промокшая под дождем записка, принадлежащая жеребцу в плаще. Буквы читаются отчетливо.",
         "type": "note",
         "icon": "note",
-        "text": "agent1",
+        "text": "agent-note",
         "price": "6",
         "questItem": "true"
     },
-    "vacationNote": {
+    "vacation-note": {
         "name": "Приказ о предоставлении отпуска",
         "description": "Долгожданный отпуск, для которого тебе пришлось попотеть",
         "type": "note",
         "icon": "note",
-        "text": "vacationNote",
+        "text": "vacation-note",
         "price": "10",
         "questItem": "true"
     },
-    "bellgatesPaper": {
+    "bellgates-paper": {
         "name": "Письмо от Бельгетса",
         "description": "Письмо, которое кто-то подложил у твоего дома. Как он вычислил, где ты живешь?",
         "type": "note",
         "icon": "note",
-        "text": "bellgatesPaper",
+        "text": "bellgates-paper",
         "price": "10"
     },
 
@@ -202,52 +209,52 @@
         "isShotgun": "true",
         "sound": "weapon"
     },
-    "sniper307": {
-        "name": "Снайперская винтовка кал. 307",
+    "sniper308": {
+        "name": "Снайперская винтовка кал. 308",
         "description": "Как вообще пользоваться этим снайперским прицелом?",
         "type": "weapon",
-        "icon": "sniper307",
+        "icon": "sniper308",
         "price": "800",
         "damage": "75",
         "shootDistance": "200",
         "cooldown": "1.4",
         "recoil": "1",
-        "ammoType": "ammo307",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "rifle307": {
-        "name": "Винтовка кал. 307",
+    "rifle308": {
+        "name": "Винтовка кал. 308",
         "description": "Недорогой вариант винтовки, стреляющей довольно мощными патронами на дальних дистанциях",
         "type": "weapon",
-        "icon": "rifle307",
+        "icon": "rifle308",
         "price": "600",
         "damage": "60",
         "shootDistance": "180",
         "cooldown": "1.1",
         "recoil": "1",
-        "ammoType": "ammo307",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "autorifle762": {
-        "name": "7.62 автоматическая винтовка",
-        "description": "Винтовка, стреляющая автоматическим огнем на дальних дистанциях, наносит не очень много урона",
+    "automatic308": {
+        "name": ".308 автоматическая винтовка",
+        "description": "Винтовка, стреляющая автоматическим огнем на дальних дистанциях, наносит много урона",
         "type": "weapon",
-        "icon": "autorifle762",
+        "icon": "automatic308",
         "price": "1100",
-        "damage": "20",
+        "damage": "30",
         "shootDistance": "110",
         "cooldown": "0.1",
         "recoil": "1",
-        "ammoType": "ammo762",
+        "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "ak47": {
-        "name": "7.62 автоматическая винтовка",
-        "description": "Винтовка, стреляющая автоматическим огнем на средних дистанциях, наносит много урона",
+    "automatic762": {
+        "name": "7.62мм автоматическая винтовка",
+        "description": "Винтовка, стреляющая автоматическим огнем на средних дистанциях, наносит не очень много урона",
         "type": "weapon",
-        "icon": "ak47",
+        "icon": "automatic762",
         "price": "1200",
-        "damage": "28",
+        "damage": "20",
         "shootDistance": "80",
         "cooldown": "0.15",
         "recoil": "2",
@@ -256,7 +263,7 @@
     },
     "submachine10": {
         "name": "10мм пистолет-пулемет",
-        "description": "Пистолет-пулемет под патроны большого калибра, из-за этого его трудно удержать во рту, когда он стреляет",
+        "description": "Пистолет-пулемет под патроны большого калибра с соответствующей отдачей",
         "type": "weapon",
         "icon": "submachine10",
         "price": "700",
@@ -340,11 +347,11 @@
         "icon": "ammo20",
         "price": "3" 
     },
-    "ammo307": {
-        "name": "Патроны кал. 307",
+    "ammo308": {
+        "name": "Патроны кал. 308",
         "description": "Патроны для винтовок",
         "type": "ammo",
-        "icon": "ammo307",
+        "icon": "ammo308",
         "price": "5" 
     },
     "ammo762": {
@@ -386,20 +393,20 @@
         "shootDistPlus": "15",
         "sound": "armor"
     },
-    "private_uniform": {
+    "private-uniform": {
         "name": "Военная форма",
         "description": "Форма рядового Эквестрийской армии. Кажется, чего-то в ней не хватает...",
         "type": "armor",
-        "icon": "private_uniform",
+        "icon": "private-uniform",
         "price": "150",
         "damageBlock": "0.2",
         "sound": "coat"
     },
-    "school_uniform": {
+    "school-uniform": {
         "name": "Школьная форма",
         "description": "Ты же не будешь надевать это на себя, правда?",
         "type": "armor",
-        "icon": "school_uniform",
+        "icon": "school-uniform",
         "price": "500",
         "damageBlock": "0.1",
         "makeShy": "true",
@@ -416,6 +423,7 @@
         "speedDecrease": "5",
         "price": "1500",
         "damageBlock": "0.9",
+        "ignoreRadiation": "1",
         "sound": "armor"
     },
     "anti-radio": {

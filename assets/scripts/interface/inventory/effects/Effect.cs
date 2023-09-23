@@ -1,5 +1,4 @@
 using Godot;
-using Godot.Collections;
 
 //базовый класс для эффектов
 public class Effect 
@@ -16,7 +15,8 @@ public class Effect
     public bool badEffect = false;
 
     //включение эффекта
-    public virtual void SetOn(EffectHandler handler) {
+    public virtual void SetOn(EffectHandler handler) 
+    {
         this.handler = handler;
         time = maxTime;
         iconTexture = GD.Load<StreamTexture>("res://assets/textures/interface/icons/items/" + iconName + ".png");
@@ -36,19 +36,25 @@ public class Effect
     {
         var rng = new RandomNumberGenerator();
         rng.Randomize();
-        if (postEffect != null && rng.Randf() <= postEffectChance) {
+        
+        if (postEffect != null && rng.Randf() <= postEffectChance) 
+        {
             handler.messages.ShowMessage("medsOff", "items", 2.5f);
             handler.AddEffect(postEffect);
         }
     }
 
     //процесс эффекта
-    public virtual bool Count(float delta) {
+    public virtual bool Count(float delta) 
+    {
         time -= delta;
         icon.UpdateTime(time, maxTime);
-        if (time <= 0) {
+        
+        if (time <= 0) 
+        {
             SetOff();
         }
+        
         return time > 0;
     }
 }

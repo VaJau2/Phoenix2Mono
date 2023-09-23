@@ -1,0 +1,42 @@
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Здравия желаю, лейтенант.",
+      "speaker": "Мистер Храбрец",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "Т1(2)"
+        }
+      ]
+    },
+    "Т1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Извини, ошиблась дверью.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец"
+    },
+    "T3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Покажи, что есть на продажу.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец",
+      "next": "script"
+    },
+    "script": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "Dialogue_Trade"
+    }
+  },
+  "speakers": {}
+}

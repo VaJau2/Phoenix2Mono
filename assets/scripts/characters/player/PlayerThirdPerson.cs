@@ -28,7 +28,7 @@ public class PlayerThirdPerson : Spatial
     private GeometryInstance Body_third;
 
 
-    public void SetThirdView(bool on) 
+    public void SetThirdView(bool on)
     {
         if (!MayChange)
         {
@@ -45,18 +45,23 @@ public class PlayerThirdPerson : Spatial
         player.Weapons.СheckThirdView();
 
         Body.Visible = !on;
-        if (!on) {
+        if (!on)
+        {
             Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.ShadowsOnly;
             TempRay = RayFirst;
-        } else {
+        }
+        else
+        {
             Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.On;
             TempRay = RayThird;
         }
 
         //возвращаем игроку вращение при переходе от 3 лица
         //если он повернулся на больше 180 градусов
-        if (!on) {
-            if (!player.Body.RotClumpsMin || !player.Body.RotClumpsMax) {
+        if (!on)
+        {
+            if (!player.Body.RotClumpsMin || !player.Body.RotClumpsMax)
+            {
                 var bodyRotY = player.Body.GlobalTransform.basis.GetEuler().y;
                 Vector3 playerRot = player.GlobalTransform.basis.GetEuler();
                 playerRot.y = bodyRotY;
@@ -72,19 +77,23 @@ public class PlayerThirdPerson : Spatial
     }
 
     private float updateSide(float delta, float side, string keyUp,
-        string keyDown, float maxValue, float minValue, float usualValue) 
+        string keyDown, float maxValue, float minValue, float usualValue)
+    {
+        if (player.MayMove && Input.IsActionPressed(keyUp))
         {
-            if (player.MayMove && Input.IsActionPressed(keyUp)) {
-                side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
-
-            } else if (player.MayMove && Input.IsActionPressed(keyDown)) {
-                side = Mathf.MoveToward(side, minValue, delta * 1.5f);
-
-            } else {
-                side = Mathf.MoveToward(side, usualValue, delta * 1.5f);
-            }
-            return side;
+            side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
         }
+        else if (player.MayMove && Input.IsActionPressed(keyDown))
+        {
+            side = Mathf.MoveToward(side, minValue, delta * 1.5f);
+        }
+        else
+        {
+            side = Mathf.MoveToward(side, usualValue, delta * 1.5f);
+        }
+
+        return side;
+    }
 
     private void UpdateThirdCameraPos(float delta)
     {
@@ -92,24 +101,30 @@ public class PlayerThirdPerson : Spatial
             third.x + 0.7f, third.x - 0.7f, third.x);
         tempThird.z = updateSide(delta, tempThird.z, "ui_up", "ui_down",
             third.z + 0.5f, third.z - 0.5f, third.z);
-        
-        if (player is Player_Pegasus) {
+
+        if (player is Player_Pegasus)
+        {
             var pegasus = player as Player_Pegasus;
 
-            if(pegasus.IsFlying) {
+            if (pegasus.IsFlying)
+            {
                 tempThird.y = updateSide(delta, tempThird.y, "jump", "ui_shift",
                     third.y + 0.7f, third.y - 0.7f, third.y);
-            } else {
+            }
+            else
+            {
                 tempThird.y = third.y;
             }
-        } else {
+        }
+        else
+        {
             tempThird.y = third.y;
         }
 
         thirdCamera.Translation = tempThird;
     }
-    
-    private void checkCameraSee() 
+
+    private void checkCameraSee()
     {
         RayToPlayer.Enabled = true;
         var dir = player.GlobalTransform.origin - RayToPlayer.GlobalTransform.origin;
@@ -119,53 +134,70 @@ public class PlayerThirdPerson : Spatial
         rayTransf.basis = new Basis(Vector3.Zero);
         RayToPlayer.GlobalTransform = rayTransf;
 
-        if (RayToPlayer.IsColliding()) {
+        if (RayToPlayer.IsColliding())
+        {
             var collider = RayToPlayer.GetCollider() as Node;
-            if (collider.Name == "Player") {
+            if (collider.Name == "Player")
+            {
                 seePlayer = true;
-            } else {
+            }
+            else
+            {
                 oldThird = third;
                 seePlayer = false;
             }
         }
     }
 
-    private void closeCamera() 
+    private void closeCamera()
     {
-        if (third.x > thirdMin.x) {
+        if (third.x > thirdMin.x)
+        {
             third.x -= 0.05f;
         }
-        if (third.y > thirdMin.y) {
+
+        if (third.y > thirdMin.y)
+        {
             third.y -= 0.01f;
         }
-        if (third.z > thirdMin.z) {
+
+        if (third.z > thirdMin.z)
+        {
             third.z -= 0.1f;
         }
 
         if (third.x <= thirdMin.x &&
             third.y <= thirdMin.y &&
-            third.z <= thirdMin.z) {
-                if (player.ThirdView) {
-                    SetThirdView(false);
-                }
+            third.z <= thirdMin.z)
+        {
+            if (player.ThirdView)
+            {
+                SetThirdView(false);
             }
+        }
     }
 
-    private void farCamera() 
+    private void farCamera()
     {
-        if (!player.ThirdView) {
+        if (!player.ThirdView)
+        {
             SetThirdView(true);
             third = thirdMin;
             tempThird = third;
         }
 
-        if (third.x < thirdMax.x) {
+        if (third.x < thirdMax.x)
+        {
             third.x += 0.05f;
         }
-        if (third.y < thirdMax.y) {
+
+        if (third.y < thirdMax.y)
+        {
             third.y += 0.01f;
         }
-        if (third.z < thirdMax.z) {
+
+        if (third.z < thirdMax.z)
+        {
             third.z += 0.1f;
         }
     }
@@ -185,43 +217,60 @@ public class PlayerThirdPerson : Spatial
         RayThird.AddException(player);
         TempRay = RayFirst;
 
-        Body       = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
+        Body = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
         Body_third = GetNode<GeometryInstance>("../player_body/Armature/Skeleton/Body_third");
     }
 
     public override void _Process(float delta)
     {
-        if (!player.MayRotateHead) {
+        if (!player.MayRotateHead)
+        {
             return;
         }
 
-        if (Input.IsActionJustPressed("changeView")) {
-            if (oldThird != Vector3.Zero) {
+        if (Input.IsActionJustPressed("changeView"))
+        {
+            if (oldThird != Vector3.Zero)
+            {
                 oldThird = Vector3.Zero;
-            } else {
+            }
+            else
+            {
                 SetThirdView(!player.ThirdView);
             }
         }
 
-        if (player.ThirdView) {
+        if (player.ThirdView)
+        {
             UpdateThirdCameraPos(delta);
             checkCameraSee();
 
-            if (!seePlayer) {
+            if (!seePlayer)
+            {
                 closeCamera();
-            } else {
-                if (oldThird != Vector3.Zero) {
-                    if (oldThird.x > third.x) {
+            }
+            else
+            {
+                if (oldThird != Vector3.Zero)
+                {
+                    if (oldThird.x > third.x)
+                    {
                         farCamera();
-                    } else {
+                    }
+                    else
+                    {
                         oldThird = Vector3.Zero;
                     }
                 }
             }
-        } else {
-            if (oldThird != Vector3.Zero) {
+        }
+        else
+        {
+            if (oldThird != Vector3.Zero)
+            {
                 checkCameraSee();
-                if (seePlayer) {
+                if (seePlayer)
+                {
                     farCamera();
                     oldThird = Vector3.Zero;
                 }
@@ -232,15 +281,20 @@ public class PlayerThirdPerson : Spatial
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton
-        && Input.MouseMode == Input.MouseModeEnum.Captured) {
+            && Input.MouseMode == Input.MouseModeEnum.Captured)
+        {
             var mouseEvent = @event as InputEventMouseButton;
 
-            if (mouseEvent.IsPressed()) {
-                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_UP) {
+            if (mouseEvent.IsPressed())
+            {
+                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_UP)
+                {
                     closeCamera();
                     oldThird = Vector3.Zero;
                 }
-                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_DOWN) {
+
+                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_DOWN)
+                {
                     farCamera();
                 }
             }

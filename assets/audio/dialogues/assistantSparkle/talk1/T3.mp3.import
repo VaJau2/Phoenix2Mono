@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/T3.mp3-9457adeb9e01ae19d54ea08489a44134.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/talk1/T3.mp3"
+dest_files=[ "res://.import/T3.mp3-9457adeb9e01ae19d54ea08489a44134.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

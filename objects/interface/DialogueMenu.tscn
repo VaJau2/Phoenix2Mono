@@ -150,7 +150,6 @@ anchor_left = 0.004
 anchor_top = 0.819
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.19209e-07
 margin_top = 0.138
 margin_right = -1.99994
 margin_bottom = -75.0
@@ -181,7 +180,6 @@ anchor_left = 0.004
 anchor_top = 0.819
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.19209e-07
 margin_top = 48.138
 margin_right = -1.99994
 margin_bottom = -27.0
@@ -199,7 +197,6 @@ anchor_left = 0.004
 anchor_top = 0.803
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.19209e-07
 margin_top = 80.106
 margin_right = -1.99994
 margin_bottom = -3.0
@@ -209,6 +206,19 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="skipLabel" type="Label" parent="Menu"]
+visible = false
+anchor_top = 0.817
+anchor_right = 0.994
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 0.231995
+margin_right = 0.167969
+margin_bottom = -7.0
+theme = ExtResource( 1 )
+text = "Е - пропустить"
+align = 1
 
 [node name="audi" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
 volume_db = -5.0

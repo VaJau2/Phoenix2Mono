@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/R3.mp3-dd0a7b8f1614e19575d4d61586300f8d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantRarity/talk/R3.mp3"
+dest_files=[ "res://.import/R3.mp3-dd0a7b8f1614e19575d4d61586300f8d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

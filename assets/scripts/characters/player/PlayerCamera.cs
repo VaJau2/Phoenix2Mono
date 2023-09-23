@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 // скрипт взаимодействия с предметами
-public class PlayerCamera: Camera 
+public class PlayerCamera : Camera
 {
     const float RAY_LENGH = 6;
     const float RAY_THIRD_LENGTH = 9;
@@ -13,18 +13,19 @@ public class PlayerCamera: Camera
     public bool eyesClosed = false;
     public bool isUpdating = true;
     public float closedTimer = 0;
+    public bool onetimeHint;
     
-    InteractionPoint point;
-    DialogueMenu dialogueMenu;
+    private InteractionPointManager point;
 
     Player player;
 
-    Control labelBack;
-    Label label;
+    Label interactionHint;
+    TextureRect interactionIcon;
+    TextureRect interactionIconShadow;
     string closedTextLink = "closed";
 
-    Spatial tempObject;
-    bool onetimeHint, onetimeCross;
+    Node tempObject;
+    bool onetimeCross;
 
     bool fovClosing = false;
     Control eyePartUp;
@@ -34,7 +35,7 @@ public class PlayerCamera: Camera
 
     RayCast tempRay => player.RotationHelperThird.TempRay;
 
-    public RayCast UseRay(float newDistance) 
+    public RayCast UseRay(float newDistance)
     {
         tempRay.CollisionMask = 2147483649; //слой 1
         tempRay.CastTo = new Vector3(0, 0, -newDistance);
@@ -50,15 +51,31 @@ public class PlayerCamera: Camera
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
+
+    public void HideInteractionSquare()
+    {
+        point.HideSquare();
+    }
     
-    public void ShowHint(string textLink, bool triggerClosing = true) {
+    public void ShowHint(string textLink, bool triggerClosing = true)
+    {
         point.SetInteractionVariant(InteractionVariant.Square);
+
         var actions = InputMap.GetActionList("use");
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
-        label.Text = key;
-        label.Text += InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
-        labelBack.Visible = true;
+        var buttonPath = "res://assets/textures/interface/icons/buttons/";
+        var isWideButton = key is "BackSpace" || key is "CapsLock" || key is "Kp 0" || key is "Shift" || key is "Space" || key is "Tab";
+
+        interactionIcon.Texture = GD.Load<Texture>( buttonPath + key + ".png");
+        
+        interactionIconShadow.Texture = (isWideButton)
+            ? GD.Load<Texture>(buttonPath + "Empty 48x32.png")
+            : GD.Load<Texture>(buttonPath + "Empty 32x32.png");
+        
+        interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
+
+        SetHintVisible(true);
         if (!triggerClosing) return;
         onetimeHint = onetimeCross = true;
     }
@@ -76,195 +93,178 @@ public class PlayerCamera: Camera
         );
     }
 
-    private void UpdateFov(float delta) {
-        if (closedTimer > 0) {
+    private void UpdateFov(float delta)
+    {
+        if (closedTimer > 0)
+        {
             closedTimer -= delta;
-            if (!onetimeHint) {
-                label.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
-                labelBack.Visible = true;
+            if (!onetimeHint)
+            {
+                interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
+                SetHintVisible(true);
                 onetimeHint = true;
             }
-        } else {
-            if (onetimeHint) {
-                labelBack.Visible = false;
+        }
+        else
+        {
+            if (onetimeHint)
+            {
+                SetHintVisible(false);
                 onetimeHint = false;
             }
         }
 
-        if (eyesClosed) {
-            eyePartUp.RectPosition = setRectY(eyePartUp.RectPosition, 0);
-            eyePartDown.RectPosition = setRectY(eyePartDown.RectPosition, 0);
-        } else if(fovClosing) {
+        if (eyesClosed)
+        {
+            eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
+            eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
+        }
+        else if (fovClosing)
+        {
             float closeFov = 42f;
 
             Dictionary armorProps = player.inventory.GetArmorProps();
-            if (armorProps.Contains("closeFov")) {
+            if (armorProps.Contains("closeFov"))
+            {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());
             }
 
-            if (Fov > closeFov) {
+            if (Fov > closeFov)
+            {
                 Fov -= FOV_SPEED * delta;
             }
-            if (eyePartUp.RectPosition.y < -220) {
-                eyePartUp.RectPosition = setRectY(
-                    eyePartUp.RectPosition, 
+            
+            if (eyePartUp.RectPosition.y < -220)
+            {
+                eyePartUp.RectPosition = SetRectY(
+                    eyePartUp.RectPosition,
                     eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
                 );
             }
-            if (eyePartDown.RectPosition.y > 220) {
-                eyePartDown.RectPosition = setRectY(
-                    eyePartDown.RectPosition, 
+            
+            if (eyePartDown.RectPosition.y > 220)
+            {
+                eyePartDown.RectPosition = SetRectY(
+                    eyePartDown.RectPosition,
                     eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
                 );
             }
-        } else {
-            if (Fov < 70) {
+        }
+        else
+        {
+            if (Fov < 70)
+            {
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.RectPosition.y > -650) {
-                eyePartUp.RectPosition = setRectY(
-                    eyePartUp.RectPosition, 
+            if (eyePartUp.RectPosition.y > -650)
+            {
+                eyePartUp.RectPosition = SetRectY(
+                    eyePartUp.RectPosition,
                     eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
-            if (eyePartDown.RectPosition.y < 650) {
-                eyePartDown.RectPosition = setRectY(
-                    eyePartDown.RectPosition, 
+            
+            if (eyePartDown.RectPosition.y < 650)
+            {
+                eyePartDown.RectPosition = SetRectY(
+                    eyePartDown.RectPosition,
                     eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
                 );
             }
         }
     }
 
-    private void UpdateInteracting(float delta) {
+    private void UpdateInteracting()
+    {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
         if (!player.MayMove) return;
-        
-        tempObject = (Spatial)tempRay.GetCollider();
+
+        tempObject = (Node)tempRay.GetCollider();
 
         if (mayUseRay && tempObject != null)
         {
-            switch (tempObject)
+            if (tempObject is PhysicalBone)
             {
-                case TheaterChair chair when chair.isActive && !player.IsSitting:
-                    ShowHint("sit");
-                    break;
-                case FurnBase furn when furn.IsOpen:
-                    ShowHint("close");
-                    break;
-                case FurnBase furn:
-                    ShowHint("open");
-                    break;
-                case Terminal _:
-                    ShowHint("terminal");
-                    break;
-                default:
-                {
-                    if (!dialogueMenu.MenuOn && tempObject is NPC npc) {
-                        if (npc.dialogueCode != "") {
-                            ShowHint("talk");
-                        }
-                    }
-
-                    break;
-                }
+                tempObject = tempObject.GetNode<Node>("../../../");
             }
-        } else {
+            
+            if (tempObject is IInteractable interactable && interactable.MayInteract)
+            {
+                ShowHint(interactable.InteractionHintCode);
+            }
+        }
+        else
+        {
             tempObject = null;
             ReturnInteractionPoint();
         }
     }
 
-    public void UpdateInput()
+    private void UpdateInput()
     {
-        if (!labelBack.Visible || !(closedTimer <= 0) || tempObject == null) return;
-        switch (tempObject)
+        if (!interactionHint.Visible || !(closedTimer <= 0) || tempObject == null) return;
+        if (tempObject is IInteractable interactable && interactable.MayInteract)
         {
-            case TheaterChair chair when chair.isActive && !player.IsSitting:
-            {
-                point.HideSquare();
-                chair.Sit(player);
-                break;
-            }
-            case FurnDoor furn1:
-            {
-                var keys = player.inventory.GetKeys();
-                closedTimer = furn1.ClickFurn(keys);
-                onetimeHint = false;
-                break;
-            }
-            case FurnBase furn:
-            {
-                point.HideSquare();
-                furn.ClickFurn();
-                break;
-            }
-            case Terminal tempTerminal:
-            {
-                point.HideSquare();
-                MenuManager.TryToOpenMenu(tempTerminal);
-                break;
-            }
-            case NPC npc:
-            {
-                if (npc.dialogueCode != "") {
-                    dialogueMenu.StartTalkingTo(npc);
-                }
-
-                break;
-            }
+            interactable.Interact(this);
         }
+    }
+
+    void SetHintVisible(bool value)
+    {
+        interactionHint.Visible = value;
+        interactionIcon.Visible = value;
     }
 
     public override void _Ready()
     {
-        point = GetNode<InteractionPoint>("/root/Main/Scene/canvas/point");
-        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
+        interactionHint = point.GetNode<Label>("interactionHint");
+
+        interactionIcon = GetNode<TextureRect>("/root/Main/Scene/canvas/interactionIcon");
+        interactionIconShadow = interactionIcon.GetNode<TextureRect>("shadow");
+        MenuBase.LoadColorForChildren(interactionIcon);
+
         player = GetNode<Player>("../../");
-        labelBack = GetNode<Control>("/root/Main/Scene/canvas/openBack");
+
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
         eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
-
-        label = labelBack.GetNode<Label>("label");
     }
 
-    public Vector2 setRectY(Vector2 oldPosition, float newY) {
+    private Vector2 SetRectY(Vector2 oldPosition, float newY) 
+    {
         oldPosition.y = newY;
         return oldPosition;
     }
 
     public override void _Process(float delta)
     {
-        if (!isUpdating) {
-            labelBack.Visible = false;
+        if (!isUpdating)
+        {
+            SetHintVisible(false);
             return;
         }
-        
+
         UpdateFov(delta);
-        UpdateInteracting(delta);
+        UpdateInteracting();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (!isUpdating) {
-            return;
-        }
-        if (@event is InputEventKey && Input.IsActionJustPressed("use")) {
+        if (!isUpdating) return;
+
+        if (@event is InputEventKey && Input.IsActionJustPressed("use")) 
+        {
             UpdateInput();
         }
 
-        if (!player.ThirdView && @event is InputEventMouseButton 
-                && Input.MouseMode == Input.MouseModeEnum.Captured) {
-            var mouseEv = @event as InputEventMouseButton;
-            if (mouseEv.ButtonIndex == 2) {
-                if (mouseEv.Pressed) {
-                    fovClosing = true;
-                } else {
-                    fovClosing = false;
-                }
-            }
+        if (player.ThirdView) return;
+        if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
+        if (!(@event is InputEventMouseButton mouseEv)) return;
+        if (mouseEv.ButtonIndex == 2)
+        {
+            fovClosing = mouseEv.Pressed;
         }
     }
 }

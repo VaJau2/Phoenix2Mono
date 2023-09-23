@@ -175,7 +175,7 @@
     "S7": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "*giggle*",
+      "body": "[giggle]",
       "speaker": "Scientist",
       "opposite": "Strikely",
       "next": "S8"

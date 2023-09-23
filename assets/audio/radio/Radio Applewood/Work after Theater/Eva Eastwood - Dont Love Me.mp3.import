@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eva Eastwood - Dont Love Me.mp3-18f2327f8a1d5df8daefd3a31bf74d3c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work after Theater/Eva Eastwood - Dont Love Me.mp3"
+dest_files=[ "res://.import/Eva Eastwood - Dont Love Me.mp3-18f2327f8a1d5df8daefd3a31bf74d3c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

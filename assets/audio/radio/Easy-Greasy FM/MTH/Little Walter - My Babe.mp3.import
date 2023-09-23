@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Little Walter - My Babe.mp3-4826f1b3c9a58678718f569e7f6cebd8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Easy-Greasy FM/MTH/Little Walter - My Babe.mp3"
+dest_files=[ "res://.import/Little Walter - My Babe.mp3-4826f1b3c9a58678718f569e7f6cebd8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

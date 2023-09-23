@@ -1,0 +1,131 @@
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good day, Lieutenant.",
+      "speaker": "Mister Gutsy",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "Т1(2)"
+        }
+      ]
+    },
+    "T1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Hi. How's our warehouse going?",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy",
+      "next": "T2"
+    },
+    "Т1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry. Wrong door.",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy"
+    },
+    "T2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I report: the condition of the warehouse is stable, no theft attempts have been noticed for 379 days.",
+      "speaker": "Mister Gutsy",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "Т2(2)"
+        },
+        {
+          "body": "answer",
+          "next": "T2(1)"
+        }
+      ]
+    },
+    "T2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Excellent. So, there is something to trade?",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy",
+      "next": "Т3"
+    },
+    "Т2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good. Keep me posted. I'll come back later.",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy"
+    },
+    "Т3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "That's right. Would you like to buy or sell something?",
+      "speaker": "Mister Gutsy",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T3(2)"
+        }
+      ]
+    },
+    "T3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes. Show me what's for sale.",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy",
+      "next": "script"
+    },
+    "T3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, I was just wondering. Keep working.",
+      "speaker": "Strikely",
+      "opposite": "Mister Gutsy",
+      "next": "script2"
+    },
+    "script": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "set": "tradeAgain"
+    },
+    "script2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": "tradeAgain"
+    }
+  },
+  "speakers": {
+    "Mister Gutsy": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

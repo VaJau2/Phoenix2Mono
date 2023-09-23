@@ -3,7 +3,7 @@
     "S1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "*дрожит в ужасе*",
+      "body": "[дрожит в ужасе]",
       "speaker": "Ученая",
       "opposite": "Страйкли",
       "options": [

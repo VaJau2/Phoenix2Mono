@@ -272,9 +272,7 @@ tracks/4/keys = {
 [sub_resource type="BoxShape" id=13]
 extents = Vector3( 7.9354, 8.12693, 20.8776 )
 
-[node name="roboEye" type="KinematicBody" groups=[
-"savable",
-]]
+[node name="roboEye" type="KinematicBody" groups=["savable"]]
 script = ExtResource( 2 )
 IdleAnim = "idle"
 StartHealth = 50
@@ -295,12 +293,10 @@ shape = SubResource( 2 )
 [node name="corpus" type="MeshInstance" parent="."]
 transform = Transform( 0.35, 0, 0, 0, 0.349147, 0.0244147, 0, -0.0244147, 0.349147, 0, 0, 0.4 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="monitor" type="MeshInstance" parent="corpus"]
 transform = Transform( 1, 0, 0, 0, 0.996195, -0.0871558, 0, 0.0871558, 0.996195, 0, 7.64034, -0.491019 )
 mesh = SubResource( 4 )
-material/0 = null
 
 [node name="screen" type="MeshInstance" parent="corpus/monitor"]
 mesh = SubResource( 5 )
@@ -314,7 +310,6 @@ material/0 = ExtResource( 1 )
 [node name="wheel" type="MeshInstance" parent="."]
 transform = Transform( 0.35, 0, 0, 0, 0.348668, 0.0305045, 0, -0.0305045, 0.348668, 0, 0, 0.4 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="anim" type="AnimationPlayer" parent="."]
 playback_default_blend_time = 0.1
@@ -328,6 +323,7 @@ anims/walk = SubResource( 12 )
 stream = ExtResource( 6 )
 unit_size = 8.0
 max_distance = 950.0
+bus = "Sound"
 
 [node name="seekArea" type="Area" parent="."]
 monitorable = false

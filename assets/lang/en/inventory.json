@@ -3,11 +3,11 @@
         "name": "Inventory",
         "money": "Money count:",
         "moneyTrade": "Money count:",
-        "wear": "Wear",
+        "wear": "Equipped",
         "weapon": "Weapon:",
         "armor": "Armor:",
         "artifact": "Artifact:",
-        "takeAll": "Take all (#button#)"
+        "takeAll": " Take all"
     },
 
     "moneyNames": {
@@ -17,22 +17,17 @@
     },
 
     "inventoryControlHints": {
-        "staff": "RMB - drop",
-        "weapon": "LMB - wear, RMB - drop, 0-9 - bind",
-        "ammo": "RMB - drop all",
-        "armor": "LMB - wear, RMB - drop",
-        "artifact": "LMB - wear, RMB - drop",
-        "note": "ЛКМ - read, ПКМ - drop",
-        "food": "LMB - eat, RMB - drop, 0-9 - bind",
-        "meds": "LMB - use, RMB - drop, 0-9 - bind"
-    },
-    "chestControlHints": {
-        "take": "LMB - take",
-        "put": "LMB - put"
-    },
-    "tradeControlHints": {
-        "take": "ЛКМ - buy",
-        "put": "ЛКМ - sell"
+        "equip": "Equip",
+        "bind": "Bind",
+        "move": "Move",
+        "drop": "Drop",
+        "use": "Use",
+        "eat": "Eat",
+        "read": "Read",
+        "take": "Take",
+        "put": "Put",
+        "buy": "Buy",
+        "sell": "Sell"
     },
 
     "itemProps": {
@@ -93,6 +88,6 @@
     },
 
     "modalRead": {
-        "closeHint": "#button# to close"
+        "closeHint": "Put Away"
     }
 }

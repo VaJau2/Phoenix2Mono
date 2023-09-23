@@ -4,10 +4,14 @@ public class DemoEnd : Control
 {
     public override void _Ready()
     {
-        var label2 = GetNode<Label>("Label2");
-        var label3 = GetNode<Label>("Label3");
-        label2.Text = InterfaceLang.GetPhrase("inGame", "labels", "endLabel2");
-        label3.Text = InterfaceLang.GetPhrase("inGame", "labels", "endLabel3");
+        var title = GetNode<Label>("Title");
+        var press = GetNode<Label>("Press");
+        var label = GetNode<Label>("Label");
+        title.Text = InterfaceLang.GetPhrase("inGame", "labels", "toBeContinueTitle");
+        press.Text = InterfaceLang.GetPhrase("inGame", "labels", "pressLabel");
+        label.Text = InterfaceLang.GetPhrase("inGame", "labels", "toExitToMainMenu");
+        
+        MenuBase.LoadColorForChildren(this);
     }
 
     public override void _Process(float delta)

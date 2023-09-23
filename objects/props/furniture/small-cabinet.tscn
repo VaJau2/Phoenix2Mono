@@ -93,9 +93,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0.013, 0.445, 0.009 ), Vector3( 1.486, 0.445, 0.009 ) ]
 }
 
-[node name="small-cabinet" type="StaticBody" groups=[
-"savable",
-]]
+[node name="small-cabinet" type="StaticBody" groups=["savable"]]
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 1 )
 OpenSound = ExtResource( 4 )
@@ -126,3 +124,4 @@ unit_db = 5.0
 unit_size = 2.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"

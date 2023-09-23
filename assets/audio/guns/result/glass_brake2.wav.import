@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample"
+
+[deps]
+
+source_file="res://assets/audio/guns/result/glass_brake2.wav"
+dest_files=[ "res://.import/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

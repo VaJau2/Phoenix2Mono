@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using Godot.Collections;
 
@@ -81,12 +80,14 @@ public class LevelsLoader : Node
 
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
-		if (levelPaths[tempLevelNum] == "menu") {
+		if (levelPaths[tempLevelNum] == "menu") 
+		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 			return;
 		}
 
-		if (loader == null) {
+		if (loader == null) 
+		{
 			currentLoading = (Control)loadingMenuPrefab.Instance();
 			menuParent.AddChild(currentLoading);
 
@@ -97,9 +98,11 @@ public class LevelsLoader : Node
 
 	private void updateMenu()
 	{
-		if (tempLevelNum != 0) {
+		if (tempLevelNum != 0) 
+		{
 			//грузим меню паузы
-			if (currentMenu.Name != "PauseMenu") {
+			if (currentMenu.Name != "PauseMenu") 
+			{
 				respawnMenu(pauseMenuPrefab);
 				mainMenuOn = false;
 			}
@@ -109,9 +112,11 @@ public class LevelsLoader : Node
 			}
 
 			currentMenu.Visible = false;
-		} else {
+		} else 
+		{
 			//грузим главное меню
-			if (!mainMenuOn) {
+			if (!mainMenuOn) 
+			{
 				respawnMenu(mainMenuPrefab);
 				mainMenuOn = true;
 			}
@@ -151,7 +156,7 @@ public class LevelsLoader : Node
 	}
 
 	//загрузка уровня с сохраненными данными
-	public void LoadLevel(int levelNum, Dictionary levelData, Godot.Collections.Array deletedObjects)
+	public void LoadLevel(int levelNum, Dictionary levelData, Array deletedObjects)
 	{
 		loadSavedData = true;
 		this.levelData = levelData;
@@ -225,13 +230,15 @@ public class LevelsLoader : Node
 	
 	public override void _Process(float delta)
 	{
-		if (loader == null) {
+		if (loader == null) 
+		{
 			SetProcess(false);
 			return;
 		}
 
 		var err = loader.Poll();
-		if (err == Error.FileEof) {
+		if (err == Error.FileEof) 
+		{
 			var resource = (PackedScene)loader.GetResource();
 			loader.Dispose();
 			loader = null;
@@ -254,7 +261,8 @@ public class LevelsLoader : Node
 			}
 			
 		}
-		else if(err != Error.Ok) {
+		else if (err != Error.Ok) 
+		{
 			GD.PrintErr(err);
 		}
 	}

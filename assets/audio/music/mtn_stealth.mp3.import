@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mtn_stealth.mp3-019ba54fce1cc0020b999f0905cd0dfe.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/mtn_stealth.mp3"
+dest_files=[ "res://.import/mtn_stealth.mp3-019ba54fce1cc0020b999f0905cd0dfe.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

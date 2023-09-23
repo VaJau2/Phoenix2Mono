@@ -50,7 +50,7 @@
         {
           "key": "itemCode",
           "op": "set",
-          "value": "vacationNote"
+          "value": "vacation-note"
         }
       ],
       "next": "M3"
@@ -140,7 +140,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "activateLeaveLocation"
+          "value": "activateBed"
         }
       ]
     }

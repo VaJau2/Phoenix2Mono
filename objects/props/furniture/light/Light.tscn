@@ -130,11 +130,11 @@ unit_db = 5.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="mesh" type="MeshInstance" parent="lightSource"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75041, -19.0267, 0 )
 mesh = SubResource( 9 )
-material/0 = null
 
 [node name="SpotLight" type="SpotLight" parent="lightSource/mesh"]
 transform = Transform( 1.41509, 3.18969e-08, -0.195781, 0.195781, -2.30548e-07, 1.41509, 0, -1.42857, -2.32744e-07, 6.68756, 20.8751, -0.234133 )
@@ -146,4 +146,3 @@ spot_angle = 23.9892
 [node name="halo" type="MeshInstance" parent="lightSource/mesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57591, 18.1533, 2.43906e-06 )
 mesh = SubResource( 10 )
-material/0 = null

@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsMenu.cs" type="Script" id=3]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsSubmenu.cs" type="Script" id=5]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/ControlsSubmenu.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/interface/Menus/Settings/DifficultySubmenu.cs" type="Script" id=7]
+[ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=8]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Slash.png" type="Texture" id=11]
 
 [node name="SettingsMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
@@ -57,15 +59,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -172.0
+margin_top = -204.0
 margin_right = 64.0
-margin_bottom = -150.0
+margin_bottom = -182.0
 theme = ExtResource( 2 )
 text = "Чувствительность мыши:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="mouse_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -73,17 +72,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0001
-margin_top = -172.0
+margin_top = -204.0
 margin_right = 398.0
-margin_bottom = -152.0
+margin_bottom = -184.0
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 0.8
 step = 0.01
 value = 0.1
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="mouse_border" type="Label" parent="Settings/mouse_slider" groups=["ignore_color"]]
@@ -120,15 +118,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -132.0
+margin_top = -164.0
 margin_right = 64.0
-margin_bottom = -114.0
+margin_bottom = -146.0
 theme = ExtResource( 2 )
 text = "Дальность прорисовки:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="distance_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -136,9 +131,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 96.0
-margin_top = -132.0
+margin_top = -164.0
 margin_right = 396.0
-margin_bottom = -112.0
+margin_bottom = -144.0
 theme = ExtResource( 2 )
 min_value = 200.0
 max_value = 600.0
@@ -181,9 +176,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -84.0
+margin_top = -116.0
 margin_right = 64.0
-margin_bottom = -62.0
+margin_bottom = -94.0
 theme = ExtResource( 2 )
 text = "Качество теней:"
 align = 2
@@ -194,14 +189,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0001
-margin_top = -84.0
+margin_top = -116.0
 margin_right = 403.0
-margin_bottom = -66.0
+margin_bottom = -98.0
 theme = ExtResource( 2 )
 text = "Максимальное"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="shadows_border" type="Label" parent="Settings/shadows_button" groups=["ignore_color"]]
@@ -237,15 +231,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -44.0
+margin_top = -76.0
 margin_right = 64.0
-margin_bottom = -22.0
+margin_bottom = -54.0
 theme = ExtResource( 2 )
 text = "Полноэкранный режим:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="fullscreen_button" type="Button" parent="Settings"]
 anchor_left = 0.5
@@ -253,14 +244,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -44.0
+margin_top = -76.0
 margin_right = 403.0
-margin_bottom = -26.0
+margin_bottom = -58.0
 theme = ExtResource( 2 )
 text = "Выключен"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="fullscreeen_border" type="Label" parent="Settings/fullscreen_button" groups=["ignore_color"]]
@@ -296,9 +286,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -152.0
-margin_top = -4.0
+margin_top = -36.0
 margin_right = 64.0
-margin_bottom = 18.0
+margin_bottom = -14.0
 theme = ExtResource( 2 )
 text = "Поворот камеры в движении:"
 align = 2
@@ -309,9 +299,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -4.0
+margin_top = -36.0
 margin_right = 403.0
-margin_bottom = 14.0
+margin_bottom = -18.0
 theme = ExtResource( 2 )
 text = "Включен"
 __meta__ = {
@@ -351,15 +341,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = 52.0
+margin_top = 20.0
 margin_right = 64.0
-margin_bottom = 73.999
+margin_bottom = 41.999
 theme = ExtResource( 2 )
 text = "Громкость звуков:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="sound_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -367,17 +354,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 98.0
-margin_top = 52.0
+margin_top = 20.0
 margin_right = 398.0
-margin_bottom = 71.999
+margin_bottom = 39.999
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="sound_border" type="Label" parent="Settings/sound_slider" groups=["ignore_color"]]
@@ -408,6 +393,64 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="radio_label" type="Label" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = 52.0
+margin_right = 64.0
+margin_bottom = 74.0
+theme = ExtResource( 2 )
+text = "Громкость радио:"
+align = 2
+
+[node name="radio_slider" type="HSlider" parent="Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 98.0
+margin_top = 52.0
+margin_right = 398.0
+margin_bottom = 72.0
+theme = ExtResource( 2 )
+min_value = -80.0
+max_value = 2.0
+step = 0.1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="music_border" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -7.50002
+margin_right = -3.0
+margin_bottom = 7.49998
+theme = ExtResource( 2 )
+text = "["
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_border2" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.00018
+margin_top = -7.00002
+margin_right = 9.00018
+margin_bottom = 7.99998
+theme = ExtResource( 2 )
+text = "]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="music_label" type="Label" parent="Settings"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -420,9 +463,6 @@ margin_bottom = 106.0
 theme = ExtResource( 2 )
 text = "Громкость музыки:"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="music_slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -434,13 +474,11 @@ margin_top = 84.0
 margin_right = 398.0
 margin_bottom = 104.0
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="music_border" type="Label" parent="Settings/music_slider" groups=["ignore_color"]]
@@ -497,13 +535,11 @@ margin_top = 116.0
 margin_right = 398.0
 margin_bottom = 136.0
 theme = ExtResource( 2 )
-min_value = -20.0
+min_value = -80.0
 max_value = 2.0
 step = 0.1
-value = 2.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="voice_border" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
@@ -540,15 +576,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -472.0
-margin_top = -120.0
+margin_top = -152.0
 margin_right = -232.0
-margin_bottom = -98.0
+margin_bottom = -130.0
 theme = ExtResource( 2 )
 text = "Язык:"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="language_button" type="Button" parent="Settings"]
 anchor_left = 0.5
@@ -556,14 +589,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -432.0
-margin_top = -90.0
+margin_top = -122.0
 margin_right = -273.0
-margin_bottom = -73.0
+margin_bottom = -104.0
 theme = ExtResource( 2 )
 text = "Русский"
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="border1" type="Label" parent="Settings/language_button" groups=["ignore_color"]]
@@ -594,14 +626,14 @@ __meta__ = {
 }
 
 [node name="colorBlock" type="Control" parent="Settings" groups=["ignore_color"]]
-anchor_left = 0.062
-anchor_top = 0.467
-anchor_right = 0.312
-anchor_bottom = 0.653
-margin_left = 0.511997
-margin_top = -0.199982
-margin_right = 0.511932
-margin_bottom = 0.199982
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -448.0
+margin_top = -52.0
+margin_right = -192.0
+margin_bottom = 60.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -616,9 +648,6 @@ theme = ExtResource( 2 )
 text = "Цвет интерфейса:"
 align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="r_label" type="Label" parent="Settings/colorBlock"]
 anchor_right = 1.0
@@ -635,45 +664,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="r_slider" type="HSlider" parent="Settings/colorBlock"]
+[node name="r_slider" type="HSlider" parent="Settings/colorBlock/r_label" groups=["ignore_color"]]
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 72.0
-margin_top = 32.0
-margin_right = -8.0
-margin_bottom = -75.0
+margin_left = 32.0001
+margin_top = 7.0
+margin_right = 197.0
+margin_bottom = -6.00008
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 1.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/r_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/r_label/r_slider" groups=["ignore_color"]]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
-margin_top = -5.0
-margin_right = -4.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = -2.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "["
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/r_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/r_label/r_slider" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = -5.0
-margin_right = 10.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = 12.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -691,17 +720,15 @@ theme = ExtResource( 2 )
 text = "G:"
 align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="g_slider" type="HSlider" parent="Settings/colorBlock"]
+[node name="g_slider" type="HSlider" parent="Settings/colorBlock/g_label" groups=["ignore_color"]]
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 72.0
-margin_top = 56.0
-margin_right = -8.0
-margin_bottom = -51.0
+margin_left = 32.0001
+margin_top = 7.0
+margin_right = 197.0
+margin_bottom = -6.00008
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 1.0
@@ -712,28 +739,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/g_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/g_label/g_slider" groups=["ignore_color"]]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
-margin_top = -5.0
-margin_right = -4.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = -2.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "["
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/g_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/g_label/g_slider" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = -5.0
-margin_right = 10.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = 12.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -751,49 +778,46 @@ theme = ExtResource( 2 )
 text = "B:"
 align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="b_slider" type="HSlider" parent="Settings/colorBlock"]
+[node name="b_slider" type="HSlider" parent="Settings/colorBlock/b_label" groups=["ignore_color"]]
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 72.0
-margin_top = 80.0
-margin_right = -8.0
-margin_bottom = -27.0
+margin_left = 32.0001
+margin_top = 7.0
+margin_right = 197.0
+margin_bottom = -6.00008
 theme = ExtResource( 2 )
 min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 1.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/b_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/b_label/b_slider" groups=["ignore_color"]]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -10.0
-margin_top = -5.0
-margin_right = -4.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = -2.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "["
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/b_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/b_label/b_slider" groups=["ignore_color"]]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = -5.0
-margin_right = 10.0
-margin_bottom = 17.0
+margin_top = -8.5
+margin_right = 12.0
+margin_bottom = 9.5
 theme = ExtResource( 2 )
 text = "]"
 __meta__ = {
@@ -823,9 +847,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="default" type="Button" parent="Controls"]
 anchor_left = 0.07
@@ -849,40 +870,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -172.0
-margin_right = 36.0002
-margin_bottom = -150.0
+margin_right = 36.0
+margin_bottom = -152.0
 theme = ExtResource( 2 )
 text = "Вперед:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="forwardBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -172.0
-margin_right = 184.0
-margin_bottom = -156.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/forwardBack" groups=["ignore_color"]]
+[node name="keyForwardIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[W]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 122.0
+margin_right = -360.0
+margin_bottom = -452.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyBackLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -892,39 +898,21 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -140.0
 margin_right = -25.0
-margin_bottom = -118.0
+margin_bottom = -120.0
 theme = ExtResource( 2 )
 text = "Назад:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="backBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -140.0
-margin_right = 184.0
-margin_bottom = -124.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/backBack" groups=["ignore_color"]]
+[node name="keyBackIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[S]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 154.0
+margin_right = -360.0
+margin_bottom = -420.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyLeftLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -934,39 +922,21 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -108.0
 margin_right = -8.0
-margin_bottom = -86.0
+margin_bottom = -88.0
 theme = ExtResource( 2 )
 text = "Налево:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="leftBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -108.0
-margin_right = 184.0
-margin_bottom = -92.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/leftBack" groups=["ignore_color"]]
+[node name="keyLeftIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[A]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 186.0
+margin_right = -360.0
+margin_bottom = -388.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyRightLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -976,39 +946,24 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -76.0
 margin_right = -49.0
-margin_bottom = -53.9999
+margin_bottom = -56.0
 theme = ExtResource( 2 )
 text = "Направо:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="rightBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -76.0
-margin_right = 184.0
-margin_bottom = -60.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/rightBack" groups=["ignore_color"]]
+[node name="keyRightIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[D]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 218.0
+margin_right = -360.0
+margin_bottom = -356.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyJumpLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1018,39 +973,24 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -44.0
 margin_right = 88.0
-margin_bottom = -27.0
+margin_bottom = -24.0
 theme = ExtResource( 2 )
-text = "Прыжок/Телепортация/Полет:"
+text = "Прыжок/Полет:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jumpBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -44.0
-margin_right = 184.0
-margin_bottom = -28.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/jumpBack" groups=["ignore_color"]]
+[node name="keyJumpIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[ Space ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 250.0
+margin_right = -360.0
+margin_bottom = -324.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyRunLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1060,39 +1000,21 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = -12.0
 margin_right = 96.0
-margin_bottom = 5.0
+margin_bottom = 8.0
 theme = ExtResource( 2 )
-text = "Бег/Магический щит/Снижение:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Бег/Щит/Снижение:"
 
-[node name="runBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = -12.0
-margin_right = 184.0
-margin_bottom = 4.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/runBack" groups=["ignore_color"]]
+[node name="keyRunIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[ Shift ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 282.0
+margin_right = -360.0
+margin_bottom = -292.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyUseLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1102,39 +1024,24 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = 20.0
 margin_right = 88.0
-margin_bottom = 37.0
+margin_bottom = 40.0
 theme = ExtResource( 2 )
 text = "Использовать: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="useBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = 20.0
-margin_right = 184.0
-margin_bottom = 36.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/useBack" groups=["ignore_color"]]
+[node name="keyUseIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     E     ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 314.0
+margin_right = -360.0
+margin_bottom = -260.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyCrouchLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1144,39 +1051,24 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = 52.0
 margin_right = 88.0
-margin_bottom = 69.0
+margin_bottom = 72.0
 theme = ExtResource( 2 )
 text = "Присесть: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="crouchBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = 52.0
-margin_right = 184.0
-margin_bottom = 68.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/crouchBack" groups=["ignore_color"]]
+[node name="keyCrouchIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[Control]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 346.0
+margin_right = -360.0
+margin_bottom = -228.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyDashLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1186,39 +1078,21 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = 84.0
 margin_right = 88.0
-margin_bottom = 101.0
+margin_bottom = 104.0
 theme = ExtResource( 2 )
-text = "Подкат: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Подкат/Телепорт: "
 
-[node name="dashBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = 84.0
-margin_right = 184.0
-margin_bottom = 100.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/dashBack" groups=["ignore_color"]]
+[node name="keyDashIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     C     ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 378.0
+margin_right = -360.0
+margin_bottom = -196.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyLegsLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1228,39 +1102,21 @@ anchor_bottom = 0.5
 margin_left = -128.0
 margin_top = 116.0
 margin_right = 88.0
-margin_bottom = 133.0
+margin_bottom = 136.0
 theme = ExtResource( 2 )
 text = "Ближний удар:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="legsBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 72.0
-margin_top = 116.0
-margin_right = 184.0
-margin_bottom = 132.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/legsBack" groups=["ignore_color"]]
+[node name="keyLegsIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     Q      ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 616.0
+margin_top = 410.0
+margin_right = -360.0
+margin_bottom = -164.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyCameraLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1270,39 +1126,21 @@ anchor_bottom = 0.5
 margin_left = 216.0
 margin_top = -172.0
 margin_right = 392.0
-margin_bottom = -155.0
+margin_bottom = -152.0
 theme = ExtResource( 2 )
 text = "Сменить камеру: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="cameraBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -172.0
-margin_right = 488.0
-margin_bottom = -156.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/cameraBack" groups=["ignore_color"]]
+[node name="keyCameraIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     F      ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 122.0
+margin_right = -56.0
+margin_bottom = -452.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyTaskLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1312,39 +1150,21 @@ anchor_bottom = 0.5
 margin_left = 216.0
 margin_top = -140.0
 margin_right = 392.0
-margin_bottom = -123.0
+margin_bottom = -120.0
 theme = ExtResource( 2 )
 text = "Просмотреть задачи:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="taskBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -140.0
-margin_right = 488.0
-margin_bottom = -124.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/taskBack" groups=["ignore_color"]]
+[node name="keyTaskIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     T      ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 154.0
+margin_right = -56.0
+margin_bottom = -420.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyInventoryLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1354,39 +1174,24 @@ anchor_bottom = 0.5
 margin_left = 216.0
 margin_top = -108.0
 margin_right = 392.0
-margin_bottom = -91.0
+margin_bottom = -88.0
 theme = ExtResource( 2 )
 text = "Инвентарь:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="inventoryBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -108.0
-margin_right = 488.0
-margin_bottom = -92.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/inventoryBack" groups=["ignore_color"]]
+[node name="keyInventoryIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[Tab]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 186.0
+margin_right = -56.0
+margin_bottom = -388.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyAutohealLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1396,39 +1201,21 @@ anchor_bottom = 0.5
 margin_left = 216.0
 margin_top = -76.0
 margin_right = 392.0
-margin_bottom = -59.0
+margin_bottom = -56.0
 theme = ExtResource( 2 )
 text = "Автохил:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="autohealBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -76.0
-margin_right = 488.0
-margin_bottom = -60.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/autohealBack" groups=["ignore_color"]]
+[node name="keyAutohealIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[     H      ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 218.0
+margin_right = -56.0
+margin_bottom = -356.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyQuicksaveLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1441,36 +1228,18 @@ margin_right = 392.0
 margin_bottom = -24.0
 theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="quicksaveBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -44.0
-margin_right = 488.0
-margin_bottom = -28.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/quicksaveBack" groups=["ignore_color"]]
+[node name="keyQuicksaveIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[    F5     ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 250.0
+margin_right = -56.0
+margin_bottom = -324.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="keyQuickloadLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1483,36 +1252,18 @@ margin_right = 392.0
 margin_bottom = 8.0
 theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="quickloadBack" type="ColorRect" parent="Controls"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 384.0
-margin_top = -12.0
-margin_right = 488.0
-margin_bottom = 4.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="edit" type="Label" parent="Controls/quickloadBack" groups=["ignore_color"]]
+[node name="keyQuickloadIcon" type="TextureRect" parent="Controls"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 1
-theme = ExtResource( 2 )
-text = "[    F9     ]"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.011
+margin_left = 920.0
+margin_top = 282.0
+margin_right = -56.0
+margin_bottom = -292.6
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+texture = ExtResource( 11 )
+stretch_mode = 6
 
 [node name="Difficulty" type="Control" parent="." groups=["ignore_color"]]
 visible = false
@@ -1943,13 +1694,14 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="."]
-anchor_left = 0.078
-anchor_top = 0.2
-anchor_right = 0.352
-anchor_bottom = 0.24
-margin_left = -7.872
-margin_right = 1.55197
-margin_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -440.0
+margin_top = -212.0
+margin_right = -150.0
+margin_bottom = -187.0
 theme = ExtResource( 2 )
 text = "[Назад]"
 
@@ -1980,7 +1732,8 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-bus = "Audio"
+bus = "Sound"
+script = ExtResource( 8 )
 
 [connection signal="mouse_entered" from="Settings/mouse_slider" to="." method="_on_mouse_entered" binds= [ "choose", "mouse" ]]
 [connection signal="mouse_exited" from="Settings/mouse_slider" to="." method="_on_mouse_exited"]
@@ -2000,6 +1753,9 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]
 [connection signal="mouse_exited" from="Settings/sound_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/sound_slider" to="Settings" method="_on_sound_slider_value_changed"]
+[connection signal="mouse_entered" from="Settings/radio_slider" to="." method="_on_mouse_entered" binds= [ "choose", "radio" ]]
+[connection signal="mouse_exited" from="Settings/radio_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/radio_slider" to="Settings" method="_on_radio_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
 [connection signal="mouse_exited" from="Settings/music_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/music_slider" to="Settings" method="_on_music_slider_value_changed"]
@@ -2009,15 +1765,15 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Settings/language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
 [connection signal="mouse_exited" from="Settings/language_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/language_button" to="Settings" method="_on_language_button_pressed"]
-[connection signal="mouse_entered" from="Settings/colorBlock/r_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_r" ]]
-[connection signal="mouse_exited" from="Settings/colorBlock/r_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/r_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Red" ]]
-[connection signal="mouse_entered" from="Settings/colorBlock/g_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_g" ]]
-[connection signal="mouse_exited" from="Settings/colorBlock/g_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/g_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Green" ]]
-[connection signal="mouse_entered" from="Settings/colorBlock/b_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_b" ]]
-[connection signal="mouse_exited" from="Settings/colorBlock/b_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/b_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Blue" ]]
+[connection signal="mouse_entered" from="Settings/colorBlock/r_label/r_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_r" ]]
+[connection signal="mouse_exited" from="Settings/colorBlock/r_label/r_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/colorBlock/r_label/r_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Red" ]]
+[connection signal="mouse_entered" from="Settings/colorBlock/g_label/g_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_g" ]]
+[connection signal="mouse_exited" from="Settings/colorBlock/g_label/g_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/colorBlock/g_label/g_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Green" ]]
+[connection signal="mouse_entered" from="Settings/colorBlock/b_label/b_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_b" ]]
+[connection signal="mouse_exited" from="Settings/colorBlock/b_label/b_slider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/colorBlock/b_label/b_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Blue" ]]
 [connection signal="mouse_entered" from="Settings/controls" to="." method="_on_mouse_entered" binds= [ "choose", "controls" ]]
 [connection signal="mouse_exited" from="Settings/controls" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/controls" to="." method="_on_submenu_pressed" binds= [ "Controls" ]]
@@ -2027,54 +1783,54 @@ bus = "Audio"
 [connection signal="mouse_entered" from="Controls/default" to="." method="_on_mouse_entered" binds= [ "choose", "default" ]]
 [connection signal="mouse_exited" from="Controls/default" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Controls/default" to="Controls" method="_on_default_pressed"]
-[connection signal="gui_input" from="Controls/forwardBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_up" ]]
-[connection signal="mouse_entered" from="Controls/forwardBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "forwardBack", "controls", "forward" ]]
-[connection signal="mouse_exited" from="Controls/forwardBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/backBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_down" ]]
-[connection signal="mouse_entered" from="Controls/backBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "backBack", "controls", "back" ]]
-[connection signal="mouse_exited" from="Controls/backBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/leftBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_left" ]]
-[connection signal="mouse_entered" from="Controls/leftBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "leftBack", "controls", "left" ]]
-[connection signal="mouse_exited" from="Controls/leftBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/rightBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_right" ]]
-[connection signal="mouse_entered" from="Controls/rightBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "rightBack", "controls", "right" ]]
-[connection signal="mouse_exited" from="Controls/rightBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/jumpBack" to="Controls" method="_on_controls_gui_input" binds= [ "jump" ]]
-[connection signal="mouse_entered" from="Controls/jumpBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "jumpBack", "controls", "jump" ]]
-[connection signal="mouse_exited" from="Controls/jumpBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/runBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_shift" ]]
-[connection signal="mouse_entered" from="Controls/runBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "runBack", "controls", "run" ]]
-[connection signal="mouse_exited" from="Controls/runBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/useBack" to="Controls" method="_on_controls_gui_input" binds= [ "use" ]]
-[connection signal="mouse_entered" from="Controls/useBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "useBack", "controls", "use" ]]
-[connection signal="mouse_exited" from="Controls/useBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/crouchBack" to="Controls" method="_on_controls_gui_input" binds= [ "crouch" ]]
-[connection signal="mouse_entered" from="Controls/crouchBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "crouchBack", "controls", "sit" ]]
-[connection signal="mouse_exited" from="Controls/crouchBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/dashBack" to="Controls" method="_on_controls_gui_input" binds= [ "dash" ]]
-[connection signal="mouse_entered" from="Controls/dashBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "dashBack", "controls", "dash" ]]
-[connection signal="mouse_exited" from="Controls/dashBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/legsBack" to="Controls" method="_on_controls_gui_input" binds= [ "legsHit" ]]
-[connection signal="mouse_entered" from="Controls/legsBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "legsBack", "controls", "choseHit" ]]
-[connection signal="mouse_exited" from="Controls/legsBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/cameraBack" to="Controls" method="_on_controls_gui_input" binds= [ "changeView" ]]
-[connection signal="mouse_entered" from="Controls/cameraBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "cameraBack", "controls", "changeView" ]]
-[connection signal="mouse_exited" from="Controls/cameraBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/taskBack" to="Controls" method="_on_controls_gui_input" binds= [ "task" ]]
-[connection signal="mouse_entered" from="Controls/taskBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "taskBack", "controls", "seeTasks" ]]
-[connection signal="mouse_exited" from="Controls/taskBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/inventoryBack" to="Controls" method="_on_controls_gui_input" binds= [ "inventory" ]]
-[connection signal="mouse_entered" from="Controls/inventoryBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "inventoryBack", "controls", "inventory" ]]
-[connection signal="mouse_exited" from="Controls/inventoryBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/autohealBack" to="Controls" method="_on_controls_gui_input" binds= [ "autoheal" ]]
-[connection signal="mouse_entered" from="Controls/autohealBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "autohealBack", "controls", "autoheal" ]]
-[connection signal="mouse_exited" from="Controls/autohealBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/quicksaveBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
-[connection signal="mouse_entered" from="Controls/quicksaveBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "quicksaveBack", "controls", "quicksave" ]]
-[connection signal="mouse_exited" from="Controls/quicksaveBack" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/quickloadBack" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
-[connection signal="mouse_entered" from="Controls/quickloadBack" to="Controls" method="_on_controls_mouse_entered" binds= [ "quickloadBack", "controls", "quickload" ]]
-[connection signal="mouse_exited" from="Controls/quickloadBack" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_up" ]]
+[connection signal="mouse_entered" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyForwardIcon", "forward" ]]
+[connection signal="mouse_exited" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyBackIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_down" ]]
+[connection signal="mouse_entered" from="Controls/keyBackIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyBackIcon", "back" ]]
+[connection signal="mouse_exited" from="Controls/keyBackIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_left" ]]
+[connection signal="mouse_entered" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyLeftIcon", "left" ]]
+[connection signal="mouse_exited" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyRightIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_right" ]]
+[connection signal="mouse_entered" from="Controls/keyRightIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyRightIcon", "right" ]]
+[connection signal="mouse_exited" from="Controls/keyRightIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_gui_input" binds= [ "jump" ]]
+[connection signal="mouse_entered" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyJumpIcon", "jump" ]]
+[connection signal="mouse_exited" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyRunIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_shift" ]]
+[connection signal="mouse_entered" from="Controls/keyRunIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyRunIcon", "run" ]]
+[connection signal="mouse_exited" from="Controls/keyRunIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyUseIcon" to="Controls" method="_on_controls_gui_input" binds= [ "use" ]]
+[connection signal="mouse_entered" from="Controls/keyUseIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyUseIcon", "use" ]]
+[connection signal="mouse_exited" from="Controls/keyUseIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_gui_input" binds= [ "crouch" ]]
+[connection signal="mouse_entered" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyCrouchIcon", "sit" ]]
+[connection signal="mouse_exited" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyDashIcon" to="Controls" method="_on_controls_gui_input" binds= [ "dash" ]]
+[connection signal="mouse_entered" from="Controls/keyDashIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyDashIcon", "dash" ]]
+[connection signal="mouse_exited" from="Controls/keyDashIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_gui_input" binds= [ "legsHit" ]]
+[connection signal="mouse_entered" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyLegsIcon", "choseHit" ]]
+[connection signal="mouse_exited" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_gui_input" binds= [ "changeView" ]]
+[connection signal="mouse_entered" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyCameraIcon", "changeView" ]]
+[connection signal="mouse_exited" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_gui_input" binds= [ "task" ]]
+[connection signal="mouse_entered" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyTaskIcon", "seeTasks" ]]
+[connection signal="mouse_exited" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_gui_input" binds= [ "inventory" ]]
+[connection signal="mouse_entered" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyInventoryIcon", "inventory" ]]
+[connection signal="mouse_exited" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_gui_input" binds= [ "autoheal" ]]
+[connection signal="mouse_entered" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyAutohealIcon", "autoheal" ]]
+[connection signal="mouse_exited" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
+[connection signal="mouse_entered" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyQuicksaveIcon", "quicksave" ]]
+[connection signal="mouse_exited" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_mouse_exited"]
+[connection signal="gui_input" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
+[connection signal="mouse_entered" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyQuickloadIcon", "quickload" ]]
+[connection signal="mouse_exited" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_mouse_exited"]
 [connection signal="mouse_entered" from="Difficulty/default" to="." method="_on_mouse_entered" binds= [ "choose", "default_difficulty" ]]
 [connection signal="mouse_exited" from="Difficulty/default" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Difficulty/default" to="Difficulty" method="_on_default_pressed"]

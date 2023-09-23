@@ -1,26 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/scripts/interface/Menus/DealthMenu.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
 [ext_resource path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/audio/button_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=7]
 
-[node name="DealthMenu" type="Control" groups=[
-"ignore_color",
-]]
+[node name="DealthMenu" type="Control" groups=["ignore_color"]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -28,9 +22,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="Menu" type="Control" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -135,9 +127,7 @@ __meta__ = {
 [node name="Load" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="modalError" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="modalError" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -145,9 +135,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="modalError" groups=[
-"ignore_color",
-]]
+[node name="back" type="ColorRect" parent="modalError" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -246,7 +234,8 @@ __meta__ = {
 
 [node name="audi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-bus = "Audio"
+bus = "Sound"
+script = ExtResource( 7 )
 
 [connection signal="mouse_entered" from="Menu/again" to="." method="_on_mouse_entered" binds= [ "choose", "again" ]]
 [connection signal="mouse_exited" from="Menu/again" to="." method="_on_mouse_exited"]

@@ -195,7 +195,7 @@
         {
           "key": "itemCode",
           "op": "set",
-          "value": "agent1Note"
+          "value": "agent-note"
         }
       ],
       "next": "A4"

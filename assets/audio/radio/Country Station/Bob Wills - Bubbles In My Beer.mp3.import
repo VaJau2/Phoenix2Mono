@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bob Wills - Bubbles In My Beer.mp3-737955f0520bbc4194cf1fcd13092c9d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/Bob Wills - Bubbles In My Beer.mp3"
+dest_files=[ "res://.import/Bob Wills - Bubbles In My Beer.mp3-737955f0520bbc4194cf1fcd13092c9d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

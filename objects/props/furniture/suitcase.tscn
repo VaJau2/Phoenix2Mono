@@ -24,9 +24,7 @@ surfaces/0 = {
 "vertex_count": 80
 }
 
-[node name="suitcase" type="StaticBody" groups=[
-"savable",
-]]
+[node name="suitcase" type="StaticBody" groups=["savable"]]
 collision_layer = 2
 collision_mask = 0
 physics_material_override = ExtResource( 4 )
@@ -44,7 +42,7 @@ shape = SubResource( 2 )
 unit_db = 5.0
 unit_size = 2.0
 max_distance = 500.0
+bus = "Sound"
 
 [node name="Cube" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = null

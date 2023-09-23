@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Louis Prima - Oh Marie.mp3-9ca7e2527e83bc8d5ad3e78af97d840e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Easy-Greasy FM/Home/Louis Prima - Oh Marie.mp3"
+dest_files=[ "res://.import/Louis Prima - Oh Marie.mp3-9ca7e2527e83bc8d5ad3e78af97d840e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

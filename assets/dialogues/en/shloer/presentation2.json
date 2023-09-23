@@ -1,1 +1,130 @@
-{"nodes":{"B1":{"kind":"dialogue","root_node":false,"body":"This wonderful specimen legally has an age of about twelve years… ","speaker":"Bellgates","opposite":"Audience","next":"T2"},"T2":{"kind":"dialogue","root_node":false,"body":"Sorry to interrupt you, let me save your and my time. Is this the only thing you were going to present to me?","speaker":"Minister Twilight","opposite":"Bellgates","next":"B3"},"B3":{"kind":"dialogue","root_node":false,"body":"Yes","speaker":"Bellgates","opposite":"Minister Twilight","next":"T4"},"T4":{"kind":"dialogue","root_node":false,"body":"This device only allows you to age foals and rejuvenate the elderly?","speaker":"Minister Twilight","opposite":"Bellgates","next":"B5"},"B5":{"kind":"dialogue","root_node":false,"body":"No, it doesn't rejuvenate, it slows down aging, I said that...","speaker":"Bellgates","opposite":"Minister Twilight","next":"T5.1"},"P6":{"kind":"dialogue","root_node":false,"body":"Wheeee, this purple unicorn is ma-a-ad…","speaker":"Wonderful specimen","opposite":"Bellgates","next":"T7"},"T7":{"kind":"dialogue","root_node":false,"body":"But...","speaker":"Bellgates","opposite":"Minister Twilight","next":"T8"},"T8":{"kind":"dialogue","root_node":false,"body":"You've wasted my time, and now you're going to waste even more on some excuses? Forget it, I won't fund you and..","speaker":"Minister Twilight","opposite":"Bellgates","next":"B9(1)"},"B9(1)":{"kind":"narration","root_node":false,"body":"ActivateTrigger","set":[{"key":"trigger","op":"set","value":"explosionTriggers"}]},"T5.1":{"kind":"dialogue","root_node":false,"body":"*sign* You left my ministry and now ask me funding this? Do you know how many similar inventions are put on my desk every day?","speaker":"Minister Twilight","opposite":"Bellgates","next":"P6"}},"speakers":{"Bellgates":{"color":{"r":0,"g":0,"b":0,"a":0}},"Audience":{"color":{"r":0,"g":0,"b":0,"a":0}},"Minister Twilight":{"color":{"r":0,"g":0,"b":0,"a":0}},"Wonderful specimen":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+    "nodes": {
+        "B1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "This wonderful specimen legally has an age of about twelve years… ",
+            "config": "bellgates",
+            "speaker": "Bellgates",
+            "opposite": "Audience",
+            "next": "T2"
+        },
+        "T2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Sorry to interrupt you, let me save your and my time. Is this the only thing you were going to present to me?",
+            "config": "twilight",
+            "speaker": "Minister Twilight",
+            "opposite": "Bellgates",
+            "next": "B3"
+        },
+        "B3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes",
+            "config": "bellgates",
+            "speaker": "Bellgates",
+            "opposite": "Minister Twilight",
+            "next": "T4"
+        },
+        "T4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "This device only allows you to age foals and rejuvenate the elderly?",
+            "config": "twilight",
+            "speaker": "Minister Twilight",
+            "opposite": "Bellgates",
+            "next": "B5"
+        },
+        "B5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "No, it doesn't rejuvenate, it slows down aging, I said that...",
+            "config": "bellgates",
+            "speaker": "Bellgates",
+            "opposite": "Minister Twilight",
+            "next": "T5.1"
+        },
+        "P6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Wheeee, this purple unicorn is ma-a-ad…",
+            "speaker": "Wonderful specimen",
+            "opposite": "Bellgates",
+            "next": "T7"
+        },
+        "T7": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But...",
+            "config": "bellgates",
+            "speaker": "Bellgates",
+            "opposite": "Minister Twilight",
+            "next": "T8"
+        },
+        "T8": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You've wasted my time, and now you're going to waste even more on some excuses? Forget it, I won't fund you and..",
+            "config": "twilight",
+            "speaker": "Minister Twilight",
+            "opposite": "Bellgates",
+            "next": "B9(1)"
+        },
+        "B9(1)": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "trigger",
+                    "op": "set",
+                    "value": "explosionTriggers"
+                }
+            ]
+        },
+        "T5.1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[sign] You left my ministry and now ask me funding this? Do you know how many similar inventions are put on my desk every day?",
+            "config": "twilight",
+            "speaker": "Minister Twilight",
+            "opposite": "Bellgates",
+            "next": "P6"
+        }
+    },
+    "speakers": {
+        "Bellgates": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Audience": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Minister Twilight": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Wonderful specimen": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

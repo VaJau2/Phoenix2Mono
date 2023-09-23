@@ -3,7 +3,8 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class PlayerInventory {
+public class PlayerInventory 
+{
     public EffectHandler effects;
     Messages messages;
     Player player;
@@ -17,7 +18,7 @@ public class PlayerInventory {
     //ссылки на кнопки с патронами, чтоб было проще их достать при необходимости
     public Dictionary<string, ItemIcon> ammoButtons = new Dictionary<string, ItemIcon>();
     
-    private InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
+    public InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
     private string tempClothDataName;
     private Dictionary tempClothData;
@@ -39,27 +40,33 @@ public class PlayerInventory {
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {
-        if (ammoButtons.ContainsKey(ammoType)) {
+        if (ammoButtons.ContainsKey(ammoType)) 
+        {
             ammoButtons[ammoType] = button;
-        } else {
+        } 
+        else 
+        {
             ammoButtons.Add(ammoType, button);
         }
     }
 
     public void AddKey(string key) 
     {
-        if (!tempKeys.Contains(key)) {
+        if (!tempKeys.Contains(key)) 
+        {
             tempKeys.Add(key);
         }
     }
 
-    public void RemoveKey(string key) {
+    public void RemoveKey(string key) 
+    {
         if (menu.mode.SameItemCount(key) > 1)
         {
             return;
         }
         
-        if (tempKeys.Contains(key)) {
+        if (tempKeys.Contains(key)) 
+        {
             tempKeys.Remove(key);
         }
     }
@@ -71,7 +78,6 @@ public class PlayerInventory {
 
     public Array<string> GetKeys() => tempKeys;
     
-
     public Dictionary GetArmorProps() 
     {
         if (cloth == tempClothDataName) return tempClothData;
@@ -92,21 +98,25 @@ public class PlayerInventory {
         return tempWeaponData;
     }
 
-    public bool itemIsUsable(string itemType) {
-        return itemType != "staff" && itemType != "ammo";
+    public bool itemIsUsable(ItemType itemType) 
+    {
+        return itemType != ItemType.staff && itemType != ItemType.ammo && itemType != ItemType.money;
     }
 
     public void UseItem(Dictionary itemData)
     {
         SoundUsingItem(itemData);
 
-        switch(itemData["type"]) {
-            case "food":
+        switch((ItemType)itemData["type"]) 
+        {
+            case ItemType.food:
                 if (player.FoodCanHeal)
+                {
                     player.HealHealth(int.Parse(itemData["heal"].ToString()));
+                }
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
-            case "meds":
+            case ItemType.meds:
                 Effect newEffect = EffectHandler.GetEffectByName(itemData["medsEffect"].ToString());
                 effects.AddEffect(newEffect);
                 messages.ShowMessage("useItem", itemData["name"].ToString(), "items");
@@ -146,22 +156,24 @@ public class PlayerInventory {
         CheckStealthBuck();
         
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if (sound) {
+        if (sound) 
+        {
             SoundUsingItem(itemData);
             messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
         }
 
-        switch(itemData["type"]) {
-            case "weapon":
+        switch((ItemType)itemData["type"]) 
+        {
+            case ItemType.weapon:
                 weapon = itemCode;
                 player.Weapons.LoadNewWeapon(itemCode, itemData);
                 break;
-            case "armor":
+            case ItemType.armor:
                 cloth = itemCode;
                 player.LoadBodyMesh();
                 CheckSpeed(itemData);
                 break;
-            case "artifact":
+            case ItemType.artifact:
                 artifact = itemCode;
                 player.LoadArtifactMesh(itemCode);
                 break;
@@ -177,17 +189,20 @@ public class PlayerInventory {
 
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
-        switch(itemData["type"]) {
-            case "weapon":
+        switch((ItemType)itemData["type"]) 
+        {
+            case ItemType.weapon:
                 weapon = "";
                 player.Weapons.ClearWeapon();
                 break;
-            case "armor":
+            
+            case ItemType.armor:
                 cloth = "empty";
                 CheckSpeed(itemData, -1);
                 if (changeModel) player.LoadBodyMesh();
                 break;
-            case "artifact":
+            
+            case ItemType.artifact:
                 artifact = "";
                 if (changeModel) player.LoadArtifactMesh();
                 break;
@@ -348,7 +363,8 @@ public class PlayerInventory {
 
     private void SoundUsingItem(Dictionary itemData) 
     {
-        if(itemData.Contains("sound")) {
+        if(itemData.Contains("sound")) 
+        {
             string path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
             var sound = GD.Load<AudioStreamSample>(path);
             
@@ -359,7 +375,8 @@ public class PlayerInventory {
 
     private void CheckSpeed(Dictionary effects, int factor = 1)
     {
-        if (effects.Contains("speedDecrease")) {
+        if (effects.Contains("speedDecrease")) 
+        {
             string speedEffect = effects["speedDecrease"].ToString();
             player.BaseSpeed -= int.Parse(speedEffect) * factor;
         }

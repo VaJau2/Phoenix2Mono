@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/F5.mp3-c4e25fc16e0132e50fe941aa581e850f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantShy/trade/F5.mp3"
+dest_files=[ "res://.import/F5.mp3-c4e25fc16e0132e50fe941aa581e850f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

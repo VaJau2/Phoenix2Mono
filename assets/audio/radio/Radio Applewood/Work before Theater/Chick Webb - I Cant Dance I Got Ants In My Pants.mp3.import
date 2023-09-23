@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Chick Webb - I Cant Dance I Got Ants In My Pants.mp3-f458580b232ec4ccc6bed95e6b85dcb9.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Work before Theater/Chick Webb - I Cant Dance I Got Ants In My Pants.mp3"
+dest_files=[ "res://.import/Chick Webb - I Cant Dance I Got Ants In My Pants.mp3-f458580b232ec4ccc6bed95e6b85dcb9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

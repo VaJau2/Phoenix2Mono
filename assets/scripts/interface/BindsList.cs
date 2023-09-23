@@ -6,13 +6,15 @@ using System.Linq;
 //класс, выводящий список биндов кнопок на канвасе
 public class BindsList : Node
 {
-    private List<ItemIcon> bindIcons = new List<ItemIcon>();
-
+    public BindIcon TempDeletingIcon;
+    
+    private readonly List<BindIcon> bindIcons = new List<BindIcon>();
+    
     private PackedScene iconPrefab;
 
     public override void _Ready()
     {
-        iconPrefab = GD.Load<PackedScene>("res://objects/interface/itemIcon.tscn");
+        iconPrefab = GD.Load<PackedScene>("res://objects/interface/BindIcon.tscn");
     }
 
     //сортирует бинды в порядке возрастания клавиш
@@ -24,10 +26,14 @@ public class BindsList : Node
             break;
         }
         
-        bindIcons.Sort(delegate(ItemIcon x, ItemIcon y)
+        bindIcons.Sort(delegate(BindIcon x, BindIcon y)
         {
             int bindX = Convert.ToInt16(x.GetBindKey());
+            if (bindX == 0) bindX = 10;
+
             int bindY = Convert.ToInt16(y.GetBindKey());
+            if (bindY == 0) bindY = 10;
+
             return bindX > bindY ? 1 : -1;
         });
         
@@ -55,23 +61,31 @@ public class BindsList : Node
             }
         }
         
-        if (!(iconPrefab.Instance() is ItemIcon newIcon)) return;
+        if (!(iconPrefab.Instance() is BindIcon newIcon)) return;
         MenuBase.LoadColorForChildren(newIcon);
         AddChild(newIcon);
         newIcon.SetBindKey(icon.GetBindKey());
         newIcon.SetIcon(icon.GetIcon());
+        newIcon.SetItemCode(icon.myItemCode);
         bindIcons.Add(newIcon);
         
         SortBinds();
     }
 
-    public void RemoveIcon(ItemIcon icon)
+    public async void RemoveIcon(ItemIcon icon)
     {
-        foreach (var tempIcon 
-            in bindIcons.Where(tempIcon => tempIcon.GetIcon() == icon.GetIcon()))
+        foreach (var tempIcon in bindIcons.Where(tempIcon => tempIcon.GetIcon() == icon.GetIcon()))
         {
-            tempIcon.QueueFree();
+            TempDeletingIcon = tempIcon.IsNeedDelay() ? tempIcon : null;
+            
+            tempIcon.DeleteWithDelay();
             bindIcons.Remove(tempIcon);
+
+            if (tempIcon.IsNeedDelay())
+            {
+                await ToSignal(tempIcon, nameof(BindIcon.IsDeleting));
+            }
+            
             SortBinds();
             return;
         }

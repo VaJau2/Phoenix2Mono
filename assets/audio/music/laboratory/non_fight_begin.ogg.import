@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/laboratory/non_fight_begin.ogg"
+dest_files=[ "res://.import/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

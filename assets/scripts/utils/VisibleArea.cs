@@ -13,8 +13,9 @@ public class VisibleArea : Area
     
     public void _on_body_exited(Node body)
     {
-        if (!(body is Player)) return;
-        if (!(GetParent() is Spatial parent)) return;
+        if (!(body is Player player)) return;
+        if (player.Health <= 0) return;
+        if (!(GetParent() is Spatial parent)) return; 
         parent.Visible = false;
     }
 }

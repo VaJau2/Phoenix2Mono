@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Danny Kaye - Civilization.mp3-ab682f2515e8b7a2aae29d888f9baeca.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Radio Applewood/Danny Kaye - Civilization.mp3"
+dest_files=[ "res://.import/Danny Kaye - Civilization.mp3-ab682f2515e8b7a2aae29d888f9baeca.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

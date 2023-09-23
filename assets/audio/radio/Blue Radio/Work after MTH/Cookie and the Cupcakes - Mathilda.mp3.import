@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cookie and the Cupcakes - Mathilda.mp3-4eecc293122b7b3e8476ef1118ac3a8e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Blue Radio/Work after MTH/Cookie and the Cupcakes - Mathilda.mp3"
+dest_files=[ "res://.import/Cookie and the Cupcakes - Mathilda.mp3-4eecc293122b7b3e8476ef1118ac3a8e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

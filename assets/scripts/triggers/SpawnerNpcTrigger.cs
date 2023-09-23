@@ -6,6 +6,7 @@ using Array = Godot.Collections.Array;
 public class SpawnerNpcTrigger: ActivateOtherTrigger
 {
     [Export] private PackedScene npcPrefab;
+    [Export] private string npcName;
     [Export] private NodePath spawnPointPath;
     [Export] private float spawnDelay;
     [Export] private NodePath movePointPath;
@@ -94,7 +95,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     {
         if (npcPrefab.Instance() is NpcWithWeapons npcInstance)
         {
-            npcInstance.Name = "Created_" + npcInstance.Name;
+            npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
             npcInstance.StartHealth = StartHealth;
             npcInstance.weaponCode = weaponCode;
             npcInstance.relation = relation;
@@ -111,7 +112,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             else
             {
                 npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.origin, run);
-                npcInstance.myStartRot = new Vector3(0, spawnPoint.Rotation.y, 0);
+                npcInstance.myStartRot = spawnPoint.Rotation;
             }
             
             if (triggerConnections != null)

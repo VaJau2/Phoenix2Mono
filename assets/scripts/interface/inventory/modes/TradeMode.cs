@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -28,13 +30,15 @@ public class TradeMode: InventoryMode
     public TradeMode (InventoryMenu menu)
     : base(menu)
     {
+        var back = menu.GetNode<Control>("helper/back");
         randomItems = menu.GetNode<RandomItems>("/root/Main/Scene/randomItems");
         labels.Add("moneyTrade", back.GetNode<Label>("tradeBack/moneyLabel"));
 
         tradeBack = back.GetNode<Control>("tradeBack");
         tradeLabel = tradeBack.GetNode<Label>("Label");
         traderMoneyCount = tradeBack.GetNode<Label>("moneyCount");
-        foreach(object button in tradeBack.GetNode<Control>("items").GetChildren()) {
+        foreach (object button in tradeBack.GetNode<Control>("items").GetChildren()) 
+        {
             tradeButtons.Add(button as ItemIcon); 
         }
 
@@ -49,12 +53,15 @@ public class TradeMode: InventoryMode
 
     public void SetTrader(ITrader trader)
     {
-        this.tempTrader = trader;
+        tempTrader = trader;
         string traderName = InterfaceLang.GetPhrase("inGame", "tradeNames", trader.traderCode);
         tradeLabel.Text = traderName;
-        if(trader.itemPositions.Count > 0) {
+        if(trader.itemPositions.Count > 0) 
+        {
             LoadTradeButtons(trader.itemPositions, trader.ammoCount);
-        } else {
+        } 
+        else 
+        {
             LoadTradeButtons(trader.itemCodes, trader.ammoCount);
         }
     }
@@ -77,21 +84,49 @@ public class TradeMode: InventoryMode
 
     public override void UpdateInput(InputEvent @event)
     {
-        if (menu.isOpen && tempButton != null) {
-            if (modalAsk.Visible) {
-                if (Input.IsActionJustPressed("jump")) {
+        if (menu.isOpen && tempButton != null) 
+        {
+            if (modalAsk.Visible) 
+            {
+                if (Input.IsActionJustPressed("jump")) 
+                {
                     _on_modal_yes_pressed();
                 }
-                if (Input.IsActionJustPressed("ui_shift")) {
+                if (Input.IsActionJustPressed("ui_shift")) 
+                {
                     _on_modal_no_pressed();
                 }
-            } else {
-                if (Input.IsActionJustPressed("ui_click")) {
-                    if (CheckSellItem()) return;
-                    if (CheckBuyItem())  return;
+            } 
+            else 
+            {
+                if (tempButton.isInventoryIcon)
+                {
+                    if (UpdateDragging(@event)) return;
+                }
+                
+                if (Input.IsActionJustReleased("ui_click")) 
+                {
+                    if (IsMouseOutsideDeadZone())
+                    {
+                        if (CheckSellItem()) return;
+                        CheckBuyItem();
+                    }
+                }
+                
+                if (@event is InputEventKey && !tradeButtons.Contains(tempButton)) 
+                {
+                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
                 }
             }
         }
+        
+        base.UpdateInput(@event);
+    }
+
+    public override void MoveTempItem()
+    {
+        if (CheckSellItem()) return;
+        CheckBuyItem();
     }
 
     public override void _on_modal_no_pressed()
@@ -140,7 +175,9 @@ public class TradeMode: InventoryMode
                     UpdateMoneyCount();
                 }
             }
-        } else {
+        } 
+        else 
+        {
             if (inventory.money < itemPrice)
             {
                 inventory.ItemsMessage("money");
@@ -151,11 +188,15 @@ public class TradeMode: InventoryMode
             tempTrader.moneyCount += tempItemPrice * tempCount;
             inventory.money -= tempItemPrice * tempCount;
             
-            if (!checkAmmoInInventory()) {
+            if (!checkAmmoInInventory()) 
+            {
                 ItemIcon itemButton = FirstEmptyButton;
-                if (tempCount == tempCountMax) {
+                if (tempCount == tempCountMax) 
+                {
                     ChangeItemButtons(tempButton, itemButton);
-                } else {
+                } 
+                else 
+                {
                     itemButton.SetItem(tempButton.myItemCode);
                     itemButton.SetCount(tempCount);
                     tempButton.SetCount(tempButton.GetCount() - tempCount, true);
@@ -173,7 +214,7 @@ public class TradeMode: InventoryMode
         tempCount = (int)newCount;
         string askPhrase = GetAskPhrase();
         askLabel.Text = askPhrase;
-        sliderCount.Text = newCount.ToString();
+        sliderCount.Text = newCount.ToString(CultureInfo.InvariantCulture);
     }
 
     private void CloseModalAsk()
@@ -232,7 +273,8 @@ public class TradeMode: InventoryMode
 
     private void ClearTraderButtons()
     {
-        foreach(ItemIcon tempIcon in tradeButtons) {
+        foreach(ItemIcon tempIcon in tradeButtons)
+        {
             tempIcon.ClearItem();
         }
     }
@@ -241,10 +283,12 @@ public class TradeMode: InventoryMode
     private void LoadTradeButtons(Array<string> newItems, Dictionary<string, int> ammo)
     {
         ClearTraderButtons();
-        for (int i = 0; i < newItems.Count; i++) {
-            AddTradeItem(newItems[i]);
+        foreach (var item in newItems)
+        {
+            AddTradeItem(item);
         }
-        foreach(string ammoItem in ammo.Keys) {
+        foreach(string ammoItem in ammo.Keys) 
+        {
             ItemIcon newAmmoButton = AddTradeItem(ammoItem);
             newAmmoButton.SetCount(ammo[ammoItem]);
             tempTrader.ammoButtons.Add(ammoItem, newAmmoButton);
@@ -255,40 +299,39 @@ public class TradeMode: InventoryMode
     private void LoadTradeButtons(Dictionary<int, string> itemPositions, Dictionary<string, int> ammo)
     {
         ClearTraderButtons();
+        
         //в массиве itemPositions также лежат патроны
-        foreach(int buttonId in itemPositions.Keys) {
+        foreach (int buttonId in itemPositions.Keys) 
+        {
             string itemCode = itemPositions[buttonId];
-            ItemIcon tempButton = tradeButtons[buttonId];
-            tempButton.SetItem(itemCode);
+            ItemIcon tempTradeButton = tradeButtons[buttonId];
+            tempTradeButton.SetItem(itemCode);
 
             //грузим количество этих патронов
-            if(ammo.ContainsKey(itemCode)) {
-                tempButton.SetCount(ammo[itemCode]);
+            if(ammo.ContainsKey(itemCode)) 
+            {
+                tempTradeButton.SetCount(ammo[itemCode]);
             }
         }
     }
 
     private ItemIcon FirstEmptyTradeButton 
     {
-        get {
-            foreach(ItemIcon button in tradeButtons) {
-                if (button.myItemCode == null) {
-                    return button;
-                }
-            }
-            return null;
-        }
+        get { return tradeButtons.FirstOrDefault(button => button.myItemCode == null); }
     }
 
     private ItemIcon AddTradeItem(string itemCode) 
     {
         ItemIcon emptyButton = FirstEmptyTradeButton;
-        if (emptyButton != null) {
+        if (emptyButton != null) 
+        {
             emptyButton.SetItem(itemCode);
             
             int buttonId = tradeButtons.IndexOf(emptyButton);
             tempTrader.itemPositions.Add(buttonId, itemCode);
-        } else {
+        } 
+        else 
+        {
             inventory.ItemsMessage("space");
         }
         
@@ -305,14 +348,17 @@ public class TradeMode: InventoryMode
         tempTrader.ammoButtons.Clear();
 
         //проходим по иконкам
-        foreach(ItemIcon tempIcon in tradeButtons) {
-            if(tempIcon.myItemCode != null) {
-
+        foreach(ItemIcon tempIcon in tradeButtons) 
+        {
+            if (tempIcon.myItemCode != null)
+            {
                 //сохраняем позицию иконки
                 int iconId = tradeButtons.IndexOf(tempIcon);
                 tempTrader.itemPositions.Add(iconId, tempIcon.myItemCode);
+                
                 //сохраняем количество, если это патроны
-                if(tempIcon.GetCount() != -1) {
+                if(tempIcon.GetCount() != -1) 
+                {
                     tempTrader.ammoCount.Add(tempIcon.myItemCode, tempIcon.GetCount());
                     tempTrader.ammoButtons.Add(tempIcon.myItemCode, tempIcon);
                 }
@@ -331,28 +377,51 @@ public class TradeMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        string phraseName = isInventoryIcon ? "put" : "take";
-        controlHints.Text = InterfaceLang.GetPhrase(
-            "inventory", 
-            "tradeControlHints", 
-            phraseName
-        );
-    }
+        var type = (ItemType)tempItemData["type"];
+        ControlText[] controlTexts;
 
-    protected override bool IconsInSameArray(ItemIcon oldButton, ItemIcon newButton) 
-    {
-        if (tradeButtons.Contains(oldButton) && tradeButtons.Contains(newButton)) {
-            return true;
-        }
-        return base.IconsInSameArray(oldButton, newButton);
-    }
-
-    protected override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
-    {
-        if (!IconsInSameArray(oldButton, newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        if (isInventoryIcon)
         {
-            ClearBind(oldButton);
+            switch (type)
+            {
+                case ItemType.weapon:
+                    controlTexts = new[] { ControlText.equip, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.armor:
+                case ItemType.artifact:
+                    controlTexts = new[] { ControlText.equip, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.note:
+                    controlTexts = new[] { ControlText.read, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.food:
+                    controlTexts = new[] { ControlText.eat, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                case ItemType.meds:
+                    controlTexts = new[] { ControlText.use, ControlText.bind, ControlText.move, ControlText.sell };
+                    break;
+
+                default:
+                    controlTexts = new[] { ControlText.move, ControlText.sell };
+                    break;
+            }
         }
+        else controlTexts = new[] { ControlText.buy };
+
+        controlHints.LoadHits(controlTexts);
+    }
+
+    public override void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
+    {
+        if (tradeButtons.Contains(newButton) && !string.IsNullOrEmpty(oldButton.GetBindKey()))
+        {
+            bindsHandler.ClearBind(oldButton);
+        }
+
         base.ChangeItemButtons(oldButton, newButton);
     }
 
@@ -361,10 +430,13 @@ public class TradeMode: InventoryMode
         int tempPrice = int.Parse(tempItemProps["price"].ToString());
         float priceDelta = player.PriceDelta;
         
-        if (buyPrice) {
+        if (buyPrice) 
+        {
             //стоимость покупки
             tempPrice = (int)(tempPrice / (PRICE_DIFF * priceDelta));
-        } else {
+        } 
+        else 
+        {
             //стоимость продажи
             tempPrice = (int)(tempPrice * (PRICE_DIFF * priceDelta));
             if (tempPrice == 0)
@@ -384,20 +456,25 @@ public class TradeMode: InventoryMode
     {
         string result = "";
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
-        foreach(string prop in itemProps.Keys) {
-            if (itemPropNames.Contains(prop)) {
+        foreach(string prop in itemProps.Keys) 
+        {
+            if (itemPropNames.Contains(prop)) 
+            {
                 string propName = itemPropNames[prop].ToString();
-                string propValue = "";
+                string propValue;
                 
                 //выводим стоимость покупки/продажи предмета
-                if (prop == "price") {
+                if (prop == "price") 
+                {
                     tempItemName = itemProps["name"].ToString();
                     
                     bool isBuyPrice = !itemButtons.Contains(tempButton);
                     tempItemPrice = GetItemPrice(itemProps, isBuyPrice);
                     
                     propValue = tempItemPrice.ToString(); 
-                } else {
+                } 
+                else 
+                {
                     propValue = itemProps[prop].ToString();
                 }
 
@@ -406,17 +483,15 @@ public class TradeMode: InventoryMode
                 result += "> " + propName + propValue + "\n";
             }
         }
-        if (itemProps["type"].ToString() == "ammo") {
-            tempCountMax = tempButton.GetCount();
-        } else {
-            tempCountMax = 1;
-        }
+        
+        tempCountMax = (ItemType)itemProps["type"] == ItemType.ammo ? tempButton.GetCount() : 1;
         return result;
     } 
 
     private bool CheckSellItem()
     {
-        if (itemButtons.Contains(tempButton)) {
+        if (itemButtons.Contains(tempButton)) 
+        {
             //если предмет квестовый, его нельзя продать
             if (tempItemData.Contains("questItem"))
             {
@@ -425,38 +500,41 @@ public class TradeMode: InventoryMode
             }
 
             //если у торговца хватает денег
-            if (tempTrader.moneyCount > tempItemPrice) {
+            if (tempTrader.moneyCount > tempItemPrice)
+            {
                 OpenModalAsk("sell");
                 return true;
-            } else {
-                inventory.ItemsMessage("money");
-            }
-
+            } 
+            
+            inventory.ItemsMessage("money");
             return true;
         }
 
         return false;
     }
 
-    private bool CheckBuyItem()
+    private void CheckBuyItem()
     {
-        if(tradeButtons.Contains(tempButton)) {
+        if (tradeButtons.Contains(tempButton)) 
+        {
             ItemIcon itemButton = FirstEmptyButton;
-            if (itemButton != null || buyAmmo) {
+            if (itemButton != null || buyAmmo) 
+            {
                 //если в инвентаре хватает денег
-                if (inventory.money > tempItemPrice) {
+                if (inventory.money > tempItemPrice) 
+                {
                     OpenModalAsk("buy");
-                    return true;
+                    return;
 
-                } else {
-                    inventory.ItemsMessage("money");
-                }
-                
-            } else {
+                } 
+                inventory.ItemsMessage("money");
+            } 
+            else 
+            {
                 inventory.ItemsMessage("space");
             }
         }
-        return false;
+
     }
 
     private bool buyAmmo => inventory.ammoButtons.Keys.Contains(tempButton.myItemCode);
@@ -466,7 +544,8 @@ public class TradeMode: InventoryMode
     {
         if (tradeButtons.Contains(tempButton)) return false;
 
-        if (tempTrader.ammoCount.Keys.Contains(tempButton.myItemCode)) {
+        if (tempTrader.ammoButtons.Keys.Contains(tempButton.myItemCode)) 
+        {
             ItemIcon ammoButton = tempTrader.ammoButtons[tempButton.myItemCode];
             int addCount = tempCount;
             ammoButton.SetCount(ammoButton.GetCount() + addCount);
@@ -483,7 +562,8 @@ public class TradeMode: InventoryMode
     {
         if (itemButtons.Contains(tempButton)) return false;
 
-        if (buyAmmo) {
+        if (buyAmmo) 
+        {
             ItemIcon ammoButton = inventory.ammoButtons[tempButton.myItemCode];
             int addCount = tempCount;
             ammoButton.SetCount(ammoButton.GetCount() + addCount);
@@ -491,7 +571,8 @@ public class TradeMode: InventoryMode
             
             UpdateTraderPositions();
 
-            if (player.Weapons.tempAmmoButton == ammoButton) {
+            if (player.Weapons.tempAmmoButton == ammoButton) 
+            {
                 player.Weapons.UpdateAmmoCount();
             }
 

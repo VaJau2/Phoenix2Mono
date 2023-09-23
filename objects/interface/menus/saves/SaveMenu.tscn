@@ -5,19 +5,12 @@
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=4]
 
-[node name="Save" type="Control" groups=[
-"ignore_color",
-]]
+[node name="Save" type="Control" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
 material = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,9 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background2" type="ColorRect" parent="." groups=[
-"ignore_color",
-]]
+[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
@@ -65,9 +56,7 @@ margin_top = -140.0
 margin_right = 451.904
 margin_bottom = 108.0
 
-[node name="Exist" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="Exist" type="Control" parent="." groups=["ignore_color"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -105,9 +94,7 @@ theme = ExtResource( 4 )
 disabled = true
 text = "[Удалить]"
 
-[node name="New" type="Control" parent="." groups=[
-"ignore_color",
-]]
+[node name="New" type="Control" parent="." groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

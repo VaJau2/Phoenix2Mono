@@ -48,7 +48,7 @@
     "B2": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "body": "Don't you find them funny? Specially Assistant Shy, she is so cute…",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B3"
@@ -56,7 +56,7 @@
     "B3": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "body": "I bought them at an auction. Once they entertained visitors to the amusement park, but after the opening of the freeway, the park went bankrupt.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B4"
@@ -336,7 +336,7 @@
     "B16": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Great. I knew you'd agree. Come to Rarity for an equipment, and Applejack instruct you about the details.",
+      "body": "Great. I knew you'd agree. Come to Assistant Rarity for an equipment, and Assistant Apple instruct you about the details.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B16(1.1)"
@@ -398,7 +398,7 @@
     "B19": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Don't you find them funny? Specially Fluttershy, she is so cute…",
+      "body": "Don't you find them funny? Specially Assistant Shy, she is so cute…",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B20"
@@ -406,7 +406,7 @@
     "B20": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I bought them at a festival a couple of years ago. Once they entertained visitors, and then they were replaced by animators in costumes, so they were no longer needed.",
+      "body": "I bought them at an auction. Once they entertained visitors to the amusement park, but after the opening of the freeway, the park went bankrupt.",
       "speaker": "Bellgates",
       "opposite": "Strikely",
       "next": "B21"

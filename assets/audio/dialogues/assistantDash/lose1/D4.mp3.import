@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/D4.mp3-119a3013cc9330adb685a40adeab07f3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantDash/lose1/D4.mp3"
+dest_files=[ "res://.import/D4.mp3-119a3013cc9330adb685a40adeab07f3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

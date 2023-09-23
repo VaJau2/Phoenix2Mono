@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/D1.mp3-ce990c6e1e707813afa6e8a7dfaa87d3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantDash/win2/D1.mp3"
+dest_files=[ "res://.import/D1.mp3-ce990c6e1e707813afa6e8a7dfaa87d3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,146 @@
+{
+    "nodes": {
+        "B1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "..?",
+            "speaker": "Винди",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "B1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "B1(2)"
+                }
+            ]
+        },
+        "B1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Доброе утро, соня.",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B2"
+        },
+        "B1(2)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мне пора идти.",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B3"
+        },
+        "B2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Доброе. А что, я что-то проспал?",
+            "speaker": "Винди",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "B2(1)"
+                }
+            ]
+        },
+        "B2(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нет, просто я пришла попрощаться",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B4"
+        },
+        "B3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что? Нет! Ты же обещала, что будешь с нами дольше! ",
+            "speaker": "Винди",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "B3(1)"
+                }
+            ]
+        },
+        "B3(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я скоро вернусь, я обещаю.",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B6"
+        },
+        "B4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Попрощаться? А ты куда-то уходишь?",
+            "speaker": "Винди",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "B4(1)"
+                }
+            ]
+        },
+        "B4(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я быстренько. Туда-обратно. Приключение на 20 минут, понимаешь?",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B5"
+        },
+        "B5": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нет, не понимаю...",
+            "speaker": "Винди",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "B5(1)"
+                }
+            ]
+        },
+        "B5(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Я скоро вернусь, я обещаю.",
+            "speaker": "Страйкли",
+            "opposite": "Винди",
+            "next": "B6"
+        },
+        "B6": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну ладно… удачи тебе там.",
+            "speaker": "Винди",
+            "opposite": "Страйкли"
+        }
+    },
+    "speakers": {
+        "Винди": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

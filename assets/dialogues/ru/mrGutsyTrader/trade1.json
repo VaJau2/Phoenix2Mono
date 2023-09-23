@@ -1,0 +1,114 @@
+{
+  "nodes": {
+    "T1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Здравия желаю, лейтенант.",
+      "speaker": "Мистер Храбрец",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "Т1(2)"
+        }
+      ]
+    },
+    "T1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Привет. Тебя до сих пор не заменили?",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец",
+      "next": "T2"
+    },
+    "Т1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Извини, ошиблась дверью.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец"
+    },
+    "T2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да, лейтенант. Мою программу не изменить, а заменить меня некем. Всех новых роботов сразу отправляют на фронт.",
+      "speaker": "Мистер Храбрец",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "Т2(2)"
+        },
+        {
+          "body": "answer",
+          "next": "T2(1)"
+        }
+      ]
+    },
+    "T2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Отлично. Значит, есть, чем поторговать?",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец",
+      "next": "Т3"
+    },
+    "Т2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Понятно. Я зайду потом.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец"
+    },
+    "Т3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Так точно. Желаете купить или продать что-нибудь?",
+      "speaker": "Мистер Храбрец",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "T3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "T3(2)"
+        }
+      ]
+    },
+    "T3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да. Покажи, что есть на продажу.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец",
+      "next": "script"
+    },
+    "T3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, я просто поинтересовалась. Продолжай работу.",
+      "speaker": "Страйкли",
+      "opposite": "Мистер Храбрец",
+      "next": "script1"
+    },
+    "script": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "set": "tradeAgain"
+    },
+    "script1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": "tradeAgain"
+    }
+  },
+  "speakers": {}
+}

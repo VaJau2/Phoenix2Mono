@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample"
+
+[deps]
+
+source_file="res://assets/audio/magic/teleporting.wav"
+dest_files=[ "res://.import/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

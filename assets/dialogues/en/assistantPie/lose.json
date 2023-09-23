@@ -1,0 +1,36 @@
+{
+    "nodes": {
+        "P1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "They found you? You can try again!",
+            "speaker": "Assistant Pie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "next": "P1.1"
+        },
+        "P1.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    },
+    "speakers": {
+        "Assistant Pie": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Strikely": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

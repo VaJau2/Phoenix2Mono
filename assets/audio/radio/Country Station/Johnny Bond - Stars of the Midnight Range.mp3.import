@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Johnny Bond - Stars of the Midnight Range.mp3-6773798bc106bbb9506310614612a3ae.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/Johnny Bond - Stars of the Midnight Range.mp3"
+dest_files=[ "res://.import/Johnny Bond - Stars of the Midnight Range.mp3-6773798bc106bbb9506310614612a3ae.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

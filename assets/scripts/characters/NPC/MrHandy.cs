@@ -9,10 +9,10 @@ public class MrHandy : NpcWithWeapons
         return GetNode<Spatial>("Armature/Skeleton/mrHandy/weapons");
     }
 
-    protected override void AnimateDealth(Character killer, int shapeID)
+    protected override void AnimateDeath(Character killer, int shapeID)
     {
         GetNode<Spatial>("Armature/Skeleton/BoneAttachment/fire").QueueFree();
-        base.AnimateDealth(killer, shapeID);
+        base.AnimateDeath(killer, shapeID);
     }
 
 
