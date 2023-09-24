@@ -428,12 +428,12 @@
     },
     "anti-radio": {
         "name": "Антирадиационный костюм",
-        "description": "Никто не скажет что ты выглядишь глупо, если вокруг радиоактивные пустоши.",
+        "description": "Лучше глупо выглядеть, чем быть радиоактивным жмуриком",
         "type": "armor",
-        "icon": "private_uniform",
+        "icon": "anti-radio",
         "price": "1000",
-        "damageBlock": "0.2",
-        "sound": "coat"
+        "ignoreRadiation": "true",
+        "sound": "socks"
     },
 
 

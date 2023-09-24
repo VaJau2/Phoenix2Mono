@@ -21,44 +21,50 @@ public class PlayerHead : MeshInstance
     public void FindFaceMaterial()
     {
         int count = GetSurfaceMaterialCount();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
+        {
             SpatialMaterial tempMaterial = Mesh.SurfaceGetMaterial(i) as SpatialMaterial;
-            if (tempMaterial.DetailEnabled) {
+            if (tempMaterial.DetailEnabled)
+            {
                 bodyMaterial = tempMaterial;
                 return;
             }
         }
     }
 
-    public void CloseEyes() 
+    public void CloseEyes()
     {
         ChangeMaterialTexture(false);
         eyesClosed = true;
         closedTimer = 0.2f;
     }
 
-    public void SmileOn() 
+    public void SmileOn()
     {
-        if(shyTimer <= 0 && emotion != "smile" && !isOnMeds) {
+        if (shyTimer <= 0 && emotion != "smile" && !isOnMeds)
+        {
             emotion = "smile";
             ChangeMaterialTexture(!eyesClosed);
         }
     }
 
-    public void SmileOff() 
+    public void SmileOff()
     {
-        if(shyTimer <= 0 && emotion == "smile" && !isOnMeds) {
+        if (shyTimer <= 0 && emotion == "smile" && !isOnMeds)
+        {
             emotion = "empty";
             ChangeMaterialTexture(!eyesClosed);
         }
     }
 
-    public void ShyOn() 
+    public void ShyOn()
     {
-        if (shyTimer <= 0 && emotion != "shy" && !isOnMeds) {
+        if (shyTimer <= 0 && emotion != "shy" && !isOnMeds)
+        {
             emotion = "shy";
             ChangeMaterialTexture(!eyesClosed);
         }
+
         shyTimer = SHY_TIMER;
     }
 
@@ -80,7 +86,7 @@ public class PlayerHead : MeshInstance
         ChangeMaterialTexture(!eyesClosed);
     }
 
-    private bool isOnMeds 
+    private bool isOnMeds
     {
         get => emotion == "meds" || emotion == "meds_after";
     }
@@ -88,24 +94,21 @@ public class PlayerHead : MeshInstance
     private void ChangeMaterialTexture(bool eyesAreOpen)
     {
         StreamTexture newTexture;
-        if (eyesAreOpen) {
-            newTexture = openEyes[emotion];
-        } else {
-            newTexture = closeEyes[emotion];
-        }
+        newTexture = eyesAreOpen ? openEyes[emotion] : closeEyes[emotion];
         bodyMaterial.DetailAlbedo = newTexture;
     }
 
-    private void OpenEyes() 
+    private void OpenEyes()
     {
         ChangeMaterialTexture(true);
         closedTimer = (float)rand.Next(3, 6);
         eyesClosed = false;
     }
 
-    private void ShyOff() 
+    private void ShyOff()
     {
-        if (shyTimer <= 0 && emotion == "shy") {
+        if (shyTimer <= 0 && emotion == "shy")
+        {
             SetEmptyFace();
         }
     }
@@ -113,7 +116,7 @@ public class PlayerHead : MeshInstance
     //после перезагрузки ГГ спавнится с закрытыми глазами
     private async void StartOpenEyes()
     {
-        await(ToSignal(GetTree(), "idle_frame"));
+        await (ToSignal(GetTree(), "idle_frame"));
         emotion = "empty";
         OpenEyes();
     }
@@ -142,27 +145,26 @@ public class PlayerHead : MeshInstance
     public override void _Process(float delta)
     {
         //тело игрока всегда видимо, но от 1 лица оно только бросает тени
-        if (CastShadow == ShadowCastingSetting.On) {
-            if (player != null && player.Health > 0) {
-                if (shyTimer > 0) {
-                    shyTimer -= delta;
-                } else {
-                    ShyOff();
-                }
+        if (CastShadow == ShadowCastingSetting.On)
+        {
+            if (player != null && player.Health > 0)
+            {
+                if (shyTimer > 0) shyTimer -= delta;
+                else ShyOff();
 
-                if (closedTimer > 0) {
+                if (closedTimer > 0)
+                {
                     closedTimer -= delta;
-                } else {
-                    if (eyesClosed) {
-                        OpenEyes();
-                    } else {
-                        CloseEyes();
-                    }
                 }
-            } else {
-                if (!eyesClosed) {
-                    CloseEyes();
+                else
+                {
+                    if (eyesClosed) OpenEyes();
+                    else CloseEyes();
                 }
+            }
+            else
+            {
+                if (!eyesClosed) CloseEyes();
             }
         }
     }

@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/materials/props/furniture/cloneFlask.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/player/wings.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/props/furniture/flaskWater.material" type="Material" id=4]
-[ext_resource path="res://assets/materials/characters/cloak.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/characters/hair.material" type="Material" id=5]
 [ext_resource path="res://assets/materials/player/player_body_closed_eyes.material" type="Material" id=6]
 [ext_resource path="res://assets/materials/player/Material.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/player/horn.material" type="Material" id=8]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/scripts/triggers/wasteland/CloneFlaskCamera.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/triggers/wasteland/CloneFlask.cs" type="Script" id=13]
 [ext_resource path="res://assets/audio/phrases/speech1-edited.wav" type="AudioStream" id=14]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "cloneFlask_Cube011"

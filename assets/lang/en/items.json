@@ -422,17 +422,17 @@
         "speedDecrease": "5",
         "price": "1500",
         "damageBlock": "0.9",
-        "ignoreRadiation": "1",
+        "ignoreRadiation": "true",
         "sound": "armor"
     },
     "anti-radio": {
         "name": "Anti-Radiation Suit",
-        "description": "Radiation don't care what you look like",
+        "description": "Better to look stupid than to be a radioactive stiff",
         "type": "armor",
-        "icon": "private_uniform",
+        "icon": "anti-radio",
         "price": "1000",
-        "damageBlock": "0.2",
-        "sound": "coat"
+        "ignoreRadiation": "true",
+        "sound": "socks"
     },
 
     

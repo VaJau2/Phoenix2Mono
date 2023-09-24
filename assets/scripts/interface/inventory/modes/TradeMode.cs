@@ -460,6 +460,9 @@ public class TradeMode: InventoryMode
         {
             if (itemPropNames.Contains(prop)) 
             {
+                if (tempButton.myItemCode is "power-armor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
+                    continue;
+                
                 string propName = itemPropNames[prop].ToString();
                 string propValue;
                 

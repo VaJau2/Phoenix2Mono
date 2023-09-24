@@ -65,7 +65,7 @@ public class PlayerCamera : Camera
         var action = (InputEventKey)actions[0];
         var key = OS.GetScancodeString(action.Scancode);
         var buttonPath = "res://assets/textures/interface/icons/buttons/";
-        var isWideButton = key is "BackSpace" || key is "CapsLock" || key is "Kp 0" || key is "Shift" || key is "Space" || key is "Tab";
+        var isWideButton = key is "BackSpace" or "CapsLock" or "Kp 0" or "Shift" or "Space" or "Tab";
 
         interactionIcon.Texture = GD.Load<Texture>( buttonPath + key + ".png");
         

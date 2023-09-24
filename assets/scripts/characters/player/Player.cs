@@ -232,9 +232,6 @@ public class Player : Character
         string path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
         Mesh loadedMesh = GD.Load<Mesh>(path);
         meshInstance.Mesh = loadedMesh;
-
-        GD.Print(path);
-        if (loadedMesh != null) GD.Print("notNull");
     }
 
     public void LoadArtifactMesh(string artifactName = null)

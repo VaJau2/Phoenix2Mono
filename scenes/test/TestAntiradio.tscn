@@ -1,13 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
-[ext_resource path="res://assets/models/player_variants/anti-radio/third/pegasus.res" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/models/player_variants/anti-radio/third/unicorn.res" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
-[ext_resource path="res://assets/models/player_variants/anti-radio/third/earthpony.res" type="ArrayMesh" id=8]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=11]
@@ -43,17 +39,6 @@ script = ExtResource( 10 )
 [node name="shells" type="Spatial" parent="Scene" groups=["savable"]]
 script = ExtResource( 13 )
 
-[node name="randomItems" type="Node" parent="Scene"]
-script = ExtResource( 3 )
-maxItemsCount = 10
-moneyChance = 0.9
-maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo307", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol" ]
-ammoCount = {
-"ammo307": 10,
-"ammo32": 20
-}
-
 [node name="terrain" type="StaticBody" parent="Scene"]
 collision_layer = 3
 collision_mask = 3
@@ -70,8 +55,7 @@ shape = SubResource( 2 )
 
 [node name="metallic-cabinet" parent="Scene/terrain/props" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
-SpawnRandomItems = true
-startItemCodes = [ "anti-radio" ]
+startItemCodes = [ "anti-radio", "power-armor", "rage", "bow-ribbon", "nucBattery" ]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain"]
 transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
@@ -103,17 +87,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
 
 [node name="patrolPoint2" type="Spatial" parent="Scene/terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
-
-[node name="unicorn" type="MeshInstance" parent="Scene/terrain"]
-transform = Transform( -0.670724, 0, -0.741707, 0, 1, 0, 0.741707, 0, -0.670724, -28.339, 1.86797, -5.73543 )
-mesh = ExtResource( 5 )
-skeleton = NodePath("../pegasus")
-
-[node name="pegasus" type="MeshInstance" parent="Scene/terrain"]
-transform = Transform( -0.0542706, 0, -0.998526, 0, 1, 0, 0.998526, 0, -0.0542706, -32.5951, 7.59664, 1.16199 )
-mesh = ExtResource( 4 )
-skeleton = NodePath("../earthpony")
-
-[node name="earthpony" type="MeshInstance" parent="Scene/terrain"]
-transform = Transform( 0.601313, 0, -0.799013, 0, 1, 0, 0.799013, 0, 0.601313, -27.014, 0, 8.311 )
-mesh = ExtResource( 8 )
