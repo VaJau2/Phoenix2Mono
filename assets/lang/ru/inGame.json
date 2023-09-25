@@ -38,6 +38,7 @@
 
     "cameraHints": {
         "pick": "Взять",
+        "putOn": "Надеть",
 
         "putSuitcase": "Положить чемодан",
         "putFirewood": "Положить дрова",

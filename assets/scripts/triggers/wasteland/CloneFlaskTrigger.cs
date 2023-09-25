@@ -4,12 +4,10 @@ using Godot;
 public class CloneFlaskTrigger : TriggerBase
 {
     [Export] private NodePath flaskPath;
-    [Export] private NodePath moveNpcTriggerPath;
     [Export] AudioStreamSample underwater;
     [Export] AudioStreamSample flaskOpen;
     private CloneFlask cloneFlask;
     private ColorRect blackScreen;
-    private TriggerBase moveNpcTrigger;
     private int step;
     private float timer;
     private bool changeBlackScreen;
@@ -19,7 +17,6 @@ public class CloneFlaskTrigger : TriggerBase
         SetProcess(false);
         cloneFlask = GetNode<CloneFlask>(flaskPath);
         blackScreen = GetNode<ColorRect>("/root/Main/Scene/canvas/black");
-        moveNpcTrigger = GetNode<TriggerBase>(moveNpcTriggerPath);
 
         await ToSignal(GetTree(), "idle_frame");
 
@@ -34,14 +31,6 @@ public class CloneFlaskTrigger : TriggerBase
         if (timer > 0)
         {
             timer -= delta;
-        } 
-        else if (changeBlackScreen)
-        {
-            if (blackScreen.Color.a > 0)
-            {
-                blackScreen.Color = new Color(0, 0, 0, blackScreen.Color.a - delta * 2);
-                changeBlackScreen = false;
-            }
         }
         else
         {
@@ -81,26 +70,21 @@ public class CloneFlaskTrigger : TriggerBase
             case 1:
                 player.Camera.eyesClosed = false;
                 changeBlackScreen = true;
-                SetProcess(true);
-                break;
-
-            case 2:
-                blackScreen.Color = new Color(0, 0, 0, 0);
+                
                 cloneFlask.anim.CurrentAnimation = "wakeUp";
                 
                 timer = 1f;
                 SetProcess(true);
                 break;
 
-            case 3:
-                moveNpcTrigger.SetActive(true);
+            case 2:
                 cloneFlask.audi.Play();
                 cloneFlask.AnimateWater();
                 timer = 4f;
                 SetProcess(true);
                 break;
 
-            case 4:
+            case 3:
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
                 player.GlobalTransform = Global.setNewOrigin(
                     player.GlobalTransform,
@@ -119,7 +103,7 @@ public class CloneFlaskTrigger : TriggerBase
                 SetProcess(true);
                 break;
 
-            case 5:
+            case 4:
                 player.GetAudi(true).Stream = flaskOpen;
                 player.GetAudi(true).Play();
                 cloneFlask.AnimateGlass();

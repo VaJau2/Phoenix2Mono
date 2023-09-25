@@ -67,7 +67,7 @@
 [ext_resource path="res://objects/props/boxes/armory-boxes.tscn" type="PackedScene" id=67]
 [ext_resource path="res://objects/props/boxes/armory-box.tscn" type="PackedScene" id=68]
 [ext_resource path="res://objects/props/furniture/cabinet.tscn" type="PackedScene" id=69]
-[ext_resource path="res://objects/props/maneken.tscn" type="PackedScene" id=70]
+[ext_resource path="res://objects/props/furniture/dummy/dummy.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/materials/props/furniture/pics/picture-nature.tres" type="Material" id=71]
 [ext_resource path="res://assets/materials/props/furniture/pics/picture-zebra1.tres" type="Material" id=72]
 [ext_resource path="res://assets/materials/props/furniture/pics/picture-zebra3.tres" type="Material" id=73]
@@ -1504,8 +1504,8 @@ transform = Transform( -0.065438, 0, -0.997857, 0, 1, 0, 0.997857, 0, -0.065438,
 [node name="shelf" parent="rooms/storage2/props" instance=ExtResource( 66 )]
 transform = Transform( -9.77524e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -9.77524e-08, -10.0798, -1.52406, 2.86151 )
 
-[node name="maneken" parent="rooms/storage2/props" instance=ExtResource( 70 )]
-transform = Transform( 0.431739, 0, 0.901998, 0, 1, 0, -0.901998, 0, 0.431739, 13.7843, -2.01001, 10.2315 )
+[node name="dummy" parent="rooms/storage2/props" instance=ExtResource( 70 )]
+transform = Transform( 0.431739, 0, 0.901998, 0, 1, 0, -0.901998, 0, 0.431739, 13.7843, -1.12828, 10.2315 )
 
 [node name="DoorTeleport1" parent="rooms/storage2" instance=ExtResource( 18 )]
 transform = Transform( -8.50187e-08, 0, 2.245, 0, 2.046, 0, -1.945, 0, -9.81321e-08, -2.29555, -1.37053, -29.5221 )
@@ -2073,7 +2073,7 @@ showMessage = false
 script = ExtResource( 88 )
 IsActive = false
 afterAudiPath = NodePath("after")
-NewLevelNum = 12
+NewLevelNum = 11
 
 [node name="nuclear" parent="triggers/nuclearTrigger" instance=ExtResource( 90 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 7.05008, 3.05154, -169.902 )
