@@ -74,6 +74,8 @@ public class PlayerThirdPerson : Spatial
                 player.Body.SetRotZero();
             }
         }
+        
+        player.EmitSignal(nameof(Player.ChangeView), on);
     }
 
     private float updateSide(float delta, float side, string keyUp,

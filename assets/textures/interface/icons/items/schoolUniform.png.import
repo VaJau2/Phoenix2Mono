@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/swipe-card.png-6c87ace42852c59877a219e58444ba79.stex"
+path="res://.import/schoolUniform.png-a1a079052e3bb1fc6ac43eb3f2249047.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/swipe-card.png"
-dest_files=[ "res://.import/swipe-card.png-6c87ace42852c59877a219e58444ba79.stex" ]
+source_file="res://assets/textures/interface/icons/items/schoolUniform.png"
+dest_files=[ "res://.import/schoolUniform.png-a1a079052e3bb1fc6ac43eb3f2249047.stex" ]
 
 [params]
 

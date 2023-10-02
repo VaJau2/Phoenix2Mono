@@ -41,7 +41,7 @@
         "icon": "toaster",
         "price": "40" 
     },
-	"suitcase-empty": {
+	"suitcaseEmpty": {
 		"name": "Чемодан",
         "description": "Черный чемодан средних размеров. Пустой.",
         "type": "staff",
@@ -55,18 +55,18 @@
         "icon": "key0",
         "price": "2" 
     },
-    "key-mas": {
+    "keyMAS": {
         "name": "Ключ от дверей кабинетов",
         "description": "Ключ, который открывает закрытые двери кабинетов лаборатории МТН",
         "type": "staff",
         "icon": "key0",
         "price": "100"
     },
-    "key-card-mas": {
+    "keyCardMAS": {
         "name": "Ключ-карта МТН",
         "description": "Пластиковая карта, которая используется для открывания закрытых дверей",
         "type": "staff",
-        "icon": "swipe-card",
+        "icon": "keyCard",
         "price": "50"
     },
     "nucBattery": {
@@ -76,7 +76,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "nucBattery-quest": {
+    "Quest_nucBattery": {
         "name": "Запасная ядерная батарея",
         "description": "Ядерная батарея с наклейкой \"запасная\"",
         "type": "staff",
@@ -84,7 +84,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "suitcase-vacation": {
+    "Quest_suitcaseVacation": {
         "name": "Чемодан с вещами Страйкли",
         "description": "Чемодан, в котором лежат все твои вещи",
         "type": "staff",
@@ -100,7 +100,7 @@
         "price": "20",
         "questItem": "true"
     },
-    "blueprints1": {
+    "Quest_blueprints": {
         "name": "Чертежи мегазаклинания",
         "description": "Листок, переполненный различными схемами и формулами, слишком сложными для тебя. Имеет чрезвычайно высокую важность",
         "type": "staff",
@@ -108,7 +108,7 @@
         "price": "99999999999",
         "questItem": "true"
     },
-    "blueprints2": {
+    "blueprints": {
         "name": "Чертежи мегазаклинания",
         "description": "Листок, переполненный различными схемами и формулами, слишком сложными для тебя. Бесполезен.",
         "type": "staff",
@@ -124,30 +124,30 @@
     },
 
 
-    "agent-note": {
+    "Quest_agentNote": {
         "name": "Промокшая записка",
         "description": "Промокшая под дождем записка, принадлежащая жеребцу в плаще. Буквы читаются отчетливо.",
         "type": "note",
         "icon": "note",
-        "text": "agent-note",
+        "text": "Quest_agentNote",
         "price": "6",
         "questItem": "true"
     },
-    "vacation-note": {
+    "Quest_vacationNote": {
         "name": "Приказ о предоставлении отпуска",
         "description": "Долгожданный отпуск, для которого тебе пришлось попотеть",
         "type": "note",
         "icon": "note",
-        "text": "vacation-note",
+        "text": "Quest_vacationNote",
         "price": "10",
         "questItem": "true"
     },
-    "bellgates-paper": {
+    "bellgatesPaper": {
         "name": "Письмо от Бельгетса",
         "description": "Письмо, которое кто-то подложил у твоего дома. Как он вычислил, где ты живешь?",
         "type": "note",
         "icon": "note",
-        "text": "bellgates-paper",
+        "text": "bellgatesPaper",
         "price": "10"
     },
 
@@ -166,11 +166,11 @@
         "isPistol": "true",
         "sound": "weapon"
     },
-    "pistol10-silenced": {
+    "pistol10S": {
         "name": "10мм пистолет с глушителем",
         "description": "Идеальный вариант для любителей бесшумных убийств",
         "type": "weapon",
-        "icon": "pistol10-silenced",
+        "icon": "pistol10S",
         "price": "350",
         "damage": "35",
         "shootDistance": "80",
@@ -197,7 +197,7 @@
     },
     "shotgun20": {
         "name": "Двустволка кал. 20",
-        "description": "Обрез двустволки, наносящий большое количество урона на ближней дистанции",
+        "description": "Оружие для вендетты с близкой дистанции",
         "type": "weapon",
         "icon": "shotgun20",
         "price": "500",
@@ -382,66 +382,66 @@
         "shyHeadYRot": "1",
         "sound": "coat"
     },
-    "stealth-armor": {
+    "stealthArmor": {
         "name": "Стелс-броня",
         "description": "Сочетание из легкого бронежилета, банданы, повязки на глаз и милых стелс-носочков гарантирует незаметность.",
         "type": "armor",
-        "icon": "stealth-armor",
+        "icon": "stealthArmor",
         "price": "1100",
         "damageBlock": "0.6",
         "closeFov": "30",
         "shootDistPlus": "15",
         "sound": "armor"
     },
-    "private-uniform": {
+    "privateUniform": {
         "name": "Военная форма",
         "description": "Форма рядового Эквестрийской армии. Кажется, чего-то в ней не хватает...",
         "type": "armor",
-        "icon": "private-uniform",
+        "icon": "privateUniform",
         "price": "150",
         "damageBlock": "0.2",
         "sound": "coat"
     },
-    "school-uniform": {
+    "schoolUniform": {
         "name": "Школьная форма",
         "description": "Ты же не будешь надевать это на себя, правда?",
         "type": "armor",
-        "icon": "school-uniform",
+        "icon": "schoolUniform",
         "price": "500",
         "damageBlock": "0.1",
         "makeShy": "true",
         "shyHeadYRot": "0.4",
         "sound": "coat"
     },
-    "power-armor": {
+    "powerArmor": {
         "name": "Силовая броня",
         "description": "Разработка МВТ, превращает земных пони в ходячие танки. Для работы необходима ядерная батарея.",
         "type": "armor",
-        "icon": "power-armor",
+        "icon": "powerArmor",
         "onlyForEarthponies": "true",
         "checkHasItem": "nucBattery",
         "speedDecrease": "5",
         "price": "1500",
         "damageBlock": "0.9",
-        "ignoreRadiation": "1",
+        "ignoreRadiation": "true",
         "sound": "armor"
     },
-    "anti-radio": {
+    "antiradio": {
         "name": "Антирадиационный костюм",
         "description": "Лучше глупо выглядеть, чем быть радиоактивным жмуриком",
         "type": "armor",
-        "icon": "anti-radio",
+        "icon": "antiradio",
         "price": "1000",
         "ignoreRadiation": "true",
         "sound": "socks"
     },
 
 
-    "bow-ribbon": {
+    "bowRibbon": {
         "name": "Бантик",
-        "description": "Не имеет каких-либо свойств, стоит дешево. Зато выглядит мило с:",
+        "description": "Не имеет каких-либо свойств. Cтоит дешево. Зато выглядит мило с:",
         "type": "artifact",
-        "icon": "bow-tie-ribbon",
+        "icon": "bowRibbon",
         "price": "5",
         "sound": "socks"
     },
@@ -465,11 +465,11 @@
         "heal": "5",
         "sound": "eating1"
     },
-    "sparkle-cola": {
-        "name": "Спаркл-кола",
+    "sparkleCola": {
+        "name": "Спаркл-Кола",
         "description": "Холодная газировка с морковным вкусом",
         "type": "food",
-        "icon": "sparkle-cola",
+        "icon": "sparkleCola",
         "price": "40",
         "heal": "15",
         "sound": "colaDrink"
@@ -494,23 +494,23 @@
     },
 
 
-    "heal-potion": {
+    "healPotion": {
         "name": "Зелье лечения",
         "description": "Один из самых полезных предметов для каждого пони начиная с момента объявления войны зебрам",
         "type": "meds",
-        "icon": "heal-potion",
+        "icon": "healPotion",
         "price": "100",
         "medsEffect": "heal",
-        "sound": "heal-potion"
+        "sound": "healPotion"
     },
-    "mana-potion": {
+    "manaPotion": {
         "name": "Зелье маны",
         "description": "Очень полезное для единорогов зелье, повышающее их магические возможности.",
         "type": "meds",
-        "icon": "mana-potion",
+        "icon": "manaPotion",
         "price": "150",
         "medsEffect": "mana",
-        "sound": "heal-potion"
+        "sound": "healPotion"
     },
     "buck": {
         "name": "Бак",
@@ -539,11 +539,11 @@
         "medsEffect": "hydra",
         "sound": "medX"
     },
-    "med-x": {
+    "medX": {
         "name": "Мед-Х",
         "description": "Внутривенное обезболивающее. Временно лишает чувства боли и снижает получаемый урон. Вызывает зависимость",
         "type": "meds",
-        "icon": "med-x",
+        "icon": "medX",
         "price": "80",
         "medsEffect": "medX",
         "sound": "medX"
@@ -575,13 +575,13 @@
         "medsEffect": "detoxine",
         "sound": "mentats"
     },
-    "stealth-buck": {
-        "name": "Стелс-бак",
+    "stealthBuck": {
+        "name": "Стелс Бак",
         "description": "Разработанное на основе зебринских технологий устройство, генерирующее стелс-поле при использовании (прототип)",
         "type": "meds",
-        "icon": "stealthbuck",
+        "icon": "stealthBuck",
         "price": "500",
-        "medsEffect": "stealthbuck",
-        "sound": "stealthbuck"
+        "medsEffect": "stealthBuck",
+        "sound": "stealthBuck"
     }
 }

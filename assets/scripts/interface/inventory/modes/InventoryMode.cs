@@ -284,7 +284,7 @@ public abstract class InventoryMode
             if (itemPropNames.Contains(prop)) 
             {
                 // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
-                if (tempButton.myItemCode is "power-armor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
+                if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
                     continue;
                 
                 string propName = itemPropNames[prop].ToString();
@@ -558,7 +558,7 @@ public abstract class InventoryMode
         {
             if (newTempButton.myItemCode == null) continue;
             SetTempButton(newTempButton);
-            if (tempButton.myItemCode != "heal-potion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
+            if (tempButton.myItemCode != "healPotion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
             useHandler.UseTempItem();
             return;
         }

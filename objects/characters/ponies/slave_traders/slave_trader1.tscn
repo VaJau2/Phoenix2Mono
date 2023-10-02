@@ -143,8 +143,8 @@ surfaces/0 = {
 [node name="slave_trader1" instance=ExtResource( 1 )]
 IdleAnim = "Idle1"
 StartHealth = 150
-weaponCode = "pistol10-silenced"
-itemCodes = [ "pistol10-silenced" ]
+weaponCode = "pistol10S"
+itemCodes = [ "pistol10S" ]
 ammoCount = {
 "ammo10": 10
 }

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/school-uniform.png-d4ee213a1e2d1d993189208ce7033aed.stex"
+path="res://.import/medX.png-a403f07eca82f1b9b10958d77c3f1d52.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/school-uniform.png"
-dest_files=[ "res://.import/school-uniform.png-d4ee213a1e2d1d993189208ce7033aed.stex" ]
+source_file="res://assets/textures/interface/icons/items/medX.png"
+dest_files=[ "res://.import/medX.png-a403f07eca82f1b9b10958d77c3f1d52.stex" ]
 
 [params]
 

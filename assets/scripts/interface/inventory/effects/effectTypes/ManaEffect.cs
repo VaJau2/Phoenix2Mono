@@ -23,7 +23,7 @@ public class ManaEffect: Effect
             player = Global.Get().player as Player_Unicorn;
         } 
 
-        iconName = "mana-potion";
+        iconName = "manaPotion";
         base.SetOn(handler);
     }
 

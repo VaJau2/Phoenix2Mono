@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stealth-armor.png-0cb7275f82fb1b7f19d1970681b2395e.stex"
+path="res://.import/privateUniform.png-1a2fbccc0b22c90ad285c9df3f09d94b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/stealth-armor.png"
-dest_files=[ "res://.import/stealth-armor.png-0cb7275f82fb1b7f19d1970681b2395e.stex" ]
+source_file="res://assets/textures/interface/icons/items/privateUniform.png"
+dest_files=[ "res://.import/privateUniform.png-1a2fbccc0b22c90ad285c9df3f09d94b.stex" ]
 
 [params]
 

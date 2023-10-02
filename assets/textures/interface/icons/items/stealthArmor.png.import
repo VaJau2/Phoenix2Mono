@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mana-potion.png-36ff7d37f651ff0805b571026ab18536.stex"
+path="res://.import/stealthArmor.png-93bbf08db035ef812cc0bcc2eae7afac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/mana-potion.png"
-dest_files=[ "res://.import/mana-potion.png-36ff7d37f651ff0805b571026ab18536.stex" ]
+source_file="res://assets/textures/interface/icons/items/stealthArmor.png"
+dest_files=[ "res://.import/stealthArmor.png-93bbf08db035ef812cc0bcc2eae7afac.stex" ]
 
 [params]
 

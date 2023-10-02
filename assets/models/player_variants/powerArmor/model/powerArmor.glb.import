@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/anti-radio.glb-436858455e4fa73073395096c8d0c621.scn"
+path="res://.import/powerArmor.glb-a22ca9673323e9cec8c3b14f9a821362.scn"
 
 [deps]
 
-source_file="res://assets/models/player_variants/anti-radio/anti-radio.glb"
-dest_files=[ "res://.import/anti-radio.glb-436858455e4fa73073395096c8d0c621.scn" ]
+source_file="res://assets/models/player_variants/powerArmor/model/powerArmor.glb"
+dest_files=[ "res://.import/powerArmor.glb-a22ca9673323e9cec8c3b14f9a821362.scn" ]
 
 [params]
 

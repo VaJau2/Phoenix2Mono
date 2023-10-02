@@ -508,12 +508,12 @@ IsImmortal = true
 [node name="security1" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.2017, 6.30189, -11.0818 )
 StartHealth = 100
-weaponCode = "pistol10-silenced"
+weaponCode = "pistol10S"
 
 [node name="security_mare" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -0.831402, 0, 0.555672, 0, 1, 0, -0.555672, 0, -0.831402, 59.3849, 6.34055, -4.0266 )
 StartHealth = 90
-weaponCode = "pistol10-silenced"
+weaponCode = "pistol10S"
 
 [node name="spike" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.929937, 0, -0.367719, 0, 1, 0, 0.367719, 0, 0.929937, 19.1267, 6.26088, -14.2937 )
@@ -1259,7 +1259,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 63.4717
 
 [node name="cabinet3" parent="terrain/props" instance=ExtResource( 28 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 63.4717, 8.26913, 51.0112 )
-startItemCodes = [ "bow-ribbon" ]
+startItemCodes = [ "bowRibbon" ]
 
 [node name="Radio" parent="terrain/props" instance=ExtResource( 75 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1679, -2.39644, 9.48969 )
@@ -1410,7 +1410,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.1203
 
 [node name="deleteItem" type="Node" parent="triggers"]
 script = ExtResource( 40 )
-ItemToCheck = "nucBattery-quest"
+ItemToCheck = "Quest_nucBattery"
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1575,9 +1575,9 @@ spawnPointPath = NodePath("../position1")
 spawnDelay = 5.0
 movePointPath = NodePath("../position1/movePoint")
 StartHealth = 120
-weaponCode = "shotgun20"
+weaponCode = "shotgun12"
 relation = 1
-itemCodes = [ "heal-potion" ]
+itemCodes = [ "healPotion" ]
 triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
 
 [node name="position1" type="Spatial" parent="triggers/spawners"]
@@ -1642,11 +1642,11 @@ npcPrefab = ExtResource( 58 )
 npcName = "agent5"
 spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
-weaponCode = "shotgun20"
+weaponCode = "shotgun12"
 relation = 1
-itemCodes = [ "heal-potion" ]
+itemCodes = [ "healPotion" ]
 ammoCount = {
-"ammo20": 19
+"ammo12": 6
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/corridorSpawner"]
@@ -1666,8 +1666,11 @@ npcPrefab = ExtResource( 59 )
 npcName = "agent6"
 spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
-weaponCode = "shotgun20"
+weaponCode = "shotgun12"
 relation = 1
+ammoCount = {
+"ammo12": 8
+}
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/corridorSpawner2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.3231, 2.26303, -12.2243 )
@@ -1688,7 +1691,7 @@ spawnPointPath = NodePath("spawnPoint")
 movePointPath = NodePath("movePoint")
 weaponCode = "shotgun20"
 relation = 1
-itemCodes = [ "med-x" ]
+itemCodes = [ "medX" ]
 ammoCount = {
 "ammo20": 4
 }
@@ -1711,9 +1714,9 @@ otherTriggerPaths = [ NodePath("../redPunchPointingGun") ]
 npcPrefab = ExtResource( 63 )
 spawnPointPath = NodePath("positionRedPunch")
 StartHealth = 120
-weaponCode = "pistol10-silenced"
+weaponCode = "shotgun20"
 relation = 2
-itemCodes = [ "mana-potion" ]
+itemCodes = [ "manaPotion" ]
 triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]

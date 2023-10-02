@@ -1,9 +1,10 @@
 using System;
 using Godot;
 using Godot.Collections;
+
 using Array = Godot.Collections.Array;
 
-public class PlayerInventory 
+public class PlayerInventory
 {
     public EffectHandler effects;
     Messages messages;
@@ -151,7 +152,7 @@ public class PlayerInventory
         return true;
     }
 
-    public void WearItem(string itemCode, bool sound = true)
+    public void WearItem(string itemCode, bool sound = true, bool emmitSignal = true)
     {
         CheckStealthBuck();
         
@@ -178,9 +179,11 @@ public class PlayerInventory
                 player.LoadArtifactMesh(itemCode);
                 break;
         }
+        
+        if (emmitSignal) player.EmitSignal(nameof(Player.WearItem), itemCode);
     }
 
-    public void UnwearItem(string itemCode, bool changeModel = true)
+    public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
     {
         CheckStealthBuck();
         
@@ -207,6 +210,8 @@ public class PlayerInventory
                 if (changeModel) player.LoadArtifactMesh();
                 break;
         }
+        
+        if (emmitSignal) player.EmitSignal(nameof(Player.UnwearItem), itemCode);
     }
 
     public void MessageCantSell(string itemName)
@@ -239,10 +244,10 @@ public class PlayerInventory
         menu.LoadItemButtons(items, ammo);
     }
     
-    public ItemIcon GetWearButton(string wearButtonName)
+    public ItemIcon GetWearButton(ItemType itemType)
     {
         const string buttonsPath = "/root/Main/Scene/canvas/inventory/helper/back/wearBack/";
-        return player.GetNode<ItemIcon>(buttonsPath + wearButtonName);
+        return player.GetNode<ItemIcon>(buttonsPath + itemType);
     }
 
     public Dictionary GetSaveData(bool saveEffects = true)
@@ -268,7 +273,7 @@ public class PlayerInventory
             }
         }
 
-        var weaponButton = GetWearButton("weapon");
+        var weaponButton = GetWearButton(ItemType.weapon);
         return new Dictionary
         {
             {"money", money},
@@ -285,10 +290,10 @@ public class PlayerInventory
         };
     }
 
-    public void LoadWearItem(string item, string button)
+    public void LoadWearItem(string item, ItemType itemType)
     {
-        WearItem(item, false);
-        var wearButton = GetWearButton(button);
+        WearItem(item, false, false);
+        var wearButton = GetWearButton(itemType);
         wearButton.SetItem(item);
     }
 
@@ -328,14 +333,14 @@ public class PlayerInventory
         cloth = data["cloth"].ToString();
         artifact = data["artifact"].ToString();
         
-        if (!string.IsNullOrEmpty(weapon)) LoadWearItem(weapon, "weapon");
-        if (!string.IsNullOrEmpty(cloth) && cloth != "empty") LoadWearItem(cloth, "armor");
-        if (!string.IsNullOrEmpty(artifact)) LoadWearItem(artifact, "artifact");
+        if (!string.IsNullOrEmpty(weapon)) LoadWearItem(weapon, ItemType.weapon);
+        if (!string.IsNullOrEmpty(cloth) && cloth != "empty") LoadWearItem(cloth, ItemType.armor);
+        if (!string.IsNullOrEmpty(artifact)) LoadWearItem(artifact, ItemType.artifact);
         
         string weaponBind = data["weaponBind"].ToString();
         if (!string.IsNullOrEmpty(weaponBind))
         {
-            var weaponButton = GetWearButton("weapon");
+            var weaponButton = GetWearButton(ItemType.weapon);
             weaponButton.SetBindKey(weaponBind);
             menu.bindedButtons[Convert.ToInt32(weaponBind)] = weaponButton;
             bindsList.AddIcon(weaponButton);

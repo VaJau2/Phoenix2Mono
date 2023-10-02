@@ -41,7 +41,7 @@
         "icon": "toaster",
         "price": "40"
     },
-	"suitcase-empty": {
+	"suitcaseEmpty": {
 		"name": "Suitcase",
         "description": "A medium-sized black suitcase. Empty.",
         "type": "staff",
@@ -55,18 +55,18 @@
         "icon": "key0",
         "price": "2" 
     },
-    "key-mas": {
+    "keyMAS": {
         "name": "MAS cabinets key",
         "description": "Key, which opens closed doors in MAS's laboratories",
         "type": "staff",
         "icon": "key0",
         "price": "100"
     },
-    "key-card-mas": {
+    "keyCardMAS": {
         "name": "MAS key-card",
         "description": "Plastic card, which is used to opening doors",
         "type": "staff",
-        "icon": "swipe-card",
+        "icon": "keyCard",
         "price": "50"
     },
     "nucBattery": {
@@ -76,7 +76,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "nucBattery-quest": {
+    "Quest_nucBattery": {
         "name": "Spare nuclear battery",
         "description": "Nuclear battery with a \"spare\" sticker on it",
         "type": "staff",
@@ -84,7 +84,7 @@
         "icon": "nucBattery",
         "price": "100"
     },
-    "suitcase-vacation": {
+    "Quest_suitcaseVacation": {
         "name": "Suitcase with Strikely's things",
         "description": "Suitcase that contains all your things",
         "type": "staff",
@@ -92,7 +92,7 @@
         "price": "300",
         "questItem": "true"
     },
-    "blueprints1": {
+    "Quest_blueprints": {
         "name": "Megaspell blueprints",
         "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Highly important.",
         "type": "staff",
@@ -100,7 +100,7 @@
         "price": "99999999999",
         "questItem": "true"
     },
-    "blueprints2": {
+    "blueprints": {
         "name": "Megaspell blueprints",
         "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Useless.",
         "type": "staff",
@@ -116,30 +116,30 @@
     },
 
 
-    "agent-note": {
+    "Quest_agentNote": {
         "name": "A drenched note",
         "description": "A rain-soaked note belonging to the stallion in a raincoat. The letters are clearly legible.",
         "type": "note",
         "icon": "note",
-        "text": "agent-note",
+        "text": "Quest_agentNote",
         "price": "6",
         "questItem": "true"
     },
-    "vacation-note": {
+    "Quest_vacationNote": {
         "name": "The order on granting leave",
         "description": "You had to work hard for this vacation",
         "type": "note",
         "icon": "note",
-        "text": "vacation-note",
+        "text": "Quest_vacationNote",
         "price": "10",
         "questItem": "true"
     },
-    "bellgates-paper": {
+    "bellgatesPaper": {
         "name": "Bellgates's letter",
         "description": "A letter that somepony planted near your house. How did he figure out where you live?",
         "type": "note",
         "icon": "note",
-        "text": "bellgates-paper",
+        "text": "bellgatesPaper",
         "price": "10"
     },
     "firewood": {
@@ -166,11 +166,11 @@
         "isPistol": "true",
         "sound": "weapon"
     },
-    "pistol10-silenced": {
+    "pistol10S": {
         "name": ".10 silenced pistol",
         "description": "Perfect choise for ponies who like quiet kills",
         "type": "weapon",
-        "icon": "pistol10-silenced",
+        "icon": "pistol10S",
         "price": "350",
         "damage": "30",
         "shootDistance": "80",
@@ -197,7 +197,7 @@
     },
     "shotgun20": {
         "name": ".20 double-barrel",
-        "description": "A sawn-off double-barreled shotgun that deals a large amount of damage at close range",
+        "description": "Weapon for close range vendetta",
         "type": "weapon",
         "icon": "shotgun20",
         "price": "500",
@@ -381,42 +381,42 @@
         "makeShy": "true",
         "sound": "coat"
     },
-    "stealth-armor": {
+    "stealthArmor": {
         "name": "Stealth armor",
         "description": "Combination on light armor, bandage, headrope and cute stealth-socks guarantees the safety.",
         "type": "armor",
-        "icon": "stealth-armor",
+        "icon": "stealthArmor",
         "price": "1100",
         "damageBlock": "0.6",
         "closeFov": "30",
         "shootDistPlus": "15",
         "sound": "armor"
     },
-    "private-uniform": {
+    "privateUniform": {
         "name": "Military uniform",
         "description": "Equestrian army private uniform. Seems like something is missing...",
         "type": "armor",
-        "icon": "private-uniform",
+        "icon": "privateUniform",
         "price": "150",
         "damageBlock": "0.2",
         "sound": "coat"
     },
-    "school-uniform": {
+    "schoolUniform": {
         "name": "School uniform",
         "description": "You don't want to wear it at all",
         "type": "armor",
-        "icon": "school-uniform",
+        "icon": "schoolUniform",
         "price": "500",
         "damageBlock": "0.1",
         "makeShy": "true",
         "shyHeadYRot": "0.4",
         "sound": "coat"
     },
-    "power-armor": {
+    "powerArmor": {
         "name": "Power armor",
         "description": "Developed my MWT, turns earthponies to a walking tanks. Needs nuclear battery to work.",
         "type": "armor",
-        "icon": "power-armor",
+        "icon": "powerArmor",
         "onlyForEarthponies": "true",
         "checkHasItem": "nucBattery",
         "speedDecrease": "5",
@@ -425,22 +425,22 @@
         "ignoreRadiation": "true",
         "sound": "armor"
     },
-    "anti-radio": {
+    "antiradio": {
         "name": "Anti-Radiation Suit",
         "description": "Better to look stupid than to be a radioactive stiff",
         "type": "armor",
-        "icon": "anti-radio",
+        "icon": "antiradio",
         "price": "1000",
         "ignoreRadiation": "true",
         "sound": "socks"
     },
 
     
-    "bow-ribbon": {
+    "bowRibbon": {
         "name": "Bow",
         "description": "It does not have any properties, it is cheap. But it looks nice с:",
         "type": "artifact",
-        "icon": "bow-tie-ribbon",
+        "icon": "bowRibbon",
         "price": "5",
         "sound": "socks"
     },
@@ -464,11 +464,11 @@
         "heal": "5",
         "sound": "eating1"
     },
-    "sparkle-cola": {
+    "sparkleCola": {
         "name": "Sparkle-Cola",
         "description": "Cold soda with carrot flavor",
         "type": "food",
-        "icon": "sparkle-cola",
+        "icon": "sparkleCola",
         "price": "40",
         "heal": "15",
         "sound": "colaDrink"
@@ -493,23 +493,23 @@
     },
 
 
-    "heal-potion": {
+    "healPotion": {
         "name": "Heal potion",
         "description": "One of the most useful items for every pony since the declaration of war on zebras",
         "type": "meds",
-        "icon": "heal-potion",
+        "icon": "healPotion",
         "price": "50",
         "medsEffect": "heal",
-        "sound": "heal-potion"
+        "sound": "healPotion"
     },
-    "mana-potion": {
+    "manaPotion": {
         "name": "Mana potion",
         "description": "Very useful for unicorns potion, that increases their magical abilities.",
         "type": "meds",
-        "icon": "mana-potion",
+        "icon": "manaPotion",
         "price": "150",
         "medsEffect": "mana",
-        "sound": "heal-potion"
+        "sound": "healPotion"
     },
     "buck": {
         "name": "Buck",
@@ -538,11 +538,11 @@
         "medsEffect": "hydra",
         "sound": "medX"
     },
-    "med-x": {
+    "medX": {
         "name": "Med-X",
         "description": "Intravenous painkiller. Temporarily removes the feeling of pain and reduces the damage received. May cause addiction",
         "type": "meds",
-        "icon": "med-x",
+        "icon": "medX",
         "price": "80",
         "medsEffect": "medX",
         "sound": "medX"
@@ -574,13 +574,13 @@
         "medsEffect": "detoxine",
         "sound": "mentats"
     },
-    "stealth-buck": {
-        "name": "Stealth-buck",
+    "stealthBuck": {
+        "name": "Stealth Buck",
         "description": "A device developed on the basis of Zebra technologies that generates a stealth field when using (prototype)",
         "type": "meds",
-        "icon": "stealthbuck",
+        "icon": "stealthBuck",
         "price": "500",
-        "medsEffect": "stealthbuck",
-        "sound": "stealthbuck"
+        "medsEffect": "stealthBuck",
+        "sound": "stealthBuck"
     }
 }

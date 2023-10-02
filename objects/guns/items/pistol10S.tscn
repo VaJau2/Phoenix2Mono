@@ -77,8 +77,8 @@ height = 0.949522
 height = 0.979062
 radius = 0.143789
 
-[node name="pistol10-silenced" instance=ExtResource( 1 )]
-itemCode = "pistol10-silenced"
+[node name="pistol10S" instance=ExtResource( 1 )]
+itemCode = "pistol10S"
 
 [node name="pistol001" type="MeshInstance" parent="." index="1"]
 transform = Transform( 0.819429, 1.8195e-16, -1.8195e-16, -1.8195e-16, 0.819429, 3.58184e-08, 1.8195e-16, -3.58184e-08, 0.819429, 0.825901, 0.0319898, -1.49461 )

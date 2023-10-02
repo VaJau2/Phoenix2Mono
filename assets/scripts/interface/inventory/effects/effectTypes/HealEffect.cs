@@ -16,7 +16,7 @@ public class HealEffect: Effect
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
-        iconName = "heal-potion";
+        iconName = "healPotion";
         base.SetOn(handler);
     }
 

@@ -12,6 +12,8 @@ public class CloneFlaskTrigger : TriggerBase
     private float timer;
     private bool changeBlackScreen;
 
+    private AudioEffectsController audioEffectController;
+
     public override async void _Ready()
     {
         SetProcess(false);
@@ -20,6 +22,8 @@ public class CloneFlaskTrigger : TriggerBase
 
         await ToSignal(GetTree(), "idle_frame");
 
+        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
+        
         if (IsActive)
         {
             _on_activate_trigger();
@@ -63,6 +67,9 @@ public class CloneFlaskTrigger : TriggerBase
                 player.GetAudi(true).Stream = underwater;
                 player.GetAudi(true).Play();
 
+                audioEffectController.AddEffects("flaskWater");
+                audioEffectController.AddEffects("flaskGlass");
+                
                 timer = 2f;
                 SetProcess(true);
                 break;
@@ -80,13 +87,21 @@ public class CloneFlaskTrigger : TriggerBase
             case 2:
                 cloneFlask.audi.Play();
                 cloneFlask.AnimateWater();
-                timer = 4f;
+                timer = 1.5f;
                 SetProcess(true);
                 break;
 
             case 3:
+                audioEffectController.RemoveEffects("flaskWater");
+                
+                timer = 2.5f;
+                SetProcess(true);
+                break;
+            
+            case 4:
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
-                player.GlobalTransform = Global.setNewOrigin(
+                player.GlobalTransform = Global.setNewOrigin
+                (
                     player.GlobalTransform,
                     playerPosTransform.origin
                 );
@@ -98,15 +113,22 @@ public class CloneFlaskTrigger : TriggerBase
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();
                 cloneFlask.camera.MakeCurrent(false);
-
+                
                 timer = 0.6f;
                 SetProcess(true);
                 break;
 
-            case 4:
+            case 5:
                 player.GetAudi(true).Stream = flaskOpen;
                 player.GetAudi(true).Play();
                 cloneFlask.AnimateGlass();
+                
+                timer = 0.3f;
+                SetProcess(true);
+                break;
+            
+            case 6:
+                audioEffectController.RemoveEffects("flaskGlass");
                 base._on_activate_trigger();
                 break;
         }

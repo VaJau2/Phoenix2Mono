@@ -117,7 +117,7 @@ surfaces/0 = {
 [node name="slave_trader3-1" instance=ExtResource( 2 )]
 IdleAnim = "Idle1"
 weaponCode = "laserPistol"
-itemCodes = [ "laserPistol", "bow-ribbon" ]
+itemCodes = [ "laserPistol", "bowRibbon" ]
 ammoCount = {
 "ammoEnergy": 20
 }

@@ -117,7 +117,7 @@ bind/19/pose = Transform( 0.531138, -1.15031, 0.0104028, 1.01392, 0.462709, -0.6
 IdleAnim = "Idle1"
 IsImmortal = true
 StartHealth = 200
-weaponCode = "pistol10-silenced"
+weaponCode = "pistol10S"
 
 [node name="Skeleton" parent="Armature" index="0"]
 bones/0/bound_children = [  ]

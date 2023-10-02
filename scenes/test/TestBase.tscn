@@ -37,7 +37,7 @@ script = ExtResource( 3 )
 maxItemsCount = 10
 moneyChance = 0.9
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol" ]
+itemCodes = [ "mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bowRibbon", "healPotion", "laserPistol", "plasmaPistol" ]
 ammoCount = {
 "ammo308": 20,
 "ammo32": 20

@@ -34,19 +34,14 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
 
     public void Interact(PlayerCamera interactor)
     {
+        var inventory = global.player.inventory;
+        var wearButton = inventory.GetWearButton(ItemType.armor);
+        
         hasCloth = false;
         UpdateMeshes();
         
-        var useHandler = inventoryMenu.mode.useHandler;
-        var armorButton = useHandler.armorButton;
-        
-        if (!string.IsNullOrEmpty(armorButton.myItemCode))
-        {
-            useHandler.UnwearItem(armorButton);
-        }
-        
-        armorButton.SetItem(clothCode);
-        global.player.inventory.WearItem(clothCode);
+        inventory.WearItem(clothCode);
+        wearButton.SetItem(clothCode);
     }
 
     private void UpdateMeshes()

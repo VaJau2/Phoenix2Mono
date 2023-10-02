@@ -519,7 +519,7 @@ alarmSoundsPath = [ NodePath("../terrain/alarm") ]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.187, -0.183066, -50.7126 )
 IdleAnim = "Sit"
 weaponCode = "rifle308"
-itemCodes = [ "heal-potion" ]
+itemCodes = [ "healPotion" ]
 
 [node name="zebra-helmet" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.8773, -0.168295, -50.8459 )
@@ -546,7 +546,7 @@ ammoCount = {
 [node name="zebra-sniper3" parent="npc" instance=ExtResource( 34 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 104.642, 8.09145, 95.0564 )
 weaponCode = "sniper308"
-itemCodes = [ "mana-potion" ]
+itemCodes = [ "manaPotion" ]
 ammoCount = {
 "ammo308": 5
 }
@@ -616,8 +616,8 @@ ammoCount = {
 transform = Transform( -0.0159865, 0, 0.999872, 0, 1, 0, -0.999872, 0, -0.0159865, 32.487, -90.8212, 45.4926 )
 IdleAnim = "Idle1"
 relation = 2
-weaponCode = "pistol10-silenced"
-itemCodes = [ "heal-potion", "mana-potion" ]
+weaponCode = "pistol10S"
+itemCodes = [ "healPotion", "manaPotion" ]
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 26 )
@@ -1605,16 +1605,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0317, 16.9015, 7.81849 )
 [node name="doors" type="Spatial" parent="rooms/cp/props"]
 
 [node name="door" parent="rooms/cp/props/doors" instance=ExtResource( 62 )]
-transform = Transform( -4.37114e-08, 0, 1.23, 0, 1.214, 0, -1, 0, -5.3765e-08, 12.2619, 1.21978, 3.14179 )
+transform = Transform( -4.37114e-08, 0, 1.23, 0, 1.23, 0, -1, 0, -5.3765e-08, 12.1716, 1.11153, 3.14179 )
 
 [node name="door2" parent="rooms/cp/props/doors" instance=ExtResource( 62 )]
-transform = Transform( -4.37114e-08, 0, -1.23, 0, 1.214, 0, 1, 0, -5.3765e-08, 8.47841, 1.09795, -4.22609 )
+transform = Transform( -4.37114e-08, 0, -1.23, 0, 1.214, 0, 1, 0, -5.3765e-08, 8.5538, 1.09795, -4.22609 )
 
 [node name="door3" parent="rooms/cp/props/doors" instance=ExtResource( 62 )]
-transform = Transform( 1, 0, 0, 0, 1.237, 0, 0, 0, 1.23, -10.973, 9.096, -19.399 )
+transform = Transform( 1, 0, 0, 0, 1.237, 0, 0, 0, 1.23, -10.973, 9.096, -19.4519 )
 
 [node name="door4" parent="rooms/cp/props/doors" instance=ExtResource( 62 )]
-transform = Transform( 1, 0, 0, 0, 1.268, 0, 0, 0, 1.217, 5.15431, 9.096, 1.26528 )
+transform = Transform( 1, 0, 0, 0, 1.268, 0, 0, 0, 1.217, 5.15431, 9.096, 1.21624 )
 
 [node name="pics" type="Spatial" parent="rooms/cp/props"]
 
@@ -2167,7 +2167,7 @@ script = ExtResource( 3 )
 maxItemsCount = 3
 moneyChance = 0.0
 maxMoneyCount = 20
-itemCodes = [ "heal-potion", "mana-potion", "maffin", "ammoEnergy", "ammo12", "ammo762", "book1", "apple", "ammo308", "ammo10" ]
+itemCodes = [ "healPotion", "manaPotion", "maffin", "ammoEnergy", "ammo12", "ammo762", "book1", "apple", "ammo308", "ammo10" ]
 ammoCount = {
 "ammo10": 15,
 "ammo12": 20,

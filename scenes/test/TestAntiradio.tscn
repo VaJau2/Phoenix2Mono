@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/props/furniture/dummy/dummy_antiradio.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/models/player_variants/anti-radio/first/pegasus.res" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/models/player_variants/antiradio/first/pegasus.res" type="ArrayMesh" id=4]
+[ext_resource path="res://objects/props/furniture/laboratory/cloneFlask.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
@@ -23,7 +24,7 @@ script = ExtResource( 12 )
 
 [node name="TestSceneLoader" type="Node" parent="Scene"]
 script = ExtResource( 7 )
-playerRace = 2
+playerRace = 1
 
 [node name="canvas" parent="Scene" instance=ExtResource( 2 )]
 
@@ -57,11 +58,14 @@ shape = SubResource( 2 )
 
 [node name="metallic-cabinet" parent="Scene/terrain/props" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
-startItemCodes = [ "anti-radio", "power-armor", "rage", "bow-ribbon", "nucBattery", "coat" ]
+startItemCodes = [ "powerArmor", "rage", "bowRibbon", "nucBattery", "coat" ]
 
 [node name="dummy" parent="Scene/terrain/props" instance=ExtResource( 3 )]
 transform = Transform( 0.555454, 0, -0.831547, 0, 1, 0, 0.831547, 0, 0.555454, -28.8174, 0.366631, 11.6461 )
 pegasCloth = ExtResource( 4 )
+
+[node name="cloneFlask" parent="Scene/terrain/props" instance=ExtResource( 5 )]
+transform = Transform( -4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.15743, -32.5678, 2.62048, -10.9731 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain"]
 transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )

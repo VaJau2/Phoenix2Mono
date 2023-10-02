@@ -6,8 +6,8 @@ public class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
     [Export] public Array<NodePath> disactiveTriggerPaths;
-    private Array<TriggerBase> otherTriggers = new Array<TriggerBase>();
-    private Array<TriggerBase> triggersToDisactive = new Array<TriggerBase>();
+    protected Array<TriggerBase> otherTriggers = new Array<TriggerBase>();
+    protected Array<TriggerBase> triggersToDisactive = new Array<TriggerBase>();
 
     public override void _Ready()
     {

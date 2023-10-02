@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heal-potion.png-4fd95d568d7d1a15250c0b748c55ad52.stex"
+path="res://.import/antiradio.png-01cd6fe95036d924e2f1c5507d49c768.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/heal-potion.png"
-dest_files=[ "res://.import/heal-potion.png-4fd95d568d7d1a15250c0b748c55ad52.stex" ]
+source_file="res://assets/textures/interface/icons/items/antiradio.png"
+dest_files=[ "res://.import/antiradio.png-01cd6fe95036d924e2f1c5507d49c768.stex" ]
 
 [params]
 

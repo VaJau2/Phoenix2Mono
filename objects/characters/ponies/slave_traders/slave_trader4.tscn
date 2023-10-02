@@ -147,7 +147,7 @@ surfaces/0 = {
 IdleAnim = "Idle1"
 StartHealth = 120
 weaponCode = "shotgun12"
-itemCodes = [ "shotgun12", "heal-potion" ]
+itemCodes = [ "shotgun12", "healPotion" ]
 ammoCount = {
 "ammo12": 6
 }

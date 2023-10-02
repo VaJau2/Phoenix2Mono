@@ -370,7 +370,7 @@ IsImmortal = true
 dialogueCode = "trade1"
 moneyCount = 2000
 traderCode = "mrGutsy"
-startItemCodes = [ "private-uniform", "power-armor", "heal-potion", "mana-potion", "med-x", "rifle308", "shotgun20", "automatic308", "pistol10-silenced", "shotgun12", "automatic762" ]
+startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "rifle308", "shotgun20", "automatic308", "pistol10S", "shotgun12", "automatic762" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
@@ -1671,7 +1671,7 @@ shape = SubResource( 42 )
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "med-x", "ammo308", "ammo32", "revolver32", "private-uniform", "heal-potion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkle-cola" ]
+itemCodes = [ "mentats", "dash", "medX", "ammo308", "ammo32", "revolver32", "privateUniform", "healPotion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkleCola" ]
 ammoCount = {
 "ammo20": 20,
 "ammo307": 10,

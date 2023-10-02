@@ -72,7 +72,7 @@
         {
           "key": "item",
           "op": "set",
-          "value": "nucBattery-quest"
+          "value": "Quest_nucBattery"
         }
       ],
       "next": "S2"

@@ -29,12 +29,12 @@ public class LoadItemsFromSuitcase : TriggerBase
         }
         
         bool suitcaseEmpty = true;
-        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("suitcase-vacation");
+        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("Quest_suitcaseVacation");
         
         if (IsInstanceValid(saveNode) && playerHasSuitcase)
         {
             InventoryMenu menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-            menu.RemoveItemIfExists("suitcase-vacation");
+            menu.RemoveItemIfExists("Quest_suitcaseVacation");
             
             Dictionary data = saveNode.InventoryData;
             

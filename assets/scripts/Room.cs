@@ -7,11 +7,13 @@ public class Room : SaveActive
 
     RadioController radioController;
     [Export] List<NodePath> radioPaths;
-    List<RadioBase> radioList = new List<RadioBase>();
+    List<RadioBase> radioList = new();
 
-    public override void _Ready()
+    private AudioEffectsController audioEffectController;
+    
+    public override async void _Ready()
     {
-        if (radioPaths.Count > 0)
+        if (radioPaths?.Count > 0)
         {
             foreach (NodePath radioPath in radioPaths)
             {
@@ -23,6 +25,11 @@ public class Room : SaveActive
 
             radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
         }
+
+        await ToSignal(GetTree(), "idle_frame");
+        
+        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
+        if (Visible) audioEffectController.AddEffects(Name);
     }
 
     public void Enter()
@@ -32,6 +39,8 @@ public class Room : SaveActive
             radioController.EnterToRoom(radioList);
             radioController.currentRoom = GetPath();
         }
+        
+        audioEffectController.AddEffects(Name);
     }
 
     public void Exit()
@@ -41,5 +50,7 @@ public class Room : SaveActive
             radioController.ExitFromRoom(radioList);
             radioController.currentRoom = null;
         }
+        
+        audioEffectController.RemoveEffects(Name);
     }
 }

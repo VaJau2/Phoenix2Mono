@@ -828,7 +828,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.47528
 dialogueCode = "trade"
 moneyCount = 1000
 traderCode = "assistantShy"
-startItemCodes = [ "bow-ribbon", "school-uniform", "pistol10-silenced" ]
+startItemCodes = [ "bowRibbon", "schoolUniform", "pistol10S" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
@@ -2191,7 +2191,7 @@ beepSound = ExtResource( 72 )
 npcPrefab = ExtResource( 82 )
 bagPrefab = ExtResource( 79 )
 bagSpawnPath = NodePath("../../rooms/stels-house/bagSpawn")
-itemInBag = "stealth-buck"
+itemInBag = "stealthBuck"
 assistantPiePath = NodePath("../../npc/assistantPie")
 winDialogue = "win"
 loseDialogue = "lose"
@@ -2285,7 +2285,7 @@ script = ExtResource( 3 )
 maxItemsCount = 1
 moneyChance = 0.6
 maxMoneyCount = 70
-itemCodes = [ "sparkle-cola", "ammo308", "apple", "ammo308", "ammo32", "ammo20", "ammoEnergy", "heal-potion", "book1", "book0" ]
+itemCodes = [ "sparkleCola", "ammo308", "apple", "ammo308", "ammo32", "ammo20", "ammoEnergy", "healPotion", "book1", "book0" ]
 ammoCount = {
 "ammo20": 20,
 "ammo308": 20,

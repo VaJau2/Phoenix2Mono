@@ -4,14 +4,17 @@ using System;
 
 public class Receiver : RadioBase, ISavable, IInteractable
 {
-	string model;
+	private string model;
 
 	[Export] public bool isOn { protected set; get; } = true;
 
 	public Radiostation station { private set; get; }
-	[Export] Radiostation.Name radiostation;
-	[Export] FrequencyRange frequencyRange;
-	[Export] float frequency = 0.5f;
+	[Export] private Radiostation.Name radiostation;
+	[Export] private FrequencyRange frequencyRange;
+	[Export] private float frequency = 0.5f;
+
+	[Export] private float unitSize = 10f;
+	[Export] private float maxDistance = 120f;
 
 	public enum FrequencyRange
 	{
@@ -22,18 +25,18 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		U2
 	}
 
-	Spatial l;
-	Spatial m;
-	Spatial k;
-	Spatial u1;
-	Spatial u2;
-	Spatial arrow;
-	Spatial frequencyLever;
-	Spatial volumeLever;
+	private Spatial l;
+	private Spatial m;
+	private Spatial k;
+	private Spatial u1;
+	private Spatial u2;
+	private Spatial arrow;
+	private Spatial frequencyLever;
+	private Spatial volumeLever;
 
-	Global global = Global.Get();
-	float minRadioVolume;
-	float maxRadioVolume;
+	private Global global = Global.Get();
+	private float minRadioVolume;
+	private float maxRadioVolume;
 
 	[Signal]
 	public delegate void ChangeMusicEvent();
@@ -65,13 +68,13 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		else SwitchOff(false);
 	}
 
-	void InitModel()
+	private void InitModel()
 	{
 		bool hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
 		model = hasRadio ? "Radio" : "Radio Jr";
 	}
 
-	void InitControls()
+	private void InitControls()
     {
 		volumeLever = GetNode<Spatial>("Volume Lever");
 		frequencyLever = GetNode<Spatial>("Frequency Lever");
@@ -145,7 +148,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void InitRadiostation()
+	private void InitRadiostation()
     {
 		switch (radiostation)
 		{
@@ -179,13 +182,18 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		station?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
 	}
 
-	void InitPlayer()
+	private void InitPlayer()
 	{
+		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
+		musicPlayer.MaxDistance = maxDistance;
+		musicPlayer.UnitSize = unitSize;
+		
 		noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
+		noisePlayer.MaxDistance = maxDistance;
+		noisePlayer.UnitSize = unitSize;
+		
 		switchSound = (AudioStream)GD.Load("res://assets/audio/radio/Switch.ogg");
 		noiseSound = (AudioStream)GD.Load("res://assets/audio/radio/Noise.ogg");
-
-		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
 	}
 
 	public void Interact(PlayerCamera interactor)
@@ -228,12 +236,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
-	void SyncTimer()
+	private void SyncTimer()
     {
 		if (isOn) musicPlayer.Play(station.timer);
 	}
 
-	void PlaySwitchSound()
+	private void PlaySwitchSound()
     {
 		noisePlayer.Stream = switchSound;
 		noisePlayer.UnitDb = 0;
@@ -242,7 +250,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeNoiseEvent));
 	}
 
-	void OnSwitchSoundFinished()
+	private void OnSwitchSoundFinished()
 	{
 		if (isOn)
         {
@@ -254,7 +262,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void OnMusicFinished()
+	private void OnMusicFinished()
 	{
 		if (isOn)
         {
@@ -265,7 +273,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void UpdateVolumeLever(float value)
+	private void UpdateVolumeLever(float value)
     {
 		float normalizeLever;
 		value = (value - minRadioVolume) / (Mathf.Abs(maxRadioVolume) + Mathf.Abs(minRadioVolume));

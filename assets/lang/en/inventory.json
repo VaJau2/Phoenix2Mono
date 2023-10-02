@@ -60,7 +60,7 @@
         "medX": "60 sec. + 20% to block damage",
         "mentats": "Reducing the difference in price when trading",
         "detoxine": "Resetting all current effects",
-        "stealthbuck": "60 sec. invisibility"
+        "stealthBuck": "60 sec. invisibility"
     },
 
     "effectIconsText": {

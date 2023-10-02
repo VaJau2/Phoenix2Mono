@@ -5,8 +5,7 @@ using Godot.Collections;
 public class DifficultySubmenu : SubmenuBase
 {
     public const float DEFAULT_SLIDERS_VALUE = 1f;
-    public const bool DEFAULT_DEATH_SCREEN = true;
-    
+
     Global global = Global.Get();
     
     private Button defaultButton;
@@ -15,22 +14,18 @@ public class DifficultySubmenu : SubmenuBase
     private Dictionary<string, Label> numbers;
     private Dictionary<string, Slider> sliders;
 
-    private Button dealthButton;
-    
     public override void LoadSubmenu(SettingsMenu parent)
     {
         base.LoadSubmenu(parent);
         defaultButton = GetNode<Button>("default");
-        dealthButton = GetNode<Button>("death_button");
-        
+
         labels = new Dictionary<string, Label>
         {
             {"player_damage", GetNode<Label>("player_damage_label")},
             {"npc_damage", GetNode<Label>("npc_damage_label")},
             {"npc_aggressive", GetNode<Label>("npc_aggressive_label")},
             {"npc_accuracy", GetNode<Label>("npc_accuracy_label")},
-            {"inflation", GetNode<Label>("inflation_label")},
-            {"death_screen", GetNode<Label>("death_screen")},
+            {"inflation", GetNode<Label>("inflation_label")}
         };
         numbers = new Dictionary<string, Label>
         {
@@ -38,7 +33,7 @@ public class DifficultySubmenu : SubmenuBase
             {"npc_damage", GetNode<Label>("npc_damage_number")},
             {"npc_aggressive", GetNode<Label>("npc_aggressive_number")},
             {"npc_accuracy", GetNode<Label>("npc_accuracy_number")},
-            {"inflation", GetNode<Label>("inflation_number")},
+            {"inflation", GetNode<Label>("inflation_number")}
         };
         sliders = new Dictionary<string, Slider>
         {
@@ -46,7 +41,7 @@ public class DifficultySubmenu : SubmenuBase
             {"npc_damage", GetNode<Slider>("npc_damage_slider")},
             {"npc_aggressive", GetNode<Slider>("npc_aggressive_slider")},
             {"npc_accuracy", GetNode<Slider>("npc_accuracy_slider")},
-            {"inflation", GetNode<Slider>("inflation_slider")},
+            {"inflation", GetNode<Slider>("inflation_slider")}
         };
     }
     
@@ -93,7 +88,6 @@ public class DifficultySubmenu : SubmenuBase
     public override void LoadInterfaceLanguage()
     {
         defaultButton.Text = InterfaceLang.GetPhrase("settingsMenu", "buttons", "default");
-        SettingsMenu.LoadOnOffText(dealthButton, global.Settings.deathScreen);
         foreach (var labelCode in labels.Keys)
         {
             labels[labelCode].Text = InterfaceLang.GetPhrase("settingsMenu", "labels", labelCode);
@@ -113,21 +107,11 @@ public class DifficultySubmenu : SubmenuBase
             sliders[sliderCode].Value = DEFAULT_SLIDERS_VALUE;
             _on_slider_value_changed(DEFAULT_SLIDERS_VALUE, sliderCode);
         }
-        
-        global.Settings.deathScreen = DEFAULT_DEATH_SCREEN;
     }
     
     public void _on_slider_value_changed(float value, string sliderCode)
     {
         UpdateSliderNumber(sliderCode);
         SetSettingFloat(sliderCode, value);
-    }
-    
-    public void _on_death_button_pressed()
-    {
-        parentMenu.SoundClick();
-        var deathScreen = global.Settings.deathScreen;
-        global.Settings.deathScreen = !deathScreen;
-        SettingsMenu.LoadOnOffText(dealthButton, !deathScreen);
     }
 }
