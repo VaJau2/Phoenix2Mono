@@ -76,20 +76,20 @@ public class PlayerThirdPerson : Spatial
         }
     }
 
-    private float updateSide(float delta, float side, string keyUp,
+    private float UpdateSide(float delta, float side, string keyUp,
         string keyDown, float maxValue, float minValue, float usualValue)
     {
-        if (player.MayMove && Input.IsActionPressed(keyUp))
+        switch (player.MayMove)
         {
-            side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
-        }
-        else if (player.MayMove && Input.IsActionPressed(keyDown))
-        {
-            side = Mathf.MoveToward(side, minValue, delta * 1.5f);
-        }
-        else
-        {
-            side = Mathf.MoveToward(side, usualValue, delta * 1.5f);
+            case true when Input.IsActionPressed(keyUp):
+                side = Mathf.MoveToward(side, maxValue, delta * 1.5f);
+                break;
+            case true when Input.IsActionPressed(keyDown):
+                side = Mathf.MoveToward(side, minValue, delta * 1.5f);
+                break;
+            default:
+                side = Mathf.MoveToward(side, usualValue, delta * 1.5f);
+                break;
         }
 
         return side;
@@ -97,9 +97,9 @@ public class PlayerThirdPerson : Spatial
 
     private void UpdateThirdCameraPos(float delta)
     {
-        tempThird.x = updateSide(delta, tempThird.x, "ui_left", "ui_right",
+        tempThird.x = UpdateSide(delta, tempThird.x, "ui_left", "ui_right",
             third.x + 0.7f, third.x - 0.7f, third.x);
-        tempThird.z = updateSide(delta, tempThird.z, "ui_up", "ui_down",
+        tempThird.z = UpdateSide(delta, tempThird.z, "ui_up", "ui_down",
             third.z + 0.5f, third.z - 0.5f, third.z);
 
         if (player is Player_Pegasus)
@@ -108,7 +108,7 @@ public class PlayerThirdPerson : Spatial
 
             if (pegasus.IsFlying)
             {
-                tempThird.y = updateSide(delta, tempThird.y, "jump", "ui_shift",
+                tempThird.y = UpdateSide(delta, tempThird.y, "jump", "ui_shift",
                     third.y + 0.7f, third.y - 0.7f, third.y);
             }
             else
@@ -124,7 +124,7 @@ public class PlayerThirdPerson : Spatial
         thirdCamera.Translation = tempThird;
     }
 
-    private void checkCameraSee()
+    private void CheckCameraSee()
     {
         RayToPlayer.Enabled = true;
         var dir = player.GlobalTransform.origin - RayToPlayer.GlobalTransform.origin;
@@ -149,7 +149,7 @@ public class PlayerThirdPerson : Spatial
         }
     }
 
-    private void closeCamera()
+    private void CloseCamera()
     {
         if (third.x > thirdMin.x)
         {
@@ -177,7 +177,7 @@ public class PlayerThirdPerson : Spatial
         }
     }
 
-    private void farCamera()
+    private void FarCamera()
     {
         if (!player.ThirdView)
         {
@@ -243,11 +243,11 @@ public class PlayerThirdPerson : Spatial
         if (player.ThirdView)
         {
             UpdateThirdCameraPos(delta);
-            checkCameraSee();
+            CheckCameraSee();
 
             if (!seePlayer)
             {
-                closeCamera();
+                CloseCamera();
             }
             else
             {
@@ -255,7 +255,7 @@ public class PlayerThirdPerson : Spatial
                 {
                     if (oldThird.x > third.x)
                     {
-                        farCamera();
+                        FarCamera();
                     }
                     else
                     {
@@ -268,10 +268,10 @@ public class PlayerThirdPerson : Spatial
         {
             if (oldThird != Vector3.Zero)
             {
-                checkCameraSee();
+                CheckCameraSee();
                 if (seePlayer)
                 {
-                    farCamera();
+                    FarCamera();
                     oldThird = Vector3.Zero;
                 }
             }
@@ -280,24 +280,20 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton
-            && Input.MouseMode == Input.MouseModeEnum.Captured)
+        if (!(@event is InputEventMouseButton mouseEvent)
+            || Input.MouseMode != Input.MouseModeEnum.Captured) return;
+        
+        if (!mouseEvent.IsPressed()) return;
+        
+        switch (mouseEvent.ButtonIndex)
         {
-            var mouseEvent = @event as InputEventMouseButton;
-
-            if (mouseEvent.IsPressed())
-            {
-                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_UP)
-                {
-                    closeCamera();
-                    oldThird = Vector3.Zero;
-                }
-
-                if (mouseEvent.ButtonIndex == BUTTON_WHEEL_DOWN)
-                {
-                    farCamera();
-                }
-            }
+            case BUTTON_WHEEL_UP:
+                CloseCamera();
+                oldThird = Vector3.Zero;
+                break;
+            case BUTTON_WHEEL_DOWN:
+                FarCamera();
+                break;
         }
     }
 }
