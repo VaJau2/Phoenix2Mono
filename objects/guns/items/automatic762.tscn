@@ -57,7 +57,7 @@ radius = 0.0881249
 height = 0.276961
 
 [node name="automatic762" instance=ExtResource( 2 )]
-itemCode = "ak47"
+itemCode = "automatic762"
 
 [node name="Box001" type="MeshInstance" parent="." index="1"]
 transform = Transform( 8.25333e-05, 0, 0.0355598, 0, 0.03556, 0, -0.0355598, 0, 8.25333e-05, -0.00831499, -0.16771, -0.130976 )

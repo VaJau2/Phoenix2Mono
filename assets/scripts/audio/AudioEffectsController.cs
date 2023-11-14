@@ -22,8 +22,7 @@ public class AudioEffectsController : Node, ISavable
         player.Connect(nameof(Player.ChangeView), this, nameof(OnChangeView));
         
         await ToSignal(GetTree(), "idle_frame");
-
-        GD.Print("ready check");
+        
         AddEffects(player.inventory.cloth);
     }
 
@@ -52,7 +51,6 @@ public class AudioEffectsController : Node, ISavable
                 effectsKeys.Add(key);
             }
             
-            GD.Print("return didn't work");
             savedCodes.Add(code);
         }
     }
@@ -113,7 +111,6 @@ public class AudioEffectsController : Node, ISavable
         {
             var code = codeObj.ToString();
             savedCodes.Add(code);
-            GD.Print("load data");
             AddEffects(code);
         }
         

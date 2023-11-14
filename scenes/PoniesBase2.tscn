@@ -1674,7 +1674,7 @@ maxMoneyCount = 50
 itemCodes = [ "mentats", "dash", "medX", "ammo308", "ammo32", "revolver32", "privateUniform", "healPotion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkleCola" ]
 ammoCount = {
 "ammo20": 20,
-"ammo307": 10,
+"ammo308": 10,
 "ammo32": 20,
 "ammoEnergy": 20
 }

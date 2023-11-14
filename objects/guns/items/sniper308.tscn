@@ -58,7 +58,7 @@ extents = Vector3( 0.0559272, 0.0427858, 0.362035 )
 extents = Vector3( 0.127065, 0.147763, 0.773964 )
 
 [node name="sniper308" instance=ExtResource( 1 )]
-itemCode = "sniper307"
+itemCode = "sniper308"
 
 [node name="rifle002" type="MeshInstance" parent="." index="1"]
 transform = Transform( 0.365115, 2.98023e-08, -5.60305e-08, 1.11759e-07, 0.365116, -1.76108e-08, 4.86486e-08, -6.9673e-10, 0.365116, -0.0391966, 0.00666038, -0.93655 )
