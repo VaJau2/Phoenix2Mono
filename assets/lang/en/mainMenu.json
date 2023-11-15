@@ -11,7 +11,7 @@
         "records":  "               [Records]",
         "about":    "               [About]",
         "exit":     "               [Exit]",
-        "testing":  "               [Load level]",
+        "testing":  "           DEV:[Load level]",
 
         "chooseRussian": "Выбрать русский язык",
         "chooseEnglish": "Choose english language",

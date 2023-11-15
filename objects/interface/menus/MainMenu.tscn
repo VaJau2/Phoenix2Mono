@@ -260,11 +260,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 40.0
-margin_top = 132.0
+margin_top = -148.0
 margin_right = -64.0
-margin_bottom = 157.0
+margin_bottom = -123.0
 theme = ExtResource( 1 )
-text = "               [Загрузка уровня]"
+text = "           DEV:[Загрузить уровень]"
 align = 0
 
 [node name="ChooseAutosaveName" type="Control" parent="." groups=["ignore_color"]]
