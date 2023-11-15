@@ -12,6 +12,7 @@ public class MainMenu : MenuBase
     Control autosaveMenu;
     Control changeRaceMenu;
     LoadMenu loadMenu;
+    TestingLevelsMenu testingLevelsMenu;
     Control aboutMenu;
 
     Control chooseLanguage;
@@ -24,6 +25,7 @@ public class MainMenu : MenuBase
     Button settingsButton;
     Button aboutButton;
     Button exitButton;
+    Button testingButton;
 
     Label aboutPage;
     Label aboutLabel;
@@ -64,6 +66,7 @@ public class MainMenu : MenuBase
         settingsButton = GetNode<Button>("settings");
         aboutButton = GetNode<Button>("about");
         exitButton = GetNode<Button>("exit");
+        testingButton = GetNode<Button>("testing");
 
         aboutMenu = GetNode<Control>("About");
         aboutPage = GetNode<Label>("About/page_label");
@@ -96,6 +99,7 @@ public class MainMenu : MenuBase
         modalDesc = modalError.GetNode<Label>("back/Text");
         modalOk = modalError.GetNode<Button>("back/OK");
         loadMenu = GetNode<LoadMenu>("Load");
+        testingLevelsMenu = GetNode<TestingLevelsMenu>("Testing");
 
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
 
@@ -130,11 +134,13 @@ public class MainMenu : MenuBase
         settingsButton.Text = GetMenuText("settings");
         aboutButton.Text = GetMenuText("about");
         exitButton.Text = GetMenuText("exit");
+        testingButton.Text = GetMenuText("testing");
         
         modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
         modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
         modalOk.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "ok");
         loadMenu.LoadInterfaceLanguage();
+        testingLevelsMenu.LoadInterfaceLanguage();
     }
 
     private void LoadAboutLanguage()
@@ -219,9 +225,8 @@ public class MainMenu : MenuBase
         settingsButton.Visible = true;
         aboutButton.Visible = true;
         exitButton.Visible = true;
+        testingButton.Visible = OS.IsDebugBuild();
     }
-
-    
 
     private static Race GetRaceFromSave(string fileName)
     {
@@ -314,6 +319,12 @@ public class MainMenu : MenuBase
         SoundClick();
         aboutMenu.Visible = true;
     }
+    
+    public void _on_testing_pressed()
+    {
+        SoundClick();
+        testingLevelsMenu.Visible = true;
+    }
 
     public void _on_back_pressed() 
     {
@@ -330,6 +341,7 @@ public class MainMenu : MenuBase
             aboutMenu.Visible = false;
             autosaveMenu.Visible = false;
             loadMenu.Visible = false;
+            testingLevelsMenu.Visible = false;
         }
         
         _on_mouse_exited();

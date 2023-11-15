@@ -11,6 +11,7 @@
         "records":  "               [Records]",
         "about":    "               [About]",
         "exit":     "               [Exit]",
+        "testing":  "               [Load level]",
 
         "chooseRussian": "Выбрать русский язык",
         "chooseEnglish": "Choose english language",
@@ -21,6 +22,7 @@
         "chooseRecords": "Open records menu",
         "chooseAbout": "About game",
         "chooseExit": "Exit game",
+        "chooseTesting": "Open testing menu to load levels",
 
         "back": "[Back]",
         "next": "[Next]",

@@ -299,6 +299,8 @@ public class PlayerInventory
     
     public void LoadData(Dictionary data)
     {
+        if (data.Count == 0) return;
+        
         //загрузка кнопок вещей
         Array itemCodes = (Array) data["itemCodes"];
         Array itemCounts = (Array) data["itemCounts"];
@@ -313,6 +315,9 @@ public class PlayerInventory
             ItemIcon tempButton = menu.mode.itemButtons[i];
             tempButton.SetItem(itemCode);
             tempButton.SetCount(itemCount, false);
+            
+            if (itemBinds.Count == 0) continue;
+            
             if (itemBinds[i] != null && itemBinds[i].ToString() != "")
             {
                 tempButton.SetBindKey(itemBinds[i].ToString());
