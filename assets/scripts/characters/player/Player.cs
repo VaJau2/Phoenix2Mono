@@ -638,6 +638,8 @@ public class Player : Character
     public override async void LoadData(Dictionary data)
     {
         inventory.LoadData((Dictionary)data["inventory"]);
+        if (data.Count <= 1) return;
+        
         base.LoadData(data);
 
         bool sittingOnChair = Convert.ToBoolean(data["sitOnChair"]);

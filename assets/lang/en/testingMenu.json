@@ -1,0 +1,15 @@
+﻿{
+  "main": {
+    "page_header": "/Phoenix2/Main_menu/Level_select",
+    "levels_header": "Select level to load:",
+    "items_header": "Items list (separated by commas):",
+    "money_header": "Money count:",
+    "quests_header": "Quest variables (json):",
+    "back": "[Back]",
+    "load": "[Load]"
+  },
+  "choose": {
+    "back": "Back",
+    "load": "Load chosen level"
+  }
+}
