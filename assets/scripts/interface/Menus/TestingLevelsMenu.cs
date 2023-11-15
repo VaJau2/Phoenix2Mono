@@ -1,5 +1,7 @@
+using System;
 using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public class TestingLevelsMenu : Control
 {
@@ -91,7 +93,15 @@ public class TestingLevelsMenu : Control
         
         Global.Get().autosaveName = AUTOSAVE_NAME;
         InitSavableVariables();
-        levelsLoader.LoadLevel(chosenLevel, MakeLoadData(), new Array());
+
+        if (string.IsNullOrEmpty(itemsList.Text))
+        {
+            levelsLoader.LoadLevel(chosenLevel);
+        }
+        else
+        {
+            levelsLoader.LoadLevel(chosenLevel, MakeLoadData(), new Array());
+        }
     }
 
     private Dictionary MakeLoadData()
@@ -152,6 +162,8 @@ public class TestingLevelsMenu : Control
         if (saveNode == null) return;
 
         var savableVarsText = questsInput.Text;
+        if (string.IsNullOrEmpty(savableVarsText)) return;
+        
         var resultJson = JSON.Parse(savableVarsText);
 
         if (resultJson.Error != Error.Ok) return;
