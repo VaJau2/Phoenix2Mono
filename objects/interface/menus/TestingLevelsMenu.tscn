@@ -1,0 +1,161 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scripts/interface/Menus/TestingLevelsMenu.cs" type="Script" id=1]
+[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=4]
+
+[node name="Testing" type="Control" groups=["ignore_color"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
+material = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pageLabel" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 42.0
+theme = ExtResource( 4 )
+text = "/Phoenix2/Главное_меню/Выбор_уровня"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="."]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 384.0
+margin_bottom = 125.0
+theme = ExtResource( 4 )
+text = "[Назад]"
+
+[node name="levelsHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -272.0
+margin_top = -156.0
+margin_right = -64.0
+margin_bottom = -138.0
+theme = ExtResource( 4 )
+text = "Выбор уровня для загрузки:"
+align = 2
+
+[node name="levelsList" type="OptionButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -156.0
+margin_right = 384.0
+margin_bottom = -134.0
+theme = ExtResource( 4 )
+
+[node name="moneyHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.0
+margin_top = -124.0
+margin_right = -64.0
+margin_bottom = -106.0
+theme = ExtResource( 4 )
+text = "Количество денег:"
+align = 2
+
+[node name="moneyInput" type="SpinBox" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -124.0
+margin_right = 384.0
+margin_bottom = -100.0
+theme = ExtResource( 4 )
+
+[node name="itemsHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.0
+margin_top = -84.0
+margin_right = -64.0
+margin_bottom = -66.0
+theme = ExtResource( 4 )
+text = "Список стартовых предметов (через запятую):"
+align = 2
+
+[node name="itemsList" type="LineEdit" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -92.0
+margin_right = 384.0
+margin_bottom = -68.0
+theme = ExtResource( 4 )
+text = "automatic308, ammo308, stealth-armor, heal-potion"
+
+[node name="questsHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.0
+margin_top = -52.0
+margin_right = -64.0
+margin_bottom = -34.0
+theme = ExtResource( 4 )
+text = "Квестовые переменные (json):"
+align = 2
+
+[node name="questsInput" type="TextEdit" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -52.0
+margin_right = 384.0
+margin_bottom = 84.0
+theme = ExtResource( 4 )
+text = "{
+	\"test1\": 1
+}"
+
+[node name="load" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = 116.0
+margin_right = 176.0
+margin_bottom = 141.0
+theme = ExtResource( 4 )
+text = "[Загрузить]"
+
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "choose", "back" ]]
+[connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="load" to="." method="_on_mouse_entered" binds= [ "choose", "load" ]]
+[connection signal="mouse_exited" from="load" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="load" to="." method="_on_load_pressed"]

@@ -11,6 +11,7 @@
         "records":  "               [Рекорды]",
         "about":    "               [Об игре]",
         "exit":     "               [Выход]",
+        "testing":  "           DEV:[Загрузить уровень]",
 
         "chooseRussian": "Выбрать русский язык",
         "chooseEnglish": "Choose english language",
@@ -21,6 +22,7 @@
         "chooseRecords": "Открыть меню рекордов",
         "chooseAbout": "Об игре",
         "chooseExit": "Выйти из игры",
+        "chooseTesting": "Открыть тестовое меню загрузки уровней",
 
         "back": "[Назад]",
         "next": "[Далее]",
