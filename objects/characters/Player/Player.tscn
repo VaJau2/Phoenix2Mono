@@ -787,7 +787,7 @@ transform = Transform( 1, 0, 2.84217e-14, 0, 1, 0, 1.36779e-13, 7.45058e-09, 1, 
 shape = SubResource( 10 )
 
 [node name="Physical Bone leg_1_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.996067, -0.0885977, 8.00416e-08, 0.088353, 0.993318, 0.074239, -0.00657747, -0.0739482, 0.99724, -0.259125, 1.7982, -0.752634 )
+transform = Transform( 0.996067, -0.0885977, 8.91277e-08, 0.088353, 0.993318, 0.074239, -0.00657744, -0.0739482, 0.99724, -0.259125, 1.7982, -0.752634 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
@@ -851,7 +851,7 @@ transform = Transform( 1, -7.45058e-09, 0, 7.45058e-09, 1, -1.49012e-08, 0, 2.98
 shape = SubResource( 13 )
 
 [node name="Physical Bone leg_2_r" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.993608, 0.112883, 1.09611e-06, -0.111817, 0.98423, -0.137091, -0.0154751, 0.136216, 0.990553, 0.343711, 1.78491, -1.82309 )
+transform = Transform( 0.993609, 0.112883, 1.09611e-06, -0.111817, 0.98423, -0.137091, -0.0154751, 0.136216, 0.990553, 0.343711, 1.78491, -1.82309 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
@@ -871,7 +871,7 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 14 )
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.989937, -0.141448, 5.9347e-05, 0.141038, 0.987029, -0.0765888, 0.0107718, 0.0758309, 0.997041, -0.25993, 0.497918, -0.990148 )
+transform = Transform( 0.989938, -0.141448, 5.96832e-05, 0.141038, 0.987029, -0.0765892, 0.0107718, 0.0758309, 0.997043, -0.259931, 0.497918, -0.990151 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
@@ -893,12 +893,12 @@ transform = Transform( 1, 0, 9.31323e-10, 1.49012e-08, 1, 0, 0, 7.45058e-09, 1, 
 shape = SubResource( 15 )
 
 [node name="Physical Bone b_leg_2_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.984244, -0.176716, -0.00633617, 0.17463, 0.977011, -0.122289, 0.0278014, 0.11926, 0.992475, -0.366937, 0.541536, -2.04397 )
+transform = Transform( 0.984244, -0.176716, -0.0063362, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366937, 0.541536, -2.04397 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357095, 0.167885, 0.826283 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357097, 0.167885, 0.826283 )
 body_offset = Transform( 0.948202, -0.299618, -0.10557, -0.299395, -0.731759, -0.612288, 0.1062, 0.612177, -0.783556, 0.103672, 0.639466, 0.540872 )
 mass = 5.0
 weight = 49.0
@@ -913,12 +913,12 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 16 )
 
 [node name="Physical Bone b_leg_1_r" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.989945, 0.141449, 6.26724e-05, -0.140915, 0.986245, -0.0863514, -0.0122752, 0.0854729, 0.996269, 0.279958, 0.494004, -0.985855 )
+transform = Transform( 0.989945, 0.141449, 6.26996e-05, -0.140915, 0.986245, -0.0863514, -0.0122752, 0.0854729, 0.996269, 0.279958, 0.494004, -0.985855 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784413, 0.0548358, 0.575102 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784415, 0.0548358, 0.575102 )
 body_offset = Transform( 0.981044, 0.132604, 0.141313, 0.132729, 0.0715189, -0.988573, -0.141195, 0.988581, 0.0525625, -0.0808454, 0.56565, -0.085546 )
 mass = 5.0
 weight = 49.0
@@ -955,7 +955,7 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 18 )
 
 [node name="Physical Bone tail_1" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.999999, -1.99299e-12, 2.38416e-07, -2.30519e-07, 0.255271, 0.966857, -6.0861e-08, -0.966869, 0.255269, 0.0147702, -0.659206, -0.115395 )
+transform = Transform( 0.999999, -1.92366e-12, 2.38416e-07, -2.30519e-07, 0.255271, 0.966857, -6.08612e-08, -0.966869, 0.255269, 0.0147702, -0.659206, -0.115395 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
