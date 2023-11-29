@@ -67,7 +67,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
                 eyeInstance.patrolArray.Add(child.GetPath());
             }
             GetNode<Node>("/root/Main/Scene/npc").AddChild(eyeInstance);
-            eyeInstance.GlobalTransform = Global.setNewOrigin(eyeInstance.GlobalTransform, spawner.GlobalTransform.origin);
+            eyeInstance.GlobalTransform = Global.SetNewOrigin(eyeInstance.GlobalTransform, spawner.GlobalTransform.origin);
             eyeInstance.Connect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
             eyes.Add(eyeInstance);
         }
@@ -85,7 +85,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
         bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
         Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
-        bagInstance.GlobalTransform = Global.setNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
+        bagInstance.GlobalTransform = Global.SetNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
         bag = bagInstance;
     }
 

@@ -41,7 +41,7 @@ public class WeaponShellSpawner : Spatial
         {
             shell.Name = "Created_" + shell.Name;
             GetNode<Node>("/root/Main/Scene").AddChild(shell);
-            shell.GlobalTransform = Global.setNewOrigin(shell.GlobalTransform, GlobalTransform.origin);
+            shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.origin);
             shell.Rotation = GlobalTransform.basis.GetEuler();
 
             var dir = shell.Transform.basis.Xform(forceDirection);

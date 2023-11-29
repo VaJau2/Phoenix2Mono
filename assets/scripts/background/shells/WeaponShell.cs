@@ -64,7 +64,7 @@ public class WeaponShell : RigidBody
                 Vector3 meshRot = RotationDegrees;
                 RemoveChild(mesh);
                 shellsManager.AddShell(mesh);
-                mesh.GlobalTransform = Global.setNewOrigin(
+                mesh.GlobalTransform = Global.SetNewOrigin(
                     mesh.GlobalTransform,
                     meshPos
                 );

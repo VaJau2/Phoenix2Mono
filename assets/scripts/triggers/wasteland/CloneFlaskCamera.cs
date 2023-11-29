@@ -20,7 +20,7 @@ public class CloneFlaskCamera : Camera
 
     public override void _Process(float delta)
     {
-        GlobalTransform = Global.setNewOrigin(
+        GlobalTransform = Global.SetNewOrigin(
             GlobalTransform,
             head.GlobalTransform.origin
         );

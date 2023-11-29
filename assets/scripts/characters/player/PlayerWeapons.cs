@@ -396,7 +396,7 @@ public class PlayerWeapons : CollisionShape
                     {
                         var gunParticles = (Spatial)gunParticlesPrefab.Instance();
                         particlesParent.AddChild(gunParticles);
-                        gunParticles.GlobalTransform = Global.setNewOrigin(
+                        gunParticles.GlobalTransform = Global.SetNewOrigin(
                             gunParticles.GlobalTransform,
                             tempRay.GetCollisionPoint()
                         );

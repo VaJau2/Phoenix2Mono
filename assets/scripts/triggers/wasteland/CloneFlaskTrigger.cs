@@ -100,7 +100,7 @@ public class CloneFlaskTrigger : TriggerBase
             
             case 4:
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
-                player.GlobalTransform = Global.setNewOrigin
+                player.GlobalTransform = Global.SetNewOrigin
                 (
                     player.GlobalTransform,
                     playerPosTransform.origin

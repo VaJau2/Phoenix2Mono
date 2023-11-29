@@ -169,7 +169,7 @@ public class Global {
         return null;
     }
 
-    public static Transform setNewOrigin(Transform transform, Vector3 newOrigin)
+    public static Transform SetNewOrigin(Transform transform, Vector3 newOrigin)
     {
         Transform tempTrans = transform;
         tempTrans.origin = newOrigin;

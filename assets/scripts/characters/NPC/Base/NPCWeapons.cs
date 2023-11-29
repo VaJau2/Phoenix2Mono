@@ -88,7 +88,7 @@ public class NPCWeapons : Node
         item.Name = "Created_" + npc.Name + "s_" + item.Name;
         var itemsParent = GetNode<Node>("/root/Main/Scene");
         itemsParent.AddChild(item);
-        item.GlobalTransform = Global.setNewOrigin(item.GlobalTransform, tempParent.GlobalTransform.origin);
+        item.GlobalTransform = Global.SetNewOrigin(item.GlobalTransform, tempParent.GlobalTransform.origin);
         item.GlobalRotation = tempParent.GlobalRotation;
     }
 
@@ -130,7 +130,7 @@ public class NPCWeapons : Node
                 Vector3 shootPos = victim.GlobalTransform.origin + Vector3.Up;
                 var gunParticles = (Spatial) gunParticlesPrefab.Instance();
                 GetNode("/root/Main/Scene").AddChild(gunParticles);
-                gunParticles.GlobalTransform = Global.setNewOrigin(
+                gunParticles.GlobalTransform = Global.SetNewOrigin(
                     gunParticles.GlobalTransform,
                     shootPos
                 );

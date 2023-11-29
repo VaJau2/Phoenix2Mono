@@ -53,7 +53,7 @@ public class TeleportWhenAttach: TriggerBase
             {
                 GetNode("/root/Main/Scene").AddChild(effect);
                 effect.GlobalTransform =
-                    Global.setNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
+                    Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
             }
 
             Global.AddDeletedObject(npc.Name);

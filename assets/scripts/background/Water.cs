@@ -16,7 +16,7 @@ public class Water : Spatial
         Vector3 newPos = tempChar.GlobalTransform.origin;
         newPos.y = parts.GlobalTransform.origin.y;
 
-        parts.GlobalTransform = Global.setNewOrigin(parts.GlobalTransform, newPos);
+        parts.GlobalTransform = Global.SetNewOrigin(parts.GlobalTransform, newPos);
         parts.Restart();
         
         if (!(tempChar is Player player)) return;

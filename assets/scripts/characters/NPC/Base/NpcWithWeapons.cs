@@ -405,7 +405,7 @@ public class NpcWithWeapons : NPC, IChest
                     }
                     else
                     {
-                        GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
+                        GlobalTransform = Global.SetNewOrigin(GlobalTransform, myStartPos);
                         Rotation = new Vector3(0, myStartRot.y, 0);
                         PlayIdleAnim();
                     }

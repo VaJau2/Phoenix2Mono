@@ -61,7 +61,7 @@ public class Bullet : Area
 
         var gunParticles = (Spatial)gunParticlesPrefab.Instance();
         GetNode("/root/Main/Scene").AddChild(gunParticles);
-        gunParticles.GlobalTransform = Global.setNewOrigin(
+        gunParticles.GlobalTransform = Global.SetNewOrigin(
             gunParticles.GlobalTransform,
             GlobalTransform.origin
         );

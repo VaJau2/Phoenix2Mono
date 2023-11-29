@@ -157,6 +157,11 @@ ui_quickload={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_3="Interactive"
+3d_physics/layer_4="Exit"
+
 [locale]
 
 fallback="ru_RU"

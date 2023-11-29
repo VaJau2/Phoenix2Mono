@@ -45,7 +45,7 @@ public class GridmapStepSound : GridMap
     private void UpdatePlaying()
     {
         audi.UnitDb = Player.IsCrouching ? 4 : -2;
-        audi.GlobalTransform = Global.setNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
+        audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
 
         if (!audi.Playing || audi.Stream != TempSound)
         {

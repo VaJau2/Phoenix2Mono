@@ -161,7 +161,7 @@ public class RoboEye : NPC
                     } 
                     else 
                     {
-                        GlobalTransform = Global.setNewOrigin(GlobalTransform, myStartPos);
+                        GlobalTransform = Global.SetNewOrigin(GlobalTransform, myStartPos);
                         Rotation = new Vector3(
                             Rotation.x,
                             myStartRot.y,

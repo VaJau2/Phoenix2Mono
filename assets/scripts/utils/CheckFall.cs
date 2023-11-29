@@ -20,7 +20,7 @@ public class CheckFall : Node
     public override void _Process(float delta)
     {
         if (!(player.GlobalTransform.origin.y <= fallHeight)) return;
-        player.GlobalTransform = Global.setNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
+        player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
         if (inside && tempDoorTeleport != null)
         {
             tempDoorTeleport.otherDoor.Open(player, true);

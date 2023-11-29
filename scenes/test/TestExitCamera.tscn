@@ -1,27 +1,41 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/background/ThirdCameraOnExit.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/background/CinematicExit.cs" type="Script" id=4]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
+[ext_resource path="res://assets/materials/props/locations/sand.tres" type="Material" id=6]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
+[ext_resource path="res://objects/props/vehicles/Mercury.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/props/vehicles/chevrolet.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
+[ext_resource path="res://objects/props/vehicles/Pontiac.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
+[ext_resource path="res://objects/props/vehicles/car_nt.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=15]
+[ext_resource path="res://assets/materials/props/furniture/trash/green.material" type="Material" id=16]
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 23.0
+bottom_radius = 23.0
+height = 0.01
+
+[sub_resource type="CylinderShape" id=4]
+height = 0.01
+radius = 23.0
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 50.4708, 1, 48.1708 )
+extents = Vector3( 500.764, 1, 497.571 )
 
 [sub_resource type="QuadMesh" id=2]
 
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 3.42455, 3.4646, 3.54022 )
-
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 20.7054, 24.6689, 20.8895 )
+[sub_resource type="SphereShape" id=5]
+radius = 23.0
 
 [node name="Main" type="Node"]
 script = ExtResource( 12 )
@@ -60,69 +74,61 @@ ammoCount = {
 
 [node name="props" type="Spatial" parent="Scene"]
 
+[node name="Target" type="MeshInstance" parent="Scene/props"]
+visible = false
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 15 )
+
+[node name="Exit Point" type="MeshInstance" parent="Scene/props"]
+visible = false
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 16 )
+
+[node name="Mercury" parent="Scene/props" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.075, 0.005, 28 )
+
+[node name="Chevrolet" parent="Scene/props" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.005, -27 )
+
+[node name="Pontiac" parent="Scene/props" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.005, 0 )
+
+[node name="car_nt" parent="Scene/props" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -29, 0.005, 0 )
+
+[node name="sand" type="StaticBody" parent="Scene/props"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Scene/props/sand"]
+mesh = SubResource( 3 )
+material/0 = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Scene/props/sand"]
+shape = SubResource( 4 )
+
 [node name="floor" type="StaticBody" parent="Scene/props"]
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Scene/props/floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.84593, 0 )
 shape = SubResource( 1 )
 
 [node name="floor" type="MeshInstance" parent="Scene/props/floor"]
-transform = Transform( 100, 0, 0, 0, 1.19249e-06, 1, 0, -100, 1.19249e-08, 0, -1.95188, 0 )
+transform = Transform( 1000, 0, 0, 0, -4.37114e-05, 1, 0, -1000, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
-
-[node name="box" type="StaticBody" parent="Scene/props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9072, 0, -22.51 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Scene/props/box"]
-transform = Transform( 3.49666, 0, 0, 0, 3.49666, 0, 0, 0, 3.49666, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Scene/props/box"]
-shape = SubResource( 4 )
-
-[node name="box2" type="StaticBody" parent="Scene/props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9072, 0, 16.8455 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Scene/props/box2"]
-transform = Transform( 3.49666, 0, 0, 0, 3.49666, 0, 0, 0, 3.49666, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Scene/props/box2"]
-shape = SubResource( 4 )
-
-[node name="box3" type="StaticBody" parent="Scene/props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5979, 0, 16.8455 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Scene/props/box3"]
-transform = Transform( 3.49666, 0, 0, 0, 3.49666, 0, 0, 0, 3.49666, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Scene/props/box3"]
-shape = SubResource( 4 )
-
-[node name="box4" type="StaticBody" parent="Scene/props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5979, 0, -19.5333 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Scene/props/box4"]
-transform = Transform( 3.49666, 0, 0, 0, 3.49666, 0, 0, 0, 3.49666, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Scene/props/box4"]
-shape = SubResource( 4 )
 
 [node name="triggers" type="Node" parent="Scene"]
 
 [node name="exitCheck" type="Area" parent="Scene/triggers"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.760124, 0.138481, -1.68885 )
+collision_layer = 8
+collision_mask = 8
 monitorable = false
 script = ExtResource( 4 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/triggers/exitCheck"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37092, 0 )
+[node name="shape" type="CollisionShape" parent="Scene/triggers/exitCheck"]
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="Scene/triggers/exitCheck" to="Scene/triggers/exitCheck" method="OnAreaEntered"]

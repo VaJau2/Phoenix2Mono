@@ -77,7 +77,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         npc.SetNewStartPos(newPos);
         npc.myStartRot = newRot;
             
-        npc.GlobalTransform = Global.setNewOrigin(npc.GlobalTransform, newPos);
+        npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, newPos);
         npc.Rotation = new Vector3(
             npc.Rotation.x,
             newRot.y,

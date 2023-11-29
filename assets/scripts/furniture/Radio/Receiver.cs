@@ -88,28 +88,28 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		switch (model)
 		{
 			case "Radio":
-				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
+				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
+						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
 						noiseDb = 0;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.setNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
+						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
 						noiseDb = -10;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
+						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
 						noiseDb = -20;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
+						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
 						noiseDb = -30;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
+						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
 						noiseDb = -40;
 						break;
 				}
@@ -119,28 +119,28 @@ public class Receiver : RadioBase, ISavable, IInteractable
 				arrow = GetNode<Spatial>("Arrow");
 				arrow.Rotate(Vector3.Back, (frequency * 160 + 10) * (float)(Math.PI / 180));
 
-				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
+				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
+						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
 						noiseDb = 3;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.setNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
+						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
 						noiseDb = -7;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
+						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
 						noiseDb = -17;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
+						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
 						noiseDb = -27;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
+						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
 						noiseDb = -37;
 						break;
 				}
@@ -282,12 +282,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		{
 			case "Radio":
 				normalizeLever = value * 0.526f - 0.26f;
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
+				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
 				break;
 
 			case "Radio Jr":
 				normalizeLever = value * 0.15f + 0.19f;
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
+				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
 				break;
 		}
 	}
