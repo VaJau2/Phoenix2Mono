@@ -230,7 +230,15 @@ public class Player_Unicorn : Player
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        Mana = Convert.ToSingle(data["mana"]);
-        teleportInside = Convert.ToBoolean(data["inside"]);
+        
+        if (data.Contains("mana"))
+        {
+            Mana = Convert.ToSingle(data["mana"]);
+        }
+        
+        if (data.Contains("inside"))
+        {
+            teleportInside = Convert.ToBoolean(data["inside"]);
+        }
     }
 }

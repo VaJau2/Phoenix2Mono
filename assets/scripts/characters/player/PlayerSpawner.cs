@@ -25,7 +25,8 @@ public class PlayerSpawner : Spatial
         Global global = Global.Get();
         string path = "res://objects/characters/Player/Player_";
 
-        switch(global.playerRace) {
+        switch(global.playerRace) 
+        {
             case (Race.Earthpony):
                 path += "Earthpony.tscn";
                 break;
@@ -43,7 +44,8 @@ public class PlayerSpawner : Spatial
         SpawnPlayer(newPlayer);
     }
 
-    private async void SpawnPlayer(Player player) {
+    private async void SpawnPlayer(Player player) 
+    {
         await ToSignal(GetTree(), "idle_frame");
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;

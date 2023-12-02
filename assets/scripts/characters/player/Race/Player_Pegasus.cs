@@ -187,6 +187,8 @@ public class Player_Pegasus : Player
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
+        if (!data.Contains("is_flying")) return;
+        
         IsFlying = Convert.ToBoolean(data["is_flying"]);
     }
 }

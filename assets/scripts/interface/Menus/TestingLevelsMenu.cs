@@ -18,6 +18,7 @@ public class TestingLevelsMenu : Control
     private Label levelsHeader;
     private Label itemsHeader;
     private Label moneyHeader;
+    private Label raceHeader;
     private Label questsHeader;
     
     private Button backButton;
@@ -25,6 +26,7 @@ public class TestingLevelsMenu : Control
 
     private LineEdit itemsList;
     private SpinBox moneyInput;
+    private OptionButton raceList;
     private OptionButton levelsList;
     private TextEdit questsInput;
 
@@ -37,6 +39,7 @@ public class TestingLevelsMenu : Control
         itemsHeader.Text = InterfaceLang.GetPhrase("testingMenu", "main", "items_header");
         moneyHeader.Text = InterfaceLang.GetPhrase("testingMenu", "main", "money_header");
         questsHeader.Text = InterfaceLang.GetPhrase("testingMenu", "main", "quests_header");
+        raceHeader.Text = InterfaceLang.GetPhrase("testingMenu", "main", "race_header");
     }
 
     public override void _Ready()
@@ -50,13 +53,16 @@ public class TestingLevelsMenu : Control
         levelsHeader = GetNode<Label>("levelsHeader");
         itemsHeader = GetNode<Label>("itemsHeader");
         moneyHeader = GetNode<Label>("moneyHeader");
+        raceHeader = GetNode<Label>("raceHeader");
         questsHeader = GetNode<Label>("questsHeader");
         
         levelsList = GetNode<OptionButton>("levelsList");
         itemsList = GetNode<LineEdit>("itemsList");
         moneyInput = GetNode<SpinBox>("moneyInput");
+        raceList = GetNode<OptionButton>("raceList");
         questsInput = GetNode<TextEdit>("questsInput");
         LoadLevelsList();
+        LoadRacesList();
     }
 
     private void LoadLevelsList()
@@ -68,6 +74,14 @@ public class TestingLevelsMenu : Control
         }
         
         levelsList.Select(0);
+    }
+
+    private void LoadRacesList()
+    {
+        foreach (var race in Enum.GetValues(typeof(Race)))
+        {
+            raceList.AddItem(race.ToString());
+        }
     }
     
     public void _on_back_pressed()
@@ -90,8 +104,14 @@ public class TestingLevelsMenu : Control
     {
         var chosenLevel = levelsList.Selected + 1;
         if (chosenLevel <= 0) return;
+
+        var global = Global.Get();
+        global.autosaveName = AUTOSAVE_NAME;
+        global.playerRace = Global.RaceFromString(
+            raceList.GetItemText(raceList.Selected)
+                .ToLower()
+            );
         
-        Global.Get().autosaveName = AUTOSAVE_NAME;
         InitSavableVariables();
 
         if (string.IsNullOrEmpty(itemsList.Text))

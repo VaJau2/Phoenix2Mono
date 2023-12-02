@@ -115,26 +115,26 @@ public class Global {
         Settings.LoadSettings();
     }
 
-    public static Race RaceFromString(string raceString) 
+    public static Race RaceFromString(string raceString)
     {
-        switch(raceString) 
+        return raceString switch
         {
-            case "earthpony": return Race.Earthpony;
-            case "pegasus": return Race.Pegasus;
-            case "unicorn": return Race.Unicorn;
-        }
-        return Race.Earthpony;
+            "earthpony" => Race.Earthpony,
+            "pegasus" => Race.Pegasus,
+            "unicorn" => Race.Unicorn,
+            _ => Race.Earthpony
+        };
     }
 
     public static string RaceToString(Race race)
     {
-        switch(race) 
+        return race switch
         {
-            case Race.Earthpony: return "earthpony";
-            case Race.Pegasus:   return "pegasus";
-            case Race.Unicorn:   return "unicorn";
-        }
-        return "earthpony";
+            Race.Earthpony => "earthpony",
+            Race.Pegasus => "pegasus",
+            Race.Unicorn => "unicorn",
+            _ => "earthpony"
+        };
     }
 
     public static Dictionary loadJsonFile(string filePath)

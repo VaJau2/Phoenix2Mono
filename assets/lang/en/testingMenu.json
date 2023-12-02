@@ -4,6 +4,7 @@
     "levels_header": "Select level to load:",
     "items_header": "Items list (separated by commas):",
     "money_header": "Money count:",
+    "race_header": "Race:",
     "quests_header": "Quest variables (json):",
     "back": "[Back]",
     "load": "[Load]"

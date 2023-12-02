@@ -21,9 +21,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="pageLabel" type="Label" parent="."]
 margin_left = 40.0
@@ -90,6 +87,30 @@ margin_top = -124.0
 margin_right = 384.0
 margin_bottom = -100.0
 theme = ExtResource( 4 )
+max_value = 1000.0
+
+[node name="raceHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.0
+margin_top = -92.0
+margin_right = -64.0
+margin_bottom = -74.0
+theme = ExtResource( 4 )
+text = "Раса:"
+align = 2
+
+[node name="raceList" type="OptionButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -92.0
+margin_right = 384.0
+margin_bottom = -70.0
+theme = ExtResource( 4 )
 
 [node name="itemsHeader" type="Label" parent="."]
 anchor_left = 0.5
@@ -97,9 +118,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -408.0
-margin_top = -84.0
+margin_top = -60.0
 margin_right = -64.0
-margin_bottom = -66.0
+margin_bottom = -42.0
 theme = ExtResource( 4 )
 text = "Список стартовых предметов (через запятую):"
 align = 2
@@ -109,9 +130,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -92.0
+margin_top = -60.0
 margin_right = 384.0
-margin_bottom = -68.0
+margin_bottom = -36.0
 theme = ExtResource( 4 )
 text = "automatic308, ammo308, stealthArmor, stealthBuck, healPotion"
 
@@ -121,9 +142,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -408.0
-margin_top = -52.0
+margin_top = -20.0
 margin_right = -64.0
-margin_bottom = -34.0
+margin_bottom = -2.0
 theme = ExtResource( 4 )
 text = "Квестовые переменные (json):"
 align = 2
@@ -133,9 +154,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -52.0
+margin_top = -20.0
 margin_right = 384.0
-margin_bottom = 84.0
+margin_bottom = 116.0
 theme = ExtResource( 4 )
 text = "{
 	\"test1\": 1
@@ -147,9 +168,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -168.0
-margin_top = 116.0
+margin_top = 180.0
 margin_right = 176.0
-margin_bottom = 141.0
+margin_bottom = 205.0
 theme = ExtResource( 4 )
 text = "[Загрузить]"
 
