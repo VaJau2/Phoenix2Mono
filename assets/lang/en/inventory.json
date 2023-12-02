@@ -33,9 +33,9 @@
     "itemProps": {
         "price": "Price: ",
         "damageBlock": "Damage block: ",
-        "speedDecrease": "- to speed: ",
-        "closeFov": "View close distance: ",
-        "shootDistPlus": "+ to shoot distance: ",
+        "speedDecrease": "Speed: -",
+        "closeFov": "View close distance: +",
+        "shootDistPlus": "Shoot distance: +",
 
         "damage": "Damage: ",
         "shootDistance": "Shoot distance: ",
@@ -43,6 +43,8 @@
 
         "heal": "Heal: ",
         "medsEffect": "Effect: ",
+        "ignoreRadiation": "Protects against radiation",
+        
         "questItem": "Quest item",
         "checkHasItem": "Requires: ",
         "onlyForEarthponies": "Only for earthponies"
@@ -50,15 +52,15 @@
 
     "medsEffects": {
         "heal": "30 sec. healing",
-        "mana": "60 sec. increasing mana speed for unicorns",
-        "buck": "60 sec. increasing max HP and hoofs damage",
-        "dash": "30 sec. increasing speed",
+        "mana": "60 sec. increasing mana speed",
+        "buck": "60 sec. increasing hoofs damage and max HP",
+        "dash": "30 sec. time dilation",
         "hydra": "50 sec. healing",
         "rage": "60 sec. increading damage",
         "medX": "60 sec. + 20% to block damage",
         "mentats": "Reducing the difference in price when trading",
         "detoxine": "Resetting all current effects",
-        "stealthbuck": "60 sec. invisibility"
+        "stealthBuck": "60 sec. invisibility"
     },
 
     "effectIconsText": {

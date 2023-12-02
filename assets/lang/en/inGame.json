@@ -38,6 +38,7 @@
 
     "cameraHints": {
         "pick": "Pick",
+        "putOn": "Put On",
 
         "putSuitcase": "Put suitcase",
         "putFirewood": "Put firewood",

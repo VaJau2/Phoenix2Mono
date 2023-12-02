@@ -23,8 +23,8 @@ public class PlayerRadiation
             var armorProps = player.inventory.GetArmorProps();
             if (!armorProps.Contains("ignoreRadiation")) return false;
             
-            var ignoreValue = int.Parse(armorProps["ignoreRadiation"].ToString());
-            return ignoreValue == 1;
+            var ignoreValue = bool.Parse(armorProps["ignoreRadiation"].ToString());
+            return ignoreValue;
         }
     }
 

@@ -39,8 +39,8 @@ public class TeleportMark: Spatial
     {
         UpdateOffset(place);
         Vector3 newSpritePos = _spritePos + _offset;
-        _sprite.Transform = Global.setNewOrigin(_sprite.Transform, newSpritePos);
-        GlobalTransform = Global.setNewOrigin(GlobalTransform, place);
+        _sprite.Transform = Global.SetNewOrigin(_sprite.Transform, newSpritePos);
+        GlobalTransform = Global.SetNewOrigin(GlobalTransform, place);
     }
 
     public void UpdateSprite(bool manaIsEnough)

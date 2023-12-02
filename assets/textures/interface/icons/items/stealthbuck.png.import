@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stealthbuck.png-d6c6a285d03d5c5bb89e1c46852d1fd0.stex"
+path="res://.import/stealthBuck.png-1d76761f7585b96636b49ff8e689acff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/stealthbuck.png"
-dest_files=[ "res://.import/stealthbuck.png-d6c6a285d03d5c5bb89e1c46852d1fd0.stex" ]
+source_file="res://assets/textures/interface/icons/items/stealthBuck.png"
+dest_files=[ "res://.import/stealthBuck.png-1d76761f7585b96636b49ff8e689acff.stex" ]
 
 [params]
 

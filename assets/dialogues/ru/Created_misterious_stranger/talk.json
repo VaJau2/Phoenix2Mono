@@ -348,7 +348,7 @@
                 {
                     "key": "name",
                     "op": "set",
-                    "value": "blueprints1"
+                    "value": "Quest_blueprints"
                 }
             ],
             "next": "E13"
@@ -359,9 +359,9 @@
             "body": "ChangeItemName",
             "set": [
                 {
-                    "key": "blueprints1",
+                    "key": "Quest_blueprints",
                     "op": "set",
-                    "value": "blueprints2"
+                    "value": "blueprints"
                 }
             ],
             "next": "E13"

@@ -16,7 +16,7 @@ public class MedXEffect: Effect
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
-        iconName = "med-x";
+        iconName = "medX";
         base.SetOn(handler);
         
         if (!handler.HasEffect(this)) {

@@ -107,9 +107,9 @@ public class WaitInBoxTrigger : TriggerBase
                 AmbientVolSync ambientSync = GetNode<AmbientVolSync>(playerHere.GetPath() + "/radioCheck");
                 ambientSync.Clear();
 
-                myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 playerHere.GlobalTransform =
-                    Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
         
                 movingBoxAudi.Stream = movingSound;
                 movingBoxAudi.Play();
@@ -128,13 +128,13 @@ public class WaitInBoxTrigger : TriggerBase
 
                 myBox.GetParent().RemoveChild(myBox);
                 GetNode("/root/Main/Scene/rooms/2floor").AddChild(myBox);
-                myBox.GlobalTransform = Global.setNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 Vector3 scale = myBox.Scale;
                 myBox.GlobalRotation = newBoxPosition.GlobalRotation;
                 myBox.Scale = scale;
 
                 playerHere.GlobalTransform =
-                    Global.setNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 playerHere.GlobalRotation = newBoxPosition.GlobalRotation;
 
                 doorToParking.Open(null, true, false);

@@ -61,7 +61,7 @@ extents = Vector3( 0.0609788, 0.20951, 0.112811 )
 extents = Vector3( 0.0954053, 0.260904, 0.63293 )
 
 [node name="automatic308" instance=ExtResource( 1 )]
-itemCode = "autorifle762"
+itemCode = "automatic308"
 
 [node name="Box001" type="MeshInstance" parent="." index="1"]
 transform = Transform( -6.20728e-09, 0, -0.0381, 0, 0.0381, 0, 0.0381, 0, -6.20728e-09, -0.0665342, -0.0473284, 0.00534445 )

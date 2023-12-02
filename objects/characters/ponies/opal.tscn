@@ -150,7 +150,7 @@ IdleAnim = "Idle1"
 dialogueCode = "trade"
 moneyCount = 2000
 traderCode = "ponyTrader"
-startItemCodes = [ "maffin", "toaster", "heal-potion", "heal-potion", "maffin" ]
+startItemCodes = [ "maffin", "toaster", "healPotion", "healPotion", "maffin" ]
 startAmmoCount = {
 }
 

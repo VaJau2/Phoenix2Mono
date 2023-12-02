@@ -93,7 +93,7 @@ public class StealthBuckEffect : Effect
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
-        iconName = "stealthbuck";
+        iconName = "stealthBuck";
         
         player.IsStealthBuck = true;
         ChangePlayerVisibility(false);

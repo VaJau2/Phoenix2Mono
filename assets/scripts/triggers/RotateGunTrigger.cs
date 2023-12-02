@@ -21,7 +21,7 @@ public class RotateGunTrigger: TriggerBase
         }
 
         Spatial gun = GetNode<Spatial>(gunPath);
-        gun.Transform = Global.setNewOrigin(gun.Transform, newPos);
+        gun.Transform = Global.SetNewOrigin(gun.Transform, newPos);
         gun.Rotation = newRot;
         
         base._on_activate_trigger();

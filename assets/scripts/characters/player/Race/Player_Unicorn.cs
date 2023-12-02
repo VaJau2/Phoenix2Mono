@@ -124,7 +124,7 @@ public class Player_Unicorn : Player
         if (tempTeleportMark != null) return;
         tempTeleportMark = (TeleportMark)teleportMark.Instance();
         GetParent().AddChild(tempTeleportMark);
-        tempTeleportMark.GlobalTransform = Global.setNewOrigin(
+        tempTeleportMark.GlobalTransform = Global.SetNewOrigin(
             tempTeleportMark.GlobalTransform,
             GlobalTransform.origin
         );
@@ -142,7 +142,7 @@ public class Player_Unicorn : Player
         var effect = (Spatial)teleportEffect.Instance();
         GetParent().AddChild(effect);
 
-        effect.GlobalTransform = Global.setNewOrigin(
+        effect.GlobalTransform = Global.SetNewOrigin(
             effect.GlobalTransform, 
             GlobalTransform.origin
         );
@@ -165,7 +165,7 @@ public class Player_Unicorn : Player
         SpawnTeleportEffect();
 
         GlobalTransform = 
-            Global.setNewOrigin(GlobalTransform, tempTeleportMark.GetTeleportPoint());
+            Global.SetNewOrigin(GlobalTransform, tempTeleportMark.GetTeleportPoint());
 
         ClearTeleportMark();
         SpawnTeleportEffect();

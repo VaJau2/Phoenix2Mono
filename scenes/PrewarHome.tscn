@@ -1052,7 +1052,7 @@ func _process(delta):
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.4289, 0.655687, -23.9797 )
-itemCodes = [ "suitcase-vacation", "vacation-note" ]
+itemCodes = [ "Quest_suitcaseVacation", "Quest_vacationNote" ]
 checkSavedData = false
 
 [node name="npc" type="Node" parent="."]
@@ -1072,7 +1072,7 @@ IsImmortal = true
 [node name="opal" parent="npc" instance=ExtResource( 94 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.936, -100.396, 21.4575 )
 traderCode = "opal"
-startItemCodes = [ "sparkle-cola", "maffin", "maffin", "apple" ]
+startItemCodes = [ "sparkleCola", "maffin", "maffin", "apple" ]
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21084, 0, -43.3152 )
@@ -2173,7 +2173,7 @@ NewTaskCode = "putSuitcase"
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../changeDayTime"), NodePath("../windyTeleport3"), NodePath("../windyDialogue2") ]
 itemModelPath = NodePath("../../rooms/mansion/props/Strikley\'s Bed/suitcase")
-itemCode = "suitcase-vacation"
+itemCode = "Quest_suitcaseVacation"
 
 [node name="changeDayTime" type="Node" parent="triggers"]
 script = ExtResource( 74 )
@@ -2328,7 +2328,7 @@ script = ExtResource( 3 )
 maxItemsCount = 3
 moneyChance = 0.4
 maxMoneyCount = 90
-itemCodes = [ "sparkle-cola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "heal-potion", "apple" ]
+itemCodes = [ "sparkleCola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "healPotion", "apple" ]
 
 [node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )

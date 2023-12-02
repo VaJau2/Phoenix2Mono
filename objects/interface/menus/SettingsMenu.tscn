@@ -849,14 +849,14 @@ anchor_bottom = 1.0
 script = ExtResource( 6 )
 
 [node name="default" type="Button" parent="Controls"]
-anchor_left = 0.07
-anchor_top = 0.267
-anchor_right = 0.352
-anchor_bottom = 0.307
-margin_left = 0.32
-margin_top = -0.200012
-margin_right = -0.448029
-margin_bottom = 1.672
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -440.0
+margin_top = -180.0
+margin_right = -152.0
+margin_bottom = -154.128
 theme = ExtResource( 2 )
 text = " [Сбросить]"
 __meta__ = {
@@ -879,12 +879,14 @@ __meta__ = {
 }
 
 [node name="keyForwardIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 122.0
-margin_right = -360.0
-margin_bottom = -452.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -178.0
+margin_right = 152.0
+margin_bottom = -152.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -903,12 +905,14 @@ theme = ExtResource( 2 )
 text = "Назад:"
 
 [node name="keyBackIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 154.0
-margin_right = -360.0
-margin_bottom = -420.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -146.0
+margin_right = 152.0
+margin_bottom = -120.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -927,12 +931,14 @@ theme = ExtResource( 2 )
 text = "Налево:"
 
 [node name="keyLeftIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 186.0
-margin_right = -360.0
-margin_bottom = -388.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -114.0
+margin_right = 152.0
+margin_bottom = -88.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -954,12 +960,14 @@ __meta__ = {
 }
 
 [node name="keyRightIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 218.0
-margin_right = -360.0
-margin_bottom = -356.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -82.0
+margin_right = 152.0
+margin_bottom = -56.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -976,17 +984,16 @@ margin_right = 88.0
 margin_bottom = -24.0
 theme = ExtResource( 2 )
 text = "Прыжок/Полет:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="keyJumpIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 250.0
-margin_right = -360.0
-margin_bottom = -324.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -50.0
+margin_right = 152.0
+margin_bottom = -18.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1005,12 +1012,14 @@ theme = ExtResource( 2 )
 text = "Бег/Щит/Снижение:"
 
 [node name="keyRunIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 282.0
-margin_right = -360.0
-margin_bottom = -292.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -18.0
+margin_right = 152.0
+margin_bottom = 7.39999
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1032,12 +1041,14 @@ __meta__ = {
 }
 
 [node name="keyUseIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 314.0
-margin_right = -360.0
-margin_bottom = -260.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = 14.0
+margin_right = 152.0
+margin_bottom = 39.4
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1059,12 +1070,14 @@ __meta__ = {
 }
 
 [node name="keyCrouchIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 346.0
-margin_right = -360.0
-margin_bottom = -228.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = 46.0
+margin_right = 152.0
+margin_bottom = 71.4
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1083,12 +1096,14 @@ theme = ExtResource( 2 )
 text = "Подкат/Телепорт: "
 
 [node name="keyDashIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 378.0
-margin_right = -360.0
-margin_bottom = -196.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = 78.0
+margin_right = 152.0
+margin_bottom = 103.4
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1107,12 +1122,14 @@ theme = ExtResource( 2 )
 text = "Ближний удар:"
 
 [node name="keyLegsIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 616.0
-margin_top = 410.0
-margin_right = -360.0
-margin_bottom = -164.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = 110.0
+margin_right = 152.0
+margin_bottom = 135.4
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1131,12 +1148,14 @@ theme = ExtResource( 2 )
 text = "Сменить камеру: "
 
 [node name="keyCameraIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 122.0
-margin_right = -56.0
-margin_bottom = -452.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -178.0
+margin_right = 456.0
+margin_bottom = -152.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1155,12 +1174,14 @@ theme = ExtResource( 2 )
 text = "Просмотреть задачи:"
 
 [node name="keyTaskIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 154.0
-margin_right = -56.0
-margin_bottom = -420.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -146.0
+margin_right = 456.0
+margin_bottom = -120.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1182,12 +1203,14 @@ __meta__ = {
 }
 
 [node name="keyInventoryIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 186.0
-margin_right = -56.0
-margin_bottom = -388.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -114.0
+margin_right = 456.0
+margin_bottom = -88.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1206,12 +1229,14 @@ theme = ExtResource( 2 )
 text = "Автохил:"
 
 [node name="keyAutohealIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 218.0
-margin_right = -56.0
-margin_bottom = -356.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -82.0
+margin_right = 456.0
+margin_bottom = -56.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1230,12 +1255,14 @@ theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
 
 [node name="keyQuicksaveIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 250.0
-margin_right = -56.0
-margin_bottom = -324.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -50.0
+margin_right = 456.0
+margin_bottom = -24.6
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1254,12 +1281,14 @@ theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
 
 [node name="keyQuickloadIcon" type="TextureRect" parent="Controls"]
-anchor_right = 1.0
-anchor_bottom = 1.011
-margin_left = 920.0
-margin_top = 282.0
-margin_right = -56.0
-margin_bottom = -292.6
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 408.0
+margin_top = -18.0
+margin_right = 456.0
+margin_bottom = 7.39999
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
@@ -1272,14 +1301,14 @@ anchor_bottom = 1.0
 script = ExtResource( 7 )
 
 [node name="default" type="Button" parent="Difficulty"]
-anchor_left = 0.07
-anchor_top = 0.267
-anchor_right = 0.352
-anchor_bottom = 0.31
-margin_left = 0.32
-margin_top = -0.200012
-margin_right = -0.448029
-margin_bottom = -0.127991
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -440.0
+margin_top = -180.0
+margin_right = -152.0
+margin_bottom = -154.128
 theme = ExtResource( 2 )
 text = " [Сбросить]"
 
@@ -1639,60 +1668,6 @@ theme = ExtResource( 2 )
 text = "1,00"
 align = 2
 
-[node name="death_screen" type="Label" parent="Difficulty"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -224.0
-margin_top = 116.0
-margin_bottom = 138.0
-theme = ExtResource( 2 )
-text = "Экран загрузки после смерти:"
-align = 2
-
-[node name="death_button" type="Button" parent="Difficulty"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 8.0
-margin_top = 116.0
-margin_right = 323.0
-margin_bottom = 134.0
-theme = ExtResource( 2 )
-text = "Включен"
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="border" type="Label" parent="Difficulty/death_button" groups=["ignore_color"]]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -8.5
-margin_right = 6.0
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="border2" type="Label" parent="Difficulty/death_button" groups=["ignore_color"]]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -6.00021
-margin_top = -8.5
-margin_right = -0.000213623
-margin_bottom = 6.5
-theme = ExtResource( 2 )
-text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="back" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1849,9 +1824,6 @@ script = ExtResource( 8 )
 [connection signal="mouse_entered" from="Difficulty/inflation_slider" to="." method="_on_mouse_entered" binds= [ "choose", "inflation" ]]
 [connection signal="mouse_exited" from="Difficulty/inflation_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Difficulty/inflation_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "inflation" ]]
-[connection signal="mouse_entered" from="Difficulty/death_button" to="." method="_on_mouse_entered" binds= [ "choose", "death_screen" ]]
-[connection signal="mouse_exited" from="Difficulty/death_button" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Difficulty/death_button" to="Difficulty" method="_on_death_button_pressed"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "back", "mainMenu" ]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

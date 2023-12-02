@@ -12,20 +12,30 @@ public class LevelsLoader : Node
 	private Control currentLoading;
 	private Node menuParent;
 	
+	private bool useLoadingMenu = true;
 	private PackedScene mainMenuPrefab;
 	private PackedScene pauseMenuPrefab;
 	private PackedScene loadingMenuPrefab;
 	private PackedScene dealthMenuPrefab;
 	private bool mainMenuOn = true;
 	private ResourceInteractiveLoader loader;
-	
+
 	[Signal]
 	public delegate void LevelLoaded();
 
+	[Signal]
+	public delegate void SaveDataLoaded();
+
 	private bool loadSavedData;
 	private Dictionary levelData;
-	private Godot.Collections.Array deletedObjects;
+	private Array deletedObjects;
 
+	public LevelsLoader SetUseLoadingMenu(bool value)
+	{
+		useLoadingMenu = value;
+		return this;
+	}
+	
 	public override async void _Ready()
 	{
 		var levelsData = Global.loadJsonFile("scenes/levels.json");
@@ -61,7 +71,7 @@ public class LevelsLoader : Node
 		}
 	}
 
-	private void respawnMenu(PackedScene newMenu) 
+	private void RespawnMenu(PackedScene newMenu) 
 	{
 		currentMenu.Free();
 		currentMenu = (Control)newMenu.Instance();
@@ -69,9 +79,10 @@ public class LevelsLoader : Node
 		menuParent.MoveChild(currentMenu, 0);
 	}
 
-	private async void updateScene()
+	private async void UpdateScene()
 	{
-		if (currentScene != null) {
+		if (currentScene != null) 
+		{
 			global.player = null;
 			currentScene.QueueFree();
 			currentScene = null;
@@ -80,30 +91,37 @@ public class LevelsLoader : Node
 
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
+		
 		if (levelPaths[tempLevelNum] == "menu") 
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 			return;
 		}
 
-		if (loader == null) 
+		if (loader != null) return;
+		
+		if (useLoadingMenu)
 		{
 			currentLoading = (Control)loadingMenuPrefab.Instance();
 			menuParent.AddChild(currentLoading);
-
-			loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
-			SetProcess(true);
 		}
+		else
+		{
+			useLoadingMenu = true;
+		}
+
+		loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+		SetProcess(true);
 	}
 
-	private void updateMenu()
+	private void UpdateMenu()
 	{
 		if (tempLevelNum != 0) 
 		{
 			//грузим меню паузы
 			if (currentMenu.Name != "PauseMenu") 
 			{
-				respawnMenu(pauseMenuPrefab);
+				RespawnMenu(pauseMenuPrefab);
 				mainMenuOn = false;
 			}
 			else
@@ -117,7 +135,7 @@ public class LevelsLoader : Node
 			//грузим главное меню
 			if (!mainMenuOn) 
 			{
-				respawnMenu(mainMenuPrefab);
+				RespawnMenu(mainMenuPrefab);
 				mainMenuOn = true;
 			}
 
@@ -128,7 +146,7 @@ public class LevelsLoader : Node
 	public void ShowDealthMenu()
 	{
 		global.SetPause(this, true);
-		respawnMenu(dealthMenuPrefab);
+		RespawnMenu(dealthMenuPrefab);
 		currentMenu.Visible = true;
 	}
 
@@ -151,8 +169,8 @@ public class LevelsLoader : Node
 			deletedObjects = null;
 		}
 		
-		CallDeferred("updateScene");
-		CallDeferred("updateMenu");
+		CallDeferred(nameof(UpdateScene));
+		CallDeferred(nameof(UpdateMenu));
 	}
 
 	//загрузка уровня с сохраненными данными
@@ -221,9 +239,12 @@ public class LevelsLoader : Node
 		loadSavedData = false;
 	}
 
-	private async void deleteLoadingMenu() 
+	private async void DeleteLoadingMenu() 
 	{
+		if (currentLoading == null) return;
+		
 		await ToSignal(GetTree(), "idle_frame");
+		
 		currentLoading.QueueFree();
 		currentLoading = null;
 	}
@@ -252,7 +273,7 @@ public class LevelsLoader : Node
 			
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
-			deleteLoadingMenu();
+			DeleteLoadingMenu();
 			EmitSignal(nameof(LevelLoaded));
 
 			if (loadSavedData)
@@ -260,6 +281,7 @@ public class LevelsLoader : Node
 				LoadLevelObjects(newScene);
 			}
 			
+			EmitSignal(nameof(SaveDataLoaded));
 		}
 		else if (err != Error.Ok) 
 		{

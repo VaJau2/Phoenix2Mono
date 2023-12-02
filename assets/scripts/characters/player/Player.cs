@@ -74,6 +74,9 @@ public class Player : Character
     float shakeTimer = 0;
 
     [Signal]
+    public delegate void ChangeView(bool toThird);
+    
+    [Signal]
     public delegate void TakenDamage();
 
     [Signal]
@@ -84,6 +87,12 @@ public class Player : Character
 
     [Signal]
     public delegate void UseItem(string itemCode);
+
+    [Signal]
+    public delegate void WearItem(string itemCode);
+    
+    [Signal]
+    public delegate void UnwearItem(string itemCode);
     
     [Signal]
     public delegate void SitSignal();

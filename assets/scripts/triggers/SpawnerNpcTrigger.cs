@@ -102,7 +102,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             npcInstance.itemCodes = itemCodes;
             npcInstance.ammoCount = ammoCount;
             GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-            npcInstance.GlobalTransform = Global.setNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
+            npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
             npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
             if (movePoint != null)
             {

@@ -249,32 +249,27 @@ public abstract class InventoryMode
         switch (propName)
         {
             case "damage":
-            {
                 //добавляем настройки урона игрока в выводе урона от оружия
                 float damageValue = Global.ParseFloat(propValue) * Global.Get().Settings.playerDamage;
                 int intDamage = (int) damageValue;
                 return intDamage.ToString();
-            }
+            
             case "medsEffect":
-            {
                 return InterfaceLang.GetPhrase("inventory", "medsEffects", propValue);
-            }
+                
             case "damageBlock":
-            {
                 //выводим блокирование урона в процентах
                 float blockValue = Global.ParseFloat(propValue);
                 return (blockValue * 100f) + "%";
-            }
+                
             case "checkHasItem":
-            {
                 var itemData = ItemJSON.GetItemData(propValue);
                 return itemData["name"].ToString();
-            }
-            case "questItem":
+                
+            case "questItem": 
+            case "ignoreRadiation":
             case "onlyForEarthponies":
-            {
                 return "";
-            }
         }
 
         return propValue;
@@ -288,6 +283,10 @@ public abstract class InventoryMode
         {
             if (itemPropNames.Contains(prop)) 
             {
+                // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
+                if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
+                    continue;
+                
                 string propName = itemPropNames[prop].ToString();
                 string propValue = itemProps[prop].ToString();
                 propValue = ConvertPropValue(prop, propValue);
@@ -559,7 +558,7 @@ public abstract class InventoryMode
         {
             if (newTempButton.myItemCode == null) continue;
             SetTempButton(newTempButton);
-            if (tempButton.myItemCode != "heal-potion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
+            if (tempButton.myItemCode != "healPotion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
             useHandler.UseTempItem();
             return;
         }

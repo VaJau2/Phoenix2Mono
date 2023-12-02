@@ -178,7 +178,7 @@ public class EffectHandler: Node
             case "detoxine":
                 return new DetoxineEffect();
             
-            case "stealthbuck":
+            case "stealthBuck":
                 return new StealthBuckEffect();
         }
         
@@ -204,7 +204,7 @@ public class EffectHandler: Node
             case "MentatsEffect": return "mentats";
             case "MentatsPostEffect": return "mentatsPost";
             case "DetoxineEffect": return "detoxine";
-            case "StealthBuckEffect": return "stealthbuck";
+            case "StealthBuckEffect": return "stealthBuck";
         }
 
         return null;

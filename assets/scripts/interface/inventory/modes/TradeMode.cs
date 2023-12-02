@@ -460,6 +460,10 @@ public class TradeMode: InventoryMode
         {
             if (itemPropNames.Contains(prop)) 
             {
+                // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
+                if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
+                    continue;
+                
                 string propName = itemPropNames[prop].ToString();
                 string propValue;
                 

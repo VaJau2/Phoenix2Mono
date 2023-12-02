@@ -34,8 +34,7 @@ public class Settings
     public float npcAggressive = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
     public float npcAccuracy = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
     public float inflation = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
-    public bool deathScreen = DifficultySubmenu.DEFAULT_DEATH_SCREEN;
-    
+
     Viewport root;
 
     public void UpdateAudioBus(AudioBus bus, float value)
@@ -116,7 +115,6 @@ public class Settings
         config.SetValue("difficulty", "npc_aggressive", npcAggressive);
         config.SetValue("difficulty", "npc_accuracy", npcAccuracy);
         config.SetValue("difficulty", "inflation", inflation);
-        config.SetValue("difficulty", "death_screen", deathScreen);
 
         config.Save("res://settings.cfg");
     }
@@ -161,8 +159,7 @@ public class Settings
             npcAggressive = (float) config.GetValue("difficulty", "npc_aggressive");
             npcAccuracy = (float) config.GetValue("difficulty", "npc_accuracy");
             inflation = (float) config.GetValue("difficulty", "inflation");
-            deathScreen = (bool)config.GetValue("difficulty", "death_screen");
-            
+
             SettingsLoaded = true;
         }
     }

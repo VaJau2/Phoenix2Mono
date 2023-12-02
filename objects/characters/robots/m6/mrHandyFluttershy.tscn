@@ -1263,7 +1263,7 @@ headBonePath = NodePath("Armature/Skeleton/Physical Bone eye_1")
 bodyBonePath = NodePath("Armature/Skeleton/Physical Bone body")
 moneyCount = 42
 traderCode = "roboFluttershy"
-startItemCodes = [ "bow-ribbon", "bow-ribbon", "bow-ribbon", "bow-ribbon", "bow-ribbon" ]
+startItemCodes = [ "bowRibbon", "bowRibbon", "bowRibbon", "bowRibbon", "bowRibbon" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19851, 0 )

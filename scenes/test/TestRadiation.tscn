@@ -41,7 +41,7 @@ shape = SubResource( 2 )
 
 [node name="metallic-cabinet" parent="Scene/terrain/props" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8805, 2.86446, -17.9602 )
-startItemCodes = [ "radiationCounter", "sparkle-cola", "power-armor", "nucBattery" ]
+startItemCodes = [ "radiationCounter", "sparkleCola", "powerArmor", "nucBattery" ]
 
 [node name="box2" type="StaticBody" parent="Scene/terrain/props" index="1"]
 transform = Transform( 8, 0, 0, 0, 5, 0, 0, 0, 2, 4.63225, 4.611, 13.2959 )

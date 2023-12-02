@@ -2049,7 +2049,7 @@ script = ExtResource( 3 )
 maxItemsCount = 3
 moneyChance = 0.4
 maxMoneyCount = 90
-itemCodes = [ "sparkle-cola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "heal-potion", "apple" ]
+itemCodes = [ "sparkleCola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "healPotion", "apple" ]
 
 [node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 21.3022 )

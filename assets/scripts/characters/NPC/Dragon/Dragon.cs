@@ -279,7 +279,7 @@ public class Dragon: NPC
 
     private void UpdateEnemyInMouth(float delta)
     {
-        enemyInMouth.GlobalTransform = Global.setNewOrigin(
+        enemyInMouth.GlobalTransform = Global.SetNewOrigin(
             enemyInMouth.GlobalTransform, 
             mouthPos.GlobalTransform.origin
         );

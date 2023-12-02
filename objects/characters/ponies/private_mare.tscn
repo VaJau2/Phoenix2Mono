@@ -151,7 +151,7 @@ surfaces/2 = {
 [node name="private_mare" instance=ExtResource( 6 )]
 StartHealth = 150
 weaponCode = "laserPistol"
-itemCodes = [ "bow-ribbon" ]
+itemCodes = [ "bowRibbon" ]
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.9, 0, 0, 0, -0.153435, 0.886824, 0, -0.886824, -0.153435, -0.0198563, 2.3952, 0.630795 )

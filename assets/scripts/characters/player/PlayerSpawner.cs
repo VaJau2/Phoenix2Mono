@@ -90,7 +90,7 @@ public class PlayerSpawner : Spatial
             //загрузка надетой на ГГ брони
             if (clothCode != "" && clothCode != "empty")
             {
-                player.inventory.LoadWearItem(clothCode, "armor");
+                player.inventory.LoadWearItem(clothCode, ItemType.armor);
             }
         }
 

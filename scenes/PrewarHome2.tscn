@@ -1332,7 +1332,7 @@ itemCode = "firewood"
 [node name="pickPaper" type="Node" parent="triggers"]
 script = ExtResource( 71 )
 otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickSuitcase"), NodePath("../changeWindyDialogue"), NodePath("../goToVanTask"), NodePath("../enterVan") ]
-itemCode = "bellgates-paper"
+itemCode = "bellgatesPaper"
 itemModelPath = NodePath("../../terrain/props/paper")
 
 [node name="changeMotherDialogue" type="Node" parent="triggers"]
@@ -1365,7 +1365,7 @@ otherDialogueCode = "talk4(1)"
 [node name="pickSuitcase" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 71 )
 IsActive = false
-itemCode = "suitcase-vacation"
+itemCode = "Quest_suitcaseVacation"
 itemModelPath = NodePath("../../rooms/mansion/suitcase")
 
 [node name="goToVanTask" type="Node" parent="triggers"]
@@ -1384,7 +1384,7 @@ script = ExtResource( 3 )
 maxItemsCount = 3
 moneyChance = 0.4
 maxMoneyCount = 90
-itemCodes = [ "sparkle-cola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "heal-potion", "apple" ]
+itemCodes = [ "sparkleCola", "toaster", "maffin", "book0", "book2", "pencil", "book1", "healPotion", "apple" ]
 
 [node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 21.3022 )

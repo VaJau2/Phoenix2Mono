@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/props/furniture/dummy/dummy_antiradio.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/player_variants/antiradio/first/pegasus.res" type="ArrayMesh" id=4]
+[ext_resource path="res://objects/props/furniture/laboratory/cloneFlask.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
+[ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
+[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=11]
+[ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
+[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 50, 0.1, 50 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 12 )
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="TestSceneLoader" type="Node" parent="Scene"]
+script = ExtResource( 7 )
+playerRace = 1
+
+[node name="canvas" parent="Scene" instance=ExtResource( 2 )]
+
+[node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
+moneyCount = 500
+itemCodes = [ "shotgun20" ]
+ammo = {
+"ammo20": 20
+}
+
+[node name="npc" type="Node" parent="Scene"]
+script = ExtResource( 10 )
+
+[node name="shells" type="Spatial" parent="Scene" groups=["savable"]]
+script = ExtResource( 13 )
+
+[node name="terrain" type="StaticBody" parent="Scene"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = ExtResource( 11 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain"]
+shape = SubResource( 2 )
+
+[node name="props" type="Spatial" parent="Scene/terrain"]
+
+[node name="metallic-cabinet" parent="Scene/terrain/props" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
+startItemCodes = [ "powerArmor", "rage", "bowRibbon", "nucBattery", "coat" ]
+
+[node name="dummy" parent="Scene/terrain/props" instance=ExtResource( 3 )]
+transform = Transform( 0.555454, 0, -0.831547, 0, 1, 0, 0.831547, 0, 0.555454, -28.8174, 0.366631, 11.6461 )
+pegasCloth = ExtResource( 4 )
+
+[node name="cloneFlask" parent="Scene/terrain/props" instance=ExtResource( 5 )]
+transform = Transform( -4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.15743, -32.5678, 2.62048, -10.9731 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain"]
+transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+shadow_enabled = true

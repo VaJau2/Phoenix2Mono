@@ -8,7 +8,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "stealth-armor"
+          "value": "stealthArmor"
         }
       ],
       "next": "R1"

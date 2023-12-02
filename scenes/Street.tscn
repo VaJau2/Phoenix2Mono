@@ -286,7 +286,7 @@ margin_bottom = 1.0
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.655687, -15.4919 )
-itemCodes = [ "revolver32", "suitcase-empty" ]
+itemCodes = [ "revolver32", "suitcaseEmpty" ]
 ammo = {
 "ammo32": 30
 }
@@ -302,7 +302,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28514
 StartHealth = 110
 dialogueCode = "startDialogue"
 weaponCode = "revolver32"
-itemCodes = [ "agent-note", "suitcase-empty" ]
+itemCodes = [ "Quest_agentNote", "suitcaseEmpty" ]
 ammoCount = {
 "ammo32": 10
 }
@@ -850,7 +850,7 @@ NewTaskCode = "searchAgent"
 script = ExtResource( 36 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../exit"), NodePath("../leaveTask") ]
-ItemToTake = "agent-note"
+ItemToTake = "Quest_agentNote"
 
 [node name="leaveTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
@@ -894,7 +894,7 @@ shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 script = ExtResource( 3 )
 moneyChance = 0.4
 maxMoneyCount = 20
-itemCodes = [ "mentats", "dash", "maffin", "ammoEnergy", "ammo32", "pencil", "book1", "heal-potion", "laserPistol", "plasmaPistol" ]
+itemCodes = [ "mentats", "dash", "maffin", "ammoEnergy", "ammo32", "pencil", "book1", "healPotion", "laserPistol", "plasmaPistol" ]
 ammoCount = {
 "ammo32": 20,
 "ammoEnergy": 20

@@ -4,25 +4,26 @@ using Godot;
 public class CloneFlaskTrigger : TriggerBase
 {
     [Export] private NodePath flaskPath;
-    [Export] private NodePath moveNpcTriggerPath;
     [Export] AudioStreamSample underwater;
     [Export] AudioStreamSample flaskOpen;
     private CloneFlask cloneFlask;
     private ColorRect blackScreen;
-    private TriggerBase moveNpcTrigger;
     private int step;
     private float timer;
     private bool changeBlackScreen;
+
+    private AudioEffectsController audioEffectController;
 
     public override async void _Ready()
     {
         SetProcess(false);
         cloneFlask = GetNode<CloneFlask>(flaskPath);
         blackScreen = GetNode<ColorRect>("/root/Main/Scene/canvas/black");
-        moveNpcTrigger = GetNode<TriggerBase>(moveNpcTriggerPath);
 
         await ToSignal(GetTree(), "idle_frame");
 
+        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
+        
         if (IsActive)
         {
             _on_activate_trigger();
@@ -34,14 +35,6 @@ public class CloneFlaskTrigger : TriggerBase
         if (timer > 0)
         {
             timer -= delta;
-        } 
-        else if (changeBlackScreen)
-        {
-            if (blackScreen.Color.a > 0)
-            {
-                blackScreen.Color = new Color(0, 0, 0, blackScreen.Color.a - delta * 2);
-                changeBlackScreen = false;
-            }
         }
         else
         {
@@ -74,6 +67,9 @@ public class CloneFlaskTrigger : TriggerBase
                 player.GetAudi(true).Stream = underwater;
                 player.GetAudi(true).Play();
 
+                audioEffectController.AddEffects("flaskWater");
+                audioEffectController.AddEffects("flaskGlass");
+                
                 timer = 2f;
                 SetProcess(true);
                 break;
@@ -81,28 +77,31 @@ public class CloneFlaskTrigger : TriggerBase
             case 1:
                 player.Camera.eyesClosed = false;
                 changeBlackScreen = true;
-                SetProcess(true);
-                break;
-
-            case 2:
-                blackScreen.Color = new Color(0, 0, 0, 0);
+                
                 cloneFlask.anim.CurrentAnimation = "wakeUp";
                 
                 timer = 1f;
                 SetProcess(true);
                 break;
 
-            case 3:
-                moveNpcTrigger.SetActive(true);
+            case 2:
                 cloneFlask.audi.Play();
                 cloneFlask.AnimateWater();
-                timer = 4f;
+                timer = 1.5f;
                 SetProcess(true);
                 break;
 
+            case 3:
+                audioEffectController.RemoveEffects("flaskWater");
+                
+                timer = 2.5f;
+                SetProcess(true);
+                break;
+            
             case 4:
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
-                player.GlobalTransform = Global.setNewOrigin(
+                player.GlobalTransform = Global.SetNewOrigin
+                (
                     player.GlobalTransform,
                     playerPosTransform.origin
                 );
@@ -114,7 +113,7 @@ public class CloneFlaskTrigger : TriggerBase
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();
                 cloneFlask.camera.MakeCurrent(false);
-
+                
                 timer = 0.6f;
                 SetProcess(true);
                 break;
@@ -123,6 +122,13 @@ public class CloneFlaskTrigger : TriggerBase
                 player.GetAudi(true).Stream = flaskOpen;
                 player.GetAudi(true).Play();
                 cloneFlask.AnimateGlass();
+                
+                timer = 0.3f;
+                SetProcess(true);
+                break;
+            
+            case 6:
+                audioEffectController.RemoveEffects("flaskGlass");
                 base._on_activate_trigger();
                 break;
         }

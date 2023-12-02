@@ -45,7 +45,7 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         if (step == 0)
         {
             player.SitOnChair(true);
-            player.GlobalTransform = Global.setNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
+            player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
             player.Rotation = new Vector3(
                 player.Rotation.x,
                 strikelyPlace.Rotation.y,

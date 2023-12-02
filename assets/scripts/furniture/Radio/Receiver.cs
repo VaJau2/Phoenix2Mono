@@ -4,14 +4,17 @@ using System;
 
 public class Receiver : RadioBase, ISavable, IInteractable
 {
-	string model;
+	private string model;
 
 	[Export] public bool isOn { protected set; get; } = true;
 
 	public Radiostation station { private set; get; }
-	[Export] Radiostation.Name radiostation;
-	[Export] FrequencyRange frequencyRange;
-	[Export] float frequency = 0.5f;
+	[Export] private Radiostation.Name radiostation;
+	[Export] private FrequencyRange frequencyRange;
+	[Export] private float frequency = 0.5f;
+
+	[Export] private float unitSize = 10f;
+	[Export] private float maxDistance = 120f;
 
 	public enum FrequencyRange
 	{
@@ -22,18 +25,18 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		U2
 	}
 
-	Spatial l;
-	Spatial m;
-	Spatial k;
-	Spatial u1;
-	Spatial u2;
-	Spatial arrow;
-	Spatial frequencyLever;
-	Spatial volumeLever;
+	private Spatial l;
+	private Spatial m;
+	private Spatial k;
+	private Spatial u1;
+	private Spatial u2;
+	private Spatial arrow;
+	private Spatial frequencyLever;
+	private Spatial volumeLever;
 
-	Global global = Global.Get();
-	float minRadioVolume;
-	float maxRadioVolume;
+	private Global global = Global.Get();
+	private float minRadioVolume;
+	private float maxRadioVolume;
 
 	[Signal]
 	public delegate void ChangeMusicEvent();
@@ -65,13 +68,13 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		else SwitchOff(false);
 	}
 
-	void InitModel()
+	private void InitModel()
 	{
 		bool hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
 		model = hasRadio ? "Radio" : "Radio Jr";
 	}
 
-	void InitControls()
+	private void InitControls()
     {
 		volumeLever = GetNode<Spatial>("Volume Lever");
 		frequencyLever = GetNode<Spatial>("Frequency Lever");
@@ -85,28 +88,28 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		switch (model)
 		{
 			case "Radio":
-				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
+				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
+						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
 						noiseDb = 0;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.setNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
+						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
 						noiseDb = -10;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
+						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
 						noiseDb = -20;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
+						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
 						noiseDb = -30;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
+						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
 						noiseDb = -40;
 						break;
 				}
@@ -116,28 +119,28 @@ public class Receiver : RadioBase, ISavable, IInteractable
 				arrow = GetNode<Spatial>("Arrow");
 				arrow.Rotate(Vector3.Back, (frequency * 160 + 10) * (float)(Math.PI / 180));
 
-				frequencyLever.Transform = Global.setNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
+				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.setNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
+						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
 						noiseDb = 3;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.setNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
+						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
 						noiseDb = -7;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.setNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
+						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
 						noiseDb = -17;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.setNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
+						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
 						noiseDb = -27;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.setNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
+						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
 						noiseDb = -37;
 						break;
 				}
@@ -145,7 +148,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void InitRadiostation()
+	private void InitRadiostation()
     {
 		switch (radiostation)
 		{
@@ -179,13 +182,18 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		station?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
 	}
 
-	void InitPlayer()
+	private void InitPlayer()
 	{
+		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
+		musicPlayer.MaxDistance = maxDistance;
+		musicPlayer.UnitSize = unitSize;
+		
 		noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
+		noisePlayer.MaxDistance = maxDistance;
+		noisePlayer.UnitSize = unitSize;
+		
 		switchSound = (AudioStream)GD.Load("res://assets/audio/radio/Switch.ogg");
 		noiseSound = (AudioStream)GD.Load("res://assets/audio/radio/Noise.ogg");
-
-		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
 	}
 
 	public void Interact(PlayerCamera interactor)
@@ -228,12 +236,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
-	void SyncTimer()
+	private void SyncTimer()
     {
 		if (isOn) musicPlayer.Play(station.timer);
 	}
 
-	void PlaySwitchSound()
+	private void PlaySwitchSound()
     {
 		noisePlayer.Stream = switchSound;
 		noisePlayer.UnitDb = 0;
@@ -242,7 +250,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeNoiseEvent));
 	}
 
-	void OnSwitchSoundFinished()
+	private void OnSwitchSoundFinished()
 	{
 		if (isOn)
         {
@@ -254,7 +262,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void OnMusicFinished()
+	private void OnMusicFinished()
 	{
 		if (isOn)
         {
@@ -265,7 +273,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		}
 	}
 
-	void UpdateVolumeLever(float value)
+	private void UpdateVolumeLever(float value)
     {
 		float normalizeLever;
 		value = (value - minRadioVolume) / (Mathf.Abs(maxRadioVolume) + Mathf.Abs(minRadioVolume));
@@ -274,12 +282,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		{
 			case "Radio":
 				normalizeLever = value * 0.526f - 0.26f;
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
+				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
 				break;
 
 			case "Radio Jr":
 				normalizeLever = value * 0.15f + 0.19f;
-				volumeLever.Transform = Global.setNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
+				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
 				break;
 		}
 	}

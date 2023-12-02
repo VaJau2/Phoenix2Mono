@@ -4,7 +4,8 @@
 //включает другие триггеры, если игрок получает нужный предмет
 class TakeItemTrigger: ActivateOtherTrigger
 {
-    [Export] public string ItemToTake;
+    [Export] private string ItemToTake;
+    [Export] private bool DeletedDisactiveTriggers;
 
     Player player => Global.Get().player;
 
@@ -38,8 +39,18 @@ class TakeItemTrigger: ActivateOtherTrigger
         {
             _on_activate_trigger();
 
+            if (DeletedDisactiveTriggers)
+            {
+                foreach (var triggerToDisactive in triggersToDisactive)
+                {
+                    Global.AddDeletedObject(triggerToDisactive.Name);
+                    triggerToDisactive.QueueFree();
+                }
+            }
+            
             if (DeleteAfterTrigger)
             {
+                Global.AddDeletedObject(Name);
                 QueueFree();
             }
         }

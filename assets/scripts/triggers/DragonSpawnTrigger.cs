@@ -44,7 +44,7 @@ public class DragonSpawnTrigger : TriggerBase
         npcInstance.Name = "Created_" + npcInstance.Name;
         npcInstance.patrolArray = patrolArray;
         GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-        npcInstance.GlobalTransform = Global.setNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
+        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
         npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
 
         if (triggerConnections == null) return;

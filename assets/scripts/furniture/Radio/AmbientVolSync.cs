@@ -60,6 +60,10 @@ public class AmbientVolSync : Spatial
         if (!(body is RadioBase radio)) return;
 
         radioList.Add(radio);
+        
+        if (radio.IsConnected(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline))) 
+            return;
+        
         radio.Connect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
         if (!IsProcessing() && global.Settings.radioVolume > minVolume) SetProcess(true);
     }

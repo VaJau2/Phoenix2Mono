@@ -25,7 +25,7 @@ public class DragonSmashArea : Area
             character.CollisionLayer = 0;
             character.CollisionMask = 0;
             character.TakeDamage(dragon, Dragon.MOUTH_DAMAGE);
-            character.GlobalTransform = Global.setNewOrigin(
+            character.GlobalTransform = Global.SetNewOrigin(
                 character.GlobalTransform, 
                 dragon.mouthPos.GlobalTransform.origin
             );

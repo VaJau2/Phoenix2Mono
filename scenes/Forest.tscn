@@ -59,14 +59,14 @@ transform = Transform( -0.765135, 0, 0.64387, 0, 1, 0, -0.64387, 0, -0.765135, 9
 IdleAnim = "Sit"
 StartHealth = 150
 dialogueCode = "talk"
-weaponCode = "pistol10-silenced"
+weaponCode = "pistol10S"
 
 [node name="korporal" parent="npc" instance=ExtResource( 21 )]
 transform = Transform( 0.421448, 0, -0.906853, 0, 1, 0, 0.906853, 0, 0.421448, 93.4765, -2.8493, -86.2622 )
 StartHealth = 150
 dialogueCode = "instruction"
 weaponCode = "rifle307"
-itemCodes = [ "med-x" ]
+itemCodes = [ "medX" ]
 
 [node name="private_mare" parent="npc" instance=ExtResource( 23 )]
 transform = Transform( 0.744603, 0, -0.667508, 0, 1, 0, 0.667508, 0, 0.744603, 96.2466, -2.82362, -75.3045 )
@@ -76,13 +76,13 @@ dialogueCode = "talk"
 transform = Transform( 0.998208, 0, 0.0598465, 0, 1, 0, -0.0598465, 0, 0.998208, -27.0996, -3.41641, 101.857 )
 IdleAnim = "Sit"
 weaponCode = "rifle307"
-itemCodes = [ "heal-potion" ]
+itemCodes = [ "healPotion" ]
 
 [node name="zebra-helmet2" parent="npc" instance=ExtResource( 19 )]
 transform = Transform( -0.95657, 0, 0.291504, 0, 1, 0, -0.291504, 0, -0.95657, -26.4248, -3.41641, 91.4345 )
 IdleAnim = "Sit"
 weaponCode = "rifle307"
-itemCodes = [ "heal-potion" ]
+itemCodes = [ "healPotion" ]
 
 [node name="zebra-mane" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( 0.999536, 0, -0.0304688, 0, 1, 0, 0.0304688, 0, 0.999536, 1.62614, -4.18371, 111.002 )
@@ -377,7 +377,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0871, -3.96564, 114.776 )
 script = ExtResource( 16 )
 maxItemsCount = 10
 maxMoneyCount = 50
-itemCodes = [ "ammo307", "ammo32", "ammo10", "ammo12", "ammo762", "ammoEnergy", "book0", "heal-potion", "toaster", "revolver32", "pistol10-silenced", "shotgun12", "rifle307", "autorifle762", "laserPistol", "plasmaPistol", "laserRifle", "maffin", "mana-potion", "buck", "dash", "hydra", "med-x", "rage", "mentats", "detoxine" ]
+itemCodes = [ "ammo307", "ammo32", "ammo10", "ammo12", "ammo762", "ammoEnergy", "book0", "healPotion", "toaster", "revolver32", "pistol10S", "shotgun12", "rifle307", "autorifle762", "laserPistol", "plasmaPistol", "laserRifle", "maffin", "manaPotion", "buck", "dash", "hydra", "medX", "rage", "mentats", "detoxine" ]
 ammoCount = {
 "ammo10": 20,
 "ammo12": 10,

@@ -1,9 +1,9 @@
 {
-    "agent-note": [
+    "Quest_agentNote": [
         "I'm sorry, but I can't give you any backup against the lieutenant you're about to deal with. She's not a hindrance to you anyway.",
         "And I need to prepare an attempt on the Minister's life."
     ],
-    "vacation-note": [
+    "Quest_vacationNote": [
         "Order on granting leave to a soldier.",
         "",
         "Provide Strikely Cloud paid vacation from June 1 to June 14 in connection with",
@@ -11,7 +11,7 @@
         "",
         "Colonel Green Blood"
     ],
-    "bellgates-paper": [
+    "bellgatesPaper": [
         "Lieutenant,",
         "I am grateful to you for your help and I believe that you are capable of more.",
         "I have a personal job for you to save Equestria. If you're ready, get in the van. He's waiting for you nearby.",
