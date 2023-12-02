@@ -1,8 +1,11 @@
+using System;
 using Godot;
+using Godot.Collections;
+
 
 // Создает отдельную следящую за игроком камеру
 // при выходе из области
-public class CinematicExit : Area
+public class CinematicExit : Area, ISavable
 {
     // насколько сильно зенитное замедление камеры в начале и ускорение в конце
     private const float MAX_DISTANCE = 400f;
@@ -11,7 +14,7 @@ public class CinematicExit : Area
     private const float CAMERA_SPAWN_DISTANCE = 3f;
     
     // дальность прорисовки
-    private const float CAMERA_FAR = 400f;
+    private const float CAMERA_FAR = 1000f;
     
     // скорость интерполяции кинематографической камеры
     private const float CAMERA_SPEED = 4f;
@@ -70,8 +73,9 @@ public class CinematicExit : Area
         if (player == null) return;
         
         exitPoint = Vector3.Zero;
+        player.RotationHelperThird.MayChange = true;
         player.RotationHelperThird.SetThirdView(wasThirdView);
-        
+
         DespawnCamera();
         SetProcess(false);
     }
@@ -83,6 +87,7 @@ public class CinematicExit : Area
         player = body.GetParent<Player>();
         wasThirdView = player.ThirdView;
         player.RotationHelperThird.SetThirdView(true);
+        player.RotationHelperThird.MayChange = false;
         
         SpawnCamera();
         exitPoint = cinematicCamera.GlobalTransform.origin;
@@ -93,7 +98,8 @@ public class CinematicExit : Area
     private void SpawnCamera()
     {
         cinematicCamera = new Camera();
-        GetParent().AddChild(cinematicCamera);
+        cinematicCamera.Name = "Created_CinematicCamera";
+        GetParent().GetParent().AddChild(cinematicCamera);
 
         var locationCenter = new Vector3(
             GlobalTransform.origin.x, 
@@ -118,5 +124,53 @@ public class CinematicExit : Area
     {
         cinematicCamera.QueueFree();
         cinematicCamera = null;
+    }
+
+    public Dictionary GetSaveData()
+    {
+        if (exitPoint == Vector3.Zero) return new Dictionary();
+        
+        return new Dictionary
+        {
+            {"exitPointX", exitPoint.x},
+            {"exitPointY", exitPoint.y},
+            {"exitPointZ", exitPoint.z},
+            {"cameraPosX", cinematicCamera.GlobalTransform.origin.x},
+            {"cameraPosY", cinematicCamera.GlobalTransform.origin.y},
+            {"cameraPosZ", cinematicCamera.GlobalTransform.origin.z}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (!data.Contains("exitPointX")) return;
+
+        player = GetNode<Player>("/root/Main/Scene/Player");
+        player.RotationHelperThird.SetThirdView(true);
+        player.RotationHelperThird.MayChange = false;
+        
+        exitPoint = new Vector3(
+            Convert.ToSingle(data["exitPointX"]), 
+            Convert.ToSingle(data["exitPointY"]), 
+            Convert.ToSingle(data["exitPointZ"])
+        );
+
+        var cameraPos = new Vector3(
+            Convert.ToSingle(data["cameraPosX"]), 
+            Convert.ToSingle(data["cameraPosY"]), 
+            Convert.ToSingle(data["cameraPosZ"])
+        );
+        
+        LoadCamera(cameraPos);
+    }
+
+    private async void LoadCamera(Vector3 pos)
+    {
+        await ToSignal(GetTree(), "idle_frame");
+        
+        SpawnCamera();
+        cinematicCamera.GlobalTransform = Global.SetNewOrigin(cinematicCamera.GlobalTransform, pos);
+        
+        SetProcess(true);
     }
 }

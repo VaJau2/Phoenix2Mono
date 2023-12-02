@@ -39,20 +39,30 @@ public class LoadItemsFromSuitcase : TriggerBase
             Dictionary data = saveNode.InventoryData;
             
             
-            if (!string.IsNullOrEmpty(data["weapon"].ToString()))
+            if (data.Contains("weapon"))
             {
                 suitcase.ChestHandler.AddNewItem(data["weapon"].ToString());
                 suitcaseEmpty = false;
             }
-            if (!string.IsNullOrEmpty(data["cloth"].ToString()) && data["cloth"].ToString() != "empty")
+            if (data.Contains("cloth") && data["cloth"].ToString() != "empty")
             {
                 suitcase.ChestHandler.AddNewItem(data["cloth"].ToString());
                 suitcaseEmpty = false;
             }
-            if (!string.IsNullOrEmpty(data["artifact"].ToString()))
+            if (data.Contains("artifact"))
             {
                 suitcase.ChestHandler.AddNewItem(data["artifact"].ToString());
                 suitcaseEmpty = false;
+            }
+            
+            if (suitcaseEmpty)
+            {
+                Global.AddDeletedObject(suitcase.Name);
+                suitcase.QueueFree();
+                
+                base._on_activate_trigger();
+                
+                return;
             }
             
             Array itemCodes = (Array) data["itemCodes"];
@@ -62,8 +72,7 @@ public class LoadItemsFromSuitcase : TriggerBase
             {
                 var itemCode = itemCodes[i].ToString();
                 if (itemCode == "_") continue;
-
-                suitcaseEmpty = false;
+                
                 var itemCount = Convert.ToInt32(itemCounts[i]);
                 if (itemCount > 0)
                 {
@@ -76,12 +85,6 @@ public class LoadItemsFromSuitcase : TriggerBase
             }
         }
 
-        if (suitcaseEmpty)
-        {
-            Global.AddDeletedObject(suitcase.Name);
-            suitcase.QueueFree();
-        }
-        
         base._on_activate_trigger();
     }
 }

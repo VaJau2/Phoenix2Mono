@@ -11,7 +11,7 @@ public class Room : SaveActive
 
     private AudioEffectsController audioEffectController;
     
-    public override async void _Ready()
+    public override void _Ready()
     {
         if (radioPaths?.Count > 0)
         {
@@ -26,12 +26,18 @@ public class Room : SaveActive
             radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
         }
 
+        var levelsLoader = GetNode<LevelsLoader>("/root/Main");
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+    }
+
+    private async void OnSaveDataLoaded()
+    {
         await ToSignal(GetTree(), "idle_frame");
         
         audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
         if (Visible) audioEffectController.AddEffects(Name);
     }
-
+    
     public void Enter()
     {
         if (radioController != null)
