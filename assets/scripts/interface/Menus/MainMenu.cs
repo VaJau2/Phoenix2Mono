@@ -233,7 +233,10 @@ public class MainMenu : MenuBase
         var saveFile = new File();
         var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
         saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
-        for (int i = 0; i < 3; i++) saveFile.GetLine();
+        for (int i = 0; i < 4; i++)
+        {
+            saveFile.GetLine();
+        }
         Race race = Global.RaceFromString(saveFile.GetLine());
         saveFile.Close();
         return race;
