@@ -274,15 +274,13 @@ public class DialogueMenu : Control, IMenu
     {
         if (!MenuOn) return;
         
-        if (npc == null || npc.state != NPCState.Talk) 
+        if (npc is not { state: NPCState.Talk }) 
         {
             MenuManager.CloseMenu(this);
-        } 
-        else 
-        {
-            player?.LookAt(npc.GlobalTransform.origin);
+            return;
         }
 
+        player?.LookAt(npc.GlobalTransform.origin);
         UpdateAnswerCooldown(delta);
         UpdateAnimatingText(delta);
     }
