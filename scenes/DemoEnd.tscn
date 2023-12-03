@@ -126,11 +126,12 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 4 )
-text = "дабы выйти в главное меню"
+text = "чтобы выйти в главное меню"
 valign = 1
 uppercase = true
 
 [node name="back2" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

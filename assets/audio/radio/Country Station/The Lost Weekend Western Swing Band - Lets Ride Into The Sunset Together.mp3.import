@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Lost Weekend Western Swing Band - Lets Ride Into The Sunset Together.mp3-0c8891762a28e742a83c06a228545cc3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Country Station/The Lost Weekend Western Swing Band - Lets Ride Into The Sunset Together.mp3"
+dest_files=[ "res://.import/The Lost Weekend Western Swing Band - Lets Ride Into The Sunset Together.mp3-0c8891762a28e742a83c06a228545cc3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -198,6 +198,7 @@ __meta__ = {
 }
 
 [node name="pointShadow" parent="pointManager" instance=ExtResource( 6 )]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
@@ -211,6 +212,7 @@ margin_bottom = 1.0
 rect_scale = Vector2( 0.2, 0.2 )
 
 [node name="point" parent="pointManager" instance=ExtResource( 6 )]
+visible = false
 rect_scale = Vector2( 0.2, 0.2 )
 
 [node name="shootInterface" type="Control" parent="."]

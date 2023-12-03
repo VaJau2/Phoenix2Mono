@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Johnny Cash - We Will Meet Again.mp3-059bb91bdac905295a6a368c9eb07e3e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/credits/Johnny Cash - We Will Meet Again.mp3"
+dest_files=[ "res://.import/Johnny Cash - We Will Meet Again.mp3-059bb91bdac905295a6a368c9eb07e3e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

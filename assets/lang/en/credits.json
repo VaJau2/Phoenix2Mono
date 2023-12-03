@@ -1,0 +1,15 @@
+{
+    "credits": {     
+        "createdBy": "Created By",
+        "programmers": "Programmers",
+        "artists": "Artists",
+        "modelers": "Modelers",
+        "scenarists": "Scenarists",
+        "voiceActing": "Voice Acting",
+        "composer": "Composer",
+        "music": "Music",
+        "specialThanks": "Special Thanks",
+        
+        "OKI": "The Game was developed on Herd Gaming Contests" 
+    }
+}

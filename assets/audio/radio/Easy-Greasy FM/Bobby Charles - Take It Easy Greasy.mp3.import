@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bobby Charles - Take It Easy Greasy.mp3-2ba2250626b9513e448036768c876701.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/Easy-Greasy FM/Bobby Charles - Take It Easy Greasy.mp3"
+dest_files=[ "res://.import/Bobby Charles - Take It Easy Greasy.mp3-2ba2250626b9513e448036768c876701.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
