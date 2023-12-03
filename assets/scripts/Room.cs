@@ -46,7 +46,7 @@ public class Room : SaveActive
             radioController.currentRoom = GetPath();
         }
         
-        audioEffectController.AddEffects(Name);
+        audioEffectController?.AddEffects(Name);
     }
 
     public void Exit()
@@ -57,6 +57,6 @@ public class Room : SaveActive
             radioController.currentRoom = null;
         }
         
-        audioEffectController.RemoveEffects(Name);
+        audioEffectController?.RemoveEffects(Name);
     }
 }

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/DialogueMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=3]
 [ext_resource path="res://assets/scripts/interface/Menus/DialogueAudio.cs" type="Script" id=4]
 
 [node name="DialogueMenu" type="Control"]
@@ -11,26 +10,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="blur" type="ColorRect" parent="."]
-material = ExtResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Menu" type="Control" parent="." groups=["ignore_color"]]
-anchor_left = 0.5
+anchor_left = 1.0
 anchor_top = 0.493
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.493
-margin_left = -296.0
+margin_left = -512.0
 margin_top = -255.8
-margin_right = 232.0
+margin_right = -16.0
 margin_bottom = 248.2
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="background" type="ColorRect" parent="Menu" groups=["ignore_color"]]

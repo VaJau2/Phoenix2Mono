@@ -60,7 +60,7 @@ public class ItemIcon : ColorRect
                 player.inventory.SetAmmoButton(itemCode, this);
                 
                 //обновляем интерфейс, если новые патроны добавились для текущего оружия
-                if (player.Weapons.isTempAmmo(itemCode)) 
+                if (player.Weapons.IsTempAmmo(itemCode)) 
                 {
                     player.Weapons.LoadNewAmmo();
                 }
@@ -95,7 +95,7 @@ public class ItemIcon : ColorRect
             {
                 player.inventory.ammoButtons.Remove(myItemCode);
                 
-                if (player.Weapons.isTempAmmo(myItemCode)) 
+                if (player.Weapons.IsTempAmmo(myItemCode)) 
                 {
                     player.Weapons.LoadNewAmmo();
                 }

@@ -191,10 +191,14 @@ public class UseHandler
         //если в инвентаре есть место
         if (otherButton != null) mode.ChangeItemButtons(button, otherButton);
         else DropTempItem();
+
+        mode.SetTempButton(null, false);
     }
     
-    public bool CanTakeItemOff() 
+    public bool CanTakeItemOff()
     {
+        if (mode.tempItemData == null || mode.tempItemData.Count == 0) return false;
+        
         var itemType = (ItemType)mode.tempItemData["type"];
         if (itemType != ItemType.artifact || Inventory.artifact == "") return true;
         

@@ -21,6 +21,8 @@ public class PlayerInventory
     
     public InventoryMenu menu => player.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
 
+    public UseHandler UseHandler => menu.mode.useHandler;
+
     private string tempClothDataName;
     private Dictionary tempClothData;
 

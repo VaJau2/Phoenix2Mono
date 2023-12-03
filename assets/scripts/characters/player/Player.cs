@@ -95,7 +95,7 @@ public class Player : Character
     public delegate void UnwearItem(string itemCode);
     
     [Signal]
-    public delegate void SitSignal();
+    public delegate void ClearWeaponBindSignal();
 
 
     public float GetVerticalLook()
@@ -357,13 +357,11 @@ public class Player : Character
 
         if (!sitOn) return;
         
-        if (inventory.weapon != "")
+        if (!string.IsNullOrEmpty(inventory.weapon))
         {
-            var useHandler = inventory.menu.mode.useHandler;
+            var useHandler = inventory.UseHandler;
             useHandler.UnwearItem(useHandler.weaponButton);
         }
-        
-        EmitSignal(nameof(SitSignal));
     }
 
     //для земнопня шоб бегал

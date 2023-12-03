@@ -84,6 +84,8 @@ public class PlayerWeapons : CollisionShape
         GunOn = true;
     }
 
+    // Просто очищает модельку оружия
+    // использовать его как метод для снятия всего оружия нельзя
     public void ClearWeapon()
     {
         if (!IsInstanceValid(tempWeapon)) return;
@@ -95,6 +97,8 @@ public class PlayerWeapons : CollisionShape
         point.SetInteractionVariant(InteractionVariant.Point);
         player.SetWeaponOff();
         GunOn = false;
+        
+        player.EmitSignal(nameof(Player.ClearWeaponBindSignal));
     }
 
     public void СheckThirdView()
@@ -153,7 +157,7 @@ public class PlayerWeapons : CollisionShape
         ammoIcon.SetTexture(newIcon);
     }
 
-    private int GetAmmo() => (tempAmmoButton != null) ? tempAmmoButton.GetCount() : 0;
+    private int GetAmmo() => tempAmmoButton?.GetCount() ?? 0;
 
     private void SetAmmo(int newAmmo)
     {
@@ -171,7 +175,7 @@ public class PlayerWeapons : CollisionShape
         ammoLabel.Text = GetAmmo().ToString();
     }
 
-    public bool isTempAmmo(string ammoType)
+    public bool IsTempAmmo(string ammoType)
     {
         if (tempWeaponStats != null)
         {
@@ -223,7 +227,7 @@ public class PlayerWeapons : CollisionShape
         return origin;
     }
 
-    private async void shakeCameraUp()
+    private async void ShakeCameraUp()
     {
         bool shakingProcess = true;
         while (shakingProcess)
@@ -271,7 +275,7 @@ public class PlayerWeapons : CollisionShape
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
     public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
-    private string handleVictim(Spatial victim, int shapeID = 0)
+    private string HandleVictim(Spatial victim, int shapeID = 0)
     {
         string name = null;
         switch (victim)
@@ -401,7 +405,7 @@ public class PlayerWeapons : CollisionShape
                             tempRay.GetCollisionPoint()
                         );
                         var shapeId = tempRay.GetColliderShape();
-                        var matName = handleVictim(obj, shapeId);
+                        var matName = HandleVictim(obj, shapeId);
                         gunParticles.Call(
                             "_startEmitting",
                             tempRay.GetCollisionNormal(),
@@ -414,7 +418,7 @@ public class PlayerWeapons : CollisionShape
             player.Camera.ReturnRayBack();
 
             SetGunEffects(true);
-            shakeCameraUp();
+            ShakeCameraUp();
             await global.ToTimer(0.06f);
             SetGunEffects(false);
 

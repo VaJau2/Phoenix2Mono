@@ -9,7 +9,10 @@ public class DialogueMenu : Control, IMenu
     
     private const int MAX_LINE_LENGTH = 50;
     private const int MAX_ANSWER_LENGTH = 65;
-    private const float DEFAULT_ANIMATING_COOLDOWN = 0.03f;
+    private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
+
+    private const float MIN_NPC_DISTANCE_CHECK = 2f;
+    private const float LOOK_POS_DELTA = 1.5f;
 
     public NPC npc {get; private set;}
     public Player player => Global.Get().player;
@@ -183,15 +186,25 @@ public class DialogueMenu : Control, IMenu
 
     public void OpenMenu()
     {
-        global.SetPause(this, true, false);
+        player.Camera.HideInteractionSquare();
+
+        if (!string.IsNullOrEmpty(player.inventory.weapon))
+        {
+            var useHandler = player.inventory.UseHandler;
+            useHandler.UnwearItem(useHandler.weaponButton);
+        }
+        
+        player.MayRotateHead = player.MayMove = false;
+        Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
     }
 
     public void CloseMenu()
     {
         dialogueAudio.Stop();
-        global.player.inventory.SetBindsCooldown(0.5f);
-        global.SetPause(this, false, false);
+        player.inventory.SetBindsCooldown(0.5f);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+        player.MayRotateHead = player.MayMove = true;
         if (npc != null) 
         {
             npc.SetState(NPCState.Idle);
@@ -280,9 +293,30 @@ public class DialogueMenu : Control, IMenu
             return;
         }
 
-        player?.LookAt(npc.GlobalTransform.origin);
+        player?.LookAt(GetNpcLookPosition());
         UpdateAnswerCooldown(delta);
         UpdateAnimatingText(delta);
+    }
+
+    private Vector3 GetNpcLookPosition()
+    {
+        var npcPos = npc.GlobalTransform.origin;
+        var playerRelativePos = player.GlobalTransform.origin - npcPos;
+
+        npcPos.x += GetLookPosDelta(playerRelativePos.z);
+        npcPos.z += GetLookPosDelta(-playerRelativePos.x);
+        
+        return npcPos;
+    }
+
+    private float GetLookPosDelta(float sideRelativePos)
+    {
+        return sideRelativePos switch
+        {
+            > MIN_NPC_DISTANCE_CHECK => LOOK_POS_DELTA,
+            < MIN_NPC_DISTANCE_CHECK => -LOOK_POS_DELTA,
+            _ => 0
+        };
     }
 
     //прокручивает текст ответа при наведении на него, если он не влезает

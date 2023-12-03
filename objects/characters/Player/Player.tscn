@@ -566,7 +566,7 @@ nodes/BlendSpace2D/position = Vector2( -340, 160 )
 nodes/StateMachine/node = SubResource( 73 )
 nodes/StateMachine/position = Vector2( -360, -20 )
 nodes/output/position = Vector2( 360, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=75]
 
@@ -746,12 +746,12 @@ transform = Transform( 1, 1.08567e-24, 0, 1.03398e-24, 1, -1.86265e-09, 0, 1.862
 shape = SubResource( 8 )
 
 [node name="Physical Bone back_2" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.999985, -1.87595e-09, 2.45016e-07, 2.38694e-07, -0.218351, -0.975869, 5.5334e-08, 0.975869, -0.21835, -7.76304e-08, 1.47895, -0.0324889 )
+transform = Transform( 0.999985, -1.87595e-09, 2.45016e-07, 2.38694e-07, -0.218351, -0.975869, 5.5334e-08, 0.975869, -0.21835, -7.76305e-08, 1.47895, -0.0324889 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42357e-09, 0.00750961, 0.311085 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42366e-09, 0.00750961, 0.311085 )
 body_offset = Transform( 0.999985, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.9696, 1.80284e-07, 0.9696, 0.244692, -5.7746e-08, 0.299791, -0.0834014 )
 mass = 20.0
 weight = 196.0
@@ -817,7 +817,7 @@ collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782811, 0.00691374, 0.876063 )
-body_offset = Transform( 0.994475, -0.103757, -0.015129, -0.00427681, 0.104019, -0.994568, 0.104767, 0.98915, 0.103001, 0.00618646, 0.870619, -0.0978943 )
+body_offset = Transform( 0.994475, -0.103757, -0.015129, -0.00427682, 0.104019, -0.994568, 0.104767, 0.98915, 0.103001, 0.00618646, 0.870619, -0.0978943 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -962,8 +962,8 @@ collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.41286e-08, -0.0298522, 0.637075 )
-body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148897, -0.988838, 2.73919e-07, 0.988856, -0.148897, -2.75671e-07, 0.625519, 0.124378 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.59912e-08, -0.0298522, 0.637075 )
+body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148897, -0.988838, 2.73919e-07, 0.988856, -0.148897, -2.77534e-07, 0.625519, 0.124378 )
 mass = 15.0
 weight = 147.0
 bone_name = "tail_1"

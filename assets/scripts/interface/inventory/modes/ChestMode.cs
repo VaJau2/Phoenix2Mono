@@ -353,7 +353,7 @@ public class ChestMode: InventoryMode
         }
     }
 
-    public override void MoveTempItem()
+    protected override void MoveTempItem()
     {
         TakeTempItem();
     }

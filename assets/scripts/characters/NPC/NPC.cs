@@ -79,6 +79,8 @@ public abstract class NPC : Character, IInteractable
                 break;
             
             case NPCState.Attack:
+                if (state == NPCState.Talk) return;
+                
                 if (tempVictim == player) 
                 {
                     if (!(this is NpcWithWeapons npcWeapons) || !string.IsNullOrEmpty(npcWeapons.weaponCode))

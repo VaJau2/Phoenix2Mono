@@ -2,8 +2,8 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnChest: FurnBase, ISavable, IChest {
-    
+public class FurnChest: FurnBase, ISavable, IChest 
+{
     [Export] private bool isBag;
     [Export] private bool SpawnRandomItems;
     [Export] private string chestCode;
@@ -68,6 +68,8 @@ public class FurnChest: FurnBase, ISavable, IChest {
 
     public void LoadData(Dictionary data)
     {
+        if (data.Count == 0) return;
+        
         SpawnRandomItems = false;
         startItemCodes.Clear();
         startAmmoCount.Clear();

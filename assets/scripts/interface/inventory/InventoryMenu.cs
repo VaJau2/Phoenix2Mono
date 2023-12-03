@@ -51,18 +51,13 @@ public class InventoryMenu : Control, IMenu
 
     public void ChangeMode(NewInventoryMode newMode = NewInventoryMode.Usual)
     {
-        switch (newMode) 
+        mode = newMode switch
         {
-            case NewInventoryMode.Usual when !(mode is UsualMode):
-                mode = new UsualMode(this);
-                break;
-            case NewInventoryMode.Chest when !(mode is ChestMode):
-                mode = new ChestMode(this);
-                break;
-            case NewInventoryMode.Trade when !(mode is TradeMode):
-                mode = new TradeMode(this);
-                break;
-        }
+            NewInventoryMode.Usual when mode is not UsualMode => new UsualMode(this),
+            NewInventoryMode.Chest when mode is not ChestMode => new ChestMode(this),
+            NewInventoryMode.Trade when mode is not TradeMode => new TradeMode(this),
+            _ => mode
+        };
     }
     
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)

@@ -142,6 +142,10 @@ public class NpcWithWeapons : NPC, IChest
                 seekArea.MakeAlliesAttack();
                 weapons.SetWeapon(true);
                 break;
+            
+            case NPCState.Talk:
+                Stop();
+                break;
         }
     }
 

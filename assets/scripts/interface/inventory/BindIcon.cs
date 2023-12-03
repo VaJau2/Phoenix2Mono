@@ -21,7 +21,7 @@ public class BindIcon : ItemIcon
         
         await ToSignal(GetTree(), "idle_frame");
         player.Connect(nameof(Player.UseItem), this, nameof(OnPlayerUseItem));
-        player.Connect(nameof(Player.SitSignal), this, nameof(ClearWeaponBind));
+        player.Connect(nameof(Player.ClearWeaponBindSignal), this, nameof(ClearWeaponBind));
 
         if (myItemCode == player.inventory.weapon)
         {

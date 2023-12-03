@@ -127,7 +127,9 @@ public abstract class InventoryMode
         tempButton = newButton;
         if (newButton != null)
         {
-            string itemCode = newButton.myItemCode;
+            var itemCode = newButton.myItemCode;
+            if (string.IsNullOrEmpty(itemCode)) return;
+            
             tempItemData = ItemJSON.GetItemData(itemCode);
             if (showInfo) 
             {
@@ -532,8 +534,9 @@ public abstract class InventoryMode
         useHandler.CloseModal();
     }
 
-    protected void UseHotkeys() 
+    private void UseBinds()
     {
+        if (!player.MayRotateHead) return;
         if (bindsHandler.useCooldown > 0) return;
 
         for (var i = 0; i < 10; i++)
@@ -544,7 +547,7 @@ public abstract class InventoryMode
         }
     }
 
-    protected void CheckAutoheal()
+    private void CheckAutoheal()
     {
         if (!Godot.Object.IsInstanceValid(player)) return;
         if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
@@ -568,13 +571,13 @@ public abstract class InventoryMode
     
     public virtual void Process(float delta) {}
 
-    public virtual void MoveTempItem() { }
+    protected virtual void MoveTempItem() { }
 
     public virtual void UpdateInput(InputEvent @event)
     {
         if (@event is InputEventKey && tempButton == null) 
         {
-            UseHotkeys();
+            UseBinds();
             CheckAutoheal();
         }
     }

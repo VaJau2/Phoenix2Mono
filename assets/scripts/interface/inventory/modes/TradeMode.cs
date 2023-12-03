@@ -123,7 +123,7 @@ public class TradeMode: InventoryMode
         base.UpdateInput(@event);
     }
 
-    public override void MoveTempItem()
+    protected override void MoveTempItem()
     {
         if (CheckSellItem()) return;
         CheckBuyItem();
