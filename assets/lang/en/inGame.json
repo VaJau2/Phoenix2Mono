@@ -109,6 +109,7 @@
         "dragon": "Dragon",
         "toBeContinueTitle": "to be continued...",
         "pressLabel": "press",
-        "toExitToMainMenu": "to exit to main menu"
+        "toExitToMainMenu": "to exit to main menu",
+        "skip": "skip"
     }
 }

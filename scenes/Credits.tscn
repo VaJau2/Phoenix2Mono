@@ -1,0 +1,3737 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/scripts/interface/Credits/Credits.cs" type="Script" id=1]
+[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/scripts/interface/Credits/TitleItem.cs" type="Script" id=4]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Empty 48x32.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio/music/credits/Johnny Cash - We Will Meet Again.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Space.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Move Title"
+length = 139.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Titles/Music From Radio:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 136.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 300, 650 ), Vector2( 300, -7450 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Black:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 139 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Titles/Music From Radio:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 300, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Black:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skip:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Show Title"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=16]
+size = 14
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "Fade Out Skip"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skip:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Titles/Music From Radio:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 300, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Black:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skip:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Titles" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -512.0
+margin_bottom = -300.0
+
+[node name="Created By" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 301.0
+margin_top = 280.0
+margin_right = 725.0
+margin_bottom = 301.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Created by"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "createdBy"
+
+[node name="VaJa" type="Label" parent="Titles/Created By"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = 4.5
+margin_right = 212.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "VaJa"
+align = 1
+valign = 1
+
+[node name="Programmers" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 300.0
+margin_top = 260.0
+margin_right = 724.0
+margin_bottom = 281.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Programmers"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "programmers"
+
+[node name="VaJa" type="Label" parent="Titles/Programmers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 4.5
+margin_right = 213.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "VaJa"
+align = 1
+
+[node name="McFord" type="Label" parent="Titles/Programmers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 37.5
+margin_right = 213.0
+margin_bottom = 78.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "McFord"
+align = 1
+
+[node name="Artists" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 300.0
+margin_top = 260.0
+margin_right = 724.0
+margin_bottom = 281.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Artists"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "artists"
+
+[node name="VaJa" type="Label" parent="Titles/Artists"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 4.5
+margin_right = 213.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "VaJa"
+align = 1
+
+[node name="McFord" type="Label" parent="Titles/Artists"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 37.5
+margin_right = 213.0
+margin_bottom = 78.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "McFord"
+align = 1
+
+[node name="Modelers" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 300.0
+margin_top = 245.0
+margin_right = 724.0
+margin_bottom = 266.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Modelers"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "modelers"
+
+[node name="VaJa" type="Label" parent="Titles/Modelers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 4.5
+margin_right = 213.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "VaJa"
+align = 1
+
+[node name="Tankony" type="Label" parent="Titles/Modelers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 39.5
+margin_right = 213.0
+margin_bottom = 80.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "Tankony"
+align = 1
+
+[node name="McFord" type="Label" parent="Titles/Modelers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 74.5
+margin_right = 213.0
+margin_bottom = 115.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "McFord"
+align = 1
+
+[node name="Scenarists" type="Label" parent="Titles"]
+visible = false
+margin_left = 301.0
+margin_top = 260.0
+margin_right = 725.0
+margin_bottom = 281.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Scenarists"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "scenarists"
+
+[node name="VaJa" type="Label" parent="Titles/Scenarists"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = 4.5
+margin_right = 212.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "VaJa"
+align = 1
+valign = 1
+
+[node name="McFord" type="Label" parent="Titles/Scenarists"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = 37.5
+margin_right = 212.0
+margin_bottom = 78.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "McFord"
+align = 1
+valign = 1
+
+[node name="Voice Acting" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 301.0
+margin_top = 280.0
+margin_right = 725.0
+margin_bottom = 301.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Voice Acting"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "voiceActing"
+
+[node name="15ai" type="Label" parent="Titles/Voice Acting"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = 4.5
+margin_right = 212.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "15.ai"
+align = 1
+valign = 1
+
+[node name="Composer" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 301.0
+margin_top = 280.0
+margin_right = 725.0
+margin_bottom = 301.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Сomposer"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "composer"
+
+[node name="Phelanhik" type="Label" parent="Titles/Composer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -213.0
+margin_top = 4.5
+margin_right = 212.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "Phelanhik"
+align = 1
+valign = 1
+
+[node name="Music From Radio" type="Label" parent="Titles"]
+visible = false
+margin_left = 300.0
+margin_top = 600.0
+margin_right = 725.0
+margin_bottom = 621.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Music"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+isMoveTitle = true
+key = "music"
+
+[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 8 )
+text = "WE'LL MEET AGAIN"
+align = 1
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/We Will Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 9 )
+text = "Johnny Cash"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/We Will Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 211.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Blue Radio" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 220.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Blue Radio"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Happy Times" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Happy Times"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Bob Crosby And The Bobcats"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Mathilda" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Mathilda"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 51.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Cookie and the Cupcakes"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 211.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Cant Help Falling In Love" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 339.5
+margin_right = 212.5
+margin_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Can't Help Falling In Love"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Elvis Presley"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "RCA Records Label"
+align = 1
+valign = 1
+
+[node name="Black and Blue" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 479.5
+margin_right = 212.5
+margin_bottom = 515.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Black and Blue"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Louis Armstrong"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Sony Music Entertainment Inc."
+align = 1
+valign = 1
+
+[node name="They Never Know" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 619.5
+margin_right = 212.5
+margin_bottom = 655.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "They Never Know"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Boppers"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Easy Living" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 759.5
+margin_right = 212.5
+margin_bottom = 795.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Easy Living"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="I Do Not Want To Set The World On Fire" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = 899.5
+margin_right = 235.0
+margin_bottom = 935.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "I Don't Want To Set The World On Fire"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Into each Life Some Rain Must Fall" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = 1039.5
+margin_right = 235.0
+margin_bottom = 1075.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Into each Life Some Rain Must Fall"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="It is A Sin To Tell A Lie" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = 1179.5
+margin_right = 235.0
+margin_bottom = 1215.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "It's A Sin To Tell A Lie"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Maybe" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = 1319.5
+margin_right = 235.0
+margin_bottom = 1355.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "Maybe"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="We\'ll Meet Again" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = 1459.5
+margin_right = 235.0
+margin_bottom = 1495.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "We'll Meet Again"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
+text = "The Ink Spots"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Country Station" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1819.5
+margin_right = 212.5
+margin_bottom = 1840.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Country Station"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Bubbles In My Beer" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Bubbles In My Beer"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Bob Wills And His Texas Playboys"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Dark As A Dungeon" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Dark As A Dungeon"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Ernie Ford"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Heartache By The Numbers" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 339.5
+margin_right = 212.5
+margin_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Heartache By The Numbers"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Guy Mitchell"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Ingrooves"
+align = 1
+valign = 1
+
+[node name="Answer To Drivin Nails In My Coffin" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = 479.5
+margin_right = 232.0
+margin_bottom = 515.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Answer To Drivin Nails In My Coffin"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Jerry Irby"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "MGM Records"
+align = 1
+valign = 1
+
+[node name="Stars of the Midnight Range" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 619.5
+margin_right = 212.5
+margin_bottom = 655.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Stars of the Midnight Range"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Johnny Bond"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Exceleration Music"
+align = 1
+valign = 1
+
+[node name="Lets Ride Into The Sunset Together" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 759.5
+margin_right = 212.5
+margin_bottom = 795.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Lets Ride Into The Sunset Together"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Lost Weekend Western Swing Band"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Kontor New Media GmbH"
+align = 1
+valign = 1
+
+[node name="Lone Star" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 899.5
+margin_right = 212.5
+margin_bottom = 935.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Lone Star"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Lost Weekend Western Swing Band"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Kontor New Media GmbH"
+align = 1
+valign = 1
+
+[node name="Shadow in the Valley" type="Label" parent="Titles/Music From Radio/Country Station"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1039.5
+margin_right = 212.5
+margin_bottom = 1075.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Shadow in the Valley"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Lost Weekend Western Swing Band"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Kontor New Media GmbH"
+align = 1
+valign = 1
+
+[node name="Easy-Greasy FM" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 3019.5
+margin_right = 212.5
+margin_bottom = 3040.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Easy-Greasy FM"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Take It Easy Greasy" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Take It Easy Greasy"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Bobby Charles"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Aint Got No Home" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Ain't Got No Home"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Clarence Henry"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Sugar Coated Love" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 339.5
+margin_right = 212.5
+margin_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Sugar Coated Love"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Lazy Lester"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Come Back Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 479.5
+margin_right = 212.5
+margin_bottom = 515.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Come Back Baby"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Little Walter"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="My Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 619.5
+margin_right = 212.5
+margin_bottom = 655.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "My Baby"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Little Walter"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Oh Marie" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 759.5
+margin_right = 212.5
+margin_bottom = 795.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Oh Marie"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Louis Prima"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Little Lil" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 899.5
+margin_right = 212.5
+margin_bottom = 935.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Little Lil"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "The Hillbilly Moon Explosion"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Radio Applewood" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 4079.5
+margin_right = 212.5
+margin_bottom = 4100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Radio Applewood"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Happy Days are Here Again" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Happy Days are Here Again"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Ben Selvin And The Crooners"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Dear Hearts And Gentle People" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Dear Hearts And Gentle People"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Bob Crosby And The Bobcats"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="I Cant Dance I Got Ants In My Pants" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 339.5
+margin_right = 212.5
+margin_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "I Can't Dance I Got Ants In My Pants"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Chick Webb"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Civilization" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 479.5
+margin_right = 212.5
+margin_bottom = 515.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Civilization"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Danny Kaye"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Que Sera Sera" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 619.5
+margin_right = 212.5
+margin_bottom = 655.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Que Sera, Sera"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Doris Day"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Masterworks"
+align = 1
+valign = 1
+
+[node name="Lets Call the Whole Thing Off" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 759.5
+margin_right = 212.5
+margin_bottom = 795.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Lets Call the Whole Thing Off"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Ella Fitzgerald & Louis Armstrong"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="Dont Love Me" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 899.5
+margin_right = 212.5
+margin_bottom = 935.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Don't Love Me"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Eva Eastwood & The Major Keys"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Its Been A Long Long Time" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1039.5
+margin_right = 212.5
+margin_bottom = 1075.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "It's Been A Long Long Time"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Harry James"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="What Would I Care" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1179.5
+margin_right = 212.5
+margin_bottom = 1215.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "What Would I Care"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "High Hatters & Frank Luther"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "RCA Records Label"
+align = 1
+valign = 1
+
+[node name="Lets Go Sunning" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1319.5
+margin_right = 212.5
+margin_bottom = 1355.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Let's Go Sunning"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Jack Shaindlin"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Sunday" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1459.5
+margin_right = 212.5
+margin_bottom = 1495.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Sunday"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Jean Goldkette And His Orchestra"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "RCA Records Label"
+align = 1
+valign = 1
+
+[node name="La Vie En Rose" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1599.5
+margin_right = 212.5
+margin_bottom = 1635.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "La Vie En Rose"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Louis Armstrong"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="I Didnt Know The Gun Was Loaded" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 1739.5
+margin_right = 212.5
+margin_bottom = 1775.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "I Didnt Know The Gun Was Loaded"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Patsy Montana"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Zebralution GmbH"
+align = 1
+valign = 1
+
+[node name="All I Care About" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.5
+margin_top = 1879.5
+margin_right = 215.5
+margin_bottom = 1915.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "All I Care About"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Richard Gere"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Epic Records"
+align = 1
+valign = 1
+
+[node name="Mr Sandman" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.5
+margin_top = 2019.5
+margin_right = 215.5
+margin_bottom = 2055.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Mr. Sandman"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "The Chordettes"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "River Records Limited"
+align = 1
+valign = 1
+
+[node name="Sh-Boom" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.5
+margin_top = 2159.5
+margin_right = 215.5
+margin_bottom = 2195.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Sh-Boom"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "The Chords"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Warner Music Group"
+align = 1
+valign = 1
+
+[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.5
+margin_top = 2299.5
+margin_right = 215.5
+margin_bottom = 2335.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "We'll meet again"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Vera Lynn"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "The Orchard Enterprises"
+align = 1
+valign = 1
+
+[node name="Royal Radio" type="Label" parent="Titles/Music From Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 6539.5
+margin_right = 212.5
+margin_bottom = 6560.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Royal Radio"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Sign Sign Sign" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 59.5
+margin_right = 212.5
+margin_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Sign Sign Sign"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Benny Goodman"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Fonotil Label"
+align = 1
+valign = 1
+
+[node name="Blue Moon" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 199.5
+margin_right = 212.5
+margin_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Blue Moon"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Frank Sinatra"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="My Guardian Angel" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 339.5
+margin_right = 212.5
+margin_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "My Guardian Angel"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Jimmy Breedlove"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "OKeh Records"
+align = 1
+valign = 1
+
+[node name="Dream A Little Dream Of Me" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 479.5
+margin_right = 212.5
+margin_bottom = 515.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "Dream A Little Dream Of Me"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Ella Fitzgerald & Louis Armstrong"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Universal Music Group"
+align = 1
+valign = 1
+
+[node name="A Kiss To Build A Dream On" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 619.5
+margin_right = 212.5
+margin_bottom = 655.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "A Kiss To Build A Dream On"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Louis Armstrong"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "IIP-DDS, GBMT LTD"
+align = 1
+valign = 1
+
+[node name="This Can\'t Be Love" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 759.5
+margin_right = 212.5
+margin_bottom = 795.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 10 )
+text = "This Can't Be Love"
+align = 1
+uppercase = true
+
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 10.0
+margin_right = 212.5
+margin_bottom = 46.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 11 )
+text = "Nat King Cole"
+align = 1
+
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.5
+margin_top = 42.0
+margin_right = 212.5
+margin_bottom = 63.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Full Taste Records, Believe SAS"
+align = 1
+valign = 1
+
+[node name="Special Thanks" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 300.0
+margin_top = 245.0
+margin_right = 724.0
+margin_bottom = 266.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Special Thanks"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 4 )
+key = "specialThanks"
+
+[node name="shadowiq" type="Label" parent="Titles/Special Thanks"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 4.5
+margin_right = 213.0
+margin_bottom = 45.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "shadowiq"
+align = 1
+
+[node name="StaSyaN" type="Label" parent="Titles/Special Thanks"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 39.5
+margin_right = 213.0
+margin_bottom = 80.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "StaSyaN"
+align = 1
+
+[node name="McFord" type="Label" parent="Titles/Special Thanks"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = 74.5
+margin_right = 213.0
+margin_bottom = 115.5
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "Проект СИДР"
+align = 1
+
+[node name="OKI" type="Label" parent="Titles"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 140.0
+margin_top = 270.0
+margin_right = 890.0
+margin_bottom = 370.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "Игра разрабатывалась в рамках Общетабунских Конкурсов Игростроения"
+align = 1
+autowrap = true
+script = ExtResource( 4 )
+key = "OKI"
+
+[node name="Black" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+autoplay = true
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+"anims/Move Title" = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+"anims/Show Title" = SubResource( 5 )
+
+[node name="Skip" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -144.0
+margin_top = -24.0
+margin_right = -37.0
+margin_bottom = -3.0
+theme = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 16 )
+text = "пропустить"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="icon" type="TextureRect" parent="Skip"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = -26.0
+margin_right = 42.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 24, 16 )
+theme = ExtResource( 3 )
+texture = ExtResource( 7 )
+stretch_mode = 6
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="shadow" type="TextureRect" parent="Skip/icon"]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.0
+margin_top = -30.0
+margin_right = 2.0
+margin_bottom = 2.0
+rect_pivot_offset = Vector2( 24, 16 )
+theme = ExtResource( 3 )
+texture = ExtResource( 5 )
+stretch_mode = 6
+
+[node name="anim" type="AnimationPlayer" parent="Skip"]
+root_node = NodePath("../..")
+"anims/Fade Out Skip" = SubResource( 14 )
+anims/RESET = SubResource( 15 )

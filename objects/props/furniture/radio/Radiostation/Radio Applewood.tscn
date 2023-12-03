@@ -7,8 +7,9 @@
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Louis Armstrong- La Vie En Rose.mp3" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Danny Kaye - Civilization.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/The Chordettes - Mr. Sandman.mp3" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Ella & Louis Armstrong - Lets Call the Whole Thing Off.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/radio/Radio Applewood/Ella Fitzgerald & Louis Armstrong - Lets Call the Whole Thing Off.mp3" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/The Chords - Sh-Boom.mp3" type="AudioStream" id=9]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node

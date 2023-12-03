@@ -109,6 +109,7 @@
         "dragon": "Дракон",
         "toBeContinueTitle": "продолжение следует...",
         "pressLabel": "нажмите",
-        "toExitToMainMenu": "дабы выйти в главное меню"
+        "toExitToMainMenu": "дабы выйти в главное меню",
+        "skip": "пропустить"
     }
 }
