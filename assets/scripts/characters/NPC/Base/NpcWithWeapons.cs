@@ -144,7 +144,7 @@ public class NpcWithWeapons : NPC, IChest
                 break;
             
             case NPCState.Talk:
-                Stop();
+                if (Velocity.Length() > 0) Stop();
                 break;
         }
     }

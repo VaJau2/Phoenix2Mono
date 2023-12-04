@@ -26,7 +26,7 @@ agent_radius = 1.55
 [node name="Main" instance=ExtResource( 3 )]
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
-itemCodes = [ "revolver32", "pistol10S", "shotgun12", "shotgun20", "sniper308", "rifle308", "automatic308", "automatic762", "submachine10", "laserPistol", "plasmaPistol", "laserRifle", "dash" ]
+itemCodes = [ "revolver32", "pistol10S", "shotgun12", "shotgun20", "sniper308", "rifle762", "automatic308", "automatic762", "submachine10", "laserPistol", "plasmaPistol", "laserRifle", "dash" ]
 ammo = {
 "ammo10": 20,
 "ammo12": 20,

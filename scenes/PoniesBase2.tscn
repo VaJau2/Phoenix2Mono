@@ -370,13 +370,12 @@ IsImmortal = true
 dialogueCode = "trade1"
 moneyCount = 2000
 traderCode = "mrGutsy"
-startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "rifle308", "shotgun20", "automatic308", "pistol10S", "shotgun12", "automatic762" ]
+startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "sniper308", "shotgun20", "automatic308", "pistol10S", "shotgun12" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
 "ammo20": 40,
-"ammo308": 20,
-"ammo762": 50
+"ammo308": 20
 }
 
 [node name="coronel" parent="npc" instance=ExtResource( 70 )]
