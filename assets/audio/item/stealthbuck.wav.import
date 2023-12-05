@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/stealthbuck.wav-d08d11e4425785bf06cbbe6febda7be5.sample"
+path="res://.import/stealthBuck.wav-bf795c030bef03edf1d262da31c5b7f0.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/stealthbuck.wav"
-dest_files=[ "res://.import/stealthbuck.wav-d08d11e4425785bf06cbbe6febda7be5.sample" ]
+source_file="res://assets/audio/item/stealthBuck.wav"
+dest_files=[ "res://.import/stealthBuck.wav-bf795c030bef03edf1d262da31c5b7f0.sample" ]
 
 [params]
 

@@ -50,7 +50,7 @@ public class LocationExit : TriggerBase
         else
         {
             levelsLoader
-                .SetUseLoadingMenu(false)
+                .SetUseLoadingMenu(true)
                 .LoadLevel(newLevelNum);
         }
     }
