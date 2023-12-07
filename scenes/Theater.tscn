@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/textures/props/furniture/posters/pinkie.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/props/furniture/posters/chto.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/props/furniture/posters/stable.png" type="Texture" id=6]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=7]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=7]
 [ext_resource path="res://objects/props/furniture/radio/Radiostation/Royal Radio.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/textures/props/furniture/posters/science.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/props/furniture/posters/peace.png" type="Texture" id=10]
@@ -1926,11 +1926,11 @@ stream = ExtResource( 62 )
 volume_db = -10.0
 bus = "Music"
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 7 )
 radioListPath = [ NodePath("../terrain/props/Radio"), NodePath("../terrain/props/Speaker"), NodePath("../terrain/props/Speaker2"), NodePath("../terrain/props/Speaker3"), NodePath("../terrain/props/Speaker4") ]
 
-[node name="Royal Radio" parent="RadioController" instance=ExtResource( 8 )]
+[node name="Royal Radio" parent="Radio Manager" instance=ExtResource( 8 )]
 
 [connection signal="body_entered" from="triggers/moveNPC" to="triggers/moveNPC" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/sitTask" to="triggers/sitTask" method="_on_body_entered"]

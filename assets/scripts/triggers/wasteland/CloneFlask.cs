@@ -4,9 +4,9 @@ using Godot.Collections;
 public class CloneFlask : Spatial, ISavable
 {
     public AnimationPlayer anim => GetNode<AnimationPlayer>("AnimationPlayer");
-    public AudioStreamPlayer3D audi => GetNode<AudioStreamPlayer3D>("audi");
     public CloneFlaskCamera camera => GetNode<CloneFlaskCamera>("Camera");
     public Spatial playerPos => GetNode<Spatial>("player_pos");
+    private AudioStreamPlayer3D audi => GetNode<AudioStreamPlayer3D>("audi");
 
     private bool wokenUp;
 
@@ -60,6 +60,11 @@ public class CloneFlask : Spatial, ISavable
         }
     }
 
+    public void PlayMessage()
+    {
+        audi.Play();
+    }
+    
     public void AnimateWater()
     {
         water = GetNode<Spatial>("water");

@@ -98,7 +98,7 @@
 [ext_resource path="res://assets/audio/radio/Blue Radio/Home after MTH/Bob Crosby and the Bobcats - Happy Times.mp3" type="AudioStream" id=96]
 [ext_resource path="res://assets/scripts/Room.cs" type="Script" id=97]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=98]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=99]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=99]
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=100]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=101]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=103]
@@ -2072,11 +2072,11 @@ volume_db = -15.0
 bus = "Music"
 script = SubResource( 76 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 99 )
 radioListPath = [ NodePath("../rooms/mansion/fireplate/Radio"), NodePath("../rooms/market/props/Radio") ]
 
-[node name="Blue Radio" parent="RadioController" instance=ExtResource( 44 )]
+[node name="Blue Radio" parent="Radio Manager" instance=ExtResource( 44 )]
 scriptSongs = [ ExtResource( 96 ), ExtResource( 45 ) ]
 
 [connection signal="body_entered" from="triggers/smokyDialogue" to="triggers/smokyDialogue" method="_on_body_entered"]

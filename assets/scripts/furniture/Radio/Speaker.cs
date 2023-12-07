@@ -1,10 +1,9 @@
 using Godot;
-using System;
 
 public class Speaker : RadioBase
 {
-    [Export] NodePath receiverPath;
-    Receiver receiver;
+    [Export] private NodePath receiverPath;
+    private Receiver receiver;
 
     public override void Initialize()
     {
@@ -16,7 +15,7 @@ public class Speaker : RadioBase
         receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
         receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
 
-        if (inRoom && !radioController.playerInside) RepeaterMode(true);
+        if (inRoom && !RadioManager.playerInside) RepeaterMode(true);
 
         if (receiver.noisePlayer.Playing)
         {
@@ -25,7 +24,7 @@ public class Speaker : RadioBase
         }
     }
 
-    void OnChangeMusic()
+    private void OnChangeMusic()
     {
         musicPlayer.Stream = receiver.musicPlayer.Stream;
 
@@ -33,7 +32,7 @@ public class Speaker : RadioBase
         else musicPlayer.Stop();
     }
 
-    void OnChangeNoise()
+    private void OnChangeNoise()
     {
         noiseDb = receiver.noisePlayer.UnitDb;
         noisePlayer.UnitDb = noiseDb;

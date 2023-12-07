@@ -108,7 +108,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
 [ext_resource path="res://assets/materials/environments/green_with_fog.tres" type="Environment" id=108]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=109]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=109]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work before Theater/Richard Gere - All I Care About.mp3" type="AudioStream" id=110]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Jean Goldkette and His Orchestra - Sunday.mp3" type="AudioStream" id=111]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Ben Selvin and the Crooners - Happy Days are Here Again.mp3" type="AudioStream" id=112]
@@ -2163,11 +2163,11 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 39 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 109 )
 radioListPath = [ NodePath("../rooms/kp/props/Radio Main"), NodePath("../rooms/storage/shelf2/Radio Storage"), NodePath("../rooms/kpp/Speaker KPP"), NodePath("../rooms/stolovaya/props/Speaker"), NodePath("../rooms/kazarma/props/Speaker Barracks") ]
 
-[node name="Radio Applewood" parent="RadioController" instance=ExtResource( 23 )]
+[node name="Radio Applewood" parent="Radio Manager" instance=ExtResource( 23 )]
 scriptSongs = [ ExtResource( 28 ), ExtResource( 24 ), ExtResource( 110 ), ExtResource( 112 ), ExtResource( 111 ), ExtResource( 27 ) ]
 
 [connection signal="body_entered" from="triggers/exit" to="triggers/exit" method="_on_body_entered"]

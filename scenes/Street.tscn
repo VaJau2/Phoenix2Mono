@@ -56,7 +56,7 @@
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=54]
 [ext_resource path="res://objects/props/furniture/radio/Radiostation/Radio Applewood.tscn" type="PackedScene" id=55]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=56]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=57]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=57]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=58]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=60]
 
@@ -915,17 +915,17 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 39 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 57 )
 radioListPath = [ NodePath("../terrain/props/houses/house8/Radio"), NodePath("../terrain/props/houses/house2/Radio"), NodePath("../terrain/props/houses/house11/Radio") ]
 
-[node name="Blue Radio" parent="RadioController" instance=ExtResource( 52 )]
+[node name="Blue Radio" parent="Radio Manager" instance=ExtResource( 52 )]
 
-[node name="Easy-Greasy FM" parent="RadioController" instance=ExtResource( 53 )]
+[node name="Easy-Greasy FM" parent="Radio Manager" instance=ExtResource( 53 )]
 scriptSongs = [ ExtResource( 51 ) ]
 
-[node name="Radio Applewood" parent="RadioController" instance=ExtResource( 55 )]
+[node name="Radio Applewood" parent="Radio Manager" instance=ExtResource( 55 )]
 
 [node name="rain" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.761, 15, -44.697 )

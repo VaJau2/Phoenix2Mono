@@ -115,7 +115,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=113]
 [ext_resource path="res://objects/props/furniture/stable-table-2.tscn" type="PackedScene" id=122]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=123]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=124]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=124]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 282.845, 0.1, 191.884 )
@@ -2324,12 +2324,12 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 81 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 124 )
 radioListPath = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/sklad/props/Radio Warehouse"), NodePath("../rooms/main-house/props/Radio Main"), NodePath("../rooms/armor-house/props/Radio Sewing"), NodePath("../rooms/stels-house/props/Radio Stels") ]
 
-[node name="Country Station" parent="RadioController" instance=ExtResource( 23 )]
+[node name="Country Station" parent="Radio Manager" instance=ExtResource( 23 )]
 
 [connection signal="Die" from="terrain/props/shootingRange/targets/target" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="Die" from="terrain/props/shootingRange/targets/target2" to="triggers/DashTrainingTrigger" method="_on_target_die"]

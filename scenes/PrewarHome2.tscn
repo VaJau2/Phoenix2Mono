@@ -43,7 +43,7 @@
 [ext_resource path="res://objects/props/doors/door1.tscn" type="PackedScene" id=41]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=42]
 [ext_resource path="res://assets/materials/physics/stairs.phymat" type="PhysicsMaterial" id=43]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=44]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=44]
 [ext_resource path="res://objects/props/furniture/radio/Radiostation/Radio Applewood.tscn" type="PackedScene" id=45]
 [ext_resource path="res://objects/props/furniture/box-up.tscn" type="PackedScene" id=46]
 [ext_resource path="res://objects/props/furniture/trash/colaBottle.tscn" type="PackedScene" id=47]
@@ -1400,12 +1400,12 @@ light_energy = 0.9
 shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 44 )
 playerInside = true
 radioListPath = [ NodePath("../rooms/mansion/fireplate/Radio") ]
 
-[node name="Radio Applewood" parent="RadioController" instance=ExtResource( 45 )]
+[node name="Radio Applewood" parent="Radio Manager" instance=ExtResource( 45 )]
 
 [connection signal="body_entered" from="triggers/motherTalk1" to="triggers/motherTalk1" method="_on_body_entered"]

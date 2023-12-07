@@ -99,7 +99,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Speaker.tscn" type="PackedScene" id=97]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=98]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=99]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=100]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=100]
 [ext_resource path="res://assets/scripts/triggers/LoadLevelTrigger.cs" type="Script" id=101]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=102]
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=103]
@@ -1693,11 +1693,11 @@ volume_db = -15.0
 bus = "Music"
 script = SubResource( 36 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 100 )
 radioListPath = [ NodePath("../rooms/storage/shelf2/Radio Storage"), NodePath("../rooms/kp/props/Radio KP"), NodePath("../terrain/props/towers/Radio"), NodePath("../rooms/kazarma/props/Speaker") ]
 
-[node name="Blue Radio" parent="RadioController" instance=ExtResource( 23 )]
+[node name="Blue Radio" parent="Radio Manager" instance=ExtResource( 23 )]
 scriptSongs = [ ExtResource( 24 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 86 ) ]
 
 [connection signal="body_entered" from="terrain/checkFall" to="terrain/checkFall" method="_on_body_entered"]

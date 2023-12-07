@@ -20,6 +20,33 @@ public class AudioPlayerCommon
         }
     }
     
+    public AudioPlayerCommon(NodePath audioPath, Node objToGetNode)
+    {
+        var node = objToGetNode.GetNode(audioPath);
+        audio3D = node is AudioStreamPlayer3D;
+        
+        if (audio3D)
+        {
+            player3D = objToGetNode.GetNode<AudioStreamPlayer3D>(audioPath);
+        }
+        else
+        {
+            player = objToGetNode.GetNode<AudioStreamPlayer>(audioPath);
+        }
+    }
+
+    public void Connect(string signal, Object target, string method)
+    {
+        if (audio3D)
+        {
+            player3D.Connect(signal, target, method);
+        }
+        else
+        {
+            player.Connect(signal, target, method);
+        }
+    }
+
     public void Play(AudioStream sample = null)
     {
         if (sample != null)

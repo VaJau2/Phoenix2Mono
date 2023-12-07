@@ -18,7 +18,7 @@ surfaces/0 = {
 "vertex_count": 120
 }
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=199]
 resource_name = "Speaker_Radio006"
 surfaces/0 = {
 "aabb": AABB( -0.4918, -0.6008, -1.08152, 0.9836, 1.2016, 1.07352 ),
@@ -46,7 +46,7 @@ mesh = SubResource( 1 )
 
 [node name="Speaker" type="MeshInstance" parent="Holder"]
 transform = Transform( 0.892539, 0.157379, -0.422618, -0.0208279, 0.950516, 0.309976, 0.450489, -0.267863, 0.851651, 0, 0, -0.032 )
-mesh = SubResource( 2 )
+mesh = SubResource( 199 )
 
 [node name="Music Player" type="AudioStreamPlayer3D" parent="." groups=["unpaused_sound"]]
 transform = Transform( 0.892539, 0.157379, -0.422618, -0.020828, 0.950516, 0.309976, 0.450489, -0.267863, 0.851651, 0.419794, -0.307905, -0.385961 )

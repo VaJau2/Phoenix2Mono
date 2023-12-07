@@ -85,9 +85,9 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 2:
-                cloneFlask.audi.Play();
+                cloneFlask.PlayMessage();
                 cloneFlask.AnimateWater();
-                timer = 1.5f;
+                timer = 1.75f;
                 SetProcess(true);
                 break;
 

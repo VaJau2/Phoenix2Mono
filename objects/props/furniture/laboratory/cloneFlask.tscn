@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=11]
 [ext_resource path="res://assets/scripts/triggers/wasteland/CloneFlaskCamera.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/triggers/wasteland/CloneFlask.cs" type="Script" id=13]
-[ext_resource path="res://assets/audio/phrases/speech1-edited.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/audio/messages/Resurrection.wav" type="AudioStream" id=14]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "cloneFlask_Cube011"

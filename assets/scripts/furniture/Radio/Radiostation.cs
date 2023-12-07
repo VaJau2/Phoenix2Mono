@@ -1,5 +1,4 @@
 using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -7,16 +6,16 @@ public class Radiostation : Node
 {
 	public AudioStream song { private set; get; }
 
-	Node defaultSongsNode;
-	List<AudioStream> defaultSongs = new List<AudioStream>();
+	private Node defaultSongsNode;
+	private List<AudioStream> defaultSongs = new ();
 
-	[Export] bool randomize = true;
-	[Export] List<AudioStream> scriptSongs = new List<AudioStream>();
+	[Export] private bool randomize = true;
+	[Export] private List<AudioStream> scriptSongs = new ();
 	
-	List<AudioStream> songs = new List<AudioStream>();
+	private List<AudioStream> songs = new ();
 
 	public float timer { private set; get; }
-	int songID = 0;
+	private int songID = 0;
 
 	[Signal]
 	public delegate void SyncTimeEvent();
@@ -99,30 +98,19 @@ public class Radiostation : Node
 		EmitSignal(nameof(ChangeSongEvent));
 	}
 
-	public static string GetRadiostation(Name stationName)
-    {
-		switch (stationName)
+	public static Radiostation GetRadiostation(Node node, Name stationName)
+	{
+		var name = stationName switch
 		{
-			case Name.Noise:
-				return "/root/Main/Scene/RadioController/Noise";
-
-			case Name.RadioApplewood:
-				return "/root/Main/Scene/RadioController/Radio Applewood";
-
-			case Name.EasyGreasyFM:
-				return "/root/Main/Scene/RadioController/Easy-Greasy FM";
-
-			case Name.RoyalRadio:
-				return "/root/Main/Scene/RadioController/Royal Radio";
-
-			case Name.BlueRadio:
-				return "/root/Main/Scene/RadioController/Blue Radio";
-
-			case Name.CountryStation:
-				return "/root/Main/Scene/RadioController/Country Station";
-
-			default:
-				return "Invalid Radiostation Name";
-		}
+			Name.BlueRadio => "Blue Radio",
+			Name.RadioApplewood => "Radio Applewood",
+			Name.EasyGreasyFM => "Easy-Greasy FM",
+			Name.RoyalRadio => "Royal Radio",
+			Name.CountryStation => "Country Station",
+			_ => ""
+		};
+		
+		var path = "/root/Main/Scene/Radio Manager/" + name;
+		return node.GetNodeOrNull<Radiostation>(path);
 	}
 }

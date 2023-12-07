@@ -5,7 +5,7 @@ public class Room : SaveActive
 {
     [Export] float depth = 100 / 1.5f;
 
-    RadioController radioController;
+    RadioManager radioManager;
     [Export] List<NodePath> radioPaths;
     List<RadioBase> radioList = new();
 
@@ -23,7 +23,7 @@ public class Room : SaveActive
                 radioList.Add(radio);
             }
 
-            radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
+            radioManager = GetNodeOrNull<RadioManager>("/root/Main/Scene/RadioController");
         }
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
@@ -40,10 +40,10 @@ public class Room : SaveActive
     
     public void Enter()
     {
-        if (radioController != null)
+        if (radioManager != null)
         {
-            radioController.EnterToRoom(radioList);
-            radioController.currentRoom = GetPath();
+            radioManager.EnterToRoom(radioList);
+            radioManager.currentRoom = GetPath();
         }
         
         audioEffectController?.AddEffects(Name);
@@ -51,10 +51,10 @@ public class Room : SaveActive
 
     public void Exit()
     {
-        if (radioController != null)
+        if (radioManager != null)
         {
-            radioController.ExitFromRoom(radioList);
-            radioController.currentRoom = null;
+            radioManager.ExitFromRoom(radioList);
+            radioManager.currentRoom = null;
         }
         
         audioEffectController?.RemoveEffects(Name);

@@ -5,9 +5,8 @@ using System;
 public abstract class RadioBase : StaticBody
 {
     public bool inRoom = false;
-
-    protected RadioController radioController;
-
+    public RadioManager RadioManager;
+    
     public AudioStreamPlayer3D musicPlayer { protected set; get; }
 
     public AudioStreamPlayer3D noisePlayer { protected set; get; }
@@ -26,9 +25,7 @@ public abstract class RadioBase : StaticBody
     public abstract void Initialize();
 
     protected void InitBase()
-    {
-        radioController = GetNode<RadioController>("/root/Main/Scene/RadioController");
-
+    { 
         musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
         
         noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
@@ -50,7 +47,7 @@ public abstract class RadioBase : StaticBody
         repeaterMode = value;
     }
 
-    public virtual void SetMute(bool value)
+    public void SetMute(bool value)
     {
         if (value)
         {

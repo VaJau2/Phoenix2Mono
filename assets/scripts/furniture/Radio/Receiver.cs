@@ -1,6 +1,6 @@
+using System;
 using Godot;
 using Godot.Collections;
-using System;
 
 public class Receiver : RadioBase, ISavable, IInteractable
 {
@@ -62,7 +62,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		InitRadiostation();
 		InitPlayer();
 
-		if (inRoom && !radioController.playerInside) RepeaterMode(true);
+		if (inRoom && !RadioManager.playerInside) RepeaterMode(true);
 
 		if (isOn) SwitchOn(false);
 		else SwitchOff(false);
@@ -149,35 +149,8 @@ public class Receiver : RadioBase, ISavable, IInteractable
 	}
 
 	private void InitRadiostation()
-    {
-		switch (radiostation)
-		{
-			case Radiostation.Name.Noise:
-				station = null;
-				break;
-
-			case Radiostation.Name.RadioApplewood:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Radio Applewood");
-				break;
-
-			case Radiostation.Name.EasyGreasyFM:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Easy-Greasy FM");
-				break;
-
-			case Radiostation.Name.RoyalRadio:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Royal Radio");
-				break;
-
-			case Radiostation.Name.BlueRadio:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Blue Radio");
-				break;
-
-			case Radiostation.Name.CountryStation:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Country Station");
-				break;
-
-		}
-
+	{
+		station = Radiostation.GetRadiostation(this, radiostation);
 		station?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 		station?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
 	}
