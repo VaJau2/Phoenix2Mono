@@ -452,20 +452,24 @@ transform = Transform( -3.61351, 0, -3.15903e-07, 0, 3.61351, 0, 3.15903e-07, 0,
 
 [node name="Radio" parent="terrain/props/houses/house11" instance=ExtResource( 56 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.1, 0 )
-maxDb = -34.0
+visible = false
+pauseVolume = -34.0
 radiostation = 2
 frequencyRange = 4
 frequency = 0.69
+OnBaseFrequency = false
 
 [node name="house2" parent="terrain/props/houses" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3735, -0.550278, -130.644 )
 
 [node name="Radio" parent="terrain/props/houses/house2" instance=ExtResource( 56 )]
 transform = Transform( 3.69552e-07, 0, -1, 0, 1, 0, 1, 0, 3.69552e-07, 6.68498, 11, -0.0789795 )
-maxDb = -34.0
-radiostation = 1
+visible = false
+pauseVolume = -34.0
+radiostation = 4
 frequencyRange = 4
 frequency = 0.57
+OnBaseFrequency = false
 
 [node name="house3" parent="terrain/props/houses" instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -24.3317, -0.288707, -114.502 )
@@ -478,10 +482,12 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 63.0535
 
 [node name="Radio" parent="terrain/props/houses/house8" instance=ExtResource( 56 )]
 transform = Transform( -4.01339e-07, 0, 1, 0, 1, 0, -1, 0, -4.01339e-07, -11.898, 9.86149, 10.4496 )
-maxDb = -34.0
-radiostation = 4
+visible = false
+pauseVolume = -34.0
+radiostation = 1
 frequencyRange = 4
 frequency = 0.47
+OnBaseFrequency = false
 
 [node name="house5" parent="terrain/props/houses" instance=ExtResource( 34 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -26.7619, 0, -18.4306 )
@@ -522,57 +528,69 @@ transform = Transform( -3.36997e-07, 0, 2.06847, 0, 2.06847, 0, -2.06847, 0, -3.
 [node name="lights" type="Node" parent="terrain/props"]
 
 [node name="Light2" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -9.45423 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -5.77531 )
 
 [node name="Light3" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -71.4542 )
-
-[node name="hydrant" parent="terrain/props/lights/Light3" instance=ExtResource( 43 )]
-transform = Transform( 2.50372, 0, 0, 0, 2.50372, 0, 0, 0, 2.50372, 0.0833645, -0.452236, -5.56851 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -74.532 )
 
 [node name="Light4" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -109 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -101.976 )
 
 [node name="Light5" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, -150 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -174.821 )
 
 [node name="Light6" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, -150 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -174.821 )
 
 [node name="Light7" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, -109 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -101.976 )
+
+[node name="Light18" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -138.615 )
+
+[node name="Light19" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -138.615 )
 
 [node name="Light8" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, -71.4542 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -74.532 )
 
 [node name="Light9" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, -9.45423 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -5.77531 )
+
+[node name="Light16" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, -40.2411 )
+
+[node name="Light17" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, -40.2411 )
 
 [node name="Light14" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, 0.047, 26.8458 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13, -0.3, 26.8458 )
 
 [node name="Light15" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, 0.047, 26.8458 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15, -0.3, 26.8458 )
 
 [node name="Light10" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 59.8648, -0.291404, -101.422 )
-
-[node name="hydrant" parent="terrain/props/lights/Light10" instance=ExtResource( 43 )]
-transform = Transform( 2.504, 0, 0, 0, 2.504, 0, 0, 0, 2.504, 5.60963, -0.140702, 0 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 47.3212, -0.3, -101.422 )
 
 [node name="Light11" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 119.277, -0.291404, -101.339 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 114.782, -0.3, -101.339 )
 
 [node name="Light12" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 119.277, -0.408577, -74.8734 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 114.782, -0.3, -74.8734 )
 
 [node name="Light13" parent="terrain/props/lights" instance=ExtResource( 13 )]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 61.6636, -0.408577, -74.8734 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 49.12, -0.3, -74.8734 )
+
+[node name="Light20" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 81.1204, -0.3, -101.422 )
+
+[node name="Light21" parent="terrain/props/lights" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 82.9192, -0.3, -74.8734 )
 
 [node name="cars" type="Node" parent="terrain/props"]
 
 [node name="Mercury" parent="terrain/props/cars" instance=ExtResource( 14 )]
-transform = Transform( 0.00747007, 0, 0.999972, 0, 1, 0, -0.999972, 0, 0.00747007, 14.423, -0.418975, -22.7928 )
+transform = Transform( 0.0720024, 0, 0.997404, 0, 1, 0, -0.997404, 0, 0.0720024, 13.8552, -0.267127, -15.8848 )
 
 [node name="rainDrops" type="AudioStreamPlayer3D" parent="terrain/props/cars/Mercury"]
 transform = Transform( 1, 0, 4.65661e-09, 0, 1, 0, -4.65661e-09, 0, 1, -0.875731, 4.36318, 0.00654221 )
@@ -585,7 +603,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Mercury2" parent="terrain/props/cars" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.8474, -0.38999, -75.926 )
+transform = Transform( 0.999247, 0, -0.0387889, 0, 1, 0, 0.0387889, 0, 0.999247, 61.0673, -0.38999, -75.926 )
 
 [node name="rainDrops6" type="AudioStreamPlayer3D" parent="terrain/props/cars/Mercury2"]
 transform = Transform( 0.00747006, 0, 0.999972, 0, 1, 0, -0.999972, 0, 0.00747006, -0.722775, 4.3342, 0.136597 )
@@ -598,7 +616,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Mercury3" parent="terrain/props/cars" instance=ExtResource( 14 )]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -9.83234, -0.417078, -98.9316 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10.7163, -0.270215, -113.881 )
 
 [node name="rainDrops7" type="AudioStreamPlayer3D" parent="terrain/props/cars/Mercury3"]
 transform = Transform( -0.999972, 0, 0.0074699, 0, 1, 0, -0.0074699, 0, -0.999972, -0.690384, 4.36129, -0.210215 )
@@ -611,7 +629,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Pontiac" parent="terrain/props/cars" instance=ExtResource( 29 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 14.6965, -0.203047, -39.4182 )
+transform = Transform( -0.0378822, 0, 0.999282, 0, 1, 0, -0.999282, 0, -0.0378822, 14.6965, -0.203047, -32.9615 )
 
 [node name="rainDrops8" type="AudioStreamPlayer3D" parent="terrain/props/cars/Pontiac"]
 transform = Transform( 0.999972, 0, -0.00747023, 0, 1, 0, 0.00747023, 0, 0.999972, 0, 4.01462, 0 )
@@ -624,7 +642,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Pontiac2" parent="terrain/props/cars" instance=ExtResource( 29 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.0902, -0.203047, -74.7696 )
+transform = Transform( 0.99846, 0, 0.055473, 0, 1, 0, -0.055473, 0, 0.99846, 32.4723, -0.203047, -74.7696 )
 
 [node name="rainDrops8" type="AudioStreamPlayer3D" parent="terrain/props/cars/Pontiac2"]
 transform = Transform( 0.999972, 0, -0.00747023, 0, 1, 0, 0.00747023, 0, 0.999972, 0, 4.01462, 0 )
@@ -637,7 +655,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Chevrolet" parent="terrain/props/cars" instance=ExtResource( 27 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -8.986, -0.326638, -117.382 )
+transform = Transform( 0.157917, 0, 0.987452, 0, 1, 0, -0.987452, 0, 0.157917, -10.1756, -0.326638, -130.978 )
 
 [node name="rainDrops6" type="AudioStreamPlayer3D" parent="terrain/props/cars/Chevrolet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55345, 0 )
@@ -650,7 +668,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Chevrolet2" parent="terrain/props/cars" instance=ExtResource( 27 )]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 14.5473, -0.326638, -54.7618 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 14.5473, -0.326638, -50.2713 )
 
 [node name="rainDrops6" type="AudioStreamPlayer3D" parent="terrain/props/cars/Chevrolet2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55345, 0 )
@@ -716,19 +734,25 @@ SpawnRandomItems = true
 transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1, -32.6974, 25.1431, -131.69 )
 SpawnRandomItems = true
 
-[node name="ostanovka" parent="terrain/props" instance=ExtResource( 44 )]
-transform = Transform( -1.44112e-07, 0, -3.29691, 0, 3.7, 0, 3.7, 0, -1.61732e-07, 20.8264, -0.240612, -133.339 )
+[node name="hydrant" parent="terrain/props" instance=ExtResource( 43 )]
+transform = Transform( 1.7528, 0, 0, 0, 1.7528, 0, 0, 0, 1.7528, 49.3935, -0.398491, -101.422 )
+
+[node name="hydrant2" parent="terrain/props" instance=ExtResource( 43 )]
+transform = Transform( 1.7526, 0, 0, 0, 1.7526, 0, 0, 0, 1.7526, -12.9416, -0.616565, -72.8027 )
+
+[node name="bus stop" parent="terrain/props" instance=ExtResource( 44 )]
+transform = Transform( -1.44112e-07, 0, -3.29691, 0, 3.7, 0, 3.7, 0, -1.61732e-07, 20.8264, -0.240612, -155.951 )
 
 [node name="pulovsky4" type="Node" parent="terrain/props"]
 
 [node name="pulovsky" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
-transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 94.4729, -0.338154, -61.8438 )
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 89.6492, -0.338154, -61.8438 )
 
 [node name="pulovsky2" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
-transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 103.78, -0.338154, -61.8438 )
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 98.9563, -0.338154, -61.8438 )
 
 [node name="pulovsky3" parent="terrain/props/pulovsky4" instance=ExtResource( 45 )]
-transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 113.918, -0.338153, -61.8453 )
+transform = Transform( -3.761, 0, -3.28797e-07, 0, 3.761, 0, 3.28797e-07, 0, -3.761, 107.805, -0.338153, -61.8453 )
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 11 )
@@ -886,7 +910,7 @@ shape = SubResource( 49 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.959764, 0.0902948, 0.265894, -0.26532, 0.601711, 0.753359, -0.0919667, -0.793594, 0.601458, 0, 8.63824, -21.8162 )
 light_color = Color( 0.321569, 0.333333, 0.470588, 1 )
-light_energy = 0.9
+light_energy = 0.06
 shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 

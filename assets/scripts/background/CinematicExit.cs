@@ -82,6 +82,7 @@ public class CinematicExit : Area, ISavable
     
     public void OnAreaExited(Node body)
     {
+        if (Global.Get().player == null) return;
         if (body.Name != "exitCheck") return;
         
         player = body.GetParent<Player>();

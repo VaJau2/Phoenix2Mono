@@ -21,7 +21,7 @@ public class Radiostation : Node
 	public delegate void SyncTimeEvent();
 
 	[Signal]
-	public delegate void ChangeSongEvent();
+	public delegate void ChangeSongEvent(AudioStream song);
 
 	public new enum Name
 	{
@@ -46,7 +46,7 @@ public class Radiostation : Node
 	public void Initialize()
     {
 		defaultSongsNode = GetNode("Default Songs");
-		Godot.Collections.Array defaultSongsArray = defaultSongsNode.Get("songs") as Godot.Collections.Array;
+		var defaultSongsArray = defaultSongsNode.Get("songs") as Godot.Collections.Array;
 		
 		foreach (AudioStream defaultSong in defaultSongsArray)
         {
@@ -64,19 +64,18 @@ public class Radiostation : Node
 
 		song = songs[0];
 
-		Random random = new Random();
+		var random = new Random();
 		timer = random.Next(0, (int)song.GetLength());
 	}
 
-	public List<AudioStream> Randomize(List<AudioStream> playlist)
+	private List<AudioStream> Randomize(List<AudioStream> playlist)
 	{
-		List<AudioStream> newPlaylist = new List<AudioStream>();
-		Random random = new Random();
-		int index;
+		var newPlaylist = new List<AudioStream>();
+		var random = new Random();
 
 		while (playlist.Count > 0)
 		{
-			index = random.Next(0, playlist.Count);
+			var index = random.Next(0, playlist.Count);
 			newPlaylist.Add(playlist[index]);
 			playlist.RemoveAt(index);
 		}
@@ -84,19 +83,19 @@ public class Radiostation : Node
 		return newPlaylist;
 	}
 
-	public void SyncTimer()
-    {
-		EmitSignal(nameof(SyncTimeEvent));
-    }
-
-	public void OnMusicFinished()
+	private void OnMusicFinished()
 	{
 		if (songID < songs.Count - 1) songID++;
 		else songID = 0;
 
 		song = songs[songID];
-		EmitSignal(nameof(ChangeSongEvent));
+		EmitSignal(nameof(ChangeSongEvent), song);
 	}
+	
+	public void SyncTimer()
+    {
+		EmitSignal(nameof(SyncTimeEvent));
+    }
 
 	public static Radiostation GetRadiostation(Node node, Name stationName)
 	{

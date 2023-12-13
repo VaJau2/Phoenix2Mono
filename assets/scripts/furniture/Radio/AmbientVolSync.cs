@@ -29,7 +29,7 @@ public class AmbientVolSync : Spatial
 
         foreach (RadioBase radio in radioList)
         {
-            if (radio.musicPlayer.Playing || radio.noisePlayer.Playing)
+            if (radio.MusicPlayer.Playing || radio.NoisePlayer.Playing)
             {
                 isEmpty = false;
                 float newDistance = GlobalTransform.origin.DistanceTo(radio.GlobalTransform.origin);
@@ -93,7 +93,7 @@ public class AmbientVolSync : Spatial
 
     void OnRadioChangeOnline(RadioBase radio)
     {
-        if (isEmpty && radio.musicPlayer.Playing && global.Settings.radioVolume > minVolume)
+        if (isEmpty && radio.MusicPlayer.Playing && global.Settings.radioVolume > minVolume)
         {
             SetProcess(true);
         }

@@ -54,7 +54,20 @@
       "root_node": false,
       "body": "Just looking around.",
       "speaker": "Strikely",
-      "opposite": "Filly"
+      "opposite": "Filly",
+      "next": "M1.3"
+    },
+    "M1.3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "talkAgainWithFillyAndQuest"
+        }
+      ]
     },
 
     "M2": {

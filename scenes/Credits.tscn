@@ -3686,7 +3686,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
 [node name="Animator" type="AnimationPlayer" parent="."]

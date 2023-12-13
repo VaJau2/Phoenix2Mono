@@ -18,6 +18,8 @@ public class CloneFlask : Spatial, ISavable
 
     public override void _Ready()
     {
+        GD.Randomize();
+        anim.PlaybackSpeed = (float)GD.RandRange(0.8, 1);
         anim.Play("idle");
         SetRace(cloneRace);
         SetProcess(false);
@@ -95,7 +97,15 @@ public class CloneFlask : Spatial, ISavable
 
     public void DeleteBody()
     {
-        GetNode<Spatial>("Armature").QueueFree();
+        var armature = GetNode<Spatial>("Armature");
+        Global.AddDeletedObject(armature.Name);
+        armature.QueueFree();
+
+        var light = GetNode<Spatial>("light");
+        Global.AddDeletedObject(light.Name);
+        light.QueueFree();
+        
+        Global.AddDeletedObject(anim.Name);
         anim.QueueFree();
     }
 

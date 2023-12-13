@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/materials/player/player_body.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/furniture/cloneFlask.material" type="Material" id=2]
@@ -256,6 +256,21 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=18]
 extents = Vector3( 0.0499737, 1.08168, 0.79742 )
 
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("light:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.25 ]
+}
+
 [sub_resource type="Animation" id=13]
 resource_name = "idle"
 length = 4.16667
@@ -421,6 +436,18 @@ tracks/22/loop_wrap = true
 tracks/22/imported = false
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, -3.30872e-24, -1.86265e-09, -1.49012e-08, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.0666667, 1, 1.84552e-20, -0.000152735, -8.40425e-06, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.133333, 1, 6.51913e-20, -0.000539539, -2.96831e-05, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.2, 1, 1.37408e-19, -0.00113723, -6.25998e-05, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.733333, 1, 9.56215e-19, -0.00791383, -0.000435591, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.8, 1, 1.00722e-18, -0.00833598, -0.000458837, 2.98023e-07, -1.77494e-29, -5.9557e-23, 1, 1, 1, 1, 0.866667, 1, 1.02821e-18, -0.00850968, -0.000468373, 2.34693e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 0.933333, 1, 9.56591e-19, -0.00791696, -0.00043577, 2.98023e-07, -1.77494e-29, -5.9557e-23, 1, 1, 1, 1, 1, 1, 7.40131e-19, -0.0061255, -0.000337169, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 1.06667, 1, 3.70263e-19, -0.00306436, -0.000168666, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 1.2, 1, -6.97745e-19, 0.00577468, 0.000317842, 2.34693e-07, -1.32349e-23, -5.9557e-23, 1, 1, 1, 1, 2, 1, -8.52173e-18, 0.0705277, 0.00388198, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 2.06667, 1, -8.64004e-18, 0.0715069, 0.00393587, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 2.13333, 1, -8.6276e-18, 0.071404, 0.00393021, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 2.2, 1, -8.52718e-18, 0.0705729, 0.00388446, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 2.26667, 1, -8.35332e-18, 0.069134, 0.00380526, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 2.33333, 1, -8.11804e-18, 0.0671867, 0.00369805, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1, 4.16667, 1, -3.30872e-24, -1.86265e-09, -1.49012e-08, 2.98023e-07, -6.61746e-24, -5.9557e-23, 1, 1, 1, 1 )
+tracks/23/type = "value"
+tracks/23/path = NodePath("light:light_energy")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 2, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.05, 0.1 ]
+}
 
 [sub_resource type="Animation" id=14]
 resource_name = "wakeUp"
@@ -724,7 +751,7 @@ bones/22/enabled = true
 bones/22/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -1.59162e-12, 2.62261e-06, 1.11413e-06, 0.905278, -0.424819, -2.37418e-06, 0.424819, 0.905278, -5.39768e-13, 0.246918, 2.60111 )
+transform = Transform( 1, -1.81899e-12, 2.62261e-06, 1.11414e-06, 0.905278, -0.42482, -2.37418e-06, 0.42482, 0.905278, -7.2188e-13, 0.246917, 2.60111 )
 bone_name = "Head"
 
 [node name="Cube" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment"]
@@ -735,7 +762,7 @@ mesh = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878, -0.293 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -1.59162e-12, 2.62261e-06, 1.11413e-06, 0.905278, -0.424819, -2.37418e-06, 0.424819, 0.905278, -5.39768e-13, 0.246918, 2.60111 )
+transform = Transform( 1, -1.81899e-12, 2.62261e-06, 1.11414e-06, 0.905278, -0.42482, -2.37418e-06, 0.42482, 0.905278, -7.2188e-13, 0.246917, 2.60111 )
 bone_name = "Head"
 
 [node name="horn" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment2"]
@@ -800,6 +827,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.657257, 0.600217, 0 )
 shape = SubResource( 18 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 19 )
 anims/idle = SubResource( 13 )
 anims/wakeUp = SubResource( 14 )
 
@@ -809,6 +837,13 @@ stream = ExtResource( 14 )
 unit_db = 5.0
 unit_size = 2.0
 bus = "Sound"
+
+[node name="light" type="OmniLight" parent="."]
+transform = Transform( -0.236879, -2.07086e-08, 9.052e-16, 0, -1.03543e-08, -0.236879, 2.07086e-08, -0.236879, 1.03543e-08, 0, -0.147013, 0 )
+light_color = Color( 0.141176, 0.764706, 0.133333, 1 )
+light_energy = 0.25
+shadow_enabled = true
+omni_range = 10.0
 
 [node name="collision" type="StaticBody" parent="."]
 collision_layer = 3
