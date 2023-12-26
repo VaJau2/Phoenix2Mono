@@ -1,9 +1,9 @@
 ﻿{
     "main": {
-      "page_save": "/Phoenix2/Меню_паузы/Меню_сохранения",
-      "page_load_main": "/Phoenix2/Главное_меню/Меню_загрузки",
-      "page_load_pause": "/Phoenix2/Меню_паузы/Меню_загрузки",
-      "page_load_death": "/Phoenix2/Меню_смерти/Меню_загрузки",
+      "page_save": "/Phoenix/Меню_паузы/Меню_сохранения",
+      "page_load_main": "/Phoenix/Главное_меню/Меню_загрузки",
+      "page_load_pause": "/Phoenix/Меню_паузы/Меню_загрузки",
+      "page_load_death": "/Phoenix/Меню_смерти/Меню_загрузки",
       "back": "[Назад]",
       "input_placeholder": "Введите название сохранения",
       "rewrite": "[Перезаписать]",

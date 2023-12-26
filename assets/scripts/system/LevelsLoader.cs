@@ -16,7 +16,7 @@ public class LevelsLoader : Node
 	private PackedScene mainMenuPrefab;
 	private PackedScene pauseMenuPrefab;
 	private PackedScene loadingMenuPrefab;
-	private PackedScene dealthMenuPrefab;
+	private PackedScene deathMenuPrefab;
 	private bool mainMenuOn = true;
 	private ResourceInteractiveLoader loader;
 
@@ -47,7 +47,7 @@ public class LevelsLoader : Node
 		mainMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/MainMenu.tscn");
 		pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/PauseMenu.tscn");
 		loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
-		dealthMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DealthMenu.tscn");
+		deathMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DeathMenu.tscn");
 
 		await ToSignal(GetTree(), "idle_frame");
 		
@@ -67,7 +67,7 @@ public class LevelsLoader : Node
 	{
 		if (IsInstanceValid(Global.Get().player))
 		{
-			Global.Get().player.inventory.effects.OnLoadOtherLevel();
+			Global.Get().player.Inventory.effects.OnLoadOtherLevel();
 		}
 	}
 
@@ -143,10 +143,10 @@ public class LevelsLoader : Node
 		}
 	}
 
-	public void ShowDealthMenu()
+	public void ShowDeathMenu()
 	{
 		global.SetPause(this, true);
-		RespawnMenu(dealthMenuPrefab);
+		RespawnMenu(deathMenuPrefab);
 		currentMenu.Visible = true;
 	}
 

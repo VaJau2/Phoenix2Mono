@@ -3,14 +3,17 @@ using Godot.Collections;
 
 public class CloneFlask : Spatial, ISavable
 {
-    public AnimationPlayer anim => GetNode<AnimationPlayer>("AnimationPlayer");
+    public AnimationPlayer anim { private set; get; }
     public CloneFlaskCamera camera => GetNode<CloneFlaskCamera>("Camera");
     public Spatial playerPos => GetNode<Spatial>("player_pos");
-    private AudioStreamPlayer3D audi => GetNode<AudioStreamPlayer3D>("audi");
+
+    public AudioStreamSample underwater => GD.Load<AudioStreamSample>("res://assets/audio/underwater.wav");
+    public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/futniture/flaskOpen.wav");
+    private AudioStreamPlayer3D message => GetNode<AudioStreamPlayer3D>("message");
 
     private bool wokenUp;
 
-    Spatial water, glass;
+    private Spatial water, glass;
     private bool animateWater;
     private bool animateGlass;
 
@@ -18,9 +21,15 @@ public class CloneFlask : Spatial, ISavable
 
     public override void _Ready()
     {
-        GD.Randomize();
-        anim.PlaybackSpeed = (float)GD.RandRange(0.8, 1);
-        anim.Play("idle");
+        anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+
+        if (anim != null)
+        {
+            GD.Randomize();
+            anim.PlaybackSpeed = (float)GD.RandRange(0.8, 1);
+            anim.Play("idle");
+        }
+
         SetRace(cloneRace);
         SetProcess(false);
     }
@@ -57,6 +66,7 @@ public class CloneFlask : Spatial, ISavable
         }
         else
         {
+            //Global.AddDeletedObject(_object.Name);
             _object.QueueFree();
             animate = false;
         }
@@ -64,7 +74,7 @@ public class CloneFlask : Spatial, ISavable
 
     public void PlayMessage()
     {
-        audi.Play();
+        message.Play();
     }
     
     public void AnimateWater()
@@ -77,7 +87,7 @@ public class CloneFlask : Spatial, ISavable
     public void AnimateGlass()
     {
         wokenUp = true;
-        glass = GetNode<Spatial>("flas-glass");
+        glass = GetNode<Spatial>("flask-glass");
         animateGlass = true;
         SetProcess(true);
     }
@@ -98,14 +108,14 @@ public class CloneFlask : Spatial, ISavable
     public void DeleteBody()
     {
         var armature = GetNode<Spatial>("Armature");
-        Global.AddDeletedObject(armature.Name);
+        //Global.AddDeletedObject(armature.Name);
         armature.QueueFree();
 
         var light = GetNode<Spatial>("light");
-        Global.AddDeletedObject(light.Name);
+        //Global.AddDeletedObject(light.Name);
         light.QueueFree();
         
-        Global.AddDeletedObject(anim.Name);
+        //Global.AddDeletedObject(anim.Name);
         anim.QueueFree();
     }
 
@@ -148,7 +158,7 @@ public class CloneFlask : Spatial, ISavable
             DeleteBody();
             GetNode<MeshInstance>("wires").QueueFree();
             GetNode<Spatial>("water").QueueFree();
-            GetNode<Spatial>("flas-glass").QueueFree();
+            GetNode<Spatial>("flask-glass").QueueFree();
         }
     }
 }

@@ -1,6 +1,6 @@
 {
     "main": {
-        "page": "/Phoenix2/Pause_menu",
+        "page": "/Phoenix/Pause_menu",
         "continue": "               [Continue]",
         "save":     "               [Save]",
         "load":     "               [Load]",

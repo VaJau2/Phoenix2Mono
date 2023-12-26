@@ -1,8 +1,8 @@
 {
     "main": {
         "loading": "Loading...",
-        "welcome": "> Welcome to Phoenix2! \n> Developed using Godot Engine \n> loading interface...",
-        "page": "/Phoenix2/Main_menu",
+        "welcome": "> Welcome to Phoenix! \n> Developed using Godot Engine \n> loading interface...",
+        "page": "/Phoenix/Main_menu",
 
         "continue": "               [Continue]",
         "start":    "               [Start game]",
@@ -31,18 +31,18 @@
     },
 
     "about": {
-        "page": "/Phoenix2/Main_menu/about",
+        "page": "/Phoenix/Main_menu/About",
         "label": "The Game was developed on Herd Gaming Contests\nProgrammers: VaJa72, McFord\nComposer: Phelanhik\nModeler: Tankony\n\n2020-2023"
     },
 
     "autosave": {
-        "page": "/Phoenix2/Main_menu/autosave_name",
+        "page": "/Phoenix/Main_menu/Autosave_name",
         "header": "Enter the name of the autosave file",
         "placeholder": "fill autosave slot name to continue"
     },
 
     "race": {
-        "page": "/Phoenix2/Main_menu/choose_race",
+        "page": "/Phoenix/Main_menu/Choose_race",
         "button0": "Earthpony",
         "label0": "> Health: 200\n> Move inventory\nbuttons\n> Ability to run\n> Strong hits",
         "button1": "Unicorn",
@@ -57,6 +57,6 @@
 
     "load": {
         "text": "Loading",
-        "page": "/Phoenix2/Loading"
+        "page": "/Phoenix/Loading"
     }
 }

@@ -59,7 +59,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		InitControls();
 		InitRadiostation();
 
-		if (InRoom && !RadioManager.playerInside) RepeaterMode(true);
+		if (InRoom) RepeaterMode(true);
 
 		if (IsOn) SwitchOn(false);
 		else SwitchOff(false);

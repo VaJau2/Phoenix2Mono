@@ -29,7 +29,7 @@ public class LoadItemsFromSuitcase : TriggerBase
         }
         
         bool suitcaseEmpty = true;
-        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("Quest_suitcaseVacation");
+        bool playerHasSuitcase = Global.Get().player.Inventory.HasItem("Quest_suitcaseVacation");
         
         if (IsInstanceValid(saveNode) && playerHasSuitcase)
         {

@@ -349,14 +349,14 @@
     },
     "ammo308": {
         "name": ".308 Ammo",
-        "description": "Cartridges for equestrian rifle",
+        "description": "Cartridges for rifle of the capitalist bloc",
         "type": "ammo",
         "icon": "ammo308",
         "price": "5" 
     },
     "ammo762": {
         "name": "7.62mm Ammo",
-        "description": "Cartridges for foenum rifles",
+        "description": "Cartridges for rifles of the socialist bloc",
         "type": "ammo",
         "icon": "ammo762",
         "price": "2" 

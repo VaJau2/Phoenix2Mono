@@ -10,7 +10,7 @@ public class Room : SaveActive
     private RadioManager radioManager;
 
     [Export] private List<NodePath> activateTriggersPaths = new ();
-    private List<TriggerBase> activateTriggers = new ();
+    public List<TriggerBase> activateTriggers { get; } = new ();
     
     [Export] private bool changeEnvironment;
     [Export] private float backgroundEnergy;
@@ -18,9 +18,14 @@ public class Room : SaveActive
     private WorldEnvironment skybox;
     
     private AudioEffectsController audioEffectController;
+
+    private RoomManager roomManager;
     
     public override void _Ready()
     {
+        roomManager = GetNode<RoomManager>("/root/Main/Scene/rooms");
+        if (Visible) roomManager.CurrentRoom = this;
+        
         if (radioPaths?.Count > 0)
         {
             foreach (var radioPath in radioPaths)
@@ -51,9 +56,18 @@ public class Room : SaveActive
         await ToSignal(GetTree(), "idle_frame");
         
         audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
-
+        
         if (!Visible) return;
 
+        Enter(false);
+    }
+    
+    public void Enter(bool withTriggers = true)
+    {
+        roomManager.CurrentRoom = this;
+
+        radioManager?.EnterToRoom(radioList);
+        
         if (changeEnvironment)
         {
             skybox.Environment.BackgroundEnergy = backgroundEnergy;
@@ -61,43 +75,26 @@ public class Room : SaveActive
         }
         
         audioEffectController.AddEffects(Name);
-    }
-    
-    public void Enter()
-    {
-        if (radioManager != null)
-        {
-            radioManager.EnterToRoom(radioList);
-            radioManager.currentRoom = GetPath();
-        }
-
+        
+        if (!withTriggers || activateTriggers.Count == 0) return;
         foreach (var trigger in activateTriggers)
         {
             trigger.SetActive(true);
         }
-
-        if (changeEnvironment)
-        {
-            skybox.Environment.BackgroundEnergy = backgroundEnergy;
-            skybox.Environment.AmbientLightEnergy = ambientEnergy;
-        }
-        
-        audioEffectController.AddEffects(Name);
     }
 
-    public void Exit()
+    public void Exit(bool withTriggers = true)
     {
-        if (radioManager != null)
-        {
-            radioManager.ExitFromRoom(radioList);
-            radioManager.currentRoom = null;
-        }
+        roomManager.CurrentRoom = null;
 
+        radioManager?.ExitFromRoom(radioList);
+        
+        audioEffectController.RemoveEffects(Name);
+        
+        if (!withTriggers || activateTriggers.Count == 0) return;
         foreach (var trigger in activateTriggers)
         {
             trigger.SetActive(false);
         }
-
-        audioEffectController.RemoveEffects(Name);
     }
 }

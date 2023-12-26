@@ -123,7 +123,7 @@ public class PlayerCamera : Camera
         {
             float closeFov = 42f;
 
-            Dictionary armorProps = player.inventory.GetArmorProps();
+            Dictionary armorProps = player.Inventory.GetArmorProps();
             if (armorProps.Contains("closeFov"))
             {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());

@@ -23,7 +23,7 @@ public class BindIcon : ItemIcon
         player.Connect(nameof(Player.UseItem), this, nameof(OnPlayerUseItem));
         player.Connect(nameof(Player.ClearWeaponBindSignal), this, nameof(ClearWeaponBind));
 
-        if (myItemCode == player.inventory.weapon)
+        if (myItemCode == player.Inventory.weapon)
         {
             SetSelect(true);
         }

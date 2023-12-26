@@ -40,7 +40,7 @@ public class LocationExit : TriggerBase
         
         if (SaveInventory)
         {
-            saveNode.InventoryData = Global.Get().player.inventory.GetSaveData(false);
+            saveNode.InventoryData = Global.Get().player.Inventory.GetSaveData(false);
         }
 
         if (UseBlackScreen)

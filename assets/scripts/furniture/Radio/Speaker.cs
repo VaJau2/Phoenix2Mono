@@ -9,7 +9,7 @@ public class Speaker : RadioBase
     {
         InitBase();
 
-        if (InRoom && !RadioManager.playerInside) RepeaterMode(true);
+        if (InRoom) RepeaterMode(true);
 
         if (receiverPath != null)
         {

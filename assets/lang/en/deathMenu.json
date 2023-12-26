@@ -1,0 +1,36 @@
+{
+    "main": {
+        "page": "/Phoenix/Death_menu",
+        "again": "               [Last save]",
+        "load": "               [Choose save]",
+        "exit": "               [To main menu]"
+    },
+
+    "choose": {
+        "again": "Reload level",
+        "load": "Open loading menu",
+        "exit": "Back to main menu"
+    },
+
+    "header": {
+        "0": "Sorry, bad luck :c",
+        "1": "You tried",
+        "2": ":c",
+        "3": "Lose",
+        "4": "Oh, it must have hurt",
+        "5": "You will do it next time",
+        "6": "Lets try again, I believe in you",
+        "7": "You can do it",
+        "8": "War, death and ponies",
+        "9": "The last hit was fatal, it was over",
+        "10": "Poor little pony :c",
+        "11": "If you see this text, you probably were killed",
+        "12": "Such cruel death for poor little pony",
+        "13": "Quite suddenly, but quite naturally",
+        "14": "Ah, now it's all over again :c",
+        "15": "Death is inevitable. Besides this one, you can reboot here",
+        "16": "Hi, I'm death screen, nice to meet you c:",
+        "17": "You were just practicing. Now you'll show them all!",
+        "18": "T_T"
+    }
+}

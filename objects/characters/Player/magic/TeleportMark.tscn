@@ -24,6 +24,14 @@ extents = Vector3( 1.30655, 0.387396, 1.27154 )
 [node name="TeleportMark" type="Spatial"]
 script = ExtResource( 2 )
 
+[node name="light" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74101, 0 )
+light_color = Color( 0.0862745, 0.415686, 0.980392, 1 )
+light_energy = 0.3
+shadow_enabled = true
+omni_range = 10.0
+omni_attenuation = 2.28
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.72902, 0 )
 layers = 8

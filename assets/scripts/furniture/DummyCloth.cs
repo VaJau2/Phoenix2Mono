@@ -34,7 +34,7 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
 
     public void Interact(PlayerCamera interactor)
     {
-        var inventory = global.player.inventory;
+        var inventory = global.player.Inventory;
         var wearButton = inventory.GetWearButton(ItemType.armor);
         
         hasCloth = false;

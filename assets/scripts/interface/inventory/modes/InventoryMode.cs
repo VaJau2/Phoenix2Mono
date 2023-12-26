@@ -44,7 +44,7 @@ public abstract class InventoryMode
     protected IconWithShadow dragIcon;
     readonly Vector2 dragIconOffset = new Vector2(21, 21);
 
-    protected PlayerInventory inventory => player.inventory;
+    protected PlayerInventory inventory => player.Inventory;
     private PackedScene bagPrefab;
 
     public InventoryMode(InventoryMenu menu)

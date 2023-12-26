@@ -31,7 +31,7 @@ public class LoadLevelTrigger: TriggerBase
         
         if (SaveInventory)
         {
-            saveNode.InventoryData = player.inventory.GetSaveData(false);
+            saveNode.InventoryData = player.Inventory.GetSaveData(false);
         }
 
         levelsLoader.LoadLevel(NewLevelNum);
