@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=2]
+[gd_scene load_steps=158 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -108,7 +108,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
 [ext_resource path="res://assets/materials/environments/green_with_fog.tres" type="Environment" id=108]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=109]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=109]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work before Theater/Richard Gere - All I Care About.mp3" type="AudioStream" id=110]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Jean Goldkette and His Orchestra - Sunday.mp3" type="AudioStream" id=111]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Ben Selvin and the Crooners - Happy Days are Here Again.mp3" type="AudioStream" id=112]
@@ -118,6 +118,7 @@
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=116]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=117]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=118]
+[ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=119]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )
@@ -433,13 +434,12 @@ transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91
 IsImmortal = true
 moneyCount = 2000
 traderCode = "mrGutsy"
-startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "rifle308", "shotgun20", "automatic308", "pistol10S", "shotgun12", "automatic762" ]
+startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "sniper308", "shotgun20", "automatic308", "pistol10S", "shotgun12" ]
 startAmmoCount = {
 "ammo10": 50,
 "ammo12": 20,
 "ammo20": 40,
-"ammo308": 20,
-"ammo762": 50
+"ammo308": 20
 }
 
 [node name="private2" parent="npc" instance=ExtResource( 69 )]
@@ -553,6 +553,7 @@ shape = SubResource( 10 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="terrain"]
 transform = Transform( 0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0 )
+light_energy = 0.75
 shadow_enabled = true
 
 [node name="covers" type="Node" parent="terrain"]
@@ -794,7 +795,7 @@ material/0 = ExtResource( 19 )
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -95.7048, 0, 55.0719 )
 
 [node name="DoorTeleport1" parent="terrain/props/storage" instance=ExtResource( 20 )]
-transform = Transform( 1, 0, -5.03109e-07, 0, 1.7, 0, 2.18743e-07, 0, 2.3, 24.1315, 0.0121212, -3.38561 )
+transform = Transform( 1, 0, -5.03109e-07, 0, 1.7, 0, 2.18743e-07, 0, 2.3, 24.1315, -0.103688, -3.31661 )
 Inside = true
 newPlacePath = NodePath("../../../../rooms/storage/spawn")
 oldLocationPath = NodePath("../../..")
@@ -1070,7 +1071,17 @@ transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 5.51909
 shape = SubResource( 18 )
 
 [node name="lamp3" parent="rooms/kpp" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460157, 8.03778, 0.0505905 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.1, 0 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.6
 
 [node name="chair" parent="rooms/kpp" instance=ExtResource( 44 )]
 transform = Transform( -0.8, 0, -3.11531e-07, 0, 0.7, 0, 3.11531e-07, 0, -0.8, -1.10324, 1.19093, 0 )
@@ -1182,22 +1193,95 @@ shape = SubResource( 22 )
 [node name="light" type="Spatial" parent="rooms/kp"]
 
 [node name="lamp" parent="rooms/kp/light" instance=ExtResource( 25 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -1.2069, 8.63511, -5.70262 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -1.2069, 8.63511, -5.48232 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.5
 
 [node name="lamp2" parent="rooms/kp/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5449, 8.63512, 10.7992 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4615, 8.63512, 9.89298 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.5
 
 [node name="lamp3" parent="rooms/kp/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4967, 8.63511, -15.2072 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3494, 8.63511, -17.3698 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.5
+
+[node name="lamp7" parent="rooms/kp/light" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3494, 8.63511, 11.6925 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.5
 
 [node name="lamp4" parent="rooms/kp/light" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36898, 8.63512, 8.12752 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.5
 
 [node name="lamp5" parent="rooms/kp/light" instance=ExtResource( 25 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 1.94708, 8.63512, -16.1446 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.345657, 8.63512, -17.7935 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.5
 
 [node name="lamp6" parent="rooms/kp/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8251, 8.63512, -15.1623 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3446, 8.7096, -15.2787 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 15.0
+energy = 1.0
+bias = 0.5
 
 [node name="doors" type="Spatial" parent="rooms/kp"]
 
@@ -1504,9 +1588,29 @@ __meta__ = {
 
 [node name="lamp" parent="rooms/storage" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01399, 4.13007, 2.905 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.2
 
 [node name="lamp2" parent="rooms/storage" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01399, 4.13007, -17.7865 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.2
 
 [node name="box" parent="rooms/storage" instance=ExtResource( 26 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3737, -8.359, 7.40528 )
@@ -1597,13 +1701,56 @@ shape = SubResource( 33 )
 [node name="light" type="Spatial" parent="rooms/stolovaya"]
 
 [node name="lamp" parent="rooms/stolovaya/light" instance=ExtResource( 25 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 5.88329, 10.7815, -14.1062 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -7.90132, 10.7815, -15.2555 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 30.0
+energy = 1.0
+bias = 0.44
+
+[node name="lamp4" parent="rooms/stolovaya/light" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 1.1921e-07, 0, 1, 0, -1.1921e-07, 0, 1, 12.6, 10.7, -16.01 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 30.0
+energy = 1.0
+bias = 0.44
 
 [node name="lamp2" parent="rooms/stolovaya/light" instance=ExtResource( 25 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -8.42731, 10.6983, 13.7454 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 30.0
+energy = 1.0
+bias = 0.44
 
 [node name="lamp3" parent="rooms/stolovaya/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6532, 10.6983, 11.8779 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6, 10.7, 11 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.2
 
 [node name="props" type="Spatial" parent="rooms/stolovaya"]
 
@@ -2007,10 +2154,30 @@ texture = ExtResource( 92 )
 [node name="light" type="Spatial" parent="rooms/kazarma"]
 
 [node name="lamp" parent="rooms/kazarma/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.867088, 7.9178, -4.78774 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 7.9, -5 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.95
 
 [node name="lamp2" parent="rooms/kazarma/light" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50358, 17.974, 16.8044 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.799999, 7.9, 16.5 )
+script = ExtResource( 119 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 20.0
+energy = 1.0
+bias = 0.6
 
 [node name="windows" type="Spatial" parent="rooms/kazarma"]
 
@@ -2164,11 +2331,11 @@ volume_db = -20.0
 bus = "Music"
 script = SubResource( 39 )
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 109 )
 radioListPath = [ NodePath("../rooms/kp/props/Radio Main"), NodePath("../rooms/storage/shelf2/Radio Storage"), NodePath("../rooms/kpp/Speaker KPP"), NodePath("../rooms/stolovaya/props/Speaker"), NodePath("../rooms/kazarma/props/Speaker Barracks") ]
 
-[node name="Radio Applewood" parent="RadioController" instance=ExtResource( 23 )]
+[node name="Radio Applewood" parent="Radio Manager" instance=ExtResource( 23 )]
 scriptSongs = [ ExtResource( 28 ), ExtResource( 24 ), ExtResource( 110 ), ExtResource( 112 ), ExtResource( 111 ), ExtResource( 27 ) ]
 
 [connection signal="body_entered" from="triggers/exit" to="triggers/exit" method="_on_body_entered"]

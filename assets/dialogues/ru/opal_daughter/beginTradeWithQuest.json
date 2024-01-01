@@ -54,7 +54,21 @@
       "root_node": false,
       "body": "Просто осматриваюсь.",
       "speaker": "Страйкли",
-      "opposite": "Кобылка"
+      "opposite": "Кобылка",
+      "next": "M1.3"
+    },
+
+    "M1.3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "talkAgainWithFillyAndQuest"
+        }
+      ]
     },
 
     "M2": {

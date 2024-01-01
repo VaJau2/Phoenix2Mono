@@ -1,7 +1,7 @@
 {
     "pages": {
-        "mainMenu": "/Phoenix2/Main_menu/Settings",
-        "pauseMenu": "/Phoenix2/Pause_menu/Settings",
+        "mainMenu": "/Phoenix/Main_menu/Settings",
+        "pauseMenu": "/Phoenix/Pause_menu/Settings",
         "controls": "/Controls"
     },
 

@@ -4,7 +4,7 @@ using Godot.Collections;
 public class UseHandler
 {
     private Player Player => Global.Get().player;
-    private PlayerInventory Inventory => Player.inventory;
+    private PlayerInventory Inventory => Player.Inventory;
 
     public bool ModalOpened;
     

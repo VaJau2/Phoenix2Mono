@@ -1,6 +1,6 @@
 ﻿{
   "main": {
-    "page_header": "/Phoenix2/Main_menu/Level_select",
+    "page_header": "/Phoenix/Main_menu/Level_select",
     "levels_header": "Select level to load:",
     "items_header": "Items list (separated by commas):",
     "money_header": "Money count:",

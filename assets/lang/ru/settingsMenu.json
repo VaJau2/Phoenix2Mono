@@ -1,7 +1,7 @@
 {
     "pages": {
-        "mainMenu": "/Phoenix2/Главное_меню/Настройки",
-        "pauseMenu": "/Phoenix2/Меню_паузы/Настройки",
+        "mainMenu": "/Phoenix/Главное_меню/Настройки",
+        "pauseMenu": "/Phoenix/Меню_паузы/Настройки",
         "controls": "/Настройки_управления"
     },
 

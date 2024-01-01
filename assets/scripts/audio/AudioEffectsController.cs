@@ -23,7 +23,7 @@ public class AudioEffectsController : Node, ISavable
         
         await ToSignal(GetTree(), "idle_frame");
         
-        AddEffects(player.inventory.cloth);
+        AddEffects(player.Inventory.cloth);
     }
 
     public override void _ExitTree()
@@ -82,7 +82,7 @@ public class AudioEffectsController : Node, ISavable
 
     private void OnChangeView(bool toThird)
     {
-        if (Enum.TryParse(player.inventory.cloth, out FactoryType factoryType))
+        if (Enum.TryParse(player.Inventory.cloth, out FactoryType factoryType))
         {
             var factory = FactoriesManager.GetFactory(factoryType);
             var keys = factory.GetKeys();

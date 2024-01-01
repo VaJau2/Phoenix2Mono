@@ -1,9 +1,9 @@
 ﻿{
   "main": {
-    "page_save": "/Phoenix2/Pause_menu/Save_menu",
-    "page_load_main": "/Phoenix2/Main_menu/Load_menu",
-    "page_load_pause": "/Phoenix2/Pause_menu/Load_menu",
-    "page_load_death": "/Phoenix2/Death_menu/Load_menu",
+    "page_save": "/Phoenix/Pause_menu/Save_menu",
+    "page_load_main": "/Phoenix/Main_menu/Load_menu",
+    "page_load_pause": "/Phoenix/Pause_menu/Load_menu",
+    "page_load_death": "/Phoenix/Death_menu/Load_menu",
     "back": "[Back]",
     "input_placeholder": "Press save name",
     "rewrite": "[Rewrite]",

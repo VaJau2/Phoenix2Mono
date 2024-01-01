@@ -26,7 +26,7 @@ public class FurnDoor: FurnBase, ISavable
 
     public override void Interact(PlayerCamera interactor)
     {
-        var keys = player.inventory.GetKeys();
+        var keys = player.Inventory.GetKeys();
         interactor.closedTimer = ClickFurn(keys);
         interactor.onetimeHint = false;
     }

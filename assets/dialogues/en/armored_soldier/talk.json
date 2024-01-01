@@ -4,6 +4,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Lieutenant, stop!",
+            "config": "armored_soldier_phone",
             "speaker": "Armored soldier",
             "opposite": "Strikely",
             "options": [
@@ -25,6 +26,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "I know you! You saved me out there! If you weren't there, I'd be standing like that until the evening!",
+            "config": "armored_soldier_phone",
             "speaker": "Armored soldier",
             "opposite": "Strikely",
             "options": [
@@ -46,6 +48,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "I want to thank you again and give this as a gift.",
+            "config": "armored_soldier_phone",
             "speaker": "Armored soldier",
             "opposite": "Strikely",
             "options": [

@@ -191,9 +191,9 @@ public class PlayerWeapons : CollisionShape
     public void LoadNewAmmo()
     {
         string ammoType = tempWeaponStats["ammoType"].ToString();
-        if (player.inventory.ammoButtons.ContainsKey(ammoType))
+        if (player.Inventory.ammoButtons.ContainsKey(ammoType))
         {
-            tempAmmoButton = player.inventory.ammoButtons[ammoType];
+            tempAmmoButton = player.Inventory.ammoButtons[ammoType];
         }
         else
         {
@@ -370,7 +370,7 @@ public class PlayerWeapons : CollisionShape
 
             player.Body.Head.CloseEyes();
             var tempDistance = GetStatsInt("shootDistance");
-            Dictionary armorProps = player.inventory.GetArmorProps();
+            Dictionary armorProps = player.Inventory.GetArmorProps();
             if (armorProps.Contains("shootDistPlus"))
             {
                 tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());

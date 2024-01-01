@@ -5,10 +5,11 @@ public class PlayerRadiation
     private const int INCREASE_SPEED = 1;
     private const string RADIATION_COUNTER_ITEM = "radiationCounter";
 
+    private int radLevel;
+    private bool stoppedSounding;
+    
     private Player player;
     private AudioPlayerCommon audi;
-    private int radiationLevel;
-    private bool stoppedSounding;
 
     public PlayerRadiation(Player player)
     {
@@ -20,7 +21,7 @@ public class PlayerRadiation
     {
         get
         {
-            var armorProps = player.inventory.GetArmorProps();
+            var armorProps = player.Inventory.GetArmorProps();
             if (!armorProps.Contains("ignoreRadiation")) return false;
             
             var ignoreValue = bool.Parse(armorProps["ignoreRadiation"].ToString());
@@ -28,13 +29,32 @@ public class PlayerRadiation
         }
     }
 
+    public void SetRadLevel(int _radLevel)
+    {
+        if (_radLevel >= player.HealthMax)
+        {
+            radLevel = player.HealthMax;
+            player.DecreaseHealth(player.HealthMax);
+            player.TakeDamage(player, 1);
+        }
+        else
+        {
+            radLevel = _radLevel;
+        }
+    }
+    
+    public int GetRadLevel()
+    {
+        return radLevel;
+    }
+    
     public void IncreaseRadiation()
     {
         if (IgnoreRadiation) return;
         
-        radiationLevel += INCREASE_SPEED;
+        radLevel += INCREASE_SPEED;
 
-        if (player.Health + radiationLevel > player.HealthMax)
+        if (player.Health + radLevel > player.HealthMax)
         {
             player.DecreaseHealth(INCREASE_SPEED);
         }
@@ -47,7 +67,7 @@ public class PlayerRadiation
 
     public void StartSounding()
     {
-        if (!player.inventory.HasItem(RADIATION_COUNTER_ITEM)) return;
+        if (!player.Inventory.HasItem(RADIATION_COUNTER_ITEM)) return;
         stoppedSounding = false;
         audi.Play();
     }
@@ -56,9 +76,6 @@ public class PlayerRadiation
     {
         audi.Stop();
     }
-
-    public int GetRadiationLevel()
-        => radiationLevel;
 
     public void CheckDropRadiationCounter(string itemCode)
     {

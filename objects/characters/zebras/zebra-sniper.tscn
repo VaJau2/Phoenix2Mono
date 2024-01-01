@@ -153,15 +153,11 @@ StartHealth = 52
 relation = 1
 WalkSpeed = 0
 hittedSounds = [  ]
-weaponCode = "sniper307"
+weaponCode = "rifle762"
 ammoCount = {
-"ammo307": 10
+"ammo762": 5
 }
 RunSpeed = 0
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -229,12 +225,10 @@ transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86
 [node name="Mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 0.124367, -8.19713e-07, -3.2203e-06, 4.24165e-14, 1.2279, -0.312557, 3.26164e-07, 0.312557, 1.2279, 0.00658495, 2.56006, 0.545186 )
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="2"]
 transform = Transform( 0.141228, 0.108134, -0.0700117, -0.128669, 0.11338, -0.0844347, -0.00623769, 0.109508, 0.156554, 0.861525, 1.10549, 0.528115 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 3 )
@@ -244,12 +238,10 @@ material/0 = ExtResource( 5 )
 [node name="cloak" type="MeshInstance" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 5 )
 skin = SubResource( 4 )
-material/0 = null
 
 [node name="tail" type="MeshInstance" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 6 )
 skin = SubResource( 4 )
-material/0 = null
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 7 )

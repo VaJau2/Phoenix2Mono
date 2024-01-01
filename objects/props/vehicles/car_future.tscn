@@ -1,23 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/vehicles/car_future/_base_color.tga" type="Texture" id=2]
-[ext_resource path="res://assets/models/props/vehicles/car_future/_normal_map.tga" type="Texture" id=3]
-[ext_resource path="res://assets/models/props/vehicles/car_future/_metallness.tga" type="Texture" id=4]
 [ext_resource path="res://assets/models/props/vehicles/car_future/_roughness.tga" type="Texture" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 2 )
-metallic = 0.67
-metallic_specular = 0.15
-metallic_texture = ExtResource( 4 )
+metallic = 0.5
 metallic_texture_channel = 4
+roughness = 0.75
 roughness_texture = ExtResource( 5 )
 roughness_texture_channel = 4
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 3 )
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "Cylinder001"
@@ -54,7 +48,6 @@ physics_material_override = ExtResource( 1 )
 [node name="Cylinder001" type="MeshInstance" parent="."]
 transform = Transform( -3.36892e-09, 0.0770719, -3.36892e-09, 0, -3.36892e-09, -0.0770719, -0.0770719, -3.36892e-09, 1.4726e-16, -0.250755, 2.19366, 0 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77255, 1.81879, 0 )

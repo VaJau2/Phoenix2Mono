@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/rifle308.wav-98054e99de90b0f628d323566380d8b5.sample"
+path="res://.import/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample"
 
 [deps]
 
-source_file="res://assets/audio/guns/shoot/rifle308.wav"
-dest_files=[ "res://.import/rifle308.wav-98054e99de90b0f628d323566380d8b5.sample" ]
+source_file="res://assets/audio/guns/shoot/rifle762.wav"
+dest_files=[ "res://.import/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample" ]
 
 [params]
 

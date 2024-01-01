@@ -153,7 +153,7 @@
 
 
     "revolver32": {
-        "name": ".32 revolver",
+        "name": ".32 Revolver",
         "description": "Not expensive weapon, shooting common cartridges, does not deal much damage",
         "type": "weapon",
         "icon": "revolver32",
@@ -167,7 +167,7 @@
         "sound": "weapon"
     },
     "pistol10S": {
-        "name": ".10 silenced pistol",
+        "name": "Silenced 10mm pistol",
         "description": "Perfect choise for ponies who like quiet kills",
         "type": "weapon",
         "icon": "pistol10S",
@@ -182,7 +182,7 @@
         "sound": "weapon"
     },
     "shotgun12": {
-        "name": ".12 shotgun",
+        "name": ".12 Shotgun",
         "description": "Deals a lot of damage in close range",
         "type": "weapon",
         "icon": "shotgun12",
@@ -196,7 +196,7 @@
         "sound": "weapon"
     },
     "shotgun20": {
-        "name": ".20 double-barrel",
+        "name": ".20 Sawn-off shotgun",
         "description": "Weapon for close range vendetta",
         "type": "weapon",
         "icon": "shotgun20",
@@ -210,7 +210,7 @@
         "sound": "weapon"
     },
     "sniper308": {
-        "name": ".308 sniper rifle",
+        "name": ".308 Sniper rifle",
         "description": "How can a pony even use this scope?",
         "type": "weapon",
         "icon": "sniper308",
@@ -222,21 +222,21 @@
         "ammoType": "ammo308",
         "sound": "weapon"
     },
-    "rifle308": {
-        "name": ".308 rifle",
+    "rifle762": {
+        "name": "7.62mm Rifle",
         "description": "An inexpensive version of a rifle that shoots quite powerful cartridges at long distances",
         "type": "weapon",
-        "icon": "rifle308",
+        "icon": "rifle762",
         "price": "600",
         "damage": "60",
         "shootDistance": "180",
         "cooldown": "1.5",
         "recoil": "1",
-        "ammoType": "ammo308",
+        "ammoType": "ammo762",
         "sound": "weapon"
     },
     "automatic308": {
-        "name": ".308 automatic rifle",
+        "name": ".308 Automatic rifle",
         "description": "A rifle that fires automatic fire at long ranges, deals many damage",
         "type": "weapon",
         "icon": "automatic308",
@@ -249,7 +249,7 @@
         "sound": "weapon"
     },
     "automatic762": {
-        "name": "7.62mm automatic rifle",
+        "name": "7.62mm Automatic rifle",
         "description": "A rifle that fires automatic fire at meduim ranges, deals not many damage",
         "type": "weapon",
         "icon": "automatic762",
@@ -262,7 +262,7 @@
         "sound": "weapon"
     },
     "submachine10": {
-        "name": ".10 submachine gun",
+        "name": "10mm Submachine gun",
         "description": "Submachine gun for large caliber cartridges with appropriate recoil",
         "type": "weapon",
         "icon": "submachine10",
@@ -320,43 +320,43 @@
 
 
     "ammo32": {
-        "name": ".32 ammo",
-        "description": "Cheap small-caliber pistol cartridges",
+        "name": ".32 Ammo",
+        "description": "Small caliber revolver cartridges",
         "type": "ammo",
         "icon": "ammo32",
         "price": "1" 
     },
     "ammo10": {
-        "name": ".10 ammo",
-        "description": "Pistol cartridges of a fairly large caliber",
+        "name": "10mm Ammo",
+        "description": "Pistol cartridges of a large caliber",
         "type": "ammo",
         "icon": "ammo10",
         "price": "2" 
     },
     "ammo12": {
-        "name": ".12 ammo",
-        "description": "Powerful weapon cartridges for expensive shotguns",
+        "name": ".12 Shells",
+        "description": "Large-bore shells for high-powered shotguns",
         "type": "ammo",
         "icon": "ammo12",
         "price": "4" 
     },
     "ammo20": {
-        "name": ".20 ammo",
-        "description": "Powerful weapon cartridges for cheap shotguns",
+        "name": ".20 Shells",
+        "description": "Small-bore shells for light shotguns",
         "type": "ammo",
         "icon": "ammo20",
         "price": "3" 
     },
     "ammo308": {
-        "name": ".308 ammo",
-        "description": "Rifle cartridges",
+        "name": ".308 Ammo",
+        "description": "Cartridges for rifle of the capitalist bloc",
         "type": "ammo",
         "icon": "ammo308",
         "price": "5" 
     },
     "ammo762": {
-        "name": "7.62 ammo",
-        "description": "Cartridges for auto rifles",
+        "name": "7.62mm Ammo",
+        "description": "Cartridges for rifles of the socialist bloc",
         "type": "ammo",
         "icon": "ammo762",
         "price": "2" 

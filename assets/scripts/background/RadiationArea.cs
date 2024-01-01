@@ -2,7 +2,7 @@ using Godot;
 
 public class RadiationArea : Area
 {
-    private const float RADIATION_TIMER = 0.1f;
+    private const float RADIATION_TIMER = 0.06f;
     
     private Player tempPlayer;
     private float tempTimer;
@@ -17,7 +17,7 @@ public class RadiationArea : Area
             return;
         }
         
-        tempPlayer.radiation.IncreaseRadiation();
+        tempPlayer.Radiation.IncreaseRadiation();
         tempTimer = RADIATION_TIMER;
     }
 
@@ -25,13 +25,13 @@ public class RadiationArea : Area
     {
         if (!(body is Player player)) return;
         tempPlayer = player;
-        tempPlayer.radiation.StartSounding();
+        tempPlayer.Radiation.StartSounding();
     }
 
     private void _on_radiation_body_exited(Node body)
     {
         if (body != tempPlayer) return;
-        tempPlayer.radiation.StopSounding();
+        tempPlayer.Radiation.StopSounding();
         tempPlayer = null;
     }
 }

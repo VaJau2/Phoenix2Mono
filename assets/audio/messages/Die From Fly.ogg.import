@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Die From Fly.ogg-1ba49a8a48cd54d4e4a19e8f039361a5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/messages/Die From Fly.ogg"
+dest_files=[ "res://.import/Die From Fly.ogg-1ba49a8a48cd54d4e4a19e8f039361a5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -7,16 +7,25 @@ using Godot;
 public class Canvas : CanvasLayer
 {
     private const float SPEED = 2.0f;
+    private const float TIME = 1.0f;
     
     private ColorRect blackScreen;
-    private float timer = 1.0f;
+    private float timer;
 
     public override void _Ready()
     {
         blackScreen = GetNode<ColorRect>("black");
-        blackScreen.Color = Colors.Black;
+        FadeOut();
     }
 
+    public void FadeOut()
+    {
+        blackScreen.Color = Colors.Black;
+        timer = TIME;
+        
+        SetProcess(true);
+    }
+    
     public override void _Process(float delta)
     {
         if (timer > 0)

@@ -24,10 +24,10 @@ public class HealthBar : Control
             return;
         }
         
-        float healthRatio = (float)player.Health / player.HealthMax;
+        var healthRatio = (float)player.Health / player.HealthMax;
         mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);
 
-        float radiationRatio = (float)player.radiation.GetRadiationLevel() / player.HealthMax;
+        var radiationRatio = (float)player.Radiation.GetRadLevel() / player.HealthMax;
         radiationMask.RectSize = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
     }
 }

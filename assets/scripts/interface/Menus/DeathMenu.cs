@@ -1,6 +1,6 @@
 using Godot;
 
-public class DealthMenu : MenuBase
+public class DeathMenu : MenuBase
 {
     MenuAudi audi;
 
@@ -20,6 +20,8 @@ public class DealthMenu : MenuBase
 
     private void loadMenu()
     {
+        menuName = "deathMenu";
+        
         menuPage = GetNode<Control>("Menu");
         loadPage = GetNode<LoadMenu>("Load");
         
@@ -37,10 +39,10 @@ public class DealthMenu : MenuBase
 
     public override void LoadInterfaceLanguage()
     {
-        pageLabel.Text   = InterfaceLang.GetPhrase("dealthMenu", "main", "page");
-        againButton.Text = InterfaceLang.GetPhrase("dealthMenu", "main", "again");
-        loadButton.Text  = InterfaceLang.GetPhrase("dealthMenu", "main", "load");
-        exitButton.Text  = InterfaceLang.GetPhrase("dealthMenu", "main", "exit");
+        pageLabel.Text   = InterfaceLang.GetPhrase("deathMenu", "main", "page");
+        againButton.Text = InterfaceLang.GetPhrase("deathMenu", "main", "again");
+        loadButton.Text  = InterfaceLang.GetPhrase("deathMenu", "main", "load");
+        exitButton.Text  = InterfaceLang.GetPhrase("deathMenu", "main", "exit");
         
         modalHeader.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "header");
         modalDesc.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "desc");
@@ -50,7 +52,7 @@ public class DealthMenu : MenuBase
 
     private void getRandomHeaderPhrase()
     {
-        var phrases = InterfaceLang.GetPhrasesSection("dealthMenu", "header");
+        var phrases = InterfaceLang.GetPhrasesSection("deathMenu", "header");
         var phrasesCount = phrases.Keys.Count;
         var rand = new RandomNumberGenerator();
         rand.Randomize();
@@ -109,7 +111,6 @@ public class DealthMenu : MenuBase
     {
         audi = GetNode<MenuAudi>("audi");
         base._Ready();
-        menuName = "dealthMenu";
         loadMenu();
         LoadInterfaceLanguage();
     }

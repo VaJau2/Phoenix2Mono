@@ -4,6 +4,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Лейтенант, стойте!",
+            "config": "armored_soldier_phone",
             "speaker": "Солдат в броне",
             "opposite": "Страйкли",
             "options": [
@@ -25,6 +26,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Я вас узнал! Это же вы меня тогда спасли! Если бы не вы, я бы там до вечера стоял!",
+            "config": "armored_soldier_phone",
             "speaker": "Солдат в броне",
             "opposite": "Страйкли",
             "options": [
@@ -46,6 +48,7 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Я хотел поблагодарить вас еще раз и дать в подарок вот это.",
+            "config": "armored_soldier_phone",
             "speaker": "Солдат в броне",
             "opposite": "Страйкли",
             "options": [

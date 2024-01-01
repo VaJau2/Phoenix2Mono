@@ -68,11 +68,11 @@ public class PlayerSpawner : Spatial
                     if (checkSavedMoney && savedData.InventoryData.Contains("money"))
                     {
                         var loadedMoney = savedData.InventoryData["money"].ToString();
-                        player.inventory.LoadMoney(loadedMoney);
+                        player.Inventory.LoadMoney(loadedMoney);
                     }
                     if (checkSavedData)
                     {
-                        player.inventory.LoadData(savedData.InventoryData);
+                        player.Inventory.LoadData(savedData.InventoryData);
                         savedData.CheckClonedSaveData();
                         QueueFree();
                         return;
@@ -83,16 +83,16 @@ public class PlayerSpawner : Spatial
             //если деньги не переносятся между уровнями, загружается стартовое значение
             if (!checkSavedMoney)
             {
-                player.inventory.money = moneyCount;
+                player.Inventory.money = moneyCount;
             }
             
             //загрузка стартовых вещей
-            player.inventory.LoadItems(itemCodes, ammo);
+            player.Inventory.LoadItems(itemCodes, ammo);
 
             //загрузка надетой на ГГ брони
             if (clothCode != "" && clothCode != "empty")
             {
-                player.inventory.LoadWearItem(clothCode, ItemType.armor);
+                player.Inventory.LoadWearItem(clothCode, ItemType.armor);
             }
         }
 
