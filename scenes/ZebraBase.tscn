@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=2]
+[gd_scene load_steps=162 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=42]
 [ext_resource path="res://objects/characters/zebras/zebra-commander.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=44]
+[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=45]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=46]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
 [ext_resource path="res://objects/characters/other/dragon/dragon.tscn" type="PackedScene" id=48]
@@ -1222,6 +1223,7 @@ unit_size = 10.0
 max_distance = 1500.0
 
 [node name="rooms" type="Node" parent="."]
+script = ExtResource( 45 )
 
 [node name="storage1" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.72, -100, 33.235 )
@@ -1237,7 +1239,6 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.8742
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05247, 13.4698, -15.6285 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1251,7 +1252,6 @@ bias = 0.2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05247, 13.4698, 18.6064 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1403,7 +1403,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8866, 1.55805, -17.4879 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05247, 13.4698, -15.6285 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1417,7 +1416,6 @@ bias = 0.2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05247, 13.4698, 18.6064 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1604,7 +1602,6 @@ shape = SubResource( 31 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.3246, 7.853, -0.359951 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1618,7 +1615,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.534, 7.853, 16.0998 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1632,7 +1628,6 @@ bias = 0.65
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.5854, 7.853, -13.7438 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1646,7 +1641,6 @@ bias = 0.65
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.3246, 7.853, -15.6907 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1660,7 +1654,6 @@ bias = 0.65
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.3246, 7.853, 12.044 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1674,7 +1667,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4715, 16.9015, 12.4793 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1688,7 +1680,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24562, 16.9015, -16.2988 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1702,7 +1693,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2804, 16.9015, -16.2988 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1716,7 +1706,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0317, 16.9015, -14.1815 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -1730,7 +1719,6 @@ bias = 0.65
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0317, 16.9015, 7.81849 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,
@@ -2012,7 +2000,6 @@ shape = SubResource( 37 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73569, 9.20682, 0 )
 script = ExtResource( 42 )
 BrakeDamage = 50.0
-BrokenMaterial = null
 objectType = 0
 brakeSounds = {
 "brake1": null,

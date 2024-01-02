@@ -129,9 +129,10 @@ public class DialogueMenu : Control, IMenu
                 break;
             
             case "combat":
+                npc.SetState(NPCState.Idle);
                 npc.aggressiveAgainstPlayer = true;
+                npc.relation = Relation.Enemy;
                 npc.seekArea.AddEnemyInArea(player);
-                npc.SetState(NPCState.Attack);
                 npc = null;
                 break;
             

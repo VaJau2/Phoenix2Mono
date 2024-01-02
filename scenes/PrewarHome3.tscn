@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=2]
+[gd_scene load_steps=175 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -101,6 +101,7 @@
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=99]
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=100]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=101]
+[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=102]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=103]
 
 [sub_resource type="ConcavePolygonShape" id=1]
@@ -1343,6 +1344,7 @@ bus = "Sound"
 script = SubResource( 22 )
 
 [node name="rooms" type="Node" parent="."]
+script = ExtResource( 102 )
 
 [node name="mansion" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.893, -100, 52.1357 )
