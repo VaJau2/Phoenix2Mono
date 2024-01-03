@@ -2,6 +2,7 @@
 using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PhoenixSystem : Node, ISavable
 {
@@ -15,6 +16,7 @@ public class PhoenixSystem : Node, ISavable
     private int cloneNumber;
     
     private CloneFlaskTrigger cloneFlaskTrigger;
+    private PlayerSpawner playerSpawner;
     private PlayerDeathManager deathManager;
     private RoomManager roomManager;
 
@@ -25,9 +27,8 @@ public class PhoenixSystem : Node, ISavable
         
         cloneFlaskTrigger = GetNode<CloneFlaskTrigger>("Clone Flask Trigger");
         
-        foreach (var path in cloneFlasksPathes)
+        foreach (var cloneFlask in cloneFlasksPathes.Select(GetNodeOrNull<CloneFlask>))
         {
-            var cloneFlask = GetNodeOrNull<CloneFlask>(path);
             cloneFlasks.Add(cloneFlask);
         }
 
@@ -41,26 +42,29 @@ public class PhoenixSystem : Node, ISavable
     {
         await ToSignal(GetTree(), "idle_frame");
         
-        deathManager = Global.Get().player.DeathManager;
-        if (cloneNumber > 0) deathManager.permanentDeath = false;
-        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
-        
-        if (cloneFlasks.Count == 0) return;
-
-        if (cloneFlasks.Count == 1)
-        {
-            deathManager.permanentDeath = true;
-        }
-        
         if (CloneWokeUp) return;
-        
-        var cloneFlask = cloneFlasks[cloneNumber];
-        cloneFlaskTrigger.Resurrect(cloneFlask, this);
-        cloneFlasks.Remove(cloneFlask);
-        cloneNumber = cloneFlasks.Count - 1;
+        StartCloning();
     }
     
     private void OnCloneDie()
+    {
+        var oldPlayer = Global.Get().player;
+        Global.Get().player = null;
+        
+        foreach (Node node in oldPlayer.GetChildren())
+        {
+            if (node.Name == "player_body") continue;
+            node.SetProcess(false);
+            node.QueueFree();
+        }
+
+        oldPlayer.Body.DetachFromPlayer();
+        oldPlayer.SetScript(null);
+        
+        StartCloning();
+    }
+
+    private async void StartCloning()
     {
         if (cloneFlasks.Count == 0) return;
 
@@ -82,9 +86,16 @@ public class PhoenixSystem : Node, ISavable
         }
         
         var cloneFlask = cloneFlasks[cloneNumber];
+        Global.Get().playerRace = cloneFlask.GetRace();
         cloneFlaskTrigger.Resurrect(cloneFlask, this);
         cloneFlasks.Remove(cloneFlask);
         cloneNumber = cloneFlasks.Count - 1;
+
+        await ToSignal(GetTree(), "idle_frame");
+        
+        deathManager = Global.Get().player.DeathManager;
+        if (cloneNumber > 0) deathManager.permanentDeath = false;
+        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
     }
 
     public Dictionary GetSaveData()

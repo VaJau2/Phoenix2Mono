@@ -6,8 +6,8 @@ public class Player : Character
 {
     protected Global global = Global.Get();
     public float MouseSensivity = 0.1f;
-    const int CAMERA_MIN_Y = -65;
-    const int CAMERA_MAX_Y = 70;
+    public const int CAMERA_MIN_Y = -65;
+    public const int CAMERA_MAX_Y = 70;
     protected const int GRAVITY = -50;
     protected const float JUMP_SPEED = 18f;
     const float ACCEL = 5.5f;
@@ -294,16 +294,6 @@ public class Player : Character
         }
         
         base.HealHealth(healing);
-    }
-
-    public void Resurrect()
-    {
-        if (!IsDead) return;
-        
-        Radiation.SetRadLevel(0);
-        Health = HealthMax;
-        Body.Resurrect();
-        IsDead = false;
     }
     
     public void Sit(bool sitOn)

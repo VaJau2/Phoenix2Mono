@@ -18,11 +18,8 @@ public class HealthBar : Control
 
     public override void _Process(float delta)
     {
-        if (player == null)
-        {
-            player = Global.Get().player;
-            return;
-        }
+        player = Global.Get().player;
+        if (player == null) return;
         
         var healthRatio = (float)player.Health / player.HealthMax;
         mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);

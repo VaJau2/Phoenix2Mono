@@ -111,5 +111,13 @@
         "pressLabel": "press",
         "toExitToMainMenu": "to exit to main menu",
         "skip": "skip"
+    },
+
+    "testing": {
+        "heal": "[DEV] Player has been healed",
+        "killEnemies": "[DEV] All enemies have been killed",
+        "killPlayer": "[DEV] Player has been killed",
+        "freeCameraOn": "[DEV] Free camera on",
+        "freeCameraOff": "[DEV] Free camera off"
     }
 }

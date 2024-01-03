@@ -3,22 +3,18 @@ using Godot;
 
 public class CloneFlaskTrigger : TriggerBase
 {
+    private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
+    private Canvas canvas;
+    
     private int step;
     private float timer;
-
-    private AudioEffectsController audioEffectController;
-    private Canvas canvas;
-
-    private PhoenixSystem phoenixSystem;
     
     public override async void _Ready()
     {
         SetProcess(false);
 
         await ToSignal(GetTree(), "idle_frame");
-
-        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
         canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
     }
 
@@ -36,25 +32,32 @@ public class CloneFlaskTrigger : TriggerBase
         }
     }
 
-    public void Resurrect(CloneFlask _cloneFlask, PhoenixSystem _phoenixSystem)
+    public async void Resurrect(CloneFlask _cloneFlask, PhoenixSystem _phoenixSystem)
     {
         cloneFlask = _cloneFlask;
         phoenixSystem = _phoenixSystem;
         phoenixSystem.CloneWokeUp = false;
+
+        if (Global.Get().player == null)
+        {
+            var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
+            playerSpawner.InitSpawn();
+            
+            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.Spawned));
+        }
         
         _on_activate_trigger();
     }
     
     public override void _on_activate_trigger()
     {
-        var global = Global.Get();
-        var player = global.player;
+        var player = Global.Get().player;
+        var audioEffectController = player.GetNode<AudioEffectsController>("audioEffectsController");
 
         switch (step)
         {
             case 0:
-                player.Resurrect();
-                cloneFlask.SetRace(global.playerRace);
+                player.HealHealth(player.HealthMax);
                 player.Visible = false;
                 player.RotationHelperThird.SetThirdView(false);
                 player.RotationHelperThird.MayChange = false;

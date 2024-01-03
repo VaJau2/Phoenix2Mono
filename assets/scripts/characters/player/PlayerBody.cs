@@ -372,29 +372,24 @@ public class PlayerBody : Spatial
         SetProcess(false);
     }
 
-    public void Resurrect()
+    public void DetachFromPlayer()
     {
-        playerSkeleton.PhysicalBonesStopSimulation();
-        player.CollisionLayer = 1;
-        player.CollisionMask = 1;
-        
-        var deadBody = (Spatial)playerSkeleton.GetParent().Duplicate();
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "Armature") continue;
+            node.SetProcess(false);
+            node.QueueFree();
+        }
 
-        var deadSkeleton = deadBody.GetNode<Skeleton>("Skeleton");
-        deadSkeleton.GetNode("Body").QueueFree();
-        deadSkeleton.GetNode("artifact").QueueFree();
-        deadSkeleton.PhysicalBonesStartSimulation();
+        var deadSkeleton = GetNode<Skeleton>("Armature/Skeleton");
+        
+        //TODO:
+        // присвоить телу материал с закрытыми глазами
+        // превратить игрока в сундук с вещами из инвентаря
         
         var mesh = deadSkeleton.GetNode<MeshInstance>("Body_third");
         mesh.CastShadow = GeometryInstance.ShadowCastingSetting.On;
         mesh.SetScript(null);
-
-        var parent = player.GetParent();
-        parent.AddChild(deadBody);
-        deadBody.GlobalTransform = Global.SetNewOrigin(deadBody.GlobalTransform, GlobalTransform.origin);
-
-        playback.Start("Idle1");
-        SetProcess(true);
     }
 
     public override void _Ready()

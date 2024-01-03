@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Room : SaveActive
 {
@@ -28,9 +29,8 @@ public class Room : SaveActive
         
         if (radioPaths?.Count > 0)
         {
-            foreach (var radioPath in radioPaths)
+            foreach (var radio in radioPaths.Select(GetNode<RadioBase>))
             {
-                var radio = GetNode<RadioBase>(radioPath);
                 radio.depthOfRoom = depth;
                 radio.InRoom = true;
                 radioList.Add(radio);
@@ -39,9 +39,8 @@ public class Room : SaveActive
             radioManager = GetNode<RadioManager>("/root/Main/Scene/Radio Manager");
         }
 
-        foreach (var path in activateTriggersPaths)
+        foreach (var trigger in activateTriggersPaths.Select(GetNode<TriggerBase>))
         {
-            var trigger = GetNode<TriggerBase>(path);
             activateTriggers.Add(trigger);
         }
 

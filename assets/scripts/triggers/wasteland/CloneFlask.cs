@@ -66,7 +66,6 @@ public class CloneFlask : Spatial, ISavable
         }
         else
         {
-            //Global.AddDeletedObject(_object.Name);
             _object.QueueFree();
             animate = false;
         }
@@ -108,14 +107,11 @@ public class CloneFlask : Spatial, ISavable
     public void DeleteBody()
     {
         var armature = GetNode<Spatial>("Armature");
-        //Global.AddDeletedObject(armature.Name);
         armature.QueueFree();
 
         var light = GetNode<Spatial>("light");
-        //Global.AddDeletedObject(light.Name);
         light.QueueFree();
         
-        //Global.AddDeletedObject(anim.Name);
         anim.QueueFree();
     }
 
@@ -142,6 +138,8 @@ public class CloneFlask : Spatial, ISavable
         }
     }
 
+    public Race GetRace() => cloneRace;
+
     public Dictionary GetSaveData()
     {
         return new Dictionary
@@ -153,12 +151,11 @@ public class CloneFlask : Spatial, ISavable
     public void LoadData(Dictionary data)
     {
         wokenUp = System.Convert.ToBoolean(data["wokenUp"]);
-        if (wokenUp)
-        {
-            DeleteBody();
-            GetNode<MeshInstance>("wires").QueueFree();
-            GetNode<Spatial>("water").QueueFree();
-            GetNode<Spatial>("flask-glass").QueueFree();
-        }
+        if (!wokenUp) return;
+        
+        DeleteBody();
+        GetNode<MeshInstance>("wires").QueueFree();
+        GetNode<Spatial>("water").QueueFree();
+        GetNode<Spatial>("flask-glass").QueueFree();
     }
 }
