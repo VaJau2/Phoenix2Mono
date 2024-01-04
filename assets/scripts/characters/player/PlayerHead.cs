@@ -32,6 +32,13 @@ public class PlayerHead : MeshInstance
         }
     }
 
+    public void PermanentlyCloseEyes()
+    {
+        var closedEyesMateralPath = "res://assets/materials/player/player_body_closed_eyes.material";
+        var material = GD.Load<SpatialMaterial>(closedEyesMateralPath);
+        SetSurfaceMaterial(0, material);
+    }
+
     public void CloseEyes()
     {
         ChangeMaterialTexture(false);

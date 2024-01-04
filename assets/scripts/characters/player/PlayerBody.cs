@@ -374,6 +374,8 @@ public class PlayerBody : Spatial
 
     public void DetachFromPlayer()
     {
+        Head.PermanentlyCloseEyes();
+        
         foreach (Node node in GetChildren())
         {
             if (node.Name == "Armature") continue;
@@ -382,10 +384,6 @@ public class PlayerBody : Spatial
         }
 
         var deadSkeleton = GetNode<Skeleton>("Armature/Skeleton");
-        
-        //TODO:
-        // присвоить телу материал с закрытыми глазами
-        // превратить игрока в сундук с вещами из инвентаря
         
         var mesh = deadSkeleton.GetNode<MeshInstance>("Body_third");
         mesh.CastShadow = GeometryInstance.ShadowCastingSetting.On;
