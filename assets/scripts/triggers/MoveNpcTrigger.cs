@@ -12,6 +12,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public float lastTimer = 1f;
     [Export] public bool runToPoint;
     [Export] public bool teleportToPoint;
+    [Export] public bool setStartPoint = true;
 
     private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
     private Array<Spatial> points = new Array<Spatial>();
@@ -88,8 +89,12 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         int i = step;
         if (IsInstanceValid(npc[i]))
         {
-            npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
-            npc[i].myStartRot = points[i].Rotation;
+            if (setStartPoint)
+            {
+                npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
+                npc[i].myStartRot = points[i].Rotation;
+            }
+            
             if (idleAnims != null && idleAnims.Count > i)
             {
                 npc[i].IdleAnim = idleAnims[i];
@@ -106,7 +111,6 @@ public class MoveNpcTrigger: ActivateOtherTrigger
                 npc[i].GlobalTransform = Global.SetNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.origin);
                 npc[i].Scale = oldScale;
             }
-            
         }
         
         step++;

@@ -10,7 +10,7 @@ using Godot;
 /// </summary>
 public class PlayerTestingCommands : Node
 {
-    private const int KILL_DAMAGE = 999;
+    private const int KILL_DAMAGE = 9999;
     
     private enum CommandType
     {
@@ -45,7 +45,7 @@ public class PlayerTestingCommands : Node
                 foreach (var child in npcParent.GetChildren())
                 {
                     if (child is not NPC npc) continue;
-                    if (npc.relation != Relation.Enemy) continue;
+                    if (npc.relation != Relation.Enemy && npc is not Dragon) continue;
                     if (npc.Health <= 0) continue;
                     npc.TakeDamage(npc, KILL_DAMAGE);
                 }

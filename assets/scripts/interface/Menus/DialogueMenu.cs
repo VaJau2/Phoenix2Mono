@@ -205,7 +205,10 @@ public class DialogueMenu : Control, IMenu
         dialogueAudio.Stop();
         player.Inventory.SetBindsCooldown(0.5f);
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        player.MayRotateHead = player.MayMove = true;
+        
+        player.SetMayMove(true);
+        player.MayRotateHead = true;
+        
         if (npc != null) 
         {
             npc.SetState(NPCState.Idle);

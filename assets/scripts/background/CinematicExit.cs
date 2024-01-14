@@ -100,7 +100,7 @@ public class CinematicExit : Area, ISavable
     {
         cinematicCamera = new Camera();
         cinematicCamera.Name = "Created_CinematicCamera";
-        GetParent().GetParent().AddChild(cinematicCamera);
+        GetNode("../../").CallDeferred("AddChild", cinematicCamera);
 
         var locationCenter = new Vector3(
             GlobalTransform.origin.x, 

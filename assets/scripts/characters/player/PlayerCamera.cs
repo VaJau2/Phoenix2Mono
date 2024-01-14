@@ -190,7 +190,7 @@ public class PlayerCamera : Camera
                 tempObject = tempObject.GetNode<Node>("../../../");
             }
             
-            if (tempObject is IInteractable interactable && interactable.MayInteract)
+            if (tempObject is IInteractable { MayInteract: true } interactable)
             {
                 ShowHint(interactable.InteractionHintCode);
             }

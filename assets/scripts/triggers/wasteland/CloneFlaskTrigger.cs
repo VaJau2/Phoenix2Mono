@@ -61,7 +61,7 @@ public class CloneFlaskTrigger : TriggerBase
                 player.Visible = false;
                 player.RotationHelperThird.SetThirdView(false);
                 player.RotationHelperThird.MayChange = false;
-                player.MayMove = false;
+                player.SetMayMove(false);
                 player.Sit(false);
                 player.Camera.eyesClosed = true;
                
@@ -113,7 +113,7 @@ public class CloneFlaskTrigger : TriggerBase
             
             case 4:
                 player.Visible = true;
-                player.MayMove = true;
+                player.SetMayMove(true);
                 player.Camera.Current = true;
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();

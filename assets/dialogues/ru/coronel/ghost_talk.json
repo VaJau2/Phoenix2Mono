@@ -1,0 +1,415 @@
+﻿{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты чувствуешь себя свободной?",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Что?",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A2"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спустя столько времени, потраченного на подчинение моим приказам, ты наконец одна. Ты рада?",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A2(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A2(3)"
+        }
+      ]
+    },
+    "A2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A3"
+    },
+    "A2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A6"
+    },
+    "A2(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Отстань, ты не настоящий полковник!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A12"
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Больше никто не будет помогать тебе и не поддержит тебя. Не подскажет тебе, что делать, куда идти. Не об этом же ты мечтала?",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(3)"
+        }
+      ]
+    },
+    "A3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Все равно это лучше, чем подчиняться тебе. Ты отправил меня в ссылку!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A4"
+    },
+    "A3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, не об этом.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A6"
+    },
+    "A3(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Откуда тебе знать, о чем я мечтаю, ты всего лишь призрак!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A12"
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты заслужила это. Вся их кровь - на твоих копытах!",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(3)"
+        }
+      ]
+    },
+    "A4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Это война. На войне смерти случаются.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A5"
+    },
+    "A4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет, не заслужила! Я ничего не могла сделать!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A6"
+    },
+    "A4(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Говоришь как типичная шиза.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A12"
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты оправдываешь войной свою измену?",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A5(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(3)"
+        }
+      ]
+    },
+    "A5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "У меня не было выбора!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A6"
+    },
+    "A5(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Какая измена, о чем ты? Ты в курсе, что эти чертежи были копией? Я ничего не добилась!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A8"
+    },
+    "A5(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я ничего не оправдываю. Я знаю, что делала плохие вещи.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A11"
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты осталась абсолютно одна. Твое подчинение всем подряд привело к тому, что умерли все, кто был тебе дорог!",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A6(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A6(2)"
+        }
+      ]
+    },
+    "A6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет! Этого не может быть!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A14"
+    },
+    "A6(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Не я принимала эти решения! ",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A7"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Но ты слепо следовала за всеми приказами, которые тебе давали. Ты не принимала решений, но ты их исполняла.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(2)"
+        }
+      ]
+    },
+    "A7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Так работает эта система, что я могу сделать?",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A9"
+    },
+    "A7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я сожалею об этом!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A11"
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Копия, оригинал, без разницы. Ты пробралась на базу МТН и переполошила там все. Как знать, может быть это из-за тебя начали падать бомбы?",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A8(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A8(2)"
+        }
+      ]
+    },
+    "A8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты не можешь этого знать!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A12"
+    },
+    "A8(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я следовала благим целям!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A11"
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Будучи рабом системы, ты сделаешь все, что я тебе скажу!",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "A10"
+    },
+    "A10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Стой на месте и позволь мне убить тебя!",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A10(1)"
+        }
+      ]
+    },
+    "A10(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Нет!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A10.1"
+    },
+    "A10.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "A10.2"
+    },
+    "A10.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeDamage",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": 999
+        }
+      ],
+      "next": "A15"
+    },
+    "A11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Как бы то ни было, ты теперь одна. Наслаждайся своей свободой.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "A11.1"
+    },
+    "A11.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "A15"
+    },
+    "A12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Конечно, я лишь плод твоего больного воображения. Тебя клонировали, и твой нестабильный клонированный мозг породил меня.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "A13"
+    },
+    "A13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Мы твои единственные оставшиеся собеседники, все остальные умерли.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A13(1)"
+        }
+      ]
+    },
+    "A13(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Врешь",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "A14"
+    },
+    "A14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты уже была снаружи и сама все видела. Не отрицай очевидного.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "A11"
+    },
+    "A15": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "SetTriggerActive",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "MoveWindy"
+        }
+      ]
+    }
+  }
+}

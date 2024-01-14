@@ -1,0 +1,260 @@
+﻿{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Извините, тетя.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(3)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Тетя? Я твоя сестра, Винди!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B2"
+    },
+    "B1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты тоже будешь меня чему-то учить, второй призрак?",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B8"
+    },
+    "B1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Не мешай мне идти, призрак.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B10"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Какая сестра? Кто такой Винди? Меня уже давно зовут не так.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B2(2)"
+        }
+      ]
+    },
+    "B2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ты же мой любимый маленький братик! Винди! Ты не мог забыть меня!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B3"
+    },
+    "B2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ой да, это бессмысленно! Тебя же здесь нет!",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B10"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Мама просила меня … забыть имя Винди. Я и забыл. Как и все грустное, что было в прошлом.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B3(1)"
+        }
+      ]
+    },
+    "B3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Но ты ведь не забыл свою любимую сестру?",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B4"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Простите, я не помню.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B4(2)"
+        }
+      ]
+    },
+    "B4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Как же я скучаю по тебе, Винди…",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B5"
+    },
+    "B4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Да и хрен с тобой.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B10"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я … я тоже скучаю. Правда…",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B5(1)"
+        }
+      ]
+    },
+    "B5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Прости меня, пожалуйста. Мне не стоило тогда садиться в фургон.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Мы все совершаем ошибки. Это отличительная черта пони.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B6(1)"
+        }
+      ]
+    },
+    "B6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я люблю тебя, братик.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B7"
+    },
+    "B7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Я тоже, сестренка. Я навсегда останусь в твоей памяти.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "B7.1"
+    },
+    "B7.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "B11"
+    },
+    "B8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Чему я могу вас научить, тетя? Я же плод вашего воображения.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B8(1)"
+        }
+      ]
+    },
+    "B8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Не притворяйся, Винди. Ты знаешь свою сестру.",
+      "speaker": "Страйкли",
+      "opposite": "Призрак",
+      "next": "B2"
+    },
+    "B9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Прощайте. Навсегда.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "B9.1"
+    },
+    "B9.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "B9.2"
+    },
+    "B9.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeDamage",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": 42
+        }
+      ],
+      "next": "B11"
+    },
+    "B10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Простите, что потревожил. Я больше никогда не возникну в вашем воображении.",
+      "speaker": "Призрак",
+      "opposite": "Страйкли",
+      "next": "B9"
+    },
+    "B11": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "SetTriggerActive",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "MoveLucky"
+        }
+      ]
+    }
+  }
+}

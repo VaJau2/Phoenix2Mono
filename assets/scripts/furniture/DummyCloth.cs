@@ -11,17 +11,16 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
     private MeshInstance clothMesh;
     private CollisionShape clothShape;
     
-    private InventoryMenu inventoryMenu;
+    private static string currentCloth
+        => Global.Get().player.Inventory.cloth;
 
-    public bool MayInteract => hasCloth && inventoryMenu.HasEmptyButton;
+    public bool MayInteract => hasCloth && (string.IsNullOrEmpty(currentCloth) || currentCloth == "empty");
     public string InteractionHintCode => "putOn";
 
     private static Global global => Global.Get();
     
     public override void _Ready()
     {
-        inventoryMenu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-
         bodyMesh = GetNode<MeshInstance>("Body");
         clothMesh = GetNode<MeshInstance>("Cloth");
         clothShape = GetNode<CollisionShape>("ClothShape");

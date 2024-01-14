@@ -333,6 +333,13 @@ public class Player : Character
         }
     }
 
+    public void SetMayMove(bool value)
+    {
+        if (IsSitting) return;
+        
+        MayMove = value;
+    }
+
     //для земнопня шоб бегал
     public virtual void UpdateGoForward() {}
 
