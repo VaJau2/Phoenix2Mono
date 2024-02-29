@@ -11,6 +11,7 @@ public class NpcWithWeapons : NPC, IChest
     [Export] public string weaponCode = "";
     [Export] public Array<string> itemCodes = new Array<string>();
     [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+    [Export] private bool rotateInDialogue = false;
 
     [Export] public string customHintCode;
     [Export] private NodePath customInteractionTriggerPath;
@@ -144,7 +145,7 @@ public class NpcWithWeapons : NPC, IChest
                 break;
             
             case NPCState.Talk:
-                Stop();
+                if (Velocity.Length() > 0) Stop();
                 break;
         }
     }
@@ -428,6 +429,7 @@ public class NpcWithWeapons : NPC, IChest
                         }
                         else
                         {
+                            
                             GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
                         }
 
@@ -514,7 +516,7 @@ public class NpcWithWeapons : NPC, IChest
                 break;
 
             case NPCState.Talk:
-                LookAtTarget(false);
+                LookAtTarget(rotateInDialogue);
                 break;
         }
     }

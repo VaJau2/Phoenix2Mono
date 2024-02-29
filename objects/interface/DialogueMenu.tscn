@@ -211,7 +211,7 @@ theme = ExtResource( 1 )
 text = "Е - пропустить"
 align = 1
 
-[node name="audi" type="AudioStreamPlayer" parent="." groups=["unpaused_sound"]]
+[node name="audi" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
 bus = "Voice"
 script = ExtResource( 4 )

@@ -4,7 +4,6 @@ public class CheckFall : Node
 {
     [Export] private NodePath teleportPointPath;
     [Export] private float fallHeight = -100f;
-    private Player player;
     private Spatial teleportPoint;
 
     public DoorTeleport tempDoorTeleport;
@@ -14,11 +13,13 @@ public class CheckFall : Node
     {
         teleportPoint = GetNode<Spatial>(teleportPointPath);
         await ToSignal(GetTree(), "idle_frame");
-        player = Global.Get().player;
     }
 
     public override void _Process(float delta)
     {
+        var player = Global.Get().player;
+        if (player == null) return;
+        
         if (!(player.GlobalTransform.origin.y <= fallHeight)) return;
         player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
         if (inside && tempDoorTeleport != null)

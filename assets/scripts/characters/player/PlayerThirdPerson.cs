@@ -138,8 +138,7 @@ public class PlayerThirdPerson : Spatial
 
         if (RayToPlayer.IsColliding())
         {
-            var collider = RayToPlayer.GetCollider() as Node;
-            if (collider.Name == "Player")
+            if (RayToPlayer.GetCollider() is Player)
             {
                 seePlayer = true;
             }

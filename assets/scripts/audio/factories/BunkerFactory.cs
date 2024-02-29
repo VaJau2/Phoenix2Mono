@@ -10,9 +10,9 @@ public class BunkerFactory : IAudioEffectsFactory
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var reverb = new AudioEffectReverb();
-        reverb.RoomSize = 0.8f;
-        reverb.Spread = 0.25f;
-        
+        reverb.RoomSize = 0.9f;
+        reverb.Hipass = 0.9f;
+
         return new Dictionary<string, AudioEffect>
         {
             {key, reverb}

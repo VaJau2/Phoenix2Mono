@@ -18,16 +18,13 @@ public class HealthBar : Control
 
     public override void _Process(float delta)
     {
-        if (player == null)
-        {
-            player = Global.Get().player;
-            return;
-        }
+        player = Global.Get().player;
+        if (player == null) return;
         
-        float healthRatio = (float)player.Health / player.HealthMax;
+        var healthRatio = (float)player.Health / player.HealthMax;
         mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);
 
-        float radiationRatio = (float)player.radiation.GetRadiationLevel() / player.HealthMax;
+        var radiationRatio = (float)player.Radiation.GetRadLevel() / player.HealthMax;
         radiationMask.RectSize = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
     }
 }

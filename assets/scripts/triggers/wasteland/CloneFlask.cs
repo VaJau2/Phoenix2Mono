@@ -3,14 +3,17 @@ using Godot.Collections;
 
 public class CloneFlask : Spatial, ISavable
 {
-    public AnimationPlayer anim => GetNode<AnimationPlayer>("AnimationPlayer");
-    public AudioStreamPlayer3D audi => GetNode<AudioStreamPlayer3D>("audi");
+    public AnimationPlayer anim { private set; get; }
     public CloneFlaskCamera camera => GetNode<CloneFlaskCamera>("Camera");
     public Spatial playerPos => GetNode<Spatial>("player_pos");
 
+    public AudioStreamSample underwater => GD.Load<AudioStreamSample>("res://assets/audio/underwater.wav");
+    public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/futniture/flaskOpen.wav");
+    private AudioStreamPlayer3D message => GetNode<AudioStreamPlayer3D>("message");
+
     private bool wokenUp;
 
-    Spatial water, glass;
+    private Spatial water, glass;
     private bool animateWater;
     private bool animateGlass;
 
@@ -18,7 +21,15 @@ public class CloneFlask : Spatial, ISavable
 
     public override void _Ready()
     {
-        anim.Play("idle");
+        anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+
+        if (anim != null)
+        {
+            GD.Randomize();
+            anim.PlaybackSpeed = (float)GD.RandRange(0.8, 1);
+            anim.Play("idle");
+        }
+
         SetRace(cloneRace);
         SetProcess(false);
     }
@@ -60,6 +71,11 @@ public class CloneFlask : Spatial, ISavable
         }
     }
 
+    public void PlayMessage()
+    {
+        message.Play();
+    }
+    
     public void AnimateWater()
     {
         water = GetNode<Spatial>("water");
@@ -70,7 +86,7 @@ public class CloneFlask : Spatial, ISavable
     public void AnimateGlass()
     {
         wokenUp = true;
-        glass = GetNode<Spatial>("flas-glass");
+        glass = GetNode<Spatial>("flask-glass");
         animateGlass = true;
         SetProcess(true);
     }
@@ -90,7 +106,12 @@ public class CloneFlask : Spatial, ISavable
 
     public void DeleteBody()
     {
-        GetNode<Spatial>("Armature").QueueFree();
+        var armature = GetNode<Spatial>("Armature");
+        armature.QueueFree();
+
+        var light = GetNode<Spatial>("light");
+        light.QueueFree();
+        
         anim.QueueFree();
     }
 
@@ -117,6 +138,8 @@ public class CloneFlask : Spatial, ISavable
         }
     }
 
+    public Race GetRace() => cloneRace;
+
     public Dictionary GetSaveData()
     {
         return new Dictionary
@@ -128,12 +151,11 @@ public class CloneFlask : Spatial, ISavable
     public void LoadData(Dictionary data)
     {
         wokenUp = System.Convert.ToBoolean(data["wokenUp"]);
-        if (wokenUp)
-        {
-            DeleteBody();
-            GetNode<MeshInstance>("wires").QueueFree();
-            GetNode<Spatial>("water").QueueFree();
-            GetNode<Spatial>("flas-glass").QueueFree();
-        }
+        if (!wokenUp) return;
+        
+        DeleteBody();
+        GetNode<MeshInstance>("wires").QueueFree();
+        GetNode<Spatial>("water").QueueFree();
+        GetNode<Spatial>("flask-glass").QueueFree();
     }
 }

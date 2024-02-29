@@ -1,30 +1,50 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Room : SaveActive
 {
-    [Export] float depth = 100 / 1.5f;
+    [Export] private float depth = 100 / 1.5f;
+    
+    [Export] private List<NodePath> radioPaths;
+    private List<RadioBase> radioList = new();
+    private RadioManager radioManager;
 
-    RadioController radioController;
-    [Export] List<NodePath> radioPaths;
-    List<RadioBase> radioList = new();
-
+    [Export] private List<NodePath> activateTriggersPaths = new ();
+    public List<TriggerBase> activateTriggers { get; } = new ();
+    
+    [Export] private bool changeEnvironment;
+    [Export] private float backgroundEnergy;
+    [Export] private float ambientEnergy;
+    private WorldEnvironment skybox;
+    
     private AudioEffectsController audioEffectController;
+
+    private RoomManager roomManager;
     
     public override void _Ready()
     {
+        roomManager = GetNode<RoomManager>("/root/Main/Scene/rooms");
+        if (Visible) roomManager.CurrentRoom = this;
+        
         if (radioPaths?.Count > 0)
         {
-            foreach (NodePath radioPath in radioPaths)
+            foreach (var radio in radioPaths.Select(GetNode<RadioBase>))
             {
-                RadioBase radio = GetNode<RadioBase>(radioPath);
                 radio.depthOfRoom = depth;
-                radio.inRoom = true;
+                radio.InRoom = true;
                 radioList.Add(radio);
             }
 
-            radioController = GetNodeOrNull<RadioController>("/root/Main/Scene/RadioController");
+            radioManager = GetNode<RadioManager>("/root/Main/Scene/Radio Manager");
         }
+
+        foreach (var trigger in activateTriggersPaths.Select(GetNode<TriggerBase>))
+        {
+            activateTriggers.Add(trigger);
+        }
+
+        skybox = GetNode<WorldEnvironment>("/root/Main/Scene/WorldEnvironment");
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
         levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
@@ -35,28 +55,45 @@ public class Room : SaveActive
         await ToSignal(GetTree(), "idle_frame");
         
         audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
-        if (Visible) audioEffectController.AddEffects(Name);
+        
+        if (!Visible) return;
+
+        Enter(false);
     }
     
-    public void Enter()
+    public void Enter(bool withTriggers = true)
     {
-        if (radioController != null)
+        roomManager.CurrentRoom = this;
+
+        radioManager?.EnterToRoom(radioList);
+        
+        if (changeEnvironment)
         {
-            radioController.EnterToRoom(radioList);
-            radioController.currentRoom = GetPath();
+            skybox.Environment.BackgroundEnergy = backgroundEnergy;
+            skybox.Environment.AmbientLightEnergy = ambientEnergy;
         }
         
-        audioEffectController?.AddEffects(Name);
+        audioEffectController.AddEffects(Name);
+        
+        if (!withTriggers || activateTriggers.Count == 0) return;
+        foreach (var trigger in activateTriggers)
+        {
+            trigger.SetActive(true);
+        }
     }
 
-    public void Exit()
+    public void Exit(bool withTriggers = true)
     {
-        if (radioController != null)
-        {
-            radioController.ExitFromRoom(radioList);
-            radioController.currentRoom = null;
-        }
+        roomManager.CurrentRoom = null;
+
+        radioManager?.ExitFromRoom(radioList);
         
-        audioEffectController?.RemoveEffects(Name);
+        audioEffectController.RemoveEffects(Name);
+        
+        if (!withTriggers || activateTriggers.Count == 0) return;
+        foreach (var trigger in activateTriggers)
+        {
+            trigger.SetActive(false);
+        }
     }
 }

@@ -111,5 +111,13 @@
         "pressLabel": "нажмите",
         "toExitToMainMenu": "дабы выйти в главное меню",
         "skip": "пропустить"
+    },
+    
+    "testing": {
+        "heal": "[DEV] Игрок вылечен",
+        "killEnemies": "[DEV] Все враги убиты",
+        "killPlayer": "[DEV] Игрок убит",
+        "freeCameraOn": "[DEV] Свободная камера включена",
+        "freeCameraOff": "[DEV] Свободная камера выключена"
     }
 }

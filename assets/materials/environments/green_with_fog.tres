@@ -10,9 +10,15 @@ sun_latitude = 64.43
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+ambient_light_energy = 0.1
 fog_enabled = true
 fog_color = Color( 0.713726, 0.827451, 0.854902, 1 )
 fog_sun_color = Color( 0.945098, 0.886275, 0.772549, 1 )
 fog_sun_amount = 0.5
 fog_depth_begin = 5.0
 fog_depth_end = 300.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 120.0
+dof_blur_far_quality = 2
+glow_enabled = true
+glow_bloom = 0.1

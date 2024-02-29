@@ -4,7 +4,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "You! Where did you come from? You shouldn't be here!",
-            "timer": "0.01",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -18,7 +17,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Twilight ran away because of you, Strikely! I had everything under control!",
-            "timer": "0.01",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -32,7 +30,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Nopony should have died but her! I even hired these actors-security guards to do this, so that no one would interfere with us. Everything should have happened in a few seconds!",
-            "timer": "0.01",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -50,7 +47,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "You don't understand! They've gone too far, me ... we have to stop them! Otherwise, we'll all die!",
-            "timer": "0.01",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -68,7 +64,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "If you knew what I know, you'd be on my side, but I'm afraid you won't believe me. We are in a desperate situation...",
-            "timer": "0.02",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -82,7 +77,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "No way. This is my only chance to survive. And you know it. Besides, you probably have a weapon nearby...",
-            "timer": "0.02",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -96,7 +90,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Let me escape and promise that you forget about me.",
-            "timer": "0.02",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [
@@ -110,7 +103,6 @@
             "kind": "dialogue",
             "root_node": false,
             "body": "Thank you, Strikely. You won't hear about me again.",
-            "timer": "0.02",
             "speaker": "Red Punch",
             "opposite": "Strikely",
             "options": [

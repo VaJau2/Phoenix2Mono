@@ -29,7 +29,7 @@ public class LoadItemsFromSuitcase : TriggerBase
         }
         
         bool suitcaseEmpty = true;
-        bool playerHasSuitcase = Global.Get().player.inventory.HasItem("Quest_suitcaseVacation");
+        bool playerHasSuitcase = Global.Get().player.Inventory.HasItem("Quest_suitcaseVacation");
         
         if (IsInstanceValid(saveNode) && playerHasSuitcase)
         {
@@ -61,7 +61,6 @@ public class LoadItemsFromSuitcase : TriggerBase
                 suitcase.QueueFree();
                 
                 base._on_activate_trigger();
-                
                 return;
             }
             
@@ -83,6 +82,11 @@ public class LoadItemsFromSuitcase : TriggerBase
                     suitcase.ChestHandler.AddNewItem(itemCode);
                 }
             }
+        }
+        else
+        {
+            Global.AddDeletedObject(suitcase.Name);
+            suitcase.QueueFree();
         }
 
         base._on_activate_trigger();

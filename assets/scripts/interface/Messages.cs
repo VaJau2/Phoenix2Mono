@@ -4,7 +4,7 @@ using Godot.Collections;
 public class Messages : VBoxContainer, ISavable
 {
     Global global = Global.Get();
-    const float HINT_TIMER = 2.5f;
+    public const float HINT_TIMER = 2.5f;
     [Export] public Theme tempTheme;
 
     private string currentTaskLink = "none";

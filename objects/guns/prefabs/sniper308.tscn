@@ -90,7 +90,7 @@ tracks/2/imported = true
 tracks/2/enabled = true
 tracks/2/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1.45833, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[node name="rifle" type="Spatial"]
+[node name="sniper308" type="Spatial"]
 
 [node name="light" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0230504, 0.0132577, -2.42568 )
@@ -151,17 +151,14 @@ transform = Transform( 2.38419e-07, -0.963604, 0.267334, 1, -2.38419e-07, -1.698
 [node name="rifle002" type="MeshInstance" parent="Gun-armature/Bone/Bone001/Bone002"]
 transform = Transform( -2.33911e-07, -1.11108e-06, -0.654064, 0.630258, -0.174853, 5.84778e-08, -0.174853, -0.630259, 1.16956e-06, 2.15414, -0.0921088, 0.0502444 )
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="rifle001" type="MeshInstance" parent="Gun-armature/Bone/Bone001"]
 transform = Transform( -0.654064, -5.66584e-07, 0, 0, 0, -0.654064, 5.66584e-07, -0.654064, 0, 0.0102651, 1.57615, -0.00542926 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="rifle" type="MeshInstance" parent="Gun-armature/Bone"]
 transform = Transform( 0.654064, 1.45231e-16, -1.45231e-16, -1.45231e-16, 0, -0.654064, -1.45231e-16, 0.654064, 0, -0.0102643, 2.76277, -0.302884 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="shells" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0348008, 0.0695577, -0.111186 )

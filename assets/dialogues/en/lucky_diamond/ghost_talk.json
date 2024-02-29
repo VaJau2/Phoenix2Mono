@@ -1,0 +1,174 @@
+﻿{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "…",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A1(2)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What are you doing here, Lucky?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A2"
+    },
+    "A1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Get away from me, ghost!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A9"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Look, I'm surprised myself. You didn't do anything wrong to me, we just worked together.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A3"
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Maybe your brain decided to give you a break?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(2)"
+        }
+      ]
+    },
+    "A3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Maybe… hm… How are things there?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A4"
+    },
+    "A3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I don't need a break, I'm not going crazy at all!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A9"
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Fine. Pretty cozy. ПIt's a little cold, though, and the pressure is a little low, to put it mildly.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A5"
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "And all our friends are there. There is always someone to talk to.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A6"
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're the only one missing.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A7"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Would you like to join us?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(2)"
+        }
+      ]
+    },
+    "A7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Okay.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A8"
+    },
+    "A7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, thanks.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A9"
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stand still…",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A8.1"
+    },
+    "A8.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "A8.2"
+    },
+    "A8.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeDamage",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": 999
+        }
+      ]
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Well, whatever you want. Sooner or later you'll join us, and we'll all be fine together.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A9.1"
+    },
+    "A9.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/messages/Back 7.ogg"
+dest_files=[ "res://.import/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

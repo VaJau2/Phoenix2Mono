@@ -45,5 +45,100 @@
             "We'll send Lieutenant Strikely on the deal - she's showing promise.",
             "Give her a solid cover."
         ]
+    },
+    "phoenix1_1": {
+        "name": "Phoenix 1: Note №1",
+        "text": [
+            "Experiments with mice have finally borne fruit. Configurations to manage aging have been successfully found.",
+            "It was impossible to delay this moment any longer. It was time for more serious steps, I needed to find a suitable pony specimen.",
+            "And this suitable pony was quickly found - orphanages in our wartime are overcrowded to the brim, they are experiencing great difficulties in order to feed everyone.",
+            "But I took only one and, naturally, I will try to give him all possible conditions for a decent life, given the risks I expose him to.",
+            "However, all the risks have been calculated for a long time, and failure is simply impossible.",
+            "If everything works out, maybe I'll get a new assistant. Not these robots, but a real living one."
+        ]
+    },
+    "phoenix1_2": {
+        "name": "Phoenix 1: Note №2",
+        "text": [
+            "The good news is that the experiment was successful, the effect of the drug was confirmed. Schloer looks like a stable and healthy 20-year-old stallion.",
+            "The bad news is that the minister was completely unimpressed with my drug. I'm afraid to assume, but apparently I'll never get money from her ministry again.",
+            "There are no problems with money yet, but we can not expect financing for new experiments.",
+            "It's a pity that it was at this moment that I had an idea where to go next.",
+            "This Strikely inspired me to do it. She single-handedly saved me. Maybe she can save all of us in the future, if I succeed.",
+            "I hope my supplies are enough. I'm not going to give up."
+        ]
+    },
+    "phoenix2_1": {
+        "name": "Phoenix 2: Note №1",
+        "text": [
+            "Stable-tec know their job very well. In exchange for data on the results of my experiments and some money, they built a small bunker in a very short time.",
+            "At the same time, the flasks for keeping ponies in stasis, ordered from the Ministry of World Affairs, were successfully delivered.",
+            "Robots have installed them, and tests have shown that the flasks work perfectly.",
+            "All that remains is to get the genetic material. I do not expect her to give it up voluntarily, the probability of refusal is very high.",
+            "I need another face-to-face meeting, and it is desirable that she be here.",
+            "This is the only way we will be able to get the necessary material."
+        ]
+    },
+    "phoenix2_2": {
+        "name": "Phoenix 2: Note №2",
+        "text": [
+            "My knowledge of my previous job helped me a lot in making up an excuse to invite her here.",
+            "Schloer's idea of using robots also helped a lot. Checking shooting, stealth and trading skills really makes sense when it comes to cloning.",
+            "After all, it is this pony-or rather, its clones - that will have to help Equestria return to normal after the megaspells fall.",
+            "If she had failed, the experiment would have had to be curtailed, and more suitable candidates would have to be found. Thank Celestia that wasn't the case.",
+            "I sent her on a fake mission to save Equestria, but naturally it's hopeless from the start. It's amazing how quickly Strikely agreed to everything. Maybe I should have told her straight out?..",
+            "However, what has been done cannot be returned. I just hope she doesn't make a lot of noise and everyone calms down quickly.",
+            "The material has been successfully obtained, and it is worth all the risks."
+        ]
+    },
+    "phoenix2_3": {
+        "name": "Phoenix 2: Note №3",
+        "text": [
+            "The cloning process has been started. The eggs were artificially fertilized and placed in flasks.",
+            "Phoenix 1 in the accelerated aging configuration is supplied stably every two hours.",
+            "After a few months, it will be possible to reduce the dose in order to normalize the growth process."
+        ]
+    },
+    "phoenix2_4": {
+        "name": "Phoenix 2: Note №4",
+        "text": [
+            "We have not left the bunker all this time, and judging by the shaking and sounds outside, we will never be able to leave again.",
+            "The apocalypse that we all feared has really happened. Megaspells have fallen. We are one of the few who were able to survive.",
+            "The assistant and I have bad thoughts, but recent events only confirm the need to continue the experiment.",
+            "Everything we've done before, and all the risks we've put ourselves and others at, have really been worth it.",
+            "The growth process of the clones was slowed down by changing the configuration of the drug in the direction of slowing down aging. At the moment, their approximate age is 8 years old.",
+            "It's amazing how all three possible pony races are evenly distributed among the clones.",
+            "I assume that the family tree of Strikely's ancestors is built in such a way that the probabilities for it to be born an earth pony, a pegasus or a unicorn are almost equal.",
+            "A really amazing coincidence. She's actually the most suitable candidate."
+        ]
+    },
+    "phoenix2_5": {
+        "name": "Phoenix 2: Note №5",
+        "text": [
+            "The negative impact of the consequences of the apocalypse is getting stronger every day. Supplies are running out fast.",
+            "The experiment has reached the conservation stage, and now it is only necessary to supply the aging inhibitor drug and nutrients to the flasks, which the automation copes with perfectly.",
+            "Practically no control is required at this stage.",
+            "However, at first there should be a somepony here who can restore the course of the experiment if something goes wrong.",
+            "I can't be that pony, because I'm already old. I have only a few months left in such conditions.",
+            "In addition, an extra mouth will accelerate the depletion of supplies, and they may not be enough until the end. I have to leave the bunker."
+        ]
+    },
+    "phoenix2_6": {
+        "name": "Phoenix 2: Note №6",
+        "text": [
+            "I don't see the point in these files and records, no one will ever read them anyway. But since the Bellgates asked, I will do them.",
+            "He left a week ago and left me alone. He promised to come back if he found supplies. As he said, our own supplies will last for another year, but only for one. And then, if you save a lot.",
+            "Ponies are floating in flasks. Cure. But boring.",
+            "I could wake up one of them, just press the big red button, then it would be much more interesting here.",
+            "But Bellgates strongly asked me not to do that, but I dare not disobey him. He's like a father to me."
+        ]
+    },
+    "phoenix2_7": {
+        "name": "Phoenix 2: Note №7",
+        "text": [
+            "Bellgates did not return a few months later, and I am sure that he is no longer alive.",
+            "His experiment is under way. He doesn't need to be watched. I hardly ever go into the clone room.",
+            "Then why am I even needed here?"
+        ]
     }
 }

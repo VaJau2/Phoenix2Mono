@@ -129,9 +129,10 @@ public class DialogueMenu : Control, IMenu
                 break;
             
             case "combat":
+                npc.SetState(NPCState.Idle);
                 npc.aggressiveAgainstPlayer = true;
+                npc.relation = Relation.Enemy;
                 npc.seekArea.AddEnemyInArea(player);
-                npc.SetState(NPCState.Attack);
                 npc = null;
                 break;
             
@@ -188,9 +189,9 @@ public class DialogueMenu : Control, IMenu
     {
         player.Camera.HideInteractionSquare();
 
-        if (!string.IsNullOrEmpty(player.inventory.weapon))
+        if (!string.IsNullOrEmpty(player.Inventory.weapon))
         {
-            var useHandler = player.inventory.UseHandler;
+            var useHandler = player.Inventory.UseHandler;
             useHandler.UnwearItem(useHandler.weaponButton);
         }
         
@@ -202,9 +203,12 @@ public class DialogueMenu : Control, IMenu
     public void CloseMenu()
     {
         dialogueAudio.Stop();
-        player.inventory.SetBindsCooldown(0.5f);
+        player.Inventory.SetBindsCooldown(0.5f);
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        player.MayRotateHead = player.MayMove = true;
+        
+        player.SetMayMove(true);
+        player.MayRotateHead = true;
+        
         if (npc != null) 
         {
             npc.SetState(NPCState.Idle);

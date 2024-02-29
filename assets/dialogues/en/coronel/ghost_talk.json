@@ -1,0 +1,415 @@
+﻿{
+  "nodes": {
+    "A1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Do you feel yourself free?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A1(1)"
+        }
+      ]
+    },
+    "A1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A2"
+    },
+    "A2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "After all this time spent obeying my orders, you're finally alone. Are you happy?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A2(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A2(3)"
+        }
+      ]
+    },
+    "A2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A3"
+    },
+    "A2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A6"
+    },
+    "A2(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Get off me, you're not a real colonel",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A12"
+    },
+    "A3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Nopony else will help you or support you. Nopony will tell you what to do, where to go. That's not what you dreamed of, is it?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A3(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A3(3)"
+        }
+      ]
+    },
+    "A3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's better than obeying you anyway. You sent me into exile!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A4"
+    },
+    "A3(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, that's not what I dreamed of.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A6"
+    },
+    "A3(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "How do you know what I'm dreaming about, you're just a ghost!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A12"
+    },
+    "A4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You deserve it. All their blood is on your hooves!",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A4(3)"
+        }
+      ]
+    },
+    "A4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "This is a war. Deaths happen in war.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A5"
+    },
+    "A4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No, I don't deserve it! I couldn't do anything!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A6"
+    },
+    "A4(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You sound like a typical loony.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A12"
+    },
+    "A5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Are you justifying your treason with the war?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A5(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(2)"
+        },
+        {
+          "body": "answer",
+          "next": "A5(3)"
+        }
+      ]
+    },
+    "A5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I had no choice!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A6"
+    },
+    "A5(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What kind of betrayal are you talking about? Are you aware that these blueprints were a copy? I have achieved nothing!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A8"
+    },
+    "A5(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm not making excuses for anything. I know I've done bad things.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A11"
+    },
+    "A6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're completely alone. Your submission to everyone in a row led to the death of everypony who was dear to you!",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A6(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A6(2)"
+        }
+      ]
+    },
+    "A6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No! This can't be happening!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A14"
+    },
+    "A6(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I didn't make these decisions!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A7"
+    },
+    "A7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But you blindly followed all the orders you were given. You didn't make decisions, but you executed them.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A7(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A7(2)"
+        }
+      ]
+    },
+    "A7(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "This is how this system works, what can I do?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A9"
+    },
+    "A7(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm sorry about that!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A11"
+    },
+    "A8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Copy, original, whatever. You snuck into the MAS base and alarmed everything there. Who knows, maybe it was because of you that the bombs started falling?",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A8(1)"
+        },
+        {
+          "body": "answer",
+          "next": "A8(2)"
+        }
+      ]
+    },
+    "A8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You can't know that!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A12"
+    },
+    "A8(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I was following good goals!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A11"
+    },
+    "A9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Being a slave to the system, you will do whatever I tell you to do!",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A10"
+    },
+    "A10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stay where you are and let me kill you!",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A10(1)"
+        }
+      ]
+    },
+    "A10(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "No!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A10.1"
+    },
+    "A10.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "A10.2"
+    },
+    "A10.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeDamage",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": 999
+        }
+      ],
+      "next": "A15"
+    },
+    "A11": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Anyway, you're alone now. Enjoy your freedom.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A11.1"
+    },
+    "A11.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "A15"
+    },
+    "A12": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Of course, I'm just a figment of your sick imagination. You were cloned, and your unstable cloned brain gave birth to me.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A13"
+    },
+    "A13": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We are your only remaining interlocutors, everyone else is dead.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "A13(1)"
+        }
+      ]
+    },
+    "A13(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Врешь",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "A14"
+    },
+    "A14": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You've already been outside and seen everything for yourself. Don't deny the obvious.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "A11"
+    },
+    "A15": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "SetTriggerActive",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "MoveWindy"
+        }
+      ]
+    }
+  }
+}

@@ -4,22 +4,23 @@ using System;
 
 public abstract class RadioBase : StaticBody
 {
-    public bool inRoom = false;
-
-    protected RadioController radioController;
-
-    public AudioStreamPlayer3D musicPlayer { protected set; get; }
-
-    public AudioStreamPlayer3D noisePlayer { protected set; get; }
+    public bool InRoom = false;
+    public RadioManager RadioManager;
+    protected WarningManager warningManager;
+    
+    [Export] protected float unitSize = 10f;
+    [Export] protected float maxDistance = 120f;
+    public AudioStreamPlayer3D MusicPlayer { protected set; get; }
+    public AudioStreamPlayer3D NoisePlayer { protected set; get; }
     protected AudioStream noiseSound;
     protected AudioStream switchSound;
     protected float noiseDb = -40;
 
-    [Export] float maxDb = -24;
+    [Export] private float pauseVolume = -24;
 
     public bool repeaterMode { protected set; get; } = false;
     public float depthOfRoom = 100 / 1.5f;
-
+    
     [Signal]
     public delegate void ChangeOnline(RadioBase radio);
 
@@ -27,14 +28,19 @@ public abstract class RadioBase : StaticBody
 
     protected void InitBase()
     {
-        radioController = GetNode<RadioController>("/root/Main/Scene/RadioController");
-
-        musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
+        MusicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
+        MusicPlayer.MaxDistance = maxDistance;
+        MusicPlayer.UnitSize = unitSize;
         
-        noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
+        NoisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
+        NoisePlayer.MaxDistance = maxDistance;
+        NoisePlayer.UnitSize = unitSize;
+        
         switchSound = (AudioStream)GD.Load("res://assets/audio/radio/Switch.ogg");
         noiseSound = (AudioStream)GD.Load("res://assets/audio/radio/Noise.ogg");
 
+        warningManager = GetNodeOrNull<WarningManager>("/root/Main/Scene/Warning Manager");
+        
         var pauseMenu = GetNode<PauseMenu>("/root/Main/Menu/PauseMenu");
         pauseMenu.Connect(nameof(PauseMenu.ChangePause), this, nameof(OnPauseChange));
     }
@@ -50,23 +56,23 @@ public abstract class RadioBase : StaticBody
         repeaterMode = value;
     }
 
-    public virtual void SetMute(bool value)
+    public void SetMute(bool value)
     {
         if (value)
         {
-            musicPlayer.UnitDb = -80;
-            noisePlayer.UnitDb = -80;
+            MusicPlayer.UnitDb = -80;
+            NoisePlayer.UnitDb = -80;
         }
         else
         {
-            musicPlayer.UnitDb = 0;
-            noisePlayer.UnitDb = noiseDb;
+            MusicPlayer.UnitDb = 0;
+            NoisePlayer.UnitDb = noiseDb;
         }
     }
 
     protected void OnPauseChange(bool value)
     {
-        musicPlayer.MaxDb = value ? maxDb : 0;
-        noisePlayer.MaxDb = value ? maxDb : 0;
+        MusicPlayer.MaxDb = value ? pauseVolume : 0;
+        NoisePlayer.MaxDb = value ? pauseVolume : 0;
     }
 }

@@ -1,0 +1,260 @@
+﻿{
+  "nodes": {
+    "B1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm sorry, stranger.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(2)"
+        },
+        {
+          "body": "answer",
+          "next": "B1(3)"
+        }
+      ]
+    },
+    "B1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Stranger? I'm your sister, Windy!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B2"
+    },
+    "B1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're going to teach me something too, second ghost?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B8"
+    },
+    "B1(3)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't bother me, ghost.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B10"
+    },
+    "B2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Which sister? Who is Windy? That's not my name anymore.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B2(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B2(2)"
+        }
+      ]
+    },
+    "B2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "You're my favorite little brother! Windy! You couldn't forget me!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B3"
+    },
+    "B2(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Oh, it's pointless! You're not here!",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B10"
+    },
+    "B3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Mom asked me … to forget name Windy. I forgot. Like all the sad things that happened in the past.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B3(1)"
+        }
+      ]
+    },
+    "B3(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "But you haven't forgotten your beloved sister, have you?",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B4"
+    },
+    "B4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Sorry, I don't remember.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B4(1)"
+        },
+        {
+          "body": "answer",
+          "next": "B4(2)"
+        }
+      ]
+    },
+    "B4(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I miss you so much, Windy…",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B5"
+    },
+    "B4(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Whatever",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B10"
+    },
+    "B5": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I … I miss you too. Really…",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B5(1)"
+        }
+      ]
+    },
+    "B5(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Please forgive me. I shouldn't have gotten in the van then.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B6"
+    },
+    "B6": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "We all make mistakes. This is a distinctive feature of a pony.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B6(1)"
+        }
+      ]
+    },
+    "B6(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I love you, little brother.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B7"
+    },
+    "B7": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Me too, sister. I will always remain in your memory.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "B7.1"
+    },
+    "B7.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "B11"
+    },
+    "B8": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "What can I teach you, stranger? I'm a figment of your imagination.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "B8(1)"
+        }
+      ]
+    },
+    "B8(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Don't pretend, Windy. You know your sister.",
+      "speaker": "Strikely",
+      "opposite": "Ghost",
+      "next": "B2"
+    },
+    "B9": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Goodbye. Forever.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "B9.1"
+    },
+    "B9.1": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "NpcDisappear",
+      "next": "B9.2"
+    },
+    "B9.2": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "TakeDamage",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": 42
+        }
+      ],
+      "next": "B11"
+    },
+    "B10": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I'm sorry to bother you. I will never arise in your imagination again.",
+      "speaker": "Ghost",
+      "opposite": "Strikely",
+      "next": "B9"
+    },
+    "B11": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "SetTriggerActive",
+      "set": [
+        {
+          "key": "name",
+          "op": "set",
+          "value": "MoveLucky"
+        }
+      ]
+    }
+  }
+}

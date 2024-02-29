@@ -6,8 +6,8 @@ public class Player : Character
 {
     protected Global global = Global.Get();
     public float MouseSensivity = 0.1f;
-    const int CAMERA_MIN_Y = -65;
-    const int CAMERA_MAX_Y = 70;
+    public const int CAMERA_MIN_Y = -65;
+    public const int CAMERA_MAX_Y = 70;
     protected const int GRAVITY = -50;
     protected const float JUMP_SPEED = 18f;
     const float ACCEL = 5.5f;
@@ -21,6 +21,7 @@ public class Player : Character
     public bool IsSitting;
     public bool IsStealthBuck;
     public bool IsInvisibleForEnemy;
+    private bool IsDead;
 
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
@@ -35,18 +36,17 @@ public class Player : Character
     private Spatial CameraHeadPos;
 
     public PlayerBody Body;
-
-    //сслыки внутри body:
+    //сслыки внутри Body:
     // - Head
     // - Legs
     // - SoundSteps
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
-    public PlayerInventory inventory;
-    public PlayerRadiation radiation;
+    public PlayerInventory Inventory;
+    public PlayerRadiation Radiation;
+    public PlayerDeathManager DeathManager;
 
     private DamageEffects damageEffects;
-    private ColorRect blackScreen;
     protected SoundSteps soundSteps;
     public Control JumpHint;
     private AudioStreamPlayer audi;
@@ -113,39 +113,29 @@ public class Player : Character
     {
         if (hitted)
         {
-            if (audiHitted == null)
-            {
-                audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted");
-            }
-
-            return audiHitted;
+            return audiHitted ?? (audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted"));
         }
         else
         {
-            if (audi == null)
-            {
-                audi = GetNode<AudioStreamPlayer>("sound/audi");
-            }
-
-            return audi;
+            return audi ?? (audi = GetNode<AudioStreamPlayer>("sound/audi"));
         }
     }
 
     public void CheckTakeItem(string itemCode)
     {
-        radiation.CheckTakeRadiationCounter();
+        Radiation.CheckTakeRadiationCounter();
     }
 
     public void CheckDropItem(string itemCode)
     {
-        radiation.CheckDropRadiationCounter(itemCode);
+        Radiation.CheckDropRadiationCounter(itemCode);
     }
 
     public override int GetDamage()
     {
         float tempDamage = base.GetDamage();
 
-        if (inventory.weapon != "")
+        if (Inventory.weapon != "")
         {
             tempDamage += Weapons.GetStatsInt("damage");
         }
@@ -157,16 +147,15 @@ public class Player : Character
 
     public override float GetDamageBlock()
     {
-        Dictionary armorProps = inventory.GetArmorProps();
+        var armorProps = Inventory.GetArmorProps();
+        
         if (armorProps.Contains("damageBlock"))
         {
-            float armorBlock = Global.ParseFloat(armorProps["damageBlock"].ToString());
+            var armorBlock = Global.ParseFloat(armorProps["damageBlock"].ToString());
             return base.GetDamageBlock() + armorBlock;
         }
-        else
-        {
-            return base.GetDamageBlock();
-        }
+        
+        return base.GetDamageBlock();
     }
 
     public virtual Spatial GetWeaponParent(bool isPistol)
@@ -199,11 +188,11 @@ public class Player : Character
     public void LoadBodyMesh()
     {
         var bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        LoadClothMesh(inventory.cloth, "first", bodyMesh);
+        LoadClothMesh(Inventory.cloth, "first", bodyMesh);
         var bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
-        LoadClothMesh(inventory.cloth, "third", bodyThirdMesh);
+        LoadClothMesh(Inventory.cloth, "third", bodyThirdMesh);
 
-        PlayerHead head = bodyThirdMesh as PlayerHead;
+        var head = bodyThirdMesh as PlayerHead;
         head.FindFaceMaterial();
 
         Body = GetNode<PlayerBody>("player_body");
@@ -214,9 +203,9 @@ public class Player : Character
     {
         //определяем название расы по текущей Race
         //(у единорогов от первого лица нет своей модельки)
-        Race playerRace = global.playerRace;
+        var playerRace = global.playerRace;
 
-        string raceName = "earthpony";
+        var raceName = "earthpony";
         if (viewName == "first")
         {
             if (playerRace == Race.Pegasus)
@@ -238,8 +227,8 @@ public class Player : Character
         }
 
 
-        string path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
-        Mesh loadedMesh = GD.Load<Mesh>(path);
+        var path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
+        var loadedMesh = GD.Load<Mesh>(path);
         meshInstance.Mesh = loadedMesh;
     }
 
@@ -250,9 +239,9 @@ public class Player : Character
 
         if (artifactName != null)
         {
-            string path = "res://assets/models/player_variants/artifacts/" + artifactName + "/";
-            Mesh loadedMesh = GD.Load<Mesh>(path + "mesh.res");
-            Skin loadedSkin = GD.Load<Skin>(path + "skin.res");
+            var path = "res://assets/models/player_variants/artifacts/" + artifactName + "/";
+            var loadedMesh = GD.Load<Mesh>(path + "mesh.res");
+            var loadedSkin = GD.Load<Skin>(path + "skin.res");
             artifact.Mesh = loadedMesh;
             artifact.Skin = loadedSkin;
         }
@@ -284,17 +273,19 @@ public class Player : Character
         base.TakeDamage(damager, damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
-        if (Health <= 0)
+        
+        if (Health <= 0 && !IsDead)
         {
+            IsDead = true;
             Weapons.ClearWeapon();
-            AnimateDealth();
-            Body.AnimateDealth(damager);
+            Body.AnimateDeath(damager);
+            DeathManager.OnPlayerDeath();
         }
     }
 
     public override void HealHealth(int healing)
     {
-        var tempMaxHealth = HealthMax - radiation.GetRadiationLevel();
+        var tempMaxHealth = HealthMax - Radiation.GetRadLevel();
         var healthDiff = tempMaxHealth - Health;
 
         if (healing > healthDiff)
@@ -304,29 +295,7 @@ public class Player : Character
         
         base.HealHealth(healing);
     }
-
-    private async void AnimateDealth()
-    {
-        while (blackScreen.Color.a < 1)
-        {
-            //затухание всей музыки на уровне
-            foreach (Node node in GetTree().GetNodesInGroup("unpaused_sound"))
-            {
-                if (node is AudioStreamPlayer musicAudi && musicAudi.VolumeDb > -20f)
-                {
-                    musicAudi.VolumeDb -= 0.5f;
-                }
-            }
-
-            Color temp = blackScreen.Color;
-            temp.a += 0.01f;
-            blackScreen.Color = temp;
-            await global.ToTimer(0.04f);
-        }
-
-        GetNode<LevelsLoader>("/root/Main").ShowDealthMenu();
-    }
-
+    
     public void Sit(bool sitOn)
     {
         if (IsCrouching == sitOn)
@@ -357,11 +326,18 @@ public class Player : Character
 
         if (!sitOn) return;
         
-        if (!string.IsNullOrEmpty(inventory.weapon))
+        if (!string.IsNullOrEmpty(Inventory.weapon))
         {
-            var useHandler = inventory.UseHandler;
+            var useHandler = Inventory.UseHandler;
             useHandler.UnwearItem(useHandler.weaponButton);
         }
+    }
+
+    public void SetMayMove(bool value)
+    {
+        if (IsSitting) return;
+        
+        MayMove = value;
     }
 
     //для земнопня шоб бегал
@@ -403,13 +379,13 @@ public class Player : Character
     {
         if (ThirdView)
         {
-            Vector3 thirdRot = RotationHelperThird.Rotation;
+            var thirdRot = RotationHelperThird.Rotation;
             thirdRot.x = RotationHelper.Rotation.x;
             RotationHelperThird.Rotation = thirdRot;
         }
         else
         {
-            Transform cameraTransf = RotationHelper.GlobalTransform;
+            var cameraTransf = RotationHelper.GlobalTransform;
             cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
 
             if (Health <= 0)
@@ -635,8 +611,10 @@ public class Player : Character
 
     public override async void LoadData(Dictionary data)
     {
-        inventory.LoadData((Dictionary)data["inventory"]);
+        Inventory.LoadData((Dictionary)data["inventory"]);
         if (data.Count <= 1) return;
+        
+        Radiation.SetRadLevel(Convert.ToInt32(data["radLevel"]));
         
         base.LoadData(data);
 
@@ -652,16 +630,18 @@ public class Player : Character
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
-        saveData["inventory"] = inventory.GetSaveData();
+        saveData["inventory"] = Inventory.GetSaveData();
         saveData["sitOnChair"] = IsSitting;
+        saveData["radLevel"] = Radiation.GetRadLevel();
         return saveData;
     }
 
     public override void _Ready()
     {
         global.player = this;
-        inventory = new PlayerInventory(this);
-        radiation = new PlayerRadiation(this);
+        Inventory = new PlayerInventory(this);
+        Radiation = new PlayerRadiation(this);
+        DeathManager = GetNode<PlayerDeathManager>("deathManager");
 
         BaseSpeed = 15;
         BaseRecoil = 2;
@@ -677,7 +657,6 @@ public class Player : Character
         var canvas = GetNode("/root/Main/Scene/canvas/");
         JumpHint = canvas.GetNode<Control>("jumpHint");
         damageEffects = canvas.GetNode<DamageEffects>("redScreen");
-        blackScreen = canvas.GetNode<ColorRect>("black");
         Camera = GetNode<PlayerCamera>("rotation_helper/camera");
         RotationHelper = GetNode<Spatial>("rotation_helper");
         headShape = GetNode<Spatial>("headShape");

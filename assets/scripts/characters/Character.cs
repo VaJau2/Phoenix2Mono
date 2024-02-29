@@ -5,7 +5,7 @@ using Godot.Collections;
 public abstract class Character : KinematicBody, ISavable
 {
     public const float MIN_WALKING_SPEED = 2;
-    public int Health {get; private set;}
+    public int Health {get; protected set;}
     public int HealthMax;
     public float BaseDamageBlock; //от 0 до 1, процентное блокирование
     public int BaseSpeed = 1; //скорость берется каждый кадр, поэтому применяется сразу

@@ -1,45 +1,80 @@
 using Godot;
-using System;
 
 public class Speaker : RadioBase
 {
-    [Export] NodePath receiverPath;
-    Receiver receiver;
+    [Export] private NodePath receiverPath;
+    private Receiver receiver;
 
     public override void Initialize()
     {
         InitBase();
 
-        receiver = GetNode<Receiver>(receiverPath);
-        receiverPath = null;
+        if (InRoom) RepeaterMode(true);
 
-        receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
-        receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
-
-        if (inRoom && !radioController.playerInside) RepeaterMode(true);
-
-        if (receiver.noisePlayer.Playing)
+        if (receiverPath != null)
         {
-            OnChangeMusic();
-            OnChangeNoise();
+            receiver = GetNodeOrNull<Receiver>(receiverPath);
+            receiverPath = null;
+        }
+        
+        if (receiver != null)
+        {
+            receiver.Connect(nameof(ChangeOnline), this, nameof(OnChangeOnline));
+            receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
+            receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
+            OnChangeNoise(receiver.NoisePlayer.Stream);
+            OnChangeMusic(receiver.MusicPlayer.Stream);
+        }
+        else
+        {
+            warningManager.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(OnChangeMusic));
+            OnChangeMusic(warningManager.message);
         }
     }
 
-    void OnChangeMusic()
+    private void OnChangeOnline(RadioBase radio)
     {
-        musicPlayer.Stream = receiver.musicPlayer.Stream;
-
-        if (receiver.musicPlayer.Playing) musicPlayer.Play(receiver.station.timer);
-        else musicPlayer.Stop();
+        if (warningManager != null)
+        {
+            if (warningManager.IsMessagePlaying)
+            {
+                MusicPlayer.Play(warningManager.timer);
+                return;
+            }
+            
+            MusicPlayer.Stop();
+        }
+        
+        if (receiver != null)
+        {
+            if (receiver.MusicPlayer.Playing) MusicPlayer.Play(receiver.Radiostation.timer);
+            else MusicPlayer.Stop();
+        }
+    }
+    
+    private void OnChangeMusic(AudioStream stream)
+    {
+        MusicPlayer.Stream = stream;
+        
+        if (warningManager is { IsMessagePlaying: true })
+        {
+            MusicPlayer.Play(warningManager.timer);
+            return;
+        }
+        
+        if (receiver != null)
+        {
+            MusicPlayer.Play(receiver.Radiostation.timer);
+        }
     }
 
-    void OnChangeNoise()
+    private void OnChangeNoise(AudioStream stream)
     {
-        noiseDb = receiver.noisePlayer.UnitDb;
-        noisePlayer.UnitDb = noiseDb;
-        noisePlayer.Stream = receiver.noisePlayer.Stream;
+        noiseDb = receiver.NoisePlayer.UnitDb;
+        NoisePlayer.UnitDb = noiseDb;
+        NoisePlayer.Stream = stream;
 
-        if (receiver.noisePlayer.Playing) noisePlayer.Play();
-        else noisePlayer.Stop();
+        if (receiver.NoisePlayer.Playing) NoisePlayer.Play();
+        else NoisePlayer.Stop();
     }
 }

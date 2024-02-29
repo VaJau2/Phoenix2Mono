@@ -3,31 +3,19 @@ using Godot;
 
 public class CloneFlaskTrigger : TriggerBase
 {
-    [Export] private NodePath flaskPath;
-    [Export] AudioStreamSample underwater;
-    [Export] AudioStreamSample flaskOpen;
+    private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
-    private ColorRect blackScreen;
+    private Canvas canvas;
+    
     private int step;
     private float timer;
-    private bool changeBlackScreen;
-
-    private AudioEffectsController audioEffectController;
-
+    
     public override async void _Ready()
     {
         SetProcess(false);
-        cloneFlask = GetNode<CloneFlask>(flaskPath);
-        blackScreen = GetNode<ColorRect>("/root/Main/Scene/canvas/black");
 
         await ToSignal(GetTree(), "idle_frame");
-
-        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
-        
-        if (IsActive)
-        {
-            _on_activate_trigger();
-        }
+        canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
     }
 
     public override void _Process(float delta)
@@ -44,28 +32,55 @@ public class CloneFlaskTrigger : TriggerBase
         }
     }
 
+    public async void Resurrect(CloneFlask _cloneFlask, PhoenixSystem _phoenixSystem)
+    {
+        cloneFlask = _cloneFlask;
+        phoenixSystem = _phoenixSystem;
+        phoenixSystem.CloneWokeUp = false;
+
+        if (Global.Get().player == null)
+        {
+            var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
+            playerSpawner.InitSpawn();
+            
+            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.Spawned));
+        }
+        
+        _on_activate_trigger();
+    }
+    
     public override void _on_activate_trigger()
     {
-        var global = Global.Get();
-        var player = global.player;
+        var player = Global.Get().player;
+        var audioEffectController = player.GetNode<AudioEffectsController>("audioEffectsController");
 
         switch (step)
         {
             case 0:
-                cloneFlask.SetRace(global.playerRace);
+                player.HealHealth(player.HealthMax);
                 player.Visible = false;
                 player.RotationHelperThird.SetThirdView(false);
                 player.RotationHelperThird.MayChange = false;
-                player.MayMove = false;
+                player.SetMayMove(false);
                 player.Sit(false);
                 player.Camera.eyesClosed = true;
                
+                var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
+                player.GlobalTransform = Global.SetNewOrigin
+                (
+                    player.GlobalTransform,
+                    playerPosTransform.origin
+                );
+
+                var flaskRotation = playerPosTransform.basis.GetEuler();
+                player.Rotation = new Vector3(0, flaskRotation.y, 0);
+                
                 cloneFlask.camera.MakeCurrent(true);
                 cloneFlask.PrepareFlaskForPlayer();
-                blackScreen.Color = new Color(0, 0, 0, 1);
+                canvas.FadeOut();
 
-                player.GetAudi(true).Stream = underwater;
-                player.GetAudi(true).Play();
+                player.GetAudi().Stream = cloneFlask.underwater;
+                player.GetAudi().Play();
 
                 audioEffectController.AddEffects("flaskWater");
                 audioEffectController.AddEffects("flaskGlass");
@@ -76,18 +91,16 @@ public class CloneFlaskTrigger : TriggerBase
 
             case 1:
                 player.Camera.eyesClosed = false;
-                changeBlackScreen = true;
-                
-                cloneFlask.anim.CurrentAnimation = "wakeUp";
+                cloneFlask.anim.Play("wakeUp");
                 
                 timer = 1f;
                 SetProcess(true);
                 break;
 
             case 2:
-                cloneFlask.audi.Play();
+                cloneFlask.PlayMessage();
                 cloneFlask.AnimateWater();
-                timer = 1.5f;
+                timer = 1.75f;
                 SetProcess(true);
                 break;
 
@@ -99,16 +112,8 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
             
             case 4:
-                var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
-                player.GlobalTransform = Global.SetNewOrigin
-                (
-                    player.GlobalTransform,
-                    playerPosTransform.origin
-                );
-                var flaskRotation = playerPosTransform.basis.GetEuler();
-                player.Rotation = new Vector3(0, flaskRotation.y, 0);
                 player.Visible = true;
-                player.MayMove = true;
+                player.SetMayMove(true);
                 player.Camera.Current = true;
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();
@@ -119,8 +124,8 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 5:
-                player.GetAudi(true).Stream = flaskOpen;
-                player.GetAudi(true).Play();
+                player.GetAudi().Stream = cloneFlask.flaskOpen;
+                player.GetAudi().Play();
                 cloneFlask.AnimateGlass();
                 
                 timer = 0.3f;
@@ -129,7 +134,11 @@ public class CloneFlaskTrigger : TriggerBase
             
             case 6:
                 audioEffectController.RemoveEffects("flaskGlass");
+                cloneFlask = null;
+                step = 0;
                 base._on_activate_trigger();
+                
+                phoenixSystem.CloneWokeUp = true;
                 break;
         }
     }

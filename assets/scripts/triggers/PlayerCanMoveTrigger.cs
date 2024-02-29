@@ -10,7 +10,7 @@ public class PlayerCanMoveTrigger : ActivateOtherTrigger
     {
         if (!IsActive) return;
 
-        player.MayMove = MakeMayMove;
+        player.SetMayMove(MakeMayMove);
         base._on_activate_trigger();
     }
     

@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://assets/materials/environments/cloudy_day_env.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/textures/props/furniture/posters/pinkie.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/props/furniture/posters/chto.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/props/furniture/posters/stable.png" type="Texture" id=6]
-[ext_resource path="res://assets/scripts/furniture/Radio/RadioController.cs" type="Script" id=7]
+[ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=7]
 [ext_resource path="res://objects/props/furniture/radio/Radiostation/Royal Radio.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/textures/props/furniture/posters/science.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/props/furniture/posters/peace.png" type="Texture" id=10]
@@ -78,6 +78,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Speaker.tscn" type="PackedScene" id=76]
 [ext_resource path="res://assets/scripts/furniture/TriggerInteractionAdapter.cs" type="Script" id=77]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=78]
+[ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=79]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -1013,30 +1014,120 @@ transform = Transform( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 1.38066, 
 
 [node name="lamp" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.9628, 16.6303, -21.4635 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp8" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.2462, 30.1937, 63.6033 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp9" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 74.2636, 30.1937, 63.6033 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp2" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.2259, 16.6303, -21.4635 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp3" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.7066, 16.6303, -21.4635 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp4" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -66.2952, 16.6303, -21.4635 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp5" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.4847, 16.6303, -42.8197 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp6" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0887, 16.6303, -45.3806 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="lamp7" parent="terrain/props/light" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9771, 1.15418, -25.0764 )
+script = ExtResource( 79 )
+BrakeDamage = 50.0
+objectType = 0
+brakeSounds = {
+"brake1": null,
+"brake2": null
+}
+range = 25.0
+energy = 1.0
+bias = 0.6
 
 [node name="theater_lamp" parent="terrain/props/light" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0533, 3.68926, 31.9459 )
@@ -1755,7 +1846,6 @@ shape = SubResource( 29 )
 
 [node name="RedPunchRun" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 52 )
-otherTriggerPaths = [  ]
 disactiveTriggerPaths = [ NodePath("../redPunchRotateGun") ]
 NpcPaths = [ "../../npc/Created_red_punch" ]
 pointPaths = [ NodePath("runPoint") ]
@@ -1876,7 +1966,6 @@ NewTaskCode = "talkToCommander"
 [node name="locationExit" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
 IsActive = false
-SaveOldInventorySave = true
 newLevelNum = 4
 
 [node name="navMesh" type="NavigationMeshInstance" parent="."]
@@ -1926,11 +2015,11 @@ stream = ExtResource( 62 )
 volume_db = -10.0
 bus = "Music"
 
-[node name="RadioController" type="Node" parent="." groups=["savable"]]
+[node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 7 )
 radioListPath = [ NodePath("../terrain/props/Radio"), NodePath("../terrain/props/Speaker"), NodePath("../terrain/props/Speaker2"), NodePath("../terrain/props/Speaker3"), NodePath("../terrain/props/Speaker4") ]
 
-[node name="Royal Radio" parent="RadioController" instance=ExtResource( 8 )]
+[node name="Royal Radio" parent="Radio Manager" instance=ExtResource( 8 )]
 
 [connection signal="body_entered" from="triggers/moveNPC" to="triggers/moveNPC" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/sitTask" to="triggers/sitTask" method="_on_body_entered"]

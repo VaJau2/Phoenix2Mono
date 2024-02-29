@@ -58,6 +58,7 @@ class DialogueAudio: AudioStreamPlayer
             case ' ': return;
             case '\n': return;
             case '.': return;
+            case '?': return;
             case '[':
                 isSilent = true;
                 return;

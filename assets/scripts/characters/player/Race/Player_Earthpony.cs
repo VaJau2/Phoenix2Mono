@@ -20,7 +20,8 @@ public class Player_Earthpony : Player
 
     public override void UpdateGoForward() 
     {
-        if (!IsCrouching && Input.IsActionPressed("ui_shift")) {
+        if (!IsCrouching && Input.IsActionPressed("ui_shift")) 
+        {
             IsRunning = true;
         }
     }

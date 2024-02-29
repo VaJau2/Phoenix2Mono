@@ -13,18 +13,12 @@ public class ManaBar : Control
     
     public override void _Process(float delta)
     {
-        if (player == null)
-        {
-            player = Global.Get().player;
-        }
+        player = Global.Get().player;
 
-        if (player is Player_Unicorn unicorn)
-        {
-            if (unicorn.Mana >= Player_Unicorn.MANA_MAX) return;
+        if (player is not Player_Unicorn unicorn) return;
+        if (unicorn.Mana >= Player_Unicorn.MANA_MAX) return;
             
-            var ratio = unicorn.Mana / Player_Unicorn.MANA_MAX;
-            mask.RectSize = new Vector2(128, ratio * 128);
-        }
+        var ratio = unicorn.Mana / Player_Unicorn.MANA_MAX;
+        mask.RectSize = new Vector2(128, ratio * 128);
     }
-    
 }

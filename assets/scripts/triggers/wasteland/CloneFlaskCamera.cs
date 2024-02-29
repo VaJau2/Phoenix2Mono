@@ -6,13 +6,15 @@ public class CloneFlaskCamera : Camera
 
     public override void _Ready()
     {
-        head = GetNode<Spatial>("../Armature/Skeleton/BoneAttachment/head_pos");
+        head = GetNodeOrNull<Spatial>("../Armature/Skeleton/BoneAttachment/head_pos");
         SetProcess(false);
         SetProcessInput(false);
     }
 
     public void MakeCurrent(bool on)
     {
+        if (head == null) return;
+        
         Current = on;
         SetProcess(on);
         SetProcessInput(on);

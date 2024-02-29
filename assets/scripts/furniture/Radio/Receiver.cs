@@ -1,20 +1,18 @@
+using System;
 using Godot;
 using Godot.Collections;
-using System;
 
 public class Receiver : RadioBase, ISavable, IInteractable
 {
 	private string model;
 
-	[Export] public bool isOn { protected set; get; } = true;
+	[Export] public bool IsOn { protected set; get; } = true;
 
-	public Radiostation station { private set; get; }
+	public Radiostation Radiostation { private set; get; }
 	[Export] private Radiostation.Name radiostation;
 	[Export] private FrequencyRange frequencyRange;
 	[Export] private float frequency = 0.5f;
-
-	[Export] private float unitSize = 10f;
-	[Export] private float maxDistance = 120f;
+	[Export] public bool OnBaseFrequency = true;
 
 	public enum FrequencyRange
 	{
@@ -39,13 +37,13 @@ public class Receiver : RadioBase, ISavable, IInteractable
 	private float maxRadioVolume;
 
 	[Signal]
-	public delegate void ChangeMusicEvent();
+	public delegate void ChangeMusicEvent(AudioStream stream = null);
 
 	[Signal]
-	public delegate void ChangeNoiseEvent();
+	public delegate void ChangeNoiseEvent(AudioStream stream = null);
 
 	public bool MayInteract => true;
-	public string InteractionHintCode => isOn ? "turnOff" : "turnOn";
+	public string InteractionHintCode => IsOn ? "turnOff" : "turnOn";
 
 	public override void Initialize()
     {
@@ -60,17 +58,16 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		InitModel();
 		InitControls();
 		InitRadiostation();
-		InitPlayer();
 
-		if (inRoom && !radioController.playerInside) RepeaterMode(true);
+		if (InRoom) RepeaterMode(true);
 
-		if (isOn) SwitchOn(false);
+		if (IsOn) SwitchOn(false);
 		else SwitchOff(false);
 	}
 
 	private void InitModel()
 	{
-		bool hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
+		var hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
 		model = hasRadio ? "Radio" : "Radio Jr";
 	}
 
@@ -149,70 +146,50 @@ public class Receiver : RadioBase, ISavable, IInteractable
 	}
 
 	private void InitRadiostation()
-    {
-		switch (radiostation)
-		{
-			case Radiostation.Name.Noise:
-				station = null;
-				break;
-
-			case Radiostation.Name.RadioApplewood:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Radio Applewood");
-				break;
-
-			case Radiostation.Name.EasyGreasyFM:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Easy-Greasy FM");
-				break;
-
-			case Radiostation.Name.RoyalRadio:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Royal Radio");
-				break;
-
-			case Radiostation.Name.BlueRadio:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Blue Radio");
-				break;
-
-			case Radiostation.Name.CountryStation:
-				station = GetNode<Radiostation>("/root/Main/Scene/RadioController/Country Station");
-				break;
-
-		}
-
-		station?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
-		station?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(OnMusicFinished));
-	}
-
-	private void InitPlayer()
 	{
-		musicPlayer = GetNode<AudioStreamPlayer3D>("Music Player");
-		musicPlayer.MaxDistance = maxDistance;
-		musicPlayer.UnitSize = unitSize;
-		
-		noisePlayer = GetNode<AudioStreamPlayer3D>("Noise Player");
-		noisePlayer.MaxDistance = maxDistance;
-		noisePlayer.UnitSize = unitSize;
-		
-		switchSound = (AudioStream)GD.Load("res://assets/audio/radio/Switch.ogg");
-		noiseSound = (AudioStream)GD.Load("res://assets/audio/radio/Noise.ogg");
+		Radiostation = Radiostation.GetRadiostation(this, radiostation);
+		if (Radiostation != null) TuneIn();
 	}
 
 	public void Interact(PlayerCamera interactor)
 	{
-		if (isOn) SwitchOff();
+		if (IsOn) SwitchOff();
 		else SwitchOn();
+	}
+
+	public void TuneIn()
+	{
+		Radiostation?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
+		Radiostation?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
+		
+		warningManager?.Disconnect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
+	}
+
+	public void TuneOut()
+	{
+		Radiostation?.Disconnect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
+		Radiostation?.Disconnect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
+		
+		warningManager?.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
 	}
 
 	public void SwitchOn(bool withSwitchSound = true)
 	{
-		isOn = true;
+		IsOn = true;
 
 		UpdateVolumeLever(global.Settings.radioVolume);
 
-		if (station != null)
+		if (Radiostation != null)
         {
-			musicPlayer.Stream = station.song;
-			station.SyncTimer();
-			EmitSignal(nameof(ChangeMusicEvent));
+			MusicPlayer.Stream = Radiostation.song;
+			Radiostation.SyncTimer();
+        }
+		
+		if (warningManager is { IsMessagePlaying: true })
+		{
+			MusicPlayer.Stream = warningManager.message;
+			MusicPlayer.Play(warningManager.timer);
+			return;
 		}
 
 		if (withSwitchSound) PlaySwitchSound();
@@ -223,54 +200,50 @@ public class Receiver : RadioBase, ISavable, IInteractable
 
 	public void SwitchOff(bool withSwitchSound = true)
 	{
-		if (station != null)
-        {
-			musicPlayer.Stop();
-			EmitSignal(nameof(ChangeMusicEvent));
-		}
+		MusicPlayer.Stop();
 
 		if (withSwitchSound) PlaySwitchSound();
 		UpdateVolumeLever(minRadioVolume);
 
-		isOn = false;
+		IsOn = false;
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
 	private void SyncTimer()
     {
-		if (isOn) musicPlayer.Play(station.timer);
+		if (IsOn) MusicPlayer.Play(Radiostation.timer);
 	}
 
 	private void PlaySwitchSound()
     {
-		noisePlayer.Stream = switchSound;
-		noisePlayer.UnitDb = 0;
-		noisePlayer.Play();
+		NoisePlayer.Stream = switchSound;
+		NoisePlayer.UnitDb = 0;
+		NoisePlayer.Play();
 
-		EmitSignal(nameof(ChangeNoiseEvent));
+		EmitSignal(nameof(ChangeNoiseEvent), switchSound);
 	}
 
 	private void OnSwitchSoundFinished()
 	{
-		if (isOn)
+		if (IsOn)
         {
-			noisePlayer.Stream = noiseSound;
-			noisePlayer.UnitDb = noiseDb;
-			noisePlayer.Play();
+			NoisePlayer.Stream = noiseSound;
+			NoisePlayer.UnitDb = noiseDb;
+			NoisePlayer.Play();
 
-			EmitSignal(nameof(ChangeNoiseEvent));
+			EmitSignal(nameof(ChangeNoiseEvent), noiseSound);
 		}
 	}
 
-	private void OnMusicFinished()
+	private void ChangeMusic(AudioStream stream)
 	{
-		if (isOn)
-        {
-			musicPlayer.Stream = station.song;
-			musicPlayer.Play();
+		if (!IsOn) return;
+		
+		MusicPlayer.Stop();
+		MusicPlayer.Stream = stream;
+		MusicPlayer.Play();
 
-			EmitSignal(nameof(ChangeMusicEvent));
-		}
+		EmitSignal(nameof(ChangeMusicEvent), stream);
 	}
 
 	private void UpdateVolumeLever(float value)
@@ -296,7 +269,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
     {
 		return new Dictionary()
 		{
-			{"isOn", isOn}
+			{"isOn", IsOn}
 		};
     }
 
@@ -305,7 +278,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		if (!data.Contains("isOn")) return;
 
 		bool tempIsOn = (bool)data["isOn"];
-		if (isOn != tempIsOn)
+		if (IsOn != tempIsOn)
         {
 			if (tempIsOn) SwitchOn(false);
 			else SwitchOff(false);

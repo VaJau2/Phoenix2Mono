@@ -6,8 +6,9 @@ public class SoundSteps: RayCast {
 
     //ссылка на скрипт через player.Body.SoundSteps
 
-    [Export]
-    public NodePath parentPath;
+    [Export] public NodePath parentPath;
+    [Export] private bool isActive = true;
+    
     const float STEP_COOLDOWN = 0.4f;
     const float STEP_JUMP_COOLDOWN = 0.7f;
     const float STEP_CROUCH_COOLDOWN = 0.8f;
@@ -184,6 +185,8 @@ public class SoundSteps: RayCast {
 
     public override void _Process(float delta)
     {
+        if (!isActive) return;
+        
         if (isPlayer) {
             if (!(parent as Player).MayMove) {
                 return;

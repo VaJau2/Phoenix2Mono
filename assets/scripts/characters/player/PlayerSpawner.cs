@@ -1,47 +1,54 @@
+using System;
 using Godot;
 using Godot.Collections;
 
 public class PlayerSpawner : Spatial
 {
     [Export]
-    public int moneyCount = 0;
+    public int moneyCount;
     [Export]
-    public Array<string> itemCodes = new Array<string>();
+    public Array<string> itemCodes = new();
     [Export]
-    public Dictionary<string, int> ammo = new Dictionary<string, int>();
+    public Dictionary<string, int> ammo = new();
 
     [Export]
     public string clothCode = "";
 
     [Export] public bool checkSavedData = true;
     [Export] public bool checkSavedMoney = true;
-    [Export] public bool spawningInside = false;
+    [Export] public bool spawningInside;
+    [Export] private bool deleteAfterSpawn = true;
 
     public bool loadStartItems = true;
-   
+
+    [Signal]
+    public delegate void Spawned();
 
     public override void _Ready()
     {
-        Global global = Global.Get();
-        string path = "res://objects/characters/Player/Player_";
+        InitSpawn();
+    }
 
-        switch(global.playerRace) 
-        {
-            case (Race.Earthpony):
-                path += "Earthpony.tscn";
-                break;
-            case (Race.Pegasus):
-                path += "Pegasus.tscn";
-                break;
-            case (Race.Unicorn):
-                path += "Unicorn.tscn";
-                break;
-        }
+    public void InitSpawn()
+    {
+        var path = "res://objects/characters/Player/Player_";
+        path += GetRacePath();
 
         var playerPrefab = GD.Load<PackedScene>(path);
         var newPlayer = (Player)playerPrefab.Instance();
 
         SpawnPlayer(newPlayer);
+    }
+
+    private static string GetRacePath()
+    {
+        return Global.Get().playerRace switch
+        {
+            Race.Earthpony => "Earthpony.tscn",
+            Race.Pegasus => "Pegasus.tscn",
+            Race.Unicorn => "Unicorn.tscn",
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     private async void SpawnPlayer(Player player) 
@@ -68,11 +75,11 @@ public class PlayerSpawner : Spatial
                     if (checkSavedMoney && savedData.InventoryData.Contains("money"))
                     {
                         var loadedMoney = savedData.InventoryData["money"].ToString();
-                        player.inventory.LoadMoney(loadedMoney);
+                        player.Inventory.LoadMoney(loadedMoney);
                     }
                     if (checkSavedData)
                     {
-                        player.inventory.LoadData(savedData.InventoryData);
+                        player.Inventory.LoadData(savedData.InventoryData);
                         savedData.CheckClonedSaveData();
                         QueueFree();
                         return;
@@ -83,19 +90,25 @@ public class PlayerSpawner : Spatial
             //если деньги не переносятся между уровнями, загружается стартовое значение
             if (!checkSavedMoney)
             {
-                player.inventory.money = moneyCount;
+                player.Inventory.money = moneyCount;
             }
             
             //загрузка стартовых вещей
-            player.inventory.LoadItems(itemCodes, ammo);
+            player.Inventory.LoadItems(itemCodes, ammo);
 
             //загрузка надетой на ГГ брони
             if (clothCode != "" && clothCode != "empty")
             {
-                player.inventory.LoadWearItem(clothCode, ItemType.armor);
+                player.Inventory.LoadWearItem(clothCode, ItemType.armor);
             }
         }
 
-        QueueFree();
+        if (deleteAfterSpawn)
+        {
+            QueueFree();
+            return;
+        }
+        
+        EmitSignal(nameof(Spawned));
     }
 }
