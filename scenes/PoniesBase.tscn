@@ -420,12 +420,14 @@ script = ExtResource( 10 )
 [node name="private1" parent="npc" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.443, 0, 83.9928 )
 patrolArray = [ NodePath("../../terrain/patrolPoints/1"), NodePath("../../terrain/patrolPoints/2"), NodePath("../../terrain/patrolPoints/3"), NodePath("../../terrain/patrolPoints/4"), NodePath("../../terrain/patrolPoints/2") ]
+IsImmortal = true
 weaponCode = "revolver32"
 
 [node name="mrGutsy" parent="npc" groups=["savable"] instance=ExtResource( 35 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5348, 0.163271, 7.50198 )
 patrolArray = [ NodePath("../../terrain/patrolPoints2/1"), NodePath("../../terrain/patrolPoints2/2"), NodePath("../../terrain/patrolPoints2/3"), NodePath("../../terrain/patrolPoints2/4") ]
 IdleAnim = "Idle"
+IsImmortal = true
 ammoCount = {
 "ammoEnergy": 20
 }
@@ -446,6 +448,7 @@ startAmmoCount = {
 [node name="private2" parent="npc" instance=ExtResource( 69 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 10.602, -98.881, 60.593 )
 IdleAnim = "Sit"
+IsImmortal = true
 dialogueCode = "talk"
 weaponCode = "revolver32"
 ammoCount = {

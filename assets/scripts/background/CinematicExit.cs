@@ -62,7 +62,6 @@ public class CinematicExit : Area, ISavable
             startPosY + distance * CAMERA_HEIGHT_RATIO,
             cinematicCamera.GlobalTransform.origin.z
         );
-
         var transform = cinematicCamera.GlobalTransform;
         transform.origin = transform.origin.LinearInterpolate(target, delta * CAMERA_SPEED);
         cinematicCamera.GlobalTransform = transform;
@@ -91,16 +90,15 @@ public class CinematicExit : Area, ISavable
         player.RotationHelperThird.MayChange = false;
         
         SpawnCamera();
-        exitPoint = cinematicCamera.GlobalTransform.origin;
-
-        SetProcess(true);
     }
 
-    private void SpawnCamera()
+    private async void SpawnCamera()
     {
         cinematicCamera = new Camera();
         cinematicCamera.Name = "Created_CinematicCamera";
-        GetNode("../../").CallDeferred("AddChild", cinematicCamera);
+        GetNode("../../").CallDeferred("add_child", cinematicCamera);
+
+        await ToSignal(GetTree(), "idle_frame");
 
         var locationCenter = new Vector3(
             GlobalTransform.origin.x, 
@@ -119,6 +117,31 @@ public class CinematicExit : Area, ISavable
         startPosY = cinematicCamera.GlobalTransform.origin.y;
         cinematicCamera.Far = CAMERA_FAR;
         cinematicCamera.Current = true;
+        
+        exitPoint = cinematicCamera.GlobalTransform.origin;
+
+        SetProcess(true);
+    }
+    
+    private async void SpawnCamera(Vector3 pos)
+    {
+        cinematicCamera = new Camera();
+        cinematicCamera.Name = "Created_CinematicCamera";
+        GetNode("../../").CallDeferred("add_child", cinematicCamera);
+        
+        cinematicCamera.GlobalTransform =
+            Global.SetNewOrigin(
+                cinematicCamera.GlobalTransform,
+                pos
+            );
+        
+        startPosY = cinematicCamera.GlobalTransform.origin.y;
+        cinematicCamera.Far = CAMERA_FAR;
+        cinematicCamera.Current = true;
+        
+        exitPoint = cinematicCamera.GlobalTransform.origin;
+
+        SetProcess(true);
     }
 
     private void DespawnCamera()
@@ -169,9 +192,6 @@ public class CinematicExit : Area, ISavable
     {
         await ToSignal(GetTree(), "idle_frame");
         
-        SpawnCamera();
-        cinematicCamera.GlobalTransform = Global.SetNewOrigin(cinematicCamera.GlobalTransform, pos);
-        
-        SetProcess(true);
+        SpawnCamera(pos);
     }
 }

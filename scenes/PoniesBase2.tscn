@@ -362,6 +362,7 @@ script = ExtResource( 10 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5348, 1.30727, 7.50198 )
 patrolArray = [ NodePath("../../terrain/patrolPoints2/1"), NodePath("../../terrain/patrolPoints2/2"), NodePath("../../terrain/patrolPoints2/3"), NodePath("../../terrain/patrolPoints2/4") ]
 IdleAnim = "Idle"
+IsImmortal = true
 ammoCount = {
 "ammoEnergy": 20
 }
@@ -400,6 +401,7 @@ dialogueCode = "talk1"
 [node name="private1" parent="npc" instance=ExtResource( 74 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -65.8466, -98.3153, 115.107 )
 IdleAnim = "Sleep"
+IsImmortal = true
 weaponCode = "revolver32"
 ammoCount = {
 "ammo32": 20
@@ -408,6 +410,7 @@ ammoCount = {
 [node name="private2" parent="npc" instance=ExtResource( 69 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -65.7141, -98.3806, 107.166 )
 IdleAnim = "Sleep"
+IsImmortal = true
 weaponCode = "revolver32"
 ammoCount = {
 "ammo32": 20
@@ -416,6 +419,7 @@ ammoCount = {
 [node name="private_mare" parent="npc" instance=ExtResource( 46 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -45.7862, -0.178429, 50.847 )
 IdleAnim = "Sit"
+IsImmortal = true
 WalkSpeed = 4
 ammoCount = {
 "ammoEnergy": 20
@@ -424,6 +428,7 @@ ammoCount = {
 [node name="armored_soldier" parent="npc" instance=ExtResource( 81 )]
 transform = Transform( 0.443541, 0, 0.896254, 0, 1, 0, -0.896254, 0, 0.443541, -36.1053, -0.30198, 53.723 )
 IdleAnim = "Sit"
+IsImmortal = true
 dialogueCode = ""
 WalkSpeed = 5
 ammoCount = {

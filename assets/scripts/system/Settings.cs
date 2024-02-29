@@ -3,7 +3,7 @@ using Godot;
 public class Settings 
 {
     public bool SettingsLoaded;
-    public Color interfaceColor = new Color(0.226f, 0.75f, 0.144f);
+    public Color interfaceColor = new Color(0.2f, 1f, 0.2f);
     public float mouseSensivity = 0.1f;
     public float distance = 600;
     public int shadows {get; private set;} = 3;
