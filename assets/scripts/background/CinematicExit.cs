@@ -98,7 +98,7 @@ public partial class CinematicExit : Area3D, ISavable
         cinematicCamera.Name = "Created_CinematicCamera";
         GetNode("../../").CallDeferred("add_child", cinematicCamera);
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
 
         var locationCenter = new Vector3(
             GlobalTransform.Origin.X, 
@@ -190,7 +190,7 @@ public partial class CinematicExit : Area3D, ISavable
 
     private async void LoadCamera(Vector3 pos)
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         SpawnCamera(pos);
     }

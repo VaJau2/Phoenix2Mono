@@ -21,7 +21,7 @@ config/windows_native_icon="res://icon.ico"
 
 [display]
 
-window/stretch/mode="2d"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [dotnet]
@@ -35,9 +35,9 @@ convert_text_resources_to_binary_on_export=true
 [file_customization]
 
 folder_colors={
-"res://assets/": "red",
+"res://assets/": "green",
 "res://objects/": "orange",
-"res://scenes/test/": "green"
+"res://scenes/test/": "purple"
 }
 
 [importer_defaults]

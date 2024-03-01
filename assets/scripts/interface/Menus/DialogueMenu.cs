@@ -219,7 +219,7 @@ public partial class DialogueMenu : Control, IMenu
 
         text.Text = "";
         ((Control)GetParent()).Visible = false;
-        EmitSignal(nameof(FinishTalkingEventHandler));
+        EmitSignal(SignalName.FinishTalking);
     }
 
     public void _on_answer_mouse_entered(int i)

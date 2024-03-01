@@ -73,7 +73,7 @@ public partial class ItemIcon : ColorRect
 
         if (isInventoryIcon)
         {
-            player.EmitSignal(nameof(Player.TakeItemEventHandler), itemCode);
+            player.EmitSignal(Player.SignalName.TakeItem, itemCode);
         }
     }
 

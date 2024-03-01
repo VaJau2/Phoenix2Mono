@@ -77,7 +77,7 @@ public partial class WarningManager : RadioManager
             trigger.Connect();
             messagePlayer.Play();
             
-            EmitSignal(nameof(MessageSentEventHandler), message);
+            EmitSignal(SignalName.MessageSent, message);
         }
     }
 
@@ -89,7 +89,7 @@ public partial class WarningManager : RadioManager
             messagesList[0].trigger.Connect();
             messagesList.RemoveAt(0);
             messagePlayer.Play();
-            EmitSignal(nameof(MessageSentEventHandler), message);
+            EmitSignal(SignalName.MessageSent, message);
         }
         else
         {
@@ -98,7 +98,7 @@ public partial class WarningManager : RadioManager
                 receiver.TuneIn();
             }
             
-            EmitSignal(nameof(MessageFinishedEventHandler));
+            EmitSignal(SignalName.MessageFinished);
         }
     }
     

@@ -83,7 +83,7 @@ public partial class BindsList : Node
 
             if (tempIcon.IsNeedDelay())
             {
-                await ToSignal(tempIcon, nameof(BindIcon.IsDeletingEventHandler));
+                await ToSignal(tempIcon, nameof(BindIcon.IsDeleting));
             }
             
             SortBinds();

@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode blend_mix;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
 float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord, float seedA, float seedB, float speed, float time, vec2 iResolution)
 {
 	vec2 sourceToCoord = coord - raySource;
@@ -21,7 +23,7 @@ void fragment()
 	
 	// Set the parameters of the sun rays
 	vec2 rayPos1 = vec2(iResolution.x * 0.0, iResolution.y * -0.4);
-	vec2 rayRefDir1 = normalize(vec2(1.0, -0.5));
+	vec2 rayRefDir1 = normalize(vec2(1, -0.5));
 	float raySeedA1 = 13.2214;
 	float raySeedB1 = 5.11349;
 	float raySpeed1 = 0.3;

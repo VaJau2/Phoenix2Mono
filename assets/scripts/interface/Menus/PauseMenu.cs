@@ -159,6 +159,6 @@ public partial class PauseMenu : MenuBase, IMenu
     private void SetPause(bool value)
     {
         global.SetPause(this, value);
-        EmitSignal(nameof(ChangePauseEventHandler), value);
+        EmitSignal(SignalName.ChangePause, value);
     }
 }

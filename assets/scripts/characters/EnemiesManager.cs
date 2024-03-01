@@ -39,7 +39,7 @@ public partial class EnemiesManager : Node, ISavable
         }
 
         isAlarming = true;
-        EmitSignal(nameof(AlarmStartedEventHandler));
+        EmitSignal(SignalName.AlarmStarted);
         SetProcess(true);
     }
 
@@ -51,7 +51,7 @@ public partial class EnemiesManager : Node, ISavable
         }
 
         isAlarming = false;
-        EmitSignal(nameof(AlarmEndedEventHandler));
+        EmitSignal(SignalName.AlarmEnded);
         SetProcess(false);
     }
 

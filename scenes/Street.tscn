@@ -52,7 +52,7 @@
 [ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radiostation/Easy-Greasy FM.tscn" id="53"]
 [ext_resource type="AudioStream" uid="uid://dua73mbd1sbay" path="res://assets/audio/background/bushes/bushes.mp3" id="54"]
 [ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radiostation/Radio Applewood.tscn" id="55"]
-[ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radio.tscn" id="56"]
+[ext_resource type="PackedScene" uid="uid://dxcs360jct2l7" path="res://objects/props/furniture/radio/Radio.tscn" id="56"]
 [ext_resource type="Script" path="res://assets/scripts/furniture/Radio/RadioManager.cs" id="57"]
 [ext_resource type="AudioStream" uid="uid://dbwi08heyqm3x" path="res://assets/audio/background/bushes/bushes_sneak.mp3" id="58"]
 [ext_resource type="Script" path="res://assets/scripts/background/GridmapStepSound.cs" id="60"]
@@ -895,7 +895,7 @@ script = SubResource("39")
 [node name="Radio Manager" type="Node" parent="." groups=["savable"]]
 process_mode = 3
 script = ExtResource("57")
-radioListPath = [NodePath("../terrain/props/houses/house8/Radio"), NodePath("../terrain/props/houses/house2/Radio"), NodePath("../terrain/props/houses/house11/Radio")]
+radioListPath = [NodePath("../terrain/props/houses/house11/Radio"), NodePath("../terrain/props/houses/house2/Radio"), NodePath("../terrain/props/houses/house8/Radio")]
 
 [node name="Blue Radio" parent="Radio Manager" instance=ExtResource("52")]
 

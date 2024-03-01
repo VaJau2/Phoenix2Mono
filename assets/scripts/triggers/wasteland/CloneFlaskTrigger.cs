@@ -14,7 +14,7 @@ public partial class CloneFlaskTrigger : TriggerBase
     {
         SetProcess(false);
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
     }
 
@@ -43,7 +43,7 @@ public partial class CloneFlaskTrigger : TriggerBase
             var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
             playerSpawner.InitSpawn();
             
-            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.SpawnedEventHandler));
+            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.Spawned));
         }
         
         OnActivateTrigger();

@@ -121,7 +121,7 @@ public partial class PlayerBody : Node3D
         var lookYAngle = (player.GetVerticalLook() / 60f - 0.1f) + walkOffset;
         //обрасываем нули, чтоб вращение головы не подрагивало
         string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);
-        headBlend.X = float.Parse(stringYAngle);
+        headBlend.Y = float.Parse(stringYAngle);
 
         if (isWalking || jumpingCooldown > 0)
         {
@@ -151,12 +151,12 @@ public partial class PlayerBody : Node3D
         {
             if (bodyRot > 130f)
             {
-                headBlend.X *= -1;
+                headBlend.Y *= -1;
                 rotX = (bodyRot - 200f) / 90f;
             }
             else if (bodyRot < -105f)
             {
-                headBlend.X *= -1;
+                headBlend.Y *= -1;
                 rotX = (bodyRot + 159f) / 90f;
             }
             else
@@ -528,7 +528,7 @@ public partial class PlayerBody : Node3D
 
                 if (onetimeBodyRotBack)
                 {
-                    bodyRot = RotationDegrees.X;
+                    bodyRot = RotationDegrees.Y;
                     onetimeBodyRotBack = false;
                 }
             }
@@ -581,13 +581,13 @@ public partial class PlayerBody : Node3D
                     speed = BODY_ROT_SPEED * player.Velocity.Length();
                 }
 
-                rot.X = (float)Mathf.MoveToward(rot.X, bodyRot, speed * delta);
+                rot.Y = (float)Mathf.MoveToward(rot.X, bodyRot, speed * delta);
                 RotationDegrees = rot;
             }
             else
             {
                 Vector3 rot = RotationDegrees;
-                rot.X = bodyRot;
+                rot.Y = bodyRot;
 
                 RotationDegrees = rot;
 

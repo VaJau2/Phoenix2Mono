@@ -123,7 +123,7 @@ public partial class MainMenu : MenuBase
             label.VisibleRatio += 0.1f;
             await global.ToTimer(0.05f, this);
         }
-        EmitSignal(nameof(LabelChangedEventHandler));
+        EmitSignal(SignalName.LabelChanged);
     }
 
     public override void LoadInterfaceLanguage()
@@ -205,7 +205,7 @@ public partial class MainMenu : MenuBase
                     0, 0, 0,
                     backgroundRect.Color.A - 0.1f
                 );
-                await ToSignal(GetTree(), "idle_frame");
+                await ToSignal(GetTree(), "process_frame");
             }
         }
         else

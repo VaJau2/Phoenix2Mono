@@ -61,7 +61,7 @@ public partial class AmbientVolSync : Node3D
 
         radioList.Add(radio);
         
-        if (radio.IsConnected(nameof(RadioBase.ChangeOnlineEventHandler), new Callable(this, nameof(OnRadioChangeOnline)))) 
+        if (radio.IsConnected(RadioBase.SignalName.ChangeOnline, new Callable(this, nameof(OnRadioChangeOnline)))) 
             return;
         
         radio.ChangeOnline += OnRadioChangeOnline;

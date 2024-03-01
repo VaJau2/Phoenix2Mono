@@ -103,6 +103,7 @@ public partial class Global
         {
             foreach (string saveFileName in GetSaveFiles())
             {
+                GD.Print(GetSaveFiles());
                 var fileData = GetFileMetadata(saveFileName);
                 if (fileData is { } line)
                 {
@@ -310,8 +311,9 @@ public partial class Global
     {
         var file = FileAccess.OpenCompressed(fileName, FileAccess.ModeFlags.Read);
         
-        if (!file.IsOpen() || file.EofReached())
+        if (file == null || file.EofReached())
         {
+            GD.PrintErr(FileAccess.GetOpenError());
             return null;
         }
         

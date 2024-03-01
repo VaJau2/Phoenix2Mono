@@ -7,7 +7,7 @@ public partial class InteractionPointManager : Control
     
     public override async void _Ready()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         MenuBase.LoadColorForChildren(this);
         
         point = GetNode<InteractionPoint>("point");

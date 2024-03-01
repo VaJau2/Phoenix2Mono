@@ -193,7 +193,7 @@ public partial class Table : VBoxContainer
         if (!IsInstanceValid(tempButton)) return;
         
         var fileI = int.Parse(buttonName);
-        parent.EmitSignal(nameof(TableSignals.TableButtonPressedEventHandler), filesArray[fileI].name);
+        parent.EmitSignal(TableSignals.SignalName.TableButtonPressed, filesArray[fileI].name);
     }
 }
 

@@ -129,7 +129,7 @@ public abstract partial class NPC : Character, IInteractable
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamageEventHandler));
+        EmitSignal(Character.SignalName.TakenDamage);
         
         if (IsImmortal) return;
 
@@ -176,17 +176,10 @@ public abstract partial class NPC : Character, IInteractable
 
     public void SetObjectActive(string objectPath, bool active)
     {
-        var showobject = GetNode<Node3D>(objectPath);
-        if (showobject == null) return;
-        showobject.Visible = active;
-        if (objectsChangeActive.ContainsKey(objectPath))
-        {
-            objectsChangeActive[objectPath] = active;
-        }
-        else
-        {
-            objectsChangeActive.Add(objectPath, active);
-        }
+        var showObject = GetNode<Node3D>(objectPath);
+        if (showObject == null) return;
+        showObject.Visible = active;
+        objectsChangeActive[objectPath] = active;
     }
 
     protected void CleanPatrolArray()
@@ -422,24 +415,23 @@ public abstract partial class NPC : Character, IInteractable
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())
         {
-            if (!(signal is Dictionary signalDict)) continue;
+            if (signal == null) continue;
 
-            var connectionList = GetSignalConnectionList(signalDict["name"].ToString());
+            var connectionList = GetSignalConnectionList(signal["name"].ToString());
             if (connectionList == null || connectionList.Count == 0) continue;
 
             foreach (var connectionData in connectionList)
             {
-                if (!(connectionData is Dictionary connectionDict)) continue;
-                if (connectionDict["target"].As<Node>() is not { } target) continue;
-                var signalName = signalDict["name"].ToString();
+                if (connectionData?["target"].As<Node>() is not { } target) continue;
+                var signalName = signal["name"].ToString();
                 if (SKIP_SIGNALS.Contains(signalName)) continue;
 
                 signals.Add(new Dictionary
                 {
                     {"signal", signalName},
-                    {"method", connectionDict["method"].ToString()},
+                    {"method", connectionData["method"].ToString()},
                     {"target_path", target.GetPath()},
-                    {"binds", connectionDict["binds"]}
+                    {"binds", connectionData["binds"]}
                 });
             }
         }

@@ -20,7 +20,7 @@ public partial class AudioEffectsController : Node, ISavable
         player.UnwearItem += RemoveEffects;
         player.ChangeView += OnChangeView;
         
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         AddEffects(player.Inventory.cloth);
     }

@@ -118,7 +118,7 @@ public partial class DialogueTrigger : TriggerBase
         {
             npc.SetNewStartPos(startPoint.GlobalTransform.Origin);
             npc.myStartRot = startPoint.Rotation;
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCameEventHandler));
+            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
         }
         
         step = 2;
@@ -137,7 +137,7 @@ public partial class DialogueTrigger : TriggerBase
         if (goToPlayer)
         {
             npc.SetFollowTarget(Global.Get().player);
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCameEventHandler));
+            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
             npc.SetFollowTarget(null);
         }
         

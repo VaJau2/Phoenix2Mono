@@ -105,7 +105,7 @@ public partial class NpcWithWeapons : NPC, IChest
 
         if (!data.ContainsKey("followTarget") || data["followTarget"].Obj == null) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         var newFollowTarget = GetNode<Character>(data["followTarget"].ToString());
         SetFollowTarget(newFollowTarget);
     }
@@ -170,7 +170,7 @@ public partial class NpcWithWeapons : NPC, IChest
     {
         Stop();
         cameToPlace = true;
-        EmitSignal(nameof(IsCameEventHandler));
+        EmitSignal(SignalName.IsCame);
     }
 
     protected virtual void MoveToPoint(float tempDistance, bool mayRun)

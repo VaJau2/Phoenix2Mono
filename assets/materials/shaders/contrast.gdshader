@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode blend_mix;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
 mat4 brightnessMatrix( float brightness )
 {
     return mat4( vec4(1, 0, 0, 0),

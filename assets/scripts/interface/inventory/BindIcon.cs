@@ -19,7 +19,7 @@ public partial class BindIcon : ItemIcon
         anim = GetNode<AnimationPlayer>("anim");
         anim.Play("RESET");
         
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         player.UseItem += OnPlayerUseItem;
         player.ClearWeaponBind += ClearWeaponBind;
 
@@ -50,7 +50,7 @@ public partial class BindIcon : ItemIcon
             await ToSignal(anim, "animation_finished");
         }
         
-        EmitSignal(nameof(IsDeletingEventHandler));
+        EmitSignal(SignalName.IsDeleting);
         QueueFree();
     }
 

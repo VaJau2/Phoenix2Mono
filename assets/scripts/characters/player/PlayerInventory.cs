@@ -175,7 +175,7 @@ public partial class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.WearItemEventHandler), itemCode);
+        if (emmitSignal) player.EmitSignal(Player.SignalName.WearItem, itemCode);
     }
 
     public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
@@ -206,7 +206,7 @@ public partial class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.UnwearItemEventHandler), itemCode);
+        if (emmitSignal) player.EmitSignal(Player.SignalName.UnwearItem, itemCode);
     }
 
     public void MessageCantSell(string itemName)

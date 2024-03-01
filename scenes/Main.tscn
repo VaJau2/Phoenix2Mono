@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dydmdq2bkvmlr"]
 
-[ext_resource type="PackedScene" path="res://objects/interface/menus/MainMenu.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://objects/interface/menus/SettingsMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://re5fjwdvm57u" path="res://objects/interface/menus/MainMenu.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c72slse5qggsi" path="res://objects/interface/menus/SettingsMenu.tscn" id="2"]
 [ext_resource type="Script" path="res://assets/scripts/system/LevelsLoader.cs" id="3"]
 [ext_resource type="Script" path="res://assets/scripts/utils/SaveNode.cs" id="4"]
 [ext_resource type="PackedScene" path="res://objects/Testing.tscn" id="5"]
@@ -13,13 +13,9 @@ script = ExtResource("3")
 layer = 2
 
 [node name="MainMenu" parent="Menu" instance=ExtResource("1")]
-layout_mode = 3
-anchors_preset = 15
 
 [node name="SettingsMenu" parent="Menu" instance=ExtResource("2")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
 
 [node name="SaveNode" type="Node" parent="." groups=["savable"]]
 script = ExtResource("4")

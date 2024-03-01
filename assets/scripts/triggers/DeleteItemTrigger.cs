@@ -10,7 +10,7 @@ public partial class DeleteItemTrigger : TriggerBase
     {
         if (!IsActive) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         OnActivateTrigger();
     }
 

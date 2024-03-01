@@ -16,7 +16,7 @@ public partial class TestSceneLoader : Node
         //загружаем и скрываем менюшки паузы и настроек (если их нет на сцене)
         if (HasNode("/root/Main/Menu")) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         var main = GetNode("/root/Main");
         var canvas = new CanvasLayer();

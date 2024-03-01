@@ -49,7 +49,7 @@ public partial class LevelsLoader : Node
 		loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
 		deathMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DeathMenu.tscn");
 
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), "process_frame");
 		
 		menuParent = GetNode<Node>("Menu");
 		currentMenu = menuParent.GetNode<Control>(
@@ -86,7 +86,7 @@ public partial class LevelsLoader : Node
 			global.player = null;
 			currentScene.QueueFree();
 			currentScene = null;
-			await ToSignal(GetTree(), "idle_frame");
+			await ToSignal(GetTree(), "process_frame");
 		}
 
 		global.SetPause(this, false);
@@ -217,7 +217,7 @@ public partial class LevelsLoader : Node
 	private async void LoadLevelObjects(Node scene)
 	{
 		//ждем загрузки сцены
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), "process_frame");
 
 		foreach (string objKey in levelData.Keys)
 		{
@@ -244,7 +244,7 @@ public partial class LevelsLoader : Node
 	{
 		if (currentLoading == null) return;
 		
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), "process_frame");
 		
 		currentLoading.QueueFree();
 		currentLoading = null;
@@ -274,14 +274,14 @@ public partial class LevelsLoader : Node
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
 			DeleteLoadingMenu();
-			EmitSignal(nameof(LevelLoadedEventHandler));
+			EmitSignal(SignalName.LevelLoaded);
 
 			if (loadSavedData)
 			{
 				LoadLevelObjects(newScene);
 			}
 			
-			EmitSignal(nameof(SaveDataLoadedEventHandler));
+			EmitSignal(SignalName.SaveDataLoaded);
 		}
 		else if (status == ResourceLoader.ThreadLoadStatus.Failed) 
 		{

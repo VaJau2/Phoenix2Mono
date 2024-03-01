@@ -73,7 +73,7 @@ public partial class UseHandler
     {
         if (Player.Health <= 0) return;
         
-        Player.EmitSignal(nameof(Player.UseItemEventHandler), tempButton.myItemCode);
+        Player.EmitSignal(Player.SignalName.UseItem, tempButton.myItemCode);
 
         var itemType = mode.tempItemData["type"].As<ItemType>();
         if (Inventory.itemIsUsable(itemType)) 
@@ -106,7 +106,7 @@ public partial class UseHandler
                     var tempDeletingItem = bindsHandler.TempDeletingIcon;
                     if (GodotObject.IsInstanceValid(tempDeletingItem))
                     {
-                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeletingEventHandler));
+                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeleting));
                     }
 
                     //если использовался забинденный предмет

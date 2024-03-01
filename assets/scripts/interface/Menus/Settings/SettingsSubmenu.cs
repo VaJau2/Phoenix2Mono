@@ -170,7 +170,7 @@ public partial class SettingsSubmenu : SubmenuBase
     public void _on_radio_slider_value_changed(float value)
     {
         global.Settings.SetRadioVolume(value);
-        EmitSignal(nameof(ChangeRadioVolumeEventHandler), value);
+        EmitSignal(SignalName.ChangeRadioVolume, value);
     }
 
     public void _on_music_slider_value_changed(float value)

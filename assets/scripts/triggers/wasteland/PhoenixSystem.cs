@@ -40,7 +40,7 @@ public partial class PhoenixSystem : Node, ISavable
 
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         if (CloneWokeUp) return;
         StartCloning();
@@ -91,7 +91,7 @@ public partial class PhoenixSystem : Node, ISavable
         cloneFlasks.Remove(cloneFlask);
         cloneNumber = cloneFlasks.Count - 1;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         deathManager = Global.Get().player.DeathManager;
         if (cloneNumber > 0) deathManager.permanentDeath = false;

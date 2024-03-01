@@ -266,7 +266,7 @@ public partial class Player : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamage));
+        EmitSignal(Character.SignalName.TakenDamage);
         base.TakeDamage(damager, damage, shapeID);
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
@@ -618,7 +618,7 @@ public partial class Player : Character
         if (sittingOnChair)
         {
             //await нужен, чтоб PlayerBody успел загрузиться
-            await ToSignal(GetTree(), "idle_frame");
+            await ToSignal(GetTree(), "process_frame");
             SitOnChair(true);
         }
     }
@@ -666,7 +666,7 @@ public partial class Player : Character
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        Connect(nameof(TakeItemEventHandler), new Callable(this, nameof(CheckTakeItem)));
+        TakeItem += CheckTakeItem;
     }
 
     public override void _Process(double delta)

@@ -42,11 +42,11 @@ public partial class PlayerDeathManager : Node
         if (permanentDeath)
         {
             levelsLoader.ShowDeathMenu();
-            EmitSignal(nameof(PlayerDieEventHandler));
+            EmitSignal(SignalName.PlayerDie);
         }
         else
         {
-            EmitSignal(nameof(CloneDieEventHandler));
+            EmitSignal(SignalName.CloneDie);
         }
     }
 }

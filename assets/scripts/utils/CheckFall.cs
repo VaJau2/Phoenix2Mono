@@ -12,7 +12,7 @@ public partial class CheckFall : Node
     public override async void _Ready()
     {
         teleportPoint = GetNode<Node3D>(teleportPointPath);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
     }
 
     public override void _Process(double delta)

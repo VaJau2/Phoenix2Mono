@@ -53,7 +53,7 @@ public partial class PlayerSpawner : Node3D
 
     private async void SpawnPlayer(Player player) 
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera3D.Current = true;
@@ -109,6 +109,6 @@ public partial class PlayerSpawner : Node3D
             return;
         }
         
-        EmitSignal(nameof(SpawnedEventHandler));
+        EmitSignal(SignalName.Spawned);
     }
 }

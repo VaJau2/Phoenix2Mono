@@ -37,12 +37,12 @@ public abstract partial class Character : CharacterBody3D, ISavable
 
     public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamageEventHandler));
+        EmitSignal(SignalName.TakenDamage);
         damage -= (int)(damage * GetDamageBlock());
         DecreaseHealth(damage);
         if (Health <= 0)
         {
-            EmitSignal(nameof(DieEventHandler));
+            EmitSignal(SignalName.Die);
         }
     }
     

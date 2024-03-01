@@ -202,7 +202,7 @@ public partial class RoboEye : NPC
                     SetState(NPCState.Idle);
                     return;
                 }
-                EmitSignal(nameof(FoundEnemyEventHandler));
+                EmitSignal(SignalName.FoundEnemy);
                 Stop();
                 
                 break;

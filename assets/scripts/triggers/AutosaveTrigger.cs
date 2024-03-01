@@ -11,7 +11,7 @@ public partial class AutosaveTrigger: TriggerBase
         saveMenu = GetNode<SaveMenu>("/root/Main/Menu/PauseMenu/Save");
         if (!IsActive) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         OnActivateTrigger();
     }
     

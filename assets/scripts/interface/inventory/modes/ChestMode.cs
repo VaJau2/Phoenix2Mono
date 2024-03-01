@@ -19,7 +19,7 @@ public partial class ChestMode: InventoryMode
         chestBack  = back.GetNode<Control>("chestBack");
         chestLabel = chestBack.GetNode<Label>("Label");
         takeAll    = chestBack.GetNode<Button>("takeAll");
-        foreach (object button in chestBack.GetNode<Control>("items").GetChildren()) 
+        foreach (var button in chestBack.GetNode<Control>("items").GetChildren()) 
         {
             chestButtons.Add(button as ItemIcon); 
         }
@@ -54,10 +54,10 @@ public partial class ChestMode: InventoryMode
         var point = menu.GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         point.ShowSquareAgain();
         
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosedEventHandler));
+        menu.EmitSignal(InventoryMenu.SignalName.MenuIsClosed);
         chestBack.Visible = false;
         base.CloseMenu();
-        menu.ChangeMode(NewInventoryMode.Usual);
+        menu.ChangeMode();
     }
 
     public override void UpdateInput(InputEvent @event)

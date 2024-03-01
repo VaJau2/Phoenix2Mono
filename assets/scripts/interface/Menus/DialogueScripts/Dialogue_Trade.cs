@@ -8,8 +8,8 @@ namespace DialogueScripts
             if (dialogueMenu.npc is ITrader trader)
             {
                 //ждем, когда закроется диалоговое меню, а потом еще кадр, чтобы menu manager очистился
-                await dialogueMenu.ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalkingEventHandler));
-                await dialogueMenu.ToSignal(dialogueMenu.GetTree(), "idle_frame");
+                await dialogueMenu.ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
+                await dialogueMenu.ToSignal(dialogueMenu.GetTree(), "process_frame");
                 trader.StartTrading();
             }
         }

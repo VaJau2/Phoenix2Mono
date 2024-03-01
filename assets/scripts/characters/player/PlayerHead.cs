@@ -123,7 +123,7 @@ public partial class PlayerHead : MeshInstance3D
     //после перезагрузки ГГ спавнится с закрытыми глазами
     private async void StartOpenEyes()
     {
-        await (ToSignal(GetTree(), "idle_frame"));
+        await (ToSignal(GetTree(), "process_frame"));
         emotion = "empty";
         OpenEyes();
     }

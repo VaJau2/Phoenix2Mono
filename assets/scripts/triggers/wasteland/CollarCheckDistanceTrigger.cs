@@ -62,7 +62,7 @@ public partial class CollarCheckDistanceTrigger: TriggerBase
     public override async void _Ready()
     {
         SetProcess(false);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
 
         point = GetNode<Node3D>(pointPath);
         player = Global.Get().player;

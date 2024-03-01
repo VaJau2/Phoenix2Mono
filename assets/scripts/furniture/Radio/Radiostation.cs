@@ -33,6 +33,14 @@ public partial class Radiostation : Node
 		CountryStation
 	}
 
+	public override void _Ready()
+	{
+		if (song == null)
+		{
+			SetProcess(false);
+		}
+	}
+
 	public override void _Process(double delta)
     {
 		timer += (float)delta;
@@ -89,13 +97,13 @@ public partial class Radiostation : Node
 		else songID = 0;
 
 		song = songs[songID];
-		EmitSignal(nameof(ChangeSongEventHandler), song);
+		EmitSignal(SignalName.ChangeSong, song);
 	}
 	
 	public void SyncTimer()
-    {
-		EmitSignal(nameof(SyncTimeEventHandler));
-    }
+	{
+		EmitSignal(SignalName.SyncTime);
+	}
 
 	public static Radiostation GetRadiostation(Node node, Name stationName)
 	{

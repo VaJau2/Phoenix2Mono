@@ -52,7 +52,7 @@ public partial class Room : SaveActive
 
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         
         audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
         

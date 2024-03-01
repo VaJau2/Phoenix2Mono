@@ -73,7 +73,7 @@ public partial class Terminal : StaticBody3D, IMenu, IInteractable
     {
         //закрытие терминала нужно переместить в конец кадра
         //тк инвентарь проверяется на открытие сразу после закрытия терминала
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         MenuManager.CloseMenu(this);
     }
 
@@ -81,7 +81,7 @@ public partial class Terminal : StaticBody3D, IMenu, IInteractable
     {
         mode.ClearOutput();
         mode = newMode;
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         mode.LoadMode();
     }
 
@@ -97,7 +97,7 @@ public partial class Terminal : StaticBody3D, IMenu, IInteractable
         }
         
         mode = new TerminalUsualMode(this);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         mode.LoadMode();
     }
 

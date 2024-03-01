@@ -72,7 +72,7 @@ public partial class PlayerThirdPerson : Node3D
             }
         }
         
-        player.EmitSignal(nameof(Player.ChangeViewEventHandler), on);
+        player.EmitSignal(Player.SignalName.ChangeView, on);
     }
 
     private float UpdateSide(float delta, float side, string keyUp,

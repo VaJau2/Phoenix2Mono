@@ -98,7 +98,7 @@ public partial class PlayerWeapons : CollisionShape3D
         player.SetWeaponOff();
         GunOn = false;
         
-        player.EmitSignal(nameof(Player.ClearWeaponBindEventHandler));
+        player.EmitSignal(Player.SignalName.ClearWeaponBind);
     }
 
     public void СheckThirdView()
@@ -268,7 +268,7 @@ public partial class PlayerWeapons : CollisionShape3D
                 }
             }
 
-            await player.ToSignal(player.GetTree(), "idle_frame");
+            await player.ToSignal(player.GetTree(), "process_frame");
         }
     }
 
@@ -357,17 +357,14 @@ public partial class PlayerWeapons : CollisionShape3D
         }
         else
         {
-            player.EmitSignal(nameof(Player.FireWithWeaponEventHandler));
+            player.EmitSignal(Player.SignalName.FireWithWeapon);
             ammo -= 1;
             SetAmmo(ammo);
 
             cooldown = GetStatsFloat("cooldown");
             audiShoot.Stream = shootSound;
             audiShoot.Play();
-            if (gunAnim != null)
-            {
-                gunAnim.Play("shoot");
-            }
+            gunAnim?.Play("shoot");
 
             player.Body.Head.CloseEyes();
             var tempDistance = GetStatsInt("shootDistance");

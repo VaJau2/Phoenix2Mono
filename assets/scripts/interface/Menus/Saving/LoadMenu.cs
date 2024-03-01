@@ -117,7 +117,7 @@ public partial class LoadMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressedEventHandler));
+        EmitSignal(SignalName.BackPressed);
     }
 
     public void _on_mouse_entered(string section, string messageLink)

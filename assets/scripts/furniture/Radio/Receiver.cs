@@ -195,7 +195,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		if (withSwitchSound) PlaySwitchSound();
 		else OnSwitchSoundFinished();
 
-		EmitSignal(nameof(ChangeOnlineEventHandler), this);
+		EmitSignal(RadioBase.SignalName.ChangeOnline, this);
 	}
 
 	public void SwitchOff(bool withSwitchSound = true)
@@ -206,7 +206,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		UpdateVolumeLever(minRadioVolume);
 
 		IsOn = false;
-		EmitSignal(nameof(ChangeOnlineEventHandler), this);
+		EmitSignal(RadioBase.SignalName.ChangeOnline, this);
 	}
 
 	private void SyncTimer()
@@ -220,7 +220,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		NoisePlayer.VolumeDb = 0;
 		NoisePlayer.Play();
 
-		EmitSignal(nameof(ChangeNoiseEventHandler), switchSound);
+		EmitSignal(SignalName.ChangeNoise, switchSound);
 	}
 
 	private void OnSwitchSoundFinished()
@@ -231,7 +231,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 			NoisePlayer.VolumeDb = noiseDb;
 			NoisePlayer.Play();
 
-			EmitSignal(nameof(ChangeNoiseEventHandler), noiseSound);
+			EmitSignal(SignalName.ChangeNoise, noiseSound);
 		}
 	}
 
@@ -243,7 +243,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		MusicPlayer.Stream = stream;
 		MusicPlayer.Play();
 
-		EmitSignal(nameof(MusicChangedEventHandler), stream);
+		EmitSignal(SignalName.MusicChanged, stream);
 	}
 
 	private void UpdateVolumeLever(float value)

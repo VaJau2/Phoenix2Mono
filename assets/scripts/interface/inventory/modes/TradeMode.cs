@@ -75,11 +75,11 @@ public partial class TradeMode: InventoryMode
 
     public override void CloseMenu()
     {
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosedEventHandler));
+        menu.EmitSignal(InventoryMenu.SignalName.MenuIsClosed);
         _on_modal_no_pressed();
         tradeBack.Visible = false;
         base.CloseMenu();
-        menu.ChangeMode(NewInventoryMode.Usual);
+        menu.ChangeMode();
     }
 
     public override void UpdateInput(InputEvent @event)
@@ -266,7 +266,7 @@ public partial class TradeMode: InventoryMode
         sliderBack.Visible = tempCountMax > tempCount;
         modalAsk.Visible = true;
 
-        await player.ToSignal(player.GetTree(), "idle_frame");
+        await player.ToSignal(player.GetTree(), "process_frame");
         askYes.Disabled = false;
         askNo.Disabled = false;
     }

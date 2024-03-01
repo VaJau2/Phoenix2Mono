@@ -35,13 +35,13 @@ public partial class PlayerStealth : Node
         switch (newStage)
         {
             case StealthStage.Caution:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthCautionEventHandler));
+                enemiesManager.EmitSignal(EnemiesManager.SignalName.PlayerStealthCaution);
                 break;
             case StealthStage.Danger:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthDangerEventHandler));
+                enemiesManager.EmitSignal(EnemiesManager.SignalName.PlayerStealthDanger);
                 break;
             case StealthStage.Safe:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthSafeEventHandler));
+                enemiesManager.EmitSignal(EnemiesManager.SignalName.PlayerStealthSafe);
                 break;
         }
     }

@@ -57,7 +57,7 @@ public partial class Dragon: NPC
         GRAVITY = 0;
         ROTATION_SPEED = 0.05f;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         Global.Get().player.FireWithWeapon += CheckPlayerShooting;
     }
 

@@ -75,7 +75,7 @@ namespace DialogueScripts
                 {
                     pony.SetNewStartPos(tempPath.GlobalTransform.Origin);
                     pony.IdleAnim = "Idle1";
-                    await (pony.ToSignal(pony, nameof(Pony.IsCameEventHandler)));
+                    await pony.ToSignal(pony, nameof(Pony.IsCame));
                 }
             }
 

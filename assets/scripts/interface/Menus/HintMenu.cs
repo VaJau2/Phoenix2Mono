@@ -59,7 +59,7 @@ public partial class HintMenu: Control, IMenu
     private async void StartClosingMenu()
     {
         SetProcess(false);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), "process_frame");
         Global.Get().SetPause(this, false, false);
         MenuManager.CloseMenu(this);
     }
