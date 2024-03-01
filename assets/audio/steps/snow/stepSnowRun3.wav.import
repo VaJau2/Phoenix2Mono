@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepSnowRun3.wav-0eeb2a0d09783fb7a6582336dede8f8a.sample"
+type="AudioStreamWAV"
+uid="uid://dyo36xnvaykpj"
+path="res://.godot/imported/stepSnowRun3.wav-0eeb2a0d09783fb7a6582336dede8f8a.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/snow/stepSnowRun3.wav"
-dest_files=[ "res://.import/stepSnowRun3.wav-0eeb2a0d09783fb7a6582336dede8f8a.sample" ]
+dest_files=["res://.godot/imported/stepSnowRun3.wav-0eeb2a0d09783fb7a6582336dede8f8a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

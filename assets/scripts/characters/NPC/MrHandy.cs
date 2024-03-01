@@ -1,17 +1,17 @@
 using Godot;
 
-public class MrHandy : NpcWithWeapons
+public partial class MrHandy : NpcWithWeapons
 {
     private AnimationPlayer anim;
 
-    public override Spatial GetWeaponParent(bool isPistol)
+    public override Node3D GetWeaponParent(bool isPistol)
     {
-        return GetNode<Spatial>("Armature/Skeleton/mrHandy/weapons");
+        return GetNode<Node3D>("Armature/Skeleton3D/mrHandy/weapons");
     }
 
     protected override void AnimateDeath(Character killer, int shapeID)
     {
-        GetNode<Spatial>("Armature/Skeleton/BoneAttachment/fire").QueueFree();
+        GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/fire").QueueFree();
         base.AnimateDeath(killer, shapeID);
     }
 
@@ -24,7 +24,7 @@ public class MrHandy : NpcWithWeapons
         anim.Play(IdleAnim);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Health <= 0)
         {
@@ -32,7 +32,7 @@ public class MrHandy : NpcWithWeapons
         }
 
         base._Process(delta);
-        UpdatePath(delta);
-        UpdateAI(delta);
+        UpdatePath((float)delta);
+        UpdateAI((float)delta);
     }
 }

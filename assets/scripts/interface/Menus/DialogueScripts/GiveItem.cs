@@ -1,8 +1,8 @@
-﻿using Godot.Collections;
+using Godot.Collections;
 
 namespace DialogueScripts
 {
-    public class GiveItem : IDialogueScript
+    public partial class GiveItem : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Louis Armstrong- La Vie En Rose.mp3-db5c8001008933479fc285401398ee46.mp3str"
+uid="uid://cfuahdu3q8cgf"
+path="res://.godot/imported/Louis Armstrong- La Vie En Rose.mp3-db5c8001008933479fc285401398ee46.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/Louis Armstrong- La Vie En Rose.mp3"
-dest_files=[ "res://.import/Louis Armstrong- La Vie En Rose.mp3-db5c8001008933479fc285401398ee46.mp3str" ]
+dest_files=["res://.godot/imported/Louis Armstrong- La Vie En Rose.mp3-db5c8001008933479fc285401398ee46.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

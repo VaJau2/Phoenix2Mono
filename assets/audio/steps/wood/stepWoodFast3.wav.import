@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepWoodFast3.wav-25e7169e285192879b58cc9b167d24e2.sample"
+type="AudioStreamWAV"
+uid="uid://dja7pfe3s8e3p"
+path="res://.godot/imported/stepWoodFast3.wav-25e7169e285192879b58cc9b167d24e2.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/wood/stepWoodFast3.wav"
-dest_files=[ "res://.import/stepWoodFast3.wav-25e7169e285192879b58cc9b167d24e2.sample" ]
+dest_files=["res://.godot/imported/stepWoodFast3.wav-25e7169e285192879b58cc9b167d24e2.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

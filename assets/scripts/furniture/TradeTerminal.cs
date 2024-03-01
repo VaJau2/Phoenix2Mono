@@ -1,23 +1,25 @@
 using Godot;
 using Godot.Collections;
 
-public class TradeTerminal: StaticBody, ITrader 
+public partial class TradeTerminal: StaticBody3D, ITrader 
 {
     [Export]
     public int moneyCount {get; set;}   
     [Export]
     public string traderCode {get; set;}
     [Export]
-    public Array<string> startItemCodes {get; set;} = new Array<string>();
+    public Array<string> startItemCodes {get; set;} = [];
     [Export]
-    public Dictionary<string, int> startAmmoCount {get; set;} = new Dictionary<string, int>();
+    public Dictionary<string, int> startAmmoCount {get; set;} = new();
 
-    public Array<string> itemCodes {get; set;} = new Array<string>();
-    public Dictionary<string, int> ammoCount {get; set;} = new Dictionary<string, int>();
-    public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new Dictionary<string, ItemIcon>();
-    public Dictionary<int, string> itemPositions {get; set;} = new Dictionary<int, string>();
+    public Array<string> itemCodes {get; set;} = [];
+    public Dictionary<string, int> ammoCount {get; set;} = new();
+    public Dictionary<string, ItemIcon> ammoButtons {get; set;} = new();
+    public Dictionary<int, string> itemPositions {get; set;} = new();
+    
     InventoryMenu menu;
     bool isTrading = false;
+    
     public override void _Ready()
     {
         menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
@@ -25,10 +27,13 @@ public class TradeTerminal: StaticBody, ITrader
         RandomItems items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
         items.LoadRandomItems(itemCodes, ammoCount);
 
-        foreach(string itemCode in startItemCodes) {
+        foreach (string itemCode in startItemCodes)
+        {
             itemCodes.Add(itemCode);
         }
-        foreach(string ammoKey in startAmmoCount.Keys) {
+
+        foreach (string ammoKey in startAmmoCount.Keys)
+        {
             if (!ammoCount.ContainsKey(ammoKey))
             {
                 ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
@@ -48,9 +53,9 @@ public class TradeTerminal: StaticBody, ITrader
         } else {
             menu.ChangeMode(NewInventoryMode.Trade);
             TradeMode tempMode = menu.mode as TradeMode;
-            tempMode.SetTrader(this);
+            tempMode?.SetTrader(this);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
+            menu.MenuIsClosed += StopTrading;
             isTrading = true;
         }
     }
@@ -58,6 +63,6 @@ public class TradeTerminal: StaticBody, ITrader
     public void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
+        menu.MenuIsClosed -= StopTrading;
     }
 }

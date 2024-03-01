@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class RotateGunTrigger: TriggerBase
+public partial class RotateGunTrigger: TriggerBase
 {
     [Export] public string gunPath;
     [Export] public Vector3 newPos;
@@ -9,21 +9,21 @@ public class RotateGunTrigger: TriggerBase
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive)
         {
-            base._on_activate_trigger();
+            base.OnActivateTrigger();
             return;
         }
 
-        Spatial gun = GetNode<Spatial>(gunPath);
+        Node3D gun = GetNode<Node3D>(gunPath);
         gun.Transform = Global.SetNewOrigin(gun.Transform, newPos);
         gun.Rotation = newRot;
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

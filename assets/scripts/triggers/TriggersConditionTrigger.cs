@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
 //триггер, который активирует другие триггеры
 //только если досчитает до счетчика собственных активаций
-public class TriggersConditionTrigger: ActivateOtherTrigger
+public partial class TriggersConditionTrigger: ActivateOtherTrigger
 {
     [Export] private int TriggersCount;
     [Export] private bool CheckPlayerEnterArea;
@@ -27,15 +27,15 @@ public class TriggersConditionTrigger: ActivateOtherTrigger
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         triggersCounter++;
         if (triggersCounter != TriggersCount) return;
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     public override void _on_body_entered(Node body)
@@ -44,6 +44,6 @@ public class TriggersConditionTrigger: ActivateOtherTrigger
         if (!(body is Player)) return;
         if (playerEnterCounted) return;
         playerEnterCounted = true;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

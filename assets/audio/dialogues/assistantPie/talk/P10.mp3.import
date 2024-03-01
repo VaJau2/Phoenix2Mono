@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/P10.mp3-b30452c84cf95052abd37410974d6ad4.mp3str"
+uid="uid://cbvu7ou8e2qgm"
+path="res://.godot/imported/P10.mp3-b30452c84cf95052abd37410974d6ad4.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk/P10.mp3"
-dest_files=[ "res://.import/P10.mp3-b30452c84cf95052abd37410974d6ad4.mp3str" ]
+dest_files=["res://.godot/imported/P10.mp3-b30452c84cf95052abd37410974d6ad4.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

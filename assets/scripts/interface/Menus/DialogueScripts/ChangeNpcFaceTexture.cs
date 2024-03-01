@@ -1,10 +1,10 @@
-﻿namespace DialogueScripts
+namespace DialogueScripts
 {
-    public class ChangeNpcFaceTexture : IDialogueScript
+    public partial class ChangeNpcFaceTexture : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {
-            NPCFace face = dialogueMenu.npc.GetNode<NPCFace>("Armature/Skeleton/Body");
+            NPCFace face = dialogueMenu.npc.GetNode<NPCFace>("Armature/Skeleton3D/Body");
             face?.ChangeEyesVariant(parameter);
         }
     }

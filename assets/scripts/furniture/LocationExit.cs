@@ -1,6 +1,6 @@
 using Godot;
 
-public class LocationExit : TriggerBase
+public partial class LocationExit : TriggerBase
 {
     [Export] private bool UseBlackScreen = false;
     [Export] private bool SaveInventory = true;
@@ -23,11 +23,11 @@ public class LocationExit : TriggerBase
     {
         if (Global.Get().player != null)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
@@ -55,13 +55,13 @@ public class LocationExit : TriggerBase
         }
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         blackScreen.Visible = true;
         var blackScreenColor = blackScreen.Color;
-        if (blackScreenColor.a < 1)
+        if (blackScreenColor.A < 1)
         {
-            blackScreenColor.a += delta;
+            blackScreenColor.A += (float)delta;
             blackScreen.Color = blackScreenColor;
         }
         else

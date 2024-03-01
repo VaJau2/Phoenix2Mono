@@ -1,6 +1,6 @@
 using Godot;
 
-public class MedXEffect: Effect 
+public partial class MedXEffect: Effect 
 {
    const float DAMAGE_BLOCK_DELTA = 0.2f;
 

@@ -1,6 +1,6 @@
 using Godot;
 
-public class BindIcon : ItemIcon
+public partial class BindIcon : ItemIcon
 {
     private AnimationPlayer anim;
     private bool isSelected;
@@ -10,7 +10,7 @@ public class BindIcon : ItemIcon
     private Player player => Global.Get().player;
 
     [Signal]
-    public delegate void IsDeleting();
+    public delegate void IsDeletingEventHandler();
     
     public override async void _Ready()
     {
@@ -20,8 +20,8 @@ public class BindIcon : ItemIcon
         anim.Play("RESET");
         
         await ToSignal(GetTree(), "idle_frame");
-        player.Connect(nameof(Player.UseItem), this, nameof(OnPlayerUseItem));
-        player.Connect(nameof(Player.ClearWeaponBindSignal), this, nameof(ClearWeaponBind));
+        player.UseItem += OnPlayerUseItem;
+        player.ClearWeaponBind += ClearWeaponBind;
 
         if (myItemCode == player.Inventory.weapon)
         {
@@ -29,7 +29,7 @@ public class BindIcon : ItemIcon
         }
     }
 
-    public override void SetIcon(StreamTexture newIcon)
+    public override void SetIcon(CompressedTexture2D newIcon)
     {
         base.SetIcon(newIcon);
         shadow.Texture = newIcon;
@@ -38,9 +38,9 @@ public class BindIcon : ItemIcon
     public bool IsNeedDelay()
     {
         var itemData = ItemJSON.GetItemData(myItemCode);
-        var type = (ItemType)itemData["type"];
+        var type = itemData["type"].As<ItemType>();
 
-        return type == ItemType.food || type == ItemType.meds;
+        return type is ItemType.food or ItemType.meds;
     }
 
     public async void DeleteWithDelay()
@@ -50,7 +50,7 @@ public class BindIcon : ItemIcon
             await ToSignal(anim, "animation_finished");
         }
         
-        EmitSignal(nameof(IsDeleting));
+        EmitSignal(nameof(IsDeletingEventHandler));
         QueueFree();
     }
 
@@ -58,7 +58,7 @@ public class BindIcon : ItemIcon
     {
         var itemData = ItemJSON.GetItemData(itemCode);
 
-        switch ((ItemType)itemData["type"])
+        switch (itemData["type"].As<ItemType>())
         {
             case ItemType.weapon:
                 CheckWeaponIcon(itemCode);
@@ -86,7 +86,7 @@ public class BindIcon : ItemIcon
     private void ClearWeaponBind()
     {
         var itemData = ItemJSON.GetItemData(myItemCode);
-        var type = (ItemType)itemData["type"];
+        var type = itemData["type"].As<ItemType>();
 
         if (type == ItemType.weapon && isSelected)
         {

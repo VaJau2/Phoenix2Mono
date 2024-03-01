@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class Messages : VBoxContainer, ISavable
+public partial class Messages : VBoxContainer, ISavable
 {
     Global global = Global.Get();
     public const float HINT_TIMER = 2.5f;
@@ -9,16 +9,16 @@ public class Messages : VBoxContainer, ISavable
 
     private string currentTaskLink = "none";
 
-    private async void waitAndDisappear(Label label, float time)
+    private async void WaitAndDisappear(Label label, float time)
     {
         await global.ToTimer(time, null, true);
-        var tempA = label.GetColor("font_color").a;
+        var tempA = label.GetThemeColor("font_color").A;
         
         while (tempA > 0)
         {
             tempA -= 0.1f;
-            label.AddColorOverride("font_color", new Color(1, 1, 1, tempA));
-            label.AddColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
+            label.AddThemeColorOverride("font_color", new Color(1, 1, 1, tempA));
+            label.AddThemeColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
             await global.ToTimer(0.05f, null, true);
         }
 
@@ -29,19 +29,19 @@ public class Messages : VBoxContainer, ISavable
     {
         var tempLabel = new Label();
 
-        float tempA = tempLabel.Modulate.a;
+        float tempA = tempLabel.Modulate.A;
         Color newColor = Global.Get().Settings.interfaceColor;
         tempLabel.Modulate = new Color(
-            newColor.r,
-            newColor.g,
-            newColor.b,
+            newColor.R,
+            newColor.G,
+            newColor.B,
             tempA
         );
 
-        tempLabel.Autowrap = true;
+        tempLabel.AutowrapMode = TextServer.AutowrapMode.Word;
         tempLabel.Text = text;
         tempLabel.Theme = tempTheme;
-        tempLabel.Align = Label.AlignEnum.Left;
+        tempLabel.HorizontalAlignment = HorizontalAlignment.Left;
         AddChild(tempLabel);
         return tempLabel;
     }
@@ -64,7 +64,7 @@ public class Messages : VBoxContainer, ISavable
     {
         string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     public void ShowMessage(
@@ -76,7 +76,7 @@ public class Messages : VBoxContainer, ISavable
     {
         string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text + addMessage);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     // Показать "голое" сообщение без поиска его в лангах
@@ -86,7 +86,7 @@ public class Messages : VBoxContainer, ISavable
     )
     {
         var tempLabel = ShowLabel(text);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     public override void _Input(InputEvent @event)

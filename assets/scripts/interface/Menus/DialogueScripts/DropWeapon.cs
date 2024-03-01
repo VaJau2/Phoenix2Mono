@@ -1,6 +1,6 @@
-﻿namespace DialogueScripts
+namespace DialogueScripts
 {
-    public class DropWeapon : IDialogueScript
+    public partial class DropWeapon : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

@@ -1,6 +1,6 @@
 using Godot;
 
-public class DashPostEffect: Effect 
+public partial class DashPostEffect: Effect 
 {
     const int SPEED_DELTA = -5;
     private Player player;

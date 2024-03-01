@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/winter-wind-outside.mp3-35d122236181a98646a349749362c52f.mp3str"
+uid="uid://cqs0uhg0g6mqd"
+path="res://.godot/imported/winter-wind-outside.mp3-35d122236181a98646a349749362c52f.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/background/winter-wind-outside.mp3"
-dest_files=[ "res://.import/winter-wind-outside.mp3-35d122236181a98646a349749362c52f.mp3str" ]
+dest_files=["res://.godot/imported/winter-wind-outside.mp3-35d122236181a98646a349749362c52f.mp3str"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class DialogueAudioConfig
+public partial class DialogueAudioConfig
 {
     private readonly Array defaultSoundCodes = new Array
     {
@@ -12,8 +12,7 @@ public class DialogueAudioConfig
     private const float DEFAULT_MAX_PITCH = 2f;
     private const int DEFAULT_CHARS_TO_SOUND = 3;
 
-    public Array<AudioStreamSample> Sounds { get; } 
-        = new Array<AudioStreamSample>();
+    public Array<AudioStreamWav> Sounds { get; } = new();
     public float MinPitch { get; private set; } = 0.5f;
     public float MaxPitch { get; private set; } = 3f;
     public int CharsToSound { get; private set; } = 3;
@@ -30,33 +29,33 @@ public class DialogueAudioConfig
         if (tempCode == code) return;
         
         var path = $"assets/dialogues/configs/{code}.json";
-        if (!new File().FileExists("res://" + path))
+        if (!FileAccess.FileExists("res://" + path))
         {
             LoadDefaultConfig();
             return;
         }
 
-        var configFile = Global.loadJsonFile(path);
+        var configFile = Global.LoadJsonFile(path);
         
-        if (configFile.Contains("sounds"))
+        if (configFile.TryGetValue("sounds", out var soundsValue))
         {
-            var sounds = (Dictionary)configFile["sounds"];
+            var sounds = soundsValue.AsGodotDictionary();
             LoadSounds(sounds.Values as Array);
         }
 
-        if (configFile.Contains("min_pitch"))
+        if (configFile.TryGetValue("min_pitch", out var minPitchValue))
         {
-            MinPitch = Global.ParseFloat(configFile["min_pitch"].ToString());
+            MinPitch = Global.ParseFloat(minPitchValue.ToString());
         }
         
-        if (configFile.Contains("max_pitch"))
+        if (configFile.TryGetValue("max_pitch", out var maxPitchValue))
         {
-            MaxPitch = Global.ParseFloat(configFile["max_pitch"].ToString());
+            MaxPitch = Global.ParseFloat(maxPitchValue.ToString());
         }
         
-        if (configFile.Contains("chars_to_sound"))
+        if (configFile.TryGetValue("chars_to_sound", out var charsToSoundValue))
         {
-            CharsToSound = int.Parse(configFile["chars_to_sound"].ToString());
+            CharsToSound = charsToSoundValue.AsInt32();
         }
 
         tempCode = code;
@@ -76,7 +75,7 @@ public class DialogueAudioConfig
         Sounds.Clear();
         foreach (string soundCode in soundCodes)
         {
-            var sound = GD.Load<AudioStreamSample>($"res://assets/audio/dialogues/dynamic/{soundCode}.wav");
+            var sound = GD.Load<AudioStreamWav>($"res://assets/audio/dialogues/dynamic/{soundCode}.wav");
             Sounds.Add(sound);
         }
     }

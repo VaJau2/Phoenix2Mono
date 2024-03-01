@@ -1,6 +1,6 @@
 namespace DialogueScripts
 {
-    public class TakeDamage : IDialogueScript
+    public partial class TakeDamage : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

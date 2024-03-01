@@ -1,6 +1,6 @@
 using Godot;
 
-public class ManaBar : Control
+public partial class ManaBar : Control
 {
     private Player player;
     private Control mask;
@@ -11,7 +11,7 @@ public class ManaBar : Control
         MenuBase.LoadColorForChildren(this);
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         player = Global.Get().player;
 
@@ -19,6 +19,6 @@ public class ManaBar : Control
         if (unicorn.Mana >= Player_Unicorn.MANA_MAX) return;
             
         var ratio = unicorn.Mana / Player_Unicorn.MANA_MAX;
-        mask.RectSize = new Vector2(128, ratio * 128);
+        mask.Size = new Vector2(128, ratio * 128);
     }
 }

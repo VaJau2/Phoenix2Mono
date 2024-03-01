@@ -1,17 +1,17 @@
 using Godot;
-using System.Collections.Generic;
 using System.Linq;
+using Godot.Collections;
 
-public class Room : SaveActive
+public partial class Room : SaveActive
 {
     [Export] private float depth = 100 / 1.5f;
     
-    [Export] private List<NodePath> radioPaths;
-    private List<RadioBase> radioList = new();
+    [Export] private Array<NodePath> radioPaths;
+    private Array<RadioBase> radioList = new();
     private RadioManager radioManager;
 
-    [Export] private List<NodePath> activateTriggersPaths = new ();
-    public List<TriggerBase> activateTriggers { get; } = new ();
+    [Export] private Array<NodePath> activateTriggersPaths = new ();
+    public Array<TriggerBase> activateTriggers { get; } = new ();
     
     [Export] private bool changeEnvironment;
     [Export] private float backgroundEnergy;
@@ -47,7 +47,7 @@ public class Room : SaveActive
         skybox = GetNode<WorldEnvironment>("/root/Main/Scene/WorldEnvironment");
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.SaveDataLoaded += OnSaveDataLoaded;
     }
 
     private async void OnSaveDataLoaded()
@@ -69,7 +69,7 @@ public class Room : SaveActive
         
         if (changeEnvironment)
         {
-            skybox.Environment.BackgroundEnergy = backgroundEnergy;
+            skybox.Environment.BackgroundIntensity = backgroundEnergy;
             skybox.Environment.AmbientLightEnergy = ambientEnergy;
         }
         

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/StoneStepRun3.wav-e5621618930f4137e65e4b7104bb13fb.sample"
+type="AudioStreamWAV"
+uid="uid://dn1oh7xcyrd6h"
+path="res://.godot/imported/StoneStepRun3.wav-e5621618930f4137e65e4b7104bb13fb.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/stone/StoneStepRun3.wav"
-dest_files=[ "res://.import/StoneStepRun3.wav-e5621618930f4137e65e4b7104bb13fb.sample" ]
+dest_files=["res://.godot/imported/StoneStepRun3.wav-e5621618930f4137e65e4b7104bb13fb.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

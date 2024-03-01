@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class ItemIcon : ColorRect
+public partial class ItemIcon : ColorRect
 {
     Global global => Global.Get();
     Player player => global.player;
@@ -16,9 +16,9 @@ public class ItemIcon : ColorRect
 
     public string myItemCode {get; private set;} = null;
 
-    public StreamTexture GetIcon() => (StreamTexture)icon.Texture;
+    public CompressedTexture2D GetIcon() => (CompressedTexture2D)icon.Texture;
 
-    public virtual void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
+    public virtual void SetIcon(CompressedTexture2D newIcon) => icon.Texture = newIcon;
 
     public int GetCount() => int.Parse(countLabel.Text);
 
@@ -47,11 +47,11 @@ public class ItemIcon : ColorRect
         myItemCode = itemCode;
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         string path = "assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
-        StreamTexture newIcon = GD.Load<StreamTexture>(path);
+        CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         SetIcon(newIcon);
         
-        var itemType = (ItemType)itemData["type"];
-        countLabel.Visible = (itemType == ItemType.ammo) || (itemType == ItemType.money);
+        var itemType = itemData["type"].As<ItemType>();
+        countLabel.Visible = itemType is ItemType.ammo or ItemType.money;
         
         if (itemType == ItemType.ammo) 
         {
@@ -73,7 +73,7 @@ public class ItemIcon : ColorRect
 
         if (isInventoryIcon)
         {
-            player.EmitSignal(nameof(Player.TakeItem), itemCode);
+            player.EmitSignal(nameof(Player.TakeItemEventHandler), itemCode);
         }
     }
 
@@ -89,7 +89,7 @@ public class ItemIcon : ColorRect
         if (isInventoryIcon) 
         {
             Dictionary itemData = ItemJSON.GetItemData(myItemCode);
-            var itemType = (ItemType)itemData["type"];
+            var itemType = itemData["type"].As<ItemType>();
             
             if (itemType == ItemType.ammo) 
             {

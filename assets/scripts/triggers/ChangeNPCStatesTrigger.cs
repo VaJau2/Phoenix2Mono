@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 //меняет статы непися, такие как:
 //  - видимые/невидимые объекты внутри нпс
 //  - idleanim
 //  - скорость ходьбы и бега (если нпц понь)
-class ChangeNPCStatesTrigger: ActivateOtherTrigger
+partial class ChangeNPCStatesTrigger: ActivateOtherTrigger
 {
     [Export] public string npcPath;
     [Export] public string followPath;
@@ -20,7 +20,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public bool stayInPoint;
 
     private NPC npc;
-    private Spatial newIdlePoint;
+    private Node3D newIdlePoint;
 
     public override void _Ready()
     {
@@ -28,7 +28,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (newIdlePointPath != null)
         {
-            newIdlePoint = GetNode<Spatial>(newIdlePointPath);
+            newIdlePoint = GetNode<Node3D>(newIdlePointPath);
         }
     }
 
@@ -45,11 +45,11 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     
     public override void SetActive(bool newActive)
     {
-        _on_activate_trigger();
+        OnActivateTrigger();
         base.SetActive(newActive);
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         
@@ -60,7 +60,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (!IsInstanceValid(npc) || npc == null)
         {
-            base._on_activate_trigger();
+            base.OnActivateTrigger();
             return;
         }
 
@@ -98,7 +98,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
             if (newIdlePoint != null)
             {
-                npcWithWeapons.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
+                npcWithWeapons.SetNewStartPos(newIdlePoint.GlobalTransform.Origin);
                 npc.myStartRot = newIdlePoint.Rotation;
             }
 
@@ -109,7 +109,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
             }
         }
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
     
     
@@ -125,7 +125,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (npc.Health > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

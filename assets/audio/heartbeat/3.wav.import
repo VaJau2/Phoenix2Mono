@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/3.wav-b23a4c935e79bb6c8230ce607ecaaf78.sample"
+type="AudioStreamWAV"
+uid="uid://b5robss4iy7oh"
+path="res://.godot/imported/3.wav-b23a4c935e79bb6c8230ce607ecaaf78.sample"
 
 [deps]
 
 source_file="res://assets/audio/heartbeat/3.wav"
-dest_files=[ "res://.import/3.wav-b23a4c935e79bb6c8230ce607ecaaf78.sample" ]
+dest_files=["res://.godot/imported/3.wav-b23a4c935e79bb6c8230ce607ecaaf78.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

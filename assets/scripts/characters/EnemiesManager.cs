@@ -1,19 +1,20 @@
 using System;
-using Godot;
 using System.Collections.Generic;
+using Godot;
 using System.Linq;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
-public class EnemiesManager : Node, ISavable
+public partial class EnemiesManager : Node, ISavable
 {
     [Export] private float TRIGGER_COOLDOWN = 5f;
     private const float PLAYER_MIN_DIST = 15f;
     private const float PLAYER_MAX_DIST = 60f;
     [Export] public bool hasAlarm;
     [Export] public bool isAudi3D;
-    [Export] public List<NodePath> alarmSoundsPath;
+    [Export] public Array alarmSoundsPath;
 
-    public List<NPC> enemies = new List<NPC>();
+    public Array<NPC> enemies = [];
     
     public bool isAlarming { get; private set; }
     Player player => Global.Get().player;
@@ -21,12 +22,12 @@ public class EnemiesManager : Node, ISavable
     
     private float triggerCooldown;
 
-    [Signal] public delegate void AlarmStarted();
-    [Signal] public delegate void AlarmEnded();
+    [Signal] public delegate void AlarmStartedEventHandler();
+    [Signal] public delegate void AlarmEndedEventHandler();
 
-    [Signal] public delegate void PlayerStealthSafe();
-    [Signal] public delegate void PlayerStealthCaution();
-    [Signal] public delegate void PlayerStealthDanger();
+    [Signal] public delegate void PlayerStealthSafeEventHandler();
+    [Signal] public delegate void PlayerStealthCautionEventHandler();
+    [Signal] public delegate void PlayerStealthDangerEventHandler();
 
     private void StartAlarm()
     {
@@ -38,7 +39,7 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = true;
-        EmitSignal(nameof(AlarmStarted));
+        EmitSignal(nameof(AlarmStartedEventHandler));
         SetProcess(true);
     }
 
@@ -50,13 +51,13 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = false;
-        EmitSignal(nameof(AlarmEnded));
+        EmitSignal(nameof(AlarmEndedEventHandler));
         SetProcess(false);
     }
 
     private bool PositionIsCloseToPlayer(Vector3 position)
     {
-        var tempDistance = player.GlobalTransform.origin.DistanceTo(position);
+        var tempDistance = player.GlobalTransform.Origin.DistanceTo(position);
         return tempDistance > PLAYER_MIN_DIST && tempDistance < PLAYER_MAX_DIST;
     }
 
@@ -65,7 +66,7 @@ public class EnemiesManager : Node, ISavable
     {
         foreach (var enemy in enemies.Where(enemy => 
             enemy.state == NPCState.Idle 
-            && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
+            && PositionIsCloseToPlayer(enemy.GlobalTransform.Origin))
         )
         {
             enemy.tempVictim = player;
@@ -78,7 +79,7 @@ public class EnemiesManager : Node, ISavable
     {
         foreach (var temp in from temp in enemies
             where IsInstanceValid(temp) && temp.Health > 0 && temp.state != NPCState.Attack
-            let enemyPos = temp.GlobalTransform.origin
+            let enemyPos = temp.GlobalTransform.Origin
             where shootPos.DistanceTo(enemyPos) <= distance
             select temp)
         {
@@ -110,17 +111,17 @@ public class EnemiesManager : Node, ISavable
         audi = new List<AudioPlayerCommon>();
         foreach (var tempAlarmPath in alarmSoundsPath)
         {
-            audi.Add(new AudioPlayerCommon(isAudi3D, tempAlarmPath, this));
+            audi.Add(new AudioPlayerCommon(isAudi3D, tempAlarmPath.ToString(), this));
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isAlarming) return;
 
         if (triggerCooldown > 0)
         {
-            triggerCooldown -= delta;
+            triggerCooldown -= (float)delta;
             return;
         }
         
@@ -140,7 +141,7 @@ public class EnemiesManager : Node, ISavable
     public void LoadData(Dictionary data)
     {
         if (!hasAlarm) return;
-        if (!data.Contains("isAlarming")) return;
+        if (!data.ContainsKey("isAlarming")) return;
 
         var alarming = Convert.ToBoolean(data["isAlarming"]);
         if (!alarming) return;

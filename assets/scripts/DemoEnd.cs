@@ -1,6 +1,6 @@
 using Godot;
 
-public class DemoEnd : Control
+public partial class DemoEnd : Control
 {
     public override void _Ready()
     {
@@ -14,7 +14,7 @@ public class DemoEnd : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Input.IsActionPressed("jump"))
         {

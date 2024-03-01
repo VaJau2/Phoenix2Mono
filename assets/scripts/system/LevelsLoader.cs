@@ -1,12 +1,12 @@
 using Godot;
 using Godot.Collections;
 
-public class LevelsLoader : Node
+public partial class LevelsLoader : Node
 {
 	Global global = Global.Get();
 	public static int tempLevelNum = 0;
 	
-	private Array<string> levelPaths = new Array<string>();
+	private Array<string> levelPaths = new();
 	private Control currentMenu;
 	private Node currentScene;
 	private Control currentLoading;
@@ -18,13 +18,13 @@ public class LevelsLoader : Node
 	private PackedScene loadingMenuPrefab;
 	private PackedScene deathMenuPrefab;
 	private bool mainMenuOn = true;
-	private ResourceInteractiveLoader loader;
+	private string loadingPath = null;
 
 	[Signal]
-	public delegate void LevelLoaded();
+	public delegate void LevelLoadedEventHandler();
 
 	[Signal]
-	public delegate void SaveDataLoaded();
+	public delegate void SaveDataLoadedEventHandler();
 
 	private bool loadSavedData;
 	private Dictionary levelData;
@@ -38,7 +38,7 @@ public class LevelsLoader : Node
 	
 	public override async void _Ready()
 	{
-		var levelsData = Global.loadJsonFile("scenes/levels.json");
+		var levelsData = Global.LoadJsonFile("scenes/levels.json");
 		levelPaths.Add("menu");
 		foreach(string filePath in levelsData.Values) {
 			levelPaths.Add("res://scenes/" + filePath);
@@ -74,7 +74,7 @@ public class LevelsLoader : Node
 	private void RespawnMenu(PackedScene newMenu) 
 	{
 		currentMenu.Free();
-		currentMenu = (Control)newMenu.Instance();
+		currentMenu = newMenu.Instantiate<Control>();
 		menuParent.AddChild(currentMenu);
 		menuParent.MoveChild(currentMenu, 0);
 	}
@@ -97,12 +97,12 @@ public class LevelsLoader : Node
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 			return;
 		}
-
-		if (loader != null) return;
+		
+		if (!string.IsNullOrEmpty(loadingPath)) return;
 		
 		if (useLoadingMenu)
 		{
-			currentLoading = (Control)loadingMenuPrefab.Instance();
+			currentLoading = loadingMenuPrefab.Instantiate<Control>();
 			menuParent.AddChild(currentLoading);
 		}
 		else
@@ -110,7 +110,8 @@ public class LevelsLoader : Node
 			useLoadingMenu = true;
 		}
 
-		loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+		ResourceLoader.LoadThreadedRequest(levelPaths[tempLevelNum]);
+		loadingPath = levelPaths[tempLevelNum];
 		SetProcess(true);
 	}
 
@@ -199,14 +200,14 @@ public class LevelsLoader : Node
 		foreach (string objKey in levelData.Keys)
 		{
 			//создание создаваемых в сохранении объектов
-			if (!objKey.BeginsWith("Created_")) continue;
+			if (!objKey.StartsWith("Created_")) continue;
 			
 			Dictionary objData = (Dictionary) levelData[objKey];
 			var filename = objData["fileName"].ToString();
 			var parentName = objData["parent"].ToString();
 
 			PackedScene newNode = (PackedScene)GD.Load(filename);
-			Node newInstance = newNode.Instance();
+			Node newInstance = newNode.Instantiate();
 			newInstance.Name = objKey;
 			var parent = Global.FindNodeInScene(scene, parentName);
 			parent?.AddChild(newInstance);
@@ -224,7 +225,7 @@ public class LevelsLoader : Node
 
 			//если это created-нод, у него хранится только имя
 			//если это существующий нод, у него хранится путь от /root/Main...
-			Node node = !objKey.BeginsWith("Created_") 
+			Node node = !objKey.StartsWith("Created_") 
 				? scene.GetNodeOrNull(objKey) 
 				: Global.FindNodeInScene(scene, objKey);
 			if (node is ISavable savable)
@@ -249,22 +250,21 @@ public class LevelsLoader : Node
 		currentLoading = null;
 	}
 	
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
-		if (loader == null) 
+		if (string.IsNullOrEmpty(loadingPath)) 
 		{
 			SetProcess(false);
 			return;
 		}
 
-		var err = loader.Poll();
-		if (err == Error.FileEof) 
+		var status = ResourceLoader.LoadThreadedGetStatus(loadingPath);
+		if (status == ResourceLoader.ThreadLoadStatus.Loaded)
 		{
-			var resource = (PackedScene)loader.GetResource();
-			loader.Dispose();
-			loader = null;
+			var resource = (PackedScene)ResourceLoader.LoadThreadedGet(loadingPath);
+			loadingPath = null;
 			
-			var newScene = resource.Instance();
+			var newScene = resource.Instantiate();
 			
 			if (loadSavedData)
 			{
@@ -274,18 +274,18 @@ public class LevelsLoader : Node
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
 			DeleteLoadingMenu();
-			EmitSignal(nameof(LevelLoaded));
+			EmitSignal(nameof(LevelLoadedEventHandler));
 
 			if (loadSavedData)
 			{
 				LoadLevelObjects(newScene);
 			}
 			
-			EmitSignal(nameof(SaveDataLoaded));
+			EmitSignal(nameof(SaveDataLoadedEventHandler));
 		}
-		else if (err != Error.Ok) 
+		else if (status == ResourceLoader.ThreadLoadStatus.Failed) 
 		{
-			GD.PrintErr(err);
+			GD.PrintErr(status);
 		}
 	}
 }

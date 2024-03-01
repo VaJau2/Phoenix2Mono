@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ditsl23fohs51"
+path="res://.godot/imported/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/background/forest_morning.ogg"
-dest_files=[ "res://.import/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggstr" ]
+dest_files=["res://.godot/imported/forest_morning.ogg-0f4b2eb930fbd32a1b1f26c7caf9304e.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

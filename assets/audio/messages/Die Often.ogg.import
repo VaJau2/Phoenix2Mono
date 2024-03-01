@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Die Often.ogg-3f27c34cfcc8208d8baa490853b5cb10.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfbjgogcpkvmp"
+path="res://.godot/imported/Die Often.ogg-3f27c34cfcc8208d8baa490853b5cb10.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/messages/Die Often.ogg"
-dest_files=[ "res://.import/Die Often.ogg-3f27c34cfcc8208d8baa490853b5cb10.oggstr" ]
+dest_files=["res://.godot/imported/Die Often.ogg-3f27c34cfcc8208d8baa490853b5cb10.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

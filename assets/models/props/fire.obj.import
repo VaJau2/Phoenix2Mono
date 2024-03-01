@@ -1,20 +1,22 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/fire.obj-e6823ca84af8b887782154674400d54a.mesh"
+uid="uid://bkqrbrqao8yy0"
+path="res://.godot/imported/fire.obj-e6823ca84af8b887782154674400d54a.mesh"
 
 [deps]
 
-files=[ "res://.import/fire.obj-e6823ca84af8b887782154674400d54a.mesh" ]
+files=["res://.godot/imported/fire.obj-e6823ca84af8b887782154674400d54a.mesh"]
 
 source_file="res://assets/models/props/fire.obj"
-dest_files=[ "res://.import/fire.obj-e6823ca84af8b887782154674400d54a.mesh", "res://.import/fire.obj-e6823ca84af8b887782154674400d54a.mesh" ]
+dest_files=["res://.godot/imported/fire.obj-e6823ca84af8b887782154674400d54a.mesh", "res://.godot/imported/fire.obj-e6823ca84af8b887782154674400d54a.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

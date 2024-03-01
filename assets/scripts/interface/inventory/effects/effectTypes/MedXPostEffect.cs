@@ -1,4 +1,4 @@
-public class MedXPostEffect : Effect
+public partial class MedXPostEffect : Effect
 {
     const float DAMAGE_BLOCK_DELTA = -0.2f;
     private Player player;

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class RoomManager : Node, ISavable
+public partial class RoomManager : Node, ISavable
 {
     public Room CurrentRoom { set; get; }
 
@@ -25,7 +25,7 @@ public class RoomManager : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("current_room")) return;
+        if (!data.ContainsKey("current_room")) return;
         var roomName = (string)data["current_room"];
 
         if (!string.IsNullOrEmpty(roomName))
@@ -39,9 +39,9 @@ public class RoomManager : Node, ISavable
         
         for (int i = 1; i < data.Count - 1; i++)
         {
-            if (!data.Contains($"{CurrentRoom.Name}{i}"))
+            if (!data.ContainsKey($"{CurrentRoom.Name}{i}"))
             {
-                CurrentRoom.activateTriggers[i]._on_activate_trigger();
+                CurrentRoom.activateTriggers[i].OnActivateTrigger();
                 continue;
             }
             

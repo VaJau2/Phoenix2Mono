@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mrHandy_break.wav-1d0282ec1d43c4b55403094e059ffdb8.sample"
+type="AudioStreamWAV"
+uid="uid://kpiq2irhis3p"
+path="res://.godot/imported/mrHandy_break.wav-1d0282ec1d43c4b55403094e059ffdb8.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/result/mrHandy_break.wav"
-dest_files=[ "res://.import/mrHandy_break.wav-1d0282ec1d43c4b55403094e059ffdb8.sample" ]
+dest_files=["res://.godot/imported/mrHandy_break.wav-1d0282ec1d43c4b55403094e059ffdb8.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

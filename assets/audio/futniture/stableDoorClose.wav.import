@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stableDoorClose.wav-8f0601e601ac37f42766962c77b7cb17.sample"
+type="AudioStreamWAV"
+uid="uid://ddtylxd0evruc"
+path="res://.godot/imported/stableDoorClose.wav-8f0601e601ac37f42766962c77b7cb17.sample"
 
 [deps]
 
 source_file="res://assets/audio/futniture/stableDoorClose.wav"
-dest_files=[ "res://.import/stableDoorClose.wav-8f0601e601ac37f42766962c77b7cb17.sample" ]
+dest_files=["res://.godot/imported/stableDoorClose.wav-8f0601e601ac37f42766962c77b7cb17.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

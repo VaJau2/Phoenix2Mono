@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class WarningManager : RadioManager
+public partial class WarningManager : RadioManager
 {
     private List<Receiver> receivers = new ();
     
@@ -19,10 +19,10 @@ public class WarningManager : RadioManager
     private AudioStreamPlayer3D messagePlayer;
     
     [Signal]
-    public delegate void SendMessageEvent(AudioStream stream = null);
+    public delegate void MessageSentEventHandler(AudioStream stream = null);
     
     [Signal]
-    public delegate void MessageFinishedEvent();
+    public delegate void MessageFinishedEventHandler();
 
     private struct Message
     {
@@ -47,14 +47,14 @@ public class WarningManager : RadioManager
         }
 
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
-        messagePlayer.Connect("finished", this, nameof(OnMessageEnd));
+        messagePlayer.Finished += OnMessageEnd;
         
         // alarm
         alarmSound = (AudioStream)GD.Load("res://assets/audio/background/alarm.wav");
         
         enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmEnded), this, nameof(OnAlarmEnd));
+        enemiesManager.AlarmStarted += OnAlarmStart;
+        enemiesManager.AlarmEnded += OnAlarmEnd;
         
         base._Ready();
     }
@@ -77,7 +77,7 @@ public class WarningManager : RadioManager
             trigger.Connect();
             messagePlayer.Play();
             
-            EmitSignal(nameof(SendMessageEvent), message);
+            EmitSignal(nameof(MessageSentEventHandler), message);
         }
     }
 
@@ -89,7 +89,7 @@ public class WarningManager : RadioManager
             messagesList[0].trigger.Connect();
             messagesList.RemoveAt(0);
             messagePlayer.Play();
-            EmitSignal(nameof(SendMessageEvent), message);
+            EmitSignal(nameof(MessageSentEventHandler), message);
         }
         else
         {
@@ -98,7 +98,7 @@ public class WarningManager : RadioManager
                 receiver.TuneIn();
             }
             
-            EmitSignal(nameof(MessageFinishedEvent));
+            EmitSignal(nameof(MessageFinishedEventHandler));
         }
     }
     

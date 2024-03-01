@@ -1,7 +1,7 @@
 using Godot;
 
 //Сабменю настроек графики, интерфейса и громкости
-public class SettingsSubmenu : SubmenuBase
+public partial class SettingsSubmenu : SubmenuBase
 {
     const float MIN_COLOR_SUM = 0.7f;
     
@@ -36,7 +36,7 @@ public class SettingsSubmenu : SubmenuBase
     private Slider bSlider;
 
     [Signal]
-    public delegate void ChangeRadioVolumeEvent(float value);
+    public delegate void ChangeRadioVolumeEventHandler(float value);
 
     public override void LoadSubmenu(SettingsMenu parent)
     {
@@ -91,9 +91,9 @@ public class SettingsSubmenu : SubmenuBase
         
         colorLabel.Text = InterfaceLang.GetPhrase("settingsMenu", "labels", "color");
         Color tempColor = global.Settings.interfaceColor;
-        rSlider.Value = tempColor.r;
-        gSlider.Value = tempColor.g;
-        bSlider.Value = tempColor.b;
+        rSlider.Value = tempColor.R;
+        gSlider.Value = tempColor.G;
+        bSlider.Value = tempColor.B;
 
         SettingsMenu.LoadOnOffText(cameraAngleButton, global.Settings.cameraAngle);
         SettingsMenu.LoadOnOffText(fullscreenButton, global.Settings.fullscreen);
@@ -170,7 +170,7 @@ public class SettingsSubmenu : SubmenuBase
     public void _on_radio_slider_value_changed(float value)
     {
         global.Settings.SetRadioVolume(value);
-        EmitSignal(nameof(ChangeRadioVolumeEvent), value);
+        EmitSignal(nameof(ChangeRadioVolumeEventHandler), value);
     }
 
     public void _on_music_slider_value_changed(float value)
@@ -183,13 +183,13 @@ public class SettingsSubmenu : SubmenuBase
         global.Settings.SetVoiceVolume(value);
     }
     
-    private bool checkDarkColor(float newValue, string color)
+    private bool CheckDarkColor(float newValue, string color)
     {
         //считаем сумму цветов с учетом нового значения для одного из цветов
         Color tempColor = global.Settings.interfaceColor;
-        float tempR = tempColor.r;
-        float tempG = tempColor.g;
-        float tempB = tempColor.b;
+        float tempR = tempColor.R;
+        float tempG = tempColor.G;
+        float tempB = tempColor.B;
 
         switch (color)
         {
@@ -212,13 +212,13 @@ public class SettingsSubmenu : SubmenuBase
             switch(color) 
             {
                 case "Red":
-                    rSlider.Value = tempColor.r;
+                    rSlider.Value = tempColor.R;
                     break;
                 case "Green":
-                    gSlider.Value = tempColor.g;
+                    gSlider.Value = tempColor.G;
                     break;
                 case "Blue":
-                    bSlider.Value = tempColor.b;
+                    bSlider.Value = tempColor.B;
                     break;
             }
         }
@@ -227,11 +227,11 @@ public class SettingsSubmenu : SubmenuBase
 
     public void _on_color_slider_value_changed(float value, string color)
     {
-        if (!checkDarkColor(value, color)) return;
+        if (!CheckDarkColor(value, color)) return;
         
-        float tempR = global.Settings.interfaceColor.r;
-        float tempG = global.Settings.interfaceColor.g;
-        float tempB = global.Settings.interfaceColor.b;
+        float tempR = global.Settings.interfaceColor.R;
+        float tempG = global.Settings.interfaceColor.G;
+        float tempB = global.Settings.interfaceColor.B;
 
         switch (color)
         {
@@ -248,7 +248,7 @@ public class SettingsSubmenu : SubmenuBase
 
         global.Settings.interfaceColor = new Color(
             tempR, tempG, tempB,
-            global.Settings.interfaceColor.a
+            global.Settings.interfaceColor.A
         );
         
         parentMenu.UpdateInterfaceColor();

@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class AutosaveTrigger: TriggerBase
+public partial class AutosaveTrigger: TriggerBase
 {
     private Messages messages;
     private SaveMenu saveMenu;
@@ -12,7 +12,7 @@ public class AutosaveTrigger: TriggerBase
         if (!IsActive) return;
 
         await ToSignal(GetTree(), "idle_frame");
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
     
     public override void SetActive(bool newActive)
@@ -20,11 +20,11 @@ public class AutosaveTrigger: TriggerBase
         base.SetActive(newActive);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         messages.ShowMessage("gameAutosaved");
         
@@ -34,6 +34,6 @@ public class AutosaveTrigger: TriggerBase
         var saveName = Global.Get().autosaveName;
         saveMenu.SaveGame(saveName, GetTree());
         saveMenu.CreateTableLine(saveName);
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

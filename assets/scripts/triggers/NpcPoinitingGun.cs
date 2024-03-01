@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
-public class NpcPoinitingGun: TriggerBase
+public partial class NpcPoinitingGun: TriggerBase
 {
     [Export] public string npcPath;
     [Export] public float delayTimer;
     private NpcWithWeapons npc;
 
-    private float tempTimer;
+    private double tempTimer;
     private int step;
 
     public override void _Ready()
@@ -16,11 +16,11 @@ public class NpcPoinitingGun: TriggerBase
         SetProcess(false);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -30,16 +30,16 @@ public class NpcPoinitingGun: TriggerBase
 
         SetProcess(false);
         step = 2;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         if (npc == null)
@@ -58,7 +58,7 @@ public class NpcPoinitingGun: TriggerBase
                 break;
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     private  void WaitDelayTimer()
@@ -80,15 +80,15 @@ public class NpcPoinitingGun: TriggerBase
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.TryGetValue("tempTimer", out var timerValue))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = timerValue.AsSingle();
         }
-        
-        step = Convert.ToInt16(data["step"]);
+
+        step = data["step"].AsInt16();
         if (step > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

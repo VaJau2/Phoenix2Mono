@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 //Скрипт обновляет позицию точки телепорта
 //Перемещает её спрайт вниз, если она оказывается над потолком
@@ -6,12 +6,12 @@
 
 //Также проверяет области коллизии вокруг себя
 //Чтобы игрок не телепортировался в узкие "междуздания"
-public class TeleportMark: Spatial
+public partial class TeleportMark: Node3D
 {
     public bool MayTeleport { get; private set; } = true;
     private int _collidingObjectsCount;
     
-    private RayCast _rayUp;
+    private RayCast3D _rayUp;
     private Sprite3D _sprite;
     private Vector3 _spritePos;
     private Vector3 _offset;
@@ -21,8 +21,8 @@ public class TeleportMark: Spatial
         var anim = GetNode<AnimationPlayer>("anim");
         anim.Play("idle");
         _sprite  = GetNode<Sprite3D>("Sprite3D");
-        _rayUp   = GetNode<RayCast>("ray-up");
-        _spritePos = _sprite.Transform.origin;
+        _rayUp   = GetNode<RayCast3D>("ray-up");
+        _spritePos = _sprite.Transform.Origin;
     }
     
     private void UpdateOffset(Vector3 place)
@@ -31,8 +31,8 @@ public class TeleportMark: Spatial
         
         if (!_rayUp.IsColliding()) return;
         var collidePos = _rayUp.GetCollisionPoint();
-        var dist = Mathf.Abs(place.y - collidePos.y);
-        _offset.y -= _rayUp.CastTo.y - dist;
+        var dist = Mathf.Abs(place.X - collidePos.X);
+        _offset.X -= _rayUp.TargetPosition.X - dist;
     }
 
     public void UpdatePosition(Vector3 place)
@@ -51,7 +51,7 @@ public class TeleportMark: Spatial
 
     public Vector3 GetTeleportPoint()
     {
-        return GlobalTransform.origin + _offset;
+        return GlobalTransform.Origin + _offset;
     }
 
     public void _on_checkArea_body_entered(Node body)

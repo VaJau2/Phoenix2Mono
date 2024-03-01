@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class SeekArea : Area
+public partial class SeekArea : Area3D
 {
     const float ATTACK_TIME = 3.5f;
 
@@ -18,7 +18,7 @@ public class SeekArea : Area
     int tempEnemy = 0;
 
     NPC npc;
-    RayCast ray;
+    RayCast3D ray;
 
     public void MakeAlliesAttack()
     {
@@ -36,16 +36,16 @@ public class SeekArea : Area
     public override void _Ready()
     {
         npc = GetParent<NPC>();
-        ray = GetNode<RayCast>("ray");
+        ray = GetNode<RayCast3D>("ray");
         ray.AddException(npc);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (ray.Enabled) {
             //при поворотах неписей луч может идти не в ту точку, поэтому его поворот нужно сначала сбросить
             Vector3 newRayDegrees = ray.RotationDegrees;
-            newRayDegrees.y = -npc.RotationDegrees.y;
+            newRayDegrees.Y = -npc.RotationDegrees.Y;
             ray.RotationDegrees = newRayDegrees;
         }
 
@@ -195,10 +195,10 @@ public class SeekArea : Area
                 return false;
         }
 
-        var charPos = character.GlobalTransform.origin;
-        charPos.y += 0.5f;
-        var dir = charPos - ray.GlobalTransform.origin;
-        ray.CastTo = dir;
+        var charPos = character.GlobalTransform.Origin;
+        charPos.Y += 0.5f;
+        var dir = charPos - ray.GlobalTransform.Origin;
+        ray.TargetPosition = dir;
         return ray.GetCollider() == character;
     }
 }

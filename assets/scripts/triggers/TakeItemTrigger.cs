@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 //если активен, следит за инвентарем и получаемыми предметами
 //включает другие триггеры, если игрок получает нужный предмет
-class TakeItemTrigger: ActivateOtherTrigger
+partial class TakeItemTrigger: ActivateOtherTrigger
 {
     [Export] private string ItemToTake;
     [Export] private bool DeletedDisactiveTriggers;
@@ -16,7 +16,7 @@ class TakeItemTrigger: ActivateOtherTrigger
         
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.TakeItem += OnPlayerTakeItem;
         }
     }
 
@@ -25,26 +25,26 @@ class TakeItemTrigger: ActivateOtherTrigger
         base.SetActive(newActive);
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.TakeItem += OnPlayerTakeItem;
         }
         else
         {
-            player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.TakeItem -= OnPlayerTakeItem;
         }
     }
 
-    public void _on_player_take_item(string itemCode)
+    public void OnPlayerTakeItem(string itemCode)
     {
         if (itemCode == ItemToTake)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
 
             if (DeletedDisactiveTriggers)
             {
-                foreach (var triggerToDisactive in triggersToDisactive)
+                foreach (var triggerToDeactivate in triggersToDisactive)
                 {
-                    Global.AddDeletedObject(triggerToDisactive.Name);
-                    triggerToDisactive.QueueFree();
+                    Global.AddDeletedObject(triggerToDeactivate.Name);
+                    triggerToDeactivate.QueueFree();
                 }
             }
             

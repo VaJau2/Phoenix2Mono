@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Jimmy Breedlove - My Guardian Angel.mp3-ad7c1332281ee20487aff5540f69e9c3.mp3str"
+uid="uid://dp5xsit5fdglq"
+path="res://.godot/imported/Jimmy Breedlove - My Guardian Angel.mp3-ad7c1332281ee20487aff5540f69e9c3.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Royal Radio/Jimmy Breedlove - My Guardian Angel.mp3"
-dest_files=[ "res://.import/Jimmy Breedlove - My Guardian Angel.mp3-ad7c1332281ee20487aff5540f69e9c3.mp3str" ]
+dest_files=["res://.godot/imported/Jimmy Breedlove - My Guardian Angel.mp3-ad7c1332281ee20487aff5540f69e9c3.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

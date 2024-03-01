@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Nat King Cole - This Cant Be Love.mp3-59945edc52667263cc5ea8a8f09e855a.mp3str"
+uid="uid://oyy7ui6jr6iv"
+path="res://.godot/imported/Nat King Cole - This Cant Be Love.mp3-59945edc52667263cc5ea8a8f09e855a.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Royal Radio/Nat King Cole - This Cant Be Love.mp3"
-dest_files=[ "res://.import/Nat King Cole - This Cant Be Love.mp3-59945edc52667263cc5ea8a8f09e855a.mp3str" ]
+dest_files=["res://.godot/imported/Nat King Cole - This Cant Be Love.mp3-59945edc52667263cc5ea8a8f09e855a.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

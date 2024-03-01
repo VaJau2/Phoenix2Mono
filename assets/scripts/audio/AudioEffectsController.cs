@@ -1,25 +1,24 @@
 using System;
 using Godot;
 using System.Collections.Generic;
-using System.Linq;
 using Godot.Collections;
 
 using Array = Godot.Collections.Array;
 using Phoenix2Mono.assets.scripts.audio.factories;
 
-public class AudioEffectsController : Node, ISavable
+public partial class AudioEffectsController : Node, ISavable
 {
     private List<string> effectsKeys = new();
     private Player player;
 
-    private List<string> savedCodes = new();
+    private Array<string> savedCodes = new();
     
     public override async void _Ready()
     {
         player = GetParent<Player>();
-        player.Connect(nameof(Player.WearItem), this, nameof(OnClothWear));
-        player.Connect(nameof(Player.UnwearItem), this, nameof(RemoveEffects));
-        player.Connect(nameof(Player.ChangeView), this, nameof(OnChangeView));
+        player.WearItem += OnClothWear;
+        player.UnwearItem += RemoveEffects;
+        player.ChangeView += OnChangeView;
         
         await ToSignal(GetTree(), "idle_frame");
         
@@ -99,7 +98,7 @@ public class AudioEffectsController : Node, ISavable
     {
         return new Dictionary
         {
-            {"codes", savedCodes}
+            { "codes", savedCodes }
         };
     }
 

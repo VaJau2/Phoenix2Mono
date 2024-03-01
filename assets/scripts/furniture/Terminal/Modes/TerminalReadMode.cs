@@ -4,20 +4,22 @@ using Godot.Collections;
 //режим чтения
 //делится на два подрежима - выбор файла и чтение файла
 //выбор файла ограничен 9 текстовыми файлами
-public class TerminalReadMode: TerminalMode {
+public partial class TerminalReadMode : TerminalMode
+{
     const int MAX_LINES_COUNT = 10;
     private const int MAX_LINE_LENGTH = 36;
-    private Array<string> textFiles = new Array<string>();
+    private Array<string> textFiles = new();
     int tempChoose = 0;
     string fileCode = null;
     string fileName = null;
-    
-    Array lines = new Array();
+
+    Array<string> lines = new();
     int tempPage = 0;
     int pagesMax = 0;
 
-    public TerminalReadMode(Terminal terminal, string fileName = null): 
-    base(terminal) { 
+    public TerminalReadMode(Terminal terminal, string fileName = null) :
+        base(terminal)
+    {
         //добавляем в список только текстовые файлы
         if (terminal.files != null)
         {
@@ -35,7 +37,8 @@ public class TerminalReadMode: TerminalMode {
         }
 
         //если файл из параметров не найден, для отображения ошибки его все равно надо добавить
-        if (fileName != null && fileCode == null) {
+        if (fileName != null && fileCode == null)
+        {
             fileCode = "error";
         }
     }
@@ -48,50 +51,71 @@ public class TerminalReadMode: TerminalMode {
 
     public override void UpdateInput(InputEventKey keyEvent)
     {
-        if (keyEvent.Pressed) {
+        if (keyEvent.Pressed)
+        {
             //обрабатываем кнопку выхода
-            if (keyEvent.Scancode == (uint)KeyList.Backspace) {
+            if (keyEvent.Keycode == Key.Backspace)
+            {
                 //если читается файл, выходим в список файлов
-                if (fileCode != null) {
+                if (fileCode != null)
+                {
                     fileCode = null;
                     lines.Clear();
-                } else {
+                }
+                else
+                {
                     //иначе возвращаемся в обычный режим
                     var newMode = new TerminalUsualMode(terminal);
                     terminal.ChangeMode(newMode);
                     return;
                 }
             }
-            
+
             //если выводится список файлов
-            if (fileCode == null) {
+            if (fileCode == null)
+            {
                 //обрабатываем стрелочки
                 //если нажата стрелочка вверх, перемещаем курсор вверх
-                if (keyEvent.Scancode == (uint)KeyList.Up) {
-                    if (tempChoose > 0) {
+                if (keyEvent.Keycode == Key.Up)
+                {
+                    if (tempChoose > 0)
+                    {
                         tempChoose--;
-                    } else {
+                    }
+                    else
+                    {
                         tempChoose = textFiles.Count - 1;
                     }
                 }
+
                 //если нажата стрелочка вниз, перемещаем курсор вниз
-                if(keyEvent.Scancode == (uint)KeyList.Down) {
-                    if (tempChoose < textFiles.Count - 1) {
+                if (keyEvent.Keycode == Key.Down)
+                {
+                    if (tempChoose < textFiles.Count - 1)
+                    {
                         tempChoose++;
-                    } else {
+                    }
+                    else
+                    {
                         tempChoose = 0;
                     }
                 }
 
                 //обрабатываем enter
-                if(keyEvent.Scancode == (uint)KeyList.Enter && textFiles.Count > 0) {
+                if (keyEvent.Keycode == Key.Enter && textFiles.Count > 0)
+                {
                     fileCode = textFiles[tempChoose];
                 }
-            } else {
-                if (keyEvent.Scancode == (uint)KeyList.Right) {
+            }
+            else
+            {
+                if (keyEvent.Keycode == Key.Right)
+                {
                     TurnPage(true);
                 }
-                if (keyEvent.Scancode == (uint)KeyList.Left) {
+
+                if (keyEvent.Keycode == Key.Left)
+                {
                     TurnPage(false);
                 }
             }
@@ -104,13 +128,19 @@ public class TerminalReadMode: TerminalMode {
     private void UpdateScreen()
     {
         ClearOutput();
-        if (fileCode != null) {
-            if (lines.Count == 0) {
+        if (fileCode != null)
+        {
+            if (lines.Count == 0)
+            {
                 OpenFile(fileCode);
-            } else {
+            }
+            else
+            {
                 UpdateFileText();
             }
-        } else {
+        }
+        else
+        {
             ShowFilesList();
         }
     }
@@ -120,20 +150,27 @@ public class TerminalReadMode: TerminalMode {
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "chooseFile") + "\n";
         textLabel.Text += "------------------------------------\n";
 
-        for(int i = 0; i < MAX_LINES_COUNT - 1; i++) {
-            if (textFiles.Count > i) {
+        for (int i = 0; i < MAX_LINES_COUNT - 1; i++)
+        {
+            if (textFiles.Count > i)
+            {
                 string tempCode = textFiles[i];
                 Dictionary fileData = InterfaceLang.GetPhrasesSection("files", tempCode);
                 string fileName = fileData["name"].ToString();
-                if (i == tempChoose) {
+                if (i == tempChoose)
+                {
                     textLabel.Text += " >" + fileName + "\n";
-                } else {
+                }
+                else
+                {
                     textLabel.Text += "  " + fileName + "\n";
                 }
-            } else {
+            }
+            else
+            {
                 textLabel.Text += "\n";
             }
-        }        
+        }
 
         textLabel.Text += "------------------------------------\n";
         textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "chooseHelp") + "\n";
@@ -143,22 +180,28 @@ public class TerminalReadMode: TerminalMode {
     private void OpenFile(string fileName)
     {
         Dictionary fileData = InterfaceLang.GetPhrasesSection("files", fileCode);
-        if (fileData == null) {
+        if (fileData == null)
+        {
             textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "readError1") + "\n";
             textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readError2") + "\n";
             return;
-        } 
+        }
+
         this.fileName = fileData["name"].ToString();
 
-        Array textLines = fileData["text"] as Array;
+        Array<string> textLines = fileData["text"].AsGodotArray<string>();
         lines = Global.ClumpLineLength(textLines, MAX_LINE_LENGTH);
-        
+
         //считаем данные для постранички
-        if (lines.Count > MAX_LINES_COUNT) {
+        if (lines.Count > MAX_LINES_COUNT)
+        {
             pagesMax = Mathf.CeilToInt(lines.Count / MAX_LINES_COUNT);
-        } else {
+        }
+        else
+        {
             pagesMax = 0;
         }
+
         tempPage = 0;
 
         UpdateFileText();
@@ -168,44 +211,56 @@ public class TerminalReadMode: TerminalMode {
     {
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "readHeader") + fileName + "\n";
         textLabel.Text += "------------------------------------\n";
-        
+
         int firstLine = tempPage * MAX_LINES_COUNT;
         int lastLine = firstLine + MAX_LINES_COUNT;
 
-        for(int i = firstLine; i < lastLine; i++) {
-            if (lines.Count > i) {
+        for (int i = firstLine; i < lastLine; i++)
+        {
+            if (lines.Count > i)
+            {
                 textLabel.Text += lines[i] + "\n";
-            } else {
+            }
+            else
+            {
                 textLabel.Text += "\n";
             }
         }
 
         textLabel.Text += "------------------------------------\n";
-        if (pagesMax > 0) {
+        if (pagesMax > 0)
+        {
             textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readPage1")
-                              + (tempPage + 1) + 
+                              + (tempPage + 1) +
                               InterfaceLang.GetPhrase("terminal", "phrases", "readPage2")
                               + (pagesMax + 1) + " (";
-            
+
             textLabel.Text += (tempPage > 0) ? "<" : " ";
             textLabel.Text += "-";
             textLabel.Text += (tempPage < pagesMax) ? ">" : " ";
             textLabel.Text += ")\n";
-        } else {
+        }
+        else
+        {
             textLabel.Text += "\n";
         }
-        
+
         textLabel.Text += InterfaceLang.GetPhrase("terminal", "phrases", "readFooter");
     }
 
     private void TurnPage(bool forward)
     {
-        if (forward) {
-            if (tempPage < pagesMax) {
+        if (forward)
+        {
+            if (tempPage < pagesMax)
+            {
                 tempPage++;
             }
-        } else {
-            if (tempPage > 0) {
+        }
+        else
+        {
+            if (tempPage > 0)
+            {
                 tempPage--;
             }
         }

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/box_brake2.wav-fcb1a64fd8c7a3475ef1c206820d7670.sample"
+type="AudioStreamWAV"
+uid="uid://lxkwgxlhoe51"
+path="res://.godot/imported/box_brake2.wav-fcb1a64fd8c7a3475ef1c206820d7670.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/result/box_brake2.wav"
-dest_files=[ "res://.import/box_brake2.wav-fcb1a64fd8c7a3475ef1c206820d7670.sample" ]
+dest_files=["res://.godot/imported/box_brake2.wav-fcb1a64fd8c7a3475ef1c206820d7670.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

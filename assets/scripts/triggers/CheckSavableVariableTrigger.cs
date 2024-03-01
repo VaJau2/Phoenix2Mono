@@ -1,14 +1,14 @@
-﻿using Godot;
 using System.Collections.Generic;
+using Godot;
 
 //проверяет квестовую переменную при активации и запускает другие триггеры в зависимости от её значения
 //если активен при старте, проверяет сразу
-public class CheckSavableVariableTrigger: TriggerBase
+public partial class CheckSavableVariableTrigger: TriggerBase
 {
     [Export] public string variableName;
-    [Export] public Dictionary<string, NodePath> otherTriggerPaths;
+    [Export] public Godot.Collections.Dictionary<string, NodePath> otherTriggerPaths;
     
-    private Dictionary<string, TriggerBase> otherTriggers = new Dictionary<string, TriggerBase>();
+    private Godot.Collections.Dictionary<string, TriggerBase> otherTriggers = new();
     
     public override void _Ready()
     {
@@ -21,16 +21,16 @@ public class CheckSavableVariableTrigger: TriggerBase
 
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         var saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         if (saveNode == null) return;
-        if (!saveNode.SavedVariables.Contains(variableName)) return;
+        if (!saveNode.SavedVariables.ContainsKey(variableName)) return;
 
         string key = saveNode.SavedVariables[variableName].ToString();
         if (otherTriggers.ContainsKey(key))
@@ -38,7 +38,7 @@ public class CheckSavableVariableTrigger: TriggerBase
             otherTriggers[key].SetActive(true);
         }
      
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
     
 }

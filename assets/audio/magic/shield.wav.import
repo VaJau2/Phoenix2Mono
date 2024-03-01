@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shield.wav-9783bc6508989529f7ab5b54ee5c9a2d.sample"
+type="AudioStreamWAV"
+uid="uid://ct51ieh4c4rdl"
+path="res://.godot/imported/shield.wav-9783bc6508989529f7ab5b54ee5c9a2d.sample"
 
 [deps]
 
 source_file="res://assets/audio/magic/shield.wav"
-dest_files=[ "res://.import/shield.wav-9783bc6508989529f7ab5b54ee5c9a2d.sample" ]
+dest_files=["res://.godot/imported/shield.wav-9783bc6508989529f7ab5b54ee5c9a2d.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

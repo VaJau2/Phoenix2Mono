@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class SoundSteps: RayCast {
+public partial class SoundSteps: RayCast3D {
 
     //ссылка на скрипт через player.Body.SoundSteps
 
@@ -29,9 +29,9 @@ public class SoundSteps: RayCast {
     AudioStream dash;
     AudioStream jump;
 
-    Dictionary<string, Array<AudioStreamSample>> steps;
-    Dictionary<string, Array<AudioStreamSample>> stepsRun;
-    Dictionary<string, Array<AudioStreamSample>> stepsCrouch;
+    Dictionary<string, Array<AudioStreamWav>> steps;
+    Dictionary<string, Array<AudioStreamWav>> stepsRun;
+    Dictionary<string, Array<AudioStreamWav>> stepsCrouch;
 
     Character player => parent as Character;
     bool isPlayer => parent is Player;
@@ -70,12 +70,12 @@ public class SoundSteps: RayCast {
         }
     }
 
-    private Array<AudioStreamSample> LoadSounds(string materialName, string fileName)
+    private Array<AudioStreamWav> LoadSounds(string materialName, string fileName)
     {
-        var tempArray = new Array<AudioStreamSample>();
+        var tempArray = new Array<AudioStreamWav>();
 
         for(int i = 1; i < SOUNDS_COUNT + 1; i++) {
-            var tempSound = GD.Load<AudioStreamSample>("res://assets/audio/steps/" + materialName + "/" + fileName + i.ToString() + ".wav");
+            var tempSound = GD.Load<AudioStreamWav>("res://assets/audio/steps/" + materialName + "/" + fileName + i.ToString() + ".wav");
             tempArray.Add(tempSound);
         }
         return tempArray;
@@ -93,7 +93,7 @@ public class SoundSteps: RayCast {
         dash = GD.Load<AudioStream>("res://assets/audio/steps/dash.wav");
         jump = GD.Load<AudioStream>("res://assets/audio/steps/jump.mp3");
 
-        steps = new Dictionary<string, Array<AudioStreamSample>>()
+        steps = new Dictionary<string, Array<AudioStreamWav>>()
         {
             {"grass", LoadSounds("grass", "stepGrassFast")},
             {"dirt", LoadSounds("dirt", "stepDirtFast")},
@@ -104,7 +104,7 @@ public class SoundSteps: RayCast {
             {"metal", LoadSounds("metal", "stepMetalFast")}
         };
 
-        stepsRun = new Dictionary<string, Array<AudioStreamSample>>()
+        stepsRun = new Dictionary<string, Array<AudioStreamWav>>()
         {
             {"grass", LoadSounds("grass", "stepGrassRun")},
             {"dirt", LoadSounds("dirt", "stepDirtRun")},
@@ -115,7 +115,7 @@ public class SoundSteps: RayCast {
             {"metal", LoadSounds("metal", "stepMetalFast")}
         };
 
-        stepsCrouch = new Dictionary<string, Array<AudioStreamSample>>()
+        stepsCrouch = new Dictionary<string, Array<AudioStreamWav>>()
         {
             {"grass", LoadSounds("grass", "stepGrass")},
             {"dirt", LoadSounds("dirt", "stepDirt")},
@@ -146,7 +146,7 @@ public class SoundSteps: RayCast {
         }
 
         var collideObj = GetCollider();
-        if (collideObj is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null) {
+        if (collideObj is StaticBody3D collideBody && collideBody.PhysicsMaterialOverride != null) {
             var friction = collideBody.PhysicsMaterialOverride.Friction;
             var materialName = MatNames.GetMatName(friction);
             
@@ -183,30 +183,40 @@ public class SoundSteps: RayCast {
         timer = STEP_JUMP_COOLDOWN;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isActive) return;
         
         if (isPlayer) {
-            if (!(parent as Player).MayMove) {
+            if (!((Player)parent).MayMove) {
                 return;
             }
         }
 
         bool sounding = parent.Health > 0 && (parent.Velocity.Length() > SOUND_SPEED) && !string.IsNullOrEmpty(landMaterial);
 
-        if (sounding) {
-            if (timer > 0) {
-                timer -= delta;
-            } else {
-                if (isPlayer && playerCrouching) {
+        if (sounding) 
+        {
+            if (timer > 0) 
+            {
+                timer -= (float)delta;
+            } 
+            else 
+            {
+                if (isPlayer && playerCrouching) 
+                {
                     PlaySound(stepsCrouch[landMaterial][stepI]);
                     timer = STEP_CROUCH_COOLDOWN;
-                } else {
-                    if (parentRunning) {
+                } 
+                else 
+                {
+                    if (parentRunning) 
+                    {
                         PlaySound(stepsRun[landMaterial][stepI]);
                         timer = STEP_RUN_COOLDOWN;
-                    } else {
+                    } 
+                    else 
+                    {
                         PlaySound(steps[landMaterial][stepI]);
                         timer = STEP_COOLDOWN;
                     }
@@ -214,7 +224,8 @@ public class SoundSteps: RayCast {
 
                 var oldI = stepI;
                 stepI = rand.Next(0, SOUNDS_COUNT);
-                while (oldI == stepI) {
+                while (oldI == stepI) 
+                {
                     stepI = rand.Next(0, SOUNDS_COUNT);
                 }
             }

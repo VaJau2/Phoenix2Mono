@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Godot;
 
-public class BindsHandler
+public partial class BindsHandler
 {
     public float useCooldown;
     
@@ -52,14 +52,14 @@ public class BindsHandler
         
         for (int i = 0; i < 10; i++)
         {
-            if (!Input.IsKeyPressed(48 + i)) continue;
+            if (!Input.IsKeyPressed((Key)(48 + i))) continue;
             BindButtonWithKey(tempButton, i);
         }
     }
     
     private static bool ItemIsBindable(ItemType itemType) 
     {
-        return itemType == ItemType.weapon || itemType == ItemType.food || itemType == ItemType.meds;
+        return itemType is ItemType.weapon or ItemType.food or ItemType.meds;
     }
     
     private void BindButtonWithKey(ItemIcon button, int key)

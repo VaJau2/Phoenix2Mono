@@ -3,18 +3,18 @@ using Godot;
 //Скрипт поддерживает только одного непися на воде
 //Если надо несколько, нужно переводить tempChar в массив
 //и добавлять спавн для частиц
-public class Water : Spatial
+public partial class Water : Node3D
 {
-    private AudioStreamSample waterSplashSound;
-    private Particles parts;
+    private AudioStreamWav waterSplashSound;
+    private GpuParticles3D parts;
 
     public void _on_area_body_entered(Node body)
     {
         if (!(body is Character tempChar)) return;
         if (!(tempChar.Velocity.Length() > 6)) return;
         
-        Vector3 newPos = tempChar.GlobalTransform.origin;
-        newPos.y = parts.GlobalTransform.origin.y;
+        Vector3 newPos = tempChar.GlobalTransform.Origin;
+        newPos.Y = parts.GlobalTransform.Origin.Y;
 
         parts.GlobalTransform = Global.SetNewOrigin(parts.GlobalTransform, newPos);
         parts.Restart();
@@ -28,7 +28,7 @@ public class Water : Spatial
 
     public override void _Ready()
     {
-        waterSplashSound = GD.Load<AudioStreamSample>("res://assets/audio/steps/water/land.wav");
-        parts = GetNode<Particles>("particles");
+        waterSplashSound = GD.Load<AudioStreamWav>("res://assets/audio/steps/water/land.wav");
+        parts = GetNode<GpuParticles3D>("particles");
     }
 }

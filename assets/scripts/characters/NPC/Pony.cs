@@ -4,7 +4,7 @@ using Godot.Collections;
 
 //Класс для пней-неписей
 //Также включает в себя единорогов, которые умеют только в левитацию
-public class Pony: NpcWithWeapons
+public partial class Pony: NpcWithWeapons
 {
     const float RUN_DISTANCE = 12f;
     
@@ -13,14 +13,13 @@ public class Pony: NpcWithWeapons
 
     [Export]
     public bool IsUnicorn = false;
-    public Particles MagicParticles;
+    public GpuParticles3D MagicParticles;
 
     public bool IsRunning = false;
     public float RotationToVictim = 0f;
 
     public NPCBody body;
     
-    private float doorWait = 0;
     private bool RunToPoint;
     public bool stayInPoint;
 
@@ -63,18 +62,18 @@ public class Pony: NpcWithWeapons
         base.AnimateDeath(killer, shapeID);
     }
     
-    public override Spatial GetWeaponParent(bool isPistol)
+    public override Node3D GetWeaponParent(bool isPistol)
     {
         if (IsUnicorn) 
         {
-            return GetNode<Spatial>("levitation/weapons");
+            return GetNode<Node3D>("levitation/weapons");
         }
         if (isPistol) 
         {
-            return GetNode<Spatial>("Armature/Skeleton/BoneAttachment/weapons");
+            return GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/weapons");
         } 
         
-        return GetNode<Spatial>("Armature/Skeleton/BoneAttachment 2/weapons");
+        return GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D 2/weapons");
     }
 
     public override void SetNewStartPos(Vector3 newPos, bool run = false)
@@ -122,20 +121,20 @@ public class Pony: NpcWithWeapons
             return;
         }
 
-        var npcForward = -GlobalTransform.basis.z;
+        var npcForward = -GlobalTransform.Basis.Z;
         var npcDir = body.GetDirToTarget(tempVictim);
         RotationToVictim = npcForward.AngleTo(npcDir);
 
         if (weapons.isPistol || !rotateBody) 
         {
-            if (Mathf.Rad2Deg(RotationToVictim) < 80) 
+            if (Mathf.RadToDeg(RotationToVictim) < 80) 
             {
                 return;
             }
         }
 
-        Vector3 victimPos = tempVictim.GlobalTransform.origin;
-        victimPos.y = GlobalTransform.origin.y;
+        Vector3 victimPos = tempVictim.GlobalTransform.Origin;
+        victimPos.Y = GlobalTransform.Origin.Y;
         LookAt(victimPos, Vector3.Up);
     }
 
@@ -162,7 +161,7 @@ public class Pony: NpcWithWeapons
         saveData["runSpeed"] = RunSpeed;
         saveData["runToPoint"] = RunToPoint;
         saveData["stayInPoint"] = stayInPoint;
-        if (GetNodeOrNull<NPCFace>("Armature/Skeleton/Body") is NPCFace npcFace)
+        if (GetNodeOrNull<NPCFace>("Armature/Skeleton3D/Body") is NPCFace npcFace)
         {
             saveData["face"] = npcFace.GetSaveData();
         }
@@ -176,10 +175,10 @@ public class Pony: NpcWithWeapons
         RunSpeed = Convert.ToInt16(data["runSpeed"]);
         RunToPoint = Convert.ToBoolean(data["runToPoint"]);
         stayInPoint = Convert.ToBoolean(data["stayInPoint"]);
-        if (!data.Contains("face")) return;
+        if (!data.ContainsKey("face")) return;
         
-        Dictionary faceData = data["face"] as Dictionary;
-        GetNode<NPCFace>("Armature/Skeleton/Body").LoadData(faceData);
+        Dictionary faceData = data["face"].AsGodotDictionary();
+        GetNode<NPCFace>("Armature/Skeleton3D/Body").LoadData(faceData);
     }
     
     public void _on_lookArea_body_entered(Node body)
@@ -217,7 +216,7 @@ public class Pony: NpcWithWeapons
     {
         if (IsUnicorn) 
         {
-            MagicParticles = GetNode<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
+            MagicParticles = GetNode<GpuParticles3D>("Armature/Skeleton3D/BoneAttachment3D/HeadPos/Particles");
         }
         
         base._Ready();
@@ -226,7 +225,7 @@ public class Pony: NpcWithWeapons
         PlayIdleAnim();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
         if (Health <= 0) 
@@ -234,8 +233,8 @@ public class Pony: NpcWithWeapons
             return;
         }
         
-        body.Update(delta);
-        UpdatePath(delta);
-        UpdateAI(delta);
+        body.Update((float)delta);
+        UpdatePath((float)delta);
+        UpdateAI((float)delta);
     }
 }

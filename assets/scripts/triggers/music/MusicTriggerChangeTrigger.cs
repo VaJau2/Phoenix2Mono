@@ -1,6 +1,6 @@
 using Godot;
 
-public class MusicTriggerChangeTrigger : TriggerBase
+public partial class MusicTriggerChangeTrigger : TriggerBase
 {
     [Export] private NodePath musicTriggerPath;
     [Export] public AudioStream newTrack;
@@ -19,10 +19,10 @@ public class MusicTriggerChangeTrigger : TriggerBase
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         musicTrigger.track = newTrack;
@@ -31,6 +31,6 @@ public class MusicTriggerChangeTrigger : TriggerBase
         {
             musicTrigger.SetActive(changeActiveTo);
         }
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/sniper308.wav-1528545710d3d5ec98a89f86e4c7afd8.sample"
+type="AudioStreamWAV"
+uid="uid://b0ouqyvuyliko"
+path="res://.godot/imported/sniper308.wav-1528545710d3d5ec98a89f86e4c7afd8.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/sniper308.wav"
-dest_files=[ "res://.import/sniper308.wav-1528545710d3d5ec98a89f86e4c7afd8.sample" ]
+dest_files=["res://.godot/imported/sniper308.wav-1528545710d3d5ec98a89f86e4c7afd8.sample"]
 
 [params]
 

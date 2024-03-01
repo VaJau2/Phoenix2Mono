@@ -1,27 +1,27 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class Radiostation : Node
+public partial class Radiostation : Node
 {
 	public AudioStream song { private set; get; }
 
 	private Node defaultSongsNode;
-	private List<AudioStream> defaultSongs = new ();
+	private Array<AudioStream> defaultSongs = new ();
 
 	[Export] private bool randomize = true;
-	[Export] private List<AudioStream> scriptSongs = new ();
+	[Export] private Array<AudioStream> scriptSongs = new ();
 	
-	private List<AudioStream> songs = new ();
+	private Array<AudioStream> songs = new ();
 
 	public float timer { private set; get; }
 	private int songID = 0;
 
 	[Signal]
-	public delegate void SyncTimeEvent();
+	public delegate void SyncTimeEventHandler();
 
 	[Signal]
-	public delegate void ChangeSongEvent(AudioStream song);
+	public delegate void ChangeSongEventHandler(AudioStream song);
 
 	public new enum Name
 	{
@@ -33,9 +33,9 @@ public class Radiostation : Node
 		CountryStation
 	}
 
-	public override void _Process(float delta)
+	public override void _Process(double delta)
     {
-		timer += delta;
+		timer += (float)delta;
 		if (timer >= song.GetLength())
         {
 			timer = 0;
@@ -46,7 +46,7 @@ public class Radiostation : Node
 	public void Initialize()
     {
 		defaultSongsNode = GetNode("Default Songs");
-		var defaultSongsArray = defaultSongsNode.Get("songs") as Godot.Collections.Array;
+		var defaultSongsArray = defaultSongsNode.Get("songs").As<Godot.Collections.Array>();
 		
 		foreach (AudioStream defaultSong in defaultSongsArray)
         {
@@ -68,9 +68,9 @@ public class Radiostation : Node
 		timer = random.Next(0, (int)song.GetLength());
 	}
 
-	private List<AudioStream> Randomize(List<AudioStream> playlist)
+	private Array<AudioStream> Randomize(Array<AudioStream> playlist)
 	{
-		var newPlaylist = new List<AudioStream>();
+		var newPlaylist = new Array<AudioStream>();
 		var random = new Random();
 
 		while (playlist.Count > 0)
@@ -89,12 +89,12 @@ public class Radiostation : Node
 		else songID = 0;
 
 		song = songs[songID];
-		EmitSignal(nameof(ChangeSongEvent), song);
+		EmitSignal(nameof(ChangeSongEventHandler), song);
 	}
 	
 	public void SyncTimer()
     {
-		EmitSignal(nameof(SyncTimeEvent));
+		EmitSignal(nameof(SyncTimeEventHandler));
     }
 
 	public static Radiostation GetRadiostation(Node node, Name stationName)

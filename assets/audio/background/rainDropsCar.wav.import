@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/rainDropsCar.wav-8c0553ae44c91e3c6ef85dde945687bf.sample"
+type="AudioStreamWAV"
+uid="uid://b6d3j2qcasox4"
+path="res://.godot/imported/rainDropsCar.wav-8c0553ae44c91e3c6ef85dde945687bf.sample"
 
 [deps]
 
 source_file="res://assets/audio/background/rainDropsCar.wav"
-dest_files=[ "res://.import/rainDropsCar.wav-8c0553ae44c91e3c6ef85dde945687bf.sample" ]
+dest_files=["res://.godot/imported/rainDropsCar.wav-8c0553ae44c91e3c6ef85dde945687bf.sample"]
 
 [params]
 

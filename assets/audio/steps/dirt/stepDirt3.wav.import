@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepDirt3.wav-99385b2c2f0718dae20e6cd2f31b9409.sample"
+type="AudioStreamWAV"
+uid="uid://dexiuxfqtryxm"
+path="res://.godot/imported/stepDirt3.wav-99385b2c2f0718dae20e6cd2f31b9409.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/dirt/stepDirt3.wav"
-dest_files=[ "res://.import/stepDirt3.wav-99385b2c2f0718dae20e6cd2f31b9409.sample" ]
+dest_files=["res://.godot/imported/stepDirt3.wav-99385b2c2f0718dae20e6cd2f31b9409.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

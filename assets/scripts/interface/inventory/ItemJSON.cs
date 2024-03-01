@@ -1,4 +1,5 @@
 using System;
+using Godot;
 using Godot.Collections;
 
 public static class ItemJSON
@@ -13,11 +14,11 @@ public static class ItemJSON
         if (tempLang != lang) 
         {
             string path = "assets/lang/" + lang + "/items.json";
-            itemsData = Global.loadJsonFile(path);
+            itemsData = Global.LoadJsonFile(path);
             tempLang = lang;
         }
 
-        if (!itemsData.Contains(itemCode)) return new Dictionary();
+        if (!itemsData.ContainsKey(itemCode)) return new Dictionary();
         
         var itemData = (Dictionary)itemsData[itemCode];
         ConvertItemType(itemData);
@@ -27,13 +28,13 @@ public static class ItemJSON
 
     private static void ConvertItemType(Dictionary itemData)
     {
-        if (!itemData.Contains("type")) return;
+        if (!itemData.ContainsKey("type")) return;
         
         string type = itemData["type"].ToString();
         
         if (Enum.TryParse(type, out ItemType itemType))
         {
-            itemData["type"] = itemType;
+            itemData["type"] = Variant.CreateFrom(itemType.ToString());
         }
     }
 }

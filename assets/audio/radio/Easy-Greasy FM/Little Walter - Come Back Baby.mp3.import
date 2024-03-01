@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Little Walter - Come Back Baby.mp3-8ec709f3c5a85391369a1d4c9ef7bf96.mp3str"
+uid="uid://n7kp3whingwt"
+path="res://.godot/imported/Little Walter - Come Back Baby.mp3-8ec709f3c5a85391369a1d4c9ef7bf96.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Easy-Greasy FM/Little Walter - Come Back Baby.mp3"
-dest_files=[ "res://.import/Little Walter - Come Back Baby.mp3-8ec709f3c5a85391369a1d4c9ef7bf96.mp3str" ]
+dest_files=["res://.godot/imported/Little Walter - Come Back Baby.mp3-8ec709f3c5a85391369a1d4c9ef7bf96.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

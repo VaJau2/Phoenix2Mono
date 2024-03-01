@@ -1,6 +1,6 @@
 using Godot;
 
-public class DetoxineEffect: Effect 
+public partial class DetoxineEffect: Effect 
 {
     private Player player;
     public DetoxineEffect()

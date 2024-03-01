@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/pegasus-wings.wav-84f4ebeb5a4db5160e47d319f2981ab0.sample"
+type="AudioStreamWAV"
+uid="uid://cvqfm6f6bsjje"
+path="res://.godot/imported/pegasus-wings.wav-84f4ebeb5a4db5160e47d319f2981ab0.sample"
 
 [deps]
 
 source_file="res://assets/audio/flying/pegasus-wings.wav"
-dest_files=[ "res://.import/pegasus-wings.wav-84f4ebeb5a4db5160e47d319f2981ab0.sample" ]
+dest_files=["res://.godot/imported/pegasus-wings.wav-84f4ebeb5a4db5160e47d319f2981ab0.sample"]
 
 [params]
 

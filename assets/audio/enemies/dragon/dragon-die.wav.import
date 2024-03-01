@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/dragon-die.wav-4b4b283420cae1c5771c804bd736d516.sample"
+type="AudioStreamWAV"
+uid="uid://b7s3teeu7wunv"
+path="res://.godot/imported/dragon-die.wav-4b4b283420cae1c5771c804bd736d516.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/dragon/dragon-die.wav"
-dest_files=[ "res://.import/dragon-die.wav-4b4b283420cae1c5771c804bd736d516.sample" ]
+dest_files=["res://.godot/imported/dragon-die.wav-4b4b283420cae1c5771c804bd736d516.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -48,13 +48,13 @@ public static class InterfaceLang
     public static string GetPhrase(string file, string section, string phrase) 
     {
         Dictionary sectionData = GetPhrasesSection(file, section);
-        if (sectionData == null || !sectionData.Contains(phrase))
+        if (sectionData == null || !sectionData.ContainsKey(phrase))
         {
             return null;
         }
             
         var message = sectionData[phrase].ToString();
-        if (message.Contains("#"))
+        if (message.Contains('#'))
         {
             message = ReplaceKeys(message);
         }
@@ -65,16 +65,16 @@ public static class InterfaceLang
     //Возвращает словарь из фраз из лангового файла
     public static Dictionary GetPhrasesSection(string file, string section) 
     {
-        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data == null || !data.Contains(section)) return null;
-        var sectionData = data[section] as Dictionary;
+        Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        if (data == null || !data.ContainsKey(section)) return null;
+        var sectionData = data[section].AsGodotDictionary();
         return sectionData;
     }
 
     public static Array GetPhrasesAsArray(string file, string section)
     {
-        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        var sectionData = data?[section] as Array;
+        Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        var sectionData = data?[section].AsGodotArray();
         return sectionData;
     }
     
@@ -84,7 +84,7 @@ public static class InterfaceLang
         var codes = message.Split('#');
         foreach (var tempCode in codes)
         {
-            if (!(Global.GetKeyName(tempCode) is string newKey)) continue;
+            if (Global.GetKeyName(tempCode) is not { } newKey) continue;
             message = message.Replace("#" + tempCode + "#", newKey);
         }
 

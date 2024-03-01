@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class PlayerSpawner : Spatial
+public partial class PlayerSpawner : Node3D
 {
     [Export]
     public int moneyCount;
@@ -22,7 +22,7 @@ public class PlayerSpawner : Spatial
     public bool loadStartItems = true;
 
     [Signal]
-    public delegate void Spawned();
+    public delegate void SpawnedEventHandler();
 
     public override void _Ready()
     {
@@ -35,7 +35,7 @@ public class PlayerSpawner : Spatial
         path += GetRacePath();
 
         var playerPrefab = GD.Load<PackedScene>(path);
-        var newPlayer = (Player)playerPrefab.Instance();
+        var newPlayer = playerPrefab.Instantiate<Player>();
 
         SpawnPlayer(newPlayer);
     }
@@ -56,7 +56,7 @@ public class PlayerSpawner : Spatial
         await ToSignal(GetTree(), "idle_frame");
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
-        player.Camera.Current = true;
+        player.Camera3D.Current = true;
 
         //если единорог спавнится в помещении
         if (player is Player_Unicorn unicorn && spawningInside)
@@ -72,9 +72,9 @@ public class PlayerSpawner : Spatial
                 var savedData = GetNodeOrNull<SaveNode>("/root/Main/SaveNode");
                 if (IsInstanceValid(savedData))
                 {
-                    if (checkSavedMoney && savedData.InventoryData.Contains("money"))
+                    if (checkSavedMoney && savedData.InventoryData.TryGetValue("money", out var money))
                     {
-                        var loadedMoney = savedData.InventoryData["money"].ToString();
+                        var loadedMoney = money.ToString();
                         player.Inventory.LoadMoney(loadedMoney);
                     }
                     if (checkSavedData)
@@ -109,6 +109,6 @@ public class PlayerSpawner : Spatial
             return;
         }
         
-        EmitSignal(nameof(Spawned));
+        EmitSignal(nameof(SpawnedEventHandler));
     }
 }

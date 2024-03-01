@@ -1,35 +1,35 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/House1__nmap.tga-bbba95179d5f425ee22d7b6c0ab970af.stex"
+type="CompressedTexture2D"
+uid="uid://ca1bwodi76lii"
+path.s3tc="res://.godot/imported/House1__nmap.tga-bbba95179d5f425ee22d7b6c0ab970af.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/street-houses/house1/House1__nmap.tga"
-dest_files=[ "res://.import/House1__nmap.tga-bbba95179d5f425ee22d7b6c0ab970af.stex" ]
+dest_files=["res://.godot/imported/House1__nmap.tga-bbba95179d5f425ee22d7b6c0ab970af.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=1
-flags/repeat=1
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

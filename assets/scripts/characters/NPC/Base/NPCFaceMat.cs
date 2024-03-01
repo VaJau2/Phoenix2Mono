@@ -5,13 +5,13 @@ using System;
 //за текстуры глаз
 //отличается от NPCFace тем, что не меняет текстуры материалу
 //а меняет сами материалы
-public class NPCFaceMat : NPCFace
+public partial class NPCFaceMat : NPCFace
 {
     const int EYES_MATERIAL = 0;
 
     NPC npc;
-    private SpatialMaterial openEyes;
-    private SpatialMaterial closedEyes;
+    private StandardMaterial3D openEyes;
+    private StandardMaterial3D closedEyes;
     private bool eyesAreOpen = true;
     private float eyesOpenCooldown = 1f;
 
@@ -25,11 +25,11 @@ public class NPCFaceMat : NPCFace
         eyesOpenCooldown = 0.2f;
     }
 
-    private void ChangeEyesVariant(string variantName)
+    private new void ChangeEyesVariant(string variantName)
     {
         string path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
-        openEyes = GD.Load<SpatialMaterial>(path + "/0.material");
-        closedEyes = GD.Load<SpatialMaterial>(path + "/1.material");
+        openEyes = GD.Load<StandardMaterial3D>(path + "/0.material");
+        closedEyes = GD.Load<StandardMaterial3D>(path + "/1.material");
         Mesh.SurfaceSetMaterial(EYES_MATERIAL, eyesAreOpen ? openEyes : closedEyes);
     }
 
@@ -70,8 +70,8 @@ public class NPCFaceMat : NPCFace
         ChangeEyesVariant(startEyesVariant);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        UpdateOpenEyes(delta);
+        UpdateOpenEyes((float)delta);
     }
 }

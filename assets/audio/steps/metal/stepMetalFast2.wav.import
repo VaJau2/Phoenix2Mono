@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepMetalFast2.wav-01d4e10928125fbf2e92069b7eeb26cd.sample"
+type="AudioStreamWAV"
+uid="uid://pab2j4csp8i7"
+path="res://.godot/imported/stepMetalFast2.wav-01d4e10928125fbf2e92069b7eeb26cd.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/metal/stepMetalFast2.wav"
-dest_files=[ "res://.import/stepMetalFast2.wav-01d4e10928125fbf2e92069b7eeb26cd.sample" ]
+dest_files=["res://.godot/imported/stepMetalFast2.wav-01d4e10928125fbf2e92069b7eeb26cd.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

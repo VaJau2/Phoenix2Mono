@@ -11,22 +11,22 @@
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 8 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 extents = Vector3( 1.08, 0.552, 0.158027 )
 
 [sub_resource type="QuadMesh" id=3]
 size = Vector2( 8, 4 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="StandardMaterial3D" id=4]
 resource_local_to_scene = true
 flags_albedo_tex_force_srgb = true
 metallic_specular = 0.27
 roughness = 0.42
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape3D" id=5]
 extents = Vector3( 2.17797, 2.66149, 0.105925 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 0.9, 0.2, 0.2 )
 direction = Vector3( 0, 0, 1 )
@@ -46,43 +46,43 @@ size = Vector2( 0.8, 0.8 )
 material = ExtResource( 9 )
 size = Vector2( 0.8, 0.8 )
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape3D" id=10]
 extents = Vector3( 6.52819, 2.3378, 9.37135 )
 
-[node name="Mirror" type="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.65999, 2.39986, -9.9092 )
+[node name="Mirror" type="StaticBody3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.65999, 2.39986, -9.9092 )
 collision_layer = 3
 physics_material_override = ExtResource( 6 )
 script = ExtResource( 2 )
 
-[node name="mesh" type="MeshInstance" parent="."]
-transform = Transform( 1.10376, 0, 0, 0, -8.97746e-08, -0.551033, 0, 1, -1.62921e-07, 0.0435028, 0.0101292, 0.04 )
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1.10376, 0, 0, 0, -8.97746e-08, -0.551033, 0, 1, -1.62921e-07, 0.0435028, 0.0101292, 0.04 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326967, 0, 0.121668 )
+[node name="shape" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326967, 0, 0.121668 )
 shape = SubResource( 2 )
 
 [node name="Mirror" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.270305, 0, 0, 0, 0.27128, 0, 0, 0, 1, 0.0295753, 0.0219154, 0.0326595 )
+transform = Transform3D( 0.270305, 0, 0, 0, 0.27128, 0, 0, 0, 1, 0.0295753, 0.0219154, 0.0326595 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 size = Vector2( 8, 4 )
 
-[node name="StaticBody" type="StaticBody" parent="Mirror"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mirror"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Mirror/StaticBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mirror/StaticBody3D"]
 shape = SubResource( 5 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
-unit_db = 5.0
+volume_db = 5.0
 unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243034, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243034, 0 )
 emitting = false
 lifetime = 0.8
 one_shot = true
@@ -95,8 +95,8 @@ draw_pass_1 = SubResource( 7 )
 draw_pass_2 = SubResource( 8 )
 draw_pass_3 = SubResource( 9 )
 
-[node name="enemyArea" type="Area" parent="."]
+[node name="enemyArea" type="Area3D" parent="."]
 monitorable = false
 
-[node name="shape" type="CollisionShape" parent="enemyArea"]
+[node name="shape" type="CollisionShape3D" parent="enemyArea"]
 shape = SubResource( 10 )

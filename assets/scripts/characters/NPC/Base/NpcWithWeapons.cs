@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class NpcWithWeapons : NPC, IChest
+public partial class NpcWithWeapons : NPC, IChest
 {
     private readonly float[] UNCOVER_TIMER = {5f, 20f};
     private readonly float[] COVER_TIMER = {1f, 5f};
@@ -41,13 +41,12 @@ public class NpcWithWeapons : NPC, IChest
     protected bool stopAreaEntered;
 
     [Signal]
-    public delegate void IsCame();
+    public delegate void IsCameEventHandler();
 
-    private RandomNumberGenerator rand = new RandomNumberGenerator();
+    private RandomNumberGenerator rand = new();
 
     private bool IsUseCustomTrigger => !string.IsNullOrEmpty(customHintCode)
-                                       && customInteractionTrigger != null
-                                       && customInteractionTrigger.IsActive;
+                                       && customInteractionTrigger is { IsActive: true };
     
     public override bool MayInteract 
     {
@@ -71,7 +70,7 @@ public class NpcWithWeapons : NPC, IChest
     {
         if (customInteractionTrigger != null && customInteractionTrigger.IsActive)
         {
-            customInteractionTrigger._on_activate_trigger();
+            customInteractionTrigger.OnActivateTrigger();
         }
         else if (Health > 0)
         {
@@ -98,13 +97,13 @@ public class NpcWithWeapons : NPC, IChest
         base.LoadData(data);
         ChestHandler.LoadData(data);
         
-        if (data["weaponCode"] != null)
+        if (data["weaponCode"].Obj != null)
         {
             weaponCode = data["weaponCode"].ToString();
             weapons.LoadWeapon(this, weaponCode);
         }
 
-        if (!data.Contains("followTarget") || data["followTarget"] == null) return;
+        if (!data.ContainsKey("followTarget") || data["followTarget"].Obj == null) return;
 
         await ToSignal(GetTree(), "idle_frame");
         var newFollowTarget = GetNode<Character>(data["followTarget"].ToString());
@@ -155,7 +154,7 @@ public class NpcWithWeapons : NPC, IChest
         followTarget = newTarget;
     }
 
-    public virtual Spatial GetWeaponParent(bool isPistol)
+    public virtual Node3D GetWeaponParent(bool isPistol)
     {
         return null;
     }
@@ -171,7 +170,7 @@ public class NpcWithWeapons : NPC, IChest
     {
         Stop();
         cameToPlace = true;
-        EmitSignal(nameof(IsCame));
+        EmitSignal(nameof(IsCameEventHandler));
     }
 
     protected virtual void MoveToPoint(float tempDistance, bool mayRun)
@@ -188,7 +187,7 @@ public class NpcWithWeapons : NPC, IChest
         }
         
         cameToPlace = false;
-        var pos = GlobalTransform.origin;
+        var pos = GlobalTransform.Origin;
 
         var tempDistance = pos.DistanceTo(place);
         if (tempDistance < distance)
@@ -199,7 +198,7 @@ public class NpcWithWeapons : NPC, IChest
 
         if (path == null)
         {
-            path = NavigationServer.MapGetPath(GetWorld().NavigationMap, pos, place, true);
+            path = NavigationServer3D.MapGetPath(GetWorld3D().NavigationMap, pos, place, true);
             pathI = 0;
         }
 
@@ -242,7 +241,7 @@ public class NpcWithWeapons : NPC, IChest
             tempCover = covers.GetCover(this);
             if (tempCover != null)
             {
-                tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.origin);
+                tempCoverPlace = tempCover.GetFarPlace(tempVictim.GlobalTransform.Origin);
                 cameToPlace = false;
             }
 
@@ -282,13 +281,13 @@ public class NpcWithWeapons : NPC, IChest
 
     private void LookAtTarget(Vector3 target)
     {
-        target.y = GlobalTransform.origin.y;
+        target.Y = GlobalTransform.Origin.Y;
         LookAt(target, Vector3.Up);
     }
 
     protected virtual void LookAtTarget(bool rotateBody = true)
     {
-        Vector3 victimPos = tempVictim.GlobalTransform.origin;
+        Vector3 victimPos = tempVictim.GlobalTransform.Origin;
         LookAtTarget(victimPos);
     }
 
@@ -349,9 +348,9 @@ public class NpcWithWeapons : NPC, IChest
             return;
         }
 
-        Vector3 victimPos = tempVictim.GlobalTransform.origin;
+        Vector3 victimPos = tempVictim.GlobalTransform.Origin;
         float shootDistance = weapons.GetStatsFloat("shootDistance");
-        float tempDistance = GlobalTransform.origin.DistanceTo(victimPos);
+        float tempDistance = GlobalTransform.Origin.DistanceTo(victimPos);
         if (cameToPlace && tempDistance < shootDistance)
         {
             UpdateShooting(tempDistance, delta);
@@ -367,7 +366,7 @@ public class NpcWithWeapons : NPC, IChest
 
     private void FollowTarget()
     {
-        Vector3 targetPos = followTarget.GlobalTransform.origin;
+        Vector3 targetPos = followTarget.GlobalTransform.Origin;
         GoTo(targetPos, COME_DISTANCE * 2f);
         updatePath = followTarget?.Velocity.Length() > MIN_WALKING_SPEED;
     }
@@ -411,7 +410,7 @@ public class NpcWithWeapons : NPC, IChest
                     else
                     {
                         GlobalTransform = Global.SetNewOrigin(GlobalTransform, myStartPos);
-                        Rotation = new Vector3(0, myStartRot.y, 0);
+                        Rotation = new Vector3(0, myStartRot.Y, 0);
                         PlayIdleAnim();
                     }
                 }
@@ -430,7 +429,7 @@ public class NpcWithWeapons : NPC, IChest
                         else
                         {
                             
-                            GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
+                            GoTo(patrolPoints[patrolI].GlobalTransform.Origin, COME_DISTANCE, false);
                         }
 
                         if (cameToPlace)

@@ -2,18 +2,18 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class VertibirdStartFlyTrigger : TriggerBase
+public partial class VertibirdStartFlyTrigger : TriggerBase
 {
-    private float animTimer = 19f;
+    private double animTimer = 19f;
     [Export] private NodePath VertibirdPath;
-    private Spatial Vertibird;
+    private Node3D Vertibird;
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
     private int step;
 
     public override void _Ready()
     {
-        Vertibird = GetNode<Spatial>(VertibirdPath);
+        Vertibird = GetNode<Node3D>(VertibirdPath);
         anim = Vertibird.GetNode<AnimationPlayer>("anim");
         audi = Vertibird.GetNode<AudioStreamPlayer3D>("Box001/audi");
         SetProcess(false);
@@ -25,7 +25,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
         if (!(body is Player)) return;
         if (step > 0) return;
         step = 1;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     public override Dictionary GetSaveData()
@@ -51,15 +51,15 @@ public class VertibirdStartFlyTrigger : TriggerBase
         float audiTime = Convert.ToSingle(data["audiTime"]);
         audi.Play(audiTime);
 
-        if (data.Contains("animTimer"))
+        if (data.ContainsKey("animTimer"))
         {
             animTimer = Convert.ToSingle(data["animTimer"]);
         }
         
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (step == 1)
         {
@@ -71,7 +71,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
         SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (animTimer > 0)
         {
@@ -80,7 +80,7 @@ public class VertibirdStartFlyTrigger : TriggerBase
         else
         {
             Vertibird.QueueFree();
-            base._on_activate_trigger();
+            base.OnActivateTrigger();
         }
     }
 }

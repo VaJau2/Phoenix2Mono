@@ -1,6 +1,6 @@
 using Godot;
 
-public class ChangeEnvironmentTrigger : TriggerBase
+public partial class ChangeEnvironmentTrigger : TriggerBase
 {
     [Export] private NodePath envPath;
     [Export] private Environment envResource;
@@ -9,10 +9,10 @@ public class ChangeEnvironmentTrigger : TriggerBase
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         
@@ -21,6 +21,6 @@ public class ChangeEnvironmentTrigger : TriggerBase
         {
             env.Environment = envResource;
         }
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

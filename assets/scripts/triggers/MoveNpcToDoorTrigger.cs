@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
 //перемещает непися к двери в помещение
 //затем телепортирует в точку
-public class MoveNpcToDoorTrigger: ActivateOtherTrigger
+public partial class MoveNpcToDoorTrigger: ActivateOtherTrigger
 { 
     [Export] public string NpcPath; 
     [Export] public NodePath doorPath;
     [Export] public NodePath teleportPointPath;
     
-    private Spatial teleportPoint;
+    private Node3D teleportPoint;
     private NpcWithWeapons npc;
     private DoorTeleport door;
     
@@ -19,15 +19,15 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         if (!LoadObjects())
         {
-            base._on_activate_trigger();
+            base.OnActivateTrigger();
             return;
         }
         
@@ -42,7 +42,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
                 break;
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     private bool LoadObjects()
@@ -52,7 +52,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         
         npc = GetNode<NpcWithWeapons>(NpcPath);
         door = GetNode<DoorTeleport>(doorPath);
-        teleportPoint = GetNode<Spatial>(teleportPointPath);
+        teleportPoint = GetNode<Node3D>(teleportPointPath);
 
         return true;
     }
@@ -60,28 +60,28 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     private async void SendNpcAndWait()
     {
         step = 1;
-        npc.SetNewStartPos(door.GlobalTransform.origin);
-        await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+        npc.SetNewStartPos(door.GlobalTransform.Origin);
+        await ToSignal(npc, nameof(NpcWithWeapons.IsCameEventHandler));
         if (npc.state == NPCState.Attack) return;
 
         step = 2;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     private void OpenDoor()
     {
         door.SoundOpening();
 
-        var newPos = teleportPoint.GlobalTransform.origin;
+        var newPos = teleportPoint.GlobalTransform.Origin;
         var newRot = teleportPoint.Rotation;
         npc.SetNewStartPos(newPos);
         npc.myStartRot = newRot;
             
         npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, newPos);
         npc.Rotation = new Vector3(
-            npc.Rotation.x,
-            newRot.y,
-            npc.Rotation.z
+            npc.Rotation.X,
+            newRot.Y,
+            npc.Rotation.Z
         );
     }
     
@@ -110,7 +110,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             SetActive(true);
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class LoadItemsFromSuitcase : TriggerBase
+public partial class LoadItemsFromSuitcase : TriggerBase
 {
     [Export] private NodePath suitcasePath;
     
@@ -16,15 +16,15 @@ public class LoadItemsFromSuitcase : TriggerBase
         
         await Global.Get().ToTimer(0.1f, this);
         
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         FurnChest suitcase = GetNode<FurnChest>(suitcasePath);
         if (suitcase == null)
         {
-            base._on_activate_trigger();
+            base.OnActivateTrigger();
             return;
         }
         
@@ -39,19 +39,19 @@ public class LoadItemsFromSuitcase : TriggerBase
             Dictionary data = saveNode.InventoryData;
             
             
-            if (data.Contains("weapon"))
+            if (data.TryGetValue("weapon", out var weaponValue))
             {
-                suitcase.ChestHandler.AddNewItem(data["weapon"].ToString());
+                suitcase.ChestHandler.AddNewItem(weaponValue.ToString());
                 suitcaseEmpty = false;
             }
-            if (data.Contains("cloth") && data["cloth"].ToString() != "empty")
+            if (data.ContainsKey("cloth") && data["cloth"].ToString() != "empty")
             {
                 suitcase.ChestHandler.AddNewItem(data["cloth"].ToString());
                 suitcaseEmpty = false;
             }
-            if (data.Contains("artifact"))
+            if (data.TryGetValue("artifact", out var artifactValue))
             {
-                suitcase.ChestHandler.AddNewItem(data["artifact"].ToString());
+                suitcase.ChestHandler.AddNewItem(artifactValue.ToString());
                 suitcaseEmpty = false;
             }
             
@@ -60,7 +60,7 @@ public class LoadItemsFromSuitcase : TriggerBase
                 Global.AddDeletedObject(suitcase.Name);
                 suitcase.QueueFree();
                 
-                base._on_activate_trigger();
+                base.OnActivateTrigger();
                 return;
             }
             
@@ -89,6 +89,6 @@ public class LoadItemsFromSuitcase : TriggerBase
             suitcase.QueueFree();
         }
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

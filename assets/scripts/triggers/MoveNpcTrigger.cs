@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class MoveNpcTrigger: ActivateOtherTrigger
+public partial class MoveNpcTrigger: ActivateOtherTrigger
 {
     [Export] public Array<string> NpcPaths; 
     [Export] public Array<NodePath> pointPaths;
@@ -14,11 +14,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public bool teleportToPoint;
     [Export] public bool setStartPoint = true;
 
-    private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
-    private Array<Spatial> points = new Array<Spatial>();
+    private Array<NpcWithWeapons> npc = new();
+    private Array<Node3D> points = new();
     private bool activated;
 
-    private float tempTimer = 0;
+    private double tempTimer = 0;
     private int step;
 
     public override void _Ready()
@@ -27,7 +27,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -36,7 +36,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         }
 
         SetProcess(false);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
 
@@ -44,10 +44,10 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     {
         base.SetActive(newActive);
         if (activated) return;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         
@@ -70,7 +70,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             return;
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     private void LoadNpcAndPoints()
@@ -78,7 +78,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         for (int i = 0; i < NpcPaths.Count; i++)
         {
             npc.Add(GetNode<NpcWithWeapons>(NpcPaths[i]));
-            points.Add(GetNode<Spatial>(pointPaths[i]));
+            points.Add(GetNode<Node3D>(pointPaths[i]));
         }
         
         activated = true;
@@ -91,7 +91,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         {
             if (setStartPoint)
             {
-                npc[i].SetNewStartPos(points[i].GlobalTransform.origin, runToPoint);
+                npc[i].SetNewStartPos(points[i].GlobalTransform.Origin, runToPoint);
                 npc[i].myStartRot = points[i].Rotation;
             }
             
@@ -108,7 +108,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             if (teleportToPoint)
             {
                 Vector3 oldScale = npc[i].Scale;
-                npc[i].GlobalTransform = Global.SetNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.origin);
+                npc[i].GlobalTransform = Global.SetNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.Origin);
                 npc[i].Scale = oldScale;
             }
         }
@@ -137,15 +137,15 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.TryGetValue("tempTimer", out var timerValue))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = timerValue.AsSingle();
         }
-        
-        step = Convert.ToInt16(data["step"]);
+
+        step = data["step"].AsInt16();
         if (step > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
     
@@ -154,6 +154,6 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         if (activated) return;
         if (!IsActive) return;
         if (!(body is Player)) return;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

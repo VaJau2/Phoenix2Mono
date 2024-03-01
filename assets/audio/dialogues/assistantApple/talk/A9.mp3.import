@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/A9.mp3-61316ce6a910bc465f7cc3daf7622456.mp3str"
+uid="uid://cgd33trkmrsis"
+path="res://.godot/imported/A9.mp3-61316ce6a910bc465f7cc3daf7622456.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantApple/talk/A9.mp3"
-dest_files=[ "res://.import/A9.mp3-61316ce6a910bc465f7cc3daf7622456.mp3str" ]
+dest_files=["res://.godot/imported/A9.mp3-61316ce6a910bc465f7cc3daf7622456.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,20 +1,20 @@
 using Godot;
 using Godot.Collections;
 
-public class NuclearBombTrigger : Spatial
+public partial class NuclearBombTrigger : Node3D
 {
-    [Export] private Array<AudioStreamSample> explosionSounds;
-    [Export] private float timer;
+    [Export] private Array<AudioStreamWav> explosionSounds;
+    [Export] private double timer;
 
     public bool isExploding;
-    private Spatial rocket;
+    private Node3D rocket;
     private bool rockerCame;
     private float speedY;
 
     public override void _Ready()
     {
         base._Ready();
-        rocket = GetNode<Spatial>("rocket");
+        rocket = GetNode<Node3D>("rocket");
         SetProcess(false);
     }
 
@@ -27,15 +27,15 @@ public class NuclearBombTrigger : Spatial
 
     private void UpdateRocket()
     {
-        var rocketTempPlace = rocket.GlobalTransform.origin;
-        rocketTempPlace.y = GlobalTransform.origin.y;
-        var dist2D = rocketTempPlace.DistanceTo(GlobalTransform.origin);
+        var rocketTempPlace = rocket.GlobalTransform.Origin;
+        rocketTempPlace.Y = GlobalTransform.Origin.Y;
+        var dist2D = rocketTempPlace.DistanceTo(GlobalTransform.Origin);
         if (dist2D > 310)
         {
-            rocket.Translation = new Vector3(
-                rocket.Translation.x - 0.6f,
-                rocket.Translation.y,
-                rocket.Translation.z
+            rocket.Position = new Vector3(
+                rocket.Position.X - 0.6f,
+                rocket.Position.Y,
+                rocket.Position.Z
             );
         } 
         else if (dist2D > 4)
@@ -45,15 +45,15 @@ public class NuclearBombTrigger : Spatial
                 speedY += 0.004f;
             }
 
-            rocket.Translation = new Vector3(
-                rocket.Translation.x - (0.6f - speedY),
-                rocket.Translation.y - speedY,
-                rocket.Translation.z)
+            rocket.Position = new Vector3(
+                rocket.Position.X - (0.6f - speedY),
+                rocket.Position.X - speedY,
+                rocket.Position.Z)
             ;
             rocket.RotationDegrees = new Vector3(
                 speedY * -150f,
-                rocket.RotationDegrees.y,
-                rocket.RotationDegrees.z
+                rocket.RotationDegrees.X,
+                rocket.RotationDegrees.Z
             );
         }
         else
@@ -63,7 +63,7 @@ public class NuclearBombTrigger : Spatial
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isExploding) return;
         
@@ -77,8 +77,8 @@ public class NuclearBombTrigger : Spatial
         }
         else
         {
-            GetNode<Spatial>("light").Visible = true;
-            GetNode<Spatial>("sprite").Visible = true;
+            GetNode<Node3D>("light").Visible = true;
+            GetNode<Node3D>("sprite").Visible = true;
             GetNode<AnimationPlayer>("anim").Play("fire");
             var audi = GetNode<AudioStreamPlayer3D>("audi");
             var rand = new RandomNumberGenerator();

@@ -4,11 +4,11 @@ using Godot;
 /// Тестовая камера включается при нажатии на F12 и позволяет летать по миру
 /// Повторное нажатие F12 выключает камеру
 /// </summary>
-public class TestingCamera : Camera
+public partial class TestingCamera : Camera3D
 {
     private const float PLAYER_HEIGHT = 1.5f;
     private Global global;
-    private Spatial pivot;
+    private Node3D pivot;
     
     public override void _Ready()
     {
@@ -18,7 +18,7 @@ public class TestingCamera : Camera
             return;
         }
         
-        pivot = GetParent<Spatial>();
+        pivot = GetParent<Node3D>();
         global = Global.Get();
         Current = false;
         SetProcess(false);
@@ -32,17 +32,17 @@ public class TestingCamera : Camera
         UpdateRotatingCamera(@event);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!Current) return;
-        UpdateMovingCamera(delta);
+        UpdateMovingCamera((float)delta);
     }
 
     private void UpdateSettingCamera(InputEvent @event)
     {
         if (@event is not InputEventKey eventKey) return;
         if (!eventKey.IsPressed()) return;
-        if (eventKey.Scancode != (uint)KeyList.F12) return;
+        if (eventKey.Keycode != Key.F12) return;
         
         Current = !Current;
         SetProcess(Current);
@@ -50,13 +50,13 @@ public class TestingCamera : Camera
         var player = Global.Get().player;
         if (player == null) return;
 
-        var playerPos = player.GlobalTransform.origin;
-        playerPos.y += PLAYER_HEIGHT;
+        var playerPos = player.GlobalTransform.Origin;
+        playerPos.Y += PLAYER_HEIGHT;
         pivot.GlobalTransform = Global.SetNewOrigin(pivot.GlobalTransform, playerPos);
 
         if (!Current)
         {
-            player.Camera.Current = true;
+            player.Camera3D.Current = true;
             player.ThirdView = false;
         }
         
@@ -73,12 +73,12 @@ public class TestingCamera : Camera
             return;
         
         var mouseSensitivity = global.Settings.mouseSensivity;
-        RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));
-        pivot.RotateY(Mathf.Deg2Rad(mouseEvent.Relative.x * -mouseSensitivity));
+        RotateX(Mathf.DegToRad(mouseEvent.Relative.X * -mouseSensitivity));
+        pivot.RotateY(Mathf.DegToRad(mouseEvent.Relative.X * -mouseSensitivity));
 
         var cameraRot = RotationDegrees;
-        cameraRot.x = Mathf.Clamp(cameraRot.x, Player.CAMERA_MIN_Y, Player.CAMERA_MAX_Y);
-        cameraRot.y = cameraRot.z = 0;
+        cameraRot.X = Mathf.Clamp(cameraRot.X, Player.CAMERA_MIN_Y, Player.CAMERA_MAX_Y);
+        cameraRot.X = cameraRot.Z = 0;
         RotationDegrees = cameraRot;
     }
 
@@ -88,19 +88,19 @@ public class TestingCamera : Camera
         
         if (Input.IsActionPressed("ui_up"))
         {
-            dir -= Transform.basis.z;
+            dir -= Transform.Basis.Z;
         }
         if (Input.IsActionPressed("ui_down"))
         {
-            dir += Transform.basis.z;
+            dir += Transform.Basis.Z;
         }
         if (Input.IsActionPressed("ui_left"))
         {
-            dir.x -= 1;
+            dir.X -= 1;
         }
         if (Input.IsActionPressed("ui_right"))
         {
-            dir.x += 1;
+            dir.X += 1;
         }
         
         var speed = Input.IsActionPressed("ui_shift") ? 20 : 6;

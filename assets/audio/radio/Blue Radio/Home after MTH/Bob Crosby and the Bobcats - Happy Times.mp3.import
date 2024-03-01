@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Bob Crosby and the Bobcats - Happy Times.mp3-cc8bbd0ea8324376295c3ab34b9da6dd.mp3str"
+uid="uid://cmxwgmf04vjjj"
+path="res://.godot/imported/Bob Crosby and the Bobcats - Happy Times.mp3-cc8bbd0ea8324376295c3ab34b9da6dd.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Blue Radio/Home after MTH/Bob Crosby and the Bobcats - Happy Times.mp3"
-dest_files=[ "res://.import/Bob Crosby and the Bobcats - Happy Times.mp3-cc8bbd0ea8324376295c3ab34b9da6dd.mp3str" ]
+dest_files=["res://.godot/imported/Bob Crosby and the Bobcats - Happy Times.mp3-cc8bbd0ea8324376295c3ab34b9da6dd.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

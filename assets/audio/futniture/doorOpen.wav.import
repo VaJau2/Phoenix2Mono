@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/doorOpen.wav-53229cb63a0fffccbccb63140cdccd54.sample"
+type="AudioStreamWAV"
+uid="uid://dgweabuj1nqku"
+path="res://.godot/imported/doorOpen.wav-53229cb63a0fffccbccb63140cdccd54.sample"
 
 [deps]
 
 source_file="res://assets/audio/futniture/doorOpen.wav"
-dest_files=[ "res://.import/doorOpen.wav-53229cb63a0fffccbccb63140cdccd54.sample" ]
+dest_files=["res://.godot/imported/doorOpen.wav-53229cb63a0fffccbccb63140cdccd54.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

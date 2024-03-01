@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stableDoorOpen.wav-e65e0fc7209986655e7bf5bb3eb4de8a.sample"
+type="AudioStreamWAV"
+uid="uid://couia3oj4j6i6"
+path="res://.godot/imported/stableDoorOpen.wav-e65e0fc7209986655e7bf5bb3eb4de8a.sample"
 
 [deps]
 
 source_file="res://assets/audio/futniture/stableDoorOpen.wav"
-dest_files=[ "res://.import/stableDoorOpen.wav-e65e0fc7209986655e7bf5bb3eb4de8a.sample" ]
+dest_files=["res://.godot/imported/stableDoorOpen.wav-e65e0fc7209986655e7bf5bb3eb4de8a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

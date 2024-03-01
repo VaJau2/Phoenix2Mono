@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/dragon-fire.wav-9934c9261f551e378273f3b40ce49555.sample"
+type="AudioStreamWAV"
+uid="uid://blcaihiyyydap"
+path="res://.godot/imported/dragon-fire.wav-9934c9261f551e378273f3b40ce49555.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/dragon/dragon-fire.wav"
-dest_files=[ "res://.import/dragon-fire.wav-9934c9261f551e378273f3b40ce49555.sample" ]
+dest_files=["res://.godot/imported/dragon-fire.wav-9934c9261f551e378273f3b40ce49555.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

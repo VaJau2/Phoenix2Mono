@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/night_back.ogg-e0f20868bc163ef84c01c95a88d2cd0c.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5utsk4s7nhnl"
+path="res://.godot/imported/night_back.ogg-e0f20868bc163ef84c01c95a88d2cd0c.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/background/night_back.ogg"
-dest_files=[ "res://.import/night_back.ogg-e0f20868bc163ef84c01c95a88d2cd0c.oggstr" ]
+dest_files=["res://.godot/imported/night_back.ogg-e0f20868bc163ef84c01c95a88d2cd0c.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

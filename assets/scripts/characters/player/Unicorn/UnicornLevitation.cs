@@ -3,63 +3,67 @@ using Godot;
 //Класс для анимирования левитирующего оружия у единорогов
 //Умеет работать с игроком-единорогом класса Player_Unicorn
 //или с неписем-единорогом класса Pony
-public class UnicornLevitation : Spatial
-{   
+public partial class UnicornLevitation : Node3D
+{
     const float HEIGHT_MIN = -0.1f;
     const float HEIGHT_MAX = 0.2f;
     const float SPEED = 0.1f;
     const float CLOSING_SPEED = 10f;
 
-    Particles cloud;
-    Spatial weaponNode;
+    GpuParticles3D cloud;
+    Node3D weaponNode;
     Player_Unicorn player;
     Pony npc;
 
-    bool moveUp = false;
-    bool weaponClose = false;
+    bool moveUp;
+    bool weaponClose;
 
     float startXPos, startZPos;
 
     public override void _Ready()
     {
         Character parent = GetParent<Character>();
-        if (parent is Player_Unicorn) {
-            player = parent as Player_Unicorn;
-        } else {
+        if (parent is Player_Unicorn unicorn)
+        {
+            player = unicorn;
+        }
+        else
+        {
             npc = parent as Pony;
         }
-        
-        cloud = GetNode<Particles>("cloud");
-        weaponNode = GetNode<Spatial>("weapons");
-        startXPos = weaponNode.Translation.x;
-        startZPos = weaponNode.Translation.z;
+
+        cloud = GetNode<GpuParticles3D>("cloud");
+        weaponNode = GetNode<Node3D>("weapons");
+        startXPos = weaponNode.Position.X;
+        startZPos = weaponNode.Position.Z;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        if (CheckGunOn()) {
-            Vector3 weaponPos = weaponNode.Translation;
-            AnimateUpDown(ref weaponPos, delta);
-            UpdateWeaponNode(ref weaponPos, delta);
-            weaponNode.Translation = weaponPos;
+        if (!CheckGunOn())
+            return;
 
-            Vector3 oldRot = Rotation;
-            oldRot.x = GetPlayerRotation();
-            Rotation = oldRot;
-        } 
+        Vector3 weaponPos = weaponNode.Position;
+        AnimateUpDown(ref weaponPos, (float)delta);
+        UpdateWeaponNode(ref weaponPos, (float)delta);
+        weaponNode.Position = weaponPos;
+
+        Vector3 oldRot = Rotation;
+        oldRot.X = GetPlayerRotation();
+        Rotation = oldRot;
     }
 
-    public void _on_collisionArea_body_entered(PhysicsBody body)
+    public void _on_collisionArea_body_entered(PhysicsBody3D body)
     {
-        if (body == getOwner()) return;
-        if (body.Name.Contains("shell")) return;
+        if (body == GetOwnerCharacter()) return;
+        if (body.Name.ToString().Contains("shell")) return;
         weaponClose = true;
     }
 
-    public void _on_collisionArea_body_exited(PhysicsBody body)
+    public void _on_collisionArea_body_exited(PhysicsBody3D body)
     {
-        if (body == getOwner()) return;
-        if (body.Name.Contains("shell")) return;
+        if (body == GetOwnerCharacter()) return;
+        if (body.Name.ToString().Contains("shell")) return;
         weaponClose = false;
     }
 
@@ -75,10 +79,10 @@ public class UnicornLevitation : Spatial
 
     private float GetPlayerRotation()
     {
-        return IsInstanceValid(player) ? player.RotationHelper.Rotation.x : npc.RotationToVictim;
-    }   
+        return IsInstanceValid(player) ? player.RotationHelper.Rotation.X : npc.RotationToVictim;
+    }
 
-    private Character getOwner()
+    private Character GetOwnerCharacter()
     {
         if (IsInstanceValid(player)) return player;
         return npc;
@@ -87,19 +91,22 @@ public class UnicornLevitation : Spatial
     //анимация движения оружия вверх-вниз
     private void AnimateUpDown(ref Vector3 weaponPos, float delta)
     {
-        if (moveUp) {
-            if (weaponPos.y < HEIGHT_MAX)
+        if (moveUp)
+        {
+            if (weaponPos.X < HEIGHT_MAX)
             {
-                weaponPos.y += SPEED * delta;
+                weaponPos.X += SPEED * delta;
             }
             else
             {
                 moveUp = false;
             }
-        } else {
-            if (weaponPos.y > HEIGHT_MIN)
+        }
+        else
+        {
+            if (weaponPos.X > HEIGHT_MIN)
             {
-                weaponPos.y -= SPEED * delta;
+                weaponPos.X -= SPEED * delta;
             }
             else
             {
@@ -111,37 +118,44 @@ public class UnicornLevitation : Spatial
     //анимация приближения оружия при столкновении со стенами
     private void UpdateWeaponNode(ref Vector3 weaponPos, float delta)
     {
-        if (weaponClose) {
-            if (weaponPos.x > 0) {
-                weaponPos.x -= CLOSING_SPEED * delta; 
+        if (weaponClose)
+        {
+            if (weaponPos.X > 0)
+            {
+                weaponPos.X -= CLOSING_SPEED * delta;
             }
             else
             {
-                weaponPos.x = 0;
+                weaponPos.X = 0;
             }
-            
-            if (weaponPos.z < 0) {
-                weaponPos.z += CLOSING_SPEED * delta; 
+
+            if (weaponPos.Z < 0)
+            {
+                weaponPos.Z += CLOSING_SPEED * delta;
             }
             else
             {
-                weaponPos.z = 0;
+                weaponPos.Z = 0;
             }
-        } else {
-            if (weaponPos.x < startXPos) {
-                weaponPos.x += CLOSING_SPEED * delta; 
+        }
+        else
+        {
+            if (weaponPos.X < startXPos)
+            {
+                weaponPos.X += CLOSING_SPEED * delta;
             }
             else
             {
-                weaponPos.x = startXPos;
+                weaponPos.X = startXPos;
             }
-            
-            if (weaponPos.z > startZPos) {
-                weaponPos.z -= CLOSING_SPEED * delta; 
+
+            if (weaponPos.Z > startZPos)
+            {
+                weaponPos.Z -= CLOSING_SPEED * delta;
             }
             else
             {
-                weaponPos.z = startZPos;
+                weaponPos.Z = startZPos;
             }
         }
     }

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/automatic762.wav-bed26f681334af5e68784c59c3f47c86.sample"
+type="AudioStreamWAV"
+uid="uid://belti5ihv5jgy"
+path="res://.godot/imported/automatic762.wav-bed26f681334af5e68784c59c3f47c86.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/automatic762.wav"
-dest_files=[ "res://.import/automatic762.wav-bed26f681334af5e68784c59c3f47c86.sample" ]
+dest_files=["res://.godot/imported/automatic762.wav-bed26f681334af5e68784c59c3f47c86.sample"]
 
 [params]
 

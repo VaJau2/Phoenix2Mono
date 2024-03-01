@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/GunOn.wav-0104a3928e1a140b42afa2a1d2d186d1.sample"
+type="AudioStreamWAV"
+uid="uid://cvwdly6u104pf"
+path="res://.godot/imported/GunOn.wav-0104a3928e1a140b42afa2a1d2d186d1.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/GunOn.wav"
-dest_files=[ "res://.import/GunOn.wav-0104a3928e1a140b42afa2a1d2d186d1.sample" ]
+dest_files=["res://.godot/imported/GunOn.wav-0104a3928e1a140b42afa2a1d2d186d1.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/officerHit1.wav-2121496bc5422002aa3e0638c23c09e7.sample"
+type="AudioStreamWAV"
+uid="uid://dat1h6wttlmbw"
+path="res://.godot/imported/officerHit1.wav-2121496bc5422002aa3e0638c23c09e7.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/hitted/officerHit1.wav"
-dest_files=[ "res://.import/officerHit1.wav-2121496bc5422002aa3e0638c23c09e7.sample" ]
+dest_files=["res://.godot/imported/officerHit1.wav-2121496bc5422002aa3e0638c23c09e7.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

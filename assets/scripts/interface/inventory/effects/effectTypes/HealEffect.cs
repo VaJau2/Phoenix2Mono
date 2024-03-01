@@ -1,6 +1,6 @@
 using Godot;
 
-public class HealEffect: Effect 
+public partial class HealEffect: Effect 
 {
     const float HEAL_COOLDOWN = 0.6f;
     private Player player;

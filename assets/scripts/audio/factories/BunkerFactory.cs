@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class BunkerFactory : IAudioEffectsFactory
+public partial class BunkerFactory : IAudioEffectsFactory
 {
     private const string key = "bunker";
     
@@ -21,9 +21,6 @@ public class BunkerFactory : IAudioEffectsFactory
 
     public List<string> GetKeys()
     {
-        List<string> keys = new();
-        keys.Add(key);
-
-        return keys;
+        return [key];
     }
 }

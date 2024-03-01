@@ -3,7 +3,7 @@ using Godot;
 
 // Триггер мониторит текущее время проигрывания музыки
 // И меняет его на другое, когда оно достигает нужного значения
-public class LoopingMusicPartTrigger : TriggerBase
+public partial class LoopingMusicPartTrigger : TriggerBase
 {
     [Export] public float CheckTime;
     [Export] public float ChangeTime;
@@ -18,13 +18,13 @@ public class LoopingMusicPartTrigger : TriggerBase
         SetProcess(IsActive);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         audi.PlayTime = ChangeTime;
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (CheckTime == ChangeTime)
         {
@@ -36,6 +36,6 @@ public class LoopingMusicPartTrigger : TriggerBase
         {
             return;
         }
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

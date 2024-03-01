@@ -4,16 +4,16 @@ using Godot.Collections;
 //класс управляет инвентарным меню
 //имеет несколько разных режимов работы
 //режимы устанавливаются переменной mode
-public class InventoryMenu : Control, IMenu
+public partial class InventoryMenu : Control, IMenu
 {
     public bool mustBeClosed => true;
     public InventoryMode mode;
     public bool isOpen = false;
     public bool menuLoaded = false;
-    public Dictionary<int, ItemIcon> bindedButtons = new Dictionary<int, ItemIcon>();
+    public Dictionary<int, ItemIcon> bindedButtons = new();
 
     [Signal]
-    public delegate void MenuIsClosed();
+    public delegate void MenuIsClosedEventHandler();
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
@@ -102,9 +102,9 @@ public class InventoryMenu : Control, IMenu
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        mode.Process(delta);
+        mode.Process((float)delta);
     }
 
     public override void _Input(InputEvent @event)

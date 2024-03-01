@@ -8,9 +8,9 @@ background_mode = 1
 
 [node name="Testing" type="Node"]
 
-[node name="CameraPivot" type="Spatial" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
 
-[node name="Camera" type="Camera" parent="CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 visible = false
 environment = SubResource( 1 )
 script = ExtResource( 1 )

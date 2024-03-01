@@ -1,14 +1,14 @@
 using Godot;
 
-public class Player_Earthpony : Player
+public partial class Player_Earthpony : Player
 {
     const float DASH_COOLDOWN = 0.02f;
     const float DASH_BLOCK_TIMER = 1;
 
     public bool IsRunning = false;
 
-    private float dashCooldown = 0;
-    private float dashBlockTimer;
+    private double dashCooldown = 0;
+    private double dashBlockTimer;
 
     public override void _Ready()
     {
@@ -40,12 +40,12 @@ public class Player_Earthpony : Player
         IsRunning = false;
     }
 
-    public override int GetSpeed()
+    public override int GetVelocity()
     {
         if (IsRunning) {
             return BaseSpeed * 2;
         } 
-        return base.GetSpeed();
+        return base.GetVelocity();
     }
 
     private void DashBlock() 
@@ -66,17 +66,18 @@ public class Player_Earthpony : Player
         if (!IsCrouching || !dash) return;
         soundSteps.SoundDash();
         Velocity = Velocity.Normalized();
-        Velocity.y = 0;
+        Velocity = new Vector3(Velocity.X, 0, Velocity.Z);
         Velocity *= 120f;
         dashCooldown = DASH_COOLDOWN;
         DashBlock();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
         
-        if (dashCooldown > 0) {
+        if (dashCooldown > 0) 
+        {
             dashCooldown -= delta;
         }
 

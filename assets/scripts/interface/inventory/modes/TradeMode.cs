@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class TradeMode: InventoryMode 
+public partial class TradeMode: InventoryMode 
 {
     const float PRICE_DIFF = 0.8f;
 
@@ -75,7 +75,7 @@ public class TradeMode: InventoryMode
 
     public override void CloseMenu()
     {
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
+        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosedEventHandler));
         _on_modal_no_pressed();
         tradeBack.Visible = false;
         base.CloseMenu();
@@ -115,7 +115,7 @@ public class TradeMode: InventoryMode
                 
                 if (@event is InputEventKey && !tradeButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                    bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
                 }
             }
         }
@@ -150,7 +150,7 @@ public class TradeMode: InventoryMode
             tempTrader.moneyCount -= itemPrice;
             inventory.money += itemPrice;
 
-            if (!checkAmmoInTrader())
+            if (!CheckAmmoInTrader())
             {
                 ItemIcon traderButton = FirstEmptyTradeButton;
                 if (traderButton != null)
@@ -188,7 +188,7 @@ public class TradeMode: InventoryMode
             tempTrader.moneyCount += tempItemPrice * tempCount;
             inventory.money -= tempItemPrice * tempCount;
             
-            if (!checkAmmoInInventory()) 
+            if (!CheckAmmoInInventory()) 
             {
                 ItemIcon itemButton = FirstEmptyButton;
                 if (tempCount == tempCountMax) 
@@ -377,7 +377,7 @@ public class TradeMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = tempItemData["type"].As<ItemType>();
         ControlText[] controlTexts;
 
         if (isInventoryIcon)
@@ -458,7 +458,7 @@ public class TradeMode: InventoryMode
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
         foreach(string prop in itemProps.Keys) 
         {
-            if (itemPropNames.Contains(prop)) 
+            if (itemPropNames.ContainsKey(prop)) 
             {
                 // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
                 if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
@@ -488,7 +488,7 @@ public class TradeMode: InventoryMode
             }
         }
         
-        tempCountMax = (ItemType)itemProps["type"] == ItemType.ammo ? tempButton.GetCount() : 1;
+        tempCountMax = itemProps["type"].As<ItemType>() == ItemType.ammo ? tempButton.GetCount() : 1;
         return result;
     } 
 
@@ -497,7 +497,7 @@ public class TradeMode: InventoryMode
         if (itemButtons.Contains(tempButton)) 
         {
             //если предмет квестовый, его нельзя продать
-            if (tempItemData.Contains("questItem"))
+            if (tempItemData.ContainsKey("questItem"))
             {
                 inventory.MessageCantSell(tempItemData["name"].ToString());
                 return true;
@@ -544,7 +544,7 @@ public class TradeMode: InventoryMode
     private bool buyAmmo => inventory.ammoButtons.Keys.Contains(tempButton.myItemCode);
 
     //проверяем, есть ли у торговца патроны, которые собираемся продать
-    private bool checkAmmoInTrader()
+    private bool CheckAmmoInTrader()
     {
         if (tradeButtons.Contains(tempButton)) return false;
 
@@ -562,7 +562,7 @@ public class TradeMode: InventoryMode
 
 
     //проверяем, есть ли в инвентаре патроны, которые собираемся купить
-    private bool checkAmmoInInventory()
+    private bool CheckAmmoInInventory()
     {
         if (itemButtons.Contains(tempButton)) return false;
 

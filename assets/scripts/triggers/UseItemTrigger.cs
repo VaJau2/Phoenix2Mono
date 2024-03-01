@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class UseItemTrigger : ActivateOtherTrigger
+public partial class UseItemTrigger : ActivateOtherTrigger
 {
     [Export] public string ItemToUse;
 
@@ -14,7 +14,7 @@ public class UseItemTrigger : ActivateOtherTrigger
         
         if (IsActive)
         {
-            player.Connect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.UseItem += OnPlayerUseItem;
         }
     }
 
@@ -23,19 +23,19 @@ public class UseItemTrigger : ActivateOtherTrigger
         base.SetActive(newActive);
         if (IsActive)
         {
-            player.Connect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.UseItem += OnPlayerUseItem;
         }
         else
         {
-            player.Disconnect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.UseItem -= OnPlayerUseItem;
         }
     }
 
-    public void _on_player_use_item(string itemCode)
+    public void OnPlayerUseItem(string itemCode)
     {
         if (itemCode == ItemToUse)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
 
             if (DeleteAfterTrigger)
             {

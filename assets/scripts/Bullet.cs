@@ -1,25 +1,26 @@
 using Godot;
 
-public class Bullet : Area
+public partial class Bullet : Area3D
 {
     [Export]
     public float speed;
     public int Damage;
-    public float Timer;
+    public double Timer;
     public Character Shooter;
 
     private PackedScene gunParticlesPrefab;
 
-    private string handleVictim(Spatial victim, int shapeID = 0)
+    private string handleVictim(Node3D victim, int shapeID = 0)
     {
         string name = null;
         switch (victim)
         {
             case Character character:
             {
-                if (character.Name.Contains("target") ||
-                    character.Name.Contains("roboEye") ||
-                    character.Name.Contains("MrHandy")) 
+                var charName = character.Name.ToString();
+                if (charName.Contains("target") ||
+                    charName.Contains("roboEye") ||
+                    charName.Contains("MrHandy")) 
                 {
                     name = "black";
                 } 
@@ -36,9 +37,9 @@ public class Bullet : Area
 
                 break;
             }
-            case StaticBody body when body.PhysicsMaterialOverride == null:
+            case StaticBody3D body when body.PhysicsMaterialOverride == null:
                 return null;
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
                 if (body is BreakableObject obj) {
@@ -59,16 +60,16 @@ public class Bullet : Area
             return;
         }
 
-        var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+        var gunParticles = gunParticlesPrefab.Instantiate<Node3D>();
         GetNode("/root/Main/Scene").AddChild(gunParticles);
         gunParticles.GlobalTransform = Global.SetNewOrigin(
             gunParticles.GlobalTransform,
-            GlobalTransform.origin
+            GlobalTransform.Origin
         );
-        var matName = handleVictim(body as Spatial, bodyShape);
+        var matName = handleVictim(body as Node3D, bodyShape);
         gunParticles.Call(
             "_startEmitting", 
-            GlobalTransform.basis.z, 
+            GlobalTransform.Basis.Z, 
             matName,
             "box" //чтобы не спавнилась дырка от пуль, т.к. хз как здесь определить нормаль поверхности
         );
@@ -80,7 +81,7 @@ public class Bullet : Area
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         Translate(Vector3.Forward * speed);
 

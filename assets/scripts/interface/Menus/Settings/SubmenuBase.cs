@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 
 //Общий класс для всех сабменю
-public abstract class SubmenuBase: Control
+public abstract partial class SubmenuBase: Control
 {
     protected SettingsMenu parentMenu;
     

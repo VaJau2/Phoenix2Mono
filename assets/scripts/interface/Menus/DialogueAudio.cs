@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 //Ищет по пути /audio/dialogues/lang/npc/dialogue/ озвучку для диалогового нода
 //Проигрывает, если файл существует
 //Если не существует, озвучивает через динамическую озвучку
-class DialogueAudio: AudioStreamPlayer
+partial class DialogueAudio: AudioStreamPlayer
 {
     private const string FILE_EXT = "mp3";
     
@@ -11,7 +11,7 @@ class DialogueAudio: AudioStreamPlayer
     private string dialogueCode;
     private bool foundFile;
 
-    private DialogueAudioConfig config = new DialogueAudioConfig();
+    private DialogueAudioConfig config = new();
     private int visibleChars;
     private bool isSilent;
 

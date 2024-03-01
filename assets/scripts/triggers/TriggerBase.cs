@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
-public class TriggerBase : Node, ISavable, IActivated
+public partial class TriggerBase : Node, ISavable, IActivated
 {
     [Export] public bool IsActive { get; private set; } = true;
     [Export] public bool DeleteAfterTrigger = true;
@@ -26,7 +26,7 @@ public class TriggerBase : Node, ISavable, IActivated
     }
     
     //событие активации триггера
-    public virtual void _on_activate_trigger()
+    public virtual void OnActivateTrigger()
     {
         if (!DeleteAfterTrigger) return;
         Global.AddDeletedObject(Name);

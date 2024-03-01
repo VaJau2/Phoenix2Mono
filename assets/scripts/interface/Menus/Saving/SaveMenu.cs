@@ -3,12 +3,12 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class SaveMenu : Control
+public partial class SaveMenu : Control
 {
     public const string AUTOSAVE_PREFIX = "autosave";
     
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
 
     private MenuBase parentMenu;
 
@@ -63,7 +63,7 @@ public class SaveMenu : Control
         UpdateTable();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quicksave"))
         {
@@ -77,7 +77,7 @@ public class SaveMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(nameof(BackPressedEventHandler));
     }
 
     public void _on_mouse_entered(string section, string messageLink)
@@ -112,9 +112,9 @@ public class SaveMenu : Control
         {
             if (!IsValidFilename(newText))
             {
-                int oldCaretPosition = lineEdit.CaretPosition;
+                int oldCaretPosition = lineEdit.CaretColumn;
                 lineEdit.Text = tempText;
-                lineEdit.CaretPosition = oldCaretPosition - 1;
+                lineEdit.CaretColumn = oldCaretPosition - 1;
                 return;
             }
 
@@ -185,17 +185,16 @@ public class SaveMenu : Control
         {
             Button newButton = table.SpawnButton(fileTableLine);
             Global.saveFilesArray.Add(fileTableLine);
-            newButton.Pressed = true;
+            newButton.ButtonPressed = true;
             table._on_table_button_click(newButton.Name);
         }
     }
 
     public void SaveGame(string fileName, SceneTree tree)
     {
-        var saveFile = new File();
         
         var filePath = $"user://saves/{GetLikeLatinString(fileName)}.sav";
-        saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
+        var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Write);
         saveFile.StoreLine(fileName);                            //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
@@ -203,7 +202,7 @@ public class SaveMenu : Control
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
         
         //данные удаленных объектов
-        saveFile.StoreLine(JSON.Print(Global.deletedObjects));
+        saveFile.StoreLine(Json.Stringify(Global.deletedObjects));
         
         //данные игровых объектов
         var objectsData = new Dictionary<string, Dictionary>();
@@ -211,12 +210,12 @@ public class SaveMenu : Control
         {
             if (!(tempNode is ISavable savableNode)) continue;
             Dictionary tempData = savableNode.GetSaveData();
-            bool isCreated = tempNode.Name.BeginsWith("Created_");
+            bool isCreated = tempNode.Name.ToString().StartsWith("Created_");
 
             if (isCreated)
             {
                 tempData.Add("parent", tempNode.GetParent().Name);
-                tempData.Add("fileName", tempNode.Filename);
+                tempData.Add("fileName", tempNode.SceneFilePath);
             }
             
             if (isCreated || tempNode.Name == "Player")
@@ -231,7 +230,7 @@ public class SaveMenu : Control
             }
             
         }
-        saveFile.StoreLine(JSON.Print(objectsData));
+        saveFile.StoreLine(Json.Stringify(objectsData));
         saveFile.Close();
     }
     

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class PowerArmorFactory : IAudioEffectsFactory
+public partial class PowerArmorFactory : IAudioEffectsFactory
 {
     private const string keyNotchFilter = "powerArmor_NotchFilter";
     private const string keyCompressor = "powerArmor_Compressor";
@@ -11,7 +11,7 @@ public class PowerArmorFactory : IAudioEffectsFactory
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.4f;
         notchFilter.CutoffHz = 1000;
 
@@ -26,10 +26,6 @@ public class PowerArmorFactory : IAudioEffectsFactory
     
     public List<string> GetKeys()
     {
-        List<string> keys = new();
-        keys.Add(keyNotchFilter);
-        keys.Add(keyCompressor);
-
-        return keys;
+        return [keyNotchFilter, keyCompressor];
     }
 }

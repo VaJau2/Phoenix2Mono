@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class AntiradioFactory : IAudioEffectsFactory
+public partial class AntiradioFactory : IAudioEffectsFactory
 {
     private const string key = "antiradio";
     
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.5f;
         notchFilter.CutoffHz = 4000;
 
@@ -22,9 +22,6 @@ public class AntiradioFactory : IAudioEffectsFactory
     
     public List<string> GetKeys()
     {
-        List<string> keys = new();
-        keys.Add(key);
-    
-        return keys;
+        return [key];
     }
 }

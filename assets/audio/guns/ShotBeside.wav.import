@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ShotBeside.wav-b3b3ee189be67d9cf67f1362469bed5b.sample"
+type="AudioStreamWAV"
+uid="uid://ly3fdkrn4ubo"
+path="res://.godot/imported/ShotBeside.wav-b3b3ee189be67d9cf67f1362469bed5b.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/ShotBeside.wav"
-dest_files=[ "res://.import/ShotBeside.wav-b3b3ee189be67d9cf67f1362469bed5b.sample" ]
+dest_files=["res://.godot/imported/ShotBeside.wav-b3b3ee189be67d9cf67f1362469bed5b.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

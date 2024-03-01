@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public abstract class Character : KinematicBody, ISavable
+public abstract partial class Character : CharacterBody3D, ISavable
 {
     public const float MIN_WALKING_SPEED = 2;
     public int Health {get; protected set;}
@@ -12,21 +12,20 @@ public abstract class Character : KinematicBody, ISavable
     public int BaseDamage;
     public int BaseRecoil;
 
-    public Vector3 Velocity;
-    public Vector3 impulse;
+    public Vector3 Impulse;
     public bool MayMove = true;
         
     [Signal]
-    public delegate void TakenDamage();
+    public delegate void TakenDamageEventHandler();
     [Signal]
-    public delegate void Die();
+    public delegate void DieEventHandler();
 
     protected void SetStartHealth(int newHealth)
     {
         Health = HealthMax = newHealth;
     }
     public virtual float GetDamageBlock() => BaseDamageBlock;
-    public virtual int GetSpeed()  => BaseSpeed;
+    public virtual int GetVelocity()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
     public virtual int GetRecoil() => BaseRecoil;
 
@@ -38,12 +37,12 @@ public abstract class Character : KinematicBody, ISavable
 
     public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamage));
+        EmitSignal(nameof(TakenDamageEventHandler));
         damage -= (int)(damage * GetDamageBlock());
         DecreaseHealth(damage);
         if (Health <= 0)
         {
-            EmitSignal(nameof(Die));
+            EmitSignal(nameof(DieEventHandler));
         }
     }
     
@@ -61,21 +60,21 @@ public abstract class Character : KinematicBody, ISavable
     
     protected void HandleImpulse() 
     {
-        if(impulse.Length() > 0)
+        if(Impulse.Length() > 0)
         {
-            Velocity += impulse;
-            Vector3 newImpulse = impulse;
+            Velocity += Impulse;
+            Vector3 newImpulse = Impulse;
             newImpulse /= 1.5f;
-            impulse = newImpulse;
+            Impulse = newImpulse;
         }
     }
 
     protected Dictionary Vector3ToSave(Vector3 vector, string prefix)
         => new Dictionary
         {
-            {$"{prefix}_x", vector.x},
-            {$"{prefix}_y", vector.y},
-            {$"{prefix}_z", vector.z}
+            {$"{prefix}_x", vector.X},
+            {$"{prefix}_y", vector.Y},
+            {$"{prefix}_z", vector.Z}
         };
 
     protected Vector3 SaveToVector3(Dictionary data, string prefix)
@@ -93,8 +92,8 @@ public abstract class Character : KinematicBody, ISavable
             {"health", Health},
         };
 
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.origin, "pos"));
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.basis.GetEuler(), "rot"));
+        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.Origin, "pos"));
+        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.Basis.GetEuler(), "rot"));
 
         return savingData;
     }
@@ -106,8 +105,8 @@ public abstract class Character : KinematicBody, ISavable
         Vector3 newRot = SaveToVector3(data, "rot");
         Vector3 oldScale = Scale;
 
-        Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
+        Basis newBasis = Basis.FromEuler(newRot);
+        Transform3D newTransform = new Transform3D(newBasis, newPos);
         GlobalTransform = newTransform;
         Scale = oldScale;
 

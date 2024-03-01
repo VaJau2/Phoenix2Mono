@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"
+type="AudioStreamWAV"
+uid="uid://1xokelsfn4uq"
+path="res://.godot/imported/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/coffeeDrink.wav"
-dest_files=[ "res://.import/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample" ]
+dest_files=["res://.godot/imported/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

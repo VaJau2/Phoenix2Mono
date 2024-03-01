@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class MainMenu : MenuBase
+public partial class MainMenu : MenuBase
 {
     Global global = Global.Get();
     MenuAudi audi;
@@ -51,7 +51,7 @@ public class MainMenu : MenuBase
     private Button modalOk;
 
     [Signal]
-    public delegate void labelChanged();
+    public delegate void LabelChangedEventHandler();
 
     private void LoadMenu()
     {
@@ -104,7 +104,7 @@ public class MainMenu : MenuBase
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
 
         var raceStr = Global.RaceToString(global.playerRace);
-        var bgPicRes = GD.Load<StreamTexture>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
+        var bgPicRes = GD.Load<CompressedTexture2D>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
 
         var bgPic = GetNode<TextureRect>("bgPony");
         bgPic.Texture = bgPicRes;
@@ -117,13 +117,13 @@ public class MainMenu : MenuBase
 
     private async void ChangeLabel(Label label) 
     {
-        label.PercentVisible = 0;
-        while(label.PercentVisible < 1) 
+        label.VisibleRatio = 0;
+        while(label.VisibleRatio < 1) 
         {
-            label.PercentVisible += 0.1f;
+            label.VisibleRatio += 0.1f;
             await global.ToTimer(0.05f, this);
         }
-        EmitSignal(nameof(labelChanged));
+        EmitSignal(nameof(LabelChangedEventHandler));
     }
 
     public override void LoadInterfaceLanguage()
@@ -200,10 +200,10 @@ public class MainMenu : MenuBase
             pageLabel.Text = GetMenuText("page");
             ChangeLabel(pageLabel);
 
-            while(backgroundRect.Color.a > 0) {
+            while(backgroundRect.Color.A > 0) {
                 backgroundRect.Color = new Color(
                     0, 0, 0,
-                    backgroundRect.Color.a - 0.1f
+                    backgroundRect.Color.A - 0.1f
                 );
                 await ToSignal(GetTree(), "idle_frame");
             }
@@ -230,9 +230,8 @@ public class MainMenu : MenuBase
 
     private static Race GetRaceFromSave(string fileName)
     {
-        var saveFile = new File();
         var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-        saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
+        var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Read);
         for (int i = 0; i < 4; i++)
         {
             saveFile.GetLine();

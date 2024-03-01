@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PlayerWeapons : CollisionShape
+public partial class PlayerWeapons : CollisionShape3D
 {
     Global global;
     const float SHAKE_SPEED = 2f;
@@ -32,11 +32,11 @@ public class PlayerWeapons : CollisionShape
 
     //--эффекты и анимания выстрела
     public ItemIcon tempAmmoButton { get; private set; }
-    Spatial tempWeapon;
+    Node3D tempWeapon;
     AnimationPlayer gunAnim;
-    Spatial gunLight;
-    Spatial gunFire;
-    Particles gunSmoke;
+    Node3D gunLight;
+    Node3D gunFire;
+    GpuParticles3D gunSmoke;
     PackedScene gunParticlesPrefab;
     Node particlesParent;
     WeaponShellSpawner shellSpawner;
@@ -47,8 +47,8 @@ public class PlayerWeapons : CollisionShape
 
     //--звуки-------------
     AudioStreamPlayer audiShoot;
-    AudioStreamSample tryShootSound;
-    AudioStreamSample shootSound;
+    AudioStreamWav tryShootSound;
+    AudioStreamWav shootSound;
 
     EnemiesManager enemiesManager;
 
@@ -62,19 +62,19 @@ public class PlayerWeapons : CollisionShape
 
         //грузим статистику оружия
         tempWeaponStats = weaponData;
-        isPistol = weaponData.Contains("isPistol");
+        isPistol = weaponData.ContainsKey("isPistol");
         Disabled = !isPistol || global.playerRace == Race.Unicorn;
-        shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + weaponCode + ".wav");
+        shootSound = GD.Load<AudioStreamWav>("res://assets/audio/guns/shoot/" + weaponCode + ".wav");
 
         //вытаскиваем родительский нод из игрока
-        Spatial tempParent = player.GetWeaponParent(isPistol);
+        Node3D tempParent = player.GetWeaponParent(isPistol);
 
         //отправляем префаб туда
-        var weapon = weaponPrefab.Instance();
+        var weapon = weaponPrefab.Instantiate();
         tempParent.AddChild(weapon);
 
         //сохраняем его для будущих перемещений по нодам
-        tempWeapon = (Spatial)weapon;
+        tempWeapon = (Node3D)weapon;
         LoadNewAmmo();
         LoadGunEffects();
 
@@ -98,7 +98,7 @@ public class PlayerWeapons : CollisionShape
         player.SetWeaponOff();
         GunOn = false;
         
-        player.EmitSignal(nameof(Player.ClearWeaponBindSignal));
+        player.EmitSignal(nameof(Player.ClearWeaponBindEventHandler));
     }
 
     public void СheckThirdView()
@@ -106,8 +106,8 @@ public class PlayerWeapons : CollisionShape
         //если сменился вид, моделька перемещается в новый нод
         if (GunOn && isPistol)
         {
-            Spatial oldParent = (Spatial)tempWeapon.GetParent();
-            Spatial newParent = player.GetWeaponParent(isPistol);
+            Node3D oldParent = (Node3D)tempWeapon.GetParent();
+            Node3D newParent = player.GetWeaponParent(isPistol);
 
             if (oldParent != newParent)
             {
@@ -131,7 +131,7 @@ public class PlayerWeapons : CollisionShape
         particlesParent = GetNode("/root/Main/Scene");
 
         audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
-        tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
+        tryShootSound = GD.Load<AudioStreamWav>("res://assets/audio/guns/TryShoot.wav");
 
         enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
     }
@@ -153,7 +153,7 @@ public class PlayerWeapons : CollisionShape
     {
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
-        StreamTexture newIcon = GD.Load<StreamTexture>(path);
+        CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         ammoIcon.SetTexture(newIcon);
     }
 
@@ -179,7 +179,7 @@ public class PlayerWeapons : CollisionShape
     {
         if (tempWeaponStats != null)
         {
-            if (tempWeaponStats.Contains("ammoType") && tempWeaponStats["ammoType"].ToString() == ammoType)
+            if (tempWeaponStats.ContainsKey("ammoType") && tempWeaponStats["ammoType"].ToString() == ammoType)
             {
                 return true;
             }
@@ -215,15 +215,15 @@ public class PlayerWeapons : CollisionShape
             gunAnim = null;
         }
 
-        gunLight = tempWeapon.GetNode<Spatial>("light");
-        gunFire = tempWeapon.GetNode<Spatial>("fire");
-        gunSmoke = tempWeapon.GetNode<Particles>("smoke");
+        gunLight = tempWeapon.GetNode<Node3D>("light");
+        gunFire = tempWeapon.GetNode<Node3D>("fire");
+        gunSmoke = tempWeapon.GetNode<GpuParticles3D>("smoke");
         shellSpawner = tempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
     private Vector3 SetRotX(Vector3 origin, float newRotX)
     {
-        origin.x = newRotX;
+        origin.X = newRotX;
         return origin;
     }
 
@@ -238,10 +238,10 @@ public class PlayerWeapons : CollisionShape
                 if (tempShake < recoil)
                 {
                     tempShake += SHAKE_SPEED;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3D();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
-                        camera.RotationDegrees.x + SHAKE_SPEED
+                        camera.RotationDegrees.X + SHAKE_SPEED
                     );
                 }
                 else
@@ -255,10 +255,10 @@ public class PlayerWeapons : CollisionShape
                 {
                     var diff = SHAKE_SPEED * SHAKE_DIFF;
                     tempShake -= diff;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3D();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
-                        camera.RotationDegrees.x - SHAKE_SPEED * SHAKE_DIFF
+                        camera.RotationDegrees.X - SHAKE_SPEED * SHAKE_DIFF
                     );
                 }
                 else
@@ -275,16 +275,17 @@ public class PlayerWeapons : CollisionShape
     public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
     public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
-    private string HandleVictim(Spatial victim, int shapeID = 0)
+    private string HandleVictim(Node3D victim, int shapeID = 0)
     {
         string name = null;
         switch (victim)
         {
             case Character character:
             {
-                if (character.Name.Contains("target") ||
-                    character.Name.Contains("roboEye") ||
-                    character.Name.Contains("MrHandy"))
+                var characterName = character.Name.ToString();
+                if (characterName.Contains("target") ||
+                    characterName.Contains("roboEye") ||
+                    characterName.Contains("MrHandy"))
                 {
                     name = "black";
                 }
@@ -293,12 +294,12 @@ public class PlayerWeapons : CollisionShape
                     name = "blood";
                 }
 
-                character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
+                character.CheckShotgunShot(tempWeaponStats.ContainsKey("isShotgun"));
                 player.MakeDamage(character, shapeID);
                 ShowCrossHitted(shapeID != 0);
                 break;
             }
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 if (body.PhysicsMaterialOverride != null)
                 {
@@ -321,7 +322,7 @@ public class PlayerWeapons : CollisionShape
     {
         string bullet = tempWeaponStats["bullet"].ToString();
         var bulletPrefab = GD.Load<PackedScene>("res://objects/guns/bullets/" + bullet + ".tscn");
-        Bullet newBullet = (Bullet)bulletPrefab.Instance();
+        Bullet newBullet = bulletPrefab.Instantiate<Bullet>();
         newBullet.Damage = player.GetDamage();
         newBullet.Shooter = player;
         newBullet.Timer = GetStatsFloat("shootDistance");
@@ -343,7 +344,7 @@ public class PlayerWeapons : CollisionShape
         shellSpawner?.StartSpawning();
     }
 
-    private async void handleShoot()
+    private async void HandleShoot()
     {
         onetimeShoot = true;
         int ammo = GetAmmo();
@@ -356,7 +357,7 @@ public class PlayerWeapons : CollisionShape
         }
         else
         {
-            player.EmitSignal(nameof(Player.FireWithWeapon));
+            player.EmitSignal(nameof(Player.FireWithWeaponEventHandler));
             ammo -= 1;
             SetAmmo(ammo);
 
@@ -371,34 +372,34 @@ public class PlayerWeapons : CollisionShape
             player.Body.Head.CloseEyes();
             var tempDistance = GetStatsInt("shootDistance");
             Dictionary armorProps = player.Inventory.GetArmorProps();
-            if (armorProps.Contains("shootDistPlus"))
+            if (armorProps.TryGetValue("shootDistPlus", out var distPlus))
             {
-                tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
+                tempDistance += int.Parse(distPlus.ToString());
             }
 
-            var tempRay = player.Camera.UseRay(tempDistance);
+            var tempRay = player.Camera3D.UseRay(tempDistance);
 
             await global.ToTimer(0.05f);
 
             //обрабатываем попадания
             if (isPistol || player.MayMove)
             {
-                if (tempWeaponStats.Contains("bullet"))
+                if (tempWeaponStats.ContainsKey("bullet"))
                 {
                     SpawnBullet();
                 }
                 else
                 {
-                    if (tempWeaponStats.Contains("isShotgun"))
+                    if (tempWeaponStats.ContainsKey("isShotgun"))
                     {
-                        player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+                        player.Impulse = player.RotationHelper.GlobalTransform.Basis.Z / 2;
                     }
 
                     tempRay.ForceRaycastUpdate();
-                    var obj = (Spatial)tempRay.GetCollider();
+                    var obj = (Node3D)tempRay.GetCollider();
                     if (obj != null)
                     {
-                        var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                        var gunParticles = gunParticlesPrefab.Instantiate<Node3D>();
                         particlesParent.AddChild(gunParticles);
                         gunParticles.GlobalTransform = Global.SetNewOrigin(
                             gunParticles.GlobalTransform,
@@ -415,23 +416,23 @@ public class PlayerWeapons : CollisionShape
                 }
             }
 
-            player.Camera.ReturnRayBack();
+            player.Camera3D.ReturnRayBack();
 
             SetGunEffects(true);
             ShakeCameraUp();
             await global.ToTimer(0.06f);
             SetGunEffects(false);
 
-            if (!tempWeaponStats.Contains("isSilence"))
+            if (!tempWeaponStats.ContainsKey("isSilence"))
             {
-                enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
+                enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.Origin);
             }
 
             onetimeShoot = false;
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!global.paused && player.Health > 0 && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
@@ -443,13 +444,13 @@ public class PlayerWeapons : CollisionShape
                     RotationDegrees = player.RotationHelper.RotationDegrees;
                 }
 
-                if (Input.IsMouseButtonPressed(1) && cooldown <= 0)
+                if (Input.IsMouseButtonPressed(MouseButton.Left) && cooldown <= 0)
                 {
-                    if (!onetimeShoot) handleShoot();
+                    if (!onetimeShoot) HandleShoot();
                 }
             }
 
-            if (cooldown > 0) cooldown -= delta;
+            if (cooldown > 0) cooldown -= (float)delta;
         }
     }
 }

@@ -7,7 +7,7 @@ using Godot.Collections;
 
 //работает в нескольких режимах
 //которые реализованы через TerminalMode
-public class Terminal : StaticBody, IMenu, IInteractable
+public partial class Terminal : StaticBody3D, IMenu, IInteractable
 {
     //при открытии инвентаря, включенный терминал переходит на фон, но не закрывается
     public bool mustBeClosed => false;
@@ -18,9 +18,9 @@ public class Terminal : StaticBody, IMenu, IInteractable
     [Export]
     public string[] files;
     [Export] 
-    private Array<NodePath> doorsPath = new Array<NodePath>();
+    private Array<NodePath> doorsPath = new();
     
-    public Array<FurnDoor> doors = new Array<FurnDoor>();
+    public Array<FurnDoor> doors = new();
  
     Player player => Global.Get().player;
     
@@ -36,7 +36,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         isUsing = true;
         player.MayMove = false;
         player.MayRotateHead = false;
-        player.Camera.isUpdating = false;
+        player.Camera3D.isUpdating = false;
         mode.startKeyPressed = true;
 
         ShowExitHint();
@@ -49,7 +49,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         
         isUsing = false;
         player.MayMove = true;
-        player.Camera.isUpdating = true;
+        player.Camera3D.isUpdating = true;
         player.MayRotateHead = true;
     }
 
@@ -58,7 +58,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         var saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         if (saveNode == null || messages == null) return;
-        if (saveNode.SavedVariables.Contains("terminalHint")) return;
+        if (saveNode.SavedVariables.ContainsKey("terminalHint")) return;
         
         messages.ShowMessage("5", "hints", 3.5f);
         saveNode.SavedVariables["terminalHint"] = true;

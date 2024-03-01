@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class SpawnerNpcTrigger: ActivateOtherTrigger
+public partial class SpawnerNpcTrigger: ActivateOtherTrigger
 {
     [Export] private PackedScene npcPrefab;
     [Export] private string npcName;
@@ -26,10 +26,10 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     //3 - binds, массив
     [Export] private Array triggerConnections;
 
-    private Spatial spawnPoint;
-    private Spatial movePoint;
+    private Node3D spawnPoint;
+    private Node3D movePoint;
 
-    private float tempTimer;
+    private double tempTimer;
     private int step;
 
     public override void _Ready()
@@ -37,17 +37,17 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         SetProcess(false);
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Spatial>(spawnPointPath);
+            spawnPoint = GetNode<Node3D>(spawnPointPath);
         }
         if (movePointPath != null)
         {
-            movePoint = GetNode<Spatial>(movePointPath);
+            movePoint = GetNode<Node3D>(movePointPath);
         }
 
         base._Ready();
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -57,16 +57,16 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
 
         SetProcess(false);
         step = 2;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     public override void SetActive(bool newActive)
     {
-        _on_activate_trigger();
+        OnActivateTrigger();
         base.SetActive(newActive);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
@@ -81,7 +81,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
                 break;
         }
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     private void WaitStartDelay()
@@ -93,40 +93,39 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
 
     private void SpawnNpc()
     {
-        if (npcPrefab.Instance() is NpcWithWeapons npcInstance)
+        if (npcPrefab.Instantiate<NpcWithWeapons>() is not { } npcInstance) 
+            return;
+        
+        npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
+        npcInstance.StartHealth = StartHealth;
+        npcInstance.weaponCode = weaponCode;
+        npcInstance.relation = relation;
+        npcInstance.itemCodes = itemCodes;
+        npcInstance.ammoCount = ammoCount;
+        GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
+        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.Origin);
+        npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.Y,0);
+        if (movePoint != null)
         {
-            npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
-            npcInstance.StartHealth = StartHealth;
-            npcInstance.weaponCode = weaponCode;
-            npcInstance.relation = relation;
-            npcInstance.itemCodes = itemCodes;
-            npcInstance.ammoCount = ammoCount;
-            GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-            npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
-            npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
-            if (movePoint != null)
-            {
-                npcInstance.SetNewStartPos(movePoint.GlobalTransform.origin, run);
-                npcInstance.myStartRot = new Vector3(0, movePoint.Rotation.y, 0);
-            }
-            else
-            {
-                npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.origin, run);
-                npcInstance.myStartRot = spawnPoint.Rotation;
-            }
+            npcInstance.SetNewStartPos(movePoint.GlobalTransform.Origin, run);
+            npcInstance.myStartRot = new Vector3(0, movePoint.Rotation.Y, 0);
+        }
+        else
+        {
+            npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.Origin, run);
+            npcInstance.myStartRot = spawnPoint.Rotation;
+        }
             
-            if (triggerConnections != null)
+        if (triggerConnections != null)
+        {
+            foreach (var triggerDataPrimary in triggerConnections)
             {
-                foreach (var triggerDataPrimary in triggerConnections)
-                {
-                    if (!(triggerDataPrimary is Array triggerData) || triggerData.Count != 4) continue;
+                if (triggerDataPrimary.Obj is not Array { Count: 4 } triggerData) continue;
 
-                    var trigger = GetNode(triggerData[0].ToString());
-                    var signal = triggerData[1].ToString();
-                    var method = triggerData[2].ToString();
-                    var binds = triggerData[3] as Array;
-                    npcInstance.Connect(signal, trigger, method, binds);
-                }
+                var trigger = GetNode(triggerData[0].ToString());
+                var signal = triggerData[1].ToString();
+                var method = triggerData[2].ToString();
+                npcInstance.Connect(signal, new Callable(trigger, method));
             }
         }
     }
@@ -143,15 +142,15 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.TryGetValue("tempTimer", out var timerValue))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = timerValue.AsSingle();
         }
-        
-        step = Convert.ToInt16(data["step"]);
+
+        step = data["step"].AsInt16();
         if (step > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

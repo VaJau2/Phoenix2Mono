@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/healPotion.wav-db1c9544e20d0080d96093d8fbad04e7.sample"
+type="AudioStreamWAV"
+uid="uid://da3aujy5ld2kk"
+path="res://.godot/imported/healPotion.wav-db1c9544e20d0080d96093d8fbad04e7.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/healPotion.wav"
-dest_files=[ "res://.import/healPotion.wav-db1c9544e20d0080d96093d8fbad04e7.sample" ]
+dest_files=["res://.godot/imported/healPotion.wav-db1c9544e20d0080d96093d8fbad04e7.sample"]
 
 [params]
 

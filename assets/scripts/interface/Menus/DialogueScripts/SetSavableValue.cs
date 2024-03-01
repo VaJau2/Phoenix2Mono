@@ -1,6 +1,6 @@
-﻿namespace DialogueScripts
+namespace DialogueScripts
 {
-    public class SetSavableValue: IDialogueScript
+    public partial class SetSavableValue: IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

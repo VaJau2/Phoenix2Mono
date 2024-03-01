@@ -1,13 +1,13 @@
 using Godot;
 
-public class RadiationArea : Area
+public partial class RadiationArea : Area3D
 {
     private const float RADIATION_TIMER = 0.06f;
     
     private Player tempPlayer;
-    private float tempTimer;
+    private double tempTimer;
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempPlayer == null) return;
         

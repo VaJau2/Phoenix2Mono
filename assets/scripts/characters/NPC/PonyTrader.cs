@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class PonyTrader: Pony, ITrader
+public partial class PonyTrader: Pony, ITrader
 {
     [Export]
     public int moneyCount {get; set;}   

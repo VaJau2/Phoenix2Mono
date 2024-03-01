@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepGrassRun3.wav-7401f65610b37aee452d9b68d38f7576.sample"
+type="AudioStreamWAV"
+uid="uid://14g31005lk13"
+path="res://.godot/imported/stepGrassRun3.wav-7401f65610b37aee452d9b68d38f7576.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/grass/stepGrassRun3.wav"
-dest_files=[ "res://.import/stepGrassRun3.wav-7401f65610b37aee452d9b68d38f7576.sample" ]
+dest_files=["res://.godot/imported/stepGrassRun3.wav-7401f65610b37aee452d9b68d38f7576.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

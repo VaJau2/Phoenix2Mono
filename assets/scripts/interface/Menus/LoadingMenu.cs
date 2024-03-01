@@ -1,13 +1,13 @@
 using Godot;
 
-public class LoadingMenu : Control
+public partial class LoadingMenu : Control
 {
-    private const float TIME = 0.5f;
+    private const double TIME = 0.5f;
     private Label loadingLabel;
     private string loadText;
 
     private int pointsCount = 0;
-    private float timer;
+    private double timer;
 
     public override void _Ready()
     {
@@ -21,17 +21,23 @@ public class LoadingMenu : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        if (timer < TIME) {
+        if (timer < TIME)
+        {
             timer += delta;
-        } else {
+        }
+        else
+        {
             timer = 0;
 
-            if (pointsCount < 3) {
+            if (pointsCount < 3)
+            {
                 pointsCount += 1;
                 loadingLabel.Text += ".";
-            } else {
+            }
+            else
+            {
                 loadingLabel.Text = loadText;
                 pointsCount = 0;
             }

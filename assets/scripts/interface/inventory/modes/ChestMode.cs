@@ -2,13 +2,13 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class ChestMode: InventoryMode
+public partial class ChestMode: InventoryMode
 {
     private Control chestBack;
     private Label chestLabel;
     private Button takeAll;
 
-    private Array<ItemIcon> chestButtons = new Array<ItemIcon>();
+    private Array<ItemIcon> chestButtons = new();
 
     private IChest tempChest;
 
@@ -54,7 +54,7 @@ public class ChestMode: InventoryMode
         var point = menu.GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         point.ShowSquareAgain();
         
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
+        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosedEventHandler));
         chestBack.Visible = false;
         base.CloseMenu();
         menu.ChangeMode(NewInventoryMode.Usual);
@@ -72,7 +72,7 @@ public class ChestMode: InventoryMode
 
                 if (@event is InputEventKey && !chestButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                    bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
                 }
             }
 
@@ -198,7 +198,7 @@ public class ChestMode: InventoryMode
         button.SetItem(itemCode);
 
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if ((ItemType)itemData["type"] == ItemType.money)
+        if (itemData["type"].As<ItemType>() == ItemType.money)
         {
             button.SetCount(tempChest.ChestHandler.MoneyCount);
         }
@@ -279,7 +279,7 @@ public class ChestMode: InventoryMode
         //перетащить из сундука
         if (CheckDragIn(itemButtons, "inventory")) return;
 
-        if (tempItemData.Contains("questItem"))
+        if (tempItemData.ContainsKey("questItem"))
         {
             inventory.MessageCantDrop(tempItemData["name"].ToString());
             return;
@@ -292,7 +292,7 @@ public class ChestMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = tempItemData["type"].As<ItemType>();
         ControlText[] controlTexts;
 
         switch (type)
@@ -363,7 +363,7 @@ public class ChestMode: InventoryMode
         //положить в сундук
         if (itemButtons.Contains(tempButton)) 
         {
-            if (tempItemData.Contains("questItem"))
+            if (tempItemData.ContainsKey("questItem"))
             {
                 inventory.MessageCantDrop(tempItemData["name"].ToString());
                 return false;
@@ -391,7 +391,7 @@ public class ChestMode: InventoryMode
         //взять из сундука
         if(chestButtons.Contains(tempButton)) 
         {
-            bool isMoney = (ItemType)tempItemData["type"] == ItemType.money;
+            bool isMoney = tempItemData["type"].As<ItemType>() == ItemType.money;
             if (CheckMoneyInInventory(isMoney)) return true;
             if (CheckAmmoInInventory()) return true;
             

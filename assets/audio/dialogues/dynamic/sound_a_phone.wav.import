@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/sound_a_phone.wav-8a2443bacb0cb9e3f7142bd1f99081d5.sample"
+type="AudioStreamWAV"
+uid="uid://5fpsdi7xfinu"
+path="res://.godot/imported/sound_a_phone.wav-8a2443bacb0cb9e3f7142bd1f99081d5.sample"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/dynamic/sound_a_phone.wav"
-dest_files=[ "res://.import/sound_a_phone.wav-8a2443bacb0cb9e3f7142bd1f99081d5.sample" ]
+dest_files=["res://.godot/imported/sound_a_phone.wav-8a2443bacb0cb9e3f7142bd1f99081d5.sample"]
 
 [params]
 

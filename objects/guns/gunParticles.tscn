@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://bpnjjadd2jiqt"]
 
-[ext_resource path="res://assets/materials/weapon/result/grass.tres" type="Material" id=1]
-[ext_resource path="res://assets/textures/weapon/result/gunHole.png" type="Texture" id=2]
+[ext_resource type="Material" path="res://assets/materials/weapon/result/grass.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://dqg1wm7u7nm7m" path="res://assets/textures/weapon/result/gunHole.png" id="2"]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Spatial
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node3D
 
 var materials = {
 	\"black\": preload(\"res://assets/materials/weapon/result/black.tres\"),
@@ -41,7 +41,7 @@ func _startEmitting(direction, material_name = null, obj_name = \"\"):
 		&& !(\"door\" in obj_name) && !(\"box\" in obj_name) && material_name != \"black\":
 			if direction.z < 0.9 && direction.z > -0.9:
 				hole.look_at(hole.global_transform.origin + direction, Vector3.BACK)
-			hole.translation += (direction / 15)
+			hole.position += (direction / 15)
 	else:
 		hole.visible = false
 	
@@ -64,27 +64,26 @@ func _process(delta):
 			queue_free()
 "
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.244828, 0.634091 ), 0.0, -0.150649, 0, 0, Vector2( 1, 0.115909 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0.244828, 0.634091), 0.0, -0.150649, 0, 0, Vector2(1, 0.115909), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+[sub_resource type="CurveTexture" id="3"]
+curve = SubResource("2")
 
-[sub_resource type="ParticlesMaterial" id=4]
-direction = Vector3( 0, 1, 0 )
+[sub_resource type="ParticleProcessMaterial" id="4"]
+direction = Vector3(0, 1, 0)
 spread = 30.0
-initial_velocity = 6.0
-angle_random = 1.0
-scale_curve = SubResource( 3 )
+scale_curve = SubResource("3")
 
-[sub_resource type="QuadMesh" id=5]
-material = ExtResource( 1 )
+[sub_resource type="QuadMesh" id="5"]
+material = ExtResource("1")
 
-[node name="GunResult" type="Spatial"]
-script = SubResource( 1 )
+[node name="GunResult" type="Node3D"]
+script = SubResource("1")
 
-[node name="Particles" type="Particles" parent="."]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 emitting = false
 amount = 10
 lifetime = 0.8
@@ -92,11 +91,12 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 randomness = 0.5
-visibility_aabb = AABB( -0.861842, -1.25995, -1.05623, 1.72368, 2.5199, 2.11245 )
-process_material = SubResource( 4 )
-draw_pass_1 = SubResource( 5 )
+visibility_aabb = AABB(-0.861842, -1.25995, -1.05623, 1.72368, 2.5199, 2.11245)
+process_material = SubResource("4")
+draw_pass_1 = SubResource("5")
 
 [node name="hole" type="Sprite3D" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-modulate = Color( 0.14902, 0.14902, 0.14902, 1 )
-texture = ExtResource( 2 )
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+modulate = Color(0.14902, 0.14902, 0.14902, 1)
+texture_filter = 0
+texture = ExtResource("2")

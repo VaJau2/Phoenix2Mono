@@ -1,6 +1,6 @@
 using Godot;
 
-public class ManaEffect: Effect 
+public partial class ManaEffect: Effect 
 {
     const float MANA_SPEED_DELTA = 0.5f;
     private Player_Unicorn player;

@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class FlaskGlassFactory : IAudioEffectsFactory
+public partial class FlaskGlassFactory : IAudioEffectsFactory
 {
     private const string key = "flaskGlass";
     
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.8f;
         notchFilter.CutoffHz = 3000;
 
@@ -22,9 +22,6 @@ public class FlaskGlassFactory : IAudioEffectsFactory
     
     public List<string> GetKeys()
     {
-        List<string> keys = new();
-        keys.Add(key);
-
-        return keys;
+        return [key];
     }
 }

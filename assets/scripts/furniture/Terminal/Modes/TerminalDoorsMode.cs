@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 //Выводит список дверей (копия ReadMode)
 //Открывает/Закрывает выбранные двери
-public class TerminalDoorsMode: TerminalMode
+public partial class TerminalDoorsMode: TerminalMode
 {
     private const int MAX_LINES_COUNT = 10;
     private int tempChoose;
@@ -30,9 +30,11 @@ public class TerminalDoorsMode: TerminalMode
 
     public override void UpdateInput(InputEventKey keyEvent)
     {
-        if (keyEvent.Pressed) {
+        if (keyEvent.Pressed) 
+        {
             //обрабатываем кнопку выхода
-            if (keyEvent.Scancode == (uint)KeyList.Backspace) {
+            if (keyEvent.Keycode == Key.Backspace) 
+            {
                 var newMode = new TerminalUsualMode(terminal);
                 terminal.ChangeMode(newMode);
                 return;
@@ -40,7 +42,8 @@ public class TerminalDoorsMode: TerminalMode
             
             //обрабатываем стрелочки
             //если нажата стрелочка вверх, перемещаем курсор вверх
-            if (keyEvent.Scancode == (uint)KeyList.Up) {
+            if (keyEvent.Keycode == Key.Up) 
+            {
                 if (tempChoose > 0) {
                     tempChoose--;
                 } else {
@@ -48,7 +51,8 @@ public class TerminalDoorsMode: TerminalMode
                 }
             }
             //если нажата стрелочка вниз, перемещаем курсор вниз
-            if(keyEvent.Scancode == (uint)KeyList.Down) {
+            if (keyEvent.Keycode == Key.Down) 
+            {
                 if (tempChoose < terminal.doors.Count - 1) {
                     tempChoose++;
                 } else {
@@ -57,7 +61,8 @@ public class TerminalDoorsMode: TerminalMode
             }
 
             //обрабатываем enter
-            if(keyEvent.Scancode == (uint)KeyList.Enter) {
+            if(keyEvent.Keycode == Key.Enter) 
+            {
                 ChangeDoorKey(terminal.doors[tempChoose]);
             }
 
@@ -77,7 +82,8 @@ public class TerminalDoorsMode: TerminalMode
         textLabel.Text = InterfaceLang.GetPhrase("terminal", "phrases", "chooseDoor")  + "\n";
         textLabel.Text += "------------------------------------\n";
 
-        for(int i = 0; i < MAX_LINES_COUNT - 1; i++) {
+        for(int i = 0; i < MAX_LINES_COUNT - 1; i++) 
+        {
             if (terminal.doors.Count > i)
             {
                 var doorCode =  terminal.doors[i].doorCode;
@@ -89,7 +95,9 @@ public class TerminalDoorsMode: TerminalMode
                     ? InterfaceLang.GetPhrase("terminal", "door", "opened")
                     : InterfaceLang.GetPhrase("terminal", "door", "closed");
                 textLabel.Text += chooseString + doorCode + openString + "\n";
-            } else {
+            } 
+            else 
+            {
                 textLabel.Text += "\n";
             }
         }        

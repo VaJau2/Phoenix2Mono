@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class RandomItems : Node
+public partial class RandomItems : Node
 {
     [Export]
     public int maxItemsCount = 5;
@@ -14,11 +14,11 @@ public class RandomItems : Node
     
     //в списке лежат и патроны тоже
     [Export]
-    public Array<string> itemCodes = new Array<string>();
+    public Array<string> itemCodes = new();
     
     //здесь определяется их количество
     [Export]
-    public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+    public Dictionary<string, int> ammoCount = new();
 
     public void LoadRandomItems(Array<string> chestItems, Dictionary<string, int> chestAmmo, int maxItems = 0) 
     {
@@ -36,7 +36,7 @@ public class RandomItems : Node
             Dictionary itemData = ItemJSON.GetItemData(newItemCode);
 
             //если это патроны, ложим в список патронов
-            if ((ItemType)itemData["type"] == ItemType.ammo)
+            if (itemData["type"].As<ItemType>() == ItemType.ammo)
             {
                 if (chestAmmo.ContainsKey(newItemCode)) return;
 

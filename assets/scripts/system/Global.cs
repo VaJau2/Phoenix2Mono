@@ -5,7 +5,8 @@ using System.Globalization;
 using System.Collections.Generic;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
-public class Global {
+public partial class Global 
+{
     //----Using singleton pattern----
     private static Global instance;
 
@@ -30,15 +31,15 @@ public class Global {
     public string autosaveName;
     
     //массив файлов сохранений
-    public static List<FileTableLine> saveFilesArray = new List<FileTableLine>();
-    public static Array<string> deletedObjects { get; private set; } = new Array<string>();
+    public static List<FileTableLine> saveFilesArray = new();
+    public static Array<string> deletedObjects { get; private set; } = [];
 
     private static Dictionary jsonCache;
     private static string jsonCachePath;
 
     public static void AddDeletedObject(string name)
     {
-        if (!name.BeginsWith("Created_") && !deletedObjects.Contains(name))
+        if (!name.StartsWith("Created_") && !deletedObjects.Contains(name))
         {
             deletedObjects.Add(name);
         } 
@@ -103,7 +104,7 @@ public class Global {
             foreach (string saveFileName in GetSaveFiles())
             {
                 var fileData = GetFileMetadata(saveFileName);
-                if (fileData is FileTableLine line)
+                if (fileData is { } line)
                 {
                     saveFilesArray.Add(line);
                 }
@@ -137,31 +138,36 @@ public class Global {
         };
     }
 
-    public static Dictionary loadJsonFile(string filePath)
+    public static Dictionary LoadJsonFile(string filePath)
     {
         if (jsonCachePath == filePath)
         {
             return jsonCache;
         }
         
-        File tempFile = new File();
         string path = "res://" + filePath;
 
-        Error fileError = tempFile.Open(path, File.ModeFlags.Read);
-        if (fileError == Error.Ok) 
+        var result = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+        if (result.IsOpen()) 
         {
-            var textJson = tempFile.GetAsText();
-            tempFile.Close();
-            var resultJson = JSON.Parse(textJson);
+            var textJson = result.GetAsText();
+            result.Close();
 
-            if (resultJson.Error == Error.Ok) 
+            var json = new Json();
+            var resultJson = json.Parse(textJson);
+
+            if (resultJson == Error.Ok) 
             {  
                 jsonCachePath = filePath;
-                jsonCache = (Dictionary)resultJson.Result;
+                jsonCache = json.Data.AsGodotDictionary();
                 return jsonCache;
             }
             
-            GD.PrintErr("parse json (" + filePath  + ") error: " + resultJson.ErrorString + ", in line: " + resultJson.ErrorLine);
+            GD.PrintErr("parse json (" + filePath + ") error: "
+                        + json.GetErrorMessage()
+                        + ", in line: "
+                        + json.GetErrorLine()
+                        );
             return null;
         }
         
@@ -169,10 +175,10 @@ public class Global {
         return null;
     }
 
-    public static Transform SetNewOrigin(Transform transform, Vector3 newOrigin)
+    public static Transform3D SetNewOrigin(Transform3D transform, Vector3 newOrigin)
     {
-        Transform tempTrans = transform;
-        tempTrans.origin = newOrigin;
+        Transform3D tempTrans = transform;
+        tempTrans.Origin = newOrigin;
         return tempTrans;
     }
 
@@ -181,10 +187,10 @@ public class Global {
         var newTimer = new Timer {Autostart = true, OneShot = true, WaitTime = time};
         if (pauseProcess)
         {
-            newTimer.PauseMode = Node.PauseModeEnum.Process;
+            newTimer.ProcessMode = Node.ProcessModeEnum.Always;
         }
 
-        if (Object.IsInstanceValid(_object))
+        if (GodotObject.IsInstanceValid(_object))
         {
             _object?.AddChild(newTimer);
         }
@@ -193,7 +199,7 @@ public class Global {
             player.GetNode("/root/Main/Scene").AddChild(newTimer);
         }
 
-        newTimer.Connect("timeout", newTimer, "queue_free");
+        newTimer.Timeout += newTimer.QueueFree;
         return newTimer.ToSignal(newTimer, "timeout");
     }
 
@@ -210,10 +216,10 @@ public class Global {
     //возвращает название кнопки клавиатуры по её экшну
     public static string GetKeyName(string actionName) 
     {
-        var actions = InputMap.GetActionList(actionName);
+        var actions = InputMap.ActionGetEvents(actionName);
         if (actions.Count == 0) return null;
         if (!(actions[0] is InputEventKey action)) return null;
-        return OS.GetScancodeString(action.Scancode);
+        return OS.GetKeycodeString(action.Keycode);
     }
 
     public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);
@@ -221,9 +227,9 @@ public class Global {
 
     //уменьшает длину строки, разбивая длинные строки на подстроки
     //разбивает по точкам, запятым и пробелам
-    public static Array ClumpLineLength(Array lines, int maxLineLength)
+    public static Array<string> ClumpLineLength(Array<string> lines, int maxLineLength)
     {
-        Array result = new Array();
+        Array<string> result = [];
         foreach(string line in lines)
         {
             if (line.Length <= maxLineLength) 
@@ -276,23 +282,21 @@ public class Global {
     public static Array<string> GetSaveFiles()
     {
         var files = new Array<string>();
-        var dir = new Directory();
-        dir.Open("user://");
 
-        if (!dir.DirExists("user://saves/"))
+        if (!DirAccess.DirExistsAbsolute("user://saves/"))
         {
-            Error result = dir.MakeDir("user://saves/");
-            return new Array<string>();
+            DirAccess.MakeDirAbsolute("user://saves/");
+            return [];
         }
         
-        dir.Open("user://saves/");
+        var dir = DirAccess.Open("user://saves/");
         dir.ListDirBegin();
 
         while (true)
         {
             string file = dir.GetNext();
             if (file == "") break;
-            if (!file.BeginsWith("."))
+            if (!file.StartsWith("."))
             {
                 files.Add("user://saves/" + file);
             }
@@ -304,8 +308,7 @@ public class Global {
 
     private static FileTableLine? GetFileMetadata(string fileName)
     {
-        var file = new File();
-        file.OpenCompressed(fileName, File.ModeFlags.Read);
+        var file = FileAccess.OpenCompressed(fileName, FileAccess.ModeFlags.Read);
         
         if (!file.IsOpen() || file.EofReached())
         {
@@ -321,7 +324,7 @@ public class Global {
 
     public static void DeleteSaveFile(string fileName)
     {
-        new Directory().Remove("user://saves/" + fileName);
+        DirAccess.RemoveAbsolute("user://saves/" + fileName);
     }
 }
 

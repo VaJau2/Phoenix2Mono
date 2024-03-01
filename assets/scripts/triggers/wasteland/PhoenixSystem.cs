@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PhoenixSystem : Node, ISavable
+public partial class PhoenixSystem : Node, ISavable
 {
     public bool CloneWokeUp;
     
     [Export] private NodePath roomPath;
     private Room room;
     
-    [Export] private List<NodePath> cloneFlasksPathes;
+    [Export] private Array<NodePath> cloneFlasksPathes;
     private List<CloneFlask> cloneFlasks = new ();
     private int cloneNumber;
     
@@ -35,7 +35,7 @@ public class PhoenixSystem : Node, ISavable
         cloneNumber = cloneFlasks.Count - 1;
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.SaveDataLoaded += OnSaveDataLoaded;
     }
 
     private async void OnSaveDataLoaded()
@@ -59,7 +59,7 @@ public class PhoenixSystem : Node, ISavable
         }
 
         oldPlayer.Body.DetachFromPlayer();
-        oldPlayer.SetScript(null);
+        oldPlayer.SetScript(new Variant());
         
         StartCloning();
     }
@@ -95,7 +95,7 @@ public class PhoenixSystem : Node, ISavable
         
         deathManager = Global.Get().player.DeathManager;
         if (cloneNumber > 0) deathManager.permanentDeath = false;
-        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+        deathManager.CloneDie += OnCloneDie;
     }
 
     public Dictionary GetSaveData()
@@ -109,7 +109,7 @@ public class PhoenixSystem : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("cloneNumber")) return;
+        if (!data.ContainsKey("cloneNumber")) return;
         
         cloneNumber = Convert.ToInt32(data["cloneNumber"]);
         

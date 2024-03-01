@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/dragon-eat.wav-3a2f21bafc12c860ec89fa6a4cbd046e.sample"
+type="AudioStreamWAV"
+uid="uid://cqtlvkd8c6rel"
+path="res://.godot/imported/dragon-eat.wav-3a2f21bafc12c860ec89fa6a4cbd046e.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/dragon/dragon-eat.wav"
-dest_files=[ "res://.import/dragon-eat.wav-3a2f21bafc12c860ec89fa6a4cbd046e.sample" ]
+dest_files=["res://.godot/imported/dragon-eat.wav-3a2f21bafc12c860ec89fa6a4cbd046e.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

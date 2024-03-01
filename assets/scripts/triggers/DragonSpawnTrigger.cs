@@ -1,12 +1,12 @@
 using Godot;
 using Godot.Collections;
 
-public class DragonSpawnTrigger : TriggerBase
+public partial class DragonSpawnTrigger : TriggerBase
 {
     [Export] private PackedScene dragonPrefab;
     [Export] private NodePath spawnPointPath;
     [Export] public Array<NodePath> patrolArray;
-    private Spatial spawnPoint;
+    private Node3D spawnPoint;
     
     //0 - путь до триггера, строка
     //1 - сигнал нпц, строка
@@ -18,45 +18,44 @@ public class DragonSpawnTrigger : TriggerBase
     {
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Spatial>(spawnPointPath);
+            spawnPoint = GetNode<Node3D>(spawnPointPath);
         }
         base._Ready();
     }
 
     public override void SetActive(bool newActive)
     {
-        _on_activate_trigger();
+        OnActivateTrigger();
         base.SetActive(newActive);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
         SpawnNpc();
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
     
     private void SpawnNpc()
     {
-        if (!(dragonPrefab.Instance() is NPC npcInstance)) return;
+        if (dragonPrefab.Instantiate<NPC>() is not { } npcInstance) return;
         npcInstance.Name = "Created_" + npcInstance.Name;
         npcInstance.patrolArray = patrolArray;
         GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
-        npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
+        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.Origin);
+        npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.Y,0);
 
         if (triggerConnections == null) return;
         foreach (var triggerDataPrimary in triggerConnections)
         {
-            if (!(triggerDataPrimary is Array triggerData) || triggerData.Count != 4) continue;
+            if (triggerDataPrimary.Obj is not Array { Count: 4 } triggerData) continue;
 
             var trigger = GetNode(triggerData[0].ToString());
             var signal = triggerData[1].ToString();
             var method = triggerData[2].ToString();
-            var binds = triggerData[3] as Array;
-            npcInstance.Connect(signal, trigger, method, binds);
+            npcInstance.Connect(signal, new Callable(trigger, method));
         }
     }
     
@@ -64,7 +63,7 @@ public class DragonSpawnTrigger : TriggerBase
     {
         if (body is Player)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/FurnClose.wav-cedf384ef05fff5a0e53576f2f5acca9.sample"
+type="AudioStreamWAV"
+uid="uid://24q0loym5bv7"
+path="res://.godot/imported/FurnClose.wav-cedf384ef05fff5a0e53576f2f5acca9.sample"
 
 [deps]
 
 source_file="res://assets/audio/futniture/FurnClose.wav"
-dest_files=[ "res://.import/FurnClose.wav-cedf384ef05fff5a0e53576f2f5acca9.sample" ]
+dest_files=["res://.godot/imported/FurnClose.wav-cedf384ef05fff5a0e53576f2f5acca9.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str"
+uid="uid://cd1b4fmiqdj32"
+path="res://.godot/imported/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/guns/shells/762_5.mp3"
-dest_files=[ "res://.import/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str" ]
+dest_files=["res://.godot/imported/762_5.mp3-8d1fe7208f83504ea103e6a66a66016a.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

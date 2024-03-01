@@ -6,7 +6,7 @@ using Godot.Collections;
 //и меняет им диалоги после сражения
 namespace DialogueScripts
 {
-    public class Dialogue_SimulationFightStart : IDialogueScript
+    public partial class Dialogue_SimulationFightStart : IDialogueScript
     {
         Player player;
         Pony korporal;
@@ -15,9 +15,9 @@ namespace DialogueScripts
 
         Array<NPC> zebras = new Array<NPC>();
 
-        Array<Spatial> korporalPath = new Array<Spatial>();
-        Array<Spatial> private1Path = new Array<Spatial>();
-        Array<Spatial> privateMarePath = new Array<Spatial>();
+        Array<Node3D> korporalPath = new Array<Node3D>();
+        Array<Node3D> private1Path = new Array<Node3D>();
+        Array<Node3D> privateMarePath = new Array<Node3D>();
 
         bool fightIsOver = false;
 
@@ -32,27 +32,26 @@ namespace DialogueScripts
             Node korporalPathNode = player.GetNode("../terrain/korporalPath");
             foreach (var temp in korporalPathNode.GetChildren())
             {
-                korporalPath.Add((temp as Spatial));
+                korporalPath.Add((temp as Node3D));
             }
 
             Node private1PathNode = player.GetNode("../terrain/private1Path");
             foreach (var temp in private1PathNode.GetChildren())
             {
-                private1Path.Add((temp as Spatial));
+                private1Path.Add((temp as Node3D));
             }
 
             Node privateMarePathNode = player.GetNode("../terrain/privateMarePath");
             foreach (var temp in privateMarePathNode.GetChildren())
             {
-                privateMarePath.Add((temp as Spatial));
+                privateMarePath.Add((temp as Node3D));
             }
 
             foreach (var temp in (korporal.GetParent().GetChildren()))
             {
-                if (temp is NPC)
+                if (temp is NPC npc)
                 {
-                    NPC npc = temp as NPC;
-                    if (npc.Name.BeginsWith("zebra"))
+                    if (npc.Name.ToString().StartsWith("zebra"))
                     {
                         zebras.Add(npc);
                     }
@@ -61,12 +60,12 @@ namespace DialogueScripts
         }
 
         //отправляем пня в атаку на лагерь
-        private async void SendPonyToPath(Pony pony, Array<Spatial> path, string newDialogueCode)
+        private async void SendPonyToPath(Pony pony, Array<Node3D> path, string newDialogueCode)
         {
             pony.dialogueCode = "";
 
 
-            foreach (Spatial tempPath in path)
+            foreach (Node3D tempPath in path)
             {
                 if (pony.state == NPCState.Attack)
                 {
@@ -74,9 +73,9 @@ namespace DialogueScripts
                 }
                 else
                 {
-                    pony.SetNewStartPos(tempPath.GlobalTransform.origin);
+                    pony.SetNewStartPos(tempPath.GlobalTransform.Origin);
                     pony.IdleAnim = "Idle1";
-                    await (pony.ToSignal(pony, nameof(Pony.IsCame)));
+                    await (pony.ToSignal(pony, nameof(Pony.IsCameEventHandler)));
                 }
             }
 

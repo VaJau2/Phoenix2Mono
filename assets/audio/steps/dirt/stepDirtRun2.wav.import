@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepDirtRun2.wav-301207393c95bf60d37958f9ef39c68d.sample"
+type="AudioStreamWAV"
+uid="uid://mjohg8tdsjaf"
+path="res://.godot/imported/stepDirtRun2.wav-301207393c95bf60d37958f9ef39c68d.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/dirt/stepDirtRun2.wav"
-dest_files=[ "res://.import/stepDirtRun2.wav-301207393c95bf60d37958f9ef39c68d.sample" ]
+dest_files=["res://.godot/imported/stepDirtRun2.wav-301207393c95bf60d37958f9ef39c68d.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

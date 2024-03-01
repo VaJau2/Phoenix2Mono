@@ -1,7 +1,7 @@
 using Godot;
 
 //Триггер позволяет изменить значения триггера LoopingMusicPartTrigger
-public class LoopingMusicPartChangeTrigger : TriggerBase
+public partial class LoopingMusicPartChangeTrigger : TriggerBase
 {
     [Export] public float NewCheckTime;
     [Export] public float NewChangeTime;
@@ -19,17 +19,17 @@ public class LoopingMusicPartChangeTrigger : TriggerBase
         base.SetActive(newActive);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         if (NewChangeTime == NewCheckTime) return;
         trigger.ChangeTime = NewChangeTime;
         trigger.CheckTime = NewCheckTime;
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

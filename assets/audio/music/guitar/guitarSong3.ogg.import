@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/guitarSong3.ogg-06740534a76e7afb13d23f08c989168e.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2djw8n5e188g"
+path="res://.godot/imported/guitarSong3.ogg-06740534a76e7afb13d23f08c989168e.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/music/guitar/guitarSong3.ogg"
-dest_files=[ "res://.import/guitarSong3.ogg-06740534a76e7afb13d23f08c989168e.oggstr" ]
+dest_files=["res://.godot/imported/guitarSong3.ogg-06740534a76e7afb13d23f08c989168e.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

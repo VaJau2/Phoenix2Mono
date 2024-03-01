@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class DialogueTrigger : TriggerBase
+public partial class DialogueTrigger : TriggerBase
 {
     [Export] public bool onlyChangeCode;
     [Export] public string npcPath;
@@ -13,12 +13,12 @@ public class DialogueTrigger : TriggerBase
     [Export] public float dialogueStartTimer;
     [Export] public string otherDialogueCode;
     
-    private Spatial startPoint;
-    private Spatial afterDialoguePoint;
+    private Node3D startPoint;
+    private Node3D afterDialoguePoint;
 
     private DialogueMenu dialogueMenu;
 
-    private float tempTimer;
+    private double tempTimer;
     private int step;
     private NpcWithWeapons npc;
 
@@ -29,16 +29,16 @@ public class DialogueTrigger : TriggerBase
 
         if (dialogueStartPointPath != null)
         {
-            startPoint = GetNode<Spatial>(dialogueStartPointPath);
+            startPoint = GetNode<Node3D>(dialogueStartPointPath);
         }
 
         if (afterDialoguePointPath != null)
         {
-            afterDialoguePoint = GetNode<Spatial>(afterDialoguePointPath);
+            afterDialoguePoint = GetNode<Node3D>(afterDialoguePointPath);
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -47,10 +47,10 @@ public class DialogueTrigger : TriggerBase
         }
 
         SetProcess(false);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
@@ -59,7 +59,7 @@ public class DialogueTrigger : TriggerBase
             npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
             if (npc == null)
             {
-                base._on_activate_trigger();
+                base.OnActivateTrigger();
                 return;
             }
         }
@@ -83,7 +83,7 @@ public class DialogueTrigger : TriggerBase
                 break;
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     private void ChangeNpcCode()
@@ -103,26 +103,26 @@ public class DialogueTrigger : TriggerBase
             }
             else
             {
-                base._on_activate_trigger();
+                base.OnActivateTrigger();
                 return;
             }
         }
 
         step = 1;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     private async void SetStartPointAndWait()
     {
         if (startPoint != null)
         {
-            npc.SetNewStartPos(startPoint.GlobalTransform.origin);
+            npc.SetNewStartPos(startPoint.GlobalTransform.Origin);
             npc.myStartRot = startPoint.Rotation;
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+            await ToSignal(npc, nameof(NpcWithWeapons.IsCameEventHandler));
         }
         
         step = 2;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
     private void WaitStartTimer()
@@ -137,12 +137,12 @@ public class DialogueTrigger : TriggerBase
         if (goToPlayer)
         {
             npc.SetFollowTarget(Global.Get().player);
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+            await ToSignal(npc, nameof(NpcWithWeapons.IsCameEventHandler));
             npc.SetFollowTarget(null);
         }
         
         step = 4;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
     
     private void StartTalking()
@@ -154,7 +154,7 @@ public class DialogueTrigger : TriggerBase
 
         if (afterDialoguePoint != null)
         {
-            npc.SetNewStartPos(afterDialoguePoint.GlobalTransform.origin);
+            npc.SetNewStartPos(afterDialoguePoint.GlobalTransform.Origin);
             npc.myStartRot = afterDialoguePoint.Rotation;
         }
     }
@@ -171,21 +171,21 @@ public class DialogueTrigger : TriggerBase
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.TryGetValue("tempTimer", out var timerValue))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = timerValue.AsSingle();
         }
         
-        step = Convert.ToInt16(data["step"]);
+        step = data["step"].AsInt16();
         if (step > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
     public override void SetActive(bool active)
     {
-        _on_activate_trigger();
+        OnActivateTrigger();
         base.SetActive(active);
     }
 
@@ -197,7 +197,7 @@ public class DialogueTrigger : TriggerBase
         NpcWithWeapons npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

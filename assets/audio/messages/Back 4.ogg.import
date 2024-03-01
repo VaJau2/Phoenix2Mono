@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Back 4.ogg-ae3eecdb2eac159242c1bcfe4a706fc1.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://r0ld18pk3deq"
+path="res://.godot/imported/Back 4.ogg-ae3eecdb2eac159242c1bcfe4a706fc1.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/messages/Back 4.ogg"
-dest_files=[ "res://.import/Back 4.ogg-ae3eecdb2eac159242c1bcfe4a706fc1.oggstr" ]
+dest_files=["res://.godot/imported/Back 4.ogg-ae3eecdb2eac159242c1bcfe4a706fc1.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,6 +1,6 @@
 using Godot;
 
-public class HydraPostEffect: Effect 
+public partial class HydraPostEffect: Effect 
 {
     private Player player;
     public HydraPostEffect()

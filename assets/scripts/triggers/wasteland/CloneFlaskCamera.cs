@@ -1,12 +1,12 @@
 using Godot;
 
-public class CloneFlaskCamera : Camera
+public partial class CloneFlaskCamera : Camera3D
 {
-    Spatial head;
+    Node3D head;
 
     public override void _Ready()
     {
-        head = GetNodeOrNull<Spatial>("../Armature/Skeleton/BoneAttachment/head_pos");
+        head = GetNodeOrNull<Node3D>("../Armature/Skeleton3D/BoneAttachment3D/head_pos");
         SetProcess(false);
         SetProcessInput(false);
     }
@@ -20,11 +20,11 @@ public class CloneFlaskCamera : Camera
         SetProcessInput(on);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         GlobalTransform = Global.SetNewOrigin(
             GlobalTransform,
-            head.GlobalTransform.origin
+            head.GlobalTransform.Origin
         );
     }
 
@@ -32,12 +32,12 @@ public class CloneFlaskCamera : Camera
     {
         if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
-            RotateZ(Mathf.Deg2Rad(motion.Relative.y * Global.Get().Settings.mouseSensivity));
-            RotateY(Mathf.Deg2Rad(-motion.Relative.x * Global.Get().Settings.mouseSensivity));
+            RotateZ(Mathf.DegToRad(motion.Relative.Y * Global.Get().Settings.mouseSensivity));
+            RotateY(Mathf.DegToRad(-motion.Relative.X * Global.Get().Settings.mouseSensivity));
 
             RotationDegrees = new Vector3(
-                Mathf.Clamp(RotationDegrees.x, -50, 60),
-                Mathf.Clamp(RotationDegrees.y, -70 + 90, 70 + 90),
+                Mathf.Clamp(RotationDegrees.X, -50, 60),
+                Mathf.Clamp(RotationDegrees.Y, -70 + 90, 70 + 90),
                 0
             );
         }

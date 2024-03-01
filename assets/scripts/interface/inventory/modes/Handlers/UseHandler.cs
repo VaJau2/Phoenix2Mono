@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class UseHandler
+public partial class UseHandler
 {
     private Player Player => Global.Get().player;
     private PlayerInventory Inventory => Player.Inventory;
@@ -35,9 +35,9 @@ public class UseHandler
 
         loadingIcon = menu.GetNode<Control>("helper/back/loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished)))
+        if (!loadingAnim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.IconAnimFinished))))
         {
-            loadingAnim.Connect("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished));
+            loadingAnim.AnimationFinished += animation => menu.IconAnimFinished(animation);
         }
 
         var wearBack = menu.GetNode<Control>("helper/back/wearBack");
@@ -56,9 +56,9 @@ public class UseHandler
     public void ShowLoadingIcon()
     {
         Vector2 iconPos = menu.GetGlobalMousePosition();
-        iconPos.x += 10;
-        iconPos.y += 10;
-        loadingIcon.RectGlobalPosition = iconPos;
+        iconPos.X += 10;
+        iconPos.Y += 10;
+        loadingIcon.GlobalPosition = iconPos;
         loadingIcon.Visible = true;
         loadingAnim.Play("load");
     }
@@ -73,9 +73,9 @@ public class UseHandler
     {
         if (Player.Health <= 0) return;
         
-        Player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
+        Player.EmitSignal(nameof(Player.UseItemEventHandler), tempButton.myItemCode);
 
-        var itemType = (ItemType)mode.tempItemData["type"];
+        var itemType = mode.tempItemData["type"].As<ItemType>();
         if (Inventory.itemIsUsable(itemType)) 
         {
             switch(itemType) 
@@ -104,9 +104,9 @@ public class UseHandler
                     mode.RemoveTempItem();
 
                     var tempDeletingItem = bindsHandler.TempDeletingIcon;
-                    if (Object.IsInstanceValid(tempDeletingItem))
+                    if (GodotObject.IsInstanceValid(tempDeletingItem))
                     {
-                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeleting));
+                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeletingEventHandler));
                     }
 
                     //если использовался забинденный предмет
@@ -199,11 +199,11 @@ public class UseHandler
     {
         if (mode.tempItemData == null || mode.tempItemData.Count == 0) return false;
         
-        var itemType = (ItemType)mode.tempItemData["type"];
+        var itemType = mode.tempItemData["type"].As<ItemType>();
         if (itemType != ItemType.artifact || Inventory.artifact == "") return true;
         
         var artifactData = ItemJSON.GetItemData(Inventory.artifact);
-        if (!artifactData.Contains("cantUnwear")) return true;
+        if (!artifactData.ContainsKey("cantUnwear")) return true;
         
         Inventory.MessageCantUnwear(artifactData["name"].ToString());
         return false;
@@ -211,7 +211,7 @@ public class UseHandler
     
     public void DropTempItem() 
     {
-        if (mode.tempItemData.Contains("questItem"))
+        if (mode.tempItemData.ContainsKey("questItem"))
         {
             Inventory.MessageCantDrop(mode.tempItemData["name"].ToString());
             return;

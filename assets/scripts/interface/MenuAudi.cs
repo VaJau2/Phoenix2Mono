@@ -3,7 +3,7 @@ using Godot;
 /**
  * Плеер звуков для всех менюшек, в которых нужно играть звуки кликов
  */
-public class MenuAudi : AudioStreamPlayer
+public partial class MenuAudi : AudioStreamPlayer
 {
     private AudioStream hoverSound;
     private AudioStream clickSound;

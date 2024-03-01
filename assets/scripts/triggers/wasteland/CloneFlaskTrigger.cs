@@ -1,14 +1,14 @@
 using Godot;
 
 
-public class CloneFlaskTrigger : TriggerBase
+public partial class CloneFlaskTrigger : TriggerBase
 {
     private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
     private Canvas canvas;
     
     private int step;
-    private float timer;
+    private double timer;
     
     public override async void _Ready()
     {
@@ -18,7 +18,7 @@ public class CloneFlaskTrigger : TriggerBase
         canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timer > 0)
         {
@@ -28,7 +28,7 @@ public class CloneFlaskTrigger : TriggerBase
         {
             SetProcess(false);
             step++;
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
@@ -43,13 +43,13 @@ public class CloneFlaskTrigger : TriggerBase
             var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
             playerSpawner.InitSpawn();
             
-            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.Spawned));
+            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.SpawnedEventHandler));
         }
         
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         var player = Global.Get().player;
         var audioEffectController = player.GetNode<AudioEffectsController>("audioEffectsController");
@@ -63,17 +63,17 @@ public class CloneFlaskTrigger : TriggerBase
                 player.RotationHelperThird.MayChange = false;
                 player.SetMayMove(false);
                 player.Sit(false);
-                player.Camera.eyesClosed = true;
+                player.Camera3D.eyesClosed = true;
                
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
                 player.GlobalTransform = Global.SetNewOrigin
                 (
                     player.GlobalTransform,
-                    playerPosTransform.origin
+                    playerPosTransform.Origin
                 );
 
-                var flaskRotation = playerPosTransform.basis.GetEuler();
-                player.Rotation = new Vector3(0, flaskRotation.y, 0);
+                var flaskRotation = playerPosTransform.Basis.GetEuler();
+                player.Rotation = new Vector3(0, flaskRotation.Y, 0);
                 
                 cloneFlask.camera.MakeCurrent(true);
                 cloneFlask.PrepareFlaskForPlayer();
@@ -90,7 +90,7 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 1:
-                player.Camera.eyesClosed = false;
+                player.Camera3D.eyesClosed = false;
                 cloneFlask.anim.Play("wakeUp");
                 
                 timer = 1f;
@@ -114,7 +114,7 @@ public class CloneFlaskTrigger : TriggerBase
             case 4:
                 player.Visible = true;
                 player.SetMayMove(true);
-                player.Camera.Current = true;
+                player.Camera3D.Current = true;
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();
                 cloneFlask.camera.MakeCurrent(false);
@@ -136,7 +136,7 @@ public class CloneFlaskTrigger : TriggerBase
                 audioEffectController.RemoveEffects("flaskGlass");
                 cloneFlask = null;
                 step = 0;
-                base._on_activate_trigger();
+                base.OnActivateTrigger();
                 
                 phoenixSystem.CloneWokeUp = true;
                 break;

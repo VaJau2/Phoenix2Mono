@@ -6,7 +6,7 @@ using Godot.Collections;
 //Активируется, если игрок закрывает коробку изнутри
 //Лишает игрока движений, анимирует "движение" коробки
 //Затем телепортирует игрока в лабораторию
-public class WaitInBoxTrigger : TriggerBase
+public partial class WaitInBoxTrigger : TriggerBase
 {
     [Export] private NodePath pathToBox;
     [Export] private AudioStream movingSound;
@@ -15,11 +15,11 @@ public class WaitInBoxTrigger : TriggerBase
     private AnimationPlayer movingBoxAnim;
     private AudioStreamPlayer3D movingBoxAudi;
     private Player playerHere;
-    private Spatial newBoxPosition;
+    private Node3D newBoxPosition;
     private DoorTeleport doorToParking;
     private bool isAnimating;
 
-    private float timer;
+    private double timer;
     private int step;
 
     public void _on_body_entered(Node body)
@@ -61,11 +61,11 @@ public class WaitInBoxTrigger : TriggerBase
         myBox = GetNode<FurnBase>(pathToBox);
         movingBoxAnim = myBox.GetNode<AnimationPlayer>("anim");
         movingBoxAudi = myBox.GetNode<AudioStreamPlayer3D>("audi");
-        newBoxPosition = GetNode<Spatial>("newBoxPosition");
+        newBoxPosition = GetNode<Node3D>("newBoxPosition");
         doorToParking = GetNode<DoorTeleport>(pathToDoorTeleport);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (playerHere == null) return;
         if (myBox.IsOpen) return;
@@ -107,9 +107,9 @@ public class WaitInBoxTrigger : TriggerBase
                 AmbientVolSync ambientSync = GetNode<AmbientVolSync>(playerHere.GetPath() + "/radioCheck");
                 ambientSync.Clear();
 
-                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.Origin);
                 playerHere.GlobalTransform =
-                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.Origin);
         
                 movingBoxAudi.Stream = movingSound;
                 movingBoxAudi.Play();
@@ -128,19 +128,19 @@ public class WaitInBoxTrigger : TriggerBase
 
                 myBox.GetParent().RemoveChild(myBox);
                 GetNode("/root/Main/Scene/rooms/2floor").AddChild(myBox);
-                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                myBox.GlobalTransform = Global.SetNewOrigin(myBox.GlobalTransform, newBoxPosition.GlobalTransform.Origin);
                 Vector3 scale = myBox.Scale;
                 myBox.GlobalRotation = newBoxPosition.GlobalRotation;
                 myBox.Scale = scale;
 
                 playerHere.GlobalTransform =
-                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
+                    Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.Origin);
                 playerHere.GlobalRotation = newBoxPosition.GlobalRotation;
 
                 doorToParking.Open(null, true, false);
                 playerHere.SitOnChair(false);
                 SetProcess(false);
-                _on_activate_trigger();
+                OnActivateTrigger();
                 return;
         }
     }

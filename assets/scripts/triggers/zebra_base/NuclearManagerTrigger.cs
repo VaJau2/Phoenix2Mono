@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class NuclearManagerTrigger : TriggerBase
+public partial class NuclearManagerTrigger : TriggerBase
 {
     [Export] private NodePath afterAudiPath;
     [Export] public int NewLevelNum;
@@ -54,8 +54,8 @@ public class NuclearManagerTrigger : TriggerBase
         environment = GetNode<WorldEnvironment>("/root/Main/Scene/WorldEnvironment").Environment;
         ambientColor = environment.AmbientLightColor;
         ambientEnergy = environment.AmbientLightEnergy;
-        fogColor = environment.FogColor;
-        fogDepthBegin = environment.FogDepthBegin;
+        fogColor = environment.FogLightColor;
+        fogDepthBegin = environment.FogDensity;
         SetProcess(false);
     }
 
@@ -113,18 +113,18 @@ public class NuclearManagerTrigger : TriggerBase
     private void IncreaseNoise()
     {
         var noiseTextureModulate = noiseTexture.Modulate;
-        if (noiseTextureModulate.a < 0.4f)
+        if (noiseTextureModulate.A < 0.4f)
         {
-            noiseTextureModulate.a += 0.004f;
+            noiseTextureModulate.A += 0.004f;
         }
         noiseTexture.Modulate = noiseTextureModulate;
     }
 
     private void MakeSkyRed(float delta)
     {
-        if (ambientColor.r < 0.9f)
+        if (ambientColor.R < 0.9f)
         {
-            ambientColor.r += delta * 0.05f;
+            ambientColor.R += delta * 0.05f;
             ambientEnergy += delta * 0.05f;
         }
 
@@ -133,31 +133,31 @@ public class NuclearManagerTrigger : TriggerBase
 
         if (!isNoising) return;
         
-        if (fogColor.r < 0.9f)
+        if (fogColor.R < 0.9f)
         {
-            fogColor.r += delta * fogSpeed;
+            fogColor.R += delta * fogSpeed;
             fogDepthBegin -= delta * fogSpeed;
             fogSpeed += 0.001f;
         }
 
-        environment.FogColor = fogColor;
-        environment.FogDepthBegin = fogDepthBegin;
+        environment.FogLightColor = fogColor;
+        environment.FogDensity = fogDepthBegin;
     }
 
     private void ResetEnvironment()
     {
         environment.AmbientLightColor = clonedEnvironment.AmbientLightColor;
         environment.AmbientLightEnergy = clonedEnvironment.AmbientLightEnergy;
-        environment.FogColor = clonedEnvironment.FogColor;
-        environment.FogDepthBegin = clonedEnvironment.FogDepthBegin;
+        environment.FogLightColor = clonedEnvironment.FogLightColor;
+        environment.FogDensity = clonedEnvironment.FogDensity;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (warStarted)
         {
-            IncreaseShaking(delta);
-            MakeSkyRed(delta);
+            IncreaseShaking((float)delta);
+            MakeSkyRed((float)delta);
         }
 
         if (isNoising)
@@ -169,9 +169,9 @@ public class NuclearManagerTrigger : TriggerBase
         
         blackScreen.Visible = true;
         var blackScreenColor = blackScreen.Color;
-        if (blackScreenColor.a < 1)
+        if (blackScreenColor.A < 1)
         {
-            blackScreenColor.a += delta;
+            blackScreenColor.A += (float)delta;
             blackScreen.Color = blackScreenColor;
         }
         else

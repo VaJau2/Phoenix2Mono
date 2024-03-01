@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 //класс, выводящий список биндов кнопок на канвасе
-public class BindsList : Node
+public partial class BindsList : Node
 {
     public BindIcon TempDeletingIcon;
     
-    private readonly List<BindIcon> bindIcons = new List<BindIcon>();
+    private readonly List<BindIcon> bindIcons = [];
     
     private PackedScene iconPrefab;
 
@@ -61,7 +61,7 @@ public class BindsList : Node
             }
         }
         
-        if (!(iconPrefab.Instance() is BindIcon newIcon)) return;
+        if (iconPrefab.Instantiate<BindIcon>() is not { } newIcon) return;
         MenuBase.LoadColorForChildren(newIcon);
         AddChild(newIcon);
         newIcon.SetBindKey(icon.GetBindKey());
@@ -83,7 +83,7 @@ public class BindsList : Node
 
             if (tempIcon.IsNeedDelay())
             {
-                await ToSignal(tempIcon, nameof(BindIcon.IsDeleting));
+                await ToSignal(tempIcon, nameof(BindIcon.IsDeletingEventHandler));
             }
             
             SortBinds();

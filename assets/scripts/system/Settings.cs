@@ -1,9 +1,9 @@
 using Godot;
 
-public class Settings 
+public partial class Settings 
 {
     public bool SettingsLoaded;
-    public Color interfaceColor = new Color(0.2f, 1f, 0.2f);
+    public Color interfaceColor = new(0.2f, 1f, 0.2f);
     public float mouseSensivity = 0.1f;
     public float distance = 600;
     public int shadows {get; private set;} = 3;
@@ -35,7 +35,7 @@ public class Settings
     public float npcAccuracy = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
     public float inflation = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
 
-    Viewport root;
+    Window root;
 
     public void UpdateAudioBus(AudioBus bus, float value)
     {
@@ -71,16 +71,21 @@ public class Settings
     {
         shadows = settingNum;
         var tempShadowSetting = shadowSettings[settingNum];
-        root.ShadowAtlasSize = tempShadowSetting;
+        root.PositionalShadowAtlasSize = tempShadowSetting;
     }
 
     public void SetFullscreen(bool on)
     {
         fullscreen = on;
-        OS.WindowFullscreen = on;
+        DisplayServer.WindowSetMode(
+            on
+                ? DisplayServer.WindowMode.Fullscreen
+                : DisplayServer.WindowMode.Windowed
+        );
     }
 
-    public Settings(Node node) {
+    public Settings(Node node)
+    {
         root = node.GetTree().Root;
         shadowVariantsCount = shadowSettings.Length - 1;
     }
@@ -90,9 +95,9 @@ public class Settings
         var config = new ConfigFile();
         config.SetValue("controls", "mouse_sensivity", mouseSensivity);
         foreach(string action in controlActions) {
-            var actions = InputMap.GetActionList(action);
+            var actions = InputMap.ActionGetEvents(action);
             var keyAction = actions[0] as InputEventKey;
-            var key = OS.GetScancodeString(keyAction.Scancode);
+            var key = OS.GetKeycodeString(keyAction.Keycode);
             config.SetValue("controls", action, key);
         }
         config.SetValue("screen", "distance", distance);
@@ -100,9 +105,9 @@ public class Settings
         config.SetValue("screen", "fullscreen", fullscreen);
         config.SetValue("screen", "cameraAngle", cameraAngle);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
-        var screenSize = OS.WindowSize;
-        config.SetValue("screen", "width", screenSize.x);
-        config.SetValue("screen", "height", screenSize.y);
+        var screenSize = DisplayServer.WindowGetSize();
+        config.SetValue("screen", "width", screenSize.X);
+        config.SetValue("screen", "height", screenSize.Y);
         config.SetValue("screen", "color", interfaceColor);
 
         config.SetValue("audio", "sound_volume", soundVolume);
@@ -123,42 +128,46 @@ public class Settings
     {
         var config = new ConfigFile();
         var err = config.Load("res://settings.cfg");
-        if (err == Error.Ok) {
+        if (err == Error.Ok) 
+        {
             mouseSensivity = (float)config.GetValue("controls", "mouse_sensivity");
-            foreach(string action in controlActions) {
+            foreach (string action in controlActions) 
+            {
                 string key = config.GetValue("controls", action).ToString();
-                var keyCode = (uint)OS.FindScancodeFromString(key);
+                var keyCode = OS.FindKeycodeFromString(key);
                 var newEvent = new InputEventKey();
-                newEvent.Scancode = keyCode;
+                newEvent.Keycode = keyCode;
 
                 InputMap.ActionEraseEvents(action);
                 InputMap.ActionAddEvent(action, newEvent);
-                
             }
-            distance = (float)config.GetValue("screen", "distance");
-            shadows = (int)config.GetValue("screen", "shadows");
+            
+            distance = config.GetValue("screen", "distance").AsSingle();
+            shadows = config.GetValue("screen", "shadows").AsInt32();
             ChangeShadows(shadows);
             var tempFullscreen = (bool)config.GetValue("screen", "fullscreen");
             SetFullscreen(tempFullscreen);
-            cameraAngle = (bool)config.GetValue("screen", "cameraAngle");
+            cameraAngle = config.GetValue("screen", "cameraAngle").AsBool();
             InterfaceLang.LoadLanguage(config.GetValue("screen", "language").ToString());
-            var screenSize = new Vector2();
-            screenSize.x = (float)config.GetValue("screen", "width");
-            screenSize.y = (float)config.GetValue("screen", "height");
-            OS.WindowSize = screenSize;
+            var screenSize = new Vector2I
+            {
+                X = config.GetValue("screen", "width").AsInt32(),
+                Y = config.GetValue("screen", "height").AsInt32()
+            };
+            DisplayServer.WindowSetSize(screenSize);
 
-            interfaceColor = (Color)config.GetValue("screen", "color");
+            interfaceColor = config.GetValue("screen", "color").AsColor();
 
-            SetSoundVolume((float)config.GetValue("audio", "sound_volume"));
-            SetRadioVolume((float)config.GetValue("audio", "radio_volume"));
-            SetMusicVolume((float)config.GetValue("audio", "music_volume"));
-            SetVoiceVolume((float)config.GetValue("audio", "voice_volume"));
+            SetSoundVolume(config.GetValue("audio", "sound_volume").AsSingle());
+            SetRadioVolume(config.GetValue("audio", "radio_volume").AsSingle());
+            SetMusicVolume(config.GetValue("audio", "music_volume").AsSingle());
+            SetVoiceVolume(config.GetValue("audio", "voice_volume").AsSingle());
 
-            playerDamage = (float) config.GetValue("difficulty", "player_damage");
-            npcDamage = (float) config.GetValue("difficulty", "npc_damage");
-            npcAggressive = (float) config.GetValue("difficulty", "npc_aggressive");
-            npcAccuracy = (float) config.GetValue("difficulty", "npc_accuracy");
-            inflation = (float) config.GetValue("difficulty", "inflation");
+            playerDamage = config.GetValue("difficulty", "player_damage").AsSingle();
+            npcDamage = config.GetValue("difficulty", "npc_damage").AsSingle();
+            npcAggressive = config.GetValue("difficulty", "npc_aggressive").AsSingle();
+            npcAccuracy = config.GetValue("difficulty", "npc_accuracy").AsSingle();
+            inflation = config.GetValue("difficulty", "inflation").AsSingle();
 
             SettingsLoaded = true;
         }

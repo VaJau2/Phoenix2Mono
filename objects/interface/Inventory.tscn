@@ -7,21 +7,21 @@
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
 [ext_resource path="res://objects/interface/UseItemLoadingIcon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/interface/controlHints/buy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture2D" id=8]
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
-[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=11]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
+[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="FontFile" id=11]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture2D" id=17]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 18
 font_data = ExtResource( 11 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 18
 font_data = ExtResource( 11 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 18
 font_data = ExtResource( 11 )
 
@@ -29,14 +29,14 @@ font_data = ExtResource( 11 )
 resource_name = "Close"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -272, 0 ), Vector2( 0, 0 ) ]
 }
@@ -45,14 +45,14 @@ tracks/0/keys = {
 resource_name = "Open"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -272, 0 ) ]
 }
@@ -60,14 +60,14 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("helper/back:rect_position")
+tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
@@ -87,19 +87,19 @@ anchor_bottom = 1.0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 272.0
+offset_right = 272.0
 mouse_filter = 1
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="items" type="GridContainer" parent="helper/back" groups=["ignore_color"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 47.0
-margin_right = -14.0
-margin_bottom = -311.0
-custom_constants/vseparation = 8
-custom_constants/hseparation = 8
+offset_left = 16.0
+offset_top = 47.0
+offset_right = -14.0
+offset_bottom = -311.0
+theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 8
 columns = 5
 __meta__ = {
 "_edit_group_": true
@@ -109,164 +109,164 @@ __meta__ = {
 isInventoryIcon = true
 
 [node name="itemIcon2" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_right = 92.0
+offset_left = 50.0
+offset_right = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon3" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_right = 142.0
+offset_left = 100.0
+offset_right = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon4" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_right = 192.0
+offset_left = 150.0
+offset_right = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon5" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_right = 242.0
+offset_left = 200.0
+offset_right = 242.0
 isInventoryIcon = true
 
 [node name="itemIcon6" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_top = 50.0
-margin_bottom = 92.0
+offset_top = 50.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon7" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 92.0
-margin_bottom = 92.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 92.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon8" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 50.0
-margin_right = 142.0
-margin_bottom = 92.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 142.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon9" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 50.0
-margin_right = 192.0
-margin_bottom = 92.0
+offset_left = 150.0
+offset_top = 50.0
+offset_right = 192.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon10" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 50.0
-margin_right = 242.0
-margin_bottom = 92.0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 242.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="itemIcon11" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_top = 100.0
-margin_bottom = 142.0
+offset_top = 100.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon12" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 92.0
-margin_bottom = 142.0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 92.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon13" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 142.0
-margin_bottom = 142.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 142.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon14" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 100.0
-margin_right = 192.0
-margin_bottom = 142.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 192.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon15" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 100.0
-margin_right = 242.0
-margin_bottom = 142.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 242.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="itemIcon16" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_top = 150.0
-margin_bottom = 192.0
+offset_top = 150.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon17" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 150.0
-margin_right = 92.0
-margin_bottom = 192.0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 92.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon18" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 150.0
-margin_right = 142.0
-margin_bottom = 192.0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 142.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon19" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 150.0
-margin_right = 192.0
-margin_bottom = 192.0
+offset_left = 150.0
+offset_top = 150.0
+offset_right = 192.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon20" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 150.0
-margin_right = 242.0
-margin_bottom = 192.0
+offset_left = 200.0
+offset_top = 150.0
+offset_right = 242.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="itemIcon21" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_top = 200.0
-margin_bottom = 242.0
+offset_top = 200.0
+offset_bottom = 242.0
 isInventoryIcon = true
 
 [node name="itemIcon22" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 200.0
-margin_right = 92.0
-margin_bottom = 242.0
+offset_left = 50.0
+offset_top = 200.0
+offset_right = 92.0
+offset_bottom = 242.0
 isInventoryIcon = true
 
 [node name="itemIcon23" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 200.0
-margin_right = 142.0
-margin_bottom = 242.0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 142.0
+offset_bottom = 242.0
 isInventoryIcon = true
 
 [node name="itemIcon24" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 200.0
-margin_right = 192.0
-margin_bottom = 242.0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 192.0
+offset_bottom = 242.0
 isInventoryIcon = true
 
 [node name="itemIcon25" parent="helper/back/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 200.0
-margin_right = 242.0
-margin_bottom = 242.0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 242.0
+offset_bottom = 242.0
 isInventoryIcon = true
 
 [node name="moneyLabel" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -96.0
-margin_top = 15.0
-margin_right = 37.0
-margin_bottom = 32.0
+offset_left = -96.0
+offset_top = 15.0
+offset_right = 37.0
+offset_bottom = 32.0
 theme = ExtResource( 3 )
 text = "Количество денег:"
 align = 1
@@ -277,10 +277,10 @@ __meta__ = {
 [node name="moneyCount" type="Label" parent="helper/back"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 56.0
-margin_top = 15.0
-margin_right = 120.0
-margin_bottom = 32.0
+offset_left = 56.0
+offset_top = 15.0
+offset_right = 120.0
+offset_bottom = 32.0
 theme = ExtResource( 3 )
 text = "0"
 __meta__ = {
@@ -289,24 +289,24 @@ __meta__ = {
 
 [node name="border" type="ColorRect" parent="helper/back"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="itemInfo" type="Control" parent="helper/back" groups=["ignore_color"]]
 visible = false
 anchor_bottom = 1.0
-margin_top = 303.0
-margin_right = 272.0
-margin_bottom = -49.0
+offset_top = 303.0
+offset_right = 272.0
+offset_bottom = -49.0
 
 [node name="name" type="Label" parent="helper/back/itemInfo"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -248.0
-margin_right = 128.0
-margin_bottom = -233.0
+offset_left = -128.0
+offset_top = -248.0
+offset_right = 128.0
+offset_bottom = -233.0
 theme = ExtResource( 3 )
 text = "Название предмета"
 align = 1
@@ -316,10 +316,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -120.0
-margin_top = -224.0
-margin_right = 120.0
-margin_bottom = -144.0
+offset_left = -120.0
+offset_top = -224.0
+offset_right = 120.0
+offset_bottom = -144.0
 theme = ExtResource( 3 )
 text = "Описание предмета
 2
@@ -332,10 +332,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -120.0
-margin_top = -136.0
-margin_right = 121.0
-margin_bottom = -46.0
+offset_left = -120.0
+offset_top = -136.0
+offset_right = 121.0
+offset_bottom = -46.0
 theme = ExtResource( 3 )
 text = "Свойства Предмета
 1
@@ -348,62 +348,62 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -120.0
-margin_top = -54.0
-margin_right = 120.0
-margin_bottom = -22.0
+offset_left = -120.0
+offset_top = -54.0
+offset_right = 120.0
+offset_bottom = -22.0
 theme = ExtResource( 3 )
 script = ExtResource( 9 )
 
 [node name="ControlHint1" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
 visible = false
-margin_right = -240.0
-margin_bottom = -32.0
+offset_right = -240.0
+offset_bottom = -32.0
 
 [node name="ControlHint2" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
 visible = false
-margin_top = 24.0
-margin_right = -240.0
-margin_bottom = -8.0
+offset_top = 24.0
+offset_right = -240.0
+offset_bottom = -8.0
 textKey = 1
 
 [node name="ControlHint3" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
 visible = false
-margin_top = 48.0
-margin_right = -240.0
-margin_bottom = 16.0
+offset_top = 48.0
+offset_right = -240.0
+offset_bottom = 16.0
 textKey = 2
 
 [node name="ControlHint4" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
 visible = false
-margin_top = 72.0
-margin_right = -240.0
-margin_bottom = 40.0
+offset_top = 72.0
+offset_right = -240.0
+offset_bottom = 40.0
 textKey = 3
 
 [node name="wearBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
 visible = false
 anchor_left = 0.734
 anchor_right = 0.734
-margin_left = -398.0
-margin_top = 47.0
-margin_right = -199.648
-margin_bottom = 289.0
+offset_left = -398.0
+offset_top = 47.0
+offset_right = -199.648
+offset_bottom = 289.0
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="border-down" type="ColorRect" parent="helper/back/wearBack"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 
 [node name="border-up" type="ColorRect" parent="helper/back/wearBack"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 
 [node name="border-left" type="ColorRect" parent="helper/back/wearBack"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -411,12 +411,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="helper/back/wearBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -97.176
-margin_top = 18.0
-margin_right = 99.824
-margin_bottom = 44.0
+offset_left = -97.176
+offset_top = 18.0
+offset_right = 99.824
+offset_bottom = 44.0
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource( 4 )
 text = "Экипировано"
 align = 1
 uppercase = true
@@ -424,19 +424,19 @@ uppercase = true
 [node name="weapon" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -56.0
-margin_top = 50.0
-margin_right = -14.0
-margin_bottom = 92.0
+offset_left = -56.0
+offset_top = 50.0
+offset_right = -14.0
+offset_bottom = 92.0
 isInventoryIcon = true
 
 [node name="weaponLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -184.0
-margin_top = 66.0
-margin_right = -72.0
-margin_bottom = 83.0
+offset_left = -184.0
+offset_top = 66.0
+offset_right = -72.0
+offset_bottom = 83.0
 theme = ExtResource( 3 )
 text = "Оружие:"
 align = 2
@@ -447,19 +447,19 @@ __meta__ = {
 [node name="armor" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -56.0
-margin_top = 100.0
-margin_right = -14.0
-margin_bottom = 142.0
+offset_left = -56.0
+offset_top = 100.0
+offset_right = -14.0
+offset_bottom = 142.0
 isInventoryIcon = true
 
 [node name="armorLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -184.0
-margin_top = 116.0
-margin_right = -72.0
-margin_bottom = 133.0
+offset_left = -184.0
+offset_top = 116.0
+offset_right = -72.0
+offset_bottom = 133.0
 theme = ExtResource( 3 )
 text = "Броня:"
 align = 2
@@ -470,19 +470,19 @@ __meta__ = {
 [node name="artifact" parent="helper/back/wearBack" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -56.0
-margin_top = 150.0
-margin_right = -14.0
-margin_bottom = 192.0
+offset_left = -56.0
+offset_top = 150.0
+offset_right = -14.0
+offset_bottom = 192.0
 isInventoryIcon = true
 
 [node name="artifactLabel" type="Label" parent="helper/back/wearBack"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -184.0
-margin_top = 158.0
-margin_right = -72.0
-margin_bottom = 175.0
+offset_left = -184.0
+offset_top = 158.0
+offset_right = -72.0
+offset_bottom = 175.0
 theme = ExtResource( 3 )
 text = "Артефакт:"
 align = 2
@@ -496,21 +496,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -746.0
-margin_top = -156.0
-margin_right = -474.0
-margin_bottom = 148.0
+offset_left = -746.0
+offset_top = -156.0
+offset_right = -474.0
+offset_bottom = 148.0
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="Label" type="Label" parent="helper/back/chestBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 21.0
-margin_right = 128.0
-margin_bottom = 40.0
+offset_left = -128.0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 40.0
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 5 )
+theme_override_fonts/font = SubResource( 5 )
 text = "Сундук"
 align = 1
 uppercase = true
@@ -520,8 +520,8 @@ __meta__ = {
 
 [node name="border-left" type="ColorRect" parent="helper/back/chestBack"]
 anchor_bottom = 1.0
-margin_right = 1.0
-margin_bottom = 3.05176e-05
+offset_right = 1.0
+offset_bottom = 3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -530,7 +530,7 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -539,22 +539,22 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="border-up" type="ColorRect" parent="helper/back/chestBack"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 
 [node name="takeAll" type="Button" parent="helper/back/chestBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -20.0
-margin_top = 65.0
-margin_right = 122.0
-margin_bottom = 89.0
+offset_left = -20.0
+offset_top = 65.0
+offset_right = 122.0
+offset_bottom = 89.0
 theme = ExtResource( 3 )
 text = " Взять все"
 icon = ExtResource( 17 )
@@ -566,12 +566,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -120.0
-margin_top = -208.0
-margin_right = 122.0
-margin_bottom = -16.0
-custom_constants/vseparation = 8
-custom_constants/hseparation = 8
+offset_left = -120.0
+offset_top = -208.0
+offset_right = 122.0
+offset_bottom = -16.0
+theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 8
 columns = 5
 __meta__ = {
 "_edit_group_": true
@@ -580,104 +580,104 @@ __meta__ = {
 [node name="itemIcon" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
 
 [node name="itemIcon2" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_right = 92.0
+offset_left = 50.0
+offset_right = 92.0
 
 [node name="itemIcon3" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_right = 142.0
+offset_left = 100.0
+offset_right = 142.0
 
 [node name="itemIcon4" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_right = 192.0
+offset_left = 150.0
+offset_right = 192.0
 
 [node name="itemIcon5" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_right = 242.0
+offset_left = 200.0
+offset_right = 242.0
 
 [node name="itemIcon6" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_top = 50.0
-margin_bottom = 92.0
+offset_top = 50.0
+offset_bottom = 92.0
 
 [node name="itemIcon7" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 92.0
-margin_bottom = 92.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 92.0
+offset_bottom = 92.0
 
 [node name="itemIcon8" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 50.0
-margin_right = 142.0
-margin_bottom = 92.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 142.0
+offset_bottom = 92.0
 
 [node name="itemIcon9" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 50.0
-margin_right = 192.0
-margin_bottom = 92.0
+offset_left = 150.0
+offset_top = 50.0
+offset_right = 192.0
+offset_bottom = 92.0
 
 [node name="itemIcon10" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 50.0
-margin_right = 242.0
-margin_bottom = 92.0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 242.0
+offset_bottom = 92.0
 
 [node name="itemIcon11" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_top = 100.0
-margin_bottom = 142.0
+offset_top = 100.0
+offset_bottom = 142.0
 
 [node name="itemIcon12" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 92.0
-margin_bottom = 142.0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 92.0
+offset_bottom = 142.0
 
 [node name="itemIcon13" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 142.0
-margin_bottom = 142.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 142.0
+offset_bottom = 142.0
 
 [node name="itemIcon14" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 100.0
-margin_right = 192.0
-margin_bottom = 142.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 192.0
+offset_bottom = 142.0
 
 [node name="itemIcon15" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 100.0
-margin_right = 242.0
-margin_bottom = 142.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 242.0
+offset_bottom = 142.0
 
 [node name="itemIcon16" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_top = 150.0
-margin_bottom = 192.0
+offset_top = 150.0
+offset_bottom = 192.0
 
 [node name="itemIcon17" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 150.0
-margin_right = 92.0
-margin_bottom = 192.0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 92.0
+offset_bottom = 192.0
 
 [node name="itemIcon18" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 150.0
-margin_right = 142.0
-margin_bottom = 192.0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 142.0
+offset_bottom = 192.0
 
 [node name="itemIcon19" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 150.0
-margin_right = 192.0
-margin_bottom = 192.0
+offset_left = 150.0
+offset_top = 150.0
+offset_right = 192.0
+offset_bottom = 192.0
 
 [node name="itemIcon20" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 150.0
-margin_right = 242.0
-margin_bottom = 192.0
+offset_left = 200.0
+offset_top = 150.0
+offset_right = 242.0
+offset_bottom = 192.0
 
 [node name="tradeBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
 visible = false
@@ -685,22 +685,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -826.0
-margin_top = -172.0
-margin_right = -426.0
-margin_bottom = 196.0
+offset_left = -826.0
+offset_top = -172.0
+offset_right = -426.0
+offset_bottom = 196.0
 mouse_filter = 1
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="Label" type="Label" parent="helper/back/tradeBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -184.0
-margin_top = 21.0
-margin_right = 184.0
-margin_bottom = 40.0
+offset_left = -184.0
+offset_top = 21.0
+offset_right = 184.0
+offset_bottom = 40.0
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 6 )
+theme_override_fonts/font = SubResource( 6 )
 text = "Торговец"
 align = 1
 uppercase = true
@@ -711,10 +711,10 @@ __meta__ = {
 [node name="moneyLabel" type="Label" parent="helper/back/tradeBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -176.0
-margin_top = 64.0
-margin_right = 72.0
-margin_bottom = 83.0
+offset_left = -176.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 83.0
 theme = ExtResource( 3 )
 text = "Количество денег:"
 align = 2
@@ -725,10 +725,10 @@ __meta__ = {
 [node name="moneyCount" type="Label" parent="helper/back/tradeBack"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 96.0
-margin_top = 64.0
-margin_right = 184.0
-margin_bottom = 83.0
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 184.0
+offset_bottom = 83.0
 theme = ExtResource( 3 )
 text = "0"
 __meta__ = {
@@ -737,8 +737,8 @@ __meta__ = {
 
 [node name="border-left" type="ColorRect" parent="helper/back/tradeBack"]
 anchor_bottom = 1.0
-margin_right = 1.0
-margin_bottom = 3.05176e-05
+offset_right = 1.0
+offset_bottom = 3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -747,7 +747,7 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -756,26 +756,26 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="border-up" type="ColorRect" parent="helper/back/tradeBack"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 
 [node name="items" type="GridContainer" parent="helper/back/tradeBack" groups=["ignore_color"]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -168.0
-margin_top = -272.0
-margin_right = 176.0
-margin_bottom = -24.0
-custom_constants/vseparation = 8
-custom_constants/hseparation = 8
+offset_left = -168.0
+offset_top = -272.0
+offset_right = 176.0
+offset_bottom = -24.0
+theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 8
 columns = 7
 __meta__ = {
 "_edit_group_": true
@@ -784,196 +784,196 @@ __meta__ = {
 [node name="itemIcon" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
 
 [node name="itemIcon2" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_right = 92.0
+offset_left = 50.0
+offset_right = 92.0
 
 [node name="itemIcon3" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_right = 142.0
+offset_left = 100.0
+offset_right = 142.0
 
 [node name="itemIcon4" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_right = 192.0
+offset_left = 150.0
+offset_right = 192.0
 
 [node name="itemIcon5" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_right = 242.0
+offset_left = 200.0
+offset_right = 242.0
 
 [node name="itemIcon6" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 250.0
-margin_right = 292.0
+offset_left = 250.0
+offset_right = 292.0
 
 [node name="itemIcon7" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 300.0
-margin_right = 342.0
+offset_left = 300.0
+offset_right = 342.0
 
 [node name="itemIcon8" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_top = 50.0
-margin_bottom = 92.0
+offset_top = 50.0
+offset_bottom = 92.0
 
 [node name="itemIcon9" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 92.0
-margin_bottom = 92.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 92.0
+offset_bottom = 92.0
 
 [node name="itemIcon10" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 50.0
-margin_right = 142.0
-margin_bottom = 92.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 142.0
+offset_bottom = 92.0
 
 [node name="itemIcon11" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 50.0
-margin_right = 192.0
-margin_bottom = 92.0
+offset_left = 150.0
+offset_top = 50.0
+offset_right = 192.0
+offset_bottom = 92.0
 
 [node name="itemIcon12" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 50.0
-margin_right = 242.0
-margin_bottom = 92.0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 242.0
+offset_bottom = 92.0
 
 [node name="itemIcon13" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 250.0
-margin_top = 50.0
-margin_right = 292.0
-margin_bottom = 92.0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 292.0
+offset_bottom = 92.0
 
 [node name="itemIcon14" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 300.0
-margin_top = 50.0
-margin_right = 342.0
-margin_bottom = 92.0
+offset_left = 300.0
+offset_top = 50.0
+offset_right = 342.0
+offset_bottom = 92.0
 
 [node name="itemIcon15" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_top = 100.0
-margin_bottom = 142.0
+offset_top = 100.0
+offset_bottom = 142.0
 
 [node name="itemIcon16" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 92.0
-margin_bottom = 142.0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 92.0
+offset_bottom = 142.0
 
 [node name="itemIcon17" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 142.0
-margin_bottom = 142.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 142.0
+offset_bottom = 142.0
 
 [node name="itemIcon18" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 100.0
-margin_right = 192.0
-margin_bottom = 142.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 192.0
+offset_bottom = 142.0
 
 [node name="itemIcon19" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 100.0
-margin_right = 242.0
-margin_bottom = 142.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 242.0
+offset_bottom = 142.0
 
 [node name="itemIcon20" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 250.0
-margin_top = 100.0
-margin_right = 292.0
-margin_bottom = 142.0
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 292.0
+offset_bottom = 142.0
 
 [node name="itemIcon21" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 300.0
-margin_top = 100.0
-margin_right = 342.0
-margin_bottom = 142.0
+offset_left = 300.0
+offset_top = 100.0
+offset_right = 342.0
+offset_bottom = 142.0
 
 [node name="itemIcon22" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_top = 150.0
-margin_bottom = 192.0
+offset_top = 150.0
+offset_bottom = 192.0
 
 [node name="itemIcon23" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 150.0
-margin_right = 92.0
-margin_bottom = 192.0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 92.0
+offset_bottom = 192.0
 
 [node name="itemIcon24" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 150.0
-margin_right = 142.0
-margin_bottom = 192.0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 142.0
+offset_bottom = 192.0
 
 [node name="itemIcon25" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 150.0
-margin_right = 192.0
-margin_bottom = 192.0
+offset_left = 150.0
+offset_top = 150.0
+offset_right = 192.0
+offset_bottom = 192.0
 
 [node name="itemIcon26" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 150.0
-margin_right = 242.0
-margin_bottom = 192.0
+offset_left = 200.0
+offset_top = 150.0
+offset_right = 242.0
+offset_bottom = 192.0
 
 [node name="itemIcon27" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 250.0
-margin_top = 150.0
-margin_right = 292.0
-margin_bottom = 192.0
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 292.0
+offset_bottom = 192.0
 
 [node name="itemIcon28" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 300.0
-margin_top = 150.0
-margin_right = 342.0
-margin_bottom = 192.0
+offset_left = 300.0
+offset_top = 150.0
+offset_right = 342.0
+offset_bottom = 192.0
 
 [node name="itemIcon29" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_top = 200.0
-margin_bottom = 242.0
+offset_top = 200.0
+offset_bottom = 242.0
 
 [node name="itemIcon30" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 50.0
-margin_top = 200.0
-margin_right = 92.0
-margin_bottom = 242.0
+offset_left = 50.0
+offset_top = 200.0
+offset_right = 92.0
+offset_bottom = 242.0
 
 [node name="itemIcon31" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 100.0
-margin_top = 200.0
-margin_right = 142.0
-margin_bottom = 242.0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 142.0
+offset_bottom = 242.0
 
 [node name="itemIcon32" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 150.0
-margin_top = 200.0
-margin_right = 192.0
-margin_bottom = 242.0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 192.0
+offset_bottom = 242.0
 
 [node name="itemIcon33" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 200.0
-margin_top = 200.0
-margin_right = 242.0
-margin_bottom = 242.0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 242.0
+offset_bottom = 242.0
 
 [node name="itemIcon34" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 250.0
-margin_top = 200.0
-margin_right = 292.0
-margin_bottom = 242.0
+offset_left = 250.0
+offset_top = 200.0
+offset_right = 292.0
+offset_bottom = 242.0
 
 [node name="itemIcon35" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-margin_left = 300.0
-margin_top = 200.0
-margin_right = 342.0
-margin_bottom = 242.0
+offset_left = 300.0
+offset_top = 200.0
+offset_right = 342.0
+offset_bottom = 242.0
 
 [node name="dragIcon" type="TextureRect" parent="helper/back"]
 anchor_right = 0.9
 anchor_bottom = 0.9
-margin_right = -202.8
-margin_bottom = -498.0
-rect_scale = Vector2( 0.9, 0.9 )
-rect_pivot_offset = Vector2( 21, 21 )
+offset_right = -202.8
+offset_bottom = -498.0
+scale = Vector2( 0.9, 0.9 )
+pivot_offset = Vector2( 21, 21 )
 expand = true
 stretch_mode = 6
 script = ExtResource( 10 )
@@ -983,11 +983,11 @@ self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_right = 0.9
 anchor_bottom = 0.9
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 6.20002
-margin_bottom = 6.2
-rect_pivot_offset = Vector2( 21, 21 )
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 6.20002
+offset_bottom = 6.2
+pivot_offset = Vector2( 21, 21 )
 expand = true
 stretch_mode = 6
 
@@ -995,8 +995,8 @@ stretch_mode = 6
 visible = false
 anchor_right = 0.136
 anchor_bottom = 0.06
-margin_right = 0.00799942
-margin_bottom = 0.0
+offset_right = 0.00799942
+offset_bottom = 0.0
 
 [node name="modalAsk" type="ColorRect" parent="." groups=["ignore_color"]]
 visible = false
@@ -1004,19 +1004,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -208.0
-margin_top = -52.0
-margin_right = 208.0
-margin_bottom = 60.0
+offset_left = -208.0
+offset_top = -52.0
+offset_right = 208.0
+offset_bottom = 60.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="askLabel" type="Label" parent="modalAsk"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -208.0
-margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 31.0
+offset_left = -208.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 31.0
 grow_horizontal = 2
 theme = ExtResource( 3 )
 text = "Продать твою душу за 42 бита?"
@@ -1024,29 +1024,29 @@ align = 1
 
 [node name="border-up" type="ColorRect" parent="modalAsk"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 
 [node name="border-down" type="ColorRect" parent="modalAsk"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 
 [node name="border-left" type="ColorRect" parent="modalAsk"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="border-right" type="ColorRect" parent="modalAsk"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 
 [node name="yes" type="Button" parent="modalAsk"]
-margin_left = 64.0
-margin_top = 80.0
-margin_right = 156.0
-margin_bottom = 100.0
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 156.0
+offset_bottom = 100.0
 theme = ExtResource( 3 )
 disabled = true
 text = "Да (enter)"
@@ -1054,10 +1054,10 @@ text = "Да (enter)"
 [node name="no" type="Button" parent="modalAsk"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -160.0
-margin_top = 80.0
-margin_right = -64.0
-margin_bottom = 100.0
+offset_left = -160.0
+offset_top = 80.0
+offset_right = -64.0
+offset_bottom = 100.0
 theme = ExtResource( 3 )
 disabled = true
 text = "Нет (shift)"
@@ -1071,19 +1071,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = -20.0
-margin_right = 176.0
-margin_bottom = 12.0
+offset_left = -176.0
+offset_top = -20.0
+offset_right = 176.0
+offset_bottom = 12.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="sliderLabel" type="Label" parent="modalAsk/sliderBack"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 108.0
-margin_bottom = 23.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 108.0
+offset_bottom = 23.0
 theme = ExtResource( 3 )
 text = "Количество:"
 align = 2
@@ -1094,10 +1094,10 @@ __meta__ = {
 [node name="sliderCount" type="Label" parent="modalAsk/sliderBack"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -64.0
-margin_top = 8.0
-margin_right = -16.0
-margin_bottom = 23.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 23.0
 theme = ExtResource( 3 )
 text = "0"
 __meta__ = {
@@ -1109,10 +1109,10 @@ anchor_left = 0.5
 anchor_top = -1.125
 anchor_right = 0.5
 anchor_bottom = -1.125
-margin_left = -56.0
-margin_top = 44.0
-margin_right = 96.0
-margin_bottom = 60.0
+offset_left = -56.0
+offset_top = 44.0
+offset_right = 96.0
+offset_bottom = 60.0
 theme = ExtResource( 3 )
 min_value = 1.0
 value = 1.0
@@ -1126,19 +1126,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -208.0
-margin_top = -172.0
-margin_right = 208.0
-margin_bottom = 212.0
+offset_left = -208.0
+offset_top = -172.0
+offset_right = 208.0
+offset_bottom = 212.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="noteName" type="Label" parent="modalRead"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -208.0
-margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 31.0
+offset_left = -208.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 31.0
 grow_horizontal = 2
 theme = ExtResource( 3 )
 text = "Название записки"
@@ -1150,10 +1150,10 @@ __meta__ = {
 [node name="noteText" type="RichTextLabel" parent="modalRead"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -192.0
-margin_top = 48.0
-margin_right = 192.0
-margin_bottom = 312.0
+offset_left = -192.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 312.0
 grow_horizontal = 2
 theme = ExtResource( 5 )
 text = "Текст записки"
@@ -1161,43 +1161,43 @@ text = "Текст записки"
 [node name="closeHint" type="Label" parent="modalRead"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -165.0
-margin_top = 352.0
-margin_right = 195.0
-margin_bottom = 369.0
+offset_left = -165.0
+offset_top = 352.0
+offset_right = 195.0
+offset_bottom = 369.0
 grow_horizontal = 2
 theme = ExtResource( 3 )
 text = "Закрыть"
 
 [node name="Escape" type="TextureRect" parent="modalRead/closeHint"]
-margin_left = -45.0
-margin_top = -7.0
-margin_right = 3.0
-margin_bottom = 25.0
-rect_scale = Vector2( 0.6, 0.6 )
-rect_pivot_offset = Vector2( 24, 16 )
+offset_left = -45.0
+offset_top = -7.0
+offset_right = 3.0
+offset_bottom = 25.0
+scale = Vector2( 0.6, 0.6 )
+pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 8 )
 stretch_mode = 6
 
 [node name="border-up" type="ColorRect" parent="modalRead"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 
 [node name="border-down" type="ColorRect" parent="modalRead"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 
 [node name="border-left" type="ColorRect" parent="modalRead"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="border-right" type="ColorRect" parent="modalRead"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 1 )

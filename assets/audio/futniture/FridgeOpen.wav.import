@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/FridgeOpen.wav-d20a055e0a220d6e91ff19481366046b.sample"
+type="AudioStreamWAV"
+uid="uid://b6jvolq3otnpv"
+path="res://.godot/imported/FridgeOpen.wav-d20a055e0a220d6e91ff19481366046b.sample"
 
 [deps]
 
 source_file="res://assets/audio/futniture/FridgeOpen.wav"
-dest_files=[ "res://.import/FridgeOpen.wav-d20a055e0a220d6e91ff19481366046b.sample" ]
+dest_files=["res://.godot/imported/FridgeOpen.wav-d20a055e0a220d6e91ff19481366046b.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

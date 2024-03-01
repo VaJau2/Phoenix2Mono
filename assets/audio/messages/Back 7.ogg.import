@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dtpuiy8glu7r7"
+path="res://.godot/imported/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/messages/Back 7.ogg"
-dest_files=[ "res://.import/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggstr" ]
+dest_files=["res://.godot/imported/Back 7.ogg-e2c448e24b82911424ea5d2aa90ff6b1.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

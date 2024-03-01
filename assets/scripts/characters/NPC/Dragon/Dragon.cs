@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class Dragon: NPC
+public partial class Dragon: NPC
 {
     private const float ATTACK_COOLDOWN = 1;
     public const int MOUTH_DAMAGE = 40;
@@ -22,8 +22,8 @@ public class Dragon: NPC
 
     public AudioStreamPlayer3D GetAudi() => audi;
     
-    [Export] private Array<AudioStreamSample> idleSounds;
-    [Export] private AudioStreamSample fireSound;
+    [Export] private Array<AudioStreamWav> idleSounds;
+    [Export] private AudioStreamWav fireSound;
 
     private Control healthBarObj;
     private ProgressBar healthBar;
@@ -31,12 +31,12 @@ public class Dragon: NPC
     private bool onetimeAnim;
     private AnimationPlayer anim;
 
-    private Spatial fireObj;
-    private Array<Particles> fireParts = new Array<Particles>();
+    private Node3D fireObj;
+    private Array<GpuParticles3D> fireParts = new();
     private AnimationPlayer fireAnim;
     private AudioStreamPlayer3D audiFire;
 
-    public Spatial mouthPos;
+    public Node3D mouthPos;
     public Character enemyInMouth;
     public float enemyMouthTimer;
     private bool onetimeDie;
@@ -47,18 +47,18 @@ public class Dragon: NPC
         healthBarObj = GetNode<Control>("/root/Main/Scene/canvas/dragonHealth");
         healthBar = healthBarObj.GetNode<ProgressBar>("ProgressBar");
         anim = GetNode<AnimationPlayer>("anim");
-        fireObj = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
-        fireParts.Add(fireObj.GetNode<Particles>("Particles"));
-        fireParts.Add(fireObj.GetNode<Particles>("Particles2"));
-        fireParts.Add(fireObj.GetNode<Particles>("Particles3"));
+        fireObj = GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/mouth/fire");
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles"));
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles2"));
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles3"));
         fireAnim = fireObj.GetNode<AnimationPlayer>("fireAnim");
         audiFire = GetNode<AudioStreamPlayer3D>("audi-fire");
-        mouthPos = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
+        mouthPos = GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/mouth");
         GRAVITY = 0;
         ROTATION_SPEED = 0.05f;
 
         await ToSignal(GetTree(), "idle_frame");
-        Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
+        Global.Get().player.FireWithWeapon += CheckPlayerShooting;
     }
 
     private void CheckPlayerShooting()
@@ -164,9 +164,9 @@ public class Dragon: NPC
         }
         
         onetimeAnim = true;
-        var rotY1 = Rotation.y;
+        var rotY1 = Rotation.Y;
         await Global.Get().ToTimer(0.1f, this);
-        var rotY2 = Rotation.y;
+        var rotY2 = Rotation.Y;
         if (rotY2 < rotY1)
         {
             if (anim.CurrentAnimation != "fly-right")
@@ -194,11 +194,11 @@ public class Dragon: NPC
 
     private void UpdateHeight(float speed, float newHeight)
     {
-        if (Translation.y > newHeight + 2f)
+        if (Position.Y > newHeight + 2f)
         {
             GRAVITY = speed;
         } 
-        else if (Translation.y < newHeight - 2f)
+        else if (Position.Y < newHeight - 2f)
         {
             GRAVITY = -speed;
         }
@@ -212,7 +212,7 @@ public class Dragon: NPC
     {
         if (!CloseToPoint)
         {
-            MoveTo(patrolPoints[patrolI].GlobalTransform.origin, 20);
+            MoveTo(patrolPoints[patrolI].GlobalTransform.Origin, 20);
         }
         else
         {
@@ -233,7 +233,7 @@ public class Dragon: NPC
     {
         if (IsInstanceValid(tempVictim))
         {
-            return GlobalTransform.origin.DistanceTo(tempVictim.GlobalTransform.origin);
+            return GlobalTransform.Origin.DistanceTo(tempVictim.GlobalTransform.Origin);
         }
 
         return -1;
@@ -241,7 +241,7 @@ public class Dragon: NPC
 
     private void SetFireOn(bool on)
     {
-        foreach (Particles fire in fireParts)
+        foreach (GpuParticles3D fire in fireParts)
         {
             fire.Emitting = on;
         }
@@ -272,8 +272,8 @@ public class Dragon: NPC
     {
         if (tempVictim == null || !IsInstanceValid(tempVictim))  return;
 
-        var pos = tempVictim.GlobalTransform.origin;
-        pos.y = GlobalTransform.origin.y;
+        var pos = tempVictim.GlobalTransform.Origin;
+        pos.Y = GlobalTransform.Origin.Y;
         LookAt(pos, Vector3.Up);
     }
 
@@ -281,9 +281,9 @@ public class Dragon: NPC
     {
         enemyInMouth.GlobalTransform = Global.SetNewOrigin(
             enemyInMouth.GlobalTransform, 
-            mouthPos.GlobalTransform.origin
+            mouthPos.GlobalTransform.Origin
         );
-        enemyInMouth.RotationDegrees = new Vector3(0, RotationDegrees.y + 90, -90);
+        enemyInMouth.RotationDegrees = new Vector3(0, RotationDegrees.Y + 90, -90);
         if (enemyInMouth is Player player)
         {
             player.Body.bodyRot = 0;
@@ -316,26 +316,28 @@ public class Dragon: NPC
         enemyInMouth.MayMove = true;
         enemyInMouth.CollisionLayer = 1;
         enemyInMouth.CollisionMask = 1;
-        enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.y, 0);
-        enemyInMouth.impulse = -GlobalTransform.basis.z * 3 + new Vector3(0, -2, 0);
+        enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.Y, 0);
+        enemyInMouth.Impulse = -GlobalTransform.Basis.Z * 3 + new Vector3(0, -2, 0);
         enemyInMouth = null;
         
         IsAttacking = false;
         SetAttackCooldown();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Velocity.Length() > 0) {
-            MoveAndSlide(Velocity);
+            MoveAndSlide();
         }
     
         if (Health <= 0) {
             if (isFalling)
             {
-                Velocity.x /= 2;
-                Velocity.y = -10;
-                Velocity.z /= 2;
+                Velocity = new Vector3(
+                    Velocity.X / 2,
+                    Velocity.Y - 10,
+                    Velocity.Z / 2
+                );
             }
             else
             {
@@ -351,7 +353,7 @@ public class Dragon: NPC
 
         float enemyDistance = GetEnemyDistance();
 
-        UpdateAttackTimer(delta, enemyDistance > 0);
+        UpdateAttackTimer((float)delta, enemyDistance > 0);
         if (Velocity.Length() > 0 && !onetimeAnim)
         {
             UpdateFlyAnims();
@@ -361,7 +363,7 @@ public class Dragon: NPC
         {
             if (enemyMouthTimer > 0)
             {
-                UpdateEnemyInMouth(delta);
+                UpdateEnemyInMouth((float)delta);
                 IsAttacking = false;
             }
             else
@@ -384,7 +386,7 @@ public class Dragon: NPC
                 {
                     Stop();
                     LookAtEnemy();
-                    fireWaitTimer -= delta;
+                    fireWaitTimer -= (float)delta;
                 }
                 else
                 {
@@ -396,14 +398,14 @@ public class Dragon: NPC
 
                     if (fireTimer > 0)
                     {
-                        fireTimer -= delta;
+                        fireTimer -= (float)delta;
                         LookAtEnemy();
 
                         if (!(enemyDistance > 0)) return;
                         
                         if (damageTimer > 0)
                         {
-                            damageTimer -= delta;
+                            damageTimer -= (float)delta;
                         }
                         else
                         {
@@ -427,16 +429,16 @@ public class Dragon: NPC
         {
             if (!IsAttacking || !IsInstanceValid(tempVictim))
             {
-                PlayIdleSounds(delta);
+                PlayIdleSounds((float)delta);
                 UpdatePatrolPoints();
                 UpdateHeight(BaseSpeed / 4f, IDLE_FLY_HEIGHT);
             }
             else
             {
                 int newHeight = isSmashAttack ? 8 : 16;
-                if (enemyDistance > 0 && enemyDistance < 60)
+                if (enemyDistance is > 0 and < 60)
                 {
-                    UpdateHeight(BaseSpeed, tempVictim.Translation.y + newHeight);
+                    UpdateHeight(BaseSpeed, tempVictim.Position.Y + newHeight);
                 }
                 else
                 {
@@ -446,7 +448,7 @@ public class Dragon: NPC
                 if (!CloseToPoint)
                 {
                     int distance = isSmashAttack ? 4 : 20;
-                    MoveTo(tempVictim.GlobalTransform.origin, distance);
+                    MoveTo(tempVictim.GlobalTransform.Origin, distance);
                 }
                 else
                 {

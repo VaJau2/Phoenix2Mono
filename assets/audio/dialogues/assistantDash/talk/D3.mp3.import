@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/D3.mp3-c824434ace38f05b3fa8f4968f295bbc.mp3str"
+uid="uid://dwj75gdj0xpy2"
+path="res://.godot/imported/D3.mp3-c824434ace38f05b3fa8f4968f295bbc.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantDash/talk/D3.mp3"
-dest_files=[ "res://.import/D3.mp3-c824434ace38f05b3fa8f4968f295bbc.mp3str" ]
+dest_files=["res://.godot/imported/D3.mp3-c824434ace38f05b3fa8f4968f295bbc.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

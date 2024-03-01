@@ -1,10 +1,10 @@
 using Godot;
 
-public class TerminalMode {
-
+public partial class TerminalMode 
+{
     protected Terminal terminal;
-    protected Viewport viewport;
-    protected MeshInstance screen;
+    protected SubViewport viewport;
+    protected MeshInstance3D screen;
     protected RichTextLabel textLabel;
     public bool startKeyPressed = false;
 
@@ -22,14 +22,14 @@ public class TerminalMode {
     public TerminalMode(Terminal terminal)
     {
         this.terminal = terminal;
-        viewport  = terminal.GetNode<Viewport>("Viewport");
-        screen    = terminal.GetNode<MeshInstance>("terminal");
-        textLabel = terminal.GetNode<RichTextLabel>("Viewport/Control/text");
+        viewport  = terminal.GetNode<SubViewport>("SubViewport");
+        screen    = terminal.GetNode<MeshInstance3D>("terminal");
+        textLabel = terminal.GetNode<RichTextLabel>("SubViewport/Control/text");
     }
 
     public virtual void LoadMode()
     {
-        SpatialMaterial material = screen.GetSurfaceMaterial(1) as SpatialMaterial;
+        StandardMaterial3D material = screen.GetSurfaceOverrideMaterial(1) as StandardMaterial3D;
         material.AlbedoColor = Colors.White;
         material.AlbedoTexture = viewport.GetTexture();
     }

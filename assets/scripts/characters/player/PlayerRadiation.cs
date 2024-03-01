@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class PlayerRadiation
+public partial class PlayerRadiation
 {
     private const int INCREASE_SPEED = 1;
     private const string RADIATION_COUNTER_ITEM = "radiationCounter";
@@ -22,7 +22,7 @@ public class PlayerRadiation
         get
         {
             var armorProps = player.Inventory.GetArmorProps();
-            if (!armorProps.Contains("ignoreRadiation")) return false;
+            if (!armorProps.ContainsKey("ignoreRadiation")) return false;
             
             var ignoreValue = bool.Parse(armorProps["ignoreRadiation"].ToString());
             return ignoreValue;

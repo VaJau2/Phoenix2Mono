@@ -2,7 +2,7 @@ using Godot;
 
 //поддержка патронов не добавлена
 //если необходима, нужно будет добавить сюда
-public class AddItemInChestTrigger : TriggerBase
+public partial class AddItemInChestTrigger : TriggerBase
 {
     [Export] private string[] itemsCode;
     [Export] private NodePath chestPath;
@@ -11,10 +11,10 @@ public class AddItemInChestTrigger : TriggerBase
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         
@@ -26,6 +26,6 @@ public class AddItemInChestTrigger : TriggerBase
                 chest.ChestHandler.AddNewItem(itemCode);
             }
         }
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

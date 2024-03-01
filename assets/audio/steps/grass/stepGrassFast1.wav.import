@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepGrassFast1.wav-332be1b0c78cdff8a78b09309edcdbe9.sample"
+type="AudioStreamWAV"
+uid="uid://dvllt20rsa55p"
+path="res://.godot/imported/stepGrassFast1.wav-332be1b0c78cdff8a78b09309edcdbe9.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/grass/stepGrassFast1.wav"
-dest_files=[ "res://.import/stepGrassFast1.wav-332be1b0c78cdff8a78b09309edcdbe9.sample" ]
+dest_files=["res://.godot/imported/stepGrassFast1.wav-332be1b0c78cdff8a78b09309edcdbe9.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,6 +1,6 @@
 using Godot;
 
-public class UsualMode: InventoryMode 
+public partial class UsualMode: InventoryMode 
 {
     private bool countClickTimer;
     private float clickTimer;
@@ -31,14 +31,14 @@ public class UsualMode: InventoryMode
         {
             if (UpdateDragging(@event)) return;
 
-            if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) 
+            if (Input.IsMouseButtonPressed(MouseButton.Right) && !isDragging && tempButton != null) 
             {
                 useHandler.DropTempItem();
             }
 
             if (@event is InputEventKey) 
             {
-                bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
             }
         }
     }

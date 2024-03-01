@@ -2,7 +2,7 @@ using System;
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerStealth : Node
+public partial class PlayerStealth : Node
 {
     public StealthStage Stage;
     private Label StealthLabel;
@@ -35,13 +35,13 @@ public class PlayerStealth : Node
         switch (newStage)
         {
             case StealthStage.Caution:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthCaution));
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthCautionEventHandler));
                 break;
             case StealthStage.Danger:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthDanger));
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthDangerEventHandler));
                 break;
             case StealthStage.Safe:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthSafe));
+                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthSafeEventHandler));
                 break;
         }
     }

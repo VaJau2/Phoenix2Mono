@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dlqp7s3q8mxi8"
+path.s3tc="res://.godot/imported/lab-2-floor_lab-walls-5.png-b687bac3d9bbc30464ecb8fa0f74d683.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={}
+
+[deps]
+
+source_file="res://assets/models/props/buildings/snow-base/laba/inside/lab-2-floor_lab-walls-5.png"
+dest_files=["res://.godot/imported/lab-2-floor_lab-walls-5.png-b687bac3d9bbc30464ecb8fa0f74d683.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

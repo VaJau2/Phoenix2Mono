@@ -2,16 +2,16 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnChest: FurnBase, ISavable, IChest 
+public partial class FurnChest: FurnBase, ISavable, IChest 
 {
     [Export] private bool isBag;
     [Export] private bool SpawnRandomItems;
     [Export] private string chestCode;
 
     [Export] 
-    public Array<string> startItemCodes = new Array<string>();
+    public Array<string> startItemCodes = new();
     [Export]
-    public Dictionary<string, int> startAmmoCount = new Dictionary<string, int>();
+    public Dictionary<string, int> startAmmoCount = new();
     
     public string ChestCode => chestCode;
     public ChestHandler ChestHandler { get; private set; }
@@ -33,34 +33,34 @@ public class FurnChest: FurnBase, ISavable, IChest
 
     public bool MayOpen => (IsOpen == ChestHandler.Menu.isOpen);
 
-    public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null)
+    public override void ClickFurn(AudioStreamWav openSound = null, float timer = 0, string openAnim = null)
     {
         if (!MayOpen) return;
 
         if (IsOpen) return;
         base.ClickFurn();
         ChestHandler.Open();
-        ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.MenuIsClosed += CloseFurn;
     }
 
     public void CloseFurn()
     {
         base.ClickFurn();
-        ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.MenuIsClosed -= CloseFurn;
     }
 
     public Dictionary GetSaveData()
     {
         Dictionary saveData = ChestHandler.GetSaveData();
 
-        if (Name.BeginsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
-            saveData.Add("pos_x", Transform.origin.x);
-            saveData.Add("pos_y", Transform.origin.y);
-            saveData.Add("pos_z", Transform.origin.z);
-            saveData.Add("rot_x", Transform.basis.GetEuler().x);
-            saveData.Add("rot_y", Transform.basis.GetEuler().y);
-            saveData.Add("rot_z", Transform.basis.GetEuler().z);
+            saveData.Add("pos_x", Transform.Origin.X);
+            saveData.Add("pos_y", Transform.Origin.Y);
+            saveData.Add("pos_z", Transform.Origin.Z);
+            saveData.Add("rot_x", Transform.Basis.GetEuler().X);
+            saveData.Add("rot_y", Transform.Basis.GetEuler().Y);
+            saveData.Add("rot_z", Transform.Basis.GetEuler().Z);
         }
 
         return saveData;
@@ -74,15 +74,15 @@ public class FurnChest: FurnBase, ISavable, IChest
         startItemCodes.Clear();
         startAmmoCount.Clear();
         
-        if (Name.BeginsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
             Vector3 newPos = new Vector3(Convert.ToSingle(data["pos_x"]), Convert.ToSingle(data["pos_y"]),
                 Convert.ToSingle(data["pos_z"]));
             Vector3 newRot = new Vector3(Convert.ToSingle(data["rot_x"]), Convert.ToSingle(data["rot_y"]),
                 Convert.ToSingle(data["rot_z"]));
 
-            Basis newBasis = new Basis(newRot);
-            Transform newTransform = new Transform(newBasis, newPos);
+            Basis newBasis = Basis.FromEuler(newRot);
+            Transform3D newTransform = new Transform3D(newBasis, newPos);
             Transform = newTransform;
         }
 

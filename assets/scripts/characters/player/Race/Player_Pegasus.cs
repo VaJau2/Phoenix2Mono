@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class Player_Pegasus : Player
+public partial class Player_Pegasus : Player
 {
     const float FLYING_FAST_SMASH_COOLDOWN = 0.5f;
     const float FLY_SPEED = 2.5f;
@@ -18,7 +18,7 @@ public class Player_Pegasus : Player
     private float flySpeed = FLY_SPEED;
 
     public AudioStreamPlayer wingsAudi;
-    private AudioStreamSample wingsSound;
+    private AudioStreamWav wingsSound;
 
     public bool IsFlying
     {
@@ -44,41 +44,41 @@ public class Player_Pegasus : Player
     {
         base._Ready();
         wingsAudi = GetNode<AudioStreamPlayer>("sound/audi_wings");
-        wingsSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/pegasus-wings.wav");
+        wingsSound = GD.Load<AudioStreamWav>("res://assets/audio/flying/pegasus-wings.wav");
         SetStartHealth(125);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
-        if (Body.RotationDegrees.z != 0)
+        if (Body.RotationDegrees.Z != 0)
         {
             Vector3 newRot = Body.RotationDegrees;
-            float decreaseSpeed = Mathf.Abs(newRot.z) * delta;
+            var decreaseSpeed = Mathf.Abs(newRot.Z) * (float)delta;
 
             if (IsFlyingFast)
             {
-                if (newRot.z > 1)
+                if (newRot.Z > 1)
                 {
-                    newRot.z -= decreaseSpeed;
+                    newRot.Z -= decreaseSpeed;
                 }
-                else if (newRot.z < -1)
+                else if (newRot.Z < -1)
                 {
-                    newRot.z += decreaseSpeed;
+                    newRot.Z += decreaseSpeed;
                 }
                 else
                 {
-                    newRot.z = 0;
+                    newRot.Z = 0;
                 }
             }
             else if (IsFlying)
             {
-                newRot.z = Mathf.MoveToward(newRot.z, 0, 150f * delta);
+                newRot.Z = Mathf.MoveToward(newRot.Z, 0, 150f * (float)delta);
             }
             else
             {
-                newRot.z = 0;
+                newRot.Z = 0;
             }
 
             Body.RotationDegrees = newRot;
@@ -88,7 +88,7 @@ public class Player_Pegasus : Player
         {
             if (flyingFastTimer < FLYING_FAST_SMASH_COOLDOWN)
             {
-                flyingFastTimer += delta;
+                flyingFastTimer += (float)delta;
             }
             else
             {
@@ -185,12 +185,12 @@ public class Player_Pegasus : Player
         }
         else
         {
-            return Velocity.y + (GRAVITY * delta + tempShake);
+            return Velocity.X + (GRAVITY * delta + tempShake);
         }
     }
 
 
-    public override int GetSpeed()
+    public override int GetVelocity()
     {
         if (IsFlying)
         {
@@ -209,10 +209,10 @@ public class Player_Pegasus : Player
                 flyIncrease = 5f;
             }
 
-            return (int)(base.GetSpeed() * flySpeed);
+            return (int)(base.GetVelocity() * flySpeed);
         }
 
-        return base.GetSpeed();
+        return base.GetVelocity();
     }
 
     public override float GetDeacceleration()
@@ -227,7 +227,7 @@ public class Player_Pegasus : Player
             if (speedX != 0)
             {
                 Vector3 newRot = Body.RotationDegrees;
-                newRot.z += speedX * -MouseSensivity * 0.5f;
+                newRot.Z += speedX * -MouseSensivity * 0.5f;
                 Body.RotationDegrees = newRot;
             }
         }
@@ -243,7 +243,7 @@ public class Player_Pegasus : Player
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        if (!data.Contains("is_flying")) return;
+        if (!data.ContainsKey("is_flying")) return;
 
         IsFlying = Convert.ToBoolean(data["is_flying"]);
     }

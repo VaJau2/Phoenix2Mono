@@ -1,6 +1,6 @@
 using Godot;
 
-public class DeathMenu : MenuBase
+public partial class DeathMenu : MenuBase
 {
     MenuAudi audi;
 

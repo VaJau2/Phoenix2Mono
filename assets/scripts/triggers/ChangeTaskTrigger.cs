@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 //Меняет код текущей задачи при активации
 //если активен при старте сцены, меняет задачу сразу
-class ChangeTaskTrigger: TriggerBase
+partial class ChangeTaskTrigger: TriggerBase
 {
     [Export] public string NewTaskCode;
     [Export] public bool showMessage = true;
@@ -14,7 +14,7 @@ class ChangeTaskTrigger: TriggerBase
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
@@ -23,19 +23,19 @@ class ChangeTaskTrigger: TriggerBase
         base.SetActive(newActive);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         messages.ChangeTaskCode(NewTaskCode, showMessage);
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
     
     public void _on_body_entered(Node body)
     {
         if (!(body is Player)) return;
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

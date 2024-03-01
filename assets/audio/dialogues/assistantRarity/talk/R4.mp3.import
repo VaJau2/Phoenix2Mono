@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/R4.mp3-f62a3abd9afd46c0209054ea812a47ac.mp3str"
+uid="uid://c1fk0lkp715hi"
+path="res://.godot/imported/R4.mp3-f62a3abd9afd46c0209054ea812a47ac.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantRarity/talk/R4.mp3"
-dest_files=[ "res://.import/R4.mp3-f62a3abd9afd46c0209054ea812a47ac.mp3str" ]
+dest_files=["res://.godot/imported/R4.mp3-f62a3abd9afd46c0209054ea812a47ac.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

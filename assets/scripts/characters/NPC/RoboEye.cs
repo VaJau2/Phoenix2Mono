@@ -1,10 +1,10 @@
 using Godot;
 using Godot.Collections;
 
-public class RoboEye : NPC
+public partial class RoboEye : NPC
 {
     [Export] public float COME_DISTANCE = 3.5f;
-    [Export] public AudioStreamSample walkSound;
+    [Export] public AudioStreamWav walkSound;
 
     public bool IsActive { get; private set; } = true;
     
@@ -16,7 +16,7 @@ public class RoboEye : NPC
     private string tempMaterial;
     
     [Signal]
-    public delegate void FoundEnemy();
+    public delegate void FoundEnemyEventHandler();
 
     public override Dictionary GetSaveData()
     {
@@ -74,10 +74,10 @@ public class RoboEye : NPC
         string path = "res://assets/models/characters/robots/roboEye/roboEye";
         path += (materialName != "") ? "-" + materialName : "";
         path += ".material";
-        SpatialMaterial newMaterial = GD.Load<SpatialMaterial>(path);
+        StandardMaterial3D newMaterial = GD.Load<StandardMaterial3D>(path);
         
-        GetNode<MeshInstance>("corpus/monitor/screen").SetSurfaceMaterial(0, newMaterial);
-        GetNode<MeshInstance>("corpus/monitor/lamp").SetSurfaceMaterial(0, newMaterial);
+        GetNode<MeshInstance3D>("corpus/monitor/screen").SetSurfaceOverrideMaterial(0, newMaterial);
+        GetNode<MeshInstance3D>("corpus/monitor/lamp").SetSurfaceOverrideMaterial(0, newMaterial);
         tempMaterial = materialName;
     }
     
@@ -105,7 +105,7 @@ public class RoboEye : NPC
     private void GoTo(Vector3 place, float distance, bool mayRun = true)
     {
         cameToPlace = false;
-        var pos = GlobalTransform.origin;
+        var pos = GlobalTransform.Origin;
 
         var tempDistance = pos.DistanceTo(place);
         if (tempDistance < distance)
@@ -116,7 +116,7 @@ public class RoboEye : NPC
 
         if (path == null)
         {
-            path = NavigationServer.MapGetPath(GetWorld().NavigationMap, pos, place, true);
+            path = NavigationServer3D.MapGetPath(GetWorld3D().NavigationMap, pos, place, true);
             pathI = 0;
         }
 
@@ -163,9 +163,9 @@ public class RoboEye : NPC
                     {
                         GlobalTransform = Global.SetNewOrigin(GlobalTransform, myStartPos);
                         Rotation = new Vector3(
-                            Rotation.x,
-                            myStartRot.y,
-                            Rotation.z
+                            Rotation.X,
+                            myStartRot.Y,
+                            Rotation.Z
                         );
                         anim.Play(IdleAnim);
                     }
@@ -178,7 +178,7 @@ public class RoboEye : NPC
                     } 
                     else 
                     {
-                        GoTo(patrolPoints[patrolI].GlobalTransform.origin, COME_DISTANCE, false);
+                        GoTo(patrolPoints[patrolI].GlobalTransform.Origin, COME_DISTANCE, false);
                         
                         if (cameToPlace) 
                         {
@@ -202,7 +202,7 @@ public class RoboEye : NPC
                     SetState(NPCState.Idle);
                     return;
                 }
-                EmitSignal(nameof(FoundEnemy));
+                EmitSignal(nameof(FoundEnemyEventHandler));
                 Stop();
                 
                 break;
@@ -234,7 +234,7 @@ public class RoboEye : NPC
         anim.Play(IdleAnim);
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Health <= 0)
         {
@@ -248,6 +248,6 @@ public class RoboEye : NPC
         }
 
         base._Process(delta);
-        UpdateAI(delta);
+        UpdateAI((float)delta);
     }
 }

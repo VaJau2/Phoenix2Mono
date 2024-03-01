@@ -1,11 +1,11 @@
 using Godot;
 using Godot.Collections;
 
-public class Explosion : Spatial, ISavable
+public partial class Explosion : Node3D, ISavable
 {
     public bool checkWalls = true;
 
-    private Array<Particles> parts = new Array<Particles>();
+    private Array<GpuParticles3D> parts = [];
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
 
@@ -16,8 +16,9 @@ public class Explosion : Spatial, ISavable
         anim = GetNode<AnimationPlayer>("anim");
         audi = GetNode<AudioStreamPlayer3D>("audi");
         var partsParent = GetNode("parts");
-        foreach (Particles tempPart in partsParent.GetChildren())
+        foreach (var node in partsParent.GetChildren())
         {
+            var tempPart = (GpuParticles3D)node;
             parts.Add(tempPart);
         }
     }
@@ -30,7 +31,7 @@ public class Explosion : Spatial, ISavable
         if (checkWalls)
         {
             GetNode<AnimationPlayer>("../wallparts/anim").Play("explode");
-            GetNode<CollisionShape>("../WallShape").Disabled = true;
+            GetNode<CollisionShape3D>("../WallShape").Disabled = true;
         }
        
         foreach (var part in parts)
@@ -57,9 +58,9 @@ public class Explosion : Spatial, ISavable
     public void LoadData(Dictionary savedData)
     {
         exploded = System.Convert.ToBoolean(savedData["exploded"]);
-        if (savedData.Contains("checkWalls"))
+        if (savedData.TryGetValue("checkWalls", out var checkWallsValue))
         {
-            checkWalls = System.Convert.ToBoolean(savedData["checkWalls"]);
+            checkWalls = checkWallsValue.AsBool();
         }
 
         if (!exploded) return;
@@ -68,6 +69,6 @@ public class Explosion : Spatial, ISavable
         var wallsAnim = GetNode<AnimationPlayer>("../wallparts/anim");
         wallsAnim.Play("explode");
         wallsAnim.Seek(wallsAnim.CurrentAnimationLength, true);
-        GetNode<CollisionShape>("../WallShape").Disabled = true;
+        GetNode<CollisionShape3D>("../WallShape").Disabled = true;
     }
 }

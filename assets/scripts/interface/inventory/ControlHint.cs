@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class ControlHint : Control
+public partial class ControlHint : Control
 {
     [Export] private string actionKey;
     [Export] private bool holdDelay = true;
@@ -11,7 +11,7 @@ public class ControlHint : Control
     [Export] private bool isMove;
     private bool reverse;
 
-    [Export] private Array<Texture> icons = new Array<Texture>();
+    [Export] private Array<Texture2D> icons = new();
     private TextureRect icon;
     private int indexIcon;
     private float changeTimer = 1f;
@@ -36,10 +36,10 @@ public class ControlHint : Control
         if (icons.Count > 0 || isMove || anim != null) SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        if (icons.Count > 0) Iconshow(delta);
-        if (isMove) MoveIcon(delta);
+        if (icons.Count > 0) Iconshow((float)delta);
+        if (isMove) MoveIcon((float)delta);
         if (anim != null) UpdateHoldIcon();
     }
 
@@ -53,11 +53,11 @@ public class ControlHint : Control
     {
         if (!InputMap.HasAction(actionKey)) return;
 
-        var actions = InputMap.GetActionList(actionKey);
+        var actions = InputMap.ActionGetEvents(actionKey);
 
         if (actions[0] is InputEventKey inputKey)
         {
-            icon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + inputKey + ".png");
+            icon.Texture = GD.Load<Texture2D>("res://assets/textures/interface/icons/buttons/" + inputKey + ".png");
         }
     }
 
@@ -91,12 +91,12 @@ public class ControlHint : Control
 
         if (reverse)
         {
-            if (icon.RectPosition.x < 5) icon.RectPosition += new Vector2(delta, 0);
+            if (icon.Position.X < 5) icon.Position += new Vector2(delta, 0);
             else reverse = false;
         }
         else
         {
-            if (icon.RectPosition.x > -5) icon.RectPosition -= new Vector2(delta, 0);
+            if (icon.Position.X > -5) icon.Position -= new Vector2(delta, 0);
             else reverse = true;
         }
     }

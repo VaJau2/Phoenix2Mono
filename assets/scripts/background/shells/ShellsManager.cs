@@ -1,16 +1,16 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 using System;
 
 //управляет статичными мешами гильз
 //ограничивает их общее количество
 //сохраняет и загружает сохраненные меши гильз
-public class ShellsManager : Spatial, ISavable
+public partial class ShellsManager : Node3D, ISavable
 {
     [Export]
     private int shellsLimit = 20;
 
-    public void AddShell(MeshInstance shell)
+    public void AddShell(MeshInstance3D shell)
     {
         AddChild(shell);
         if (GetChildCount() >= shellsLimit)
@@ -22,18 +22,18 @@ public class ShellsManager : Spatial, ISavable
     public Dictionary GetSaveData()
     {
         Dictionary savingData = new Dictionary();
-        foreach(MeshInstance shell in GetChildren())
+        foreach(MeshInstance3D shell in GetChildren())
         {
             savingData.Add(shell.Name, new Dictionary
             {
                 {"meshPath", shell.Mesh.ResourcePath },
-                {"pos_x", shell.GlobalTransform.origin.x},
-                {"pos_y", shell.GlobalTransform.origin.y},
-                {"pos_z", shell.GlobalTransform.origin.z},
-                {"rot_x", shell.GlobalTransform.basis.GetEuler().x},
-                {"rot_y", shell.GlobalTransform.basis.GetEuler().y},
-                {"rot_z", shell.GlobalTransform.basis.GetEuler().z},
-                {"scale", shell.Scale.x }
+                {"pos_x", shell.GlobalTransform.Origin.X},
+                {"pos_y", shell.GlobalTransform.Origin.Y},
+                {"pos_z", shell.GlobalTransform.Origin.Z},
+                {"rot_x", shell.GlobalTransform.Basis.GetEuler().X},
+                {"rot_y", shell.GlobalTransform.Basis.GetEuler().Y},
+                {"rot_z", shell.GlobalTransform.Basis.GetEuler().Z},
+                {"scale", shell.Scale.X }
             });
         }
         return savingData;
@@ -43,7 +43,7 @@ public class ShellsManager : Spatial, ISavable
     {
         foreach(string shellName in data.Keys)
         {
-            if (data[shellName] is Dictionary shellData)
+            if (data[shellName].AsGodotDictionary() is { } shellData)
             {
                 CallDeferred(nameof(LoadShell), shellData);
             }
@@ -57,10 +57,10 @@ public class ShellsManager : Spatial, ISavable
         float scaleValue = Convert.ToSingle(shellData["scale"]);
         Vector3 newScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
-        Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
+        Basis newBasis = Basis.FromEuler(newRot);
+        Transform3D newTransform = new Transform3D(newBasis, newPos);
 
-        MeshInstance shell = new MeshInstance();
+        MeshInstance3D shell = new MeshInstance3D();
         Mesh newMesh = GD.Load<Mesh>(shellData["meshPath"].ToString());
         shell.Mesh = newMesh;
         AddChild(shell);

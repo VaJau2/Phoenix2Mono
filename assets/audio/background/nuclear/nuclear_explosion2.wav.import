@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/nuclear_explosion2.wav-952fd061851e3632a9ef19fdf992216a.sample"
+type="AudioStreamWAV"
+uid="uid://bpdbt01sw2v1w"
+path="res://.godot/imported/nuclear_explosion2.wav-952fd061851e3632a9ef19fdf992216a.sample"
 
 [deps]
 
 source_file="res://assets/audio/background/nuclear/nuclear_explosion2.wav"
-dest_files=[ "res://.import/nuclear_explosion2.wav-952fd061851e3632a9ef19fdf992216a.sample" ]
+dest_files=["res://.godot/imported/nuclear_explosion2.wav-952fd061851e3632a9ef19fdf992216a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

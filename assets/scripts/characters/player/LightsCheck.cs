@@ -1,19 +1,19 @@
 using Godot;
 using System.Collections.Generic;
 
-public class LightsCheck : Area
+public partial class LightsCheck : Area3D
 {
-    private List<Spatial> myLights = new List<Spatial>();
+    private List<Node3D> myLights = new();
     private int lightI;
 
-    private List<Spatial> myLamps = new List<Spatial>();
+    private List<Node3D> myLamps = new();
     private int lampI;
 
     public bool OnLight;
 
-    public void _on_lightsCheck_body_entered(Spatial body)
+    public void _on_lightsCheck_body_entered(Node3D body)
     {
-        if (body.Name.Contains("Light"))
+        if (body.Name.ToString().Contains("Light3D"))
         {
             var lightSource = body.GetNodeOrNull<BreakableObject>("lightSource");
             if (lightSource != null && !lightSource.Broken) 
@@ -22,10 +22,10 @@ public class LightsCheck : Area
                 myLights.Add(body);
             }
         }
-        if (body.Name.Contains("lamp"))
+        
+        if (body.Name.ToString().Contains("lamp"))
         {
-            var lamp = body as BreakableObject;
-            if (lamp != null && !lamp.Broken)
+            if (body is BreakableObject { Broken: false })
             {
                 OnLight = true;
                 myLamps.Add(body);
@@ -33,21 +33,21 @@ public class LightsCheck : Area
         }
     }
 
-    public void _on_lightsCheck_body_exited(Spatial body)
+    public void _on_lightsCheck_body_exited(Node3D body)
     {
-        if (body.Name.Contains("Light") && myLights.Contains(body))
+        if (body.Name.ToString().Contains("Light3D") && myLights.Contains(body))
         {
             myLamps.Remove(body);
-            checkOff();
+            CheckOff();
         }
-        if (body.Name.Contains("lamp") && myLamps.Contains(body))
+        if (body.Name.ToString().Contains("lamp") && myLamps.Contains(body))
         {
             myLamps.Remove(body);
-            checkOff();
+            CheckOff();
         }
     }
 
-    private void checkOff()
+    private void CheckOff()
     {
         if (myLamps.Count == 0 && myLights.Count == 0)
         {
@@ -55,7 +55,7 @@ public class LightsCheck : Area
         }
     }
 
-    int increaseI(int value, int arraySize)
+    int IncreaseI(int value, int arraySize)
     {
         if (value < arraySize - 1) {
             value++;
@@ -65,17 +65,20 @@ public class LightsCheck : Area
         return value;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (myLights.Count > 0)
         {
-            if(myLights[lightI].GetNode("lightSource") == null)
+            if (myLights[lightI].GetNode("lightSource") == null)
             {
                 myLights.RemoveAt(lightI);
-                checkOff();
+                CheckOff();
             }
-            increaseI(lightI, myLights.Count);
-        } else {
+
+            IncreaseI(lightI, myLights.Count);
+        }
+        else
+        {
             lightI = 0;
         }
 
@@ -87,15 +90,17 @@ public class LightsCheck : Area
                 var tempLamp = myLamps[lampI] as BreakableObject;
                 lampNullOrBroken = tempLamp.Broken;
             }
-                
-            if(lampNullOrBroken)
+
+            if (lampNullOrBroken)
             {
                 myLamps.RemoveAt(lampI);
-                checkOff();
+                CheckOff();
             }
-            increaseI(lampI, myLamps.Count);
 
-        } else {
+            IncreaseI(lampI, myLamps.Count);
+        }
+        else
+        {
             lampI = 0;
         }
     }

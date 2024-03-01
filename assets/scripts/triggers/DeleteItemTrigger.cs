@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DeleteItemTrigger : TriggerBase
+public partial class DeleteItemTrigger : TriggerBase
 {
     [Export] public string ItemToCheck;
     
@@ -11,10 +11,10 @@ public class DeleteItemTrigger : TriggerBase
         if (!IsActive) return;
 
         await ToSignal(GetTree(), "idle_frame");
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!string.IsNullOrEmpty(ItemToCheck))
         {
@@ -22,6 +22,6 @@ public class DeleteItemTrigger : TriggerBase
             inventory.RemoveItemIfExists(ItemToCheck);
         }
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

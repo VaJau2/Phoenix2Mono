@@ -1,10 +1,11 @@
-﻿using Godot;
+using Godot;
 using System.Collections.Generic;
+using Godot.Collections;
 
-public class ActivateTrigger : TriggerBase
+public partial class ActivateTrigger : TriggerBase
 {
-    [Export] private List<NodePath> nodePaths;
-    private List<IActivated> nodes = new List<IActivated>();
+    [Export] private Array<NodePath> nodePaths;
+    private List<IActivated> nodes = [];
 
     public override void _Ready()
     {
@@ -25,10 +26,10 @@ public class ActivateTrigger : TriggerBase
             node.SetActive(true);
         }
             
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
-    public override  void _on_activate_trigger()
+    public override  void OnActivateTrigger()
     {
         SetActive(true);
     }

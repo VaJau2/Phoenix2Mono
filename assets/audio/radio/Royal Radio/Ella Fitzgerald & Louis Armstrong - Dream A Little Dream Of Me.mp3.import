@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3-ff9ce2774c68d78e720d9c52225312a0.mp3str"
+uid="uid://b4sw417e0dd3"
+path="res://.godot/imported/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3-ff9ce2774c68d78e720d9c52225312a0.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Royal Radio/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3"
-dest_files=[ "res://.import/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3-ff9ce2774c68d78e720d9c52225312a0.mp3str" ]
+dest_files=["res://.godot/imported/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3-ff9ce2774c68d78e720d9c52225312a0.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

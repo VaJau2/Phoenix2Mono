@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public class LoadMenu : Control
+public partial class LoadMenu : Control
 {
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
     
     private MenuBase parentMenu;
     
@@ -87,7 +87,7 @@ public class LoadMenu : Control
         {
             var fileName = tempTableLine.name;
             var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            var tempTime = new File().GetModifiedTime(filePath);
+            var tempTime = FileAccess.GetModifiedTime(filePath);
             if (tempTime <= lastTime) continue;
             lastFileName = fileName;
             lastTime = tempTime;
@@ -96,7 +96,7 @@ public class LoadMenu : Control
         return lastFileName;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!(parentMenu is PauseMenu)) return;
         if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quickload"))
@@ -117,7 +117,7 @@ public class LoadMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(nameof(BackPressedEventHandler));
     }
 
     public void _on_mouse_entered(string section, string messageLink)
@@ -160,15 +160,14 @@ public class LoadMenu : Control
     {
         try
         {
-            var saveFile = new File();
             var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
+            var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
 
             //для поддержки старых сохранений, в которых не было строчки с названием автосейва
             var checkLine = saveFile.GetLine();
-            if (checkLine.BeginsWith(SaveMenu.AUTOSAVE_PREFIX))
+            if (checkLine.StartsWith(SaveMenu.AUTOSAVE_PREFIX))
             {
                 Global.Get().autosaveName = checkLine.Remove(0, SaveMenu.AUTOSAVE_PREFIX.Length);
                 Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());
@@ -178,15 +177,15 @@ public class LoadMenu : Control
                 Global.Get().autosaveName = "old_autosave";
                 Global.Get().playerRace = Global.RaceFromString(checkLine);
             }
-            
-            var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
-            var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
+
+            var deletedObjects = Json.ParseString(saveFile.GetLine()).AsGodotArray();
+            var levelsData = Json.ParseString(saveFile.GetLine()).AsGodotDictionary();
             saveFile.Close();
 
             loader.LoadLevel(levelNum, levelsData, deletedObjects);
             return true;
         }
-        catch (Exception ex)
+        catch
         {
             return false;
         }

@@ -1,11 +1,11 @@
 using Godot;
 using Godot.Collections;
 
-public class Credits : Control
+public partial class Credits : Control
 {
     private const float TIMER_COOLDOWN = 3f;
     
-    private Array titles;
+    private Array<Node> titles;
     private int step;
 
     private AnimationPlayer anim;
@@ -14,14 +14,14 @@ public class Credits : Control
     private AnimationPlayer skipAnim;
     private readonly Color visible = new (1, 1, 1);
     private readonly Color invisible = new (1, 1, 1, 0);
-    private float timer;
+    private double timer;
 
     public override void _Ready()
     {
         MenuBase.LoadColorForChildren(this);
 
         anim = GetNode<AnimationPlayer>("Animator");
-        anim.Connect("animation_finished", this, nameof(NextCredit));
+        anim.AnimationFinished += _ => NextCredit();
 
         skip = GetNode<Label>("Skip");
         skipAnim = skip.GetNode<AnimationPlayer>("anim");
@@ -47,7 +47,7 @@ public class Credits : Control
         SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         timer += delta;
 
@@ -58,7 +58,7 @@ public class Credits : Control
         SetProcess(false);
     }
 
-    private void NextCredit(string value = "")
+    private void NextCredit()
     {
         if (step > titles.Count - 1)
         {

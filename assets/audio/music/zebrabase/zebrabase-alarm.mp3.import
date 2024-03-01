@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str"
+uid="uid://cpxto4bkjuqv2"
+path="res://.godot/imported/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/music/zebrabase/zebrabase-alarm.mp3"
-dest_files=[ "res://.import/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str" ]
+dest_files=["res://.godot/imported/zebrabase-alarm.mp3-1337a4cf968becfcc238e3762dcc9557.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

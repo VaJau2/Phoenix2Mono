@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 using System;
 
@@ -6,7 +6,7 @@ using System;
 //играет звуки падения
 //удаляет все, кроме меша, когда перестает двигаться
 //перемещает меш в ShellsManager, чтобы он там сохранялся
-public class WeaponShell : RigidBody
+public partial class WeaponShell : RigidBody3D
 {
     const float STATIC_TIME = 0.5f;
     const float MIN_STATIC_SPEED = 0.5f;
@@ -16,20 +16,20 @@ public class WeaponShell : RigidBody
     [Export]
     public Array<AudioStream> shellSound;
 
-    private MeshInstance mesh;
+    private MeshInstance3D mesh;
     private AudioStreamPlayer3D audi;
 
-    float audiCooldown;
-    float fallTimer;
-    float timer;
+    double audiCooldown;
+    double fallTimer;
+    double timer;
 
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        mesh = GetNode<MeshInstance>("mesh");
+        mesh = GetNode<MeshInstance3D>("mesh");
     }
-
-    public override void _Process(float delta)
+    
+    public override void _Process(double delta)
     {
         if (audiCooldown > 0)
         {
@@ -60,7 +60,7 @@ public class WeaponShell : RigidBody
             var shellsManager = GetNodeOrNull<ShellsManager>("/root/Main/Scene/shells");
             if (shellsManager != null)
             {
-                Vector3 meshPos = GlobalTransform.origin;
+                Vector3 meshPos = GlobalTransform.Origin;
                 Vector3 meshRot = RotationDegrees;
                 RemoveChild(mesh);
                 shellsManager.AddShell(mesh);
@@ -80,23 +80,23 @@ public class WeaponShell : RigidBody
         if (shellSound.Count == 0) return;
         if (audiCooldown > 0) return;
 
-        if (body is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null)
-        {
-            var friction = collideBody.PhysicsMaterialOverride.Friction;
-            var materialName = MatNames.GetMatName(friction);
+        if (body is not StaticBody3D collideBody || collideBody.PhysicsMaterialOverride == null) 
+            return;
+        
+        var friction = collideBody.PhysicsMaterialOverride.Friction;
+        var materialName = MatNames.GetMatName(friction);
 
-            if (materialName == "wood"
-             || materialName == "dirt"
-             || materialName == "stairs"
-             || materialName == "stone"
-             || materialName == "metal")
-            {
-                Random rand = new Random();
-                int randI = rand.Next(0, shellSound.Count);
-                audi.Stream = shellSound[randI];
-                audi.Play();
-                audiCooldown = AUDI_COOLDOWN;
-            }
+        if (materialName == "wood"
+            || materialName == "dirt"
+            || materialName == "stairs"
+            || materialName == "stone"
+            || materialName == "metal")
+        {
+            Random rand = new Random();
+            int randI = rand.Next(0, shellSound.Count);
+            audi.Stream = shellSound[randI];
+            audi.Play();
+            audiCooldown = AUDI_COOLDOWN;
         }
     }
 }

@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=7]
 
 [node name="DealthMenu" type="Control" groups=["ignore_color"]]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -30,10 +30,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="Menu"]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 217.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 217.0
+offset_bottom = 42.0
 theme = ExtResource( 2 )
 text = "/Phoenix2/Экран_Смерти"
 __meta__ = {
@@ -43,10 +43,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="Menu"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -876.0
-margin_top = 90.0
-margin_right = 876.0
-margin_bottom = 112.0
+offset_left = -876.0
+offset_top = 90.0
+offset_right = 876.0
+offset_bottom = 112.0
 theme = ExtResource( 2 )
 text = "==========================================================================================================================================================================================================================="
 align = 1
@@ -56,8 +56,8 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Menu"]
 anchor_right = 1.0
-margin_top = 105.0
-margin_bottom = 125.0
+offset_top = 105.0
+offset_bottom = 125.0
 theme = ExtResource( 2 )
 text = "[Пауза]"
 align = 1
@@ -68,10 +68,10 @@ __meta__ = {
 [node name="Label3" type="Label" parent="Menu"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -876.0
-margin_top = 125.0
-margin_right = 876.0
-margin_bottom = 147.0
+offset_left = -876.0
+offset_top = 125.0
+offset_right = 876.0
+offset_bottom = 147.0
 theme = ExtResource( 2 )
 text = "==========================================================================================================================================================================================================================="
 align = 1
@@ -83,10 +83,10 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -76.0
-margin_right = -44.0
-margin_bottom = -51.0
+offset_left = 40.0
+offset_top = -76.0
+offset_right = -44.0
+offset_bottom = -51.0
 theme = ExtResource( 2 )
 text = "               [Последнее сохранение]"
 align = 0
@@ -98,10 +98,10 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -44.0
-margin_right = -44.0
-margin_bottom = -19.0
+offset_left = 40.0
+offset_top = -44.0
+offset_right = -44.0
+offset_bottom = -19.0
 theme = ExtResource( 2 )
 text = "               [Выбрать сохранение]"
 align = 0
@@ -113,10 +113,10 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -12.0
-margin_right = -44.0
-margin_bottom = 13.0
+offset_left = 40.0
+offset_top = -12.0
+offset_right = -44.0
+offset_bottom = 13.0
 theme = ExtResource( 2 )
 text = "               [В главное меню]"
 align = 0
@@ -140,10 +140,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = -68.0
-margin_right = 176.0
-margin_bottom = 68.0
+offset_left = -176.0
+offset_top = -68.0
+offset_right = 176.0
+offset_bottom = 68.0
 color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -151,7 +151,7 @@ __meta__ = {
 
 [node name="border-up" type="ColorRect" parent="modalError/back"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -160,28 +160,28 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="border-left" type="ColorRect" parent="modalError/back"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="border-left2" type="ColorRect" parent="modalError/back"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 
 [node name="Header" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 8.0
-margin_right = -16.0
-margin_bottom = -102.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -102.0
 theme = ExtResource( 6 )
 text = "Ошибка"
 align = 1
@@ -189,19 +189,19 @@ align = 1
 [node name="Text" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = -16.0
-margin_bottom = -62.0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = -62.0
 theme = ExtResource( 5 )
 text = "Файл поврежден"
 align = 1
 
 [node name="OK" type="Button" parent="modalError/back"]
-margin_left = 120.0
-margin_top = 104.0
-margin_right = 232.0
-margin_bottom = 124.0
+offset_left = 120.0
+offset_top = 104.0
+offset_right = 232.0
+offset_bottom = 124.0
 theme = ExtResource( 5 )
 text = "[ну блин]"
 
@@ -209,10 +209,10 @@ text = "[ну блин]"
 modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 45.0
-margin_top = -50.0
-margin_right = 220.0
-margin_bottom = -28.0
+offset_left = 45.0
+offset_top = -50.0
+offset_right = 220.0
+offset_bottom = -28.0
 theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -222,10 +222,10 @@ __meta__ = {
 modulate = Color( 0.223529, 0.752941, 0.145098, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = -50.0
-margin_right = 39.0
-margin_bottom = -28.0
+offset_left = 30.0
+offset_top = -50.0
+offset_right = 39.0
+offset_bottom = -28.0
 theme = ExtResource( 2 )
 text = ">"
 __meta__ = {

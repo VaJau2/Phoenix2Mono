@@ -5,17 +5,17 @@ using System.Linq;
 //обработчик эффектов
 //рисует иконки эффектов через интерфейс
 //вызывает нужные методы эффектов
-public class EffectHandler: Node
+public partial class EffectHandler: Node
 {
-    public List<Effect> tempEffects { get; } = new List<Effect>();
+    public List<Effect> tempEffects { get; } = new();
     private PackedScene iconPrefab;
     public Messages messages;
-    private HeartbeatEffect heartbeat = new HeartbeatEffect();
+    private HeartbeatEffect heartbeat = new();
 
     private Player player => Global.Get().player;
 
-    private Dictionary<string, int> startParameters = new Dictionary<string, int>();
-    private Dictionary<string, float> startFloatParameters = new Dictionary<string, float>();
+    private Dictionary<string, int> startParameters = new();
+    private Dictionary<string, float> startFloatParameters = new();
 
     //если загружается другой уровень
     public void OnLoadOtherLevel()
@@ -84,7 +84,7 @@ public class EffectHandler: Node
         newEffect.SetOn(this);
         tempEffects.Add(newEffect);
 
-        EffectIcon newIcon = (EffectIcon)iconPrefab.Instance();
+        EffectIcon newIcon = iconPrefab.Instantiate<EffectIcon>();
         AddChild(newIcon);
         newIcon.SetData(newEffect.GetType().Name, newEffect.iconTexture);
         newEffect.icon = newIcon;
@@ -240,16 +240,16 @@ public class EffectHandler: Node
         messages = GetNode<Messages>("../messages");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempEffects.Count > 0) 
         {
             foreach(Effect effect in tempEffects) 
             {
-                if (!effect.Count(delta)) break;
+                if (!effect.Count((float)delta)) break;
             }
             
-            heartbeat.CheckOverdose(delta);
+            heartbeat.CheckOverdose((float)delta);
         }
     }
 }

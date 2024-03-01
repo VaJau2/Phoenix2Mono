@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str"
+uid="uid://5a8v6ltxk63f"
+path="res://.godot/imported/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/Work/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3"
-dest_files=[ "res://.import/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str" ]
+dest_files=["res://.godot/imported/Patsy Montana - I Didnt Know The Gun Was Loaded.mp3-2333bd83cc3520aed04bf5a5afb4a6f8.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

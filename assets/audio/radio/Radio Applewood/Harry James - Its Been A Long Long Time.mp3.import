@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Harry James - Its Been A Long Long Time.mp3-b5bb15bf738e575811f074560dab8bdb.mp3str"
+uid="uid://dxhwptpgajkt1"
+path="res://.godot/imported/Harry James - Its Been A Long Long Time.mp3-b5bb15bf738e575811f074560dab8bdb.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/Harry James - Its Been A Long Long Time.mp3"
-dest_files=[ "res://.import/Harry James - Its Been A Long Long Time.mp3-b5bb15bf738e575811f074560dab8bdb.mp3str" ]
+dest_files=["res://.godot/imported/Harry James - Its Been A Long Long Time.mp3-b5bb15bf738e575811f074560dab8bdb.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

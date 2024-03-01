@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class DialogueMenu : Control, IMenu
+public partial class DialogueMenu : Control, IMenu
 {
     Global global => Global.Get();
     public bool mustBeClosed => false;
@@ -44,7 +44,7 @@ public class DialogueMenu : Control, IMenu
     private DialogueAudio dialogueAudio;
     
     [Signal]
-    public delegate void FinishTalking();
+    public delegate void FinishTalkingEventHandler();
 
     public void StartTalkingTo(NPC newNpc)
     {
@@ -52,7 +52,7 @@ public class DialogueMenu : Control, IMenu
         //прим. - меню терминала, которое имеет mustBeClosed = false
         if (MenuManager.SomeMenuOpen)
         {
-            if (MenuManager.openedMenu is Object && IsInstanceValid(MenuManager.openedMenu as Object))
+            if (MenuManager.openedMenu is GodotObject && IsInstanceValid(MenuManager.openedMenu as GodotObject))
             {
                 MenuManager.CloseMenu(MenuManager.openedMenu);
             }
@@ -62,7 +62,7 @@ public class DialogueMenu : Control, IMenu
         npc = newNpc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
-        text.BbcodeText = "";
+        text.Text = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
         LoadDialogueFile();
     }
@@ -77,7 +77,7 @@ public class DialogueMenu : Control, IMenu
         
         string lang = InterfaceLang.GetLang();
         string path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
-        nodes = Global.loadJsonFile(path)["nodes"] as Dictionary;
+        nodes = Global.LoadJsonFile(path)["nodes"].AsGodotDictionary();
         if (nodes != null)
         {
             MoveToNode(((Array)nodes.Keys)[0].ToString());
@@ -100,7 +100,7 @@ public class DialogueMenu : Control, IMenu
             return;
         }
 
-        tempNode = nodes[code] as Dictionary;
+        tempNode = nodes[code].AsGodotDictionary();
         
         switch (tempNode["kind"].ToString()) 
         {
@@ -110,7 +110,7 @@ public class DialogueMenu : Control, IMenu
                 {
                     //имя персонажа
                     string uName = GetBlockText(tempNode["speaker"].ToString(), "u");
-                    text.BbcodeText += GetBlockText(uName + ":", "right") + "\n";
+                    text.Text += GetBlockText(uName + ":", "right") + "\n";
                 }
                 
                 var spacedText = GetSpacedText(tempNode["body"].ToString()) + "\n";
@@ -123,7 +123,9 @@ public class DialogueMenu : Control, IMenu
 
                 dialogueAudio.LoadCharacter(
                     npc.Name, npc.dialogueCode, 
-                    tempNode.Contains("config") ? tempNode["config"].ToString() : null
+                    tempNode.TryGetValue("config", out var configValue) 
+                        ? configValue.ToString() 
+                        : null
                 );
                 dialogueAudio.TryToPlayAudio(code);
                 break;
@@ -141,11 +143,11 @@ public class DialogueMenu : Control, IMenu
                 
                 string parameter = null;
                 string key = null;
-                if (tempNode.Contains("set")) 
+                if (tempNode.ContainsKey("set")) 
                 {
-                    if (tempNode["set"] is Array paramsArray)
+                    if (tempNode["set"].Obj is Array paramsArray)
                     {
-                        if (paramsArray[0] is Dictionary paramsDict)
+                        if (paramsArray[0].Obj is Dictionary paramsDict)
                         {
                             parameter = paramsDict["value"].ToString();
                             key = paramsDict["key"].ToString();
@@ -174,7 +176,7 @@ public class DialogueMenu : Control, IMenu
                 }
 
                 //после выполнения скрипта сразу отправляемся на следующий нод
-                if (tempNode.Contains("next"))
+                if (tempNode.ContainsKey("next"))
                 {
                     MoveToNode(tempNode["next"].ToString());
                     return;
@@ -187,7 +189,7 @@ public class DialogueMenu : Control, IMenu
 
     public void OpenMenu()
     {
-        player.Camera.HideInteractionSquare();
+        player.Camera3D.HideInteractionSquare();
 
         if (!string.IsNullOrEmpty(player.Inventory.weapon))
         {
@@ -215,9 +217,9 @@ public class DialogueMenu : Control, IMenu
             npc = null;
         }
 
-        text.BbcodeText = "";
+        text.Text = "";
         ((Control)GetParent()).Visible = false;
-        EmitSignal(nameof(FinishTalking));
+        EmitSignal(nameof(FinishTalkingEventHandler));
     }
 
     public void _on_answer_mouse_entered(int i)
@@ -259,7 +261,7 @@ public class DialogueMenu : Control, IMenu
         else 
         {
             animatingAnswerNum = i;
-            text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
+            text.Text += GetBlockText(leftName.Text, "u") + ":\n";
             dialogueAudio.LoadCharacter("strikely", "");
 
             var spacedAnswerText = GetSpacedText(answerText[i].ToString()) + "\n";
@@ -287,7 +289,7 @@ public class DialogueMenu : Control, IMenu
         answerText = new Array();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!MenuOn) return;
         
@@ -298,17 +300,17 @@ public class DialogueMenu : Control, IMenu
         }
 
         player?.LookAt(GetNpcLookPosition());
-        UpdateAnswerCooldown(delta);
-        UpdateAnimatingText(delta);
+        UpdateAnswerCooldown((float)delta);
+        UpdateAnimatingText((float)delta);
     }
 
     private Vector3 GetNpcLookPosition()
     {
-        var npcPos = npc.GlobalTransform.origin;
-        var playerRelativePos = player.GlobalTransform.origin - npcPos;
+        var npcPos = npc.GlobalTransform.Origin;
+        var playerRelativePos = player.GlobalTransform.Origin - npcPos;
 
-        npcPos.x += GetLookPosDelta(playerRelativePos.z);
-        npcPos.z += GetLookPosDelta(-playerRelativePos.x);
+        npcPos.X += GetLookPosDelta(playerRelativePos.Z);
+        npcPos.Z += GetLookPosDelta(-playerRelativePos.X);
         
         return npcPos;
     }
@@ -350,10 +352,10 @@ public class DialogueMenu : Control, IMenu
         tempTextBlock = block;
         if (block != null)
         {
-            text.BbcodeText += "[" + block + "]";
+            text.Text += "[" + block + "]";
         }
 
-        text.BbcodeText += MakeSpacesString(textValue);
+        text.Text += MakeSpacesString(textValue);
     }
 
     private static string MakeSpacesString(string origin)
@@ -368,7 +370,7 @@ public class DialogueMenu : Control, IMenu
     {
         if (tempTextBlock != null)
         {
-            text.BbcodeText += "[/" + tempTextBlock + "]";
+            text.Text += "[/" + tempTextBlock + "]";
         }
         skipLabel.Visible = false;
         isAnimatingText = false;
@@ -385,27 +387,26 @@ public class DialogueMenu : Control, IMenu
             answerText.Clear();
             mayAnswer = true;
         
-            if (tempNode.Contains("options")) 
+            if (tempNode.TryGetValue("options", out var optionsValue)) 
             {
-                if (!(tempNode["options"] is Array options)) return;
+                if (optionsValue.Obj is not Array options) return;
                 for (int i = 0; i < answers.Length; i++) 
                 {
                     if (i < options.Count) 
                     {
-                        var option = options[i] as Dictionary;
-                        if (option == null) continue;
+                        var option = options[i].AsGodotDictionary();
                         var optionCode = option["next"].ToString();
 
-                        if (!(nodes[optionCode] is Dictionary optionNode)) continue;
+                        if (nodes[optionCode].Obj is not Dictionary optionNode) continue;
                         var optionText = optionNode["body"].ToString();
 
                         answerText.Add(optionText);
                         answers[i].Text = (i + 1) + ": " + optionText;
                         answers[i].Visible = true;
 
-                        if (optionNode.Contains("next")) 
+                        if (optionNode.TryGetValue("next", out var nextValue)) 
                         {
-                            var optionNext = optionNode["next"].ToString();
+                            var optionNext = nextValue.ToString();
                             answerCodes[i] = optionNext;
                         } 
                         else 
@@ -420,7 +421,7 @@ public class DialogueMenu : Control, IMenu
                 answers[0].Visible = true;
                 answerText.Add(GetContinueText());
                 answers[0].Text = "1: " + GetContinueText();
-                answerCodes[0] = tempNode.Contains("next") ? tempNode["next"].ToString() : "";
+                answerCodes[0] = tempNode.TryGetValue("next", out var nextValue) ? nextValue.ToString() : "";
             }
         }
     }
@@ -457,18 +458,18 @@ public class DialogueMenu : Control, IMenu
 
     private void AddStringToText(string value)
     {
-        var replacePos = text.BbcodeText.Length - animatingText.Length;
-        if (value == text.BbcodeText[replacePos].ToString())
+        var replacePos = text.Text.Length - animatingText.Length;
+        if (value == text.Text[replacePos].ToString())
         {
             return;
         }
-        text.BbcodeText = text.BbcodeText.Remove(replacePos, value.Length).Insert(replacePos, value);
+        text.Text = text.Text.Remove(replacePos, value.Length).Insert(replacePos, value);
     }
 
     private float GetAnimatingCooldown(char newSymbol)
     {
-        var nodeTimer = animatingAnswerNum == -1 && tempNode.Contains("timer")
-            ? Global.ParseFloat(tempNode["timer"].ToString())
+        var nodeTimer = animatingAnswerNum == -1 && tempNode.TryGetValue("timer", out var timerValue)
+            ? Global.ParseFloat(timerValue.ToString())
             : DEFAULT_ANIMATING_COOLDOWN;
         
         switch (newSymbol)
@@ -503,10 +504,10 @@ public class DialogueMenu : Control, IMenu
             return text + "\n";
         }
 
-        Array tempLines = new Array {text};
+        Array<string> tempLines = [text];
         tempLines = Global.ClumpLineLength(tempLines, MAX_LINE_LENGTH);
 
-        return tempLines.Cast<string>().Aggregate(
+        return tempLines.Aggregate(
             "", 
             (current, temp) => current + (temp + "\n")
         );
@@ -519,18 +520,18 @@ public class DialogueMenu : Control, IMenu
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
 
-        switch (eventKey.Scancode)
+        switch (eventKey.Keycode)
         {
-            case (uint)KeyList.Key1:
+            case Key.Key1:
                 _on_answer_pressed(0);
                 break;
-            case (uint)KeyList.Key2:
+            case Key.Key2:
                 _on_answer_pressed(1);
                 break;
-            case (uint)KeyList.Key3:
+            case Key.Key3:
                 _on_answer_pressed(2);
                 break;
-            case (uint)KeyList.Key4:
+            case Key.Key4:
                 _on_answer_pressed(3);
                 break;
         }

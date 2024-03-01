@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str"
+uid="uid://djn8mejrqutd2"
+path="res://.godot/imported/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/The Chordettes - Mr. Sandman.mp3"
-dest_files=[ "res://.import/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str" ]
+dest_files=["res://.godot/imported/The Chordettes - Mr. Sandman.mp3-bcc3a021b6059ff0745dd8a8276afeda.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

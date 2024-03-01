@@ -1,24 +1,24 @@
 using Godot;
 
-public class PutItemTrigger : ActivateOtherTrigger
+public partial class PutItemTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath itemModelPath;
     [Export] private string itemCode;
 
-    private Spatial itemModel;
+    private Node3D itemModel;
 
     public override void _Ready()
     {
-        itemModel = GetNode<Spatial>(itemModelPath);
+        itemModel = GetNode<Node3D>(itemModelPath);
         base._Ready();
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         itemModel.Visible = true;
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.RemoveItemIfExists(itemCode);
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

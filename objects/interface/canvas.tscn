@@ -6,25 +6,25 @@
 [ext_resource path="res://objects/interface/Inventory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/interface/Messages.cs" type="Script" id=5]
 [ext_resource path="res://objects/interface/point.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/interface/icons/Health Bar.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/textures/interface/icons/Health Bar.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture2D" id=9]
 [ext_resource path="res://assets/scripts/interface/HealthBar.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/interface/DamageEffects.cs" type="Script" id=11]
 [ext_resource path="res://assets/scripts/interface/inventory/effects/EffectHandler.cs" type="Script" id=12]
-[ext_resource path="res://assets/materials/shaders/contrast.shader" type="Shader" id=13]
-[ext_resource path="res://assets/textures/interface/cross-hitted.png" type="Texture" id=14]
+[ext_resource path="res://assets/materials/shaders/contrast.gdshader" type="Shader" id=13]
+[ext_resource path="res://assets/textures/interface/cross-hitted.png" type="Texture2D" id=14]
 [ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=15]
 [ext_resource path="res://objects/interface/DialogueMenu.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/scripts/interface/BindsList.cs" type="Script" id=17]
 [ext_resource path="res://assets/materials/fonts/hint_theme.tres" type="Theme" id=18]
 [ext_resource path="res://assets/scripts/interface/Canvas.cs" type="Script" id=19]
-[ext_resource path="res://assets/textures/interface/icons/Mana Bar.png" type="Texture" id=20]
-[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=21]
-[ext_resource path="res://assets/textures/interface/icons/buttons/E.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/interface/icons/Mana Bar.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="FontFile" id=21]
+[ext_resource path="res://assets/textures/interface/icons/buttons/E.png" type="Texture2D" id=22]
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture2D" id=25]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -32,13 +32,13 @@ shader_param/brightness = null
 shader_param/contrast = null
 shader_param/saturation = null
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 28
 font_data = ExtResource( 21 )
 
@@ -58,14 +58,14 @@ __meta__ = {
 [node name="eyesParts" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_right = 20.0
+offset_left = 20.0
+offset_right = 20.0
 
 [node name="eyeUp" type="TextureRect" parent="eyesParts"]
 anchor_top = -1.0
 anchor_right = 1.0
-margin_left = -20.0
-margin_right = -20.0
+offset_left = -20.0
+offset_right = -20.0
 texture = ExtResource( 9 )
 expand = true
 __meta__ = {
@@ -76,9 +76,9 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 2.0
-margin_left = -20.0
-margin_right = -20.0
-rect_pivot_offset = Vector2( 512, 300 )
+offset_left = -20.0
+offset_right = -20.0
+pivot_offset = Vector2( 512, 300 )
 texture = ExtResource( 9 )
 expand = true
 flip_v = true
@@ -100,15 +100,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -70.0
-margin_right = 50.0
-margin_bottom = -53.0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = -53.0
 theme = ExtResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 2
-custom_constants/shadow_offset_y = 2
-custom_fonts/font = SubResource( 3 )
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource( 3 )
 text = "[Вас не видят]"
 uppercase = true
 
@@ -118,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -96.0
-margin_top = -80.0
-margin_right = 96.0
-margin_bottom = -36.0
+offset_left = -96.0
+offset_top = -80.0
+offset_right = 96.0
+offset_bottom = -36.0
 color = Color( 0.180392, 0.176471, 0.176471, 0.537255 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,12 +142,12 @@ __meta__ = {
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 44.0
-margin_top = -74.0
-margin_right = 92.0
-margin_bottom = -42.0
-rect_scale = Vector2( 0.6, 0.6 )
-rect_pivot_offset = Vector2( 24, 16 )
+offset_left = 44.0
+offset_top = -74.0
+offset_right = 92.0
+offset_bottom = -42.0
+scale = Vector2( 0.6, 0.6 )
+pivot_offset = Vector2( 24, 16 )
 theme = ExtResource( 2 )
 texture = ExtResource( 22 )
 stretch_mode = 6
@@ -159,11 +159,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -46.0
-margin_top = -30.0
-margin_right = 2.0
-margin_bottom = 2.0
-rect_pivot_offset = Vector2( 24, 16 )
+offset_left = -46.0
+offset_top = -30.0
+offset_right = 2.0
+offset_bottom = 2.0
+pivot_offset = Vector2( 24, 16 )
 theme = ExtResource( 2 )
 texture = ExtResource( 25 )
 stretch_mode = 6
@@ -179,18 +179,18 @@ script = ExtResource( 23 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -79.0
-margin_top = 24.0
-margin_right = 81.0
-margin_bottom = 45.0
+offset_left = -79.0
+offset_top = 24.0
+offset_right = 81.0
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_pivot_offset = Vector2( 80, 11 )
+pivot_offset = Vector2( 80, 11 )
 theme = ExtResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 2
-custom_constants/shadow_offset_y = 2
-custom_fonts/font = SubResource( 2 )
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource( 2 )
 text = "Открыть"
 align = 1
 valign = 1
@@ -207,15 +207,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1.0
-margin_bottom = 1.0
-rect_scale = Vector2( 0.2, 0.2 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+scale = Vector2( 0.2, 0.2 )
 
 [node name="point" parent="pointManager" instance=ExtResource( 6 )]
 visible = false
-rect_scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.2, 0.2 )
 
 [node name="shootInterface" type="Control" parent="."]
 visible = false
@@ -228,8 +228,8 @@ anchor_left = 0.874
 anchor_top = 0.923
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.0239868
-margin_top = 0.199951
+offset_left = 0.0239868
+offset_top = 0.199951
 color = Color( 0, 0, 0, 0.784314 )
 script = ExtResource( 15 )
 __meta__ = {
@@ -241,15 +241,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -97.0
-margin_top = -44.0001
-margin_right = -49.0
-margin_bottom = -2.00006
+offset_left = -97.0
+offset_top = -44.0001
+offset_right = -49.0
+offset_bottom = -2.00006
 theme = ExtResource( 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 2
-custom_constants/shadow_offset_y = 2
-custom_fonts/font = SubResource( 4 )
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource( 4 )
 text = "0"
 align = 1
 valign = 1
@@ -259,20 +259,20 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -50.0001
-margin_right = -2.0
-margin_bottom = -2.0001
+offset_left = -50.0
+offset_top = -50.0001
+offset_right = -2.0
+offset_bottom = -2.0001
 expand = true
 script = ExtResource( 24 )
 
 [node name="shadow" type="TextureRect" parent="shootInterface/ammoBack/icon" groups=["ignore_color"]]
 self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 49.0
-margin_bottom = 49.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 49.0
 expand = true
 
 [node name="hitted" type="TextureRect" parent="shootInterface"]
@@ -281,10 +281,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
 texture = ExtResource( 14 )
 expand = true
 __meta__ = {
@@ -294,11 +294,11 @@ __meta__ = {
 [node name="health" type="Control" parent="." groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = -58.0
-margin_right = 136.0
-margin_bottom = 70.0
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = 8.0
+offset_top = -58.0
+offset_right = 136.0
+offset_bottom = 70.0
+scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 10 )
 
 [node name="shadow" type="TextureRect" parent="health"]
@@ -306,10 +306,10 @@ self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = -125.0
-margin_right = 133.0
-margin_bottom = 3.0
+offset_left = 5.0
+offset_top = -125.0
+offset_right = 133.0
+offset_bottom = 3.0
 texture = ExtResource( 8 )
 stretch_mode = 5
 
@@ -319,20 +319,20 @@ anchor_left = 0.195
 anchor_top = 0.859
 anchor_right = 0.195
 anchor_bottom = 0.859
-margin_left = 0.039999
-margin_top = 0.0479965
-margin_right = 65.04
-margin_bottom = 80.048
-rect_scale = Vector2( 1, -1 )
-rect_clip_content = true
+offset_left = 0.039999
+offset_top = 0.0479965
+offset_right = 65.04
+offset_bottom = 80.048
+scale = Vector2( 1, -1 )
+clip_contents = true
 
 [node name="bar" type="TextureRect" parent="health/mask" groups=["ignore_color"]]
 show_behind_parent = true
-margin_left = -25.0
-margin_top = 110.0
-margin_right = 103.0
-margin_bottom = 238.0
-rect_scale = Vector2( 1, -1 )
+offset_left = -25.0
+offset_top = 110.0
+offset_right = 103.0
+offset_bottom = 238.0
+scale = Vector2( 1, -1 )
 texture = ExtResource( 8 )
 stretch_mode = 5
 
@@ -342,20 +342,20 @@ anchor_left = 0.195
 anchor_top = 0.859
 anchor_right = 0.195
 anchor_bottom = 0.859
-margin_left = 0.0400009
-margin_top = -81.952
-margin_right = 65.04
-margin_bottom = -81.952
-rect_clip_content = true
+offset_left = 0.0400009
+offset_top = -81.952
+offset_right = 65.04
+offset_bottom = -81.952
+clip_contents = true
 
 [node name="bar" type="TextureRect" parent="health/radiationMask" groups=["ignore_color"]]
 self_modulate = Color( 1, 0, 0, 1 )
 show_behind_parent = true
-margin_left = -25.0
-margin_top = 100.0
-margin_right = 103.0
-margin_bottom = 228.0
-rect_scale = Vector2( 1, -1 )
+offset_left = -25.0
+offset_top = 100.0
+offset_right = 103.0
+offset_bottom = 228.0
+scale = Vector2( 1, -1 )
 texture = ExtResource( 8 )
 stretch_mode = 5
 flip_v = true
@@ -363,11 +363,11 @@ flip_v = true
 [node name="mana" type="Control" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = -58.0
-margin_right = 136.0
-margin_bottom = 70.0
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = 8.0
+offset_top = -58.0
+offset_right = 136.0
+offset_bottom = 70.0
+scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 3 )
 
 [node name="shadow" type="TextureRect" parent="mana"]
@@ -375,8 +375,8 @@ self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -128.0
-margin_right = 128.0
+offset_top = -128.0
+offset_right = 128.0
 texture = ExtResource( 20 )
 expand = true
 stretch_mode = 6
@@ -387,19 +387,19 @@ anchor_left = 0.195
 anchor_top = 0.859
 anchor_right = 0.195
 anchor_bottom = 0.859
-margin_left = -24.96
-margin_top = 18.048
-margin_right = 103.04
-margin_bottom = 146.048
-rect_scale = Vector2( 1, -1 )
-rect_clip_content = true
+offset_left = -24.96
+offset_top = 18.048
+offset_right = 103.04
+offset_bottom = 146.048
+scale = Vector2( 1, -1 )
+clip_contents = true
 
 [node name="bar" type="TextureRect" parent="mana/mask" groups=["ignore_color"]]
 show_behind_parent = true
-margin_top = 128.0
-margin_right = 128.0
-margin_bottom = 256.0
-rect_scale = Vector2( 1, -1 )
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 256.0
+scale = Vector2( 1, -1 )
 texture = ExtResource( 20 )
 expand = true
 stretch_mode = 6
@@ -407,10 +407,10 @@ stretch_mode = 6
 [node name="effects" type="VBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 18.0
-margin_top = -582.0
-margin_right = 50.0
-margin_bottom = -60.0
+offset_left = 18.0
+offset_top = -582.0
+offset_right = 50.0
+offset_bottom = -60.0
 alignment = 2
 script = ExtResource( 12 )
 __meta__ = {
@@ -422,10 +422,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -477.0
-margin_top = -84.0
-margin_right = 478.0
-margin_bottom = -50.0
+offset_left = -477.0
+offset_top = -84.0
+offset_right = 478.0
+offset_bottom = -50.0
 mouse_filter = 1
 theme = ExtResource( 2 )
 align = 1
@@ -437,10 +437,10 @@ __meta__ = {
 [node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = -46.0
-margin_right = 816.0
-margin_bottom = -4.0
+offset_left = 64.0
+offset_top = -46.0
+offset_right = 816.0
+offset_bottom = -4.0
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_group_": true
@@ -448,10 +448,10 @@ __meta__ = {
 
 [node name="messages" type="VBoxContainer" parent="." groups=["savable"]]
 anchor_bottom = 0.82
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 351.0
-margin_bottom = -3.05176e-05
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 351.0
+offset_bottom = -3.05176e-05
 script = ExtResource( 5 )
 tempTheme = ExtResource( 18 )
 

@@ -1,6 +1,6 @@
 namespace DialogueScripts
 {
-    public class NpcDisappear : IDialogueScript
+    public partial class NpcDisappear : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

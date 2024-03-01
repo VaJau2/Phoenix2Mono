@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PinkieStealthTrigger : TrainingTriggerWithButton
+public partial class PinkieStealthTrigger : TrainingTriggerWithButton
 {
     [Export] public Array<NodePath> RoboEyeSpawnersPaths;
     [Export] private Array<NodePath> PatrolPointParentsPaths;
@@ -14,19 +14,19 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private string winDialogue;
     [Export] private string loseDialogue;
     
-    private Array<Spatial> patrolPointParents = new Array<Spatial>();
-    private Array<Spatial> eyesSpawners = new Array<Spatial>();
-    private Array<RoboEye> eyes = new Array<RoboEye>();
+    private Array<Node3D> patrolPointParents = new();
+    private Array<Node3D> eyesSpawners = new();
+    private Array<RoboEye> eyes = new();
     private FurnChest bag;
     private MrHandy assistantPie;
     private bool connected;
     
-    private void LoadNodePathArray(Array<NodePath> pathArray, ref Array<Spatial> arrayToLoad)
+    private void LoadNodePathArray(Array<NodePath> pathArray, ref Array<Node3D> arrayToLoad)
     {
         if (pathArray == null) return;
         foreach (NodePath item in pathArray)
         {
-            arrayToLoad.Add(GetNode<Spatial>(item));
+            arrayToLoad.Add(GetNode<Node3D>(item));
         }
     }
     
@@ -56,40 +56,42 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         //спавн робо-глаз
         for (int i = 0; i < eyesSpawners.Count; i++)
         {
-            Spatial spawner = eyesSpawners[i];
-            Spatial patrolParent = patrolPointParents[i];
-            if (!(npcPrefab.Instance() is RoboEye eyeInstance)) continue;
+            Node3D spawner = eyesSpawners[i];
+            Node3D patrolParent = patrolPointParents[i];
+            if (npcPrefab.Instantiate<RoboEye>() is not { } eyeInstance) continue;
             
             eyeInstance.Name = "Created_" + eyeInstance.Name + "_" + i;
             eyeInstance.patrolArray = new Array<NodePath>();
-            foreach (Spatial child in patrolParent.GetChildren())
+            foreach (var node in patrolParent.GetChildren())
             {
+                var child = (Node3D)node;
                 eyeInstance.patrolArray.Add(child.GetPath());
             }
             GetNode<Node>("/root/Main/Scene/npc").AddChild(eyeInstance);
-            eyeInstance.GlobalTransform = Global.SetNewOrigin(eyeInstance.GlobalTransform, spawner.GlobalTransform.origin);
-            eyeInstance.Connect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
+            eyeInstance.GlobalTransform = Global.SetNewOrigin(eyeInstance.GlobalTransform, spawner.GlobalTransform.Origin);
+            eyeInstance.FoundEnemy += OnFoundEnemy;
+            
             eyes.Add(eyeInstance);
         }
         
         SpawnBag();
         
-        player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        player.TakeItem += OnPlayerTakeItem;
         connected = true;
     }
 
     private void SpawnBag()
     {
-        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
+        if (bagPrefab.Instantiate<FurnChest>() is not { } bagInstance) return;
         bagInstance.Name = "Created_" + bagInstance.Name;
         GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
         bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
-        Spatial bagSpawn = GetNode<Spatial>(bagSpawnPath);
-        bagInstance.GlobalTransform = Global.SetNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.origin);
+        Node3D bagSpawn = GetNode<Node3D>(bagSpawnPath);
+        bagInstance.GlobalTransform = Global.SetNewOrigin(bagInstance.GlobalTransform, bagSpawn.GlobalTransform.Origin);
         bag = bagInstance;
     }
 
-    public void _on_found_enemy()
+    public void OnFoundEnemy()
     {
         if (!connected) return;
         
@@ -102,13 +104,13 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         audi.Play();
         assistantPie.dialogueCode = loseDialogue;
         bag.QueueFree();
-        player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        player.TakeItem -= OnPlayerTakeItem;
         connected = false;
         
         checkButton = true;
     }
 
-    public void _on_player_take_item(string itemCode)
+    public void OnPlayerTakeItem(string itemCode)
     {
         if (itemCode != itemInBag) return;
         if (trainingIsDone) return;
@@ -121,7 +123,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         audi.Play();
         assistantPie.dialogueCode = winDialogue;
         
-        player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        player.TakeItem -= OnPlayerTakeItem;
         connected = false;
         
         trainingIsDone = true;
@@ -161,7 +163,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         base.LoadData(data);
 
         //загружаем массив робо-глаз
-        if (data["eyesPath"] is Array eyesPath)
+        if (data["eyesPath"].Obj is Array eyesPath)
         {
             foreach (var eyePath in eyesPath)
             {
@@ -174,16 +176,16 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         }
 
         //загружаем сумку
-        if (data.Contains("bagPath"))
+        if (data.TryGetValue("bagPath", out var bagPath))
         {
-            bag = GetNode<FurnChest>(data["bagPath"].ToString());
+            bag = GetNode<FurnChest>(bagPath.ToString());
         }
         
         //загружаем событие
         connected = (bool) data["eventConnected"];
         if (connected)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.TakeItem += OnPlayerTakeItem;
         }
     }
 }

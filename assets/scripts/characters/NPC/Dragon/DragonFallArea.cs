@@ -1,6 +1,6 @@
 using Godot;
 
-public class DragonFallArea : Area
+public partial class DragonFallArea : Area3D
 {
     public void _on_fallarea_body_entered(Node body)
     {

@@ -3,13 +3,13 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class TestingLevelsMenu : Control
+public partial class TestingLevelsMenu : Control
 {
     private const string AUTOSAVE_NAME = "testing";
     private const int AMMO_COUNT = 50;
     
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
 
     private LevelsLoader levelsLoader;
     private MenuBase parentMenu;
@@ -67,7 +67,7 @@ public class TestingLevelsMenu : Control
 
     private void LoadLevelsList()
     {
-        var levelsData = Global.loadJsonFile("scenes/levels.json");
+        var levelsData = Global.LoadJsonFile("scenes/levels.json");
         foreach (var levelName in levelsData.Values)
         {
             levelsList.AddItem(levelName.ToString());
@@ -87,7 +87,7 @@ public class TestingLevelsMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(nameof(BackPressedEventHandler));
     }
     
     public void _on_mouse_entered(string section, string messageLink)
@@ -184,10 +184,10 @@ public class TestingLevelsMenu : Control
         var savableVarsText = questsInput.Text;
         if (string.IsNullOrEmpty(savableVarsText)) return;
         
-        var resultJson = JSON.Parse(savableVarsText);
+        var resultJson = Json.ParseString(savableVarsText);
 
-        if (resultJson.Error != Error.Ok) return;
-        var savableVars = (Dictionary)resultJson.Result;
+        if (resultJson.Obj == null) return;
+        var savableVars = resultJson.AsGodotDictionary();
 
         foreach (var key in savableVars.Keys)
         {

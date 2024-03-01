@@ -1,6 +1,6 @@
-﻿namespace DialogueScripts
+namespace DialogueScripts
 {
-    public class SetTriggerActive : IDialogueScript
+    public partial class SetTriggerActive : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

@@ -4,7 +4,7 @@ using Godot;
  * Проверяет, двигается ли игрок внутри объекта гридмапа
  * если двигается, играет звуки
  */
-public class GridmapStepSound : GridMap
+public partial class GridmapStepSound : GridMap
 {
     private const float CHECK_DELAY_TIME = 0.5f;
     
@@ -30,22 +30,22 @@ public class GridmapStepSound : GridMap
         audi = GetNode<AudioStreamPlayer3D>("sound");
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Player == null) return;
 
-        bool tempIsOnGridItem = CheckGridWithDelay(delta);
+        bool tempIsOnGridItem = CheckGridWithDelay((float)delta);
         bool isMove = Player.GetCurrentSpeed() > Character.MIN_WALKING_SPEED;
-        bool isRotate = Player.IsRotating() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
+        bool isRotate = Player.IsIgnoringRotation() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
 
         if (tempIsOnGridItem && (isMove || isRotate)) UpdatePlaying();
-        else StopPlaying(delta);
+        else StopPlaying((float)delta);
     }
 
     private void UpdatePlaying()
     {
-        audi.UnitDb = Player.IsCrouching ? 4 : -2;
-        audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
+        audi.VolumeDb = Player.IsCrouching ? 4 : -2;
+        audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.Origin);
 
         if (!audi.Playing || audi.Stream != TempSound)
         {
@@ -58,14 +58,14 @@ public class GridmapStepSound : GridMap
     {
         if (audi.Playing)
         {
-            if (audi.UnitDb > MIN_VOLUME) audi.UnitDb -= VOLUME_SPEED * delta;
+            if (audi.VolumeDb > MIN_VOLUME) audi.VolumeDb -= VOLUME_SPEED * delta;
             else audi.Stop();
         }
     }
 
     private bool CheckGridWithDelay(float delta)
     {
-        var tempIsOnGridItem = playerIsOnGridItem();
+        var tempIsOnGridItem = PlayerIsOnGridItem();
         if (isInGridItem == tempIsOnGridItem) return isInGridItem;
         
         if (tempIsOnGridItem)
@@ -88,14 +88,14 @@ public class GridmapStepSound : GridMap
         return isInGridItem;
     }
 
-    private bool playerIsOnGridItem()
+    private bool PlayerIsOnGridItem()
     {
         if (Global.Get().player == null) return false;
-        var playerGlobalPos = Global.Get().player.GlobalTransform.origin;
-        var playerLocalPos = playerGlobalPos - GlobalTransform.origin;
-        var mapPos = WorldToMap(playerLocalPos);
-        if (!Player.IsCrouching) mapPos.y -= 1;
-        var cellItem = GetCellItem((int)mapPos.x, (int)mapPos.y, (int)mapPos.z);
+        var playerGlobalPos = Global.Get().player.GlobalTransform.Origin;
+        var playerLocalPos = playerGlobalPos - GlobalTransform.Origin;
+        var mapPos = LocalToMap(playerLocalPos);
+        if (!Player.IsCrouching) mapPos.Y -= 1;
+        var cellItem = GetCellItem(new Vector3I(mapPos.X, mapPos.Y, mapPos.Z));
         return cellItem > -1;
     }
 }

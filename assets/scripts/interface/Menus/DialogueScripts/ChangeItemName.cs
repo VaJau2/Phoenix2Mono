@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 namespace DialogueScripts
 {
-    public class ChangeItemName : IDialogueScript
+    public partial class ChangeItemName : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

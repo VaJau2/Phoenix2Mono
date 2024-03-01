@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Vera Lynn - We'll Meet Again.mp3-7fe18be91a5281054c7134da6bdda6aa.mp3str"
+uid="uid://beffrcyd37lpp"
+path="res://.godot/imported/Vera Lynn - We'll Meet Again.mp3-7fe18be91a5281054c7134da6bdda6aa.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/Work after Theater/Vera Lynn - We'll Meet Again.mp3"
-dest_files=[ "res://.import/Vera Lynn - We'll Meet Again.mp3-7fe18be91a5281054c7134da6bdda6aa.mp3str" ]
+dest_files=["res://.godot/imported/Vera Lynn - We'll Meet Again.mp3-7fe18be91a5281054c7134da6bdda6aa.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

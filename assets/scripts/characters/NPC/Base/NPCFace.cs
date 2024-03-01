@@ -5,20 +5,20 @@ using Godot.Collections;
 
 //класс отвечает за лицо НПЦ
 //за текстуры глаз и рта
-public class NPCFace : MeshInstance, ISavable
+public partial class NPCFace : MeshInstance3D, ISavable
 {
     [Export] public string npcName;
     [Export] protected string startEyesVariant = "";
     [Export] protected string startMouthVariant = "A";
 
-    private Generic.Dictionary<string, StreamTexture> mouthTextures =
-        new Generic.Dictionary<string, StreamTexture>();
+    private Generic.Dictionary<string, CompressedTexture2D> mouthTextures =
+        new Generic.Dictionary<string, CompressedTexture2D>();
 
     NPC npc;
-    private SpatialMaterial eyesMaterial;
-    private SpatialMaterial mouthMaterial;
-    private StreamTexture openEyes;
-    private StreamTexture closedEyes;
+    private StandardMaterial3D eyesMaterial;
+    private StandardMaterial3D mouthMaterial;
+    private CompressedTexture2D openEyes;
+    private CompressedTexture2D closedEyes;
     private bool eyesAreOpen = true;
     private float eyesOpenCooldown = 1f;
 
@@ -34,8 +34,8 @@ public class NPCFace : MeshInstance, ISavable
 
     public void ChangeMouthVariant(string variant)
     {
-        StreamTexture mouthTexture =
-            GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
+        CompressedTexture2D mouthTexture =
+            GD.Load<CompressedTexture2D>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
         mouthMaterial.AlbedoTexture = mouthTexture;
         startMouthVariant = variant;
     }
@@ -43,8 +43,8 @@ public class NPCFace : MeshInstance, ISavable
     public void ChangeEyesVariant(string variantName)
     {
         string path = "res://assets/textures/characters/" + npcName + "/eyes/" + variantName;
-        openEyes = GD.Load<StreamTexture>(path + "/0.png");
-        closedEyes = GD.Load<StreamTexture>(path + "/1.png");
+        openEyes = GD.Load<CompressedTexture2D>(path + "/0.png");
+        closedEyes = GD.Load<CompressedTexture2D>(path + "/1.png");
         eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
         startEyesVariant = variantName;
     }
@@ -54,8 +54,7 @@ public class NPCFace : MeshInstance, ISavable
         var animation = new Generic.List<AnimTime>();
 
         string path = "res://assets/audio/dialogue/" + npcName + "/" + fileName;
-        var file = new File();
-        file.Open(path, File.ModeFlags.Read);
+        var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
         while (!file.EofReached())
         {
             string line = file.GetLine();
@@ -79,11 +78,11 @@ public class NPCFace : MeshInstance, ISavable
     //этот метод нужно будет пихнуть в _ready()
     private void LoadMouthTextures()
     {
-        string[] mouthVariants = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "X"};
+        string[] mouthVariants = ["A", "B", "C", "D", "E", "F", "G", "H", "X"];
         foreach (string tempVariant in mouthVariants)
         {
-            StreamTexture mouthTexture =
-                GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant +
+            CompressedTexture2D mouthTexture =
+                GD.Load<CompressedTexture2D>("res://assets/textures/characters/" + npcName + "/mouth/" + tempVariant +
                                        ".png");
             mouthTextures.Add(tempVariant, mouthTexture);
         }
@@ -122,17 +121,17 @@ public class NPCFace : MeshInstance, ISavable
     public override void _Ready()
     {
         npc = GetNode<NPC>("../../../");
-        eyesMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(1);
-        mouthMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(2);
+        eyesMaterial = (StandardMaterial3D) Mesh.SurfaceGetMaterial(1);
+        mouthMaterial = (StandardMaterial3D) Mesh.SurfaceGetMaterial(2);
 
         ChangeEyesVariant(startEyesVariant);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Visible)
         {
-            UpdateOpenEyes(delta);
+            UpdateOpenEyes((float)delta);
         }
     }
 

@@ -1,6 +1,6 @@
 using Godot;
 
-public class HintTrigger : TriggerBase
+public partial class HintTrigger : TriggerBase
 {
     [Export] public string HintSection = "hints";
     [Export] public string HintCode;
@@ -27,7 +27,7 @@ public class HintTrigger : TriggerBase
         SetProcess(false);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         var hintCode = HintCode;
         if (DiffRacesHints)
@@ -48,7 +48,7 @@ public class HintTrigger : TriggerBase
             messages.ShowMessageRaw(message, hintTime);
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     public void _on_body_entered(Node body)
@@ -56,6 +56,6 @@ public class HintTrigger : TriggerBase
         if (!IsActive) return;
         if (!(body is Player)) return;
         
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

@@ -9,10 +9,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -443.0
-margin_top = -244.5
-margin_right = 457.0
-margin_bottom = 244.5
+offset_left = -443.0
+offset_top = -244.5
+offset_right = 457.0
+offset_bottom = 244.5
 theme = ExtResource( 1 )
 scroll_horizontal_enabled = false
 script = ExtResource( 3 )
@@ -23,8 +23,8 @@ __meta__ = {
 [node name="table" type="VBoxContainer" parent="." groups=[
 "ignore_color",
 ]]
-margin_right = 900.0
-margin_bottom = 44.0
+offset_right = 900.0
+offset_bottom = 44.0
 size_flags_horizontal = 3
 script = ExtResource( 2 )
 __meta__ = {
@@ -34,16 +34,16 @@ __meta__ = {
 [node name="Header" type="Label" parent="table" groups=[
 "ignore_color",
 ]]
-margin_right = 900.0
-margin_bottom = 20.0
+offset_right = 900.0
+offset_bottom = 20.0
 theme = ExtResource( 1 )
 text = "                              название     |   дата   |     уровень     "
 
 [node name="HeaderBorders" type="Label" parent="table" groups=[
 "ignore_color",
 ]]
-margin_top = 24.0
-margin_right = 900.0
-margin_bottom = 44.0
+offset_top = 24.0
+offset_right = 900.0
+offset_bottom = 44.0
 theme = ExtResource( 1 )
 text = "-------------------------------------------+----------+--------------------------------"

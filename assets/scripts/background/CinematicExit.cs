@@ -5,7 +5,7 @@ using Godot.Collections;
 
 // Создает отдельную следящую за игроком камеру
 // при выходе из области
-public class CinematicExit : Area, ISavable
+public partial class CinematicExit : Area3D, ISavable
 {
     // насколько сильно зенитное замедление камеры в начале и ускорение в конце
     private const float MAX_DISTANCE = 400f;
@@ -25,7 +25,7 @@ public class CinematicExit : Area, ISavable
     // соотношение высоты камеры к пройденной игроком дистанции от границы
     private const float CAMERA_HEIGHT_RATIO = 0.05f;
 
-    private Camera cinematicCamera;
+    private Camera3D cinematicCamera;
     
     private Player player;
     private bool wasThirdView;
@@ -38,9 +38,9 @@ public class CinematicExit : Area, ISavable
     
     private Vector3 PlayerPos
         => new(
-            player.GlobalTransform.origin.x,
-            player.GlobalTransform.origin.y + CAMERA_HEIGHT + distance * distanceRatio,
-            player.GlobalTransform.origin.z
+            player.GlobalTransform.Origin.X,
+            player.GlobalTransform.Origin.Y + CAMERA_HEIGHT + distance * distanceRatio,
+            player.GlobalTransform.Origin.Z
         );
     
     public override void _Ready()
@@ -48,22 +48,22 @@ public class CinematicExit : Area, ISavable
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        distance = player.GlobalTransform.origin.DistanceTo(exitPoint);
+        distance = player.GlobalTransform.Origin.DistanceTo(exitPoint);
         
-        if (distance > 1 && cinematicCamera.GlobalTransform.origin != PlayerPos)
+        if (distance > 1 && cinematicCamera.GlobalTransform.Origin != PlayerPos)
         {
             cinematicCamera.LookAt(PlayerPos, Vector3.Up);
         }
 
         var target = new Vector3(
-            cinematicCamera.GlobalTransform.origin.x,
+            cinematicCamera.GlobalTransform.Origin.X,
             startPosY + distance * CAMERA_HEIGHT_RATIO,
-            cinematicCamera.GlobalTransform.origin.z
+            cinematicCamera.GlobalTransform.Origin.Z
         );
         var transform = cinematicCamera.GlobalTransform;
-        transform.origin = transform.origin.LinearInterpolate(target, delta * CAMERA_SPEED);
+        transform.Origin = transform.Origin.Lerp(target, (float)delta * CAMERA_SPEED);
         cinematicCamera.GlobalTransform = transform;
     }
 
@@ -94,38 +94,38 @@ public class CinematicExit : Area, ISavable
 
     private async void SpawnCamera()
     {
-        cinematicCamera = new Camera();
+        cinematicCamera = new Camera3D();
         cinematicCamera.Name = "Created_CinematicCamera";
         GetNode("../../").CallDeferred("add_child", cinematicCamera);
 
         await ToSignal(GetTree(), "idle_frame");
 
         var locationCenter = new Vector3(
-            GlobalTransform.origin.x, 
-            player.GlobalTransform.origin.y,
-            GlobalTransform.origin.z
+            GlobalTransform.Origin.X, 
+            player.GlobalTransform.Origin.Y,
+            GlobalTransform.Origin.Z
             );
         
-        var vec = (locationCenter - player.GlobalTransform.origin).Normalized();
+        var vec = (locationCenter - player.GlobalTransform.Origin).Normalized();
 
         cinematicCamera.GlobalTransform =
             Global.SetNewOrigin(
                 cinematicCamera.GlobalTransform,
-                player.GlobalTransform.origin + vec * CAMERA_SPAWN_DISTANCE + new Vector3(0,CAMERA_HEIGHT,0)
+                player.GlobalTransform.Origin + vec * CAMERA_SPAWN_DISTANCE + new Vector3(0,CAMERA_HEIGHT,0)
             );
         
-        startPosY = cinematicCamera.GlobalTransform.origin.y;
+        startPosY = cinematicCamera.GlobalTransform.Origin.Y;
         cinematicCamera.Far = CAMERA_FAR;
         cinematicCamera.Current = true;
         
-        exitPoint = cinematicCamera.GlobalTransform.origin;
+        exitPoint = cinematicCamera.GlobalTransform.Origin;
 
         SetProcess(true);
     }
     
-    private async void SpawnCamera(Vector3 pos)
+    private void SpawnCamera(Vector3 pos)
     {
-        cinematicCamera = new Camera();
+        cinematicCamera = new Camera3D();
         cinematicCamera.Name = "Created_CinematicCamera";
         GetNode("../../").CallDeferred("add_child", cinematicCamera);
         
@@ -135,11 +135,11 @@ public class CinematicExit : Area, ISavable
                 pos
             );
         
-        startPosY = cinematicCamera.GlobalTransform.origin.y;
+        startPosY = cinematicCamera.GlobalTransform.Origin.Y;
         cinematicCamera.Far = CAMERA_FAR;
         cinematicCamera.Current = true;
         
-        exitPoint = cinematicCamera.GlobalTransform.origin;
+        exitPoint = cinematicCamera.GlobalTransform.Origin;
 
         SetProcess(true);
     }
@@ -156,18 +156,18 @@ public class CinematicExit : Area, ISavable
         
         return new Dictionary
         {
-            {"exitPointX", exitPoint.x},
-            {"exitPointY", exitPoint.y},
-            {"exitPointZ", exitPoint.z},
-            {"cameraPosX", cinematicCamera.GlobalTransform.origin.x},
-            {"cameraPosY", cinematicCamera.GlobalTransform.origin.y},
-            {"cameraPosZ", cinematicCamera.GlobalTransform.origin.z}
+            {"exitPointX", exitPoint.X},
+            {"exitPointY", exitPoint.Y},
+            {"exitPointZ", exitPoint.Z},
+            {"cameraPosX", cinematicCamera.GlobalTransform.Origin.X},
+            {"cameraPosY", cinematicCamera.GlobalTransform.Origin.Y},
+            {"cameraPosZ", cinematicCamera.GlobalTransform.Origin.Z}
         };
     }
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("exitPointX")) return;
+        if (!data.ContainsKey("exitPointX")) return;
 
         player = GetNode<Player>("/root/Main/Scene/Player");
         player.RotationHelperThird.SetThirdView(true);

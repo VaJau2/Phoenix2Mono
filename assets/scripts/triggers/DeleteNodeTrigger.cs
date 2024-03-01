@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class DeleteNodeTrigger : TriggerBase
+public partial class DeleteNodeTrigger : TriggerBase
 {
     [Export] private Array<NodePath> objToDeletePaths;
 
@@ -10,11 +10,11 @@ public class DeleteNodeTrigger : TriggerBase
         base.SetActive(newActive);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
@@ -24,6 +24,6 @@ public class DeleteNodeTrigger : TriggerBase
             objToDelete.QueueFree();
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

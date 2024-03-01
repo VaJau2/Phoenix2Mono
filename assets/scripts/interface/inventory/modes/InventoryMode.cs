@@ -92,9 +92,9 @@ public abstract class InventoryMode
         bindsHandler = new BindsHandler(menu, this);
         useHandler = new UseHandler(menu, this, bindsHandler);
         
-        if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
+        if (!anim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.OpenAnimFinished))))
         {
-            anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
+            anim.AnimationFinished += animName => menu.OpenAnimFinished(animName);
         }
     }
 
@@ -156,7 +156,7 @@ public abstract class InventoryMode
     //грузим подсказки по управлению предметом
     protected virtual void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = tempItemData["type"].As<ItemType>();
         ControlText[] controlTexts;
 
         switch (type)
@@ -197,11 +197,11 @@ public abstract class InventoryMode
 
     public IChest SpawnItemBag()
     {
-        var newBag = (FurnChest)bagPrefab.Instance();
+        var newBag = bagPrefab.Instantiate<FurnChest>();
         Node parent = player.GetNode("/root/Main/Scene");
         parent.AddChild(newBag);
         newBag.Name = "Created_" + newBag.Name;
-        newBag.Translation = player.Translation;
+        newBag.Position = player.Position;
         newBag.Translate(Vector3.Down * 0.5f);
         return newBag;
     }
@@ -283,7 +283,7 @@ public abstract class InventoryMode
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
         foreach(string prop in itemProps.Keys) 
         {
-            if (itemPropNames.Contains(prop)) 
+            if (itemPropNames.ContainsKey(prop)) 
             {
                 // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
                 if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
@@ -309,8 +309,8 @@ public abstract class InventoryMode
     public bool CheckMouseInButton(Control button) 
     {
         var mouse = button.GetLocalMousePosition();
-        return mouse.x >= 0 && mouse.x <= button.RectSize.x 
-            && mouse.y >= 0 && mouse.y <= button.RectSize.y;
+        return mouse.X >= 0 && mouse.X <= button.Size.X 
+            && mouse.Y >= 0 && mouse.Y <= button.Size.Y;
     }
 
     public virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
@@ -353,7 +353,7 @@ public abstract class InventoryMode
 
     protected virtual void CheckDragItem()
     {
-        var itemType = (ItemType)tempItemData["type"];
+        var itemType = tempItemData["type"].As<ItemType>();
 
         switch (itemType)
         {
@@ -450,19 +450,19 @@ public abstract class InventoryMode
     
     private void FinishDragging()
     {
-        tempButton?.SetIcon((StreamTexture) dragIcon.Texture);
+        tempButton?.SetIcon((CompressedTexture2D) dragIcon.Texture);
         dragIcon.SetTexture(null);
-        dragIcon.RectGlobalPosition = Vector2.Zero;
+        dragIcon.GlobalPosition = Vector2.Zero;
         isDragging = false;
     }
 
     protected bool UpdateDragging(InputEvent @event)
     {
-        var itemType = (ItemType)tempItemData["type"];
+        var itemType = tempItemData["type"].As<ItemType>();
 
         if (Input.IsActionJustPressed("ui_click"))
         {
-            if (itemType == ItemType.money || itemType == ItemType.ammo)
+            if (itemType is ItemType.money or ItemType.ammo)
             {
                 MoveTempItem();
                 return false;
@@ -480,13 +480,13 @@ public abstract class InventoryMode
                     useHandler.HideLoadingIcon();
 
                     dragIcon.SetTexture(tempButton.GetIcon());
-                    dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
+                    dragIcon.GlobalPosition = tempButton.GlobalPosition;
 
                     tempButton.SetIcon(null);
                     isDragging = true;
                 }
 
-                dragIcon.RectGlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
+                dragIcon.GlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
             }
             else
             {
@@ -541,7 +541,7 @@ public abstract class InventoryMode
 
         for (var i = 0; i < 10; i++)
         {
-            if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
+            if (!Input.IsKeyPressed((Key)(48 + i)) || !menu.bindedButtons.Keys.Contains(i)) continue;
             SetTempButton(menu.bindedButtons[i], false);
             useHandler.UseTempItem();
         }
@@ -549,7 +549,7 @@ public abstract class InventoryMode
 
     private void CheckAutoheal()
     {
-        if (!Godot.Object.IsInstanceValid(player)) return;
+        if (!GodotObject.IsInstanceValid(player)) return;
         if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
         if (player.Health == player.HealthMax) 
         {
@@ -559,9 +559,13 @@ public abstract class InventoryMode
 
         foreach (var newTempButton in itemButtons)
         {
-            if (newTempButton.myItemCode == null) continue;
+            if (newTempButton.myItemCode == null) 
+                continue;
+            
             SetTempButton(newTempButton);
-            if (tempButton.myItemCode != "healPotion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
+            if (tempButton.myItemCode != "healPotion" && tempItemData["type"].As<ItemType>() != ItemType.food) 
+                continue;
+            
             useHandler.UseTempItem();
             return;
         }

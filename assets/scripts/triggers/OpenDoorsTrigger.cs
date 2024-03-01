@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class OpenDoorsTrigger : TriggerBase
+public partial class OpenDoorsTrigger : TriggerBase
 {
     [Export] private Array<NodePath> doorPaths;
     [Export] private Array<DoorType> doorTypes;
@@ -9,7 +9,7 @@ public class OpenDoorsTrigger : TriggerBase
     //если проверяется DoorTeleport, то для закрытия достаточно любой не-пустой строки
     [Export] private Array<string> doorKeysToOpen; 
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
@@ -32,7 +32,7 @@ public class OpenDoorsTrigger : TriggerBase
             }
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }
 

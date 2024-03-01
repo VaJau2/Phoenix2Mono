@@ -1,10 +1,10 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class RadioManager : Node
+public partial class RadioManager : Node
 {
-    [Export] private List<NodePath> radioListPath = new ();
-    protected List<RadioBase> radioList = new ();
+    [Export] private Array<NodePath> radioListPath = [];
+    protected Array<RadioBase> radioList = [];
 
     public override void _Ready()
     {
@@ -39,9 +39,9 @@ public class RadioManager : Node
         radioListPath.Clear();
     }
 
-    public void EnterToRoom(List<RadioBase> roomRadioList)
+    public void EnterToRoom(Array<RadioBase> roomRadioList)
     {
-        var outerRadioList = new List<RadioBase>();
+        var outerRadioList = new Array<RadioBase>();
         outerRadioList.AddRange(radioList);
         
         foreach (var roomRadio in roomRadioList)
@@ -56,9 +56,9 @@ public class RadioManager : Node
         }
     }
 
-    public void ExitFromRoom(List<RadioBase> roomRadioList)
+    public void ExitFromRoom(Array<RadioBase> roomRadioList)
     {
-        var outerRadioList = new List<RadioBase>();
+        var outerRadioList = new Array<RadioBase>();
         outerRadioList.AddRange(radioList);
 
         foreach (var roomRadio in roomRadioList)

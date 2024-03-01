@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"
+type="AudioStreamWAV"
+uid="uid://ne3b45nbgd0n"
+path="res://.godot/imported/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/medX.wav"
-dest_files=[ "res://.import/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample" ]
+dest_files=["res://.godot/imported/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/T5.mp3-d3341f448fbb611857ad2b76e07a3435.mp3str"
+uid="uid://eu8qa20eouj"
+path="res://.godot/imported/T5.mp3-d3341f448fbb611857ad2b76e07a3435.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/talk1/T5.mp3"
-dest_files=[ "res://.import/T5.mp3-d3341f448fbb611857ad2b76e07a3435.mp3str" ]
+dest_files=["res://.godot/imported/T5.mp3-d3341f448fbb611857ad2b76e07a3435.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

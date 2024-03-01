@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/The Lost Weekend Western Swing Band - Lone Star.mp3-e4e207dcd3f6337fa8d006bcaa8f8bbc.mp3str"
+uid="uid://cquwdvnnpfgqm"
+path="res://.godot/imported/The Lost Weekend Western Swing Band - Lone Star.mp3-e4e207dcd3f6337fa8d006bcaa8f8bbc.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Country Station/The Lost Weekend Western Swing Band - Lone Star.mp3"
-dest_files=[ "res://.import/The Lost Weekend Western Swing Band - Lone Star.mp3-e4e207dcd3f6337fa8d006bcaa8f8bbc.mp3str" ]
+dest_files=["res://.godot/imported/The Lost Weekend Western Swing Band - Lone Star.mp3-e4e207dcd3f6337fa8d006bcaa8f8bbc.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

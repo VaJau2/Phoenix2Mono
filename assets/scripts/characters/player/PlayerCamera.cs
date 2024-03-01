@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 // скрипт взаимодействия с предметами
-public class PlayerCamera : Camera
+public partial class PlayerCamera : Camera3D
 {
     const float RAY_LENGH = 6;
     const float RAY_THIRD_LENGTH = 9;
@@ -33,12 +33,12 @@ public class PlayerCamera : Camera
 
     bool mayUseRay = true;
 
-    RayCast tempRay => player.RotationHelperThird.TempRay;
+    RayCast3D tempRay => player.RotationHelperThird.TempRay;
 
-    public RayCast UseRay(float newDistance)
+    public RayCast3D UseRay(float newDistance)
     {
         tempRay.CollisionMask = 2147483649; //слой 1
-        tempRay.CastTo = new Vector3(0, 0, -newDistance);
+        tempRay.TargetPosition = new Vector3(0, 0, -newDistance);
         mayUseRay = false;
         return tempRay;
     }
@@ -47,7 +47,7 @@ public class PlayerCamera : Camera
     {
         float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGH;
         tempRay.CollisionMask = 2147483651; //слой 1 и 2
-        tempRay.CastTo = new Vector3(0, 0, -oldLength);
+        tempRay.TargetPosition = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
@@ -61,17 +61,17 @@ public class PlayerCamera : Camera
     {
         point.SetInteractionVariant(InteractionVariant.Square);
 
-        var actions = InputMap.GetActionList("use");
+        var actions = InputMap.ActionGetEvents("use");
         var action = (InputEventKey)actions[0];
-        var key = OS.GetScancodeString(action.Scancode);
+        var key = OS.GetKeycodeString(action.Keycode);
         var buttonPath = "res://assets/textures/interface/icons/buttons/";
         var isWideButton = key is "BackSpace" or "CapsLock" or "Kp 0" or "Shift" or "Space" or "Tab";
 
-        interactionIcon.Texture = GD.Load<Texture>( buttonPath + key + ".png");
+        interactionIcon.Texture = GD.Load<Texture2D>( buttonPath + key + ".png");
         
         interactionIconShadow.Texture = (isWideButton)
-            ? GD.Load<Texture>(buttonPath + "Empty 48x32.png")
-            : GD.Load<Texture>(buttonPath + "Empty 32x32.png");
+            ? GD.Load<Texture2D>(buttonPath + "Empty 48x32.png")
+            : GD.Load<Texture2D>(buttonPath + "Empty 32x32.png");
         
         interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
 
@@ -116,17 +116,17 @@ public class PlayerCamera : Camera
 
         if (eyesClosed)
         {
-            eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
-            eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
+            eyePartUp.Position = SetRectY(eyePartUp.Position, 0);
+            eyePartDown.Position = SetRectY(eyePartDown.Position, 0);
         }
         else if (fovClosing)
         {
             float closeFov = 42f;
 
             Dictionary armorProps = player.Inventory.GetArmorProps();
-            if (armorProps.Contains("closeFov"))
+            if (armorProps.TryGetValue("closeFov", out var prop))
             {
-                closeFov = float.Parse(armorProps["closeFov"].ToString());
+                closeFov = float.Parse(prop.ToString());
             }
 
             if (Fov > closeFov)
@@ -134,19 +134,19 @@ public class PlayerCamera : Camera
                 Fov -= FOV_SPEED * delta;
             }
             
-            if (eyePartUp.RectPosition.y < -220)
+            if (eyePartUp.Position.Y < -220)
             {
-                eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition,
-                    eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
+                eyePartUp.Position = SetRectY(
+                    eyePartUp.Position,
+                    eyePartUp.Position.Y + delta * EYE_PART_SPEED1
                 );
             }
             
-            if (eyePartDown.RectPosition.y > 220)
+            if (eyePartDown.Position.Y > 220)
             {
-                eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition,
-                    eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
+                eyePartDown.Position = SetRectY(
+                    eyePartDown.Position,
+                    eyePartDown.Position.Y - delta * EYE_PART_SPEED1
                 );
             }
         }
@@ -157,19 +157,19 @@ public class PlayerCamera : Camera
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.RectPosition.y > -650)
+            if (eyePartUp.Position.Y > -650)
             {
-                eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition,
-                    eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
+                eyePartUp.Position = SetRectY(
+                    eyePartUp.Position,
+                    eyePartUp.Position.Y - delta * EYE_PART_SPEED2
                 );
             }
             
-            if (eyePartDown.RectPosition.y < 650)
+            if (eyePartDown.Position.Y < 650)
             {
-                eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition,
-                    eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
+                eyePartDown.Position = SetRectY(
+                    eyePartDown.Position,
+                    eyePartDown.Position.Y + delta * EYE_PART_SPEED2
                 );
             }
         }
@@ -185,7 +185,7 @@ public class PlayerCamera : Camera
 
         if (mayUseRay && tempObject != null)
         {
-            if (tempObject is PhysicalBone)
+            if (tempObject is PhysicalBone3D)
             {
                 tempObject = tempObject.GetNode<Node>("../../../");
             }
@@ -234,11 +234,11 @@ public class PlayerCamera : Camera
 
     private Vector2 SetRectY(Vector2 oldPosition, float newY) 
     {
-        oldPosition.y = newY;
+        oldPosition.X = newY;
         return oldPosition;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isUpdating)
         {
@@ -246,7 +246,7 @@ public class PlayerCamera : Camera
             return;
         }
 
-        UpdateFov(delta);
+        UpdateFov((float)delta);
         UpdateInteracting();
     }
 
@@ -261,8 +261,8 @@ public class PlayerCamera : Camera
 
         if (player.ThirdView) return;
         if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
-        if (!(@event is InputEventMouseButton mouseEv)) return;
-        if (mouseEv.ButtonIndex == 2)
+        if (@event is not InputEventMouseButton mouseEv) return;
+        if (mouseEv.ButtonIndex == (MouseButton)2)
         {
             fovClosing = mouseEv.Pressed;
         }

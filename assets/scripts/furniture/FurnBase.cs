@@ -1,11 +1,11 @@
 using Godot;
 
-public class FurnBase: StaticBody, IInteractable
+public partial class FurnBase: StaticBody3D, IInteractable
 {
     protected Global global;
 
-    [Export] public AudioStreamSample OpenSound;
-    [Export] public AudioStreamSample CloseSound;
+    [Export] public AudioStreamWav OpenSound;
+    [Export] public AudioStreamWav CloseSound;
 
     public bool IsOpen {get; private set;}
     protected bool OtherSided;
@@ -33,7 +33,7 @@ public class FurnBase: StaticBody, IInteractable
         ClickFurn();
     }
 
-    public async void SetOpen(string anim, AudioStreamSample sound, float timer = 0, bool otherSide = false) 
+    public async void SetOpen(string anim, AudioStreamWav sound, float timer = 0, bool otherSide = false) 
     {
         if (IsInstanceValid(audi))
         {
@@ -51,7 +51,7 @@ public class FurnBase: StaticBody, IInteractable
         IsOpen = !IsOpen;
     }
 
-    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) 
+    public virtual void ClickFurn(AudioStreamWav openSound = null, float timer = 0, string openAnim = null) 
     {
         if (IsOpen) 
         {

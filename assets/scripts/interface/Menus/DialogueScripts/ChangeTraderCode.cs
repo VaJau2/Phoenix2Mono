@@ -1,6 +1,6 @@
-﻿namespace DialogueScripts
+namespace DialogueScripts
 {
-    public class ChangeTraderCode : IDialogueScript
+    public partial class ChangeTraderCode : IDialogueScript
     {
         public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
         {

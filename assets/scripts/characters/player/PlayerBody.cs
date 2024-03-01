@@ -1,6 +1,6 @@
 using Godot;
 
-public class PlayerBody : Spatial
+public partial class PlayerBody : Node3D
 {
     //---------------------------------------------------+
     //скрипт анимирует тело и не дает ему поворачиваться,
@@ -25,8 +25,8 @@ public class PlayerBody : Spatial
     private Player player;
     private Race playerRace;
 
-    private Skeleton playerSkeleton;
-    private PhysicalBone headBone;
+    private Skeleton3D playerSkeleton;
+    private PhysicalBone3D headBone;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -55,7 +55,7 @@ public class PlayerBody : Spatial
     {
         bodyRot = 0;
         Vector3 rot = RotationDegrees;
-        rot.y = 0;
+        rot.Y = 0;
         RotationDegrees = rot;
     }
 
@@ -78,12 +78,12 @@ public class PlayerBody : Spatial
         {
             var rotYvalue = 1f;
 
-            if (player.Inventory.GetArmorProps().Contains("shyHeadYRot"))
+            if (player.Inventory.GetArmorProps().ContainsKey("shyHeadYRot"))
             {
                 rotYvalue = Global.ParseFloat(player.Inventory.GetArmorProps()["shyHeadYRot"].ToString());
             }
 
-            return bodyRot > 27 && bodyRot < 61 && headBlend.y > rotYvalue;
+            return bodyRot > 27 && bodyRot < 61 && headBlend.Y > rotYvalue;
         }
     }
 
@@ -116,12 +116,12 @@ public class PlayerBody : Spatial
         }
     }
 
-    private void updateHeadRotation(float delta)
+    private void UpdateHeadRotation(float delta)
     {
         var lookYAngle = (player.GetVerticalLook() / 60f - 0.1f) + walkOffset;
         //обрасываем нули, чтоб вращение головы не подрагивало
         string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);
-        headBlend.y = float.Parse(stringYAngle);
+        headBlend.X = float.Parse(stringYAngle);
 
         if (isWalking || jumpingCooldown > 0)
         {
@@ -151,12 +151,12 @@ public class PlayerBody : Spatial
         {
             if (bodyRot > 130f)
             {
-                headBlend.y *= -1;
+                headBlend.X *= -1;
                 rotX = (bodyRot - 200f) / 90f;
             }
             else if (bodyRot < -105f)
             {
-                headBlend.y *= -1;
+                headBlend.X *= -1;
                 rotX = (bodyRot + 159f) / 90f;
             }
             else
@@ -178,7 +178,7 @@ public class PlayerBody : Spatial
             speed = HEAD_ROT_SPEED;
         }
 
-        headBlend.x = Mathf.MoveToward(headBlend.x, rotX, speed * delta);
+        headBlend.X = Mathf.MoveToward(headBlend.X, rotX, speed * delta);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
@@ -367,7 +367,7 @@ public class PlayerBody : Spatial
         player.CollisionMask = 0;
         playerSkeleton.PhysicalBonesStartSimulation();
 
-        var dir = Translation.DirectionTo(killer.Translation);
+        var dir = Position.DirectionTo(killer.Position);
         headBone.ApplyCentralImpulse(-dir * RAGDOLL_IMPULSE);
         SetProcess(false);
     }
@@ -383,19 +383,19 @@ public class PlayerBody : Spatial
             node.QueueFree();
         }
 
-        var deadSkeleton = GetNode<Skeleton>("Armature/Skeleton");
+        var deadSkeleton = GetNode<Skeleton3D>("Armature/Skeleton3D");
         
-        var mesh = deadSkeleton.GetNode<MeshInstance>("Body_third");
-        mesh.CastShadow = GeometryInstance.ShadowCastingSetting.On;
-        mesh.SetScript(null);
+        var mesh = deadSkeleton.GetNode<MeshInstance3D>("Body_third");
+        mesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.On;
+        mesh.SetScript(new Variant());
     }
 
     public override void _Ready()
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
-        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
+        playerSkeleton = GetNode<Skeleton3D>("Armature/Skeleton3D");
+        headBone = playerSkeleton.GetNode<PhysicalBone3D>("Physical Bone neck");
 
         Legs = GetNode<PlayerLegs>("frontArea");
 
@@ -407,18 +407,18 @@ public class PlayerBody : Spatial
         playback.Start("Idle1");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (player.Health > 0)
         {
-            updateHeadRotation(delta);
+            UpdateHeadRotation((float)delta);
 
             //update smiling
-            if (bodyRot > 130 || bodyRot < -105)
+            if (bodyRot is > 130 or < -105)
             {
                 if (smileCooldown < 5)
                 {
-                    smileCooldown += delta;
+                    smileCooldown += (float)delta;
                 }
                 else
                 {
@@ -435,11 +435,11 @@ public class PlayerBody : Spatial
             }
 
             //update shy when in coat
-            if (player.Inventory.GetArmorProps().Contains("makeShy") && playerMakingShy)
+            if (player.Inventory.GetArmorProps().ContainsKey("makeShy") && playerMakingShy)
             {
                 if (shyCooldown > 0)
                 {
-                    shyCooldown -= delta;
+                    shyCooldown -= (float)delta;
                 }
                 else
                 {
@@ -450,7 +450,7 @@ public class PlayerBody : Spatial
 
             if (jumpingCooldown > 0)
             {
-                jumpingCooldown -= delta;
+                jumpingCooldown -= (float)delta;
             }
 
             if (player.IsCrouching)
@@ -459,12 +459,12 @@ public class PlayerBody : Spatial
             }
             else if (notJumpingCooldown > 0)
             {
-                notJumpingCooldown -= delta;
+                notJumpingCooldown -= (float)delta;
             }
 
             if (crouchingCooldown > 0)
             {
-                crouchingCooldown -= delta;
+                crouchingCooldown -= (float)delta;
             }
 
             if (isWalking)
@@ -528,7 +528,7 @@ public class PlayerBody : Spatial
 
                 if (onetimeBodyRotBack)
                 {
-                    bodyRot = RotationDegrees.y;
+                    bodyRot = RotationDegrees.X;
                     onetimeBodyRotBack = false;
                 }
             }
@@ -581,13 +581,13 @@ public class PlayerBody : Spatial
                     speed = BODY_ROT_SPEED * player.Velocity.Length();
                 }
 
-                rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);
+                rot.X = (float)Mathf.MoveToward(rot.X, bodyRot, speed * delta);
                 RotationDegrees = rot;
             }
             else
             {
                 Vector3 rot = RotationDegrees;
-                rot.y = bodyRot;
+                rot.X = bodyRot;
 
                 RotationDegrees = rot;
 
@@ -598,17 +598,16 @@ public class PlayerBody : Spatial
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion &&
+        if (@event is InputEventMouseMotion mouseEvent &&
             Input.MouseMode == Input.MouseModeEnum.Captured
             && player.MayRotateHead)
         {
-            var mouseEvent = @event as InputEventMouseMotion;
-            float mouseSensivity = player.MouseSensivity;
-            float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
+            float mouseSensitivity = player.MouseSensivity;
+            float speedX = Mathf.Clamp(mouseEvent.Relative.X, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensitivity;
 
             bool mayRotate = (player.ThirdView && !player.IsSitting && !player.Weapons.GunOn) ||
-                             (mouseEvent.Relative.x < 0 && RotClumpsMin) ||
-                             (mouseEvent.Relative.x > 0 && RotClumpsMax);
+                             (mouseEvent.Relative.X < 0 && RotClumpsMin) ||
+                             (mouseEvent.Relative.X > 0 && RotClumpsMax);
             if (mayRotate)
             {
                 bodyRot -= speedX;

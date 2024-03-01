@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/P4.mp3-07a89bc3039acde90a48d128570fa9b4.mp3str"
+uid="uid://cyh3r3r1f28gw"
+path="res://.godot/imported/P4.mp3-07a89bc3039acde90a48d128570fa9b4.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk/P4.mp3"
-dest_files=[ "res://.import/P4.mp3-07a89bc3039acde90a48d128570fa9b4.mp3str" ]
+dest_files=["res://.godot/imported/P4.mp3-07a89bc3039acde90a48d128570fa9b4.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

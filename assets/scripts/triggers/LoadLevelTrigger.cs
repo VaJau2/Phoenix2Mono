@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 //загружает уровень
 //сохраняет инвентарь в отдельный нод в корне
-public class LoadLevelTrigger: TriggerBase
+public partial class LoadLevelTrigger: TriggerBase
 {
     [Export] public int NewLevelNum;
     [Export] public bool SaveInventory = true;
@@ -16,9 +16,9 @@ public class LoadLevelTrigger: TriggerBase
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        player.Camera.ShowHint(HintCode, false);
+        player.Camera3D.ShowHint(HintCode, false);
         
         if (!Input.IsActionJustPressed("use")) return;
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
@@ -37,7 +37,7 @@ public class LoadLevelTrigger: TriggerBase
         levelsLoader.LoadLevel(NewLevelNum);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive)
         {
@@ -45,7 +45,7 @@ public class LoadLevelTrigger: TriggerBase
             return;
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     public void _on_body_entered(Node body)
@@ -59,7 +59,7 @@ public class LoadLevelTrigger: TriggerBase
     {
         if (!IsActive) return;
         if (!(body is Player)) return;
-        player?.Camera.HideHint();
+        player?.Camera3D.HideHint();
         SetProcess(false);
     }
 }

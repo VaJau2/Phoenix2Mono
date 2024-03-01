@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class WeaponShellSpawner : Spatial
+public partial class WeaponShellSpawner : Node3D
 {
     [Export]
     public PackedScene shellPrefab;
@@ -9,7 +9,7 @@ public class WeaponShellSpawner : Spatial
     [Export]
     public Vector3 forceDirection;
 
-    float timer;
+    double timer;
 
     public void StartSpawning()
     {
@@ -22,7 +22,7 @@ public class WeaponShellSpawner : Spatial
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timer > 0)
         {
@@ -37,15 +37,15 @@ public class WeaponShellSpawner : Spatial
 
     private void Spawn()
     {
-        if (shellPrefab.Instance() is WeaponShell shell)
-        {
-            shell.Name = "Created_" + shell.Name;
-            GetNode<Node>("/root/Main/Scene").AddChild(shell);
-            shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.origin);
-            shell.Rotation = GlobalTransform.basis.GetEuler();
+        if (shellPrefab.Instantiate() is not WeaponShell shell) 
+            return;
+        
+        shell.Name = "Created_" + shell.Name;
+        GetNode<Node>("/root/Main/Scene").AddChild(shell);
+        shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.Origin);
+        shell.Rotation = GlobalTransform.Basis.GetEuler();
 
-            var dir = shell.Transform.basis.Xform(forceDirection);
-            shell.AddCentralForce(dir * 950);
-        }
+        var dir = shell.Transform.Basis * forceDirection;
+        shell.AddConstantCentralForce(dir * 950);
     }
 }

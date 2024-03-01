@@ -2,13 +2,13 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class TheaterChair : StaticBody, ISavable, IInteractable
+public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
 {
     [Export] public bool isActive;
     [Export] private string otherTriggerPath;
     [Export] private float triggerTimer;
     private TriggerBase otherTrigger;
-    private Spatial strikelyPlace;
+    private Node3D strikelyPlace;
 
     private float tempTimer;
     private int step;
@@ -22,14 +22,14 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         SetProcess(false);
         if (!isActive) return;
         otherTrigger = GetNodeOrNull<TriggerBase>(otherTriggerPath);
-        strikelyPlace = GetNode<Spatial>("strikelyPlace");
+        strikelyPlace = GetNode<Node3D>("strikelyPlace");
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
-            tempTimer -= delta;
+            tempTimer -= (float)delta;
             return;
         }
 
@@ -45,11 +45,11 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         if (step == 0)
         {
             player.SitOnChair(true);
-            player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
+            player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.Origin);
             player.Rotation = new Vector3(
-                player.Rotation.x,
-                strikelyPlace.Rotation.y,
-                player.Rotation.z
+                player.Rotation.X,
+                strikelyPlace.Rotation.Y,
+                player.Rotation.Z
             );
             step = 1;
         }
@@ -69,14 +69,15 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
 
     public void LoadData(Dictionary data)
     {
-        if (data.Contains("isActive"))
+        if (data.TryGetValue("isActive", out var newActive))
         {
-            isActive = Convert.ToBoolean(data["isActive"]);
+            isActive = newActive.AsBool();
         }
-        if (data.Contains("tempTimer"))
+        if (data.TryGetValue("tempTimer", out var newTimer))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = newTimer.AsSingle();
         }
+        
         step = Convert.ToInt16(data["step"]);
         if (step > 0)
         {

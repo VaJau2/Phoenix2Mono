@@ -7,7 +7,7 @@ using Godot.Collections;
  * Играет звук ударов из audi
  * Замораживается через некоторое время, если не движется
  */
-public class PickupItem : RigidBody, IInteractable, ISavable
+public partial class PickupItem : RigidBody3D, IInteractable, ISavable
 {
     const float AUDI_COOLDOWN = 2;
     private const float MIN_VELOCITY_TO_SOUND = 1;
@@ -44,11 +44,11 @@ public class PickupItem : RigidBody, IInteractable, ISavable
         audi = GetNodeOrNull<AudioStreamPlayer3D>("audi");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (audiCooldown > 0)
         {
-            audiCooldown -= delta;
+            audiCooldown -= (float)delta;
         }
 
         currentSpeed = LinearVelocity.Length();
@@ -57,11 +57,11 @@ public class PickupItem : RigidBody, IInteractable, ISavable
         {
             if (staticTimer > 0)
             {
-                staticTimer -= delta;
+                staticTimer -= (float)delta;
             }
             else
             {
-                Mode = ModeEnum.Static;
+                Freeze = true;
             }
         }
         else
@@ -75,7 +75,7 @@ public class PickupItem : RigidBody, IInteractable, ISavable
         if (audi == null || audiCooldown > 0) return;
         if (currentSpeed < MIN_VELOCITY_TO_SOUND) return;
         
-        if (!(body is StaticBody collideBody) || collideBody.PhysicsMaterialOverride == null) return;
+        if (!(body is StaticBody3D collideBody) || collideBody.PhysicsMaterialOverride == null) return;
         var friction = collideBody.PhysicsMaterialOverride.Friction;
         var materialName = MatNames.GetMatName(friction);
 
@@ -88,13 +88,13 @@ public class PickupItem : RigidBody, IInteractable, ISavable
     {
         return new Dictionary
         {
-            { "isStatic", Mode == ModeEnum.Static },
-            { "pos_x", GlobalTransform.origin.x },
-            { "pos_y", GlobalTransform.origin.y },
-            { "pos_z", GlobalTransform.origin.z },
-            { "rot_x", GlobalTransform.basis.GetEuler().x },
-            { "rot_y", GlobalTransform.basis.GetEuler().y },
-            { "rot_z", GlobalTransform.basis.GetEuler().z },
+            { "isStatic", Freeze },
+            { "pos_x", GlobalTransform.Origin.X },
+            { "pos_y", GlobalTransform.Origin.Y },
+            { "pos_z", GlobalTransform.Origin.Z },
+            { "rot_x", GlobalTransform.Basis.GetEuler().X },
+            { "rot_y", GlobalTransform.Basis.GetEuler().Y },
+            { "rot_z", GlobalTransform.Basis.GetEuler().Z },
         };
     }
 
@@ -102,15 +102,15 @@ public class PickupItem : RigidBody, IInteractable, ISavable
     {
         if ((bool)data["isStatic"])
         {
-            Mode = ModeEnum.Static;
+            Freeze = true;
         }
         
         Vector3 newPos = new Vector3(Convert.ToSingle(data["pos_x"]), Convert.ToSingle(data["pos_y"]), Convert.ToSingle(data["pos_z"]));
         Vector3 newRot = new Vector3(Convert.ToSingle(data["rot_x"]), Convert.ToSingle(data["rot_y"]), Convert.ToSingle(data["rot_z"]));
         Vector3 oldScale = Scale;
 
-        Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
+        Basis newBasis = Basis.FromEuler(newRot);
+        Transform3D newTransform = new Transform3D(newBasis, newPos);
         GlobalTransform = newTransform;
         Scale = oldScale;
     }

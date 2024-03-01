@@ -2,11 +2,11 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnDoor: FurnBase, ISavable
+public partial class FurnDoor: FurnBase, ISavable
 {
     [Export] public string myKey;
-    [Export] public AudioStreamSample closedSound;
-    [Export] public AudioStreamSample openWithKeySound;
+    [Export] public AudioStreamWav closedSound;
+    [Export] public AudioStreamWav openWithKeySound;
     [Export] public bool ForceOpening;
     [Export] public float openTimer = 0f;
     [Export] public string doorCode;
@@ -31,7 +31,7 @@ public class FurnDoor: FurnBase, ISavable
         interactor.onetimeHint = false;
     }
 
-    public async void SetOpen(AudioStreamSample keySound = null, float timer = 0, bool force = false) 
+    public async void SetOpen(AudioStreamWav keySound = null, float timer = 0, bool force = false) 
     {
         string animForce = null;
         

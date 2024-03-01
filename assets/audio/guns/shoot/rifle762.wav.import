@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample"
+type="AudioStreamWAV"
+uid="uid://cmrryqv8oxcy8"
+path="res://.godot/imported/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/rifle762.wav"
-dest_files=[ "res://.import/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample" ]
+dest_files=["res://.godot/imported/rifle762.wav-fedaef6732109a795538f8d46929f8ca.sample"]
 
 [params]
 

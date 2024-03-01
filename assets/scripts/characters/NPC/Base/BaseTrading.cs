@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -8,19 +8,19 @@ using Array = Godot.Collections.Array;
 public static class BaseTrading
 {
     static InventoryMenu menu;
-    static bool isTrading = false;
+    static bool isTrading;
     private static NPC tempNpc;
     
     public static void LoadTradingData(NPC npc)
     {
-        if (!(npc is ITrader trader))
+        if (npc is not ITrader trader)
         {
             throw new ArgumentException();
         }
 
         tempNpc = npc;
         
-        if (!Godot.Object.IsInstanceValid(menu))
+        if (!GodotObject.IsInstanceValid(menu))
         {
             menu = npc.GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         }
@@ -60,9 +60,9 @@ public static class BaseTrading
         {
             menu.ChangeMode(NewInventoryMode.Trade);
             TradeMode tempMode = menu.mode as TradeMode;
-            tempMode.SetTrader(trader);
+            tempMode?.SetTrader(trader);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", tempNpc, nameof(ITrader.StopTrading));
+            menu.MenuIsClosed += ((ITrader)tempNpc).StopTrading;
             isTrading = true;
         }
     }
@@ -70,7 +70,7 @@ public static class BaseTrading
     public static void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", tempNpc, nameof(ITrader.StopTrading));
+        menu.MenuIsClosed -= ((ITrader)tempNpc).StopTrading;
     }
 
     public static void LoadData(NPC npc, Dictionary data)

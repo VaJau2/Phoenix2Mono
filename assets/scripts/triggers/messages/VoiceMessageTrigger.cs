@@ -1,11 +1,11 @@
-﻿using Godot;
+using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
+public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
     [Export] private bool ignorable;
-    [Export] private List<AudioStream> messages;
+    [Export] private Array<AudioStream> messages;
     
     private WarningManager warningManager;
 
@@ -43,13 +43,13 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     public void OnMessageFinished()
     {
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
     
     public void Connect()
     {
         if (!DeleteAfterTrigger) return;
-        warningManager.Connect(nameof(WarningManager.MessageFinishedEvent), this, nameof(OnMessageFinished));
+        warningManager.MessageFinished += OnMessageFinished;
     }
 
     private void SendMessage(int index)

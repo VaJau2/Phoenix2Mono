@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public class UnicornShield : Spatial
+public partial class UnicornShield : Node3D
 {
     private const float SHIELD_COST = 30f;
     public bool shieldOn = false;
     public float shieldCooldown = 0f;
     private Player_Unicorn player;
-    private MeshInstance firstShield;
-    private MeshInstance thirdShield;
+    private MeshInstance3D firstShield;
+    private MeshInstance3D thirdShield;
 
-    private SpatialMaterial material;
+    private StandardMaterial3D material;
     private bool playOnetime;
 
     private LightsCheck lights;
@@ -21,23 +21,23 @@ public class UnicornShield : Spatial
     public override void _Ready()
     {
         player = GetParent<Player_Unicorn>();
-        firstShield = GetNode<MeshInstance>("first");
-        thirdShield = GetNode<MeshInstance>("third");
+        firstShield = GetNode<MeshInstance3D>("first");
+        thirdShield = GetNode<MeshInstance3D>("third");
         lights = GetNode<LightsCheck>("../lightsCheck");
 
-        material = (SpatialMaterial)firstShield.GetSurfaceMaterial(0);
+        material = (StandardMaterial3D)firstShield.GetSurfaceOverrideMaterial(0);
 
         audi = GetNode<AudioStreamPlayer>("../sound/audi_shield");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (shieldCooldown > 0)
         {
-            shieldCooldown -= delta;
+            shieldCooldown -= (float)delta;
         }
         
-        float tempCost = SHIELD_COST * delta * player.ManaDelta;
+        float tempCost = SHIELD_COST * (float)delta * player.ManaDelta;
         if (player.MayMove 
             && Input.IsActionPressed("ui_shift") 
             && player.ManaIsEnough(tempCost) 
@@ -50,19 +50,21 @@ public class UnicornShield : Spatial
             player.DecreaseMana(tempCost);
 
             var color = material.AlbedoColor;
-            color.a = player.Mana / 150f;
+            color.A = player.Mana / 150f;
             material.AlbedoColor = color;
-            firstShield.SetSurfaceMaterial(0, material);
-            thirdShield.SetSurfaceMaterial(0, material);
+            firstShield.SetSurfaceOverrideMaterial(0, material);
+            thirdShield.SetSurfaceOverrideMaterial(0, material);
             lights.OnLight = true;
             if (!playOnetime)
             {
                 audi.Play();
                 playOnetime = true;
             }
-       
-        } else {
-            if (firstShield.Visible) {
+        } 
+        else 
+        {
+            if (firstShield.Visible) 
+            {
                 shieldOn = false;
                 firstShield.Visible = false;
                 thirdShield.Visible = false;

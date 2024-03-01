@@ -1,6 +1,6 @@
 using Godot;
 
-public class HealthBar : Control
+public partial class HealthBar : Control
 {
     private const int SIZE_X = 65;
     private const int SIZE_Y = 80;
@@ -16,15 +16,15 @@ public class HealthBar : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         player = Global.Get().player;
         if (player == null) return;
         
         var healthRatio = (float)player.Health / player.HealthMax;
-        mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);
+        mask.Size = new Vector2(SIZE_X, healthRatio * SIZE_Y);
 
         var radiationRatio = (float)player.Radiation.GetRadLevel() / player.HealthMax;
-        radiationMask.RectSize = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
+        radiationMask.Size = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
     }
 }

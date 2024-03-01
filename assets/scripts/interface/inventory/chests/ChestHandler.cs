@@ -1,27 +1,27 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class ChestHandler
+public partial class ChestHandler
 {
     public bool IsBag { get; private set; }
     public string ChestCode { get; private set; }
 
     public int MoneyCount;
 
-    public readonly Array<string> ItemCodes = new Array<string>();
+    public readonly Array<string> ItemCodes = new();
 
-    public readonly Dictionary<int, string> ItemPositions = new Dictionary<int, string>();
+    public readonly Dictionary<int, string> ItemPositions = new();
     
     //патроны считаются отдельно и не должны лежать в массиве вещей
-    public readonly Dictionary<string, int> AmmoCount = new Dictionary<string, int>();
+    public readonly Dictionary<string, int> AmmoCount = new();
 
-    public readonly Dictionary<string, ItemIcon> AmmoButtons = new Dictionary<string, ItemIcon>();
+    public readonly Dictionary<string, ItemIcon> AmmoButtons = new();
     
     public readonly InventoryMenu Menu;
     
-    private readonly RandomNumberGenerator random = new RandomNumberGenerator();
+    private readonly RandomNumberGenerator random = new();
     private readonly IChest chest;
     private Node chestNode;
     
@@ -112,7 +112,7 @@ public class ChestHandler
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("itemCodes")) return;
+        if (!data.ContainsKey("itemCodes")) return;
         
         Array newItemCodes = (Array) data["itemCodes"];
         Dictionary newAmmoCount = (Dictionary) data["ammoCount"];

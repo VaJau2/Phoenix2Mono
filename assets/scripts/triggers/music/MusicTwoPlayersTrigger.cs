@@ -5,7 +5,7 @@ using Godot.Collections;
 //При запуске действует в зависимости от активности
 //Если активен, врубает первый "боевой" трек
 //Если неактивен, вырубает его и, если есть второй "спокойный" трек, врубает его
-public class MusicTwoPlayersTrigger : TriggerBase
+public partial class MusicTwoPlayersTrigger : TriggerBase
 {
     [Export] public NodePath audi1Path;
     [Export] public NodePath audi2Path;
@@ -24,7 +24,7 @@ public class MusicTwoPlayersTrigger : TriggerBase
         audi2 = new AudioPlayerCommon(isAudi3D, audi2Path, this);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 
@@ -33,7 +33,7 @@ public class MusicTwoPlayersTrigger : TriggerBase
         base.LoadData(data);
         if (IsActive)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
     
@@ -68,7 +68,7 @@ public class MusicTwoPlayersTrigger : TriggerBase
         return riseAudi.Volume >= volumeMax && fallAudi.Volume <= volumeMin;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         //если активен = играет боевой трек (audi2)
         //если неактивен = играет небоевой трек (audi1)
@@ -88,6 +88,6 @@ public class MusicTwoPlayersTrigger : TriggerBase
         }
         
         SetProcess(false);
-        _on_activate_trigger();
+        OnActivateTrigger();
     }
 }

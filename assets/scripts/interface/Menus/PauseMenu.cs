@@ -1,6 +1,6 @@
 using Godot;
 
-public class PauseMenu : MenuBase, IMenu
+public partial class PauseMenu : MenuBase, IMenu
 {
     public bool mustBeClosed => true;
     Global global = Global.Get();
@@ -20,7 +20,7 @@ public class PauseMenu : MenuBase, IMenu
 
 
     [Signal]
-    public delegate void ChangePause(bool value);
+    public delegate void ChangePauseEventHandler(bool value);
 
     public override void LoadInterfaceLanguage()
     {
@@ -159,6 +159,6 @@ public class PauseMenu : MenuBase, IMenu
     private void SetPause(bool value)
     {
         global.SetPause(this, value);
-        EmitSignal(nameof(ChangePause), value);
+        EmitSignal(nameof(ChangePauseEventHandler), value);
     }
 }

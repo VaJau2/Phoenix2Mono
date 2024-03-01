@@ -1,15 +1,15 @@
 using Godot;
 using Godot.Collections;
 
-public class DummyCloth : StaticBody, IInteractable, ISavable
+public partial class DummyCloth : StaticBody3D, IInteractable, ISavable
 {
     [Export] private Mesh pegasCloth;
     [Export] private string clothCode;
     private bool hasCloth = true;
 
-    private MeshInstance bodyMesh;
-    private MeshInstance clothMesh;
-    private CollisionShape clothShape;
+    private MeshInstance3D bodyMesh;
+    private MeshInstance3D clothMesh;
+    private CollisionShape3D clothShape;
     
     private static string currentCloth
         => Global.Get().player.Inventory.cloth;
@@ -21,9 +21,9 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
     
     public override void _Ready()
     {
-        bodyMesh = GetNode<MeshInstance>("Body");
-        clothMesh = GetNode<MeshInstance>("Cloth");
-        clothShape = GetNode<CollisionShape>("ClothShape");
+        bodyMesh = GetNode<MeshInstance3D>("Body");
+        clothMesh = GetNode<MeshInstance3D>("Cloth");
+        clothShape = GetNode<CollisionShape3D>("ClothShape");
 
         if (global.playerRace == Race.Pegasus && pegasCloth != null)
         {

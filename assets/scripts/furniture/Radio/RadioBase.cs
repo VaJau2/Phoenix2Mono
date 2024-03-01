@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public abstract class RadioBase : StaticBody
+public abstract partial class RadioBase : StaticBody3D
 {
     public bool InRoom = false;
     public RadioManager RadioManager;
@@ -22,7 +22,7 @@ public abstract class RadioBase : StaticBody
     public float depthOfRoom = 100 / 1.5f;
     
     [Signal]
-    public delegate void ChangeOnline(RadioBase radio);
+    public delegate void ChangeOnlineEventHandler(RadioBase radio);
 
     public abstract void Initialize();
 
@@ -42,15 +42,15 @@ public abstract class RadioBase : StaticBody
         warningManager = GetNodeOrNull<WarningManager>("/root/Main/Scene/Warning Manager");
         
         var pauseMenu = GetNode<PauseMenu>("/root/Main/Menu/PauseMenu");
-        pauseMenu.Connect(nameof(PauseMenu.ChangePause), this, nameof(OnPauseChange));
+        pauseMenu.ChangePause += OnPauseChange;
     }
 
     public void RepeaterMode(bool value)
     {
         var transform = GlobalTransform;
 
-        if (value) transform.origin += new Vector3(0, depthOfRoom, 0);
-        else transform.origin -= new Vector3(0, depthOfRoom, 0);
+        if (value) transform.Origin += new Vector3(0, depthOfRoom, 0);
+        else transform.Origin -= new Vector3(0, depthOfRoom, 0);
 
         GlobalTransform = transform;
         repeaterMode = value;
@@ -60,13 +60,13 @@ public abstract class RadioBase : StaticBody
     {
         if (value)
         {
-            MusicPlayer.UnitDb = -80;
-            NoisePlayer.UnitDb = -80;
+            MusicPlayer.VolumeDb = -80;
+            NoisePlayer.VolumeDb = -80;
         }
         else
         {
-            MusicPlayer.UnitDb = 0;
-            NoisePlayer.UnitDb = noiseDb;
+            MusicPlayer.VolumeDb = 0;
+            NoisePlayer.VolumeDb = noiseDb;
         }
     }
 

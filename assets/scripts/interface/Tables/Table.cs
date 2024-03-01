@@ -3,7 +3,7 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Table : VBoxContainer
+public partial class Table : VBoxContainer
 {
     private const int SYMBOL_PIXEL_SIZE = 8;
     private static List<FileTableLine> filesArray => Global.saveFilesArray;
@@ -39,9 +39,9 @@ public class Table : VBoxContainer
     public Button SpawnButton(FileTableLine fileData)
     {
         var newButton = new Button {Name = buttonsCount.ToString()};
-        newButton.Connect("pressed", this, nameof(_on_table_button_click), new Godot.Collections.Array() {newButton.Name});
+        newButton.Pressed += () => _on_table_button_click(newButton.Name);
         newButton.ToggleMode = true;
-        newButton.Align = Button.TextAlign.Left;
+        newButton.Alignment = HorizontalAlignment.Left;
         newButton.Theme = buttonsTheme;
         newButton.AddToGroup("ignore_color");
         newButton.Text = GetLine(fileData.name, fileData.date, 
@@ -75,14 +75,14 @@ public class Table : VBoxContainer
         if (IsInstanceValid(foundButton))
         {
             if (foundButton == tempButton) return true;
-            foundButton.Pressed = true;
-            if (IsInstanceValid(tempButton)) tempButton.Pressed = false;
+            foundButton.ButtonPressed = true;
+            if (IsInstanceValid(tempButton)) tempButton.ButtonPressed = false;
             tempButton = foundButton;
             return true;
         }
 
         if (tempButton == null) return false;
-        tempButton.Pressed = false;
+        tempButton.ButtonPressed = false;
         tempButton = null;
         return false;
     }
@@ -175,7 +175,7 @@ public class Table : VBoxContainer
         parent = GetParent<TableSignals>();
         buttonsTheme = GD.Load<Theme>("res://assets/materials/fonts/terminal_theme.tres");
 
-        allSymbolsSize = (int)((RectSize.x - 10) / SYMBOL_PIXEL_SIZE);
+        allSymbolsSize = (int)((Size.X - 10) / SYMBOL_PIXEL_SIZE);
         firstColumnsSize = (allSymbolsSize - secondColumnSize) / 2;
 
         UpdateHeader();
@@ -184,15 +184,16 @@ public class Table : VBoxContainer
 
     public void _on_table_button_click(string buttonName)
     {
-        if (IsInstanceValid(tempButton)) {
-            tempButton.Pressed = false;
+        if (IsInstanceValid(tempButton)) 
+        {
+            tempButton.ButtonPressed = false;
         }
 
         tempButton = GetNodeOrNull<Button>(buttonName);
         if (!IsInstanceValid(tempButton)) return;
         
         var fileI = int.Parse(buttonName);
-        parent.EmitSignal(nameof(TableSignals.TableButtonPressed), filesArray[fileI].name);
+        parent.EmitSignal(nameof(TableSignals.TableButtonPressedEventHandler), filesArray[fileI].name);
     }
 }
 

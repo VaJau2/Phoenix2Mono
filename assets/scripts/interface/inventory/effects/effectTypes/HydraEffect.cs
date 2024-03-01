@@ -1,6 +1,6 @@
 using Godot;
 
-public class HydraEffect: Effect 
+public partial class HydraEffect: Effect 
 {
     const float HEAL_COOLDOWN = 2f;
     private Player player;

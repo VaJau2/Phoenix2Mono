@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/truckMovingBox.mp3-93c2f8cbffc64c0e001baeb95a08f0b7.mp3str"
+uid="uid://bxg45nooit6mk"
+path="res://.godot/imported/truckMovingBox.mp3-93c2f8cbffc64c0e001baeb95a08f0b7.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/background/truckMovingBox.mp3"
-dest_files=[ "res://.import/truckMovingBox.mp3-93c2f8cbffc64c0e001baeb95a08f0b7.mp3str" ]
+dest_files=["res://.godot/imported/truckMovingBox.mp3-93c2f8cbffc64c0e001baeb95a08f0b7.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

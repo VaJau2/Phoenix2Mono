@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Clarence Henry - Aint Got No Home.mp3-1b05500a3fcde4f3660216f0943b4da9.mp3str"
+uid="uid://si7xusb6u488"
+path="res://.godot/imported/Clarence Henry - Aint Got No Home.mp3-1b05500a3fcde4f3660216f0943b4da9.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Easy-Greasy FM/Clarence Henry - Aint Got No Home.mp3"
-dest_files=[ "res://.import/Clarence Henry - Aint Got No Home.mp3-1b05500a3fcde4f3660216f0943b4da9.mp3str" ]
+dest_files=["res://.godot/imported/Clarence Henry - Aint Got No Home.mp3-1b05500a3fcde4f3660216f0943b4da9.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

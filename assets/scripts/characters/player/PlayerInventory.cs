@@ -4,7 +4,7 @@ using Godot.Collections;
 
 using Array = Godot.Collections.Array;
 
-public class PlayerInventory
+public partial class PlayerInventory
 {
     public EffectHandler effects;
     Messages messages;
@@ -43,14 +43,7 @@ public class PlayerInventory
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {
-        if (ammoButtons.ContainsKey(ammoType)) 
-        {
-            ammoButtons[ammoType] = button;
-        } 
-        else 
-        {
-            ammoButtons.Add(ammoType, button);
-        }
+        ammoButtons[ammoType] = button;
     }
 
     public void AddKey(string key) 
@@ -110,7 +103,7 @@ public class PlayerInventory
     {
         SoundUsingItem(itemData);
 
-        switch((ItemType)itemData["type"]) 
+        switch(itemData["type"].As<ItemType>()) 
         {
             case ItemType.food:
                 if (player.FoodCanHeal)
@@ -138,16 +131,16 @@ public class PlayerInventory
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
 
         //если предмет только для земных пней
-        if (itemData.Contains("onlyForEarthponies")
+        if (itemData.ContainsKey("onlyForEarthponies")
             && Global.Get().playerRace != Race.Earthpony)
         {
             return false;
         }
 
         //если для предмета требуется наличие другого предмета
-        if (itemData.Contains("checkHasItem"))
+        if (itemData.TryGetValue("checkHasItem", out var item))
         {
-            string checkItem = itemData["checkHasItem"].ToString();
+            string checkItem = item.ToString();
             if (!HasItem(checkItem)) return false;
         }
 
@@ -165,7 +158,7 @@ public class PlayerInventory
             messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
         }
 
-        switch((ItemType)itemData["type"]) 
+        switch(itemData["type"].As<ItemType>()) 
         {
             case ItemType.weapon:
                 weapon = itemCode;
@@ -182,7 +175,7 @@ public class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.WearItem), itemCode);
+        if (emmitSignal) player.EmitSignal(nameof(Player.WearItemEventHandler), itemCode);
     }
 
     public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
@@ -194,7 +187,7 @@ public class PlayerInventory
 
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
-        switch((ItemType)itemData["type"]) 
+        switch(itemData["type"].As<ItemType>()) 
         {
             case ItemType.weapon:
                 weapon = "";
@@ -213,7 +206,7 @@ public class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.UnwearItem), itemCode);
+        if (emmitSignal) player.EmitSignal(nameof(Player.UnwearItemEventHandler), itemCode);
     }
 
     public void MessageCantSell(string itemName)
@@ -325,7 +318,7 @@ public class PlayerInventory
             
             if (itemBinds.Count == 0) continue;
             
-            if (itemBinds[i] != null && itemBinds[i].ToString() != "")
+            if (itemBinds[i].Obj != null && itemBinds[i].ToString() != "")
             {
                 tempButton.SetBindKey(itemBinds[i].ToString());
                 menu.bindedButtons[Convert.ToInt32(itemBinds[i])] = tempButton;
@@ -353,9 +346,9 @@ public class PlayerInventory
             bindsList.AddIcon(weaponButton);
         }
 
-        if (data.Contains("tempKeys") && data["tempKeys"] is Array)
+        if (data.TryGetValue("tempKeys", out var value))
         {
-            foreach (string key in (Array)data["tempKeys"])
+            foreach (string key in (Array)value)
             {
                 tempKeys.Add(key);
             }
@@ -375,21 +368,21 @@ public class PlayerInventory
 
     private void SoundUsingItem(Dictionary itemData) 
     {
-        if(itemData.Contains("sound")) 
+        if (itemData.TryGetValue("sound", out var soundName)) 
         {
-            string path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
-            var sound = GD.Load<AudioStreamSample>(path);
+            string path = "res://assets/audio/item/" + soundName + ".wav";
+            var sound = GD.Load<AudioStreamWav>(path);
             
             player.GetAudi().Stream = sound;
             player.GetAudi().Play();
         }
     }
 
-    private void CheckSpeed(Dictionary effects, int factor = 1)
+    private void CheckSpeed(Dictionary currentEffects, int factor = 1)
     {
-        if (effects.Contains("speedDecrease")) 
+        if (currentEffects.TryGetValue("speedDecrease", out var effect)) 
         {
-            string speedEffect = effects["speedDecrease"].ToString();
+            string speedEffect = effect.ToString();
             player.BaseSpeed -= int.Parse(speedEffect) * factor;
         }
     }

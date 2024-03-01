@@ -12,12 +12,12 @@
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.4
-mid_height = 0.7
+height = 0.7
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 extents = Vector3( 0.469446, 0.279484, 0.886601 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 spread = 50.0
 gravity = Vector3( 0, -6, 0 )
 initial_velocity = 2.0
@@ -34,7 +34,7 @@ size = Vector2( 0.8, 0.8 )
 material = ExtResource( 9 )
 size = Vector2( 0.8, 0.8 )
 
-[node name="lamp" type="StaticBody"]
+[node name="lamp" type="StaticBody3D"]
 physics_material_override = ExtResource( 1 )
 script = ExtResource( 3 )
 BrakeDamage = 10.0
@@ -45,13 +45,13 @@ brakeSounds = {
 "brake2": ExtResource( 6 )
 }
 
-[node name="mesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
-[node name="shape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
+[node name="shape" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 2 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
@@ -61,7 +61,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.347872, 0.0979506 )
+transform = Transform3D( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.347872, 0.0979506 )
 emitting = false
 amount = 5
 lifetime = 0.8

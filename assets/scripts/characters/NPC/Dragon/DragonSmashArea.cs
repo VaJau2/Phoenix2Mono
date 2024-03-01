@@ -1,9 +1,9 @@
 using Godot;
 
-public class DragonSmashArea : Area
+public partial class DragonSmashArea : Area3D
 {
     private Dragon dragon;
-    [Export] private AudioStreamSample eatSound;
+    [Export] private AudioStreamWav eatSound;
 
     public override void _Ready()
     {
@@ -27,7 +27,7 @@ public class DragonSmashArea : Area
             character.TakeDamage(dragon, Dragon.MOUTH_DAMAGE);
             character.GlobalTransform = Global.SetNewOrigin(
                 character.GlobalTransform, 
-                dragon.mouthPos.GlobalTransform.origin
+                dragon.mouthPos.GlobalTransform.Origin
             );
 
             dragon.enemyMouthTimer = 3;

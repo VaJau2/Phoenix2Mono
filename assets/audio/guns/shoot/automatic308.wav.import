@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/automatic308.wav-96a0d3002f122d0951e206f70b741884.sample"
+type="AudioStreamWAV"
+uid="uid://dbqvuuxfueq8s"
+path="res://.godot/imported/automatic308.wav-96a0d3002f122d0951e206f70b741884.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/automatic308.wav"
-dest_files=[ "res://.import/automatic308.wav-96a0d3002f122d0951e206f70b741884.sample" ]
+dest_files=["res://.godot/imported/automatic308.wav-96a0d3002f122d0951e206f70b741884.sample"]
 
 [params]
 

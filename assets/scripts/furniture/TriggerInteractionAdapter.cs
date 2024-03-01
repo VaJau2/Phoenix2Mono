@@ -1,18 +1,17 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
-public class TriggerInteractionAdapter : StaticBody, IInteractable
+public partial class TriggerInteractionAdapter : StaticBody3D, IInteractable
 {
-    private const string DEFAULT_HINT = "use";
+    private const string DefaultHint = "use";
     
-    [Export] private List<string> hintCodes;
-    [Export] private List<NodePath> activateTriggerPaths;
+    [Export] private Array<string> hintCodes;
+    [Export] private Array<NodePath> activateTriggerPaths;
 
     private Dictionary triggersData = new Dictionary();
     
-    private List<TriggerBase> triggers = new List<TriggerBase>();
+    private Array<TriggerBase> triggers = [];
     
     public bool MayInteract => GetActiveTriggerIndex() != -1;
 
@@ -23,7 +22,7 @@ public class TriggerInteractionAdapter : StaticBody, IInteractable
             var index = GetActiveTriggerIndex();
             return hintCodes.ElementAtOrDefault(index) != null 
                 ? hintCodes[index]
-                : DEFAULT_HINT;
+                : DefaultHint;
         }
     }
 
@@ -48,7 +47,7 @@ public class TriggerInteractionAdapter : StaticBody, IInteractable
         
         if (index < 0) return;
 
-        triggers[index]._on_activate_trigger();
+        triggers[index].OnActivateTrigger();
         triggers.Remove(triggers[index]);
         hintCodes.Remove(hintCodes[index]);
     }

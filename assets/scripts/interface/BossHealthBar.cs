@@ -1,6 +1,6 @@
 using Godot;
 
-public class BossHealthBar : Control
+public partial class BossHealthBar : Control
 {
     public override void _Ready()
     {

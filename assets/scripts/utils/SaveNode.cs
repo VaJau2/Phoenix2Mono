@@ -1,29 +1,29 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 //нод, сохраняемый во время перехода между уровнями
 //хранит в себе данные инвентаря
-public class SaveNode: Node, ISavable
+public partial class SaveNode: Node, ISavable
 {
-    public Dictionary InventoryData = new Dictionary();
-    public Dictionary SavedVariables = new Dictionary();
+    public Dictionary InventoryData = new();
+    public Dictionary SavedVariables = new();
     
     //иногда игрок может лишиться инвентаря и вернуть его на следующем уровне
     //для сохранения старого и нового инвентаря сохраненный раннее инвентарь клонируется в новый объект
-    private const string CLONE_NAME = "SaveNode2";
+    private const string CloneName = "SaveNode2";
     
     public void CloneSaveData(Node parent)
     {
         var newSaveNode = new SaveNode();
         parent.AddChild(newSaveNode);
-        newSaveNode.Name = CLONE_NAME;
+        newSaveNode.Name = CloneName;
         newSaveNode.InventoryData = InventoryData.Duplicate();
         newSaveNode.SavedVariables = SavedVariables.Duplicate();
     }
 
     public void CheckClonedSaveData()
     {
-        var oldSaveNode = GetNodeOrNull<SaveNode>("/root/Main/" + CLONE_NAME);
+        var oldSaveNode = GetNodeOrNull<SaveNode>("/root/Main/" + CloneName);
         if (oldSaveNode == null) return;
 
         InventoryData = oldSaveNode.InventoryData;
@@ -42,12 +42,12 @@ public class SaveNode: Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (data["inventory"] is Dictionary inventory)
+        if (data["inventory"].Obj is Dictionary inventory)
         {
             InventoryData = inventory;
         }
 
-        if (data["savedVariables"] is Dictionary variables)
+        if (data["savedVariables"].Obj is Dictionary variables)
         {
             SavedVariables = variables;
         }

@@ -1,6 +1,6 @@
 using Godot;
 
-public class MentatsPostEffect: Effect 
+public partial class MentatsPostEffect: Effect 
 {
     const float BRIGHTNESS = -0.05f;
     const float CONTRAST = 0.75f;
@@ -20,9 +20,9 @@ public class MentatsPostEffect: Effect
         var colorRect = player.GetNode<ColorRect>("/root/Main/Scene/canvas/colorShader");
         if (on) {
             ShaderMaterial shaders = (ShaderMaterial)colorRect.Material;
-            shaders.SetShaderParam("brightness", BRIGHTNESS);
-            shaders.SetShaderParam("contrast", CONTRAST);
-            shaders.SetShaderParam("saturation", SATURATION);
+            shaders.SetShaderParameter("brightness", BRIGHTNESS);
+            shaders.SetShaderParameter("contrast", CONTRAST);
+            shaders.SetShaderParameter("saturation", SATURATION);
         }
         
         colorRect.Visible = on;

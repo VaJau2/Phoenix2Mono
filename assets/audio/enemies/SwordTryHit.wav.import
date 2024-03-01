@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/SwordTryHit.wav-42f5e42564af6c1e3127b5bf78ee7511.sample"
+type="AudioStreamWAV"
+uid="uid://cj4qyyphve88m"
+path="res://.godot/imported/SwordTryHit.wav-42f5e42564af6c1e3127b5bf78ee7511.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/SwordTryHit.wav"
-dest_files=[ "res://.import/SwordTryHit.wav-42f5e42564af6c1e3127b5bf78ee7511.sample" ]
+dest_files=["res://.godot/imported/SwordTryHit.wav-42f5e42564af6c1e3127b5bf78ee7511.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

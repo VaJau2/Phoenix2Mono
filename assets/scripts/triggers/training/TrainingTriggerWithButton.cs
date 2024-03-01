@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
+public abstract partial class TrainingTriggerWithButton: TriggerBase, IInteractable
 {
     [Export] public string HintCode = "pressButton";
-    [Export] public AudioStreamSample clickButtonSound;
+    [Export] public AudioStreamWav clickButtonSound;
     [Export] public NodePath audiPath;
     
     protected AudioStreamPlayer3D audi;
@@ -32,7 +32,7 @@ public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
         PressButton();
     }
     
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!checkButton) checkButton = true;
         SetActive(true);

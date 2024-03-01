@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3-ba717e0439f8bc073e548c59f954e66c.mp3str"
+uid="uid://bjjd7ylggbxc7"
+path="res://.godot/imported/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3-ba717e0439f8bc073e548c59f954e66c.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/radio/Radio Applewood/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3"
-dest_files=[ "res://.import/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3-ba717e0439f8bc073e548c59f954e66c.mp3str" ]
+dest_files=["res://.godot/imported/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3-ba717e0439f8bc073e548c59f954e66c.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

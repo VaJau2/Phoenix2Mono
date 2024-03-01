@@ -1,6 +1,6 @@
 using Godot;
 
-public class NPCBody
+public partial class NPCBody
 {
     private NPC npc;
     private AnimationTree animTree;
@@ -45,11 +45,11 @@ public class NPCBody
         playback.Stop();
     }
 
-    public Vector3 GetDirToTarget(Spatial target)
+    public Vector3 GetDirToTarget(Node3D target)
     {
-        Vector3 targetDirPos = target.GlobalTransform.origin;
-        targetDirPos.y = npc.GlobalTransform.origin.y;
-        return targetDirPos - npc.GlobalTransform.origin;
+        Vector3 targetDirPos = target.GlobalTransform.Origin;
+        targetDirPos.Y = npc.GlobalTransform.Origin.Y;
+        return targetDirPos - npc.GlobalTransform.Origin;
     }
 
     public void Update(float delta)
@@ -65,7 +65,7 @@ public class NPCBody
 
     public void _on_lookArea_body_entered(Node body)
     {
-        if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
+        if (npc.state != NPCState.Idle || GodotObject.IsInstanceValid(lookTarget) || body == npc) return;
         if (!(body is Character character)) return;
         lookTimer = 1.5f;
         lookTarget = character;
@@ -81,7 +81,7 @@ public class NPCBody
 
     private void UpdateHeadRotation(float delta)
     {
-        if (Object.IsInstanceValid(lookTarget))
+        if (GodotObject.IsInstanceValid(lookTarget))
         {
             if (npc.state == NPCState.Idle)
             {
@@ -96,32 +96,32 @@ public class NPCBody
                 }
             }
 
-            Vector3 npcForward = -npc.GlobalTransform.basis.z;
+            Vector3 npcForward = -npc.GlobalTransform.Basis.Z;
             Vector3 dir = GetDirToTarget(lookTarget);
 
             float angle = npcForward.AngleTo(dir);
-            if (npc.GlobalTransform.basis.x.Dot(dir) < 0)
+            if (npc.GlobalTransform.Basis.X.Dot(dir) < 0)
             {
                 angle = -angle;
             }
 
-            var targetY = lookTarget.GlobalTransform.origin.y;
+            var targetY = lookTarget.GlobalTransform.Origin.Y;
             //точка центра игрока чуть выше, тк он умеет красться и приседать с:
             if (lookTarget is Player)
             {
                 targetY -= 0.8f * npc.lookHeightFactor;
             }
 
-            float diffY = targetY - npc.GlobalTransform.origin.y;
+            float diffY = targetY - npc.GlobalTransform.Origin.Y;
 
 
-            SetValueTo(ref headBlend.x, angle / 1.5f, delta * 4);
-            SetValueTo(ref headBlend.y, diffY / 50, delta * 4);
+            SetValueTo(ref headBlend.X, angle / 1.5f, delta * 4);
+            SetValueTo(ref headBlend.Y, diffY / 50, delta * 4);
         }
         else
         {
-            SetValueTo(ref headBlend.x, 0, delta * 2);
-            SetValueTo(ref headBlend.y, 0, delta * 2);
+            SetValueTo(ref headBlend.X, 0, delta * 2);
+            SetValueTo(ref headBlend.Y, 0, delta * 2);
         }
     }
 

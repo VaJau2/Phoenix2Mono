@@ -1,18 +1,18 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class BreakableObject: StaticBody 
+public partial class BreakableObject: StaticBody3D 
 {
     public bool Broken;
 
     [Export]
     public float BrakeDamage = 50;
     [Export]
-    public SpatialMaterial BrokenMaterial;
+    public StandardMaterial3D BrokenMaterial;
     [Export]
     public BreakableObjectType objectType;
     [Export]
-    public Dictionary<string, AudioStreamSample> brakeSounds = new Dictionary<string, AudioStreamSample>
+    public Dictionary<string, AudioStreamWav> brakeSounds = new()
     {
         {"brake1", null},
         {"brake2", null}
@@ -29,8 +29,8 @@ public class BreakableObject: StaticBody
         {
             if (BrokenMaterial != null)
             {
-                var mesh = GetNode<MeshInstance>("mesh");
-                mesh.SetSurfaceMaterial(0, BrokenMaterial);
+                var mesh = GetNode<MeshInstance3D>("mesh");
+                mesh.SetSurfaceOverrideMaterial(0, BrokenMaterial);
             }
             Broken = true;
             audi.Stream = brakeSounds["brake1"];
@@ -49,9 +49,9 @@ public class BreakableObject: StaticBody
                     break;
             }
 
-            GetNode<Spatial>("mesh").Visible = false;
-            GetNode<CollisionShape>("shape").Disabled = true;
-            GetNode<Particles>("Particles").Emitting = true;
+            GetNode<Node3D>("mesh").Visible = false;
+            GetNode<CollisionShape3D>("shape").Disabled = true;
+            GetNode<GpuParticles3D>("Particles").Emitting = true;
             audi.Play();
             isDeleting = true;
         }
@@ -62,13 +62,13 @@ public class BreakableObject: StaticBody
         audi = GetNode<AudioStreamPlayer3D>("audi");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isDeleting) return;
 
         if (deleteTimer > 0)
         {
-            deleteTimer -= delta;
+            deleteTimer -= (float)delta;
         }
         else
         {

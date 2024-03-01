@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/rain.wav-2e24f5c55cb5f7349b784c8be080e907.sample"
+type="AudioStreamWAV"
+uid="uid://dljq2i4brx8y5"
+path="res://.godot/imported/rain.wav-2e24f5c55cb5f7349b784c8be080e907.sample"
 
 [deps]
 
 source_file="res://assets/audio/background/rain.wav"
-dest_files=[ "res://.import/rain.wav-2e24f5c55cb5f7349b784c8be080e907.sample" ]
+dest_files=["res://.godot/imported/rain.wav-2e24f5c55cb5f7349b784c8be080e907.sample"]
 
 [params]
 

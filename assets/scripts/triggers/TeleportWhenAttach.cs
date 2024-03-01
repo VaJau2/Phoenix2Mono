@@ -1,13 +1,13 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 //коннектится к событию получения урона у персонажей
 //заставляет их пропасть и добавляет вместо них эффект телепорта
-public class TeleportWhenAttach: TriggerBase
+public partial class TeleportWhenAttach: TriggerBase
 {
     [Export] private PackedScene teleportEffect;
     [Export] private Array<NodePath> charPaths;
-    private Array<Character> characters = new Array<Character>();
+    private Array<Character> characters = new();
 
     public override void _Ready()
     {
@@ -17,7 +17,7 @@ public class TeleportWhenAttach: TriggerBase
             {
                 var tempChar = GetNode<Character>(charPath);
                 characters.Add(tempChar);
-                tempChar.Connect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
+                tempChar.TakenDamage += OnActivateTrigger;
             }
         }
     }
@@ -29,7 +29,7 @@ public class TeleportWhenAttach: TriggerBase
             if (IsActive)
             {
                 //если уже был активен, запускаем триггер
-                _on_activate_trigger();
+                OnActivateTrigger();
             }
             else
             {
@@ -42,24 +42,25 @@ public class TeleportWhenAttach: TriggerBase
         base.SetActive(newActive);
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
 
         foreach (var npc in characters)
         {
-            npc.Disconnect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
-            if (teleportEffect.Instance() is Spatial effect)
+            npc.TakenDamage -= OnActivateTrigger;
+            
+            if (teleportEffect.Instantiate<Node3D>() is { } effect)
             {
                 GetNode("/root/Main/Scene").AddChild(effect);
                 effect.GlobalTransform =
-                    Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
+                    Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.Origin);
             }
 
             Global.AddDeletedObject(npc.Name);
             npc.QueueFree();
         }
 
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 }

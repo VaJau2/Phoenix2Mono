@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //включает другие триггеры
-public class ActivateOtherTrigger: TriggerBase
+public partial class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
     [Export] public Array<NodePath> disactiveTriggerPaths;
@@ -29,7 +29,7 @@ public class ActivateOtherTrigger: TriggerBase
        
     }
 
-    public override void _on_activate_trigger()
+    public override void OnActivateTrigger()
     {
         if (!IsActive) return;
         
@@ -43,14 +43,14 @@ public class ActivateOtherTrigger: TriggerBase
             otherTrigger.SetActive(false);
         }
         
-        base._on_activate_trigger();
+        base.OnActivateTrigger();
     }
 
     public virtual void _on_body_entered(Node body)
     {
         if (body is Player)
         {
-            _on_activate_trigger();
+            OnActivateTrigger();
         }
     }
 }

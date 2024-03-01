@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str"
+uid="uid://ba5lffccxetrd"
+path="res://.godot/imported/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/music/after-mtn/dramatic-1.mp3"
-dest_files=[ "res://.import/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str" ]
+dest_files=["res://.godot/imported/dramatic-1.mp3-ba2f29adbc134a375dff4022fe2feee5.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

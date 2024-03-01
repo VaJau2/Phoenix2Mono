@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepDirtFast2.wav-49006984773ef3320f359927c378262a.sample"
+type="AudioStreamWAV"
+uid="uid://bfm85yn865r6j"
+path="res://.godot/imported/stepDirtFast2.wav-49006984773ef3320f359927c378262a.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/dirt/stepDirtFast2.wav"
-dest_files=[ "res://.import/stepDirtFast2.wav-49006984773ef3320f359927c378262a.sample" ]
+dest_files=["res://.godot/imported/stepDirtFast2.wav-49006984773ef3320f359927c378262a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

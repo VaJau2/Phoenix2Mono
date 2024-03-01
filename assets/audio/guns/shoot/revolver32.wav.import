@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/revolver32.wav-427cb5b29429d0ed727707a8fbd6585a.sample"
+type="AudioStreamWAV"
+uid="uid://b5hmk336o4l3j"
+path="res://.godot/imported/revolver32.wav-427cb5b29429d0ed727707a8fbd6585a.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/revolver32.wav"
-dest_files=[ "res://.import/revolver32.wav-427cb5b29429d0ed727707a8fbd6585a.sample" ]
+dest_files=["res://.godot/imported/revolver32.wav-427cb5b29429d0ed727707a8fbd6585a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0
