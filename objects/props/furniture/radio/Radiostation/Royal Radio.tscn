@@ -1,24 +1,23 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cxeileyxayf4"]
 
-[ext_resource path="res://assets/scripts/furniture/Radio/Radiostation.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Benny Goodman - Sing Sing Sing.mp3" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Jimmy Breedlove - My Guardian Angel.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Louis Armstrong - A Kiss To Build A Dream On.mp3" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Nat King Cole - This Cant Be Love.mp3" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/radio/Royal Radio/Frank Sinatra - Blue Moon.mp3" type="AudioStream" id=7]
+[ext_resource type="Script" path="res://assets/scripts/furniture/Radio/Radiostation.cs" id="1"]
+[ext_resource type="AudioStream" uid="uid://dl3hws6qutkqs" path="res://assets/audio/radio/Royal Radio/Benny Goodman - Sing Sing Sing.mp3" id="2"]
+[ext_resource type="AudioStream" uid="uid://b4sw417e0dd3" path="res://assets/audio/radio/Royal Radio/Ella Fitzgerald & Louis Armstrong - Dream A Little Dream Of Me.mp3" id="3"]
+[ext_resource type="AudioStream" uid="uid://dp5xsit5fdglq" path="res://assets/audio/radio/Royal Radio/Jimmy Breedlove - My Guardian Angel.mp3" id="4"]
+[ext_resource type="AudioStream" uid="uid://25hjw7v805t8" path="res://assets/audio/radio/Royal Radio/Louis Armstrong - A Kiss To Build A Dream On.mp3" id="5"]
+[ext_resource type="AudioStream" uid="uid://oyy7ui6jr6iv" path="res://assets/audio/radio/Royal Radio/Nat King Cole - This Cant Be Love.mp3" id="6"]
+[ext_resource type="AudioStream" uid="uid://bkos1n2aan1im" path="res://assets/audio/radio/Royal Radio/Frank Sinatra - Blue Moon.mp3" id="7"]
 
-
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Node
 
-@export var songs # (Array, AudioStream)
+@export var songs: Array[AudioStream]
 "
 
 [node name="Royal Radio" type="Node"]
 process_mode = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Default Songs" type="Node" parent="."]
-script = SubResource( 1 )
-songs = [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+script = SubResource("1")
+songs = [ExtResource("2"), ExtResource("7"), ExtResource("4"), ExtResource("3"), ExtResource("5"), ExtResource("6")]

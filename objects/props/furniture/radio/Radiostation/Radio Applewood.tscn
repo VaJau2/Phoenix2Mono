@@ -1,26 +1,25 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://c77qpuom8jred"]
 
-[ext_resource path="res://assets/scripts/furniture/Radio/Radiostation.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Harry James - Its Been A Long Long Time.mp3" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Jack Shaindlin - Let's Go Sunning.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Louis Armstrong- La Vie En Rose.mp3" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Danny Kaye - Civilization.mp3" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/The Chordettes - Mr. Sandman.mp3" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/Ella Fitzgerald & Louis Armstrong - Lets Call the Whole Thing Off.mp3" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/radio/Radio Applewood/The Chords - Sh-Boom.mp3" type="AudioStream" id=9]
+[ext_resource type="Script" path="res://assets/scripts/furniture/Radio/Radiostation.cs" id="1"]
+[ext_resource type="AudioStream" uid="uid://bjjd7ylggbxc7" path="res://assets/audio/radio/Radio Applewood/Bob Crosby and the Bobcats - Dear Hearts And Gentle People.mp3" id="2"]
+[ext_resource type="AudioStream" uid="uid://dxhwptpgajkt1" path="res://assets/audio/radio/Radio Applewood/Harry James - Its Been A Long Long Time.mp3" id="3"]
+[ext_resource type="AudioStream" uid="uid://coyo7o51gcnd0" path="res://assets/audio/radio/Radio Applewood/Jack Shaindlin - Let's Go Sunning.mp3" id="4"]
+[ext_resource type="AudioStream" uid="uid://cfuahdu3q8cgf" path="res://assets/audio/radio/Radio Applewood/Louis Armstrong- La Vie En Rose.mp3" id="5"]
+[ext_resource type="AudioStream" uid="uid://cvnntxw0tq87m" path="res://assets/audio/radio/Radio Applewood/Danny Kaye - Civilization.mp3" id="6"]
+[ext_resource type="AudioStream" uid="uid://djn8mejrqutd2" path="res://assets/audio/radio/Radio Applewood/The Chordettes - Mr. Sandman.mp3" id="7"]
+[ext_resource type="AudioStream" uid="uid://bgmlwe07jub2n" path="res://assets/audio/radio/Radio Applewood/Ella Fitzgerald & Louis Armstrong - Lets Call the Whole Thing Off.mp3" id="8"]
+[ext_resource type="AudioStream" uid="uid://dwmpoq686jnq2" path="res://assets/audio/radio/Radio Applewood/The Chords - Sh-Boom.mp3" id="9"]
 
-
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Node
 
-@export var songs # (Array, AudioStream)
+@export var songs: Array[AudioStream]
 "
 
 [node name="Radio Applewood" type="Node"]
 process_mode = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Default Songs" type="Node" parent="."]
-script = SubResource( 1 )
-songs = [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ]
+script = SubResource("1")
+songs = [ExtResource("2"), ExtResource("6"), ExtResource("8"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("7"), ExtResource("9")]

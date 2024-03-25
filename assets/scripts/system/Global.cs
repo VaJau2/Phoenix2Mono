@@ -103,7 +103,6 @@ public partial class Global
         {
             foreach (string saveFileName in GetSaveFiles())
             {
-                GD.Print(GetSaveFiles());
                 var fileData = GetFileMetadata(saveFileName);
                 if (fileData is { } line)
                 {

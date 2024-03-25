@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://objects/characters/Player/PlayerSpawner.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://objects/interface/canvas.tscn" id="2"]
 [ext_resource type="Script" path="res://assets/scripts/furniture/RandomItems.cs" id="3"]
-[ext_resource type="PackedScene" path="res://objects/props/buildings/houses/house1.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bqhakw0hupn82" path="res://objects/props/buildings/houses/house1.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/house3.tscn" id="5"]
 [ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.phymat" id="6"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/house2.tscn" id="7"]
@@ -48,10 +48,10 @@
 [ext_resource type="Script" path="res://assets/scripts/interface/Menus/HintMenu.cs" id="49"]
 [ext_resource type="Script" path="res://assets/scripts/background/shells/ShellsManager.cs" id="50"]
 [ext_resource type="AudioStream" uid="uid://dgyh373t0u3sl" path="res://assets/audio/radio/Easy-Greasy FM/Home/Louis Prima - Oh Marie.mp3" id="51"]
-[ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radiostation/Blue Radio.tscn" id="52"]
-[ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radiostation/Easy-Greasy FM.tscn" id="53"]
+[ext_resource type="PackedScene" uid="uid://dwqh2gcgx3we8" path="res://objects/props/furniture/radio/Radiostation/Blue Radio.tscn" id="52"]
+[ext_resource type="PackedScene" uid="uid://dpiu3onkpbqky" path="res://objects/props/furniture/radio/Radiostation/Easy-Greasy FM.tscn" id="53"]
 [ext_resource type="AudioStream" uid="uid://dua73mbd1sbay" path="res://assets/audio/background/bushes/bushes.mp3" id="54"]
-[ext_resource type="PackedScene" path="res://objects/props/furniture/radio/Radiostation/Radio Applewood.tscn" id="55"]
+[ext_resource type="PackedScene" uid="uid://c77qpuom8jred" path="res://objects/props/furniture/radio/Radiostation/Radio Applewood.tscn" id="55"]
 [ext_resource type="PackedScene" uid="uid://dxcs360jct2l7" path="res://objects/props/furniture/radio/Radio.tscn" id="56"]
 [ext_resource type="Script" path="res://assets/scripts/furniture/Radio/RadioManager.cs" id="57"]
 [ext_resource type="AudioStream" uid="uid://dbwi08heyqm3x" path="res://assets/audio/background/bushes/bushes_sneak.mp3" id="58"]
@@ -110,6 +110,7 @@ func _process(delta):
 "
 
 [sub_resource type="ParticleProcessMaterial" id="51"]
+emission_shape_scale = Vector3(20, 20, 10)
 emission_shape = 2
 emission_sphere_radius = 1.0
 direction = Vector3(0, -1, 0)

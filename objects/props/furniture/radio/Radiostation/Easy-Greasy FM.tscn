@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://dpiu3onkpbqky"]
 
-[ext_resource path="res://assets/scripts/furniture/Radio/Radiostation.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/radio/Easy-Greasy FM/Lazy Lester - Sugar Coated Love.mp3" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/radio/Easy-Greasy FM/Clarence Henry - Aint Got No Home.mp3" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/radio/Easy-Greasy FM/Little Walter - Come Back Baby.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/radio/Easy-Greasy FM/The Hillbilly Moon Explosion - Little Lil.mp3" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/radio/Easy-Greasy FM/Bobby Charles - Take It Easy Greasy.mp3" type="AudioStream" id=6]
+[ext_resource type="Script" path="res://assets/scripts/furniture/Radio/Radiostation.cs" id="1"]
+[ext_resource type="AudioStream" uid="uid://c5qf65rnbkegk" path="res://assets/audio/radio/Easy-Greasy FM/Lazy Lester - Sugar Coated Love.mp3" id="2"]
+[ext_resource type="AudioStream" uid="uid://si7xusb6u488" path="res://assets/audio/radio/Easy-Greasy FM/Clarence Henry - Aint Got No Home.mp3" id="3"]
+[ext_resource type="AudioStream" uid="uid://n7kp3whingwt" path="res://assets/audio/radio/Easy-Greasy FM/Little Walter - Come Back Baby.mp3" id="4"]
+[ext_resource type="AudioStream" uid="uid://dam4ufk6rkx02" path="res://assets/audio/radio/Easy-Greasy FM/The Hillbilly Moon Explosion - Little Lil.mp3" id="5"]
+[ext_resource type="AudioStream" uid="uid://bhgthfsxja4g3" path="res://assets/audio/radio/Easy-Greasy FM/Bobby Charles - Take It Easy Greasy.mp3" id="6"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Node
 
-@export var songs # (Array, AudioStream)
+@export var songs: Array[AudioStream]
 "
 
 [node name="Easy-Greasy FM" type="Node"]
 process_mode = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Default Songs" type="Node" parent="."]
-script = SubResource( 1 )
-songs = [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ]
+script = SubResource("1")
+songs = [ExtResource("6"), ExtResource("3"), ExtResource("2"), ExtResource("4"), ExtResource("5")]

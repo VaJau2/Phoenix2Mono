@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class AmbientVolSync : Node3D
@@ -65,7 +64,11 @@ public partial class AmbientVolSync : Node3D
             return;
         
         radio.ChangeOnline += OnRadioChangeOnline;
-        if (!IsProcessing() && global.Settings.radioVolume > minVolume) SetProcess(true);
+        
+        if (!IsProcessing() && global.Settings.radioVolume > minVolume)
+        {
+            SetProcess(true);
+        }
     }
 
     void _on_body_exited(Node body)

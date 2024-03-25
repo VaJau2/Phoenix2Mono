@@ -162,7 +162,10 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation.SyncTime += SyncTimer;
 		Radiostation.ChangeSong += ChangeMusic;
 
-		warningManager.MessageSent -= ChangeMusic;
+		if (IsInstanceValid(warningManager))
+		{
+			warningManager.MessageSent -= ChangeMusic;
+		}
 	}
 
 	public void TuneOut()
@@ -170,7 +173,10 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation.SyncTime -= SyncTimer;
 		Radiostation.ChangeSong -= ChangeMusic;
 
-		warningManager.MessageSent += ChangeMusic;
+		if (IsInstanceValid(warningManager))
+		{
+			warningManager.MessageSent += ChangeMusic;
+		}
 	}
 
 	public void SwitchOn(bool withSwitchSound = true)

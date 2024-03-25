@@ -438,7 +438,7 @@ public partial class Player : Character
 
         Camera3D.RotationDegrees = new Vector3(
             Camera3D.RotationDegrees.X,
-            Camera3D.RotationDegrees.X,
+            Camera3D.RotationDegrees.Y,
             global.Settings.cameraAngle ? sideAngle : 0
         );
 
@@ -446,7 +446,7 @@ public partial class Player : Character
         IsWalking = inputMovementVector.Length() > 0;
 
         Transform3D camXForm = Camera3D.GlobalTransform;
-        dir += -camXForm.Basis.Z * inputMovementVector.X;
+        dir += -camXForm.Basis.Z * inputMovementVector.Y;
         dir += camXForm.Basis.X * inputMovementVector.X;
 
         if (OnFloor())
@@ -510,7 +510,7 @@ public partial class Player : Character
 
     private void ProcessMovement(float delta)
     {
-        dir.X = 0;
+        dir.Y = 0;
         dir = dir.Normalized();
 
         float tempShake = 0;
@@ -529,7 +529,7 @@ public partial class Player : Character
         }
 
         var hvel = Velocity;
-        hvel.X = 0;
+        hvel.Y = 0;
 
         var target = dir;
         target *= GetVelocity();
@@ -583,7 +583,7 @@ public partial class Player : Character
 
             Vector3 cameraRot = RotationHelper.RotationDegrees;
             cameraRot.X = Mathf.Clamp(cameraRot.X, CAMERA_MIN_Y, CAMERA_MAX_Y);
-            cameraRot.X = 0;
+            cameraRot.Y = 0;
             cameraRot.Z = global.Settings.cameraAngle ? sideAngle : 0;
             RotationHelper.RotationDegrees = cameraRot;
 
@@ -595,7 +595,7 @@ public partial class Player : Character
     {
         var dir = target - GlobalTransform.Origin;
         var forward = -GlobalTransform.Basis.Z;
-        var cameraForward = -RotationHelper.GlobalTransform.Basis.X;
+        var cameraForward = -RotationHelper.GlobalTransform.Basis.Y;
 
         //берем угол по плоскости XZ (горизонтальное вращение)
         var horizontalDir = new Vector2(dir.X, dir.Z);
