@@ -578,7 +578,7 @@ public partial class Player : Character
             oldRot = RotationHelper.RotationDegrees;
 
             var mouseEvent = @event as InputEventMouseMotion;
-            RotationHelper.RotateX(Mathf.DegToRad(mouseEvent.Relative.X * -MouseSensivity));
+            RotationHelper.RotateX(Mathf.DegToRad(mouseEvent.Relative.Y * -MouseSensivity));
             RotateBodyClumped(mouseEvent.Relative.X * -MouseSensivity);
 
             Vector3 cameraRot = RotationHelper.RotationDegrees;
