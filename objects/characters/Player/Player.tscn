@@ -1,8 +1,8 @@
 [gd_scene load_steps=104 format=3 uid="uid://cg67d1560do7m"]
 
 [ext_resource type="Script" path="res://assets/scripts/characters/player/Player.cs" id="1"]
-[ext_resource type="ArrayMesh" uid="uid://cnd501phctwms" path="res://assets/models/player_variants/empty/first/earthpony.res" id="2"]
-[ext_resource type="ArrayMesh" path="res://assets/models/player_variants/empty/third/earthpony.res" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://c5glheq1plcod" path="res://assets/models/player_variants/empty/first/earthpony.res" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://cll52aw56inbm" path="res://assets/models/player_variants/empty/third/earthpony.res" id="3"]
 [ext_resource type="ArrayMesh" path="res://assets/models/player_variants/artifacts/collar/mesh.res" id="4"]
 [ext_resource type="Material" path="res://assets/materials/characters/shotgun-bag.material" id="5"]
 [ext_resource type="Skin" path="res://assets/models/player_variants/artifacts/collar/skin.res" id="6"]
