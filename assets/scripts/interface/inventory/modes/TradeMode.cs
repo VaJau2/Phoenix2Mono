@@ -115,7 +115,7 @@ public partial class TradeMode: InventoryMode
                 
                 if (@event is InputEventKey && !tradeButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
+                    bindsHandler.BindHotkeys(tempItemData["type"].AsEnum<ItemType>());
                 }
             }
         }
@@ -377,7 +377,7 @@ public partial class TradeMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = tempItemData["type"].As<ItemType>();
+        var type = tempItemData["type"].AsEnum<ItemType>();
         ControlText[] controlTexts;
 
         if (isInventoryIcon)
@@ -488,7 +488,10 @@ public partial class TradeMode: InventoryMode
             }
         }
         
-        tempCountMax = itemProps["type"].As<ItemType>() == ItemType.ammo ? tempButton.GetCount() : 1;
+        tempCountMax = itemProps["type"].AsEnum<ItemType>() == ItemType.ammo 
+            ? tempButton.GetCount() 
+            : 1;
+        
         return result;
     } 
 

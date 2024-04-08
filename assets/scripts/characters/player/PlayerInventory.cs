@@ -103,7 +103,7 @@ public partial class PlayerInventory
     {
         SoundUsingItem(itemData);
 
-        switch(itemData["type"].As<ItemType>()) 
+        switch(itemData["type"].AsEnum<ItemType>()) 
         {
             case ItemType.food:
                 if (player.FoodCanHeal)
@@ -112,6 +112,7 @@ public partial class PlayerInventory
                 }
                 messages.ShowMessage("useFood", itemData["name"].ToString(), "items");
                 break;
+
             case ItemType.meds:
                 Effect newEffect = EffectHandler.GetEffectByName(itemData["medsEffect"].ToString());
                 effects.AddEffect(newEffect);
@@ -158,7 +159,7 @@ public partial class PlayerInventory
             messages.ShowMessage("wearItem", itemData["name"].ToString(), "items");
         }
 
-        switch(itemData["type"].As<ItemType>()) 
+        switch(itemData["type"].AsEnum<ItemType>()) 
         {
             case ItemType.weapon:
                 weapon = itemCode;
@@ -187,7 +188,7 @@ public partial class PlayerInventory
 
         messages.ShowMessage("unwearItem", itemData["name"].ToString(), "items");
 
-        switch(itemData["type"].As<ItemType>()) 
+        switch(itemData["type"].AsEnum<ItemType>()) 
         {
             case ItemType.weapon:
                 weapon = "";

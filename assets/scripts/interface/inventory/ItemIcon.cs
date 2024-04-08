@@ -50,7 +50,7 @@ public partial class ItemIcon : ColorRect
         CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         SetIcon(newIcon);
         
-        var itemType = itemData["type"].As<ItemType>();
+        var itemType = itemData["type"].AsEnum<ItemType>();
         countLabel.Visible = itemType is ItemType.ammo or ItemType.money;
         
         if (itemType == ItemType.ammo) 
@@ -89,7 +89,7 @@ public partial class ItemIcon : ColorRect
         if (isInventoryIcon) 
         {
             Dictionary itemData = ItemJSON.GetItemData(myItemCode);
-            var itemType = itemData["type"].As<ItemType>();
+            var itemType = itemData["type"].AsEnum<ItemType>();
             
             if (itemType == ItemType.ammo) 
             {
@@ -120,13 +120,6 @@ public partial class ItemIcon : ColorRect
         return bindLabel.Text;
     }
 
-    private bool MayShowInfo()
-    {
-        return !menu.mode.isDragging
-        && !menu.mode.modalAsk.Visible
-        && !menu.mode.modalRead.Visible;
-    }
-
     public override void _Ready()
     {
         selected = GetNode<Control>("selected");
@@ -138,7 +131,8 @@ public partial class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_entered()
     {
-        if (myItemCode != null && MayShowInfo()) {
+        if (myItemCode != null && MayShowInfo()) 
+        {
             selected.Visible = true;
             icon.Modulate = Colors.Black;
             menu.SetTempButton(this);
@@ -147,10 +141,18 @@ public partial class ItemIcon : ColorRect
 
     public void _on_itemIcon_mouse_exited()
     {
-        if (selected.Visible && MayShowInfo()) {
+        if (selected.Visible && MayShowInfo()) 
+        {
             selected.Visible = false;
             icon.Modulate = global.Settings.interfaceColor;
             menu.SetTempButton(null);
         }
+    }
+
+     private bool MayShowInfo()
+    {
+        return !menu.mode.isDragging
+        && !menu.mode.modalAsk.Visible
+        && !menu.mode.modalRead.Visible;
     }
 }

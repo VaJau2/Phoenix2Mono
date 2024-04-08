@@ -156,7 +156,7 @@ public abstract class InventoryMode
     //грузим подсказки по управлению предметом
     protected virtual void LoadControlHint(bool isInventoryIcon)
     {
-        var type = tempItemData["type"].As<ItemType>();
+        var type = tempItemData["type"].AsEnum<ItemType>();
         ControlText[] controlTexts;
 
         switch (type)
@@ -353,7 +353,7 @@ public abstract class InventoryMode
 
     protected virtual void CheckDragItem()
     {
-        var itemType = tempItemData["type"].As<ItemType>();
+        var itemType = tempItemData["type"].AsEnum<ItemType>();
 
         switch (itemType)
         {
@@ -458,7 +458,7 @@ public abstract class InventoryMode
 
     protected bool UpdateDragging(InputEvent @event)
     {
-        var itemType = tempItemData["type"].As<ItemType>();
+        var itemType = tempItemData["type"].AsEnum<ItemType>();
 
         if (Input.IsActionJustPressed("ui_click"))
         {
@@ -563,7 +563,7 @@ public abstract class InventoryMode
                 continue;
             
             SetTempButton(newTempButton);
-            if (tempButton.myItemCode != "healPotion" && tempItemData["type"].As<ItemType>() != ItemType.food) 
+            if (tempButton.myItemCode != "healPotion" && tempItemData["type"].AsEnum<ItemType>() != ItemType.food) 
                 continue;
             
             useHandler.UseTempItem();

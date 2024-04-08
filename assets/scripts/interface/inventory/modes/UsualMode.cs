@@ -38,7 +38,7 @@ public partial class UsualMode: InventoryMode
 
             if (@event is InputEventKey) 
             {
-                bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
+                bindsHandler.BindHotkeys(tempItemData["type"].AsEnum<ItemType>());
             }
         }
     }

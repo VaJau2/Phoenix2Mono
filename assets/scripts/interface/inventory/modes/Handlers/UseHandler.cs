@@ -75,7 +75,7 @@ public partial class UseHandler
         
         Player.EmitSignal(Player.SignalName.UseItem, tempButton.myItemCode);
 
-        var itemType = mode.tempItemData["type"].As<ItemType>();
+        var itemType = mode.tempItemData["type"].AsEnum<ItemType>();
         if (Inventory.itemIsUsable(itemType)) 
         {
             switch(itemType) 
@@ -199,7 +199,7 @@ public partial class UseHandler
     {
         if (mode.tempItemData == null || mode.tempItemData.Count == 0) return false;
         
-        var itemType = mode.tempItemData["type"].As<ItemType>();
+        var itemType = mode.tempItemData["type"].AsEnum<ItemType>();
         if (itemType != ItemType.artifact || Inventory.artifact == "") return true;
         
         var artifactData = ItemJSON.GetItemData(Inventory.artifact);

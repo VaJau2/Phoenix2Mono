@@ -72,7 +72,7 @@ public partial class ChestMode: InventoryMode
 
                 if (@event is InputEventKey && !chestButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys(tempItemData["type"].As<ItemType>());
+                    bindsHandler.BindHotkeys(tempItemData["type"].AsEnum<ItemType>());
                 }
             }
 
@@ -198,7 +198,7 @@ public partial class ChestMode: InventoryMode
         button.SetItem(itemCode);
 
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if (itemData["type"].As<ItemType>() == ItemType.money)
+        if (itemData["type"].AsEnum<ItemType>() == ItemType.money)
         {
             button.SetCount(tempChest.ChestHandler.MoneyCount);
         }
@@ -292,7 +292,7 @@ public partial class ChestMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = tempItemData["type"].As<ItemType>();
+        var type = tempItemData["type"].AsEnum<ItemType>();
         ControlText[] controlTexts;
 
         switch (type)
@@ -391,7 +391,7 @@ public partial class ChestMode: InventoryMode
         //взять из сундука
         if(chestButtons.Contains(tempButton)) 
         {
-            bool isMoney = tempItemData["type"].As<ItemType>() == ItemType.money;
+            bool isMoney = tempItemData["type"].AsEnum<ItemType>() == ItemType.money;
             if (CheckMoneyInInventory(isMoney)) return true;
             if (CheckAmmoInInventory()) return true;
             

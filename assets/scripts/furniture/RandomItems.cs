@@ -36,7 +36,7 @@ public partial class RandomItems : Node
             Dictionary itemData = ItemJSON.GetItemData(newItemCode);
 
             //если это патроны, ложим в список патронов
-            if (itemData["type"].As<ItemType>() == ItemType.ammo)
+            if (itemData["type"].AsEnum<ItemType>() == ItemType.ammo)
             {
                 if (chestAmmo.ContainsKey(newItemCode)) return;
 

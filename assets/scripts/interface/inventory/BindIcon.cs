@@ -38,7 +38,7 @@ public partial class BindIcon : ItemIcon
     public bool IsNeedDelay()
     {
         var itemData = ItemJSON.GetItemData(myItemCode);
-        var type = itemData["type"].As<ItemType>();
+        var type = itemData["type"].AsEnum<ItemType>();
 
         return type is ItemType.food or ItemType.meds;
     }
@@ -58,7 +58,7 @@ public partial class BindIcon : ItemIcon
     {
         var itemData = ItemJSON.GetItemData(itemCode);
 
-        switch (itemData["type"].As<ItemType>())
+        switch (itemData["type"].AsEnum<ItemType>())
         {
             case ItemType.weapon:
                 CheckWeaponIcon(itemCode);
@@ -86,7 +86,7 @@ public partial class BindIcon : ItemIcon
     private void ClearWeaponBind()
     {
         var itemData = ItemJSON.GetItemData(myItemCode);
-        var type = itemData["type"].As<ItemType>();
+        var type = itemData["type"].AsEnum<ItemType>();
 
         if (type == ItemType.weapon && isSelected)
         {
