@@ -285,8 +285,6 @@ public abstract partial class NPC : Character, IInteractable
         }
     }
     
-    public void Test(int test) {}
-
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
@@ -338,9 +336,15 @@ public abstract partial class NPC : Character, IInteractable
                 var target = GetNodeOrNull(targetPath);
                 if (target == null) continue;
 
+                uint flags = 0;
+                if (signalData.ContainsKey("flags")) 
+                {
+                    flags = signalData["flags"].AsUInt16();
+                }
+
                 if (!IsConnected(signalName, new Callable(target, method)))
                 {
-                    Connect(signalName, new Callable(target, method));
+                    Connect(signalName, new Callable(target, method), flags);
                 }
             }
         }
@@ -404,9 +408,9 @@ public abstract partial class NPC : Character, IInteractable
 
         if (hasSkeleton && Health <= 0)
         {
-            foreach (Node3D bone in skeleton.GetChildren())
+            foreach (var bone in skeleton.GetChildren().Cast<Node3D>())
             {
-                if (!(bone is PhysicalBone3D)) continue;
+                if (bone is not PhysicalBone3D) continue;
                 DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.Origin, $"rb_{bone.Name}_pos"));
                 DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.Basis.GetEuler(), $"rb_{bone.Name}_rot"));
             }
@@ -417,21 +421,30 @@ public abstract partial class NPC : Character, IInteractable
         {
             if (signal == null) continue;
 
-            var connectionList = GetSignalConnectionList(signal["name"].ToString());
+            var signalName = signal["name"].ToString();
+            if (SKIP_SIGNALS.Contains(signalName)) continue;
+
+            var connectionList = GetSignalConnectionList(signalName);
             if (connectionList == null || connectionList.Count == 0) continue;
 
             foreach (var connectionData in connectionList)
             {
-                if (connectionData?["target"].As<Node>() is not { } target) continue;
-                var signalName = signal["name"].ToString();
-                if (SKIP_SIGNALS.Contains(signalName)) continue;
+                var tempCallable = connectionData["callable"].AsCallable();
+
+                var target = tempCallable.Target;
+                if (target is not Node || target == this) continue;
+
+                var method = tempCallable.Method;
+                if (method == signalName) continue;
+
+                var flags = connectionData["flags"];
 
                 signals.Add(new Dictionary
                 {
                     {"signal", signalName},
-                    {"method", connectionData["method"].ToString()},
-                    {"target_path", target.GetPath()},
-                    {"binds", connectionData["binds"]}
+                    {"method", method},
+                    {"target_path", (target as Node).GetPath()},
+                    {"flags", flags}
                 });
             }
         }
