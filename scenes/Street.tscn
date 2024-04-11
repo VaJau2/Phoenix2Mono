@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" id="11"]
 [ext_resource type="PackedScene" path="res://objects/props/furniture/Bench.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://objects/props/furniture/light/Light2.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://objects/props/vehicles/Mercury.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://bm7vxw1mloeut" path="res://objects/props/vehicles/Mercury.tscn" id="14"]
 [ext_resource type="MeshLibrary" path="res://objects/props/tiles/land_tiles.meshlib" id="15"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/backHouse2.tscn" id="16"]
 [ext_resource type="MeshLibrary" uid="uid://c3oofnp65sw55" path="res://objects/props/tiles/trees_new.tres" id="17"]
@@ -23,9 +23,9 @@
 [ext_resource type="AudioStream" uid="uid://b6d3j2qcasox4" path="res://assets/audio/background/rainDropsCar.wav" id="24"]
 [ext_resource type="PackedScene" path="res://objects/props/furniture/bag.tscn" id="25"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/backHouse1.tscn" id="26"]
-[ext_resource type="PackedScene" path="res://objects/props/vehicles/chevrolet.tscn" id="27"]
+[ext_resource type="PackedScene" uid="uid://x4o2efkm7px4" path="res://objects/props/vehicles/chevrolet.tscn" id="27"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/house4.tscn" id="28"]
-[ext_resource type="PackedScene" path="res://objects/props/vehicles/Pontiac.tscn" id="29"]
+[ext_resource type="PackedScene" uid="uid://cm160rqrli3gr" path="res://objects/props/vehicles/Pontiac.tscn" id="29"]
 [ext_resource type="Script" path="res://assets/scripts/triggers/DialogueTrigger.cs" id="30"]
 [ext_resource type="Script" path="res://assets/scripts/triggers/HintTrigger.cs" id="31"]
 [ext_resource type="Script" path="res://assets/scripts/triggers/LoadLevelTrigger.cs" id="32"]
@@ -37,7 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://72cclpf7prfx" path="res://assets/audio/music/street.ogg" id="38"]
 [ext_resource type="Script" path="res://assets/scripts/utils/CheckFall.cs" id="39"]
 [ext_resource type="Theme" uid="uid://new1vxp65roj" path="res://assets/materials/fonts/text_theme.tres" id="40"]
-[ext_resource type="PackedScene" path="res://objects/props/vehicles/car_future.tscn" id="41"]
+[ext_resource type="PackedScene" uid="uid://cuguiq7fb4gvu" path="res://objects/props/vehicles/car_future.tscn" id="41"]
 [ext_resource type="PackedScene" path="res://objects/props/fusion_air.tscn" id="42"]
 [ext_resource type="PackedScene" path="res://objects/props/hydrant.tscn" id="43"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/ostanovka.tscn" id="44"]
@@ -113,8 +113,9 @@ func _process(delta):
 emission_shape_scale = Vector3(20, 20, 10)
 emission_shape = 2
 emission_sphere_radius = 1.0
-direction = Vector3(0, -1, 0)
+direction = Vector3(0, -2, 0)
 spread = 0.0
+gravity = Vector3(0, -18, 0)
 
 [sub_resource type="StandardMaterial3D" id="52"]
 transparency = 1
@@ -123,16 +124,16 @@ billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="53"]
 material = SubResource("52")
-size = Vector2(0.3, 5)
+size = Vector2(0.1, 2)
 
 [sub_resource type="GDScript" id="54"]
-script/source = "extends Particles
+script/source = "extends GPUParticles3D
 
 var player
 
 func _ready():
 	set_process(false)
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	player = get_node(\"/root/Main/Scene/Player\")
 	set_process(true)
 
@@ -142,16 +143,21 @@ func _process(_delta):
 "
 
 [sub_resource type="ParticleProcessMaterial" id="55"]
+emission_shape_scale = Vector3(20, 1, 20)
 emission_shape = 2
 emission_sphere_radius = 1.0
+inherit_velocity_ratio = 10.0
 direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
 
 [sub_resource type="QuadMesh" id="56"]
 material = SubResource("52")
-size = Vector2(0.2, 0.2)
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="GDScript" id="57"]
-script/source = "extends Particles
+script/source = "extends GPUParticles3D
  
 @onready var rain = get_node(\"../rain\")
 
@@ -164,7 +170,7 @@ func _process(_delta):
 
 [node name="canvas" parent="." instance=ExtResource("2")]
 
-[node name="hintModal" type="Control" parent="canvas" groups=["ignore_color"]]
+[node name="hintModal" type="Control" parent="canvas" node_paths=PackedStringArray("canceledHints") groups=["ignore_color"]]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -181,18 +187,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("49")
-canceledHintsPaths = [NodePath("../../triggers/hint1"), NodePath("../../triggers/hint2"), NodePath("../../triggers/hint3"), NodePath("../../triggers/hint4")]
+canceledHints = [NodePath("../../triggers/hint1"), NodePath("../../triggers/hint2"), NodePath("../../triggers/hint3"), NodePath("../../triggers/hint4")]
 
 [node name="back" type="ColorRect" parent="canvas/hintModal" groups=["ignore_color"]]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -221.0
+offset_left = -296.0
 offset_top = -106.0
-offset_right = 226.0
+offset_right = 304.0
 offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
 
 [node name="header" type="Label" parent="canvas/hintModal/back"]
@@ -206,22 +215,28 @@ offset_bottom = 30.0
 grow_horizontal = 2
 theme = ExtResource("40")
 text = "Мета-подсказка"
+horizontal_alignment = 1
 
 [node name="text" type="Label" parent="canvas/hintModal/back"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -207.5
-offset_top = 39.0
-offset_right = 208.5
-offset_bottom = 158.0
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -61.0
+offset_right = 264.0
+offset_bottom = 61.0
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("40")
 text = "Чтобы прочитать подсказку, прочтите этот текст.
 Для чтения текста необходимо смотреть на его буквы.
 Желательно, но не обязательно проговаривать их вслух.
 Чтобы было проще понять их значение, и, соответственно,
 текст подсказки."
+horizontal_alignment = 1
 
 [node name="ok" type="Label" parent="canvas/hintModal/back"]
 layout_mode = 0
@@ -232,16 +247,20 @@ offset_right = 226.0
 grow_horizontal = 2
 theme = ExtResource("40")
 text = "ок - space"
+horizontal_alignment = 1
 
 [node name="skip" type="Label" parent="canvas/hintModal/back"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -238.0
+offset_left = -314.0
 offset_top = -34.0
-grow_horizontal = 2
+offset_right = -1.0
+grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("40")
 text = "пропустить обучение - enter"
 
@@ -772,7 +791,6 @@ script = ExtResource("31")
 HintCode = "1"
 DiffRacesHints = true
 hintTime = 4.0
-UseModal = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/hint1"]
 shape = SubResource("48")
@@ -782,7 +800,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.71153, -59.5182)
 script = ExtResource("31")
 HintCode = "2"
 hintTime = 3.0
-UseModal = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/hint2"]
 shape = SubResource("48")
@@ -792,7 +809,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.366, 9.45018, -84.5295)
 script = ExtResource("31")
 HintCode = "3"
 hintTime = 3.0
-UseModal = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/hint3"]
 shape = SubResource("48")
@@ -802,7 +818,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48425, 9.45018, -105.133)
 script = ExtResource("31")
 HintCode = "4"
 hintTime = 4.5
-UseModal = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/hint4"]
 shape = SubResource("48")
@@ -922,7 +937,7 @@ bus = &"Sound"
 
 [node name="rainDrops" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.761, 1.5, -44.697)
-amount = 42
+amount = 100
 lifetime = 0.5
 visibility_aabb = AABB(-7.41551, -6.65972, -5.41109, 14.831, 13.3194, 10.8222)
 process_material = SubResource("55")

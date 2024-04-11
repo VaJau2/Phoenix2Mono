@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6sdckwsk68kl"
-path.s3tc="res://.godot/imported/Mercuriy__nmap.tga-26613c3751df13dc2c79f0e8ba01d539.s3tc.ctex"
+path="res://.godot/imported/Mercuriy__nmap.tga-26613c3751df13dc2c79f0e8ba01d539.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/vehicles/Mercuriy/Mercuriy__nmap.tga"
-dest_files=["res://.godot/imported/Mercuriy__nmap.tga-26613c3751df13dc2c79f0e8ba01d539.s3tc.ctex"]
+dest_files=["res://.godot/imported/Mercuriy__nmap.tga-26613c3751df13dc2c79f0e8ba01d539.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

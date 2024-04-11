@@ -3,8 +3,7 @@ using Godot.Collections;
 
 public partial class HintMenu: Control, IMenu
 {
-    [Export] private Array<NodePath> canceledHintsPaths;
-    private Array<HintTrigger> canceledHints;
+    [Export] private Array<HintTrigger> canceledHints;
     public bool mustBeClosed => true;
 
     public string hintMessage;
@@ -21,19 +20,8 @@ public partial class HintMenu: Control, IMenu
         hintHeader    = GetNode<Label>("back/header");
         hintOkLabel   = GetNode<Label>("back/ok");
         hintSkipLabel = GetNode<Label>("back/skip");
-        
-        canceledHints = new Array<HintTrigger>();
-        foreach (var hintPath in canceledHintsPaths)
-        {
-            var hint = GetNodeOrNull<HintTrigger>(hintPath);
-            if (IsInstanceValid(hint))
-            {
-                canceledHints.Add(hint);
-            }
-        }
-        
+
         MenuBase.LoadColorForChildren(this);
-        
     }
     
     public override void _Process(double _delta)
@@ -46,6 +34,7 @@ public partial class HintMenu: Control, IMenu
         if (Input.IsActionJustPressed("ui_shift"))
         {
             StartClosingMenu();
+            
             foreach (var hint in canceledHints)
             {
                 if (IsInstanceValid(hint))
@@ -64,7 +53,7 @@ public partial class HintMenu: Control, IMenu
         MenuManager.CloseMenu(this);
     }
     
-    private string getKeysMessage(string tempHintCode, string hintSection = null)
+    private string GetKeysMessage(string tempHintCode, string hintSection = null)
     {
         return InterfaceLang.GetPhrase("inGame", hintSection ?? "hintsModal", tempHintCode);
     }
@@ -72,9 +61,9 @@ public partial class HintMenu: Control, IMenu
     private void loadInterfaceLanguage()
     {
         hintLabel.Text     = hintMessage;
-        hintHeader.Text    = getKeysMessage("header");
-        hintOkLabel.Text   = getKeysMessage("ok");
-        hintSkipLabel.Text = getKeysMessage("skip");
+        hintHeader.Text    = GetKeysMessage("header");
+        hintOkLabel.Text   = GetKeysMessage("ok");
+        hintSkipLabel.Text = GetKeysMessage("skip");
     }
 
     public void OpenMenu()

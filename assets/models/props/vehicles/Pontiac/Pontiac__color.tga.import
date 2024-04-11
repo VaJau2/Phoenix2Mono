@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://htylly5t4pib"
-path.s3tc="res://.godot/imported/Pontiac__color.tga-35c3bfacb43281f2aa67d1f6b3e5d40f.s3tc.ctex"
+path="res://.godot/imported/Pontiac__color.tga-35c3bfacb43281f2aa67d1f6b3e5d40f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/vehicles/Pontiac/Pontiac__color.tga"
-dest_files=["res://.godot/imported/Pontiac__color.tga-35c3bfacb43281f2aa67d1f6b3e5d40f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Pontiac__color.tga-35c3bfacb43281f2aa67d1f6b3e5d40f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
