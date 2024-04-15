@@ -8,7 +8,7 @@
 [ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.phymat" id="6"]
 [ext_resource type="PackedScene" path="res://objects/props/buildings/houses/house2.tscn" id="7"]
 [ext_resource type="MeshLibrary" path="res://objects/props/tiles/street_fence.meshlib" id="8"]
-[ext_resource type="PackedScene" path="res://objects/characters/ponies/agents/agent1.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dhqpfhqv8udwe" path="res://objects/characters/ponies/agents/agent1.tscn" id="9"]
 [ext_resource type="Script" path="res://assets/scripts/characters/EnemiesManager.cs" id="10"]
 [ext_resource type="Script" path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" id="11"]
 [ext_resource type="PackedScene" path="res://objects/props/furniture/Bench.tscn" id="12"]
@@ -303,6 +303,7 @@ script = ExtResource("10")
 
 [node name="agent" parent="npc" instance=ExtResource("9")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28514, 0, -151.774)
+dialogueCode = "startDialogue"
 
 [node name="shells" type="Node3D" parent="." groups=["savable"]]
 script = ExtResource("50")
