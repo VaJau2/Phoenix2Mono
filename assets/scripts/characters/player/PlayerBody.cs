@@ -581,7 +581,7 @@ public partial class PlayerBody : Node3D
                     speed = BODY_ROT_SPEED * player.Velocity.Length();
                 }
 
-                rot.Y = (float)Mathf.MoveToward(rot.X, bodyRot, speed * delta);
+                rot.Y = (float)Mathf.MoveToward(rot.Y, bodyRot, speed * delta);
                 RotationDegrees = rot;
             }
             else
