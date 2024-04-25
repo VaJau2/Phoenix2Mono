@@ -2,22 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmnhsjcr6jej8"
-path.s3tc="res://.godot/imported/helicopter_Helicopter.png-8d0906c75895bf99c7e0afa41a057d2f.s3tc.ctex"
+uid="uid://b8kpe3dv1u0n3"
+path="res://.godot/imported/albedo.png-9493ea861c425e4fe8a09b0e2564abbe.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
-generator_parameters={}
+generator_parameters={
+"md5": "0c3f2af0d2f260c4697f6df573f1bc35"
+}
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/helicopter_Helicopter.png"
-dest_files=["res://.godot/imported/helicopter_Helicopter.png-8d0906c75895bf99c7e0afa41a057d2f.s3tc.ctex"]
+source_file="res://assets/models/props/vehicles/van/albedo.png"
+dest_files=["res://.godot/imported/albedo.png-9493ea861c425e4fe8a09b0e2564abbe.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpnwotxdd1ty4"
-path.s3tc="res://.godot/imported/kp_512__color.tga-f9998313a5b2807fd27593db37afa697.s3tc.ctex"
+path="res://.godot/imported/kp_512__color.tga-f9998313a5b2807fd27593db37afa697.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/base-houses/kp/kp_512__color.tga"
-dest_files=["res://.godot/imported/kp_512__color.tga-f9998313a5b2807fd27593db37afa697.s3tc.ctex"]
+dest_files=["res://.godot/imported/kp_512__color.tga-f9998313a5b2807fd27593db37afa697.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

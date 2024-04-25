@@ -1,24 +1,11 @@
-[gd_resource type="Environment" load_steps=2 format=2]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://clmfrehsjmurb"]
 
-[sub_resource type="Sky" id=1]
-sky_top_color = Color( 0.905882, 0.941176, 0.960784, 1 )
-ground_bottom_color = Color( 0.356863, 0.721569, 0.494118, 1 )
-ground_horizon_color = Color( 0.85098, 0.921569, 0.980392, 1 )
-ground_curve = 0.0918962
-sun_latitude = 64.43
+[sub_resource type="Sky" id="1"]
 
 [resource]
 background_mode = 2
-background_sky = SubResource( 1 )
+sky = SubResource("1")
 ambient_light_energy = 0.1
-fog_enabled = true
-fog_color = Color( 0.713726, 0.827451, 0.854902, 1 )
-fog_sun_color = Color( 0.945098, 0.886275, 0.772549, 1 )
-fog_sun_amount = 0.5
-fog_depth_begin = 5.0
-fog_depth_end = 300.0
-dof_blur_far_enabled = true
-dof_blur_far_distance = 120.0
-dof_blur_far_quality = 2
 glow_enabled = true
 glow_bloom = 0.1
+fog_enabled = true

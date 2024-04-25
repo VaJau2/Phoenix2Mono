@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://burryjaljkkh8"
-path="res://.godot/imported/helicopter.glb-88eab20bd9fee90be250a9fd02a231af.scn"
+uid="uid://qvnmgnxda4b0"
+path="res://.godot/imported/van.glb-dc40e9147d04dfe895bc71752051568d.scn"
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/helicopter.glb"
-dest_files=["res://.godot/imported/helicopter.glb-88eab20bd9fee90be250a9fd02a231af.scn"]
+source_file="res://assets/models/props/vehicles/van/van.glb"
+dest_files=["res://.godot/imported/van.glb-dc40e9147d04dfe895bc71752051568d.scn"]
 
 [params]
 

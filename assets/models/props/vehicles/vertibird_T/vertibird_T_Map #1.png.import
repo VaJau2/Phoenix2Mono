@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dw8isj57bmm1j"
-path.s3tc="res://.godot/imported/vertibird_T_Map #1.png-6047bb7d79665f2cac5d5c2b7e06f225.s3tc.ctex"
+path="res://.godot/imported/vertibird_T_Map #1.png-6047bb7d79665f2cac5d5c2b7e06f225.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/props/vehicles/vertibird_T/vertibird_T_Map #1.png"
-dest_files=["res://.godot/imported/vertibird_T_Map #1.png-6047bb7d79665f2cac5d5c2b7e06f225.s3tc.ctex"]
+dest_files=["res://.godot/imported/vertibird_T_Map #1.png-6047bb7d79665f2cac5d5c2b7e06f225.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d06qby35dp6jf"
-path.s3tc="res://.godot/imported/base_door_kp_02 - Default_color.tga-4c601bb1cb442e6a27dc7ad8a40668e3.s3tc.ctex"
+path="res://.godot/imported/base_door_kp_02 - Default_color.tga-4c601bb1cb442e6a27dc7ad8a40668e3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/base-houses/kp/base_door_kp_02 - Default_color.tga"
-dest_files=["res://.godot/imported/base_door_kp_02 - Default_color.tga-4c601bb1cb442e6a27dc7ad8a40668e3.s3tc.ctex"]
+dest_files=["res://.godot/imported/base_door_kp_02 - Default_color.tga-4c601bb1cb442e6a27dc7ad8a40668e3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

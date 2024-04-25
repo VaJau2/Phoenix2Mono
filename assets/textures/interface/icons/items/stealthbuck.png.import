@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfiglfq58kml6"
-path="res://.godot/imported/stealthbuck.png-d6c6a285d03d5c5bb89e1c46852d1fd0.ctex"
+path="res://.godot/imported/stealthBuck.png-1d76761f7585b96636b49ff8e689acff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/interface/icons/items/stealthbuck.png"
-dest_files=["res://.godot/imported/stealthbuck.png-d6c6a285d03d5c5bb89e1c46852d1fd0.ctex"]
+source_file="res://assets/textures/interface/icons/items/stealthBuck.png"
+dest_files=["res://.godot/imported/stealthBuck.png-1d76761f7585b96636b49ff8e689acff.ctex"]
 
 [params]
 

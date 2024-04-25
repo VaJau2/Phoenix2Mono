@@ -2,16 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba2mmj30m5hos"
-path="res://.godot/imported/car_nt_UVChannel_1_color.tga-906415c67e48b05116d0bdd5715383f6.ctex"
+uid="uid://cg0mdmgpjmdih"
+path="res://.godot/imported/normal.png-4fbc8b44e9f8d3fef9c3fa5e9913ab48.ctex"
 metadata={
 "vram_texture": false
+}
+generator_parameters={
+"md5": "7bcf77d2435c93d8f48d7efa1a9e1202"
 }
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/car_nt/car_nt_UVChannel_1_color.tga"
-dest_files=["res://.godot/imported/car_nt_UVChannel_1_color.tga-906415c67e48b05116d0bdd5715383f6.ctex"]
+source_file="res://assets/models/props/vehicles/van/normal.png"
+dest_files=["res://.godot/imported/normal.png-4fbc8b44e9f8d3fef9c3fa5e9913ab48.ctex"]
 
 [params]
 
@@ -19,12 +22,12 @@ compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/models/props/vehicles/van/van_Map #1.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

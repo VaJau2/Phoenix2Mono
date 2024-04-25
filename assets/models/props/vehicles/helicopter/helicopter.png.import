@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br6itfube7j5n"
-path.s3tc="res://.godot/imported/jeep_jeep.png-9075d89dc135288b537927c67ea7a1ed.s3tc.ctex"
+uid="uid://cmnhsjcr6jej8"
+path="res://.godot/imported/helicopter.png-31bb72e3507924230bd3542153ef1a83.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/jeep_jeep.png"
-dest_files=["res://.godot/imported/jeep_jeep.png-9075d89dc135288b537927c67ea7a1ed.s3tc.ctex"]
+source_file="res://assets/models/props/vehicles/helicopter/helicopter.png"
+dest_files=["res://.godot/imported/helicopter.png-31bb72e3507924230bd3542153ef1a83.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

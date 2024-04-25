@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qvnmgnxda4b0"
-path="res://.godot/imported/Furgon_pny.glb-d32254c0e37f46a77a1a085b00219859.scn"
+uid="uid://burryjaljkkh8"
+path="res://.godot/imported/helicopter.glb-583b4641bc5885d30d44ca11e7df6bd5.scn"
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/furgon_pny/Furgon_pny.glb"
-dest_files=["res://.godot/imported/Furgon_pny.glb-d32254c0e37f46a77a1a085b00219859.scn"]
+source_file="res://assets/models/props/vehicles/helicopter/helicopter.glb"
+dest_files=["res://.godot/imported/helicopter.glb-583b4641bc5885d30d44ca11e7df6bd5.scn"]
 
 [params]
 

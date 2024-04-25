@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbmo8j107b64"
-path="res://.godot/imported/furgon_pny__nmap.tga-09461ce6def9f33583c61e453ee74c42.ctex"
+uid="uid://br6itfube7j5n"
+path="res://.godot/imported/albedo.png-7740dac45d64bafd9a3168e23d745dbe.ctex"
 metadata={
 "vram_texture": false
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/props/vehicles/furgon_pny/furgon_pny__nmap.tga"
-dest_files=["res://.godot/imported/furgon_pny__nmap.tga-09461ce6def9f33583c61e453ee74c42.ctex"]
+source_file="res://assets/models/props/vehicles/Jeep/albedo.png"
+dest_files=["res://.godot/imported/albedo.png-7740dac45d64bafd9a3168e23d745dbe.ctex"]
 
 [params]
 
@@ -21,7 +22,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
