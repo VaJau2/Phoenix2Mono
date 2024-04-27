@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c7kh7h3iw7lsy"
-path="res://.godot/imported/pulovskiy.glb-fa299c77fc15f0436e1f95d4cb465e91.scn"
+path="res://.godot/imported/Przewalski.glb-f126a1c42ffb74167115e01adf004983.scn"
 
 [deps]
 
-source_file="res://assets/models/props/buildings/pulovskiy/pulovskiy.glb"
-dest_files=["res://.godot/imported/pulovskiy.glb-fa299c77fc15f0436e1f95d4cb465e91.scn"]
+source_file="res://assets/models/props/buildings/przewalski/Przewalski.glb"
+dest_files=["res://.godot/imported/Przewalski.glb-f126a1c42ffb74167115e01adf004983.scn"]
 
 [params]
 

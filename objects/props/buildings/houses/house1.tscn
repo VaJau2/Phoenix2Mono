@@ -6,8 +6,8 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4rua"]
 albedo_texture = ExtResource("2_f72by")
+roughness = 0.2
 normal_enabled = true
-normal_scale = 0.5
 normal_texture = ExtResource("3_umt2w")
 texture_filter = 0
 
@@ -51,7 +51,7 @@ collision_layer = 2147483651
 collision_mask = 3
 physics_material_override = ExtResource("3")
 
-[node name="Box001" type="MeshInstance3D" parent="."]
+[node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.24567, 0, 0, 0, 0.24567, 0, 0, 0, 0.24567, -0.124758, 0, 0.124367)
 gi_mode = 0
 mesh = SubResource("ArrayMesh_o47g0")

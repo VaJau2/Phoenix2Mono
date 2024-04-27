@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ik5fuvwg5tkg"
-path.s3tc="res://.godot/imported/House5_Map #0-Map #0.png-259da8e26c0fb767ba02ddf9ea024911.s3tc.ctex"
+uid="uid://d4kt5ij1xevwm"
+path="res://.godot/imported/_base_color.tga-3dc5acba4917576a9c19aed783f6971f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/props/buildings/street-houses/house5/House5_Map #0-Map #0.png"
-dest_files=["res://.godot/imported/House5_Map #0-Map #0.png-259da8e26c0fb767ba02ddf9ea024911.s3tc.ctex"]
+source_file="res://assets/models/props/buildings/przewalski/_base_color.tga"
+dest_files=["res://.godot/imported/_base_color.tga-3dc5acba4917576a9c19aed783f6971f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

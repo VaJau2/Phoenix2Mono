@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://larav1ottix1"
-path.s3tc="res://.godot/imported/kpp_Map #2.png-4460d833b423abd7cbc5648041337f61.s3tc.ctex"
+path="res://.godot/imported/kpp_Map #2.png-4460d833b423abd7cbc5648041337f61.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/props/buildings/base-houses/kpp/kpp_Map #2.png"
-dest_files=["res://.godot/imported/kpp_Map #2.png-4460d833b423abd7cbc5648041337f61.s3tc.ctex"]
+dest_files=["res://.godot/imported/kpp_Map #2.png-4460d833b423abd7cbc5648041337f61.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3709,7 +3709,7 @@ bones/22/rotation = Quaternion(-0.481658, 0.337468, 0.801066, 0.111418)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="player_body/Armature/Skeleton3D"]
-transform = Transform3D(1, -5.68434e-14, 2.6226e-06, 2.59682e-06, 0.13987, -0.99017, -3.66822e-07, 0.99017, 0.13987, 3.44637e-13, 1.69933, 1.11108)
+transform = Transform3D(1, -1.98952e-12, 2.6226e-06, 2.59682e-06, 0.13987, -0.99017, -3.66822e-07, 0.99017, 0.13987, 3.09407e-14, 1.69933, 1.11108)
 bone_name = "head"
 bone_idx = 3
 
@@ -3720,7 +3720,7 @@ transform = Transform3D(0.7, -5.93912e-07, -1.7371e-06, -1.36188e-12, 0.662357, 
 transform = Transform3D(1.21951, -9.92812e-07, -3.0403e-06, 1.44333e-12, 1.15927, -0.378559, 3.1983e-06, 0.37856, 1.15927, -4.65941e-07, 1.1515, 0.177664)
 
 [node name="BoneAttachment3D 2" type="BoneAttachment3D" parent="player_body/Armature/Skeleton3D"]
-transform = Transform3D(1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 3.97508e-17, 0.177527, 0.0159377)
+transform = Transform3D(1, -5.27624e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27624e-17, -0.10879, 0.994065, 3.97508e-17, 0.177527, 0.0159377)
 bone_name = "back_1"
 bone_idx = 0
 
@@ -3754,9 +3754,6 @@ libraries = {
 }
 
 [node name="animTree" type="AnimationTree" parent="player_body"]
-libraries = {
-"": SubResource("AnimationLibrary_sc1yv")
-}
 tree_root = SubResource("74")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.94

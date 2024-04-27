@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmfnsffl2q84s"
-path.s3tc="res://.godot/imported/house4__color.tga-495adf9a7484c182b90d48576d6f7eb8.s3tc.ctex"
+path="res://.godot/imported/house4__color.tga-495adf9a7484c182b90d48576d6f7eb8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/street-houses/house4/house4__color.tga"
-dest_files=["res://.godot/imported/house4__color.tga-495adf9a7484c182b90d48576d6f7eb8.s3tc.ctex"]
+dest_files=["res://.godot/imported/house4__color.tga-495adf9a7484c182b90d48576d6f7eb8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

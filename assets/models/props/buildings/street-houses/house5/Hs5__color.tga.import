@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7phehryqvkss"
-path.s3tc="res://.godot/imported/Hs5__color.tga-9c479f7fee04861211232a8589918318.s3tc.ctex"
+path="res://.godot/imported/Hs5__color.tga-9c479f7fee04861211232a8589918318.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/street-houses/house5/Hs5__color.tga"
-dest_files=["res://.godot/imported/Hs5__color.tga-9c479f7fee04861211232a8589918318.s3tc.ctex"]
+dest_files=["res://.godot/imported/Hs5__color.tga-9c479f7fee04861211232a8589918318.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

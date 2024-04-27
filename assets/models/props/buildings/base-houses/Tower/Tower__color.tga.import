@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx81op13olvoc"
-path.s3tc="res://.godot/imported/Tower__color.tga-cef4a3847ea797c7b4fce482eeb89afb.s3tc.ctex"
+path="res://.godot/imported/Tower__color.tga-cef4a3847ea797c7b4fce482eeb89afb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/base-houses/Tower/Tower__color.tga"
-dest_files=["res://.godot/imported/Tower__color.tga-cef4a3847ea797c7b4fce482eeb89afb.s3tc.ctex"]
+dest_files=["res://.godot/imported/Tower__color.tga-cef4a3847ea797c7b4fce482eeb89afb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

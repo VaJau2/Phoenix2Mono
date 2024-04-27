@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr3clvyjy3udk"
-path.s3tc="res://.godot/imported/apple_tree_ap_tree_wood.jpg-e460d799a1406d0a7120e55e3c9242ad.s3tc.ctex"
+path="res://.godot/imported/apple_tree_ap_tree_wood.jpg-e460d799a1406d0a7120e55e3c9242ad.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/props/plants/apple_tree/apple_tree_ap_tree_wood.jpg"
-dest_files=["res://.godot/imported/apple_tree_ap_tree_wood.jpg-e460d799a1406d0a7120e55e3c9242ad.s3tc.ctex"]
+dest_files=["res://.godot/imported/apple_tree_ap_tree_wood.jpg-e460d799a1406d0a7120e55e3c9242ad.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

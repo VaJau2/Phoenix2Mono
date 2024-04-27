@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dymuy0dpmxkht"
-path.s3tc="res://.godot/imported/ParticleCloudBlack.png-1c43b2e8b1842193ac07f3b43e6e347f.s3tc.ctex"
+path="res://.godot/imported/ParticleCloudBlack.png-1c43b2e8b1842193ac07f3b43e6e347f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/background/ParticleCloudBlack.png"
-dest_files=["res://.godot/imported/ParticleCloudBlack.png-1c43b2e8b1842193ac07f3b43e6e347f.s3tc.ctex"]
+dest_files=["res://.godot/imported/ParticleCloudBlack.png-1c43b2e8b1842193ac07f3b43e6e347f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

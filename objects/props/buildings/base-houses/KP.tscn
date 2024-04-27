@@ -7,8 +7,7 @@
 resource_name = "Material #4"
 cull_mode = 2
 albedo_texture = ExtResource("2_cvcgb")
-metallic = 1.0
-roughness = 0.858579
+roughness = 0.5
 emission_enabled = true
 texture_filter = 0
 

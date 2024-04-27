@@ -2,25 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4kt5ij1xevwm"
-path.s3tc="res://.godot/imported/_base_color.tga-5d8d41521ebb97b738a2b3271be789a8.s3tc.ctex"
+uid="uid://bvacjrcgqbmah"
+path="res://.godot/imported/_normal_map.tga-c5a3db4907468d44fb90d6b0659e3712.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/props/buildings/pulovskiy/_base_color.tga"
-dest_files=["res://.godot/imported/_base_color.tga-5d8d41521ebb97b738a2b3271be789a8.s3tc.ctex"]
+source_file="res://assets/models/props/buildings/przewalski/_normal_map.tga"
+dest_files=["res://.godot/imported/_normal_map.tga-c5a3db4907468d44fb90d6b0659e3712.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

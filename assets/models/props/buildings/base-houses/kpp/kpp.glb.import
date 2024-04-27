@@ -29,6 +29,13 @@ animation/fps=15
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"01 - Default": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/props/buildings/base-houses/kpp/KPP.material"
+}
+}
+}
 gltf/naming_version=0
 gltf/embedded_image_handling=1

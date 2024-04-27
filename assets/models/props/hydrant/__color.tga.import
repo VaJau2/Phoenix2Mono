@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pnf33r8r6gi4"
-path.s3tc="res://.godot/imported/__color.tga-ba6c4b7043b2e4fb7562b1cbd6013e8a.s3tc.ctex"
+path="res://.godot/imported/__color.tga-ba6c4b7043b2e4fb7562b1cbd6013e8a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/hydrant/__color.tga"
-dest_files=["res://.godot/imported/__color.tga-ba6c4b7043b2e4fb7562b1cbd6013e8a.s3tc.ctex"]
+dest_files=["res://.godot/imported/__color.tga-ba6c4b7043b2e4fb7562b1cbd6013e8a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i3lnbdjj3rue"
-path.s3tc="res://.godot/imported/house4__nmap.tga-afd90662e02bf78c187cc85c474edd8f.s3tc.ctex"
+path="res://.godot/imported/house4__nmap.tga-afd90662e02bf78c187cc85c474edd8f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/props/buildings/street-houses/house4/house4__nmap.tga"
-dest_files=["res://.godot/imported/house4__nmap.tga-afd90662e02bf78c187cc85c474edd8f.s3tc.ctex"]
+dest_files=["res://.godot/imported/house4__nmap.tga-afd90662e02bf78c187cc85c474edd8f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
