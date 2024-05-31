@@ -127,10 +127,10 @@ public class PlayerInventory
         }
     }
 
-    private void CheckStealthBuck()
+    private void CheckstealthBoy()
     {
-        Effect stealthBuckEffect = effects.GetTheSameEffect(new StealthBuckEffect());
-        stealthBuckEffect?.SetOff(false);
+        Effect stealthBoyEffect = effects.GetTheSameEffect(new stealthBoyEffect());
+        stealthBoyEffect?.SetOff(false);
     }
 
     public bool CheckCanWearItem(string itemCode)
@@ -156,7 +156,7 @@ public class PlayerInventory
 
     public void WearItem(string itemCode, bool sound = true, bool emmitSignal = true)
     {
-        CheckStealthBuck();
+        CheckstealthBoy();
         
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         if (sound) 
@@ -187,7 +187,7 @@ public class PlayerInventory
 
     public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
     {
-        CheckStealthBuck();
+        CheckstealthBoy();
         
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         SoundUsingItem(itemData);

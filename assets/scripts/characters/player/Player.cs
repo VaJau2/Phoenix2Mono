@@ -19,7 +19,7 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsSitting;
-    public bool IsStealthBuck;
+    public bool IsstealthBoy;
     public bool IsInvisibleForEnemy;
     private bool IsDead;
 

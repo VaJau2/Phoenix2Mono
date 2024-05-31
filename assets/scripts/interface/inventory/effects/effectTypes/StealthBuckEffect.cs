@@ -1,9 +1,9 @@
 ﻿using Godot;
 
-public class StealthBuckEffect : Effect
+public class stealthBoyEffect : Effect
 {
     private Player player;
-    public StealthBuckEffect()
+    public stealthBoyEffect()
     {
         maxTime = 60;
         badEffect = false;
@@ -93,9 +93,9 @@ public class StealthBuckEffect : Effect
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
-        iconName = "stealthBuck";
+        iconName = "stealthBoy";
         
-        player.IsStealthBuck = true;
+        player.IsstealthBoy = true;
         ChangePlayerVisibility(false);
         
         base.SetOn(handler);
@@ -103,7 +103,7 @@ public class StealthBuckEffect : Effect
 
     public override void SetOff(bool startPostEffect = true)
     {
-        player.IsStealthBuck = false;
+        player.IsstealthBoy = false;
         ChangePlayerVisibility(true);
         base.SetOff(false);
     }

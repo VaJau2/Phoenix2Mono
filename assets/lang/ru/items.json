@@ -575,13 +575,13 @@
         "medsEffect": "detoxine",
         "sound": "mentats"
     },
-    "stealthBuck": {
+    "stealthBoy": {
         "name": "Стелс Бак",
         "description": "Разработанное на основе зебринских технологий устройство, генерирующее стелс-поле при использовании (прототип)",
         "type": "meds",
-        "icon": "stealthBuck",
+        "icon": "stealthBoy",
         "price": "500",
-        "medsEffect": "stealthBuck",
-        "sound": "stealthBuck"
+        "medsEffect": "stealthBoy",
+        "sound": "stealthBoy"
     }
 }

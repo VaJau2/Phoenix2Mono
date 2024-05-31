@@ -68,8 +68,6 @@ SpawnRandomItems = true
 
 [node name="door" parent="Scene/terrain/props" index="2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
-collision_layer = 3
-collision_mask = 3
 myKey = "key0"
 
 [node name="box" type="StaticBody" parent="Scene/terrain/props" index="3"]

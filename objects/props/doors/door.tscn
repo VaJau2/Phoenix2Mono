@@ -115,6 +115,8 @@ tracks/0/keys = {
 extents = Vector3( 2.28331, 2.32394, 1.33791 )
 
 [node name="door" type="StaticBody"]
+collision_layer = 16
+collision_mask = 16
 physics_material_override = ExtResource( 5 )
 script = ExtResource( 2 )
 
@@ -123,7 +125,6 @@ transform = Transform( 1, 0, 0, 0, 1.14, 0, 0, 0, 1.75, 0.0558281, 0.176927, -0.
 shape = SubResource( 9 )
 
 [node name="mesh" type="MeshInstance" parent="shape"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")

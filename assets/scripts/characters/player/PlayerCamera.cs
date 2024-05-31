@@ -37,7 +37,7 @@ public class PlayerCamera : Camera
 
     public RayCast UseRay(float newDistance)
     {
-        tempRay.CollisionMask = 2147483649; //слой 1
+        tempRay.CollisionMask = 17; //слой 1 и 5
         tempRay.CastTo = new Vector3(0, 0, -newDistance);
         mayUseRay = false;
         return tempRay;
@@ -46,7 +46,7 @@ public class PlayerCamera : Camera
     public void ReturnRayBack()
     {
         float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGH;
-        tempRay.CollisionMask = 2147483651; //слой 1 и 2
+        tempRay.CollisionMask = 19; //слой 1, 2 и 5
         tempRay.CastTo = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
