@@ -6,39 +6,42 @@ public class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
     [Export] public Array<NodePath> disactiveTriggerPaths;
-    protected Array<TriggerBase> otherTriggers = new Array<TriggerBase>();
-    protected Array<TriggerBase> triggersToDisactive = new Array<TriggerBase>();
+    
+    protected Array<TriggerBase> otherTriggers = [];
+    protected Array<TriggerBase> triggersToDisactive = [];
 
     public override void _Ready()
     {
         if (otherTriggerPaths != null)
         {
-            foreach (NodePath tempPath in otherTriggerPaths)
-            {
-                otherTriggers.Add(GetNode<TriggerBase>(tempPath));
-            }
+            InitializedTriggers(otherTriggerPaths, otherTriggers);
         }
 
         if (disactiveTriggerPaths != null)
         {
-            foreach(NodePath tempPath in disactiveTriggerPaths)
-            {
-                triggersToDisactive.Add(GetNode<TriggerBase>(tempPath));
-            }
+            InitializedTriggers(disactiveTriggerPaths, triggersToDisactive);
         }
-       
+    }
+
+    private void InitializedTriggers(Array<NodePath> pathes, Array<TriggerBase> triggers)
+    {
+        foreach(var path in pathes)
+        {
+            var trigger = GetNodeOrNull<TriggerBase>(path);
+            if (trigger != null) triggers.Add(trigger);
+        }
     }
 
     public override void _on_activate_trigger()
     {
         if (!IsActive) return;
         
-        foreach (TriggerBase otherTrigger in otherTriggers)
+        foreach (var otherTrigger in otherTriggers)
         {
             otherTrigger.SetActive(true);
         }
             
-        foreach (TriggerBase otherTrigger in triggersToDisactive)
+        foreach (var otherTrigger in triggersToDisactive)
         {
             otherTrigger.SetActive(false);
         }

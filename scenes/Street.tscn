@@ -817,7 +817,6 @@ script = ExtResource( 31 )
 HintCode = "1"
 DiffRacesHints = true
 hintTime = 4.0
-UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint1"]
 shape = SubResource( 48 )
@@ -827,7 +826,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.71153, -59.5182 )
 script = ExtResource( 31 )
 HintCode = "2"
 hintTime = 3.0
-UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint2"]
 shape = SubResource( 48 )
@@ -837,7 +835,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.366, 9.45018, -84.5295 )
 script = ExtResource( 31 )
 HintCode = "3"
 hintTime = 3.0
-UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint3"]
 shape = SubResource( 48 )
@@ -847,7 +844,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48425, 9.45018, -105.133 )
 script = ExtResource( 31 )
 HintCode = "4"
 hintTime = 4.5
-UseModal = true
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/hint4"]
 shape = SubResource( 48 )
