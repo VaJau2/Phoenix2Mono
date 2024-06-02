@@ -19,10 +19,11 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsSitting;
-    public bool IsstealthBoy;
     public bool IsInvisibleForEnemy;
-    private bool IsDead;
+    private bool isDead;
 
+    public StealthBoyEffect StealthBoy;
+    
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
 
@@ -96,8 +97,7 @@ public class Player : Character
     
     [Signal]
     public delegate void ClearWeaponBindSignal();
-
-
+    
     public float GetVerticalLook()
     {
         return RotationHelper.RotationDegrees.x;
@@ -274,9 +274,9 @@ public class Player : Character
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
         
-        if (Health <= 0 && !IsDead)
+        if (Health <= 0 && !isDead)
         {
-            IsDead = true;
+            isDead = true;
             Weapons.ClearWeapon();
             Body.AnimateDeath(damager);
             DeathManager.OnPlayerDeath();

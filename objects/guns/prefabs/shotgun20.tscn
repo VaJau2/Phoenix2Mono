@@ -164,22 +164,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0190926, 0.199854 )
 [node name="barell" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -0.00226251, 0.0571005, -0.08206 )
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="Box002" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 1.11027e-09, 0, -1.11027e-09, 0.0254, -0.00271732, 0.0110713, 0.0821001 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="s1" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, 0.0193746, 0.0128464, 0.117831 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="s2" type="MeshInstance" parent="Gun-armature"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -0.017849, 0.0128464, 0.0621118 )
 mesh = SubResource( 8 )
-material/0 = null
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 9 )

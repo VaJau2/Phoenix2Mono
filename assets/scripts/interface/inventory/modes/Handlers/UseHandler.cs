@@ -76,7 +76,7 @@ public class UseHandler
         Player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
 
         var itemType = (ItemType)mode.tempItemData["type"];
-        if (Inventory.itemIsUsable(itemType)) 
+        if (Inventory.ItemIsUsable(itemType)) 
         {
             switch(itemType) 
             {

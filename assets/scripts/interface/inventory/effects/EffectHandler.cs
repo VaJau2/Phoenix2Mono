@@ -22,7 +22,7 @@ public class EffectHandler: Node
     {
         foreach (var effect in tempEffects)
         {
-            if (!(effect is stealthBoyEffect stealthBoyEffect)) continue;
+            if (!(effect is StealthBoyEffect stealthBoyEffect)) continue;
             stealthBoyEffect.SetOff();
             break;
         }
@@ -179,7 +179,7 @@ public class EffectHandler: Node
                 return new DetoxineEffect();
             
             case "stealthBoy":
-                return new stealthBoyEffect();
+                return new StealthBoyEffect();
         }
         
         return null;
@@ -204,7 +204,7 @@ public class EffectHandler: Node
             case "MentatsEffect": return "mentats";
             case "MentatsPostEffect": return "mentatsPost";
             case "DetoxineEffect": return "detoxine";
-            case "stealthBoyEffect": return "stealthBoy";
+            case "StealthBoyEffect": return "stealthBoy";
         }
 
         return null;

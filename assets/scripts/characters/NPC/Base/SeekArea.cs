@@ -168,7 +168,7 @@ public class SeekArea : Area
             if (player.IsCrouching) speed *= CROUCH_MULTIPLY;
             if (player.Velocity.Length() > 7f) speed *= WALK_MULTIPLY;
             if (player.GetNode<LightsCheck>("lightsCheck").OnLight) speed *= LIGHT_MULTIPLY;
-            if (player.IsstealthBoy) speed *= SPEALTH_BUCK_MULTIPLY;
+            if (player.StealthBoy != null) speed *= SPEALTH_BUCK_MULTIPLY;
         } else {
             speed *= NPC_MULTIPLY;
         }

@@ -490,13 +490,13 @@ frequency = 0.47
 OnBaseFrequency = false
 
 [node name="house5" parent="terrain/props/houses" instance=ExtResource( 34 )]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -26.7619, 0, -18.4306 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -26.7619, -0.25, -18.4306 )
 
 [node name="house9" parent="terrain/props/houses" instance=ExtResource( 34 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9136, 0, -37.9223 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9136, -0.25, -37.9223 )
 
 [node name="house6" parent="terrain/props/houses" instance=ExtResource( 37 )]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -31.1986, 0, -85.917 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -31.1986, -0.25, -85.917 )
 
 [node name="house7" parent="terrain/props/houses" instance=ExtResource( 7 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 31.8125, -0.363019, -56.1848 )
@@ -723,7 +723,7 @@ transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1,
 SpawnRandomItems = true
 
 [node name="bag2" parent="terrain/props/bags" instance=ExtResource( 25 )]
-transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1, 110.389, -0.055638, -190.666 )
+transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1, 65.8079, -0.055638, -189.604 )
 SpawnRandomItems = true
 
 [node name="bag3" parent="terrain/props/bags" instance=ExtResource( 25 )]
@@ -892,15 +892,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.00322, 22.6723 )
 shape = SubResource( 49 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="triggers/exit"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.00322, -205.376 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.00322, -221.278 )
 shape = SubResource( 49 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="triggers/exit"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -123.513, 7.00322, -185.575 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -163.149, 7.00322, -185.575 )
 shape = SubResource( 49 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="triggers/exit"]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 111.893, 7.00322, -104.468 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 129.391, 7.00322, -104.468 )
 shape = SubResource( 49 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="triggers/exit"]

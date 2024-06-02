@@ -490,7 +490,7 @@ public abstract class InventoryMode
             }
             else
             {
-                if (inventory.itemIsUsable(itemType))
+                if (inventory.ItemIsUsable(itemType))
                 {
                     useHandler.ShowLoadingIcon();
                 }

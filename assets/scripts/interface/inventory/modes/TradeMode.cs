@@ -575,7 +575,7 @@ public class TradeMode: InventoryMode
             
             UpdateTraderPositions();
 
-            if (player.Weapons.tempAmmoButton == ammoButton) 
+            if (player.Weapons.TempAmmoButton == ammoButton) 
             {
                 player.Weapons.UpdateAmmoCount();
             }

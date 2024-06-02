@@ -31,8 +31,9 @@ public class PlayerWeapons : CollisionShape
     Dictionary tempWeaponStats;
 
     //--эффекты и анимания выстрела
-    public ItemIcon tempAmmoButton { get; private set; }
-    Spatial tempWeapon;
+    public ItemIcon TempAmmoButton { get; private set; }
+    public Spatial TempWeapon { get; private set; }
+    
     AnimationPlayer gunAnim;
     Spatial gunLight;
     Spatial gunFire;
@@ -53,7 +54,7 @@ public class PlayerWeapons : CollisionShape
     EnemiesManager enemiesManager;
 
     bool onetimeShoot = false;
-
+    
     public void LoadNewWeapon(string weaponCode, Dictionary weaponData)
     {
         //грузим префаб оружия
@@ -74,7 +75,7 @@ public class PlayerWeapons : CollisionShape
         tempParent.AddChild(weapon);
 
         //сохраняем его для будущих перемещений по нодам
-        tempWeapon = (Spatial)weapon;
+        TempWeapon = (Spatial)weapon;
         LoadNewAmmo();
         LoadGunEffects();
 
@@ -88,11 +89,11 @@ public class PlayerWeapons : CollisionShape
     // использовать его как метод для снятия всего оружия нельзя
     public void ClearWeapon()
     {
-        if (!IsInstanceValid(tempWeapon)) return;
+        if (!IsInstanceValid(TempWeapon)) return;
         cooldown = 0;
         Disabled = true;
-        tempWeapon.QueueFree();
-        tempWeapon = null;
+        TempWeapon.QueueFree();
+        TempWeapon = null;
         shootInterface.Visible = false;
         point.SetInteractionVariant(InteractionVariant.Point);
         player.SetWeaponOff();
@@ -106,13 +107,13 @@ public class PlayerWeapons : CollisionShape
         //если сменился вид, моделька перемещается в новый нод
         if (GunOn && isPistol)
         {
-            Spatial oldParent = (Spatial)tempWeapon.GetParent();
+            Spatial oldParent = (Spatial)TempWeapon.GetParent();
             Spatial newParent = player.GetWeaponParent(isPistol);
 
             if (oldParent != newParent)
             {
-                oldParent.RemoveChild(tempWeapon);
-                newParent.AddChild(tempWeapon);
+                oldParent.RemoveChild(TempWeapon);
+                newParent.AddChild(TempWeapon);
             }
         }
     }
@@ -157,14 +158,14 @@ public class PlayerWeapons : CollisionShape
         ammoIcon.SetTexture(newIcon);
     }
 
-    private int GetAmmo() => tempAmmoButton?.GetCount() ?? 0;
+    private int GetAmmo() => TempAmmoButton?.GetCount() ?? 0;
 
     private void SetAmmo(int newAmmo)
     {
-        tempAmmoButton.SetCount(newAmmo);
+        TempAmmoButton.SetCount(newAmmo);
         if (newAmmo == 0)
         {
-            tempAmmoButton = null;
+            TempAmmoButton = null;
         }
 
         ammoLabel.Text = newAmmo.ToString();
@@ -193,11 +194,11 @@ public class PlayerWeapons : CollisionShape
         string ammoType = tempWeaponStats["ammoType"].ToString();
         if (player.Inventory.ammoButtons.ContainsKey(ammoType))
         {
-            tempAmmoButton = player.Inventory.ammoButtons[ammoType];
+            TempAmmoButton = player.Inventory.ammoButtons[ammoType];
         }
         else
         {
-            tempAmmoButton = null;
+            TempAmmoButton = null;
         }
 
         SetAmmoIcon(ammoType);
@@ -206,19 +207,19 @@ public class PlayerWeapons : CollisionShape
 
     private void LoadGunEffects()
     {
-        if (tempWeapon.HasNode("anim"))
+        if (TempWeapon.HasNode("anim"))
         {
-            gunAnim = tempWeapon.GetNode<AnimationPlayer>("anim");
+            gunAnim = TempWeapon.GetNode<AnimationPlayer>("anim");
         }
         else
         {
             gunAnim = null;
         }
 
-        gunLight = tempWeapon.GetNode<Spatial>("light");
-        gunFire = tempWeapon.GetNode<Spatial>("fire");
-        gunSmoke = tempWeapon.GetNode<Particles>("smoke");
-        shellSpawner = tempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
+        gunLight = TempWeapon.GetNode<Spatial>("light");
+        gunFire = TempWeapon.GetNode<Spatial>("fire");
+        gunSmoke = TempWeapon.GetNode<Particles>("smoke");
+        shellSpawner = TempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
     private Vector3 SetRotX(Vector3 origin, float newRotX)
@@ -428,6 +429,8 @@ public class PlayerWeapons : CollisionShape
             }
 
             onetimeShoot = false;
+            
+            player.StealthBoy?.SetOff(false);
         }
     }
 
