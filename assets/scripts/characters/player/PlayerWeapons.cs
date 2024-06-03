@@ -317,8 +317,10 @@ public class PlayerWeapons : CollisionShape
 
         return name;
     }
+    
+    private void SpawnBullet() => SpawnBullet(Vector3.Zero);
 
-    private void SpawnBullet()
+    private void SpawnBullet(Vector3 target)
     {
         string bullet = tempWeaponStats["bullet"].ToString();
         var bulletPrefab = GD.Load<PackedScene>("res://objects/guns/bullets/" + bullet + ".tscn");
@@ -329,6 +331,11 @@ public class PlayerWeapons : CollisionShape
 
         GetNode("/root/Main/Scene").AddChild(newBullet);
         newBullet.GlobalTransform = gunFire.GlobalTransform;
+
+        if (target != Vector3.Zero)
+        {
+            newBullet.LookAt(target, Vector3.Forward);
+        }
     }
 
     private void SetGunEffects(bool on)
@@ -344,7 +351,7 @@ public class PlayerWeapons : CollisionShape
         shellSpawner?.StartSpawning();
     }
 
-    private async void handleShoot()
+    private async void HandleShoot()
     {
         onetimeShoot = true;
         int ammo = GetAmmo();
@@ -384,35 +391,43 @@ public class PlayerWeapons : CollisionShape
             //обрабатываем попадания
             if (isPistol || player.MayMove)
             {
-                if (tempWeaponStats.Contains("bullet"))
+                if (tempWeaponStats.Contains("isShotgun"))
+                {
+                    player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+                }
+
+                tempRay.ForceRaycastUpdate();
+                var obj = (Spatial)tempRay.GetCollider();
+                if (obj != null)
+                {
+                    var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                    particlesParent.AddChild(gunParticles);
+                    gunParticles.GlobalTransform = Global.SetNewOrigin(
+                        gunParticles.GlobalTransform,
+                        tempRay.GetCollisionPoint()
+                    );
+                    var shapeId = tempRay.GetColliderShape();
+
+                    var matName = "box";
+                    
+                    if (tempWeaponStats.Contains("bullet"))
+                    {
+                        SpawnBullet(tempRay.GetCollisionPoint());
+                    }
+                    else
+                    {
+                        matName = HandleVictim(obj, shapeId);
+                    }
+                    
+                    gunParticles.Call(
+                        "_startEmitting",
+                        tempRay.GetCollisionNormal(),
+                        matName
+                    );
+                }
+                else if (tempWeaponStats.Contains("bullet"))
                 {
                     SpawnBullet();
-                }
-                else
-                {
-                    if (tempWeaponStats.Contains("isShotgun"))
-                    {
-                        player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
-                    }
-
-                    tempRay.ForceRaycastUpdate();
-                    var obj = (Spatial)tempRay.GetCollider();
-                    if (obj != null)
-                    {
-                        var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-                        particlesParent.AddChild(gunParticles);
-                        gunParticles.GlobalTransform = Global.SetNewOrigin(
-                            gunParticles.GlobalTransform,
-                            tempRay.GetCollisionPoint()
-                        );
-                        var shapeId = tempRay.GetColliderShape();
-                        var matName = HandleVictim(obj, shapeId);
-                        gunParticles.Call(
-                            "_startEmitting",
-                            tempRay.GetCollisionNormal(),
-                            matName
-                        );
-                    }
                 }
             }
 
@@ -448,7 +463,7 @@ public class PlayerWeapons : CollisionShape
 
                 if (Input.IsMouseButtonPressed(1) && cooldown <= 0)
                 {
-                    if (!onetimeShoot) handleShoot();
+                    if (!onetimeShoot) HandleShoot();
                 }
             }
 
