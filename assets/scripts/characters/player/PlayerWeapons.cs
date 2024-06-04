@@ -98,8 +98,6 @@ public class PlayerWeapons : CollisionShape
         point.SetInteractionVariant(InteractionVariant.Point);
         player.SetWeaponOff();
         GunOn = false;
-        
-        player.EmitSignal(nameof(Player.ClearWeaponBindSignal));
     }
 
     public void СheckThirdView()

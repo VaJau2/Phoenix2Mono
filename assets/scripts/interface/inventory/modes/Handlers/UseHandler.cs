@@ -179,7 +179,15 @@ public class UseHandler
         }
     }
 
-    public void UnwearItem(ItemIcon button)
+    public void ForceUnwearItem(ItemIcon item)
+    {
+        if (Player.Health <= 0) return;
+        
+        Player.EmitSignal(nameof(Player.UseItem), item.myItemCode);
+        UnwearItem(item);
+    }
+    
+    private void UnwearItem(ItemIcon button)
     {
         if (tempButton == null) mode.SetTempButton(button);
         

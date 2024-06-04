@@ -91,12 +91,9 @@ public class Player : Character
 
     [Signal]
     public delegate void WearItem(string itemCode);
-    
+
     [Signal]
     public delegate void UnwearItem(string itemCode);
-    
-    [Signal]
-    public delegate void ClearWeaponBindSignal();
     
     public float GetVerticalLook()
     {
@@ -329,7 +326,7 @@ public class Player : Character
         if (!string.IsNullOrEmpty(Inventory.weapon))
         {
             var useHandler = Inventory.UseHandler;
-            useHandler.UnwearItem(useHandler.weaponButton);
+            useHandler.ForceUnwearItem(useHandler.weaponButton);
         }
     }
 

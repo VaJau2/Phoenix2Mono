@@ -192,7 +192,7 @@ public class DialogueMenu : Control, IMenu
         if (!string.IsNullOrEmpty(player.Inventory.weapon))
         {
             var useHandler = player.Inventory.UseHandler;
-            useHandler.UnwearItem(useHandler.weaponButton);
+            useHandler.ForceUnwearItem(useHandler.weaponButton);
         }
         
         player.MayRotateHead = player.MayMove = false;
