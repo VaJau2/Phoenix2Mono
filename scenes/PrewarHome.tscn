@@ -1002,7 +1002,7 @@ extents = Vector3( 12.5848, 3.63556, 53.5202 )
 extents = Vector3( 5.00524, 2.20439, 3.21774 )
 
 [sub_resource type="BoxShape" id=77]
-extents = Vector3( 5.00524, 2.20439, 10.0333 )
+extents = Vector3( 7.77173, 2.20439, 10.0333 )
 
 [sub_resource type="BoxShape" id=78]
 extents = Vector3( 5.65445, 1.45053, 6.98272 )
@@ -2284,20 +2284,23 @@ IsActive = false
 otherTriggerPaths = [ NodePath("../windyDialogue3") ]
 NpcPaths = [ "../../npc/windy" ]
 pointPaths = [ NodePath("point") ]
-timer = 3.0
+timer = 0.0
+lastTimer = 0.0
 
 [node name="point" type="Spatial" parent="triggers/windyMoveToTree"]
 transform = Transform( -0.0710274, 0, 0.997474, 0, 1, 0, -0.997474, 0, -0.0710274, -111.988, -0.300176, -52.7817 )
 
 [node name="windyDialogue3" type="Area" parent="triggers" groups=["savable"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -109.312, 1.0904, -51.0556 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -111.988, -0.300176, -52.7817 )
 script = ExtResource( 69 )
 IsActive = false
 npcPath = "../../npc/windy"
+waitPlayer = true
 dialogueStartTimer = 0.2
 otherDialogueCode = "talk3"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/windyDialogue3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.613014, 0, 0 )
 shape = SubResource( 77 )
 
 [node name="windyTeleport5" type="Node" parent="triggers" groups=["savable"]]
@@ -2471,4 +2474,5 @@ scriptSongs = [ ExtResource( 45 ) ]
 [connection signal="body_entered" from="triggers/PlayerCantMove" to="triggers/PlayerCantMove" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/windyDialogue2" to="triggers/windyDialogue2" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/windyDialogue3" to="triggers/windyDialogue3" method="_on_body_entered"]
+[connection signal="body_exited" from="triggers/windyDialogue3" to="triggers/windyDialogue3" method="_on_body_exited"]
 [connection signal="body_entered" from="triggers/motherDialogue" to="triggers/motherDialogue" method="_on_body_entered"]
