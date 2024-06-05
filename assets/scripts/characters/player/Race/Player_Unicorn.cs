@@ -27,38 +27,41 @@ public class Player_Unicorn : Player
     private bool startTeleporting = false;
     public bool teleportInside = false;
 
-    public bool ManaIsEnough(float cost) 
+    public bool ManaIsEnough(float cost)
     {
         return Mana > cost;
     }
 
-    public void DecreaseMana(float decrease) 
+    public void DecreaseMana(float decrease)
     {
         Mana -= decrease;
     }
 
-    public void SetMagicEmit(bool emit) 
+    public void SetMagicEmit(bool emit)
     {
         hornMagic.Emitting = emit;
     }
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        if (shield.shieldOn && (int)Mana > 0) {
+        if (shield.shieldOn && (int)Mana > 0)
+        {
             damage /= (int)Mana;
-            if (damage <= 0) {
-                return;
-            }
+            if (damage <= 0) return;
         }
 
         base.TakeDamage(damager, damage, shapeID);
+        
+        if (isDead) ClearTeleportMark();
     }
 
-    public override Spatial GetWeaponParent(bool isPistol) {
+    public override Spatial GetWeaponParent(bool isPistol)
+    {
         return GetNode<Spatial>("levitation/weapons");
     }
 
-    public override void SetWeaponOn(bool isPistol) {
+    public override void SetWeaponOn(bool isPistol)
+    {
         SetMagicEmit(true);
     }
 
@@ -81,15 +84,15 @@ public class Player_Unicorn : Player
         Mana = MANA_MAX;
         messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
     }
-    
+
 
     public override void _Process(float delta)
     {
         base._Process(delta);
-        
+
         if (Mana < MANA_MAX)
         {
-            Mana += MANA_SPEED * delta * (1/ManaDelta) * (1 - GetDamageBlock());
+            Mana += MANA_SPEED * delta * (1 / ManaDelta) * (1 - GetDamageBlock());
         }
     }
 
@@ -100,7 +103,7 @@ public class Player_Unicorn : Player
         if (!(@event is InputEventKey keyEvent)) return;
         if (keyEvent.Pressed || Input.IsActionPressed("dash")) return;
         if (!teleportPressed) return;
-        
+
         teleportPressed = false;
         var manaIsEnough = ManaIsEnough(GetTeleportCost());
         if (!manaIsEnough || !tempTeleportMark.MayTeleport)
@@ -115,7 +118,7 @@ public class Player_Unicorn : Player
 
             return;
         }
-            
+
         startTeleporting = true;
     }
 
@@ -137,13 +140,13 @@ public class Player_Unicorn : Player
         tempTeleportMark = null;
     }
 
-    private void SpawnTeleportEffect() 
+    private void SpawnTeleportEffect()
     {
         var effect = (Spatial)teleportEffect.Instance();
         GetParent().AddChild(effect);
 
         effect.GlobalTransform = Global.SetNewOrigin(
-            effect.GlobalTransform, 
+            effect.GlobalTransform,
             GlobalTransform.origin
         );
     }
@@ -164,7 +167,7 @@ public class Player_Unicorn : Player
 
         SpawnTeleportEffect();
 
-        GlobalTransform = 
+        GlobalTransform =
             Global.SetNewOrigin(GlobalTransform, tempTeleportMark.GetTeleportPoint());
 
         ClearTeleportMark();
@@ -178,7 +181,7 @@ public class Player_Unicorn : Player
         SetMagicEmit(false);
     }
 
-    public override void Jump() 
+    public override void Jump()
     {
         base.Jump();
 
@@ -186,7 +189,7 @@ public class Player_Unicorn : Player
         if (Health > 0)
         {
             var tempRay = Camera.UseRay(TELEPORT_DISTANCE);
-            if(!teleportPressed) 
+            if (!teleportPressed)
             {
                 teleportPressed = true;
                 SpawnTeleportMark();
@@ -196,7 +199,7 @@ public class Player_Unicorn : Player
                 Spatial collider = (Spatial)tempRay.GetCollider();
                 if (collider.Name == "sky") return;
                 //оно может внезапно стереться даже здесь
-                if (tempTeleportMark != null) 
+                if (tempTeleportMark != null)
                 {
                     var place = tempRay.GetCollisionPoint();
                     place += tempRay.GetCollisionNormal() * 2f;
@@ -205,7 +208,7 @@ public class Player_Unicorn : Player
                     var teleportManaEnough = ManaIsEnough(GetTeleportCost());
                     tempTeleportMark.UpdateSprite(teleportManaEnough);
                 }
-                else 
+                else
                 {
                     SpawnTeleportMark();
                 }
@@ -218,7 +221,7 @@ public class Player_Unicorn : Player
             ClearTeleportMark();
         }
     }
-    
+
     public override Dictionary GetSaveData()
     {
         Dictionary saveData = base.GetSaveData();
@@ -230,12 +233,12 @@ public class Player_Unicorn : Player
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        
+
         if (data.Contains("mana"))
         {
             Mana = Convert.ToSingle(data["mana"]);
         }
-        
+
         if (data.Contains("inside"))
         {
             teleportInside = Convert.ToBoolean(data["inside"]);

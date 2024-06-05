@@ -20,7 +20,7 @@ public class Player : Character
     public bool IsHitting;
     public bool IsSitting;
     public bool IsInvisibleForEnemy;
-    private bool isDead;
+    protected bool isDead;
 
     public StealthBoyEffect StealthBoy;
     
