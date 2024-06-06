@@ -9,6 +9,9 @@ public class ManaBar : Control
     {
         mask = GetNode<Control>("/root/Main/Scene/canvas/mana/mask");
         MenuBase.LoadColorForChildren(this);
+
+        var phoenixSystem = GetNodeOrNull<PhoenixSystem>("/root/Main/Scene/triggers/Phoenix System");
+        phoenixSystem?.Connect(nameof(PhoenixSystem.CloneAwake), this, nameof(Reset));
     }
     
     public override void _Process(float delta)
@@ -20,5 +23,10 @@ public class ManaBar : Control
             
         var ratio = unicorn.Mana / Player_Unicorn.MANA_MAX;
         mask.RectSize = new Vector2(128, ratio * 128);
+    }
+
+    private void Reset()
+    {
+        mask.RectSize = new Vector2(128, 128);
     }
 }

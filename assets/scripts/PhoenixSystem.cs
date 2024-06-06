@@ -19,6 +19,9 @@ public class PhoenixSystem : Node, ISavable
     private PlayerSpawner playerSpawner;
     private PlayerDeathManager deathManager;
     private RoomManager roomManager;
+    
+    [Signal]
+    public delegate void CloneAwake();
 
     public override void _Ready()
     {
@@ -96,6 +99,8 @@ public class PhoenixSystem : Node, ISavable
         deathManager = Global.Get().player.DeathManager;
         if (cloneNumber > 0) deathManager.permanentDeath = false;
         deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+        
+        EmitSignal(nameof(CloneAwake));
     }
 
     public Dictionary GetSaveData()
