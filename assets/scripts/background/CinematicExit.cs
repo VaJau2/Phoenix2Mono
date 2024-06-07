@@ -77,6 +77,9 @@ public class CinematicExit : Area, ISavable
 
         DespawnCamera();
         SetProcess(false);
+        
+        player.DeathManager.Disconnect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
+        player.DeathManager.Disconnect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnPlayerDeath));
     }
     
     public void OnAreaExited(Node body)
@@ -90,6 +93,9 @@ public class CinematicExit : Area, ISavable
         player.RotationHelperThird.MayChange = false;
         
         SpawnCamera();
+
+        player.DeathManager.Connect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
+        player.DeathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnPlayerDeath));
     }
 
     private async void SpawnCamera()
@@ -148,6 +154,12 @@ public class CinematicExit : Area, ISavable
     {
         cinematicCamera.QueueFree();
         cinematicCamera = null;
+    }
+
+    private void OnPlayerDeath()
+    {
+        player = null;
+        SetProcess(false);
     }
 
     public Dictionary GetSaveData()
