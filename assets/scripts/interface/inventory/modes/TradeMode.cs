@@ -131,7 +131,7 @@ public class TradeMode: InventoryMode
 
     public override void _on_modal_no_pressed()
     {
-        CloseModalAsk();
+        CloseModal();
     }
 
     public override void _on_modal_yes_pressed()
@@ -206,7 +206,7 @@ public class TradeMode: InventoryMode
             } 
         }
 
-        CloseModalAsk();
+        CloseModal();
     }
 
     public override void _on_count_value_changed(float newCount)
@@ -217,12 +217,13 @@ public class TradeMode: InventoryMode
         sliderCount.Text = newCount.ToString(CultureInfo.InvariantCulture);
     }
 
-    private void CloseModalAsk()
+    public override void CloseModal()
     {
         askYes.Disabled = true;
         askNo.Disabled = true;
         modalAsk.Visible = false;
-        tempButton?._on_itemIcon_mouse_exited();
+
+        base.CloseModal();
     }
 
     private string GetMoneyName()

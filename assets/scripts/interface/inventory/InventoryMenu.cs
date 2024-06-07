@@ -15,6 +15,9 @@ public class InventoryMenu : Control, IMenu
     [Signal]
     public delegate void MenuIsClosed();
 
+    [Signal]
+    public delegate void ModalIsClosed();
+
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
         mode.SetTempButton(newButton, showInfo);

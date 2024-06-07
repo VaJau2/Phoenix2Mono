@@ -97,7 +97,7 @@ public abstract class InventoryMode
             anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
         }
     }
-
+    
     public ItemIcon FindButtonWithItem(string itemCode)
     {
         return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
@@ -529,9 +529,21 @@ public abstract class InventoryMode
         return @event is InputEventMouseMotion;
     }
     
-    public void CloseModal()
+    public virtual void CloseModal()
     {
         useHandler.CloseModal();
+        
+        var updateMenu = true;
+        
+        foreach (var itemButton in itemButtons)
+        {
+            itemButton.OnModalClosed(updateMenu);
+            
+            if (itemButton.IsCursorInside)
+            {
+                updateMenu = false;
+            }
+        }
     }
 
     private void UseBinds()
@@ -541,9 +553,11 @@ public abstract class InventoryMode
 
         for (var i = 0; i < 10; i++)
         {
-            if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
-            SetTempButton(menu.bindedButtons[i], false);
-            useHandler.UseTempItem();
+            if (Input.IsKeyPressed(48 + i) && menu.bindedButtons.Keys.Contains(i))
+            {
+                SetTempButton(menu.bindedButtons[i], false);
+                useHandler.UseTempItem();
+            }
         }
     }
 
