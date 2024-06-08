@@ -120,6 +120,7 @@ public class DialogueTrigger : TriggerBase
     {
         if (startPoint != null)
         {
+            npc.SetFollowTarget(null);
             npc.SetNewStartPos(startPoint.GlobalTransform.origin);
             npc.myStartRot = startPoint.Rotation;
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
@@ -189,7 +190,11 @@ public class DialogueTrigger : TriggerBase
 
     public override void SetActive(bool active)
     {
-        _on_activate_trigger();
+        if (active || !goToPlayer)
+        {
+            _on_activate_trigger();
+        }
+            
         base.SetActive(active);
     }
 

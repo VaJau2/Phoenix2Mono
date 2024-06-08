@@ -1484,10 +1484,10 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.024, 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.7302, -14.7066, -0.0724516 )
 
 [node name="security1" type="Spatial" parent="terrain/npcPlaces/after"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.74324, -3.35718, 6.66152 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.743, -3.85, 6.662 )
 
 [node name="security_mare" type="Spatial" parent="terrain/npcPlaces/after"]
-transform = Transform( -0.780354, 0, 0.625338, 0, 1, 0, -0.625338, 0, -0.780354, -11.8843, -2.81713, -16.4052 )
+transform = Transform( -0.988475, 0, 0.151382, 0, 1, 0, -0.151382, 0, -0.988475, -21.9554, -2.81713, -19.3747 )
 
 [node name="checkFall" type="Node" parent="terrain"]
 script = ExtResource( 69 )
@@ -1718,7 +1718,7 @@ afterDialoguePointPath = NodePath("afterDialogue")
 otherDialogueCode = "help"
 
 [node name="afterDialogue" type="Spatial" parent="triggers/scientistDialogue"]
-transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 58.23, 5.35039, 47.707 )
+transform = Transform( -0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148, 57.5, 5.35, 42.3 )
 
 [node name="afterScientistDialogue" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
@@ -1734,24 +1734,23 @@ NewTaskCode = "saveDusk"
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203 )
 script = ExtResource( 34 )
 IsActive = false
-otherTriggerPaths = [ NodePath("changeDialog") ]
+otherTriggerPaths = [ NodePath("../changeScientistDialogue") ]
 disactiveTriggerPaths = [ NodePath("../scientistDialogue") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/scientistMoveCanceler"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4905, 2.26303, -8.67308 )
 shape = SubResource( 28 )
 
-[node name="changeDialog" type="Node" parent="triggers/scientistMoveCanceler" groups=["savable"]]
+[node name="changeScientistDialogue" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
-IsActive = false
 onlyChangeCode = true
 npcPath = "../../npc/scientist1"
 dialogueStartPointPath = NodePath("point")
 afterDialoguePointPath = NodePath("point")
 otherDialogueCode = "help"
 
-[node name="point" type="Spatial" parent="triggers/scientistMoveCanceler/changeDialog"]
-transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 58.23, 5.35039, 47.707 )
+[node name="point" type="Spatial" parent="triggers/changeScientistDialogue"]
+transform = Transform( -0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148, 57.5, 5.35, 42.3 )
 
 [node name="corridorSpawner" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203 )
@@ -1958,7 +1957,7 @@ newIdlePointPath = NodePath("movePoint")
 shape = SubResource( 31 )
 
 [node name="movePoint" type="Spatial" parent="triggers/duskFollowEnd"]
-transform = Transform( -0.0448749, 0, -0.998993, 0, 1, 0, 0.998993, 0, -0.0448749, 13.953, -3.52233, 47.707 )
+transform = Transform( 0.996502, 0, -0.0835735, 0, 1, 0, 0.0835735, 0, 0.996502, 19.0471, -3.52233, 52.3144 )
 
 [node name="scientist1Thanks" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )

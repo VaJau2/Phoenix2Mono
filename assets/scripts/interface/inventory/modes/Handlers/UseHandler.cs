@@ -72,6 +72,7 @@ public class UseHandler
     public async void UseTempItem()
     {
         if (Player.Health <= 0) return;
+        if (tempButton == null) return;
         
         Player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
 

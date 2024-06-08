@@ -1291,12 +1291,12 @@ bias = 0.5
 [node name="doors" type="Spatial" parent="rooms/kp"]
 
 [node name="door" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -4.08106e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.048, 16.4736, -0.451363, 8.0939 )
+transform = Transform( -1, 0, -4.08106e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.048, 16.474, -0.450996, 8.14 )
 myKey = "key0"
 doorCode = "door103"
 
 [node name="door2" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.139, 0, 0, 0, 1.048, 11.3722, -0.451363, 11.2466 )
+transform = Transform( 1, 0, 0, 0, 1.139, 0, 0, 0, 1.048, 11.3722, -0.451363, 11.206 )
 
 [node name="door3" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1.19249e-08, 0, -1.111, 0, 1.139, 0, 1, 0, 1.32485e-08, 11.8584, -0.38636, -9.0904 )
@@ -2058,37 +2058,37 @@ shape = SubResource( 43 )
 [node name="doors" type="Spatial" parent="rooms/kazarma"]
 
 [node name="door" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -14.2822 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -14.3152 )
 
 [node name="door2" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.13576 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.16873 )
 
 [node name="door3" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.125999, 1.02674 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.125999, 0.993767 )
 
 [node name="door4" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.65246 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.61948 )
 
 [node name="door5" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.8989 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.8659 )
 
 [node name="door6" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, 5.92506 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, 6.03684 )
 myKey = "closed"
 
 [node name="door7" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -1.63828 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -1.60725 )
 
 [node name="door8" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -9.79912 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -9.76809 )
 myKey = "closed"
 
 [node name="door9" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.9089 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.8779 )
 myKey = "closed"
 
 [node name="door10" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 88 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.181, 17.5858, 0.207603, 18.8248 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.181, 17.5858, 0.207603, 18.8558 )
 myKey = "closed"
 
 [node name="notes" type="Spatial" parent="rooms/kazarma"]
