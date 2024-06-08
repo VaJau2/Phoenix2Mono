@@ -1685,7 +1685,7 @@ transform = Transform( 0.0366612, 0, -0.999328, 0, 1, 0, 0.999328, 0, 0.0366612,
 
 [node name="deadEnemiesCount" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 16 )
-otherTriggerPaths = [ NodePath("../scientistDialogue"), NodePath("../security1Dialogue"), NodePath("../securityMareDialogue") ]
+otherTriggerPaths = [ NodePath("../scientistDialogue"), NodePath("../scientistMoveCanceler"), NodePath("../security1Dialogue"), NodePath("../securityMareDialogue") ]
 TriggersCount = 4
 
 [node name="security1Dialogue" type="Node" parent="triggers" groups=["savable"]]
@@ -1720,10 +1720,38 @@ otherDialogueCode = "help"
 [node name="afterDialogue" type="Spatial" parent="triggers/scientistDialogue"]
 transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 58.23, 5.35039, 47.707 )
 
+[node name="afterScientistDialogue" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 34 )
+otherTriggerPaths = [ NodePath("../saveDuskTask") ]
+disactiveTriggerPaths = [ NodePath("../scientistMoveCanceler") ]
+
 [node name="saveDuskTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
 NewTaskCode = "saveDusk"
+
+[node name="scientistMoveCanceler" type="Area" parent="triggers" groups=["savable"]]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203 )
+script = ExtResource( 34 )
+IsActive = false
+otherTriggerPaths = [ NodePath("changeDialog") ]
+disactiveTriggerPaths = [ NodePath("../scientistDialogue") ]
+
+[node name="CollisionShape" type="CollisionShape" parent="triggers/scientistMoveCanceler"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4905, 2.26303, -8.67308 )
+shape = SubResource( 28 )
+
+[node name="changeDialog" type="Node" parent="triggers/scientistMoveCanceler" groups=["savable"]]
+script = ExtResource( 13 )
+IsActive = false
+onlyChangeCode = true
+npcPath = "../../npc/scientist1"
+dialogueStartPointPath = NodePath("point")
+afterDialoguePointPath = NodePath("point")
+otherDialogueCode = "help"
+
+[node name="point" type="Spatial" parent="triggers/scientistMoveCanceler/changeDialog"]
+transform = Transform( 0.0163879, 0, 0.999866, 0, 1, 0, -0.999866, 0, 0.0163879, 58.23, 5.35039, 47.707 )
 
 [node name="corridorSpawner" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203 )
@@ -2024,6 +2052,7 @@ radioListPath = [ NodePath("../terrain/props/Radio"), NodePath("../terrain/props
 [connection signal="body_entered" from="triggers/moveNPC" to="triggers/moveNPC" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/sitTask" to="triggers/sitTask" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/shloerDissapear" to="triggers/shloerDissapear" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/scientistMoveCanceler" to="triggers/scientistMoveCanceler" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/corridorSpawner" to="triggers/corridorSpawner" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/corridorSpawner2" to="triggers/corridorSpawner2" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/corridorSpawner3" to="triggers/corridorSpawner3" method="_on_body_entered"]
