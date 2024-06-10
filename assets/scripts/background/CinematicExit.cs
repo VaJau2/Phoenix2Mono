@@ -71,15 +71,16 @@ public class CinematicExit : Area, ISavable
     {
         if (player == null) return;
         
-        exitPoint = Vector3.Zero;
         player.RotationHelperThird.MayChange = true;
         player.RotationHelperThird.SetThirdView(wasThirdView);
-
-        DespawnCamera();
-        SetProcess(false);
-        
         player.DeathManager.Disconnect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
         player.DeathManager.Disconnect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnPlayerDeath));
+        player = null;
+        
+        exitPoint = Vector3.Zero;
+        
+        DespawnCamera();
+        SetProcess(false);
     }
     
     public void OnAreaExited(Node body)
