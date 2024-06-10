@@ -890,6 +890,7 @@ script = ExtResource( 11 )
 
 [node name="checkFall" type="Node" parent="terrain"]
 script = ExtResource( 39 )
+defaultDoorPath = NodePath("../../rooms/mansion/DoorTeleport")
 teleportPointPath = NodePath("UpPoint")
 fallHeight = -200.0
 
