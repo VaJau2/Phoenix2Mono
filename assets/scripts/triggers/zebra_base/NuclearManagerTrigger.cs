@@ -105,8 +105,11 @@ public class NuclearManagerTrigger : TriggerBase
 
     private void IncreaseShaking(float delta)
     {
+        var player = Global.Get().player;
+        if (!IsInstanceValid(player)) return;
         if (!(increaseSpeed > 0)) return;
-        Global.Get().player.shakingSpeed += delta * increaseSpeed;
+
+        player.shakingSpeed += delta * increaseSpeed;
         increaseSpeed -= delta * 0.08f;
     }
 
