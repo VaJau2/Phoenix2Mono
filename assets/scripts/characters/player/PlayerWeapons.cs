@@ -369,10 +369,7 @@ public class PlayerWeapons : CollisionShape
             cooldown = GetStatsFloat("cooldown");
             audiShoot.Stream = shootSound;
             audiShoot.Play();
-            if (gunAnim != null)
-            {
-                gunAnim.Play("shoot");
-            }
+            gunAnim?.Play("shoot");
 
             player.Body.Head.CloseEyes();
             var tempDistance = GetStatsInt("shootDistance");

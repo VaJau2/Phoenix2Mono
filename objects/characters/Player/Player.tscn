@@ -567,7 +567,7 @@ nodes/BlendSpace2D/position = Vector2( -340, 160 )
 nodes/StateMachine/node = SubResource( 73 )
 nodes/StateMachine/position = Vector2( -360, -20 )
 nodes/output/position = Vector2( 360, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=75]
 
@@ -737,7 +737,7 @@ collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48804e-17, -0.284131, -0.388925 )
-body_offset = Transform( 1, 7.91727e-18, 8.39005e-17, -8.25406e-17, 0.292822, 0.956165, -1.69977e-17, -0.956165, 0.292822, 1.05879e-22, 0.455076, -0.157791 )
+body_offset = Transform( 1, 7.91726e-18, 8.39005e-17, -8.25406e-17, 0.292822, 0.956165, -1.69977e-17, -0.956165, 0.292822, 1.05879e-22, 0.455076, -0.157791 )
 mass = 90.0
 weight = 882.0
 friction = 0.5
@@ -876,7 +876,7 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 14 )
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.989933, -0.141448, 5.81477e-05, 0.141038, 0.987025, -0.0765873, 0.0107714, 0.0758307, 0.997032, -0.259926, 0.497915, -0.990133 )
+transform = Transform( 0.989933, -0.141448, 5.81477e-05, 0.141038, 0.987025, -0.0765873, 0.0107714, 0.0758307, 0.997032, -0.259925, 0.497915, -0.990133 )
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
@@ -965,8 +965,8 @@ collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38832e-07, -0.0298522, 0.637075 )
-body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148897, -0.988838, 2.73919e-07, 0.988856, -0.148897, -3.20375e-07, 0.625519, 0.124378 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40695e-07, -0.0298522, 0.637075 )
+body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148897, -0.988838, 2.73919e-07, 0.988856, -0.148897, -3.22238e-07, 0.625519, 0.124378 )
 mass = 15.0
 weight = 147.0
 bone_name = "tail_1"

@@ -296,7 +296,7 @@
         "icon": "plasmaPistol",
         "price": "200",
         "damage": "40",
-        "shootDistance": "50",
+        "shootDistance": "100",
         "cooldown": "0.5",
         "recoil": "1",
         "isPistol": "true",
