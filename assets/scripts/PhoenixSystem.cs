@@ -16,7 +16,6 @@ public class PhoenixSystem : Node, ISavable
     private int cloneNumber;
     
     private CloneFlaskTrigger cloneFlaskTrigger;
-    private PlayerSpawner playerSpawner;
     private PlayerDeathManager deathManager;
     private RoomManager roomManager;
     
@@ -44,9 +43,17 @@ public class PhoenixSystem : Node, ISavable
     private async void OnSaveDataLoaded()
     {
         await ToSignal(GetTree(), "idle_frame");
-        
-        if (CloneWokeUp) return;
-        StartCloning();
+
+        if (CloneWokeUp)
+        {
+            deathManager = Global.Get().player.DeathManager;
+            deathManager.permanentDeath = cloneFlasks.Count < 1;
+            
+            if (deathManager.permanentDeath) return;
+            
+            deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+        }
+        else StartCloning();
     }
     
     private void OnCloneDie()
@@ -70,13 +77,18 @@ public class PhoenixSystem : Node, ISavable
     private async void StartCloning()
     {
         if (cloneFlasks.Count == 0) return;
+        
+        var cloneFlask = cloneFlasks[cloneNumber];
+        Global.Get().playerRace = cloneFlask.GetRace();
+        cloneFlaskTrigger.Resurrect(cloneFlask, this);
+        cloneFlasks.Remove(cloneFlask);
+        cloneNumber = cloneFlasks.Count - 1;
+        
+        await ToSignal(GetTree(), "idle_frame");
 
-        if (cloneFlasks.Count == 1)
-        {
-            deathManager.permanentDeath = true;
-        }
-
-        if (room != roomManager.CurrentRoom)
+        var player = Global.Get().player;
+        
+        if (roomManager.CurrentRoom != room)
         {
             if (roomManager.CurrentRoom != null)
             {
@@ -87,17 +99,13 @@ public class PhoenixSystem : Node, ISavable
             room.Visible = true;
             room.Enter();
         }
+        else
+        {
+            player.AudioEffectsController.AddEffects(room.Name);
+        }
         
-        var cloneFlask = cloneFlasks[cloneNumber];
-        Global.Get().playerRace = cloneFlask.GetRace();
-        cloneFlaskTrigger.Resurrect(cloneFlask, this);
-        cloneFlasks.Remove(cloneFlask);
-        cloneNumber = cloneFlasks.Count - 1;
-
-        await ToSignal(GetTree(), "idle_frame");
-        
-        deathManager = Global.Get().player.DeathManager;
-        if (cloneNumber > 0) deathManager.permanentDeath = false;
+        deathManager = player.DeathManager;
+        deathManager.permanentDeath = cloneFlasks.Count < 1;
         deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
         
         EmitSignal(nameof(CloneAwake));

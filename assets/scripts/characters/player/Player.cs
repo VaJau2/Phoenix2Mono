@@ -21,8 +21,6 @@ public class Player : Character
     public bool IsSitting;
     public bool IsInvisibleForEnemy;
     protected bool isDead;
-
-    public StealthBoyEffect StealthBoy;
     
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
@@ -44,8 +42,10 @@ public class Player : Character
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
     public PlayerInventory Inventory;
+    public StealthBoyEffect StealthBoy;
     public PlayerRadiation Radiation;
     public PlayerDeathManager DeathManager;
+    public AudioEffectsController AudioEffectsController;
 
     private DamageEffects damageEffects;
     protected SoundSteps soundSteps;
@@ -639,6 +639,7 @@ public class Player : Character
         Inventory = new PlayerInventory(this);
         Radiation = new PlayerRadiation(this);
         DeathManager = GetNode<PlayerDeathManager>("deathManager");
+        AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
         BaseSpeed = 15;
         BaseRecoil = 2;

@@ -548,6 +548,7 @@ public abstract class InventoryMode
 
     private void UseBinds()
     {
+        if (player == null) return;
         if (!player.MayRotateHead) return;
         if (bindsHandler.useCooldown > 0) return;
 

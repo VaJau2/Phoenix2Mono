@@ -7,12 +7,12 @@ public class PlayerDeathManager : Node
     private ColorRect blackScreen;
     private LevelsLoader levelsLoader;
     private Global global = Global.Get();
-
-    [Signal]
-    public delegate void CloneDie();
-
+    
     [Signal]
     public delegate void PlayerDie();
+    
+    [Signal]
+    public delegate void CloneDie();
     
     public override void _Ready()
     {
@@ -46,6 +46,7 @@ public class PlayerDeathManager : Node
         }
         else
         {
+            EmitSignal(nameof(PlayerDie));
             EmitSignal(nameof(CloneDie));
         }
     }
