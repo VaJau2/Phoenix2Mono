@@ -77,7 +77,7 @@ public class DialogueMenu : Control, IMenu
         
         string lang = InterfaceLang.GetLang();
         string path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
-        nodes = Global.loadJsonFile(path)["nodes"] as Dictionary;
+        nodes = Global.LoadJsonFile(path)["nodes"] as Dictionary;
         if (nodes != null)
         {
             MoveToNode(((Array)nodes.Keys)[0].ToString());
@@ -271,7 +271,7 @@ public class DialogueMenu : Control, IMenu
     {
         MenuBase.LoadColorForChildren(this);
 
-        dialogueAudio = GetNode<DialogueAudio>("../audi");
+        dialogueAudio = GetNode<DialogueAudio>("../dialogueAudio");
         text      = GetNode<RichTextLabel>("text");
         skipLabel = GetNode<Label>("skipLabel");
         leftName  = GetNode<Label>("leftName");

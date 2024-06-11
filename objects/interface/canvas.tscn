@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture" id=25]
+[ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=26]
+[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=27]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -429,10 +431,14 @@ margin_bottom = -50.0
 mouse_filter = 1
 theme = ExtResource( 2 )
 align = 1
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="dialogueAudio" type="Node" parent="subtitles"]
+script = ExtResource( 27 )
 
 [node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
 anchor_top = 1.0

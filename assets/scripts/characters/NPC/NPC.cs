@@ -6,14 +6,14 @@ using Godot.Collections;
 //класс отвечает за поведение НПЦ
 public abstract class NPC : Character, IInteractable
 {
-    const int RAGDOLL_IMPULSE = 1000;
-    const float SEARCH_TIMER = 12f;
-    readonly string[] SKIP_SIGNALS = {"tree_entered", "tree_exiting"};
+    private const int RAGDOLL_IMPULSE = 1000;
+    private const float SEARCH_TIMER = 12f;
+    private readonly string[] skipSignals = {"tree_entered", "tree_exiting"};
 
-    protected float ROTATION_SPEED = 0.15f;
-    protected float GRAVITY = 0;
-    protected float PATROL_WAIT = 4f;
-    
+    protected float RotationSpeed = 0.15f;
+    protected float Gravity = 0;
+    protected const float PATROL_WAIT = 4f;
+
     [Export] public Array<NodePath> patrolArray;
     protected Spatial[] patrolPoints;
     protected int patrolI = 0;
@@ -23,6 +23,7 @@ public abstract class NPC : Character, IInteractable
     [Export] public bool IsImmortal;
     [Export] public int StartHealth = 100;
     [Export] public Relation relation;
+    [Export] public string subtitlesCode = "";
     [Export] public string dialogueCode = "";
     [Export] public int WalkSpeed = 5;
 
@@ -34,9 +35,9 @@ public abstract class NPC : Character, IInteractable
     
     public Vector3 myStartPos, myStartRot;
 
-    public virtual bool MayInteract => !dialogueMenu.MenuOn && !string.IsNullOrEmpty(dialogueCode);
+    public virtual bool MayInteract => GetMayInteract();
     public virtual string InteractionHintCode => "talk";
-
+    
     protected AudioStreamPlayer3D audi;
     [Export] protected Array<AudioStreamSample> hittedSounds;
     [Export] protected Array<AudioStreamSample> dieSounds;
@@ -45,23 +46,49 @@ public abstract class NPC : Character, IInteractable
     private Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
     
-    private Dictionary<string, bool> objectsChangeActive = new Dictionary<string, bool>();
+    private Dictionary<string, bool> objectsChangeActive = new();
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
 
     private Player player => Global.Get().player;
     private DialogueMenu dialogueMenu;
+    private Subtitles subtitles;
     public Character tempVictim;
     protected Vector3 lastSeePos;
     protected float searchTimer;
     private float deadTimer = 5f;
 
-    protected bool CloseToPoint = false;
+    protected bool CloseToPoint;
+
+    private bool GetMayInteract()
+    {
+        if (!string.IsNullOrEmpty(dialogueCode))
+        {
+            return !dialogueMenu.MenuOn;
+        }
+
+        if (!string.IsNullOrEmpty(subtitlesCode))
+        {
+            return !subtitles.IsAnimatingText;
+        }
+
+        return false;
+    }
 
     public virtual void Interact(PlayerCamera interactor)
     {
-        dialogueMenu.StartTalkingTo(this);
+        if (!string.IsNullOrEmpty(dialogueCode))
+        {
+            dialogueMenu.StartTalkingTo(this);
+        }
+
+        if (!string.IsNullOrEmpty(subtitlesCode))
+        {
+            subtitles.SetTalker(this)
+                .LoadSubtitlesFile(subtitlesCode)
+                .StartAnimatingText();
+        }
     }
     
     public virtual void SetState(NPCState newState)
@@ -177,17 +204,10 @@ public abstract class NPC : Character, IInteractable
 
     public void SetObjectActive(string objectPath, bool active)
     {
-        var showobject = GetNode<Spatial>(objectPath);
-        if (showobject == null) return;
-        showobject.Visible = active;
-        if (objectsChangeActive.ContainsKey(objectPath))
-        {
-            objectsChangeActive[objectPath] = active;
-        }
-        else
-        {
-            objectsChangeActive.Add(objectPath, active);
-        }
+        var showObject = GetNode<Spatial>(objectPath);
+        if (showObject == null) return;
+        showObject.Visible = active;
+        objectsChangeActive[objectPath] = active;
     }
 
     protected void CleanPatrolArray()
@@ -198,7 +218,7 @@ public abstract class NPC : Character, IInteractable
 
     protected void PlayRandomSound(Array<AudioStreamSample> array)
     {
-        if (array == null || array.Count <= 0) return;
+        if (array is not { Count: > 0 }) return;
         var rand = new RandomNumberGenerator();
         rand.Randomize();
         int randomNum = rand.RandiRange(0, array.Count - 1);
@@ -255,7 +275,7 @@ public abstract class NPC : Character, IInteractable
     {
         var rotA = Transform.basis.Quat().Normalized();
         var rotB = Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
-        var tempRotation = rotA.Slerp(rotB, ROTATION_SPEED);
+        var tempRotation = rotA.Slerp(rotB, RotationSpeed);
 
         Transform tempTransform = Transform;
         tempTransform.basis = new Basis(tempRotation);
@@ -272,7 +292,7 @@ public abstract class NPC : Character, IInteractable
         speed += BaseSpeed;
 
         Rotation = new Vector3(0, Rotation.y, 0);
-        Velocity = new Vector3(0, -GRAVITY, -speed).Rotated(Vector3.Up, Rotation.y);
+        Velocity = new Vector3(0, -Gravity, -speed).Rotated(Vector3.Up, Rotation.y);
 
         var temp_distance = pos.DistanceTo(place);
         CloseToPoint = temp_distance <= distance;
@@ -282,14 +302,14 @@ public abstract class NPC : Character, IInteractable
     {
         if (!IsOnFloor())
         {
-            if (GRAVITY < 30)
+            if (Gravity < 30)
             {
-                GRAVITY += 0.5f;
+                Gravity += 0.5f;
             }
         }
         else
         {
-            GRAVITY = 0;
+            Gravity = 0;
         }
     }
 
@@ -431,7 +451,7 @@ public abstract class NPC : Character, IInteractable
                 if (!(connectionData is Dictionary connectionDict)) continue;
                 if (!(connectionDict["target"] is Node target)) continue;
                 var signalName = signalDict["name"].ToString();
-                if (SKIP_SIGNALS.Contains(signalName)) continue;
+                if (skipSignals.Contains(signalName)) continue;
 
                 signals.Add(new Dictionary
                 {
@@ -453,6 +473,7 @@ public abstract class NPC : Character, IInteractable
         audi = GetNode<AudioStreamPlayer3D>("audi");
         seekArea = GetNode<SeekArea>("seekArea");
         dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
         if (hasSkeleton)
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");

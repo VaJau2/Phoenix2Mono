@@ -52,7 +52,7 @@ public class DragonMusic : TriggerBase
         if (IsActive)
         {
             if (!startTrackPlayed 
-                && audi.GetStream == startTrack && !audi.IsPlaying)
+                && audi.Stream == startTrack && !audi.IsPlaying)
             {
                 startTrackPlayed = true;
                 SetActive(true);

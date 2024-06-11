@@ -134,7 +134,7 @@ public class Global
         };
     }
 
-    public static Dictionary loadJsonFile(string filePath)
+    public static Dictionary LoadJsonFile(string filePath)
     {
         if (jsonCachePath == filePath)
         {

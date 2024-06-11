@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class DialogueAudioConfig
 {
-    private readonly Array defaultSoundCodes = new Array
+    private readonly Array defaultSoundCodes = new()
     {
         "sound_a", "sound_e", "sound_i", "sound_o", "sound_u", "sound_y"
     };
@@ -12,8 +12,7 @@ public class DialogueAudioConfig
     private const float DEFAULT_MAX_PITCH = 2f;
     private const int DEFAULT_CHARS_TO_SOUND = 3;
 
-    public Array<AudioStreamSample> Sounds { get; } 
-        = new Array<AudioStreamSample>();
+    public Array<AudioStreamSample> Sounds { get; } = [];
     public float MinPitch { get; private set; } = 0.5f;
     public float MaxPitch { get; private set; } = 3f;
     public int CharsToSound { get; private set; } = 3;
@@ -22,10 +21,7 @@ public class DialogueAudioConfig
 
     public void LoadConfig(string code)
     {
-        if (code == null)
-        {
-            code = "";
-        }
+        code ??= "";
         
         if (tempCode == code) return;
         
@@ -36,7 +32,7 @@ public class DialogueAudioConfig
             return;
         }
 
-        var configFile = Global.loadJsonFile(path);
+        var configFile = Global.LoadJsonFile(path);
         
         if (configFile.Contains("sounds"))
         {
