@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -25,12 +25,21 @@
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture" id=25]
+[ext_resource path="res://assets/materials/shaders/fisheye.shader" type="Shader" id=26]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
 shader_param/brightness = null
 shader_param/contrast = null
 shader_param/saturation = null
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 26 )
+shader_param/fisheye_strength = 0.9
+shader_param/alpha = 0.0
+shader_param/r_displacement = Vector2( 3, 0 )
+shader_param/g_displacement = Vector2( 0, 0 )
+shader_param/b_displacement = Vector2( -3, 0 )
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 21 )
@@ -54,6 +63,13 @@ color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="fisheyeShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
 
 [node name="eyesParts" type="Control" parent="."]
 anchor_right = 1.0

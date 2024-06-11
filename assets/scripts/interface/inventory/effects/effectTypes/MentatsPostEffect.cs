@@ -1,6 +1,6 @@
 using Godot;
 
-public class MentatsPostEffect: Effect 
+public class MentatsPostEffect : Effect
 {
     const float BRIGHTNESS = -0.05f;
     const float CONTRAST = 0.75f;
@@ -15,16 +15,17 @@ public class MentatsPostEffect: Effect
         emotion = "meds_after";
     }
 
-    private void SetShadersOn(bool on) 
+    private void SetShadersOn(bool on)
     {
         var colorRect = player.GetNode<ColorRect>("/root/Main/Scene/canvas/colorShader");
-        if (on) {
-            ShaderMaterial shaders = (ShaderMaterial)colorRect.Material;
+        if (on)
+        {
+            var shaders = (ShaderMaterial)colorRect.Material;
             shaders.SetShaderParam("brightness", BRIGHTNESS);
             shaders.SetShaderParam("contrast", CONTRAST);
             shaders.SetShaderParam("saturation", SATURATION);
         }
-        
+
         colorRect.Visible = on;
     }
 
@@ -33,8 +34,9 @@ public class MentatsPostEffect: Effect
         player = Global.Get().player;
         iconName = "mentats-after";
         base.SetOn(handler);
-        
-        if (!handler.HasEffect(this)) {
+
+        if (!handler.HasEffect(this))
+        {
             SetShadersOn(true);
             handler.SetPlayerParameter("priceDelta", ref player.PriceDelta, PRICE_DELTA);
         }
@@ -43,7 +45,8 @@ public class MentatsPostEffect: Effect
     public override void SetOff(bool startPostEffect = true)
     {
         base.SetOff();
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             SetShadersOn(false);
             handler.ClearPlayerParameter("priceDelta", ref player.PriceDelta);
         }
