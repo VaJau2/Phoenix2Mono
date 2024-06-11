@@ -74,7 +74,6 @@ public class CinematicExit : Area, ISavable
         player.RotationHelperThird.MayChange = true;
         player.RotationHelperThird.SetThirdView(wasThirdView);
         player.DeathManager.Disconnect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
-        player.DeathManager.Disconnect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnPlayerDeath));
         player = null;
         
         exitPoint = Vector3.Zero;
@@ -96,7 +95,6 @@ public class CinematicExit : Area, ISavable
         SpawnCamera();
 
         player.DeathManager.Connect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
-        player.DeathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnPlayerDeath));
     }
 
     private async void SpawnCamera()
