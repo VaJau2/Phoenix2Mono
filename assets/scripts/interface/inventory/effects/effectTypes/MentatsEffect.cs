@@ -11,7 +11,7 @@ public class MentatsEffect : Effect
 
     public MentatsEffect()
     {
-        maxTime = 10;
+        maxTime = 60;
         badEffect = true;
         postEffectChance = 0.8f;
         postEffect = new MentatsPostEffect();
