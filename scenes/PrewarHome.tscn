@@ -1073,6 +1073,7 @@ IsImmortal = true
 
 [node name="opal" parent="npc" instance=ExtResource( 94 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.936, -100.396, 21.4575 )
+IsImmortal = true
 traderCode = "opal"
 startItemCodes = [ "sparkleCola", "maffin", "maffin", "apple" ]
 

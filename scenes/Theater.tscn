@@ -492,6 +492,7 @@ IdleAnim = "Idle1"
 [node name="twilight" parent="npc" instance=ExtResource( 21 )]
 transform = Transform( 0.971839, 0, 0.235651, 0, 1, 0, -0.235651, 0, 0.971839, 22.9068, 6.274, -12.511 )
 IdleAnim = "Idle1"
+IsImmortal = true
 dialogueCode = "talk1"
 
 [node name="dusk" parent="npc" instance=ExtResource( 15 )]
@@ -505,16 +506,19 @@ IsImmortal = true
 
 [node name="security1" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.2017, 6.30189, -11.0818 )
+IsImmortal = true
 StartHealth = 100
 weaponCode = "pistol10S"
 
 [node name="security_mare" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -0.831402, 0, 0.555672, 0, 1, 0, -0.555672, 0, -0.831402, 59.3849, 6.34055, -4.0266 )
+IsImmortal = true
 StartHealth = 90
 weaponCode = "pistol10S"
 
 [node name="spike" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.976687, 0, -0.214667, 0, 1, 0, 0.214667, 0, 0.976687, 20.549, 6.26088, -13.1928 )
+IsImmortal = true
 dialogueCode = "talk"
 COME_DISTANCE = 3.0
 
@@ -558,6 +562,10 @@ shape = SubResource( 6 )
 
 [node name="WallShape" type="CollisionShape" parent="terrain"]
 transform = Transform( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 13.1924, 15.8634, 27.3783 )
+shape = SubResource( 7 )
+
+[node name="WallShape2" type="CollisionShape" parent="terrain"]
+transform = Transform( -3.3169e-08, 0, 0.758818, 0, 0.758818, 0, -0.758818, 0, -3.3169e-08, 38.0981, 15.8634, 55.5719 )
 shape = SubResource( 7 )
 
 [node name="wallparts" parent="terrain" instance=ExtResource( 12 )]
@@ -1544,7 +1552,7 @@ otherDialogueCode = "presentation2"
 
 [node name="explosionTriggers" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../shloerDissapear") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../shloerDissapear"), NodePath("../changeSecurityMare"), NodePath("../changeSecurity1") ]
 
 [node name="killThemAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1567,6 +1575,16 @@ track = ExtResource( 62 )
 script = ExtResource( 56 )
 teleportEffect = ExtResource( 55 )
 charPaths = [ NodePath("../../npc/twilight"), NodePath("../../npc/spike") ]
+
+[node name="changeSecurityMare" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 66 )
+npcPath = "/root/Main/Scene/npc/security_mare"
+newMortality = 1
+
+[node name="changeSecurity1" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 66 )
+npcPath = "/root/Main/Scene/npc/security1"
+newMortality = 1
 
 [node name="runAfterExplode" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 52 )

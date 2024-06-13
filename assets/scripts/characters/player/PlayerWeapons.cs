@@ -351,6 +351,8 @@ public class PlayerWeapons : CollisionShape
 
     private async void HandleShoot()
     {
+        if (!isPistol && !player.MayMove) return;
+        
         onetimeShoot = true;
         int ammo = GetAmmo();
 
@@ -362,7 +364,21 @@ public class PlayerWeapons : CollisionShape
         }
         else
         {
+            var tempDistance = GetTempDistance();
+            var tempRay = player.Camera.UseRay(tempDistance);
+            
+            tempRay.ForceRaycastUpdate();
+            var obj = (Spatial)tempRay.GetCollider();
+
+            if (obj is NPC { IsImmortal: true })
+            {
+                onetimeShoot = false;   
+                player.Camera.ReturnRayBack();
+                return;
+            }
+
             player.EmitSignal(nameof(Player.FireWithWeapon));
+            
             ammo -= 1;
             SetAmmo(ammo);
 
@@ -372,58 +388,46 @@ public class PlayerWeapons : CollisionShape
             gunAnim?.Play("shoot");
 
             player.Body.Head.CloseEyes();
-            var tempDistance = GetStatsInt("shootDistance");
-            Dictionary armorProps = player.Inventory.GetArmorProps();
-            if (armorProps.Contains("shootDistPlus"))
-            {
-                tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
-            }
-
-            var tempRay = player.Camera.UseRay(tempDistance);
 
             await global.ToTimer(0.05f);
 
             //обрабатываем попадания
-            if (isPistol || player.MayMove)
+            
+            if (tempWeaponStats.Contains("isShotgun"))
             {
-                if (tempWeaponStats.Contains("isShotgun"))
-                {
-                    player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
-                }
+                player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+            }
+            
+            if (obj != null)
+            {
+                var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+                particlesParent.AddChild(gunParticles);
+                gunParticles.GlobalTransform = Global.SetNewOrigin(
+                    gunParticles.GlobalTransform,
+                    tempRay.GetCollisionPoint()
+                );
+                var shapeId = tempRay.GetColliderShape();
 
-                tempRay.ForceRaycastUpdate();
-                var obj = (Spatial)tempRay.GetCollider();
-                if (obj != null)
-                {
-                    var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-                    particlesParent.AddChild(gunParticles);
-                    gunParticles.GlobalTransform = Global.SetNewOrigin(
-                        gunParticles.GlobalTransform,
-                        tempRay.GetCollisionPoint()
-                    );
-                    var shapeId = tempRay.GetColliderShape();
-
-                    var matName = "box";
+                var matName = "box";
                     
-                    if (tempWeaponStats.Contains("bullet"))
-                    {
-                        SpawnBullet(tempRay.GetCollisionPoint());
-                    }
-                    else
-                    {
-                        matName = HandleVictim(obj, shapeId);
-                    }
-                    
-                    gunParticles.Call(
-                        "_startEmitting",
-                        tempRay.GetCollisionNormal(),
-                        matName
-                    );
-                }
-                else if (tempWeaponStats.Contains("bullet"))
+                if (tempWeaponStats.Contains("bullet"))
                 {
-                    SpawnBullet();
+                    SpawnBullet(tempRay.GetCollisionPoint());
                 }
+                else
+                {
+                    matName = HandleVictim(obj, shapeId);
+                }
+                    
+                gunParticles.Call(
+                    "_startEmitting",
+                    tempRay.GetCollisionNormal(),
+                    matName
+                );
+            }
+            else if (tempWeaponStats.Contains("bullet"))
+            {
+                SpawnBullet();
             }
 
             player.Camera.ReturnRayBack();
@@ -442,6 +446,18 @@ public class PlayerWeapons : CollisionShape
             
             player.StealthBoy?.SetOff(false);
         }
+    }
+
+    private float GetTempDistance()
+    {
+        var tempDistance = GetStatsInt("shootDistance");
+        Dictionary armorProps = player.Inventory.GetArmorProps();
+        if (armorProps.Contains("shootDistPlus"))
+        {
+            tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
+        }
+
+        return tempDistance;
     }
 
     public override void _Process(float delta)

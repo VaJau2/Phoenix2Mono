@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/scripts/furniture/PickupItem.cs" type="Script" id=2]
 
 [node name="itemBase" type="RigidBody" groups=["savable"]]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 6
+collision_mask = 6
 contacts_reported = 1
 script = ExtResource( 2 )
 

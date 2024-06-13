@@ -1000,6 +1000,7 @@ customInteractionTriggerPath = NodePath("../../triggers/locationExit")
 
 [node name="opal_daughter" parent="npc" instance=ExtResource( 71 )]
 transform = Transform( -3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 63.3716, -96.4466, 39.562 )
+IsImmortal = true
 dialogueCode = "beginTrade"
 traderCode = "filly"
 
