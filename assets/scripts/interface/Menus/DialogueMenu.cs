@@ -59,6 +59,9 @@ public class DialogueMenu : Control, IMenu
         }
         
         if (!MenuManager.TryToOpenMenu(this, true)) return;
+
+        player.Connect(nameof(Player.TakenDamage), this, nameof(CloseMenu));
+        
         npc = newNpc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
@@ -208,6 +211,7 @@ public class DialogueMenu : Control, IMenu
         
         player.SetMayMove(true);
         player.MayRotateHead = true;
+        player.Disconnect(nameof(Player.TakenDamage), this, nameof(CloseMenu));
         
         if (npc != null) 
         {

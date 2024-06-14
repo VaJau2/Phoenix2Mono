@@ -1463,7 +1463,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.09365
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.43159, -2.73292, 3.83314 )
 
 [node name="dusk" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.217, -2.73292, -9.41502 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.217, -2.733, -9.75 )
 
 [node name="security1" type="Spatial" parent="terrain/npcPlaces/before"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.1471, -2.73292, 3.95237 )
