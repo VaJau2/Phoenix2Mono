@@ -205,6 +205,8 @@ public class DialogueMenu : Control, IMenu
 
     public void CloseMenu()
     {
+        if (!MenuOn) return;
+        
         dialogueAudio.Stop();
         player.Inventory.SetBindsCooldown(0.5f);
         Input.MouseMode = Input.MouseModeEnum.Captured;
