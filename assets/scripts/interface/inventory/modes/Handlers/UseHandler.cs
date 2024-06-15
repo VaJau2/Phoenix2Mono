@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public class UseHandler
 {
+    private const float CLEAR_BAG_DISTANCE = 5;
+    
     private Player Player => Global.Get().player;
     private PlayerInventory Inventory => Player.Inventory;
 
@@ -225,10 +227,12 @@ public class UseHandler
             Inventory.MessageCantDrop(mode.tempItemData["name"].ToString());
             return;
         }
-
+        
+        CheckTempBag();
+        
         if (tempBag == null)
         {
-            tempBag = mode.SpawnItemBag();
+            tempBag = mode.bagSpawner.SpawnItemBag();
         }
 
         if (tempButton.GetCount() > 0) 
@@ -256,6 +260,20 @@ public class UseHandler
         Player.CheckDropItem(tempButton.myItemCode);
         
         mode.RemoveTempItem();
+    }
+
+    private void CheckTempBag()
+    {
+        if (tempBag is Spatial bagPoint)
+        {
+            var distance = Player.GlobalTransform.origin.DistanceTo(bagPoint.GlobalTransform.origin);
+            if (distance > CLEAR_BAG_DISTANCE)
+            {
+                tempBag = null;
+                
+            }
+        }
+        else tempBag = null;
     }
     
     private void ReadTempNote()

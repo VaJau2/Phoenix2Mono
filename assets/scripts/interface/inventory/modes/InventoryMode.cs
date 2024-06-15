@@ -14,7 +14,8 @@ public abstract class InventoryMode
     protected Control back;
     protected Label moneyCount;
 
-    public UseHandler useHandler { get; protected set; }
+    public UseHandler useHandler { get; }
+    public BagSpawner bagSpawner { get; }
     protected BindsHandler bindsHandler;
 
     protected Control itemInfo;
@@ -45,7 +46,6 @@ public abstract class InventoryMode
     readonly Vector2 dragIconOffset = new Vector2(21, 21);
 
     protected PlayerInventory inventory => player.Inventory;
-    private PackedScene bagPrefab;
 
     public InventoryMode(InventoryMenu menu)
     {
@@ -87,10 +87,9 @@ public abstract class InventoryMode
 
         anim = menu.GetNode<AnimationPlayer>("anim");
         
-        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
-        
         bindsHandler = new BindsHandler(menu, this);
         useHandler = new UseHandler(menu, this, bindsHandler);
+        bagSpawner = new BagSpawner();
         
         if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
         {
@@ -193,17 +192,6 @@ public abstract class InventoryMode
     public ItemIcon FirstEmptyButton
     {
         get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
-    }
-
-    public IChest SpawnItemBag()
-    {
-        var newBag = (FurnChest)bagPrefab.Instance();
-        Node parent = player.GetNode("/root/Main/Scene");
-        parent.AddChild(newBag);
-        newBag.Name = "Created_" + newBag.Name;
-        newBag.Translation = player.Translation;
-        newBag.Translate(Vector3.Down * 0.5f);
-        return newBag;
     }
 
     private ItemIcon AddNewItem(string itemCode) 

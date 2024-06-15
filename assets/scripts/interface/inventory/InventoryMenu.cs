@@ -86,7 +86,7 @@ public class InventoryMenu : Control, IMenu
 
     public void DropItem(string itemCode)
     {
-        IChest tempBag = mode.SpawnItemBag();
+        IChest tempBag = mode.bagSpawner.SpawnItemBag();
         tempBag.ChestHandler.ItemCodes.Add(itemCode);
     }
 

@@ -472,7 +472,8 @@
         "icon": "sparkleCola",
         "price": "40",
         "heal": "15",
-        "sound": "colaDrink"
+        "sound": "colaDrink",
+        "isBottle": true
     },
     "apple": {
         "name": "Яблоко",
@@ -501,7 +502,8 @@
         "icon": "healPotion",
         "price": "100",
         "medsEffect": "heal",
-        "sound": "healPotion"
+        "sound": "healPotion",
+        "isBottle": true
     },
     "manaPotion": {
         "name": "Зелье маны",
@@ -510,7 +512,8 @@
         "icon": "manaPotion",
         "price": "150",
         "medsEffect": "mana",
-        "sound": "healPotion"
+        "sound": "healPotion",
+        "isBottle": true
     },
     "buck": {
         "name": "Бак",
@@ -519,7 +522,8 @@
         "icon": "buck",
         "price": "90",
         "medsEffect": "buck",
-        "sound": "mentats"
+        "sound": "mentats",
+        "isBottle": true
     },
     "dash": {
         "name": "Дэш",
@@ -528,7 +532,8 @@
         "icon": "dash",
         "price": "90",
         "medsEffect": "dash",
-        "sound": "dash"
+        "sound": "dash",
+        "isBottle": true
     },
     "hydra": {
         "name": "Гидра",

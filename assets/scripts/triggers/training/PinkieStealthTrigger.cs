@@ -17,7 +17,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     private Array<Spatial> patrolPointParents = new Array<Spatial>();
     private Array<Spatial> eyesSpawners = new Array<Spatial>();
     private Array<RoboEye> eyes = new Array<RoboEye>();
-    private FurnChest bag;
+    private BagChest bag;
     private MrHandy assistantPie;
     private bool connected;
     
@@ -80,7 +80,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
 
     private void SpawnBag()
     {
-        if (!(bagPrefab.Instance() is FurnChest bagInstance)) return;
+        if (!(bagPrefab.Instance() is BagChest bagInstance)) return;
         bagInstance.Name = "Created_" + bagInstance.Name;
         GetNode<Node>("/root/Main/Scene/rooms/stels-house").AddChild(bagInstance);
         bagInstance.ChestHandler.ItemCodes.Add(itemInBag);
@@ -176,7 +176,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         //загружаем сумку
         if (data.Contains("bagPath"))
         {
-            bag = GetNode<FurnChest>(data["bagPath"].ToString());
+            bag = GetNode<BagChest>(data["bagPath"].ToString());
         }
         
         //загружаем событие

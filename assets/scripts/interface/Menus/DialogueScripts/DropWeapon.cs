@@ -13,7 +13,7 @@
             {
                 player.Inventory.UnwearItem(weapon);
                 inventory.mode.RemoveItemFromButton(weaponButton);
-                var tempBag = inventory.mode.SpawnItemBag();
+                var tempBag = inventory.mode.bagSpawner.SpawnItemBag();
                 tempBag.ChestHandler.ItemCodes.Add(weapon);
             }
         }
