@@ -218,16 +218,21 @@ public abstract class NPC : Character, IInteractable
         
         CollisionLayer = 0;
         CollisionMask = 0;
+
+        if (!hasSkeleton) return;
         
-        if (hasSkeleton)
-        {
-            skeleton.PhysicalBonesStartSimulation();
+        skeleton.PhysicalBonesStartSimulation();
             
-            foreach (Node node in GetChildren())
-            {
-                if (node.Name == "Armature") continue;
-                node.QueueFree();
-            }
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "Armature") continue;
+            node.QueueFree();
+        }
+            
+        foreach (var boneObject in skeleton.GetChildren())
+        {
+            if (boneObject is not PhysicalBone bone) continue;
+            bone.CollisionLayer = 6;
         }
     }
 
