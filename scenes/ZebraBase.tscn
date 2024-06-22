@@ -1889,13 +1889,13 @@ SpawnRandomItems = true
 transform = Transform( 0.763955, 0, 0, 0, 0.763955, 0, 0, 0, 0.763955, -5.75901, 1.70336, 23.2067 )
 
 [node name="chair" parent="rooms/cp/props" instance=ExtResource( 80 )]
-transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 10.9658, 6.89774 )
+transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 11.0377, 6.89774 )
 
 [node name="chair2" parent="rooms/cp/props" instance=ExtResource( 80 )]
-transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 10.9658, 10.4858 )
+transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 11.0377, 10.4858 )
 
 [node name="chair3" parent="rooms/cp/props" instance=ExtResource( 80 )]
-transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 10.9658, 13.819 )
+transform = Transform( -0.881442, 0, -7.70581e-08, 0, 0.881442, 0, 7.70581e-08, 0, -0.881442, 3.35224, 11.0377, 13.819 )
 
 [node name="sofa" parent="rooms/cp/props" instance=ExtResource( 84 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4378, 2.24342, -5.79706 )

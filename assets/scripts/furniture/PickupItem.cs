@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -9,12 +10,11 @@ using Godot.Collections;
  */
 public class PickupItem : RigidBody, IInteractable, ISavable
 {
-    const float AUDI_COOLDOWN = 2;
-    private const float MIN_VELOCITY_TO_SOUND = 1;
-    const float STATIC_TIME = 1f;
-    const float MIN_STATIC_SPEED = 0.02f;
+    private const float AUDI_COOLDOWN = 0.3f;
+    private const float MIN_VELOCITY_TO_SOUND = 0.3f;
     
     [Export] private string itemCode;
+    [Export] private List<AudioStreamSample> sounds;
     
     public bool MayInteract => inventoryMenu.HasEmptyButton;
     public string InteractionHintCode => "pick";
@@ -24,7 +24,6 @@ public class PickupItem : RigidBody, IInteractable, ISavable
     private Messages messages;
     
     private float audiCooldown;
-    private float staticTimer = STATIC_TIME;
     private float currentSpeed;
     
     public void Interact(PlayerCamera interactor)
@@ -52,36 +51,26 @@ public class PickupItem : RigidBody, IInteractable, ISavable
         }
 
         currentSpeed = LinearVelocity.Length();
-        
-        if (currentSpeed < MIN_STATIC_SPEED)
-        {
-            if (staticTimer > 0)
-            {
-                staticTimer -= delta;
-            }
-            else
-            {
-                Mode = ModeEnum.Static;
-            }
-        }
-        else
-        {
-            staticTimer = STATIC_TIME;
-        }
     }
 
     public void _on_body_entered(Node body)
     {
-        if (audi == null || audiCooldown > 0) return;
+        if (audiCooldown > 0) return;
         if (currentSpeed < MIN_VELOCITY_TO_SOUND) return;
         
-        if (!(body is StaticBody collideBody) || collideBody.PhysicsMaterialOverride == null) return;
-        var friction = collideBody.PhysicsMaterialOverride.Friction;
-        var materialName = MatNames.GetMatName(friction);
-
-        if (string.IsNullOrEmpty(materialName)) return;
+        if (body is StaticBody { PhysicsMaterialOverride: not null } collideBody)
+        {
+            PlaySound();
+            audiCooldown = AUDI_COOLDOWN;
+        }
+    }
+    
+    private void PlaySound()
+    {
+        var rand = new Random();
+        var randI = rand.Next(0, sounds.Count);
+        audi.Stream = sounds[randI];
         audi.Play();
-        audiCooldown = AUDI_COOLDOWN;
     }
 
     public Dictionary GetSaveData()

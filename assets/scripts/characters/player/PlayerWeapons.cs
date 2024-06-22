@@ -351,8 +351,6 @@ public class PlayerWeapons : CollisionShape
 
     private async void HandleShoot()
     {
-        if (!isPistol && !player.MayMove) return;
-        
         onetimeShoot = true;
         int ammo = GetAmmo();
 
@@ -361,91 +359,89 @@ public class PlayerWeapons : CollisionShape
             audiShoot.Stream = tryShootSound;
             audiShoot.Play();
             onetimeShoot = false;
+            return;
         }
-        else
+
+        var tempDistance = GetTempDistance();
+        var tempRay = player.Camera.UseRay(tempDistance);
+            
+        tempRay.ForceRaycastUpdate();
+        var obj = (Spatial)tempRay.GetCollider();
+
+        if (obj is NPC { IsImmortal: true })
         {
-            var tempDistance = GetTempDistance();
-            var tempRay = player.Camera.UseRay(tempDistance);
-            
-            tempRay.ForceRaycastUpdate();
-            var obj = (Spatial)tempRay.GetCollider();
-
-            if (obj is NPC { IsImmortal: true })
-            {
-                onetimeShoot = false;   
-                player.Camera.ReturnRayBack();
-                return;
-            }
-
-            player.EmitSignal(nameof(Player.FireWithWeapon));
-            
-            ammo -= 1;
-            SetAmmo(ammo);
-
-            cooldown = GetStatsFloat("cooldown");
-            audiShoot.Stream = shootSound;
-            audiShoot.Play();
-            gunAnim?.Play("shoot");
-
-            player.Body.Head.CloseEyes();
-
-            await global.ToTimer(0.05f);
-
-            //обрабатываем попадания
-            
-            if (tempWeaponStats.Contains("isShotgun"))
-            {
-                player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
-            }
-            
-            if (obj != null)
-            {
-                var gunParticles = (Spatial)gunParticlesPrefab.Instance();
-                particlesParent.AddChild(gunParticles);
-                gunParticles.GlobalTransform = Global.SetNewOrigin(
-                    gunParticles.GlobalTransform,
-                    tempRay.GetCollisionPoint()
-                );
-                var shapeId = tempRay.GetColliderShape();
-
-                var matName = "box";
-                    
-                if (tempWeaponStats.Contains("bullet"))
-                {
-                    SpawnBullet(tempRay.GetCollisionPoint());
-                }
-                else
-                {
-                    matName = HandleVictim(obj, shapeId);
-                }
-                    
-                gunParticles.Call(
-                    "_startEmitting",
-                    tempRay.GetCollisionNormal(),
-                    matName
-                );
-            }
-            else if (tempWeaponStats.Contains("bullet"))
-            {
-                SpawnBullet();
-            }
-
+            onetimeShoot = false;   
             player.Camera.ReturnRayBack();
-
-            SetGunEffects(true);
-            ShakeCameraUp();
-            await global.ToTimer(0.06f);
-            SetGunEffects(false);
-
-            if (!tempWeaponStats.Contains("isSilence"))
-            {
-                enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
-            }
-
-            onetimeShoot = false;
-            
-            player.StealthBoy?.SetOff(false);
+            return;
         }
+        
+        ammo -= 1;
+        SetAmmo(ammo);
+
+        cooldown = GetStatsFloat("cooldown");
+        audiShoot.Stream = shootSound;
+        audiShoot.Play();
+        gunAnim?.Play("shoot");
+
+        player.Body.Head.CloseEyes();
+
+        await global.ToTimer(0.05f);
+
+        //обрабатываем попадания
+            
+        if (tempWeaponStats.Contains("isShotgun"))
+        {
+            player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+        }
+        
+        if (obj != null)
+        {
+            var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+            particlesParent.AddChild(gunParticles);
+            gunParticles.GlobalTransform = Global.SetNewOrigin(
+                gunParticles.GlobalTransform,
+                tempRay.GetCollisionPoint()
+            );
+            var shapeId = tempRay.GetColliderShape();
+
+            var matName = "box";
+                    
+            if (tempWeaponStats.Contains("bullet"))
+            {
+                SpawnBullet(tempRay.GetCollisionPoint());
+            }
+            else
+            {
+                matName = HandleVictim(obj, shapeId);
+            }
+                    
+            gunParticles.Call(
+                "_startEmitting",
+                tempRay.GetCollisionNormal(),
+                matName
+            );
+        }
+        else if (tempWeaponStats.Contains("bullet"))
+        {
+            SpawnBullet();
+        }
+
+        player.Camera.ReturnRayBack();
+
+        SetGunEffects(true);
+        ShakeCameraUp();
+        await global.ToTimer(0.06f);
+        SetGunEffects(false);
+
+        if (!tempWeaponStats.Contains("isSilence"))
+        {
+            enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
+        }
+
+        onetimeShoot = false;
+            
+        player.StealthBoy?.SetOff(false);
+        player.EmitSignal(nameof(Player.FireWithWeapon));
     }
 
     private float GetTempDistance()

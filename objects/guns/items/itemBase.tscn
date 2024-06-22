@@ -1,19 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/scripts/furniture/PickupItem.cs" type="Script" id=2]
 
 [node name="itemBase" type="RigidBody" groups=["savable"]]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 3
+collision_mask = 3
 contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 1 )
-unit_db = 1.0
-unit_size = 4.0
-max_db = 2.0
+unit_db = 5.0
+unit_size = 2.0
+max_distance = 500.0
 bus = "Sound"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

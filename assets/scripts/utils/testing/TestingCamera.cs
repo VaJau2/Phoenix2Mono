@@ -102,6 +102,14 @@ public class TestingCamera : Camera
         {
             dir.x += 1;
         }
+        if (Input.IsActionPressed("test_camera_up"))
+        {
+            dir.y += 1;
+        }
+        if (Input.IsActionPressed("test_camera_down"))
+        {
+            dir.y -= 1;
+        }
         
         var speed = Input.IsActionPressed("ui_shift") ? 20 : 6;
         pivot.Translate(dir * speed * delta);

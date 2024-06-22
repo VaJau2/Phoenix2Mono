@@ -6,7 +6,7 @@ using Godot.Collections;
 //класс отвечает за поведение НПЦ
 public abstract class NPC : Character, IInteractable
 {
-    const int RAGDOLL_IMPULSE = 1000;
+    protected int RAGDOLL_IMPULSE = 1000;
     const float SEARCH_TIMER = 12f;
     readonly string[] SKIP_SIGNALS = {"tree_entered", "tree_exiting"};
 

@@ -35,6 +35,8 @@ data = PoolVector3Array( -28.9768, 0.1454, -3.9889, -28.9768, -0.1454, 3.964, -2
 
 [node name="shelf" type="StaticBody"]
 transform = Transform( -9.77524e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -9.77524e-08, -7.32265, -8.76218, -12.7499 )
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 3 )
 
 [node name="mesh" type="MeshInstance" parent="."]

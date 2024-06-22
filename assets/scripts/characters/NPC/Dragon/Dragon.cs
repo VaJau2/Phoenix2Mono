@@ -56,6 +56,7 @@ public class Dragon: NPC
         mouthPos = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
         GRAVITY = 0;
         ROTATION_SPEED = 0.05f;
+        RAGDOLL_IMPULSE = 500;
 
         await ToSignal(GetTree(), "idle_frame");
         Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
@@ -88,11 +89,9 @@ public class Dragon: NPC
         }
         else
         {
-            isFalling = true;
             SetFireOn(false);
             LetMouthEnemyGo();
             GetNode<AudioStreamPlayer3D>("audi-wings").Stop();
-            anim.Play("die1");
         }
     }
 
@@ -326,28 +325,12 @@ public class Dragon: NPC
 
     public override void _Process(float delta)
     {
-        if (Velocity.Length() > 0) {
+        if (Velocity.Length() > 0) 
+        {
             MoveAndSlide(Velocity);
         }
     
-        if (Health <= 0) {
-            if (isFalling)
-            {
-                Velocity.x /= 2;
-                Velocity.y = -10;
-                Velocity.z /= 2;
-            }
-            else
-            {
-                Velocity = Vector3.Zero;
-                if (onetimeDie) return;
-            
-                anim.Play("die2");
-                onetimeDie = true;
-            }
-
-            return;
-        }
+        if (Health <= 0)  return;
 
         float enemyDistance = GetEnemyDistance();
 
@@ -423,7 +406,7 @@ public class Dragon: NPC
                 }
             }
         }
-        else //fireClose == false
+        else
         {
             if (!IsAttacking || !IsInstanceValid(tempVictim))
             {

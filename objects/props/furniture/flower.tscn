@@ -41,6 +41,8 @@ extents = Vector3( 1.18388, 1.31575, 1.37679 )
 extents = Vector3( 0.48074, 1.63129, 0.302857 )
 
 [node name="flower" type="StaticBody"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 3 )
 
 [node name="Cylinder" type="MeshInstance" parent="."]
