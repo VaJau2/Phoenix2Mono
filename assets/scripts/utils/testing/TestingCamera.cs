@@ -60,7 +60,7 @@ public class TestingCamera : Camera
             player.ThirdView = false;
         }
         
-        player.MayMove = !Current;
+        player.SetMayMove(!Current);
         player.MayRotateHead = !Current;
         
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");

@@ -14,12 +14,15 @@ public abstract class Character : KinematicBody, ISavable
 
     public Vector3 Velocity;
     public Vector3 impulse;
-    public bool MayMove = true;
+    public bool MayMove { get; protected set; } = true;
         
     [Signal]
     public delegate void TakenDamage();
     [Signal]
     public delegate void Die();
+    
+    [Signal]
+    public delegate void ChangeMayMove();
 
     protected void SetStartHealth(int newHealth)
     {
@@ -68,6 +71,14 @@ public abstract class Character : KinematicBody, ISavable
             newImpulse /= 1.5f;
             impulse = newImpulse;
         }
+    }
+    
+    public virtual void SetMayMove(bool value)
+    {
+        if (MayMove == value) return;
+        
+        MayMove = value;
+        EmitSignal(nameof(ChangeMayMove));
     }
 
     protected Dictionary Vector3ToSave(Vector3 vector, string prefix)

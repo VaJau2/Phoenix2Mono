@@ -346,7 +346,7 @@ public class PlayerBody : Spatial
         if (sitting)
         {
             SetRotZero();
-            playback.Travel("Sit");
+            playback.Start("Sit");
         }
         else
         {

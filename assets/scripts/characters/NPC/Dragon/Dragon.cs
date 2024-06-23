@@ -312,7 +312,7 @@ public class Dragon: NPC
             enemyInMouth = null;
             return;
         }
-        enemyInMouth.MayMove = true;
+        enemyInMouth.SetMayMove(true);
         enemyInMouth.CollisionLayer = 1;
         enemyInMouth.CollisionMask = 1;
         enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.y, 0);

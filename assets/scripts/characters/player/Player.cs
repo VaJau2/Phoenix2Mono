@@ -318,8 +318,8 @@ public class Player : Character
     public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
-        MayMove = !sitOn;
         IsSitting = sitOn;
+        SetMayMove(!sitOn);
 
         if (!sitOn) return;
         
@@ -330,11 +330,10 @@ public class Player : Character
         }
     }
 
-    public void SetMayMove(bool value)
+    public override void SetMayMove(bool value)
     {
-        if (IsSitting) return;
-        
-        MayMove = value;
+        if (IsSitting && value) return;
+        base.SetMayMove(value);
     }
 
     //для земнопня шоб бегал

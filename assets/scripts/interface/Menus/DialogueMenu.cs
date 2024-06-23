@@ -198,7 +198,8 @@ public class DialogueMenu : Control, IMenu
             useHandler.ForceUnwearItem(useHandler.weaponButton);
         }
         
-        player.MayRotateHead = player.MayMove = false;
+        player.MayRotateHead = false;
+        player.SetMayMove(false);
         Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
     }
