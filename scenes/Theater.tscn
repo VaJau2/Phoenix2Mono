@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=2]
+[gd_scene load_steps=132 format=2]
 
 [ext_resource path="res://assets/materials/environments/cloudy_day_env.tres" type="Environment" id=1]
 [ext_resource path="res://assets/textures/props/furniture/posters/luna2.png" type="Texture" id=2]
@@ -79,6 +79,7 @@
 [ext_resource path="res://assets/scripts/furniture/TriggerInteractionAdapter.cs" type="Script" id=77]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=78]
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=79]
+[ext_resource path="res://assets/scripts/triggers/DamageTrigger.cs" type="Script" id=80]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1floor"
@@ -1305,6 +1306,7 @@ otherTriggerPath = "../../../../triggers/moveNPC"
 
 [node name="theater-chair15" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0539, 0, -5.45 )
+isActive = true
 otherTriggerPath = "../../../../triggers/moveNPC"
 
 [node name="theater-chair16" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
@@ -1618,19 +1620,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9659, 9.23827, 15.2438 )
 [node name="before" type="Spatial" parent="terrain/npcPlaces"]
 
 [node name="twilight" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.62707, -2.73292, 9.90359 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.62707, -2.6, 9.90359 )
 
 [node name="spike" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.832, -2.733, 10.6 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.832, -2.6, 10.6 )
 
 [node name="scientist1" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.78893, -2.73292, 2.79702 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.78893, -2.6, 2.79702 )
 
 [node name="dusk" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.2365, -2.733, -12.4109 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, -2.6, -12.36 )
 
 [node name="security1" type="Spatial" parent="terrain/npcPlaces/before"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.94633, -2.73292, 2.69466 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.946, -2.6, 2.695 )
 
 [node name="bellgates" type="Spatial" parent="terrain/npcPlaces/before"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55365, -1.36845, 21.4914 )
@@ -1996,7 +1998,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.9159, -11.8135, -6.95746 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -62.6077, 6.33781, -27.5851 )
 script = ExtResource( 57 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../redPunchPointingGun") ]
+otherTriggerPaths = [ NodePath("../redPunchPointingGun"), NodePath("../redDamageTrigger") ]
+disactiveTriggerPaths = [  ]
 npcPrefab = ExtResource( 63 )
 spawnPointPath = NodePath("positionRedPunch")
 StartHealth = 120
@@ -2011,6 +2014,13 @@ shape = SubResource( 34 )
 
 [node name="positionRedPunch" type="Spatial" parent="triggers/spawnerRedPunch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1481, -11.9025, 54.3792 )
+
+[node name="redDamageTrigger" type="Node" parent="triggers"]
+script = ExtResource( 80 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../RedPunchRun") ]
+disactiveTriggerPaths = [ NodePath("../redPunchDialogue") ]
+characterPaths = [ "/root/Main/Scene/npc/Created_red_punch" ]
 
 [node name="redPunchPointingGun" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 64 )
@@ -2050,12 +2060,6 @@ runToPoint = true
 
 [node name="runPoint" type="Spatial" parent="triggers/RedPunchRun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5665, -5.48597, 35.9207 )
-
-[node name="redPunchIgnoreDamage" type="Node" parent="triggers" groups=["savable"]]
-script = ExtResource( 66 )
-npcPath = "../../npc/Created_red_punch"
-newWeaponCode = ""
-ignoreDamager = true
 
 [node name="redPunchDissapear" type="Area" parent="triggers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.15, -4.17436, 34.6935 )

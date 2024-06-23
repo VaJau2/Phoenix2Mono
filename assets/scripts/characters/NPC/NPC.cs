@@ -28,7 +28,7 @@ public abstract class NPC : Character, IInteractable
 
     [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
-    public bool ignoreDamager;
+    [Export] public bool ignoreDamager;
     public NPCState state;
     public SeekArea seekArea {get; private set;}
     
