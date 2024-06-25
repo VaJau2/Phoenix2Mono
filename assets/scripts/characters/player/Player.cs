@@ -19,6 +19,7 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsSitting;
+    public bool IsTalking;
     public bool IsInvisibleForEnemy;
     protected bool isDead;
     
@@ -76,9 +77,6 @@ public class Player : Character
 
     [Signal]
     public delegate void ChangeView(bool toThird);
-    
-    [Signal]
-    public delegate void TakenDamage();
 
     [Signal]
     public delegate void FireWithWeapon();
@@ -166,6 +164,25 @@ public class Player : Character
         {
             return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
         }
+    }
+
+    public void SetTalking(bool value)
+    {
+        IsTalking = value;
+        SetMayMove(!value);
+        MayRotateHead = !value;
+
+        if (IsTalking)
+        {
+            Camera.HideInteractionSquare();
+
+            if (!string.IsNullOrEmpty(Inventory.weapon))
+            {
+                var useHandler = Inventory.UseHandler;
+                useHandler.ForceUnwearItem(useHandler.weaponButton);
+            }
+        }
+        else Inventory.SetBindsCooldown(0.5f);
     }
 
     public virtual void SetWeaponOn(bool isPistol)

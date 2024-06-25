@@ -2015,7 +2015,7 @@ shape = SubResource( 34 )
 [node name="positionRedPunch" type="Spatial" parent="triggers/spawnerRedPunch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1481, -11.9025, 54.3792 )
 
-[node name="redDamageTrigger" type="Node" parent="triggers"]
+[node name="redDamageTrigger" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 80 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../RedPunchRun") ]

@@ -394,7 +394,7 @@ public class PlayerWeapons : CollisionShape
             player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
         }
         
-        if (obj != null)
+        if (obj != null && IsInstanceValid(obj))
         {
             var gunParticles = (Spatial)gunParticlesPrefab.Instance();
             particlesParent.AddChild(gunParticles);

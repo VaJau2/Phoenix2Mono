@@ -59,8 +59,6 @@ public class DialogueMenu : Control, IMenu
         }
         
         if (!MenuManager.TryToOpenMenu(this, true)) return;
-
-        player.Connect(nameof(Player.TakenDamage), this, nameof(CloseMenu));
         
         npc = newNpc;
         npc.SetState(NPCState.Talk);
@@ -190,16 +188,9 @@ public class DialogueMenu : Control, IMenu
 
     public void OpenMenu()
     {
-        player.Camera.HideInteractionSquare();
-
-        if (!string.IsNullOrEmpty(player.Inventory.weapon))
-        {
-            var useHandler = player.Inventory.UseHandler;
-            useHandler.ForceUnwearItem(useHandler.weaponButton);
-        }
+        player.SetTalking(true);
+        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
         
-        player.MayRotateHead = false;
-        player.SetMayMove(false);
         Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
     }
@@ -209,12 +200,10 @@ public class DialogueMenu : Control, IMenu
         if (!MenuOn) return;
         
         dialogueAudio.Stop();
-        player.Inventory.SetBindsCooldown(0.5f);
         Input.MouseMode = Input.MouseModeEnum.Captured;
         
-        player.SetMayMove(true);
-        player.MayRotateHead = true;
-        player.Disconnect(nameof(Player.TakenDamage), this, nameof(CloseMenu));
+        player.SetTalking(false);
+        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
         
         if (npc != null) 
         {

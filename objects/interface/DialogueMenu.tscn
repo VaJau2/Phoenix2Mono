@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/scripts/interface/Menus/DialogueAudio.cs" type="Script" id=4]
 
 [node name="DialogueMenu" type="Control"]
-pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -28,9 +27,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.784314 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="border1" type="ColorRect" parent="Menu"]
 anchor_bottom = 1.0

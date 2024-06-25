@@ -144,6 +144,13 @@ public class DialogueTrigger : TriggerBase
             npc.SetFollowTarget(Global.Get().player);
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
             npc.SetFollowTarget(null);
+
+            var player = Global.Get().player;
+            if (player.IsTalking)
+            {
+                await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
+                await ToSignal(GetTree(), "idle_frame");
+            }
         }
         
         step = 4;
