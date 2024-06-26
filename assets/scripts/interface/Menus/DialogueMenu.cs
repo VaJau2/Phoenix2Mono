@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class DialogueMenu : Control, IMenu
+public class DialogueMenu : Control, IMenu, ISavable
 {
     Global global => Global.Get();
     public bool mustBeClosed => false;
@@ -20,6 +20,7 @@ public class DialogueMenu : Control, IMenu
     
     private Dictionary nodes;
     private Dictionary tempNode;
+    private string currentCode;
 
     private RichTextLabel text;
     private Label skipLabel;
@@ -58,6 +59,8 @@ public class DialogueMenu : Control, IMenu
             }
         }
         
+        GD.Print("Start Talking");
+        
         if (!MenuManager.TryToOpenMenu(this, true)) return;
         
         npc = newNpc;
@@ -76,25 +79,35 @@ public class DialogueMenu : Control, IMenu
             return;
         }
         
-        string lang = InterfaceLang.GetLang();
-        string path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
+        var lang = InterfaceLang.GetLang();
+        var path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
+        
         nodes = Global.loadJsonFile(path)["nodes"] as Dictionary;
-        if (nodes != null)
+        
+        if (nodes == null) return;
+        
+        if (string.IsNullOrEmpty(currentCode))
         {
-            MoveToNode(((Array)nodes.Keys)[0].ToString());
+            currentCode = ((Array)nodes.Keys)[0].ToString();
         }
+            
+        MoveToNode(currentCode);
     }
 
     private void InitDialogueScript(string scriptName, string parameter, string key = "")
     {
         var scriptType = System.Type.GetType("DialogueScripts." + scriptName);
+        
         if (scriptType == null) return;
+        
         var scriptObj = System.Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
         scriptObj?.initiate(this, parameter, key);
     }
 
     private void MoveToNode(string code)
     {
+        currentCode = code;
+        
         if (code == "") 
         {
             MenuManager.CloseMenu(this);
@@ -181,6 +194,7 @@ public class DialogueMenu : Control, IMenu
                     return;
                 }
 
+                currentCode = null;
                 MenuManager.CloseMenu(this);
                 return;
         }
@@ -530,5 +544,46 @@ public class DialogueMenu : Control, IMenu
                 _on_answer_pressed(3);
                 break;
         }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            {"currentCode", currentCode},
+            {"npcPath", npc?.GetPath().ToString()}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        GD.Print("Load Data of dialog menu");
+        
+        if (!data.Contains("currentCode")) return;
+        
+        currentCode = (string) data["currentCode"];
+        GD.Print($"Currnet Code: {currentCode}");
+        
+        if (string.IsNullOrEmpty(currentCode)) return;
+
+        var npcPath = (string) data["npcPath"];
+
+        npc = GetNodeOrNull<NPC>(npcPath);
+
+        if (npc == null) return;
+        
+        OnSaveDataLoaded();
+    }
+
+    private async  void OnSaveDataLoaded()
+    {
+        await ToSignal(GetTree(), "idle_frame");
+        
+        if (npc is Pony pony)
+        {
+            pony.body.lookTarget = player;
+        }
+        
+        StartTalkingTo(npc);
     }
 }
