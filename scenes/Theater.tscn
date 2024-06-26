@@ -1652,7 +1652,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.341
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.024, -1.69, 28.4629 )
 
 [node name="dusk" type="Spatial" parent="terrain/npcPlaces/after"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.7302, -14.7066, 7.131 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.6982, -14.707, 9.3381 )
 
 [node name="security1" type="Spatial" parent="terrain/npcPlaces/after"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.743, -3.85, 6.662 )
@@ -2003,7 +2003,7 @@ disactiveTriggerPaths = [  ]
 npcPrefab = ExtResource( 63 )
 spawnPointPath = NodePath("positionRedPunch")
 StartHealth = 120
-weaponCode = "shotgun20"
+weaponCode = "revolver32"
 relation = 2
 itemCodes = [ "manaPotion" ]
 triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
@@ -2013,7 +2013,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763
 shape = SubResource( 34 )
 
 [node name="positionRedPunch" type="Spatial" parent="triggers/spawnerRedPunch"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1481, -11.9025, 54.3792 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.148, -11.903, 53 )
 
 [node name="redDamageTrigger" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 80 )
@@ -2028,7 +2028,7 @@ IsActive = false
 npcPath = "../../npc/Created_red_punch"
 delayTimer = 1.0
 
-[node name="redPunchRotateGun" type="Node" parent="triggers"]
+[node name="redPunchRotateGun" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 67 )
 gunPath = "../../npc/Created_red_punch/levitation"
 newPos = Vector3( 0.907, 2.829, -0.647 )
