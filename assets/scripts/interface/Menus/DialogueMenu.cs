@@ -59,8 +59,6 @@ public class DialogueMenu : Control, IMenu, ISavable
             }
         }
         
-        GD.Print("Start Talking");
-        
         if (!MenuManager.TryToOpenMenu(this, true)) return;
         
         npc = newNpc;
@@ -557,12 +555,9 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     public void LoadData(Dictionary data)
     {
-        GD.Print("Load Data of dialog menu");
-        
         if (!data.Contains("currentCode")) return;
         
         currentCode = (string) data["currentCode"];
-        GD.Print($"Currnet Code: {currentCode}");
         
         if (string.IsNullOrEmpty(currentCode)) return;
 
