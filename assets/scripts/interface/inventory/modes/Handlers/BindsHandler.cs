@@ -47,6 +47,7 @@ public class BindsHandler
     
     public void BindHotkeys(ItemType itemType)
     {
+        if (mode.isDragging) return;
         if (tempButton.myItemCode == null) return;
         if (!ItemIsBindable(itemType)) return;
         

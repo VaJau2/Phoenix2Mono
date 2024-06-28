@@ -66,7 +66,7 @@ public class ChestMode: InventoryMode
         
         if (menu.isOpen)
         {
-            if (tempButton != null) 
+            if (tempButton != null && tempItemData != null) 
             {
                 if (UpdateDragging(@event)) return;
 

@@ -84,7 +84,7 @@ public class TradeMode: InventoryMode
 
     public override void UpdateInput(InputEvent @event)
     {
-        if (menu.isOpen && tempButton != null) 
+        if (menu.isOpen && tempButton != null && tempItemData != null)
         {
             if (modalAsk.Visible) 
             {

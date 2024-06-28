@@ -47,6 +47,8 @@ public abstract class InventoryMode
 
     protected PlayerInventory inventory => player.Inventory;
 
+    private readonly object syncLocker = new();
+
     public InventoryMode(InventoryMenu menu)
     {
         this.menu = menu;
@@ -123,26 +125,29 @@ public abstract class InventoryMode
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
-        tempButton = newButton;
-        if (newButton != null)
+        lock (syncLocker)
         {
-            var itemCode = newButton.myItemCode;
-            if (string.IsNullOrEmpty(itemCode)) return;
-            
-            tempItemData = ItemJSON.GetItemData(itemCode);
-            if (showInfo) 
+            tempButton = newButton;
+            if (newButton != null)
             {
-                itemInfo.Visible = true;
-                itemName.Text = tempItemData["name"].ToString();
-                itemDesc.Text = tempItemData["description"].ToString();
-                itemProps.Text = GetItemPropsString(tempItemData);
-                LoadControlHint(newButton.isInventoryIcon);
+                var itemCode = newButton.myItemCode;
+                if (string.IsNullOrEmpty(itemCode)) return;
+            
+                tempItemData = ItemJSON.GetItemData(itemCode);
+                if (showInfo) 
+                {
+                    itemInfo.Visible = true;
+                    itemName.Text = tempItemData["name"].ToString();
+                    itemDesc.Text = tempItemData["description"].ToString();
+                    itemProps.Text = GetItemPropsString(tempItemData);
+                    LoadControlHint(newButton.isInventoryIcon);
+                }
+            } 
+            else 
+            {
+                itemInfo.Visible = false;
+                tempItemData = null;
             }
-        } 
-        else 
-        {
-            itemInfo.Visible = false;
-            tempItemData = new Dictionary();
         }
     }
 
@@ -449,7 +454,7 @@ public abstract class InventoryMode
 
         if (Input.IsActionJustPressed("ui_click"))
         {
-            if (itemType == ItemType.money || itemType == ItemType.ammo)
+            if (itemType is ItemType.money or ItemType.ammo && !tempButton.isInventoryIcon)
             {
                 MoveTempItem();
                 return false;
