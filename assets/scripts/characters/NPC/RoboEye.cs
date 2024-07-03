@@ -37,8 +37,14 @@ public class RoboEye : NPC
 
     public void MakeActive(bool active)
     {
-        SetState(NPCState.Idle);
-        if (!active)
+        var newState = active ? NPCState.Search : NPCState.Idle;
+        SetState(newState);
+        
+        if (active)
+        {
+            if (Health == 0) Resurrect();
+        }
+        else
         {
             anim.CurrentAnimation = null;
         }
@@ -85,6 +91,18 @@ public class RoboEye : NPC
     {
         anim.Play("Die");
         base.AnimateDeath(killer, shapeID);
+    }
+
+    private async void Resurrect()
+    {
+        CollisionLayer = 1;
+        CollisionMask = 1;
+        
+        anim.PlayBackwards("Die");
+
+        await ToSignal(anim, "animation_finished");
+
+        Health = HealthMax;
     }
     
     private void Stop(bool MoveDown = false)
@@ -146,6 +164,17 @@ public class RoboEye : NPC
             }
         }
     }
+
+    private void OnCameToPlace(Vector3 pos, float angle)
+    {
+        GlobalTransform = Global.SetNewOrigin(GlobalTransform, pos);
+        Rotation = new Vector3
+        (
+            Rotation.x,
+            angle,
+            Rotation.z
+        );
+    }
     
     private void UpdateAI(float delta)
     {
@@ -161,12 +190,7 @@ public class RoboEye : NPC
                     } 
                     else 
                     {
-                        GlobalTransform = Global.SetNewOrigin(GlobalTransform, myStartPos);
-                        Rotation = new Vector3(
-                            Rotation.x,
-                            myStartRot.y,
-                            Rotation.z
-                        );
+                        OnCameToPlace(myStartPos, myStartRot.y);
                         anim.Play(IdleAnim);
                     }
                 } 
@@ -182,14 +206,16 @@ public class RoboEye : NPC
                         
                         if (cameToPlace) 
                         {
-                            if (patrolI < patrolPoints.Length - 1)
-                            {
-                                patrolI += 1;
-                            } 
-                            else 
-                            {
-                                patrolI = 0;
-                            }
+                            OnCameToPlace
+                            (
+                                patrolPoints[patrolI].GlobalTransform.origin, 
+                                patrolPoints[patrolI].GlobalRotation.y
+                            );
+
+                            patrolI = patrolI < patrolPoints.Length - 1 
+                                ? patrolI + 1 
+                                : 0;
+                            
                             patrolWaitTimer = PATROL_WAIT;
                         }
                     }

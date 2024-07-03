@@ -73,7 +73,7 @@ public abstract class NPC : Character, IInteractable
             case NPCState.Idle:
                 if (tempVictim == player) 
                 {
-                    player.Stealth.RemoveSeekEnemy(this);
+                    player?.Stealth.RemoveSeekEnemy(this);
                 }
                 tempVictim = null;
                 break;

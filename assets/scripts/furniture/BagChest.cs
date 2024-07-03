@@ -52,13 +52,21 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
     {
         PlaySound(openSounds);
         ChestHandler.Open();
-        ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseBag));
+
+        if (!ChestHandler.Menu.IsConnected("MenuIsClosed", this, nameof(CloseBag)))
+        {
+            ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseBag));
+        }
     }
 
     public void CloseBag()
     {
         PlaySound(openSounds);
-        ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseBag));
+        
+        if (ChestHandler.Menu.IsConnected("MenuIsClosed", this, nameof(CloseBag)))
+        {
+            ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseBag));
+        }
     }
     
     private void PlaySound(List<AudioStreamSample> soundsArray)
