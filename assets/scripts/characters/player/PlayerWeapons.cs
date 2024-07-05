@@ -283,7 +283,8 @@ public class PlayerWeapons : CollisionShape
             {
                 if (character.Name.Contains("target") ||
                     character.Name.Contains("roboEye") ||
-                    character.Name.Contains("MrHandy"))
+                    character.Name.Contains("mrGutsy") || 
+                    character.Name.Contains("assistant"))
                 {
                     name = "black";
                 }
@@ -418,7 +419,8 @@ public class PlayerWeapons : CollisionShape
             gunParticles.Call(
                 "_startEmitting",
                 tempRay.GetCollisionNormal(),
-                matName
+                matName,
+                obj.Name
             );
         }
         else if (tempWeaponStats.Contains("bullet"))

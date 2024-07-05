@@ -216,8 +216,8 @@ public abstract class NPC : Character, IInteractable
             }
         }
         
-        CollisionLayer = 0;
-        CollisionMask = 0;
+        CollisionLayer = 2;
+        CollisionMask = 2;
 
         if (!hasSkeleton) return;
         
@@ -233,6 +233,7 @@ public abstract class NPC : Character, IInteractable
         {
             if (boneObject is not PhysicalBone bone) continue;
             bone.CollisionLayer = 6;
+            bone.CollisionMask = 6;
         }
     }
 

@@ -37,11 +37,19 @@ func _startEmitting(direction, material_name = null, obj_name = \"\"):
 	parts.set_emitting(true)
 	
 	var hole = $hole
-	if material_name && material_name != \"blood\" && material_name != \"glass\" \\
-		&& !(\"door\" in obj_name) && !(\"box\" in obj_name) && material_name != \"black\":
+	if material_name \\
+		&& material_name != \"blood\" \\
+		&& material_name != \"glass\" \\
+		&& material_name != \"black\" \\
+		&& !(\"Physical Bone\" in obj_name) \\
+		&& !(\"door\" in obj_name) \\
+		&& !(\"box\" in obj_name) \\
+		&& !(obj_name.empty()):
 			if direction.z < 0.9 && direction.z > -0.9:
 				hole.look_at(hole.global_transform.origin + direction, Vector3.BACK)
 			hole.translation += (direction / 15)
+			print(\"Name: \" + obj_name)
+			print(\"Material: \" + material_name + '\\n')
 	else:
 		hole.visible = false
 	
