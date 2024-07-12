@@ -291,7 +291,7 @@ light_bake_mode = 2
 shadow_enabled = true
 shadow_color = Color( 0.192157, 0.192157, 0.192157, 1 )
 shadow_bias = 0.95
-omni_range = 42.0
+omni_range = 35.0
 
 [node name="lustra" type="Spatial" parent="."]
 transform = Transform( 2.72652, 0, 0, 0, 2.72652, 0, 0, 0, 2.72652, 0.00552974, 1.42024, -0.0198912 )
@@ -300,106 +300,88 @@ transform = Transform( 2.72652, 0, 0, 0, 2.72652, 0, 0, 0, 2.72652, 0.00552974, 
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -1.61517e-05, 0.03, 0 )
 cast_shadow = 0
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="Cylinder001" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.83651, 0 )
 cast_shadow = 0
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Hedra001" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 1, 0, 0, 0, 1.58458, 0, 0, 0, 1, 0.120943, 21.8255, -61.1664 )
 cast_shadow = 0
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="Hedra002" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1.58458, 0, -0.707107, 0, 0.707107, -43.1657, 21.8255, -43.3367 )
 cast_shadow = 0
 mesh = SubResource( 4 )
-material/0 = null
 
 [node name="Hedra003" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 1.78814e-07, 0, 1, 0, 1.58458, 0, -1, 0, 1.78814e-07, -61.1664, 21.8255, -0.120947 )
 cast_shadow = 0
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="Hedra004" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1.58458, 0, -0.707107, 0, -0.707107, -43.3367, 21.8255, 43.1657 )
 cast_shadow = 0
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="Hedra005" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -1, 0, 1.50996e-07, 0, 1.58458, 0, -1.50996e-07, 0, -1, -0.120952, 21.8255, 61.1664 )
 cast_shadow = 0
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="Hedra006" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1.58458, 0, 0.707107, 0, -0.707107, 43.1657, 21.8255, 43.3367 )
 cast_shadow = 0
 mesh = SubResource( 8 )
-material/0 = null
 
 [node name="Hedra007" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -4.76837e-07, 0, -1, 0, 1.58458, 0, 1, 0, -4.76837e-07, 61.1664, 21.8255, 0.120975 )
 cast_shadow = 0
 mesh = SubResource( 9 )
-material/0 = null
 
 [node name="Hedra008" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 0.707106, 0, -0.707107, 0, 1.58458, 0, 0.707107, 0, 0.707106, 43.3367, 21.8255, -43.1657 )
 cast_shadow = 0
 mesh = SubResource( 10 )
-material/0 = null
 
 [node name="Hedra009" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 1, 0, 0, 0, 1.58458, 0, 0, 0, 1, 0.00519043, -1.11417, -45.9509 )
 cast_shadow = 0
 mesh = SubResource( 11 )
-material/0 = null
 
 [node name="Hedra010" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1.58458, 0, -0.707107, 0, 0.707107, -32.4885, -1.11417, -32.4959 )
 cast_shadow = 0
 mesh = SubResource( 12 )
-material/0 = null
 
 [node name="Hedra011" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 1.78814e-07, 0, 1, 0, 1.58458, 0, -1, 0, 1.78814e-07, -45.9509, -1.11417, -0.0051939 )
 cast_shadow = 0
 mesh = SubResource( 13 )
-material/0 = null
 
 [node name="Hedra012" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1.58458, 0, -0.707107, 0, -0.707107, -32.4959, -1.11417, 32.4885 )
 cast_shadow = 0
 mesh = SubResource( 14 )
-material/0 = null
 
 [node name="Hedra013" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -1, 0, 1.50996e-07, 0, 1.58458, 0, -1.50996e-07, 0, -1, -0.00519737, -1.11417, 45.9509 )
 cast_shadow = 0
 mesh = SubResource( 15 )
-material/0 = null
 
 [node name="Hedra014" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1.58458, 0, 0.707107, 0, -0.707107, 32.4885, -1.11417, 32.4959 )
 cast_shadow = 0
 mesh = SubResource( 16 )
-material/0 = null
 
 [node name="Hedra015" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( -4.76837e-07, 0, -1, 0, 1.58458, 0, 1, 0, -4.76837e-07, 45.9509, -1.11417, 0.00521435 )
 cast_shadow = 0
 mesh = SubResource( 17 )
-material/0 = null
 
 [node name="Hedra016" type="MeshInstance" parent="lustra/Cylinder002"]
 transform = Transform( 0.707106, 0, -0.707107, 0, 1.58458, 0, 0.707107, 0, 0.707106, 32.4959, -1.11417, -32.4885 )
 cast_shadow = 0
 mesh = SubResource( 18 )
-material/0 = null

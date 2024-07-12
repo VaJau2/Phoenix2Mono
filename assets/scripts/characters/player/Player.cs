@@ -19,10 +19,10 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsSitting;
-    public bool IsStealthBuck;
+    public bool IsTalking;
     public bool IsInvisibleForEnemy;
-    private bool IsDead;
-
+    protected bool isDead;
+    
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
 
@@ -43,8 +43,10 @@ public class Player : Character
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
     public PlayerInventory Inventory;
+    public StealthBoyEffect StealthBoy;
     public PlayerRadiation Radiation;
     public PlayerDeathManager DeathManager;
+    public AudioEffectsController AudioEffectsController;
 
     private DamageEffects damageEffects;
     protected SoundSteps soundSteps;
@@ -75,9 +77,6 @@ public class Player : Character
 
     [Signal]
     public delegate void ChangeView(bool toThird);
-    
-    [Signal]
-    public delegate void TakenDamage();
 
     [Signal]
     public delegate void FireWithWeapon();
@@ -90,14 +89,10 @@ public class Player : Character
 
     [Signal]
     public delegate void WearItem(string itemCode);
-    
+
     [Signal]
     public delegate void UnwearItem(string itemCode);
     
-    [Signal]
-    public delegate void ClearWeaponBindSignal();
-
-
     public float GetVerticalLook()
     {
         return RotationHelper.RotationDegrees.x;
@@ -169,6 +164,25 @@ public class Player : Character
         {
             return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
         }
+    }
+
+    public void SetTalking(bool value)
+    {
+        IsTalking = value;
+        SetMayMove(!value);
+        MayRotateHead = !value;
+
+        if (IsTalking)
+        {
+            Camera.HideInteractionSquare();
+
+            if (!string.IsNullOrEmpty(Inventory.weapon))
+            {
+                var useHandler = Inventory.UseHandler;
+                useHandler.ForceUnwearItem(useHandler.weaponButton);
+            }
+        }
+        else Inventory.SetBindsCooldown(0.5f);
     }
 
     public virtual void SetWeaponOn(bool isPistol)
@@ -274,9 +288,9 @@ public class Player : Character
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
         
-        if (Health <= 0 && !IsDead)
+        if (Health <= 0 && !isDead)
         {
-            IsDead = true;
+            isDead = true;
             Weapons.ClearWeapon();
             Body.AnimateDeath(damager);
             DeathManager.OnPlayerDeath();
@@ -321,23 +335,22 @@ public class Player : Character
     public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
-        MayMove = !sitOn;
         IsSitting = sitOn;
+        SetMayMove(!sitOn);
 
         if (!sitOn) return;
         
         if (!string.IsNullOrEmpty(Inventory.weapon))
         {
             var useHandler = Inventory.UseHandler;
-            useHandler.UnwearItem(useHandler.weaponButton);
+            useHandler.ForceUnwearItem(useHandler.weaponButton);
         }
     }
 
-    public void SetMayMove(bool value)
+    public override void SetMayMove(bool value)
     {
-        if (IsSitting) return;
-        
-        MayMove = value;
+        if (IsSitting && value) return;
+        base.SetMayMove(value);
     }
 
     //для земнопня шоб бегал
@@ -642,6 +655,7 @@ public class Player : Character
         Inventory = new PlayerInventory(this);
         Radiation = new PlayerRadiation(this);
         DeathManager = GetNode<PlayerDeathManager>("deathManager");
+        AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
         BaseSpeed = 15;
         BaseRecoil = 2;

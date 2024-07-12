@@ -71,10 +71,13 @@ public class CinematicExit : Area, ISavable
     {
         if (player == null) return;
         
-        exitPoint = Vector3.Zero;
         player.RotationHelperThird.MayChange = true;
         player.RotationHelperThird.SetThirdView(wasThirdView);
-
+        player.DeathManager.Disconnect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
+        player = null;
+        
+        exitPoint = Vector3.Zero;
+        
         DespawnCamera();
         SetProcess(false);
     }
@@ -90,6 +93,8 @@ public class CinematicExit : Area, ISavable
         player.RotationHelperThird.MayChange = false;
         
         SpawnCamera();
+
+        player.DeathManager.Connect(nameof(PlayerDeathManager.PlayerDie), this, nameof(OnPlayerDeath));
     }
 
     private async void SpawnCamera()
@@ -148,6 +153,12 @@ public class CinematicExit : Area, ISavable
     {
         cinematicCamera.QueueFree();
         cinematicCamera = null;
+    }
+
+    private void OnPlayerDeath()
+    {
+        player = null;
+        SetProcess(false);
     }
 
     public Dictionary GetSaveData()

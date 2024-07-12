@@ -1,15 +1,18 @@
 
 //класс отвечает за управление открытием/закрытием менюшек, чтобы они не перекрывали друг друга
-public static class MenuManager {
 
+using Godot;
+
+public static class MenuManager 
+{
     public static IMenu openedMenu { get; private set; }
-    static IMenu backgroundMenu = null;
+    static IMenu backgroundMenu;
 
     public static bool SomeMenuOpen => openedMenu != null;
 
     public static bool TryToOpenMenu(IMenu menu, bool closeOther = false)
     {
-        if (openedMenu != null) 
+        if (IsMenuExists(openedMenu))
         {
             if (closeOther) 
             {
@@ -46,6 +49,12 @@ public static class MenuManager {
     {
         openedMenu = null;
         backgroundMenu = null;
+    }
+
+    private static bool IsMenuExists(IMenu menu)
+    {
+        var menuNode = menu as Node;
+        return menuNode != null && Godot.Object.IsInstanceValid(menuNode);
     }
 }
 

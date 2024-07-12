@@ -13,7 +13,7 @@ public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
     protected bool checkButton;
     protected bool trainingIsDone;
 
-    public bool MayInteract => IsActive;
+    public bool MayInteract => IsActive && checkButton;
     public string InteractionHintCode => HintCode;
 
     public override void _Ready()
@@ -44,6 +44,7 @@ public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
     {
         var data = base.GetSaveData();
         data["checkButton"] = checkButton;
+        data["trainingIsDone"] = trainingIsDone;
         return data;
     }
 
@@ -51,5 +52,6 @@ public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
     {
         base.LoadData(data);
         checkButton = (bool)data["checkButton"];
+        trainingIsDone = (bool)data["trainingIsDone"];
     }
 }

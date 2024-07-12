@@ -6,7 +6,7 @@ using Godot.Collections;
 //класс отвечает за поведение НПЦ
 public abstract class NPC : Character, IInteractable
 {
-    const int RAGDOLL_IMPULSE = 1000;
+    protected int RAGDOLL_IMPULSE = 1000;
     const float SEARCH_TIMER = 12f;
     readonly string[] SKIP_SIGNALS = {"tree_entered", "tree_exiting"};
 
@@ -28,7 +28,7 @@ public abstract class NPC : Character, IInteractable
 
     [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
-    public bool ignoreDamager;
+    [Export] public bool ignoreDamager;
     public NPCState state;
     public SeekArea seekArea {get; private set;}
     
@@ -73,7 +73,7 @@ public abstract class NPC : Character, IInteractable
             case NPCState.Idle:
                 if (tempVictim == player) 
                 {
-                    player.Stealth.RemoveSeekEnemy(this);
+                    player?.Stealth.RemoveSeekEnemy(this);
                 }
                 tempVictim = null;
                 break;
@@ -216,18 +216,24 @@ public abstract class NPC : Character, IInteractable
             }
         }
         
-        CollisionLayer = 0;
-        CollisionMask = 0;
+        CollisionLayer = 2;
+        CollisionMask = 2;
+
+        if (!hasSkeleton) return;
         
-        if (hasSkeleton)
-        {
-            skeleton.PhysicalBonesStartSimulation();
+        skeleton.PhysicalBonesStartSimulation();
             
-            foreach (Node node in GetChildren())
-            {
-                if (node.Name == "Armature") continue;
-                node.QueueFree();
-            }
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "Armature") continue;
+            node.QueueFree();
+        }
+            
+        foreach (var boneObject in skeleton.GetChildren())
+        {
+            if (boneObject is not PhysicalBone bone) continue;
+            bone.CollisionLayer = 6;
+            bone.CollisionMask = 6;
         }
     }
 

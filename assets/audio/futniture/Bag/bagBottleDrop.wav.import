@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/stealthBuck.wav-bf795c030bef03edf1d262da31c5b7f0.sample"
+path="res://.import/bagBottleDrop.wav-c5ecb989c06d880ead16f41ec3d94bae.sample"
 
 [deps]
 
-source_file="res://assets/audio/item/stealthBuck.wav"
-dest_files=[ "res://.import/stealthBuck.wav-bf795c030bef03edf1d262da31c5b7f0.sample" ]
+source_file="res://assets/audio/futniture/Bag/bagBottleDrop.wav"
+dest_files=[ "res://.import/bagBottleDrop.wav-c5ecb989c06d880ead16f41ec3d94bae.sample" ]
 
 [params]
 

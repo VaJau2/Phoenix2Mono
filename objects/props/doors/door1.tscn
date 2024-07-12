@@ -118,6 +118,8 @@ tracks/0/keys = {
 extents = Vector3( 2.28331, 2.32394, 1.33791 )
 
 [node name="door" type="StaticBody"]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource( 1 )
 OpenSound = ExtResource( 2 )
 CloseSound = ExtResource( 6 )

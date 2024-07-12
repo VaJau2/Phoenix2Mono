@@ -34,8 +34,8 @@
 [ext_resource path="res://objects/props/furniture/light/Light-off.tscn" type="PackedScene" id=32]
 [ext_resource path="res://objects/props/furniture/light/ElectricLine.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=34]
-[ext_resource path="res://objects/characters/robots/mrHandyArmy.tscn" type="PackedScene" id=35]
-[ext_resource path="res://objects/characters/robots/mrHandyTrader.tscn" type="PackedScene" id=36]
+[ext_resource path="res://objects/characters/robots/mrGutsy.tscn" type="PackedScene" id=35]
+[ext_resource path="res://objects/characters/robots/mrGutsyTrader.tscn" type="PackedScene" id=36]
 [ext_resource path="res://objects/props/vehicles/btr.tscn" type="PackedScene" id=37]
 [ext_resource path="res://objects/props/vehicles/truck.tscn" type="PackedScene" id=38]
 [ext_resource path="res://objects/props/buildings/base-houses/KPP.tscn" type="PackedScene" id=39]
@@ -148,8 +148,8 @@ extents = Vector3( 16.7801, 1.43553, 3.33483 )
 [sub_resource type="BoxShape" id=9]
 extents = Vector3( 25.6207, 1.43553, 49.3719 )
 
-[sub_resource type="BoxShape" id=10]
-extents = Vector3( 175.17, 0.1, 191.884 )
+[sub_resource type="BoxShape" id=44]
+extents = Vector3( 175.17, 1, 191.884 )
 
 [sub_resource type="QuadMesh" id=11]
 
@@ -552,8 +552,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4083, -1.62, -28.9878 )
 shape = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/terrain_body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.482, -0.299454, 5.204 )
-shape = SubResource( 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.482, -1.28, 5.204 )
+shape = SubResource( 44 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="terrain"]
 transform = Transform( 0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0 )
@@ -1291,12 +1291,12 @@ bias = 0.5
 [node name="doors" type="Spatial" parent="rooms/kp"]
 
 [node name="door" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -4.08106e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.048, 16.4736, -0.451363, 8.0939 )
+transform = Transform( -1, 0, -4.08106e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.048, 16.474, -0.450996, 8.14 )
 myKey = "key0"
 doorCode = "door103"
 
 [node name="door2" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.139, 0, 0, 0, 1.048, 11.3722, -0.451363, 11.2466 )
+transform = Transform( 1, 0, 0, 0, 1.139, 0, 0, 0, 1.048, 11.3722, -0.451363, 11.206 )
 
 [node name="door3" parent="rooms/kp/doors" groups=["savable"] instance=ExtResource( 54 )]
 transform = Transform( 1.19249e-08, 0, -1.111, 0, 1.139, 0, 1, 0, 1.32485e-08, 11.8584, -0.38636, -9.0904 )
@@ -2058,37 +2058,37 @@ shape = SubResource( 43 )
 [node name="doors" type="Spatial" parent="rooms/kazarma"]
 
 [node name="door" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -14.2822 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -14.3152 )
 
 [node name="door2" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.13576 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.876, -2.68584, 0.125877, -7.16873 )
 
 [node name="door3" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.125999, 1.02674 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.897, -2.686, 0.125999, 0.993767 )
 
 [node name="door4" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.65246 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.888, -2.686, 0.125999, 8.61948 )
 
 [node name="door5" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.8989 )
+transform = Transform( 1, 0, 0, 0, 1.023, 0, 0, 0, 0.929, -2.686, 0.125999, 17.8659 )
 
 [node name="door6" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, 5.92506 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, 6.03684 )
 myKey = "closed"
 
 [node name="door7" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -1.63828 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -1.60725 )
 
 [node name="door8" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -9.79912 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -9.76809 )
 myKey = "closed"
 
 [node name="door9" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 54 )]
-transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.9089 )
+transform = Transform( -1, 0, -7.76314e-08, 0, 1.023, 0, 8.74228e-08, 0, -0.888, 4.12547, 0.125999, -16.8779 )
 myKey = "closed"
 
 [node name="door10" parent="rooms/kazarma/doors" groups=["savable"] instance=ExtResource( 88 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.181, 17.5858, 0.207603, 18.8248 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.181, 17.5858, 0.207603, 18.8558 )
 myKey = "closed"
 
 [node name="notes" type="Spatial" parent="rooms/kazarma"]

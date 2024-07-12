@@ -7,11 +7,15 @@ public class DialogueTrigger : TriggerBase
     [Export] public bool onlyChangeCode;
     [Export] public string npcPath;
     [Export] public bool goToPlayer;
+    [Export] private bool waitPlayer;
     [Export] public bool changeStateToIdle;
     [Export] public NodePath dialogueStartPointPath;
     [Export] public NodePath afterDialoguePointPath;
     [Export] public float dialogueStartTimer;
     [Export] public string otherDialogueCode;
+
+    private bool isPlayerHere;
+    private bool isNPCHere;
     
     private Spatial startPoint;
     private Spatial afterDialoguePoint;
@@ -116,6 +120,7 @@ public class DialogueTrigger : TriggerBase
     {
         if (startPoint != null)
         {
+            npc.SetFollowTarget(null);
             npc.SetNewStartPos(startPoint.GlobalTransform.origin);
             npc.myStartRot = startPoint.Rotation;
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
@@ -139,6 +144,13 @@ public class DialogueTrigger : TriggerBase
             npc.SetFollowTarget(Global.Get().player);
             await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
             npc.SetFollowTarget(null);
+
+            var player = Global.Get().player;
+            if (player.IsTalking)
+            {
+                await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
+                await ToSignal(GetTree(), "idle_frame");
+            }
         }
         
         step = 4;
@@ -185,16 +197,73 @@ public class DialogueTrigger : TriggerBase
 
     public override void SetActive(bool active)
     {
-        _on_activate_trigger();
+        if (active || !goToPlayer)
+        {
+            _on_activate_trigger();
+        }
+            
         base.SetActive(active);
     }
 
     public void _on_body_entered(Node body)
     {
         if (!IsActive) return;
-        if (!(body is Player)) return;
         
-        NpcWithWeapons npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
+        if (waitPlayer) Waiting(body);
+        else Default(body);
+    }
+
+    public void _on_body_exited(Node body)
+    {
+        if (!IsActive) return;
+        if (!waitPlayer) return;
+
+        switch (body)
+        {
+            case NpcWithWeapons enteredNPC:
+            {
+                if (enteredNPC == npc)
+                {
+                    isNPCHere = false;
+                }
+                break;
+            }
+
+            case Player:
+            {
+                isPlayerHere = false;
+                break;
+            }
+        }
+    }
+    
+    private void Waiting(Node body)
+    {
+        switch (body)
+        {
+            case NpcWithWeapons enteredNpc:
+            {
+                var npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
+                if (enteredNpc != npc) break;
+                isNPCHere = true;
+                if (isPlayerHere) _on_activate_trigger();
+                break;
+            }
+            
+            case Player:
+            {
+                isPlayerHere = true;
+                if (isNPCHere) _on_activate_trigger();
+                break;
+            }
+        }
+    }
+
+    private void Default(Node body)
+    {
+        if (body is not Player) return;
+        
+        var npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             _on_activate_trigger();

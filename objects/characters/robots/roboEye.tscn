@@ -291,11 +291,11 @@ transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2.9813, -0.881866 
 shape = SubResource( 2 )
 
 [node name="corpus" type="MeshInstance" parent="."]
-transform = Transform( 0.35, 0, 0, 0, 0.349147, 0.0244147, 0, -0.0244147, 0.349147, 0, 0, 0.4 )
+transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0.4 )
 mesh = SubResource( 3 )
 
 [node name="monitor" type="MeshInstance" parent="corpus"]
-transform = Transform( 1, 0, 0, 0, 0.996195, -0.0871558, 0, 0.0871558, 0.996195, 0, 7.64034, -0.491019 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.64034, -0.491019 )
 mesh = SubResource( 4 )
 
 [node name="screen" type="MeshInstance" parent="corpus/monitor"]

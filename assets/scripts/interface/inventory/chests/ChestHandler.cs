@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -80,6 +81,13 @@ public class ChestHandler
     {
         IsBag = isBag;
         return this;
+    }
+
+    public bool ContainBottleItems()
+    {
+        return ItemCodes
+            .Select(ItemJSON.GetItemData)
+            .Any(itemData => itemData.Contains("isBottle"));
     }
 
     public void Open()

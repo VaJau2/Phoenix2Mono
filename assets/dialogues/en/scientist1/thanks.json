@@ -1,1 +1,82 @@
-{"nodes":{"S1":{"kind":"dialogue","root_node":false,"body":"Good Celestia, she's alive… thanks to you!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S1(1)"}]},"S2":{"kind":"dialogue","root_node":false,"body":"I don't know how to thank you…","speaker":"Scientist","opposite":"Strikely","next":"S3"},"S3":{"kind":"dialogue","root_node":false,"body":"...If you ever need my help, I'll be happy to help!","speaker":"Scientist","opposite":"Strikely","options":[{"body":"answer","next":"S3(1)"}]},"S1(1)":{"kind":"dialogue","root_node":false,"body":"It's my job.","speaker":"Strikely","opposite":"Scientist","next":"S2"},"S3(1)":{"kind":"dialogue","root_node":false,"body":"Well, good luck to you.","speaker":"Strikely","opposite":"Scientist"}},"speakers":{"Scientist":{"color":{"r":0,"g":0,"b":0,"a":0}},"Strikely":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Good Celestia, she's alive… thanks to you!",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "I don't know how to thank you...",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "It's my job.",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S2"
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Give thanks with your work for the good of Equestria",
+      "speaker": "Страйкли",
+      "opposite": "Ученый",
+      "next": "S2(1.1)"
+    },
+    "S2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "SetSavableValue",
+      "set": [
+        {
+          "key": "saved_dusk",
+          "op": "set",
+          "value": 1
+        }
+      ],
+      "next": "S2(1.2)"
+    },
+    "S2(1.2)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  },
+  "speakers": {
+    "Scientist": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

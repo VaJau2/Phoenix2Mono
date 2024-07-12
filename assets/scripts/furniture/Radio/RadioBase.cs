@@ -4,19 +4,21 @@ using System;
 
 public abstract class RadioBase : StaticBody
 {
+    private const float PAUSE_VOLUME = -28;
+    
     public bool InRoom = false;
     public RadioManager RadioManager;
     protected WarningManager warningManager;
     
     [Export] protected float unitSize = 10f;
     [Export] protected float maxDistance = 120f;
+    
     public AudioStreamPlayer3D MusicPlayer { protected set; get; }
     public AudioStreamPlayer3D NoisePlayer { protected set; get; }
+    
     protected AudioStream noiseSound;
     protected AudioStream switchSound;
     protected float noiseDb = -40;
-
-    [Export] private float pauseVolume = -24;
 
     public bool repeaterMode { protected set; get; } = false;
     public float depthOfRoom = 100 / 1.5f;
@@ -72,7 +74,7 @@ public abstract class RadioBase : StaticBody
 
     protected void OnPauseChange(bool value)
     {
-        MusicPlayer.MaxDb = value ? pauseVolume : 0;
-        NoisePlayer.MaxDb = value ? pauseVolume : 0;
+        MusicPlayer.MaxDb = value ? PAUSE_VOLUME : 0;
+        NoisePlayer.MaxDb = value ? PAUSE_VOLUME : 0;
     }
 }

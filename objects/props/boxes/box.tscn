@@ -35,6 +35,7 @@ size = Vector2( 0.8, 0.8 )
 [node name="box" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27939, 1.19754, 6.93874 )
 collision_layer = 3
+collision_mask = 3
 physics_material_override = ExtResource( 3 )
 script = ExtResource( 4 )
 __meta__ = {

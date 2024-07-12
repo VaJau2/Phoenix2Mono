@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/materials/weapon/plasmaPistol.material" type="Material" id=1]
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=5]
 resource_name = "Box001"
@@ -26,7 +30,10 @@ radius = 0.283045
 extents = Vector3( 0.482731, 0.097798, 0.231159 )
 
 [node name="plasmaPistol" instance=ExtResource( 2 )]
+mass = 5.0
+gravity_scale = 2.0
 itemCode = "plasmaPistol"
+sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Box001" type="MeshInstance" parent="." index="1"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, 0.528314, -0.461199, -0.61127 )

@@ -108,7 +108,7 @@ public class PlayerLegs: Node
     private void startHit()
     {
         player.IsHitting = true;
-        player.MayMove = false;
+        player.SetMayMove(false);
         if (tempFront) {
             player.BodyFollowsCamera = true;
         }
@@ -144,7 +144,7 @@ public class PlayerLegs: Node
         await global.ToTimer(0.5f);
 
         player.IsHitting = false;
-        player.MayMove = true;
+        player.SetMayMove(true);
     }
 
     public override void _Process(float delta)

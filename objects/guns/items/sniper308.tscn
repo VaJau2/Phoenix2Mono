@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/materials/weapon/rifle.material" type="Material" id=2]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=5]
 surfaces/0 = {
@@ -58,7 +62,10 @@ extents = Vector3( 0.0559272, 0.0427858, 0.362035 )
 extents = Vector3( 0.127065, 0.147763, 0.773964 )
 
 [node name="sniper308" instance=ExtResource( 1 )]
+mass = 10.0
+gravity_scale = 2.0
 itemCode = "sniper308"
+sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="rifle002" type="MeshInstance" parent="." index="1"]
 transform = Transform( 0.365115, 2.98023e-08, -5.60305e-08, 1.11759e-07, 0.365116, -1.76108e-08, 4.86486e-08, -6.9673e-10, 0.365116, -0.0391966, 0.00666038, -0.93655 )

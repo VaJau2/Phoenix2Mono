@@ -14,7 +14,8 @@ public abstract class InventoryMode
     protected Control back;
     protected Label moneyCount;
 
-    public UseHandler useHandler { get; protected set; }
+    public UseHandler useHandler { get; }
+    public BagSpawner bagSpawner { get; }
     protected BindsHandler bindsHandler;
 
     protected Control itemInfo;
@@ -45,7 +46,8 @@ public abstract class InventoryMode
     readonly Vector2 dragIconOffset = new Vector2(21, 21);
 
     protected PlayerInventory inventory => player.Inventory;
-    private PackedScene bagPrefab;
+
+    private readonly object syncLocker = new();
 
     public InventoryMode(InventoryMenu menu)
     {
@@ -87,17 +89,16 @@ public abstract class InventoryMode
 
         anim = menu.GetNode<AnimationPlayer>("anim");
         
-        bagPrefab = GD.Load<PackedScene>("res://objects/props/furniture/bag.tscn");
-        
         bindsHandler = new BindsHandler(menu, this);
         useHandler = new UseHandler(menu, this, bindsHandler);
+        bagSpawner = new BagSpawner();
         
         if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
         {
             anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
         }
     }
-
+    
     public ItemIcon FindButtonWithItem(string itemCode)
     {
         return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
@@ -124,26 +125,29 @@ public abstract class InventoryMode
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
-        tempButton = newButton;
-        if (newButton != null)
+        lock (syncLocker)
         {
-            var itemCode = newButton.myItemCode;
-            if (string.IsNullOrEmpty(itemCode)) return;
-            
-            tempItemData = ItemJSON.GetItemData(itemCode);
-            if (showInfo) 
+            tempButton = newButton;
+            if (newButton != null)
             {
-                itemInfo.Visible = true;
-                itemName.Text = tempItemData["name"].ToString();
-                itemDesc.Text = tempItemData["description"].ToString();
-                itemProps.Text = GetItemPropsString(tempItemData);
-                LoadControlHint(newButton.isInventoryIcon);
+                var itemCode = newButton.myItemCode;
+                if (string.IsNullOrEmpty(itemCode)) return;
+            
+                tempItemData = ItemJSON.GetItemData(itemCode);
+                if (showInfo) 
+                {
+                    itemInfo.Visible = true;
+                    itemName.Text = tempItemData["name"].ToString();
+                    itemDesc.Text = tempItemData["description"].ToString();
+                    itemProps.Text = GetItemPropsString(tempItemData);
+                    LoadControlHint(newButton.isInventoryIcon);
+                }
+            } 
+            else 
+            {
+                itemInfo.Visible = false;
+                tempItemData = null;
             }
-        } 
-        else 
-        {
-            itemInfo.Visible = false;
-            tempItemData = new Dictionary();
         }
     }
 
@@ -193,17 +197,6 @@ public abstract class InventoryMode
     public ItemIcon FirstEmptyButton
     {
         get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
-    }
-
-    public IChest SpawnItemBag()
-    {
-        var newBag = (FurnChest)bagPrefab.Instance();
-        Node parent = player.GetNode("/root/Main/Scene");
-        parent.AddChild(newBag);
-        newBag.Name = "Created_" + newBag.Name;
-        newBag.Translation = player.Translation;
-        newBag.Translate(Vector3.Down * 0.5f);
-        return newBag;
     }
 
     private ItemIcon AddNewItem(string itemCode) 
@@ -400,7 +393,7 @@ public abstract class InventoryMode
     public virtual void OpenMenu()
     {
         isOpening = true;
-        player.MayMove = false;
+        player.SetMayMove(false);
 
         LoadLabels();
         moneyCount.Text = inventory.money.ToString();
@@ -419,11 +412,10 @@ public abstract class InventoryMode
         {
             FinishDragging();
         }
+        
         CheckTempIcon();
-        if (!player.IsSitting)
-        {
-            player.MayMove = true;
-        }
+        
+        player.SetMayMove(true);
         
         anim.Play("Close");
     }
@@ -462,7 +454,7 @@ public abstract class InventoryMode
 
         if (Input.IsActionJustPressed("ui_click"))
         {
-            if (itemType == ItemType.money || itemType == ItemType.ammo)
+            if (itemType is ItemType.money or ItemType.ammo && !tempButton.isInventoryIcon)
             {
                 MoveTempItem();
                 return false;
@@ -490,7 +482,7 @@ public abstract class InventoryMode
             }
             else
             {
-                if (inventory.itemIsUsable(itemType))
+                if (inventory.ItemIsUsable(itemType))
                 {
                     useHandler.ShowLoadingIcon();
                 }
@@ -529,21 +521,36 @@ public abstract class InventoryMode
         return @event is InputEventMouseMotion;
     }
     
-    public void CloseModal()
+    public virtual void CloseModal()
     {
         useHandler.CloseModal();
+        
+        var updateMenu = true;
+        
+        foreach (var itemButton in itemButtons)
+        {
+            itemButton.OnModalClosed(updateMenu);
+            
+            if (itemButton.IsCursorInside)
+            {
+                updateMenu = false;
+            }
+        }
     }
 
     private void UseBinds()
     {
+        if (player == null) return;
         if (!player.MayRotateHead) return;
         if (bindsHandler.useCooldown > 0) return;
 
         for (var i = 0; i < 10; i++)
         {
-            if (!Input.IsKeyPressed(48 + i) || !menu.bindedButtons.Keys.Contains(i)) continue;
-            SetTempButton(menu.bindedButtons[i], false);
-            useHandler.UseTempItem();
+            if (Input.IsKeyPressed(48 + i) && menu.bindedButtons.Keys.Contains(i))
+            {
+                SetTempButton(menu.bindedButtons[i], false);
+                useHandler.UseTempItem();
+            }
         }
     }
 

@@ -8,7 +8,7 @@ public class FurnDoor: FurnBase, ISavable
     [Export] public AudioStreamSample closedSound;
     [Export] public AudioStreamSample openWithKeySound;
     [Export] public bool ForceOpening;
-    [Export] public float openTimer = 0f;
+    [Export] public float openTimer;
     [Export] public string doorCode;
 
     public string KeyToRemember;
@@ -133,16 +133,20 @@ public class FurnDoor: FurnBase, ISavable
         return new Dictionary
         {
             {"open", IsOpen},
-            {"otherSided", OtherSided}
+            {"otherSided", OtherSided},
+            {"myKey", myKey}
         };
     }
 
     public void LoadData(Dictionary data)
     {
-        bool open = Convert.ToBoolean(data["open"]);
-        bool otherSided = Convert.ToBoolean(data["otherSided"]);
+        var open = Convert.ToBoolean(data["open"]);
+        var otherSided = Convert.ToBoolean(data["otherSided"]);
+
+        myKey = Convert.ToString(data["myKey"]);
+        
         if (!open) return;
+        
         LoadOpenTrue(otherSided);
-        //SetCollision(2);
     }
 }

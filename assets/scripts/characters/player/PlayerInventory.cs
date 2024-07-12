@@ -43,14 +43,7 @@ public class PlayerInventory
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {
-        if (ammoButtons.ContainsKey(ammoType)) 
-        {
-            ammoButtons[ammoType] = button;
-        } 
-        else 
-        {
-            ammoButtons.Add(ammoType, button);
-        }
+        ammoButtons[ammoType] = button;
     }
 
     public void AddKey(string key) 
@@ -101,7 +94,7 @@ public class PlayerInventory
         return tempWeaponData;
     }
 
-    public bool itemIsUsable(ItemType itemType) 
+    public bool ItemIsUsable(ItemType itemType) 
     {
         return itemType != ItemType.staff && itemType != ItemType.ammo && itemType != ItemType.money;
     }
@@ -127,12 +120,6 @@ public class PlayerInventory
         }
     }
 
-    private void CheckStealthBuck()
-    {
-        Effect stealthBuckEffect = effects.GetTheSameEffect(new StealthBuckEffect());
-        stealthBuckEffect?.SetOff(false);
-    }
-
     public bool CheckCanWearItem(string itemCode)
     {
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
@@ -153,11 +140,9 @@ public class PlayerInventory
 
         return true;
     }
-
+    
     public void WearItem(string itemCode, bool sound = true, bool emmitSignal = true)
     {
-        CheckStealthBuck();
-        
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         if (sound) 
         {
@@ -170,8 +155,10 @@ public class PlayerInventory
             case ItemType.weapon:
                 weapon = itemCode;
                 player.Weapons.LoadNewWeapon(itemCode, itemData);
+                player.StealthBoy?.ChangeWeaponVisibility(false);
                 break;
             case ItemType.armor:
+                player.StealthBoy?.SetOff(false);
                 cloth = itemCode;
                 player.LoadBodyMesh();
                 CheckSpeed(itemData);
@@ -179,6 +166,7 @@ public class PlayerInventory
             case ItemType.artifact:
                 artifact = itemCode;
                 player.LoadArtifactMesh(itemCode);
+                player.StealthBoy?.ChangeArtifactVisibility(false);
                 break;
         }
         
@@ -187,8 +175,6 @@ public class PlayerInventory
 
     public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
     {
-        CheckStealthBuck();
-        
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         SoundUsingItem(itemData);
 
@@ -197,17 +183,20 @@ public class PlayerInventory
         switch((ItemType)itemData["type"]) 
         {
             case ItemType.weapon:
+                player.StealthBoy?.ChangeWeaponVisibility(true);
                 weapon = "";
                 player.Weapons.ClearWeapon();
                 break;
             
             case ItemType.armor:
+                player.StealthBoy?.SetOff(false);
                 cloth = "empty";
                 CheckSpeed(itemData, -1);
                 if (changeModel) player.LoadBodyMesh();
                 break;
             
             case ItemType.artifact:
+                player.StealthBoy?.ChangeArtifactVisibility(true);
                 artifact = "";
                 if (changeModel) player.LoadArtifactMesh();
                 break;
@@ -373,24 +362,22 @@ public class PlayerInventory
         }
     }
 
-    private void SoundUsingItem(Dictionary itemData) 
+    public void SoundUsingItem(Dictionary itemData)
     {
-        if(itemData.Contains("sound")) 
-        {
-            string path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
-            var sound = GD.Load<AudioStreamSample>(path);
+        if (!itemData.Contains("sound")) return;
+        
+        var path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
+        var sound = GD.Load<AudioStreamSample>(path);
             
-            player.GetAudi().Stream = sound;
-            player.GetAudi().Play();
-        }
+        player.GetAudi().Stream = sound;
+        player.GetAudi().Play();
     }
 
     private void CheckSpeed(Dictionary effects, int factor = 1)
     {
-        if (effects.Contains("speedDecrease")) 
-        {
-            string speedEffect = effects["speedDecrease"].ToString();
-            player.BaseSpeed -= int.Parse(speedEffect) * factor;
-        }
+        if (!effects.Contains("speedDecrease")) return;
+        
+        var speedEffect = effects["speedDecrease"].ToString();
+        player.BaseSpeed -= int.Parse(speedEffect) * factor;
     }
 }

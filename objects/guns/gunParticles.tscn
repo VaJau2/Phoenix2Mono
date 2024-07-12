@@ -2,67 +2,7 @@
 
 [ext_resource path="res://assets/materials/weapon/result/grass.tres" type="Material" id=1]
 [ext_resource path="res://assets/textures/weapon/result/gunHole.png" type="Texture" id=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Spatial
-
-var materials = {
-	\"black\": preload(\"res://assets/materials/weapon/result/black.tres\"),
-	\"grass\": preload(\"res://assets/materials/weapon/result/grass.tres\"),
-	\"grass_stairs\": preload(\"res://assets/materials/weapon/result/grass.tres\"),
-	\"dirt\": preload(\"res://assets/materials/weapon/result/dirt.tres\"),
-	\"stone\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
-	\"blood\": preload(\"res://assets/materials/weapon/result/blood.tres\"),
-	\"wood\": preload(\"res://assets/materials/weapon/result/dirt.tres\"),
-	\"glass\": preload(\"res://assets/materials/weapon/result/glass.tres\"),
-	\"snow\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
-	\"water\": preload(\"res://assets/materials/weapon/result/water.tres\"),
-	\"metal\": preload(\"res://assets/materials/weapon/result/black.tres\"),
-	\"fence\": preload(\"res://assets/materials/weapon/result/stone.tres\"),
-}
-
-var parts
-var deleteParts = false
-var timerParts = 1.0
-
-var deleteSelf = false
-var timerSelf = 4.0
-
-
-func _startEmitting(direction, material_name = null, obj_name = \"\"):
-	parts = $Particles
-	parts.get_process_material().direction = direction
-	if material_name != null && materials.has(material_name):
-		parts.get_draw_pass_mesh(0).surface_set_material(0, materials[material_name])
-	parts.set_emitting(true)
-	
-	var hole = $hole
-	if material_name && material_name != \"blood\" && material_name != \"glass\" \\
-		&& !(\"door\" in obj_name) && !(\"box\" in obj_name) && material_name != \"black\":
-			if direction.z < 0.9 && direction.z > -0.9:
-				hole.look_at(hole.global_transform.origin + direction, Vector3.BACK)
-			hole.translation += (direction / 15)
-	else:
-		hole.visible = false
-	
-	deleteParts = true
-	deleteSelf  = true
-
-
-func _process(delta):
-	if deleteParts:
-		if timerParts > 0:
-			timerParts -= delta
-		else:
-			parts.queue_free()
-			deleteParts = false
-	
-	if deleteSelf:
-		if timerSelf > 0:
-			timerSelf -= delta
-		else:
-			queue_free()
-"
+[ext_resource path="res://assets/scripts/gun/GunParticles.cs" type="Script" id=3]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0.244828, 0.634091 ), 0.0, -0.150649, 0, 0, Vector2( 1, 0.115909 ), 0.0, 0.0, 0, 0 ]
@@ -81,7 +21,7 @@ scale_curve = SubResource( 3 )
 material = ExtResource( 1 )
 
 [node name="GunResult" type="Spatial"]
-script = SubResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )

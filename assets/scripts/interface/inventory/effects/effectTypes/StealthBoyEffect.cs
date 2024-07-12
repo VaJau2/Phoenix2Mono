@@ -1,9 +1,9 @@
 ﻿using Godot;
 
-public class StealthBuckEffect : Effect
+public class StealthBoyEffect : Effect
 {
     private Player player;
-    public StealthBuckEffect()
+    public StealthBoyEffect()
     {
         maxTime = 60;
         badEffect = false;
@@ -47,7 +47,7 @@ public class StealthBuckEffect : Effect
             }
             
             Color old = tempMaterial.AlbedoColor;
-            tempMaterial.AlbedoColor = new Color(old.r, old.g, old.b, visible ? 1 : 0.02f);
+            tempMaterial.AlbedoColor = new Color(old.r, old.g, old.b, visible ? 1 : 0.1f);
         }
     }
 
@@ -59,10 +59,21 @@ public class StealthBuckEffect : Effect
         ChangeMeshVisibility(bodyMesh, visible);
         ChangeMeshVisibility(bodyThirdMesh, visible);
         
-        //смена прозрачности для оружия
+        if (Global.Get().playerRace == Race.Pegasus)
+        {
+            var wingsShadow = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Wings");
+            wingsShadow.Visible = visible;
+        }
+        
+        ChangeWeaponVisibility(visible);
+        ChangeArtifactVisibility(visible);
+    }
+
+    public void ChangeWeaponVisibility(bool visible)
+    {
         if (player.Weapons.GunOn)
         {
-            var weaponParent = player.GetWeaponParent(player.Weapons.isPistol);
+            var weaponParent = player.Weapons.TempWeapon;
             var gunArmature = Global.FindNodeInScene(weaponParent, "Gun-armature") as Spatial;
             var weaponMesh = FindMeshesInParent(gunArmature);
             if (weaponMesh != null)
@@ -76,26 +87,23 @@ public class StealthBuckEffect : Effect
                 ChangeMeshVisibility(weaponBag, visible);
             }
         }
-        
+    }
+
+    public void ChangeArtifactVisibility(bool visible)
+    {
         var artifact = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
         if (artifact.Visible)
         {
             ChangeMeshVisibility(artifact, visible);
         }
-
-        //смена прозрачности у "тени крыльев" для пегаса
-        if (Global.Get().playerRace != Race.Pegasus) return;
-        
-        var wingsShadow = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Wings");
-        wingsShadow.Visible = visible;
     }
     
     public override void SetOn(EffectHandler handler)
     {
         player = Global.Get().player;
-        iconName = "stealthBuck";
+        iconName = "stealthBoy";
         
-        player.IsStealthBuck = true;
+        player.StealthBoy = this;
         ChangePlayerVisibility(false);
         
         base.SetOn(handler);
@@ -103,7 +111,8 @@ public class StealthBuckEffect : Effect
 
     public override void SetOff(bool startPostEffect = true)
     {
-        player.IsStealthBuck = false;
+        player.StealthBoy = null;
+        player.Inventory.SoundUsingItem(ItemJSON.GetItemData("stealthBoy"));
         ChangePlayerVisibility(true);
         base.SetOff(false);
     }

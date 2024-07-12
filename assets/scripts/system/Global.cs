@@ -1,11 +1,11 @@
-using System.Collections;
 using Godot;
 using Godot.Collections;
 using System.Globalization;
 using System.Collections.Generic;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
-public class Global {
+public class Global 
+{
     //----Using singleton pattern----
     private static Global instance;
 
@@ -82,10 +82,7 @@ public class Global {
 
     public void SetPauseMusic(bool pause)
     {
-        if (player == null) 
-        {
-            return;
-        }
+        if (player == null) return;
 
         foreach(var tempObj in player.GetTree().GetNodesInGroup("unpaused_sound")) 
         {
@@ -325,7 +322,8 @@ public class Global {
     }
 }
 
-public enum Race {
+public enum Race 
+{
     Earthpony,
     Unicorn,
     Pegasus

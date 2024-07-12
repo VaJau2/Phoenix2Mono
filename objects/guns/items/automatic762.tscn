@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/materials/weapon/ak47.material" type="Material" id=1]
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=7]
 surfaces/0 = {
@@ -46,7 +50,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=10]
-extents = Vector3( 0.085572, 0.16127, 1.79372 )
+extents = Vector3( 0.085572, 0.16127, 1.34113 )
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.0791291
@@ -56,8 +60,14 @@ height = 0.749249
 radius = 0.0881249
 height = 0.276961
 
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 0.085572, 0.22608, 0.518598 )
+
 [node name="automatic762" instance=ExtResource( 2 )]
+mass = 10.0
+gravity_scale = 2.0
 itemCode = "automatic762"
+sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Box001" type="MeshInstance" parent="." index="1"]
 transform = Transform( 8.25333e-05, 0, 0.0355598, 0, 0.03556, 0, -0.0355598, 0, 8.25333e-05, -0.00831499, -0.16771, -0.130976 )
@@ -75,7 +85,7 @@ mesh = SubResource( 9 )
 skeleton = NodePath("")
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0987365, -0.138231 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183995, -0.663844 )
 shape = SubResource( 10 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="." index="5"]
@@ -85,3 +95,7 @@ shape = SubResource( 11 )
 [node name="CollisionShape3" type="CollisionShape" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, -0.256711, 0.966488, 0, -0.966488, -0.256711, -0.0121958, -0.370592, 0.616964 )
 shape = SubResource( 12 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 0.976239, -0.216695, 0, 0.216695, 0.976239, 0, -0.21934, 1.19032 )
+shape = SubResource( 13 )

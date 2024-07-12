@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/materials/weapon/laserPistol.material" type="Material" id=2]
-[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=5]
 surfaces/0 = {
@@ -19,16 +22,16 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=6]
-extents = Vector3( 0.249377, 0.320974, 0.94298 )
+extents = Vector3( 0.278305, 0.374094, 0.962389 )
 
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.571335, 0.0942409, 0.223235 )
 
 [node name="laserPistol" instance=ExtResource( 1 )]
+mass = 5.0
+gravity_scale = 2.0
 itemCode = "laserPistol"
-
-[node name="audi" parent="." index="0"]
-stream = ExtResource( 3 )
+sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Box001" type="MeshInstance" parent="." index="1"]
 transform = Transform( -3.25841e-09, 0, 0.02, 0, 0.02, 0, -0.02, 0, -3.25841e-09, 0.645919, -0.324208, -0.079793 )
@@ -36,7 +39,7 @@ mesh = SubResource( 5 )
 skeleton = NodePath("")
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.659536, 0, -0.840826 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65075, -0.140948, -0.840826 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="." index="3"]

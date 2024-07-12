@@ -16,7 +16,7 @@ public class DragonSmashArea : Area
     
         if (body is Character character)
         {
-            character.MayMove = false;
+            character.SetMayMove(false);
             if (character is Player_Pegasus pegasus)
             {
                 pegasus.IsFlying = pegasus.IsFlyingFast = false;

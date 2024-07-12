@@ -26,21 +26,24 @@ agent_radius = 1.55
 [node name="Main" instance=ExtResource( 3 )]
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
-itemCodes = [ "revolver32", "pistol10S", "shotgun12", "shotgun20", "sniper308", "rifle762", "automatic308", "automatic762", "submachine10", "laserPistol", "plasmaPistol", "laserRifle", "dash" ]
+itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308" ]
 ammo = {
-"ammo10": 20,
-"ammo12": 20,
-"ammo20": 20,
-"ammo308": 20,
+"ammo308": 500,
 "ammo32": 20,
-"ammo762": 20,
-"ammoEnergy": 20
+"ammo762": 20
 }
 
 [node name="test" parent="Scene/npc" index="0" instance=ExtResource( 4 )]
-transform = Transform( -0.0242404, 0, 0.999706, 0, 1, 0, -0.999706, 0, -0.0242404, 32.773, 0, -9.20512 )
+transform = Transform( -0.999706, 0, -0.0242404, 0, 1, 0, 0.0242404, 0, -0.999706, -1.0066, 0, -10.1622 )
 IdleAnim = "Idle1"
-weaponCode = "revolver32"
+StartHealth = 9100
+relation = 2
+
+[node name="test2" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
+transform = Transform( -0.999706, 0, -0.0242404, 0, 1, 0, 0.0242404, 0, -0.999706, -1.97732, 0, -13.852 )
+IdleAnim = "Idle1"
+StartHealth = 9100
+relation = 2
 
 [node name="terrain" type="StaticBody" parent="Scene" index="5"]
 collision_layer = 3
@@ -59,53 +62,53 @@ shape = SubResource( 2 )
 [node name="metallic-cabinet" parent="Scene/terrain/props" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
 SpawnRandomItems = true
+startItemCodes = [ "mentats" ]
+startAmmoCount = {
+"ammo32": 20
+}
 
 [node name="cabinet" parent="Scene/terrain/props" index="1" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4589, 2.91461, -3.64411 )
-collision_layer = 3
-collision_mask = 3
 SpawnRandomItems = true
 
 [node name="door" parent="Scene/terrain/props" index="2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4294, 0, 13.7221 )
-collision_layer = 3
-collision_mask = 3
 myKey = "key0"
 
-[node name="box" type="StaticBody" parent="Scene/terrain/props" index="3"]
+[node name="wall" type="StaticBody" parent="Scene/terrain/props" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 9.40208 )
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/box" index="0"]
+[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/wall" index="0"]
 mesh = SubResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/box" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/wall" index="1"]
 shape = SubResource( 4 )
 
-[node name="box3" type="StaticBody" parent="Scene/terrain/props" index="4"]
+[node name="wall3" type="StaticBody" parent="Scene/terrain/props" index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87655, 0.981555, 14.9577 )
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/box3" index="0"]
+[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/wall3" index="0"]
 mesh = SubResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/box3" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/wall3" index="1"]
 shape = SubResource( 4 )
 
-[node name="box2" type="StaticBody" parent="Scene/terrain/props" index="5"]
-transform = Transform( 8, 0, 0, 0, 5, 0, 0, 0, 2, -1.08094, 4.611, -18.6128 )
+[node name="wall2" type="StaticBody" parent="Scene/terrain/props" index="5"]
+transform = Transform( 8, 0, 0, 0, 5, 0, 0, 0, 2, -1.081, 4.611, -18.613 )
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/box2" index="0"]
+[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain/props/wall2" index="0"]
 mesh = SubResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/box2" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain/props/wall2" index="1"]
 shape = SubResource( 4 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain" index="3"]

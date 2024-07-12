@@ -66,7 +66,7 @@ public class ChestMode: InventoryMode
         
         if (menu.isOpen)
         {
-            if (tempButton != null) 
+            if (tempButton != null && tempItemData != null) 
             {
                 if (UpdateDragging(@event)) return;
 
@@ -445,7 +445,7 @@ public class ChestMode: InventoryMode
             tempButton.ClearItem();
             UpdateChestPositions();
 
-            if (player.Weapons.tempAmmoButton == ammoButton) 
+            if (player.Weapons.TempAmmoButton == ammoButton) 
             {
                 player.Weapons.UpdateAmmoCount();
             }

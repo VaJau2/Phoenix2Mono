@@ -1,6 +1,5 @@
 using Godot;
 
-
 public class CloneFlaskTrigger : TriggerBase
 {
     private PhoenixSystem phoenixSystem;
@@ -52,7 +51,6 @@ public class CloneFlaskTrigger : TriggerBase
     public override void _on_activate_trigger()
     {
         var player = Global.Get().player;
-        var audioEffectController = player.GetNode<AudioEffectsController>("audioEffectsController");
 
         switch (step)
         {
@@ -82,8 +80,8 @@ public class CloneFlaskTrigger : TriggerBase
                 player.GetAudi().Stream = cloneFlask.underwater;
                 player.GetAudi().Play();
 
-                audioEffectController.AddEffects("flaskWater");
-                audioEffectController.AddEffects("flaskGlass");
+                player.AudioEffectsController.AddEffects("flaskWater");
+                player.AudioEffectsController.AddEffects("flaskGlass");
                 
                 timer = 2f;
                 SetProcess(true);
@@ -105,7 +103,7 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 3:
-                audioEffectController.RemoveEffects("flaskWater");
+                player.AudioEffectsController.RemoveEffects("flaskWater");
                 
                 timer = 2.5f;
                 SetProcess(true);
@@ -133,7 +131,7 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
             
             case 6:
-                audioEffectController.RemoveEffects("flaskGlass");
+                player.AudioEffectsController.RemoveEffects("flaskGlass");
                 cloneFlask = null;
                 step = 0;
                 base._on_activate_trigger();

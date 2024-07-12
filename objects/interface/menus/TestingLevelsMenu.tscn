@@ -134,7 +134,7 @@ margin_top = -60.0
 margin_right = 384.0
 margin_bottom = -36.0
 theme = ExtResource( 4 )
-text = "automatic308, ammo308, stealthArmor, stealthBuck, healPotion"
+text = "automatic308, ammo308, stealthArmor, stealthBoy, healPotion"
 
 [node name="questsHeader" type="Label" parent="."]
 anchor_left = 0.5

@@ -15,6 +15,9 @@ public class InventoryMenu : Control, IMenu
     [Signal]
     public delegate void MenuIsClosed();
 
+    [Signal]
+    public delegate void ModalIsClosed();
+
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
         mode.SetTempButton(newButton, showInfo);
@@ -83,7 +86,7 @@ public class InventoryMenu : Control, IMenu
 
     public void DropItem(string itemCode)
     {
-        IChest tempBag = mode.SpawnItemBag();
+        IChest tempBag = mode.bagSpawner.SpawnItemBag();
         tempBag.ChestHandler.ItemCodes.Add(itemCode);
     }
 

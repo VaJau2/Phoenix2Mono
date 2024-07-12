@@ -127,12 +127,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43309e-16, 2.33426, -0.25032
 [node name="shotgun001" type="MeshInstance" parent="Gun-armature/Bone/Bone001"]
 transform = Transform( 2.04524, 4.54135e-16, -4.54135e-16, -4.54135e-16, 0, -2.04524, -4.54135e-16, 2.04524, 0, -0.0954264, -1.58198, 0.253106 )
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="shotgun" type="MeshInstance" parent="Gun-armature/Bone"]
 transform = Transform( 2.04524, 4.54135e-16, -4.54135e-16, -4.54135e-16, 0, -2.04524, -4.54135e-16, 2.04524, 0, -0.0954264, 0.769137, 0.00277757 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="shells" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.126239, 0.00695263, 0.1293 )
