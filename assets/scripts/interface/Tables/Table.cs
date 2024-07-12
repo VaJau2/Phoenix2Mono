@@ -81,7 +81,7 @@ public class Table : VBoxContainer
             return true;
         }
 
-        if (tempButton == null) return false;
+        if (!IsInstanceValid(tempButton)) return false;
         tempButton.Pressed = false;
         tempButton = null;
         return false;

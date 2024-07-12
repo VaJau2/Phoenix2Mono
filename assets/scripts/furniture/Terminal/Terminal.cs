@@ -34,7 +34,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
     public void OpenMenu()
     {
         isUsing = true;
-        player.MayMove = false;
+        player.SetMayMove(false);
         player.MayRotateHead = false;
         player.Camera.isUpdating = false;
         mode.startKeyPressed = true;
@@ -48,7 +48,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         point.ShowSquareAgain();
         
         isUsing = false;
-        player.MayMove = true;
+        player.SetMayMove(true);
         player.Camera.isUpdating = true;
         player.MayRotateHead = true;
     }

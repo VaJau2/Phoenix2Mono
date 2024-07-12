@@ -5,7 +5,6 @@ public class PauseMenu : MenuBase, IMenu
     public bool mustBeClosed => true;
     Global global = Global.Get();
     private MenuAudi audi;
-    private DialogueMenu dialogueMenu;
     private Label pageLabel;
     private Button continueButton;
     private Button saveButton;
@@ -43,15 +42,7 @@ public class PauseMenu : MenuBase, IMenu
 
     public void CloseMenu()
     {
-        if (!dialogueMenu.MenuOn) 
-        {
-            SetPause(false);
-        } 
-        else 
-        {
-            global.SetPauseMusic(false);
-        }
-        
+        SetPause(false);
         Visible = false;
         settingsMenu.CloseMenu();
         loadMenu.Visible = false;
@@ -97,11 +88,6 @@ public class PauseMenu : MenuBase, IMenu
         if (global.player == null) 
         {
             return;
-        }
-
-        if (dialogueMenu == null || !IsInstanceValid(dialogueMenu)) 
-        {
-            dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         }
             
         if (Visible) 

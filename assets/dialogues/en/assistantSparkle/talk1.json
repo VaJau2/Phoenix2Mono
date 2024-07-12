@@ -194,7 +194,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "waitForBellgatesTask"
+          "value": "talkToBellgatesTask"
         }
       ]
     }

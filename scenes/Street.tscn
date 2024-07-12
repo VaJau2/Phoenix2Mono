@@ -63,8 +63,8 @@
 [sub_resource type="BoxShape" id=41]
 extents = Vector3( 63.8741, 1.43553, 61.719 )
 
-[sub_resource type="BoxShape" id=42]
-extents = Vector3( 165.365, 0.1, 217.065 )
+[sub_resource type="BoxShape" id=59]
+extents = Vector3( 165.365, 1, 217.065 )
 
 [sub_resource type="BoxShape" id=43]
 extents = Vector3( 193.404, 136.659, 4.6054 )
@@ -298,7 +298,7 @@ checkSavedMoney = false
 script = ExtResource( 10 )
 
 [node name="agent" parent="npc" instance=ExtResource( 9 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28514, 0, -151.774 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28514, -0.22043, -151.774 )
 StartHealth = 110
 dialogueCode = "startDialogue"
 weaponCode = "revolver32"
@@ -353,8 +353,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.467, -0.2, 5.25 )
-shape = SubResource( 42 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.467, -1.28, 5.25 )
+shape = SubResource( 59 )
 
 [node name="sky" type="StaticBody" parent="terrain"]
 transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 4.30721, 0, -40.5188 )
@@ -453,7 +453,6 @@ transform = Transform( -3.61351, 0, -3.15903e-07, 0, 3.61351, 0, 3.15903e-07, 0,
 [node name="Radio" parent="terrain/props/houses/house11" instance=ExtResource( 56 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.1, 0 )
 visible = false
-pauseVolume = -34.0
 radiostation = 2
 frequencyRange = 4
 frequency = 0.69
@@ -465,7 +464,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3735, -0.550278, -130.644 
 [node name="Radio" parent="terrain/props/houses/house2" instance=ExtResource( 56 )]
 transform = Transform( 3.69552e-07, 0, -1, 0, 1, 0, 1, 0, 3.69552e-07, 6.68498, 11, -0.0789795 )
 visible = false
-pauseVolume = -34.0
 radiostation = 4
 frequencyRange = 4
 frequency = 0.57
@@ -483,7 +481,6 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 63.0535
 [node name="Radio" parent="terrain/props/houses/house8" instance=ExtResource( 56 )]
 transform = Transform( -4.01339e-07, 0, 1, 0, 1, 0, -1, 0, -4.01339e-07, -11.898, 9.86149, 10.4496 )
 visible = false
-pauseVolume = -34.0
 radiostation = 1
 frequencyRange = 4
 frequency = 0.47

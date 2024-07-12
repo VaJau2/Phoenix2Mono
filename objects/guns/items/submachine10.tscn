@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/materials/weapon/submachine10.tres" type="Material" id=1]
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=7]
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -42,13 +45,13 @@ extents = Vector3( 0.087938, 0.719059, 0.18467 )
 extents = Vector3( 0.0663996, 0.167402, 0.653022 )
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 0.43874, 0.277563, 0.223501 )
+extents = Vector3( 0.547938, 0.277563, 0.249491 )
 
 [node name="submachine10" instance=ExtResource( 2 )]
+mass = 7.0
+gravity_scale = 2.0
 itemCode = "submachine10"
-
-[node name="audi" parent="." index="0"]
-stream = ExtResource( 3 )
+sounds = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="Cylinder001" type="MeshInstance" parent="." index="1"]
 transform = Transform( -0.04572, 1.7804e-08, -2.12241e-15, 0, -5.45026e-09, -0.04572, -1.7804e-08, -0.04572, 5.45026e-09, 0.606824, 0.248703, -0.0316448 )
@@ -73,5 +76,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616119, -0.0498744, -0.6927 
 shape = SubResource( 6 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="." index="6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232679, -0.380517, 0.175876 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119535, -0.380517, 0.148393 )
 shape = SubResource( 7 )

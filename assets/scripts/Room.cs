@@ -17,9 +17,9 @@ public class Room : SaveActive
     [Export] private float backgroundEnergy;
     [Export] private float ambientEnergy;
     private WorldEnvironment skybox;
-    
-    private AudioEffectsController audioEffectController;
 
+    private AudioEffectsController audioEffectsController => Global.Get().player?.AudioEffectsController;
+    
     private RoomManager roomManager;
     
     public override void _Ready()
@@ -54,8 +54,6 @@ public class Room : SaveActive
     {
         await ToSignal(GetTree(), "idle_frame");
         
-        audioEffectController = GetNode<AudioEffectsController>("/root/Main/Scene/Player/audioEffectsController");
-        
         if (!Visible) return;
 
         Enter(false);
@@ -64,16 +62,14 @@ public class Room : SaveActive
     public void Enter(bool withTriggers = true)
     {
         roomManager.CurrentRoom = this;
-
         radioManager?.EnterToRoom(radioList);
+        audioEffectsController?.AddEffects(Name);
         
         if (changeEnvironment)
         {
             skybox.Environment.BackgroundEnergy = backgroundEnergy;
             skybox.Environment.AmbientLightEnergy = ambientEnergy;
         }
-        
-        audioEffectController.AddEffects(Name);
         
         if (!withTriggers || activateTriggers.Count == 0) return;
         foreach (var trigger in activateTriggers)
@@ -85,10 +81,8 @@ public class Room : SaveActive
     public void Exit(bool withTriggers = true)
     {
         roomManager.CurrentRoom = null;
-
         radioManager?.ExitFromRoom(radioList);
-        
-        audioEffectController.RemoveEffects(Name);
+        audioEffectsController?.RemoveEffects(Name);
         
         if (!withTriggers || activateTriggers.Count == 0) return;
         foreach (var trigger in activateTriggers)

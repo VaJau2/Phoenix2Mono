@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -25,14 +25,27 @@
 [ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Empty 32x32.png" type="Texture" id=25]
-[ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=26]
-[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=27]
+[ext_resource path="res://assets/materials/shaders/fisheye.shader" type="Shader" id=26]
+[ext_resource path="res://objects/interface/healthBar.tscn" type="PackedScene" id=27]
+[ext_resource path="res://objects/interface/manaBar.tscn" type="PackedScene" id=28]
+[ext_resource path="res://objects/interface/radiationBar.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=30]
+[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=31]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
 shader_param/brightness = null
 shader_param/contrast = null
 shader_param/saturation = null
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 26 )
+shader_param/fisheye_strength = 0.9
+shader_param/alpha = 0.0
+shader_param/r_displacement = Vector2( 3, 0 )
+shader_param/g_displacement = Vector2( 0, 0 )
+shader_param/b_displacement = Vector2( -3, 0 )
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 21 )
@@ -56,6 +69,13 @@ color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="fisheyeShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
 
 [node name="eyesParts" type="Control" parent="."]
 anchor_right = 1.0
@@ -315,52 +335,9 @@ margin_bottom = 3.0
 texture = ExtResource( 8 )
 stretch_mode = 5
 
-[node name="mask" type="Control" parent="health"]
-show_behind_parent = true
-anchor_left = 0.195
-anchor_top = 0.859
-anchor_right = 0.195
-anchor_bottom = 0.859
-margin_left = 0.039999
-margin_top = 0.0479965
-margin_right = 65.04
-margin_bottom = 80.048
-rect_scale = Vector2( 1, -1 )
-rect_clip_content = true
+[node name="mask" parent="health" instance=ExtResource( 27 )]
 
-[node name="bar" type="TextureRect" parent="health/mask" groups=["ignore_color"]]
-show_behind_parent = true
-margin_left = -25.0
-margin_top = 110.0
-margin_right = 103.0
-margin_bottom = 238.0
-rect_scale = Vector2( 1, -1 )
-texture = ExtResource( 8 )
-stretch_mode = 5
-
-[node name="radiationMask" type="Control" parent="health" groups=["ignore_color"]]
-show_behind_parent = true
-anchor_left = 0.195
-anchor_top = 0.859
-anchor_right = 0.195
-anchor_bottom = 0.859
-margin_left = 0.0400009
-margin_top = -81.952
-margin_right = 65.04
-margin_bottom = -81.952
-rect_clip_content = true
-
-[node name="bar" type="TextureRect" parent="health/radiationMask" groups=["ignore_color"]]
-self_modulate = Color( 1, 0, 0, 1 )
-show_behind_parent = true
-margin_left = -25.0
-margin_top = 100.0
-margin_right = 103.0
-margin_bottom = 228.0
-rect_scale = Vector2( 1, -1 )
-texture = ExtResource( 8 )
-stretch_mode = 5
-flip_v = true
+[node name="radiationMask" parent="health" instance=ExtResource( 29 )]
 
 [node name="mana" type="Control" parent="."]
 anchor_top = 1.0
@@ -383,28 +360,7 @@ texture = ExtResource( 20 )
 expand = true
 stretch_mode = 6
 
-[node name="mask" type="Control" parent="mana" groups=["ignore_color"]]
-show_behind_parent = true
-anchor_left = 0.195
-anchor_top = 0.859
-anchor_right = 0.195
-anchor_bottom = 0.859
-margin_left = -24.96
-margin_top = 18.048
-margin_right = 103.04
-margin_bottom = 146.048
-rect_scale = Vector2( 1, -1 )
-rect_clip_content = true
-
-[node name="bar" type="TextureRect" parent="mana/mask" groups=["ignore_color"]]
-show_behind_parent = true
-margin_top = 128.0
-margin_right = 128.0
-margin_bottom = 256.0
-rect_scale = Vector2( 1, -1 )
-texture = ExtResource( 20 )
-expand = true
-stretch_mode = 6
+[node name="mask" parent="mana" instance=ExtResource( 28 )]
 
 [node name="effects" type="VBoxContainer" parent="."]
 anchor_top = 1.0

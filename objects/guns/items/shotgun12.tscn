@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/materials/weapon/shotgun.material" type="Material" id=2]
+[ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/guns/drop/drop3.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/guns/drop/drop4.wav" type="AudioStream" id=7]
 
 [sub_resource type="ArrayMesh" id=5]
 surfaces/0 = {
@@ -38,7 +42,10 @@ extents = Vector3( 0.0987366, 0.141522, 1.59953 )
 extents = Vector3( 0.105319, 0.227094, 1 )
 
 [node name="shotgun12" instance=ExtResource( 1 )]
+mass = 10.0
+gravity_scale = 2.0
 itemCode = "shotgun12"
+sounds = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="shotgun001" type="MeshInstance" parent="." index="1"]
 transform = Transform( 1, 2.22045e-16, -2.22045e-16, -2.22045e-16, 1, 0, 2.22045e-16, 0, 1, -8.56817e-08, 2.23517e-07, 0.00824118 )

@@ -471,7 +471,8 @@
         "icon": "sparkleCola",
         "price": "40",
         "heal": "15",
-        "sound": "colaDrink"
+        "sound": "colaDrink",
+        "isBottle": true
     },
     "apple": {
         "name": "Apple",
@@ -500,7 +501,8 @@
         "icon": "healPotion",
         "price": "50",
         "medsEffect": "heal",
-        "sound": "healPotion"
+        "sound": "healPotion",
+        "isBottle": true
     },
     "manaPotion": {
         "name": "Mana potion",
@@ -509,7 +511,8 @@
         "icon": "manaPotion",
         "price": "150",
         "medsEffect": "mana",
-        "sound": "healPotion"
+        "sound": "healPotion",
+        "isBottle": true
     },
     "buck": {
         "name": "Buck",
@@ -518,7 +521,8 @@
         "icon": "buck",
         "price": "90",
         "medsEffect": "buck",
-        "sound": "mentats"
+        "sound": "mentats",
+        "isBottle": true
     },
     "dash": {
         "name": "Dash",
@@ -527,7 +531,8 @@
         "icon": "dash",
         "price": "90",
         "medsEffect": "dash",
-        "sound": "dash"
+        "sound": "dash",
+        "isBottle": true
     },
     "hydra": {
         "name": "Hydra",

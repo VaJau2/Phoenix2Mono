@@ -19,10 +19,9 @@ public class Player : Character
     public bool IsCrouching;
     public bool IsHitting;
     public bool IsSitting;
+    public bool IsTalking;
     public bool IsInvisibleForEnemy;
     protected bool isDead;
-
-    public StealthBoyEffect StealthBoy;
     
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
@@ -44,8 +43,10 @@ public class Player : Character
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
     public PlayerInventory Inventory;
+    public StealthBoyEffect StealthBoy;
     public PlayerRadiation Radiation;
     public PlayerDeathManager DeathManager;
+    public AudioEffectsController AudioEffectsController;
 
     private DamageEffects damageEffects;
     protected SoundSteps soundSteps;
@@ -76,9 +77,6 @@ public class Player : Character
 
     [Signal]
     public delegate void ChangeView(bool toThird);
-    
-    [Signal]
-    public delegate void TakenDamage();
 
     [Signal]
     public delegate void FireWithWeapon();
@@ -166,6 +164,25 @@ public class Player : Character
         {
             return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
         }
+    }
+
+    public void SetTalking(bool value)
+    {
+        IsTalking = value;
+        SetMayMove(!value);
+        MayRotateHead = !value;
+
+        if (IsTalking)
+        {
+            Camera.HideInteractionSquare();
+
+            if (!string.IsNullOrEmpty(Inventory.weapon))
+            {
+                var useHandler = Inventory.UseHandler;
+                useHandler.ForceUnwearItem(useHandler.weaponButton);
+            }
+        }
+        else Inventory.SetBindsCooldown(0.5f);
     }
 
     public virtual void SetWeaponOn(bool isPistol)
@@ -318,8 +335,8 @@ public class Player : Character
     public virtual void SitOnChair(bool sitOn)
     {
         Body.MakeSitting(sitOn);
-        MayMove = !sitOn;
         IsSitting = sitOn;
+        SetMayMove(!sitOn);
 
         if (!sitOn) return;
         
@@ -330,11 +347,10 @@ public class Player : Character
         }
     }
 
-    public void SetMayMove(bool value)
+    public override void SetMayMove(bool value)
     {
-        if (IsSitting) return;
-        
-        MayMove = value;
+        if (IsSitting && value) return;
+        base.SetMayMove(value);
     }
 
     //для земнопня шоб бегал
@@ -639,6 +655,7 @@ public class Player : Character
         Inventory = new PlayerInventory(this);
         Radiation = new PlayerRadiation(this);
         DeathManager = GetNode<PlayerDeathManager>("deathManager");
+        AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
         BaseSpeed = 15;
         BaseRecoil = 2;

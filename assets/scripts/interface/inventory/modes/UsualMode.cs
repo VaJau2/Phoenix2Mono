@@ -27,7 +27,7 @@ public class UsualMode: InventoryMode
     {
         base.UpdateInput(@event);
         
-        if (menu.isOpen && tempButton != null) 
+        if (menu.isOpen && tempButton != null && tempItemData != null) 
         {
             if (UpdateDragging(@event)) return;
 

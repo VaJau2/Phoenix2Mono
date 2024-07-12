@@ -41,7 +41,6 @@ public class WaitInBoxTrigger : TriggerBase
         var saveData = base.GetSaveData();
         saveData["animating"] = isAnimating;
         saveData["timer"] = timer;
-        saveData["step"] = step;
         return saveData;
     }
     
@@ -50,8 +49,9 @@ public class WaitInBoxTrigger : TriggerBase
         base.LoadData(data);
         if (!(bool)data["animating"]) return;
         timer = Convert.ToSingle(data["timer"]);
-        step = Convert.ToInt16(data["step"]);
+        step = 1;
         playerHere = Global.Get().player;
+        playerHere.Sit(true);
         playerHere.SitOnChair(true);
         AnimateMoving(false);
     }

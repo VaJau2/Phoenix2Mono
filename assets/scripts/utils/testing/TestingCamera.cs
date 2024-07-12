@@ -60,7 +60,7 @@ public class TestingCamera : Camera
             player.ThirdView = false;
         }
         
-        player.MayMove = !Current;
+        player.SetMayMove(!Current);
         player.MayRotateHead = !Current;
         
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
@@ -101,6 +101,14 @@ public class TestingCamera : Camera
         if (Input.IsActionPressed("ui_right"))
         {
             dir.x += 1;
+        }
+        if (Input.IsActionPressed("test_camera_up"))
+        {
+            dir.y += 1;
+        }
+        if (Input.IsActionPressed("test_camera_down"))
+        {
+            dir.y -= 1;
         }
         
         var speed = Input.IsActionPressed("ui_shift") ? 20 : 6;

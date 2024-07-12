@@ -29,7 +29,7 @@
     "D1(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "I know him. He definitely won't come back",
+      "body": "I know him. He wasn't even aiming at you.",
       "speaker": "Strikely",
       "opposite": "Dusk",
       "next": "D2"

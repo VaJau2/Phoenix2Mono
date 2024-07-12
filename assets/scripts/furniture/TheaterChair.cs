@@ -9,9 +9,7 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
     [Export] private float triggerTimer;
     private TriggerBase otherTrigger;
     private Spatial strikelyPlace;
-
-    private float tempTimer;
-    private int step;
+    private StaticBody back;
 
     private Player player => Global.Get().player;
     public bool MayInteract => isActive && !player.IsSitting;
@@ -19,42 +17,40 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
 
     public override void _Ready()
     {
-        SetProcess(false);
         if (!isActive) return;
         otherTrigger = GetNodeOrNull<TriggerBase>(otherTriggerPath);
         strikelyPlace = GetNode<Spatial>("strikelyPlace");
-    }
-    
-    public override void _Process(float delta)
-    {
-        if (tempTimer > 0)
-        {
-            tempTimer -= delta;
-            return;
-        }
-
-        SetProcess(false);
-        otherTrigger.SetActive(true);
-        step = 0;
+        back = GetNode<StaticBody>("back");
     }
 
     public void Interact(PlayerCamera interactor)
     {
+        back.CollisionLayer = 0;
+        back.CollisionMask = 0;
+        
         interactor.HideInteractionSquare();
         
-        if (step == 0)
-        {
-            player.SitOnChair(true);
-            player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
-            player.Rotation = new Vector3(
-                player.Rotation.x,
-                strikelyPlace.Rotation.y,
-                player.Rotation.z
-            );
-            step = 1;
-        }
+        player.SitOnChair(true);
+        player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
+        player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
+        player.Rotation = new Vector3
+        (
+            player.Rotation.x,
+            strikelyPlace.Rotation.y,
+            player.Rotation.z
+        );
+        
+        otherTrigger.SetActive(true);
+    }
 
-        SetProcess(true);
+    public void OnPlayerStandUp()
+    {
+        if (player.MayMove)
+        {
+            back.CollisionLayer = 3;
+            back.CollisionMask = 3;
+            player.Disconnect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
+        }
     }
 
     public Dictionary GetSaveData()
@@ -62,8 +58,6 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         return new Dictionary
         {
             {"isActive", isActive},
-            {"step", step},
-            {"tempTimer", tempTimer}
         };
     }
 
@@ -72,15 +66,6 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         if (data.Contains("isActive"))
         {
             isActive = Convert.ToBoolean(data["isActive"]);
-        }
-        if (data.Contains("tempTimer"))
-        {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
-        }
-        step = Convert.ToInt16(data["step"]);
-        if (step > 0)
-        {
-            SetProcess(true);
         }
     }
 }

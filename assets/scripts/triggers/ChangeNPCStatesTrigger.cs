@@ -18,7 +18,15 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public string newWeaponCode;
     [Export] public bool ignoreDamager;
     [Export] public bool stayInPoint;
+    [Export] private Mortality newMortality;
 
+    private enum Mortality
+    {
+        DontChange,
+        Mortal,
+        Imortal
+    }
+    
     private NPC npc;
     private Spatial newIdlePoint;
 
@@ -66,6 +74,14 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
         npc.relation = newRelation;
         npc.ignoreDamager = ignoreDamager;
+
+        npc.IsImmortal = newMortality switch
+        {
+            Mortality.Mortal => false,
+            Mortality.Imortal => true,
+            _ => npc.IsImmortal
+        };
+
         ChangeObjectsVisible(ref showObjects, true);
         ChangeObjectsVisible(ref hideObjects, false);
         if (!string.IsNullOrEmpty(newAnimation))

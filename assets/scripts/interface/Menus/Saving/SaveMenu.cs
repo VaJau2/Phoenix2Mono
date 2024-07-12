@@ -147,6 +147,7 @@ public class SaveMenu : Control
         string fileName = GetLikeLatinString(lineEdit.Text) + ".sav";
         Global.DeleteSaveFile(fileName);
         table.DeleteButton(lineEdit.Text);
+        lineEdit.Text = null;
         
         UpdateControls(true);
     }
