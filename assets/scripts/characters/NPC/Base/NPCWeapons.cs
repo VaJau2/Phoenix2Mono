@@ -128,14 +128,14 @@ public class NPCWeapons : Node
             if (rand.Randf() < shootChance)
             {
                 Vector3 shootPos = victim.GlobalTransform.origin + Vector3.Up;
-                var gunParticles = (Spatial) gunParticlesPrefab.Instance();
+                var gunParticles = (GunParticles) gunParticlesPrefab.Instance();
                 GetNode("/root/Main/Scene").AddChild(gunParticles);
                 gunParticles.GlobalTransform = Global.SetNewOrigin(
                     gunParticles.GlobalTransform,
                     shootPos
                 );
-                gunParticles.Call(
-                    "_startEmitting",
+                
+                gunParticles.StartEmitting(
                     npc.GlobalTransform.basis.z,
                     "blood"
                 );

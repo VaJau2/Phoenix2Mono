@@ -3,30 +3,26 @@ using Godot.Collections;
 
 public class PlayerWeapons : CollisionShape
 {
-    Global global;
-    const float SHAKE_SPEED = 2f;
-    const float SHAKE_DIFF = 0.5f;
-    const int ZERO_NUM_KEY = 49;
+    private Global global;
+    private const float SHAKE_SPEED = 2f;
+    private const float SHAKE_DIFF = 0.5f;
 
     public bool GunOn;
     public bool isPistol;
 
-    Player player
-    {
-        get => GetParent<Player>();
-    }
+    private Player player => GetParent<Player>();
     //внутри player:
     //body
     //camera
     //head -> body.head
 
     //---интерфейс-------
-    InteractionPointManager point;
-    Control shootInterface;
+    private InteractionPointManager point;
+    private Control shootInterface;
 
-    public Label ammoLabel;
-    IconWithShadow ammoIcon;
-    TextureRect crossHitted;
+    private Label ammoLabel;
+    private IconWithShadow ammoIcon;
+    private TextureRect crossHitted;
 
     Dictionary tempWeaponStats;
 
@@ -34,26 +30,26 @@ public class PlayerWeapons : CollisionShape
     public ItemIcon TempAmmoButton { get; private set; }
     public Spatial TempWeapon { get; private set; }
     
-    AnimationPlayer gunAnim;
-    Spatial gunLight;
-    Spatial gunFire;
-    Particles gunSmoke;
-    PackedScene gunParticlesPrefab;
-    Node particlesParent;
-    WeaponShellSpawner shellSpawner;
+    private AnimationPlayer gunAnim;
+    private Spatial gunLight;
+    private Spatial gunFire;
+    private Particles gunSmoke;
+    private PackedScene gunParticlesPrefab;
+    private Node particlesParent;
+    private WeaponShellSpawner shellSpawner;
 
-    float tempShake = 0;
-    bool shakeUp = true;
-    float cooldown = 0.6f;
+    private float tempShake = 0;
+    private bool shakeUp = true;
+    private float cooldown = 0.6f;
 
     //--звуки-------------
-    AudioStreamPlayer audiShoot;
-    AudioStreamSample tryShootSound;
-    AudioStreamSample shootSound;
+    private AudioStreamPlayer audiShoot;
+    private AudioStreamSample tryShootSound;
+    private AudioStreamSample shootSound;
 
-    EnemiesManager enemiesManager;
+    private EnemiesManager enemiesManager;
 
-    bool onetimeShoot = false;
+    private bool onetimeShoot;
     
     public void LoadNewWeapon(string weaponCode, Dictionary weaponData)
     {
@@ -296,10 +292,21 @@ public class PlayerWeapons : CollisionShape
                 character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
                 player.MakeDamage(character, shapeID);
                 ShowCrossHitted(shapeID != 0);
+                GD.Print($"{victim.Name} is character");
+                break;
+            } 
+            
+            case PhysicalBone:
+            {
+                GD.Print($"{victim.Name} is bone");
+                name = "blood";
                 break;
             }
+            
             case StaticBody body:
             {
+                GD.Print($"{victim.Name} is static");
+                
                 if (body.PhysicsMaterialOverride != null)
                 {
                     name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
@@ -310,6 +317,15 @@ public class PlayerWeapons : CollisionShape
                     }
                 }
 
+                break;
+            }
+
+            default:
+            {
+                GD.Print($"{victim.Name} is spatial");
+
+                name = "black";
+                
                 break;
             }
         }
@@ -387,6 +403,9 @@ public class PlayerWeapons : CollisionShape
         player.Body.Head.CloseEyes();
 
         await global.ToTimer(0.05f);
+        
+        // костыль для фикса дисинхронизации объекта попадания
+        obj = (Spatial)tempRay.GetCollider();
 
         //обрабатываем попадания
             
@@ -397,14 +416,15 @@ public class PlayerWeapons : CollisionShape
         
         if (obj != null && IsInstanceValid(obj))
         {
-            var gunParticles = (Spatial)gunParticlesPrefab.Instance();
+            var gunParticles = (GunParticles)gunParticlesPrefab.Instance();
             particlesParent.AddChild(gunParticles);
-            gunParticles.GlobalTransform = Global.SetNewOrigin(
+            gunParticles.GlobalTransform = Global.SetNewOrigin
+            (
                 gunParticles.GlobalTransform,
                 tempRay.GetCollisionPoint()
             );
+            
             var shapeId = tempRay.GetColliderShape();
-
             var matName = "box";
                     
             if (tempWeaponStats.Contains("bullet"))
@@ -416,8 +436,8 @@ public class PlayerWeapons : CollisionShape
                 matName = HandleVictim(obj, shapeId);
             }
                     
-            gunParticles.Call(
-                "_startEmitting",
+            gunParticles.StartEmitting
+            (
                 tempRay.GetCollisionNormal(),
                 matName,
                 obj.Name
