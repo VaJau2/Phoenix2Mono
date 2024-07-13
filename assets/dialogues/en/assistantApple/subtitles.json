@@ -1,0 +1,13 @@
+﻿{
+  "test": {
+    "phrase1": {
+      "name": "Assistant Apple",
+      "text": "Hi, friend! I have to brief you on your assignment. Are you ready to listen to me?",
+      "timer": 0.05
+    },
+    "phrase2": {
+      "name": "Assistant Apple",
+      "text": "Than listen closely."
+    }
+  }
+}

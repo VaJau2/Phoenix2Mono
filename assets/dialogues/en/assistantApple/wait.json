@@ -11,44 +11,21 @@
                 {
                     "body": "answer",
                     "next": "A1(1)"
-                },
-                {
-                    "body": "answer",
-                    "next": "A1(2)"
                 }
             ]
         },
         "A1(1)": {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Instruct? What?",
+            "body": "Okay",
             "speaker": "Strikely",
             "opposite": "Assistant Apple",
             "next": "A2"
         },
-        "A1(2)": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Where is he anyway?",
-            "speaker": "Strikely",
-            "opposite": "Assistant Apple",
-            "next": "A3"
-        },
         "A2": {
-            "kind": "dialogue",
+            "kind": "narration",
             "root_node": false,
-            "body": "Ask all your questions to Mister Bellgates, partner. He should be here soon.",
-            "speaker": "Assistant Apple",
-            "timer": "0.01",
-            "opposite": "Strikely"
-        },
-        "A3": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "He's a little late. He should be here any minute.",
-            "speaker": "Assistant Apple",
-            "timer": "0.01",
-            "opposite": "Strikely"
+            "body": "ChangeDialogueCode"
         }
     },
     "speakers": {

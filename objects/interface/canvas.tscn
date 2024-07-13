@@ -32,7 +32,6 @@
 [ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=30]
 [ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=31]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
 shader_param/brightness = null
@@ -387,14 +386,14 @@ margin_bottom = -50.0
 mouse_filter = 1
 theme = ExtResource( 2 )
 align = 1
-script = ExtResource( 26 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="dialogueAudio" type="Node" parent="subtitles"]
-script = ExtResource( 27 )
+script = ExtResource( 31 )
 
 [node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
 anchor_top = 1.0
