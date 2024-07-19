@@ -152,7 +152,7 @@ public class ItemIcon : ColorRect
         if (updateMenu) menu.SetTempButton(value ? this : null);
     }
     
-    public void _on_itemIcon_mouse_entered()
+    public virtual void _on_itemIcon_mouse_entered()
     {
         IsCursorInside = true;
         
@@ -162,7 +162,7 @@ public class ItemIcon : ColorRect
         }
     }
 
-    public void _on_itemIcon_mouse_exited()
+    public virtual void _on_itemIcon_mouse_exited()
     {
         IsCursorInside = false;
         

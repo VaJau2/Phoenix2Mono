@@ -23,6 +23,7 @@ public class Subtitles : Label
 
     private static Player Player => Global.Get().player;
     private NPC tempTalker;
+    private Label speakerLabel;
     private DialogueAudio dialogueAudio;
     private Dictionary tempPhrases;
     private Array tempPhraseKeys;
@@ -36,6 +37,7 @@ public class Subtitles : Label
 
     public override void _Ready()
     {
+        speakerLabel = GetNode<Label>("speaker");
         dialogueAudio = GetNode<DialogueAudio>("dialogueAudio");
         MenuBase.LoadColorForChildren(this);
     }
@@ -51,7 +53,7 @@ public class Subtitles : Label
     {
         var audioPlayer = talker.GetNode("audiVoice");
         if (audioPlayer == null) return this;
-        
+
         tempTalker = talker;
         dialogueAudio.SetAudioPlayer(audioPlayer);
         dialogueAudio.LoadCharacter(talker.Name, "subtitles");
@@ -79,7 +81,8 @@ public class Subtitles : Label
 
         var phraseKey = tempPhraseKeys[phraseI].ToString();
         if (tempPhrases[phraseKey] is not Dictionary phraseData) return;
-        
+
+        speakerLabel.Text = phraseData["name"].ToString();
         animatingText = phraseData["text"].ToString();
         phraseCooldown = phraseData.Contains("timer") ? Convert.ToSingle(phraseData["timer"]) : 0;
         IsAnimatingText = true;
@@ -105,6 +108,7 @@ public class Subtitles : Label
 
     private void FinishAnimatingText()
     {
+        speakerLabel.Text = "";
         Text = animatingText = "";
         IsAnimatingText = false;
         animatingCooldown = 0;

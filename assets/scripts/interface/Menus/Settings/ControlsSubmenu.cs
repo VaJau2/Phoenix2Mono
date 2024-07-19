@@ -17,6 +17,9 @@ public class ControlsSubmenu : SubmenuBase
     private TextureRect selectedIcon;
     private Vector2 speedSize = new Vector2(0.1f, 0.1f);
 
+    [Signal]
+    public delegate void ChangeControlEvent();
+    
     public override void _Process(float delta)
     {
         SelectIcon();
@@ -103,27 +106,28 @@ public class ControlsSubmenu : SubmenuBase
         }
     }
 
-    private TextureRect GetIcon(string action) 
+    private TextureRect GetIcon(string action)
     {
-        switch(action) {
-            case "ui_up": return GetNode<TextureRect>("keyForwardIcon");
-            case "ui_down": return GetNode<TextureRect>("keyBackIcon");
-            case "ui_left": return GetNode<TextureRect>("keyLeftIcon");
-            case "ui_right": return GetNode<TextureRect>("keyRightIcon");
-            case "jump": return GetNode<TextureRect>("keyJumpIcon");
-            case "ui_shift": return GetNode<TextureRect>("keyRunIcon");
-            case "use": return GetNode<TextureRect>("keyUseIcon");
-            case "crouch": return GetNode<TextureRect>("keyCrouchIcon");
-            case "dash": return GetNode<TextureRect>("keyDashIcon");
-            case "legsHit": return GetNode<TextureRect>("keyLegsIcon");
-            case "changeView": return GetNode<TextureRect>("keyCameraIcon");
-            case "task": return GetNode<TextureRect>("keyTaskIcon");
-            case "inventory": return GetNode<TextureRect>("keyInventoryIcon");
-            case "autoheal": return GetNode<TextureRect>("keyAutohealIcon");
-            case "ui_quicksave": return GetNode<TextureRect>("keyQuicksaveIcon");
-            case "ui_quickload": return GetNode<TextureRect>("keyQuickloadIcon");
-        }
-        return null;
+        return action switch
+        {
+            "ui_up" => GetNode<TextureRect>("keyForwardIcon"),
+            "ui_down" => GetNode<TextureRect>("keyBackIcon"),
+            "ui_left" => GetNode<TextureRect>("keyLeftIcon"),
+            "ui_right" => GetNode<TextureRect>("keyRightIcon"),
+            "jump" => GetNode<TextureRect>("keyJumpIcon"),
+            "ui_shift" => GetNode<TextureRect>("keyRunIcon"),
+            "use" => GetNode<TextureRect>("keyUseIcon"),
+            "crouch" => GetNode<TextureRect>("keyCrouchIcon"),
+            "dash" => GetNode<TextureRect>("keyDashIcon"),
+            "legsHit" => GetNode<TextureRect>("keyLegsIcon"),
+            "changeView" => GetNode<TextureRect>("keyCameraIcon"),
+            "task" => GetNode<TextureRect>("keyTaskIcon"),
+            "inventory" => GetNode<TextureRect>("keyInventoryIcon"),
+            "autoheal" => GetNode<TextureRect>("keyAutohealIcon"),
+            "ui_quicksave" => GetNode<TextureRect>("keyQuicksaveIcon"),
+            "ui_quickload" => GetNode<TextureRect>("keyQuickloadIcon"),
+            _ => null
+        };
     }
     
     private void LoadControlButtons()
@@ -140,6 +144,7 @@ public class ControlsSubmenu : SubmenuBase
     private void WriteKeyToEdit(string key, TextureRect icon)
     {
         icon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
+        EmitSignal(nameof(ChangeControlEvent));
     }
 
     private void CancelControlEdit()

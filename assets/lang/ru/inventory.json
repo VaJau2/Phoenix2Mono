@@ -83,8 +83,8 @@
     "modalAsk": {
         "askSell": "Продать \"#item#\" за #price# #money#?",
         "askBuy": "Купить \"#item#\" за #price# #money#?",
-        "yes": "Да (#button#)",
-        "no": "Нет (#button#)",
+        "yes": "Да",
+        "no": "Нет",
         "countLabel": "Количество:"
     },
 
