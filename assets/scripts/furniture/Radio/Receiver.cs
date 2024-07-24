@@ -162,7 +162,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 		Radiostation?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
 		
-		warningManager?.Disconnect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Disconnect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
 	}
 
 	public void TuneOut()
@@ -170,7 +170,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation?.Disconnect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 		Radiostation?.Disconnect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
 		
-		warningManager?.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
 	}
 
 	public void SwitchOn(bool withSwitchSound = true)
@@ -187,7 +187,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		
 		if (warningManager is { IsMessagePlaying: true })
 		{
-			MusicPlayer.Stream = warningManager.message;
+			MusicPlayer.Stream = warningManager.message.audio;
 			MusicPlayer.Play(warningManager.timer);
 			return;
 		}

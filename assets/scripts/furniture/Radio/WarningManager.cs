@@ -4,9 +4,10 @@ using Godot;
 
 public class WarningManager : RadioManager
 {
+    [Export] private string systemName;
     private List<Receiver> receivers = new ();
-    
-    public AudioStream message => messagePlayer.Stream;
+
+    public Message message { get; private set; }
     private List<Message> messagesList = new ();
     
     public bool IsMessagePlaying => messagePlayer.Playing;
@@ -17,22 +18,30 @@ public class WarningManager : RadioManager
     private bool isAlarmPlaying;
 
     private AudioStreamPlayer3D messagePlayer;
+    private Subtitles subtitles;
     
     [Signal]
-    public delegate void SendMessageEvent(AudioStream stream = null);
+    public delegate void StartMessageEvent(AudioStream stream = null);
     
     [Signal]
     public delegate void MessageFinishedEvent();
 
-    private struct Message
+    public struct Message(string _code, IVoiceMessage _trigger)
     {
-        public AudioStream stream;
-        public IVoiceMessage trigger;
+        public string code = _code;
+        public AudioStream audio;
+        public IVoiceMessage trigger = _trigger;
 
-        public Message(AudioStream _stream, IVoiceMessage _trigger)
+        public void SetAudio(AudioStream _audio)
         {
-            stream = _stream;
-            trigger = _trigger;
+            audio = _audio;
+        }
+
+        public void Clear()
+        {
+            code = null;
+            audio = null;
+            trigger = null;
         }
     }
     
@@ -46,6 +55,7 @@ public class WarningManager : RadioManager
             }
         }
 
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
         messagePlayer.Connect("finished", this, nameof(OnMessageEnd));
         
@@ -59,12 +69,12 @@ public class WarningManager : RadioManager
         base._Ready();
     }
 
-    public void SendMessage(AudioStream stream, IVoiceMessage trigger)
+    public void SendMessage(string messageCode, IVoiceMessage trigger = null)
     {
         if (messagePlayer.Playing)
         {
-            var message = new Message(stream, trigger);
-            messagesList.Add(message);
+            var msg = new Message(messageCode, trigger);
+            messagesList.Add(msg);
         }
         else
         {
@@ -73,11 +83,7 @@ public class WarningManager : RadioManager
                 receiver.TuneOut();
             }
             
-            messagePlayer.Stream = stream;
-            trigger.Connect();
-            messagePlayer.Play();
-            
-            EmitSignal(nameof(SendMessageEvent), message);
+            StartMessage(messageCode, trigger);
         }
     }
 
@@ -85,11 +91,8 @@ public class WarningManager : RadioManager
     {
         if (messagesList.Count > 0)
         {
-            messagePlayer.Stream = messagesList[0].stream;
-            messagesList[0].trigger.Connect();
+            StartMessage(messagesList[0].code, messagesList[0].trigger);
             messagesList.RemoveAt(0);
-            messagePlayer.Play();
-            EmitSignal(nameof(SendMessageEvent), message);
         }
         else
         {
@@ -97,9 +100,24 @@ public class WarningManager : RadioManager
             {
                 receiver.TuneIn();
             }
-            
+
+            message.Clear();
             EmitSignal(nameof(MessageFinishedEvent));
         }
+    }
+
+    private void StartMessage(string code, IVoiceMessage trigger)
+    {
+        trigger?.Connect();
+
+        message = new Message(code, trigger);
+        
+        subtitles.SetTalker(messagePlayer, systemName)
+            .LoadSubtitlesFile(code)
+            .StartAnimatingText();
+        
+        message.SetAudio(messagePlayer.Stream);
+        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
     }
     
     // alarm

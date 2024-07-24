@@ -9,8 +9,9 @@ public class CloneFlask : Spatial, ISavable
 
     public AudioStreamSample underwater => GD.Load<AudioStreamSample>("res://assets/audio/underwater.wav");
     public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/futniture/flaskOpen.wav");
-    private AudioStreamPlayer3D message => GetNode<AudioStreamPlayer3D>("message");
 
+    private WarningManager warningManager => GetNode<WarningManager>("/root/Main/Scene/Warning Manager");
+    
     private bool wokenUp;
 
     private Spatial water, glass;
@@ -73,7 +74,7 @@ public class CloneFlask : Spatial, ISavable
 
     public void PlayMessage()
     {
-        message.Play();
+        warningManager.SendMessage("resurrection");
     }
     
     public void AnimateWater()

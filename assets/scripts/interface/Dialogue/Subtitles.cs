@@ -22,6 +22,7 @@ public class Subtitles : Label
     private const float VISIBLE_DISTANCE = 50;
 
     private static Player Player => Global.Get().player;
+    private string tempTalkerName;
     private NPC tempTalker;
     private Label speakerLabel;
     private DialogueAudio dialogueAudio;
@@ -44,8 +45,10 @@ public class Subtitles : Label
     
     public Subtitles SetTalker(AudioStreamPlayer3D audioPlayer3D, string characterName)
     {
+        tempTalkerName = characterName;
         dialogueAudio.SetAudioPlayer(audioPlayer3D);
-        dialogueAudio.LoadCharacter(characterName, "subtitles");
+        dialogueAudio.LoadCharacter(tempTalkerName, "subtitles");
+        
         return this;
     }
 
@@ -55,16 +58,17 @@ public class Subtitles : Label
         if (audioPlayer == null) return this;
 
         tempTalker = talker;
+        tempTalkerName = talker.Name;
         dialogueAudio.SetAudioPlayer(audioPlayer);
-        dialogueAudio.LoadCharacter(talker.Name, "subtitles");
-
+        dialogueAudio.LoadCharacter(tempTalkerName, "subtitles");
+        
         return this;
     }
     
     public Subtitles LoadSubtitlesFile(string subtitlesCode)
     {
         var lang = InterfaceLang.GetLang();
-        var path = "assets/dialogues/" + lang + "/" + tempTalker.Name + "/subtitles.json";
+        var path = "assets/dialogues/" + lang + "/" + tempTalkerName + "/subtitles.json";
         tempPhrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
         if (tempPhrases == null) return this;
         
@@ -122,7 +126,9 @@ public class Subtitles : Label
     
     private void CheckTempTalker()
     {
-        if (tempTalker is { Health: <= 0 })
+        if (tempTalker == null) return;
+        
+        if (tempTalker.Health <= 0)
         {
             FinishAnimatingText();
         }

@@ -1,0 +1,156 @@
+﻿{
+  "back1": {
+    "back1": {
+      "name": "Phoenix 2",
+      "text": "Welcome back, cutie! How was your walk?",
+      "timer": 0.03
+    }
+  },
+
+  "back2": {
+    "back2": {
+      "name": "Phoenix 2",
+      "text": "Welcome home, sweetheart! Did you find the Bellgates?",
+      "timer": 0.03
+    }
+  },
+
+  "back3": {
+    "back3": {
+      "name": "Phoenix 2",
+      "text": "Home sweet home. Did you see the sad mare with the blue box? …or was it a colt?",
+      "timer": 0.03
+    }
+  },
+
+  "back4": {
+    "back4": {
+      "name": "Phoenix 2",
+      "text": "Welcome to the coziest vault in the world.",
+      "timer": 0.03
+    }
+  },
+
+  "back5": {
+    "back5": {
+      "name": "Phoenix 2",
+      "text": "Oh, it's you! Did you bring anything good?",
+      "timer": 0.03
+    }
+  },
+
+  "back6": {
+    "back6": {
+      "name": "Phoenix 2",
+      "text": "Congratulations on your successful survival in the desert!",
+      "timer": 0.03
+    }
+  },
+
+  "back7": {
+    "back7": {
+      "name": "Phoenix 2",
+      "text": "Intresting, where everyone else is?",
+      "timer": 0.03
+    }
+  },
+
+  "resurrection": {
+    "resurrection1": {
+      "name": "Phoenix 2",
+      "text": "Thank you for using experimental resurrection sytem called 'Phoenix 2'!",
+      "timer": 0.03
+    },
+    "resurrection2": {
+      "name": "Phoenix 2",
+      "text": "I hope, you won't die again."
+    }
+  },
+
+  "cloneRoom": {
+    "cloneRoom1": {
+      "name": "Phoenix 2",
+      "text": "Warning! There are not enough materials to create a new batch of clones.",
+      "timer": 0.03
+    },
+    "cloneRoom2": {
+      "name": "Phoenix 2",
+      "text": "Honey, these are your last clones.",
+      "timer": 0.03
+    },
+    "cloneRoom3": {
+      "name": "Phoenix 2",
+      "text": "If they all die, you're dead for good!",
+      "timer": 0.025
+    }
+  },
+
+  "lastClone": {
+    "lastClone": {
+      "name": "Phoenix 2",
+      "text": "Honey, this is your last clone! If you die, you die forever!",
+      "timer": 0.03
+    }
+  },
+
+  "dieFromFly": {
+    "dieFromFly": {
+      "name": "Phoenix 2",
+      "text": "Next time, try to fly more carefully.",
+      "timer": 0.03
+    }
+  },
+
+  "dieFromRadiation": {
+    "dieFromRadiation": {
+      "name": "Phoenix 2",
+      "text": "Dear, don't forget that the radiation levels are still frighteningly high!",
+      "timer": 0.03
+    }
+  },
+
+  "dieOften": {
+    "dieOften": {
+      "name": "Phoenix 2",
+      "text": "Am I such bad company that you kill yourself so often?",
+      "timer": 0.03
+    }
+  },
+
+  "fuel": {
+    "fuel": {
+      "name": "Phoenix 2",
+      "text": "Warning! Critical depletion of fuel elements has been detected.",
+      "timer": 0.03
+    }
+  },
+
+  "kitchen": {
+    "kitchen": {
+      "name": "Phoenix 2",
+      "text": "Warning! The forage supply is running low. Drinking filter is defective.",
+      "timer": 0.03
+    }
+  },
+
+  "wc": {
+    "wc": {
+      "name": "Phoenix 2",
+      "text": "Warning! A clog in the water pipe, has been detected.",
+      "timer": 0.03
+    }
+  },
+
+  "radiation": {
+    "radiation1": {
+      "name": "Phoenix 2",
+      "text": "Warning! Deadly levels of radiation have been detected on the surface.",
+      "timer": 0.029
+    },
+    "radiation2": {
+      "name": "Phoenix 2",
+      "text": "Wear an anti-radiation suit, please.",
+      "timer": 0.03
+    }
+  }
+}

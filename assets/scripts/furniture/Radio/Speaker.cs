@@ -27,8 +27,7 @@ public class Speaker : RadioBase
         }
         else
         {
-            warningManager.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(OnChangeMusic));
-            OnChangeMusic(warningManager.message);
+            warningManager.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(OnChangeMusic));
         }
     }
 

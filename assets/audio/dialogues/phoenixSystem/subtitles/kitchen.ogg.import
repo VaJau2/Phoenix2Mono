@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/kitchen.ogg"
+dest_files=[ "res://.import/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

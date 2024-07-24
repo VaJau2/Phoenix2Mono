@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieOften.ogg"
+dest_files=[ "res://.import/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

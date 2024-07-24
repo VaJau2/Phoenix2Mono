@@ -5,13 +5,13 @@
 //Если не существует, озвучивает через динамическую озвучку
 class DialogueAudio: Node
 {
-    private const string FILE_EXT = "mp3";
-
     [Export] private NodePath audioPlayerPath;
     private AudioPlayerCommon audioPlayer;
     
     private string characterName;
     private string dialogueCode;
+    
+    private readonly string[] fileExt = [".mp3", ".ogg", ".wav"];
     private bool foundFile;
 
     private DialogueAudioConfig config = new();
@@ -46,12 +46,18 @@ class DialogueAudio: Node
 
     public void TryToPlayAudio(string nodeCode)
     {
-        string path = $"assets/audio/dialogues/{characterName}/{dialogueCode}/{nodeCode}.{FILE_EXT}";
-        foundFile = ResourceLoader.Exists(path);
-        if (!foundFile)
+        var path = $"assets/audio/dialogues/{characterName}/{dialogueCode}/{nodeCode}";
+
+        foreach (var ext in fileExt)
         {
-            return;
+            if (!ResourceLoader.Exists(path + ext)) continue;
+            
+            path += ext;
+            foundFile = true;
+            break;
         }
+        
+        if (!foundFile) return;
 
         audioPlayer.PitchScale = startPitch;
         audioPlayer.Stream = GD.Load<AudioStream>(path);
