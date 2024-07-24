@@ -36,6 +36,12 @@ public class Subtitles : Label
     
     public bool IsAnimatingText { get; private set; }
 
+    [Signal]
+    public delegate void ChangePhrase();
+    
+    [Signal]
+    public delegate void End();
+    
     public override void _Ready()
     {
         speakerLabel = GetNode<Label>("speaker");
@@ -92,6 +98,7 @@ public class Subtitles : Label
         IsAnimatingText = true;
         
         dialogueAudio.TryToPlayAudio(phraseKey);
+        EmitSignal(nameof(ChangePhrase));
     }
     
     private void UpdateAnimatingText()
@@ -121,6 +128,10 @@ public class Subtitles : Label
         if (tempPhrases.Count > phraseI)
         {
             StartAnimatingText();
+        }
+        else
+        {
+            EmitSignal(nameof(End));
         }
     }
     

@@ -55,9 +55,10 @@ public class WarningManager : RadioManager
             }
         }
 
-        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
-        messagePlayer.Connect("finished", this, nameof(OnMessageEnd));
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
+        subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
+        subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
         
         // alarm
         alarmSound = (AudioStream)GD.Load("res://assets/audio/background/alarm.wav");
@@ -87,6 +88,11 @@ public class WarningManager : RadioManager
         }
     }
 
+    private void OnAudioChange()
+    {
+        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+    }
+    
     private void OnMessageEnd()
     {
         if (messagesList.Count > 0)
