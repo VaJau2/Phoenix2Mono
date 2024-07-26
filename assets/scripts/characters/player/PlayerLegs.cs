@@ -1,10 +1,9 @@
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerLegs: Node
+public class PlayerLegs : Node
 {
     const int BACK_INCREASE = 2;
-    const int DOOR_OPEN_DAMAGE = 110;
 
     const float BACK_HIT_ANGLE = 60;
 
@@ -15,15 +14,13 @@ public class PlayerLegs: Node
     AudioStreamSample tryHit;
     AudioStreamSample hit;
 
-    Dictionary<string, AudioStreamSample> materaiSounds;
-    bool tempFront = false;
-    
+    Dictionary<string, AudioStreamSample> materalSounds;
+    bool tempFront;
+
     List<PhysicsBody> frontObjects;
     List<PhysicsBody> backObjects;
 
-    public bool getTempFront { get { return tempFront;} }
-
-    private Player player { get => global.player; }
+    private Player Player => global.player;
 
     public override void _Ready()
     {
@@ -31,46 +28,50 @@ public class PlayerLegs: Node
         audi = GetNode<AudioStreamPlayer>("../../sound/audi_hitted");
 
         tryHit = GD.Load<AudioStreamSample>("res://assets/audio/enemies/SwordTryHit.wav");
-        hit= GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
+        hit = GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
 
         string matPath = "res://assets/audio/guns/legHits/";
-        materaiSounds = new Dictionary<string, AudioStreamSample>()
+        materalSounds = new Dictionary<string, AudioStreamSample>()
         {
-            {"door", GD.Load<AudioStreamSample>(matPath + "door_slam.wav")},
-            {"door_open", GD.Load<AudioStreamSample>(matPath + "door_slam_open.wav")},
-            {"fence", GD.Load<AudioStreamSample>(matPath + "fence_hit.wav")},
-            {"stone", GD.Load<AudioStreamSample>(matPath + "stone_hit.wav")},
-            {"wood", GD.Load<AudioStreamSample>(matPath + "wood_hit.wav")},
+            { "fence", GD.Load<AudioStreamSample>(matPath + "fence_hit.wav") },
+            { "stone", GD.Load<AudioStreamSample>(matPath + "stone_hit.wav") },
+            { "wood", GD.Load<AudioStreamSample>(matPath + "wood_hit.wav") },
         };
 
-        frontObjects = new List<PhysicsBody>();
-        backObjects = new List<PhysicsBody>();
+        frontObjects = [];
+        backObjects = [];
     }
 
     private int GetDamage()
     {
-        int damage = player.BaseDamage + player.LegsDamage;
-        if (!tempFront) {
+        int damage = Player.BaseDamage + Player.LegsDamage;
+        if (!tempFront)
+        {
             damage *= BACK_INCREASE;
-        } 
+        }
+
         return damage;
     }
 
 
-    private void handleVictim(PhysicsBody victim, int damage)
+    private void HandleVictim(PhysicsBody victim, int damage)
     {
         if (!IsInstanceValid(victim)) return;
-        
-        if (victim is Character character) {
-            audi.Stream = hit;
-            character.TakeDamage(player, damage);
-        } else
+
+        if (victim is Character character)
         {
-            if (victim is StaticBody body && body.PhysicsMaterialOverride != null) {
+            audi.Stream = hit;
+            character.TakeDamage(Player, damage);
+        }
+        else
+        {
+            if (victim is StaticBody body && body.PhysicsMaterialOverride != null)
+            {
                 var friction = body.PhysicsMaterialOverride.Friction;
                 var materialName = MatNames.GetMatName(friction);
-                if (materaiSounds.ContainsKey(materialName)) {
-                    audi.Stream = materaiSounds[materialName];
+                if (materalSounds.ContainsKey(materialName))
+                {
+                    audi.Stream = materalSounds[materialName];
                 }
             }
 
@@ -79,48 +80,35 @@ public class PlayerLegs: Node
                 case BreakableObject obj:
                     obj.Brake(damage);
                     break;
+                
                 case FurnDoor door:
                 {
-                    if (!door.IsOpen) 
-                    {
-                        if (!door.ForceOpening) 
-                        {
-                            door.audi.Stream = materaiSounds["stone"];
-                            door.audi.Play();
-                        } 
-                        else if(damage < DOOR_OPEN_DAMAGE)
-                        {
-                            door.audi.Stream = materaiSounds["door"];
-                            door.audi.Play();
-                        } 
-                        else 
-                        {
-                            door.SetOpen(materaiSounds["door_open"], 0, true);
-                        }
-                    }
-
+                    door.TrySmashOpen(damage);
                     break;
                 }
             }
         }
     }
 
-    private void startHit()
+    private void StartHit()
     {
-        player.IsHitting = true;
-        player.SetMayMove(false);
-        if (tempFront) {
-            player.BodyFollowsCamera = true;
+        Player.IsHitting = true;
+        Player.SetMayMove(false);
+        if (tempFront)
+        {
+            Player.BodyFollowsCamera = true;
         }
-        player.Body.AnimateHitting(tempFront);
+
+        Player.Body.AnimateHitting(tempFront);
     }
 
-    private async void finishHit()
+    private async void FinishHit()
     {
         await global.ToTimer(0.15f);
-        
-        if (tempFront && (player.Weapons.isPistol || !player.Weapons.GunOn || Global.Get().playerRace == Race.Unicorn)) {
-            player.BodyFollowsCamera = false;
+
+        if (tempFront && (Player.Weapons.isPistol || !Player.Weapons.GunOn || Global.Get().playerRace == Race.Unicorn))
+        {
+            Player.BodyFollowsCamera = false;
         }
 
         audi.Stream = tryHit;
@@ -130,77 +118,94 @@ public class PlayerLegs: Node
         audi.Stream = null;
         var damage = GetDamage();
 
-        if (tempFront) {
-            foreach (PhysicsBody victim in frontObjects) {
-                handleVictim(victim, damage);
-            }
-        } else {
-            foreach (PhysicsBody victim in backObjects){
-                handleVictim(victim, damage);
+        if (tempFront)
+        {
+            foreach (PhysicsBody victim in frontObjects)
+            {
+                HandleVictim(victim, damage);
             }
         }
+        else
+        {
+            foreach (PhysicsBody victim in backObjects)
+            {
+                HandleVictim(victim, damage);
+            }
+        }
+
         audi.Play();
 
         await global.ToTimer(0.5f);
 
-        player.IsHitting = false;
-        player.SetMayMove(true);
+        Player.IsHitting = false;
+        Player.SetMayMove(true);
     }
 
     public override void _Process(float delta)
     {
-        if (player == null) return;
-        
+        if (Player == null) return;
+
         bool playerRunningFlying = false;
 
-        switch(global.playerRace) {
+        switch (global.playerRace)
+        {
             case Race.Pegasus:
-                var pegasus = player as Player_Pegasus;
+                var pegasus = Player as Player_Pegasus;
                 playerRunningFlying = pegasus.IsFlying;
                 break;
             case Race.Earthpony:
-                var earthpony = player as Player_Earthpony;
+                var earthpony = Player as Player_Earthpony;
                 playerRunningFlying = earthpony.IsRunning;
                 break;
         }
 
-        if (!player.IsHitting && player.MayMove && !playerRunningFlying) {
-            if (Input.IsActionJustPressed("legsHit") && player.IsOnFloor()) {
-                tempFront = Mathf.Abs(player.Body.bodyRot) < BACK_HIT_ANGLE;
-                startHit();
-                finishHit();
+        if (!Player.IsHitting && Player.MayMove && !playerRunningFlying)
+        {
+            if (Input.IsActionJustPressed("legsHit") && Player.IsOnFloor())
+            {
+                tempFront = Mathf.Abs(Player.Body.bodyRot) < BACK_HIT_ANGLE;
+                StartHit();
+                FinishHit();
             }
         }
     }
 
-    public void FrontAreaBodyEntered(PhysicsBody body) {
+    public void FrontAreaBodyEntered(PhysicsBody body)
+    {
         if (body is Player) return;
 
-        if (body is StaticBody || body is Character) {
+        if (body is StaticBody or Character)
+        {
             frontObjects.Add(body);
         }
     }
 
-    public void FrontAreaBodyExited(PhysicsBody body) {
+    public void FrontAreaBodyExited(PhysicsBody body)
+    {
         if (body is Player) return;
 
-        if (frontObjects.Contains(body)) {
+        if (frontObjects.Contains(body))
+        {
             frontObjects.Remove(body);
         }
     }
 
-    public void BackAreaBodyEntered(PhysicsBody body) {
+    public void BackAreaBodyEntered(PhysicsBody body)
+    {
         if (body is Player) return;
 
-        if (body is StaticBody || body is Character) {
+        if (body is StaticBody or Character)
+        {
             backObjects.Add(body);
         }
     }
 
-    public void BackAreaBodyExited(PhysicsBody body) {
+    public void BackAreaBodyExited(PhysicsBody body)
+    {
         if (body is Player) return;
 
-        if (backObjects.Contains(body)) {
+        if (backObjects.Contains(body))
+        {
             backObjects.Remove(body);
         }
     }

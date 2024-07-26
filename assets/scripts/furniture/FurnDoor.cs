@@ -4,6 +4,8 @@ using Godot.Collections;
 
 public class FurnDoor: FurnBase, ISavable
 {
+    private const int DOOR_OPEN_DAMAGE = 110;
+    
     [Export] public string myKey;
     [Export] public AudioStreamSample closedSound;
     [Export] public AudioStreamSample openWithKeySound;
@@ -14,21 +16,49 @@ public class FurnDoor: FurnBase, ISavable
     public string KeyToRemember;
 
     public bool opening { get; private set; }
-    bool standingOtherSide;
-
-    private Player player => Global.Get().player;
     
-    private void SetCollision(uint level) 
-    {
-        CollisionLayer = level;
-        CollisionMask = level == 1 ? level : 0;
-    }
+    private bool standingOtherSide;
+    private Dictionary<string, AudioStreamSample> materalSounds;
+    private Player player => Global.Get().player;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        
+        string matPath = "res://assets/audio/guns/legHits/";
+        materalSounds = new Dictionary<string, AudioStreamSample>
+        {
+            { "door", GD.Load<AudioStreamSample>(matPath + "door_slam.wav") },
+            { "door_open", GD.Load<AudioStreamSample>(matPath + "door_slam_open.wav") },
+            { "stone", GD.Load<AudioStreamSample>(matPath + "stone_hit.wav") },
+        };
+    }
+    
     public override void Interact(PlayerCamera interactor)
     {
         var keys = player.Inventory.GetKeys();
         interactor.closedTimer = ClickFurn(keys);
         interactor.onetimeHint = false;
+    }
+
+    public void TrySmashOpen(int damage)
+    {
+        if (IsOpen) return;
+        
+        if (!ForceOpening)
+        {
+            audi.Stream = materalSounds["stone"];
+            audi.Play();
+        }
+        else if (damage < DOOR_OPEN_DAMAGE)
+        {
+            audi.Stream = materalSounds["door"];
+            audi.Play();
+        }
+        else
+        {
+            SetOpen(materalSounds["door_open"], 0, true);
+        }
     }
 
     public async void SetOpen(AudioStreamSample keySound = null, float timer = 0, bool force = false) 
