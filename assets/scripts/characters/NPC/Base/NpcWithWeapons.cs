@@ -379,6 +379,8 @@ public class NpcWithWeapons : NPC, IChest
         doorWait = value;
     }
 
+    private bool isStandingOnFoot() => IdleAnim == IDLE_ANIM;
+
     protected void UpdateAI(float delta)
     {
         if (doorWait > 0)
@@ -516,7 +518,10 @@ public class NpcWithWeapons : NPC, IChest
                 break;
 
             case NPCState.Talk:
-                LookAtTarget(rotateInDialogue);
+                if (isStandingOnFoot())
+                {
+                    LookAtTarget();
+                }
                 break;
         }
     }

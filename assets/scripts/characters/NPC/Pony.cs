@@ -141,7 +141,7 @@ public class Pony: NpcWithWeapons
 
     protected override void PlayStopAnim()
     {
-        body.PlayAnim("Idle1");
+        body.PlayAnim(IDLE_ANIM);
     }
     
     protected override void PlayIdleAnim()

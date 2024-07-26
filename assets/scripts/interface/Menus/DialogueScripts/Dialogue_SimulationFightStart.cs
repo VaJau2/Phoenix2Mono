@@ -72,12 +72,10 @@ namespace DialogueScripts
                 {
                     break;
                 }
-                else
-                {
-                    pony.SetNewStartPos(tempPath.GlobalTransform.origin);
-                    pony.IdleAnim = "Idle1";
-                    await (pony.ToSignal(pony, nameof(Pony.IsCame)));
-                }
+
+                pony.SetNewStartPos(tempPath.GlobalTransform.origin);
+                pony.IdleAnim = Character.IDLE_ANIM;
+                await (pony.ToSignal(pony, nameof(Pony.IsCame)));
             }
 
             while (pony.state != NPCState.Idle)

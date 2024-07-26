@@ -23,9 +23,9 @@ public class ActivateOtherTrigger: TriggerBase
         }
     }
 
-    private void InitializedTriggers(Array<NodePath> pathes, Array<TriggerBase> triggers)
+    private void InitializedTriggers(Array<NodePath> paths, Array<TriggerBase> triggers)
     {
-        foreach(var path in pathes)
+        foreach(var path in paths)
         {
             var trigger = GetNodeOrNull<TriggerBase>(path);
             if (trigger != null) triggers.Add(trigger);

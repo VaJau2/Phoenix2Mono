@@ -2474,6 +2474,11 @@ IsActive = false
 SaveOldInventorySave = true
 newLevelNum = 5
 
+[node name="dialogueTargets" type="Node" parent="."]
+
+[node name="tree" type="Spatial" parent="dialogueTargets"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -117.511, 6.85914, -52.1614 )
+
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )
 maxItemsCount = 3
