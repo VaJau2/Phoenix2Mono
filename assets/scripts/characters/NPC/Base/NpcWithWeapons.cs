@@ -43,6 +43,9 @@ public class NpcWithWeapons : NPC, IChest
     [Signal]
     public delegate void IsCame();
 
+    [Signal]
+    public delegate void PlayerStartSearching();
+
     private RandomNumberGenerator rand = new RandomNumberGenerator();
 
     private bool IsUseCustomTrigger => !string.IsNullOrEmpty(customHintCode)
@@ -80,6 +83,7 @@ public class NpcWithWeapons : NPC, IChest
         else
         {
             ChestHandler.Open();
+            EmitSignal(nameof(PlayerStartSearching));
         }
     }
 
