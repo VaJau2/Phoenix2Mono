@@ -11,24 +11,30 @@ public class PegasusSmash : Area
         hitSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
     }
 
-    public void _on_smasharea_body_entered(Node body) 
+    public void _on_smasharea_body_entered(Node body)
     {
         if (body is Player) return;
+        if (!player.MaySmash || player.GetSpeed() <= 6) return;
 
-        
-        if(player.MaySmash && player.GetSpeed() > 6) {
-            var audiHitted = player.GetAudi(true);
-            audiHitted.Stream = hitSound;
-            audiHitted.Play();
+        var tempDamage = player.GetSpeed() * 3;
 
-            if (body is Character) {
-                var victim = body as Character;
-                victim.TakeDamage(player, player.GetSpeed() * 3);
-            } else {
-                player.TakeDamage(player, player.GetSpeed() / 2);
+        switch (body)
+        {
+            case FurnDoor door when player.IsFlyingFast:
+                door.TrySmashOpen(tempDamage);
+                return;
+            case Character victim:
+                victim.TakeDamage(player, tempDamage);
+                break;
+            default:
+                player.TakeDamage(player, tempDamage / 6);
                 player.wingsAudi.Stop();
                 player.IsFlying = false;
-            }
+                break;
         }
+        
+        var audiHitted = player.GetAudi(true);
+        audiHitted.Stream = hitSound;
+        audiHitted.Play();
     }
 }
