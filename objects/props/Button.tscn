@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/scripts/furniture/FurnButton.cs" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=32]
+extents = Vector3( 0.0665556, 0.183349, 0.167756 )
+
+[sub_resource type="CubeMesh" id=33]
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_color = Color( 0.643137, 0.137255, 0.137255, 1 )
+
+[sub_resource type="CubeMesh" id=34]
+material = SubResource( 31 )
+
+[node name="Button" type="StaticBody"]
+transform = Transform( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0.126994, 0 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 32 )
+
+[node name="button" type="MeshInstance" parent="."]
+transform = Transform( 0.239219, 0, 0, 0, 0.0563446, 0, 0, 0, 0.272575, 0, -0.116897, 0 )
+mesh = SubResource( 33 )
+skeleton = NodePath("../..")
+
+[node name="button2" type="MeshInstance" parent="button"]
+transform = Transform( 0.763775, 0, 0, 0, 1.88255, 0, 0, 0, 0.609529, 0, 1.40017, 0 )
+mesh = SubResource( 34 )

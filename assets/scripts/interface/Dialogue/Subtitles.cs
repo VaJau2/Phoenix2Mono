@@ -15,7 +15,7 @@ using Array = Godot.Collections.Array;
 //    .LoadSubtitlesFile(subtitlesCode)
 //    .StartAnimatingText();
 //
-public class Subtitles : Label
+public class Subtitles : Label, ISavable
 {
     private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
     private const float DEFAULT_FINISHING_TIMER = 0.8f;
@@ -25,10 +25,13 @@ public class Subtitles : Label
     private string tempTalkerName;
     private NPC tempTalker;
     private Label speakerLabel;
+    
     private DialogueAudio dialogueAudio;
+    
+    private string subtitlesCode;
     private Dictionary tempPhrases;
     private Array tempPhraseKeys;
-    private int phraseI;
+    private int phraseIndex;
     
     private string animatingText;
     private float phraseCooldown;
@@ -60,7 +63,7 @@ public class Subtitles : Label
 
     public Subtitles SetTalker(NPC talker)
     {
-        var audioPlayer = talker.GetNode("audiVoice");
+        var audioPlayer = talker.GetNode<AudioStreamPlayer3D>("audiVoice");
         if (audioPlayer == null) return this;
 
         tempTalker = talker;
@@ -71,15 +74,17 @@ public class Subtitles : Label
         return this;
     }
     
-    public Subtitles LoadSubtitlesFile(string subtitlesCode)
+    public Subtitles LoadSubtitlesFile(string subCode, int phraseI = 0)
     {
         var lang = InterfaceLang.GetLang();
         var path = "assets/dialogues/" + lang + "/" + tempTalkerName + "/subtitles.json";
+
+        subtitlesCode = subCode;
         tempPhrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
         if (tempPhrases == null) return this;
         
         tempPhraseKeys = new Array(tempPhrases.Keys);
-        phraseI = 0;
+        phraseIndex = phraseI;
 
         return this;
     }
@@ -89,7 +94,7 @@ public class Subtitles : Label
         if (IsAnimatingText) return;
         if (tempPhrases == null) return;
 
-        var phraseKey = tempPhraseKeys[phraseI].ToString();
+        var phraseKey = tempPhraseKeys[phraseIndex].ToString();
         if (tempPhrases[phraseKey] is not Dictionary phraseData) return;
 
         speakerLabel.Text = phraseData["name"].ToString();
@@ -124,15 +129,28 @@ public class Subtitles : Label
         IsAnimatingText = false;
         animatingCooldown = 0;
 
-        phraseI++;
-        if (tempPhrases.Count > phraseI)
+        phraseIndex++;
+        if (tempPhrases.Count > phraseIndex)
         {
             StartAnimatingText();
         }
         else
         {
+            ClearSubtitles();
             EmitSignal(nameof(End));
         }
+    }
+
+    private void ClearSubtitles()
+    {
+        if (tempTalker != null)
+        {
+            tempTalker.subtitlesCode = null;
+        }
+        
+        subtitlesCode = null;
+        tempTalker = null;
+        tempTalkerName = null;
     }
     
     private void CheckTempTalker()
@@ -166,5 +184,47 @@ public class Subtitles : Label
 
         CheckTempTalker();
         UpdateAnimatingText();
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary()
+        {
+            {"talkerPath", tempTalker?.GetPath()},
+            {"audioPath", dialogueAudio.GetAudioPlayerPath()},
+            {"talkerName", tempTalkerName},
+            {"code", subtitlesCode},
+            {"phrase", phraseIndex}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        subtitlesCode = Convert.ToString(data["code"]);
+        phraseIndex = Convert.ToInt32(data["phrase"]);
+        
+        var talkerPath = Convert.ToString(data["talkerPath"]);
+        var talker = GetNodeOrNull<NPC>(talkerPath);
+        
+        if (talker != null)
+        {
+            SetTalker(talker)
+                .LoadSubtitlesFile(subtitlesCode, phraseIndex)
+                .StartAnimatingText();
+            
+            return;
+        }
+        
+        var talkerName = Convert.ToString(data["talkerName"]);
+        var audioPath = Convert.ToString(data["audioPath"]);
+        
+        if (string.IsNullOrEmpty(talkerName)) return;
+        if (string.IsNullOrEmpty(audioPath)) return;
+        
+        var audioPlayer3D = GetNode<AudioStreamPlayer3D>(audioPath);
+        
+        SetTalker(audioPlayer3D, talkerName)
+            .LoadSubtitlesFile(subtitlesCode, phraseIndex)
+            .StartAnimatingText();
     }
 }

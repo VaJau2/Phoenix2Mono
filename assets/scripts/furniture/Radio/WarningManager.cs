@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
-public class WarningManager : RadioManager
+public class WarningManager : RadioManager, ISavable
 {
     [Export] private string systemName;
-    private List<Receiver> receivers = new ();
+    private readonly List<Receiver> receivers = [];
 
-    public Message message { get; private set; }
-    private List<Message> messagesList = new ();
+    public WarningMessage message { get; private set; }
     
     public bool IsMessagePlaying => messagePlayer.Playing;
     public float timer => messagePlayer.GetPlaybackPosition();
@@ -25,25 +26,6 @@ public class WarningManager : RadioManager
     
     [Signal]
     public delegate void MessageFinishedEvent();
-
-    public struct Message(string _code, IVoiceMessage _trigger)
-    {
-        public string code = _code;
-        public AudioStream audio;
-        public IVoiceMessage trigger = _trigger;
-
-        public void SetAudio(AudioStream _audio)
-        {
-            audio = _audio;
-        }
-
-        public void Clear()
-        {
-            code = null;
-            audio = null;
-            trigger = null;
-        }
-    }
     
     public override void _Ready()
     {
@@ -72,20 +54,27 @@ public class WarningManager : RadioManager
 
     public void SendMessage(string messageCode, IVoiceMessage trigger = null)
     {
-        if (messagePlayer.Playing)
+        if (messagePlayer.Playing) return;
+        
+        foreach (var receiver in receivers)
         {
-            var msg = new Message(messageCode, trigger);
-            messagesList.Add(msg);
+            receiver.TuneOut();
         }
-        else
-        {
-            foreach (var receiver in receivers)
-            {
-                receiver.TuneOut();
-            }
             
-            StartMessage(messageCode, trigger);
-        }
+        StartMessage(messageCode, trigger);
+    }
+    
+    private void StartMessage(string code, IVoiceMessage trigger)
+    {
+        ChangeRadioPauseMode(PauseModeEnum.Inherit);
+        trigger?.Connect();
+        
+        subtitles.SetTalker(messagePlayer, systemName)
+            .LoadSubtitlesFile(code)
+            .StartAnimatingText();
+        
+        message = new WarningMessage(code, messagePlayer.Stream, trigger);
+        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
     }
 
     private void OnAudioChange()
@@ -95,35 +84,14 @@ public class WarningManager : RadioManager
     
     private void OnMessageEnd()
     {
-        if (messagesList.Count > 0)
+        foreach (var receiver in receivers)
         {
-            StartMessage(messagesList[0].code, messagesList[0].trigger);
-            messagesList.RemoveAt(0);
+            receiver.TuneIn();
         }
-        else
-        {
-            foreach (var receiver in receivers)
-            {
-                receiver.TuneIn();
-            }
 
-            message.Clear();
-            EmitSignal(nameof(MessageFinishedEvent));
-        }
-    }
-
-    private void StartMessage(string code, IVoiceMessage trigger)
-    {
-        trigger?.Connect();
-
-        message = new Message(code, trigger);
-        
-        subtitles.SetTalker(messagePlayer, systemName)
-            .LoadSubtitlesFile(code)
-            .StartAnimatingText();
-        
-        message.SetAudio(messagePlayer.Stream);
-        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+        message.Clear();
+        ChangeRadioPauseMode(PauseModeEnum.Process);
+        EmitSignal(nameof(MessageFinishedEvent));
     }
     
     // alarm
@@ -131,7 +99,7 @@ public class WarningManager : RadioManager
     {
         foreach (var receiver in receivers.Where(receiver => receiver.IsOn))
         {
-            receiver.SwitchOff();
+            receiver.SwitchOff(true, false);
             receiver.AddToGroup("Alarm Mode");
         }
     }
@@ -140,7 +108,37 @@ public class WarningManager : RadioManager
     {
         foreach (Node node in GetTree().GetNodesInGroup("Alarm Mode"))
         {
-            if (node is Receiver receiver) receiver.SwitchOn();
+            if (node is Receiver receiver) receiver.SwitchOn(true, false);
         }
+    }
+    
+    public Dictionary GetSaveData()
+    {
+        if (message.trigger is not VoiceMessageTrigger trigger)
+        {
+            return new Dictionary();
+        }
+        
+        return new Dictionary()
+        {
+            {"code", message.code},
+            {"triggerPath", trigger.GetPath()},
+            {"audioPath", message.audio.ResourcePath}
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        var code = Convert.ToString(data["code"]);
+        
+        if (string.IsNullOrEmpty(code)) return;
+        
+        var triggerPath = Convert.ToString(data["triggerPath"]);
+        var trigger = GetNode<IVoiceMessage>(triggerPath);
+        
+        var audioPath = Convert.ToString(data["audioPath"]);
+        var audio = GD.Load<AudioStream>(audioPath);
+
+        message = new WarningMessage(code, audio, trigger);
     }
 }

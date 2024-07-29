@@ -4,10 +4,7 @@ using System.Collections.Generic;
 
 public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
-    [Export] private bool ignorable;
-    [Export] private bool random;
     [Export] private List<string> messages;
-    
     private WarningManager warningManager;
 
     public override void _Ready()
@@ -19,7 +16,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
     {
         if (!IsActive) return;
         if (body is not Player) return;
-        if (ignorable && warningManager.IsMessagePlaying) return;
+        if (warningManager.IsMessagePlaying) return;
         
         switch (messages.Count)
         {
@@ -32,19 +29,9 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
             
             default:
             {
-                if (random)
-                {
-                    var rand = new Random();
-                    var index = rand.Next(0, messages.Count - 1);
-                    SendMessage(index);
-                }
-                else
-                {
-                    for (var i = 0; i < messages.Count; i++)
-                    {
-                        SendMessage(i);
-                    }
-                }
+                var rand = new Random();
+                var index = rand.Next(0, messages.Count - 1);
+                SendMessage(index);
                 break;
             }
         }
@@ -54,7 +41,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     public void OnMessageFinished()
     {
-        base._on_activate_trigger();
+        _on_activate_trigger();
     }
     
     public void Connect()

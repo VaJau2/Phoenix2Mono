@@ -173,11 +173,11 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		warningManager?.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
 	}
 
-	public void SwitchOn(bool withSwitchSound = true)
+	public void SwitchOn(bool withSwitchSound = true, bool updateLever = true)
 	{
 		IsOn = true;
 
-		UpdateVolumeLever(global.Settings.radioVolume);
+		if (updateLever) UpdateVolumeLever(global.Settings.radioVolume);
 
 		if (Radiostation != null)
         {
@@ -198,12 +198,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
-	public void SwitchOff(bool withSwitchSound = true)
+	public void SwitchOff(bool withSwitchSound = true, bool updateLever = true)
 	{
 		MusicPlayer.Stop();
 
 		if (withSwitchSound) PlaySwitchSound();
-		UpdateVolumeLever(minRadioVolume);
+		if (updateLever) UpdateVolumeLever(minRadioVolume);
 
 		IsOn = false;
 		EmitSignal(nameof(ChangeOnline), this);

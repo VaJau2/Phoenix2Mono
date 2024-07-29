@@ -38,7 +38,7 @@ public class ActivateOtherTrigger: TriggerBase
         
         foreach (var otherTrigger in otherTriggers)
         {
-            otherTrigger.SetActive(true);
+            otherTrigger?.SetActive(true);
         }
             
         foreach (var otherTrigger in triggersToDisactive)

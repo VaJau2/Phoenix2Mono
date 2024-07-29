@@ -9,5 +9,12 @@
       "name": "Assistant Apple",
       "text": "Than listen closely."
     }
+  },
+
+  "test2": {
+      "test2": {
+      "name": "Assistant Apple",
+      "text": "The blueprints must be out there somewhere."
+    }
   }
 }

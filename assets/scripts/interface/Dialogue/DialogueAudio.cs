@@ -6,6 +6,7 @@
 class DialogueAudio: Node
 {
     [Export] private NodePath audioPlayerPath;
+    private string tempAudioPath;
     private AudioPlayerCommon audioPlayer;
     
     private string characterName;
@@ -25,14 +26,19 @@ class DialogueAudio: Node
         if (audioPlayerPath == null) return;
         
         var newPlayer = GetNode(audioPlayerPath);
-        audioPlayer = new AudioPlayerCommon(newPlayer);
-        startPitch = audioPlayer.PitchScale;
+        SetAudioPlayer(newPlayer);
     }
 
     public void SetAudioPlayer(Node newPlayer)
     {
+        tempAudioPath = newPlayer.GetPath();
         audioPlayer = new AudioPlayerCommon(newPlayer);
         startPitch = audioPlayer.PitchScale;
+    }
+
+    public string GetAudioPlayerPath()
+    {
+        return tempAudioPath;
     }
 
     public void LoadCharacter(string newCharacterName, string newDialogueCode, string customConfig = null)
@@ -47,6 +53,7 @@ class DialogueAudio: Node
     public void TryToPlayAudio(string nodeCode)
     {
         var path = $"assets/audio/dialogues/{characterName}/{dialogueCode}/{nodeCode}";
+        foundFile = false;
 
         foreach (var ext in fileExt)
         {
