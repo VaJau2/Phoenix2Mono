@@ -4,7 +4,6 @@ using Godot.Collections;
 
 public class DialogueMenu : Control, IMenu, ISavable
 {
-    Global global => Global.Get();
     public bool mustBeClosed => false;
     
     private const int MAX_LINE_LENGTH = 50;
@@ -12,7 +11,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
 
     private const float MIN_NPC_DISTANCE_CHECK = 2f;
-    private const float LOOK_POS_DELTA = 1f;
+    private const float LOOK_POS_DELTA = 1.5f;
 
     public NPC npc {get; private set;}
     public Player player => Global.Get().player;
@@ -329,9 +328,9 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     private Vector3 GetLookAtPosition()
     {
-        var targetPos = lookTarget != Vector3.Zero 
+        var targetPos = lookTarget != Vector3.Zero
             ? lookTarget
-            : npc.GlobalTransform.origin + new Vector3(0, 2f, 0);
+            : npc.GetHeadPosition();
         
         var playerRelativePos = player.GlobalTransform.origin - targetPos;
 

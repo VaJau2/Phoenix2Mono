@@ -45,7 +45,8 @@ public abstract class NPC : Character, IInteractable
     private Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
     
-    private Dictionary<string, bool> objectsChangeActive = new Dictionary<string, bool>();
+    private Dictionary<string, bool> objectsChangeActive = new();
+    private Spatial headAttachment;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
@@ -57,7 +58,7 @@ public abstract class NPC : Character, IInteractable
     protected float searchTimer;
     private float deadTimer = 5f;
 
-    protected bool CloseToPoint = false;
+    protected bool CloseToPoint;
 
     public virtual void Interact(PlayerCamera interactor)
     {
@@ -119,6 +120,11 @@ public abstract class NPC : Character, IInteractable
     public void SetLastSeePos(Vector3 newPos)
     {
         lastSeePos = newPos;
+    }
+
+    public Vector3 GetHeadPosition()
+    {
+        return headAttachment.GlobalTransform.origin;
     }
 
     public override int GetDamage()
@@ -463,10 +469,12 @@ public abstract class NPC : Character, IInteractable
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
+            headAttachment = skeleton.GetNode<Spatial>("BoneAttachment");
+            
             headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
-                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
             bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
-                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
         }
 
         SetStartHealth(StartHealth);

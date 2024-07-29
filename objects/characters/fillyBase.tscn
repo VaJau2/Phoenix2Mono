@@ -1082,7 +1082,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 86 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=99]
 
@@ -1217,12 +1217,12 @@ transform = Transform( 1, 1.08567e-24, 0, 1.03398e-24, 1, -1.86265e-09, 0, 1.862
 shape = SubResource( 5 )
 
 [node name="Physical Bone back_2" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.21835, -0.97587, 5.53318e-08, 0.97587, -0.218351, -3.20375e-07, 1.49165, -0.113881 )
+transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.21835, -0.97587, 5.53318e-08, 0.97587, -0.218351, -3.27826e-07, 1.49165, -0.113881 )
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41701e-07, 0.0075083, 0.311088 )
-body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244692, -0.969601, 1.80284e-07, 0.9696, 0.244692, -2.98023e-07, 0.299794, -0.0834008 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49152e-07, 0.00750813, 0.311088 )
+body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244692, -0.969601, 1.80284e-07, 0.9696, 0.244692, -3.05474e-07, 0.299794, -0.0834006 )
 mass = 20.0
 weight = 196.0
 bone_name = "back_2"
@@ -1437,14 +1437,14 @@ joint_constraints/relaxation = 1.0
 shape = SubResource( 16 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1.05737, -0.0309414, 0.140262, 0.141558, 0.0479349, -1.05657, 0.0243358, 1.06556, 0.0516025, -3.54374e-14, 1.71203, 1.02969 )
+transform = Transform( 1.05737, -0.0309414, 0.140262, 0.131304, 0.630623, -0.850731, -0.0582237, 0.860249, 0.62869, 2.47315e-08, 2.18881, 0.921363 )
 bone_name = "head"
 
 [node name="weapons" type="Spatial" parent="Armature/Skeleton/BoneAttachment"]
 transform = Transform( 0.7, -4.62847e-07, 5.93046e-08, 4.62849e-07, 0.677387, -0.176484, 5.93056e-08, 0.176484, 0.677387, 0.0246447, 0.597312, -1.25659 )
 
 [node name="BoneAttachment 2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 2.16776e-17, 0.190222, -0.0654569 )
+transform = Transform( 1, -7.96287e-17, 3.9733e-17, 6.60139e-17, 0.963179, 0.268863, -5.96792e-17, -0.268863, 0.963179, 1.5644e-17, 0.153891, 0.156793 )
 bone_name = "back_1"
 
 [node name="shotgunBag" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment 2"]

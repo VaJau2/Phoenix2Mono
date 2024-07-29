@@ -613,11 +613,11 @@ public class Player : Character
 
     public void LookAt(Vector3 target)
     {
-        var dir = target - GlobalTransform.origin;
+        var targetDir = target - GlobalTransform.origin;
         var forward = -GlobalTransform.basis.z;
 
         //берем угол по плоскости XZ (горизонтальное вращение)
-        var horizontalDir = new Vector2(dir.x, dir.z);
+        var horizontalDir = new Vector2(targetDir.x, targetDir.z);
         var horizontalPos = new Vector2(forward.x, forward.z);
         var horizontalAngle = horizontalPos.AngleTo(horizontalDir);
         
