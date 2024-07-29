@@ -597,29 +597,34 @@ public class Player : Character
             var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
             RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
-
-            Vector3 cameraRot = RotationHelper.RotationDegrees;
-            cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
-            cameraRot.y = 0;
-            cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
-            RotationHelper.RotationDegrees = cameraRot;
-
+            ClumpCameraRotation();
             OnCameraRotatingX(mouseEvent.Relative.x);
         }
+    }
+
+    private void ClumpCameraRotation()
+    {
+        var cameraRot = RotationHelper.RotationDegrees;
+        cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
+        cameraRot.y = 0;
+        cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
+        RotationHelper.RotationDegrees = cameraRot;
     }
 
     public void LookAt(Vector3 target)
     {
         var dir = target - GlobalTransform.origin;
         var forward = -GlobalTransform.basis.z;
-        var cameraForward = -RotationHelper.GlobalTransform.basis.y;
 
         //берем угол по плоскости XZ (горизонтальное вращение)
         var horizontalDir = new Vector2(dir.x, dir.z);
         var horizontalPos = new Vector2(forward.x, forward.z);
         var horizontalAngle = horizontalPos.AngleTo(horizontalDir);
+        
         //вращаем тело на этот угол (который постепенно уменьшается до нуля)
         RotateY(-horizontalAngle);
+        RotationHelper.LookAt(target, Vector3.Up);
+        ClumpCameraRotation();
     }
 
     public override async void LoadData(Dictionary data)

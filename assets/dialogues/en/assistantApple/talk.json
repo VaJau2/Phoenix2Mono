@@ -40,6 +40,19 @@
             "speaker": "Assistant Apple",
             "timer": "0.01",
             "opposite": "Strikely",
+            "next": "A2.1"
+        },
+        "A2.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetLookAtTarget",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "map"
+                }
+            ],
             "next": "A3"
         },
         "A3": {
@@ -58,6 +71,19 @@
             "speaker": "Assistant Apple",
             "timer": "0.01",
             "opposite": "Strikely",
+            "next": "A4.1"
+        },
+        "A4.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetLookAtTarget",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "ventilation"
+                }
+            ],
             "next": "A5"
         },
         "A5": {
@@ -76,6 +102,19 @@
             "speaker": "Assistant Apple",
             "timer": "0.01",
             "opposite": "Strikely",
+            "next": "A6.1"
+        },
+        "A6.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetLookAtTarget",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "delivery"
+                }
+            ],
             "next": "A7"
         },
         "A7": {
@@ -103,6 +142,19 @@
             "speaker": "Assistant Apple",
             "timer": "0.01",
             "opposite": "Strikely",
+            "next": "A9.1"
+        },
+        "A9.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetLookAtTarget",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "cross"
+                }
+            ],
             "next": "A10"
         },
         "A10": {
@@ -121,6 +173,12 @@
             "speaker": "Assistant Apple",
             "timer": "0.01",
             "opposite": "Strikely",
+            "next": "A11.1"
+        },
+        "A11.1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetLookAtTarget",
             "next": "A12"
         },
         "A12": {
