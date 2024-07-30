@@ -1,11 +1,13 @@
+using Godot;
+
 namespace DialogueScripts
 {
     public class TakeDamage : IDialogueScript
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
+        public void initiate(Node node, string parameter, string key = "")
         {
             if (string.IsNullOrEmpty(parameter)) return;
-            var player = dialogueMenu.player;
+            var player = Global.Get().player;
             player.TakeDamage(player, int.Parse(parameter));
         }
     }

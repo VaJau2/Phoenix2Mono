@@ -8,6 +8,10 @@
     "phrase2": {
       "name": "Помощница Эппл",
       "text": "И слушай внимательно"
+    },
+    "phrase3": {
+      "class": "ActivateTrigger",
+      "value": "ChangeSubtitlesTrigger"
     }
   },
 

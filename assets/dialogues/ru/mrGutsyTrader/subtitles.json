@@ -1,0 +1,11 @@
+{
+    "trade": {
+        "phrase1": {
+            "name": "Мистер Храбрец",
+            "text": "Запускаю протокол торговли"
+        },
+        "phrase2": {
+            "class": "Dialogue_Trade"
+        }
+    }
+}

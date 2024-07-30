@@ -1,17 +1,25 @@
-﻿//Скрипт, запускающий торговлю с неписем, если он реализует интерфейс ITrader
-namespace DialogueScripts
+﻿using Godot;
+
+namespace DialogueScripts;
+
+//Скрипт, запускающий торговлю с неписем, если он реализует интерфейс ITrader
+public class Dialogue_Trade : BaseChangeInNPC
 {
-    public class Dialogue_Trade : IDialogueScript
+    public override async void initiate(Node node, string parameter, string key = "")
     {
-        public async void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
+        if (GetNPC(node) is not ITrader trader) return;
+        
+        var dialogueMenu = node.GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+
+        if (dialogueMenu.GetNode<Control>("../").Visible)
         {
-            if (dialogueMenu.npc is ITrader trader)
-            {
-                //ждем, когда закроется диалоговое меню, а потом еще кадр, чтобы menu manager очистился
-                await dialogueMenu.ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
-                await dialogueMenu.ToSignal(dialogueMenu.GetTree(), "idle_frame");
-                trader.StartTrading();
-            }
+            //ожидание закрытия диалогового меню
+            await node.ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
         }
+        
+        // ожидание прорисовки нового кадра, дабы menu manager или subtitles очистились
+        await node.ToSignal(node.GetTree(), "idle_frame");
+        
+        trader.StartTrading();
     }
 }

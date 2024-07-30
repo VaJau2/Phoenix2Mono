@@ -23,7 +23,7 @@ public class Subtitles : Label, ISavable
 
     private static Player Player => Global.Get().player;
     private string tempTalkerName;
-    private NPC tempTalker;
+    public NPC tempTalker { get; private set; }
     private Label speakerLabel;
     
     private DialogueAudio dialogueAudio;
@@ -97,13 +97,39 @@ public class Subtitles : Label, ISavable
         var phraseKey = tempPhraseKeys[phraseIndex].ToString();
         if (tempPhrases[phraseKey] is not Dictionary phraseData) return;
 
-        speakerLabel.Text = phraseData["name"].ToString();
-        animatingText = phraseData["text"].ToString();
-        phraseCooldown = phraseData.Contains("timer") ? Convert.ToSingle(phraseData["timer"]) : 0;
-        IsAnimatingText = true;
+        ReadPhrase(phraseKey, phraseData);
         
-        dialogueAudio.TryToPlayAudio(phraseKey);
         EmitSignal(nameof(ChangePhrase));
+    }
+
+    private void ReadPhrase(string phraseKey, Dictionary phraseData)
+    {
+        if (phraseData.Contains("text"))
+        {
+            speakerLabel.Text = phraseData["name"].ToString();
+            animatingText = phraseData["text"].ToString();
+            phraseCooldown = phraseData.Contains("timer") ? Convert.ToSingle(phraseData["timer"]) : 0;
+            IsAnimatingText = true;
+        
+            dialogueAudio.TryToPlayAudio(phraseKey);
+        }
+        
+        if (phraseData.Contains("class"))
+        {
+            var scriptName = phraseData["class"].ToString();
+            var scriptType = Type.GetType("DialogueScripts." + scriptName);
+            var parameter = "";
+            
+            if (scriptType == null) return;
+            
+            if (phraseData.Contains("value"))
+            {
+                parameter = phraseData["value"].ToString();
+            }
+            
+            var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
+            scriptObj?.initiate(this, parameter);
+        }
     }
     
     private void UpdateAnimatingText()
