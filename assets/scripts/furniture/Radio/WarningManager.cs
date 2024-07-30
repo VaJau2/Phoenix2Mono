@@ -9,10 +9,12 @@ public class WarningManager : RadioManager, ISavable
     [Export] private string systemName;
     private readonly List<Receiver> receivers = [];
 
-    public WarningMessage message { get; private set; }
-    
+    public WarningMessage Message { get; private set; }
+    private readonly List<WarningMessage> messageQueue = [];
+
+    public AudioStream Audio => messagePlayer.Stream;
     public bool IsMessagePlaying => messagePlayer.Playing;
-    public float timer => messagePlayer.GetPlaybackPosition();
+    public float Timer => messagePlayer.GetPlaybackPosition();
     
     private EnemiesManager enemiesManager;
     private AudioStream alarmSound;
@@ -52,19 +54,25 @@ public class WarningManager : RadioManager, ISavable
         base._Ready();
     }
 
-    public void SendMessage(string messageCode, IVoiceMessage trigger = null)
+    public void SendMessage(string messageCode, VoiceMessageTrigger trigger = null)
     {
-        if (messagePlayer.Playing) return;
-        
-        foreach (var receiver in receivers)
+        if (messagePlayer.Playing)
         {
-            receiver.TuneOut();
+            var message = new WarningMessage(messageCode, trigger);
+            messageQueue.Add(message);
         }
+        else
+        {
+            foreach (var receiver in receivers)
+            {
+                receiver.TuneOut();
+            }
             
-        StartMessage(messageCode, trigger);
+            StartMessage(messageCode, trigger);
+        }
     }
     
-    private void StartMessage(string code, IVoiceMessage trigger)
+    private void StartMessage(string code, VoiceMessageTrigger trigger)
     {
         ChangeRadioPauseMode(PauseModeEnum.Inherit);
         trigger?.Connect();
@@ -73,7 +81,7 @@ public class WarningManager : RadioManager, ISavable
             .LoadSubtitlesFile(code)
             .StartAnimatingText();
         
-        message = new WarningMessage(code, messagePlayer.Stream, trigger);
+        Message = new WarningMessage(code, trigger);
         EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
     }
 
@@ -84,14 +92,22 @@ public class WarningManager : RadioManager, ISavable
     
     private void OnMessageEnd()
     {
-        foreach (var receiver in receivers)
+        if (messageQueue.Count > 0)
         {
-            receiver.TuneIn();
+            StartMessage(messageQueue[0].code, messageQueue[0].trigger);
+            messageQueue.RemoveAt(0);
         }
+        else
+        {
+            foreach (var receiver in receivers)
+            {
+                receiver.TuneIn();
+            }
 
-        message.Clear();
-        ChangeRadioPauseMode(PauseModeEnum.Process);
-        EmitSignal(nameof(MessageFinishedEvent));
+            Message.Clear();
+            ChangeRadioPauseMode(PauseModeEnum.Process);
+            EmitSignal(nameof(MessageFinishedEvent));
+        }
     }
     
     // alarm
@@ -114,31 +130,51 @@ public class WarningManager : RadioManager, ISavable
     
     public Dictionary GetSaveData()
     {
-        if (message.trigger is not VoiceMessageTrigger trigger)
+        var saveData = new Dictionary();
+
+        if (string.IsNullOrEmpty(Message.code) || Message.trigger == null)
         {
-            return new Dictionary();
+            return saveData;
         }
         
-        return new Dictionary()
+        saveData.Add("code", Message.code);
+        saveData.Add("triggerPath", Message.trigger.GetPath());
+
+        if (messageQueue.Count == 0) return saveData;
+        
+        saveData.Add("messageQueueCount", messageQueue.Count);
+        for (int i = 0; i < messageQueue.Count; i++)
         {
-            {"code", message.code},
-            {"triggerPath", trigger.GetPath()},
-            {"audioPath", message.audio.ResourcePath}
-        };
+            saveData.Add($"code{i}", messageQueue[i].code);
+            saveData.Add($"triggerPath{i}", messageQueue[i].trigger.GetPath());
+        }
+        
+        return saveData;
     }
 
     public void LoadData(Dictionary data)
     {
+        if (!data.Contains("code")) return;
+
         var code = Convert.ToString(data["code"]);
         
-        if (string.IsNullOrEmpty(code)) return;
-        
         var triggerPath = Convert.ToString(data["triggerPath"]);
-        var trigger = GetNode<IVoiceMessage>(triggerPath);
-        
-        var audioPath = Convert.ToString(data["audioPath"]);
-        var audio = GD.Load<AudioStream>(audioPath);
+        var trigger = GetNode<VoiceMessageTrigger>(triggerPath);
+        trigger.Connect();
 
-        message = new WarningMessage(code, audio, trigger);
+        Message = new WarningMessage(code, trigger);
+        
+        if (!data.Contains("messageQueueCount")) return;
+        
+        var messageQueueCount = Convert.ToInt32(data["messageQueueCount"]);
+        
+        for (int i = 0; i < messageQueueCount; i++)
+        {
+            var tempCode = Convert.ToString(data[$"code{i}"]);
+            var tempTriggerPath = Convert.ToString(data[$"triggerPath{i}"]);
+            var tempTrigger = GetNode<VoiceMessageTrigger>(tempTriggerPath);
+            var message = new WarningMessage(tempCode, tempTrigger);
+            messageQueue.Add(message);
+        }
     }
 }

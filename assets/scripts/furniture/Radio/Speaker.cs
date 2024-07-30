@@ -37,7 +37,7 @@ public class Speaker : RadioBase
         {
             if (warningManager.IsMessagePlaying)
             {
-                MusicPlayer.Play(warningManager.timer);
+                MusicPlayer.Play(warningManager.Timer);
                 return;
             }
             
@@ -57,7 +57,7 @@ public class Speaker : RadioBase
         
         if (warningManager is { IsMessagePlaying: true })
         {
-            MusicPlayer.Play(warningManager.timer);
+            MusicPlayer.Play(warningManager.Timer);
             return;
         }
         

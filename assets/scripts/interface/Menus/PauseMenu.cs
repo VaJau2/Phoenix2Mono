@@ -147,4 +147,9 @@ public class PauseMenu : MenuBase, IMenu
         global.SetPause(this, value);
         EmitSignal(nameof(ChangePause), value);
     }
+
+    public void LockSaveButton(bool value)
+    {
+        saveButton.Disabled = value;
+    }
 }

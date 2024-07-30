@@ -187,8 +187,8 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		
 		if (warningManager is { IsMessagePlaying: true })
 		{
-			MusicPlayer.Stream = warningManager.message.audio;
-			MusicPlayer.Play(warningManager.timer);
+			MusicPlayer.Stream = warningManager.Audio;
+			MusicPlayer.Play(warningManager.Timer);
 			return;
 		}
 

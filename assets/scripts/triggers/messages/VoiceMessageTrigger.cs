@@ -16,7 +16,6 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
     {
         if (!IsActive) return;
         if (body is not Player) return;
-        if (warningManager.IsMessagePlaying) return;
         
         switch (messages.Count)
         {
@@ -35,24 +34,32 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
                 break;
             }
         }
-        
-        if (!DeleteAfterTrigger) SetActive(false);
     }
 
-    public void OnMessageFinished()
+    private void OnMessageFinished()
     {
+        if (!DeleteAfterTrigger)
+        {
+            SetActive(true);
+        }
+        
         _on_activate_trigger();
     }
     
     public void Connect()
     {
-        if (!DeleteAfterTrigger) return;
-        warningManager.Connect(nameof(WarningManager.MessageFinishedEvent), this, nameof(OnMessageFinished));
+        SetActive(false);
+        warningManager.Connect
+        (
+            nameof(WarningManager.MessageFinishedEvent), 
+            this, 
+            nameof(OnMessageFinished)
+        );
     }
 
     private void SendMessage(int index)
     {
-        if (warningManager.message.code == messages[index]) return;
+        if (warningManager.Message.code == messages[index]) return;
         warningManager.SendMessage(messages[index], this);
     }
 }
