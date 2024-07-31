@@ -1,7 +1,7 @@
 {
     "trade": {
         "phrase1": {
-            "name": "Mr. Gutsy",
+            "speakerCode": "mrGutsyTrader",
             "text": "Launching the trading protocol"
         },
         "phrase2": {

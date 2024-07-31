@@ -1,7 +1,7 @@
 {
     "trade": {
         "phrase1": {
-            "name": "Мистер Храбрец",
+            "speakerCode": "mrGutsyTrader",
             "text": "Запускаю протокол торговли"
         },
         "phrase2": {
