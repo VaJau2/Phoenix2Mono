@@ -1,7 +1,7 @@
 ﻿{
   "back1": {
     "back1": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "С возвращением, пуся! Как прошла прогулка?",
       "timer": 0.03
     }
@@ -9,7 +9,7 @@
 
   "back2": {
     "back2": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "C возращением домой, милая! Нашла Бельгетса?",
       "timer": 0.03
     }
@@ -17,7 +17,7 @@
 
   "back3": {
     "back3": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Дом, милый дом. Ты видела грустную кобылку с синей коробкой? …или то был жеребец?",
       "timer": 0.03
     }
@@ -25,7 +25,7 @@
 
   "back4": {
     "back4": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Добро пожаловать в самое уютное убежище в мире.",
       "timer": 0.03
     }
@@ -33,7 +33,7 @@
 
   "back5": {
     "back5": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "О, это ты! Принесла чего-нить хорошенького?",
       "timer": 0.03
     }
@@ -41,7 +41,7 @@
 
   "back6": {
     "back6": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Поздравляю с успешным выживанием в пустыне!",
       "timer": 0.03
     }
@@ -49,7 +49,7 @@
 
   "back7": {
     "back7": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Интересно, куда делись все остальные?",
       "timer": 0.03
     }
@@ -57,29 +57,29 @@
 
   "resurrection": {
     "resurrection1": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Благодарю за использование экспериментальной системы воскрешения именуемой 'Феникс 2'!",
       "timer": 0.025
     },
     "resurrection2": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Надюсь, ты больше не умрёшь."
     }
   },
 
   "cloneRoom": {
     "cloneRoom1": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Внимание! Не хватает материалов для создания новой партии клонов.",
       "timer": 0.03
     },
     "cloneRoom2": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Милая, это твои последние клоны.",
       "timer": 0.03
     },
     "cloneRoom3": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Если все они умрут, то и ты умрёшь окончательно!",
       "timer": 0.025
     }
@@ -87,7 +87,7 @@
 
   "lastClone": {
     "lastClone": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Дорогая, это твой последний клон! Если умрёшь, то навсегда!",
       "timer": 0.03
     }
@@ -95,7 +95,7 @@
 
   "dieFromFly": {
     "dieFromFly": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "В следующий раз, постарайся лететь аккуратнее.",
       "timer": 0.03
     }
@@ -103,7 +103,7 @@
 
   "dieFromRadiation": {
     "dieFromRadiation": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Дорогая, не забывай что радиационный фон всё ещё пугающе высок!",
       "timer": 0.03
     }
@@ -111,7 +111,7 @@
 
   "dieOften": {
     "dieOften": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Неужели я настолько плохая компания, что ты так часто убиваешься?",
       "timer": 0.03
     }
@@ -119,7 +119,7 @@
 
   "fuel": {
     "fuel": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Внимание! Обнаружено критическое обеднение ТВЭЛов.",
       "timer": 0.03
     }
@@ -127,7 +127,7 @@
 
   "kitchen": {
     "kitchen": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Внимание! Запасы фуража на исходе. Питьевой фильтр неисправен.",
       "timer": 0.03
     }
@@ -135,7 +135,7 @@
 
   "wc": {
     "wc": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Внимание! Обнаружен засор в водопроводе.",
       "timer": 0.03
     }
@@ -143,12 +143,12 @@
 
   "radiation": {
     "radiation1": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Внимание! На поверхности обнаружен смертельный уровень радиации.",
       "timer": 0.029
     },
     "radiation2": {
-      "name": "Феникс 2",
+      "speakerCode": "phoenixSystem",
       "text": "Одень антирадиационный костюм, пожалуйста.",
       "timer": 0.03
     }

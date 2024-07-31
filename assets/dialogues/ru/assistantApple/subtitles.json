@@ -1,12 +1,12 @@
 ﻿{
   "test": {
     "phrase1": {
-      "name": "Помощница Эппл",
+      "speakerCode": "assistantApple",
       "text": "Привет, подруга. Я должна подготовить твою жепку к миссии. Сымай штаны",
       "timer": 0.05
     },
     "phrase2": {
-      "name": "Помощница Эппл",
+      "speakerCode": "assistantApple",
       "text": "И слушай внимательно"
     },
     "phrase3": {
@@ -17,7 +17,7 @@
 
   "test2": {
       "test2": {
-      "name": "Помощница Эппл",
+      "speakerCode": "assistantApple",
       "text": "Чертежи должны быть где-то там."
     }
   }

@@ -12,6 +12,6 @@ public abstract class BaseChangeInNPC : IDialogueScript
         var dialogueMenu = node.GetNodeOrNull<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
         var subtitles = node.GetNodeOrNull<Subtitles>("/root/Main/Scene/canvas/subtitles");
         
-        return dialogueMenu.npc ?? subtitles.tempTalker;
+        return dialogueMenu.npc ?? subtitles.Talker;
     }
 }

@@ -1,19 +1,19 @@
 ﻿{
   "test": {
     "phrase1": {
-      "name": "Assistant Apple",
+      "speakerCode": "assistantApple",
       "text": "Hi, friend! I have to brief you on your assignment. Are you ready to listen to me?",
       "timer": 0.05
     },
     "phrase2": {
-      "name": "Assistant Apple",
+      "speakerCode": "assistantApple",
       "text": "Than listen closely."
     }
   },
 
   "test2": {
       "test2": {
-      "name": "Assistant Apple",
+      "speakerCode": "assistantApple",
       "text": "The blueprints must be out there somewhere."
     }
   }

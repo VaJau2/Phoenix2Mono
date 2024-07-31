@@ -22,9 +22,14 @@ public class Subtitles : Label, ISavable
     private const float VISIBLE_DISTANCE = 50;
 
     private static Player Player => Global.Get().player;
-    private string tempTalkerName;
-    public NPC tempTalker { get; private set; }
-    private Label speakerLabel;
+    
+    // собеседник с которым в целом начат разговор
+    public NPC Talker { get; private set; } 
+    private string talkerCode;
+    
+    // тот кто говорит в данный момент через субтитры
+    private Label tempSpeakerLabel;
+    private string tempSpeakerCode;
     
     private DialogueAudio dialogueAudio;
     
@@ -47,16 +52,15 @@ public class Subtitles : Label, ISavable
     
     public override void _Ready()
     {
-        speakerLabel = GetNode<Label>("speaker");
+        tempSpeakerLabel = GetNode<Label>("speaker");
         dialogueAudio = GetNode<DialogueAudio>("dialogueAudio");
         MenuBase.LoadColorForChildren(this);
     }
     
     public Subtitles SetTalker(AudioStreamPlayer3D audioPlayer3D, string characterName)
     {
-        tempTalkerName = characterName;
+        talkerCode = characterName;
         dialogueAudio.SetAudioPlayer(audioPlayer3D);
-        dialogueAudio.LoadCharacter(tempTalkerName, "subtitles");
         
         return this;
     }
@@ -66,10 +70,9 @@ public class Subtitles : Label, ISavable
         var audioPlayer = talker.GetNode<AudioStreamPlayer3D>("audiVoice");
         if (audioPlayer == null) return this;
 
-        tempTalker = talker;
-        tempTalkerName = talker.Name;
+        Talker = talker;
+        talkerCode = talker.Name;
         dialogueAudio.SetAudioPlayer(audioPlayer);
-        dialogueAudio.LoadCharacter(tempTalkerName, "subtitles");
         
         return this;
     }
@@ -77,7 +80,7 @@ public class Subtitles : Label, ISavable
     public Subtitles LoadSubtitlesFile(string subCode, int phraseI = 0)
     {
         var lang = InterfaceLang.GetLang();
-        var path = "assets/dialogues/" + lang + "/" + tempTalkerName + "/subtitles.json";
+        var path = $"assets/dialogues/{lang}/{talkerCode}/subtitles.json";
 
         subtitlesCode = subCode;
         tempPhrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
@@ -104,13 +107,19 @@ public class Subtitles : Label, ISavable
 
     private void ReadPhrase(string phraseKey, Dictionary phraseData)
     {
-        if (phraseData.Contains("text"))
+        if (phraseData.Contains("speakerCode") && phraseData.Contains("text"))
         {
-            speakerLabel.Text = phraseData["name"].ToString();
+            var lang = InterfaceLang.GetLang();
+            var namesPath = $"assets/lang/{lang}/names.json";
+            
+            tempSpeakerCode = phraseData["speakerCode"].ToString();
+            tempSpeakerLabel.Text = Global.LoadJsonFile(namesPath)[tempSpeakerCode].ToString();
+            
             animatingText = phraseData["text"].ToString();
             phraseCooldown = phraseData.Contains("timer") ? Convert.ToSingle(phraseData["timer"]) : 0;
             IsAnimatingText = true;
         
+            dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles");
             dialogueAudio.TryToPlayAudio(phraseKey);
         }
         
@@ -150,7 +159,7 @@ public class Subtitles : Label, ISavable
 
     private void FinishAnimatingText()
     {
-        speakerLabel.Text = "";
+        tempSpeakerLabel.Text = "";
         Text = animatingText = "";
         IsAnimatingText = false;
         animatingCooldown = 0;
@@ -169,26 +178,26 @@ public class Subtitles : Label, ISavable
 
     private void ClearSubtitles()
     {
-        if (tempTalker != null)
+        if (Talker != null)
         {
-            tempTalker.subtitlesCode = null;
+            Talker.subtitlesCode = null;
         }
         
         subtitlesCode = null;
-        tempTalker = null;
-        tempTalkerName = null;
+        Talker = null;
+        talkerCode = null;
     }
     
     private void CheckTempTalker()
     {
-        if (tempTalker == null) return;
+        if (Talker == null) return;
         
-        if (tempTalker.Health <= 0)
+        if (Talker.Health <= 0)
         {
             FinishAnimatingText();
         }
 
-        var distance = Player.GlobalTransform.origin.DistanceTo(tempTalker.GlobalTransform.origin);
+        var distance = Player.GlobalTransform.origin.DistanceTo(Talker.GlobalTransform.origin);
         Visible = distance < VISIBLE_DISTANCE;
     }
 
@@ -216,9 +225,9 @@ public class Subtitles : Label, ISavable
     {
         return new Dictionary()
         {
-            {"talkerPath", tempTalker?.GetPath()},
+            {"talkerPath", Talker?.GetPath()},
             {"audioPath", dialogueAudio.GetAudioPlayerPath()},
-            {"talkerName", tempTalkerName},
+            {"talkerName", talkerCode},
             {"code", subtitlesCode},
             {"phrase", phraseIndex}
         };
