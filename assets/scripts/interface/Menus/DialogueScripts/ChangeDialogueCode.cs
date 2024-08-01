@@ -1,11 +1,12 @@
-namespace DialogueScripts
-{
+using Godot;
+
+namespace DialogueScripts;
+
 //Скрипт, меняющий диалоговый код непися, с которым общается игрок
-    public class ChangeDialogueCode : IDialogueScript
+public class ChangeDialogueCode : BaseChangeInNPC
+{
+    public override void initiate(Node node, string parameter, string key = "")
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
-        {
-            dialogueMenu.npc.dialogueCode = parameter ?? "";
-        }
+        GetNPC(node).dialogueCode = parameter ?? "";
     }
 }

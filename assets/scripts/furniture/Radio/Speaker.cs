@@ -27,8 +27,7 @@ public class Speaker : RadioBase
         }
         else
         {
-            warningManager.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(OnChangeMusic));
-            OnChangeMusic(warningManager.message);
+            warningManager.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(OnChangeMusic));
         }
     }
 
@@ -38,7 +37,7 @@ public class Speaker : RadioBase
         {
             if (warningManager.IsMessagePlaying)
             {
-                MusicPlayer.Play(warningManager.timer);
+                MusicPlayer.Play(warningManager.Timer);
                 return;
             }
             
@@ -58,7 +57,7 @@ public class Speaker : RadioBase
         
         if (warningManager is { IsMessagePlaying: true })
         {
-            MusicPlayer.Play(warningManager.timer);
+            MusicPlayer.Play(warningManager.Timer);
             return;
         }
         

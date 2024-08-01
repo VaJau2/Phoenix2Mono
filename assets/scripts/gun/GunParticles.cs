@@ -71,8 +71,6 @@ public class GunParticles : Spatial
             && !objName.Contains("door")
             && !objName.Contains("box"))
         {
-            GD.Print("On. Name: " + objName + ". Material: " + materialName + '\n');
-            
             if (direction.z < 0.9 && direction.z > -0.9)
             {
                 hole.LookAt(hole.GlobalTransform.origin + direction, Vector3.Back);
@@ -83,7 +81,6 @@ public class GunParticles : Spatial
         else
         {
             hole.Visible = false;
-            GD.Print("Off. Name: " + objName + ". Material: " + materialName + '\n');
         }
 
         deleteParts = true;

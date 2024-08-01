@@ -85,7 +85,7 @@
         "F4": {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Please, don't swear at them! They are good ponies... and robots, they are just too busy and rarely visit this warehouse...",
+            "body": "Please, don't swear at them! They are good ponies (and robots), they are just too busy and rarely visit this warehouse...",
             "speaker": "Assistant Shy",
             "timer": "0.01",
             "opposite": "Strikely",

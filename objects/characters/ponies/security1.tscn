@@ -217,6 +217,13 @@ body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148
 transform = Transform( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631634, 1.4976, 0.250258 )
 mesh = SubResource( 1 )
 
+[node name="BoneAttachment" parent="Armature/Skeleton" index="12"]
+transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )
+
+[node name="mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
+transform = Transform( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631634, 1.4976, 0.250258 )
+mesh = SubResource( 1 )
+
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )

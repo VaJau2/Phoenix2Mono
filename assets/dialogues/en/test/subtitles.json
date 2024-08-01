@@ -1,0 +1,12 @@
+﻿{
+  "testPhrase": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "This is a test dialog consisting of a few phrases"
+    },
+    "phrase2": {
+      "speakerCode": "strikely",
+      "text": "The second phrase comes automatically right after the first phrase is played"
+    }
+  }
+}

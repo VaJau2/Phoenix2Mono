@@ -1848,6 +1848,10 @@ max_db = 5.0
 max_distance = 2000.0
 bus = "Sound"
 
+[node name="audiVoice" type="AudioStreamPlayer3D" parent="."]
+unit_db = 4.0
+unit_size = 4.0
+
 [node name="weapons" type="Node" parent="."]
 script = ExtResource( 2 )
 

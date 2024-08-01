@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/scripts/interface/Menus/DialogueMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/scripts/interface/Menus/DialogueAudio.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueMenu.cs" type="Script" id=2]
+[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=4]
 
 [node name="DialogueMenu" type="Control"]
 anchor_right = 1.0
@@ -207,10 +207,13 @@ theme = ExtResource( 1 )
 text = "Е - пропустить"
 align = 1
 
-[node name="audi" type="AudioStreamPlayer" parent="."]
+[node name="dialogueAudio" type="Node" parent="."]
+script = ExtResource( 4 )
+audioPlayerPath = NodePath("audi")
+
+[node name="audi" type="AudioStreamPlayer" parent="dialogueAudio"]
 volume_db = -5.0
 bus = "Voice"
-script = ExtResource( 4 )
 
 [connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [ 0 ]]
 [connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [ 0 ]]

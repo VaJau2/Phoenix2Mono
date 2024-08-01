@@ -13,7 +13,7 @@ public static class ItemJSON
         if (tempLang != lang) 
         {
             string path = "assets/lang/" + lang + "/items.json";
-            itemsData = Global.loadJsonFile(path);
+            itemsData = Global.LoadJsonFile(path);
             tempLang = lang;
         }
 

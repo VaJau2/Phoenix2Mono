@@ -46,7 +46,7 @@ public class MusicTrigger: TriggerBase
         //если есть второй трек, врубаем его
         if (!IsActive)
         {
-            if (audi.GetStream != otherTrack && audi.IsPlaying)
+            if (audi.Stream != otherTrack && audi.IsPlaying)
             {
                 if (volumeSpeed > 0)
                 {
@@ -80,7 +80,7 @@ public class MusicTrigger: TriggerBase
         //врубаем первый трек
         else
         {
-            if (audi.GetStream != track && audi.IsPlaying)
+            if (audi.Stream != track && audi.IsPlaying)
             {
                 if (volumeSpeed > 0)
                 {

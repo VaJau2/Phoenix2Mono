@@ -38,7 +38,7 @@ public class LevelsLoader : Node
 	
 	public override async void _Ready()
 	{
-		var levelsData = Global.loadJsonFile("scenes/levels.json");
+		var levelsData = Global.LoadJsonFile("scenes/levels.json");
 		levelPaths.Add("menu");
 		foreach(string filePath in levelsData.Values) {
 			levelPaths.Add("res://scenes/" + filePath);

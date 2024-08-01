@@ -87,4 +87,7 @@ public class BindIcon : ItemIcon
         anim.Play(value ? "Select" : "Deselect");
         isSelected = value;
     }
+    
+    public override void _on_itemIcon_mouse_entered() {}
+    public override void _on_itemIcon_mouse_exited() {}
 }

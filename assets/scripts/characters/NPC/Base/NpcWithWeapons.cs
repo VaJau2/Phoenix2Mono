@@ -9,8 +9,8 @@ public class NpcWithWeapons : NPC, IChest
     [Export] public float COME_DISTANCE = 4f;
 
     [Export] public string weaponCode = "";
-    [Export] public Array<string> itemCodes = new Array<string>();
-    [Export] public Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+    [Export] public Array<string> itemCodes = [];
+    [Export] public Dictionary<string, int> ammoCount = new();
     [Export] private bool rotateInDialogue = false;
 
     [Export] public string customHintCode;
@@ -301,7 +301,7 @@ public class NpcWithWeapons : NPC, IChest
         pathI = 0;
         if (MayMove && MoveDown)
         {
-            Velocity = new Vector3(0, -GRAVITY, 0);
+            Velocity = new Vector3(0, -Gravity, 0);
         }
         else
         {

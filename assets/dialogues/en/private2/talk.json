@@ -39,7 +39,13 @@
             "root_node": false,
             "body": "Thank you, Private. Then I won't bother you.",
             "speaker": "Strikely",
-            "opposite": "Private"
+            "opposite": "Private",
+            "next": "A3"
+        },
+        "A3": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
         }
     },
     "speakers": {

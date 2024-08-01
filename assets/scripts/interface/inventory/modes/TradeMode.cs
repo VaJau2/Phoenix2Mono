@@ -223,6 +223,11 @@ public class TradeMode: InventoryMode
         askNo.Disabled = true;
         modalAsk.Visible = false;
 
+        if (tempButton is { IsCursorInside: false })
+        {
+            tempButton._on_itemIcon_mouse_exited();
+        }
+
         base.CloseModal();
     }
 

@@ -1,0 +1,53 @@
+﻿{
+  "testPhrase": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Это ультимативный тестовый диалог, состоящий из нескольких фраз"
+    },
+    "phrase2": {
+      "speakerCode": "strikely",
+      "text": "Вторая фраза идет автоматически сразу после проигрывания первой"
+    },
+    "phrase3": {
+      "class": "ChangeSubtitlesCode",
+      "value": "testChangeSubCode"
+    }
+  },
+
+  "testChangeSubCode": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Если ты это читаешь, значит у меня изменился саб-код",
+      "class": "ChangeDialogueCode",
+      "value": "dialogue"
+    }
+  },
+
+"testPain": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Держи боль",
+      "class": "TakeDamage",
+      "value": "50"
+    },
+    "phrase2": {
+      "speakerCode": "test",
+      "text": "Держи кушоть",
+      "class": "TakeItem",
+      "value": "apple"
+    },
+    "phrase3": {
+      "speakerCode": "test",
+      "text": "Теперь твои чертежи нифега",
+      "class": "ChangeItemName",
+      "key": "Quest_blueprints",
+      "value": "blueprints"
+    },
+    "phrase4": {
+      "speakerCode": "test",
+      "text": "Зато теперь активна кнопка",
+      "class": "SetTriggerActive",
+      "value": "ChangeSubtitlesTrigger"
+    }
+  }
+}

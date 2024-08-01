@@ -1,13 +1,15 @@
-﻿namespace DialogueScripts
+﻿using Godot;
+
+namespace DialogueScripts;
+
+// меняет имя торговца в заголовке меню торговли
+public class ChangeTraderCode : BaseChangeInNPC
 {
-    public class ChangeTraderCode : IDialogueScript
+    public override void initiate(Node node, string parameter, string key = "")
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
+        if (GetNPC(node) is ITrader trader)
         {
-            if (dialogueMenu.npc is ITrader trader)
-            {
-                trader.traderCode = parameter;
-            }
+            trader.traderCode = parameter;
         }
     }
 }

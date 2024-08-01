@@ -4,7 +4,9 @@ public class CloneFlaskTrigger : TriggerBase
 {
     private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
+    
     private Canvas canvas;
+    private PauseMenu pauseMenu;
     
     private int step;
     private float timer;
@@ -15,6 +17,7 @@ public class CloneFlaskTrigger : TriggerBase
 
         await ToSignal(GetTree(), "idle_frame");
         canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
+        pauseMenu = GetNode<PauseMenu>("/root/Main/Menu/PauseMenu");
     }
 
     public override void _Process(float delta)
@@ -76,6 +79,7 @@ public class CloneFlaskTrigger : TriggerBase
                 cloneFlask.camera.MakeCurrent(true);
                 cloneFlask.PrepareFlaskForPlayer();
                 canvas.FadeOut();
+                pauseMenu.LockSaveButton(true);
 
                 player.GetAudi().Stream = cloneFlask.underwater;
                 player.GetAudi().Play();
@@ -132,6 +136,7 @@ public class CloneFlaskTrigger : TriggerBase
             
             case 6:
                 player.AudioEffectsController.RemoveEffects("flaskGlass");
+                pauseMenu.LockSaveButton(false);
                 cloneFlask = null;
                 step = 0;
                 base._on_activate_trigger();

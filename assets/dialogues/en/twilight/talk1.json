@@ -4,7 +4,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Yes?",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "options": [
         {
@@ -21,7 +21,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Oh, please, don't do this, no autographs. I'm so sick of it…",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "options": [
         {
@@ -34,7 +34,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Really? And what's the reason?",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "options": [
         {
@@ -47,7 +47,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Strikely? Hm… I know about you.",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "options": [
         {
@@ -64,7 +64,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "Sure. When I was told who had contacted that agent and found the note, I had no doubt that you belonged here",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "next": "T7"
     },
@@ -72,7 +72,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "I know they're going to try to kill me. In politics, this happens so often that it becomes commonplace. Besides, I insisted that you be here. After all, you were the pony who found out about this assassination attempt",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "next": "T7"
     },
@@ -80,7 +80,7 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "We can only hope that the next name on the guest list hides a real specialist.",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "options": [
         {
@@ -93,16 +93,16 @@
       "kind": "dialogue",
       "root_node": false,
       "body": "In that case, I won't stop you from working.",
-      "speaker": "Minister Twilight",
+      "speaker": "Minister Twilight Sparkle",
       "opposite": "Strikely",
       "next": "T8(1)"
     },
     "T1(1)": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Minister Twilight! It's very nice to meet you!",
+      "body": "Minister Twilight Sparkle! It's very nice to meet you!",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T2"
     },
     "T1(2)": {
@@ -110,14 +110,14 @@
       "root_node": false,
       "body": "It's nothing, sorry",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight"
+      "opposite": "Minister Twilight Sparkle"
     },
     "T2(1)": {
       "kind": "dialogue",
       "root_node": false,
       "body": "Of course. I'm afraid, I'm here for other reason",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T3"
     },
     "T3(1)": {
@@ -125,7 +125,7 @@
       "root_node": false,
       "body": "Ahem ... Lieutenant Strikely Cloud, mem! I'm here to ensure your safety!",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T4"
     },
     "T4(1)": {
@@ -133,7 +133,7 @@
       "root_node": false,
       "body": "You know about me?",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T5"
     },
     "T4(2)": {
@@ -141,7 +141,7 @@
       "root_node": false,
       "body": "How do you know about me?",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T6"
     },
     "T7(1)": {
@@ -149,7 +149,7 @@
       "root_node": false,
       "body": "Don't worry about it!",
       "speaker": "Strikely",
-      "opposite": "Minister Twilight",
+      "opposite": "Minister Twilight Sparkle",
       "next": "T8"
     },
     "T8(1)": {
@@ -159,7 +159,7 @@
     }
   },
   "speakers": {
-    "Minister Twilight": {
+    "Minister Twilight Sparkle": {
       "color": {
         "r": 0,
         "g": 0,

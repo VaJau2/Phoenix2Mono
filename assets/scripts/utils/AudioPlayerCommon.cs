@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using Godot;
+using Object = Godot.Object;
 
 //общий класс для работы с 2д аудио и 3д аудио (потому что разрабы годота так не умеют)
 public class AudioPlayerCommon
@@ -6,25 +8,29 @@ public class AudioPlayerCommon
     private AudioStreamPlayer player;
     private AudioStreamPlayer3D player3D;
     private bool audio3D;
+
+    public AudioPlayerCommon(Node audioPlayerToDefine)
+    {
+        if (audioPlayerToDefine is not (AudioStreamPlayer or AudioStreamPlayer3D))
+        {
+            throw new ArgumentException("Trying to define audio player from not player node!");
+        }
+        
+        audio3D = audioPlayerToDefine is AudioStreamPlayer3D;
+        
+        if (audio3D)
+        {
+            player3D = audioPlayerToDefine as AudioStreamPlayer3D;
+        }
+        else
+        {
+            player = audioPlayerToDefine as AudioStreamPlayer;
+        }
+    }
     
     public AudioPlayerCommon(bool audio3D, NodePath audioPath, Node objToGetNode)
     {
         this.audio3D = audio3D;
-        if (audio3D)
-        {
-            player3D = objToGetNode.GetNode<AudioStreamPlayer3D>(audioPath);
-        }
-        else
-        {
-            player = objToGetNode.GetNode<AudioStreamPlayer>(audioPath);
-        }
-    }
-    
-    public AudioPlayerCommon(NodePath audioPath, Node objToGetNode)
-    {
-        var node = objToGetNode.GetNode(audioPath);
-        audio3D = node is AudioStreamPlayer3D;
-        
         if (audio3D)
         {
             player3D = objToGetNode.GetNode<AudioStreamPlayer3D>(audioPath);
@@ -101,7 +107,21 @@ public class AudioPlayerCommon
 
     public bool IsPlaying => audio3D ? player3D.Playing : player.Playing;
 
-    public AudioStream GetStream => audio3D ? player3D.Stream : player.Stream;
+    public AudioStream Stream
+    {
+        get => audio3D ? player3D.Stream : player.Stream;
+        set
+        {
+            if (audio3D)
+            {
+                player3D.Stream = value;
+            }
+            else
+            {
+                player.Stream = value;
+            }
+        }
+    }
 
     public float PlayTime
     {
@@ -115,6 +135,22 @@ public class AudioPlayerCommon
             else
             {
                 player.Seek(value);
+            }
+        }
+    }
+
+    public float PitchScale
+    {
+        get => audio3D ? player3D.PitchScale : player.PitchScale;
+        set
+        {
+            if (audio3D)
+            {
+                player3D.PitchScale = value;
+            }
+            else
+            {
+                player.PitchScale = value;
             }
         }
     }
