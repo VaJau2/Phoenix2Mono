@@ -1,13 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://objects/characters/robots/m6/assistantApple.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=2]
 [ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/triggers/ChangeSubtitlesTrigger.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://objects/props/Button.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/characters/robots/mrGutsyTrader.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -24,7 +22,7 @@ agent_radius = 1.55
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6987, 1.5, 5.21641 )
-itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308" ]
+itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "Quest_agentNote", "Quest_blueprints" ]
 ammo = {
 "ammo308": 20,
 "ammo32": 20,
@@ -36,22 +34,6 @@ transform = Transform( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999
 IdleAnim = "Idle1"
 subtitlesCode = "testPhrase"
 weaponCode = "revolver32"
-
-[node name="assistantApple" parent="Scene/npc" index="1" instance=ExtResource( 1 )]
-transform = Transform( -0.94472, 0, -0.327878, 0, 1, 0, 0.327878, 0, -0.94472, -14.3035, -3.8147e-06, -6.2256 )
-subtitlesCode = "test"
-
-[node name="mrGutsyTrader" parent="Scene/npc" index="2" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00684, 0, -7.40919 )
-subtitlesCode = "trade"
-dialogueCode = ""
-startItemCodes = [ "privateUniform", "powerArmor", "healPotion", "manaPotion", "medX", "sniper308", "shotgun20", "automatic308", "pistol10S", "shotgun12" ]
-startAmmoCount = {
-"ammo10": 50,
-"ammo12": 20,
-"ammo20": 40,
-"ammo308": 20
-}
 
 [node name="terrain" type="StaticBody" parent="Scene" index="4"]
 collision_layer = 3
@@ -99,6 +81,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 
 [node name="Button" parent="Scene/terrain" index="7" instance=ExtResource( 7 )]
+transform = Transform( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("../../triggers/ChangeSubtitlesTrigger") ]
 
@@ -115,5 +98,5 @@ script = ExtResource( 5 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [  ]
 disactiveTriggerPaths = [  ]
-npcPath = NodePath("../../npc/assistantApple")
-newSubtitlesCode = "test2"
+npcPath = NodePath("../../npc/test")
+newSubtitlesCode = "testPhrase"

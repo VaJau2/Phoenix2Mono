@@ -22,6 +22,9 @@ public class Subtitles : Label, ISavable
     private const float VISIBLE_DISTANCE = 50;
 
     private static Player Player => Global.Get().player;
+
+    public bool IsAnimatingText { get; private set; }
+    public bool MayClearCode = true;
     
     // собеседник с которым в целом начат разговор
     public NPC Talker { get; private set; } 
@@ -34,16 +37,16 @@ public class Subtitles : Label, ISavable
     private DialogueAudio dialogueAudio;
     
     private string subtitlesCode;
-    private Dictionary tempPhrases;
-    private Array tempPhraseKeys;
-    private int phraseIndex;
+    private Dictionary phrases;
+    private Array phrasesKeys;
+    private int tempPhraseIndex;
+    private string tempPhraseKey;
+    private Dictionary tempPhraseData;
     
     private string animatingText;
     private float phraseCooldown;
     private float animatingCooldown;
     
-    public bool IsAnimatingText { get; private set; }
-
     [Signal]
     public delegate void ChangePhrase();
     
@@ -83,11 +86,11 @@ public class Subtitles : Label, ISavable
         var path = $"assets/dialogues/{lang}/{talkerCode}/subtitles.json";
 
         subtitlesCode = subCode;
-        tempPhrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
-        if (tempPhrases == null) return this;
+        phrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
+        if (phrases == null) return this;
         
-        tempPhraseKeys = new Array(tempPhrases.Keys);
-        phraseIndex = phraseI;
+        phrasesKeys = new Array(phrases.Keys);
+        tempPhraseIndex = phraseI;
 
         return this;
     }
@@ -95,50 +98,38 @@ public class Subtitles : Label, ISavable
     public void StartAnimatingText()
     {
         if (IsAnimatingText) return;
-        if (tempPhrases == null) return;
+        if (phrases == null) return;
 
-        var phraseKey = tempPhraseKeys[phraseIndex].ToString();
-        if (tempPhrases[phraseKey] is not Dictionary phraseData) return;
+        MayClearCode = true;
+        tempPhraseKey = phrasesKeys[tempPhraseIndex].ToString();
+        tempPhraseData = phrases[tempPhraseKey] as Dictionary;
 
-        ReadPhrase(phraseKey, phraseData);
+        ReadPhraseText();
         
         EmitSignal(nameof(ChangePhrase));
     }
 
-    private void ReadPhrase(string phraseKey, Dictionary phraseData)
+    private void ReadPhraseText()
     {
-        if (phraseData.Contains("speakerCode") && phraseData.Contains("text"))
+        if (tempPhraseData.Contains("speakerCode") && tempPhraseData.Contains("text"))
         {
             var lang = InterfaceLang.GetLang();
             var namesPath = $"assets/lang/{lang}/names.json";
             
-            tempSpeakerCode = phraseData["speakerCode"].ToString();
+            tempSpeakerCode = tempPhraseData["speakerCode"].ToString();
             tempSpeakerLabel.Text = Global.LoadJsonFile(namesPath)[tempSpeakerCode].ToString();
             
-            animatingText = phraseData["text"].ToString();
-            phraseCooldown = phraseData.Contains("timer") ? Convert.ToSingle(phraseData["timer"]) : 0;
+            animatingText = tempPhraseData["text"].ToString();
+            phraseCooldown = tempPhraseData.Contains("timer") 
+                ? Convert.ToSingle(tempPhraseData["timer"]) 
+                : 0;
+            
             IsAnimatingText = true;
         
             dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles");
-            dialogueAudio.TryToPlayAudio(phraseKey);
+            dialogueAudio.TryToPlayAudio(tempPhraseKey);
         }
-        
-        if (phraseData.Contains("class"))
-        {
-            var scriptName = phraseData["class"].ToString();
-            var scriptType = Type.GetType("DialogueScripts." + scriptName);
-            var parameter = "";
-            
-            if (scriptType == null) return;
-            
-            if (phraseData.Contains("value"))
-            {
-                parameter = phraseData["value"].ToString();
-            }
-            
-            var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
-            scriptObj?.initiate(this, parameter);
-        }
+        else FinishAnimatingText();
     }
     
     private void UpdateAnimatingText()
@@ -163,9 +154,11 @@ public class Subtitles : Label, ISavable
         Text = animatingText = "";
         IsAnimatingText = false;
         animatingCooldown = 0;
-
-        phraseIndex++;
-        if (tempPhrases.Count > phraseIndex)
+        
+        ReadPhraseScript();
+        
+        tempPhraseIndex++;
+        if (phrases.Count > tempPhraseIndex)
         {
             StartAnimatingText();
         }
@@ -176,9 +169,35 @@ public class Subtitles : Label, ISavable
         }
     }
 
+    private void ReadPhraseScript()
+    {
+        if (tempPhraseData.Contains("class"))
+        {
+            var scriptName = tempPhraseData["class"].ToString();
+            var scriptType = Type.GetType("DialogueScripts." + scriptName);
+            var parameter = "";
+            var key = "";
+            
+            if (scriptType == null) return;
+            
+            if (tempPhraseData.Contains("value"))
+            {
+                parameter = tempPhraseData["value"].ToString();
+            }
+            
+            if (tempPhraseData.Contains("key"))
+            {
+                key = tempPhraseData["key"].ToString();
+            }
+            
+            var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
+            scriptObj?.initiate(this, parameter, key);
+        }
+    }
+
     private void ClearSubtitles()
     {
-        if (Talker != null)
+        if (MayClearCode && Talker != null)
         {
             Talker.subtitlesCode = null;
         }
@@ -229,14 +248,14 @@ public class Subtitles : Label, ISavable
             {"audioPath", dialogueAudio.GetAudioPlayerPath()},
             {"talkerName", talkerCode},
             {"code", subtitlesCode},
-            {"phrase", phraseIndex}
+            {"phrase", tempPhraseIndex}
         };
     }
 
     public void LoadData(Dictionary data)
     {
         subtitlesCode = Convert.ToString(data["code"]);
-        phraseIndex = Convert.ToInt32(data["phrase"]);
+        tempPhraseIndex = Convert.ToInt32(data["phrase"]);
         
         var talkerPath = Convert.ToString(data["talkerPath"]);
         var talker = GetNodeOrNull<NPC>(talkerPath);
@@ -244,7 +263,7 @@ public class Subtitles : Label, ISavable
         if (talker != null)
         {
             SetTalker(talker)
-                .LoadSubtitlesFile(subtitlesCode, phraseIndex)
+                .LoadSubtitlesFile(subtitlesCode, tempPhraseIndex)
                 .StartAnimatingText();
             
             return;
@@ -259,7 +278,7 @@ public class Subtitles : Label, ISavable
         var audioPlayer3D = GetNode<AudioStreamPlayer3D>(audioPath);
         
         SetTalker(audioPlayer3D, talkerName)
-            .LoadSubtitlesFile(subtitlesCode, phraseIndex)
+            .LoadSubtitlesFile(subtitlesCode, tempPhraseIndex)
             .StartAnimatingText();
     }
 }

@@ -9,12 +9,10 @@ public class Dialogue_Trade : BaseChangeInNPC
     {
         if (GetNPC(node) is not ITrader trader) return;
         
-        var dialogueMenu = node.GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
-
-        if (dialogueMenu.GetNode<Control>("../").Visible)
+        if (DialogueMenu.GetNode<Control>("../").Visible)
         {
             //ожидание закрытия диалогового меню
-            await node.ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
+            await node.ToSignal(DialogueMenu, nameof(DialogueMenu.FinishTalking));
         }
         
         // ожидание прорисовки нового кадра, дабы menu manager или subtitles очистились
