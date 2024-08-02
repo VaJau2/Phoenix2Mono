@@ -72,4 +72,12 @@ public class RadioManager : Node
             radio.SetMute(false);
         }
     }
+
+    protected void ChangeRadioPauseMode(PauseModeEnum mode)
+    {
+        foreach (var radio in radioList)
+        {
+            radio.PauseMode = mode;
+        }
+    }
 }

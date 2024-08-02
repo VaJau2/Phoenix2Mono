@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieAllClones.ogg"
+dest_files=[ "res://.import/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

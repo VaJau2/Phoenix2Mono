@@ -67,7 +67,7 @@ public class TestingLevelsMenu : Control
 
     private void LoadLevelsList()
     {
-        var levelsData = Global.loadJsonFile("scenes/levels.json");
+        var levelsData = Global.LoadJsonFile("scenes/levels.json");
         foreach (var levelName in levelsData.Values)
         {
             levelsList.AddItem(levelName.ToString());

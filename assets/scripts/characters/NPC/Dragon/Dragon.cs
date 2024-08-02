@@ -54,9 +54,9 @@ public class Dragon: NPC
         fireAnim = fireObj.GetNode<AnimationPlayer>("fireAnim");
         audiFire = GetNode<AudioStreamPlayer3D>("audi-fire");
         mouthPos = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
-        GRAVITY = 0;
-        ROTATION_SPEED = 0.05f;
-        RAGDOLL_IMPULSE = 500;
+        Gravity = 0;
+        RotationSpeed = 0.05f;
+        RagdollImpulse = 500;
 
         await ToSignal(GetTree(), "idle_frame");
         Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
@@ -195,15 +195,15 @@ public class Dragon: NPC
     {
         if (Translation.y > newHeight + 2f)
         {
-            GRAVITY = speed;
+            Gravity = speed;
         } 
         else if (Translation.y < newHeight - 2f)
         {
-            GRAVITY = -speed;
+            Gravity = -speed;
         }
         else
         {
-            GRAVITY = 0;
+            Gravity = 0;
         }
     }
 

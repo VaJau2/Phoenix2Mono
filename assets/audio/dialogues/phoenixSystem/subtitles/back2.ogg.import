@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/back2.ogg-033e9eefb4310b654b70d06575f7ecd8.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/back2.ogg"
+dest_files=[ "res://.import/back2.ogg-033e9eefb4310b654b70d06575f7ecd8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

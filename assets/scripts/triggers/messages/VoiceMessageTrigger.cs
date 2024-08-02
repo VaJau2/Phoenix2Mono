@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
-    [Export] private bool ignorable;
-    [Export] private List<AudioStream> messages;
-    
+    [Export] private List<string> messages;
     private WarningManager warningManager;
 
     public override void _Ready()
@@ -18,7 +16,6 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
     {
         if (!IsActive) return;
         if (body is not Player) return;
-        if (ignorable && warningManager.IsMessagePlaying) return;
         
         switch (messages.Count)
         {
@@ -37,24 +34,32 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
                 break;
             }
         }
-        
-        if (!DeleteAfterTrigger) SetActive(false);
     }
 
-    public void OnMessageFinished()
+    private void OnMessageFinished()
     {
-        base._on_activate_trigger();
+        if (!DeleteAfterTrigger)
+        {
+            SetActive(true);
+        }
+        
+        _on_activate_trigger();
     }
     
     public void Connect()
     {
-        if (!DeleteAfterTrigger) return;
-        warningManager.Connect(nameof(WarningManager.MessageFinishedEvent), this, nameof(OnMessageFinished));
+        SetActive(false);
+        warningManager.Connect
+        (
+            nameof(WarningManager.MessageFinishedEvent), 
+            this, 
+            nameof(OnMessageFinished)
+        );
     }
 
     private void SendMessage(int index)
     {
-        if (warningManager.message == messages[index]) return;
+        if (warningManager.Message.code == messages[index]) return;
         warningManager.SendMessage(messages[index], this);
     }
 }

@@ -123,8 +123,8 @@ body_offset = Transform( 0.99261, -0.0830842, -0.0884455, -0.0830843, 0.0659148,
 
 [node name="Physical Bone leg_2_l" parent="player_body/Armature/Skeleton" index="4"]
 transform = Transform( 0.988591, -0.114835, 0.0972378, 0.116774, 0.993055, -0.0144673, -0.0949003, 0.0256567, 0.995156, -0.407879, 1.81045, -1.81315 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00830583, 0.0105235, 0.875439 )
-body_offset = Transform( 0.99443, -0.104098, -0.0151635, -0.00459429, 0.101012, -0.994875, 0.105097, 0.989426, 0.0999727, 0.00611064, 0.869928, -0.0988052 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00830577, 0.0105236, 0.875439 )
+body_offset = Transform( 0.99443, -0.104098, -0.0151635, -0.00459429, 0.101012, -0.994875, 0.105097, 0.989426, 0.0999727, 0.0061107, 0.869928, -0.0988052 )
 
 [node name="Physical Bone leg_1_r" parent="player_body/Armature/Skeleton" index="5"]
 transform = Transform( 0.996059, 0.0885951, 1.92467e-07, -0.0884077, 0.993937, 0.0654097, 0.00579457, -0.0651515, 0.997859, 0.287082, 1.78952, -0.756153 )
@@ -158,8 +158,8 @@ body_offset = Transform( 0.953552, 0.282868, 0.103328, 0.284503, -0.733703, -0.6
 
 [node name="Physical Bone tail_1" parent="player_body/Armature/Skeleton" index="11"]
 transform = Transform( 0.999999, -2.92882e-12, 2.38414e-07, -2.30518e-07, 0.255271, 0.966855, -6.08571e-08, -0.966869, 0.255269, 0.0147701, -0.65921, -0.115388 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9192e-07, -0.0298448, 0.637077 )
-body_offset = Transform( 0.999999, -2.35763e-07, 2.73914e-07, 2.35759e-07, -0.148897, -0.988838, 2.73915e-07, 0.988856, -0.148897, -3.7346e-07, 0.625522, 0.124371 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93783e-07, -0.0298448, 0.637077 )
+body_offset = Transform( 0.999999, -2.35763e-07, 2.73914e-07, 2.35759e-07, -0.148897, -0.988838, 2.73915e-07, 0.988856, -0.148897, -3.75323e-07, 0.625522, 0.124371 )
 
 [node name="BoneAttachment" parent="player_body/Armature/Skeleton" index="12"]
 transform = Transform( 0.99997, 0.00231773, -0.00738808, -0.00769036, 0.186103, -0.9825, -0.00090224, 0.982528, 0.186114, 6.85782e-13, 1.69933, 1.11108 )
@@ -180,6 +180,7 @@ parameters/StateMachine/playback = SubResource( 3 )
 
 [node name="smash-area" type="Area" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0494847, -1.20176 )
+collision_mask = 17
 monitorable = false
 script = ExtResource( 5 )
 

@@ -1,0 +1,63 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А теперь я говорю диалогом",
+            "config": "test",
+            "speaker": "Солдат в броне",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                }
+            ]
+        },
+        
+        "S1(1)": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Норм",
+            "speaker": "Страйкли",
+            "opposite": "Солдат в броне",
+            "next": "S2"
+        },
+        "S2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeSubtitlesCode",
+            "set": [
+                {
+                    "key": "code",
+                    "op": "set",
+                    "value": "testPain"
+                }
+            ],
+            "next": "S3"
+        },
+        "S3": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    },
+    "speakers": {
+        "Страйкли": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Солдат в броне": {
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

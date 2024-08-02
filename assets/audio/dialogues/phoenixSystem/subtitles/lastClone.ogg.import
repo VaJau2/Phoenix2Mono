@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lastClone.ogg-f18e9621af163c0ec2961c521ec34c91.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/lastClone.ogg"
+dest_files=[ "res://.import/lastClone.ogg-f18e9621af163c0ec2961c521ec34c91.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -84,8 +84,8 @@
     "modalAsk": {
         "askSell": "Sell \"#item#\" for #price# #money#?",
         "askBuy": "Buy \"#item#\" for #price# #money#?",
-        "yes": "Yes (#button#)",
-        "no": "No (#button#)",
+        "yes": "Yes",
+        "no": "No",
         "countLabel": "Count:"
     },
 

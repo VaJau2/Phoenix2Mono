@@ -65,7 +65,7 @@ public static class InterfaceLang
     //Возвращает словарь из фраз из лангового файла
     public static Dictionary GetPhrasesSection(string file, string section) 
     {
-        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
         if (data == null || !data.Contains(section)) return null;
         var sectionData = data[section] as Dictionary;
         return sectionData;
@@ -73,7 +73,7 @@ public static class InterfaceLang
 
     public static Array GetPhrasesAsArray(string file, string section)
     {
-        Dictionary data = Global.loadJsonFile("assets/lang/" + lang + "/" + file + ".json");
+        Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
         var sectionData = data?[section] as Array;
         return sectionData;
     }

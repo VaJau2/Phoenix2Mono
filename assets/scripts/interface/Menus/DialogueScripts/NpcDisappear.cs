@@ -1,10 +1,11 @@
-namespace DialogueScripts
+using Godot;
+
+namespace DialogueScripts;
+
+public class NpcDisappear : BaseChangeInNPC
 {
-    public class NpcDisappear : IDialogueScript
+    public override void initiate(Node node, string parameter, string key = "")
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
-        {
-            dialogueMenu.npc.QueueFree();
-        }
+        GetNPC(node)?.QueueFree();
     }
 }

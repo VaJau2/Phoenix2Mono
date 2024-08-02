@@ -1,11 +1,13 @@
-﻿namespace DialogueScripts
+﻿using Godot;
+
+namespace DialogueScripts;
+
+public class ChangeNpcFaceTexture : BaseChangeInNPC
 {
-    public class ChangeNpcFaceTexture : IDialogueScript
+    public override void initiate(Node node, string parameter, string key = "")
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
-        {
-            NPCFace face = dialogueMenu.npc.GetNode<NPCFace>("Armature/Skeleton/Body");
-            face?.ChangeEyesVariant(parameter);
-        }
+        GetNPC(node)?
+            .GetNode<NPCFace>("Armature/Skeleton/Body")?
+            .ChangeEyesVariant(parameter);
     }
 }

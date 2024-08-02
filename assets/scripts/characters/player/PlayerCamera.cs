@@ -193,13 +193,13 @@ public class PlayerCamera : Camera
             if (tempObject is IInteractable { MayInteract: true } interactable)
             {
                 ShowHint(interactable.InteractionHintCode);
+                return;
             }
         }
-        else
-        {
-            tempObject = null;
-            ReturnInteractionPoint();
-        }
+        
+        tempObject = null;
+        ReturnInteractionPoint();
+        
     }
 
     private void UpdateInput()

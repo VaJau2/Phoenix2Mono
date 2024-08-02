@@ -1,0 +1,11 @@
+{
+    "trade": {
+        "phrase1": {
+            "speakerCode": "mrGutsyTrader",
+            "text": "Launching the trading protocol"
+        },
+        "phrase2": {
+            "class": "Dialogue_Trade"
+        }
+    }
+}

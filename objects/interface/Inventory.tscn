@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
 [ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/scripts/interface/ButtonIcon.cs" type="Script" id=12]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Enter.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=4]
@@ -555,11 +557,21 @@ margin_left = -20.0
 margin_top = 65.0
 margin_right = 122.0
 margin_bottom = 89.0
+mouse_filter = 1
 theme = ExtResource( 3 )
 text = " Взять все"
-icon = ExtResource( 17 )
-align = 0
 expand_icon = true
+
+[node name="icon" type="TextureRect" parent="helper/back/chestBack/takeAll"]
+margin_left = 8.0
+margin_top = 2.0
+margin_right = 56.0
+margin_bottom = 34.0
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 17 )
+stretch_mode = 4
+script = ExtResource( 12 )
+key = "ui_shift"
 
 [node name="items" type="GridContainer" parent="helper/back/chestBack" groups=["ignore_color"]]
 anchor_left = 0.5
@@ -1049,7 +1061,18 @@ margin_right = 156.0
 margin_bottom = 100.0
 theme = ExtResource( 3 )
 disabled = true
-text = "Да (enter)"
+text = "Да"
+
+[node name="icon" type="TextureRect" parent="modalAsk/yes"]
+margin_left = 7.0
+margin_top = 2.0
+margin_right = 55.0
+margin_bottom = 34.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 13 )
+stretch_mode = 4
+script = ExtResource( 12 )
+key = "jump"
 
 [node name="no" type="Button" parent="modalAsk"]
 anchor_left = 1.0
@@ -1060,10 +1083,21 @@ margin_right = -64.0
 margin_bottom = 100.0
 theme = ExtResource( 3 )
 disabled = true
-text = "Нет (shift)"
+text = "Нет"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="icon" type="TextureRect" parent="modalAsk/no"]
+margin_left = 7.0
+margin_top = 2.0
+margin_right = 55.0
+margin_bottom = 34.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 17 )
+stretch_mode = 4
+script = ExtResource( 12 )
+key = "ui_shift"
 
 [node name="sliderBack" type="Control" parent="modalAsk" groups=["ignore_color"]]
 visible = false

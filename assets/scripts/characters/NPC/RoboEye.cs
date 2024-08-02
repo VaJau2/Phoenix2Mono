@@ -111,7 +111,7 @@ public class RoboEye : NPC
         anim.Play(IdleAnim);
         path = null;
         pathI = 0;
-        Velocity = new Vector3(0, MoveDown ? -GRAVITY : 0, 0);
+        Velocity = new Vector3(0, MoveDown ? -Gravity : 0, 0);
     }
 
     private void FinishGoingTo()

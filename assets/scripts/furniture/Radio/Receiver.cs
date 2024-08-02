@@ -162,7 +162,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 		Radiostation?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
 		
-		warningManager?.Disconnect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Disconnect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
 	}
 
 	public void TuneOut()
@@ -170,14 +170,14 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		Radiostation?.Disconnect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
 		Radiostation?.Disconnect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
 		
-		warningManager?.Connect(nameof(WarningManager.SendMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
 	}
 
-	public void SwitchOn(bool withSwitchSound = true)
+	public void SwitchOn(bool withSwitchSound = true, bool updateLever = true)
 	{
 		IsOn = true;
 
-		UpdateVolumeLever(global.Settings.radioVolume);
+		if (updateLever) UpdateVolumeLever(global.Settings.radioVolume);
 
 		if (Radiostation != null)
         {
@@ -187,8 +187,8 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		
 		if (warningManager is { IsMessagePlaying: true })
 		{
-			MusicPlayer.Stream = warningManager.message;
-			MusicPlayer.Play(warningManager.timer);
+			MusicPlayer.Stream = warningManager.Audio;
+			MusicPlayer.Play(warningManager.Timer);
 			return;
 		}
 
@@ -198,12 +198,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		EmitSignal(nameof(ChangeOnline), this);
 	}
 
-	public void SwitchOff(bool withSwitchSound = true)
+	public void SwitchOff(bool withSwitchSound = true, bool updateLever = true)
 	{
 		MusicPlayer.Stop();
 
 		if (withSwitchSound) PlaySwitchSound();
-		UpdateVolumeLever(minRadioVolume);
+		if (updateLever) UpdateVolumeLever(minRadioVolume);
 
 		IsOn = false;
 		EmitSignal(nameof(ChangeOnline), this);

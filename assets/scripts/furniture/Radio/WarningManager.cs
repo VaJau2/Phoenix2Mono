@@ -1,40 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
-public class WarningManager : RadioManager
+public class WarningManager : RadioManager, ISavable
 {
-    private List<Receiver> receivers = new ();
-    
-    public AudioStream message => messagePlayer.Stream;
-    private List<Message> messagesList = new ();
-    
+    [Export] private string systemName;
+    private readonly List<Receiver> receivers = [];
+
+    public WarningMessage Message { get; private set; }
+    private readonly List<WarningMessage> messageQueue = [];
+
+    public AudioStream Audio => messagePlayer.Stream;
     public bool IsMessagePlaying => messagePlayer.Playing;
-    public float timer => messagePlayer.GetPlaybackPosition();
+    public float Timer => messagePlayer.GetPlaybackPosition();
     
     private EnemiesManager enemiesManager;
     private AudioStream alarmSound;
     private bool isAlarmPlaying;
 
     private AudioStreamPlayer3D messagePlayer;
+    private Subtitles subtitles;
     
     [Signal]
-    public delegate void SendMessageEvent(AudioStream stream = null);
+    public delegate void StartMessageEvent(AudioStream stream = null);
     
     [Signal]
     public delegate void MessageFinishedEvent();
-
-    private struct Message
-    {
-        public AudioStream stream;
-        public IVoiceMessage trigger;
-
-        public Message(AudioStream _stream, IVoiceMessage _trigger)
-        {
-            stream = _stream;
-            trigger = _trigger;
-        }
-    }
     
     public override void _Ready()
     {
@@ -47,7 +40,9 @@ public class WarningManager : RadioManager
         }
 
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
-        messagePlayer.Connect("finished", this, nameof(OnMessageEnd));
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
+        subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
+        subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
         
         // alarm
         alarmSound = (AudioStream)GD.Load("res://assets/audio/background/alarm.wav");
@@ -59,12 +54,12 @@ public class WarningManager : RadioManager
         base._Ready();
     }
 
-    public void SendMessage(AudioStream stream, IVoiceMessage trigger)
+    public void SendMessage(string messageCode, VoiceMessageTrigger trigger = null)
     {
         if (messagePlayer.Playing)
         {
-            var message = new Message(stream, trigger);
-            messagesList.Add(message);
+            var message = new WarningMessage(messageCode, trigger);
+            messageQueue.Add(message);
         }
         else
         {
@@ -73,23 +68,34 @@ public class WarningManager : RadioManager
                 receiver.TuneOut();
             }
             
-            messagePlayer.Stream = stream;
-            trigger.Connect();
-            messagePlayer.Play();
-            
-            EmitSignal(nameof(SendMessageEvent), message);
+            StartMessage(messageCode, trigger);
         }
     }
+    
+    private void StartMessage(string code, VoiceMessageTrigger trigger)
+    {
+        ChangeRadioPauseMode(PauseModeEnum.Inherit);
+        trigger?.Connect();
+        
+        subtitles.SetTalker(messagePlayer, systemName)
+            .LoadSubtitlesFile(code)
+            .StartAnimatingText();
+        
+        Message = new WarningMessage(code, trigger);
+        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+    }
 
+    private void OnAudioChange()
+    {
+        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+    }
+    
     private void OnMessageEnd()
     {
-        if (messagesList.Count > 0)
+        if (messageQueue.Count > 0)
         {
-            messagePlayer.Stream = messagesList[0].stream;
-            messagesList[0].trigger.Connect();
-            messagesList.RemoveAt(0);
-            messagePlayer.Play();
-            EmitSignal(nameof(SendMessageEvent), message);
+            StartMessage(messageQueue[0].code, messageQueue[0].trigger);
+            messageQueue.RemoveAt(0);
         }
         else
         {
@@ -97,7 +103,9 @@ public class WarningManager : RadioManager
             {
                 receiver.TuneIn();
             }
-            
+
+            Message.Clear();
+            ChangeRadioPauseMode(PauseModeEnum.Process);
             EmitSignal(nameof(MessageFinishedEvent));
         }
     }
@@ -107,7 +115,7 @@ public class WarningManager : RadioManager
     {
         foreach (var receiver in receivers.Where(receiver => receiver.IsOn))
         {
-            receiver.SwitchOff();
+            receiver.SwitchOff(true, false);
             receiver.AddToGroup("Alarm Mode");
         }
     }
@@ -116,7 +124,57 @@ public class WarningManager : RadioManager
     {
         foreach (Node node in GetTree().GetNodesInGroup("Alarm Mode"))
         {
-            if (node is Receiver receiver) receiver.SwitchOn();
+            if (node is Receiver receiver) receiver.SwitchOn(true, false);
+        }
+    }
+    
+    public Dictionary GetSaveData()
+    {
+        var saveData = new Dictionary();
+
+        if (string.IsNullOrEmpty(Message.code) || Message.trigger == null)
+        {
+            return saveData;
+        }
+        
+        saveData.Add("code", Message.code);
+        saveData.Add("triggerPath", Message.trigger.GetPath());
+
+        if (messageQueue.Count == 0) return saveData;
+        
+        saveData.Add("messageQueueCount", messageQueue.Count);
+        for (int i = 0; i < messageQueue.Count; i++)
+        {
+            saveData.Add($"code{i}", messageQueue[i].code);
+            saveData.Add($"triggerPath{i}", messageQueue[i].trigger.GetPath());
+        }
+        
+        return saveData;
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (!data.Contains("code")) return;
+
+        var code = Convert.ToString(data["code"]);
+        
+        var triggerPath = Convert.ToString(data["triggerPath"]);
+        var trigger = GetNode<VoiceMessageTrigger>(triggerPath);
+        trigger.Connect();
+
+        Message = new WarningMessage(code, trigger);
+        
+        if (!data.Contains("messageQueueCount")) return;
+        
+        var messageQueueCount = Convert.ToInt32(data["messageQueueCount"]);
+        
+        for (int i = 0; i < messageQueueCount; i++)
+        {
+            var tempCode = Convert.ToString(data[$"code{i}"]);
+            var tempTriggerPath = Convert.ToString(data[$"triggerPath{i}"]);
+            var tempTrigger = GetNode<VoiceMessageTrigger>(tempTriggerPath);
+            var message = new WarningMessage(tempCode, tempTrigger);
+            messageQueue.Add(message);
         }
     }
 }

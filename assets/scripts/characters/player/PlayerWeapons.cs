@@ -292,21 +292,17 @@ public class PlayerWeapons : CollisionShape
                 character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
                 player.MakeDamage(character, shapeID);
                 ShowCrossHitted(shapeID != 0);
-                GD.Print($"{victim.Name} is character");
                 break;
             } 
             
             case PhysicalBone:
             {
-                GD.Print($"{victim.Name} is bone");
                 name = "blood";
                 break;
             }
             
             case StaticBody body:
             {
-                GD.Print($"{victim.Name} is static");
-                
                 if (body.PhysicsMaterialOverride != null)
                 {
                     name = MatNames.GetMatName(body.PhysicsMaterialOverride.Friction);
@@ -322,10 +318,7 @@ public class PlayerWeapons : CollisionShape
 
             default:
             {
-                GD.Print($"{victim.Name} is spatial");
-
                 name = "black";
-                
                 break;
             }
         }

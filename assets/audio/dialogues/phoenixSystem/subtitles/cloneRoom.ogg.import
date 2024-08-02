@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/cloneRoom.ogg"
+dest_files=[ "res://.import/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

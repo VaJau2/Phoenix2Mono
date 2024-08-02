@@ -4,14 +4,19 @@ namespace DialogueScripts
 {
     public class SetLookAtTarget : IDialogueScript
     {
-        public void initiate(DialogueMenu dialogueMenu, string parameter, string key = "")
+        public void initiate(Node node, string parameter, string key = "")
         {
-            dialogueMenu.SetLookAtTarget(
-                string.IsNullOrEmpty(parameter)
-                    ? Vector3.Zero
-                    : dialogueMenu.GetNodeOrNull<Spatial>("/root/Main/Scene/dialogueTargets/" + parameter)
-                        .GlobalTranslation
-            );
+            var dialogueMenu = node.GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+            var target = Vector3.Zero;
+
+            if (!string.IsNullOrEmpty(parameter))
+            {
+                target = node
+                    .GetNodeOrNull<Spatial>($"/root/Main/Scene/dialogueTargets/{parameter}")
+                    .GlobalTranslation;
+            }
+            
+            dialogueMenu.SetLookAtTarget(target);
         }
     }
 }
