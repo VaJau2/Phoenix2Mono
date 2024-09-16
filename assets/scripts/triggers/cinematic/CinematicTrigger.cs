@@ -5,17 +5,18 @@ public class CinematicTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath movePath;
     [Export] private NodePath rotatePath;
+    [Export] private NodePath returnPath;
 
     private readonly List<PathBase> cinematicList = [];
     
     public override void _Ready()
     {
+        InitCinematic(returnPath);
+        
+        if (cinematicList.Count > 0) return;
+        
         InitCinematic(movePath);
         InitCinematic(rotatePath);
-
-        if (cinematicList.Count > 0) return;
-
-        InitReturnToPlayer();
     }
 
     public override void _on_activate_trigger()
@@ -37,13 +38,5 @@ public class CinematicTrigger : ActivateOtherTrigger
         if (cinematic == null) return;
         
         cinematicList.Add(cinematic);
-    }
-
-    private void InitReturnToPlayer()
-    {
-        var prefab = GD.Load<PackedScene>("res://objects/cinematic/ReturnToPlayer.tscn");
-        var returnToPlayer = (PathBase)prefab.Instance();
-        AddChild(returnToPlayer);
-        cinematicList.Add(returnToPlayer);
     }
 }

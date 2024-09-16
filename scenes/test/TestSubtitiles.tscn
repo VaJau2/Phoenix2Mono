@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=1]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/materials/props/locations/MASterrianMap.material" type="Material" id=11]
 [ext_resource path="res://objects/cinematic/MoveCinematic.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/scripts/triggers/cinematic/CutsceneManager.cs" type="Script" id=13]
+[ext_resource path="res://objects/cinematic/ReturnToPlayer.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -34,10 +35,45 @@ _data = {
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Curve3D" id=10]
+[sub_resource type="Curve3D" id=14]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.57111, -0.712561, -7.15017, 0, 0, 0, 0, 0, 0, -3.59934, 3.09871, 0.834646 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.82007, -0.725437, -4.63688 ),
+"tilts": PoolRealArray( 0 )
+}
+
+[sub_resource type="Curve3D" id=12]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.57121, -0.0119658, -0.00863111, 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=11]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.0524902, 0.0185537, 0.0442524 ),
+"tilts": PoolRealArray( 0 )
+}
+
+[sub_resource type="Curve3D" id=13]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933, 0, 0, 0, 0, 0, 0, -3.59928, -0.0273476, 0.018203 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=15]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.48657, 3.06391, 3.20606 ),
+"tilts": PoolRealArray( 0 )
+}
+
+[sub_resource type="Curve3D" id=16]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.00802755, -0.00111794, 0, 0, 0, 0, 0, 0, -3.59928, 3.08364, 3.22355 ),
 "tilts": PoolRealArray( 0, 0 )
 }
 
@@ -53,7 +89,7 @@ ammo = {
 }
 
 [node name="assistantApple" parent="Scene/npc" index="0" instance=ExtResource( 10 )]
-transform = Transform( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.49685 )
+transform = Transform( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.94215 )
 IsImmortal = true
 subtitlesCode = "briefing"
 
@@ -146,7 +182,7 @@ movePath = NodePath("MoveCinematic")
 [node name="MoveCinematic" parent="Scene/cutscenes/Test/test" index="0" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411 )
 curve = SubResource( 9 )
-rotationMode = 4
+rotationMode = 2
 cameraAngle = Vector3( 0, 180, 0 )
 
 [node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Test" index="1"]
@@ -163,28 +199,68 @@ DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.483, 4.60729, 2.98575 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
+speed = 0.3
 cameraAngle = Vector3( 0, 90, 0 )
 
-[node name="vent" type="Node" parent="Scene/cutscenes/Briefing" index="1"]
+[node name="vent1" type="Node" parent="Scene/cutscenes/Briefing" index="1"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("MoveCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent1" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
+curve = SubResource( 14 )
+speed = 0.5
+cameraAngle = Vector3( 0, 90, 0 )
+
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent1" index="1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+curve = SubResource( 12 )
+speed = 0.4
+
+[node name="vent2" type="Node" parent="Scene/cutscenes/Briefing" index="2"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("MoveCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent2" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 4, 0 )
+curve = SubResource( 11 )
+speed = 0.3
+cameraAngle = Vector3( 0, 90, 0 )
+
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent2" index="1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+curve = SubResource( 13 )
+speed = 0.3
+
+[node name="vent3" type="Node" parent="Scene/cutscenes/Briefing" index="3"]
 script = ExtResource( 1 )
 DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 rotatePath = NodePath("RotateCinematic")
 
-[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2638, 4.60729, 2.98575 )
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent3" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
+curve = SubResource( 15 )
+speed = 0.3
 cameraAngle = Vector3( 0, 90, 0 )
 
-[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent" index="1" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2638, 4.60729, 2.98575 )
-curve = SubResource( 10 )
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent3" index="1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+curve = SubResource( 16 )
+speed = 0.3
 
-[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Briefing" index="2"]
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Briefing" index="4"]
 script = ExtResource( 1 )
 DeleteAfterTrigger = false
 movePath = NodePath("")
 rotatePath = NodePath("")
+returnPath = NodePath("ReturnToPlayer")
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/Briefing/returnToPlayer" index="0" instance=ExtResource( 14 )]
+playerHeadTimer = 1.0
 
 [node name="triggers" type="Node" parent="Scene" index="9"]
 

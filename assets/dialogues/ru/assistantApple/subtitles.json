@@ -14,30 +14,45 @@
         "overall1":
         {
             "speakerCode": "assistantApple",
-            "text": "База, на которую ты попадешь, находится в ледниках. Еще одна причина, по которой тебе действительно стоит надеть снаряжение от Рарити - тебе в нем будет теплее, чем без него.",
-            "timer": 0.03
+            "text": "База, на которую ты попадешь, находится в ледниках.",
+            "timer": 0.02
         },
         "overall2":
         {
             "speakerCode": "assistantApple",
             "text": "Эта база закрыта от всего мира, но в неё есть несколько ходов.",
-            "timer": 0.03
+            "timer": 0.03,
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "vent1"
         },
 
         "vent1":
         {
             "speakerCode": "assistantApple",
-            "text": "Первый - через вентиляцию. Им же нужен свежий воздух в этой их базе, верно? Найдешь вход в снегах, и у тебя будет доступ практически в любую точку в базе.",
+            "text": "Первый - через вентиляцию.",
             "timer": 0.03,
             "class": "ActivateCinematic",
             "key": "Briefing",
-            "value": "vent"
+            "value": "vent2"
         },
         "vent2":
         {
             "speakerCode": "assistantApple",
+            "text": "Найдешь вход и у тебя будет доступ практически в любую точку в базе.",
+            "timer": 0.03,
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "vent3"
+        },
+        "vent3":
+        {
+            "speakerCode": "assistantApple",
             "text": "Сложность в том, что этот ход очень хорошо укрыт в снегах. Чтобы его найти, тебе придется сильно постараться.",
-            "timer": 0.03
+            "timer": 0.03,
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "returnToPlayer"
         }
     },
     

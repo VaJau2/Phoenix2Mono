@@ -2,9 +2,10 @@ using Godot;
 
 public class MoveCinematic : PathBase
 {
-    [Export] private float speedRot = 0.2f;
+    //[Export] private float speedRot = 0.2f;
+    [Export] protected float playerHeadTimer;
     [Export] private PathFollow.RotationModeEnum rotationMode;
-    [Export] private Vector3 cameraAngle;
+    [Export] protected Vector3 cameraAngle;
 
     /*private Vector3 cameraAngleRad => new 
     (
@@ -38,16 +39,20 @@ public class MoveCinematic : PathBase
         }
         
         base._PhysicsProcess(delta);
-        GD.Print($"current camera pos: {cutsceneManager.GetCamera().GlobalTranslation}");
     }*/
     
     public override void Enable()
     {
         cutsceneManager.SetCameraParent(pathFollow);
+        cutsceneManager.ShowPlayerHead(playerHeadTimer);
         cutsceneManager.ChangeCameraAngle(cameraAngle);
-        var startLocalPos = cutsceneManager.GetCamera().GlobalTranslation - GlobalTranslation;
-        Curve.AddPoint(startLocalPos, null, null, 0);
+
+        var cameraLocalPos = cutsceneManager.GetCamera().GlobalTranslation - GlobalTranslation;
+        Curve.AddPoint(cameraLocalPos, null, null, 0);
+        cutsceneManager.GetCamera().Translation = Vector3.Zero;
+        
         ResetPathFollow();
+        
         base.Enable();
     }
 
@@ -59,7 +64,7 @@ public class MoveCinematic : PathBase
         ResetPathFollow();
     }
 
-    private void ResetPathFollow()
+    protected void ResetPathFollow()
     {
         pathFollow.UnitOffset = 0;
         pathFollow.Rotation = Vector3.Zero;
