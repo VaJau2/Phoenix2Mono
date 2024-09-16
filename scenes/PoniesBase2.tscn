@@ -89,7 +89,7 @@
 [ext_resource path="res://objects/props/buildings/base-houses/kazarma.tscn" type="PackedScene" id=87]
 [ext_resource path="res://objects/props/doors/door2.tscn" type="PackedScene" id=88]
 [ext_resource path="res://objects/props/furniture/bed-2.tscn" type="PackedScene" id=89]
-[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=90]
+[ext_resource path="res://assets/scripts/furniture/Room/Room.cs" type="Script" id=90]
 [ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet107.png" type="Texture" id=91]
 [ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet109.png" type="Texture" id=92]
 [ext_resource path="res://assets/textures/props/furniture/cabinet-tables/cabinet104.png" type="Texture" id=93]
@@ -107,7 +107,8 @@
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=105]
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=106]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=107]
-[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=108]
+[ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=108]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )

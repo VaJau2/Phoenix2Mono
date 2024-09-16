@@ -38,7 +38,7 @@
     },
     "phrase3": {
       "speakerCode": "test",
-      "text": "Теперь твои чертежи нифега",
+      "text": "Теперь твои чертежи нифега не стоят",
       "class": "ChangeItemName",
       "key": "Quest_blueprints",
       "value": "blueprints"
@@ -48,6 +48,20 @@
       "text": "Зато теперь активна кнопка",
       "class": "SetTriggerActive",
       "value": "ChangeSubtitlesTrigger"
+    }
+  },
+
+  "cinematicTest": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Ты ща ахуеешь",
+      "class": "ActivateCinematic",
+      "key": "Test",
+      "value": "test"
+    },
+    "phrase2": {
+      "class": "ChangeSubtitlesCode",
+      "value": "cinematicTest"
     }
   }
 }

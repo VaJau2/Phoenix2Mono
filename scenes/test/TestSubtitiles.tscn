@@ -1,22 +1,45 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=20 format=2]
 
+[ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=1]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=2]
 [ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/triggers/ChangeSubtitlesTrigger.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://objects/props/Button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/cinematic/RotateCinematic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/materials/props/locations/MASfloorMap.material" type="Material" id=9]
+[ext_resource path="res://objects/characters/robots/m6/assistantApple.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/materials/props/locations/MASterrianMap.material" type="Material" id=11]
+[ext_resource path="res://objects/cinematic/MoveCinematic.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/scripts/triggers/cinematic/CutsceneManager.cs" type="Script" id=13]
 
 [sub_resource type="PlaneMesh" id=1]
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 50, 0.1, 50 )
 
+[sub_resource type="PlaneMesh" id=8]
+
 [sub_resource type="NavigationMesh" id=5]
 vertices = PoolVector3Array( 42, -0.49967, 48.25, 48.25, -0.49967, 48.25, 48.25, -0.49967, 42, -48.25, -0.49967, 42, -48.25, -0.49967, 48.25, -36.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 48.25, -0.49967, -48.25, 42, -0.49967, -48.25, 36, -0.49967, 48.25, 42, -0.49967, 48.25, 48.25, -0.49967, 42, -36.25, -0.49967, -48.25, -48.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 36, -48.25, -0.49967, 42, -36.25, -0.49967, 48.25, -24.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 42, -0.49967, -48.25, 36, -0.49967, -48.25, 48.25, -0.49967, -24.25, 36, -0.49967, 48.25, 48.25, -0.49967, 42, 48.25, -0.49967, 36, 24, -0.49967, 48.25, -24.25, -0.49967, -48.25, -36.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 24, -6.25, -0.49967, 48.25, 0, -0.49967, 48.25, -48.25, -0.49967, 12, 0, -0.49967, -48.25, -6.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, -12.25, 48.25, -0.49967, 0, 48.25, -0.49967, -6.25, 24, -0.49967, -48.25, 12, -0.49967, -48.25, -24.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, -24.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, 24, -48.25, -0.49967, 36, -24.25, -0.49967, 48.25, -12.25, -0.49967, 48.25, 48.25, -0.49967, -24.25, 36, -0.49967, -48.25, 24, -0.49967, -48.25, 48.25, -0.49967, -12.25, 24, -0.49967, 48.25, 48.25, -0.49967, 36, 48.25, -0.49967, 24, 12, -0.49967, 48.25, 48.25, -0.49967, 0, 0, -0.49967, -48.25, -48.25, -0.49967, 0, -48.25, -0.49967, 12, 0, -0.49967, 48.25, 48.25, -0.49967, 12, 0, -0.49967, -48.25, -48.25, -0.49967, -12.25, -48.25, -0.49967, -6.25, 48.25, -0.49967, 0, 12, -0.49967, -48.25, 0, -0.49967, -48.25, 0, -0.49967, -48.25, -48.25, -0.49967, -6.25, -48.25, -0.49967, 0, -6.25, -0.49967, -48.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, 24, -12.25, -0.49967, 48.25, -6.25, -0.49967, 48.25, 48.25, -0.49967, -6.25, 48.25, -0.49967, -12.25, 24, -0.49967, -48.25, 12, -0.49967, 48.25, 48.25, -0.49967, 24, 48.25, -0.49967, 12, 0, -0.49967, 48.25 )
 polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 16, 15, 17 ), PoolIntArray( 17, 15, 18 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 21, 19, 22 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 35, 34, 36 ), PoolIntArray( 36, 34, 37 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 45 ), PoolIntArray( 47, 46, 48 ), PoolIntArray( 48, 46, 49 ), PoolIntArray( 51, 50, 52 ), PoolIntArray( 52, 50, 53 ), PoolIntArray( 55, 54, 56 ), PoolIntArray( 56, 54, 57 ), PoolIntArray( 63, 62, 58 ), PoolIntArray( 58, 62, 61 ), PoolIntArray( 58, 61, 60 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 66, 65, 64 ), PoolIntArray( 69, 68, 67 ), PoolIntArray( 72, 71, 70 ), PoolIntArray( 75, 74, 73 ), PoolIntArray( 78, 77, 76 ), PoolIntArray( 81, 80, 79 ), PoolIntArray( 83, 82, 84 ), PoolIntArray( 84, 82, 85 ) ]
 agent_height = 4.0
 agent_radius = 1.55
+
+[sub_resource type="Curve3D" id=9]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( -6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=10]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.57111, -0.712561, -7.15017, 0, 0, 0, 0, 0, 0, -3.59934, 3.09871, 0.834646 ),
+"tilts": PoolRealArray( 0, 0 )
+}
 
 [node name="Main" instance=ExtResource( 3 )]
 
@@ -29,10 +52,15 @@ ammo = {
 "ammo762": 20
 }
 
-[node name="test" parent="Scene/npc" index="0" instance=ExtResource( 4 )]
+[node name="assistantApple" parent="Scene/npc" index="0" instance=ExtResource( 10 )]
+transform = Transform( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.49685 )
+IsImmortal = true
+subtitlesCode = "briefing"
+
+[node name="test" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
 transform = Transform( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
 IdleAnim = "Idle1"
-subtitlesCode = "testPhrase"
+subtitlesCode = "cinematicTest"
 weaponCode = "revolver32"
 
 [node name="terrain" type="StaticBody" parent="Scene" index="4"]
@@ -85,13 +113,80 @@ transform = Transform( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0 
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("../../triggers/ChangeSubtitlesTrigger") ]
 
+[node name="map" type="MeshInstance" parent="Scene/terrain" index="8"]
+transform = Transform( -1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.35565, -2.05938e-07, 9.00184e-15, -47.9088, 5.42532, -0.0465126 )
+cast_shadow = 0
+mesh = SubResource( 8 )
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 9 )
+
+[node name="map2" type="MeshInstance" parent="Scene/terrain" index="9"]
+transform = Transform( -1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799 )
+cast_shadow = 0
+mesh = SubResource( 8 )
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 11 )
+
 [node name="Navigation" type="Navigation" parent="Scene" index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
 
 [node name="mesh" type="NavigationMeshInstance" parent="Scene/Navigation" index="0"]
 navmesh = SubResource( 5 )
 
-[node name="triggers" type="Node" parent="Scene" index="8"]
+[node name="cutscenes" type="Node" parent="Scene" index="8"]
+script = ExtResource( 13 )
+
+[node name="Test" type="Node" parent="Scene/cutscenes" index="0"]
+
+[node name="test" type="Node" parent="Scene/cutscenes/Test" index="0"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("MoveCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Test/test" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411 )
+curve = SubResource( 9 )
+rotationMode = 4
+cameraAngle = Vector3( 0, 180, 0 )
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Test" index="1"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("")
+rotatePath = NodePath("")
+
+[node name="Briefing" type="Node" parent="Scene/cutscenes" index="1"]
+
+[node name="overall" type="Node" parent="Scene/cutscenes/Briefing" index="0"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("MoveCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.483, 4.60729, 2.98575 )
+cameraAngle = Vector3( 0, 90, 0 )
+
+[node name="vent" type="Node" parent="Scene/cutscenes/Briefing" index="1"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("MoveCinematic")
+rotatePath = NodePath("RotateCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2638, 4.60729, 2.98575 )
+cameraAngle = Vector3( 0, 90, 0 )
+
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent" index="1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2638, 4.60729, 2.98575 )
+curve = SubResource( 10 )
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Briefing" index="2"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("")
+rotatePath = NodePath("")
+
+[node name="triggers" type="Node" parent="Scene" index="9"]
 
 [node name="ChangeSubtitlesTrigger" type="Node" parent="Scene/triggers" index="0"]
 script = ExtResource( 5 )
@@ -99,4 +194,4 @@ DeleteAfterTrigger = false
 otherTriggerPaths = [  ]
 disactiveTriggerPaths = [  ]
 npcPath = NodePath("../../npc/test")
-newSubtitlesCode = "testPhrase"
+newSubtitlesCode = "cinematicTest"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vent1.mp3-e0373cb03c64da3dcc0421ecd62b6da0.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantApple/subtitles/vent1.mp3"
+dest_files=[ "res://.import/vent1.mp3-e0373cb03c64da3dcc0421ecd62b6da0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
