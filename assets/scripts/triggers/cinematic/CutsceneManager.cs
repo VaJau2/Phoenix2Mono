@@ -62,7 +62,7 @@ public class CutsceneManager : Node
     public async void ShowPlayerHead(float showPlayerHeadTimer)
     {
         if (showPlayerHeadTimer == 0) return;
-        if (!wasThirdView) return;
+        if (wasThirdView) return;
         
         await Global.Get().ToTimer(showPlayerHeadTimer);
         

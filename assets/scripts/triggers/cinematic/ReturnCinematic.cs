@@ -2,12 +2,12 @@ using Godot;
 
 public class ReturnCinematic : MoveCinematic
 {
-    private SpatialCache cameraCache;
+    private SpatialCache playerCameraCache;
 
     public override void Enable()
     {
-        cameraCache = cutsceneManager.GetPlayerCameraData();
-        var playerLocalPos = cameraCache.Pos - GlobalTranslation;
+        playerCameraCache = cutsceneManager.GetPlayerCameraData();
+        var playerLocalPos = playerCameraCache.Pos - GlobalTranslation;
         Curve.AddPoint(playerLocalPos);
         Curve.RemovePoint(0);
         
