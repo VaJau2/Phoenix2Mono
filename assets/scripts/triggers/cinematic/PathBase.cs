@@ -6,6 +6,9 @@ public class PathBase : Path
     
     protected PathFollow pathFollow;
     
+    [Signal]
+    public delegate void Finished();
+    
     public override void _Ready()
     {
         pathFollow = GetNode<PathFollow>("PathFollow");
@@ -20,10 +23,7 @@ public class PathBase : Path
         {
             pathFollow.UnitOffset = newOffset;
         }
-        else
-        {
-            Disable();
-        }
+        else Disable();
     }
 
     public virtual void Enable()

@@ -2,18 +2,18 @@ using Godot;
 
 public class MoveCinematic : PathBase
 {
-    //[Export] private float speedRot = 0.2f;
+    [Export] private float speedRot = 0.2f;
     [Export] protected float playerHeadTimer;
     [Export] private PathFollow.RotationModeEnum rotationMode;
     [Export] private Vector3 cameraAngle;
     [Export] protected bool smoothTransition = true;
 
-    /*private Vector3 cameraAngleRad => new 
+    private Vector3 cameraAngleRad => new 
     (
         Mathf.Deg2Rad(cameraAngle.x), 
         Mathf.Deg2Rad(cameraAngle.y), 
         Mathf.Deg2Rad(cameraAngle.z)
-    );*/
+    );
     
     protected CutsceneManager cutsceneManager;
     
@@ -27,15 +27,22 @@ public class MoveCinematic : PathBase
 
     /*public override void _PhysicsProcess(float delta)
     {
-        if (cinematicCamera.Rotation != cameraAngleRad)
+        var camera = cutsceneManager.GetCamera();
+        GD.Print($"Camera: {camera.GlobalRotation}. Target angle: {cameraAngleRad}");
+        
+        if (camera.GlobalRotation != cameraAngleRad)
         {
-            if (cinematicCamera.Rotation.AngleTo(cameraAngleRad) > 0.1f)
+            if (camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.1f)
             {
-                cinematicCamera.Rotation.Rotated(cameraAngleRad.Normalized(), delta * speedRot);
+                var from = camera.GlobalRotation.Normalized();
+                var to = cameraAngleRad.Normalized();
+                
+                GD.Print(from.Slerp(to, delta * speedRot));
+                camera.GlobalRotation = camera.GlobalRotation.Rotated(cameraAngleRad.Normalized(), delta * speedRot);
             }
             else
             {
-                cinematicCamera.Rotation = cameraAngleRad;
+                camera.GlobalRotation = cameraAngleRad;
             }
         }
         
@@ -68,5 +75,7 @@ public class MoveCinematic : PathBase
         base.Disable();
         if (smoothTransition) Curve.RemovePoint(0);
         cutsceneManager.SetCameraParent(null);
+        
+        EmitSignal(nameof(Finished));
     }
 }

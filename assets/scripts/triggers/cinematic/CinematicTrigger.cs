@@ -7,16 +7,36 @@ public class CinematicTrigger : ActivateOtherTrigger
     [Export] private NodePath rotatePath;
     [Export] private NodePath returnPath;
 
+    private MoveCinematic moveCinematic;
+    private RotateCinematic rotateCinematic;
+    
     private readonly List<PathBase> cinematicList = [];
     
     public override void _Ready()
     {
-        InitCinematic(returnPath);
+        InitCinematic<ReturnCinematic>(returnPath);
         
         if (cinematicList.Count > 0) return;
-        
-        InitCinematic(movePath);
-        InitCinematic(rotatePath);
+
+        moveCinematic = InitCinematic<MoveCinematic>(movePath);
+        rotateCinematic = InitCinematic<RotateCinematic>(rotatePath);
+
+        if (moveCinematic != null && rotateCinematic != null)
+        {
+            moveCinematic.Connect(
+                nameof(PathBase.Finished), 
+                rotateCinematic,
+                nameof(rotateCinematic.OnFinished)
+            );
+        }
+        else
+        {
+            rotateCinematic?.Connect(
+                nameof(PathBase.Finished), 
+                rotateCinematic, 
+                nameof(rotateCinematic.OnFinished)
+            );
+        }
     }
 
     public override void _on_activate_trigger()
@@ -29,14 +49,12 @@ public class CinematicTrigger : ActivateOtherTrigger
         }
     }
 
-    private void InitCinematic(NodePath path)
+    private T InitCinematic<T>(NodePath path) where T : class
     {
-        if (path == null) return;
+        if (path == null) return null;
 
-        var cinematic = GetNodeOrNull<PathBase>(path);
-
-        if (cinematic == null) return;
-        
+        var cinematic = GetNode<PathBase>(path);
         cinematicList.Add(cinematic);
+        return cinematic as T;
     }
 }

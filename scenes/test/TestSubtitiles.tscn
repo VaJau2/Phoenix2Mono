@@ -190,6 +190,11 @@ script = ExtResource( 1 )
 DeleteAfterTrigger = false
 movePath = NodePath("")
 rotatePath = NodePath("")
+returnPath = NodePath("ReturnToPlayer")
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/Test/returnToPlayer" index="0" instance=ExtResource( 14 )]
+playerHeadTimer = 2.2
+cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="Briefing" type="Node" parent="Scene/cutscenes" index="1"]
 
@@ -218,7 +223,7 @@ cameraAngle = Vector3( 0, 90, 0 )
 [node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent1" index="1" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
 curve = SubResource( 12 )
-speed = 0.4
+speed = 1.0
 
 [node name="vent2" type="Node" parent="Scene/cutscenes/Briefing" index="2"]
 script = ExtResource( 1 )
