@@ -5,7 +5,8 @@ public class MoveCinematic : PathBase
     //[Export] private float speedRot = 0.2f;
     [Export] protected float playerHeadTimer;
     [Export] private PathFollow.RotationModeEnum rotationMode;
-    [Export] protected Vector3 cameraAngle;
+    [Export] private Vector3 cameraAngle;
+    [Export] protected bool smoothTransition = true;
 
     /*private Vector3 cameraAngleRad => new 
     (
@@ -43,21 +44,29 @@ public class MoveCinematic : PathBase
     
     public override void Enable()
     {
-        cutsceneManager.SetCameraParent(pathFollow);
+        OnEnable();
         cutsceneManager.ShowPlayerHead(playerHeadTimer);
+    }
+
+    protected void OnEnable()
+    {
+        cutsceneManager.SetCameraParent(pathFollow);
         cutsceneManager.ChangeCameraAngle(cameraAngle);
 
-        var cameraLocalPos = cutsceneManager.GetCamera().GlobalTranslation - GlobalTranslation;
-        Curve.AddPoint(cameraLocalPos, null, null, 0);
-        cutsceneManager.GetCamera().Translation = Vector3.Zero;
+        if (smoothTransition)
+        {
+            var cameraLocalPos = cutsceneManager.GetCamera().GlobalTranslation - GlobalTranslation;
+            Curve.AddPoint(cameraLocalPos, null, null, 0);
+        }
         
+        cutsceneManager.GetCamera().Translation = Vector3.Zero;
         base.Enable();
     }
 
     protected override void Disable()
     {
         base.Disable();
-        Curve.RemovePoint(0);
+        if (smoothTransition) Curve.RemovePoint(0);
         cutsceneManager.SetCameraParent(null);
     }
 }

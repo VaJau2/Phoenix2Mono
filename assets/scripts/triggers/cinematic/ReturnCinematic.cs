@@ -11,15 +11,13 @@ public class ReturnCinematic : MoveCinematic
         Curve.AddPoint(playerLocalPos);
         Curve.RemovePoint(0);
         
-        cutsceneManager.SetCameraParent(pathFollow);
-        cutsceneManager.HidePlayerHead(playerHeadTimer);
-        cutsceneManager.ChangeCameraAngle(cameraAngle);
+        OnEnable();
 
-        var cameraLocalPos = cutsceneManager.GetCamera().GlobalTranslation - GlobalTranslation;
-        Curve.AddPoint(cameraLocalPos, null, null, 0);
-        cutsceneManager.GetCamera().Translation = Vector3.Zero;
-        
-        SetPhysicsProcess(true);
+        if (smoothTransition)
+        {
+            cutsceneManager.HidePlayerHead(playerHeadTimer);
+        }
+        else Disable();
     }
 
     protected override void Disable()
