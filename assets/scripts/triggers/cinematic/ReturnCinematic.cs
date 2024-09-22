@@ -19,15 +19,13 @@ public class ReturnCinematic : MoveCinematic
         Curve.AddPoint(cameraLocalPos, null, null, 0);
         cutsceneManager.GetCamera().Translation = Vector3.Zero;
         
-        ResetPathFollow();
-        
         SetPhysicsProcess(true);
     }
 
     protected override void Disable()
     {
+        base.Disable();
         Curve.RemovePoint(Curve.GetPointCount() - 1);
         cutsceneManager.ReturnPlayerCamera();
-        base.Disable();
     }
 }

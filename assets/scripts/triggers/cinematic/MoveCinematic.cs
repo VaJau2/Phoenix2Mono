@@ -51,8 +51,6 @@ public class MoveCinematic : PathBase
         Curve.AddPoint(cameraLocalPos, null, null, 0);
         cutsceneManager.GetCamera().Translation = Vector3.Zero;
         
-        ResetPathFollow();
-        
         base.Enable();
     }
 
@@ -61,12 +59,5 @@ public class MoveCinematic : PathBase
         base.Disable();
         Curve.RemovePoint(0);
         cutsceneManager.SetCameraParent(null);
-        ResetPathFollow();
-    }
-
-    protected void ResetPathFollow()
-    {
-        pathFollow.UnitOffset = 0;
-        pathFollow.Rotation = Vector3.Zero;
     }
 }

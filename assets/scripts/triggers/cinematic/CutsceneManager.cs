@@ -95,6 +95,8 @@ public class CutsceneManager : Node
         cutsceneCamera = null;
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
+        player.Camera.isUpdating = true;
+        player.MayRotateHead = true;
         player.SetMayMove(true);
         playerCameraCache = null;
     }
@@ -116,6 +118,9 @@ public class CutsceneManager : Node
         );
         
         player.SetMayMove(false);
+        player.MayRotateHead = false;
+        player.Camera.isUpdating = false;
+        
         playerCamera.Current = false;
         cutsceneCamera.Current = true;
     }

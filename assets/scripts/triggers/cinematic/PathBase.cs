@@ -28,6 +28,8 @@ public class PathBase : Path
 
     public virtual void Enable()
     {
+        pathFollow.UnitOffset = 0;
+        pathFollow.Rotation = Vector3.Zero;
         SetPhysicsProcess(true);
     }
 
