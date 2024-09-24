@@ -2,18 +2,13 @@ using Godot;
 
 public class MoveCinematic : PathBase
 {
-    [Export] private float speedRot = 0.2f;
+    [Export] private float speedRot = 1f;
     [Export] protected float playerHeadTimer;
     [Export] private PathFollow.RotationModeEnum rotationMode;
     [Export] private Vector3 cameraAngle;
     [Export] protected bool smoothTransition = true;
 
-    private Vector3 cameraAngleRad => new 
-    (
-        Mathf.Deg2Rad(cameraAngle.x), 
-        Mathf.Deg2Rad(cameraAngle.y), 
-        Mathf.Deg2Rad(cameraAngle.z)
-    );
+    protected Vector3 cameraAngleRad;
     
     protected CutsceneManager cutsceneManager;
     
@@ -23,31 +18,26 @@ public class MoveCinematic : PathBase
         pathFollow.RotationMode = rotationMode;
 
         cutsceneManager = GetNode<CutsceneManager>("../../..");
+        cameraAngleRad = new Vector3(
+            Mathf.Deg2Rad(cameraAngle.x),
+            Mathf.Deg2Rad(cameraAngle.y),
+            Mathf.Deg2Rad(cameraAngle.z)
+        );
     }
 
-    /*public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         var camera = cutsceneManager.GetCamera();
-        GD.Print($"Camera: {camera.GlobalRotation}. Target angle: {cameraAngleRad}");
         
         if (camera.GlobalRotation != cameraAngleRad)
         {
-            if (camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.1f)
-            {
-                var from = camera.GlobalRotation.Normalized();
-                var to = cameraAngleRad.Normalized();
-                
-                GD.Print(from.Slerp(to, delta * speedRot));
-                camera.GlobalRotation = camera.GlobalRotation.Rotated(cameraAngleRad.Normalized(), delta * speedRot);
-            }
-            else
-            {
-                camera.GlobalRotation = cameraAngleRad;
-            }
+            camera.GlobalRotation = camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.0001f 
+                ? camera.GlobalRotation.LinearInterpolate(cameraAngleRad, delta * speedRot) 
+                : cameraAngleRad;
         }
         
         base._PhysicsProcess(delta);
-    }*/
+    }
     
     public override void Enable()
     {
@@ -58,7 +48,6 @@ public class MoveCinematic : PathBase
     protected void OnEnable()
     {
         cutsceneManager.SetCameraParent(pathFollow);
-        cutsceneManager.ChangeCameraAngle(cameraAngle);
 
         if (smoothTransition)
         {

@@ -82,11 +82,6 @@ public class CutsceneManager : Node
         player.RotationHelperThird.firstCamera.Current = false;
         cutsceneCamera.Current = true;
     }
-
-    public void ChangeCameraAngle(Vector3 angleInDegrees)
-    {
-        cutsceneCamera.Rotation = angleInDegrees * Mathf.Pi / 180;
-    }
     
     public void ReturnPlayerCamera()
     {

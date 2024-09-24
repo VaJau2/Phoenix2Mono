@@ -7,6 +7,8 @@ public class ReturnCinematic : MoveCinematic
     public override void Enable()
     {
         playerCameraCache = cutsceneManager.GetPlayerCameraData();
+        cameraAngleRad = playerCameraCache.Rot;
+        
         var playerLocalPos = playerCameraCache.Pos - GlobalTranslation;
         Curve.AddPoint(playerLocalPos);
         Curve.RemovePoint(0);

@@ -206,6 +206,7 @@ movePath = NodePath("MoveCinematic")
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
 speed = 0.3
+speedRot = 2.0
 playerHeadTimer = 0.1
 cameraAngle = Vector3( 0, 90, 0 )
 
