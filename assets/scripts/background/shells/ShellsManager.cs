@@ -26,14 +26,10 @@ public class ShellsManager : Spatial, ISavable
         {
             savingData.Add(shell.Name, new Dictionary
             {
-                {"meshPath", shell.Mesh.ResourcePath },
-                {"pos_x", shell.GlobalTransform.origin.x},
-                {"pos_y", shell.GlobalTransform.origin.y},
-                {"pos_z", shell.GlobalTransform.origin.z},
-                {"rot_x", shell.GlobalTransform.basis.GetEuler().x},
-                {"rot_y", shell.GlobalTransform.basis.GetEuler().y},
-                {"rot_z", shell.GlobalTransform.basis.GetEuler().z},
-                {"scale", shell.Scale.x }
+                { "meshPath", shell.Mesh.ResourcePath },
+                { "pos", shell.GlobalTransform.origin },
+                { "rot", shell.GlobalTransform.basis.GetEuler() },
+                { "scale", shell.Scale.x }
             });
         }
         return savingData;
@@ -52,8 +48,8 @@ public class ShellsManager : Spatial, ISavable
 
     private void LoadShell(Dictionary shellData)
     {
-        Vector3 newPos = new Vector3(Convert.ToSingle(shellData["pos_x"]), Convert.ToSingle(shellData["pos_y"]), Convert.ToSingle(shellData["pos_z"]));
-        Vector3 newRot = new Vector3(Convert.ToSingle(shellData["rot_x"]), Convert.ToSingle(shellData["rot_y"]), Convert.ToSingle(shellData["rot_z"]));
+        Vector3 newPos = shellData["pos"].ToString().ParseToVector3();
+        Vector3 newRot = shellData["rot"].ToString().ParseToVector3();
         float scaleValue = Convert.ToSingle(shellData["scale"]);
         Vector3 newScale = new Vector3(scaleValue, scaleValue, scaleValue);
 

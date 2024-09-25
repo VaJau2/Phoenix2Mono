@@ -65,7 +65,7 @@ public abstract class Character : KinematicBody, ISavable
     
     protected void HandleImpulse() 
     {
-        if(impulse.Length() > 0)
+        if (impulse.Length() > 0)
         {
             Velocity += impulse;
             Vector3 newImpulse = impulse;
@@ -82,31 +82,15 @@ public abstract class Character : KinematicBody, ISavable
         EmitSignal(nameof(ChangeMayMove));
     }
 
-    protected Dictionary Vector3ToSave(Vector3 vector, string prefix)
-        => new Dictionary
-        {
-            {$"{prefix}_x", vector.x},
-            {$"{prefix}_y", vector.y},
-            {$"{prefix}_z", vector.z}
-        };
-
-    protected Vector3 SaveToVector3(Dictionary data, string prefix)
-        => new Vector3(
-            Convert.ToSingle(data[$"{prefix}_x"]), 
-            Convert.ToSingle(data[$"{prefix}_y"]), 
-            Convert.ToSingle(data[$"{prefix}_z"])
-        );
-
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
     public virtual Dictionary GetSaveData() 
     {
-        Dictionary savingData = new Dictionary
+        var savingData = new Dictionary
         {
-            {"health", Health},
+            { "health", Health },
+            { "pos", GlobalTransform.origin },
+            { "rot", GlobalTransform.basis.GetEuler() }
         };
-
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.origin, "pos"));
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.basis.GetEuler(), "rot"));
 
         return savingData;
     }
@@ -114,15 +98,15 @@ public abstract class Character : KinematicBody, ISavable
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public virtual void LoadData(Dictionary data)
     {
-        Vector3 newPos = SaveToVector3(data, "pos");
-        Vector3 newRot = SaveToVector3(data, "rot");
-        Vector3 oldScale = Scale;
+        var newPos = data["pos"].ToString().ParseToVector3();
+        var newRot = data["rot"].ToString().ParseToVector3();
+        var oldScale = Scale;
 
-        Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
+        var newBasis = new Basis(newRot);
+        var newTransform = new Transform(newBasis, newPos);
         GlobalTransform = newTransform;
         Scale = oldScale;
 
-        Health = Convert.ToInt32(data["health"]);
+        Health = (int)data["health"];
     }
 }
