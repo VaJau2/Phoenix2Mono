@@ -5,8 +5,9 @@ public class MoveCinematic : AbstractMoveCinematic
     [Export] private PathFollow.RotationModeEnum rotationMode;
     [Export] private Vector3 cameraAngle;
     
-    public override void Enable()
+    public override void _Ready()
     {
+        base._Ready();
         pathFollow.RotationMode = rotationMode;
         
         cameraAngleRad = new Vector3(
@@ -14,8 +15,6 @@ public class MoveCinematic : AbstractMoveCinematic
             Mathf.Deg2Rad(cameraAngle.y),
             Mathf.Deg2Rad(cameraAngle.z)
         );
-        
-        base.Enable();
     }
 
     protected override void Disable()

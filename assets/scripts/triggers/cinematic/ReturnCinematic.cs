@@ -1,21 +1,21 @@
-using Godot;
-
 public class ReturnCinematic : AbstractMoveCinematic
 {
-    private SpatialCache playerCameraCache;
-
     public override void Enable()
     {
-        playerCameraCache = cutsceneManager.GetPlayerCameraData();
+        if (!smoothTransition) Disable();
+        
+        var playerCameraCache = cutsceneManager.GetPlayerCameraData();
         cameraAngleRad = playerCameraCache.Rot;
         
         var playerLocalPos = playerCameraCache.Pos - GlobalTranslation;
         Curve.AddPoint(playerLocalPos);
-        Curve.RemovePoint(0);
         
         base.Enable();
-
-        if (!smoothTransition) Disable();
+        
+        if (Curve.GetPointCount() > 2)
+        {
+            Curve.RemovePoint(1);
+        }
     }
 
     protected override void Disable()

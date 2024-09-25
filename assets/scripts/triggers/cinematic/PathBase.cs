@@ -1,6 +1,7 @@
 using Godot;
+using Godot.Collections;
 
-public class PathBase : Path
+public class PathBase : Path, ISavable
 {
     [Export] private float speed = 0.1f;
     
@@ -36,5 +37,20 @@ public class PathBase : Path
     protected virtual void Disable()
     {
         SetPhysicsProcess(false);
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            { "unitOffset", pathFollow.UnitOffset },
+            { "isProcess", IsPhysicsProcessing() }
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        pathFollow.UnitOffset = (float)data["unitOffset"];
+        SetPhysicsProcess((bool)data["isProcess"]);
     }
 }

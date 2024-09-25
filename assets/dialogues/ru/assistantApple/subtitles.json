@@ -53,6 +53,11 @@
             "class": "ActivateCinematic",
             "key": "Briefing",
             "value": "returnToPlayer"
+        },
+
+        "phrase3": {
+            "class": "ChangeSubtitlesCode",
+            "value": "briefing"
         }
     },
     
