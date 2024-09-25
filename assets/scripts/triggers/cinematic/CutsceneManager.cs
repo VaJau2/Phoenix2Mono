@@ -1,8 +1,10 @@
+using System;
 using Godot;
 
 public class CutsceneManager : Node
 {
     private Camera cutsceneCamera;
+    private Area area;
     
     private Player player => Global.Get().player;
     private bool wasThirdView;
@@ -59,33 +61,12 @@ public class CutsceneManager : Node
         }
     }
     
-    public async void ShowPlayerHead(float showPlayerHeadTimer)
-    {
-        if (showPlayerHeadTimer == 0) return;
-        if (wasThirdView) return;
-        
-        await Global.Get().ToTimer(showPlayerHeadTimer);
-        
-        player.RotationHelperThird.SetThirdView(true);
-        player.RotationHelperThird.thirdCamera.Current = false;
-        cutsceneCamera.Current = true;
-    }
-
-    public async void HidePlayerHead(float showPlayerHeadTimer)
-    {
-        if (showPlayerHeadTimer == 0) return;
-        if (wasThirdView) return;
-        
-        await Global.Get().ToTimer(showPlayerHeadTimer);
-        
-        player.RotationHelperThird.SetThirdView(false);
-        player.RotationHelperThird.firstCamera.Current = false;
-        cutsceneCamera.Current = true;
-    }
-    
     public void ReturnPlayerCamera()
     {
-        cutsceneCamera.Current = false;
+        area.Disconnect("body_exited", this, nameof(ShowPlayerHead));
+        area.Disconnect("body_entered", this, nameof(HidePlayerHead));
+        area.QueueFree();
+        
         cutsceneCamera.QueueFree();
         cutsceneCamera = null;
         
@@ -99,13 +80,18 @@ public class CutsceneManager : Node
     private void InitCamera()
     {
         var prefab = GD.Load<PackedScene>("res://objects/cinematic/Camera.tscn");
-        cutsceneCamera = prefab.Instance() as Camera;
-        wasThirdView = player.ThirdView;
         
-        var playerCamera = wasThirdView
-            ? player.RotationHelperThird.thirdCamera
-            : player.RotationHelperThird.firstCamera;
-
+        if (prefab.Instance() is not Camera tempCamera)
+        {
+            throw new Exception("Camera prefab is not found");
+        }
+        
+        cutsceneCamera = tempCamera;
+        cutsceneCamera.Current = true;
+        
+        wasThirdView = player.ThirdView;
+        var playerCamera = player.RotationHelperThird.GetCamera();
+        
         playerCameraCache = new SpatialCache
         (
             playerCamera.GlobalTranslation, 
@@ -115,8 +101,42 @@ public class CutsceneManager : Node
         player.SetMayMove(false);
         player.MayRotateHead = false;
         player.Camera.isUpdating = false;
+        InitHeadTrigger();
+    }
+
+    private void InitHeadTrigger()
+    {
+        var prefab = GD.Load<PackedScene>("res://objects/cinematic/HeadTrigger.tscn");
         
-        playerCamera.Current = false;
+        if (prefab.Instance() is not Area tempArea)
+        {
+            throw new Exception("Area prefab is not found");
+        }
+
+        area = tempArea;
+        AddChild(area);
+        area.GlobalTranslation = player.RotationHelperThird.firstCamera.GlobalTranslation;
+        area.Connect("body_exited", this, nameof(ShowPlayerHead));
+        area.Connect("body_entered", this, nameof(HidePlayerHead));
+    }
+    
+    private void ShowPlayerHead(Node body)
+    {
+        if (body.Name != "CinematicBody") return;
+        if (wasThirdView) return;
+        
+        player.RotationHelperThird.SetThirdView(true);
+        player.RotationHelperThird.thirdCamera.Current = false;
+        cutsceneCamera.Current = true;
+    }
+
+    private void HidePlayerHead(Node body)
+    {
+        if (body.Name != "CinematicBody") return;
+        if (wasThirdView) return;
+        
+        player.RotationHelperThird.SetThirdView(false);
+        player.RotationHelperThird.firstCamera.Current = false;
         cutsceneCamera.Current = true;
     }
 }

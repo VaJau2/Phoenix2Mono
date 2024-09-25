@@ -11,8 +11,8 @@ public class PathBase : Path
     
     public override void _Ready()
     {
-        pathFollow = GetNode<PathFollow>("PathFollow");
         SetPhysicsProcess(false);
+        pathFollow = GetNode<PathFollow>("PathFollow");
     }
     
     public override void _PhysicsProcess(float delta)

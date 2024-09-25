@@ -1,6 +1,6 @@
 using Godot;
 
-public class ReturnCinematic : MoveCinematic
+public class ReturnCinematic : AbstractMoveCinematic
 {
     private SpatialCache playerCameraCache;
 
@@ -13,13 +13,9 @@ public class ReturnCinematic : MoveCinematic
         Curve.AddPoint(playerLocalPos);
         Curve.RemovePoint(0);
         
-        OnEnable();
+        base.Enable();
 
-        if (smoothTransition)
-        {
-            cutsceneManager.HidePlayerHead(playerHeadTimer);
-        }
-        else Disable();
+        if (!smoothTransition) Disable();
     }
 
     protected override void Disable()

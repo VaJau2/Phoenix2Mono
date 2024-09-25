@@ -193,8 +193,6 @@ rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
 
 [node name="ReturnToPlayer" parent="Scene/cutscenes/Test/returnToPlayer" index="0" instance=ExtResource( 14 )]
-playerHeadTimer = 2.2
-cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="Briefing" type="Node" parent="Scene/cutscenes" index="1"]
 
@@ -207,7 +205,6 @@ movePath = NodePath("MoveCinematic")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
 speed = 0.3
 speedRot = 2.0
-playerHeadTimer = 0.1
 cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="vent1" type="Node" parent="Scene/cutscenes/Briefing" index="1"]
@@ -267,8 +264,6 @@ rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
 
 [node name="ReturnToPlayer" parent="Scene/cutscenes/Briefing/returnToPlayer" index="0" instance=ExtResource( 14 )]
-playerHeadTimer = 2.2
-cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="triggers" type="Node" parent="Scene" index="9"]
 
