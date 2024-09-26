@@ -87,9 +87,9 @@ public abstract class Character : KinematicBody, ISavable
     {
         var savingData = new Dictionary
         {
-            { "health", Health },
-            { "pos", GlobalTransform.origin },
-            { "rot", GlobalTransform.basis.GetEuler() }
+            { "pos", GlobalTranslation },
+            { "rot", GlobalRotation },
+            { "health", Health }
         };
 
         return savingData;
@@ -98,15 +98,8 @@ public abstract class Character : KinematicBody, ISavable
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public virtual void LoadData(Dictionary data)
     {
-        var newPos = data["pos"].ToString().ParseToVector3();
-        var newRot = data["rot"].ToString().ParseToVector3();
-        var oldScale = Scale;
-
-        var newBasis = new Basis(newRot);
-        var newTransform = new Transform(newBasis, newPos);
-        GlobalTransform = newTransform;
-        Scale = oldScale;
-
-        Health = (int)data["health"];
+        GlobalTranslation = data["pos"].ToString().ParseToVector3();
+        GlobalRotation = data["rot"].ToString().ParseToVector3();
+        Health = Convert.ToInt32(data["health"]);
     }
 }
