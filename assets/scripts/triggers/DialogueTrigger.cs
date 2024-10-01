@@ -13,6 +13,7 @@ public class DialogueTrigger : TriggerBase
     [Export] public NodePath afterDialoguePointPath;
     [Export] public float dialogueStartTimer;
     [Export] public string otherDialogueCode;
+    [Export] private string otherSubtitleCode;
 
     private bool isPlayerHere;
     private bool isNPCHere;
@@ -21,6 +22,7 @@ public class DialogueTrigger : TriggerBase
     private Spatial afterDialoguePoint;
 
     private DialogueMenu dialogueMenu;
+    private Subtitles subtitles;
 
     private float tempTimer;
     private int step;
@@ -30,6 +32,7 @@ public class DialogueTrigger : TriggerBase
     {
         SetProcess(false);
         dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
 
         if (dialogueStartPointPath != null)
         {
@@ -92,9 +95,13 @@ public class DialogueTrigger : TriggerBase
 
     private void ChangeNpcCode()
     {
-        if (otherDialogueCode != null)
+        if (!string.IsNullOrEmpty(otherDialogueCode))
         {
             npc.dialogueCode = otherDialogueCode;
+        }
+        else if (!string.IsNullOrEmpty(otherSubtitleCode))
+        {
+            npc.subtitlesCode = otherSubtitleCode;
         }
 
         if (npc.state != NPCState.Idle)
@@ -159,9 +166,18 @@ public class DialogueTrigger : TriggerBase
     
     private void StartTalking()
     {
-        if (!onlyChangeCode && !string.IsNullOrEmpty(npc.dialogueCode))
+        if (!onlyChangeCode)
         {
-            dialogueMenu.StartTalkingTo(npc);
+            if (!string.IsNullOrEmpty(npc.dialogueCode))
+            {
+                dialogueMenu.StartTalkingTo(npc);
+            }
+            else if (!string.IsNullOrEmpty(npc.subtitlesCode))
+            {
+                subtitles.SetTalker(npc)
+                    .LoadSubtitlesFile(npc.subtitlesCode)
+                    .StartAnimatingText();
+            }
         }
 
         if (afterDialoguePoint != null)

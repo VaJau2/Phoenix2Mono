@@ -16,13 +16,16 @@ public abstract class AbstractMoveCinematic : PathBase
     
     public override void _PhysicsProcess(float delta)
     {
-        var camera = cutsceneManager.GetCamera();
-        
-        if (camera.GlobalRotation != cameraAngleRad)
+        if (speedRot > 0)
         {
-            camera.GlobalRotation = camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.0001f 
-                ? camera.GlobalRotation.LinearInterpolate(cameraAngleRad, delta * speedRot) 
-                : cameraAngleRad;
+            var camera = cutsceneManager.GetCamera();
+        
+            if (camera.GlobalRotation != cameraAngleRad)
+            {
+                camera.GlobalRotation = camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.0001f 
+                    ? camera.GlobalRotation.LinearInterpolate(cameraAngleRad, delta * speedRot) 
+                    : cameraAngleRad;
+            }
         }
         
         base._PhysicsProcess(delta);

@@ -2,7 +2,11 @@ public class ReturnCinematic : AbstractMoveCinematic
 {
     public override void Enable()
     {
-        if (!smoothTransition) Disable();
+        if (!smoothTransition)
+        {
+            Disable();
+            return;
+        }
         
         var playerCameraCache = cutsceneManager.GetPlayerCameraData();
         cameraAngleRad = playerCameraCache.Rot;

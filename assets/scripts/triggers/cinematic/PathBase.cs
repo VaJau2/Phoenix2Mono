@@ -1,5 +1,5 @@
-using Godot;
 using Godot.Collections;
+using Godot;
 
 public class PathBase : Path, ISavable
 {
@@ -39,18 +39,23 @@ public class PathBase : Path, ISavable
         SetPhysicsProcess(false);
     }
 
-    public Dictionary GetSaveData()
+    public virtual Dictionary GetSaveData()
     {
         return new Dictionary
         {
             { "unitOffset", pathFollow.UnitOffset },
+            { "rotation", pathFollow.Rotation },
             { "isProcess", IsPhysicsProcessing() }
         };
     }
 
-    public void LoadData(Dictionary data)
+    public virtual void LoadData(Dictionary data)
     {
+        if (!data.Contains("isProcess")) return;
+        if (!(bool)data["isProcess"]) return;
+        
+        Enable();
         pathFollow.UnitOffset = (float)data["unitOffset"];
-        SetPhysicsProcess((bool)data["isProcess"]);
+        pathFollow.Rotation = data["rotation"].ToString().ParseToVector3();
     }
 }
