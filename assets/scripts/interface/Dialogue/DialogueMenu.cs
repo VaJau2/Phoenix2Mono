@@ -67,7 +67,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         npc.tempVictim = player;
         if (npc is Pony pony)
         {
-            pony.body.lookTarget = player;
+            pony.body.SetLookTarget(player);
         }
         
         text.BbcodeText = "";
@@ -234,7 +234,7 @@ public class DialogueMenu : Control, IMenu, ISavable
             npc.SetState(NPCState.Idle);
             if (npc is Pony pony)
             {
-                pony.body.lookTarget = null;
+                pony.body.SetLookTarget(null);
             }
             npc = null;
         }

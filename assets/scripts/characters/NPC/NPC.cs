@@ -151,7 +151,7 @@ public abstract class NPC : Character, IInteractable
 
     public Vector3 GetHeadPosition()
     {
-        return headAttachment.GlobalTransform.origin;
+        return headAttachment.GlobalTranslation;
     }
 
     public override int GetDamage()

@@ -562,7 +562,7 @@ extents = Vector3( 3.71017, 3.62098, 4.73551 )
 script = ExtResource( 6 )
 IdleAnim = "Idle1"
 WalkSpeed = 6
-lookHeightFactor = -20.0
+lookHeightFactor = 6.0
 headBonePath = NodePath("")
 bodyBonePath = NodePath("")
 
@@ -653,6 +653,9 @@ skin = SubResource( 2 )
 script = ExtResource( 1 )
 npcName = "spike"
 startEyesVariant = "neitral"
+
+[node name="BoneAttachment" type="Spatial" parent="Armature/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82764, 0 )
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1.23529, 0, 0, 0, 1.23529, 0, 0, 0, 1.23529, 0.00209009, 0.782275, 0.105436 )

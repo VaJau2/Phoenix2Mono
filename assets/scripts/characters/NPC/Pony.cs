@@ -44,15 +44,15 @@ public class Pony: NpcWithWeapons
         switch(newState) 
         {
             case NPCState.Idle:
-                body.lookTarget = null;
+                body.SetLookTarget(null);
                 break;
             
             case NPCState.Attack:
-                body.lookTarget = tempVictim;
+                body.SetLookTarget(tempVictim);
                 break;
             
             case NPCState.Search:
-                body.lookTarget = null;
+                body.SetLookTarget(null);
                 break;
         }
     }

@@ -166,11 +166,7 @@ surfaces/0 = {
 
 [node name="windy" instance=ExtResource( 1 )]
 IdleAnim = "Idle1"
-lookHeightFactor = -15.0
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
+lookHeightFactor = 6.0
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.73029e-17, -3.65977e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.625431, -0.271819 )
@@ -178,9 +174,9 @@ joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48807e-17, -0.284132, -0.
 body_offset = Transform( 1, 7.91712e-18, 8.39011e-17, -8.25416e-17, 0.292822, 0.956165, -1.69978e-17, -0.956165, 0.292822, 0, 0.455076, -0.157791 )
 
 [node name="Physical Bone back_2" parent="Armature/Skeleton" index="1"]
-transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.97587, 5.53318e-08, 0.975869, -0.21835, -2.6077e-07, 1.49164, -0.113883 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82097e-07, 0.00750898, 0.311086 )
-body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.9696, 1.80284e-07, 0.9696, 0.244692, -2.38419e-07, 0.299792, -0.0834011 )
+transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.97587, 5.53318e-08, 0.975869, -0.21835, -2.98023e-07, 1.49164, -0.113883 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1935e-07, 0.00750898, 0.311086 )
+body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.9696, 1.80284e-07, 0.9696, 0.244692, -2.75671e-07, 0.299792, -0.0834011 )
 
 [node name="Physical Bone neck" parent="Armature/Skeleton" index="2"]
 transform = Transform( 1, 3.86262e-09, 2.65067e-06, 3.60006e-07, -0.990928, -0.134372, 2.6261e-06, 0.13437, -0.990924, -1.2815e-06, 2.04928, 1.75755 )
@@ -194,13 +190,13 @@ body_offset = Transform( 0.992633, -0.0828152, -0.0884291, -0.0828148, 0.0689428
 
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.987185, -0.115153, 0.0771686, 0.115834, 0.987424, -0.0141491, -0.0938005, 0.0170563, 0.769737, -0.377466, 1.82839, -1.55344 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782988, 0.00691416, 0.876063 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151286, -0.00427684, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618434, 0.870619, -0.0978948 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782987, 0.00691421, 0.876062 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151286, -0.00427681, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618434, 0.870618, -0.0978948 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
-transform = Transform( 0.992854, 0.0872, 0.0198152, -0.0876508, 0.98827, 0.0652959, 0.0247147, -0.0538756, 0.77335, 0.278132, 1.80782, -0.736741 )
+transform = Transform( 0.992854, 0.0872, 0.0198152, -0.0876508, 0.98827, 0.0652959, 0.0247147, -0.0538757, 0.77335, 0.278132, 1.80782, -0.736741 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652843, -0.00733561, 0.45134 )
-body_offset = Transform( 0.992585, 0.0833251, 0.0884595, 0.0833251, 0.0632027, -0.994519, -0.0884594, 0.994519, 0.0557914, -0.0399621, 0.449276, -0.0178277 )
+body_offset = Transform( 0.992585, 0.0833251, 0.0884595, 0.0833251, 0.0632028, -0.994519, -0.0884594, 0.994519, 0.0557914, -0.0399621, 0.449276, -0.0178277 )
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.989973, 0.115459, 0.0196235, -0.110885, 0.978259, -0.139061, 0.0080296, 0.105121, 0.768413, 0.313407, 1.80202, -1.56245 )
@@ -238,6 +234,9 @@ transform = Transform( 1.06463, -0.0166514, 0.0702788, 0.0713619, 0.082517, -1.0
 [node name="mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 1.05588, -6.83094e-07, -2.68358e-06, 4.20139e-13, 1.02325, -0.260464, 2.76916e-06, 0.260464, 1.02325, 0.00526307, 1.21853, 0.417282 )
 mesh = SubResource( 1 )
+
+[node name="BoneAttachment 2" parent="Armature/Skeleton" index="13"]
+transform = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 2.16776e-17, 0.190222, -0.0654569 )
 
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 9 )
