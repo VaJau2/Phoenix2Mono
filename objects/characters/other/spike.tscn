@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/characters/spike/eyes/neitral/0.material" type="Material" id=2]
+[ext_resource path="res://assets/scripts/characters/NPC/Base/CachedHeadPosition.cs" type="Script" id=3]
 [ext_resource path="res://assets/scripts/characters/NPC/Pony.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/NPCWeapons.cs" type="Script" id=8]
 [ext_resource path="res://assets/scripts/characters/NPC/Base/SeekArea.cs" type="Script" id=9]
@@ -585,7 +586,7 @@ bones/2/name = "head"
 bones/2/parent = 1
 bones/2/rest = Transform( 1, -4.68657e-08, 4.65155e-09, 4.68657e-08, 0.98049, -0.196569, 4.65154e-09, 0.196569, 0.98049, -3.16573e-15, 0.252877, 1.67638e-08 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment") ]
 bones/3/name = "hand1.L"
 bones/3/parent = 1
 bones/3/rest = Transform( -0.888697, 0.453922, -0.0646, -0.37074, -0.79433, -0.481241, -0.26976, -0.403728, 0.874205, 0.368706, 0.0605028, 0.0277527 )
@@ -654,8 +655,10 @@ script = ExtResource( 1 )
 npcName = "spike"
 startEyesVariant = "neitral"
 
-[node name="BoneAttachment" type="Spatial" parent="Armature/Skeleton"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82764, 0 )
+[node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( 0.999657, -9.80602e-05, 0.026171, 1.88476e-05, 0.999995, 0.00302696, -0.0261712, -0.00302543, 0.999652, -3.67714e-15, 1.06352, 0.0317592 )
+bone_name = "head"
+script = ExtResource( 3 )
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1.23529, 0, 0, 0, 1.23529, 0, 0, 0, 1.23529, 0.00209009, 0.782275, 0.105436 )

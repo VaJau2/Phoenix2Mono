@@ -4,7 +4,8 @@ using Godot.Collections;
 
 public abstract class Character : KinematicBody, ISavable
 {
-    public const string IDLE_ANIM = "Idle1";
+    public const string IDLE_ANIM = "Idle";
+    public const string IDLE_ANIM1 = "Idle1";
     public const float MIN_WALKING_SPEED = 2;
     public int Health {get; protected set;}
     public int HealthMax;

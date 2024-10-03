@@ -282,7 +282,7 @@ public class PlayerBody : Spatial
             }
             else
             {
-                playback.Travel(Character.IDLE_ANIM);
+                playback.Travel(Character.IDLE_ANIM1);
             }
         }
     }
@@ -298,7 +298,7 @@ public class PlayerBody : Spatial
             }
             else
             {
-                playback.Travel(Character.IDLE_ANIM);
+                playback.Travel(Character.IDLE_ANIM1);
             }
         }
     }
@@ -350,7 +350,7 @@ public class PlayerBody : Spatial
         }
         else
         {
-            playback.Travel(Character.IDLE_ANIM);
+            playback.Travel(Character.IDLE_ANIM1);
         }
     }
 
@@ -361,7 +361,7 @@ public class PlayerBody : Spatial
 
     public void AnimateDeath(Character killer)
     {
-        playback.Travel(Character.IDLE_ANIM);
+        playback.Travel(Character.IDLE_ANIM1);
         bodyRot = 0;
         player.CollisionLayer = 0;
         player.CollisionMask = 0;
@@ -404,7 +404,7 @@ public class PlayerBody : Spatial
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
-        playback.Start(Character.IDLE_ANIM);
+        playback.Start(Character.IDLE_ANIM1);
     }
 
     public override void _Process(float delta)

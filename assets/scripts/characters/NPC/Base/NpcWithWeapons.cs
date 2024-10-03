@@ -11,7 +11,6 @@ public class NpcWithWeapons : NPC, IChest
     [Export] public string weaponCode = "";
     [Export] public Array<string> itemCodes = [];
     [Export] public Dictionary<string, int> ammoCount = new();
-    [Export] private bool rotateInDialogue = false;
 
     [Export] public string customHintCode;
     [Export] private NodePath customInteractionTriggerPath;
@@ -379,7 +378,7 @@ public class NpcWithWeapons : NPC, IChest
         doorWait = value;
     }
 
-    private bool isStandingOnFoot() => IdleAnim == IDLE_ANIM;
+    private bool isStandingOnFoot() => IdleAnim is IDLE_ANIM or IDLE_ANIM1;
 
     protected void UpdateAI(float delta)
     {

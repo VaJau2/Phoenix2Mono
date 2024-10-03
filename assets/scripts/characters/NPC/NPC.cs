@@ -47,7 +47,7 @@ public abstract class NPC : Character, IInteractable
     [Export] private NodePath headBonePath, bodyBonePath;
     
     private Dictionary<string, bool> objectsChangeActive = new();
-    private Spatial headAttachment;
+    private CachedHeadPosition headPosition;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
@@ -149,10 +149,7 @@ public abstract class NPC : Character, IInteractable
         lastSeePos = newPos;
     }
 
-    public Vector3 GetHeadPosition()
-    {
-        return headAttachment.GlobalTranslation;
-    }
+    public Vector3 GetHeadPosition() => headPosition.GetPosition();
 
     public override int GetDamage()
     {
@@ -488,7 +485,7 @@ public abstract class NPC : Character, IInteractable
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
-            headAttachment = skeleton.GetNode<Spatial>("BoneAttachment");
+            headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
             
             headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
                 : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
