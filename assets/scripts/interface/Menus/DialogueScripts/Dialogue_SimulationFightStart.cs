@@ -70,7 +70,7 @@ public class Dialogue_SimulationFightStart : IDialogueScript
             }
             
             pony.SetNewStartPos(tempPath.GlobalTransform.origin);
-            pony.IdleAnim = "Idle1";
+            pony.IdleAnim = Character.IDLE_ANIM1;
             await pony.ToSignal(pony, nameof(Pony.IsCame));
         }
 

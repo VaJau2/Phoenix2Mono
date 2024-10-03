@@ -47,6 +47,7 @@ public abstract class NPC : Character, IInteractable
     [Export] private NodePath headBonePath, bodyBonePath;
     
     private Dictionary<string, bool> objectsChangeActive = new();
+    private CachedHeadPosition headPosition;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
@@ -147,6 +148,8 @@ public abstract class NPC : Character, IInteractable
     {
         lastSeePos = newPos;
     }
+
+    public Vector3 GetHeadPosition() => headPosition.GetPosition();
 
     public override int GetDamage()
     {
@@ -334,8 +337,8 @@ public abstract class NPC : Character, IInteractable
         lastSeePos = data["lastSeePos"] as Vector3? ?? default;
         relation = (Relation)Enum.Parse(typeof(Relation), data["relation"].ToString());
         aggressiveAgainstPlayer = Convert.ToBoolean(data["aggressiveAgainstPlayer"]);
-        myStartPos = SaveToVector3(data, "myStartPos");
-        myStartRot = SaveToVector3(data, "myStartRot");
+        myStartPos = data["myStartPos"].ToString().ParseToVector3();
+        myStartRot = data["myStartRot"].ToString().ParseToVector3();
         IdleAnim = data["idleAnim"].ToString();
         dialogueCode = data["dialogueCode"].ToString();
         WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
@@ -345,14 +348,14 @@ public abstract class NPC : Character, IInteractable
         {
             foreach (Spatial bone in skeleton.GetChildren())
             {
-                if (!(bone is PhysicalBone)) continue;
+                if (bone is not PhysicalBone) continue;
 
-                Vector3 newPos = SaveToVector3(data, $"rb_{bone.Name}_pos");
-                Vector3 newRot = SaveToVector3(data, $"rb_{bone.Name}_rot");
-                Vector3 oldScale = bone.Scale;
+                var newPos = data[$"rb_{bone.Name}_pos"].ToString().ParseToVector3();
+                var newRot = data[$"rb_{bone.Name}_rot"].ToString().ParseToVector3();
+                var oldScale = bone.Scale;
 
-                Basis newBasis = new Basis(newRot);
-                Transform newTransform = new Transform(newBasis, newPos);
+                var newBasis = new Basis(newRot);
+                var newTransform = new Transform(newBasis, newPos);
                 bone.GlobalTransform = newTransform;
                 bone.Scale = oldScale;
             }
@@ -407,7 +410,7 @@ public abstract class NPC : Character, IInteractable
 
     public override Dictionary GetSaveData()
     {
-        Dictionary saveData = base.GetSaveData();
+        var saveData = base.GetSaveData();
         saveData["tempVictim"] = IsInstanceValid(tempVictim) ? tempVictim.Name : "";
         saveData["state"] = state.ToString();
         saveData["lastSeePos"] = lastSeePos;
@@ -415,18 +418,16 @@ public abstract class NPC : Character, IInteractable
         saveData["aggressiveAgainstPlayer"] = aggressiveAgainstPlayer;
         saveData["idleAnim"] = IdleAnim;
         saveData["walkSpeed"] = WalkSpeed;
-
-        DictionaryHelper.Merge(ref saveData, Vector3ToSave(myStartPos, "myStartPos"));
-        DictionaryHelper.Merge(ref saveData, Vector3ToSave(myStartRot, "myStartRot"));
-
+        saveData["myStartPos"] = myStartPos;
+        saveData["myStartRot"] = myStartRot;
         saveData["dialogueCode"] = dialogueCode;
         saveData["showObjects"] = objectsChangeActive;
         saveData["ignoreDamager"] = ignoreDamager;
 
         if (patrolPoints != null)
         {
-            string[] patrolPaths = new string[patrolPoints.Length];
-            for (int i = 0; i < patrolPaths.Length; i++)
+            var patrolPaths = new string[patrolPoints.Length];
+            for (var i = 0; i < patrolPaths.Length; i++)
             {
                 patrolPaths[i] = patrolPoints[i].GetPath().ToString();
             }
@@ -438,24 +439,24 @@ public abstract class NPC : Character, IInteractable
         {
             foreach (Spatial bone in skeleton.GetChildren())
             {
-                if (!(bone is PhysicalBone)) continue;
-                DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.origin, $"rb_{bone.Name}_pos"));
-                DictionaryHelper.Merge(ref saveData, Vector3ToSave(bone.GlobalTransform.basis.GetEuler(), $"rb_{bone.Name}_rot"));
+                if (bone is not PhysicalBone) continue;
+                saveData[$"rb_{bone.Name}_pos"] = bone.GlobalTransform.origin;
+                saveData[$"rb_{bone.Name}_rot"] = bone.GlobalTransform.basis.GetEuler();
             }
         }
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in GetSignalList())
         {
-            if (!(signal is Dictionary signalDict)) continue;
+            if (signal is not Dictionary signalDict) continue;
 
             var connectionList = GetSignalConnectionList(signalDict["name"].ToString());
             if (connectionList == null || connectionList.Count == 0) continue;
 
             foreach (var connectionData in connectionList)
             {
-                if (!(connectionData is Dictionary connectionDict)) continue;
-                if (!(connectionDict["target"] is Node target)) continue;
+                if (connectionData is not Dictionary connectionDict) continue;
+                if (connectionDict["target"] is not Node target) continue;
                 var signalName = signalDict["name"].ToString();
                 if (skipSignals.Contains(signalName)) continue;
 
@@ -484,10 +485,12 @@ public abstract class NPC : Character, IInteractable
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
+            headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
+            
             headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
-                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone neck");
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
             bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
-                : GetNodeOrNull<PhysicalBone>("Armature/Skeleton/Physical Bone back_2");
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
         }
 
         SetStartHealth(StartHealth);

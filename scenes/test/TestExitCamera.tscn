@@ -3,7 +3,7 @@
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/background/CinematicExit.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/triggers/cinematic/CinematicExit.cs" type="Script" id=4]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/props/locations/sand.tres" type="Material" id=6]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
@@ -16,6 +16,7 @@
 [ext_resource path="res://objects/props/vehicles/car_nt.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/materials/props/metal.material" type="Material" id=15]
 [ext_resource path="res://assets/materials/props/furniture/trash/green.material" type="Material" id=16]
+
 
 [sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.5, 0.5, 0.5 )

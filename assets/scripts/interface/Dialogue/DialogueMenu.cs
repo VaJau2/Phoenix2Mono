@@ -16,6 +16,8 @@ public class DialogueMenu : Control, IMenu, ISavable
     public NPC npc {get; private set;}
     private Player player => Global.Get().player;
     public bool MenuOn => ((Control)GetParent()).Visible;
+
+    private Vector3 lookTarget;
     
     private Dictionary nodes;
     private Dictionary tempNode;
@@ -63,9 +65,20 @@ public class DialogueMenu : Control, IMenu, ISavable
         npc = newNpc;
         npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
+        if (npc is Pony pony)
+        {
+            pony.body.SetLookTarget(player);
+        }
+        
         text.BbcodeText = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
+        lookTarget = Vector3.Zero;
         LoadDialogueFile();
+    }
+
+    public void SetLookAtTarget(Vector3 position)
+    {
+        lookTarget = position;
     }
 
     private void LoadDialogueFile()
@@ -219,6 +232,10 @@ public class DialogueMenu : Control, IMenu, ISavable
         if (npc != null) 
         {
             npc.SetState(NPCState.Idle);
+            if (npc is Pony pony)
+            {
+                pony.body.SetLookTarget(null);
+            }
             npc = null;
         }
 
@@ -304,20 +321,23 @@ public class DialogueMenu : Control, IMenu, ISavable
             return;
         }
 
-        player?.LookAt(GetNpcLookPosition());
+        player?.LookAt(GetLookAtPosition());
         UpdateAnswerCooldown(delta);
         UpdateAnimatingText(delta);
     }
 
-    private Vector3 GetNpcLookPosition()
+    private Vector3 GetLookAtPosition()
     {
-        var npcPos = npc.GlobalTransform.origin;
-        var playerRelativePos = player.GlobalTransform.origin - npcPos;
-
-        npcPos.x += GetLookPosDelta(playerRelativePos.z);
-        npcPos.z += GetLookPosDelta(-playerRelativePos.x);
+        var targetPos = lookTarget != Vector3.Zero
+            ? lookTarget
+            : npc.GetHeadPosition();
         
-        return npcPos;
+        var playerRelativePos = player.GlobalTransform.origin - targetPos;
+
+        targetPos.x += GetLookPosDelta(playerRelativePos.z);
+        targetPos.z += GetLookPosDelta(-playerRelativePos.x);
+        
+        return targetPos;
     }
 
     private float GetLookPosDelta(float sideRelativePos)
@@ -572,12 +592,6 @@ public class DialogueMenu : Control, IMenu, ISavable
     private async  void OnSaveDataLoaded()
     {
         await ToSignal(GetTree(), "idle_frame");
-        
-        if (npc is Pony pony)
-        {
-            pony.body.lookTarget = player;
-        }
-        
         StartTalkingTo(npc);
     }
 }

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rush.mp3-475ca0ba11cad282741cb4cd33056c66.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantApple/subtitles/rush.mp3"
+dest_files=[ "res://.import/rush.mp3-475ca0ba11cad282741cb4cd33056c66.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

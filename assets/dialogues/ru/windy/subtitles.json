@@ -1,0 +1,68 @@
+{
+  "Apple-tree":
+  {
+    "phrase0":
+      {
+        "class": "ActivateCinematic",
+        "key": "Apple-tree",
+        "value": "showTree"
+      },
+    
+      "phrase1":
+      {
+        "speakerCode": "windy",
+        "text": "Помнишь как мы с папой сажали маленький росточек?"
+      },
+
+      "phrase2":
+      {
+        "speakerCode": "windy",
+        "text": "Смотри, в какое большое дерево он вырос!"
+      },
+
+      "phrase3":
+      {
+        "speakerCode": "windy",
+        "text": "Утром мы собрали первые яблоки."
+      },
+
+      "phrase4":
+      {
+        "speakerCode": "windy",
+        "text": "Больше. Сочные. Сладкие. Смачные."
+      },
+
+      "phrase5":
+      {
+        "speakerCode": "windy",
+        "text": "Мама приготовила из них такой пирог, копытца оближешь!"
+      },
+
+      "phrase6":
+      {
+        "speakerCode": "windy",
+        "text": "Папе бы понравился этот пирог..."
+      },
+
+      "phrase7":
+      {
+        "speakerCode": "strikely",
+        "text": "Всё-всё. Убедил. Веди меня к пирогу."
+      },
+
+      "phrase8":
+      {
+        "speakerCode": "windy",
+        "text": "Тебе очень повезло, что я объелся до того как пирог закончился.",
+        "class": "ActivateCinematic",
+        "key": "Apple-tree",
+        "value": "returnToPlayer"
+      },
+
+      "phrase9":
+      {
+        "class": "SetTriggerActive",
+        "value": "windyTeleport5"
+      }
+  }
+}

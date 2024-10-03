@@ -44,7 +44,7 @@
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=42]
 [ext_resource path="res://objects/characters/zebras/zebra-commander.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/scripts/triggers/DialogueTrigger.cs" type="Script" id=44]
-[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=45]
+[ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=45]
 [ext_resource path="res://objects/props/tiles/bushes.tres" type="MeshLibrary" id=46]
 [ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=47]
 [ext_resource path="res://objects/characters/other/dragon/dragon.tscn" type="PackedScene" id=48]
@@ -115,6 +115,7 @@
 [ext_resource path="res://assets/textures/props/furniture/pics/marks/check.png" type="Texture" id=113]
 [ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=114]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=115]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer

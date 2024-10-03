@@ -112,14 +112,15 @@
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work before Theater/Richard Gere - All I Care About.mp3" type="AudioStream" id=110]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Jean Goldkette and His Orchestra - Sunday.mp3" type="AudioStream" id=111]
 [ext_resource path="res://assets/audio/radio/Radio Applewood/Work/Ben Selvin and the Crooners - Happy Days are Here Again.mp3" type="AudioStream" id=112]
-[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=113]
+[ext_resource path="res://assets/scripts/furniture/Room/Room.cs" type="Script" id=113]
 [ext_resource path="res://objects/props/furniture/radio/Speaker.tscn" type="PackedScene" id=114]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=115]
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=116]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=117]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=118]
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=119]
-[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=120]
+[ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=120]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )

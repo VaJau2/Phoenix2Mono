@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/target1.mp3-6a7db0ad630d9f1530fe7e31a544fb26.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantApple/subtitles/target1.mp3"
+dest_files=[ "res://.import/target1.mp3-6a7db0ad630d9f1530fe7e31a544fb26.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

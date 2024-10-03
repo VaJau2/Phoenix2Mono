@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/scripts/triggers/cinematic/RotateCinematic.cs" type="Script" id=1]
+
+[sub_resource type="Curve3D" id=6]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array(  ),
+"tilts": PoolRealArray(  )
+}
+
+[node name="RotateCinematic" type="Path"]
+curve = SubResource( 6 )
+script = ExtResource( 1 )
+
+[node name="PathFollow" type="PathFollow" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098465, 0, -0.0317388 )
+rotation_mode = 1
+cubic_interp = false
+loop = false
+
+[node name="Target" type="Spatial" parent="PathFollow"]

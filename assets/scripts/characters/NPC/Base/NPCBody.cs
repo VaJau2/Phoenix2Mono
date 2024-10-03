@@ -7,8 +7,9 @@ public class NPCBody
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
 
-    public Character lookTarget = null;
-    private float lookTimer = 1.5f;
+    private Spatial defaultLookTarget;
+    private Spatial lookTarget;
+    private float lookTimer = 2f;
 
     public NPCBody(NPC npc)
     {
@@ -52,6 +53,16 @@ public class NPCBody
         return targetDirPos - npc.GlobalTransform.origin;
     }
 
+    public void SetDefaultLookTarget(Spatial value)
+    {
+        defaultLookTarget = value;
+    }
+
+    public void SetLookTarget(Spatial value)
+    {
+        lookTarget = value;
+    }
+
     public void Update(float delta)
     {
         if (npc.WalkSpeed == 0)
@@ -67,7 +78,7 @@ public class NPCBody
     {
         if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
         if (!(body is Character character)) return;
-        lookTimer = 1.5f;
+        lookTimer = 2f;
         lookTarget = character;
     }
 
@@ -95,34 +106,47 @@ public class NPCBody
                     return;
                 }
             }
+            
+            var headRotation = GetHeadRotationTo(lookTarget);
 
-            Vector3 npcForward = -npc.GlobalTransform.basis.z;
-            Vector3 dir = GetDirToTarget(lookTarget);
-
-            float angle = npcForward.AngleTo(dir);
-            if (npc.GlobalTransform.basis.x.Dot(dir) < 0)
-            {
-                angle = -angle;
-            }
-
-            var targetY = lookTarget.GlobalTransform.origin.y;
-            //точка центра игрока чуть выше, тк он умеет красться и приседать с:
-            if (lookTarget is Player)
-            {
-                targetY -= 0.8f * npc.lookHeightFactor;
-            }
-
-            float diffY = targetY - npc.GlobalTransform.origin.y;
-
-
-            SetValueTo(ref headBlend.x, angle / 1.5f, delta * 4);
-            SetValueTo(ref headBlend.y, diffY / 50, delta * 4);
+            SetValueTo(ref headBlend.x, headRotation.x, delta * 4);
+            SetValueTo(ref headBlend.y, headRotation.y, delta * 4);
         }
         else
         {
-            SetValueTo(ref headBlend.x, 0, delta * 2);
-            SetValueTo(ref headBlend.y, 0, delta * 2);
+            var defaultHeadRotation = Vector2.Zero;
+            
+            if (defaultLookTarget != null)
+            {
+                defaultHeadRotation = GetHeadRotationTo(defaultLookTarget);
+            }
+            
+            SetValueTo(ref headBlend.x, defaultHeadRotation.x, delta * 2);
+            SetValueTo(ref headBlend.y, defaultHeadRotation.y, delta * 2);
         }
+    }
+
+    private Vector2 GetHeadRotationTo(Spatial target)
+    {
+        Vector3 npcForward = -npc.GlobalTransform.basis.z;
+        Vector3 dir = GetDirToTarget(target);
+
+        float angle = npcForward.AngleTo(dir);
+        if (npc.GlobalTransform.basis.x.Dot(dir) < 0)
+        {
+            angle = -angle;
+        }
+        
+        var targetY = target.GlobalTranslation.y;
+        //точка центра игрока чуть выше, тк он умеет красться и приседать с:
+        if (target is Player)
+        {
+            targetY += 0.25f * npc.lookHeightFactor;
+        }
+
+        float diffY = targetY - npc.GlobalTranslation.y;
+
+        return new Vector2(angle / 1.5f, diffY / 5);
     }
 
     private void SetValueTo(ref float value, float to, float delta)

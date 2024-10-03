@@ -216,7 +216,7 @@ public class Subtitles : Label, ISavable
             FinishAnimatingText();
         }
 
-        var distance = Player.GlobalTransform.origin.DistanceTo(Talker.GlobalTransform.origin);
+        var distance = Player.GlobalTranslation.DistanceTo(Talker.GlobalTranslation);
         Visible = distance < VISIBLE_DISTANCE;
     }
 

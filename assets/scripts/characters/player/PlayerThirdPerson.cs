@@ -27,7 +27,8 @@ public class PlayerThirdPerson : Spatial
     private Spatial Body;
     private GeometryInstance Body_third;
 
-
+    public Camera GetCamera() => player.ThirdView ? thirdCamera : firstCamera;
+    
     public void SetThirdView(bool on)
     {
         if (!MayChange)

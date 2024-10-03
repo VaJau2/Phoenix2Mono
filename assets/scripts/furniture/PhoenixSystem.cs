@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
@@ -11,8 +11,8 @@ public class PhoenixSystem : Node, ISavable
     [Export] private NodePath roomPath;
     private Room room;
     
-    [Export] private List<NodePath> cloneFlasksPathes;
-    private List<CloneFlask> cloneFlasks = new ();
+    [Export] private List<NodePath> cloneFlasksPaths;
+    private readonly List<CloneFlask> cloneFlasks = [];
     private int cloneNumber;
     
     private CloneFlaskTrigger cloneFlaskTrigger;
@@ -29,7 +29,7 @@ public class PhoenixSystem : Node, ISavable
         
         cloneFlaskTrigger = GetNode<CloneFlaskTrigger>("Clone Flask Trigger");
         
-        foreach (var cloneFlask in cloneFlasksPathes.Select(GetNodeOrNull<CloneFlask>))
+        foreach (var cloneFlask in cloneFlasksPaths.Select(GetNodeOrNull<CloneFlask>))
         {
             cloneFlasks.Add(cloneFlask);
         }
