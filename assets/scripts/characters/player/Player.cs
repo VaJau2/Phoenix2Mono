@@ -158,12 +158,10 @@ public class Player : Character
         if (isPistol)
         {
             if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            else return GetNode<Spatial>("rotation_helper/camera/weapons");
+            return GetNode<Spatial>("rotation_helper/camera/weapons");
         }
-        else
-        {
-            return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
-        }
+
+        return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
     }
 
     public void SetTalking(bool value)

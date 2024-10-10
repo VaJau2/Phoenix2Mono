@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/models/characters/ponies/dusk/body.material" type="Material" id=5]
 [ext_resource path="res://assets/models/characters/ponies/dusk/mouth_001.material" type="Material" id=6]
 [ext_resource path="res://assets/models/characters/ponies/dusk/eyes.material" type="Material" id=7]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=8]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=8]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "mane"

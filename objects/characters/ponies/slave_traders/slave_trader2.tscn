@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/materials/characters/slave_trader2/eyes/neitral/0.material" type="Material" id=2]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/2/hair.material" type="Material" id=3]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/2/headrope.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFaceMat.cs" type="Script" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "slave_trader2_Cube"

@@ -1,53 +1,65 @@
 using Godot;
 using Godot.Collections;
 
-public class NPCWeapons : Node
+public class NPCWeapons : Node, ISavable
 {
-    NPC npc;
-    Dictionary tempWeaponStats;
-    Spatial tempWeapon;
-    AnimationPlayer gunAnim;
-    Spatial gunLight;
-    Spatial gunFire;
-    Particles gunSmoke;
-    PackedScene gunParticlesPrefab;
-    WeaponShellSpawner shellSpawner;
-
-    //--звуки-------------
-    AudioStreamPlayer3D audiShoot;
-    AudioStreamSample shootSound;
-    AudioStreamSample missSound;
-
+    [Export] public string WeaponCode = "";
+    [Export] public NodePath PistolWeaponParentPath;
+    [Export] public NodePath GunWeaponParentPath;
+    
     public bool GunOn;
     public bool isPistol;
+    
+    private NPC npc => GetParent<NPC>();
+    
+    private Dictionary tempWeaponStats;
+    private Spatial tempWeapon;
+    private AnimationPlayer gunAnim;
+    private Spatial gunLight;
+    private Spatial gunFire;
+    private Particles gunSmoke;
+    private PackedScene gunParticlesPrefab;
+    private WeaponShellSpawner shellSpawner;
 
-    private RandomNumberGenerator rand = new RandomNumberGenerator();
+    //--звуки-------------
+    private AudioStreamPlayer3D audiShoot;
+    private AudioStreamSample shootSound;
+    private AudioStreamSample missSound;
 
-    public void LoadWeapon(NpcWithWeapons npc, string weaponCode)
+    private RandomNumberGenerator rand = new();
+    private Spatial PistolWeaponParent;
+    private Spatial GunWeaponParent;
+
+    public bool HasWeapon => !string.IsNullOrEmpty(WeaponCode);
+    
+    [Signal]
+    public delegate void Shooting();
+
+    public void LoadWeapon(string newWeaponCode)
     {
-        this.npc = npc;
-
-        if (string.IsNullOrEmpty(weaponCode))
+        if (string.IsNullOrEmpty(WeaponCode))
         {
             tempWeapon?.QueueFree();
             tempWeapon = null;
-            SetWeapon(false);
+            SetWeaponOn(false);
             return;
         }
 
+        WeaponCode = newWeaponCode;
+
         //грузим префаб оружия
-        string path = "res://objects/guns/prefabs/" + weaponCode + ".tscn";
+        string path = "res://objects/guns/prefabs/" + newWeaponCode + ".tscn";
         PackedScene weaponPrefab = GD.Load<PackedScene>(path);
 
         //грузим статистику оружия
-        Dictionary weaponData = ItemJSON.GetItemData(weaponCode);
+        Dictionary weaponData = ItemJSON.GetItemData(newWeaponCode);
         tempWeaponStats = weaponData;
         isPistol = weaponData.Contains("isPistol");
-        shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + weaponCode + ".wav");
+        shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + newWeaponCode + ".wav");
         npc.BaseDamage = GetStatsInt("damage");
 
         //вытаскиваем родительский нод из непися
-        Spatial tempParent = npc.GetWeaponParent(isPistol);
+        Spatial tempParent = GetWeaponParent();
 
         //отправляем префаб туда
         var weapon = weaponPrefab.Instance();
@@ -56,33 +68,40 @@ public class NPCWeapons : Node
         tempWeapon = (Spatial) weapon;
         LoadGunEffects();
 
-        SetWeapon(false);
+        SetWeaponOn(false);
     }
 
-    public void SetWeapon(bool on)
+    public void SetWeaponOn(bool on)
     {
         GunOn = on;
         if (IsInstanceValid(tempWeapon))
         {
             tempWeapon.Visible = on;
         }
-
-        if (!(npc is Pony tempPony)) return;
-        if (tempPony.IsUnicorn)
-        {
-            tempPony.MagicParticles.Emitting = on;
-        }
+        
+        CheckMagicParticles(on);
     }
 
-    public void SpawnPickableItem(string weaponCode)
+    private Spatial GetWeaponParent()
     {
-        if (string.IsNullOrEmpty(weaponCode)) return;
-        if (!(npc is NpcWithWeapons npcWithWeapons)) return;
+        return isPistol ? PistolWeaponParent : GunWeaponParent;
+    }
+
+    private void CheckMagicParticles(bool on)
+    {
+        var particles = npc.GetNodeOrNull<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
+        if (particles == null) return;
+        particles.Emitting = on;
+    }
+
+    public void SpawnPickableItem()
+    {
+        if (string.IsNullOrEmpty(WeaponCode)) return;
         
-        string path = "res://objects/guns/items/" + weaponCode + ".tscn";
+        string path = "res://objects/guns/items/" + WeaponCode + ".tscn";
         if (!ResourceLoader.Exists(path)) return;
         
-        Spatial tempParent = npcWithWeapons.GetWeaponParent(isPistol);
+        Spatial tempParent = GetWeaponParent();
         PackedScene itemPrefab = GD.Load<PackedScene>(path);
         var item = (Spatial)itemPrefab.Instance();
         item.Name = "Created_" + npc.Name + "s_" + item.Name;
@@ -103,12 +122,9 @@ public class NPCWeapons : Node
         audiShoot.Play();
         gunAnim?.Play("shoot");
 
-        if (npc is Pony pony)
-        {
-            var eyes = pony.GetNodeOrNull<NPCFace>("Armature/Skeleton/Body");
-            eyes?.CloseEyes();
-        }
-
+        var eyes = npc.GetNodeOrNull<NPCFace>("Armature/Skeleton/Body");
+        eyes?.CloseEyes();
+        
         var statsDistance = GetStatsInt("shootDistance");
 
         if (tempWeaponStats.Contains("bullet"))
@@ -156,7 +172,7 @@ public class NPCWeapons : Node
         if (tempWeaponStats.Contains("isSilence")) return GetStatsFloat("cooldown");
         
         EnemiesManager enemiesManager = npc.GetParent() as EnemiesManager;
-        enemiesManager?.LoudShoot(GetStatsInt("shootDistance") * 0.75f, npc.GlobalTransform.origin);
+        enemiesManager?.LoudShoot(GetStatsInt("shootDistance") * 0.75f, npc);
 
         return GetStatsFloat("cooldown");
     }
@@ -221,6 +237,23 @@ public class NPCWeapons : Node
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
         missSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/ShotBeside.wav");
         audiShoot = GetNode<AudioStreamPlayer3D>("../audiShoot");
+        PistolWeaponParent = GetNodeOrNull<Spatial>(PistolWeaponParentPath);
+        GunWeaponParent = GetNodeOrNull<Spatial>(GunWeaponParentPath);
         rand.Randomize();
+
+        LoadWeapon(WeaponCode);
+    }
+
+    public Dictionary GetSaveData()
+    {
+        var saveData = new Dictionary();
+        saveData["weaponCode"] = WeaponCode;
+        return saveData;
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (data["weaponCode"] == null) return;
+        LoadWeapon(data["weaponCode"].ToString());
     }
 }

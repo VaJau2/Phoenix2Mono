@@ -63,12 +63,8 @@ public class DialogueMenu : Control, IMenu, ISavable
         if (!MenuManager.TryToOpenMenu(this, true)) return;
         
         npc = newNpc;
-        npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
-        if (npc is Pony pony)
-        {
-            pony.body.SetLookTarget(player);
-        }
+        npc.SetState(SetStateEnum.Talk);
         
         text.BbcodeText = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
@@ -153,10 +149,10 @@ public class DialogueMenu : Control, IMenu, ISavable
                 break;
             
             case "combat":
-                npc.SetState(NPCState.Idle);
+                npc.SetState(SetStateEnum.Idle);
                 npc.aggressiveAgainstPlayer = true;
                 npc.relation = Relation.Enemy;
-                npc.seekArea.AddEnemyInArea(player);
+                npc.SeekArea.AddEnemyInArea(player);
                 npc = null;
                 break;
             
@@ -231,11 +227,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         
         if (npc != null) 
         {
-            npc.SetState(NPCState.Idle);
-            if (npc is Pony pony)
-            {
-                pony.body.SetLookTarget(null);
-            }
+            npc.SetState(SetStateEnum.Idle);
             npc = null;
         }
 
@@ -315,7 +307,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     {
         if (!MenuOn) return;
         
-        if (npc is not { state: NPCState.Talk }) 
+        if (npc.GetState() != SetStateEnum.Talk) 
         {
             MenuManager.CloseMenu(this);
             return;

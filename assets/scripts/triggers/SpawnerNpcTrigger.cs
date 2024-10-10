@@ -16,9 +16,9 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     [Export] private string weaponCode;
     [Export] private Relation relation;
     [Export]
-    private Array<string> itemCodes = new Array<string>();
+    private Array<string> itemCodes = new();
     [Export]
-    private Dictionary<string, int> ammoCount = new Dictionary<string, int>();
+    private Dictionary<string, int> ammoCount = new();
     
     //0 - путь до триггера, строка
     //1 - сигнал нпц, строка
@@ -93,11 +93,11 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
 
     private void SpawnNpc()
     {
-        if (npcPrefab.Instance() is NpcWithWeapons npcInstance)
+        if (npcPrefab.Instance() is NPC npcInstance)
         {
             npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
             npcInstance.StartHealth = StartHealth;
-            npcInstance.weaponCode = weaponCode;
+            npcInstance.Weapons?.LoadWeapon(weaponCode);
             npcInstance.relation = relation;
             npcInstance.itemCodes = itemCodes;
             npcInstance.ammoCount = ammoCount;

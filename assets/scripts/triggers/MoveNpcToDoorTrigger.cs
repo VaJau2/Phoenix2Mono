@@ -11,7 +11,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     [Export] public NodePath teleportPointPath;
     
     private Spatial teleportPoint;
-    private NpcWithWeapons npc;
+    private NPC npc;
     private DoorTeleport door;
     
     private int step;
@@ -50,7 +50,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
         if (npc != null && door != null && teleportPoint != null) return true;
         if (NpcPath == null || doorPath == null || teleportPointPath == null) return false;
         
-        npc = GetNode<NpcWithWeapons>(NpcPath);
+        npc = GetNode<NPC>(NpcPath);
         door = GetNode<DoorTeleport>(doorPath);
         teleportPoint = GetNode<Spatial>(teleportPointPath);
 
@@ -61,8 +61,8 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     {
         step = 1;
         npc.SetNewStartPos(door.GlobalTransform.origin);
-        await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
-        if (npc.state == NPCState.Attack) return;
+        await ToSignal(npc, nameof(NPC.IsCame));
+        if (npc.GetState() == SetStateEnum.Attack) return;
 
         step = 2;
         _on_activate_trigger();
@@ -106,7 +106,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     {
         if (!(body is Player)) return;
         
-        npc = GetNode<NpcWithWeapons>(NpcPath);
+        npc = GetNode<NPC>(NpcPath);
         if (IsInstanceValid(npc) && npc.Health > 0)
         {
             SetActive(true);

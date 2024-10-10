@@ -450,7 +450,7 @@ public class PlayerWeapons : CollisionShape
 
         if (!tempWeaponStats.Contains("isSilence"))
         {
-            enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
+            enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player);
         }
 
         onetimeShoot = false;

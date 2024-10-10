@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/characters/lucky_diamond/body.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/characters/lucky_diamond/eyes/neitral/0.png" type="Texture" id=4]

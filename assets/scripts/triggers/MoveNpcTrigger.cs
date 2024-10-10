@@ -14,7 +14,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public bool teleportToPoint;
     [Export] public bool setStartPoint = true;
 
-    private Array<NpcWithWeapons> npc = new Array<NpcWithWeapons>();
+    private Array<NPC> npc = new Array<NPC>();
     private Array<Spatial> points = new Array<Spatial>();
     private bool activated;
 
@@ -77,7 +77,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     {
         for (int i = 0; i < NpcPaths.Count; i++)
         {
-            npc.Add(GetNode<NpcWithWeapons>(NpcPaths[i]));
+            npc.Add(GetNode<NPC>(NpcPaths[i]));
             points.Add(GetNode<Spatial>(pointPaths[i]));
         }
         
@@ -97,12 +97,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                npc[i].IdleAnim = idleAnims[i];
-            }
-
-            if (stayThere != null && stayThere.Count == npc.Count && npc[i] is Pony pony)
-            {
-                pony.stayInPoint = stayThere[i];
+                var body = npc[i].GetNodeOrNull<PonyBody>("body");
+                if (body != null)
+                {
+                    body.IdleAnim = idleAnims[i];
+                }
             }
 
             if (teleportToPoint)

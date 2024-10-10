@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/characters/agents/agent3/eyes.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/agents/agent1/hair.material" type="Material" id=4]

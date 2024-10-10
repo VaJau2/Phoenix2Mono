@@ -5,8 +5,8 @@ using Godot.Collections;
 //хранит в себе данные инвентаря
 public class SaveNode: Node, ISavable
 {
-    public Dictionary InventoryData = new Dictionary();
-    public Dictionary SavedVariables = new Dictionary();
+    public Dictionary InventoryData = new();
+    public Dictionary SavedVariables = new();
     
     //иногда игрок может лишиться инвентаря и вернуть его на следующем уровне
     //для сохранения старого и нового инвентаря сохраненный раннее инвентарь клонируется в новый объект

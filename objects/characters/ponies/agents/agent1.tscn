@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/materials/characters/facetest/mouth.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/facetest/eyes.material" type="Material" id=3]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/characters/agents/agent1/hat.material" type="Material" id=6]
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/characters/agents/agent1/hair.material" type="Material" id=8]
@@ -237,8 +237,7 @@ dieSounds = [ ExtResource( 11 ) ]
 COME_DISTANCE = 3.0
 
 [node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
+bones/3/bound_children = [ NodePath("BoneAttachment 3"), NodePath("BoneAttachment") ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -257,13 +256,13 @@ body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.
 
 [node name="Physical Bone leg_1_l" parent="Armature/Skeleton" index="3"]
 transform = Transform( 0.996067, -0.0885977, 3.17863e-07, 0.088353, 0.993318, 0.0742389, -0.00657744, -0.0739466, 0.997238, -0.259124, 1.7982, -0.752634 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125216, -0.0140768, 0.446929 )
-body_offset = Transform( 0.992634, -0.0828153, -0.0884287, -0.0828149, 0.0689413, -0.994175, 0.0884293, 0.994177, 0.0615755, 0.0395985, 0.445192, -0.0134143 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125214, -0.0140765, 0.446929 )
+body_offset = Transform( 0.992634, -0.0828153, -0.0884287, -0.0828149, 0.0689413, -0.994175, 0.0884293, 0.994177, 0.0615755, 0.0395985, 0.445192, -0.0134146 )
 
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116484, 0.993129, -0.0114235, -0.0952568, 0.0226187, 0.995197, -0.407885, 1.81143, -1.81373 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783108, 0.00691379, 0.87606 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427727, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618297, 0.870615, -0.0978943 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783114, 0.00691378, 0.87606 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427727, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618291, 0.870615, -0.0978943 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.088597, -2.20027e-08, -0.0883893, 0.993732, 0.0684583, 0.0060646, -0.0681892, 0.997655, 0.287084, 1.79373, -0.756682 )
@@ -272,8 +271,8 @@ body_offset = Transform( 0.992585, 0.0833251, 0.0884594, 0.0833256, 0.0632026, -
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.993608, 0.112883, 1.12832e-06, -0.111816, 0.984227, -0.137092, -0.0154752, 0.136216, 0.990551, 0.343713, 1.78491, -1.82309 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163481, 0.143863, 0.868983 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.0093409, -0.993353, -0.112854, 0.99336, -0.0223682, -0.0984306, 0.866425, -0.125315 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163483, 0.143863, 0.868983 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934089, -0.993353, -0.112854, 0.99336, -0.0223682, -0.0984304, 0.866425, -0.125315 )
 
 [node name="Physical Bone b_leg_1_l" parent="Armature/Skeleton" index="7"]
 transform = Transform( 0.989938, -0.141448, 6.02788e-05, 0.141038, 0.98703, -0.0765897, 0.0107717, 0.0758308, 0.997046, -0.259934, 0.497918, -0.990163 )

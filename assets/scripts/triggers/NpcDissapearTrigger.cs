@@ -14,7 +14,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
     public override void _on_activate_trigger()
     {
         if (!IsActive) return;
-        Pony npc = GetNode<Pony>(npcPath);
+        var npc = GetNode<NPC>(npcPath);
        
         npc.QueueFree();
         Global.AddDeletedObject(npc.Name);
@@ -24,7 +24,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
     public override void _on_body_entered(Node body)
     {
         if (!IsActive) return;
-        Pony npc = GetNodeOrNull<Pony>(npcPath);
+        var npc = GetNodeOrNull<NPC>(npcPath);
         if (body != npc) return;
 
         if (npc.Health > 0)

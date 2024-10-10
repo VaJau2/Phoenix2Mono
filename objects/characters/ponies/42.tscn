@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/materials/characters/42/eyes.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/42/mouth.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/42/hair.material" type="Material" id=5]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/player/Unicorn/UnicornLevitation.cs" type="Script" id=7]
 [ext_resource path="res://objects/characters/Player/magic/levitation.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/characters/Player/magic/Particles.tscn" type="PackedScene" id=9]
@@ -247,16 +247,10 @@ size = Vector2( 0.1, 0.1 )
 extents = Vector3( 0.269076, 0.256043, 1 )
 
 [node name="mother" instance=ExtResource( 1 )]
-IdleAnim = "Lie"
 dialogueCode = "talk1"
-IsUnicorn = true
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.897285, 0, 0, 0, -0.152972, 0.884149, 0, -0.884149, -0.152972, -0.0189824, 2.43913, 0.540655 )
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.73029e-17, -3.65978e-17, 0.187063, 0.982348, -6.06796e-17, -0.982348, 0.187063, 0, 0.612738, -0.190429 )
@@ -288,8 +282,8 @@ transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, -0.00516665, 0.0
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996066, 0.0885972, 9.23862e-10, -0.0883894, 0.993734, 0.0684585, 0.00606458, -0.0681883, 0.997656, 0.287086, 1.79374, -0.756688 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000650785, -0.00734275, 0.45135 )
-body_offset = Transform( 0.992587, 0.0833254, 0.0884595, 0.0833258, 0.0632017, -0.994519, -0.0884594, 0.99452, 0.0557911, -0.0399603, 0.449286, -0.0178213 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000650696, -0.00734276, 0.45135 )
+body_offset = Transform( 0.992587, 0.0833254, 0.0884595, 0.0833258, 0.0632017, -0.994519, -0.0884594, 0.99452, 0.0557911, -0.0399602, 0.449286, -0.0178213 )
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.993609, 0.112883, 1.01861e-06, -0.111816, 0.984229, -0.137092, -0.0154751, 0.136217, 0.990552, 0.343711, 1.78492, -1.8231 )
@@ -327,11 +321,11 @@ transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.0568424, 0.013312, 0.
 
 [node name="Physical Bone tail_1" parent="Armature/Skeleton" index="11"]
 transform = Transform( 0.999999, -1.93219e-12, 2.38416e-07, -2.30519e-07, 0.255272, 0.966858, -6.08622e-08, -0.966869, 0.255269, 0.0147704, -0.659204, -0.115408 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01918e-07, -0.0298655, 0.637074 )
-body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148898, -0.988841, 2.7392e-07, 0.988856, -0.148897, -7.96281e-08, 0.625518, 0.124391 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04246e-07, -0.0298655, 0.637074 )
+body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148898, -0.988841, 2.7392e-07, 0.988856, -0.148897, -7.72998e-08, 0.625518, 0.124391 )
 
 [node name="BoneAttachment" parent="Armature/Skeleton" index="12"]
-transform = Transform( 0.998326, -0.0158752, 0.0556103, 0.0577335, 0.217499, -0.974352, 0.00337288, 0.975932, 0.218051, 4.70641e-08, 1.70315, 1.09825 )
+transform = Transform( 0.999911, 0.00437667, -0.0126245, -0.0133111, 0.244201, -0.969633, -0.00116086, 0.969715, 0.244237, -6.66017e-13, 1.69933, 1.11108 )
 
 [node name="weapons" parent="Armature/Skeleton/BoneAttachment" index="0"]
 transform = Transform( 0.7, -4.63013e-07, 5.89062e-08, 4.62402e-07, 0.677387, -0.176484, 5.86733e-08, 0.176484, 0.677387, 0.0254707, 0.841174, -1.18902 )
@@ -378,9 +372,6 @@ parameters/StateMachine/playback = SubResource( 11 )
 [node name="ray" parent="seekArea" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.218, -1.215 )
 
-[node name="audi" parent="." index="9"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000707437, 0.039937, -0.0399043 )
-
 [node name="levitation" type="Spatial" parent="." index="10"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.906521, 2.82869, -0.647183 )
 script = ExtResource( 7 )
@@ -402,7 +393,14 @@ monitorable = false
 [node name="CollisionShape" type="CollisionShape" parent="levitation/collisionArea" index="0"]
 shape = SubResource( 14 )
 
-[node name="audiShoot" parent="." index="11"]
+[node name="weapons" parent="." index="11"]
+PistolWeaponParentPath = NodePath("../levitation/weapons")
+GunWeaponParentPath = NodePath("../levitation/weapons")
+
+[node name="audi" parent="." index="16"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000707437, 0.039937, -0.0399043 )
+
+[node name="audiShoot" parent="." index="17"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000707437, 0.039937, -0.0399043 )
 
 [connection signal="body_entered" from="levitation/collisionArea" to="levitation" method="_on_collisionArea_body_entered"]

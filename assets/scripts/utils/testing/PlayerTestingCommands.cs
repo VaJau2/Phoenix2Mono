@@ -45,7 +45,7 @@ public class PlayerTestingCommands : Node
                 foreach (var child in npcParent.GetChildren())
                 {
                     if (child is not NPC npc) continue;
-                    if (npc.relation != Relation.Enemy && npc is not Dragon) continue;
+                    if (npc.relation != Relation.Enemy && !npc.Name.Contains("dragon")) continue;
                     if (npc.Health <= 0) continue;
                     npc.TakeDamage(npc, KILL_DAMAGE);
                 }

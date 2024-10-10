@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=2]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=2]
 [ext_resource path="res://assets/models/characters/ponies/security1/hair.material" type="Material" id=3]
 [ext_resource path="res://assets/models/characters/ponies/security1/body.material" type="Material" id=4]
 [ext_resource path="res://assets/models/characters/ponies/security1/eyes.material" type="Material" id=5]

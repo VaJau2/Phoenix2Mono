@@ -1,11 +1,16 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=52 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFaceMat.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/characters/spike/eyes/neitral/0.material" type="Material" id=2]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/CachedHeadPosition.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/characters/NPC/Pony.cs" type="Script" id=6]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCWeapons.cs" type="Script" id=8]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/SeekArea.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=3]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCCovers.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/Moving/NavigationMovingController.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/NPC.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/NpcState/StateMachine.cs" type="Script" id=7]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcPatroling.cs" type="Script" id=8]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/SeekArea.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcAudio.cs" type="Script" id=10]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcInteraction.cs" type="Script" id=11]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "spike"
@@ -549,7 +554,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 36 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
@@ -561,11 +566,6 @@ extents = Vector3( 3.71017, 3.62098, 4.73551 )
 
 [node name="spike" type="KinematicBody" groups=["savable"]]
 script = ExtResource( 6 )
-IdleAnim = "Idle1"
-WalkSpeed = 6
-lookHeightFactor = 6.0
-headBonePath = NodePath("")
-bodyBonePath = NodePath("")
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00970767, 0.503661, 0.159578 )
@@ -705,13 +705,11 @@ monitorable = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48777, -3.12451 )
 shape = SubResource( 40 )
 
-[node name="weapons" type="Node" parent="."]
-script = ExtResource( 8 )
-
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 unit_db = 4.0
 unit_size = 4.0
 bus = "Sound"
+script = ExtResource( 10 )
 
 [node name="audiShoot" type="AudioStreamPlayer3D" parent="."]
 unit_db = 5.0
@@ -719,6 +717,21 @@ unit_size = 13.0
 max_db = 5.0
 max_distance = 2000.0
 bus = "Sound"
+
+[node name="covers" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="movingController" type="Node" parent="." groups=["savable"]]
+script = ExtResource( 5 )
+
+[node name="stateMachine" type="Node" parent="." groups=["savable"]]
+script = ExtResource( 7 )
+
+[node name="patroling" type="Node" parent="." groups=["savable"]]
+script = ExtResource( 8 )
+
+[node name="interaction" type="Node" parent="."]
+script = ExtResource( 11 )
 
 [connection signal="body_entered" from="seekArea" to="seekArea" method="_on_seekArea_body_entered"]
 [connection signal="body_exited" from="seekArea" to="seekArea" method="_on_seekArea_body_exited"]

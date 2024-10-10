@@ -16,7 +16,6 @@ public class NPCFaceMat : NPCFace
     private float eyesOpenCooldown = 1f;
 
     Random rand = new Random();
-    Global global => Global.Get();
 
     public override void CloseEyes()
     {
@@ -25,7 +24,7 @@ public class NPCFaceMat : NPCFace
         eyesOpenCooldown = 0.2f;
     }
 
-    private void ChangeEyesVariant(string variantName)
+    private new void ChangeEyesVariant(string variantName)
     {
         string path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
         openEyes = GD.Load<SpatialMaterial>(path + "/0.material");

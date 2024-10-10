@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/materials/characters/helmet.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/zebra/Tail.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/zebra/eyes/neitral/0.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFaceMat.cs" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.148851, 0.900311, 0.721792 )

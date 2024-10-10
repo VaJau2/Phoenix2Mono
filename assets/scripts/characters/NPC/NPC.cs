@@ -1,152 +1,110 @@
-using System;
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
 //класс отвечает за поведение НПЦ
-public abstract class NPC : Character, IInteractable
+public class NPC : Character, IInteractable, IChest
 {
-    protected int RagdollImpulse = 1000;
-    private const float SEARCH_TIMER = 12f;
-    private readonly string[] skipSignals = {"tree_entered", "tree_exiting"};
-
-    protected float RotationSpeed = 0.15f;
-    protected float Gravity = 0;
-    protected const float PATROL_WAIT = 4f;
-
-    [Export] public Array<NodePath> patrolArray;
-    protected Spatial[] patrolPoints;
-    protected int patrolI = 0;
-    protected float patrolWaitTimer = 0;
-    [Export] public string IdleAnim = "";
+    [Export] public Array<NodePath> patrolArray = [];
 
     [Export] public bool IsImmortal;
     [Export] public int StartHealth = 100;
     [Export] public Relation relation;
     [Export] public string subtitlesCode = "";
     [Export] public string dialogueCode = "";
-    [Export] public int WalkSpeed = 5;
 
     [Export] public float lookHeightFactor = 1;
     public bool aggressiveAgainstPlayer;
     [Export] public bool ignoreDamager;
-    public NPCState state;
-    public SeekArea seekArea {get; private set;}
+    
+    [Export] public Array<string> itemCodes = [];
+    [Export] public Dictionary<string, int> ammoCount = new();
+
+    [Export] public string customHintCode;
+    [Export] public NodePath customInteractionTriggerPath;
+    
+    public string ChestCode => "body";
     
     public Vector3 myStartPos, myStartRot;
 
-    public virtual bool MayInteract => GetMayInteract();
-    public virtual string InteractionHintCode => "talk";
+    public virtual bool MayInteract => interaction?.GetMayInteract() ?? false;
+    public virtual string InteractionHintCode => interaction?.GetInteractionHintCode();
     
-    protected AudioStreamPlayer3D audi;
-    [Export] protected Array<AudioStreamSample> hittedSounds;
-    [Export] protected Array<AudioStreamSample> dieSounds;
+    public NPCWeapons Weapons { get; private set; }
+    public NPCCovers Covers { get; private set; }
+    public SeekArea SeekArea { get; private set; }
+    public NavigationMovingController MovingController { get; private set; }
+    public ChestHandler ChestHandler { get; private set; }
+
+    private NpcInteraction interaction;
+    private StateMachine stateMachine;
+    private NpcSaving saving;
     
-    [Export] protected bool hasSkeleton = true;
-    private Skeleton skeleton;
+    [Export] public bool hasSkeleton = true;
+    public Skeleton skeleton;
     [Export] private NodePath headBonePath, bodyBonePath;
     
-    private Dictionary<string, bool> objectsChangeActive = new();
+    public Dictionary<string, bool> objectsChangeActive = new();
     private CachedHeadPosition headPosition;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
     private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
 
-    private Player player => Global.Get().player;
-    private DialogueMenu dialogueMenu;
-    private Subtitles subtitles;
     public Character tempVictim;
-    protected Vector3 lastSeePos;
-    protected float searchTimer;
-    private float deadTimer = 5f;
-
-    protected bool CloseToPoint;
-
-    private bool GetMayInteract()
-    {
-        if (!string.IsNullOrEmpty(dialogueCode))
-        {
-            return !dialogueMenu.MenuOn;
-        }
-
-        if (!string.IsNullOrEmpty(subtitlesCode))
-        {
-            return !subtitles.IsAnimatingText;
-        }
-
-        return false;
-    }
-
-    public virtual void Interact(PlayerCamera interactor)
-    {
-        if (!string.IsNullOrEmpty(dialogueCode))
-        {
-            dialogueMenu.StartTalkingTo(this);
-        }
-
-        if (!string.IsNullOrEmpty(subtitlesCode))
-        {
-            subtitles.SetTalker(this)
-                .LoadSubtitlesFile(subtitlesCode)
-                .StartAnimatingText();
-        }
-    }
+    public Character followTarget;
     
-    public virtual void SetState(NPCState newState)
+    private Player player => Global.Get().player;
+    
+    [Signal]
+    public delegate void IsCame();
+    
+    [Signal]
+    public delegate void FoundEnemy();
+    
+    [Signal]
+    public delegate void IsDying();
+    
+    public override void _Ready()
     {
-        if (Health <= 0) return;
+        SetStartHealth(StartHealth);
+        BaseSpeed = MovingController.WalkSpeed;
+        
+        ChestHandler = new ChestHandler(this)
+            .SetCode(ChestCode)
+            .LoadStartItems(itemCodes, ammoCount);
 
-        switch(newState) 
+        saving = new NpcSaving(this);
+        SeekArea = GetNode<SeekArea>("seekArea");
+        Weapons = GetNodeOrNull<NPCWeapons>("weapons");
+        Covers = GetNodeOrNull<NPCCovers>("covers");
+        MovingController = GetNodeOrNull<NavigationMovingController>("movingController");
+        stateMachine = GetNode<StateMachine>("stateMachine");
+        interaction = GetNodeOrNull<NpcInteraction>("interaction");
+        
+        if (hasSkeleton)
         {
-            case NPCState.Idle:
-                if (tempVictim == player) 
-                {
-                    player?.Stealth.RemoveSeekEnemy(this);
-                }
-                tempVictim = null;
-                break;
-            
-            case NPCState.Attack:
-                if (state == NPCState.Talk) return;
-                
-                if (tempVictim == player) 
-                {
-                    if (!(this is NpcWithWeapons npcWeapons) || !string.IsNullOrEmpty(npcWeapons.weaponCode))
-                    {
-                        player.Stealth.AddAttackEnemy(this);
-                    }
-                }
-                break;
-            
-            case NPCState.Search:
-                searchTimer = SEARCH_TIMER;
-                
-                if (!IsInstanceValid(tempVictim))
-                {
-                    if (lastSeePos == Vector3.Zero)
-                    {
-                        //врага нет, позиции нет, искать нечего
-                        SetState(NPCState.Idle);
-                        return;
-                    }
+            skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
-                    break;
-                }
-                
-                if (tempVictim == player) 
-                {
-                    player.Stealth.AddSeekEnemy(this);
-                }
-                lastSeePos = tempVictim.GlobalTransform.origin;
-                
-                break;
+            headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
+            
+            headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
+            bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
+                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
         }
-        state = newState;
+        
+        if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
+            
+        myStartPos = GlobalTransform.origin;
+        myStartRot = Rotation;
     }
 
-    public void SetLastSeePos(Vector3 newPos)
+    public void Interact(PlayerCamera interactor) => interaction?.Interact();
+
+    public SetStateEnum GetState() => stateMachine.GetCurrentSetState();
+
+    public void SetState(SetStateEnum state)
     {
-        lastSeePos = newPos;
+        stateMachine.SetState(state);
     }
 
     public Vector3 GetHeadPosition() => headPosition.GetPosition();
@@ -163,24 +121,14 @@ public abstract class NPC : Character, IInteractable
         EmitSignal(nameof(TakenDamage));
         
         if (IsImmortal) return;
-
-        if (!ignoreDamager)
+        
+        if (Covers != null) Covers.CoverTimer -= damage / 10f;
+        
+        if (Weapons is { HasWeapon: true })
         {
-            if (damager == player && !aggressiveAgainstPlayer && state == NPCState.Idle)
-            {
-                aggressiveAgainstPlayer = true;
-                seekArea.AddEnemyInArea(player);
-            }
-
-            if (state != NPCState.Attack)
-            {
-                tempVictim = damager;
-                SetState(NPCState.Attack);
-            }
+            Covers?.StopHidingInCover();
         }
         
-        PlayRandomSound(hittedSounds);
-
         if (shapeID != 0) 
         {
             damage = (int)(damage * 1.5f);
@@ -188,7 +136,14 @@ public abstract class NPC : Character, IInteractable
 
         base.TakeDamage(damager, damage, shapeID);
 
-        if (Health <= 0) 
+        if (Health > 0) 
+        {
+            if (!ignoreDamager)
+            {
+                SetStateAgainstDamager(damager);
+            }
+        }
+        else
         {
             if (tempVictim == player) 
             {
@@ -198,6 +153,24 @@ public abstract class NPC : Character, IInteractable
             MakeDead();
             AnimateDeath(damager, shapeID);
         }
+    }
+    
+    private void SetStateAgainstDamager(Character damager)
+    {
+        if (damager == player && !aggressiveAgainstPlayer && GetState() == SetStateEnum.Idle)
+        {
+            aggressiveAgainstPlayer = true;
+            SeekArea.AddEnemyInArea(player);
+        }
+        
+        var coverChance = 1.0f - (float)Health / HealthMax;
+
+        var rand = new RandomNumberGenerator();
+        var newState = rand.Randf() < coverChance ? SetStateEnum.Hiding : SetStateEnum.Attack;
+        if (GetState() == newState) return;
+        
+        tempVictim = damager;
+        SetState(newState);
     }
 
     public override void CheckShotgunShot(bool isShotgun)
@@ -213,24 +186,34 @@ public abstract class NPC : Character, IInteractable
         objectsChangeActive[objectPath] = active;
     }
 
-    protected void CleanPatrolArray()
+    public void SetNewStartPos(Vector3 newPos, bool run = false)
+    {
+        MovingController.RunToPoint = true;
+        CleanPatrolArray();
+        myStartPos = newPos;
+    }
+
+    public void CleanPatrolArray()
     {
         patrolArray?.Clear();
-        patrolPoints = null;
     }
 
-    protected void PlayRandomSound(Array<AudioStreamSample> array)
+    public void SetFollowTarget(Character newTarget)
     {
-        if (array is not { Count: > 0 }) return;
-        var rand = new RandomNumberGenerator();
-        rand.Randomize();
-        int randomNum = rand.RandiRange(0, array.Count - 1);
-        audi.Stream = array[randomNum];
-        audi.Play();
+        followTarget = newTarget;
     }
 
-    private void MakeDead()
+    public void MakeDead()
     {
+        EmitSignal(nameof(IsDying));
+        
+        if (Weapons != null)
+        {
+            Weapons.SetWeaponOn(false);
+            Weapons.SpawnPickableItem();
+            Weapons.WeaponCode = null;
+        }
+        
         if (GetParent() is EnemiesManager manager)
         {
             if (manager.enemies.Contains(this))
@@ -262,12 +245,10 @@ public abstract class NPC : Character, IInteractable
 
     protected virtual void AnimateDeath(Character killer, int shapeID)
     {
-        PlayRandomSound(dieSounds);
-        
         if (hasSkeleton)
         {
             Vector3 dir = Translation.DirectionTo(killer.Translation);
-            float force = tempShotgunShot ? RagdollImpulse * 1.5f : RagdollImpulse;
+            float force = tempShotgunShot ? MovingController.RagdollImpulse * 1.5f : MovingController.RagdollImpulse;
 
             if (shapeID == 0)
             {
@@ -279,254 +260,42 @@ public abstract class NPC : Character, IInteractable
             }
         }
     }
-
-    protected void RotateTo(Vector3 place)
+    
+    public void _on_stopArea_body_entered(Node body)
     {
-        var rotA = Transform.basis.Quat().Normalized();
-        var rotB = Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
-        var tempRotation = rotA.Slerp(rotB, RotationSpeed);
-
-        Transform tempTransform = Transform;
-        tempTransform.basis = new Basis(tempRotation);
-        Transform = tempTransform;
-    }
-
-    protected void MoveTo(Vector3 place, float distance, float speed = 1)
-    {
-        var pos = GlobalTransform.origin;
-        place.y = pos.y;
-
-        RotateTo(place);
-
-        speed += BaseSpeed;
-
-        Rotation = new Vector3(0, Rotation.y, 0);
-        Velocity = new Vector3(0, -Gravity, -speed).Rotated(Vector3.Up, Rotation.y);
-
-        var temp_distance = pos.DistanceTo(place);
-        CloseToPoint = temp_distance <= distance;
-    }
-
-    private void HandleGravity()
-    {
-        if (!IsOnFloor())
+        switch (body)
         {
-            if (Gravity < 30)
-            {
-                Gravity += 0.5f;
-            }
+            case Player when MovingController != null:
+                MovingController.stopAreaEntered = true;
+                break;
+            case FurnDoor { IsOpen: false } door:
+                MovingController?.SetDoorWait(door.ClickFurn());
+                break;
         }
-        else
+    }
+    
+    public void _on_stopArea_body_exited(Node body)
+    {
+        if (body is Player && MovingController != null)
         {
-            Gravity = 0;
+            MovingController.stopAreaEntered = false;
         }
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        string tempVictimName = data["tempVictim"].ToString();
-        if (tempVictimName != "")
-        {
-            var scene = GetNode("/root/Main/Scene");
-            tempVictim = Global.FindNodeInScene(scene, tempVictimName) as Character;
-        }
-        
-        var newState = (NPCState) Enum.Parse(typeof(NPCState), data["state"].ToString());
-        SetState(newState);
-        lastSeePos = data["lastSeePos"] as Vector3? ?? default;
-        relation = (Relation)Enum.Parse(typeof(Relation), data["relation"].ToString());
-        aggressiveAgainstPlayer = Convert.ToBoolean(data["aggressiveAgainstPlayer"]);
-        myStartPos = data["myStartPos"].ToString().ParseToVector3();
-        myStartRot = data["myStartRot"].ToString().ParseToVector3();
-        IdleAnim = data["idleAnim"].ToString();
-        dialogueCode = data["dialogueCode"].ToString();
-        WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
-        ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
-
-        if (hasSkeleton && Health <= 0)
-        {
-            foreach (Spatial bone in skeleton.GetChildren())
-            {
-                if (bone is not PhysicalBone) continue;
-
-                var newPos = data[$"rb_{bone.Name}_pos"].ToString().ParseToVector3();
-                var newRot = data[$"rb_{bone.Name}_rot"].ToString().ParseToVector3();
-                var oldScale = bone.Scale;
-
-                var newBasis = new Basis(newRot);
-                var newTransform = new Transform(newBasis, newPos);
-                bone.GlobalTransform = newTransform;
-                bone.Scale = oldScale;
-            }
-        }
-
-        if (data["signals"] is Godot.Collections.Array signals)
-        {
-            foreach (Dictionary signalData in signals)
-            {
-                var signalName = signalData["signal"].ToString();
-                var method = signalData["method"].ToString();
-                var binds = signalData["binds"] as Godot.Collections.Array;
-                
-                var targetPath = signalData["target_path"].ToString();
-                var target = GetNodeOrNull(targetPath);
-                if (target == null) continue;
-
-                if (!IsConnected(signalName, target, method))
-                {
-                    Connect(signalName, target, method, binds);
-                }
-            }
-        }
-
-        if (data.Contains("showObjects") && data["showObjects"] is Dictionary showObjects)
-        {
-            foreach (string objectPath in showObjects.Keys)
-            {
-                bool showObject = Convert.ToBoolean(showObjects[objectPath]);
-                SetObjectActive(objectPath, showObject);
-            }
-        }
-
-        if (data.Contains("patrolPaths") && data["patrolPaths"] is Godot.Collections.Array patrolPaths)
-        {
-            patrolPoints = new Spatial[patrolPaths.Count];
-            for (int i = 0; i < patrolPaths.Count; i++)
-            {
-                patrolPoints[i] = GetNode<Spatial>(patrolPaths[i].ToString());
-            }
-        }
-        else
-        {
-            CleanPatrolArray();
-        }
-
-        if (Health <= 0)
-        {
-            MakeDead();
-        }
+        saving.LoadData(data);
     }
 
     public override Dictionary GetSaveData()
     {
-        var saveData = base.GetSaveData();
-        saveData["tempVictim"] = IsInstanceValid(tempVictim) ? tempVictim.Name : "";
-        saveData["state"] = state.ToString();
-        saveData["lastSeePos"] = lastSeePos;
-        saveData["relation"] = relation.ToString();
-        saveData["aggressiveAgainstPlayer"] = aggressiveAgainstPlayer;
-        saveData["idleAnim"] = IdleAnim;
-        saveData["walkSpeed"] = WalkSpeed;
-        saveData["myStartPos"] = myStartPos;
-        saveData["myStartRot"] = myStartRot;
-        saveData["dialogueCode"] = dialogueCode;
-        saveData["showObjects"] = objectsChangeActive;
-        saveData["ignoreDamager"] = ignoreDamager;
-
-        if (patrolPoints != null)
-        {
-            var patrolPaths = new string[patrolPoints.Length];
-            for (var i = 0; i < patrolPaths.Length; i++)
-            {
-                patrolPaths[i] = patrolPoints[i].GetPath().ToString();
-            }
-
-            saveData["patrolPaths"] = patrolPaths;
-        }
-
-        if (hasSkeleton && Health <= 0)
-        {
-            foreach (Spatial bone in skeleton.GetChildren())
-            {
-                if (bone is not PhysicalBone) continue;
-                saveData[$"rb_{bone.Name}_pos"] = bone.GlobalTransform.origin;
-                saveData[$"rb_{bone.Name}_rot"] = bone.GlobalTransform.basis.GetEuler();
-            }
-        }
-
-        var signals = new Godot.Collections.Array();
-        foreach (var signal in GetSignalList())
-        {
-            if (signal is not Dictionary signalDict) continue;
-
-            var connectionList = GetSignalConnectionList(signalDict["name"].ToString());
-            if (connectionList == null || connectionList.Count == 0) continue;
-
-            foreach (var connectionData in connectionList)
-            {
-                if (connectionData is not Dictionary connectionDict) continue;
-                if (connectionDict["target"] is not Node target) continue;
-                var signalName = signalDict["name"].ToString();
-                if (skipSignals.Contains(signalName)) continue;
-
-                signals.Add(new Dictionary
-                {
-                    {"signal", signalName},
-                    {"method", connectionDict["method"].ToString()},
-                    {"target_path", target.GetPath()},
-                    {"binds", connectionDict["binds"]}
-                });
-            }
-        }
-
-        saveData["signals"] = signals;
+        var saveData = DictionaryHelper.Merge( 
+        base.GetSaveData(), 
+        saving.GetSaveData()
+        );
         
         return saveData;
-    }
-
-    public override void _Ready()
-    {
-        audi = GetNode<AudioStreamPlayer3D>("audi");
-        seekArea = GetNode<SeekArea>("seekArea");
-        dialogueMenu = GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
-        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
-        if (hasSkeleton)
-        {
-            skeleton = GetNode<Skeleton>("Armature/Skeleton");
-
-            headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
-            
-            headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
-                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
-            bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
-                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
-        }
-
-        SetStartHealth(StartHealth);
-        BaseSpeed = WalkSpeed;
-
-        if (patrolArray == null || patrolArray.Count == 0)
-        {
-            if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
-            
-            myStartPos = GlobalTransform.origin;
-            myStartRot = Rotation;
-        } 
-        else if (patrolPoints == null) 
-        {
-            patrolPoints = new Spatial[patrolArray.Count];
-            for (int i = 0; i < patrolArray.Count; i++) 
-            {
-                patrolPoints[i] = GetNode<Spatial>(patrolArray[i]);
-            }
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        if (Health <= 0) 
-        {
-            return;
-        }
-
-        HandleImpulse();
-        HandleGravity();
-        
-        if (Velocity.Length() > 0) 
-        {
-            MoveAndSlide(Velocity, new Vector3(0, 1, 0), true);
-        }
     }
 }
 
@@ -534,11 +303,4 @@ public enum Relation {
     Friend,
     Enemy,
     Neitral
-}
-
-public enum NPCState {
-    Idle,
-    Attack,
-    Search,
-    Talk
 }

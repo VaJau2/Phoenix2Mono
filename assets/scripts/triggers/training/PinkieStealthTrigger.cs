@@ -15,18 +15,19 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private string loseDialogue;
     
     private Array<Spatial> patrolPointParents = [];
-    private Array<RoboEye> roboEyes = [];
+    private Array<NPC> roboEyes = [];
     private FurnDoor enterDoor;
     private FurnDoor bagDoor;
     private BagChest bag;
-    private MrHandy assistantPie;
-    private bool connected;
+    private NPC assistantPie;
+    
+    private bool isRobotsActive;
     
     public override void _Ready()
     {
         base._Ready();
         
-        assistantPie = GetNode<MrHandy>(assistantPiePath);
+        assistantPie = GetNode<NPC>(assistantPiePath);
         
         audi = GetNode<AudioStreamPlayer3D>(audiPath);
         audi.Stream = beepSound;
@@ -38,31 +39,22 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         foreach (NodePath roboEyePath in roboEyesPaths)
         {
-            roboEyes.Add(GetNode<RoboEye>(roboEyePath));
+            var roboEye = GetNode<NPC>(roboEyePath);
+            roboEyes.Add(roboEye);
+            roboEye.Connect(nameof(NPC.FoundEnemy), this, nameof(_on_found_enemy));
         }
         
         foreach (NodePath patrolParentPath in patrolPointParentsPaths)
         {
             patrolPointParents.Add(GetNode<Spatial>(patrolParentPath));
         }
-        
-        var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
-    }
-
-    private async void OnSaveDataLoaded()
-    {
-        await ToSignal(GetTree(), "idle_frame");
-        
-        if (trainingIsDone) return;
-        if (!connected) return;
 
         player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
     }
 
     protected override void PressButton()
     {
-        SetConnect(true);
+        MakeRoboEyesActive(true);
 
         bagDoor.myKey = "";
         enterDoor.myKey = "";
@@ -72,9 +64,9 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
 
     public void _on_found_enemy()
     {
-        if (!connected) return;
+        if (!isRobotsActive) return;
         
-        SetConnect(false);
+        MakeRoboEyesActive(false);
         
         audi.Stream = beepSound;
         audi.Play();
@@ -89,7 +81,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         if (itemCode != itemInBag) return;
         if (trainingIsDone) return;
         
-        SetConnect(false);
+        MakeRoboEyesActive(false);
         
         audi.Stream = beepSound;
         audi.Play();
@@ -99,32 +91,26 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         SetActive(false);
     }
 
-    private void SetConnect(bool value)
+    private void MakeRoboEyesActive(bool value)
     {
         foreach (var roboEye in roboEyes)
         {
-            roboEye.MakeActive(value);
-            
-            if (value) roboEye.Connect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
-            else roboEye.Disconnect(nameof(RoboEye.FoundEnemy), this, nameof(_on_found_enemy));
+            roboEye.SetState(value ? SetStateEnum.Idle : SetStateEnum.Disabled);
         }
-        
-        if (value) player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
-        else player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
-        
-        connected = value;
+
+        isRobotsActive = value;
     }
     
     public override Dictionary GetSaveData()
     {
         var data = base.GetSaveData();
-        data["eventConnected"] = connected;
+        data["robotsActive"] = isRobotsActive;
         return data;
     }
 
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        connected = (bool) data["eventConnected"];
+        isRobotsActive = (bool) data["robotsActive"];
     }
 }

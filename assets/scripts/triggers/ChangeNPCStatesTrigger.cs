@@ -17,7 +17,6 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public Relation newRelation = Relation.Friend;
     [Export] public string newWeaponCode;
     [Export] public bool ignoreDamager;
-    [Export] public bool stayInPoint;
     [Export] private Mortality newMortality;
 
     private enum Mortality
@@ -84,44 +83,44 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
         ChangeObjectsVisible(ref showObjects, true);
         ChangeObjectsVisible(ref hideObjects, false);
+        
         if (!string.IsNullOrEmpty(newAnimation))
         {
-            npc.IdleAnim = newAnimation;
+            var body = npc.GetNodeOrNull<PonyBody>("body");
+            if (body != null)
+            {
+                body.IdleAnim = newAnimation;
+            }
         }
 
         if (newWalkSpeed != -1)
         {
-            npc.WalkSpeed = newWalkSpeed;
-        }
-
-        if (npc is Pony pony && newRunSpeed != -1)
-        {
-            pony.stayInPoint = stayInPoint;
-            pony.RunSpeed = newRunSpeed;
+            npc.MovingController.WalkSpeed = newWalkSpeed;
         }
         
-        if (npc is NpcWithWeapons npcWithWeapons)
+        if (npc != null)
         {
+            npc.MovingController.RunSpeed = newRunSpeed;
+            
             if (!string.IsNullOrEmpty(followPath))
             {
                 Character followTarget = GetNode<Character>(followPath);
-                npcWithWeapons.SetFollowTarget(followTarget);
+                npc.SetFollowTarget(followTarget);
             }
             else
             {
-                npcWithWeapons.SetFollowTarget(null);
+                npc.SetFollowTarget(null);
             }
 
             if (newIdlePoint != null)
             {
-                npcWithWeapons.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
+                npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
                 npc.myStartRot = newIdlePoint.Rotation;
             }
 
             if (newWeaponCode != null)
             {
-                npcWithWeapons.weaponCode = newWeaponCode;
-                npcWithWeapons.weapons.LoadWeapon(npcWithWeapons, newWeaponCode);
+                npc.Weapons?.LoadWeapon(newWeaponCode);
             }
         }
 

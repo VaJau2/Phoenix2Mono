@@ -1,8 +1,14 @@
 using Godot;
+using Godot.Collections;
 
-public class NPCBody
+public class PonyBody : Node
 {
+    [Export] private Array<AudioStreamSample> hittedSounds;
+    [Export] private AudioStreamSample dieSound;
+    [Export] public string IdleAnim = "Idle1";
+    
     private NPC npc;
+    private NpcAudio audi;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -10,21 +16,67 @@ public class NPCBody
     private Spatial defaultLookTarget;
     private Spatial lookTarget;
     private float lookTimer = 2f;
-
-    public NPCBody(NPC npc)
+    
+    public override void _Ready()
     {
-        this.npc = npc;
-
+        npc = GetParent<NPC>();
+        audi = npc.GetNode<NpcAudio>("audi");
         animTree = npc.GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback) animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
-        if (!string.IsNullOrEmpty(npc.IdleAnim))
+        
+        if (!string.IsNullOrEmpty(IdleAnim))
         {
-            playback.Start(npc.IdleAnim);
+            playback.Start(IdleAnim);
         }
+
+        PlayIdleAnim();
+        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
+        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
     }
 
-    public void PlayAnim(string animName)
+    public override void _Process(float delta)
+    {
+        if (npc.MovingController.WalkSpeed == 0)
+        {
+            return;
+        }
+
+        UpdateWalkingAnimations();
+        UpdateHeadRotation(delta);
+        animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
+    }
+
+    public void OnNpcHitted()
+    {
+        audi.PlayRandomSound(hittedSounds);   
+    }
+
+    public void OnNpcDying()
+    {
+        audi.PlayStream(dieSound);
+        
+        PlayAnim(Character.IDLE_ANIM1);
+    }
+    
+    public Vector3 GetDirToTarget(Spatial target)
+    {
+        Vector3 targetDirPos = target.GlobalTranslation;
+        targetDirPos.y = npc.GlobalTranslation.y;
+        return targetDirPos - npc.GlobalTranslation;
+    }
+
+    public void SetDefaultLookTarget(Spatial value)
+    {
+        defaultLookTarget = value;
+    }
+
+    public void SetLookTarget(Spatial value)
+    {
+        lookTarget = value;
+    }
+
+    private void PlayAnim(string animName)
     {
         if (playback.GetCurrentNode() == animName)
         {
@@ -41,60 +93,55 @@ public class NPCBody
         }
     }
 
-    public void StopAnim()
-    {
-        playback.Stop();
-    }
-
-    public Vector3 GetDirToTarget(Spatial target)
-    {
-        Vector3 targetDirPos = target.GlobalTransform.origin;
-        targetDirPos.y = npc.GlobalTransform.origin.y;
-        return targetDirPos - npc.GlobalTransform.origin;
-    }
-
-    public void SetDefaultLookTarget(Spatial value)
-    {
-        defaultLookTarget = value;
-    }
-
-    public void SetLookTarget(Spatial value)
-    {
-        lookTarget = value;
-    }
-
-    public void Update(float delta)
-    {
-        if (npc.WalkSpeed == 0)
-        {
-            return;
-        }
-
-        UpdateHeadRotation(delta);
-        animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
-    }
-
     public void _on_lookArea_body_entered(Node body)
     {
-        if (npc.state != NPCState.Idle || Object.IsInstanceValid(lookTarget) || body == npc) return;
-        if (!(body is Character character)) return;
+        if (npc.GetState() != SetStateEnum.Idle || IsInstanceValid(lookTarget) || body == npc) return;
+        if (body is not Character character) return;
         lookTimer = 2f;
         lookTarget = character;
     }
 
     public void _on_lookArea_body_exited(Node body)
     {
-        if (npc.state == NPCState.Idle && body == lookTarget)
+        if (npc.GetState() == SetStateEnum.Idle && body == lookTarget)
         {
             lookTarget = null;
         }
     }
 
+    private void UpdateWalkingAnimations()
+    {
+        if (npc.Velocity.Length() <= Character.MIN_WALKING_SPEED)
+        {
+            PlayIdleAnim();
+            return;
+        }
+        
+        PlayAnim(npc.MovingController.IsRunning ? "Run" : "Walk");
+    }
+    
+    private void PlayIdleAnim()
+    {
+        if (!string.IsNullOrEmpty(IdleAnim))
+        {
+            PlayAnim(IdleAnim);
+        } 
+        else
+        {
+            StopAnim();
+        }
+    }
+    
+    private void StopAnim()
+    {
+        playback.Stop();
+    }
+
     private void UpdateHeadRotation(float delta)
     {
-        if (Object.IsInstanceValid(lookTarget))
+        if (IsInstanceValid(lookTarget))
         {
-            if (npc.state == NPCState.Idle)
+            if (npc.GetState() == SetStateEnum.Idle)
             {
                 if (lookTimer > 0)
                 {
