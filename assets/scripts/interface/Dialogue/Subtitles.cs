@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -18,8 +17,6 @@ using Array = Godot.Collections.Array;
 //
 public class Subtitles : Label, ISavable
 {
-    private const float DEFAULT_SYMBOL_DELAY = 0.04f;
-    private const float DEFAULT_PHRASE_DELAY = 0.9f;
     private const float VISIBLE_DISTANCE = 50;
 
     private static Player Player => Global.Get().player;
@@ -145,11 +142,11 @@ public class Subtitles : Label, ISavable
             
             symbolDelay = tempPhraseData.Contains("timer") 
                 ? Convert.ToSingle(tempPhraseData["timer"]) 
-                : DEFAULT_SYMBOL_DELAY;
+                : DialogueDelay.DEFAULT_SYMBOL_DELAY; 
             
-           phraseDelay = tempPhraseData.Contains("delay") 
+            phraseDelay = tempPhraseData.Contains("delay") 
                 ? Convert.ToSingle(tempPhraseData["delay"]) 
-                : DEFAULT_PHRASE_DELAY;
+                : DialogueDelay.DEFAULT_PHRASE_DELAY;
             
             IsAnimatingText = true;
         
@@ -162,43 +159,14 @@ public class Subtitles : Label, ISavable
     private void UpdateAnimatingText()
     {
         var nextSymbol = animatingText[0];
-        animatingText = animatingText.Substring(1);
-
-        if (nextSymbol == '@')
-        {
-            symbolTimer = GetDelayFromText();
-        }
-        else
-        {
-            Text += nextSymbol.ToString();
-            dialogueAudio.UpdateDynamicPlaying(nextSymbol);
-            
-            symbolTimer = string.IsNullOrEmpty(animatingText) 
-                ? phraseDelay 
-                : symbolDelay;
-        }
-    }
-
-    private float GetDelayFromText()
-    {
-        if (animatingText.Length < 1) return phraseDelay;
-
-        if (!int.TryParse(animatingText[0].ToString(), out _))
-        {
-            return phraseDelay;
-        }
         
-        var delayString = "";
-        var i = 0;
+        symbolTimer = DialogueDelay.Get(ref animatingText, phraseDelay, symbolDelay);
 
-        while (animatingText[i] != '@')
-        {
-            delayString += animatingText[i];
-            i++;
-        }
-
-        animatingText = animatingText.Substring(i+1);
-        return Convert.ToSingle(delayString, CultureInfo.InvariantCulture);
+        if (nextSymbol == DialogueDelay.DELAY_SYMBOL) return;
+        
+        Text += nextSymbol.ToString();
+        dialogueAudio.UpdateDynamicPlaying(nextSymbol);
+        animatingText = animatingText.Substring(1);
     }
 
     private void FinishAnimatingText()
