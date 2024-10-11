@@ -12,7 +12,7 @@ public class NPC : Character, IInteractable, IChest
     [Export] public string subtitlesCode = "";
     [Export] public string dialogueCode = "";
 
-    [Export] public float lookHeightFactor = 1;
+    [Export] public float lookHeightFactor = -1.5f;
     public bool aggressiveAgainstPlayer;
     [Export] public bool ignoreDamager;
     
@@ -66,7 +66,6 @@ public class NPC : Character, IInteractable, IChest
     public override void _Ready()
     {
         SetStartHealth(StartHealth);
-        BaseSpeed = MovingController.WalkSpeed;
         
         ChestHandler = new ChestHandler(this)
             .SetCode(ChestCode)
@@ -77,6 +76,7 @@ public class NPC : Character, IInteractable, IChest
         Weapons = GetNodeOrNull<NPCWeapons>("weapons");
         Covers = GetNodeOrNull<NPCCovers>("covers");
         MovingController = GetNodeOrNull<NavigationMovingController>("movingController");
+        BaseSpeed = MovingController.WalkSpeed;
         stateMachine = GetNode<StateMachine>("stateMachine");
         interaction = GetNodeOrNull<NpcInteraction>("interaction");
         
@@ -121,13 +121,6 @@ public class NPC : Character, IInteractable, IChest
         EmitSignal(nameof(TakenDamage));
         
         if (IsImmortal) return;
-        
-        if (Covers != null) Covers.CoverTimer -= damage / 10f;
-        
-        if (Weapons is { HasWeapon: true })
-        {
-            Covers?.StopHidingInCover();
-        }
         
         if (shapeID != 0) 
         {

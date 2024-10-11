@@ -2,7 +2,6 @@
 using Godot.Collections;
 
 public class SearchState(
-    Player player,
     StateMachine stateMachine,
     NPCWeapons weapons,
     NavigationMovingController movingController,
@@ -25,7 +24,7 @@ public class SearchState(
             return;
         }
 
-        if (npc.tempVictim == player)
+        if (npc.tempVictim is Player player)
         {
             player.Stealth.AddSeekEnemy(npc);
         }

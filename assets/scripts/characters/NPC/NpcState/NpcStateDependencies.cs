@@ -1,25 +1,32 @@
 ﻿using Godot.Collections;
 
-public class NpcStateDependencies(NPC npc) : IDependencies
+public class NpcStateDependencies : IDependencies
 {
+    private NPC npc;
+
+    public NpcStateDependencies(NPC npc)
+    {
+        this.npc = npc;
+    }
+    
     public Dictionary GetDictionary()
     {
         return new Dictionary
         {
-            { typeof(Player), Global.Get().player },
-            { typeof(NPCWeapons), npc.GetNode<NPCWeapons>("weapons") },
-            { typeof(SeekArea), npc.GetNode<SeekArea>("seekArea") },
-            { typeof(NPCCovers), npc.GetNode<NPCCovers>("covers") },
+            { nameof(NPCWeapons), npc.GetNodeOrNull<NPCWeapons>("weapons") },
+            { nameof(SeekArea), npc.GetNodeOrNull<SeekArea>("seekArea") },
+            { nameof(NPCCovers), npc.GetNodeOrNull<NPCCovers>("covers") },
+            { nameof(NpcPatroling), npc.GetNodeOrNull<NpcPatroling>("patroling") },
             
-            { typeof(BaseMovingController), npc.GetNode<BaseMovingController>("movingController") },
-            { typeof(NavigationMovingController), npc.GetNode<NavigationMovingController>("movingController") },
+            { nameof(BaseMovingController), npc.GetNodeOrNull<BaseMovingController>("movingController") },
+            { nameof(NavigationMovingController), npc.GetNodeOrNull<NavigationMovingController>("movingController") },
             
-            { typeof(PonyBody), npc.GetNode<PonyBody>("body") },
-            { typeof(RoboEyeBody),  npc.GetNode<RoboEyeBody>("body") },
-            { typeof(DragonBody), npc.GetNode<DragonBody>("body") },
-            { typeof(DragonMouth), npc.GetNode<DragonMouth>("smash-area") },
+            { nameof(PonyBody), npc.GetNodeOrNull<PonyBody>("body") },
+            { nameof(RoboEyeBody),  npc.GetNodeOrNull<RoboEyeBody>("body") },
+            { nameof(DragonBody), npc.GetNodeOrNull<DragonBody>("body") },
+            { nameof(DragonMouth), npc.GetNodeOrNull<DragonMouth>("smash-area") },
            
-            { typeof(StateMachine), npc.GetNode<StateMachine>("stateMachine") }
+            { nameof(StateMachine), npc.GetNodeOrNull<StateMachine>("stateMachine") }
         };
     }
 }

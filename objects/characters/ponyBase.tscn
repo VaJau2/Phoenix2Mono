@@ -1859,7 +1859,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 57 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
+node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
@@ -1886,7 +1886,7 @@ bones/0/name = "back_1"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 3.97508e-17, 0.177527, 0.0159377 )
 bones/0/enabled = true
-bones/0/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/0/bound_children = [  ]
 bones/1/name = "back_2"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 0, 2.38419e-07, 1.29927e-07, 0.838467, -0.544952, -1.99906e-07, 0.544952, 0.838467, 3.72231e-24, 1.00215, -7.45058e-09 )
@@ -1901,7 +1901,7 @@ bones/3/name = "head"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, 5.3533e-07, 5.51925e-08, -5.35325e-07, 0.978946, 0.204119, 5.52408e-08, -0.20412, 0.978946, -4.10958e-13, 0.889073, 8.14278e-08 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("BoneAttachment") ]
+bones/3/bound_children = [  ]
 bones/4/name = "leg_1_l"
 bones/4/parent = 1
 bones/4/rest = Transform( 0.996067, -0.0885971, 5.96046e-08, -0.0409138, -0.45998, 0.886986, -0.0785844, -0.883498, -0.461796, -0.259124, 0.478682, -0.479909 )
@@ -2059,12 +2059,12 @@ transform = Transform( 0.999999, 8.19564e-08, 1.30385e-08, -7.45058e-09, 0.99999
 shape = SubResource( 8 )
 
 [node name="Physical Bone leg_2_l" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116483, 0.993129, -0.0114235, -0.0952564, 0.0226187, 0.995197, -0.407885, 1.82027, -1.8122 )
+transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116483, 0.993129, -0.0114235, -0.0952564, 0.0226187, 0.995197, -0.407884, 1.82027, -1.8122 )
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069478, -0.00189375, 0.874638 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427775, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00612602, 0.870113, -0.0889432 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00694789, -0.00189337, 0.874637 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427775, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00612596, 0.870112, -0.0889435 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -2105,8 +2105,8 @@ transform = Transform( 0.993608, 0.112883, 1.23531e-06, -0.111816, 0.984225, -0.
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150046, -2.06009e-06, 0.864143 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934066, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827135, 0.860119, 0.017638 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150049, -2.09361e-06, 0.864143 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934063, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827132, 0.860119, 0.017638 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_r"
@@ -2336,6 +2336,7 @@ script = ExtResource( 11 )
 
 [node name="body" type="Node" parent="."]
 script = ExtResource( 13 )
+hittedSounds = [  ]
 
 [node name="stateMachine" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 14 )

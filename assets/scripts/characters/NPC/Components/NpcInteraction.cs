@@ -61,7 +61,7 @@ public class NpcInteraction: Node
             return;
         }
         
-        if (npc.Health < 0)
+        if (npc.Health <= 0)
         {
             npc.ChestHandler.Open();
             return;

@@ -307,7 +307,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     {
         if (!MenuOn) return;
         
-        if (npc.GetState() != SetStateEnum.Talk) 
+        if (npc == null || npc.GetState() != SetStateEnum.Talk) 
         {
             MenuManager.CloseMenu(this);
             return;

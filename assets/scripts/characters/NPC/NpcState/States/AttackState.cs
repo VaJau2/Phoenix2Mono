@@ -1,7 +1,6 @@
 ﻿using Godot;
 
 public class AttackState(
-    Player player,
     SeekArea seekArea,
     NPCWeapons weapons,
     NavigationMovingController movingController,
@@ -13,7 +12,7 @@ public class AttackState(
 
     public void Enable(NPC npc)
     {
-        if (npc.tempVictim == player)
+        if (npc.tempVictim is Player player)
         {
             player.Stealth.AddAttackEnemy(npc);
         }
@@ -48,16 +47,14 @@ public class AttackState(
         var shootDistance = weapons.GetStatsFloat("shootDistance");
         var tempDistance = npc.GlobalTranslation.DistanceTo(victimPos);
         
+        movingController.GoTo(victimPos, shootDistance / 1.5f);
+        movingController.updatePath = npc.tempVictim.Velocity.Length() > Character.MIN_WALKING_SPEED;
+        
         if (movingController.cameToPlace && tempDistance < shootDistance)
         {
             UpdateShooting(tempDistance, delta);
             LookAtTarget(npc);
             movingController.Stop(true);
-        }
-        else
-        {
-            movingController.GoTo(victimPos, shootDistance / 1.5f);
-            movingController.updatePath = npc.tempVictim.Velocity.Length() > Character.MIN_WALKING_SPEED;
         }
     }
 

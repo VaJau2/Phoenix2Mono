@@ -10,10 +10,13 @@ public class Cover
 
     public Cover(Spatial place)
     {
-        center = place.GlobalTransform.origin;
+        center = place.GlobalTranslation;
         foreach (Node tempPlace in place.GetChildren())
         {
-            places.Add((tempPlace as Spatial).GlobalTransform.origin);
+            if (tempPlace is Spatial spatialPlace)
+            {
+                places.Add(spatialPlace.GlobalTranslation);
+            }
         }
     }
 

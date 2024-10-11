@@ -16,19 +16,17 @@ public class StateMachine: Node, ISavable
         return FindSetState(CurrentStateEnum);
     }
     
-    public void SetState(SetStateEnum newState)
+    public void SetState(SetStateEnum newState, bool checkHealth = true)
     {
-        if (!availableSetStates.Contains(newState))
-        {
-            return;
-        }
+        if (!availableSetStates.Contains(newState)) return;
+        if (currentState != null && GetCurrentSetState() == newState) return;
 
-        SetState(FindNpcState(newState));
+        SetState(FindNpcState(newState), checkHealth);
     }
 
-    private void SetState(NpcStateEnum npcState)
+    private void SetState(NpcStateEnum npcState, bool checkHealth = true)
     {
-        if (npc.Health <= 0)
+        if (npc.Health <= 0 && checkHealth)
         {
             return;
         }
@@ -48,7 +46,7 @@ public class StateMachine: Node, ISavable
         
         npc = GetParent<NPC>();
 
-        SetState(SetStateEnum.Idle);
+        SetState(SetStateEnum.Idle, false);
     }
 
     public override void _Process(float delta)

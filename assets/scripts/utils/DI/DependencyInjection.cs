@@ -6,7 +6,7 @@ public static class DependencyInjection
 {
     public static T CreateClass<T>(Type type, IDependencies dependencies) where T : class
     {
-        var constructors = type.GetConstructors(BindingFlags.Public);
+        var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance | BindingFlags.CreateInstance);
 
         if (constructors.Length <= 0)
         {
@@ -21,8 +21,9 @@ public static class DependencyInjection
         
         for (var i = 0; i < parameters.Length; i++)
         {
-            parameters[i] = classes.Contains(classParameters[i])
-                ? classes[classParameters[i]]
+            var parameterType = classParameters[i].ParameterType.Name;
+            parameters[i] = classes.Contains(parameterType)
+                ? classes[parameterType]
                 : null;
         }
 

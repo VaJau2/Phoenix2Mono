@@ -37,7 +37,7 @@ public static class NpcStateConverter
             NpcStateEnum.DragonIdle => typeof(DragonIdleState),
             NpcStateEnum.DragonAttack => typeof(DragonAttackState),
             
-            _ => typeof(IdleState)
+            _ => null
         };
     }
 

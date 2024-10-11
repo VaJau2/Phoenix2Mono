@@ -1,7 +1,6 @@
 ﻿using Godot;
 
 public class IdleState(
-    Player player,
     NPCCovers covers,
     NPCWeapons weapons,
     NavigationMovingController movingController,
@@ -21,9 +20,9 @@ public class IdleState(
             covers?.StopHidingInCover();
         }
 
-        if (npc.tempVictim == player)
+        if (npc.tempVictim is Player player)
         {
-            player?.Stealth.RemoveSeekEnemy(npc);
+            player.Stealth.RemoveSeekEnemy(npc);
         }
         
         npc.tempVictim = null;
@@ -76,13 +75,13 @@ public class IdleState(
             movingController.Stop(true);
             return;
         }
+        
+        movingController.GoTo(patroling.CurrentPatrolPoint, 0, false);
 
         if (movingController.cameToPlace)
         {
             patroling.NextPatrolPoint();
         }
-
-        movingController.GoTo(patroling.CurrentPatrolPoint, 0, false);
     }
 
     private void FollowTarget()

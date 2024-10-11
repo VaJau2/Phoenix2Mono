@@ -101,7 +101,11 @@ public class SeekArea : Area
                     {
                         //идем в атаку на врага, которого заметили
                         npc.tempVictim = tempVictim;
-                        npc.SetState(SetStateEnum.Attack);
+                        npc.SetState(
+                            npc.Weapons is { HasWeapon: true }
+                                ? SetStateEnum.Attack
+                                : SetStateEnum.Hiding
+                        );
                     }
                     else
                     {

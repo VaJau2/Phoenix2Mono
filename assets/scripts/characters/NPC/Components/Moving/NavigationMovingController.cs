@@ -39,7 +39,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         }
         
         cameToPlace = false;
-        var pos = Npc.GlobalTransform.origin;
+        var pos = Npc.GlobalTranslation;
 
         var tempDistance = pos.DistanceTo(place);
         if (tempDistance < distance)
