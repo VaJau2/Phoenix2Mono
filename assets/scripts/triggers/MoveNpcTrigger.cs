@@ -14,11 +14,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public bool teleportToPoint;
     [Export] public bool setStartPoint = true;
 
-    private Array<NPC> npc = new Array<NPC>();
-    private Array<Spatial> points = new Array<Spatial>();
+    private Array<NPC> npc = [];
+    private Array<Spatial> points = [];
     private bool activated;
-
-    private float tempTimer = 0;
+    private Array<int> connectedEvents = [];
+    private float tempTimer;
     private int step;
 
     public override void _Ready()
@@ -35,7 +35,11 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             return;
         }
 
-        SetProcess(false);
+        if (step <= npc.Count)
+        {
+            SetProcess(false);
+        }
+        
         _on_activate_trigger();
     }
 
@@ -64,13 +68,16 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             return;
         }
         
-        if (step < npc.Count + 1)
+        if (step == npc.Count)
         {
             WaitLastTimer();
             return;
         }
-        
-        base._on_activate_trigger();
+
+        if (connectedEvents.Count == 0)
+        {
+            base._on_activate_trigger();
+        }
     }
 
     private void LoadNpcAndPoints()
@@ -97,11 +104,8 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                var body = npc[i].GetNodeOrNull<PonyBody>("body");
-                if (body != null)
-                {
-                    body.IdleAnim = idleAnims[i];
-                }
+                npc[i].Connect(nameof(NPC.IsCame), this, nameof(SetIdleAnimForNpc), [i]);
+                connectedEvents.Add(i);
             }
 
             if (teleportToPoint)
@@ -116,19 +120,42 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         tempTimer = timer;
         SetProcess(true);
     }
-
-    private void WaitLastTimer()
+    
+    public void SetIdleAnimForNpc(int i)
     {
-        step++;
-        tempTimer = lastTimer;
-        SetProcess(true);
+        var body = npc[i].GetNodeOrNull<PonyBody>("body");
+        if (body != null)
+        {
+            body.IdleAnim = idleAnims[i];
+        }
+
+        if (connectedEvents.Contains(i))
+        {
+            npc[i].Disconnect(nameof(NPC.IsCame), this, nameof(SetIdleAnimForNpc));
+            connectedEvents.Remove(i);
+        }
     }
     
+    private void WaitLastTimer()
+    {
+        NextStep(lastTimer);
+    }
+
+    private void NextStep(float timerToWait)
+    {
+        step++;
+        tempTimer = timerToWait;
+        SetProcess(true);
+    }
+
+   
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
         saveData["step"] = step;
         saveData["tempTimer"] = tempTimer;
+        saveData["connectedEvents"] = ArrayToString(connectedEvents);
+        
         return saveData;
     }
 
@@ -139,6 +166,26 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         if (data.Contains("tempTimer"))
         {
             tempTimer = Convert.ToSingle(data["tempTimer"]);
+        }
+        
+        if (data.Contains("connectedEvents"))
+        {
+            connectedEvents = StringToArray(data["connectedEvents"].ToString());
+            
+            if (connectedEvents.Count > 0)
+            {
+                LoadNpcAndPoints();
+            }
+            
+            foreach (var connectedId in connectedEvents)
+            {
+                npc[connectedId].Connect(
+                    nameof(NPC.IsCame),
+                    this,
+                    nameof(SetIdleAnimForNpc),
+                    [connectedId]
+                );
+            }
         }
         
         step = Convert.ToInt16(data["step"]);
@@ -154,5 +201,38 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         if (!IsActive) return;
         if (!(body is Player)) return;
         _on_activate_trigger();
+    }
+
+    private static string ArrayToString(Array<int> value)
+    {
+        if (value.Count <= 0) return "";
+        var eventsString = "";
+
+        for (var i = 0; i < value.Count; i++)
+        {
+            eventsString += value[i];
+            if (i < value.Count - 1)
+            {
+                eventsString += ",";
+            }
+        }
+            
+        return eventsString;
+    }
+
+    private static Array<int> StringToArray(string value)
+    {
+        if (string.IsNullOrEmpty(value)) return [];
+
+        var connect = value.Split(',');
+        
+        Array<int> result = [];
+
+        foreach (var item in connect)
+        {
+            result.Add(int.Parse(item));
+        }
+        
+        return result;
     }
 }

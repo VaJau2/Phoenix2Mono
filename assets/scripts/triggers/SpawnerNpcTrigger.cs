@@ -97,7 +97,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         {
             npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
             npcInstance.StartHealth = StartHealth;
-            npcInstance.Weapons?.LoadWeapon(weaponCode);
+            npcInstance.GetNodeOrNull<NPCWeapons>("weapons")?.SetWeaponCode(weaponCode);
             npcInstance.relation = relation;
             npcInstance.itemCodes = itemCodes;
             npcInstance.ammoCount = ammoCount;
@@ -119,7 +119,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             {
                 foreach (var triggerDataPrimary in triggerConnections)
                 {
-                    if (!(triggerDataPrimary is Array triggerData) || triggerData.Count != 4) continue;
+                    if (triggerDataPrimary is not Array { Count: 4 } triggerData) continue;
 
                     var trigger = GetNode(triggerData[0].ToString());
                     var signal = triggerData[1].ToString();

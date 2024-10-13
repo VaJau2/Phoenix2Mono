@@ -550,6 +550,7 @@ StartHealth = 90
 
 [node name="spike" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.976687, 0, -0.214667, 0, 1, 0, 0.214667, 0, 0.976687, 20.549, 6.26088, -13.1928 )
+dialogueCode = "talk"
 
 [node name="shells" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 70 )
@@ -1696,8 +1697,8 @@ shape = SubResource( 26 )
 script = ExtResource( 52 )
 otherTriggerPaths = [ NodePath("../moveBellgates") ]
 disactiveTriggerPaths = [  ]
-NpcPaths = [ "../../npc/twilight", "../../npc/dusk", "../../npc/scientist1", "../../npc/security1", "../../npc/spike" ]
-pointPaths = [ NodePath("../../terrain/npcPlaces/before/twilight"), NodePath("../../terrain/npcPlaces/before/dusk"), NodePath("../../terrain/npcPlaces/before/scientist1"), NodePath("../../terrain/npcPlaces/before/security1"), NodePath("../../terrain/npcPlaces/before/spike") ]
+NpcPaths = [ "../../npc/twilight", "../../npc/spike", "../../npc/dusk", "../../npc/scientist1", "../../npc/security1" ]
+pointPaths = [ NodePath("../../terrain/npcPlaces/before/twilight"), NodePath("../../terrain/npcPlaces/before/spike"), NodePath("../../terrain/npcPlaces/before/dusk"), NodePath("../../terrain/npcPlaces/before/scientist1"), NodePath("../../terrain/npcPlaces/before/security1") ]
 idleAnims = [ "Sit", "Sit", "Sit", "Sit", "Sit" ]
 stayThere = [  ]
 timer = 1.5

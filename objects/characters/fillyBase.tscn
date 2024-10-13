@@ -1090,7 +1090,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 86 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
+node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=99]
 
@@ -1225,12 +1225,12 @@ transform = Transform( 1, 1.08567e-24, 0, 1.03398e-24, 1, -1.86265e-09, 0, 1.862
 shape = SubResource( 5 )
 
 [node name="Physical Bone back_2" type="PhysicalBone" parent="Armature/Skeleton"]
-transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.21835, -0.97587, 5.53318e-08, 0.97587, -0.218351, -5.58794e-07, 1.49164, -0.113881 )
+transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.21835, -0.97587, 5.53318e-08, 0.97587, -0.218351, -5.66244e-07, 1.49164, -0.113881 )
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.80121e-07, 0.00750767, 0.311088 )
-body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244692, -0.969601, 1.80284e-07, 0.9696, 0.244692, -5.36442e-07, 0.299794, -0.0834001 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.87572e-07, 0.00750767, 0.311088 )
+body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244692, -0.969601, 1.80284e-07, 0.9696, 0.244692, -5.43892e-07, 0.299794, -0.0834001 )
 mass = 20.0
 weight = 196.0
 bone_name = "back_2"
@@ -1310,8 +1310,8 @@ transform = Transform( 0.992856, 0.0872001, 0.0198155, -0.0876513, 0.988275, 0.0
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000653456, -0.00733741, 0.451337 )
-body_offset = Transform( 0.992587, 0.0833252, 0.0884602, 0.0833252, 0.0632027, -0.994524, -0.0884599, 0.994524, 0.0557921, -0.0399626, 0.449275, -0.017826 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000653473, -0.00733733, 0.451337 )
+body_offset = Transform( 0.992587, 0.0833252, 0.0884602, 0.0833252, 0.0632027, -0.994524, -0.0884599, 0.994524, 0.0557921, -0.0399626, 0.449275, -0.0178261 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_1_r"
@@ -1575,7 +1575,7 @@ unit_size = 4.0
 
 [connection signal="body_entered" from="seekArea" to="seekArea" method="_on_seekArea_body_entered"]
 [connection signal="body_exited" from="seekArea" to="seekArea" method="_on_seekArea_body_exited"]
-[connection signal="body_entered" from="lookArea" to="." method="_on_lookArea_body_entered"]
-[connection signal="body_exited" from="lookArea" to="." method="_on_lookArea_body_exited"]
+[connection signal="body_entered" from="lookArea" to="body" method="_on_lookArea_body_entered"]
+[connection signal="body_exited" from="lookArea" to="body" method="_on_lookArea_body_exited"]
 [connection signal="body_entered" from="stopArea" to="." method="_on_stopArea_body_entered"]
 [connection signal="body_exited" from="stopArea" to="." method="_on_stopArea_body_exited"]

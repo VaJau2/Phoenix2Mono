@@ -5,7 +5,7 @@
             "text": "Launching the trading protocol"
         },
         "phrase2": {
-            "class": "Dialogue_Trade"
+            "class": "DialogueTrade"
         }
     }
 }

@@ -15,6 +15,8 @@ public class NpcAudio : AudioStreamPlayer3D
 
     public void PlayStream(AudioStreamSample stream)
     {
+        if (stream == null) return;
+        
         Stream = stream;
         Play();
     }

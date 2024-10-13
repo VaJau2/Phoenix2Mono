@@ -25,14 +25,13 @@ public class IdleState(
             player.Stealth.RemoveSeekEnemy(npc);
         }
         
-        npc.tempVictim = null;
-        
-        body?.SetLookTarget(null);
-        
-        if (body != null && body.IdleAnim != Character.IDLE_ANIM1)
+        if (body != null)
         {
-            body.IdleAnim = Character.IDLE_ANIM1;
+            body.CustomIdleAnim = null;
+            body.SetLookTarget(null);
         }
+        
+        npc.tempVictim = null;
     }
 
     public void Update(NPC npc, float delta)
@@ -53,7 +52,7 @@ public class IdleState(
                 }
                 else
                 {
-                    movingController.GoTo(npc.myStartPos, 0, false);
+                    movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
                 }
             }
             else

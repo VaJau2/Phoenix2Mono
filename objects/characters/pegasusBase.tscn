@@ -2847,7 +2847,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 59 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
+node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=61]
 
@@ -3049,8 +3049,8 @@ transform = Transform( 0.996067, -0.0885978, 2.0323e-07, 0.088353, 0.993318, 0.0
 collision_layer = 2
 collision_mask = 2
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00124867, -0.0140755, 0.44693 )
-body_offset = Transform( 0.992634, -0.0828154, -0.088429, -0.0828149, 0.068942, -0.994177, 0.0884293, 0.994177, 0.0615754, 0.0395953, 0.445194, -0.0134159 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00124849, -0.0140755, 0.44693 )
+body_offset = Transform( 0.992634, -0.0828154, -0.088429, -0.0828149, 0.068942, -0.994177, 0.0884293, 0.994177, 0.0615754, 0.0395952, 0.445194, -0.0134159 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_1_l"
@@ -3332,6 +3332,8 @@ script = ExtResource( 14 )
 
 [node name="weapons" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 8 )
+PistolWeaponParentPath = NodePath("../Armature/Skeleton/BoneAttachment/weapons")
+GunWeaponParentPath = NodePath("../Armature/Skeleton/BoneAttachment 2/weapons")
 
 [node name="covers" type="Node" parent="."]
 script = ExtResource( 11 )
@@ -3366,7 +3368,7 @@ unit_size = 4.0
 
 [connection signal="body_entered" from="seekArea" to="seekArea" method="_on_seekArea_body_entered"]
 [connection signal="body_exited" from="seekArea" to="seekArea" method="_on_seekArea_body_exited"]
-[connection signal="body_entered" from="lookArea" to="." method="_on_lookArea_body_entered"]
-[connection signal="body_exited" from="lookArea" to="." method="_on_lookArea_body_exited"]
+[connection signal="body_entered" from="lookArea" to="body" method="_on_lookArea_body_entered"]
+[connection signal="body_exited" from="lookArea" to="body" method="_on_lookArea_body_exited"]
 [connection signal="body_entered" from="stopArea" to="." method="_on_stopArea_body_entered"]
 [connection signal="body_exited" from="stopArea" to="." method="_on_stopArea_body_exited"]

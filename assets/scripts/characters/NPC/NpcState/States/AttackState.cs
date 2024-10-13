@@ -53,30 +53,9 @@ public class AttackState(
         if (movingController.cameToPlace && tempDistance < shootDistance)
         {
             UpdateShooting(tempDistance, delta);
-            LookAtTarget(npc);
+            body?.LookAtTarget();
             movingController.Stop(true);
         }
-    }
-
-    protected virtual void LookAtTarget(NPC npc)
-    {
-        var npcForward = -npc.GlobalTransform.basis.z;
-        var npcDir = body?.GetDirToTarget(npc.tempVictim);
-        if (npcDir == null) return;
-        
-        var rotationToVictim = npcForward.AngleTo(npcDir.Value);
-
-        if (weapons is { isPistol: true })
-        {
-            if (Mathf.Rad2Deg(rotationToVictim) < 80)
-            {
-                return;
-            }
-        }
-        
-        Vector3 victimPos = npc.tempVictim.GlobalTransform.origin;
-        victimPos.y = npc.GlobalTransform.origin.y;
-        npc.LookAt(victimPos, Vector3.Up);
     }
 
     private void UpdateShooting(float victimDistance, float delta)

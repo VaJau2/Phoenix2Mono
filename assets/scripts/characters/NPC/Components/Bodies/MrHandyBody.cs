@@ -11,10 +11,10 @@ public class MrHandyBody : Node
     public override void _Ready()
     {
         var npc = GetParent<NPC>();
-        fire = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/fire");
+        fire = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment1/fire");
         audi = npc.GetNode<NpcAudio>("audi");
         
-        var anim = GetNode<AnimationPlayer>("anim");
+        var anim = npc.GetNode<AnimationPlayer>("anim");
         anim.Play("Idle");
         
         npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));

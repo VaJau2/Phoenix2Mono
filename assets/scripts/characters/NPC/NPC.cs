@@ -86,9 +86,9 @@ public class NPC : Character, IInteractable, IChest
 
             headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
             
-            headBone = !string.IsNullOrEmpty(headBonePath) ? GetNode<PhysicalBone>(headBonePath) 
+            headBone = headBonePath != null ? GetNodeOrNull<PhysicalBone>(headBonePath) 
                 : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
-            bodyBone = !string.IsNullOrEmpty(bodyBonePath) ? GetNode<PhysicalBone>(bodyBonePath) 
+            bodyBone = bodyBonePath != null ? GetNodeOrNull<PhysicalBone>(bodyBonePath) 
                 : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
         }
         
@@ -107,7 +107,7 @@ public class NPC : Character, IInteractable, IChest
         stateMachine.SetState(state);
     }
 
-    public Vector3 GetHeadPosition() => headPosition.GetPosition();
+    public Vector3 GetHeadPosition() => headPosition?.GetPosition() ?? GlobalTranslation;
 
     public override int GetDamage()
     {
@@ -181,9 +181,10 @@ public class NPC : Character, IInteractable, IChest
 
     public void SetNewStartPos(Vector3 newPos, bool run = false)
     {
-        MovingController.RunToPoint = true;
-        CleanPatrolArray();
+        MovingController.RunToPoint = run;
         myStartPos = newPos;
+        MovingController.cameToPlace = false;
+        CleanPatrolArray();
     }
 
     public void CleanPatrolArray()

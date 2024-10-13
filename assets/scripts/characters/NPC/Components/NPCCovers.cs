@@ -2,7 +2,6 @@ using Godot;
 
 public class NPCCovers : Node
 {
-    private readonly float[] UNCOVER_TIMER = [5f, 20f];
     private readonly float[] COVER_TIMER = [1f, 5f];
     
     public Cover TempCover;
@@ -47,7 +46,6 @@ public class NPCCovers : Node
     {
         if (TempCover != null) coversManager.ReturnCover(TempCover);
         TempCover = null;
-        CoverTimer = rand.RandfRange(UNCOVER_TIMER[0], UNCOVER_TIMER[1]);
         InCover = false;
     }
 

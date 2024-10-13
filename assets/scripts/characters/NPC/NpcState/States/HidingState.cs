@@ -12,7 +12,7 @@
         
         if (!HasGun && body != null)
         {
-            body.IdleAnim = "Sit";
+            body.CustomIdleAnim = "Sit";
         }
     }
 
@@ -26,6 +26,7 @@
 
         if (covers.InCover)
         {
+            body?.LookAtTarget();
             UpdateCoverTimer(delta);
         }
         else

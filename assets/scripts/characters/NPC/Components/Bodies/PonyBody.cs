@@ -3,9 +3,11 @@ using Godot.Collections;
 
 public class PonyBody : Node
 {
-    [Export] private Array<AudioStreamSample> hittedSounds;
+    [Export] private Array<AudioStreamSample> hittedSounds = [];
     [Export] private AudioStreamSample dieSound;
-    [Export] public string IdleAnim = "Idle1";
+    
+    public string IdleAnim = "Idle1";
+    public string CustomIdleAnim = null;
     
     private NPC npc;
     private NpcAudio audi;
@@ -25,12 +27,8 @@ public class PonyBody : Node
         playback = (AnimationNodeStateMachinePlayback) animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
         
-        if (!string.IsNullOrEmpty(IdleAnim))
-        {
-            playback.Start(IdleAnim);
-        }
+        playback.Start(IdleAnim);
 
-        PlayIdleAnim();
         npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
         npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
     }
@@ -75,6 +73,27 @@ public class PonyBody : Node
     {
         lookTarget = value;
     }
+    
+    public void LookAtTarget()
+    {
+        if (npc.tempVictim == null) return;
+        
+        var npcForward = -npc.GlobalTransform.basis.z;
+        var npcDir = GetDirToTarget(npc.tempVictim);
+        var rotationToVictim = npcForward.AngleTo(npcDir);
+
+        if (npc.Weapons is { isPistol: true })
+        {
+            if (Mathf.Rad2Deg(rotationToVictim) < 80)
+            {
+                return;
+            }
+        }
+        
+        Vector3 victimPos = npc.tempVictim.GlobalTransform.origin;
+        victimPos.y = npc.GlobalTransform.origin.y;
+        npc.LookAt(victimPos, Vector3.Up);
+    }
 
     private void PlayAnim(string animName)
     {
@@ -111,7 +130,7 @@ public class PonyBody : Node
 
     private void UpdateWalkingAnimations()
     {
-        if (npc.Velocity.Length() <= Character.MIN_WALKING_SPEED)
+        if (npc.Velocity.Length() <= 0)
         {
             PlayIdleAnim();
             return;
@@ -122,7 +141,11 @@ public class PonyBody : Node
     
     private void PlayIdleAnim()
     {
-        if (!string.IsNullOrEmpty(IdleAnim))
+        if (!string.IsNullOrEmpty(CustomIdleAnim))
+        {
+            PlayAnim(CustomIdleAnim);
+        }
+        else if (!string.IsNullOrEmpty(IdleAnim))
         {
             PlayAnim(IdleAnim);
         } 
@@ -139,7 +162,7 @@ public class PonyBody : Node
 
     private void UpdateHeadRotation(float delta)
     {
-        if (IsInstanceValid(lookTarget))
+        if (IsInstanceValid(lookTarget) && MayRotateHead)
         {
             if (npc.GetState() == SetStateEnum.Idle)
             {
@@ -172,6 +195,8 @@ public class PonyBody : Node
             SetValueTo(ref headBlend.y, defaultHeadRotation.y, delta * 2);
         }
     }
+
+    private bool MayRotateHead => IdleAnim != "Frozen";
 
     private Vector2 GetHeadRotationTo(Spatial target)
     {

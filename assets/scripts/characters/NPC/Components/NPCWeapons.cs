@@ -35,6 +35,11 @@ public class NPCWeapons : Node, ISavable
     [Signal]
     public delegate void Shooting();
 
+    public void SetWeaponCode(string newWeaponCode)
+    {
+        WeaponCode = newWeaponCode;
+    }
+
     public void LoadWeapon(string newWeaponCode)
     {
         if (string.IsNullOrEmpty(WeaponCode))

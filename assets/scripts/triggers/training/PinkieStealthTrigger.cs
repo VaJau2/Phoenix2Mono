@@ -23,7 +23,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     
     private bool isRobotsActive;
     
-    public override void _Ready()
+    public override async void _Ready()
     {
         base._Ready();
         
@@ -43,12 +43,16 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
             roboEyes.Add(roboEye);
             roboEye.Connect(nameof(NPC.FoundEnemy), this, nameof(_on_found_enemy));
         }
+
+        MakeRoboEyesActive(false);
         
         foreach (NodePath patrolParentPath in patrolPointParentsPaths)
         {
             patrolPointParents.Add(GetNode<Spatial>(patrolParentPath));
         }
 
+        await ToSignal(GetTree(), "idle_frame");
+        
         player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
     }
 
@@ -79,7 +83,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     public void _on_player_take_item(string itemCode)
     {
         if (itemCode != itemInBag) return;
-        if (trainingIsDone) return;
+        if (!isRobotsActive || trainingIsDone) return;
         
         MakeRoboEyesActive(false);
         

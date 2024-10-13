@@ -15,7 +15,7 @@ public class RoboEyeBody : Node
         npc = GetParent<NPC>();
         audi = npc.GetNode<NpcAudio>("audi");
         anim = npc.GetNode<AnimationPlayer>("anim");
-        anim.Play("Idle");
+        anim.Play("idle");
         
         npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
     }
