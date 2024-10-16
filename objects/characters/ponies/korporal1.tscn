@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/korporal1/body.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/korporal1/eyes.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/characters/korporal1/mouth.material" type="Material" id=6]
 
 

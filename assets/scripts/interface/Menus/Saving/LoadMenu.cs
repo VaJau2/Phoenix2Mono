@@ -186,7 +186,7 @@ public class LoadMenu : Control
             loader.LoadLevel(levelNum, levelsData, deletedObjects);
             return true;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }

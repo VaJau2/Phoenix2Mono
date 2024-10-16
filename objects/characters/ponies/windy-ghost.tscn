@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/fillyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/models/characters/ponies/windy/eyes.material" type="Material" id=3]
 

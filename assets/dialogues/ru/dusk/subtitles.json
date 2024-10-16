@@ -1,0 +1,24 @@
+﻿{
+  "following": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Не обращай внимания на гильзы и кучи трупов. Это нормально."
+    },
+    "phrase2": {
+      "speakerCode": "dusk",
+      "text": "Х-хорошо..."
+    },
+    "phrase3": {
+      "speakerCode": "strikely",
+      "text": "Почти дошли"
+    },
+    "phrase4": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    },
+    "phrase5": {
+      "class": "ChangeDialogueCode",
+      "value": ""
+    }
+  }
+}

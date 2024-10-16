@@ -1,16 +1,16 @@
 using Godot;
-using System;
 
 public class UseItemTrigger : ActivateOtherTrigger
 {
     [Export] public string ItemToUse;
-
+    
     Player player => Global.Get().player;
 
     public override async void _Ready()
     {
         base._Ready();
-        await ToSignal(GetTree(), "idle_frame");
+
+        await Global.Get().ToTimer(0.1f, this);
         
         if (IsActive)
         {

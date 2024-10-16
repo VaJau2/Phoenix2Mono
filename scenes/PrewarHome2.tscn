@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=2]
+[gd_scene load_steps=153 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/materials/props/background/morning_city.tres" type="Material" id=8]
 [ext_resource path="res://objects/props/plants/AppleTree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=11]
+[ext_resource path="res://assets/scripts/background/CoversManager.cs" type="Script" id=11]
 [ext_resource path="res://objects/props/tiles/woodFence.tres" type="MeshLibrary" id=12]
 [ext_resource path="res://objects/props/post/PostOffice.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/props/vehicles/Mercury.tscn" type="PackedScene" id=14]
@@ -95,7 +95,8 @@
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=93]
 [ext_resource path="res://assets/scripts/furniture/Lamp.cs" type="Script" id=94]
 [ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=95]
-
+[ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=96]
+[ext_resource path="res://assets/scripts/background/NpcLookTarget.cs" type="Script" id=97]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -560,16 +561,18 @@ script = ExtResource( 10 )
 
 [node name="windy" parent="npc" instance=ExtResource( 67 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -71.3381, -92.8579, 60.5449 )
-IdleAnim = "Sleep"
 IsImmortal = true
 headBonePath = NodePath("")
 bodyBonePath = NodePath("")
-COME_DISTANCE = 3.0
 
 [node name="mother" parent="npc" instance=ExtResource( 66 )]
 transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.999886, -85.6788, -101.587, 52.4112 )
 IsImmortal = true
 dialogueCode = "talk3"
+
+[node name="startAnim" type="Node" parent="npc/mother"]
+script = ExtResource( 96 )
+Anim = "Lie"
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 visible = false
@@ -1365,6 +1368,11 @@ transform = Transform( -1.33235, 0, -1.71442e-07, 0, 1.08363, 0, 2.01179e-07, 0,
 [node name="book" type="MeshInstance" parent="rooms/mansion/props/sofa"]
 transform = Transform( -1.27445e-08, -0.186168, -0.224384, 0, 0.224384, -0.186168, 0.291559, -8.13766e-09, -9.80813e-09, 1.93528, 0.972595, 0.00537109 )
 mesh = SubResource( 61 )
+
+[node name="lookTarget" type="Spatial" parent="rooms/mansion/props/sofa/book"]
+transform = Transform( 1, -4.26326e-14, 1.13687e-13, -7.10543e-15, 1, -2.98023e-08, -2.84217e-14, -2.38419e-07, 1, 0, -5.94135, 4.9295 )
+script = ExtResource( 97 )
+npcPath = NodePath("../../../../../../npc/mother")
 
 [node name="flower" parent="rooms/mansion/props" instance=ExtResource( 52 )]
 transform = Transform( 0.59291, 0, 0, 0, 0.59291, 0, 0, 0, 0.59291, 12.2109, -2.22544, 15.664 )
