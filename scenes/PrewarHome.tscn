@@ -1,4 +1,4 @@
-[gd_scene load_steps=224 format=2]
+[gd_scene load_steps=225 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -2340,7 +2340,7 @@ speedRot = 0.0
 smoothTransition = false
 
 [node name="skip" type="Node" parent="cutscenes/Apple-tree"]
-script = ExtResource( 126 )
+script = ExtResource( 127 )
 otherTriggerPaths = [ NodePath("../../../triggers/windyTeleport5") ]
 
 [node name="triggers" type="Node" parent="."]

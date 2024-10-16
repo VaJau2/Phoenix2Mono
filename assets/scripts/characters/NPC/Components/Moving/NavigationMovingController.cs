@@ -6,7 +6,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
 {
     private const float RUN_DISTANCE = 12f;
 
-    [Export] public float ComeDistance = 4f;
+    [Export] public float ComeDistance = 3f;
     [Export] public bool MayRun = true;
     [Export] public int RunSpeed = 10;
 
