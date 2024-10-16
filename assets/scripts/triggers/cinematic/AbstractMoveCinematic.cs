@@ -6,19 +6,19 @@ public abstract class AbstractMoveCinematic : PathBase
     [Export] protected bool smoothTransition = true;
     
     protected Vector3 cameraAngleRad;
-    protected CutsceneManager cutsceneManager;
+    protected Cutscene cutscene;
     
     public override void _Ready()
     {
         base._Ready();
-        cutsceneManager = GetNode<CutsceneManager>("../../..");
+        cutscene = GetNode<Cutscene>("../../");
     }
     
     public override void _PhysicsProcess(float delta)
     {
         if (speedRot > 0)
         {
-            var camera = cutsceneManager.GetCamera();
+            var camera = cutscene.GetCamera();
         
             if (camera.GlobalRotation != cameraAngleRad)
             {
@@ -33,8 +33,8 @@ public abstract class AbstractMoveCinematic : PathBase
     
     public override void Enable()
     {
-        cutsceneManager.SetCameraParent(pathFollow);
-        var camera = cutsceneManager.GetCamera();
+        cutscene.SetCameraParent(pathFollow);
+        var camera = cutscene.GetCamera();
 
         if (smoothTransition)
         {
@@ -46,9 +46,10 @@ public abstract class AbstractMoveCinematic : PathBase
         base.Enable();
     }
     
-    protected override void Disable()
+    public override void Disable()
     {
-        base.Disable();
+        SetPhysicsProcess(false);
         if (smoothTransition) Curve.RemovePoint(0);
+        EmitSignal(nameof(Finished), this);
     }
 }

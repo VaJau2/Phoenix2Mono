@@ -264,7 +264,7 @@ public class ChestMode: InventoryMode
 
                 ChangeItemButtons(tempButton, otherButton);
                 SetTempButton(null, false);
-                dragIcon.SetTexture(null);
+                dragIcon.SetIcon(null);
                 UpdateChestPositions();
                 return true;
             }

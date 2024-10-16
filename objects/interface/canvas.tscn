@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
@@ -31,6 +31,10 @@
 [ext_resource path="res://objects/interface/radiationBar.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=30]
 [ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=31]
+[ext_resource path="res://assets/scripts/interface/ButtonIcon.cs" type="Script" id=32]
+[ext_resource path="res://assets/textures/interface/icons/buttons/Space.png" type="Texture" id=33]
+[ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=34]
+[ext_resource path="res://assets/scripts/interface/Skip.cs" type="Script" id=35]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 13 )
@@ -121,10 +125,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -50.0
+margin_left = -59.0
 margin_top = -70.0
-margin_right = 50.0
-margin_bottom = -53.0
+margin_right = 59.0
+margin_bottom = -49.0
 theme = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
@@ -374,6 +378,63 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="skip" type="HBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -95.0
+margin_top = -151.0
+margin_right = 117.0
+margin_bottom = -119.0
+alignment = 1
+script = ExtResource( 35 )
+
+[node name="icon" type="Control" parent="skip"]
+margin_left = 88.0
+margin_right = 88.0
+margin_bottom = 32.0
+
+[node name="button" type="TextureRect" parent="skip/icon"]
+margin_left = -31.0
+margin_top = 6.0
+margin_right = 17.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 33 )
+script = ExtResource( 32 )
+key = "jump"
+
+[node name="shadow" type="TextureRect" parent="skip/icon/button" groups=["ignore_color"]]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -22.0
+margin_top = -30.0
+margin_right = 26.0
+margin_bottom = 2.0
+texture = ExtResource( 33 )
+
+[node name="label" type="Label" parent="skip"]
+margin_left = 92.0
+margin_top = 5.0
+margin_right = 124.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
+text = "Skip"
+align = 1
+script = ExtResource( 34 )
+phraseCode = "skip"
+
 [node name="subtitles" type="Label" parent="." groups=["savable"]]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -413,6 +474,9 @@ custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
 uppercase = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="dialogueAudio" type="Node" parent="subtitles"]
 script = ExtResource( 31 )

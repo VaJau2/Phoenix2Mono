@@ -8,7 +8,6 @@ public class DialogueMenu : Control, IMenu, ISavable
     
     private const int MAX_LINE_LENGTH = 50;
     private const int MAX_ANSWER_LENGTH = 65;
-    private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
 
     public NPC npc {get; private set;}
     private Player player => Global.Get().player;
@@ -23,7 +22,9 @@ public class DialogueMenu : Control, IMenu, ISavable
     private bool isAnimatingText;
     private int animatingAnswerNum = -1;
     private string animatingText;
-    private float animatingCooldown;
+    private string cleanAnimatingText;
+    private float symbolTimer;
+    private float symbolDelay;
     private string tempTextBlock;
     
     private Button[] answers;
@@ -43,6 +44,40 @@ public class DialogueMenu : Control, IMenu, ISavable
     [Signal]
     public delegate void FinishTalking();
 
+    public override void _Ready()
+    {
+        MenuBase.LoadColorForChildren(this);
+
+        dialogueAudio = GetNode<DialogueAudio>("../dialogueAudio");
+        text      = GetNode<RichTextLabel>("text");
+        skipLabel = GetNode<Label>("skipLabel");
+        leftName  = GetNode<Label>("leftName");
+        rightName = GetNode<Label>("rightName");
+        answers   =
+        [
+            GetNode<Button>("answer1"),
+            GetNode<Button>("answer2"),
+            GetNode<Button>("answer3"),
+            GetNode<Button>("answer4")
+        ];
+        answerCodes = ["", "", "", ""];
+        answerText = new Array();
+    }
+
+    public override void _Process(float delta)
+    {
+        if (!MenuOn) return;
+        
+        if (npc == null || npc.GetState() != SetStateEnum.Talk) 
+        {
+            MenuManager.CloseMenu(this);
+            return;
+        }
+        
+        UpdateAnswerCooldown(delta);
+        UpdateAnimatingText(delta);
+    }
+    
     public void StartTalkingTo(NPC newNpc)
     {
         //диалог должен закрывать любое открытое меню
@@ -282,40 +317,6 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
     }
 
-    public override void _Ready()
-    {
-        MenuBase.LoadColorForChildren(this);
-
-        dialogueAudio = GetNode<DialogueAudio>("../dialogueAudio");
-        text      = GetNode<RichTextLabel>("text");
-        skipLabel = GetNode<Label>("skipLabel");
-        leftName  = GetNode<Label>("leftName");
-        rightName = GetNode<Label>("rightName");
-        answers   = new[] 
-        {
-            GetNode<Button>("answer1"),
-            GetNode<Button>("answer2"),
-            GetNode<Button>("answer3"),
-            GetNode<Button>("answer4")
-        };
-        answerCodes = new[] {"", "", "", ""};
-        answerText = new Array();
-    }
-
-    public override void _Process(float delta)
-    {
-        if (!MenuOn) return;
-        
-        if (npc == null || npc.GetState() != SetStateEnum.Talk) 
-        {
-            MenuManager.CloseMenu(this);
-            return;
-        }
-        
-        UpdateAnswerCooldown(delta);
-        UpdateAnimatingText(delta);
-    }
-
     //прокручивает текст ответа при наведении на него, если он не влезает
     private void UpdateAnswerCooldown(float delta)
     {
@@ -337,6 +338,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     private void StartAnimatingText(string textValue, string block = null)
     {
         animatingText = textValue;
+        cleanAnimatingText = DialogueDelay.ClearDelaySymbols(animatingText);
         isAnimatingText = true;
         skipLabel.Visible = true;
         
@@ -346,7 +348,11 @@ public class DialogueMenu : Control, IMenu, ISavable
             text.BbcodeText += "[" + block + "]";
         }
 
-        text.BbcodeText += MakeSpacesString(textValue);
+        text.BbcodeText += MakeSpacesString(cleanAnimatingText);
+        
+        symbolDelay = animatingAnswerNum == -1 && tempNode.Contains("timer")
+            ? Global.ParseFloat(tempNode["timer"].ToString())
+            : DialogueDelay.DEFAULT_SYMBOL_DELAY;
     }
 
     private static string MakeSpacesString(string origin)
@@ -365,7 +371,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
         skipLabel.Visible = false;
         isAnimatingText = false;
-        animatingCooldown = 0;
+        symbolTimer = 0;
 
         if (animatingAnswerNum > -1)
         {
@@ -430,52 +436,38 @@ public class DialogueMenu : Control, IMenu, ISavable
         
         if (Input.IsActionJustPressed("jump"))
         {
-            AddStringToText(animatingText);
+            AddStringToText(cleanAnimatingText);
             FinishAnimatingText();
             return;
         }
 
-        if (animatingCooldown > 0)
+        if (symbolTimer > 0)
         {
-            animatingCooldown -= delta;
+            symbolTimer -= delta;
             return;
         }
 
         var nextSymbol = animatingText[0];
+
+        symbolTimer = DialogueDelay.Get(ref animatingText, DialogueDelay.DEFAULT_PHRASE_DELAY, symbolDelay);
+
+        if (nextSymbol == DialogueDelay.DELAY_SYMBOL) return;
+        
         AddStringToText(nextSymbol.ToString());
         dialogueAudio.UpdateDynamicPlaying(nextSymbol);
-        animatingCooldown = GetAnimatingCooldown(nextSymbol);
         animatingText = animatingText.Substring(1);
+        cleanAnimatingText = cleanAnimatingText.Substring(1);
     }
 
     private void AddStringToText(string value)
     {
-        var replacePos = text.BbcodeText.Length - animatingText.Length;
-        if (value == text.BbcodeText[replacePos].ToString())
-        {
-            return;
-        }
-        text.BbcodeText = text.BbcodeText.Remove(replacePos, value.Length).Insert(replacePos, value);
-    }
-
-    private float GetAnimatingCooldown(char newSymbol)
-    {
-        var nodeTimer = animatingAnswerNum == -1 && tempNode.Contains("timer")
-            ? Global.ParseFloat(tempNode["timer"].ToString())
-            : DEFAULT_ANIMATING_COOLDOWN;
+        var replacePos = text.BbcodeText.Length - cleanAnimatingText.Length;
         
-        switch (newSymbol)
-        {
-            case '…':
-            case '.':
-            case '!':
-            case '?':
-                return nodeTimer + 0.4f;
-            case ',':
-                return nodeTimer + 0.1f;
-            default:
-                return nodeTimer;
-        }
+        if (value == text.BbcodeText[replacePos].ToString()) return;
+        
+        text.BbcodeText = text.BbcodeText
+            .Remove(replacePos, value.Length)
+            .Insert(replacePos, value);
     }
     
     private static string GetBlockText(string blockText, string block)

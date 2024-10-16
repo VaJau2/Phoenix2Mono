@@ -8,7 +8,7 @@ public class ReturnCinematic : AbstractMoveCinematic
             return;
         }
         
-        var playerCameraCache = cutsceneManager.GetPlayerCameraData();
+        var playerCameraCache = cutscene.GetPlayerCameraData();
         cameraAngleRad = playerCameraCache.Rot;
         
         var playerLocalPos = playerCameraCache.Pos - GlobalTranslation;
@@ -22,10 +22,14 @@ public class ReturnCinematic : AbstractMoveCinematic
         }
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
-        base.Disable();
+        SetPhysicsProcess(false);
+        cutscene.ReturnPlayerCamera();
+        
+        if (smoothTransition) Curve.RemovePoint(0);
         Curve.RemovePoint(Curve.GetPointCount() - 1);
-        cutsceneManager.ReturnPlayerCamera();
+        
+        EmitSignal(nameof(Finished), this);
     }
 }
