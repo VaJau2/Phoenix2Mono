@@ -161,11 +161,7 @@ public class NPC : Character, IInteractable, IChest
         var newState = rand.Randf() < coverChance ? SetStateEnum.Hiding : SetStateEnum.Attack;
         if (GetState() == newState) return;
 
-        if (tempVictim == null || !IsInstanceValid(tempVictim) || tempVictim.Health <= 0)
-        {
-            tempVictim = damager;
-        }
-       
+        tempVictim = damager;
         SetState(newState);
     }
 
@@ -314,5 +310,6 @@ public class NPC : Character, IInteractable, IChest
 public enum Relation {
     Friend,
     Enemy,
-    Neitral
+    Neitral,
+    Monster // ридер врет, этот релейшен используется
 }

@@ -110,14 +110,20 @@ public class DragonBody: Node
         }
         
         onetimeAnim = true;
+        
         var rotY1 = npc.Rotation.y;
+        
         await Global.Get().ToTimer(0.1f, this);
+        
+        var animationPosition = anim.CurrentAnimationPosition;
         var rotY2 = npc.Rotation.y;
+        
         if (rotY2 < rotY1)
         {
             if (anim.CurrentAnimation != "fly-right")
             {
                 anim.Play("fly-right");
+                anim.Seek(animationPosition);
             }
         }
         else if (rotY2 > rotY1)
@@ -125,6 +131,7 @@ public class DragonBody: Node
             if (anim.CurrentAnimation != "fly-left")
             {
                 anim.Play("fly-left");
+                anim.Seek(animationPosition);
             }
         }
         else
@@ -132,6 +139,7 @@ public class DragonBody: Node
             if (anim.CurrentAnimation != "fly")
             {
                 anim.Play("fly");
+                anim.Seek(animationPosition);
             }
         }
 

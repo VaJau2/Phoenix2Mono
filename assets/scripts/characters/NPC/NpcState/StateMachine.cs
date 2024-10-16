@@ -26,10 +26,7 @@ public class StateMachine: Node, ISavable
 
     private void SetState(NpcStateEnum npcState, bool checkHealth = true)
     {
-        if (npc.Health <= 0 && checkHealth)
-        {
-            return;
-        }
+        if (npc.Health <= 0 && checkHealth) return;
         
         var stateType = NpcStateConverter.FromEnum(npcState);
         var dependencies = new NpcStateDependencies(npc);
@@ -62,7 +59,7 @@ public class StateMachine: Node, ISavable
     public Dictionary GetSaveData()
     {
         var saveData = new Dictionary();
-        saveData["state"] = CurrentStateEnum.ToString();
+        saveData["state"] = GetCurrentSetState();
 
         if (currentState is ISavable savableState)
         {
@@ -78,7 +75,7 @@ public class StateMachine: Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        var newState = (NpcStateEnum)Enum.Parse(typeof(NpcStateEnum), data["state"].ToString());
+        var newState = (SetStateEnum)Enum.Parse(typeof(SetStateEnum), data["state"].ToString());
         SetState(newState);
 
         if (currentState is ISavable savableState && data.Contains("stateData"))

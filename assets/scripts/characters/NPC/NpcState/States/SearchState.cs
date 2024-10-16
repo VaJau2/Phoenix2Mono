@@ -52,10 +52,7 @@ public class SearchState(
             return;
         }
         
-        if (!movingController.cameToPlace)
-        {
-            movingController.GoTo(lastSeePos);
-        }
+        movingController.GoTo(lastSeePos);
     }
 
     public Dictionary GetSaveData()
