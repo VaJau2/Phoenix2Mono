@@ -13,6 +13,7 @@
             stateMachine.SetState(SetStateEnum.Idle);
             return;
         }
+        
         npc.EmitSignal(nameof(NPC.FoundEnemy));
         movingController.Stop();
     }

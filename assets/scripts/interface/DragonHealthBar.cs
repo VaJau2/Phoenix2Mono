@@ -16,15 +16,18 @@ public class DragonHealthBar : Control
     {
         dragon = spawnedDragon;
         dragon.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
+        dragon.Connect(nameof(NPC.IsDying), this, nameof(OnDying));
         Visible = true;
     }
 
     private void OnTakeDamage()
     {
         Visible = dragon.Health > 0;
-        if (dragon.Health > 0)
-        {
-            healthBar.Value = dragon.Health;
-        }
+        healthBar.Value = dragon.Health;
+    }
+
+    private void OnDying()
+    {
+        Visible = false;
     }
 }

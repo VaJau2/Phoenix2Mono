@@ -6,6 +6,7 @@ namespace DialogueScripts
     {
         public void initiate(Node node, string parameter, string key = "")
         {
+            var player = Global.Get().player;
             var dialogueMenu = node.GetNode<DialogueMenu>("/root/Main/Scene/canvas/DialogueMenu/Menu");
             var target = Vector3.Zero;
 
@@ -16,7 +17,7 @@ namespace DialogueScripts
                     .GlobalTranslation;
             }
             
-            dialogueMenu.SetLookAtTarget(target);
+            player.DialogueCheck.SetLookAtTarget(target);
         }
     }
 }

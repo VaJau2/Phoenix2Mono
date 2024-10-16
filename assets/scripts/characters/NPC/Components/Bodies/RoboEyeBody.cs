@@ -5,6 +5,8 @@ public class RoboEyeBody : Node
     [Export] private AudioStreamSample dieSound;
     [Export] private AudioStreamSample walkSound;
 
+    public string IdleAnim = "idle";
+
     public NPC npc;
     private NpcAudio audi;
     private AnimationPlayer anim;
@@ -15,13 +17,14 @@ public class RoboEyeBody : Node
         npc = GetParent<NPC>();
         audi = npc.GetNode<NpcAudio>("audi");
         anim = npc.GetNode<AnimationPlayer>("anim");
-        anim.Play("idle");
         
         npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)
     {
+        if (npc.Health <= 0) return;
+        
         if (npc.Velocity.Length() > Character.MIN_WALKING_SPEED)
         {
             anim.Play("walk");
@@ -31,6 +34,11 @@ public class RoboEyeBody : Node
                 audi.PlayStream(walkSound);
             }
         }
+        else if (!anim.IsPlaying() && !string.IsNullOrEmpty(IdleAnim))
+        {
+            anim.Play(IdleAnim);
+            audi.Stop();
+        }
     }
     
     public async void Resurrect()
@@ -39,13 +47,13 @@ public class RoboEyeBody : Node
         npc.BaseSpeed = 0;
         npc.CollisionLayer = 1;
         npc.CollisionMask = 1;
+        npc.SetStartHealth(npc.HealthMax);
         
         anim.PlayBackwards("Die");
 
         await ToSignal(anim, "animation_finished");
 
         npc.BaseSpeed = defaultSpeed;
-        npc.SetStartHealth(npc.HealthMax);
     }
 
     public void Disable()
@@ -75,10 +83,8 @@ public class RoboEyeBody : Node
     private void OnNpcDying()
     {
         audi.PlayStream(dieSound);
-        
         anim.Play("Die");
     }
-
 }
 
 public enum RoboEyeMaterial

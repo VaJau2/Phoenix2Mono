@@ -1,30 +1,23 @@
-﻿using Godot;
-
-public class RoboEyeIdleState(
+﻿public class RoboEyeIdleState(
     RoboEyeBody body,
     NavigationMovingController movingController,
-    NpcPatroling patroling
+    NpcPatroling patroling,
+    SeekArea seekArea
 ) : INpcState
 {
     public void Enable(NPC npc)
     {
+        npc.subtitlesCode = null;
+        seekArea.SetActive(true);
+        body.IdleAnim = "idle";
         body.ChangeMaterial();
-        if (npc.Health == 0) body.Resurrect();
     }
 
     public void Update(NPC npc, float delta)
     {
         if (patroling.IsEmpty)
         {
-            if (!movingController.cameToPlace)
-            {
-                movingController.GoTo(npc.myStartPos, movingController.ComeDistance, false);
-            } 
-            else 
-            {
-                OnCameToPlace(npc, npc.myStartPos, npc.myStartRot.y);
-            }
-
+            GoToStartPoint(npc);
             return;
         }
         
@@ -33,22 +26,19 @@ public class RoboEyeIdleState(
             return;
         }
         
+        movingController.GoTo(patroling.CurrentPatrolPoint, 0, false);
+        
         if (movingController.cameToPlace)
         {
             patroling.NextPatrolPoint();
         }
-        
-        movingController.GoTo(patroling.CurrentPatrolPoint, 0, false);
     }
-    
-    private static void OnCameToPlace(NPC npc, Vector3 pos, float angle)
+
+    private void GoToStartPoint(NPC npc)
     {
-        npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, pos);
-        npc.Rotation = new Vector3
-        (
-            npc.Rotation.x,
-            angle,
-            npc.Rotation.z
-        );
+        if (!movingController.cameToPlace)
+        {
+            movingController.GoTo(npc.myStartPos, movingController.ComeDistance, false);
+        } 
     }
 }

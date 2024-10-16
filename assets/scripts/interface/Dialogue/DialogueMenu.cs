@@ -10,14 +10,9 @@ public class DialogueMenu : Control, IMenu, ISavable
     private const int MAX_ANSWER_LENGTH = 65;
     private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
 
-    private const float MIN_NPC_DISTANCE_CHECK = 2f;
-    private const float LOOK_POS_DELTA = 1.5f;
-
     public NPC npc {get; private set;}
     private Player player => Global.Get().player;
     public bool MenuOn => ((Control)GetParent()).Visible;
-
-    private Vector3 lookTarget;
     
     private Dictionary nodes;
     private Dictionary tempNode;
@@ -65,16 +60,11 @@ public class DialogueMenu : Control, IMenu, ISavable
         npc = newNpc;
         npc.tempVictim = player;
         npc.SetState(SetStateEnum.Talk);
+        player.SetTalking(true, npc);
         
         text.BbcodeText = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
-        lookTarget = Vector3.Zero;
         LoadDialogueFile();
-    }
-
-    public void SetLookAtTarget(Vector3 position)
-    {
-        lookTarget = position;
     }
 
     private void LoadDialogueFile()
@@ -86,7 +76,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
         
         var lang = InterfaceLang.GetLang();
-        var path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
+        var path = "assets/dialogues/" + lang + "/" + GetNpcName(npc) + "/" + npc.dialogueCode + ".json";
         
         nodes = Global.LoadJsonFile(path)["nodes"] as Dictionary;
         
@@ -99,6 +89,10 @@ public class DialogueMenu : Control, IMenu, ISavable
             
         MoveToNode(currentCode);
     }
+    
+    private static string GetNpcName(NPC npc) => !string.IsNullOrEmpty(npc.npcCustomDialogueName) 
+        ? npc.npcCustomDialogueName
+        : npc.Name;
 
     private void InitDialogueScript(string scriptName, string parameter, string key = "")
     {
@@ -121,6 +115,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
 
         tempNode = nodes[code] as Dictionary;
+        if (tempNode == null) return;
         
         switch (tempNode["kind"].ToString()) 
         {
@@ -142,7 +137,7 @@ public class DialogueMenu : Control, IMenu, ISavable
                 rightName.Text = tempNode["speaker"].ToString();
 
                 dialogueAudio.LoadCharacter(
-                    npc.Name, npc.dialogueCode, 
+                    GetNpcName(npc), npc.dialogueCode, 
                     tempNode.Contains("config") ? tempNode["config"].ToString() : null
                 );
                 dialogueAudio.TryToPlayAudio(code);
@@ -208,11 +203,15 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     public void OpenMenu()
     {
-        player.SetTalking(true);
-        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
+        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
         
         Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
+    }
+
+    public void CloseUsingManager()
+    {
+        MenuManager.CloseMenu(this);
     }
 
     public void CloseMenu()
@@ -223,7 +222,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         Input.MouseMode = Input.MouseModeEnum.Captured;
         
         player.SetTalking(false);
-        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
+        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
         
         if (npc != null) 
         {
@@ -312,34 +311,9 @@ public class DialogueMenu : Control, IMenu, ISavable
             MenuManager.CloseMenu(this);
             return;
         }
-
-        player?.LookAt(GetLookAtPosition());
+        
         UpdateAnswerCooldown(delta);
         UpdateAnimatingText(delta);
-    }
-
-    private Vector3 GetLookAtPosition()
-    {
-        var targetPos = lookTarget != Vector3.Zero
-            ? lookTarget
-            : npc.GetHeadPosition();
-        
-        var playerRelativePos = player.GlobalTransform.origin - targetPos;
-
-        targetPos.x += GetLookPosDelta(playerRelativePos.z);
-        targetPos.z += GetLookPosDelta(-playerRelativePos.x);
-        
-        return targetPos;
-    }
-
-    private float GetLookPosDelta(float sideRelativePos)
-    {
-        return sideRelativePos switch
-        {
-            > MIN_NPC_DISTANCE_CHECK => LOOK_POS_DELTA,
-            < MIN_NPC_DISTANCE_CHECK => -LOOK_POS_DELTA,
-            _ => 0
-        };
     }
 
     //прокручивает текст ответа при наведении на него, если он не влезает

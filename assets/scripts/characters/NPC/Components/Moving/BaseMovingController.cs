@@ -5,6 +5,7 @@ public class BaseMovingController : Node
     public bool CloseToPoint;
     
     [Export] public float RagdollImpulse = 500;
+    [Export] public int BaseSpeed = 5;
     [Export] protected float Gravity;
     [Export] private float RotationSpeed = 0.15f;
     
@@ -26,6 +27,11 @@ public class BaseMovingController : Node
     {
         var pos = Npc.GlobalTransform.origin;
         place.y = pos.y;
+        
+        var tempDistance = pos.DistanceTo(place);
+        CloseToPoint = tempDistance <= distance;
+
+        if (CloseToPoint) return;
 
         RotateTo(place);
 
@@ -33,9 +39,6 @@ public class BaseMovingController : Node
 
         Npc.Rotation = new Vector3(0, Npc.Rotation.y, 0);
         Npc.Velocity = new Vector3(0, -Gravity, -speed).Rotated(Vector3.Up, Npc.Rotation.y);
-
-        var tempDistance = pos.DistanceTo(place);
-        CloseToPoint = tempDistance <= distance;
     }
     
     public virtual void Stop(bool moveDown = false)
@@ -56,9 +59,11 @@ public class BaseMovingController : Node
         var rotB = Npc.Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
         var tempRotation = rotA.Slerp(rotB, RotationSpeed);
 
+        var oldScale = Npc.Scale;
         Transform tempTransform = Npc.Transform;
         tempTransform.basis = new Basis(tempRotation);
         Npc.Transform = tempTransform;
+        Npc.Scale = oldScale;
     }
     
     public void UpdateHeight(float speed, float newHeight)

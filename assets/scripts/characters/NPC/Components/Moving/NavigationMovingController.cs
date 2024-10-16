@@ -7,7 +7,6 @@ public class NavigationMovingController: BaseMovingController, ISavable
     private const float RUN_DISTANCE = 12f;
 
     [Export] public float ComeDistance = 4f;
-    [Export] public int WalkSpeed = 5;
     [Export] public bool MayRun = true;
     [Export] public int RunSpeed = 10;
 
@@ -32,7 +31,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
     {
         if (distance == 0) distance = ComeDistance;
         
-        if (WalkSpeed == 0 || !Npc.MayMove)
+        if (BaseSpeed == 0 || !Npc.MayMove)
         {
             FinishGoingTo();
             return;
@@ -130,7 +129,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         } 
         else 
         {
-            MoveTo(path[pathI], ComeDistance, WalkSpeed);
+            MoveTo(path[pathI], ComeDistance, BaseSpeed);
             IsRunning = false;
         }
     }
@@ -138,7 +137,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
     public Dictionary GetSaveData()
     {
         var saveData = new Dictionary();
-        saveData["walkSpeed"] = WalkSpeed;
+        saveData["walkSpeed"] = BaseSpeed;
         saveData["runSpeed"] = RunSpeed;
         saveData["runToPoint"] = RunToPoint;
         return saveData;
@@ -146,7 +145,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
 
     public void LoadData(Dictionary data)
     {
-        WalkSpeed = Convert.ToInt16(data["walkSpeed"]);
+        BaseSpeed = Convert.ToInt16(data["walkSpeed"]);
         RunSpeed = Convert.ToInt16(data["runSpeed"]);
         RunToPoint = Convert.ToBoolean(data["runToPoint"]);
     }

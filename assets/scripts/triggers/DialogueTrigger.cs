@@ -95,14 +95,10 @@ public class DialogueTrigger : TriggerBase
 
     private void ChangeNpcCode()
     {
-        if (!string.IsNullOrEmpty(otherDialogueCode))
-        {
-            npc.dialogueCode = otherDialogueCode;
-        }
-        else if (!string.IsNullOrEmpty(otherSubtitleCode))
-        {
-            npc.subtitlesCode = otherSubtitleCode;
-        }
+        npc.dialogueCode = otherDialogueCode;
+        npc.subtitlesCode = otherSubtitleCode;
+
+        npc.MayChangeState = true;
 
         if (npc.GetState() != SetStateEnum.Idle)
         {

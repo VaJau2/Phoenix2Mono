@@ -1,4 +1,6 @@
-﻿public class DragonIdleState(
+﻿using Godot;
+
+public class DragonIdleState(
     NpcPatroling patroling,
     DragonBody body,
     StateMachine stateMachine,
@@ -8,46 +10,44 @@
 {
     private const float ATTACK_COOLDOWN = 1;
     
-    private float attackTimer = ATTACK_COOLDOWN;
+    private float idleTimer = ATTACK_COOLDOWN;
     
     public void Enable(NPC npc)
     {
-        attackTimer = ATTACK_COOLDOWN;
+        body.SetFireOn(false);
+        idleTimer = ATTACK_COOLDOWN;
     }
 
     public void Update(NPC npc, float delta)
     {
-        body.PlayIdleSounds(delta);
         movingController.UpdateHeight(npc.BaseSpeed / 4f, DragonBody.IDLE_FLY_HEIGHT);
         UpdatePatrolPoints();
 
         if (mouth.HasEnemy) return;
         
         var enemyDistance = body.GetEnemyDistance();
-        UpdateAttackTimer(delta, enemyDistance > 0);
+        UpdateIdleTimer(delta, enemyDistance > 0);
     }
     
     private void UpdatePatrolPoints()
     {
-        if (!movingController.CloseToPoint)
-        {
-            movingController.MoveTo(patroling.CurrentPatrolPoint, 20);
-        }
-        else
+        movingController.MoveTo(patroling.CurrentPatrolPoint, 20);
+        
+        if (movingController.CloseToPoint)
         {
             patroling.NextPatrolPoint();
         }
     }
     
-    private void UpdateAttackTimer(float delta, bool seeEnemy)
+    private void UpdateIdleTimer(float delta, bool seeEnemy)
     {
-        if (attackTimer > 0)
+        if (idleTimer > 0)
         {
-            attackTimer -= delta;
+            idleTimer -= delta;
         }
         else
         {
-            attackTimer = 1f;
+            idleTimer = 1f;
             
             if (seeEnemy)
             {

@@ -44,23 +44,7 @@ public class IdleState(
 
         if (patroling.IsEmpty)
         {
-            if (!movingController.cameToPlace)
-            {
-                if (movingController.stopAreaEntered)
-                {
-                    movingController.Stop(true);
-                }
-                else
-                {
-                    movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
-                }
-            }
-            else
-            {
-                npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, npc.myStartPos);
-                npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
-            }
-
+            GoToStartPoint(npc);
             return;
         }
 
@@ -80,6 +64,22 @@ public class IdleState(
         if (movingController.cameToPlace)
         {
             patroling.NextPatrolPoint();
+        }
+    }
+
+    private void GoToStartPoint(NPC npc)
+    {
+        if (movingController.stopAreaEntered)
+        {
+            movingController.Stop(true);
+        }
+        
+        movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
+        
+        if (movingController.cameToPlace)
+        {
+            npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, npc.myStartPos);
+            npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
         }
     }
 

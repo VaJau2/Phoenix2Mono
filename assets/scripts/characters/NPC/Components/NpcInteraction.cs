@@ -18,7 +18,7 @@ public class NpcInteraction: Node
         
         if (!string.IsNullOrEmpty(npc.customHintCode) && npc.customInteractionTriggerPath != null)
         {
-            customInteractionTrigger = GetNode<TriggerBase>(npc.customInteractionTriggerPath);
+            customInteractionTrigger = npc.GetNode<TriggerBase>(npc.customInteractionTriggerPath);
         }
     }
 

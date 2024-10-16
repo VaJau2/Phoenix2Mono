@@ -73,7 +73,7 @@ public class NpcSaving(NPC npc)
 
         if (npc.Health <= 0)
         {
-            npc.MakeDead();
+            npc.MakeDead(false);
             return;
         }
         

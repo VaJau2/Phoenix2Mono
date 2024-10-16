@@ -533,6 +533,7 @@ dialogueCode = "talk1"
 [node name="dusk" parent="npc" instance=ExtResource( 15 )]
 transform = Transform( -0.283548, 0, 0.854167, 0, 0.9, 0, -0.854167, 0, -0.283548, 37.6572, 6.31634, -17.8221 )
 IsImmortal = true
+dialogueCode = "hello"
 
 [node name="scientist1" parent="npc" instance=ExtResource( 11 )]
 transform = Transform( -0.310743, 0, -0.950494, 0, 1, 0, 0.950494, 0, -0.310743, 30.6128, 6.39129, -18.034 )
@@ -541,12 +542,11 @@ IsImmortal = true
 [node name="security1" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.2017, 6.30189, -11.0818 )
 IsImmortal = true
-StartHealth = 100
 
 [node name="security_mare" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -0.831402, 0, 0.555672, 0, 1, 0, -0.555672, 0, -0.831402, 59.3849, 6.34055, -4.0266 )
 IsImmortal = true
-StartHealth = 90
+StartHealth = 125
 
 [node name="spike" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.976687, 0, -0.214667, 0, 1, 0, 0.214667, 0, 0.976687, 20.549, 6.26088, -13.1928 )
@@ -1599,22 +1599,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28796, -9.53674e-07, -5.3470
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40992, 0, 1.2152 )
 
 [node name="8" type="Spatial" parent="terrain/covers"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52091, -4.74152, 4.60123 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6597, 1.83266, -40.543 )
 
 [node name="1" type="Spatial" parent="terrain/covers/8"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41832, -9.53674e-07, -4.34404 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1229, -4.59272, -5.09026 )
 
 [node name="2" type="Spatial" parent="terrain/covers/8"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31087, 0, 4.07435 )
-
-[node name="9" type="Spatial" parent="terrain/covers"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.838, -4.82689, 4.50544 )
-
-[node name="1" type="Spatial" parent="terrain/covers/9"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114435, -9.53674e-07, -4.95176 )
-
-[node name="2" type="Spatial" parent="terrain/covers/9"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00344276, 0, 5.00108 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07443, 0, 1.2152 )
 
 [node name="npcPlaces" type="Spatial" parent="terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9659, 9.23827, 15.2438 )
@@ -1695,7 +1686,7 @@ shape = SubResource( 26 )
 
 [node name="moveNPC" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 52 )
-otherTriggerPaths = [ NodePath("../moveBellgates") ]
+otherTriggerPaths = [ NodePath("../moveBellgates"), NodePath("../removeDuskBlush") ]
 disactiveTriggerPaths = [  ]
 NpcPaths = [ "../../npc/twilight", "../../npc/spike", "../../npc/dusk", "../../npc/scientist1", "../../npc/security1" ]
 pointPaths = [ NodePath("../../terrain/npcPlaces/before/twilight"), NodePath("../../terrain/npcPlaces/before/spike"), NodePath("../../terrain/npcPlaces/before/dusk"), NodePath("../../terrain/npcPlaces/before/scientist1"), NodePath("../../terrain/npcPlaces/before/security1") ]
@@ -1703,6 +1694,11 @@ idleAnims = [ "Sit", "Sit", "Sit", "Sit", "Sit" ]
 stayThere = [  ]
 timer = 1.5
 lastTimer = 4.0
+
+[node name="removeDuskBlush" type="Node" parent="triggers"]
+script = ExtResource( 66 )
+npcPath = "../../npc/dusk"
+newEyesTexture = "neitral"
 
 [node name="moveBellgates" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
@@ -1720,7 +1716,7 @@ otherDialogueCode = "presentation2"
 
 [node name="explosionTriggers" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../shloerDissapear"), NodePath("../changeSecurityMare"), NodePath("../changeSecurity1") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../duskRunAfterExplode"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../changeSecurityMare"), NodePath("../changeSecurity1") ]
 
 [node name="killThemAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
@@ -1756,13 +1752,30 @@ newMortality = 1
 
 [node name="runAfterExplode" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 52 )
-otherTriggerPaths = [ NodePath("../spawners/spawner1"), NodePath("../spawners/spawner2"), NodePath("../spawners/spawner3"), NodePath("../spawners/spawner4"), NodePath("../spawnerRedPunch"), NodePath("../redPunchDialogue") ]
-NpcPaths = [ "../../npc/bellgates", "../../npc/scientist1", "../../npc/dusk", "../../npc/shloer", "../../npc/security1", "../../npc/security_mare" ]
-pointPaths = [ NodePath("../../terrain/npcPlaces/after/bellgates"), NodePath("../../terrain/npcPlaces/after/scientist1"), NodePath("../../terrain/npcPlaces/after/dusk"), NodePath("../../terrain/npcPlaces/after/shloer"), NodePath("../../terrain/npcPlaces/after/security1"), NodePath("../../terrain/npcPlaces/after/security_mare") ]
-idleAnims = [ "Idle1", "Idle1", "Sit", "Idle1", "Idle1", "Idle1" ]
-stayThere = [ true, true, true, true, false, false ]
+__meta__ = {
+"_editor_description_": "ShloerDissapear лежит тут дважды, т.к. один раз он активируется, а второй раз уже телепортирует непися"
+}
+otherTriggerPaths = [ NodePath("../spawners/spawner1"), NodePath("../spawners/spawner2"), NodePath("../spawners/spawner3"), NodePath("../spawners/spawner4"), NodePath("../spawnerRedPunch"), NodePath("../redPunchDialogue"), NodePath("../shloerDissapear"), NodePath("../shloerDissapear") ]
+NpcPaths = [ "../../npc/bellgates", "../../npc/scientist1", "../../npc/shloer", "../../npc/security1", "../../npc/security_mare" ]
+pointPaths = [ NodePath("../../terrain/npcPlaces/after/bellgates"), NodePath("../../terrain/npcPlaces/after/scientist1"), NodePath("../../terrain/npcPlaces/after/shloer"), NodePath("../../terrain/npcPlaces/after/security1"), NodePath("../../terrain/npcPlaces/after/security_mare") ]
+idleAnims = [ "Idle1", "Idle1", "Idle1", "Idle1", "Idle1" ]
+stayThere = [ true, true, true, false, false ]
 timer = 0.1
 lastTimer = 0.5
+runToPoint = true
+
+[node name="duskRunAfterExplode" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 52 )
+__meta__ = {
+"_editor_description_": "Отдельным триггером, т.к. ей очень далеко бежать, и всем скучно стоять и ждать, пока она там добежит"
+}
+otherTriggerPaths = [  ]
+NpcPaths = [ "../../npc/dusk" ]
+pointPaths = [ NodePath("../../terrain/npcPlaces/after/dusk") ]
+idleAnims = [ "Sit" ]
+stayThere = [ true ]
+timer = 0.0
+lastTimer = 0.0
 runToPoint = true
 
 [node name="shloerDissapear" type="Area" parent="triggers"]
@@ -2008,7 +2021,7 @@ StartHealth = 120
 weaponCode = "revolver32"
 relation = 2
 itemCodes = [ "manaPotion" ]
-triggerConnections = [ [ "../duskThanks2", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../duskThanksKill", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763, 1.94469, -9.8311 )
@@ -2046,6 +2059,7 @@ script = ExtResource( 68 )
 IsActive = false
 npcPath = "../../npc/Created_red_punch"
 otherDialogueCode = "talk"
+otherSubtitleCode = ""
 codeWithoutGun = "talk_without_gun"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/redPunchDialogue"]
@@ -2066,7 +2080,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5665, -5.48597, 35.9207 )
 [node name="redPunchDissapear" type="Area" parent="triggers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.15, -4.17436, 34.6935 )
 script = ExtResource( 65 )
-otherTriggerPaths = [ NodePath("../duskThanks1"), NodePath("../security1Dialogue2"), NodePath("../securityMareDialogue2") ]
+otherTriggerPaths = [ NodePath("../duskThanksNotKill"), NodePath("../security1Dialogue2"), NodePath("../securityMareDialogue2") ]
 npcPath = "../../npc/Created_red_punch"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/redPunchDissapear"]
@@ -2084,13 +2098,13 @@ onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/security_mare"
 otherDialogueCode = "suspect"
 
-[node name="duskThanks1" type="Node" parent="triggers" groups=["savable"]]
+[node name="duskThanksNotKill" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "../../npc/dusk"
 otherDialogueCode = "thanks_not_kill"
 
-[node name="duskThanks2" type="Node" parent="triggers" groups=["savable"]]
+[node name="duskThanksKill" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
 npcPath = "../../npc/dusk"
 goToPlayer = true
@@ -2100,7 +2114,7 @@ otherDialogueCode = "thanks_kill"
 
 [node name="duskFollowsPlayer" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 66 )
-otherTriggerPaths = [ NodePath("../duskDialogueOff"), NodePath("../duskFollowEnd"), NodePath("../takeDuskTask") ]
+otherTriggerPaths = [ NodePath("../duskDialogueFollowing"), NodePath("../duskFollowEnd"), NodePath("../takeDuskTask") ]
 disactiveTriggerPaths = [ NodePath("../playMusic") ]
 npcPath = "../../npc/dusk"
 followPath = "/root/Main/Scene/Player"
@@ -2110,17 +2124,18 @@ script = ExtResource( 41 )
 IsActive = false
 NewTaskCode = "takeDusk"
 
-[node name="duskDialogueOff" type="Node" parent="triggers" groups=["savable"]]
+[node name="duskDialogueFollowing" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "../../npc/dusk"
 otherDialogueCode = ""
+otherSubtitleCode = "following"
 
 [node name="duskFollowEnd" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.7557, 8.97607, 50.0146 )
 script = ExtResource( 66 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../scientist1Thanks"), NodePath("../bellgatesThanks"), NodePath("../bellgatesDissapear"), NodePath("../reportTask"), NodePath("../locationExit") ]
+otherTriggerPaths = [ NodePath("../scientist1Thanks"), NodePath("../duskThanks"), NodePath("../bellgatesThanks"), NodePath("../bellgatesDissapear"), NodePath("../reportTask"), NodePath("../locationExit") ]
 disactiveTriggerPaths = [  ]
 npcPath = "../../npc/dusk"
 followPath = ""
@@ -2138,6 +2153,12 @@ transform = Transform( 0.996502, 0, -0.0835735, 0, 1, 0, 0.0835735, 0, 0.996502,
 script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/scientist1"
+otherDialogueCode = "thanks"
+
+[node name="duskThanks" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 13 )
+onlyChangeCode = true
+npcPath = "../../npc/dusk"
 otherDialogueCode = "thanks"
 
 [node name="bellgatesThanks" type="Node" parent="triggers" groups=["savable"]]

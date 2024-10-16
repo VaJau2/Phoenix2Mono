@@ -10,6 +10,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public string followPath;
     [Export] public string[] showObjects;
     [Export] public string[] hideObjects;
+    [Export] public string newEyesTexture;
     [Export] public string newAnimation;
     [Export] public int newWalkSpeed = -1;
     [Export] public int newRunSpeed = -1;
@@ -84,6 +85,12 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         ChangeObjectsVisible(ref showObjects, true);
         ChangeObjectsVisible(ref hideObjects, false);
         
+        if (!string.IsNullOrEmpty(newEyesTexture))
+        {
+            npc.GetNode<NPCFace>("Armature/Skeleton/Body")?
+                .ChangeEyesVariant(newEyesTexture);
+        }
+    
         if (!string.IsNullOrEmpty(newAnimation))
         {
             var body = npc.GetNodeOrNull<PonyBody>("body");
@@ -93,35 +100,36 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
             }
         }
 
+        
         if (newWalkSpeed != -1)
         {
-            npc.MovingController.WalkSpeed = newWalkSpeed;
+            npc.MovingController.BaseSpeed = newWalkSpeed;
+        }
+
+        if (newRunSpeed != -1 && npc.MovingController is NavigationMovingController navigation)
+        {
+            navigation.RunSpeed = newRunSpeed;
         }
         
-        if (npc != null)
+        if (!string.IsNullOrEmpty(followPath))
         {
-            npc.MovingController.RunSpeed = newRunSpeed;
-            
-            if (!string.IsNullOrEmpty(followPath))
-            {
-                Character followTarget = GetNode<Character>(followPath);
-                npc.SetFollowTarget(followTarget);
-            }
-            else
-            {
-                npc.SetFollowTarget(null);
-            }
+            Character followTarget = GetNode<Character>(followPath);
+            npc.SetFollowTarget(followTarget);
+        }
+        else
+        {
+            npc.SetFollowTarget(null);
+        }
 
-            if (newIdlePoint != null)
-            {
-                npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
-                npc.myStartRot = newIdlePoint.Rotation;
-            }
+        if (newIdlePoint != null)
+        {
+            npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
+            npc.myStartRot = newIdlePoint.Rotation;
+        }
 
-            if (newWeaponCode != null)
-            {
-                npc.Weapons?.LoadWeapon(newWeaponCode);
-            }
+        if (newWeaponCode != null)
+        {
+            npc.Weapons?.LoadWeapon(newWeaponCode);
         }
 
         base._on_activate_trigger();

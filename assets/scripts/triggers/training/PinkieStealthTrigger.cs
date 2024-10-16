@@ -71,6 +71,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         if (!isRobotsActive) return;
         
         MakeRoboEyesActive(false);
+        ChangeRobotsSubtitlesCode("lost");
         
         audi.Stream = beepSound;
         audi.Play();
@@ -86,6 +87,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         if (!isRobotsActive || trainingIsDone) return;
         
         MakeRoboEyesActive(false);
+        ChangeRobotsSubtitlesCode("won");
         
         audi.Stream = beepSound;
         audi.Play();
@@ -99,10 +101,23 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     {
         foreach (var roboEye in roboEyes)
         {
+            if (roboEye.Health <= 0)
+            {
+                roboEye.GetNode<RoboEyeBody>("body").Resurrect();    
+            }
+            
             roboEye.SetState(value ? SetStateEnum.Idle : SetStateEnum.Disabled);
         }
 
         isRobotsActive = value;
+    }
+
+    private void ChangeRobotsSubtitlesCode(string code)
+    {
+        foreach (var roboEye in roboEyes)
+        {
+            roboEye.subtitlesCode = code;
+        }
     }
     
     public override Dictionary GetSaveData()

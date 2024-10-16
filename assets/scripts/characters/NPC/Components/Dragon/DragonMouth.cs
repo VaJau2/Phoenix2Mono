@@ -19,9 +19,9 @@ public class DragonMouth : Area
         npc = GetParent<NPC>();
         body = npc.GetNode<DragonBody>("body");
         audi = npc.GetNode<NpcAudio>("audi");
-        mouthPos = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
+        mouthPos = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
         
-        npc.Connect(nameof(NPC.TakeDamage), this, nameof(OnTakeDamage));
+        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
         
         await npc.ToSignal(GetTree(), "idle_frame");
         Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));

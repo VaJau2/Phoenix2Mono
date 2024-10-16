@@ -134,14 +134,9 @@ surfaces/0 = {
 [node name="zebra-commander" instance=ExtResource( 4 )]
 StartHealth = 120
 dialogueCode = "talk"
-weaponCode = "pistol10S"
 ammoCount = {
 "ammo10": 12
 }
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -160,13 +155,13 @@ body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.
 
 [node name="Physical Bone leg_1_l" parent="Armature/Skeleton" index="3"]
 transform = Transform( 0.996067, -0.0885976, 9.62392e-08, 0.088353, 0.993318, 0.0742389, -0.00657744, -0.0739473, 0.99724, -0.259124, 1.7982, -0.752634 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125172, -0.0140763, 0.446928 )
-body_offset = Transform( 0.992634, -0.0828152, -0.0884291, -0.0828149, 0.068942, -0.994177, 0.0884293, 0.994177, 0.0615755, 0.0395982, 0.445192, -0.0134147 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125171, -0.0140762, 0.446928 )
+body_offset = Transform( 0.992634, -0.0828152, -0.0884291, -0.0828149, 0.068942, -0.994177, 0.0884293, 0.994177, 0.0615755, 0.0395982, 0.445192, -0.0134149 )
 
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114836, 0.0972379, 0.116484, 0.99313, -0.0114236, -0.0952572, 0.0226188, 0.995197, -0.407885, 1.81143, -1.81374 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783012, 0.0069131, 0.876068 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427687, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618389, 0.870624, -0.0978943 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783015, 0.00691309, 0.876068 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151284, -0.00427688, 0.104019, -0.994568, 0.104767, 0.989151, 0.103001, 0.00618386, 0.870624, -0.0978943 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.088597, -1.06067e-07, -0.0883894, 0.993732, 0.0684588, 0.00606501, -0.0681892, 0.997656, 0.287084, 1.79373, -0.756682 )
@@ -176,7 +171,7 @@ body_offset = Transform( 0.992585, 0.0833251, 0.0884594, 0.0833252, 0.0632026, -
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.993608, 0.112883, 1.01369e-06, -0.111816, 0.984229, -0.137092, -0.0154752, 0.136216, 0.990552, 0.34371, 1.78491, -1.82309 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016345, 0.143863, 0.868982 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934073, -0.993354, -0.112854, 0.993362, -0.0223682, -0.0984337, 0.866425, -0.125315 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.0093407, -0.993354, -0.112854, 0.993362, -0.0223682, -0.0984337, 0.866425, -0.125315 )
 
 [node name="Physical Bone b_leg_1_l" parent="Armature/Skeleton" index="7"]
 transform = Transform( 0.989938, -0.141448, 6.05387e-05, 0.141038, 0.98703, -0.0765897, 0.0107717, 0.0758308, 0.997048, -0.259933, 0.497917, -0.99016 )
@@ -215,9 +210,6 @@ transform = Transform( 0.783844, -4.97236e-07, -1.84614e-06, 3.11895e-13, 0.7039
 mesh = SubResource( 1 )
 material/0 = SubResource( 7 )
 
-[node name="floorRay" parent="Armature/Skeleton" index="14"]
-parentPath = NodePath("../../../../zebra-commander")
-
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 8 )
 skin = SubResource( 3 )
@@ -232,3 +224,6 @@ material/0 = ExtResource( 1 )
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 5 )
+
+[node name="weapons" parent="." index="10"]
+WeaponCode = "automatic762"

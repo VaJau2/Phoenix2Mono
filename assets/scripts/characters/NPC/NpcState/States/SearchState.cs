@@ -46,7 +46,7 @@ public class SearchState(
             return;
         }
                 
-        if (movingController.WalkSpeed == 0)
+        if (movingController.BaseSpeed == 0)
         {
             npc.LookAt(lastSeePos, Vector3.Up);
             return;

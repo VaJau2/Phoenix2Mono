@@ -104,15 +104,13 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                npc[i].Connect(nameof(NPC.IsCame), this, nameof(SetIdleAnimForNpc), [i]);
+                npc[i].Connect(nameof(NPC.IsCame), this, nameof(AfterNpcCameToPoint), [i]);
                 connectedEvents.Add(i);
             }
 
             if (teleportToPoint)
             {
-                Vector3 oldScale = npc[i].Scale;
                 npc[i].GlobalTransform = Global.SetNewOrigin(npc[i].GlobalTransform, points[i].GlobalTransform.origin);
-                npc[i].Scale = oldScale;
             }
         }
         
@@ -121,17 +119,29 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         SetProcess(true);
     }
     
-    public void SetIdleAnimForNpc(int i)
+    public void AfterNpcCameToPoint(int i)
     {
+        if (stayThere.Count > i)
+        {
+            if (stayThere[i])
+            {
+                npc[i].SetState(SetStateEnum.Idle);
+            }
+        
+            npc[i].MayChangeState = !stayThere[i];
+        }
+        
         var body = npc[i].GetNodeOrNull<PonyBody>("body");
         if (body != null)
         {
-            body.IdleAnim = idleAnims[i];
+            body.CustomIdleAnim = idleAnims.Count > i 
+                ? idleAnims[i] 
+                : null;
         }
 
         if (connectedEvents.Contains(i))
         {
-            npc[i].Disconnect(nameof(NPC.IsCame), this, nameof(SetIdleAnimForNpc));
+            npc[i].Disconnect(nameof(NPC.IsCame), this, nameof(AfterNpcCameToPoint));
             connectedEvents.Remove(i);
         }
     }
@@ -148,7 +158,6 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         SetProcess(true);
     }
 
-   
     public override Dictionary GetSaveData()
     {
         var saveData = base.GetSaveData();
@@ -182,7 +191,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
                 npc[connectedId].Connect(
                     nameof(NPC.IsCame),
                     this,
-                    nameof(SetIdleAnimForNpc),
+                    nameof(AfterNpcCameToPoint),
                     [connectedId]
                 );
             }

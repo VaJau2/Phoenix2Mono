@@ -88,7 +88,6 @@ public class UnicornLevitation : Spatial, ISavable
         if (IsInstanceValid(player)) return player;
         return npc;
     }
-    
 
     private float GetPlayerRotation()
     {
@@ -97,6 +96,7 @@ public class UnicornLevitation : Spatial, ISavable
 
     private float GetRotationToVictim()
     {
+        if (npc.tempVictim == null) return 0;
         var npcForward = -npc.GlobalTransform.basis.z;
         var npcDir = GetDirToTarget(npc.tempVictim);
         return npcForward.AngleTo(npcDir);

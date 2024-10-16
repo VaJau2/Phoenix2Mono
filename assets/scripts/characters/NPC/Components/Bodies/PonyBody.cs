@@ -35,7 +35,7 @@ public class PonyBody : Node
 
     public override void _Process(float delta)
     {
-        if (npc.MovingController.WalkSpeed == 0)
+        if (npc.MovingController.BaseSpeed == 0)
         {
             return;
         }
@@ -47,7 +47,7 @@ public class PonyBody : Node
 
     public void OnNpcHitted()
     {
-        audi.PlayRandomSound(hittedSounds);   
+        audi.PlayRandomSound(hittedSounds);
     }
 
     public void OnNpcDying()
@@ -82,7 +82,7 @@ public class PonyBody : Node
         var npcDir = GetDirToTarget(npc.tempVictim);
         var rotationToVictim = npcForward.AngleTo(npcDir);
 
-        if (npc.Weapons is { isPistol: true })
+        if (npc.Weapons is { IsPistol: true })
         {
             if (Mathf.Rad2Deg(rotationToVictim) < 80)
             {
@@ -136,7 +136,11 @@ public class PonyBody : Node
             return;
         }
         
-        PlayAnim(npc.MovingController.IsRunning ? "Run" : "Walk");
+        PlayAnim(
+            npc.MovingController is NavigationMovingController { IsRunning: true }
+                ? "Run" 
+                : "Walk"
+        );
     }
     
     private void PlayIdleAnim()

@@ -5,54 +5,51 @@ using Godot.Collections;
 public class NPC : Character, IInteractable, IChest
 {
     [Export] public Array<NodePath> patrolArray = [];
-
     [Export] public bool IsImmortal;
     [Export] public int StartHealth = 100;
     [Export] public Relation relation;
     [Export] public string subtitlesCode = "";
     [Export] public string dialogueCode = "";
-
+    [Export] public string npcCustomDialogueName = "";
     [Export] public float lookHeightFactor = -1.5f;
-    public bool aggressiveAgainstPlayer;
     [Export] public bool ignoreDamager;
-    
     [Export] public Array<string> itemCodes = [];
     [Export] public Dictionary<string, int> ammoCount = new();
-
     [Export] public string customHintCode;
     [Export] public NodePath customInteractionTriggerPath;
-    
-    public string ChestCode => "body";
-    
-    public Vector3 myStartPos, myStartRot;
-
-    public virtual bool MayInteract => interaction?.GetMayInteract() ?? false;
-    public virtual string InteractionHintCode => interaction?.GetInteractionHintCode();
+    [Export] public bool hasSkeleton = true;
+    [Export] private NodePath headBonePath, bodyBonePath;
     
     public NPCWeapons Weapons { get; private set; }
     public NPCCovers Covers { get; private set; }
     public SeekArea SeekArea { get; private set; }
-    public NavigationMovingController MovingController { get; private set; }
+    public BaseMovingController MovingController { get; private set; }
     public ChestHandler ChestHandler { get; private set; }
 
+    private CachedHeadPosition headPosition;
     private NpcInteraction interaction;
     private StateMachine stateMachine;
     private NpcSaving saving;
     
-    [Export] public bool hasSkeleton = true;
-    public Skeleton skeleton;
-    [Export] private NodePath headBonePath, bodyBonePath;
+    public bool MayInteract => interaction?.GetMayInteract() ?? false;
+    public string InteractionHintCode => interaction?.GetInteractionHintCode();
+    
+    public string ChestCode => "body";
     
     public Dictionary<string, bool> objectsChangeActive = new();
-    private CachedHeadPosition headPosition;
+    public Vector3 myStartPos, myStartRot;
+    public Skeleton skeleton;
     private PhysicalBone headBone;
     private PhysicalBone bodyBone;
-    private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
-
+    
+    public bool aggressiveAgainstPlayer;
     public Character tempVictim;
     public Character followTarget;
+    private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
     
-    private Player player => Global.Get().player;
+    public bool MayChangeState = true;
+    
+    private static Player Player => Global.Get().player;
     
     [Signal]
     public delegate void IsCame();
@@ -75,8 +72,8 @@ public class NPC : Character, IInteractable, IChest
         SeekArea = GetNode<SeekArea>("seekArea");
         Weapons = GetNodeOrNull<NPCWeapons>("weapons");
         Covers = GetNodeOrNull<NPCCovers>("covers");
-        MovingController = GetNodeOrNull<NavigationMovingController>("movingController");
-        BaseSpeed = MovingController.WalkSpeed;
+        MovingController = GetNodeOrNull<BaseMovingController>("movingController");
+        BaseSpeed = MovingController.BaseSpeed;
         stateMachine = GetNode<StateMachine>("stateMachine");
         interaction = GetNodeOrNull<NpcInteraction>("interaction");
         
@@ -84,7 +81,7 @@ public class NPC : Character, IInteractable, IChest
         {
             skeleton = GetNode<Skeleton>("Armature/Skeleton");
 
-            headPosition = skeleton.GetNode<CachedHeadPosition>("BoneAttachment");
+            headPosition = skeleton.GetNodeOrNull<CachedHeadPosition>("BoneAttachment");
             
             headBone = headBonePath != null ? GetNodeOrNull<PhysicalBone>(headBonePath) 
                 : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
@@ -104,6 +101,8 @@ public class NPC : Character, IInteractable, IChest
 
     public void SetState(SetStateEnum state)
     {
+        if (!MayChangeState) return;
+        if (GetState() == state) return;
         stateMachine.SetState(state);
     }
 
@@ -138,9 +137,9 @@ public class NPC : Character, IInteractable, IChest
         }
         else
         {
-            if (tempVictim == player) 
+            if (tempVictim == Player) 
             {
-                player.Stealth.RemoveSeekEnemy(this);
+                Player.Stealth.RemoveSeekEnemy(this);
             }
 
             MakeDead();
@@ -150,10 +149,10 @@ public class NPC : Character, IInteractable, IChest
     
     private void SetStateAgainstDamager(Character damager)
     {
-        if (damager == player && !aggressiveAgainstPlayer && GetState() == SetStateEnum.Idle)
+        if (damager == Player && !aggressiveAgainstPlayer && GetState() == SetStateEnum.Idle)
         {
             aggressiveAgainstPlayer = true;
-            SeekArea.AddEnemyInArea(player);
+            SeekArea.AddEnemyInArea(Player);
         }
         
         var coverChance = 1.0f - (float)Health / HealthMax;
@@ -161,8 +160,12 @@ public class NPC : Character, IInteractable, IChest
         var rand = new RandomNumberGenerator();
         var newState = rand.Randf() < coverChance ? SetStateEnum.Hiding : SetStateEnum.Attack;
         if (GetState() == newState) return;
-        
-        tempVictim = damager;
+
+        if (tempVictim == null || !IsInstanceValid(tempVictim) || tempVictim.Health <= 0)
+        {
+            tempVictim = damager;
+        }
+       
         SetState(newState);
     }
 
@@ -181,9 +184,14 @@ public class NPC : Character, IInteractable, IChest
 
     public void SetNewStartPos(Vector3 newPos, bool run = false)
     {
-        MovingController.RunToPoint = run;
         myStartPos = newPos;
-        MovingController.cameToPlace = false;
+        
+        if (MovingController is NavigationMovingController navigation)
+        {
+            navigation.RunToPoint = run;
+            navigation.cameToPlace = false;
+        }
+       
         CleanPatrolArray();
     }
 
@@ -195,16 +203,25 @@ public class NPC : Character, IInteractable, IChest
     public void SetFollowTarget(Character newTarget)
     {
         followTarget = newTarget;
+        
+        if (MovingController is NavigationMovingController navigation)
+        {
+            navigation.cameToPlace = false;
+        }
     }
 
-    public void MakeDead()
+    public void MakeDead(bool dropWeapon = true)
     {
         EmitSignal(nameof(IsDying));
         
         if (Weapons != null)
         {
+            if (dropWeapon)
+            {
+                Weapons.SpawnPickableItem();
+            }
+            
             Weapons.SetWeaponOn(false);
-            Weapons.SpawnPickableItem();
             Weapons.WeaponCode = null;
         }
         
@@ -257,22 +274,23 @@ public class NPC : Character, IInteractable, IChest
     
     public void _on_stopArea_body_entered(Node body)
     {
+        if (MovingController is not NavigationMovingController navigation) return;
         switch (body)
         {
-            case Player when MovingController != null:
-                MovingController.stopAreaEntered = true;
+            case global::Player:
+                navigation.stopAreaEntered = true;
                 break;
             case FurnDoor { IsOpen: false } door:
-                MovingController?.SetDoorWait(door.ClickFurn());
+                navigation?.SetDoorWait(door.ClickFurn());
                 break;
         }
     }
     
     public void _on_stopArea_body_exited(Node body)
     {
-        if (body is Player && MovingController != null)
+        if (body is Player && MovingController is NavigationMovingController navigation)
         {
-            MovingController.stopAreaEntered = false;
+            navigation.stopAreaEntered = false;
         }
     }
 

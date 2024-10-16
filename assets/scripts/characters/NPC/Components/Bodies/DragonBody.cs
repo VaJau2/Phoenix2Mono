@@ -14,6 +14,8 @@ public class DragonBody: Node
     
     [Export] private Array<AudioStreamSample> idleSounds;
     [Export] private AudioStreamSample fireSound;
+    [Export] private Array<AudioStreamSample> hittedSounds;
+    [Export] private AudioStreamSample dieSound;
 
     private Spatial fireObj;
     private Array<Particles> fireParts = new();
@@ -30,15 +32,17 @@ public class DragonBody: Node
         npc = GetParent<NPC>();
         audi = npc.GetNode<NpcAudio>("audi");
         
-        anim = GetNode<AnimationPlayer>("anim");
-        fireObj = GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
+        anim = npc.GetNode<AnimationPlayer>("anim");
+        fireObj = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
         fireParts.Add(fireObj.GetNode<Particles>("Particles"));
         fireParts.Add(fireObj.GetNode<Particles>("Particles2"));
         fireParts.Add(fireObj.GetNode<Particles>("Particles3"));
         fireAnim = fireObj.GetNode<AnimationPlayer>("fireAnim");
-        audiFire = GetNode<AudioStreamPlayer3D>("audi-fire");
+        audiFire = npc.GetNode<AudioStreamPlayer3D>("audi-fire");
+        mouth = npc.GetNode<DragonMouth>("smash-area");
         
-        npc.Connect(nameof(NPC.TakeDamage), this, nameof(OnTakeDamage));
+        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
+        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)
@@ -46,6 +50,7 @@ public class DragonBody: Node
         if (npc.Velocity.Length() > 0 && !onetimeAnim)
         {
             UpdateFlyAnims();
+            PlayIdleSounds(delta);
         }
     }
 
@@ -58,7 +63,7 @@ public class DragonBody: Node
     
     public float GetEnemyDistance()
     {
-        if (IsInstanceValid(npc.tempVictim))
+        if (IsInstanceValid(npc.tempVictim) && npc.tempVictim.Health > 0)
         {
             return npc.GlobalTranslation.DistanceTo(npc.tempVictim.GlobalTranslation);
         }
@@ -68,8 +73,14 @@ public class DragonBody: Node
     
     private void OnTakeDamage()
     {
+        audi.PlayRandomSound(hittedSounds);
+    }
+
+    private void OnNpcDying()
+    {
         SetFireOn(false);
-        GetNode<AudioStreamPlayer3D>("audi-wings").Stop();
+        audi.PlayStream(dieSound);
+        npc.GetNode<AudioStreamPlayer3D>("audi-wings").Stop();
     }
     
     public void PlayIdleSounds(float delta)
@@ -141,8 +152,12 @@ public class DragonBody: Node
 
         if (on)
         {
-            audiFire.Stream = fireSound;
-            audiFire.Play();
+            if (!audiFire.Playing)
+            {
+                audiFire.Stream = fireSound;
+                audiFire.Play();
+            }
+           
             fireAnim.Play("fire");
         }
         else

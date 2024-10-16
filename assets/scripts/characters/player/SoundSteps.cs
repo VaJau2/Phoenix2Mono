@@ -52,7 +52,7 @@ public class SoundSteps : RayCast
             return parent switch
             {
                 Player_Earthpony player when IsInstanceValid(player) => player.IsRunning,
-                NPC npc when IsInstanceValid(npc) => npc.MovingController.IsRunning,
+                NPC npc when IsInstanceValid(npc) => npc.MovingController is NavigationMovingController { IsRunning: true},
                 _ => false
             };
         }
