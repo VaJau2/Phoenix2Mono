@@ -128,6 +128,17 @@ public class Subtitles : Label, ISavable
         EmitSignal(nameof(ChangePhrase));
     }
 
+    public void Skip()
+    {
+        tempSpeakerLabel.Text = "";
+        Text = animatingText = "";
+        IsAnimatingText = false;
+        symbolTimer = 0;
+        
+        ClearSubtitles();
+        EmitSignal(nameof(End));
+    }
+    
     private void ReadPhraseText()
     {
         if (tempPhraseData.Contains("speakerCode") && tempPhraseData.Contains("text"))

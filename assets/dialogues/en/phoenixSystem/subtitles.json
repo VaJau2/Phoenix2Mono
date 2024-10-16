@@ -3,7 +3,7 @@
     "back1": {
       "speakerCode": "phoenixSystem",
       "text": "Welcome back, cutie! How was your walk?",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -11,15 +11,15 @@
     "back2": {
       "speakerCode": "phoenixSystem",
       "text": "Welcome home, sweetheart! Did you find the Bellgates?",
-      "timer": 0.03
+      "timer": 0.026
     }
   },
 
   "back3": {
     "back3": {
       "speakerCode": "phoenixSystem",
-      "text": "Home sweet home. Did you see the sad mare with the blue box? …or was it a colt?",
-      "timer": 0.03
+      "text": "Home sweet home. Did you see the sad mare with the blue box? Or was it a colt?",
+      "timer": 0.025
     }
   },
 
@@ -27,7 +27,7 @@
     "back4": {
       "speakerCode": "phoenixSystem",
       "text": "Welcome to the coziest vault in the world.",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -35,15 +35,14 @@
     "back5": {
       "speakerCode": "phoenixSystem",
       "text": "Oh, it's you! Did you bring anything good?",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
   "back6": {
     "back6": {
       "speakerCode": "phoenixSystem",
-      "text": "Congratulations on your successful survival in the desert!",
-      "timer": 0.03
+      "text": "Congratulations on your successful survival in the desert!"
     }
   },
 
@@ -51,15 +50,14 @@
     "back7": {
       "speakerCode": "phoenixSystem",
       "text": "Intresting, where everyone else is?",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
   "resurrection": {
     "resurrection1": {
       "speakerCode": "phoenixSystem",
-      "text": "Thank you for using experimental resurrection sytem called 'Phoenix 2'!",
-      "timer": 0.03
+      "text": "Thank you for using experimental resurrection sytem called 'Phoenix 2'!"
     },
     "resurrection2": {
       "speakerCode": "phoenixSystem",
@@ -71,12 +69,11 @@
     "cloneRoom1": {
       "speakerCode": "phoenixSystem",
       "text": "Warning! There are not enough materials to create a new batch of clones.",
-      "timer": 0.03
+      "timer": 0.025
     },
     "cloneRoom2": {
       "speakerCode": "phoenixSystem",
-      "text": "Honey, these are your last clones.",
-      "timer": 0.03
+      "text": "Honey, these are your last clones."
     },
     "cloneRoom3": {
       "speakerCode": "phoenixSystem",
@@ -89,7 +86,7 @@
     "lastClone": {
       "speakerCode": "phoenixSystem",
       "text": "Honey, this is your last clone! If you die, you die forever!",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -97,7 +94,7 @@
     "dieFromFly": {
       "speakerCode": "phoenixSystem",
       "text": "Next time, try to fly more carefully.",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -105,7 +102,7 @@
     "dieFromRadiation": {
       "speakerCode": "phoenixSystem",
       "text": "Dear, don't forget that the radiation levels are still frighteningly high!",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -113,7 +110,7 @@
     "dieOften": {
       "speakerCode": "phoenixSystem",
       "text": "Am I such bad company that you kill yourself so often?",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -121,7 +118,7 @@
     "fuel": {
       "speakerCode": "phoenixSystem",
       "text": "Warning! Critical depletion of fuel elements has been detected.",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -129,7 +126,7 @@
     "kitchen": {
       "speakerCode": "phoenixSystem",
       "text": "Warning! The forage supply is running low. Drinking filter is defective.",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -137,7 +134,7 @@
     "wc": {
       "speakerCode": "phoenixSystem",
       "text": "Warning! A clog in the water pipe, has been detected.",
-      "timer": 0.03
+      "timer": 0.025
     }
   },
 
@@ -145,12 +142,12 @@
     "radiation1": {
       "speakerCode": "phoenixSystem",
       "text": "Warning! Deadly levels of radiation have been detected on the surface.",
-      "timer": 0.029
+      "timer": 0.028
     },
     "radiation2": {
       "speakerCode": "phoenixSystem",
       "text": "Wear an anti-radiation suit, please.",
-      "timer": 0.03
+      "timer": 0.026
     }
   }
 }

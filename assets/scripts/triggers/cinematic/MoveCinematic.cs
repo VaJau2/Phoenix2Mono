@@ -17,10 +17,9 @@ public class MoveCinematic : AbstractMoveCinematic
         );
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
+        cutscene.SetCameraParent(null);
         base.Disable();
-        cutsceneManager.SetCameraParent(null);
-        EmitSignal(nameof(Finished));
     }
 }

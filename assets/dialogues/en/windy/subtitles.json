@@ -11,49 +11,49 @@
       "phrase1":
       {
         "speakerCode": "windy",
-        "text": "Помнишь как мы с папой сажали маленький росточек?"
+        "text": "Remember when Daddy and I planted that little sprout?"
       },
 
       "phrase2":
       {
         "speakerCode": "windy",
-        "text": "Смотри, в какое большое дерево он вырос!"
+        "text": "Look what a big tree this sprout has grown into!"
       },
 
       "phrase3":
       {
         "speakerCode": "windy",
-        "text": "Утром мы собрали первые яблоки."
+        "text": "In the morning we picked the first apples."
       },
 
       "phrase4":
       {
         "speakerCode": "windy",
-        "text": "Большие. Сочные. Сладкие. Смачные."
+        "text": "Big. Juicy. Sweet. Succulent."
       },
 
       "phrase5":
       {
         "speakerCode": "windy",
-        "text": "Мама приготовила из них такой пирог, копытца оближешь!"
+        "text": "Mom used them to make such a delicious pie!"
       },
 
       "phrase6":
       {
         "speakerCode": "windy",
-        "text": "Папе бы понравился этот пирог..."
+        "text": "Daddy would have loved this pie..."
       },
 
       "phrase7":
       {
         "speakerCode": "strikely",
-        "text": "Всё-всё. Убедил. Веди меня к пирогу."
+        "text": "All right, all right. You've convinced me. Lead me to the pie."
       },
 
       "phrase8":
       {
         "speakerCode": "windy",
-        "text": "Тебе очень повезло, что я обожрался до того как пирог закончился.",
+        "text": "You're very lucky I was stuffed before the pie was over.",
         "class": "ActivateCinematic",
         "key": "Apple-tree",
         "value": "returnToPlayer"

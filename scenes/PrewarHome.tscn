@@ -1,4 +1,4 @@
-[gd_scene load_steps=223 format=2]
+[gd_scene load_steps=224 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -123,8 +123,9 @@
 [ext_resource path="res://objects/cinematic/MoveCinematic.tscn" type="PackedScene" id=121]
 [ext_resource path="res://objects/cinematic/RotateCinematic.tscn" type="PackedScene" id=122]
 [ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=123]
-[ext_resource path="res://assets/scripts/triggers/cinematic/CutsceneManager.cs" type="Script" id=124]
+[ext_resource path="res://assets/scripts/triggers/cinematic/Cutscene.cs" type="Script" id=124]
 [ext_resource path="res://assets/scripts/background/NpcLookTarget.cs" type="Script" id=125]
+[ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=126]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
@@ -2302,13 +2303,12 @@ transform = Transform( 0.7, 0, 0, 0, 1.011, 0, 0, 0, 0.978, 0.483356, 4.86504, 1
 script = ExtResource( 40 )
 
 [node name="cutscenes" type="Node" parent="."]
-script = ExtResource( 124 )
 
 [node name="Apple-tree" type="Node" parent="cutscenes"]
+script = ExtResource( 124 )
 
 [node name="showTree" type="Node" parent="cutscenes/Apple-tree"]
 script = ExtResource( 123 )
-DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 rotatePath = NodePath("RotateCinematic")
 
@@ -2325,7 +2325,6 @@ speed = 0.05
 
 [node name="returnToPlayer" type="Node" parent="cutscenes/Apple-tree"]
 script = ExtResource( 123 )
-DeleteAfterTrigger = false
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
@@ -2334,6 +2333,10 @@ returnPath = NodePath("ReturnToPlayer")
 curve = SubResource( 119 )
 speedRot = 0.0
 smoothTransition = false
+
+[node name="skip" type="Node" parent="cutscenes/Apple-tree"]
+script = ExtResource( 126 )
+otherTriggerPaths = [ NodePath("../../../triggers/windyTeleport5") ]
 
 [node name="triggers" type="Node" parent="."]
 

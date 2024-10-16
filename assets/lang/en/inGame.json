@@ -107,10 +107,7 @@
     "labels": {
         "nextWeek": "A week later...",
         "dragon": "Dragon",
-        "toBeContinueTitle": "to be continued...",
-        "pressLabel": "press",
-        "toExitToMainMenu": "to exit to main menu",
-        "skip": "skip"
+        "skip": "Skip"
     },
 
     "testing": {

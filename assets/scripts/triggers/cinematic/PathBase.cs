@@ -34,9 +34,10 @@ public class PathBase : Path, ISavable
         SetPhysicsProcess(true);
     }
 
-    protected virtual void Disable()
+    public virtual void Disable()
     {
         SetPhysicsProcess(false);
+        EmitSignal(nameof(Finished), this);
     }
 
     public virtual Dictionary GetSaveData()

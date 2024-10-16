@@ -149,7 +149,7 @@ public class PlayerWeapons : CollisionShape
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
-        ammoIcon.SetTexture(newIcon);
+        ammoIcon.SetIcon(newIcon);
     }
 
     private int GetAmmo() => TempAmmoButton?.GetCount() ?? 0;

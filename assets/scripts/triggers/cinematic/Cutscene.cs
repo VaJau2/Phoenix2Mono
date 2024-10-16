@@ -1,7 +1,8 @@
-using System;
 using Godot;
+using System;
+using System.Collections.Generic;
 
-public class CutsceneManager : Node
+public class Cutscene : Node
 {
     private Camera cutsceneCamera;
     private Area area;
@@ -12,6 +13,19 @@ public class CutsceneManager : Node
     private SpatialCache cutsceneCameraCache;
     private SpatialCache playerCameraCache;
     
+    private readonly List<CinematicTrigger> triggerQueue = [];
+    
+    private Skip skip;
+    private TriggerBase skipTrigger;
+    private Subtitles subtitles;
+    
+    public override void _Ready()
+    {
+        skip = GetNode<Skip>("/root/Main/Scene/canvas/skip");
+        skipTrigger = GetNodeOrNull<TriggerBase>("skip");
+        subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
+    }
+
     public SpatialCache GetPlayerCameraData()
     {
         return playerCameraCache;
@@ -28,7 +42,7 @@ public class CutsceneManager : Node
 
         if (cutsceneCamera == null)
         {
-            InitCamera();
+            Init();
         }
         else
         {
@@ -60,21 +74,53 @@ public class CutsceneManager : Node
             cutsceneCameraCache = null;
         }
     }
+
+    public void AddQueue(CinematicTrigger trigger)
+    {
+        if (triggerQueue.Count == 0)
+        {
+            trigger.StartCinematics();
+        }
+        
+        triggerQueue.Add(trigger);
+    }
+
+    public void OnTriggerFinished()
+    {
+        triggerQueue.RemoveAt(0);
+        
+        if (triggerQueue.Count > 0)
+        {
+            triggerQueue[0].StartCinematics();
+        }
+    }
     
     public void ReturnPlayerCamera()
     {
+        skip.Disconnect(nameof(global::Skip.SkipEvent), this, nameof(Skip));
+        skip.SetActive(false);
+        
         area.Disconnect("body_exited", this, nameof(ShowPlayerHead));
         area.Disconnect("body_entered", this, nameof(HidePlayerHead));
         area.QueueFree();
         
         cutsceneCamera.QueueFree();
         cutsceneCamera = null;
+        skipTrigger = null;
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
         player.Camera.isUpdating = true;
         player.MayRotateHead = true;
         player.SetMayMove(true);
         playerCameraCache = null;
+    }
+
+    private void Init()
+    {
+        InitCamera();
+        InitHeadTrigger();
+        skip.Connect(nameof(global::Skip.SkipEvent), this, nameof(Skip));
+        skip.SetActive(true);
     }
     
     private void InitCamera()
@@ -101,7 +147,6 @@ public class CutsceneManager : Node
         player.SetMayMove(false);
         player.MayRotateHead = false;
         player.Camera.isUpdating = false;
-        InitHeadTrigger();
     }
 
     private void InitHeadTrigger()
@@ -138,5 +183,27 @@ public class CutsceneManager : Node
         player.RotationHelperThird.SetThirdView(false);
         player.RotationHelperThird.firstCamera.Current = false;
         cutsceneCamera.Current = true;
+    }
+
+    private async void Skip()
+    {
+        if (cutsceneCamera == null) return; 
+        
+        if (triggerQueue.Count > 0)
+        {
+            if (triggerQueue.Count > 1)
+            {
+                triggerQueue.RemoveRange(1, triggerQueue.Count - 1);
+            }
+        
+            triggerQueue[0].Skip();
+        }
+            
+        subtitles.Skip();
+        skipTrigger?._on_activate_trigger();
+
+        await Global.Get().ToTimer(0.05f);
+        
+        ReturnPlayerCamera();
     }
 }

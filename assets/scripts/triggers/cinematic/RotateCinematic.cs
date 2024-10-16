@@ -4,13 +4,13 @@ public class RotateCinematic : PathBase
 {
     private bool isFinished;
     private Spatial target;
-    private CutsceneManager cutsceneManager;
+    private Cutscene cutscene;
     
     public override void _Ready()
     {
         base._Ready();
         target = GetNode<Spatial>("PathFollow/Target");
-        cutsceneManager = GetNode<CutsceneManager>("../../..");
+        cutscene = GetNode<Cutscene>("../../");
     }
 
     public override void Enable()
@@ -22,17 +22,16 @@ public class RotateCinematic : PathBase
     public override void _PhysicsProcess(float delta)
     {
         if (!isFinished) base._PhysicsProcess(delta);
-        cutsceneManager.GetCamera().LookAt(target.GlobalTranslation, Vector3.Up);
+        cutscene.GetCamera().LookAt(target.GlobalTranslation, Vector3.Up);
     }
 
-    public void OnFinished()
+    public void OnFinished(PathBase pathBase = null)
     {
         base.Disable();
     }
     
-    protected override void Disable()
+    public override void Disable()
     {
         isFinished = true;
-        EmitSignal(nameof(Finished));
     }
 }
