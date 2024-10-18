@@ -1,4 +1,4 @@
-﻿public struct WarningMessage
+﻿public class WarningMessage
 {
     public string code;
     public VoiceMessageTrigger trigger;
@@ -7,11 +7,5 @@
     {
         code = _code;
         trigger = _trigger;
-    }
-    
-    public void Clear()
-    {
-        code = null;
-        trigger = null;
     }
 }
