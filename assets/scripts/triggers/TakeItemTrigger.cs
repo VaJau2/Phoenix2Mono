@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 //если активен, следит за инвентарем и получаемыми предметами
 //включает другие триггеры, если игрок получает нужный предмет
@@ -53,6 +54,16 @@ class TakeItemTrigger: ActivateOtherTrigger
                 Global.AddDeletedObject(Name);
                 QueueFree();
             }
+        }
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+
+        if (IsActive)
+        {
+            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
         }
     }
 }

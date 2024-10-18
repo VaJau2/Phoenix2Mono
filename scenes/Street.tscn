@@ -889,7 +889,7 @@ script = ExtResource( 35 )
 IsActive = false
 NewTaskCode = "searchAgent"
 
-[node name="takeItem" type="Node" parent="triggers"]
+[node name="takeItem" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 36 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../exit"), NodePath("../leaveTask") ]

@@ -3,13 +3,10 @@ using Godot.Collections;
 
 public class LevelsLoader : Node
 {
-	[Export] private Environment defaultEnvironment;
-	private WorldEnvironment tempDefaultEnvironment;
-	
 	Global global = Global.Get();
-	public static int tempLevelNum = 0;
+	public static int tempLevelNum;
 	
-	private Array<string> levelPaths = new Array<string>();
+	private Array<string> levelPaths = [];
 	private Control currentMenu;
 	private Node currentScene;
 	private Control currentLoading;
@@ -114,15 +111,6 @@ public class LevelsLoader : Node
 		currentScene.QueueFree();
 		currentScene = null;
 		await ToSignal(GetTree(), "idle_frame");
-		SpawnDefaultEnvironment();
-	}
-
-	private void SpawnDefaultEnvironment()
-	{
-		var defaultEnv = new WorldEnvironment();
-		defaultEnv.Environment = defaultEnvironment;
-		AddChild(defaultEnv);
-		tempDefaultEnvironment = defaultEnv;
 	}
 
 	private void UpdateMenu()
@@ -271,8 +259,6 @@ public class LevelsLoader : Node
 		var err = loader.Poll();
 		if (err == Error.FileEof) 
 		{
-			tempDefaultEnvironment?.Free();
-			
 			var resource = (PackedScene)loader.GetResource();
 			loader.Dispose();
 			loader = null;
