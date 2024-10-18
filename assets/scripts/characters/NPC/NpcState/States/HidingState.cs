@@ -1,6 +1,6 @@
 ﻿public class HidingState(
-    NPCWeapons weapons,
-    NPCCovers covers,
+    NpcWeapons weapons,
+    NpcCovers covers,
     NavigationMovingController movingController,
     StateMachine stateMachine,
     PonyBody body

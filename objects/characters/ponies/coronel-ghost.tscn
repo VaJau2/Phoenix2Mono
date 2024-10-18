@@ -1,11 +1,12 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/characters/coronel/eyes.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/bossCap.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/coronel/mouth.material" type="Material" id=5]
 [ext_resource path="res://assets/textures/characters/coronel/body.png" type="Texture" id=6]
+
 
 [sub_resource type="ArrayMesh" id=7]
 resource_name = "bossCap"

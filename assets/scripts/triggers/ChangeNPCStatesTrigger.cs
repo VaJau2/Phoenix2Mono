@@ -87,7 +87,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (!string.IsNullOrEmpty(newEyesTexture))
         {
-            npc.GetNode<NPCFace>("Armature/Skeleton/Body")?
+            npc.GetNode<NpcFace>("Armature/Skeleton/Body")?
                 .ChangeEyesVariant(newEyesTexture);
         }
     

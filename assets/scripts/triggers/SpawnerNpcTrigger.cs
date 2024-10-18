@@ -97,7 +97,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         {
             npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
             npcInstance.StartHealth = StartHealth;
-            npcInstance.GetNodeOrNull<NPCWeapons>("weapons")?.SetWeaponCode(weaponCode);
+            npcInstance.GetNodeOrNull<NpcWeapons>("weapons")?.SetWeaponCode(weaponCode);
             npcInstance.relation = relation;
             npcInstance.itemCodes = itemCodes;
             npcInstance.ammoCount = ammoCount;

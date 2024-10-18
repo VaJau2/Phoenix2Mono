@@ -432,6 +432,7 @@ IsImmortal = true
 [node name="mrGutsyTrader" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
 IsImmortal = true
+dialogueCode = "trade"
 
 [node name="private2" parent="npc" instance=ExtResource( 69 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 10.602, -98.881, 60.593 )

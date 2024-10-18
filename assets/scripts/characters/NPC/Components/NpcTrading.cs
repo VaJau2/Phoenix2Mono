@@ -23,12 +23,10 @@ public class NpcTrading: Node, ISavable, ITrader
     
     private InventoryMenu menu;
     private bool isTrading;
-    private NPC trader;
 
     public override void _Ready()
     {
         menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
-        trader = GetParent<NPC>();
         LoadTradingData();
     }
     
@@ -63,22 +61,22 @@ public class NpcTrading: Node, ISavable, ITrader
     private void LoadTradingData()
     {
         var items = GetNode<RandomItems>("/root/Main/Scene/randomItems");
-        if (trader.itemCodes.Count != 0 || trader.ammoCount.Count != 0)
+        if (itemCodes.Count != 0 || ammoCount.Count != 0)
         {
             return;
         }
         
-        items.LoadRandomItems(trader.itemCodes, trader.ammoCount);
+        items.LoadRandomItems(itemCodes, ammoCount);
 
         foreach (var itemCode in startItemCodes) 
         {
-            trader.itemCodes.Add(itemCode);
+            itemCodes.Add(itemCode);
         }
         foreach (var ammoKey in startAmmoCount.Keys) 
         {
-            if (!trader.ammoCount.ContainsKey(ammoKey))
+            if (!ammoCount.ContainsKey(ammoKey))
             {
-                trader.ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
+                ammoCount.Add(ammoKey, startAmmoCount[ammoKey]);
             }
         }
     }
@@ -92,16 +90,16 @@ public class NpcTrading: Node, ISavable, ITrader
 
         moneyCount = Convert.ToInt32(data["moneyCount"]);
         
-        trader.itemCodes.Clear();
+        itemCodes.Clear();
         foreach (string itemCode in newItemCodes)
         {
-            trader.itemCodes.Add(itemCode);
+            itemCodes.Add(itemCode);
         }
 
-        trader.ammoCount.Clear();
+        ammoCount.Clear();
         foreach (string key in newAmmoCount.Keys)
         {
-            trader.ammoCount.Add(key, Convert.ToInt32(newAmmoCount[key]));
+            ammoCount.Add(key, Convert.ToInt32(newAmmoCount[key]));
         }
         
         ammoButtons.Clear();
@@ -134,8 +132,8 @@ public class NpcTrading: Node, ISavable, ITrader
         
         Dictionary savedData = new Dictionary()
         {
-            {"itemCodes", trader.itemCodes},
-            {"ammoCount", trader.ammoCount},
+            {"itemCodes", itemCodes},
+            {"ammoCount", ammoCount},
             {"ammoButtons", ammoButtonNames},
             {"itemPositions", itemPositions},
             {"moneyCount", moneyCount},

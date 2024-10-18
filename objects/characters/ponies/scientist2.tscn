@@ -4,7 +4,8 @@
 [ext_resource path="res://assets/audio/enemies/hitted/mareHit1.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/enemies/hitted/mareHit2.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/enemies/hitted/mareDead.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=9]
+
 
 [sub_resource type="Image" id=20]
 data = {

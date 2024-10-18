@@ -13,9 +13,9 @@ public class NpcStateDependencies : IDependencies
     {
         return new Dictionary
         {
-            { nameof(NPCWeapons), npc.GetNodeOrNull<NPCWeapons>("weapons") },
+            { nameof(NpcWeapons), npc.GetNodeOrNull<NpcWeapons>("weapons") },
             { nameof(SeekArea), npc.GetNodeOrNull<SeekArea>("seekArea") },
-            { nameof(NPCCovers), npc.GetNodeOrNull<NPCCovers>("covers") },
+            { nameof(NpcCovers), npc.GetNodeOrNull<NpcCovers>("covers") },
             { nameof(NpcPatroling), npc.GetNodeOrNull<NpcPatroling>("patroling") },
             
             { nameof(BaseMovingController), npc.GetNodeOrNull<BaseMovingController>("movingController") },

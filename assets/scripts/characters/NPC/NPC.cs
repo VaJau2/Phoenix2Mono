@@ -17,18 +17,17 @@ public class NPC : Character, IInteractable, IChest
     [Export] public Dictionary<string, int> ammoCount = new();
     [Export] public string customHintCode;
     [Export] public NodePath customInteractionTriggerPath;
-    [Export] public bool hasSkeleton = true;
-    [Export] private NodePath headBonePath, bodyBonePath;
     
-    public NPCWeapons Weapons { get; private set; }
-    public NPCCovers Covers { get; private set; }
+    public NpcWeapons Weapons { get; private set; }
+    public NpcCovers Covers { get; private set; }
     public SeekArea SeekArea { get; private set; }
     public BaseMovingController MovingController { get; private set; }
     public ChestHandler ChestHandler { get; private set; }
-
-    private CachedHeadPosition headPosition;
+    public CachedHeadPosition HeadPosition;
+    
     private NpcInteraction interaction;
     private StateMachine stateMachine;
+    private NpcSkeleton skeleton;
     private NpcSaving saving;
     
     public bool MayInteract => interaction?.GetMayInteract() ?? false;
@@ -38,14 +37,10 @@ public class NPC : Character, IInteractable, IChest
     
     public Dictionary<string, bool> objectsChangeActive = new();
     public Vector3 myStartPos, myStartRot;
-    public Skeleton skeleton;
-    private PhysicalBone headBone;
-    private PhysicalBone bodyBone;
     
     public bool aggressiveAgainstPlayer;
     public Character tempVictim;
     public Character followTarget;
-    private bool tempShotgunShot; //для увеличения импульса при получении урона от дробовика
     
     public bool MayChangeState = true;
     
@@ -70,24 +65,13 @@ public class NPC : Character, IInteractable, IChest
 
         saving = new NpcSaving(this);
         SeekArea = GetNode<SeekArea>("seekArea");
-        Weapons = GetNodeOrNull<NPCWeapons>("weapons");
-        Covers = GetNodeOrNull<NPCCovers>("covers");
+        Weapons = GetNodeOrNull<NpcWeapons>("weapons");
+        Covers = GetNodeOrNull<NpcCovers>("covers");
         MovingController = GetNodeOrNull<BaseMovingController>("movingController");
         BaseSpeed = MovingController.BaseSpeed;
         stateMachine = GetNode<StateMachine>("stateMachine");
         interaction = GetNodeOrNull<NpcInteraction>("interaction");
-        
-        if (hasSkeleton)
-        {
-            skeleton = GetNode<Skeleton>("Armature/Skeleton");
-
-            headPosition = skeleton.GetNodeOrNull<CachedHeadPosition>("BoneAttachment");
-            
-            headBone = headBonePath != null ? GetNodeOrNull<PhysicalBone>(headBonePath) 
-                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone neck");
-            bodyBone = bodyBonePath != null ? GetNodeOrNull<PhysicalBone>(bodyBonePath) 
-                : skeleton.GetNodeOrNull<PhysicalBone>("Physical Bone back_2");
-        }
+        skeleton = GetNodeOrNull<NpcSkeleton>("Armature/Skeleton");
         
         if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
             
@@ -106,7 +90,7 @@ public class NPC : Character, IInteractable, IChest
         stateMachine.SetState(state);
     }
 
-    public Vector3 GetHeadPosition() => headPosition?.GetPosition() ?? GlobalTranslation;
+    public Vector3 GetHeadPosition() => HeadPosition?.GetPosition() ?? GlobalTranslation;
 
     public override int GetDamage()
     {
@@ -167,7 +151,7 @@ public class NPC : Character, IInteractable, IChest
 
     public override void CheckShotgunShot(bool isShotgun)
     {
-        tempShotgunShot = isShotgun;
+        skeleton.CheckShotgunShot(isShotgun);
     }
 
     public void SetObjectActive(string objectPath, bool active)
@@ -232,40 +216,20 @@ public class NPC : Character, IInteractable, IChest
         CollisionLayer = 2;
         CollisionMask = 2;
 
-        if (!hasSkeleton) return;
+        if (skeleton == null) return;
         
-        skeleton.PhysicalBonesStartSimulation();
+        skeleton.MakeDead();
             
         foreach (Node node in GetChildren())
         {
             if (node.Name == "Armature") continue;
             node.QueueFree();
         }
-            
-        foreach (var boneObject in skeleton.GetChildren())
-        {
-            if (boneObject is not PhysicalBone bone) continue;
-            bone.CollisionLayer = 6;
-            bone.CollisionMask = 6;
-        }
     }
 
     protected virtual void AnimateDeath(Character killer, int shapeID)
     {
-        if (hasSkeleton)
-        {
-            Vector3 dir = Translation.DirectionTo(killer.Translation);
-            float force = tempShotgunShot ? MovingController.RagdollImpulse * 1.5f : MovingController.RagdollImpulse;
-
-            if (shapeID == 0)
-            {
-                bodyBone?.ApplyCentralImpulse(-dir * force);
-            }
-            else
-            {
-                headBone?.ApplyCentralImpulse(-dir * force);
-            }
-        }
+        skeleton?.AnimateDeath(killer, shapeID);
     }
     
     public void _on_stopArea_body_entered(Node body)

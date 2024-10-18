@@ -1,11 +1,12 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/characters/private2/mouth.material" type="Material" id=6]
 [ext_resource path="res://assets/materials/characters/private2/hair.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/characters/private2/body.material" type="Material" id=8]
 [ext_resource path="res://assets/materials/characters/private2/eyes.material" type="Material" id=9]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"

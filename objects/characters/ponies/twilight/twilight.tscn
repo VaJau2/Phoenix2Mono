@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/models/characters/ponies/twilight/eyes.material" type="Material" id=2]
 [ext_resource path="res://assets/models/characters/ponies/twilight/body.material" type="Material" id=3]
 [ext_resource path="res://assets/models/characters/ponies/twilight/mouth.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=5]
 [ext_resource path="res://assets/models/characters/ponies/twilight/mane.material" type="Material" id=6]
 [ext_resource path="res://assets/models/characters/ponies/twilight/tail.material" type="Material" id=7]
 [ext_resource path="res://objects/characters/Player/magic/Particles.tscn" type="PackedScene" id=8]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/audio/enemies/hitted/mareHit2.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/enemies/hitted/mareDead.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/audio/enemies/hitted/mareHit1.wav" type="AudioStream" id=12]
+
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "mane"

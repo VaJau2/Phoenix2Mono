@@ -4,7 +4,8 @@
 [ext_resource path="res://assets/materials/characters/facetest/mouth.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/facetest/body.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/facetest/eyes.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=5]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=5]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"

@@ -49,8 +49,9 @@ public class SeekArea : Area
             case SetStateEnum.Attack:
                 UpdateAttackState();
                 break;
-            default:
-                UpdateSearchState();
+            case SetStateEnum.Search:
+            case SetStateEnum.Idle:
+                UpdateDefaultState();
                 break;
         }
     }
@@ -115,7 +116,7 @@ public class SeekArea : Area
         }
     }
 
-    private void UpdateSearchState()
+    private void UpdateDefaultState()
     {
         if (enemiesInArea.Count == 0)
         {

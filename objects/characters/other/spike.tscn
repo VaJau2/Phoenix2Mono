@@ -1,9 +1,9 @@
 [gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFaceMat.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/characters/spike/eyes/neitral/0.material" type="Material" id=2]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCCovers.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcCovers.cs" type="Script" id=4]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/Moving/NavigationMovingController.cs" type="Script" id=5]
 [ext_resource path="res://assets/scripts/characters/NPC/NPC.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/NpcState/StateMachine.cs" type="Script" id=7]
@@ -558,7 +558,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 36 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
@@ -663,6 +663,7 @@ startEyesVariant = "neitral"
 transform = Transform( 0.999657, -9.80602e-05, 0.026171, 1.88476e-05, 0.999995, 0.00302696, -0.0261712, -0.00302543, 0.999652, -3.67714e-15, 1.06352, 0.0317592 )
 bone_name = "head"
 script = ExtResource( 3 )
+npcPath = NodePath("../../..")
 
 [node name="shape" type="CollisionShape" parent="."]
 transform = Transform( 1.23529, 0, 0, 0, 1.23529, 0, 0, 0, 1.23529, 0.00209009, 0.782275, 0.105436 )

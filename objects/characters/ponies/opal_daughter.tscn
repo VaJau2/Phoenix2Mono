@@ -7,7 +7,8 @@
 [ext_resource path="res://assets/models/characters/ponies/opal_daugher/eyes.material" type="Material" id=5]
 [ext_resource path="res://assets/models/characters/ponies/opal_daugher/hair.material" type="Material" id=6]
 [ext_resource path="res://assets/models/characters/ponies/opal_daugher/mouth.material" type="Material" id=7]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=8]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=8]
+
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "mane"

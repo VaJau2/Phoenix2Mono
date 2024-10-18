@@ -5,11 +5,12 @@
 [ext_resource path="res://assets/materials/characters/42/eyes.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/42/mouth.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/42/hair.material" type="Material" id=5]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/player/Unicorn/UnicornLevitation.cs" type="Script" id=7]
 [ext_resource path="res://objects/characters/Player/magic/levitation.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/characters/Player/magic/Particles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/materials/characters/42/magic.tres" type="Material" id=10]
+
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.80996, 0.0, 0, 0 ]

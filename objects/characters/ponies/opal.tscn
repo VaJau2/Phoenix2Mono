@@ -5,7 +5,8 @@
 [ext_resource path="res://assets/materials/characters/opal/body.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/opal/eyes.material" type="Material" id=4]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcTrading.cs" type="Script" id=5]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFace.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=6]
+
 
 [sub_resource type="SpatialMaterial" id=1]
 vertex_color_use_as_albedo = true

@@ -5,7 +5,8 @@
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/1/bodyArmor.material" type="Material" id=3]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/1/Material.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/black.material" type="Material" id=5]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCFaceMat.cs" type="Script" id=6]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=6]
+
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "slave_trader1_Cube013"

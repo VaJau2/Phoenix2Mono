@@ -1,6 +1,6 @@
 ﻿public class AttackState(
     SeekArea seekArea,
-    NPCWeapons weapons,
+    NpcWeapons weapons,
     NavigationMovingController movingController,
     PonyBody body,
     StateMachine stateMachine

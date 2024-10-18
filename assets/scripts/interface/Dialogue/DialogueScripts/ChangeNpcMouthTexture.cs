@@ -7,7 +7,7 @@ public class ChangeNpcMouthTexture : BaseChangeInNPC
     public override void initiate(Node node, string parameter, string key = "")
     {
         GetNPC(node)?
-            .GetNode<NPCFace>("Armature/Skeleton/Body")?
+            .GetNode<NpcFace>("Armature/Skeleton/Body")?
             .ChangeMouthVariant(parameter);
     }
 }

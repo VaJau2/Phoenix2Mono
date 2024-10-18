@@ -1,8 +1,8 @@
 ﻿using Godot;
 
 public class IdleState(
-    NPCCovers covers,
-    NPCWeapons weapons,
+    NpcCovers covers,
+    NpcWeapons weapons,
     NavigationMovingController movingController,
     PonyBody body,
     NpcPatroling patroling

@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://assets/materials/characters/shotgun-bag.material" type="Material" id=1]
 [ext_resource path="res://assets/models/characters/ponies/player/Look-Left.anim" type="Animation" id=2]
@@ -7,16 +7,17 @@
 [ext_resource path="res://assets/scripts/characters/NPC/NPC.cs" type="Script" id=5]
 [ext_resource path="res://assets/scripts/characters/player/SoundSteps.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/SeekArea.cs" type="Script" id=7]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCWeapons.cs" type="Script" id=8]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcWeapons.cs" type="Script" id=8]
 [ext_resource path="res://assets/models/characters/ponies/player/Look-Down.anim" type="Animation" id=9]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/NPCCovers.cs" type="Script" id=11]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcCovers.cs" type="Script" id=11]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/Moving/NavigationMovingController.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/characters/NPC/NpcState/StateMachine.cs" type="Script" id=13]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcPatroling.cs" type="Script" id=14]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcAudio.cs" type="Script" id=15]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/Bodies/PonyBody.cs" type="Script" id=16]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcInteraction.cs" type="Script" id=17]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcSkeleton.cs" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=5]
 radius = 0.488123
@@ -2862,18 +2863,16 @@ extents = Vector3( 0.817892, 1.53714, 0.549436 )
 
 [node name="npc" type="KinematicBody" groups=["savable"]]
 script = ExtResource( 5 )
-headBonePath = NodePath("Armature/Skeleton/Physical Bone neck")
-bodyBonePath = NodePath("Armature/Skeleton/Physical Bone back_1")
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 0.974927, 0, 0, 0, -0.166209, 0.960654, 0, -0.960654, -0.166209, -0.0198563, 2.60679, 0.630795 )
 
-[node name="Skeleton" type="Skeleton" parent="Armature"]
+[node name="Skeleton" type="Skeleton" parent="Armature" groups=["savable"]]
 bones/0/name = "back_1"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 3.97508e-17, 0.177527, 0.0159377 )
 bones/0/enabled = true
-bones/0/bound_children = [  ]
+bones/0/bound_children = [ NodePath("BoneAttachment 2") ]
 bones/1/name = "back_2"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 0, 2.38419e-07, 1.29927e-07, 0.838467, -0.544952, -1.99906e-07, 0.544952, 0.838467, 3.72231e-24, 1.00215, -7.45058e-09 )
@@ -2888,7 +2887,7 @@ bones/3/name = "head"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, 5.3533e-07, 5.51925e-08, -5.35325e-07, 0.978946, 0.204119, 5.52408e-08, -0.20412, 0.978946, -4.10958e-13, 0.889073, 8.14278e-08 )
 bones/3/enabled = true
-bones/3/bound_children = [  ]
+bones/3/bound_children = [ NodePath("BoneAttachment") ]
 bones/4/name = "leg_1_l"
 bones/4/parent = 1
 bones/4/rest = Transform( 0.996067, -0.0885971, 5.96046e-08, -0.0409138, -0.45998, 0.886986, -0.0785844, -0.883498, -0.461796, -0.259124, 0.478682, -0.479909 )
@@ -2984,6 +2983,9 @@ bones/22/parent = 21
 bones/22/rest = Transform( -0.511183, -0.503594, -0.69648, -0.146581, -0.747403, 0.647999, -0.84688, 0.433337, 0.308243, 9.3491e-08, 0.987439, 1.43146e-08 )
 bones/22/enabled = true
 bones/22/bound_children = [  ]
+script = ExtResource( 18 )
+headBonePath = NodePath("Physical Bone neck")
+bodyBonePath = NodePath("Physical Bone back_1")
 
 [node name="Physical Bone back_1" type="PhysicalBone" parent="Armature/Skeleton"]
 transform = Transform( 1, -5.27627e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -3231,6 +3233,7 @@ shape = SubResource( 16 )
 transform = Transform( 0.999979, -0.00175838, -0.00630606, -0.0050395, -0.821601, -0.570041, -0.00417872, 0.57006, -0.821593, -6.66017e-13, 1.69933, 1.11108 )
 bone_name = "head"
 script = ExtResource( 10 )
+npcPath = NodePath("../../..")
 
 [node name="weapons" type="Spatial" parent="Armature/Skeleton/BoneAttachment"]
 transform = Transform( 0.7, -4.62847e-07, 5.93049e-08, 4.62849e-07, 0.677387, -0.176484, 5.93059e-08, 0.176484, 0.677387, 0.024645, 0.918202, -1.36084 )

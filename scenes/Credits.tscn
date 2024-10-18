@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/scripts/interface/Credits/Credits.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/textures/interface/icons/buttons/Empty 48x32.png" type="Texture" id=5]
 [ext_resource path="res://assets/audio/music/credits/Johnny Cash - We Will Meet Again.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Space.png" type="Texture" id=7]
+[ext_resource path="res://assets/materials/environments/inside.tres" type="Environment" id=8]
 
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 2 )
@@ -3754,3 +3755,6 @@ stretch_mode = 6
 root_node = NodePath("../..")
 "anims/Fade Out Skip" = SubResource( 14 )
 anims/RESET = SubResource( 15 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 8 )

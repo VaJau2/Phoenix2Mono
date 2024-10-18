@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public class SearchState(
     StateMachine stateMachine,
-    NPCWeapons weapons,
+    NpcWeapons weapons,
     NavigationMovingController movingController,
     PonyBody body
 ) : INpcState, ISavable
