@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/textures/props/target.png" type="Texture" id=1]
-[ext_resource path="res://assets/scripts/characters/NPC/Target.cs" type="Script" id=2]
+[ext_resource path="res://assets/scripts/characters/Target.cs" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0453738, 3.01609, 1.98346 )

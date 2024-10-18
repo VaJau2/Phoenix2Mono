@@ -4,9 +4,9 @@ using Godot.Collections;
 public class LevelsLoader : Node
 {
 	Global global = Global.Get();
-	public static int tempLevelNum = 0;
+	public static int tempLevelNum;
 	
-	private Array<string> levelPaths = new Array<string>();
+	private Array<string> levelPaths = [];
 	private Control currentMenu;
 	private Node currentScene;
 	private Control currentLoading;
@@ -63,7 +63,7 @@ public class LevelsLoader : Node
 		mainMenuOn = false;
 	}
 
-	private void handleCustomEvents()
+	private void HandleCustomEvents()
 	{
 		if (IsInstanceValid(Global.Get().player))
 		{
@@ -81,37 +81,36 @@ public class LevelsLoader : Node
 
 	private async void UpdateScene()
 	{
-		if (currentScene != null) 
-		{
-			global.player = null;
-			currentScene.QueueFree();
-			currentScene = null;
-			await ToSignal(GetTree(), "idle_frame");
-		}
-
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
 		
 		if (levelPaths[tempLevelNum] == "menu") 
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
-			return;
-		}
-
-		if (loader != null) return;
-		
-		if (useLoadingMenu)
-		{
-			currentLoading = (Control)loadingMenuPrefab.Instance();
-			menuParent.AddChild(currentLoading);
 		}
 		else
 		{
-			useLoadingMenu = true;
+			if (useLoadingMenu)
+			{
+				currentLoading = (Control)loadingMenuPrefab.Instance();
+				menuParent.AddChild(currentLoading);
+			}
+			else
+			{
+				useLoadingMenu = true;
+			}
+			
+			if (loader != null) return;
+			loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+			SetProcess(true);
 		}
 
-		loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
-		SetProcess(true);
+		if (currentScene == null) return;
+		
+		global.player = null;
+		currentScene.QueueFree();
+		currentScene = null;
+		await ToSignal(GetTree(), "idle_frame");
 	}
 
 	private void UpdateMenu()
@@ -153,7 +152,7 @@ public class LevelsLoader : Node
 	//загрузка уровня
 	public void LoadLevel(int levelNum)
 	{
-		handleCustomEvents();
+		HandleCustomEvents();
 		
 		if (loadSavedData && levelNum == 0)
 		{

@@ -1,0 +1,24 @@
+﻿{
+  "following": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Don't mind these shells and lots of corpses. It's fine."
+    },
+    "phrase2": {
+      "speakerCode": "dusk",
+      "text": "O-okay..."
+    },
+    "phrase3": {
+      "speakerCode": "strikely",
+      "text": "We're almost there"
+    },
+    "phrase4": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    },
+    "phrase5": {
+      "class": "ChangeDialogueCode",
+      "value": ""
+    }
+  }
+}

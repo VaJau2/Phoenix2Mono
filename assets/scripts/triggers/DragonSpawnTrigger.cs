@@ -13,6 +13,9 @@ public class DragonSpawnTrigger : TriggerBase
     //2 - метод триггера, строка
     //3 - binds, массив
     [Export] private Array triggerConnections;
+    
+    [Signal]
+    public delegate void Spawned(NPC dragon);
 
     public override void _Ready()
     {
@@ -33,24 +36,33 @@ public class DragonSpawnTrigger : TriggerBase
     {
         if (!IsActive) return;
 
-        SpawnNpc();
+        var dragon = SpawnNpc();
+        EmitSignal(nameof(Spawned), dragon);
 
         base._on_activate_trigger();
     }
     
-    private void SpawnNpc()
+    private NPC SpawnNpc()
     {
-        if (!(dragonPrefab.Instance() is NPC npcInstance)) return;
+        if (dragonPrefab.Instance() is not NPC npcInstance)
+        {
+            return null;
+        }
+        
         npcInstance.Name = "Created_" + npcInstance.Name;
         npcInstance.patrolArray = patrolArray;
         GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
         npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
         npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
 
-        if (triggerConnections == null) return;
+        if (triggerConnections == null)
+        {
+            return npcInstance;
+        }
+        
         foreach (var triggerDataPrimary in triggerConnections)
         {
-            if (!(triggerDataPrimary is Array triggerData) || triggerData.Count != 4) continue;
+            if (triggerDataPrimary is not Array { Count: 4 } triggerData) continue;
 
             var trigger = GetNode(triggerData[0].ToString());
             var signal = triggerData[1].ToString();
@@ -58,6 +70,8 @@ public class DragonSpawnTrigger : TriggerBase
             var binds = triggerData[3] as Array;
             npcInstance.Connect(signal, trigger, method, binds);
         }
+
+        return npcInstance;
     }
     
     public void _on_body_entered(Node body)

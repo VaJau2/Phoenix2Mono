@@ -6,7 +6,8 @@ public class NpcLookTarget : Spatial
     
     public override void _Ready()
     {
-        var npc = GetNode<Pony>(npcPath);
-        npc.body.SetDefaultLookTarget(this);
+        var npc = GetNode<NPC>(npcPath);
+        var body = npc.GetNodeOrNull<PonyBody>("body");
+        body?.SetDefaultLookTarget(this);
     }
 }

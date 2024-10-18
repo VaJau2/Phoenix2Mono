@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/scripts/utils/testing/TestingCamera.cs" type="Script" id=1]
+
+[node name="Camera" type="Camera"]
+fov = 85.0
+far = 1000.0
+script = ExtResource( 1 )

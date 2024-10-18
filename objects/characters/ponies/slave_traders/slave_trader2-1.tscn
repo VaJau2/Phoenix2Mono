@@ -1,10 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/models/characters/ponies/slave_traders/2/headrope.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/slave_trader2-1/hair-1.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/slave_trader2-1/eyes/neitral/0.material" type="Material" id=5]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "slave_trader2_Cube"

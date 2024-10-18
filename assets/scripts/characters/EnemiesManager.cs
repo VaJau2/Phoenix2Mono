@@ -13,7 +13,7 @@ public class EnemiesManager : Node, ISavable
     [Export] public bool isAudi3D;
     [Export] public List<NodePath> alarmSoundsPath;
 
-    public List<NPC> enemies = new List<NPC>();
+    public List<NPC> enemies = [];
     
     public bool isAlarming { get; private set; }
     Player player => Global.Get().player;
@@ -23,10 +23,6 @@ public class EnemiesManager : Node, ISavable
 
     [Signal] public delegate void AlarmStarted();
     [Signal] public delegate void AlarmEnded();
-
-    [Signal] public delegate void PlayerStealthSafe();
-    [Signal] public delegate void PlayerStealthCaution();
-    [Signal] public delegate void PlayerStealthDanger();
 
     private void StartAlarm()
     {
@@ -64,26 +60,26 @@ public class EnemiesManager : Node, ISavable
     private void MakeCloseEnemyAttack()
     {
         foreach (var enemy in enemies.Where(enemy => 
-            enemy.state == NPCState.Idle 
+            enemy.GetState() == SetStateEnum.Idle 
             && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
         )
         {
             enemy.tempVictim = player;
-            enemy.SetState(NPCState.Attack);
+            enemy.SetState(SetStateEnum.Attack);
             break;
         }
     }
 
-    public void LoudShoot(float distance, Vector3 shootPos)
+    public void LoudShoot(float distance, Character shooter)
     {
         foreach (var temp in from temp in enemies
-            where IsInstanceValid(temp) && temp.Health > 0 && temp.state != NPCState.Attack
+            where IsInstanceValid(temp) && temp.Health > 0 && temp.GetState() != SetStateEnum.Attack
             let enemyPos = temp.GlobalTransform.origin
-            where shootPos.DistanceTo(enemyPos) <= distance
+            where shooter.GlobalTranslation.DistanceTo(enemyPos) <= distance
             select temp)
         {
-            temp.SetLastSeePos(shootPos);
-            temp.SetState(NPCState.Search);
+            temp.tempVictim = shooter;
+            temp.SetState(SetStateEnum.Search);
         }
 
         if (!hasAlarm) return;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://objects/characters/Player/magic/Particles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
@@ -11,10 +11,8 @@
 [ext_resource path="res://assets/models/characters/ponies/red_punch/eyes.material" type="Material" id=9]
 [ext_resource path="res://objects/characters/Player/magic/levitation.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/scripts/characters/player/Unicorn/UnicornLevitation.cs" type="Script" id=11]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=12]
-[ext_resource path="res://assets/audio/enemies/hitted/officerHit2.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/audio/enemies/hitted/officerHit1.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/audio/enemies/hitted/officerDead.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=12]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"
@@ -208,12 +206,12 @@ size = Vector2( 0.1, 0.1 )
 extents = Vector3( 0.269076, 0.256043, 1 )
 
 [node name="red_punch" instance=ExtResource( 2 )]
-IdleAnim = "Idle1"
 StartHealth = 120
 ignoreDamager = true
-hittedSounds = [ ExtResource( 14 ), ExtResource( 13 ) ]
-dieSounds = [ ExtResource( 15 ) ]
-IsUnicorn = true
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [  ]
+bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190424 )
@@ -232,13 +230,13 @@ body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.
 
 [node name="Physical Bone leg_1_l" parent="Armature/Skeleton" index="3"]
 transform = Transform( 0.996067, -0.0885977, 3.17863e-07, 0.088353, 0.993318, 0.0742389, -0.00657744, -0.0739462, 0.997238, -0.259124, 1.7982, -0.752631 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125199, -0.0140752, 0.446926 )
-body_offset = Transform( 0.992634, -0.0828154, -0.0884287, -0.0828149, 0.0689409, -0.994175, 0.0884293, 0.994177, 0.0615755, 0.0395982, 0.445189, -0.0134157 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125198, -0.014075, 0.446926 )
+body_offset = Transform( 0.992634, -0.0828154, -0.0884287, -0.0828149, 0.0689409, -0.994175, 0.0884293, 0.994177, 0.0615755, 0.0395982, 0.445189, -0.0134159 )
 
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114836, 0.0972377, 0.116483, 0.993129, -0.0114235, -0.0952566, 0.0226187, 0.995197, -0.407885, 1.81143, -1.81373 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783137, 0.00691316, 0.876056 )
-body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427752, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618255, 0.870611, -0.0978932 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783143, 0.00691316, 0.876056 )
+body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427752, 0.104019, -0.994567, 0.104767, 0.98915, 0.103001, 0.00618249, 0.870611, -0.0978932 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.088597, -2.20027e-08, -0.0883892, 0.993732, 0.0684583, 0.00606439, -0.0681892, 0.997655, 0.287084, 1.79373, -0.756682 )
@@ -333,6 +331,10 @@ monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="levitation/collisionArea" index="0"]
 shape = SubResource( 14 )
+
+[node name="weapons" parent="." index="11"]
+PistolWeaponParentPath = NodePath("../levitation/weapons")
+GunWeaponParentPath = NodePath("../levitation/weapons")
 
 [connection signal="body_entered" from="levitation/collisionArea" to="levitation" method="_on_collisionArea_body_entered"]
 [connection signal="body_exited" from="levitation/collisionArea" to="levitation" method="_on_collisionArea_body_exited"]

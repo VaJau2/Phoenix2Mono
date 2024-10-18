@@ -166,7 +166,7 @@
     "T7(1.1)": {
       "kind": "narration",
       "root_node": false,
-      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "body": "ChangeDialogueCode\nDialogueTrade",
       "set": "tradeAgain"
     },
     "T7(2.1)": {

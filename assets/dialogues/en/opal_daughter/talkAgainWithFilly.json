@@ -32,7 +32,7 @@
     "M1.1": {
       "kind": "narration",
       "root_node": false,
-      "body": "Dialogue_Trade",
+      "body": "DialogueTrade",
       "set": [
         {
           "key": "name",
@@ -150,7 +150,7 @@
     "M4.1": {
       "kind": "narration",
       "root_node": false,
-      "body": "ChangeDialogueCode\nDialogue_Trade",
+      "body": "ChangeDialogueCode\nDialogueTrade",
       "set": [
         {
           "key": "name",

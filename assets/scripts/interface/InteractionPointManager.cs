@@ -24,12 +24,6 @@ public class InteractionPointManager : Control
         shadow.SetInteractionVariant(newVariant);
     }
     
-    public void HidePoint()
-    {
-        point.HidePoint();
-        shadow.HidePoint();
-    }
-    
     public void HideSquare()
     {
         point.HideSquare();
