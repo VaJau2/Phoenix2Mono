@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class NPCWeapons : Node, ISavable
+public class NpcWeapons : Node, ISavable
 {
     [Export] public string WeaponCode = "";
     [Export] public NodePath PistolWeaponParentPath;
@@ -147,7 +147,7 @@ public class NPCWeapons : Node, ISavable
         audiShoot.Play();
         gunAnim?.Play("shoot");
 
-        var eyes = npc.GetNodeOrNull<NPCFace>("Armature/Skeleton/Body");
+        var eyes = npc.GetNodeOrNull<NpcFace>("Armature/Skeleton/Body");
         eyes?.CloseEyes();
         
         var statsDistance = GetStatsInt("shootDistance");

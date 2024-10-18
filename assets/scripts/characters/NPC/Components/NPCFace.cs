@@ -4,7 +4,7 @@ using Godot.Collections;
 
 //класс отвечает за лицо НПЦ
 //за текстуры глаз и рта
-public class NPCFace : MeshInstance, ISavable
+public class NpcFace : MeshInstance, ISavable
 {
     [Export] public string npcName;
     [Export] protected string startEyesVariant = "";

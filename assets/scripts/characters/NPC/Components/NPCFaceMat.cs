@@ -5,7 +5,7 @@ using System;
 //за текстуры глаз
 //отличается от NPCFace тем, что не меняет текстуры материалу
 //а меняет сами материалы
-public class NPCFaceMat : NPCFace
+public class NpcFaceMat : NpcFace
 {
     const int EYES_MATERIAL = 0;
 
