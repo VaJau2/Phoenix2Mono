@@ -33,6 +33,7 @@ public class DragonBody: Node
         audi = npc.GetNode<NpcAudio>("audi");
         
         anim = npc.GetNode<AnimationPlayer>("anim");
+        anim.Play("fly");
         fireObj = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
         fireParts.Add(fireObj.GetNode<Particles>("Particles"));
         fireParts.Add(fireObj.GetNode<Particles>("Particles2"));

@@ -2,6 +2,8 @@ using Godot;
 
 public class DragonMouth : Area
 {
+    private const float MOUTH_COOLDOWN = 1f;
+    
     public Spatial mouthPos;
     public bool HasEnemy => enemyInMouth != null && IsInstanceValid(enemyInMouth);
 
@@ -10,6 +12,7 @@ public class DragonMouth : Area
     private DragonBody body;
     private Character enemyInMouth;
     private float enemyMouthTimer;
+    private float mouthCooldown;
     private float damageTimer = 3f;
     
     [Export] private AudioStreamSample eatSound;
@@ -44,6 +47,7 @@ public class DragonMouth : Area
     public void _on_smasharea_body_entered(Node body)
     {
         if (npc.GetState() != SetStateEnum.Attack || npc.Health <= 0) return;
+        if (mouthCooldown > 0) return;
     
         if (body is Character character)
         {
@@ -71,6 +75,12 @@ public class DragonMouth : Area
     
     private void UpdateEnemyInMouth(float delta)
     {
+        if (enemyInMouth.Health <= 0)
+        {
+            LetMouthEnemyGo();
+            return;
+        }
+        
         enemyInMouth.GlobalTransform = Global.SetNewOrigin(
             enemyInMouth.GlobalTransform, 
             mouthPos.GlobalTransform.origin
@@ -90,11 +100,6 @@ public class DragonMouth : Area
             damageTimer = 0.5f;
             enemyInMouth.TakeDamage(npc, body.GetDamage(DragonBody.MOUTH_DAMAGE));
         }
-
-        if (enemyInMouth.Health <= 0)
-        {
-            enemyMouthTimer = 0;
-        }
     }
 
     private void LetMouthEnemyGo()
@@ -105,19 +110,39 @@ public class DragonMouth : Area
             return;
         }
 
+        enemyMouthTimer = 0;
+        mouthCooldown = MOUTH_COOLDOWN;
+        npc.SetState(SetStateEnum.Idle);
+
+        if (enemyInMouth is NPC npcVictim )
+        {
+            if (npcVictim.Weapons is { HasWeapon: true})
+            {
+                npcVictim.Weapons.SpawnPickableItem();
+            }
+            
+            npcVictim.QueueFree();
+            enemyInMouth = null;
+            return;
+        }
+        
         enemyInMouth.SetMayMove(true);
         enemyInMouth.CollisionLayer = 1;
         enemyInMouth.CollisionMask = 1;
         enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.y, 0);
         enemyInMouth.impulse = -npc.GlobalTransform.basis.z * 3 + new Vector3(0, -2, 0);
         enemyInMouth = null;
-        
-        npc.SetState(SetStateEnum.Idle);
     }
 
     public override void _Process(float delta)
     {
         if (npc.Health <= 0) return;
+
+        if (mouthCooldown > 0)
+        {
+            mouthCooldown -= delta;
+        }
+        
         if (!HasEnemy) return;
         
         if (enemyMouthTimer > 0)

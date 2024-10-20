@@ -728,7 +728,8 @@ script = ExtResource( 4 )
 
 [node name="movingController" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 5 )
-RotationSpeed = 0.04
+RotationSpeed = 0.65
+ComeDistance = 1.0
 
 [node name="stateMachine" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 7 )
