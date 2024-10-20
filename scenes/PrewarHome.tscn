@@ -1129,8 +1129,6 @@ script = ExtResource( 10 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -59.1834, -103.048, 24.6892 )
 IsImmortal = true
 dialogueCode = "talk1"
-headBonePath = NodePath("")
-bodyBonePath = NodePath("")
 
 [node name="mother" parent="npc" instance=ExtResource( 66 )]
 transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.999886, -85.6788, -101.587, 30.7032 )
