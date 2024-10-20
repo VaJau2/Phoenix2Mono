@@ -317,6 +317,14 @@
         "ammoType": "ammoEnergy",
         "sound": "weapon"
     },
+    "flashlight": {
+        "name": "Flashlight",
+        "description": "Helps to study dark crime scenes more thoroughly",
+        "type": "weapon",
+        "icon": "flashlight",
+        "price": "40",
+        "sound": "flashlight"
+    },
 
 
     "ammo32": {
@@ -490,7 +498,7 @@
         "icon": "pie",
         "price": "50",
         "heal": "40",
-        "sound": "eating1"
+        "sound": "eating2"
     },
 
 

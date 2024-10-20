@@ -89,7 +89,9 @@ public class PlayerCamera : Camera
     private void ReturnInteractionPoint()
     {
         point.SetInteractionVariant(
-            player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
+            player.Weapons.GunOn && player.Weapons.IsShootingWeapon 
+                ? InteractionVariant.Cross 
+                : InteractionVariant.Point
         );
     }
 
@@ -199,7 +201,6 @@ public class PlayerCamera : Camera
         
         tempObject = null;
         ReturnInteractionPoint();
-        
     }
 
     private void UpdateInput()

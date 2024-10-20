@@ -369,8 +369,8 @@ public class PlayerInventory
         var path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
         var sound = GD.Load<AudioStreamSample>(path);
             
-        player.GetAudi().Stream = sound;
-        player.GetAudi().Play();
+        player.GetAudi(true).Stream = sound;
+        player.GetAudi(true).Play();
     }
 
     private void CheckSpeed(Dictionary effects, int factor = 1)

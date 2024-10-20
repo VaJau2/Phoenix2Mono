@@ -108,12 +108,10 @@ public class Player : Character
     {
         if (hitted)
         {
-            return audiHitted ?? (audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted"));
+            return audiHitted ??= GetNode<AudioStreamPlayer>("sound/audi_hitted");
         }
-        else
-        {
-            return audi ?? (audi = GetNode<AudioStreamPlayer>("sound/audi"));
-        }
+
+        return audi ??= GetNode<AudioStreamPlayer>("sound/audi");
     }
 
     public void CheckTakeItem(string itemCode)

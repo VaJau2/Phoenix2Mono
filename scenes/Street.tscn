@@ -286,7 +286,7 @@ margin_bottom = 1.0
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06567, 0.655687, -15.4919 )
-itemCodes = [ "revolver32", "suitcaseEmpty" ]
+itemCodes = [ "revolver32", "suitcaseEmpty", "flashlight" ]
 ammo = {
 "ammo32": 30
 }
@@ -945,6 +945,7 @@ ammoCount = {
 
 [node name="navMesh" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
+visible = false
 navmesh = SubResource( 50 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

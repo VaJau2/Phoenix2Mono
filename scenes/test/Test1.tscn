@@ -122,7 +122,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 
 [node name="PlayerSpawner" parent="Scene" index="3"]
-itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308" ]
+itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "flashlight" ]
 ammo = {
 "ammo308": 20,
 "ammo32": 20,
