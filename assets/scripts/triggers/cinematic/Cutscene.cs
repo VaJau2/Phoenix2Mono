@@ -77,12 +77,12 @@ public class Cutscene : Node
 
     public void AddQueue(CinematicTrigger trigger)
     {
-        if (triggerQueue.Count == 0)
+        triggerQueue.Add(trigger);
+        
+        if (triggerQueue.Count == 1)
         {
             trigger.StartCinematics();
         }
-        
-        triggerQueue.Add(trigger);
     }
 
     public void OnTriggerFinished()
@@ -201,6 +201,8 @@ public class Cutscene : Node
             
         subtitles.Skip();
         skipTrigger?._on_activate_trigger();
+        
+        if (cutsceneCamera == null) return; 
 
         await Global.Get().ToTimer(0.05f);
         

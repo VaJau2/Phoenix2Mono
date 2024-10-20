@@ -10,7 +10,7 @@ public class NPC : Character, IInteractable, IChest
     [Export] public Relation relation;
     [Export] public string subtitlesCode = "";
     [Export] public string dialogueCode = "";
-    [Export] public string npcCustomDialogueName = "";
+    [Export] public string npcCustomDialogueName = ""; // кастомный путь к диалогу
     [Export] public float lookHeightFactor = -1.5f;
     [Export] public bool ignoreDamager;
     [Export] public Array<string> itemCodes = [];

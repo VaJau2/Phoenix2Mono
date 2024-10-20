@@ -57,7 +57,7 @@ public class PlayerBody : Spatial
         RotationDegrees = rot;
     }
 
-    private bool IsWalking => player.MayMove && player.Velocity.Length() > 1f;
+    private bool IsWalking => player.Velocity.Length() > 1f;
 
     private bool playerMakingShy
     {
