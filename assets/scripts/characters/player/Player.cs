@@ -38,7 +38,6 @@ public class Player : Character
     public PlayerBody Body;
     //сслыки внутри Body:
     // - Head
-    // - Legs
     // - SoundSteps
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;

@@ -5,6 +5,8 @@ using Godot.Collections;
 public class NavigationMovingController: BaseMovingController, ISavable
 {
     private const float RUN_DISTANCE = 12f;
+    private const float MIN_MOVING_DISTANCE = 0.5f;
+    private const float CHECK_MOVABLE_TIME = 6f;
 
     [Export] public float ComeDistance = 3f;
     [Export] public bool MayRun = true;
@@ -19,6 +21,12 @@ public class NavigationMovingController: BaseMovingController, ISavable
     private float doorWait;
     private float updatePathTimer;
     
+    private float checkMovableTimer;
+    private Vector3 oldNpcPosition;
+    private float customFinalDistance;
+    private float oldComeDistance;
+    private float oldRotationSpeed;
+    
     private Vector3[] path;
     private int pathI;
     
@@ -29,7 +37,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     public void GoTo(Vector3 place, float distance = 0, bool mayRun = true)
     {
-        if (distance == 0) distance = ComeDistance;
+        if (customFinalDistance != 0) distance = customFinalDistance;
+        else if (distance == 0) distance = ComeDistance;
         
         if (BaseSpeed == 0 || !Npc.MayMove)
         {
@@ -46,6 +55,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
             FinishGoingTo();
             return;
         }
+        
+        CheckMovablePath();
 
         if (path == null)
         {
@@ -74,6 +85,43 @@ public class NavigationMovingController: BaseMovingController, ISavable
         }
     }
 
+    private  void CheckMovablePath()
+    {
+        if (path == null) return;
+        if (Npc.Velocity.Length() <= 0) return;
+
+        if (checkMovableTimer > 0)
+        {
+            checkMovableTimer -= 0.1f;
+        }
+        else
+        {
+            if (oldNpcPosition == Vector3.Zero)
+            {
+                oldNpcPosition = Npc.GlobalTranslation;
+            }
+            else
+            {
+                var newPosition = Npc.GlobalTranslation;
+                if (newPosition.DistanceTo(oldNpcPosition) < MIN_MOVING_DISTANCE)
+                {
+                    //Делаем неписей резкими как пуля
+                    //Чтобы они обходили все препятствия, если они застряли
+                    oldComeDistance = ComeDistance;
+                    ComeDistance = 1f;
+                    oldRotationSpeed = RotationSpeed;
+                    RotationSpeed = 0.9f;
+                    customFinalDistance = 3f;
+                    path = null;
+                }
+
+                oldNpcPosition = Vector3.Zero;
+            }
+
+            checkMovableTimer = CHECK_MOVABLE_TIME;
+        }
+    }
+
     public override void Stop(bool moveDown = false)
     {
         path = null;
@@ -98,6 +146,20 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     private void FinishGoingTo()
     {
+        customFinalDistance = 0;
+        
+        if (oldComeDistance != 0)
+        {
+            ComeDistance = oldComeDistance;
+            oldComeDistance = 0;
+        }
+
+        if (oldRotationSpeed != 0)
+        {
+            RotationSpeed = oldRotationSpeed;
+            oldRotationSpeed = 0;
+        }
+        
         Stop();
         cameToPlace = true;
         Npc.EmitSignal(nameof(NPC.IsCame));

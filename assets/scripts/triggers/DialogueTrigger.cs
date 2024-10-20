@@ -12,6 +12,9 @@ public class DialogueTrigger : TriggerBase
     [Export] public NodePath dialogueStartPointPath;
     [Export] public NodePath afterDialoguePointPath;
     [Export] public float dialogueStartTimer;
+    
+    // По-умолчанию движок ставит тут "Null", т.е. не меняет диалоги непися
+    // Если нужно, чтобы коды очищались, нужно стереть "Null"
     [Export] public string otherDialogueCode;
     [Export] private string otherSubtitleCode;
 

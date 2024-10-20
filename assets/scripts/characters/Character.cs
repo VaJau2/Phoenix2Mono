@@ -100,8 +100,10 @@ public abstract class Character : KinematicBody, ISavable
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public virtual void LoadData(Dictionary data)
     {
+        var oldScale = Scale;
         GlobalTranslation = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3();
+        Scale = oldScale;
         Health = Convert.ToInt32(data["health"]);
     }
 }

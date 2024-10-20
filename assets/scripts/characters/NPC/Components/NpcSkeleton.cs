@@ -39,7 +39,7 @@ public class NpcSkeleton : Skeleton, ISavable
 
     public void AnimateDeath(Character killer, int shapeID)
     {
-        Vector3 dir = Translation.DirectionTo(killer.Translation);
+        Vector3 dir = GlobalTranslation.DirectionTo(killer.GlobalTranslation);
         float force = tempShotgunShot ? npc.MovingController.RagdollImpulse * 1.5f : npc.MovingController.RagdollImpulse;
 
         if (shapeID == 0)

@@ -546,7 +546,6 @@ IsImmortal = true
 [node name="security_mare" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -0.831402, 0, 0.555672, 0, 1, 0, -0.555672, 0, -0.831402, 59.3849, 6.34055, -4.0266 )
 IsImmortal = true
-StartHealth = 125
 
 [node name="spike" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.976687, 0, -0.214667, 0, 1, 0, 0.214667, 0, 0.976687, 20.549, 6.26088, -13.1928 )
@@ -2021,7 +2020,7 @@ StartHealth = 120
 weaponCode = "revolver32"
 relation = 2
 itemCodes = [ "manaPotion" ]
-triggerConnections = [ [ "../duskThanksKill", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../duskThanksKill", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ], [ "../security1DialogueClear", "Die", "SetActive", [ true ] ], [ "../securityMareDialogueClear", "Die", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763, 1.94469, -9.8311 )
@@ -2033,8 +2032,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.148, -11.903, 53 )
 [node name="redDamageTrigger" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 80 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../RedPunchRun") ]
-disactiveTriggerPaths = [ NodePath("../redPunchDialogue") ]
+otherTriggerPaths = [ NodePath("../RedPunchRun"), NodePath("../redPunchDissapearWithoutDialogue") ]
+disactiveTriggerPaths = [ NodePath("../redPunchDialogue"), NodePath("../redPunchDissapear") ]
 characterPaths = [ "/root/Main/Scene/npc/Created_red_punch" ]
 
 [node name="redPunchPointingGun" type="Node" parent="triggers" groups=["savable"]]
@@ -2077,13 +2076,24 @@ runToPoint = true
 [node name="runPoint" type="Spatial" parent="triggers/RedPunchRun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5665, -5.48597, 35.9207 )
 
-[node name="redPunchDissapear" type="Area" parent="triggers"]
+[node name="redPunchDissapear" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.15, -4.17436, 34.6935 )
 script = ExtResource( 65 )
 otherTriggerPaths = [ NodePath("../duskThanksNotKill"), NodePath("../security1Dialogue2"), NodePath("../securityMareDialogue2") ]
 npcPath = "../../npc/Created_red_punch"
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/redPunchDissapear"]
+shape = SubResource( 30 )
+
+[node name="redPunchDissapearWithoutDialogue" type="Area" parent="triggers" groups=["savable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.15, -4.17436, 34.6935 )
+script = ExtResource( 65 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../duskThanksNotKill"), NodePath("../security1DialogueClear"), NodePath("../securityMareDialogueClear") ]
+disactiveTriggerPaths = [  ]
+npcPath = "../../npc/Created_red_punch"
+
+[node name="CollisionShape" type="CollisionShape" parent="triggers/redPunchDissapearWithoutDialogue"]
 shape = SubResource( 30 )
 
 [node name="security1Dialogue2" type="Node" parent="triggers" groups=["savable"]]
@@ -2097,6 +2107,20 @@ script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/security_mare"
 otherDialogueCode = "suspect"
+
+[node name="security1DialogueClear" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 13 )
+onlyChangeCode = true
+npcPath = "/root/Main/Scene/npc/security1"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="securityMareDialogueClear" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 13 )
+onlyChangeCode = true
+npcPath = "/root/Main/Scene/npc/security_mare"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="duskThanksNotKill" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
@@ -2154,12 +2178,14 @@ script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/scientist1"
 otherDialogueCode = "thanks"
+otherSubtitleCode = ""
 
 [node name="duskThanks" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
 onlyChangeCode = true
 npcPath = "../../npc/dusk"
 otherDialogueCode = "thanks"
+otherSubtitleCode = ""
 
 [node name="bellgatesThanks" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
@@ -2253,5 +2279,6 @@ radioListPath = [ NodePath("../terrain/props/Radio"), NodePath("../terrain/props
 [connection signal="body_entered" from="triggers/spawnerRedPunch" to="triggers/spawnerRedPunch" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/redPunchDialogue" to="triggers/redPunchDialogue" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/redPunchDissapear" to="triggers/redPunchDissapear" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/redPunchDissapearWithoutDialogue" to="triggers/redPunchDissapearWithoutDialogue" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/duskFollowEnd" to="triggers/duskFollowEnd" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/bellgatesDissapear" to="triggers/bellgatesDissapear" method="_on_body_entered"]

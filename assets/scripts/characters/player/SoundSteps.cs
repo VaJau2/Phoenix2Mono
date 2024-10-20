@@ -15,7 +15,7 @@ public class SoundSteps : RayCast
     private const float STEP_RUN_COOLDOWN = 0.6f;
 
     private const int SOUNDS_COUNT = 3;
-    private const float SOUND_SPEED = 6;
+    private const float SOUND_SPEED = 3;
 
     private Character parent => GetNode<Character>(ParentPath);
     private float timer = 0;

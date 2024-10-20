@@ -7,7 +7,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
     
     public override void SetActive(bool active)
     {
-        _on_activate_trigger();
+        if (active) _on_activate_trigger();
         base.SetActive(active);
     }
     

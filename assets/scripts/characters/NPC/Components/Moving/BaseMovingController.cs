@@ -7,10 +7,15 @@ public class BaseMovingController : Node
     [Export] public float RagdollImpulse = 500;
     [Export] public int BaseSpeed = 5;
     [Export] protected float Gravity;
-    [Export] private float RotationSpeed = 0.15f;
-    
-    protected NPC Npc => GetParent<NPC>();
-    
+    [Export] protected float RotationSpeed = 0.15f;
+
+    protected NPC Npc;
+
+    public override void _Ready()
+    {
+        Npc = GetParent<NPC>();
+    }
+
     public override void _Process(float delta)
     {
         if (Npc.Health <= 0) return;
