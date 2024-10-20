@@ -93,7 +93,7 @@ public class Subtitles : Label, ISavable
         if (audioPlayer == null) return this;
 
         Talker = talker;
-        talkerCode = talker.Name;
+        talkerCode = GetNpcName(talker);
         dialogueAudio.SetAudioPlayer(audioPlayer);
         
         return this;
@@ -127,6 +127,10 @@ public class Subtitles : Label, ISavable
         
         EmitSignal(nameof(ChangePhrase));
     }
+    
+    private static string GetNpcName(NPC npc) => !string.IsNullOrEmpty(npc.npcCustomDialogueName) 
+        ? npc.npcCustomDialogueName
+        : npc.Name;
 
     public void Skip()
     {

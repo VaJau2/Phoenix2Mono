@@ -1,0 +1,22 @@
+﻿{
+  "lost": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Damn robot! Can you just not see me?"
+    },
+    "phrase2": {
+      "speakerCode": "roboEye",
+      "text": "Beep-boop :с"
+    }
+  },
+  "won": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "[shows tongue]"
+    },
+    "phrase2": {
+      "speakerCode": "roboEye",
+      "text": "Beep-boop :с"
+    }
+  }
+}

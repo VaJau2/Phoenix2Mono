@@ -38,14 +38,14 @@ public class Player : Character
     public PlayerBody Body;
     //сслыки внутри Body:
     // - Head
-    // - Legs
     // - SoundSteps
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
+    public PlayerRadiation Radiation;
     public PlayerInventory Inventory;
     public StealthBoyEffect StealthBoy;
-    public PlayerRadiation Radiation;
     public PlayerDeathManager DeathManager;
+    public PlayerDialogueCheck DialogueCheck;
     public AudioEffectsController AudioEffectsController;
 
     private DamageEffects damageEffects;
@@ -158,19 +158,18 @@ public class Player : Character
         if (isPistol)
         {
             if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            else return GetNode<Spatial>("rotation_helper/camera/weapons");
+            return GetNode<Spatial>("rotation_helper/camera/weapons");
         }
-        else
-        {
-            return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
-        }
+
+        return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
     }
 
-    public void SetTalking(bool value)
+    public void SetTalking(bool value, NPC npc = null)
     {
         IsTalking = value;
         SetMayMove(!value);
         MayRotateHead = !value;
+        DialogueCheck.SetNpcToTalk(npc);
 
         if (IsTalking)
         {
@@ -672,6 +671,7 @@ public class Player : Character
         Weapons = GetNode<PlayerWeapons>("gun_shape");
         RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
         soundSteps = GetNode<SoundSteps>("player_body/floorRay");
+        DialogueCheck = GetNode<PlayerDialogueCheck>("dialogueCheck");
 
         var canvas = GetNode("/root/Main/Scene/canvas/");
         JumpHint = canvas.GetNode<Control>("jumpHint");

@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFace.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/characters/private1/mouth.material" type="Material" id=3]
 [ext_resource path="res://assets/materials/characters/private1/eyes.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/characters/private1/body.material" type="Material" id=5]
 [ext_resource path="res://assets/materials/characters/private1/hair.material" type="Material" id=6]
+[ext_resource path="res://assets/audio/enemies/hitted/officerHit2.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/enemies/hitted/officerDead.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/enemies/hitted/officerHit1.wav" type="AudioStream" id=9]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "hair"
@@ -135,11 +139,18 @@ surfaces/2 = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="private1" instance=ExtResource( 2 )]
-IdleAnim = "Idle1"
+StartHealth = 120
 lookHeightFactor = 1.0
+ammoCount = {
+"ammo308": 42
+}
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.9, 0, 0, 0, -0.153435, 0.886824, 0, -0.886824, -0.153435, -0.0198563, 2.42013, 0.630795 )
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/3/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27625e-17, 4.73031e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190427 )
@@ -168,8 +179,8 @@ body_offset = Transform( 0.994481, -0.103757, -0.0151285, -0.00427712, 0.104019,
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996064, 0.0885971, -9.84172e-08, -0.0883894, 0.993734, 0.0684585, 0.00606471, -0.0681891, 0.997657, 0.287084, 1.79373, -0.756686 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652275, -0.00733578, 0.451348 )
-body_offset = Transform( 0.992585, 0.0833252, 0.0884595, 0.0833255, 0.0632025, -0.99452, -0.0884594, 0.99452, 0.0557912, -0.0399622, 0.449284, -0.017828 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652266, -0.00733602, 0.451348 )
+body_offset = Transform( 0.992585, 0.0833252, 0.0884595, 0.0833255, 0.0632025, -0.99452, -0.0884594, 0.99452, 0.0557912, -0.0399622, 0.449284, -0.0178277 )
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.993608, 0.112883, 1.01552e-06, -0.111816, 0.984228, -0.137092, -0.0154752, 0.136217, 0.990552, 0.343711, 1.78491, -1.82309 )
@@ -223,3 +234,10 @@ startEyesVariant = "neitral"
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 5 )
+
+[node name="weapons" parent="." index="10"]
+WeaponCode = "automatic308"
+
+[node name="body" parent="." index="12"]
+hittedSounds = [ ExtResource( 9 ), ExtResource( 7 ) ]
+dieSound = ExtResource( 8 )

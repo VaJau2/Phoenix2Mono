@@ -1,6 +1,4 @@
-﻿using Godot;
-
-public class AutosaveTrigger: TriggerBase
+﻿public class AutosaveTrigger: TriggerBase
 {
     private Messages messages;
     private SaveMenu saveMenu;
@@ -11,7 +9,7 @@ public class AutosaveTrigger: TriggerBase
         saveMenu = GetNode<SaveMenu>("/root/Main/Menu/PauseMenu/Save");
         if (!IsActive) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await Global.Get().ToTimer(0.1f, this);
         _on_activate_trigger();
     }
     

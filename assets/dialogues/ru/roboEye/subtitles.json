@@ -1,0 +1,22 @@
+﻿{
+  "lost": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Проклятый робот! Сколько можно меня палить?"
+    },
+    "phrase2": {
+      "speakerCode": "roboEye",
+      "text": "Бип-буп :с"
+    }
+  },
+  "won": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "[показывает язык]"
+    },
+    "phrase2": {
+      "speakerCode": "roboEye",
+      "text": "Бип-буп :c"
+    }
+  }
+}

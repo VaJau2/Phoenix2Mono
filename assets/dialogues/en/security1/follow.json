@@ -1,1 +1,80 @@
-{"nodes":{"S1":{"kind":"dialogue","root_node":false,"body":"Yes?","speaker":"Security","opposite":"Strikely","options":[{"body":"answer","next":"S1(1)"}]},"S1(1)":{"kind":"dialogue","root_node":false,"body":"Follow me, I need your help","speaker":"Strikely","opposite":"Security","next":"S2"},"S2":{"kind":"dialogue","root_node":false,"body":"Am... okay.","speaker":"Security","opposite":"Strikely","next":"S2(1)"},"S2(1)":{"kind":"narration","root_node":false,"body":"ChangeDialogueCode","next":"S2(1.1)"},"S2(1.1)":{"kind":"narration","root_node":false,"body":"ActivateTrigger","set":[{"key":"trigger","op":"set","value":"Security1Follow"}]}},"speakers":{"Strikely":{"color":{"r":0,"g":0,"b":0,"a":0}},"Security":{"color":{"r":0,"g":0,"b":0,"a":0}}}}
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes?",
+      "speaker": "Security",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        },
+        {
+          "body": "answer",
+          "next": "S1(2)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Follow me, I need your help",
+      "speaker": "Strikely",
+      "opposite": "Security",
+      "next": "S2"
+    },
+    "S1(2)": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Yes.",
+      "speaker": "Strikely",
+      "opposite": "Security"
+    },
+    "S2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Am... okay.",
+      "speaker": "Security",
+      "opposite": "Strikely",
+      "next": "S2(1)"
+    },
+    "S2(1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode",
+      "next": "S2(1.1)"
+    },
+    "S2(1.1)": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ActivateTrigger",
+      "set": [
+        {
+          "key": "trigger",
+          "op": "set",
+          "value": "Security1Follow"
+        }
+      ]
+    }
+  },
+  "speakers": {
+    "Strikely": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "Security": {
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      }
+    }
+  }
+}

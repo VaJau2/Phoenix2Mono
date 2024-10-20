@@ -18,10 +18,10 @@ public class UnicornLevitation : Spatial, ISavable
     private Particles cloud;
     private Spatial weaponNode;
     private Player_Unicorn player;
-    private Pony npc;
+    private NPC npc;
 
-    private bool moveUp = false;
-    private bool weaponClose = false;
+    private bool moveUp;
+    private bool weaponClose;
 
     private float startXPos, startZPos, heightMin, heightMax;
 
@@ -36,7 +36,7 @@ public class UnicornLevitation : Spatial, ISavable
         }
         else
         {
-            npc = parent as Pony;
+            npc = parent as NPC;
             heightMin = NPC_HEIGHT_MIN;
             heightMax = NPC_HEIGHT_MAX;
         }
@@ -61,37 +61,52 @@ public class UnicornLevitation : Spatial, ISavable
             Rotation = oldRot;
         }
     }
+    
+    private bool CheckGunOn()
+    {
+        var gunOn = IsInstanceValid(player) ? player.Weapons.GunOn : npc.Weapons.GunOn;
+        cloud.Emitting = gunOn;
+        return gunOn;
+    }
 
     public void _on_collisionArea_body_entered(PhysicsBody body)
     {
-        if (body == getOwner()) return;
+        if (body == GetCharacterOwner()) return;
         if (body.Name.Contains("shell")) return;
         weaponClose = true;
     }
 
     public void _on_collisionArea_body_exited(PhysicsBody body)
     {
-        if (body == getOwner()) return;
+        if (body == GetCharacterOwner()) return;
         if (body.Name.Contains("shell")) return;
         weaponClose = false;
     }
 
-    private bool CheckGunOn()
+    private Character GetCharacterOwner()
     {
-        var gunOn = IsInstanceValid(player) ? player.Weapons.GunOn : npc.weapons.GunOn;
-        cloud.Emitting = gunOn;
-        return gunOn;
+        if (IsInstanceValid(player)) return player;
+        return npc;
     }
 
     private float GetPlayerRotation()
     {
-        return IsInstanceValid(player) ? player.RotationHelper.Rotation.x : npc.RotationToVictim;
+        return IsInstanceValid(player) ? player.RotationHelper.Rotation.x : GetRotationToVictim();
     }
 
-    private Character getOwner()
+    private float GetRotationToVictim()
     {
-        if (IsInstanceValid(player)) return player;
-        return npc;
+        if (npc.tempVictim == null) return 0;
+        var npcForward = -npc.GlobalTransform.basis.z;
+        var npcDir = GetDirToTarget(npc.tempVictim);
+        return npcForward.AngleTo(npcDir);
+    }
+    
+    private Vector3 GetDirToTarget(Spatial target)
+    {
+        Vector3 targetDirPos = target.GlobalTranslation;
+        targetDirPos.y = npc.GlobalTranslation.y;
+        return targetDirPos - npc.GlobalTranslation;
     }
 
     //анимация движения оружия вверх-вниз
@@ -180,7 +195,7 @@ public class UnicornLevitation : Spatial, ISavable
         
         if (npc != null && (bool) data["gunOn"])
         {
-            npc.weapons.SetWeapon(true);
+            npc.Weapons.SetWeaponOn(true);
         }
     }
 }

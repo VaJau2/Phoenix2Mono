@@ -26,10 +26,11 @@ public abstract class Character : KinematicBody, ISavable
     [Signal]
     public delegate void ChangeMayMove();
 
-    protected void SetStartHealth(int newHealth)
+    public void SetStartHealth(int newHealth)
     {
         Health = HealthMax = newHealth;
     }
+    
     public virtual float GetDamageBlock() => BaseDamageBlock;
     public virtual int GetSpeed()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
@@ -64,7 +65,7 @@ public abstract class Character : KinematicBody, ISavable
         victim.TakeDamage(this, GetDamage(), shapeID);
     }
     
-    protected void HandleImpulse() 
+    public void HandleImpulse() 
     {
         if (impulse.Length() > 0)
         {
@@ -99,8 +100,10 @@ public abstract class Character : KinematicBody, ISavable
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public virtual void LoadData(Dictionary data)
     {
+        var oldScale = Scale;
         GlobalTranslation = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3();
+        Scale = oldScale;
         Health = Convert.ToInt32(data["health"]);
     }
 }

@@ -12,6 +12,9 @@ public class DialogueTrigger : TriggerBase
     [Export] public NodePath dialogueStartPointPath;
     [Export] public NodePath afterDialoguePointPath;
     [Export] public float dialogueStartTimer;
+    
+    // По-умолчанию движок ставит тут "Null", т.е. не меняет диалоги непися
+    // Если нужно, чтобы коды очищались, нужно стереть "Null"
     [Export] public string otherDialogueCode;
     [Export] private string otherSubtitleCode;
 
@@ -26,7 +29,7 @@ public class DialogueTrigger : TriggerBase
 
     private float tempTimer;
     private int step;
-    private NpcWithWeapons npc;
+    private NPC npc;
 
     public override void _Ready()
     {
@@ -63,7 +66,7 @@ public class DialogueTrigger : TriggerBase
 
         if (npc == null)
         {
-            npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
+            npc = GetNodeOrNull<NPC>(npcPath);
             if (npc == null)
             {
                 base._on_activate_trigger();
@@ -95,22 +98,25 @@ public class DialogueTrigger : TriggerBase
 
     private void ChangeNpcCode()
     {
-        if (!string.IsNullOrEmpty(otherDialogueCode))
+        if (otherDialogueCode != null)
         {
             npc.dialogueCode = otherDialogueCode;
         }
-        else if (!string.IsNullOrEmpty(otherSubtitleCode))
+
+        if (otherSubtitleCode != null)
         {
             npc.subtitlesCode = otherSubtitleCode;
         }
 
-        if (npc.state != NPCState.Idle)
+        npc.MayChangeState = true;
+
+        if (npc.GetState() != SetStateEnum.Idle)
         {
             if (changeStateToIdle)
             {
                 npc.aggressiveAgainstPlayer = false;
-                npc.SetState(NPCState.Idle);
-                npc.seekArea._on_seekArea_body_exited(Global.Get().player);
+                npc.SetState(SetStateEnum.Idle);
+                npc.SeekArea._on_seekArea_body_exited(Global.Get().player);
             }
             else
             {
@@ -130,7 +136,7 @@ public class DialogueTrigger : TriggerBase
             npc.SetFollowTarget(null);
             npc.SetNewStartPos(startPoint.GlobalTransform.origin);
             npc.myStartRot = startPoint.Rotation;
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+            await ToSignal(npc, nameof(NPC.IsCame));
         }
         
         step = 2;
@@ -149,7 +155,7 @@ public class DialogueTrigger : TriggerBase
         if (goToPlayer)
         {
             npc.SetFollowTarget(Global.Get().player);
-            await ToSignal(npc, nameof(NpcWithWeapons.IsCame));
+            await ToSignal(npc, nameof(NPC.IsCame));
             npc.SetFollowTarget(null);
 
             var player = Global.Get().player;
@@ -236,9 +242,9 @@ public class DialogueTrigger : TriggerBase
 
         switch (body)
         {
-            case NpcWithWeapons enteredNPC:
+            case NPC enteredNpc:
             {
-                if (enteredNPC == npc)
+                if (enteredNpc == npc)
                 {
                     isNPCHere = false;
                 }
@@ -257,10 +263,10 @@ public class DialogueTrigger : TriggerBase
     {
         switch (body)
         {
-            case NpcWithWeapons enteredNpc:
+            case NPC enteredNpc:
             {
-                var npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
-                if (enteredNpc != npc) break;
+                var localNpc = GetNodeOrNull<NPC>(npcPath);
+                if (enteredNpc != localNpc) break;
                 isNPCHere = true;
                 if (isPlayerHere) _on_activate_trigger();
                 break;
@@ -279,8 +285,8 @@ public class DialogueTrigger : TriggerBase
     {
         if (body is not Player) return;
         
-        var npc = GetNodeOrNull<NpcWithWeapons>(npcPath);
-        if (IsInstanceValid(npc) && npc.Health > 0)
+        var localNpc = GetNodeOrNull<NPC>(npcPath);
+        if (IsInstanceValid(localNpc) && localNpc.Health > 0)
         {
             _on_activate_trigger();
         }

@@ -1,15 +1,13 @@
-using System;
 using Godot;
 using System.Collections.Generic;
 
 public class PlayerStealth : Node
 {
-    public StealthStage Stage;
     private Label StealthLabel;
     private string currentState = "safe";
 
-    List<Character> seekEnemies = new List<Character>();
-    List<Character> attackEnemies = new List<Character>();
+    List<Character> seekEnemies = [];
+    List<Character> attackEnemies = [];
     
     public override void _Ready()
     {
@@ -23,26 +21,6 @@ public class PlayerStealth : Node
         if (visible)
         {
             ChangeLabelState(currentState);
-        }
-    }
-
-    private void SetNewStage(StealthStage newStage)
-    {
-        Stage = newStage;
-        var enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
-        if (!IsInstanceValid(enemiesManager)) return;
-
-        switch (newStage)
-        {
-            case StealthStage.Caution:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthCaution));
-                break;
-            case StealthStage.Danger:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthDanger));
-                break;
-            case StealthStage.Safe:
-                enemiesManager.EmitSignal(nameof(EnemiesManager.PlayerStealthSafe));
-                break;
         }
     }
 
@@ -67,7 +45,6 @@ public class PlayerStealth : Node
                 if (attackEnemies[i] == null || !IsInstanceValid(attackEnemies[i]))
                 {
                     attackEnemies.RemoveAt(i);
-                    continue;
                 }
             }
         }
@@ -78,13 +55,11 @@ public class PlayerStealth : Node
             {
                 ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
-                SetNewStage(StealthStage.Safe);
             }
             else
             {
                 ChangeLabelState("caution");
                 StealthLabel.Modulate = Colors.Orange;
-                SetNewStage(StealthStage.Caution);
             }
         }
     }
@@ -97,7 +72,6 @@ public class PlayerStealth : Node
             attackEnemies.Add(enemy);
             ChangeLabelState("danger");
             StealthLabel.Modulate = Colors.Red;
-            SetNewStage(StealthStage.Danger);
         }
     }
 
@@ -111,7 +85,6 @@ public class PlayerStealth : Node
             {
                 ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
-                SetNewStage(StealthStage.Safe);
             }
         }
     }
@@ -126,7 +99,6 @@ public class PlayerStealth : Node
             {
                 ChangeLabelState("caution");
                 StealthLabel.Modulate = Colors.Orange;
-                SetNewStage(StealthStage.Caution);
             }
         }
     }
@@ -141,7 +113,6 @@ public class PlayerStealth : Node
             {
                 ChangeLabelState("safe");
                 StealthLabel.Modulate = Colors.White;
-                SetNewStage(StealthStage.Safe);
             }
         }
     }
@@ -151,12 +122,4 @@ public class PlayerStealth : Node
         currentState = state;
         StealthLabel.Text = InterfaceLang.GetPhrase("inGame", "stealth", state);
     }
-}
-
-
-public enum StealthStage
-{
-    Safe,
-    Caution,
-    Danger
 }

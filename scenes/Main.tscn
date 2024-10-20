@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/interface/menus/SettingsMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=3]
 [ext_resource path="res://assets/scripts/utils/SaveNode.cs" type="Script" id=4]
-[ext_resource path="res://objects/Testing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/testing/Testing.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
