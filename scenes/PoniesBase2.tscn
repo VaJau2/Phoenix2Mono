@@ -364,8 +364,6 @@ script = ExtResource( 10 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5348, 1.30727, 7.50198 )
 patrolArray = [ NodePath("../../terrain/patrolPoints2/1"), NodePath("../../terrain/patrolPoints2/2"), NodePath("../../terrain/patrolPoints2/3"), NodePath("../../terrain/patrolPoints2/4") ]
 IsImmortal = true
-headBonePath = NodePath("")
-bodyBonePath = NodePath("")
 
 [node name="mrGutsyTrader" parent="npc" instance=ExtResource( 36 )]
 transform = Transform( 0.43553, 0, -0.900174, 0, 1, 0, 0.900174, 0, 0.43553, -91.9777, -110.061, 61.0956 )
@@ -1828,7 +1826,7 @@ shape = SubResource( 42 )
 script = ExtResource( 3 )
 maxItemsCount = 3
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "medX", "ammo308", "ammo32", "revolver32", "privateUniform", "healPotion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkleCola" ]
+itemCodes = [ "mentats", "dash", "medX", "ammo308", "ammo32", "revolver32", "privateUniform", "healPotion", "book1", "book0", "toaster", "detoxine", "rage", "hydra", "sparkleCola", "flashlight" ]
 ammoCount = {
 "ammo20": 20,
 "ammo308": 10,

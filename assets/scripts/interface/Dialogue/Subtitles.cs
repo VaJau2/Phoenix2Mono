@@ -75,8 +75,8 @@ public class Subtitles : Label, ISavable
             return;
         }
 
-        CheckTempTalker();
         UpdateAnimatingText();
+        CheckTempTalker();
     }
     
     public Subtitles SetTalker(AudioStreamPlayer3D audioPlayer3D, string characterName)
@@ -246,11 +246,10 @@ public class Subtitles : Label, ISavable
     
     private void CheckTempTalker()
     {
-        if (Talker == null) return;
-        
-        if (Talker.Health <= 0)
+        if (Talker is not { Health: > 0 })
         {
             FinishAnimatingText();
+            return;
         }
 
         var distance = Player.GlobalTranslation.DistanceTo(Talker.GlobalTranslation);

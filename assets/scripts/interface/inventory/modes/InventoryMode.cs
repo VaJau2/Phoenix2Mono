@@ -153,6 +153,11 @@ public abstract class InventoryMode
 
     public void UseTempItem()
     {
+        if (!tempButton.isInventoryIcon)
+        {
+            player.EmitSignal(nameof(Player.TakeItem), tempButton.myItemCode);
+        }
+        
         useHandler.HideLoadingIcon();
         useHandler.UseTempItem();
     }

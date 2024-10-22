@@ -37,7 +37,7 @@
 [ext_resource path="res://assets/scripts/triggers/StopAlarmButtonTrigger.cs" type="Script" id=35]
 [ext_resource path="res://assets/audio/background/alarm.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/scripts/interface/DragonHealthBar.cs" type="Script" id=37]
-[ext_resource path="res://objects/characters/zebras/prefabs/zebra-ar762.tscn" type="PackedScene" id=38]
+[ext_resource path="res://objects/characters/zebras/prefabs/zebra-automatic762.tscn" type="PackedScene" id=38]
 [ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=39]
 [ext_resource path="res://assets/materials/props/furniture/pics/picture-pod.tres" type="Material" id=40]
 [ext_resource path="res://objects/characters/zebras/prefabs/zebra-rifle762.tscn" type="PackedScene" id=41]
@@ -116,6 +116,7 @@
 [ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=114]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=115]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=116]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer

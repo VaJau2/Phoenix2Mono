@@ -12,19 +12,22 @@ public class DialogueDelay
     
     public static float Get(ref string phrase, float phraseDelay, float symbolDelay)
     {
-        if (phrase.Length < 1) return phraseDelay;
-        
-        return phrase[0] switch
+        return phrase.Length switch
         {
-            DELAY_SYMBOL => GetCustomDelay(ref phrase, phraseDelay),
+            <1 => phraseDelay,
             
-            '.' or '!' or '?' or '…' => phrase.Length > 1 
-                ? DEFAULT_PERIOD_DELAY 
-                : phraseDelay,
+            1 => DEFAULT_PHRASE_DELAY,
             
-            ',' => DEFAULT_COMMA_DELAY,
-            
-            _ => symbolDelay
+            _ => phrase[0] switch
+            {
+                DELAY_SYMBOL => GetCustomDelay(ref phrase, phraseDelay),
+
+                '.' or '!' or '?' or '…' => phrase.Length > 1 ? DEFAULT_PERIOD_DELAY : phraseDelay,
+
+                ',' => DEFAULT_COMMA_DELAY,
+
+                _ => symbolDelay
+            }
         };
     }
 

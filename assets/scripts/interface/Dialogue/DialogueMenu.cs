@@ -68,7 +68,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     {
         if (!MenuOn) return;
         
-        if (npc == null || npc.GetState() != SetStateEnum.Talk) 
+        if (npc is not { Health: > 0 } || npc.GetState() != SetStateEnum.Talk) 
         {
             MenuManager.CloseMenu(this);
             return;

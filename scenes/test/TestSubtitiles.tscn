@@ -95,7 +95,7 @@ subtitlesCode = "briefing"
 
 [node name="test" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
 transform = Transform( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
-subtitlesCode = "cinematicTest"
+subtitlesCode = "testPhrase"
 
 [node name="terrain" type="StaticBody" parent="Scene" index="4"]
 collision_layer = 3
