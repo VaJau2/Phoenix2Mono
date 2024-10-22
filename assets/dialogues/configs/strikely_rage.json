@@ -1,0 +1,11 @@
+﻿{
+    "sounds": {
+        "0": "sound_a_rage",
+        "1": "sound_i_rage",
+        "2": "sound_e_rage",
+        "3": "sound_o_rage"
+    },
+    "min_pitch": "0.7",
+    "max_pitch": "1.7",
+    "chars_to_sound": "3"
+}

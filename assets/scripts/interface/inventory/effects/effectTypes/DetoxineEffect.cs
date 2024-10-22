@@ -1,4 +1,4 @@
-using Godot;
+namespace Effects;
 
 public class DetoxineEffect: Effect 
 {

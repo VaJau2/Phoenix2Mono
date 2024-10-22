@@ -1,21 +1,22 @@
 using Godot;
-using System.Collections.Generic;
+using Effects;
 using System.Linq;
+using System.Collections.Generic;
 
 //обработчик эффектов
 //рисует иконки эффектов через интерфейс
 //вызывает нужные методы эффектов
 public class EffectHandler: Node
 {
-    public List<Effect> tempEffects { get; } = new List<Effect>();
+    public List<Effect> tempEffects { get; } = new();
     private PackedScene iconPrefab;
     public Messages messages;
-    private HeartbeatEffect heartbeat = new HeartbeatEffect();
+    private HeartbeatEffect heartbeat = new();
 
     private Player player => Global.Get().player;
 
-    private Dictionary<string, int> startParameters = new Dictionary<string, int>();
-    private Dictionary<string, float> startFloatParameters = new Dictionary<string, float>();
+    private Dictionary<string, int> startParameters = new();
+    private Dictionary<string, float> startFloatParameters = new();
 
     //если загружается другой уровень
     public void OnLoadOtherLevel()

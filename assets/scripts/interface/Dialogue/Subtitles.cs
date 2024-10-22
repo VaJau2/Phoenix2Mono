@@ -153,7 +153,7 @@ public class Subtitles : Label, ISavable
             tempSpeakerCode = tempPhraseData["speakerCode"].ToString();
             tempSpeakerLabel.Text = Global.LoadJsonFile(namesPath)[tempSpeakerCode].ToString();
             
-            animatingText = tempPhraseData["text"].ToString();
+            animatingText = DialogueEffectsManager.GetTextWithEffects(tempPhraseData["text"].ToString(), tempSpeakerCode);
             
             symbolDelay = tempPhraseData.Contains("timer") 
                 ? Convert.ToSingle(tempPhraseData["timer"]) 
@@ -164,8 +164,9 @@ public class Subtitles : Label, ISavable
                 : DialogueDelay.DEFAULT_PHRASE_DELAY;
             
             IsAnimatingText = true;
-        
-            dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles");
+
+            var customConfig = DialogueEffectsManager.GetCustomAudioConfig(tempSpeakerCode);
+            dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles", customConfig);
             dialogueAudio.TryToPlayAudio(tempPhraseKey);
         }
         else FinishAnimatingText();

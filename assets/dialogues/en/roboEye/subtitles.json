@@ -6,7 +6,7 @@
     },
     "phrase2": {
       "speakerCode": "roboEye",
-      "text": "Beep-boop :с"
+      "text": "Beep-boop :с @1@"
     }
   },
   "won": {
@@ -16,7 +16,7 @@
     },
     "phrase2": {
       "speakerCode": "roboEye",
-      "text": "Beep-boop :с"
+      "text": "Beep-boop :с @1@"
     }
   }
 }

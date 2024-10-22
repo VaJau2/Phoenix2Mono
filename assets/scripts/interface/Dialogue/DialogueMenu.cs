@@ -310,9 +310,15 @@ public class DialogueMenu : Control, IMenu, ISavable
         {
             animatingAnswerNum = i;
             text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
-            dialogueAudio.LoadCharacter("strikely", "");
 
-            var spacedAnswerText = GetSpacedText(answerText[i].ToString()) + "\n";
+            var customEffect = DialogueEffectsManager.GetCustomAudioConfig("strikely");
+            dialogueAudio.LoadCharacter("strikely", "", customEffect);
+
+            var textWithEffects = DialogueEffectsManager.GetTextWithEffects(
+                answerText[i].ToString(),
+                "strikely"
+            );
+            var spacedAnswerText = GetSpacedText(textWithEffects) + "\n";
             StartAnimatingText(spacedAnswerText);
         }
     }
