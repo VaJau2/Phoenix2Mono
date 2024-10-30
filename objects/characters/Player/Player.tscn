@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://assets/scripts/characters/player/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/models/player_variants/empty/first/earthpony.res" type="ArrayMesh" id=2]
@@ -38,6 +38,7 @@
 [ext_resource path="res://assets/scripts/audio/AudioEffectsController.cs" type="Script" id=36]
 [ext_resource path="res://assets/scripts/characters/player/PlayerDeathManager.cs" type="Script" id=37]
 [ext_resource path="res://assets/scripts/characters/player/PlayerDialogueCheck.cs" type="Script" id=38]
+[ext_resource path="res://assets/scripts/characters/Moving/NavigationMovingController.cs" type="Script" id=39]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.9
@@ -910,12 +911,12 @@ bones/22/enabled = true
 bones/22/bound_children = [  ]
 
 [node name="Physical Bone back_1" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 1, -5.27607e-17, 4.73023e-17, -3.65952e-17, 0.187063, 0.982346, -6.06793e-17, -0.982346, 0.187063, 8.27235e-18, 0.612765, -0.19043 )
+transform = Transform( 1, -5.27606e-17, 4.73023e-17, -3.65948e-17, 0.187063, 0.982346, -6.06792e-17, -0.982346, 0.187063, 8.27199e-18, 0.612765, -0.19043 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48852e-17, -0.284142, -0.388952 )
-body_offset = Transform( 1, 7.91896e-18, 8.39005e-17, -8.25392e-17, 0.292822, 0.956165, -1.69971e-17, -0.956165, 0.292822, -1.85288e-21, 0.455105, -0.157793 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48856e-17, -0.284142, -0.388952 )
+body_offset = Transform( 1, 7.91907e-18, 8.39005e-17, -8.25388e-17, 0.292822, 0.956165, -1.6997e-17, -0.956165, 0.292822, -2.19699e-21, 0.455105, -0.157793 )
 mass = 90.0
 weight = 882.0
 friction = 0.5
@@ -927,13 +928,13 @@ transform = Transform( 1, 1.08567e-24, 0, 1.03398e-24, 1, -1.86265e-09, 0, 1.862
 shape = SubResource( 8 )
 
 [node name="Physical Bone back_2" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.999937, -1.87595e-09, 2.45016e-07, 2.38689e-07, -0.218351, -0.975869, 5.53397e-08, 0.975869, -0.21835, -7.76366e-08, 1.47896, -0.0324858 )
+transform = Transform( 0.999932, -1.87597e-09, 2.45016e-07, 2.38688e-07, -0.218351, -0.975869, 5.53408e-08, 0.975869, -0.21835, -7.76377e-08, 1.47896, -0.0324858 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42571e-09, 0.00751006, 0.311102 )
-body_offset = Transform( 0.999937, -2.33047e-07, 1.86677e-07, 2.38026e-07, 0.244691, -0.9696, 1.8028e-07, 0.9696, 0.244692, -5.7751e-08, 0.299807, -0.083406 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42684e-09, 0.00751006, 0.311102 )
+body_offset = Transform( 0.999932, -2.33047e-07, 1.86677e-07, 2.38026e-07, 0.244691, -0.9696, 1.8028e-07, 0.9696, 0.244692, -5.77521e-08, 0.299807, -0.083406 )
 mass = 20.0
 weight = 196.0
 bone_name = "back_2"
@@ -948,13 +949,13 @@ joint_constraints/angular_limit_relaxation = 0.8
 shape = SubResource( 9 )
 
 [node name="Physical Bone neck" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 1, 2.25119e-08, 2.577e-06, 2.94531e-07, -0.994406, -0.105607, 2.5602e-06, 0.105604, -0.994393, -1.11418e-06, 1.98984, 1.84476 )
+transform = Transform( 1, 2.25117e-08, 2.577e-06, 2.94531e-07, -0.994406, -0.105607, 2.5602e-06, 0.105604, -0.994393, -1.11417e-06, 1.98984, 1.84476 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07418e-06, 0.00573716, 1.62523 )
-body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.972862, 2.00461e-06, 0.972875, 0.231321, -1.1356e-07, 1.5798, -0.381532 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07418e-06, 0.00573719, 1.62523 )
+body_offset = Transform( 1, -2.52898e-06, 1.97033e-06, 2.50189e-06, 0.23132, -0.972862, 2.00461e-06, 0.972875, 0.231321, -1.13556e-07, 1.5798, -0.381532 )
 mass = 90.0
 weight = 882.0
 gravity_scale = 2.0
@@ -970,7 +971,7 @@ transform = Transform( 1, 0, 2.84217e-14, 0, 1, 0, 1.36779e-13, 7.45058e-09, 1, 
 shape = SubResource( 10 )
 
 [node name="Physical Bone leg_1_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.996067, -0.0885977, 8.91277e-08, 0.088353, 0.993318, 0.074239, -0.00657754, -0.0739482, 0.99724, -0.259126, 1.79817, -0.752632 )
+transform = Transform( 0.996067, -0.0885977, 8.00416e-08, 0.088353, 0.993318, 0.074239, -0.00657755, -0.0739482, 0.99724, -0.259126, 1.79817, -0.752632 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
@@ -992,13 +993,13 @@ transform = Transform( 1, 0, 1.86265e-09, 7.45058e-09, 1, 0, 9.31323e-10, 0, 1, 
 shape = SubResource( 11 )
 
 [node name="Physical Bone leg_2_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.988568, -0.114831, 0.0972374, 0.116483, 0.993128, -0.0114235, -0.0952559, 0.022618, 0.995197, -0.40787, 1.8114, -1.81371 )
+transform = Transform( 0.988563, -0.114831, 0.0972374, 0.116483, 0.993127, -0.0114235, -0.0952555, 0.0226179, 0.995197, -0.407868, 1.8114, -1.81371 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782365, 0.00694624, 0.876035 )
-body_offset = Transform( 0.994443, -0.103752, -0.015129, -0.00427389, 0.104019, -0.994568, 0.104767, 0.989149, 0.103001, 0.00619406, 0.870587, -0.097923 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782161, 0.00694647, 0.876035 )
+body_offset = Transform( 0.994438, -0.103752, -0.015129, -0.00427366, 0.104019, -0.994568, 0.104767, 0.989148, 0.103001, 0.00619614, 0.870587, -0.097923 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_l"
@@ -1012,12 +1013,12 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 12 )
 
 [node name="Physical Bone leg_1_r" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.996062, 0.0885964, 3.92456e-07, -0.0883896, 0.993734, 0.0684606, 0.00606489, -0.0681904, 0.997657, 0.287078, 1.79371, -0.756657 )
+transform = Transform( 0.996062, 0.0885964, 3.92456e-07, -0.0883896, 0.993734, 0.0684606, 0.00606488, -0.0681904, 0.997657, 0.287078, 1.79371, -0.756657 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000656104, -0.00730894, 0.451321 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000656102, -0.00730887, 0.451321 )
 body_offset = Transform( 0.992583, 0.0833244, 0.0884598, 0.0833252, 0.0632028, -0.994519, -0.0884594, 0.99452, 0.0557924, -0.039966, 0.449255, -0.0178534 )
 mass = 5.0
 weight = 49.0
@@ -1039,7 +1040,7 @@ collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163451, 0.143869, 0.868932 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163452, 0.143869, 0.868932 )
 body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934067, -0.993354, -0.112854, 0.993362, -0.0223682, -0.0984285, 0.866375, -0.125322 )
 mass = 5.0
 weight = 49.0
@@ -1054,13 +1055,13 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 14 )
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.989896, -0.141445, 5.61488e-05, 0.141035, 0.987025, -0.0765849, 0.010766, 0.0758308, 0.997019, -0.259908, 0.497927, -0.990059 )
+transform = Transform( 0.989892, -0.141445, 5.51402e-05, 0.141035, 0.987025, -0.0765838, 0.0107656, 0.0758308, 0.997012, -0.259906, 0.497925, -0.990049 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143026, 0.0445951, 0.580138 )
-body_offset = Transform( 0.981191, -0.131359, -0.141116, -0.131226, 0.0810789, -0.987985, 0.141228, 0.988001, 0.0623209, 0.0736911, 0.571429, -0.0822346 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143012, 0.0445958, 0.580132 )
+body_offset = Transform( 0.981187, -0.131359, -0.141116, -0.131225, 0.0810789, -0.987978, 0.141228, 0.988001, 0.062321, 0.0736918, 0.571419, -0.0822349 )
 mass = 5.0
 weight = 49.0
 bone_name = "b_leg_1_l"
@@ -1076,12 +1077,12 @@ transform = Transform( 1, 0, 9.31323e-10, 1.49012e-08, 1, 0, 0, 7.45058e-09, 1, 
 shape = SubResource( 15 )
 
 [node name="Physical Bone b_leg_2_l" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.984244, -0.176716, -0.0063362, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366926, 0.541549, -2.04394 )
+transform = Transform( 0.984244, -0.176716, -0.00633619, 0.17463, 0.977011, -0.12229, 0.0278014, 0.11926, 0.992475, -0.366926, 0.541549, -2.04394 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0356957, 0.16787, 0.826255 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0356956, 0.16787, 0.826255 )
 body_offset = Transform( 0.948202, -0.299618, -0.10557, -0.299395, -0.731759, -0.612288, 0.1062, 0.612177, -0.783556, 0.103678, 0.639434, 0.54086 )
 mass = 5.0
 weight = 49.0
@@ -1096,12 +1097,12 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 16 )
 
 [node name="Physical Bone b_leg_1_r" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.989945, 0.141449, 6.26996e-05, -0.140915, 0.986245, -0.0863514, -0.0122752, 0.0854729, 0.996269, 0.279957, 0.494011, -0.985857 )
+transform = Transform( 0.989945, 0.141449, 6.26814e-05, -0.140915, 0.986245, -0.0863514, -0.0122752, 0.0854729, 0.996269, 0.279957, 0.494011, -0.985857 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784282, 0.0548289, 0.575105 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784281, 0.0548289, 0.575105 )
 body_offset = Transform( 0.981044, 0.132604, 0.141313, 0.132729, 0.0715189, -0.988573, -0.141195, 0.988581, 0.0525625, -0.0808462, 0.565653, -0.0855391 )
 mass = 5.0
 weight = 49.0
@@ -1118,13 +1119,13 @@ transform = Transform( 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 1.86265e-09, 0, 1,
 shape = SubResource( 17 )
 
 [node name="Physical Bone b_leg_2_r" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.986808, 0.161484, 0.00131065, -0.160218, 0.980092, -0.117245, -0.0202203, 0.115494, 0.993094, 0.394404, 0.542305, -2.04481 )
+transform = Transform( 0.986803, 0.161484, 0.00131111, -0.160217, 0.980092, -0.117247, -0.0202205, 0.115494, 0.993092, 0.394404, 0.542305, -2.04481 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0277432, 0.164363, 0.828098 )
-body_offset = Transform( 0.953511, 0.282868, 0.103329, 0.284499, -0.733703, -0.617028, -0.0987229, 0.617787, -0.780118, -0.105606, 0.639446, 0.541734 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0277441, 0.164365, 0.828099 )
+body_offset = Transform( 0.953506, 0.282868, 0.103329, 0.284498, -0.733703, -0.617025, -0.0987225, 0.617787, -0.780118, -0.105606, 0.639446, 0.541734 )
 mass = 5.0
 weight = 49.0
 bone_name = "b_leg_2_r"
@@ -1138,13 +1139,13 @@ joint_constraints/relaxation = 5.0
 shape = SubResource( 18 )
 
 [node name="Physical Bone tail_1" type="PhysicalBone" parent="player_body/Armature/Skeleton"]
-transform = Transform( 0.999999, -8.92511e-12, 2.38416e-07, -2.30517e-07, 0.255271, 0.966855, -6.0857e-08, -0.966869, 0.255269, 0.0147696, -0.659183, -0.115398 )
+transform = Transform( 0.999999, -8.94244e-12, 2.38416e-07, -2.30517e-07, 0.255271, 0.966855, -6.0856e-08, -0.966869, 0.255269, 0.0147695, -0.659183, -0.115398 )
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40819e-07, -0.0298614, 0.637053 )
-body_offset = Transform( 0.999999, -2.35769e-07, 2.73916e-07, 2.35758e-07, -0.148897, -0.988838, 2.73915e-07, 0.988856, -0.148897, -8.22358e-07, 0.625496, 0.124384 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.04149e-07, -0.0298614, 0.637053 )
+body_offset = Transform( 0.999999, -2.35769e-07, 2.73916e-07, 2.35758e-07, -0.148897, -0.988838, 2.73914e-07, 0.988856, -0.148897, -8.85688e-07, 0.625496, 0.124384 )
 mass = 15.0
 weight = 147.0
 bone_name = "tail_1"
@@ -1349,6 +1350,10 @@ script = ExtResource( 36 )
 
 [node name="deathManager" type="Node" parent="."]
 script = ExtResource( 37 )
+
+[node name="movingController" type="Node" parent="." groups=["savable"]]
+script = ExtResource( 39 )
+RunSpeed = 45
 
 [connection signal="body_entered" from="player_body/frontArea" to="player_body/frontArea" method="FrontAreaBodyEntered"]
 [connection signal="body_exited" from="player_body/frontArea" to="player_body/frontArea" method="FrontAreaBodyExited"]

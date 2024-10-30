@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=1]
 [ext_resource path="res://assets/scripts/background/CoversManager.cs" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://objects/cinematic/MoveCinematic.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/scripts/triggers/cinematic/Cutscene.cs" type="Script" id=13]
 [ext_resource path="res://objects/cinematic/ReturnToPlayer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/scripts/triggers/MovePlayerTrigger.cs" type="Script" id=15]
+[ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=16]
+[ext_resource path="res://objects/testing/Testing.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -34,6 +37,16 @@ _data = {
 "points": PoolVector3Array( -6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
+
+[sub_resource type="Curve3D" id=18]
+bake_interval = 0.02
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
+"tilts": PoolRealArray( 0 )
+}
+
+[sub_resource type="SphereShape" id=17]
+radius = 2.0
 
 [sub_resource type="Curve3D" id=14]
 bake_interval = 0.02
@@ -95,7 +108,8 @@ subtitlesCode = "briefing"
 
 [node name="test" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
 transform = Transform( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
-subtitlesCode = "testPhrase"
+subtitlesCode = "testPlayerMove"
+itemCodes = [ "revolver32" ]
 
 [node name="terrain" type="StaticBody" parent="Scene" index="4"]
 collision_layer = 3
@@ -161,10 +175,8 @@ mesh = SubResource( 8 )
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 11 )
 
-[node name="Navigation" type="Navigation" parent="Scene" index="7"]
+[node name="mesh" type="NavigationMeshInstance" parent="Scene" index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-
-[node name="mesh" type="NavigationMeshInstance" parent="Scene/Navigation" index="0"]
 navmesh = SubResource( 5 )
 
 [node name="cutscenes" type="Node" parent="Scene" index="8"]
@@ -192,7 +204,66 @@ returnPath = NodePath("ReturnToPlayer")
 
 [node name="ReturnToPlayer" parent="Scene/cutscenes/Test/returnToPlayer" index="0" instance=ExtResource( 14 )]
 
-[node name="Briefing" type="Node" parent="Scene/cutscenes" index="1"]
+[node name="TestPlayerMove" type="Node" parent="Scene/cutscenes" index="1"]
+script = ExtResource( 13 )
+
+[node name="cinematic" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="0"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+otherTriggerPaths = [ NodePath("MovePlayer") ]
+movePath = NodePath("MoveCinematic")
+
+[node name="MoveCinematic" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="0" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51622, 2.11585, 10.6806 )
+curve = SubResource( 18 )
+speed = 0.3
+speedRot = 2.0
+
+[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="1"]
+script = ExtResource( 15 )
+DeleteAfterTrigger = false
+otherTriggerPaths = [ NodePath("Spatial/Area") ]
+pointPath = NodePath("Spatial")
+
+[node name="Spatial" type="Spatial" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481 )
+
+[node name="Area" type="Area" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0"]
+script = ExtResource( 16 )
+IsActive = false
+DeleteAfterTrigger = false
+otherTriggerPaths = [ NodePath("../../../../returnToPlayer") ]
+disactiveTriggerPaths = [ NodePath(".") ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 17 )
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1"]
+script = ExtResource( 1 )
+DeleteAfterTrigger = false
+movePath = NodePath("")
+rotatePath = NodePath("")
+returnPath = NodePath("ReturnToPlayer")
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/TestPlayerMove/returnToPlayer" index="0" instance=ExtResource( 14 )]
+
+[node name="skip" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
+script = ExtResource( 5 )
+DeleteAfterTrigger = false
+otherTriggerPaths = [ NodePath("MovePlayer") ]
+disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area") ]
+npcPath = NodePath("../../../npc/test")
+newSubtitlesCode = "testPlayerMove"
+
+[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/skip" index="0"]
+script = ExtResource( 15 )
+DeleteAfterTrigger = false
+disactiveTriggerPaths = [  ]
+isTeleport = true
+pointPath = NodePath("../../cinematic/MovePlayer/Spatial")
+
+[node name="Briefing" type="Node" parent="Scene/cutscenes" index="2"]
 script = ExtResource( 13 )
 
 [node name="overall" type="Node" parent="Scene/cutscenes/Briefing" index="0"]
@@ -279,3 +350,7 @@ otherTriggerPaths = [  ]
 disactiveTriggerPaths = [  ]
 npcPath = NodePath("../../npc/test")
 newSubtitlesCode = "cinematicTest"
+
+[node name="Testing" parent="." index="1" instance=ExtResource( 17 )]
+
+[connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" method="_on_body_entered"]

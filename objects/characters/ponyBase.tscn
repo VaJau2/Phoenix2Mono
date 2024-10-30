@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/materials/characters/shotgun-bag.material" type="Material" id=9]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcCovers.cs" type="Script" id=11]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/Moving/NavigationMovingController.cs" type="Script" id=12]
+[ext_resource path="res://assets/scripts/characters/Moving/NavigationMovingController.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/Bodies/PonyBody.cs" type="Script" id=13]
 [ext_resource path="res://assets/scripts/characters/NPC/NpcState/StateMachine.cs" type="Script" id=14]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcPatroling.cs" type="Script" id=15]
@@ -1860,7 +1860,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 57 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
@@ -1977,6 +1977,7 @@ bones/18/rest = Transform( 1, -1.43278e-07, 4.78541e-08, 1.43278e-07, 0.799285, 
 bones/18/enabled = true
 bones/18/bound_children = [  ]
 script = ExtResource( 18 )
+RagdollImpulse = 1000.0
 headBonePath = NodePath("Physical Bone neck")
 bodyBonePath = NodePath("Physical Bone back_1")
 
@@ -2108,7 +2109,7 @@ collision_layer = 2
 collision_mask = 2
 joint_type = 3
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150052, -2.13459e-06, 0.864143 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934054, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934053, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_r"
@@ -2324,7 +2325,6 @@ shape = SubResource( 62 )
 
 [node name="movingController" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 12 )
-RagdollImpulse = 1000.0
 RotationSpeed = 0.1
 RunSpeed = 12
 

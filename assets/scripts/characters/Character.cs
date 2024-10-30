@@ -7,10 +7,13 @@ public abstract class Character : KinematicBody, ISavable
     public const string IDLE_ANIM = "Idle";
     public const string IDLE_ANIM1 = "Idle1";
     public const float MIN_WALKING_SPEED = 2;
+    
+    [Export] public float BaseSpeed = 10; //скорость берется каждый кадр, поэтому применяется сразу
+    public BaseMovingController MovingController;
+    
     public int Health {get; protected set;}
     public int HealthMax;
     public float BaseDamageBlock; //от 0 до 1, процентное блокирование
-    public int BaseSpeed = 1; //скорость берется каждый кадр, поэтому применяется сразу
     public int BaseDamage;
     public int BaseRecoil;
 
@@ -25,14 +28,22 @@ public abstract class Character : KinematicBody, ISavable
     
     [Signal]
     public delegate void ChangeMayMove();
+    
+    [Signal]
+    public delegate void IsCame();
 
+    public override void _Ready()
+    {
+        MovingController = GetNodeOrNull<BaseMovingController>("movingController");
+    }
+    
     public void SetStartHealth(int newHealth)
     {
         Health = HealthMax = newHealth;
     }
     
     public virtual float GetDamageBlock() => BaseDamageBlock;
-    public virtual int GetSpeed()  => BaseSpeed;
+    public virtual float GetSpeed()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
     public virtual int GetRecoil() => BaseRecoil;
 

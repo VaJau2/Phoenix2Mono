@@ -103,7 +103,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (newWalkSpeed != -1)
         {
-            npc.MovingController.BaseSpeed = newWalkSpeed;
+            npc.BaseSpeed = newWalkSpeed;
         }
 
         if (newRunSpeed != -1 && npc.MovingController is NavigationMovingController navigation)

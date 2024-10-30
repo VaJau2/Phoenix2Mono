@@ -19,12 +19,13 @@ public abstract class AbstractMoveCinematic : PathBase
         if (speedRot > 0)
         {
             var camera = cutscene.GetCamera();
-        
             if (camera.GlobalRotation != cameraAngleRad)
             {
-                camera.GlobalRotation = camera.GlobalRotation.AngleTo(cameraAngleRad) > 0.0001f 
-                    ? camera.GlobalRotation.LinearInterpolate(cameraAngleRad, delta * speedRot) 
-                    : cameraAngleRad;
+                var rot = camera.GlobalRotation;
+                rot.x = Mathf.LerpAngle(rot.x, cameraAngleRad.x, delta * speedRot);
+                rot.y = Mathf.LerpAngle(rot.y, cameraAngleRad.y, delta * speedRot);
+                rot.z = Mathf.LerpAngle(rot.z, cameraAngleRad.z, delta * speedRot);
+                camera.GlobalRotation = rot;
             }
         }
         

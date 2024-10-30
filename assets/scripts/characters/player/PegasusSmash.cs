@@ -16,7 +16,7 @@ public class PegasusSmash : Area
         if (body is Player) return;
         if (!player.MaySmash || player.GetSpeed() <= 6) return;
 
-        var tempDamage = player.GetSpeed() * 3;
+        var tempDamage = (int)player.GetSpeed() * 3;
 
         switch (body)
         {

@@ -47,9 +47,6 @@ public class NPC : Character, IInteractable, IChest
     private static Player Player => Global.Get().player;
     
     [Signal]
-    public delegate void IsCame();
-    
-    [Signal]
     public delegate void FoundEnemy();
     
     [Signal]
@@ -57,6 +54,7 @@ public class NPC : Character, IInteractable, IChest
     
     public override void _Ready()
     {
+        base._Ready();
         SetStartHealth(StartHealth);
         
         ChestHandler = new ChestHandler(this)
@@ -68,7 +66,6 @@ public class NPC : Character, IInteractable, IChest
         Weapons = GetNodeOrNull<NpcWeapons>("weapons");
         Covers = GetNodeOrNull<NpcCovers>("covers");
         MovingController = GetNodeOrNull<BaseMovingController>("movingController");
-        BaseSpeed = MovingController.BaseSpeed;
         stateMachine = GetNode<StateMachine>("stateMachine");
         interaction = GetNodeOrNull<NpcInteraction>("interaction");
         skeleton = GetNodeOrNull<NpcSkeleton>("Armature/Skeleton");

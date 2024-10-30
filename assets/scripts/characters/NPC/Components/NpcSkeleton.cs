@@ -3,6 +3,7 @@ using Godot.Collections;
 
 public class NpcSkeleton : Skeleton, ISavable
 {
+    [Export] private float RagdollImpulse = 500;
     [Export] private NodePath headBonePath, bodyBonePath;
     
     private NPC npc;
@@ -40,7 +41,7 @@ public class NpcSkeleton : Skeleton, ISavable
     public void AnimateDeath(Character killer, int shapeID)
     {
         Vector3 dir = GlobalTranslation.DirectionTo(killer.GlobalTranslation);
-        float force = tempShotgunShot ? npc.MovingController.RagdollImpulse * 1.5f : npc.MovingController.RagdollImpulse;
+        float force = tempShotgunShot ? RagdollImpulse * 1.5f : RagdollImpulse;
 
         if (shapeID == 0)
         {

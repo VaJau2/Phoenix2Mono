@@ -16,6 +16,6 @@ speed = 0.2
 
 [node name="PathFollow" type="PathFollow" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00149918, -0.000736237, -0.000427485 )
-rotation_mode = 1
+rotation_mode = 0
 cubic_interp = false
 loop = false

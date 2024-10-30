@@ -35,7 +35,7 @@ public class PonyBody : Node
 
     public override void _Process(float delta)
     {
-        if (npc.MovingController.BaseSpeed == 0)
+        if (npc.BaseSpeed == 0)
         {
             return;
         }

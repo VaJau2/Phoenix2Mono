@@ -11,11 +11,8 @@ public class ChangeSubtitlesTrigger : ActivateOtherTrigger
     {
         if (!IsActive) return;
 
-        npc = GetNodeOrNull<NPC>(npcPath);
-        if (npc != null)
-        {
-            npc.subtitlesCode = newSubtitlesCode;
-        }
+        npc ??= GetNodeOrNull<NPC>(npcPath);
+        npc.subtitlesCode = newSubtitlesCode;
         
         base._on_activate_trigger();
     }

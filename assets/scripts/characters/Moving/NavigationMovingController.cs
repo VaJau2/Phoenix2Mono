@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -22,7 +22,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
     private float updatePathTimer;
     
     private float checkMovableTimer;
-    private Vector3 oldNpcPosition;
+    private Vector3 oldCharacterPosition;
     private float customFinalDistance;
     private float oldComeDistance;
     private float oldRotationSpeed;
@@ -40,14 +40,14 @@ public class NavigationMovingController: BaseMovingController, ISavable
         if (customFinalDistance != 0) distance = customFinalDistance;
         else if (distance == 0) distance = ComeDistance;
         
-        if (BaseSpeed == 0 || !Npc.MayMove)
+        if (character.BaseSpeed == 0 || (!character.MayMove && character is not Player))
         {
             FinishGoingTo();
             return;
         }
         
         cameToPlace = false;
-        var pos = Npc.GlobalTranslation;
+        var pos = character.GlobalTranslation;
 
         var tempDistance = pos.DistanceTo(place);
         if (tempDistance < distance)
@@ -60,10 +60,15 @@ public class NavigationMovingController: BaseMovingController, ISavable
 
         if (path == null)
         {
-            path = NavigationServer.MapGetPath(Npc.GetWorld().NavigationMap, pos, place, true);
             pathI = 0;
+            path = NavigationServer.MapGetPath(
+                character.GetWorld().NavigationMap, 
+                pos, 
+                place, 
+                true
+            );
         }
-
+        
         if (path.Length == 0)
         {
             Stop();
@@ -88,7 +93,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
     private  void CheckMovablePath()
     {
         if (path == null) return;
-        if (Npc.Velocity.Length() <= 0) return;
+        if (character.Velocity.Length() <= 0) return;
 
         if (checkMovableTimer > 0)
         {
@@ -96,17 +101,17 @@ public class NavigationMovingController: BaseMovingController, ISavable
         }
         else
         {
-            if (oldNpcPosition == Vector3.Zero)
+            if (oldCharacterPosition == Vector3.Zero)
             {
-                oldNpcPosition = Npc.GlobalTranslation;
+                oldCharacterPosition = character.GlobalTranslation;
             }
             else
             {
-                var newPosition = Npc.GlobalTranslation;
-                if (newPosition.DistanceTo(oldNpcPosition) < MIN_MOVING_DISTANCE)
+                var newPosition = character.GlobalTranslation;
+                if (newPosition.DistanceTo(oldCharacterPosition) < MIN_MOVING_DISTANCE)
                 {
-                    //Делаем неписей резкими как пуля
-                    //Чтобы они обходили все препятствия, если они застряли
+                    //Делаем персонажа резким как пуля
+                    //Чтобы он обходил все препятствия в случае застревания 
                     oldComeDistance = ComeDistance;
                     ComeDistance = 1f;
                     oldRotationSpeed = RotationSpeed;
@@ -115,7 +120,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
                     path = null;
                 }
 
-                oldNpcPosition = Vector3.Zero;
+                oldCharacterPosition = Vector3.Zero;
             }
 
             checkMovableTimer = CHECK_MOVABLE_TIME;
@@ -131,7 +136,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     private void HandleGravity()
     {
-        if (!Npc.IsOnFloor())
+        if (!character.IsOnFloor())
         {
             if (Gravity < 30)
             {
@@ -162,7 +167,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         
         Stop();
         cameToPlace = true;
-        Npc.EmitSignal(nameof(NPC.IsCame));
+        character.EmitSignal(nameof(Character.IsCame));
     }
     
     private void UpdatePath(float delta)
@@ -191,7 +196,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         } 
         else 
         {
-            MoveTo(path[pathI], ComeDistance, BaseSpeed);
+            MoveTo(path[pathI], ComeDistance, character.BaseSpeed);
             IsRunning = false;
         }
     }
@@ -199,7 +204,6 @@ public class NavigationMovingController: BaseMovingController, ISavable
     public Dictionary GetSaveData()
     {
         var saveData = new Dictionary();
-        saveData["walkSpeed"] = BaseSpeed;
         saveData["runSpeed"] = RunSpeed;
         saveData["runToPoint"] = RunToPoint;
         return saveData;
@@ -207,7 +211,6 @@ public class NavigationMovingController: BaseMovingController, ISavable
 
     public void LoadData(Dictionary data)
     {
-        BaseSpeed = Convert.ToInt16(data["walkSpeed"]);
         RunSpeed = Convert.ToInt16(data["runSpeed"]);
         RunToPoint = Convert.ToBoolean(data["runToPoint"]);
     }

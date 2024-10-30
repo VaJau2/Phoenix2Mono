@@ -9,9 +9,6 @@ public class Cutscene : Node
     
     private Player player => Global.Get().player;
     private bool wasThirdView;
-
-    private SpatialCache cutsceneCameraCache;
-    private SpatialCache playerCameraCache;
     
     private readonly List<CinematicTrigger> triggerQueue = [];
     
@@ -26,9 +23,11 @@ public class Cutscene : Node
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
     }
 
-    public SpatialCache GetPlayerCameraData()
+    public Camera GetPlayerCamera()
     {
-        return playerCameraCache;
+        return wasThirdView 
+            ? player.RotationHelperThird.thirdCamera 
+            : player.RotationHelperThird.firstCamera;
     }
 
     public Camera GetCamera()
@@ -38,15 +37,19 @@ public class Cutscene : Node
     
     public void SetCameraParent(Node newParent)
     {
-        var wasCameraEmpty = true;
+        SpatialCache cutsceneCameraCache;
 
         if (cutsceneCamera == null)
         {
             Init();
+            cutsceneCameraCache = new SpatialCache
+            (
+                GetPlayerCamera().GlobalTranslation, 
+                GetPlayerCamera().GlobalRotation
+            );
         }
         else
         {
-            wasCameraEmpty = false;
             cutsceneCameraCache = new SpatialCache
             (
                 cutsceneCamera.GlobalTranslation, 
@@ -62,17 +65,8 @@ public class Cutscene : Node
         if (newParent != null) newParent.AddChild(cutsceneCamera);
         else AddChild(cutsceneCamera);
 
-        if (wasCameraEmpty)
-        {
-            cutsceneCamera.GlobalTranslation = playerCameraCache.Pos;
-            cutsceneCamera.GlobalRotation = playerCameraCache.Rot;
-        }
-        else
-        {
-            cutsceneCamera.GlobalTranslation = cutsceneCameraCache.Pos;
-            cutsceneCamera.GlobalRotation = cutsceneCameraCache.Rot;
-            cutsceneCameraCache = null;
-        }
+        cutsceneCamera.GlobalTranslation = cutsceneCameraCache.Pos;
+        cutsceneCamera.GlobalRotation = cutsceneCameraCache.Rot;
     }
 
     public void AddQueue(CinematicTrigger trigger)
@@ -106,13 +100,11 @@ public class Cutscene : Node
         
         cutsceneCamera.QueueFree();
         cutsceneCamera = null;
-        skipTrigger = null;
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
         player.Camera.isUpdating = true;
         player.MayRotateHead = true;
         player.SetMayMove(true);
-        playerCameraCache = null;
     }
 
     private void Init()
@@ -136,14 +128,6 @@ public class Cutscene : Node
         cutsceneCamera.Current = true;
         
         wasThirdView = player.ThirdView;
-        var playerCamera = player.RotationHelperThird.GetCamera();
-        
-        playerCameraCache = new SpatialCache
-        (
-            playerCamera.GlobalTranslation, 
-            playerCamera.GlobalRotation
-        );
-        
         player.SetMayMove(false);
         player.MayRotateHead = false;
         player.Camera.isUpdating = false;
@@ -159,7 +143,10 @@ public class Cutscene : Node
         }
 
         area = tempArea;
-        AddChild(area);
+
+        var headBone = player.Body.GetNode<BoneAttachment>("Armature/Skeleton/BoneAttachment");
+        headBone.AddChild(area);
+        
         area.GlobalTranslation = player.RotationHelperThird.firstCamera.GlobalTranslation;
         area.Connect("body_exited", this, nameof(ShowPlayerHead));
         area.Connect("body_entered", this, nameof(HidePlayerHead));
@@ -201,8 +188,6 @@ public class Cutscene : Node
             
         subtitles.Skip();
         skipTrigger?._on_activate_trigger();
-        
-        if (cutsceneCamera == null) return; 
 
         await Global.Get().ToTimer(0.05f);
         

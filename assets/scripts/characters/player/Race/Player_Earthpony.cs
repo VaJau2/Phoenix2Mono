@@ -18,7 +18,7 @@ public class Player_Earthpony : Player
         SetStartHealth(200);
     }
 
-    public override void UpdateGoForward() 
+    protected override void UpdateGoForward() 
     {
         if (!IsCrouching && Input.IsActionPressed("ui_shift")) 
         {
@@ -35,16 +35,14 @@ public class Player_Earthpony : Player
         base.TakeDamage(damager, damage, shapeID);
     }
 
-    public override void UpdateStand()
+    protected override void UpdateStand()
     {
         IsRunning = false;
     }
 
-    public override int GetSpeed()
+    public override float GetSpeed()
     {
-        if (IsRunning) {
-            return BaseSpeed * 2;
-        } 
+        if (IsRunning) return BaseSpeed * 3;
         return base.GetSpeed();
     }
 
@@ -55,7 +53,7 @@ public class Player_Earthpony : Player
 
     private bool IsDashKeyPressed => (Velocity.Length() > 0.5f && Input.IsActionJustPressed("dash") && dashCooldown <= 0);
 
-    public override void Crouch()
+    protected override void Crouch()
     {
         bool dash = IsDashKeyPressed;
 

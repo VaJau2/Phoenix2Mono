@@ -8,10 +8,10 @@ public class ReturnCinematic : AbstractMoveCinematic
             return;
         }
         
-        var playerCameraCache = cutscene.GetPlayerCameraData();
-        cameraAngleRad = playerCameraCache.Rot;
+        var playerCamera = cutscene.GetPlayerCamera();
+        cameraAngleRad = playerCamera.GlobalRotation;
         
-        var playerLocalPos = playerCameraCache.Pos - GlobalTranslation;
+        var playerLocalPos = playerCamera.GlobalTranslation - GlobalTranslation;
         Curve.AddPoint(playerLocalPos);
         
         base.Enable();

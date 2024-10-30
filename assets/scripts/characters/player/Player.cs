@@ -269,7 +269,7 @@ public class Player : Character
         return Velocity.Length();
     }
 
-    public override int GetSpeed()
+    public override float GetSpeed()
     {
         if (IsCrouching)
         {
@@ -352,11 +352,11 @@ public class Player : Character
     }
 
     //для земнопня шоб бегал
-    public virtual void UpdateGoForward() {}
+    protected virtual void UpdateGoForward() {}
 
-    public virtual void UpdateStand() {}
+    protected virtual void UpdateStand() {}
 
-    public virtual void Crouch()
+    protected virtual void Crouch()
     {
         if (Input.IsActionJustPressed("crouch"))
         {
@@ -367,7 +367,7 @@ public class Player : Character
         }
     }
 
-    public virtual void Jump()
+    protected virtual void Jump()
     {
         if (Input.IsActionJustPressed("jump"))
         {
@@ -384,7 +384,7 @@ public class Player : Character
         }
     }
 
-    public virtual void Fly() {}
+    protected virtual void Fly() {}
 
     private void UpdateCameraPos()
     {
@@ -409,7 +409,7 @@ public class Player : Character
         }
     }
 
-    protected void ProcessInput(float delta)
+    private void ProcessInput(float delta)
     {
         dir = new Vector3();
         Vector2 inputMovementVector = new Vector2();
@@ -490,9 +490,9 @@ public class Player : Character
         }
     }
 
-    float GetTempShake(float delta)
+    private float GetTempShake(float delta)
     {
-        float tempShake = shakingSpeed;
+        var tempShake = shakingSpeed;
 
         if (!shakeUp)
         {
@@ -512,12 +512,12 @@ public class Player : Character
         return tempShake;
     }
 
-    public virtual float GetGravitySpeed(float tempShake, float delta)
+    protected virtual float GetGravitySpeed(float tempShake, float delta)
     {
         return Velocity.y + (GRAVITY * delta + tempShake);
     }
 
-    public virtual float GetDeacceleration()
+    protected virtual float GetDeacceleration()
     {
         return DEACCCEL;
     }
@@ -584,15 +584,16 @@ public class Player : Character
         }
     }
 
-    public virtual void OnCameraRotatingX(float speedX) {}
+    protected virtual void OnCameraRotatingX(float speedX) {}
 
-    protected void RotateCamera(InputEvent @event)
+    private void RotateCamera(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured && MayRotateHead)
+        if (@event is InputEventMouseMotion mouseEvent 
+            && Input.MouseMode == Input.MouseModeEnum.Captured 
+            && MayRotateHead)
         {
             oldRot = RotationHelper.RotationDegrees;
 
-            var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
             RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
             ClumpCameraRotation();
@@ -654,10 +655,12 @@ public class Player : Character
 
     public override void _Ready()
     {
+        base._Ready();
         global.player = this;
         Inventory = new PlayerInventory(this);
         Radiation = new PlayerRadiation(this);
         DeathManager = GetNode<PlayerDeathManager>("deathManager");
+        MovingController.SetProcess(false);
         AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
         BaseSpeed = 15;
@@ -707,7 +710,10 @@ public class Player : Character
                 HandleImpulse();
             }
 
-            ProcessMovement(delta);
+            if (!MovingController.IsProcessing()) // проверка активности CutsceneMoving
+            {
+                ProcessMovement(delta);
+            }
         }
 
         if (Health < 0 || !MayMove)

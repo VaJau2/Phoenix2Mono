@@ -157,7 +157,7 @@ public class Player_Unicorn : Player
         return TELEPORT_MIN_COST + TELEPORT_COST * ManaDelta * (tempDistance / TELEPORT_DISTANCE);
     }
 
-    public override async void UpdateStand()
+    protected override async void UpdateStand()
     {
         if (!startTeleporting) return;
         OnStairs = false;
@@ -181,7 +181,7 @@ public class Player_Unicorn : Player
         SetMagicEmit(false);
     }
 
-    public override void Jump()
+    protected override void Jump()
     {
         base.Jump();
 

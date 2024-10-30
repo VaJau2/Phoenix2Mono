@@ -8,13 +8,14 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcAudio.cs" type="Script" id=7]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcCovers.cs" type="Script" id=8]
-[ext_resource path="res://assets/scripts/characters/NPC/Components/Moving/NavigationMovingController.cs" type="Script" id=9]
+[ext_resource path="res://assets/scripts/characters/Moving/NavigationMovingController.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/characters/NPC/NpcState/StateMachine.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/Bodies/MrHandyBody.cs" type="Script" id=11]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcInteraction.cs" type="Script" id=12]
 [ext_resource path="res://assets/audio/guns/result/mrHandy_break.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/audio/guns/result/mrHandy_break-2.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcSkeleton.cs" type="Script" id=15]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.854822, 2.19689, 0.886898 )

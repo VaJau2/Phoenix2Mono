@@ -104,7 +104,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                npc[i].Connect(nameof(NPC.IsCame), this, nameof(AfterNpcCameToPoint), [i]);
+                npc[i].Connect(nameof(Character.IsCame), this, nameof(AfterNpcCameToPoint), [i]);
                 connectedEvents.Add(i);
             }
 
@@ -141,7 +141,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
 
         if (connectedEvents.Contains(i))
         {
-            npc[i].Disconnect(nameof(NPC.IsCame), this, nameof(AfterNpcCameToPoint));
+            npc[i].Disconnect(nameof(Character.IsCame), this, nameof(AfterNpcCameToPoint));
             connectedEvents.Remove(i);
         }
     }
@@ -189,7 +189,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             foreach (var connectedId in connectedEvents)
             {
                 npc[connectedId].Connect(
-                    nameof(NPC.IsCame),
+                    nameof(Character.IsCame),
                     this,
                     nameof(AfterNpcCameToPoint),
                     [connectedId]

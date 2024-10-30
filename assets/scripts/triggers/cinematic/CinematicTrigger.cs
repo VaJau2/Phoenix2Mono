@@ -15,9 +15,9 @@ public class CinematicTrigger : ActivateOtherTrigger
     
     private Cutscene cutscene;
     
-    
     public override void _Ready()
     {
+        base._Ready();
         cutscene = GetNode<Cutscene>("../");
         
         InitCinematic<ReturnCinematic>(returnPath);
@@ -50,6 +50,12 @@ public class CinematicTrigger : ActivateOtherTrigger
         cutscene.AddQueue(this);
     }
 
+    public override void SetActive(bool value)
+    {
+        base.SetActive(value);
+        if (IsActive) _on_activate_trigger();
+    }
+
     public void StartCinematics()
     {
         if (!IsActive) return;
@@ -61,6 +67,8 @@ public class CinematicTrigger : ActivateOtherTrigger
             cinematic.Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
             cinematic.Enable();
         }
+        
+        base._on_activate_trigger();
     }
 
     private T InitCinematic<T>(NodePath path) where T : class

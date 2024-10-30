@@ -61,7 +61,7 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
     {
         step = 1;
         npc.SetNewStartPos(door.GlobalTransform.origin);
-        await ToSignal(npc, nameof(NPC.IsCame));
+        await ToSignal(npc, nameof(Character.IsCame));
         if (npc.GetState() == SetStateEnum.Attack) return;
 
         step = 2;
