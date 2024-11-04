@@ -14,6 +14,25 @@
       "value": "testPlayerMove"
     }
   },
+
+  "testPlayerLook": {
+    "phrase1": {
+      "class": "ActivateCinematic",
+      "key": "TestPlayerMove",
+      "value": "lookAtTarget"
+    },
+    "phrase2": {
+      "speakerCode": "test",
+      "text": "Ого, ты и смотреть на указаный объект можешь?",
+      "class": "ActivateCinematic",
+      "key": "TestPlayerMove",
+      "value": "returnToPlayer"
+    },
+    "phrase3": {
+      "class": "ChangeSubtitlesCode",
+      "value": "testPlayerMove"
+    }
+  },
   
   "testPhrase": {
     "phrase1": {

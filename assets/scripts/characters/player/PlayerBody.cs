@@ -58,6 +58,7 @@ public class PlayerBody : Spatial
     }
 
     private bool IsWalking => player.Velocity.Length() > 1f;
+    private bool mayUpdateHeadRotation = true;
 
     private bool playerMakingShy
     {
@@ -101,6 +102,11 @@ public class PlayerBody : Spatial
 
             return false;
         }
+    }
+
+    public void SetUpdateHeadRotation(bool value)
+    {
+        mayUpdateHeadRotation = value;
     }
 
     private void updateHeadRotation(float delta)
@@ -402,7 +408,7 @@ public class PlayerBody : Spatial
     {
         if (player.Health > 0)
         {
-            updateHeadRotation(delta);
+            if (mayUpdateHeadRotation) updateHeadRotation(delta);
 
             //update smiling
             if (bodyRot > 130 || bodyRot < -105)

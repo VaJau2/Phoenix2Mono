@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=1]
 [ext_resource path="res://assets/scripts/background/CoversManager.cs" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/scripts/triggers/MovePlayerTrigger.cs" type="Script" id=15]
 [ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=16]
 [ext_resource path="res://objects/testing/Testing.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/scripts/triggers/SubtitlesTrigger.cs" type="Script" id=18]
+[ext_resource path="res://assets/scripts/triggers/ChangePlayerLookTrigger.cs" type="Script" id=19]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -230,29 +232,43 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464
 
 [node name="Area" type="Area" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0"]
 script = ExtResource( 16 )
-IsActive = false
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("../../../../returnToPlayer") ]
+otherTriggerPaths = [ NodePath("../../../../continueSpeech") ]
 disactiveTriggerPaths = [ NodePath(".") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 17 )
 
-[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1"]
+[node name="continueSpeech" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1"]
+script = ExtResource( 18 )
+DeleteAfterTrigger = false
+code = "testPlayerLook"
+npcPath = NodePath("../../../npc/test")
+
+[node name="lookAtTarget" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
+script = ExtResource( 19 )
+DeleteAfterTrigger = false
+targetPath = NodePath("Spatial")
+
+[node name="Spatial" type="Spatial" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718 )
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="3"]
 script = ExtResource( 1 )
 DeleteAfterTrigger = false
+disactiveTriggerPaths = [ NodePath("../lookAtTarget") ]
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
 
 [node name="ReturnToPlayer" parent="Scene/cutscenes/TestPlayerMove/returnToPlayer" index="0" instance=ExtResource( 14 )]
 
-[node name="skip" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
+[node name="skip" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="4"]
 script = ExtResource( 5 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("MovePlayer") ]
-disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area") ]
+disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area"), NodePath("../lookAtTarget") ]
 npcPath = NodePath("../../../npc/test")
 newSubtitlesCode = "testPlayerMove"
 

@@ -183,6 +183,7 @@ public class Cutscene : Node
                 triggerQueue.RemoveRange(1, triggerQueue.Count - 1);
             }
         
+            await Global.Get().ToTimer(0.05f);
             triggerQueue[0].Skip();
         }
             
@@ -191,6 +192,6 @@ public class Cutscene : Node
 
         await Global.Get().ToTimer(0.05f);
         
-        ReturnPlayerCamera();
+        if (cutsceneCamera != null) ReturnPlayerCamera();
     }
 }
