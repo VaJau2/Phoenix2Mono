@@ -65,6 +65,7 @@ public class Skip : Control
     {
         isActive = value;
         SetProcess(value);
+        if (!isActive) Show(false);
     }
     
     private void Show(bool value)
