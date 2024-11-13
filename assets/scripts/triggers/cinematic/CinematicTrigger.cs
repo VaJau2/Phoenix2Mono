@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Godot.Collections;
 
 public class CinematicTrigger : ActivateOtherTrigger
 {
@@ -12,6 +15,7 @@ public class CinematicTrigger : ActivateOtherTrigger
     
     private readonly List<PathBase> cinematicList = [];
     private int finishedCinematics;
+    private bool isCinematicsEnabled;
     
     private Cutscene cutscene;
     
@@ -68,6 +72,7 @@ public class CinematicTrigger : ActivateOtherTrigger
             cinematic.Enable();
         }
         
+        isCinematicsEnabled = true;
         base._on_activate_trigger();
     }
 
@@ -93,9 +98,48 @@ public class CinematicTrigger : ActivateOtherTrigger
         cinematic.Disconnect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
         finishedCinematics++;
 
-        if (finishedCinematics == cinematicList.Count)
+        if (finishedCinematics != cinematicList.Count) return;
+        
+        isCinematicsEnabled = false;
+        cutscene.OnTriggerFinished();
+        DeleteTrigger();
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["isCinematicsEnabled"] = isCinematicsEnabled;
+        saveData["finishedCinematics"] = finishedCinematics;
+
+        for (var i = 0; i < cinematicList.Count; i++)
         {
-            cutscene.OnTriggerFinished();
+            saveData[$"isCinematic{i}Enabled"] = cinematicList[i].IsPhysicsProcessing();
         }
+        
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        
+        if (!data.Contains("isCinematicsEnabled")) return;
+        isCinematicsEnabled = Convert.ToBoolean(data["isCinematicsEnabled"]);
+        
+        if (!isCinematicsEnabled) return;
+        
+        for (var i = 0; i < cinematicList.Count; i++)
+        {
+            if (!Convert.ToBoolean(data[$"isCinematic{i}Enabled"])) continue;
+            cinematicList[i].Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
+        }
+        
+        finishedCinematics = Convert.ToInt32(data["finishedCinematics"]);
+    }
+
+    protected override void DeleteTrigger()
+    {
+        if (finishedCinematics != cinematicList.Count) return;
+        base.DeleteTrigger();
     }
 }

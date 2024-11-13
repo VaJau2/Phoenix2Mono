@@ -208,28 +208,27 @@ public class Subtitles : Label, ISavable
 
     private void ReadPhraseScript()
     {
-        if (tempPhraseData.Contains("class"))
+        if (!tempPhraseData.Contains("class")) return;
+        
+        var scriptName = tempPhraseData["class"].ToString();
+        var scriptType = Type.GetType("DialogueScripts." + scriptName);
+        var parameter = "";
+        var key = "";
+            
+        if (scriptType == null) return;
+            
+        if (tempPhraseData.Contains("value"))
         {
-            var scriptName = tempPhraseData["class"].ToString();
-            var scriptType = Type.GetType("DialogueScripts." + scriptName);
-            var parameter = "";
-            var key = "";
-            
-            if (scriptType == null) return;
-            
-            if (tempPhraseData.Contains("value"))
-            {
-                parameter = tempPhraseData["value"].ToString();
-            }
-            
-            if (tempPhraseData.Contains("key"))
-            {
-                key = tempPhraseData["key"].ToString();
-            }
-            
-            var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
-            scriptObj?.initiate(this, parameter, key);
+            parameter = tempPhraseData["value"].ToString();
         }
+            
+        if (tempPhraseData.Contains("key"))
+        {
+            key = tempPhraseData["key"].ToString();
+        }
+            
+        var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
+        scriptObj?.initiate(this, parameter, key);
     }
 
     private void ClearSubtitles()

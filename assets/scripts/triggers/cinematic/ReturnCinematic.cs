@@ -1,3 +1,6 @@
+using Godot;
+using Godot.Collections;
+
 public class ReturnCinematic : AbstractMoveCinematic
 {
     public override void Enable()
@@ -31,5 +34,11 @@ public class ReturnCinematic : AbstractMoveCinematic
         Curve.RemovePoint(Curve.GetPointCount() - 1);
         
         EmitSignal(nameof(Finished), this);
+    }
+
+    public override async void LoadData(Dictionary data)
+    {
+        await ToSignal(GetTree(), "idle_frame");
+        base.LoadData(data);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using Godot;
+using Godot.Collections;
 
 public class MovePlayerTrigger : ActivateOtherTrigger
 {
@@ -59,6 +61,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
 
     private void StartMoving()
     {
+        if (IsProcessing()) return;
         if (player == null) return;
         
         if (isTeleport)
@@ -101,5 +104,30 @@ public class MovePlayerTrigger : ActivateOtherTrigger
         }
         
         player.BaseSpeed = speedCache;
+        DeleteTrigger();
+    }
+
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["isProcessing"] = IsProcessing();
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+
+        if (!data.Contains("isProcessing")) return;
+        
+        var isProcessing = Convert.ToBoolean(data["isProcessing"]);
+        SetActive(isProcessing);
+    }
+
+    protected override void DeleteTrigger()
+    {
+        if (player.GlobalTranslation != point.GlobalTranslation) return;
+        if (player.GlobalRotation != point.GlobalRotation) return;
+        base.DeleteTrigger();
     }
 }

@@ -28,6 +28,11 @@ public class TriggerBase : Node, ISavable, IActivated
     //событие активации триггера
     public virtual void _on_activate_trigger()
     {
+        DeleteTrigger();
+    }
+
+    protected virtual void DeleteTrigger()
+    {
         if (!DeleteAfterTrigger) return;
         Global.AddDeletedObject(Name);
         QueueFree();

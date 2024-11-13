@@ -1,9 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Godot.Collections;
 
-public class Cutscene : Node
+public class Cutscene : Node, ISavable
 {
+    [Export] private bool DeleteAfterFinished;
+    
     private Camera cutsceneCamera;
     private Area area;
     
@@ -37,24 +40,19 @@ public class Cutscene : Node
     
     public void SetCameraParent(Node newParent)
     {
-        SpatialCache cutsceneCameraCache;
+        Vector3 cachePos;
+        Vector3 cacheRot;
 
         if (cutsceneCamera == null)
         {
             Init();
-            cutsceneCameraCache = new SpatialCache
-            (
-                GetPlayerCamera().GlobalTranslation, 
-                GetPlayerCamera().GlobalRotation
-            );
+            cachePos = GetPlayerCamera().GlobalTranslation;
+            cacheRot = GetPlayerCamera().GlobalRotation;
         }
         else
         {
-            cutsceneCameraCache = new SpatialCache
-            (
-                cutsceneCamera.GlobalTranslation, 
-                cutsceneCamera.GlobalRotation
-            );
+            cachePos = cutsceneCamera.GlobalTranslation;
+            cacheRot = cutsceneCamera.GlobalRotation;
         }
 
         if (cutsceneCamera.GetParent() != null)
@@ -65,8 +63,8 @@ public class Cutscene : Node
         if (newParent != null) newParent.AddChild(cutsceneCamera);
         else AddChild(cutsceneCamera);
 
-        cutsceneCamera.GlobalTranslation = cutsceneCameraCache.Pos;
-        cutsceneCamera.GlobalRotation = cutsceneCameraCache.Rot;
+        cutsceneCamera.GlobalTranslation = cachePos;
+        cutsceneCamera.GlobalRotation = cacheRot;
     }
 
     public void AddQueue(CinematicTrigger trigger)
@@ -98,13 +96,17 @@ public class Cutscene : Node
         area.Disconnect("body_entered", this, nameof(HidePlayerHead));
         area.QueueFree();
         
-        cutsceneCamera.QueueFree();
-        cutsceneCamera = null;
-        
         player.RotationHelperThird.SetThirdView(wasThirdView);
         player.Camera.isUpdating = true;
         player.MayRotateHead = true;
         player.SetMayMove(true);
+        
+        cutsceneCamera.QueueFree();
+        cutsceneCamera = null;
+
+        if (!DeleteAfterFinished) return;
+        Global.AddDeletedObject(Name);
+        QueueFree();
     }
 
     private void Init()
@@ -193,5 +195,61 @@ public class Cutscene : Node
         await Global.Get().ToTimer(0.05f);
         
         if (cutsceneCamera != null) ReturnPlayerCamera();
+    }
+
+    public Dictionary GetSaveData()
+    {
+        var saveData = new Dictionary();
+        
+        if (cutsceneCamera == null) return saveData;
+
+        saveData["wasThirdView"] = wasThirdView;
+        saveData["thirdView"] = player.ThirdView;
+        saveData["cameraParentPath"] = cutsceneCamera.GetParent().GetPath();
+        saveData["cameraPos"] = cutsceneCamera.GlobalTranslation;
+        saveData["cameraRot"] = cutsceneCamera.GlobalRotation;
+        saveData["queueSize"] = triggerQueue.Count;
+        
+        if (triggerQueue.Count == 0) return saveData;
+
+        for (var i = 0; i < triggerQueue.Count; i++)
+        {
+            saveData[$"trigger{i}"] = triggerQueue[i].GetPath();
+        }
+
+        return saveData;
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        if (!data.Contains("wasThirdView")) return;
+        
+        var cameraParentPath = Convert.ToString(data["cameraParentPath"]);
+        var cameraParent = GetNode(cameraParentPath);
+        
+        Init();
+        if (cameraParent == null) AddChild(cutsceneCamera);
+        else cameraParent.AddChild(cutsceneCamera);
+
+        cutsceneCamera.GlobalTranslation = data["cameraPos"].ToString().ParseToVector3();
+        cutsceneCamera.GlobalRotation = data["cameraRot"].ToString().ParseToVector3();
+
+        wasThirdView = Convert.ToBoolean(data["wasThirdView"]);
+        if (Convert.ToBoolean(data["thirdView"]))
+        {
+            player.RotationHelperThird.SetThirdView(true);
+            player.RotationHelperThird.thirdCamera.Current = false;
+            cutsceneCamera.Current = true;
+        }
+        
+        var queueSize = Convert.ToInt32(data["queueSize"]);
+        if (queueSize == 0) return;
+
+        for (var i = 0; i < queueSize; i++)
+        {
+            var path = data[$"trigger{i}"].ToString();
+            var trigger = GetNode<CinematicTrigger>(path);
+            triggerQueue.Add(trigger);
+        }
     }
 }

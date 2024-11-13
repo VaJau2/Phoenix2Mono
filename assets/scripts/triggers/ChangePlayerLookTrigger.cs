@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Godot.Collections;
 
 public class ChangePlayerLookTrigger : ActivateOtherTrigger
 { 
@@ -28,21 +30,15 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
     
     public override void _on_activate_trigger()
     {
-        player?.Body.SetUpdateHeadRotation(false);
-        SetProcess(true);
+        SetActive(true);
         base._on_activate_trigger();
     }
 
     public override void SetActive(bool value)
     {
         base.SetActive(value);
-
-        if (IsActive) _on_activate_trigger();
-        else
-        {
-            player?.Body.SetUpdateHeadRotation(true);
-            SetProcess(false);
-        }
+        SetProcess(value);
+        if (!value) DeleteTrigger();
     }
     
     private Vector2 GetHeadRotationToTarget()
@@ -81,5 +77,30 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
         {
             value = to;
         }
+    }
+    
+    public override Dictionary GetSaveData()
+    {
+        var saveData = base.GetSaveData();
+        saveData["isProcessing"] = IsProcessing();
+        return saveData;
+    }
+
+    public override void LoadData(Dictionary data)
+    {
+        base.LoadData(data);
+        
+        if (!data.Contains("isProcessing")) return;
+        
+        if (Convert.ToBoolean(data["isProcessing"]))
+        {
+            SetActive(true);
+        }
+    }
+
+    protected override void DeleteTrigger()
+    {
+        if (IsProcessing()) return;
+        base.DeleteTrigger();
     }
 }

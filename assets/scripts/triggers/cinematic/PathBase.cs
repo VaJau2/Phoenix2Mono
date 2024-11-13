@@ -1,3 +1,4 @@
+using System;
 using Godot.Collections;
 using Godot;
 
@@ -53,7 +54,7 @@ public class PathBase : Path, ISavable
     public virtual void LoadData(Dictionary data)
     {
         if (!data.Contains("isProcess")) return;
-        if (!(bool)data["isProcess"]) return;
+        if (!Convert.ToBoolean(data["isProcess"])) return;
         
         Enable();
         pathFollow.UnitOffset = (float)data["unitOffset"];

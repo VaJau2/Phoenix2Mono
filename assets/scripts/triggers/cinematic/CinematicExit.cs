@@ -167,12 +167,8 @@ public class CinematicExit : Area, ISavable
         
         return new Dictionary
         {
-            {"exitPointX", exitPoint.x},
-            {"exitPointY", exitPoint.y},
-            {"exitPointZ", exitPoint.z},
-            {"cameraPosX", cinematicCamera.GlobalTransform.origin.x},
-            {"cameraPosY", cinematicCamera.GlobalTransform.origin.y},
-            {"cameraPosZ", cinematicCamera.GlobalTransform.origin.z}
+            {"exitPoint", exitPoint},
+            {"cameraPos", cinematicCamera.GlobalTranslation}
         };
     }
 
@@ -183,19 +179,10 @@ public class CinematicExit : Area, ISavable
         player = GetNode<Player>("/root/Main/Scene/Player");
         player.RotationHelperThird.SetThirdView(true);
         player.RotationHelperThird.MayChange = false;
-        
-        exitPoint = new Vector3(
-            Convert.ToSingle(data["exitPointX"]), 
-            Convert.ToSingle(data["exitPointY"]), 
-            Convert.ToSingle(data["exitPointZ"])
-        );
 
-        var cameraPos = new Vector3(
-            Convert.ToSingle(data["cameraPosX"]), 
-            Convert.ToSingle(data["cameraPosY"]), 
-            Convert.ToSingle(data["cameraPosZ"])
-        );
-        
+        exitPoint = data["exitPoint"].ToString().ParseToVector3();
+
+        var cameraPos = data["cameraPos"].ToString().ParseToVector3();
         LoadCamera(cameraPos);
     }
 
