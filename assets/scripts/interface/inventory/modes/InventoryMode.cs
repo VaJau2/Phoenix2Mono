@@ -398,7 +398,7 @@ public abstract class InventoryMode
     public virtual void OpenMenu()
     {
         isOpening = true;
-        player.SetMayMove(false);
+        player.SetTotalMayMove(false);
 
         LoadLabels();
         moneyCount.Text = inventory.money.ToString();
@@ -420,7 +420,7 @@ public abstract class InventoryMode
         
         CheckTempIcon();
         
-        player.SetMayMove(true);
+        player.SetTotalMayMove(true);
         
         anim.Play("Close");
     }

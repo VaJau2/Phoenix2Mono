@@ -14,12 +14,14 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
     [Export] private AudioStreamSample openSound;
     [Export] private AudioStreamSample closedSound;
 
-    Room oldRoom;
-    Room newRoom;
+    private Room oldRoom;
+    private Room newRoom;
 
     public DoorTeleport otherDoor { get; private set; }
-    AudioStreamPlayer3D audi;
-    Spatial newPlace, oldLocation, newLocation;
+    private AudioStreamPlayer3D audi;
+    private Spatial newPlace;
+    private Spatial oldLocation;
+    private Spatial newLocation;
 
     private static Player player => Global.Get().player;
     private CheckFall checkFall;
@@ -30,13 +32,20 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
 
     public override void _Ready()
     {
-        oldRoom = GetNodeOrNull<Room>(oldLocationPath);
-        newRoom = GetNodeOrNull<Room>(newLocationPath);
+        if (oldLocationPath != null)
+        {
+            oldLocation = GetNode<Spatial>(oldLocationPath);
+            oldRoom = GetNodeOrNull<Room>(oldLocationPath);
+        }
 
+        if (newLocationPath != null)
+        {
+            newLocation = GetNode<Spatial>(newLocationPath);
+            newRoom = GetNodeOrNull<Room>(newLocationPath);
+        }
+        
         audi = GetNode<AudioStreamPlayer3D>("audi");
         newPlace = GetNode<Spatial>(newPlacePath);
-        oldLocation = GetNode<Spatial>(oldLocationPath);
-        newLocation = GetNode<Spatial>(newLocationPath);
         otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
                 
@@ -45,7 +54,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
     
     public void Interact(PlayerCamera interactor)
     {
-        Open(player, true);
+        Open(player);
     }
 
     public void SoundOpening()
@@ -63,8 +72,10 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
         }
     }
 
-    public void Open(Spatial character, bool makeVisible, bool soundOpening = true)
+    public void Open(Spatial character, bool soundOpening = true)
     {
+        player.Camera.HideHint();
+        
         if (Closed)
         {
             player.Camera.closedTimer = 1;
@@ -89,17 +100,19 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
             } 
         }
 
-        if (makeVisible)
+        if (oldLocation != null)
         {
             oldLocation.Visible = false;
+        }
+
+        if (newLocation != null)
+        {
             newLocation.Visible = true;
         }
 
         if (checkFall == null) return;
         checkFall.tempDoorTeleport = this;
         checkFall.inside = Inside;
-
-        player.Camera.HideHint();
 
         oldRoom?.Exit();
         newRoom?.Enter();

@@ -7,7 +7,7 @@ public class NpcSaving(NPC npc)
 {
     private readonly string[] skipSignals = {"tree_entered", "tree_exiting"};
     
-    public async void LoadData(Dictionary data)
+    public void LoadData(Dictionary data)
     {
         var tempVictimName = data["tempVictim"].ToString();
         
@@ -22,7 +22,8 @@ public class NpcSaving(NPC npc)
         npc.IsImmortal = Convert.ToBoolean(data["isImmortal"]);
         npc.myStartPos = data["myStartPos"].ToString().ParseToVector3();
         npc.myStartRot = data["myStartRot"].ToString().ParseToVector3();
-        npc.dialogueCode = data["dialogueCode"].ToString();
+        npc.dialogueCode = data["dialogueCode"]?.ToString();
+        npc.subtitlesCode = data["subtitlesCode"]?.ToString();
         npc.ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
         
         npc.ChestHandler.LoadData(data);
@@ -63,6 +64,11 @@ public class NpcSaving(NPC npc)
         
         if (!data.Contains("followTarget") || data["followTarget"] == null) return;
         
+        LoadFollowTarget(data);
+    }
+
+    private async void LoadFollowTarget(Dictionary data)
+    {
         await npc.ToSignal(npc.GetTree(), "idle_frame");
         var newFollowTarget = npc.GetNode<Character>(data["followTarget"].ToString());
         npc.SetFollowTarget(newFollowTarget);
@@ -79,6 +85,7 @@ public class NpcSaving(NPC npc)
         saveData["myStartPos"] = npc.myStartPos;
         saveData["myStartRot"] = npc.myStartRot;
         saveData["dialogueCode"] = npc.dialogueCode;
+        saveData["subtitlesCode"] = npc.subtitlesCode;
         saveData["showObjects"] = npc.objectsChangeActive;
         saveData["ignoreDamager"] = npc.ignoreDamager;
         saveData["followTarget"] = npc.followTarget?.GetPath();

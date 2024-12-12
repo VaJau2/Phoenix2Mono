@@ -34,7 +34,7 @@ public class CheckFall : Node
         
         if (inside && tempDoorTeleport != null)
         {
-            tempDoorTeleport.otherDoor.Open(player, true);
+            tempDoorTeleport.otherDoor.Open(player);
         }
     }
 }

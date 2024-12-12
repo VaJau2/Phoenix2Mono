@@ -1,0 +1,82 @@
+{
+    "repeat":
+    {
+        "ventRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Повтори, пожалуйлуста, инструктаж по проникновению через вентиляцию."
+        },
+        "ventRepeat2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Попасть в неё возможно через засыпаный снегом тяжелобронированный люк.",
+            "next": "vent1"
+        },
+
+        "boxRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Ещё раз, как попасть в комплекс внутри ящика",
+            "next": "box1"
+        },
+
+        "runRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Напомни, я могу с активированным стелсбаком просто вбежать в комплекс?",
+            "next": "box1"
+        },
+
+
+        "keysRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Напомни, какие есть ключ-карты?",
+            "next": "keys1"
+        },
+
+
+        "freeRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Повтори из чего именно придётся освобожать заложников.",
+            "next": "free1"
+        },
+
+
+        "ventEscapeRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Повтори как выбираться из комплекса через вентиляцию."
+        },
+        "ventEscapeRepeat2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Сперва нужно будет провести заложников в ближайший кабинет с выходом в вентиляцию.",
+            "next": "ventEscape1"
+        },
+
+        "truckEscapeRepeat":
+        {
+            "speakerCode": "strikely",
+            "text": "Повтори как выбираться из комплекса с помощью грузовика."
+        },
+        "truckEscapeRepeat2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Сперва нужно будет добыть три формы и переодеться вместе с заложниками.",
+            "next": "truckEscape1"
+        },
+
+        "stealthEscape":
+        {
+            "speakerCode": "strikely",
+            "text": "Напомни, я могу ж просто выйти через парадный вход или двери гаража?"
+        },
+        "stealthEscape2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Если заложники уже выбрались через вентиляцию, а у тебя остался стелсбак — да."
+        }    
+    }
+}

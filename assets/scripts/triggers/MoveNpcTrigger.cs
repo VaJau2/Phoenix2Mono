@@ -163,7 +163,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         var saveData = base.GetSaveData();
         saveData["step"] = step;
         saveData["tempTimer"] = tempTimer;
-        saveData["connectedEvents"] = ArrayToString(connectedEvents);
+        saveData["connectedEvents"] = ConvertUtils.ArrayToString(connectedEvents);
         
         return saveData;
     }
@@ -179,7 +179,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         
         if (data.Contains("connectedEvents"))
         {
-            connectedEvents = StringToArray(data["connectedEvents"].ToString());
+            connectedEvents = ConvertUtils.StringToArray(data["connectedEvents"].ToString());
             
             if (connectedEvents.Count > 0)
             {
@@ -188,6 +188,14 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             
             foreach (var connectedId in connectedEvents)
             {
+                var isConnected = npc[connectedId].IsConnected(
+                    nameof(Character.IsCame),
+                    this,
+                    nameof(AfterNpcCameToPoint)
+                    );
+                
+                if (isConnected) continue;
+                
                 npc[connectedId].Connect(
                     nameof(Character.IsCame),
                     this,
@@ -210,38 +218,5 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         if (!IsActive) return;
         if (!(body is Player)) return;
         _on_activate_trigger();
-    }
-
-    private static string ArrayToString(Array<int> value)
-    {
-        if (value.Count <= 0) return "";
-        var eventsString = "";
-
-        for (var i = 0; i < value.Count; i++)
-        {
-            eventsString += value[i];
-            if (i < value.Count - 1)
-            {
-                eventsString += ",";
-            }
-        }
-            
-        return eventsString;
-    }
-
-    private static Array<int> StringToArray(string value)
-    {
-        if (string.IsNullOrEmpty(value)) return [];
-
-        var connect = value.Split(',');
-        
-        Array<int> result = [];
-
-        foreach (var item in connect)
-        {
-            result.Add(int.Parse(item));
-        }
-        
-        return result;
     }
 }

@@ -9,7 +9,7 @@ _data = {
 "tilts": PoolRealArray( 0 )
 }
 
-[node name="ReturnToPlayer" type="Path"]
+[node name="ReturnToPlayer" type="Path" groups=["savable"]]
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 speed = 0.2

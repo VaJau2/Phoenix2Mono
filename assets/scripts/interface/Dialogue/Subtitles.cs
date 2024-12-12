@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -18,6 +19,7 @@ using Array = Godot.Collections.Array;
 public class Subtitles : Label, ISavable
 {
     private const float VISIBLE_DISTANCE = 50;
+    private const int MAX_LINE_LENGTH = 50;
 
     private static Player Player => Global.Get().player;
 
@@ -42,6 +44,7 @@ public class Subtitles : Label, ISavable
     private Dictionary tempPhraseData;
     
     private string animatingText;
+    private string cleanAnimatingText;
     private float phraseDelay;
     private float symbolDelay;
     private float symbolTimer;
@@ -59,7 +62,7 @@ public class Subtitles : Label, ISavable
         MenuBase.LoadColorForChildren(this);
     }
     
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         if (!IsAnimatingText) return;
         
@@ -153,14 +156,20 @@ public class Subtitles : Label, ISavable
             tempSpeakerCode = tempPhraseData["speakerCode"].ToString();
             tempSpeakerLabel.Text = Global.LoadJsonFile(namesPath)[tempSpeakerCode].ToString();
             
-            animatingText = DialogueEffectsManager.GetTextWithEffects(tempPhraseData["text"].ToString(), tempSpeakerCode);
+            animatingText = DialogueEffectsManager.GetTextWithEffects(
+                tempPhraseData["text"].ToString(), 
+                tempSpeakerCode
+            );
             
-            symbolDelay = tempPhraseData.Contains("timer") 
-                ? Convert.ToSingle(tempPhraseData["timer"]) 
+            cleanAnimatingText = DialogueDelay.ClearDelaySymbols(animatingText);
+            Text += MakeSpacesString(cleanAnimatingText);
+            
+            symbolDelay = tempPhraseData.Contains("symbolDelay") 
+                ? Convert.ToSingle(tempPhraseData["symbolDelay"]) 
                 : DialogueDelay.DEFAULT_SYMBOL_DELAY; 
             
-            phraseDelay = tempPhraseData.Contains("delay") 
-                ? Convert.ToSingle(tempPhraseData["delay"]) 
+            phraseDelay = tempPhraseData.Contains("phraseDelay") 
+                ? Convert.ToSingle(tempPhraseData["phraseDelay"]) 
                 : DialogueDelay.DEFAULT_PHRASE_DELAY;
             
             IsAnimatingText = true;
@@ -180,9 +189,10 @@ public class Subtitles : Label, ISavable
 
         if (nextSymbol == DialogueDelay.DELAY_SYMBOL) return;
         
-        Text += nextSymbol.ToString();
+        AddStringToText(nextSymbol.ToString());
         dialogueAudio.UpdateDynamicPlaying(nextSymbol);
         animatingText = animatingText.Substring(1);
+        cleanAnimatingText = cleanAnimatingText.Substring(1);
     }
 
     private void FinishAnimatingText()
@@ -251,8 +261,28 @@ public class Subtitles : Label, ISavable
             return;
         }
 
+        if (Player == null) return;
         var distance = Player.GlobalTranslation.DistanceTo(Talker.GlobalTranslation);
         Visible = distance < VISIBLE_DISTANCE;
+    }
+    
+    private static string MakeSpacesString(string origin)
+    {
+        return origin.Aggregate(
+            "",
+            (current, originLetter) => current + (originLetter == '\n' ? '\n' : ' ')
+        );
+    }
+    
+    private void AddStringToText(string value)
+    {
+        var replacePos = Text.Length - cleanAnimatingText.Length;
+        
+        if (value == Text[replacePos].ToString()) return;
+        
+        Text = Text
+            .Remove(replacePos, value.Length)
+            .Insert(replacePos, value);
     }
 
     public Dictionary GetSaveData()

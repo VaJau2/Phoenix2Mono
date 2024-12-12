@@ -5,7 +5,7 @@ public class DialogueDelay
 {
     public const char DELAY_SYMBOL = '@';
     public const float DEFAULT_SYMBOL_DELAY = 0.03f;
-    public const float DEFAULT_PHRASE_DELAY = 0.9f;
+    public const float DEFAULT_PHRASE_DELAY = 1f;
     
     private const float DEFAULT_COMMA_DELAY = 0.25f;
     private const float DEFAULT_PERIOD_DELAY = 0.5f;
@@ -14,9 +14,7 @@ public class DialogueDelay
     {
         return phrase.Length switch
         {
-            <1 => phraseDelay,
-            
-            1 => DEFAULT_PHRASE_DELAY,
+            <=1 => phraseDelay,
             
             _ => phrase[0] switch
             {

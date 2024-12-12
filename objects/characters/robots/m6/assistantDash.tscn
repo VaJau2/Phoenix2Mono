@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://objects/characters/robots/mrGutsyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/characters/robots/mrHandyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/materials/characters/robots/m6/mrHandy-rainbow.tres" type="Material" id=5]
 [ext_resource path="res://assets/materials/characters/robots/m6/rainbow-mane.material" type="Material" id=6]
+
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {

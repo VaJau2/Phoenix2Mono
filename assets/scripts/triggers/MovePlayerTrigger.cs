@@ -73,9 +73,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
         {
             if (changeMayMove)
             {
-                player.SetMayMove(false);
-                player.MayRotateHead = false;
-                player.Camera.isUpdating = false;
+                player.SetTotalMayMove(false);
             }
             
             speedCache = player.BaseSpeed;
@@ -98,9 +96,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
 
         if (changeMayMove)
         {
-            player.SetMayMove(true);
-            player.MayRotateHead = true;
-            player.Camera.isUpdating = true;
+            player.SetTotalMayMove(true);
         }
         
         player.BaseSpeed = speedCache;

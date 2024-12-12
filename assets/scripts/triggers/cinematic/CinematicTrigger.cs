@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -9,6 +8,7 @@ public class CinematicTrigger : ActivateOtherTrigger
     [Export] private NodePath movePath;
     [Export] private NodePath rotatePath;
     [Export] private NodePath returnPath;
+    [Export] private float waitTime;
 
     private MoveCinematic moveCinematic;
     private RotateCinematic rotateCinematic;
@@ -17,11 +17,13 @@ public class CinematicTrigger : ActivateOtherTrigger
     private int finishedCinematics;
     private bool isCinematicsEnabled;
     
+    private float timer;
     private Cutscene cutscene;
     
     public override void _Ready()
     {
         base._Ready();
+        SetPhysicsProcess(false);
         cutscene = GetNode<Cutscene>("../");
         
         InitCinematic<ReturnCinematic>(returnPath);
@@ -33,19 +35,20 @@ public class CinematicTrigger : ActivateOtherTrigger
 
         if (moveCinematic != null && rotateCinematic != null)
         {
-            moveCinematic.Connect(
-                nameof(PathBase.Finished), 
-                rotateCinematic,
-                nameof(rotateCinematic.OnFinished)
-            );
+            rotateCinematic.SetWaiting(moveCinematic);
+        }
+    }
+    
+    public override void _PhysicsProcess(float delta)
+    {
+        if (timer > 0)
+        {
+            timer -= delta;
         }
         else
         {
-            rotateCinematic?.Connect(
-                nameof(PathBase.Finished), 
-                rotateCinematic, 
-                nameof(rotateCinematic.OnFinished)
-            );
+            SetPhysicsProcess(false);
+            FinishTrigger();
         }
     }
 
@@ -99,7 +102,19 @@ public class CinematicTrigger : ActivateOtherTrigger
         finishedCinematics++;
 
         if (finishedCinematics != cinematicList.Count) return;
-        
+
+        if (waitTime > 0)
+        {
+            timer = waitTime;
+            SetPhysicsProcess(true);
+            return;
+        }
+
+        FinishTrigger();
+    }
+
+    private void FinishTrigger()
+    {
         isCinematicsEnabled = false;
         cutscene.OnTriggerFinished();
         DeleteTrigger();

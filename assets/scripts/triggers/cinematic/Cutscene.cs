@@ -97,9 +97,7 @@ public class Cutscene : Node, ISavable
         area.QueueFree();
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
-        player.Camera.isUpdating = true;
-        player.MayRotateHead = true;
-        player.SetMayMove(true);
+        player.SetTotalMayMove(true);
         
         cutsceneCamera.QueueFree();
         cutsceneCamera = null;
@@ -130,9 +128,7 @@ public class Cutscene : Node, ISavable
         cutsceneCamera.Current = true;
         
         wasThirdView = player.ThirdView;
-        player.SetMayMove(false);
-        player.MayRotateHead = false;
-        player.Camera.isUpdating = false;
+        player.SetTotalMayMove(false);
     }
 
     private void InitHeadTrigger()

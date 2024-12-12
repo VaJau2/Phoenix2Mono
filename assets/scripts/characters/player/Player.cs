@@ -166,8 +166,7 @@ public class Player : Character
     public void SetTalking(bool value, NPC npc = null)
     {
         IsTalking = value;
-        SetMayMove(!value);
-        MayRotateHead = !value;
+        SetTotalMayMove(!value);
         DialogueCheck.SetNpcToTalk(npc);
 
         if (IsTalking)
@@ -345,12 +344,21 @@ public class Player : Character
         }
     }
 
+    //блокирует только передвижение
     public override void SetMayMove(bool value)
     {
         if (IsSitting && value) return;
         base.SetMayMove(value);
     }
 
+    //полная блокировка всего
+    public void SetTotalMayMove(bool value)
+    {
+        SetMayMove(value);
+        MayRotateHead = value;
+        Camera.SetUpdating(value);
+    }
+    
     //для земнопня шоб бегал
     protected virtual void UpdateGoForward() {}
 

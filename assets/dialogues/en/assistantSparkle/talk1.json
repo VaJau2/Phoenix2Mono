@@ -181,7 +181,7 @@
         {
           "key": "name",
           "op": "set",
-          "value": "sparkleMoveToBunker"
+          "value": "twilightMoveToMap"
         }
       ],
       "next": "T2(1.3)"

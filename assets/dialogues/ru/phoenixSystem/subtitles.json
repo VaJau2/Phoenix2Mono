@@ -3,7 +3,7 @@
     "back1": {
       "speakerCode": "phoenixSystem",
       "text": "С возвращением, пуся! Как прошла прогулка?",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
@@ -11,7 +11,7 @@
     "back2": {
       "speakerCode": "phoenixSystem",
       "text": "C возращением домой, милая! Нашла Бельгетса?",
-      "timer": 0.026
+      "symbolDelay": 0.026
     }
   },
 
@@ -19,7 +19,7 @@
     "back3": {
       "speakerCode": "phoenixSystem",
       "text": "Дом, милый дом. Ты видела грустную кобылку с синей коробкой? Или то был жеребец?",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
@@ -27,7 +27,7 @@
     "back4": {
       "speakerCode": "phoenixSystem",
       "text": "Добро пожаловать в самое уютное убежище в мире.",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
@@ -35,7 +35,7 @@
     "back5": {
       "speakerCode": "phoenixSystem",
       "text": "О, это ты! Принесла чего-нить хорошенького?",
-      "timer": 0.028
+      "symbolDelay": 0.028
     }
   },
 
@@ -50,7 +50,7 @@
     "back7": {
       "speakerCode": "phoenixSystem",
       "text": "Интересно, куда делись все остальные?",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
@@ -58,7 +58,7 @@
     "resurrection1": {
       "speakerCode": "phoenixSystem",
       "text": "Благодарю за использование экспериментальной системы воскрешения именуемой 'Феникс 2'!",
-      "timer": 0.025
+      "symbolDelay": 0.025
     },
     "resurrection2": {
       "speakerCode": "phoenixSystem",
@@ -70,7 +70,7 @@
     "cloneRoom1": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! Не хватает материалов для создания новой партии клонов.",
-      "timer": 0.025
+      "symbolDelay": 0.025
     },
     "cloneRoom2": {
       "speakerCode": "phoenixSystem",
@@ -79,7 +79,7 @@
     "cloneRoom3": {
       "speakerCode": "phoenixSystem",
       "text": "Если все они умрут, то и ты умрёшь окончательно!",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
@@ -122,7 +122,7 @@
     "kitchen": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! Запасы фуража на исходе. Питьевой фильтр неисправен.",
-      "timer": 0.026
+      "symbolDelay": 0.026
     }
   },
 
@@ -137,12 +137,12 @@
     "radiation1": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! На поверхности обнаружен смертельный уровень радиации.",
-      "timer": 0.028
+      "symbolDelay": 0.028
     },
     "radiation2": {
       "speakerCode": "phoenixSystem",
       "text": "Одень антирадиационный костюм, пожалуйста.",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   }
 }

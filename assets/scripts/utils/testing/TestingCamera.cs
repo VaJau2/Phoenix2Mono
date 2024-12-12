@@ -55,8 +55,7 @@ public class TestingCamera : Camera
         player.RotationHelperThird.SetThirdView(value);
         Current = value;
         
-        player.SetMayMove(!value);
-        player.MayRotateHead = !value;
+        player.SetTotalMayMove(!value);
         
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         messages.ShowMessage("freeCamera" + (value ? "On" : "Off"), "testing", Messages.HINT_TIMER);
