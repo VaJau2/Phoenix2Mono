@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Effects;
+
 public class MentatsPostEffect : Effect
 {
     const float BRIGHTNESS = -0.05f;

@@ -27,14 +27,12 @@ public class PlayerThirdPerson : Spatial
     private Spatial Body;
     private GeometryInstance Body_third;
 
-
+    public Camera GetCamera() => player.ThirdView ? thirdCamera : firstCamera;
+    
     public void SetThirdView(bool on)
     {
-        if (!MayChange)
-        {
-            return;
-        }
-
+        if (!MayChange) return;
+        
         firstCamera.Current = !on;
         thirdCamera.Current = on;
         RayFirst.Enabled = !on;
@@ -224,10 +222,7 @@ public class PlayerThirdPerson : Spatial
 
     public override void _Process(float delta)
     {
-        if (!player.MayRotateHead)
-        {
-            return;
-        }
+        if (!player.MayRotateHead) return;
 
         if (Input.IsActionJustPressed("changeView"))
         {
@@ -284,6 +279,8 @@ public class PlayerThirdPerson : Spatial
         if (!(@event is InputEventMouseButton mouseEvent)
             || Input.MouseMode != Input.MouseModeEnum.Captured) return;
         
+        if (!MayChange) return;
+        if (!player.MayRotateHead) return;
         if (!mouseEvent.IsPressed()) return;
         
         switch (mouseEvent.ButtonIndex)

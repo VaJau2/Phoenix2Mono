@@ -11,13 +11,17 @@ using Godot;
 public class PlayerTestingCommands : Node
 {
     private const int KILL_DAMAGE = 9999;
+
+    [Export] private PackedScene testingCameraPrefab;
+    [Export] private NodePath cameraParentPath;
     
     private enum CommandType
     {
-        Heal, KillEnemies, KillPlayer, 
+        Heal, KillEnemies, KillPlayer, SpawnCamera
     }
 
     private CommandType? tempCommand;
+    private TestingCamera testingCamera;
     
     public override void _Ready()
     {
@@ -45,7 +49,7 @@ public class PlayerTestingCommands : Node
                 foreach (var child in npcParent.GetChildren())
                 {
                     if (child is not NPC npc) continue;
-                    if (npc.relation != Relation.Enemy && npc is not Dragon) continue;
+                    if (npc.relation != Relation.Enemy && !npc.Name.Contains("dragon")) continue;
                     if (npc.Health <= 0) continue;
                     npc.TakeDamage(npc, KILL_DAMAGE);
                 }
@@ -56,6 +60,20 @@ public class PlayerTestingCommands : Node
                 player.TakeDamage(player, KILL_DAMAGE);
                 messages.ShowMessage("killPlayer", "testing", Messages.HINT_TIMER);
                 
+                break;
+            case CommandType.SpawnCamera:
+                if (testingCamera != null)
+                {
+                    testingCamera.DeleteCamera();
+                    testingCamera = null;
+                }
+                else
+                {
+                    testingCamera = testingCameraPrefab.Instance<TestingCamera>();
+                    var cameraParent = GetNode(cameraParentPath);
+                    cameraParent.AddChild(testingCamera);
+                }
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -74,6 +92,7 @@ public class PlayerTestingCommands : Node
             (uint)KeyList.F1 => CommandType.Heal,
             (uint)KeyList.F2 => CommandType.KillEnemies,
             (uint)KeyList.F3 => CommandType.KillPlayer,
+            (uint)KeyList.F12 => CommandType.SpawnCamera,
             _ => tempCommand
         };
     }

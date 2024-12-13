@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/free5.mp3-36914a14e37119ab45e8079970f1d93b.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/free5.mp3"
+dest_files=[ "res://.import/free5.mp3-36914a14e37119ab45e8079970f1d93b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

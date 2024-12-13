@@ -3,8 +3,9 @@
 [ext_resource path="res://assets/materials/characters/zebra/Mane.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/characters/zebra/Tail.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/zebra/eyes/neitral/0.material" type="Material" id=3]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/NPCFaceMat.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=4]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.148851, 0.900311, 0.721792 )
@@ -117,14 +118,9 @@ surfaces/0 = {
 
 [node name="zebra-mane" instance=ExtResource( 5 )]
 relation = 1
-weaponCode = "automatic762"
 ammoCount = {
 "ammo762": 30
 }
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [  ]
-bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190427 )
@@ -149,20 +145,20 @@ body_offset = Transform( 0.992634, -0.0828155, -0.0884289, -0.0828149, 0.0689429
 [node name="Physical Bone leg_2_l" parent="Armature/Skeleton" index="4"]
 transform = Transform( 0.988607, -0.114835, 0.0972377, 0.116483, 0.99313, -0.0114235, -0.095256, 0.0226187, 0.995197, -0.407885, 1.81143, -1.81374 )
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783035, 0.00691315, 0.876068 )
-body_offset = Transform( 0.994481, -0.103756, -0.0151285, -0.00427808, 0.104019, -0.994567, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978944 )
+body_offset = Transform( 0.994481, -0.103756, -0.0151285, -0.00427809, 0.104019, -0.994567, 0.104767, 0.989151, 0.103001, 0.00618374, 0.870623, -0.0978944 )
 
 [node name="CollisionShape" parent="Armature/Skeleton/Physical Bone leg_2_l" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
 transform = Transform( 0.996074, 0.0885975, -4.88177e-07, -0.0883894, 0.993734, 0.0684589, 0.00606519, -0.0681905, 0.997657, 0.287084, 1.79373, -0.75669 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652488, -0.00733729, 0.451352 )
-body_offset = Transform( 0.992595, 0.0833255, 0.0884591, 0.0833259, 0.063204, -0.99452, -0.0884594, 0.99452, 0.0557916, -0.0399625, 0.449288, -0.0178269 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00065248, -0.0073371, 0.451352 )
+body_offset = Transform( 0.992595, 0.0833255, 0.0884591, 0.0833259, 0.063204, -0.99452, -0.0884594, 0.99452, 0.0557916, -0.0399625, 0.449288, -0.017827 )
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.99361, 0.112883, 1.12068e-06, -0.111817, 0.984228, -0.137092, -0.015474, 0.136216, 0.990551, 0.343711, 1.78491, -1.82309 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163461, 0.143863, 0.868982 )
-body_offset = Transform( 0.986975, 0.11467, 0.112855, 0.114669, -0.00934074, -0.993353, -0.112854, 0.993361, -0.0223683, -0.0984325, 0.866424, -0.125315 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163462, 0.143863, 0.868982 )
+body_offset = Transform( 0.986975, 0.11467, 0.112855, 0.114669, -0.00934073, -0.993353, -0.112854, 0.993361, -0.0223683, -0.0984325, 0.866424, -0.125315 )
 
 [node name="CollisionShape" parent="Armature/Skeleton/Physical Bone leg_2_r" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -182,7 +178,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Physical Bone b_leg_1_r" parent="Armature/Skeleton" index="9"]
 transform = Transform( 0.989945, 0.141449, 6.313e-05, -0.140915, 0.986243, -0.0863499, -0.0122753, 0.0854724, 0.996259, 0.27996, 0.494003, -0.985855 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0078464, 0.0548356, 0.575108 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784641, 0.0548356, 0.575108 )
 body_offset = Transform( 0.981044, 0.132604, 0.141312, 0.132729, 0.0715192, -0.988563, -0.141195, 0.988579, 0.0525627, -0.0808434, 0.56565, -0.0855464 )
 
 [node name="Physical Bone b_leg_2_r" parent="Armature/Skeleton" index="10"]
@@ -201,6 +197,9 @@ body_offset = Transform( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.148
 [node name="CollisionShape2" type="CollisionShape" parent="Armature/Skeleton/Physical Bone tail_1" index="1"]
 transform = Transform( 1, -1.48492e-15, 2.84217e-14, 5.32907e-15, 0.996177, 0.0873645, -2.84217e-14, -0.0873644, 0.996178, 1.62981e-08, 1.10274, -0.857783 )
 shape = SubResource( 6 )
+
+[node name="BoneAttachment" parent="Armature/Skeleton" index="12"]
+transform = Transform( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )
 
 [node name="Mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 0.124367, -8.19713e-07, -3.2203e-06, 4.24165e-14, 1.2279, -0.312557, 3.26164e-07, 0.312557, 1.2279, 0.00658495, 2.56006, 0.545186 )
@@ -221,3 +220,6 @@ material/0 = ExtResource( 2 )
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 5 )
+
+[node name="weapons" parent="." index="10"]
+WeaponCode = "rifle762"

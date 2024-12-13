@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/keys4.mp3-c25d0b8edfcb03fa91e6bc8e874ccff8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/keys4.mp3"
+dest_files=[ "res://.import/keys4.mp3-c25d0b8edfcb03fa91e6bc8e874ccff8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

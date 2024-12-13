@@ -1,8 +1,9 @@
-using Godot;
+namespace Effects;
 
-public class HydraPostEffect: Effect 
+public class HydraPostEffect : Effect
 {
     private Player player;
+
     public HydraPostEffect()
     {
         maxTime = 100;
@@ -16,7 +17,8 @@ public class HydraPostEffect: Effect
         iconName = "hydra-after";
         base.SetOn(handler);
 
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             player.FoodCanHeal = false;
         }
     }
@@ -24,7 +26,8 @@ public class HydraPostEffect: Effect
     public override void SetOff(bool startPostEffect = true)
     {
         base.SetOff(startPostEffect);
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             player.FoodCanHeal = true;
         }
     }

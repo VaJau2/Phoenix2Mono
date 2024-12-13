@@ -1,10 +1,11 @@
-using Godot;
+namespace Effects;
 
-public class MedXEffect: Effect 
+public class MedXEffect : Effect
 {
-   const float DAMAGE_BLOCK_DELTA = 0.2f;
+    const float DAMAGE_BLOCK_DELTA = 0.2f;
 
     private Player player;
+
     public MedXEffect()
     {
         maxTime = 60;
@@ -18,8 +19,9 @@ public class MedXEffect: Effect
         player = Global.Get().player;
         iconName = "medX";
         base.SetOn(handler);
-        
-        if (!handler.HasEffect(this)) {
+
+        if (!handler.HasEffect(this))
+        {
             handler.SetPlayerParameter("damageBlock", ref player.BaseDamageBlock, DAMAGE_BLOCK_DELTA);
         }
     }
@@ -27,10 +29,12 @@ public class MedXEffect: Effect
     public override void SetOff(bool startPostEffect = true)
     {
         base.SetOff();
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             handler.ClearPlayerParameter("damageBlock", ref player.BaseDamageBlock);
-            
-            if (startPostEffect) {
+
+            if (startPostEffect)
+            {
                 StartPostEffect();
             }
         }

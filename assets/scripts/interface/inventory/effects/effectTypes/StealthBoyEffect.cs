@@ -1,5 +1,7 @@
 ﻿using Godot;
 
+namespace Effects;
+
 public class StealthBoyEffect : Effect
 {
     private Player player;

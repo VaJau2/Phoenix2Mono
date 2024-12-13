@@ -4,11 +4,16 @@ using Godot.Collections;
 
 public abstract class Character : KinematicBody, ISavable
 {
+    public const string IDLE_ANIM = "Idle";
+    public const string IDLE_ANIM1 = "Idle1";
     public const float MIN_WALKING_SPEED = 2;
+    
+    [Export] public float BaseSpeed = 10; //скорость берется каждый кадр, поэтому применяется сразу
+    public BaseMovingController MovingController;
+    
     public int Health {get; protected set;}
     public int HealthMax;
     public float BaseDamageBlock; //от 0 до 1, процентное блокирование
-    public int BaseSpeed = 1; //скорость берется каждый кадр, поэтому применяется сразу
     public int BaseDamage;
     public int BaseRecoil;
 
@@ -23,13 +28,22 @@ public abstract class Character : KinematicBody, ISavable
     
     [Signal]
     public delegate void ChangeMayMove();
+    
+    [Signal]
+    public delegate void IsCame();
 
-    protected void SetStartHealth(int newHealth)
+    public override void _Ready()
+    {
+        MovingController = GetNodeOrNull<BaseMovingController>("movingController");
+    }
+    
+    public void SetStartHealth(int newHealth)
     {
         Health = HealthMax = newHealth;
     }
+    
     public virtual float GetDamageBlock() => BaseDamageBlock;
-    public virtual int GetSpeed()  => BaseSpeed;
+    public virtual float GetSpeed()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
     public virtual int GetRecoil() => BaseRecoil;
 
@@ -62,9 +76,9 @@ public abstract class Character : KinematicBody, ISavable
         victim.TakeDamage(this, GetDamage(), shapeID);
     }
     
-    protected void HandleImpulse() 
+    public void HandleImpulse() 
     {
-        if(impulse.Length() > 0)
+        if (impulse.Length() > 0)
         {
             Velocity += impulse;
             Vector3 newImpulse = impulse;
@@ -81,31 +95,15 @@ public abstract class Character : KinematicBody, ISavable
         EmitSignal(nameof(ChangeMayMove));
     }
 
-    protected Dictionary Vector3ToSave(Vector3 vector, string prefix)
-        => new Dictionary
-        {
-            {$"{prefix}_x", vector.x},
-            {$"{prefix}_y", vector.y},
-            {$"{prefix}_z", vector.z}
-        };
-
-    protected Vector3 SaveToVector3(Dictionary data, string prefix)
-        => new Vector3(
-            Convert.ToSingle(data[$"{prefix}_x"]), 
-            Convert.ToSingle(data[$"{prefix}_y"]), 
-            Convert.ToSingle(data[$"{prefix}_z"])
-        );
-
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
     public virtual Dictionary GetSaveData() 
     {
-        Dictionary savingData = new Dictionary
+        var savingData = new Dictionary
         {
-            {"health", Health},
+            { "pos", GlobalTranslation },
+            { "rot", GlobalRotation },
+            { "health", Health }
         };
-
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.origin, "pos"));
-        DictionaryHelper.Merge(ref savingData, Vector3ToSave(GlobalTransform.basis.GetEuler(), "rot"));
 
         return savingData;
     }
@@ -113,15 +111,10 @@ public abstract class Character : KinematicBody, ISavable
     // Метод должен будет использоваться во время загрузки, когда игра проходит по всем Character
     public virtual void LoadData(Dictionary data)
     {
-        Vector3 newPos = SaveToVector3(data, "pos");
-        Vector3 newRot = SaveToVector3(data, "rot");
-        Vector3 oldScale = Scale;
-
-        Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
-        GlobalTransform = newTransform;
+        var oldScale = Scale;
+        GlobalTranslation = data["pos"].ToString().ParseToVector3();
+        GlobalRotation = data["rot"].ToString().ParseToVector3();
         Scale = oldScale;
-
         Health = Convert.ToInt32(data["health"]);
     }
 }

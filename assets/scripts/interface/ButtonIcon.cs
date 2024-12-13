@@ -1,16 +1,12 @@
-using Godot;
+﻿using Godot;
 
-public class ButtonIcon : TextureRect
+public class ButtonIcon : IconWithShadow
 {
     [Export] private string key;
     
     public override void _Ready()
     {
-        var parent = GetParent<Button>();
-        parent.Connect("pressed", this, nameof(_on_mouse_exited));
-        parent.Connect("mouse_entered", this, nameof(_on_mouse_entered));
-        parent.Connect("mouse_exited", this, nameof(_on_mouse_exited));
-        
+        base._Ready();
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
         levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
     }
@@ -27,16 +23,8 @@ public class ButtonIcon : TextureRect
 
     private void UpdateIcon()
     {
-        Texture = GD.Load<Texture>($"res://assets/textures/interface/icons/buttons/{Global.GetKeyName(key)}.png");
-    }
-    
-    public void _on_mouse_entered()
-    {
-        Modulate = Colors.Black;
-    }
-
-    public void _on_mouse_exited()
-    {
-        Modulate = Colors.White;
+        var path = $"res://assets/textures/interface/icons/buttons/{Global.GetKeyName(key)}.png";
+        var icon = GD.Load<Texture>(path);
+        SetIcon(icon);
     }
 }

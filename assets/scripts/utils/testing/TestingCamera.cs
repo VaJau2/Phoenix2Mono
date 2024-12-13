@@ -20,15 +20,12 @@ public class TestingCamera : Camera
         
         pivot = GetParent<Spatial>();
         global = Global.Get();
-        Current = false;
-        SetProcess(false);
+        UpdateSettingCamera(true);
     }
     
     public override void _Input(InputEvent @event)
     {
-        UpdateSettingCamera(@event);
         if (!Current) return;
-        
         UpdateRotatingCamera(@event);
     }
 
@@ -38,14 +35,16 @@ public class TestingCamera : Camera
         UpdateMovingCamera(delta);
     }
 
-    private void UpdateSettingCamera(InputEvent @event)
+    public void DeleteCamera()
     {
-        if (@event is not InputEventKey eventKey) return;
-        if (!eventKey.IsPressed()) return;
-        if (eventKey.Scancode != (uint)KeyList.F12) return;
-        
-        Current = !Current;
-        SetProcess(Current);
+        Current = false;
+        UpdateSettingCamera(false);
+        QueueFree();
+    }
+
+    private void UpdateSettingCamera(bool value)
+    {
+        SetProcess(value);
 
         var player = Global.Get().player;
         if (player == null) return;
@@ -53,18 +52,13 @@ public class TestingCamera : Camera
         var playerPos = player.GlobalTransform.origin;
         playerPos.y += PLAYER_HEIGHT;
         pivot.GlobalTransform = Global.SetNewOrigin(pivot.GlobalTransform, playerPos);
-
-        if (!Current)
-        {
-            player.Camera.Current = true;
-            player.ThirdView = false;
-        }
+        player.RotationHelperThird.SetThirdView(value);
+        Current = value;
         
-        player.SetMayMove(!Current);
-        player.MayRotateHead = !Current;
+        player.SetTotalMayMove(!value);
         
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
-        messages.ShowMessage("freeCamera" + (Current ? "On" : "Off"), "testing", Messages.HINT_TIMER);
+        messages.ShowMessage("freeCamera" + (value ? "On" : "Off"), "testing", Messages.HINT_TIMER);
     }
 
     private void UpdateRotatingCamera(InputEvent @event)

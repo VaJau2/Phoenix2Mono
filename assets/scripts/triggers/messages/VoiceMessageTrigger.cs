@@ -38,6 +38,13 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     private void OnMessageFinished()
     {
+        warningManager.Disconnect
+        (
+            nameof(WarningManager.MessageFinishedEvent), 
+            this, 
+            nameof(OnMessageFinished)
+        );
+        
         if (!DeleteAfterTrigger)
         {
             SetActive(true);
@@ -59,7 +66,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     private void SendMessage(int index)
     {
-        if (warningManager.Message.code == messages[index]) return;
+        if (warningManager.Message?.code == messages[index]) return;
         warningManager.SendMessage(messages[index], this);
     }
 }

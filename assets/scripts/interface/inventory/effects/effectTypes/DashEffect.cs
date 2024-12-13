@@ -1,10 +1,13 @@
 using Godot;
 
-public class DashEffect: Effect 
+namespace Effects;
+
+public class DashEffect : Effect
 {
     const int SPEED_DELTA = 10;
     const float SLOW_GAME_SPEED = 0.6f;
     private Player player;
+
     public DashEffect()
     {
         maxTime = 10;
@@ -20,7 +23,8 @@ public class DashEffect: Effect
         iconName = "dash";
         base.SetOn(handler);
 
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             handler.SetPlayerParameter("speed", ref player.BaseSpeed, SPEED_DELTA);
             Engine.TimeScale = SLOW_GAME_SPEED;
         }
@@ -29,11 +33,13 @@ public class DashEffect: Effect
     public override void SetOff(bool startPostEffect = true)
     {
         base.SetOff(startPostEffect);
-        if (!handler.HasEffect(this)) {
+        if (!handler.HasEffect(this))
+        {
             handler.ClearPlayerParameter("speed", ref player.BaseSpeed);
             Engine.TimeScale = 1f;
-            
-            if (startPostEffect) {
+
+            if (startPostEffect)
+            {
                 StartPostEffect();
             }
         }

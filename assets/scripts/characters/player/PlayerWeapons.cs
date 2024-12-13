@@ -51,6 +51,47 @@ public class PlayerWeapons : CollisionShape
 
     private bool onetimeShoot;
     
+    public override void _Ready()
+    {
+        global = Global.Get();
+
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
+        shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
+        ammoIcon = shootInterface.GetNode<IconWithShadow>("ammoBack/icon");
+        ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
+        crossHitted = shootInterface.GetNode<TextureRect>("hitted");
+
+        gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
+        particlesParent = GetNode("/root/Main/Scene");
+
+        audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
+        tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
+
+        enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
+    }
+    
+    public override void _Process(float delta)
+    {
+        if (!global.paused && player.Health > 0 && Input.MouseMode == Input.MouseModeEnum.Captured)
+        {
+            if (GunOn)
+            {
+                //вращаем коллизию пистолета вместе с пистолетом
+                if (isPistol)
+                {
+                    RotationDegrees = player.RotationHelper.RotationDegrees;
+                }
+
+                if (Input.IsMouseButtonPressed(1) && cooldown <= 0)
+                {
+                    if (!onetimeShoot) HandleShoot();
+                }
+            }
+
+            if (cooldown > 0) cooldown -= delta;
+        }
+    }
+    
     public void LoadNewWeapon(string weaponCode, Dictionary weaponData)
     {
         //грузим префаб оружия
@@ -61,7 +102,11 @@ public class PlayerWeapons : CollisionShape
         tempWeaponStats = weaponData;
         isPistol = weaponData.Contains("isPistol");
         Disabled = !isPistol || global.playerRace == Race.Unicorn;
-        shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + weaponCode + ".wav");
+
+        var shootSoundPath = "res://assets/audio/guns/shoot/" + weaponCode + ".wav";
+        shootSound = ResourceLoader.Exists(shootSoundPath)
+            ? GD.Load<AudioStreamSample>(shootSoundPath)
+            : null;
 
         //вытаскиваем родительский нод из игрока
         Spatial tempParent = player.GetWeaponParent(isPistol);
@@ -75,11 +120,17 @@ public class PlayerWeapons : CollisionShape
         LoadNewAmmo();
         LoadGunEffects();
 
-        shootInterface.Visible = true;
-        point.SetInteractionVariant(InteractionVariant.Cross);
+        if (IsShootingWeapon)
+        {
+            shootInterface.Visible = true;
+            point.SetInteractionVariant(InteractionVariant.Cross);
+        }
+        
         player.SetWeaponOn(isPistol);
         GunOn = true;
     }
+    
+    
 
     // Просто очищает модельку оружия
     // использовать его как метод для снятия всего оружия нельзя
@@ -112,25 +163,6 @@ public class PlayerWeapons : CollisionShape
         }
     }
 
-    public override void _Ready()
-    {
-        global = Global.Get();
-
-        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
-        shootInterface = GetNode<Control>("/root/Main/Scene/canvas/shootInterface");
-        ammoIcon = shootInterface.GetNode<IconWithShadow>("ammoBack/icon");
-        ammoLabel = shootInterface.GetNode<Label>("ammoBack/label");
-        crossHitted = shootInterface.GetNode<TextureRect>("hitted");
-
-        gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
-        particlesParent = GetNode("/root/Main/Scene");
-
-        audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
-        tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
-
-        enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
-    }
-
     public async void ShowCrossHitted(bool head)
     {
         crossHitted.Modulate = head ? Colors.Red : Colors.White;
@@ -149,7 +181,7 @@ public class PlayerWeapons : CollisionShape
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
         StreamTexture newIcon = GD.Load<StreamTexture>(path);
-        ammoIcon.SetTexture(newIcon);
+        ammoIcon.SetIcon(newIcon);
     }
 
     private int GetAmmo() => TempAmmoButton?.GetCount() ?? 0;
@@ -174,7 +206,7 @@ public class PlayerWeapons : CollisionShape
     {
         if (tempWeaponStats != null)
         {
-            if (tempWeaponStats.Contains("ammoType") && tempWeaponStats["ammoType"].ToString() == ammoType)
+            if (IsShootingWeapon && tempWeaponStats["ammoType"].ToString() == ammoType)
             {
                 return true;
             }
@@ -185,6 +217,12 @@ public class PlayerWeapons : CollisionShape
 
     public void LoadNewAmmo()
     {
+        if (!IsShootingWeapon)
+        {
+            TempAmmoButton = null;
+            return;
+        }
+        
         string ammoType = tempWeaponStats["ammoType"].ToString();
         if (player.Inventory.ammoButtons.ContainsKey(ammoType))
         {
@@ -198,6 +236,12 @@ public class PlayerWeapons : CollisionShape
         SetAmmoIcon(ammoType);
         UpdateAmmoCount();
     }
+    
+    public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
+    
+    public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
+
+    public bool IsShootingWeapon => tempWeaponStats.Contains("ammoType");
 
     private void LoadGunEffects()
     {
@@ -210,9 +254,9 @@ public class PlayerWeapons : CollisionShape
             gunAnim = null;
         }
 
-        gunLight = TempWeapon.GetNode<Spatial>("light");
-        gunFire = TempWeapon.GetNode<Spatial>("fire");
-        gunSmoke = TempWeapon.GetNode<Particles>("smoke");
+        gunLight = TempWeapon.GetNodeOrNull<Spatial>("light");
+        gunFire = TempWeapon.GetNodeOrNull<Spatial>("fire");
+        gunSmoke = TempWeapon.GetNodeOrNull<Particles>("smoke");
         shellSpawner = TempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
@@ -266,9 +310,6 @@ public class PlayerWeapons : CollisionShape
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
     }
-
-    public int GetStatsInt(string statsName) => int.Parse(tempWeaponStats[statsName].ToString());
-    public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
     private string HandleVictim(Spatial victim, int shapeID = 0)
     {
@@ -361,6 +402,8 @@ public class PlayerWeapons : CollisionShape
 
     private async void HandleShoot()
     {
+        if (!IsShootingWeapon) return;
+        
         onetimeShoot = true;
         int ammo = GetAmmo();
 
@@ -450,7 +493,7 @@ public class PlayerWeapons : CollisionShape
 
         if (!tempWeaponStats.Contains("isSilence"))
         {
-            enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player.GlobalTransform.origin);
+            enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player);
         }
 
         onetimeShoot = false;
@@ -469,27 +512,5 @@ public class PlayerWeapons : CollisionShape
         }
 
         return tempDistance;
-    }
-
-    public override void _Process(float delta)
-    {
-        if (!global.paused && player.Health > 0 && Input.MouseMode == Input.MouseModeEnum.Captured)
-        {
-            if (GunOn)
-            {
-                //вращаем коллизию пистолета вместе с пистолетом
-                if (isPistol)
-                {
-                    RotationDegrees = player.RotationHelper.RotationDegrees;
-                }
-
-                if (Input.IsMouseButtonPressed(1) && cooldown <= 0)
-                {
-                    if (!onetimeShoot) HandleShoot();
-                }
-            }
-
-            if (cooldown > 0) cooldown -= delta;
-        }
     }
 }

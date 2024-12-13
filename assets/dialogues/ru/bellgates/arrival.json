@@ -1,0 +1,14 @@
+{  
+    "phrase1":
+    {
+        "speakerCode": "strikely",
+        "text": "...Что? Как? Где?!",
+        "timer": 0.03
+    },
+    "phrase2":
+    {
+        "speakerCode": "bellgates",
+        "text": "Все вопросы, когда доберёмся до главного здания.",
+        "timer": 0.03
+    }
+}

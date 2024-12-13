@@ -1,4 +1,39 @@
 ﻿{
+  "testPlayerMove": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Встань вон туда, пжлст.",
+      "class": "ActivateCinematic",
+      "key": "TestPlayerMove",
+      "value": "cinematic"
+    },
+    "phrase2": {
+      "speakerCode": "strikely",
+      "text": "Ок.",
+      "class": "ChangeSubtitlesCode",
+      "value": "testPlayerMove"
+    }
+  },
+
+  "testPlayerLook": {
+    "phrase1": {
+      "class": "ActivateCinematic",
+      "key": "TestPlayerMove",
+      "value": "lookAtTarget"
+    },
+    "phrase2": {
+      "speakerCode": "test",
+      "text": "Ого, ты и смотреть на указаный объект можешь?",
+      "class": "ActivateCinematic",
+      "key": "TestPlayerMove",
+      "value": "returnToPlayer"
+    },
+    "phrase3": {
+      "class": "ChangeSubtitlesCode",
+      "value": "testPlayerMove"
+    }
+  },
+  
   "testPhrase": {
     "phrase1": {
       "speakerCode": "test",
@@ -38,7 +73,7 @@
     },
     "phrase3": {
       "speakerCode": "test",
-      "text": "Теперь твои чертежи нифега",
+      "text": "Теперь твои чертежи нифега не стоят",
       "class": "ChangeItemName",
       "key": "Quest_blueprints",
       "value": "blueprints"
@@ -48,6 +83,20 @@
       "text": "Зато теперь активна кнопка",
       "class": "SetTriggerActive",
       "value": "ChangeSubtitlesTrigger"
+    }
+  },
+
+  "cinematicTest": {
+    "phrase1": {
+      "speakerCode": "test",
+      "text": "Ты ща ахуеешь",
+      "class": "ActivateCinematic",
+      "key": "Test",
+      "value": "test"
+    },
+    "phrase2": {
+      "class": "ChangeSubtitlesCode",
+      "value": "cinematicTest"
     }
   }
 }

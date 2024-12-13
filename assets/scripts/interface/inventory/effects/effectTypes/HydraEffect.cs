@@ -1,6 +1,6 @@
-using Godot;
+namespace Effects;
 
-public class HydraEffect: Effect 
+public class HydraEffect : Effect
 {
     const float HEAL_COOLDOWN = 2f;
     private Player player;
@@ -24,13 +24,16 @@ public class HydraEffect: Effect
 
     public override bool Count(float delta)
     {
-        if (cooldown > 0) {
+        if (cooldown > 0)
+        {
             cooldown -= delta;
-        } else {
+        }
+        else
+        {
             player.HealHealth(healCount);
             cooldown = HEAL_COOLDOWN;
         }
-        
+
         return base.Count(delta);
     }
 
@@ -38,8 +41,10 @@ public class HydraEffect: Effect
     {
         base.SetOff(startPostEffect);
 
-        if (!handler.HasEffect(this)) {
-            if (startPostEffect) {
+        if (!handler.HasEffect(this))
+        {
+            if (startPostEffect)
+            {
                 StartPostEffect();
             }
         }

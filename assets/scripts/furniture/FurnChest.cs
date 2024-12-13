@@ -55,12 +55,8 @@ public class FurnChest: FurnBase, ISavable, IChest
 
         if (Name.BeginsWith("Created_"))
         {
-            saveData.Add("pos_x", Transform.origin.x);
-            saveData.Add("pos_y", Transform.origin.y);
-            saveData.Add("pos_z", Transform.origin.z);
-            saveData.Add("rot_x", Transform.basis.GetEuler().x);
-            saveData.Add("rot_y", Transform.basis.GetEuler().y);
-            saveData.Add("rot_z", Transform.basis.GetEuler().z);
+            saveData.Add("pos", Transform.origin);
+            saveData.Add("rot", Transform.basis.GetEuler());
         }
 
         return saveData;
@@ -76,10 +72,8 @@ public class FurnChest: FurnBase, ISavable, IChest
         
         if (Name.BeginsWith("Created_"))
         {
-            Vector3 newPos = new Vector3(Convert.ToSingle(data["pos_x"]), Convert.ToSingle(data["pos_y"]),
-                Convert.ToSingle(data["pos_z"]));
-            Vector3 newRot = new Vector3(Convert.ToSingle(data["rot_x"]), Convert.ToSingle(data["rot_y"]),
-                Convert.ToSingle(data["rot_z"]));
+            Vector3 newPos = data["pos"].ToString().ParseToVector3();
+            Vector3 newRot = data["rot"].ToString().ParseToVector3();
 
             Basis newBasis = new Basis(newRot);
             Transform newTransform = new Transform(newBasis, newPos);

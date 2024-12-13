@@ -115,7 +115,7 @@ public class Player_Pegasus : Player
         }
     }
 
-    public override void UpdateGoForward()
+    protected override void UpdateGoForward()
     {
         if (IsFlying)
         {
@@ -123,12 +123,12 @@ public class Player_Pegasus : Player
         }
     }
 
-    public override void UpdateStand()
+    protected override void UpdateStand()
     {
         IsFlyingFast = false;
     }
 
-    public override void Jump()
+    protected override void Jump()
     {
         //is_on_floor
         if (IsFlying) IsFlying = false;
@@ -137,7 +137,7 @@ public class Player_Pegasus : Player
         base.Jump();
     }
 
-    public override void Fly()
+    protected override void Fly()
     {
         if (!IsFlying && MayMove)
         {
@@ -177,7 +177,7 @@ public class Player_Pegasus : Player
         base.SitOnChair(sitOn);
     }
 
-    public override float GetGravitySpeed(float tempShake, float delta)
+    protected override float GetGravitySpeed(float tempShake, float delta)
     {
         if (IsFlying)
         {
@@ -190,7 +190,7 @@ public class Player_Pegasus : Player
     }
 
 
-    public override int GetSpeed()
+    public override float GetSpeed()
     {
         if (IsFlying)
         {
@@ -215,12 +215,12 @@ public class Player_Pegasus : Player
         return base.GetSpeed();
     }
 
-    public override float GetDeacceleration()
+    protected override float GetDeacceleration()
     {
         return IsFlying ? flyDecrease : DEACCCEL;
     }
 
-    public override void OnCameraRotatingX(float speedX)
+    protected override void OnCameraRotatingX(float speedX)
     {
         if (IsFlyingFast)
         {

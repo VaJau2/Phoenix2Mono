@@ -11,8 +11,8 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     [Export] public string win1Dialogue = "win1";
     [Export] public string win2Dialogue = "win2";
    
-    private MrHandy assistantDash;
-    private Array<Target> targets = new Array<Target>();
+    private NPC assistantDash;
+    private Array<Target> targets = [];
     private int tempTargetsCount;
     private bool isCounting;
     
@@ -20,7 +20,7 @@ public class DashTrainingTrigger : TrainingTriggerWithButton
     {
         base._Ready();
         
-        assistantDash = GetNode<MrHandy>(assistantDashPath);
+        assistantDash = GetNode<NPC>(assistantDashPath);
         
         if (TargetPaths == null) return;
         foreach (var targetPath in TargetPaths)

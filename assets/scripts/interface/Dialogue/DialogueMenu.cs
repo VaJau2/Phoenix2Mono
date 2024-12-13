@@ -8,10 +8,6 @@ public class DialogueMenu : Control, IMenu, ISavable
     
     private const int MAX_LINE_LENGTH = 50;
     private const int MAX_ANSWER_LENGTH = 65;
-    private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
-
-    private const float MIN_NPC_DISTANCE_CHECK = 2f;
-    private const float LOOK_POS_DELTA = 1.5f;
 
     public NPC npc {get; private set;}
     private Player player => Global.Get().player;
@@ -26,7 +22,9 @@ public class DialogueMenu : Control, IMenu, ISavable
     private bool isAnimatingText;
     private int animatingAnswerNum = -1;
     private string animatingText;
-    private float animatingCooldown;
+    private string cleanAnimatingText;
+    private float symbolTimer;
+    private float symbolDelay;
     private string tempTextBlock;
     
     private Button[] answers;
@@ -46,6 +44,40 @@ public class DialogueMenu : Control, IMenu, ISavable
     [Signal]
     public delegate void FinishTalking();
 
+    public override void _Ready()
+    {
+        MenuBase.LoadColorForChildren(this);
+
+        dialogueAudio = GetNode<DialogueAudio>("../dialogueAudio");
+        text      = GetNode<RichTextLabel>("text");
+        skipLabel = GetNode<Label>("skipLabel");
+        leftName  = GetNode<Label>("leftName");
+        rightName = GetNode<Label>("rightName");
+        answers   =
+        [
+            GetNode<Button>("answer1"),
+            GetNode<Button>("answer2"),
+            GetNode<Button>("answer3"),
+            GetNode<Button>("answer4")
+        ];
+        answerCodes = ["", "", "", ""];
+        answerText = new Array();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if (!MenuOn) return;
+        
+        if (npc is not { Health: > 0 } || npc.GetState() != SetStateEnum.Talk) 
+        {
+            MenuManager.CloseMenu(this);
+            return;
+        }
+        
+        UpdateAnswerCooldown(delta);
+        UpdateAnimatingText(delta);
+    }
+    
     public void StartTalkingTo(NPC newNpc)
     {
         //диалог должен закрывать любое открытое меню
@@ -61,8 +93,10 @@ public class DialogueMenu : Control, IMenu, ISavable
         if (!MenuManager.TryToOpenMenu(this, true)) return;
         
         npc = newNpc;
-        npc.SetState(NPCState.Talk);
         npc.tempVictim = player;
+        npc.SetState(SetStateEnum.Talk);
+        player.SetTalking(true, npc);
+        
         text.BbcodeText = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
         LoadDialogueFile();
@@ -77,7 +111,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
         
         var lang = InterfaceLang.GetLang();
-        var path = "assets/dialogues/" + lang + "/" + npc.Name + "/" + npc.dialogueCode + ".json";
+        var path = "assets/dialogues/" + lang + "/" + GetNpcName(npc) + "/" + npc.dialogueCode + ".json";
         
         nodes = Global.LoadJsonFile(path)["nodes"] as Dictionary;
         
@@ -90,6 +124,10 @@ public class DialogueMenu : Control, IMenu, ISavable
             
         MoveToNode(currentCode);
     }
+    
+    private static string GetNpcName(NPC npc) => !string.IsNullOrEmpty(npc.npcCustomDialogueName) 
+        ? npc.npcCustomDialogueName
+        : npc.Name;
 
     private void InitDialogueScript(string scriptName, string parameter, string key = "")
     {
@@ -112,6 +150,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
 
         tempNode = nodes[code] as Dictionary;
+        if (tempNode == null) return;
         
         switch (tempNode["kind"].ToString()) 
         {
@@ -133,17 +172,17 @@ public class DialogueMenu : Control, IMenu, ISavable
                 rightName.Text = tempNode["speaker"].ToString();
 
                 dialogueAudio.LoadCharacter(
-                    npc.Name, npc.dialogueCode, 
+                    GetNpcName(npc), npc.dialogueCode, 
                     tempNode.Contains("config") ? tempNode["config"].ToString() : null
                 );
                 dialogueAudio.TryToPlayAudio(code);
                 break;
             
             case "combat":
-                npc.SetState(NPCState.Idle);
+                npc.SetState(SetStateEnum.Idle);
                 npc.aggressiveAgainstPlayer = true;
                 npc.relation = Relation.Enemy;
-                npc.seekArea.AddEnemyInArea(player);
+                npc.SeekArea.AddEnemyInArea(player);
                 npc = null;
                 break;
             
@@ -199,11 +238,15 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     public void OpenMenu()
     {
-        player.SetTalking(true);
-        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
+        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
         
         Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
+    }
+
+    public void CloseUsingManager()
+    {
+        MenuManager.CloseMenu(this);
     }
 
     public void CloseMenu()
@@ -214,11 +257,11 @@ public class DialogueMenu : Control, IMenu, ISavable
         Input.MouseMode = Input.MouseModeEnum.Captured;
         
         player.SetTalking(false);
-        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseMenu));
+        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
         
         if (npc != null) 
         {
-            npc.SetState(NPCState.Idle);
+            npc.SetState(SetStateEnum.Idle);
             npc = null;
         }
 
@@ -267,67 +310,17 @@ public class DialogueMenu : Control, IMenu, ISavable
         {
             animatingAnswerNum = i;
             text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
-            dialogueAudio.LoadCharacter("strikely", "");
 
-            var spacedAnswerText = GetSpacedText(answerText[i].ToString()) + "\n";
+            var customEffect = DialogueEffectsManager.GetCustomAudioConfig("strikely");
+            dialogueAudio.LoadCharacter("strikely", "", customEffect);
+
+            var textWithEffects = DialogueEffectsManager.GetTextWithEffects(
+                answerText[i].ToString(),
+                "strikely"
+            );
+            var spacedAnswerText = GetSpacedText(textWithEffects) + "\n";
             StartAnimatingText(spacedAnswerText);
         }
-    }
-
-    public override void _Ready()
-    {
-        MenuBase.LoadColorForChildren(this);
-
-        dialogueAudio = GetNode<DialogueAudio>("../dialogueAudio");
-        text      = GetNode<RichTextLabel>("text");
-        skipLabel = GetNode<Label>("skipLabel");
-        leftName  = GetNode<Label>("leftName");
-        rightName = GetNode<Label>("rightName");
-        answers   = new[] 
-        {
-            GetNode<Button>("answer1"),
-            GetNode<Button>("answer2"),
-            GetNode<Button>("answer3"),
-            GetNode<Button>("answer4")
-        };
-        answerCodes = new[] {"", "", "", ""};
-        answerText = new Array();
-    }
-
-    public override void _Process(float delta)
-    {
-        if (!MenuOn) return;
-        
-        if (npc is not { state: NPCState.Talk }) 
-        {
-            MenuManager.CloseMenu(this);
-            return;
-        }
-
-        player?.LookAt(GetNpcLookPosition());
-        UpdateAnswerCooldown(delta);
-        UpdateAnimatingText(delta);
-    }
-
-    private Vector3 GetNpcLookPosition()
-    {
-        var npcPos = npc.GlobalTransform.origin;
-        var playerRelativePos = player.GlobalTransform.origin - npcPos;
-
-        npcPos.x += GetLookPosDelta(playerRelativePos.z);
-        npcPos.z += GetLookPosDelta(-playerRelativePos.x);
-        
-        return npcPos;
-    }
-
-    private float GetLookPosDelta(float sideRelativePos)
-    {
-        return sideRelativePos switch
-        {
-            > MIN_NPC_DISTANCE_CHECK => LOOK_POS_DELTA,
-            < MIN_NPC_DISTANCE_CHECK => -LOOK_POS_DELTA,
-            _ => 0
-        };
     }
 
     //прокручивает текст ответа при наведении на него, если он не влезает
@@ -351,6 +344,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     private void StartAnimatingText(string textValue, string block = null)
     {
         animatingText = textValue;
+        cleanAnimatingText = DialogueDelay.ClearDelaySymbols(animatingText);
         isAnimatingText = true;
         skipLabel.Visible = true;
         
@@ -360,7 +354,11 @@ public class DialogueMenu : Control, IMenu, ISavable
             text.BbcodeText += "[" + block + "]";
         }
 
-        text.BbcodeText += MakeSpacesString(textValue);
+        text.BbcodeText += MakeSpacesString(cleanAnimatingText);
+        
+        symbolDelay = animatingAnswerNum == -1 && tempNode.Contains("timer")
+            ? Global.ParseFloat(tempNode["timer"].ToString())
+            : DialogueDelay.DEFAULT_SYMBOL_DELAY;
     }
 
     private static string MakeSpacesString(string origin)
@@ -379,7 +377,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         }
         skipLabel.Visible = false;
         isAnimatingText = false;
-        animatingCooldown = 0;
+        symbolTimer = 0;
 
         if (animatingAnswerNum > -1)
         {
@@ -444,52 +442,38 @@ public class DialogueMenu : Control, IMenu, ISavable
         
         if (Input.IsActionJustPressed("jump"))
         {
-            AddStringToText(animatingText);
+            AddStringToText(cleanAnimatingText);
             FinishAnimatingText();
             return;
         }
 
-        if (animatingCooldown > 0)
+        if (symbolTimer > 0)
         {
-            animatingCooldown -= delta;
+            symbolTimer -= delta;
             return;
         }
 
         var nextSymbol = animatingText[0];
+
+        symbolTimer = DialogueDelay.Get(ref animatingText, DialogueDelay.DEFAULT_PHRASE_DELAY, symbolDelay);
+
+        if (nextSymbol == DialogueDelay.DELAY_SYMBOL) return;
+        
         AddStringToText(nextSymbol.ToString());
         dialogueAudio.UpdateDynamicPlaying(nextSymbol);
-        animatingCooldown = GetAnimatingCooldown(nextSymbol);
         animatingText = animatingText.Substring(1);
+        cleanAnimatingText = cleanAnimatingText.Substring(1);
     }
 
     private void AddStringToText(string value)
     {
-        var replacePos = text.BbcodeText.Length - animatingText.Length;
-        if (value == text.BbcodeText[replacePos].ToString())
-        {
-            return;
-        }
-        text.BbcodeText = text.BbcodeText.Remove(replacePos, value.Length).Insert(replacePos, value);
-    }
-
-    private float GetAnimatingCooldown(char newSymbol)
-    {
-        var nodeTimer = animatingAnswerNum == -1 && tempNode.Contains("timer")
-            ? Global.ParseFloat(tempNode["timer"].ToString())
-            : DEFAULT_ANIMATING_COOLDOWN;
+        var replacePos = text.BbcodeText.Length - cleanAnimatingText.Length;
         
-        switch (newSymbol)
-        {
-            case '…':
-            case '.':
-            case '!':
-            case '?':
-                return nodeTimer + 0.4f;
-            case ',':
-                return nodeTimer + 0.1f;
-            default:
-                return nodeTimer;
-        }
+        if (value == text.BbcodeText[replacePos].ToString()) return;
+        
+        text.BbcodeText = text.BbcodeText
+            .Remove(replacePos, value.Length)
+            .Insert(replacePos, value);
     }
     
     private static string GetBlockText(string blockText, string block)
@@ -572,12 +556,6 @@ public class DialogueMenu : Control, IMenu, ISavable
     private async  void OnSaveDataLoaded()
     {
         await ToSignal(GetTree(), "idle_frame");
-        
-        if (npc is Pony pony)
-        {
-            pony.body.lookTarget = player;
-        }
-        
         StartTalkingTo(npc);
     }
 }

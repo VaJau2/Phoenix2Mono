@@ -1,13 +1,13 @@
-using Godot;
+namespace Effects;
 
-public class HealEffect: Effect 
+public class HealEffect : Effect
 {
     const float HEAL_COOLDOWN = 0.6f;
     private Player player;
     private int healCount = 2;
     private float cooldown = 0;
 
-    public HealEffect() 
+    public HealEffect()
     {
         maxTime = 30;
         badEffect = false;
@@ -22,13 +22,16 @@ public class HealEffect: Effect
 
     public override bool Count(float delta)
     {
-        if (cooldown > 0) {
+        if (cooldown > 0)
+        {
             cooldown -= delta;
-        } else {
+        }
+        else
+        {
             player.HealHealth(healCount);
             cooldown = HEAL_COOLDOWN;
         }
-        
+
         return base.Count(delta);
     }
 }

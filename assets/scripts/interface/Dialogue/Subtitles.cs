@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -17,8 +18,6 @@ using Array = Godot.Collections.Array;
 //
 public class Subtitles : Label, ISavable
 {
-    private const float DEFAULT_ANIMATING_COOLDOWN = 0.04f;
-    private const float DEFAULT_FINISHING_TIMER = 0.8f;
     private const float VISIBLE_DISTANCE = 50;
 
     private static Player Player => Global.Get().player;
@@ -44,8 +43,10 @@ public class Subtitles : Label, ISavable
     private Dictionary tempPhraseData;
     
     private string animatingText;
-    private float phraseCooldown;
-    private float animatingCooldown;
+    private string cleanAnimatingText;
+    private float phraseDelay;
+    private float symbolDelay;
+    private float symbolTimer;
     
     [Signal]
     public delegate void ChangePhrase();
@@ -58,6 +59,26 @@ public class Subtitles : Label, ISavable
         tempSpeakerLabel = GetNode<Label>("speaker");
         dialogueAudio = GetNode<DialogueAudio>("dialogueAudio");
         MenuBase.LoadColorForChildren(this);
+    }
+    
+    public override void _PhysicsProcess(float delta)
+    {
+        if (!IsAnimatingText) return;
+        
+        if (symbolTimer > 0)
+        {
+            symbolTimer -= delta;
+            return;
+        }
+
+        if (string.IsNullOrEmpty(animatingText))
+        {
+            FinishAnimatingText();
+            return;
+        }
+
+        UpdateAnimatingText();
+        CheckTempTalker();
     }
     
     public Subtitles SetTalker(AudioStreamPlayer3D audioPlayer3D, string characterName)
@@ -74,7 +95,7 @@ public class Subtitles : Label, ISavable
         if (audioPlayer == null) return this;
 
         Talker = talker;
-        talkerCode = talker.Name;
+        talkerCode = GetNpcName(talker);
         dialogueAudio.SetAudioPlayer(audioPlayer);
         
         return this;
@@ -108,7 +129,22 @@ public class Subtitles : Label, ISavable
         
         EmitSignal(nameof(ChangePhrase));
     }
+    
+    private static string GetNpcName(NPC npc) => !string.IsNullOrEmpty(npc.npcCustomDialogueName) 
+        ? npc.npcCustomDialogueName
+        : npc.Name;
 
+    public void Skip()
+    {
+        tempSpeakerLabel.Text = "";
+        Text = animatingText = "";
+        IsAnimatingText = false;
+        symbolTimer = 0;
+        
+        ClearSubtitles();
+        EmitSignal(nameof(End));
+    }
+    
     private void ReadPhraseText()
     {
         if (tempPhraseData.Contains("speakerCode") && tempPhraseData.Contains("text"))
@@ -119,14 +155,26 @@ public class Subtitles : Label, ISavable
             tempSpeakerCode = tempPhraseData["speakerCode"].ToString();
             tempSpeakerLabel.Text = Global.LoadJsonFile(namesPath)[tempSpeakerCode].ToString();
             
-            animatingText = tempPhraseData["text"].ToString();
-            phraseCooldown = tempPhraseData.Contains("timer") 
-                ? Convert.ToSingle(tempPhraseData["timer"]) 
-                : 0;
+            animatingText = DialogueEffectsManager.GetTextWithEffects(
+                tempPhraseData["text"].ToString(), 
+                tempSpeakerCode
+            );
+            
+            cleanAnimatingText = DialogueDelay.ClearDelaySymbols(animatingText);
+            Text += MakeSpacesString(cleanAnimatingText);
+            
+            symbolDelay = tempPhraseData.Contains("symbolDelay") 
+                ? Convert.ToSingle(tempPhraseData["symbolDelay"]) 
+                : DialogueDelay.DEFAULT_SYMBOL_DELAY; 
+            
+            phraseDelay = tempPhraseData.Contains("phraseDelay") 
+                ? Convert.ToSingle(tempPhraseData["phraseDelay"]) 
+                : DialogueDelay.DEFAULT_PHRASE_DELAY;
             
             IsAnimatingText = true;
-        
-            dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles");
+
+            var customConfig = DialogueEffectsManager.GetCustomAudioConfig(tempSpeakerCode);
+            dialogueAudio.LoadCharacter(tempSpeakerCode, "subtitles", customConfig);
             dialogueAudio.TryToPlayAudio(tempPhraseKey);
         }
         else FinishAnimatingText();
@@ -135,17 +183,15 @@ public class Subtitles : Label, ISavable
     private void UpdateAnimatingText()
     {
         var nextSymbol = animatingText[0];
-        Text += nextSymbol.ToString();
+        
+        symbolTimer = DialogueDelay.Get(ref animatingText, phraseDelay, symbolDelay);
+
+        if (nextSymbol == DialogueDelay.DELAY_SYMBOL) return;
+        
+        AddStringToText(nextSymbol.ToString());
         dialogueAudio.UpdateDynamicPlaying(nextSymbol);
         animatingText = animatingText.Substring(1);
-        if (string.IsNullOrEmpty(animatingText))
-        {
-            animatingCooldown = DEFAULT_FINISHING_TIMER;
-        }
-        else
-        {
-            animatingCooldown = phraseCooldown > 0 ? phraseCooldown : DEFAULT_ANIMATING_COOLDOWN;
-        }
+        cleanAnimatingText = cleanAnimatingText.Substring(1);
     }
 
     private void FinishAnimatingText()
@@ -153,7 +199,7 @@ public class Subtitles : Label, ISavable
         tempSpeakerLabel.Text = "";
         Text = animatingText = "";
         IsAnimatingText = false;
-        animatingCooldown = 0;
+        symbolTimer = 0;
         
         ReadPhraseScript();
         
@@ -171,28 +217,27 @@ public class Subtitles : Label, ISavable
 
     private void ReadPhraseScript()
     {
-        if (tempPhraseData.Contains("class"))
+        if (!tempPhraseData.Contains("class")) return;
+        
+        var scriptName = tempPhraseData["class"].ToString();
+        var scriptType = Type.GetType("DialogueScripts." + scriptName);
+        var parameter = "";
+        var key = "";
+            
+        if (scriptType == null) return;
+            
+        if (tempPhraseData.Contains("value"))
         {
-            var scriptName = tempPhraseData["class"].ToString();
-            var scriptType = Type.GetType("DialogueScripts." + scriptName);
-            var parameter = "";
-            var key = "";
-            
-            if (scriptType == null) return;
-            
-            if (tempPhraseData.Contains("value"))
-            {
-                parameter = tempPhraseData["value"].ToString();
-            }
-            
-            if (tempPhraseData.Contains("key"))
-            {
-                key = tempPhraseData["key"].ToString();
-            }
-            
-            var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
-            scriptObj?.initiate(this, parameter, key);
+            parameter = tempPhraseData["value"].ToString();
         }
+            
+        if (tempPhraseData.Contains("key"))
+        {
+            key = tempPhraseData["key"].ToString();
+        }
+            
+        var scriptObj = Activator.CreateInstance(scriptType) as DialogueScripts.IDialogueScript;
+        scriptObj?.initiate(this, parameter, key);
     }
 
     private void ClearSubtitles()
@@ -211,33 +256,34 @@ public class Subtitles : Label, ISavable
     {
         if (Talker == null) return;
         
-        if (Talker.Health <= 0)
+        if (Talker.Health < 0)
         {
             FinishAnimatingText();
+            return;
         }
 
-        var distance = Player.GlobalTransform.origin.DistanceTo(Talker.GlobalTransform.origin);
+        if (Player == null) return;
+        var distance = Player.GlobalTranslation.DistanceTo(Talker.GlobalTranslation);
         Visible = distance < VISIBLE_DISTANCE;
     }
-
-    public override void _Process(float delta)
+    
+    private static string MakeSpacesString(string origin)
     {
-        if (!IsAnimatingText) return;
+        return origin.Aggregate(
+            "",
+            (current, originLetter) => current + (originLetter == '\n' ? '\n' : ' ')
+        );
+    }
+    
+    private void AddStringToText(string value)
+    {
+        var replacePos = Text.Length - cleanAnimatingText.Length;
         
-        if (animatingCooldown > 0)
-        {
-            animatingCooldown -= delta;
-            return;
-        }
-
-        if (string.IsNullOrEmpty(animatingText))
-        {
-            FinishAnimatingText();
-            return;
-        }
-
-        CheckTempTalker();
-        UpdateAnimatingText();
+        if (value == Text[replacePos].ToString()) return;
+        
+        Text = Text
+            .Remove(replacePos, value.Length)
+            .Insert(replacePos, value);
     }
 
     public Dictionary GetSaveData()

@@ -17,8 +17,6 @@ public class WarningManager : RadioManager, ISavable
     public float Timer => messagePlayer.GetPlaybackPosition();
     
     private EnemiesManager enemiesManager;
-    private AudioStream alarmSound;
-    private bool isAlarmPlaying;
 
     private AudioStreamPlayer3D messagePlayer;
     private Subtitles subtitles;
@@ -43,9 +41,6 @@ public class WarningManager : RadioManager, ISavable
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
         subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
         subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
-        
-        // alarm
-        alarmSound = (AudioStream)GD.Load("res://assets/audio/background/alarm.wav");
         
         enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
         enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));
@@ -103,8 +98,8 @@ public class WarningManager : RadioManager, ISavable
             {
                 receiver.TuneIn();
             }
-
-            Message.Clear();
+            
+            Message = null;
             ChangeRadioPauseMode(PauseModeEnum.Process);
             EmitSignal(nameof(MessageFinishedEvent));
         }
@@ -131,14 +126,14 @@ public class WarningManager : RadioManager, ISavable
     public Dictionary GetSaveData()
     {
         var saveData = new Dictionary();
-
-        if (string.IsNullOrEmpty(Message.code) || Message.trigger == null)
+        
+        if (string.IsNullOrEmpty(Message?.code) || Message?.trigger == null)
         {
             return saveData;
         }
         
-        saveData.Add("code", Message.code);
-        saveData.Add("triggerPath", Message.trigger.GetPath());
+        saveData.Add("code", Message?.code);
+        saveData.Add("triggerPath", Message?.trigger.GetPath());
 
         if (messageQueue.Count == 0) return saveData;
         

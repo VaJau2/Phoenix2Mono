@@ -1,4 +1,5 @@
 using System;
+using Effects;
 using Godot;
 using Godot.Collections;
 
@@ -38,14 +39,14 @@ public class Player : Character
     public PlayerBody Body;
     //сслыки внутри Body:
     // - Head
-    // - Legs
     // - SoundSteps
     public PlayerStealth Stealth;
     public PlayerWeapons Weapons;
+    public PlayerRadiation Radiation;
     public PlayerInventory Inventory;
     public StealthBoyEffect StealthBoy;
-    public PlayerRadiation Radiation;
     public PlayerDeathManager DeathManager;
+    public PlayerDialogueCheck DialogueCheck;
     public AudioEffectsController AudioEffectsController;
 
     private DamageEffects damageEffects;
@@ -108,12 +109,10 @@ public class Player : Character
     {
         if (hitted)
         {
-            return audiHitted ?? (audiHitted = GetNode<AudioStreamPlayer>("sound/audi_hitted"));
+            return audiHitted ??= GetNode<AudioStreamPlayer>("sound/audi_hitted");
         }
-        else
-        {
-            return audi ?? (audi = GetNode<AudioStreamPlayer>("sound/audi"));
-        }
+
+        return audi ??= GetNode<AudioStreamPlayer>("sound/audi");
     }
 
     public void CheckTakeItem(string itemCode)
@@ -158,19 +157,17 @@ public class Player : Character
         if (isPistol)
         {
             if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            else return GetNode<Spatial>("rotation_helper/camera/weapons");
+            return GetNode<Spatial>("rotation_helper/camera/weapons");
         }
-        else
-        {
-            return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
-        }
+
+        return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
     }
 
-    public void SetTalking(bool value)
+    public void SetTalking(bool value, NPC npc = null)
     {
         IsTalking = value;
-        SetMayMove(!value);
-        MayRotateHead = !value;
+        SetTotalMayMove(!value);
+        DialogueCheck.SetNpcToTalk(npc);
 
         if (IsTalking)
         {
@@ -271,7 +268,7 @@ public class Player : Character
         return Velocity.Length();
     }
 
-    public override int GetSpeed()
+    public override float GetSpeed()
     {
         if (IsCrouching)
         {
@@ -347,18 +344,27 @@ public class Player : Character
         }
     }
 
+    //блокирует только передвижение
     public override void SetMayMove(bool value)
     {
         if (IsSitting && value) return;
         base.SetMayMove(value);
     }
 
+    //полная блокировка всего
+    public void SetTotalMayMove(bool value)
+    {
+        SetMayMove(value);
+        MayRotateHead = value;
+        Camera.SetUpdating(value);
+    }
+    
     //для земнопня шоб бегал
-    public virtual void UpdateGoForward() {}
+    protected virtual void UpdateGoForward() {}
 
-    public virtual void UpdateStand() {}
+    protected virtual void UpdateStand() {}
 
-    public virtual void Crouch()
+    protected virtual void Crouch()
     {
         if (Input.IsActionJustPressed("crouch"))
         {
@@ -369,7 +375,7 @@ public class Player : Character
         }
     }
 
-    public virtual void Jump()
+    protected virtual void Jump()
     {
         if (Input.IsActionJustPressed("jump"))
         {
@@ -386,7 +392,7 @@ public class Player : Character
         }
     }
 
-    public virtual void Fly() {}
+    protected virtual void Fly() {}
 
     private void UpdateCameraPos()
     {
@@ -411,7 +417,7 @@ public class Player : Character
         }
     }
 
-    protected void ProcessInput(float delta)
+    private void ProcessInput(float delta)
     {
         dir = new Vector3();
         Vector2 inputMovementVector = new Vector2();
@@ -492,9 +498,9 @@ public class Player : Character
         }
     }
 
-    float GetTempShake(float delta)
+    private float GetTempShake(float delta)
     {
-        float tempShake = shakingSpeed;
+        var tempShake = shakingSpeed;
 
         if (!shakeUp)
         {
@@ -514,12 +520,12 @@ public class Player : Character
         return tempShake;
     }
 
-    public virtual float GetGravitySpeed(float tempShake, float delta)
+    protected virtual float GetGravitySpeed(float tempShake, float delta)
     {
         return Velocity.y + (GRAVITY * delta + tempShake);
     }
 
-    public virtual float GetDeacceleration()
+    protected virtual float GetDeacceleration()
     {
         return DEACCCEL;
     }
@@ -586,40 +592,46 @@ public class Player : Character
         }
     }
 
-    public virtual void OnCameraRotatingX(float speedX) {}
+    protected virtual void OnCameraRotatingX(float speedX) {}
 
-    protected void RotateCamera(InputEvent @event)
+    private void RotateCamera(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured && MayRotateHead)
+        if (@event is InputEventMouseMotion mouseEvent 
+            && Input.MouseMode == Input.MouseModeEnum.Captured 
+            && MayRotateHead)
         {
             oldRot = RotationHelper.RotationDegrees;
 
-            var mouseEvent = @event as InputEventMouseMotion;
             RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
             RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
-
-            Vector3 cameraRot = RotationHelper.RotationDegrees;
-            cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
-            cameraRot.y = 0;
-            cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
-            RotationHelper.RotationDegrees = cameraRot;
-
+            ClumpCameraRotation();
             OnCameraRotatingX(mouseEvent.Relative.x);
         }
     }
 
+    private void ClumpCameraRotation()
+    {
+        var cameraRot = RotationHelper.RotationDegrees;
+        cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
+        cameraRot.y = 0;
+        cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
+        RotationHelper.RotationDegrees = cameraRot;
+    }
+
     public void LookAt(Vector3 target)
     {
-        var dir = target - GlobalTransform.origin;
+        var targetDir = target - GlobalTransform.origin;
         var forward = -GlobalTransform.basis.z;
-        var cameraForward = -RotationHelper.GlobalTransform.basis.y;
 
         //берем угол по плоскости XZ (горизонтальное вращение)
-        var horizontalDir = new Vector2(dir.x, dir.z);
+        var horizontalDir = new Vector2(targetDir.x, targetDir.z);
         var horizontalPos = new Vector2(forward.x, forward.z);
         var horizontalAngle = horizontalPos.AngleTo(horizontalDir);
+        
         //вращаем тело на этот угол (который постепенно уменьшается до нуля)
         RotateY(-horizontalAngle);
+        RotationHelper.LookAt(target, Vector3.Up);
+        ClumpCameraRotation();
     }
 
     public override async void LoadData(Dictionary data)
@@ -651,10 +663,12 @@ public class Player : Character
 
     public override void _Ready()
     {
+        base._Ready();
         global.player = this;
         Inventory = new PlayerInventory(this);
         Radiation = new PlayerRadiation(this);
         DeathManager = GetNode<PlayerDeathManager>("deathManager");
+        MovingController.SetProcess(false);
         AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
         BaseSpeed = 15;
@@ -667,6 +681,7 @@ public class Player : Character
         Weapons = GetNode<PlayerWeapons>("gun_shape");
         RotationHelperThird = GetNode<PlayerThirdPerson>("rotation_helper_third");
         soundSteps = GetNode<SoundSteps>("player_body/floorRay");
+        DialogueCheck = GetNode<PlayerDialogueCheck>("dialogueCheck");
 
         var canvas = GetNode("/root/Main/Scene/canvas/");
         JumpHint = canvas.GetNode<Control>("jumpHint");
@@ -703,7 +718,10 @@ public class Player : Character
                 HandleImpulse();
             }
 
-            ProcessMovement(delta);
+            if (!MovingController.IsProcessing()) // проверка активности CutsceneMoving
+            {
+                ProcessMovement(delta);
+            }
         }
 
         if (Health < 0 || !MayMove)

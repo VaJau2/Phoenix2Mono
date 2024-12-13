@@ -11,8 +11,8 @@
 [ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
 [ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
 [ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="DynamicFontData" id=11]
-[ext_resource path="res://assets/scripts/interface/ButtonIcon.cs" type="Script" id=12]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Enter.png" type="Texture" id=13]
+[ext_resource path="res://assets/scripts/interface/InteractiveButtonIcon.cs" type="Script" id=14]
 [ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=4]
@@ -570,7 +570,7 @@ margin_bottom = 34.0
 rect_scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 17 )
 stretch_mode = 4
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 key = "ui_shift"
 
 [node name="items" type="GridContainer" parent="helper/back/chestBack" groups=["ignore_color"]]
@@ -1071,7 +1071,7 @@ margin_bottom = 34.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 stretch_mode = 4
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 key = "jump"
 
 [node name="no" type="Button" parent="modalAsk"]
@@ -1096,7 +1096,7 @@ margin_bottom = 34.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 17 )
 stretch_mode = 4
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 key = "ui_shift"
 
 [node name="sliderBack" type="Control" parent="modalAsk" groups=["ignore_color"]]

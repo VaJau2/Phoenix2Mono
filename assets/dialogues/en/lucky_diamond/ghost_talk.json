@@ -77,7 +77,7 @@
     "A4": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Fine. Pretty cozy. ПIt's a little cold, though, and the pressure is a little low, to put it mildly.",
+      "body": "Fine. Pretty cozy. It's a little cold, though, and the pressure is a little low, to put it mildly.",
       "speaker": "Ghost",
       "opposite": "Strikely",
       "next": "A5"

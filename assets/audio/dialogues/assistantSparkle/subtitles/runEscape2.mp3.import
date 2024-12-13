@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/runEscape2.mp3-75978422ad0c30085e2a323fd79597e4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/runEscape2.mp3"
+dest_files=[ "res://.import/runEscape2.mp3-75978422ad0c30085e2a323fd79597e4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

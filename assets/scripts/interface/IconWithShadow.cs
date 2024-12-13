@@ -6,12 +6,24 @@ public class IconWithShadow : TextureRect
     
     public override void _Ready()
     {
-        shadow = GetNode<TextureRect>("shadow");
+        shadow = GetNodeOrNull<TextureRect>("shadow");
     }
 
-    public new void SetTexture(Texture texture)
+    public void SetIcon(Texture icon)
     {
-        Texture = texture;
-        shadow.Texture = texture;
+        Texture = icon;
+        
+        if (shadow == null) return;
+        
+        shadow.Texture = icon;
+    }
+
+    public void SetTransparency(float value)
+    {
+        Modulate = ColorUtils.SetAlpha(Modulate, value);
+        
+        if (shadow == null) return;
+        
+        shadow.Modulate = ColorUtils.SetAlpha(shadow.Modulate, value);
     }
 }

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ventEscape2.mp3-df57a0fd1c400c9cc6afbefb27e77c34.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/ventEscape2.mp3"
+dest_files=[ "res://.import/ventEscape2.mp3-df57a0fd1c400c9cc6afbefb27e77c34.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -4,37 +4,52 @@ using Godot.Collections;
 // скрипт взаимодействия с предметами
 public class PlayerCamera : Camera
 {
-    const float RAY_LENGH = 6;
-    const float RAY_THIRD_LENGTH = 9;
-    const float EYE_PART_SPEED1 = 1000;
-    const float EYE_PART_SPEED2 = 1200;
-    const float FOV_SPEED = 60;
+    private const float RAY_LENGTH = 6;
+    private const float RAY_THIRD_LENGTH = 9;
+    private const float EYE_PART_SPEED1 = 1000;
+    private const float EYE_PART_SPEED2 = 1200;
+    private const float FOV_SPEED = 60;
 
     public bool eyesClosed = false;
-    public bool isUpdating = true;
-    public float closedTimer = 0;
+    public float closedTimer;
     public bool onetimeHint;
     
     private InteractionPointManager point;
 
-    Player player;
+    private Player player;
 
-    Label interactionHint;
-    TextureRect interactionIcon;
-    TextureRect interactionIconShadow;
-    string closedTextLink = "closed";
+    private Label interactionHint;
+    private TextureRect interactionIcon;
+    private TextureRect interactionIconShadow;
+    private string closedTextLink = "closed";
 
-    Node tempObject;
-    bool onetimeCross;
+    private Node tempObject;
+    private bool onetimeCross;
 
-    bool fovClosing = false;
-    Control eyePartUp;
-    Control eyePartDown;
+    private bool fovClosing;
+    private Control eyePartUp;
+    private Control eyePartDown;
 
-    bool mayUseRay = true;
+    private bool isUpdating = true;
+    private bool mayUseRay = true;
 
     RayCast tempRay => player.RotationHelperThird.TempRay;
 
+    public void SetUpdating(bool value)
+    {
+        isUpdating = value;
+
+        if (value)
+        {
+            ReturnInteractionPoint();
+        }
+        else
+        {
+            SetHintVisible(false);
+            point.SetInteractionVariant(InteractionVariant.Point);
+        }
+    }
+    
     public RayCast UseRay(float newDistance)
     {
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
@@ -45,7 +60,7 @@ public class PlayerCamera : Camera
 
     public void ReturnRayBack()
     {
-        float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGH;
+        float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGTH;
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
         tempRay.CastTo = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
@@ -89,7 +104,9 @@ public class PlayerCamera : Camera
     private void ReturnInteractionPoint()
     {
         point.SetInteractionVariant(
-            player.Weapons.GunOn ? InteractionVariant.Cross : InteractionVariant.Point
+            player.Weapons.GunOn && player.Weapons.IsShootingWeapon 
+                ? InteractionVariant.Cross 
+                : InteractionVariant.Point
         );
     }
 
@@ -100,7 +117,12 @@ public class PlayerCamera : Camera
             closedTimer -= delta;
             if (!onetimeHint)
             {
-                interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", closedTextLink);
+                interactionHint.Text = InterfaceLang.GetPhrase(
+                    "inGame", 
+                    "cameraHints", 
+                    closedTextLink
+                );
+                
                 SetHintVisible(true);
                 onetimeHint = true;
             }
@@ -179,7 +201,6 @@ public class PlayerCamera : Camera
     {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
-        if (!player.MayMove) return;
 
         tempObject = (Node)tempRay.GetCollider();
 
@@ -199,7 +220,6 @@ public class PlayerCamera : Camera
         
         tempObject = null;
         ReturnInteractionPoint();
-        
     }
 
     private void UpdateInput()
@@ -240,11 +260,7 @@ public class PlayerCamera : Camera
 
     public override void _Process(float delta)
     {
-        if (!isUpdating)
-        {
-            SetHintVisible(false);
-            return;
-        }
+        if (!isUpdating) return;
 
         UpdateFov(delta);
         UpdateInteracting();

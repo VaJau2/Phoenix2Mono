@@ -1,3 +1,5 @@
+namespace Effects;
+
 public class MedXPostEffect : Effect
 {
     const float DAMAGE_BLOCK_DELTA = -0.2f;

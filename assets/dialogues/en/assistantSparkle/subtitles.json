@@ -1,0 +1,517 @@
+{
+    "briefing":
+    {
+        "start1":
+        {
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "twilight"
+        },
+        "start2":
+        {
+            "speakerCode": "strikely",
+            "text": "I am ready to listen to my mission briefing."
+        },
+        "start3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Great!"
+        },
+        "start4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Your mission goal — is to rescue hostages, not to eliminate the terrorists."
+        },
+
+
+        "enter":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The first problem you'll face — is breaking into the facility.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "vent1"
+        },
+
+        "vent1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "One solution is a snow-filled vent hatch."
+        },
+        "vent2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "It opens with a key card. You'll be given one when you arrive."
+        },
+        "vent3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The hatch is marked with number 1."
+        },
+        "vent4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The better you remember its location, the less you'll dig up snowdrifts.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "vent2"
+        },
+        "vent5":
+        {
+            "speakerCode": "strikely",
+            "text": "On the map, the hatch looks like it's inside the base."
+        },
+        "vent6":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "In fact, the hatch is located outside the facility.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "vent3"
+        },
+        "vent7":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Only the facility staff knows that the ventilation shafts are designed as secret passages."
+        },
+        "vent8":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "There is access from the vent to almost anywhere in the facility."
+        },
+        "vent9":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "You can use it to navigate over terrorist patrols without crossing them.",
+            "phraseDelay": 1.5
+        },
+        "vent10":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Any questions?"
+        },
+        "vent11":
+        {
+            "speakerCode": "strikely",
+            "text": "No more questions.",
+            "phraseDelay": 1.5
+        },
+        
+        "box1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Then to the next infiltration strategy.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "box1"
+        },
+        "box2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "As Bellgates has said before, operatives have to supply fodder for terrorists."
+        },
+        "box3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Deliveries are made in several large and half-empty cargo."
+        },
+        "box4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "This disperses the terrorists' forces and attention. It allows us to plant some stuff in the cargo."
+        },
+        "box5":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Like microphones, cameras and potentially ponies of your size."
+        },
+        "box6":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "We know that terrorists only check the cargo when it is loaded onto the truck."
+        },
+        "box7":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "We also know the average time it takes to deliver a cargo to the facility."
+        },
+        "box8":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The stealth buck got enough charge."
+        },
+        "box9":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Just a reminder that stealth buck will be issued to you upon arrival.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "box2"
+        },
+        "box10":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The other one you can get here, from Assistant Pie.",
+            "phraseDelay": 1.5,
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "box3"
+        },
+        "box11":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And the third one is somewhere in the facility.",
+            "phraseDelay": 1.5
+        },
+        "box12":
+        {
+            "speakerCode": "strikely",
+            "text": "Got it.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "box4"
+        },
+        "box13":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "When you will arrive into the facility inside the crate, the stealth buck will still have a charge."
+        },
+        "box14":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Use your invisibility wisely."
+        },
+        "box15":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Stalk the driver. Knock him out. Get his uniform and his truck key.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "box5"
+        },
+        "box16":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Dressed as a terrorist, you'll be able to move freely around the facility."
+        },
+        "box17":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The truck will allow you to leave the facility unhindered under cover of deliveries."
+        },
+        "box18":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Questions?",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "run1"
+        },
+
+        "run1":
+        {
+            "speakerCode": "strikely",
+            "text": "What if, with activated stealth buck, I just run into the facility?"
+        },
+        "run2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "This option has been considered. Yes, you can.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "run2-1"
+        },
+        "run3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The gates were broken during the assault. Now their role is performed by an APC."
+        },
+        "run4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "With activated stealth buck, it is possible to stealthily climb over it and get past the guards.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "run3-1"
+        },
+        "run5":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Then you can enter the reception, marked with the number 3,",
+            "phraseDelay": 3.5
+        },
+        "run6":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "and take the elevator to the second floor.",
+            "phraseDelay": 5,
+            
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "run4-1"
+        },
+        "run7":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "There is also a freight elevator to the floor.",
+            "phraseDelay": 6
+        },
+        "run8":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "You'll have a meaningful, but still finite charge of stealth buck."
+        },
+        "run9":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Try to get the uniform and keys as quickly as possible."
+        },
+
+
+        "keys1":
+        {
+            "speakerCode": "strikely",
+            "text": "Keys? I have to get more than just the key to the truck?"
+        },
+        "keys2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Look. There's a basic access card that opens the 1st and 2nd floor doors. They'll give it to you."
+        },
+        "keys3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "There's a separate key card that unlocks the vents. They'll give it to you."
+        },
+        "keys4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "There's a separate key card for the insulator cell. It's up to you to get it."
+        },
+        "keys5":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Each collar has its own individual key card. You'll need to get them, too."
+        },
+        "keys6":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "All key cards are radio-tagged.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "keys1"
+        },
+        "keys7":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And we know for a fact that the key card to the insulator cell is in the east office room.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "keys2"
+        },
+        "keys8":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And the key cards for the collars are in the west office room.",
+            "phraseDelay": 1.5,
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "free"
+        },
+
+
+        "free1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "So, the hostages are locked in an isolation cell, which can only be accessed through a reinforced door."
+        },
+        "free2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The hostages are wearing clone collars."
+        },
+        "free3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "If you leave the isolation cell with the collar on, the alarm will automatically start"
+        },
+        "free4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And if you leave the facility with it, nothing will exist. Within a couple of meters."
+        },
+        "free5":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "But thanks to the collar tags, we know exactly where the hostages are. It's marked with an X on the map.",
+            "phraseDelay": 1.5
+        },
+
+        
+        "escape":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "After the isolation doors are opened and the collars are removed, you'll have three options.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "ventEscape1"
+        },
+
+        "ventEscape1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The first option is to lead the hostages to the nearest office room with an exit to the vent."
+        },
+        "ventEscape2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Since the hostages are earthponies, you'll need to build a ladder by furniture to the vent.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "ventEscape2-1"
+        },
+        "ventEscape3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Then follow the ventilation shafts.",
+            "phraseDelay": 4.2
+        },
+        "ventEscape4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Once on the surface, crawl along the walls in the blind zone.",
+            "phraseDelay": 3
+        },
+        "ventEscape5":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And there will be operatives there to meet you.",
+            "phraseDelay": 1.5,
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "truckEscape1"
+        },
+
+        "truckEscape1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The second option is to get three uniforms and wear it with the hostages.",
+            
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "truckEscape2"
+        },
+        "truckEscape2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Go to the truck together.",
+            "phraseDelay": 6
+        },
+        "truckEscape3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Hide the hostages in the truck. Wait for the next shipment to be announced.",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "truckEscape3-1"
+        },
+        "truckEscape4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Drive out \"to pick up the forage\".",
+            "phraseDelay": 5.5,
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "stealthEscape1"
+        },
+
+        "stealthEscape1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Third and last option is to equip the hostages with stealthbucks and a basic access card",
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "stealthEscape2"
+        },
+        "stealthEscape2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "and you get out through the vents or with a truck.",
+            "phraseDelay": 1.5
+        },        
+
+        "runEscape1":
+        {
+            "speakerCode": "strikely",
+            "text": "I guess that just going out in uniform isn't an option?"
+        },
+        "runEscape2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "The three terrorists leaving the facility are too suspicious."
+        },
+        "runEscape3":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Most likely the terrorists will open fire."
+        },
+        "runEscape4":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "And a battlefield breakout is unacceptably risky."
+        },
+        "runEscape5":
+        {
+            "speakerCode": "strikely",
+            "text": "The questions are over.",
+            "phraseDelay": 1.5,
+
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "returnToTwilight"
+        },
+
+
+        "end1":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Then, congratulations on a successfully listened briefing!"
+        },
+        "end2":
+        {
+            "speakerCode": "assistantSparkle",
+            "text": "Good luck on your mission!"
+        },
+        "end3": 
+        {
+            "class": "ActivateCinematic",
+            "key": "Briefing",
+            "value": "returnToPlayer"
+        },
+        "end4": 
+        {
+            "class": "ChangeSubtitlesCode",
+            "value": "briefing"
+        }
+    }
+}

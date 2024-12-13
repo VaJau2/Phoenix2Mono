@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stealthEscape1.mp3-026b99f19be1128533c738dc61cbb3e1.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/stealthEscape1.mp3"
+dest_files=[ "res://.import/stealthEscape1.mp3-026b99f19be1128533c738dc61cbb3e1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

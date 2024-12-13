@@ -153,6 +153,11 @@ public abstract class InventoryMode
 
     public void UseTempItem()
     {
+        if (!tempButton.isInventoryIcon)
+        {
+            player.EmitSignal(nameof(Player.TakeItem), tempButton.myItemCode);
+        }
+        
         useHandler.HideLoadingIcon();
         useHandler.UseTempItem();
     }
@@ -370,7 +375,7 @@ public abstract class InventoryMode
 
             ChangeItemButtons(tempButton, otherButton);
             SetTempButton(otherButton, false);
-            dragIcon.SetTexture(null);
+            dragIcon.SetIcon(null);
         }
     }
 
@@ -393,7 +398,7 @@ public abstract class InventoryMode
     public virtual void OpenMenu()
     {
         isOpening = true;
-        player.SetMayMove(false);
+        player.SetTotalMayMove(false);
 
         LoadLabels();
         moneyCount.Text = inventory.money.ToString();
@@ -415,7 +420,7 @@ public abstract class InventoryMode
         
         CheckTempIcon();
         
-        player.SetMayMove(true);
+        player.SetTotalMayMove(true);
         
         anim.Play("Close");
     }
@@ -443,7 +448,7 @@ public abstract class InventoryMode
     private void FinishDragging()
     {
         tempButton?.SetIcon((StreamTexture) dragIcon.Texture);
-        dragIcon.SetTexture(null);
+        dragIcon.SetIcon(null);
         dragIcon.RectGlobalPosition = Vector2.Zero;
         isDragging = false;
     }
@@ -471,7 +476,7 @@ public abstract class InventoryMode
                 {
                     useHandler.HideLoadingIcon();
 
-                    dragIcon.SetTexture(tempButton.GetIcon());
+                    dragIcon.SetIcon(tempButton.GetIcon());
                     dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
 
                     tempButton.SetIcon(null);

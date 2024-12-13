@@ -137,7 +137,7 @@ public class WaitInBoxTrigger : TriggerBase
                     Global.SetNewOrigin(playerHere.GlobalTransform, newBoxPosition.GlobalTransform.origin);
                 playerHere.GlobalRotation = newBoxPosition.GlobalRotation;
 
-                doorToParking.Open(null, true, false);
+                doorToParking.Open(null, false);
                 playerHere.SitOnChair(false);
                 SetProcess(false);
                 _on_activate_trigger();

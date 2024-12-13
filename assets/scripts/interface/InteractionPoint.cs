@@ -37,8 +37,8 @@ public class InteractionPoint : Control
         fadeTimer.Stop();
         fadeTimer.Start(2);
     }
-
-    public void HidePoint()
+    
+    private void HidePoint()
     {
         if (tempVariant == InteractionVariant.Point)
         {

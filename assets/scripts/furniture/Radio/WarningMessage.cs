@@ -1,13 +1,11 @@
-﻿using Godot;
-
-public struct WarningMessage(string _code, VoiceMessageTrigger _trigger)
+﻿public class WarningMessage
 {
-    public string code = _code;
-    public VoiceMessageTrigger trigger = _trigger;
+    public string code;
+    public VoiceMessageTrigger trigger;
 
-    public void Clear()
+    public WarningMessage(string _code, VoiceMessageTrigger _trigger)
     {
-        code = null;
-        trigger = null;
+        code = _code;
+        trigger = _trigger;
     }
 }

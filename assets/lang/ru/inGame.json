@@ -107,10 +107,7 @@
     "labels": {
         "nextWeek": "Спустя неделю...",
         "dragon": "Дракон",
-        "toBeContinueTitle": "продолжение следует...",
-        "pressLabel": "нажмите",
-        "toExitToMainMenu": "дабы выйти в главное меню",
-        "skip": "пропустить"
+        "skip": "Пропустить"
     },
     
     "testing": {

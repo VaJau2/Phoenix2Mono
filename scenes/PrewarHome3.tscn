@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/materials/props/background/morning_city.tres" type="Material" id=8]
 [ext_resource path="res://objects/props/plants/AppleTree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/characters/NPC/Base/CoversManager.cs" type="Script" id=11]
+[ext_resource path="res://assets/scripts/background/CoversManager.cs" type="Script" id=11]
 [ext_resource path="res://objects/props/tiles/woodFence.tres" type="MeshLibrary" id=12]
 [ext_resource path="res://objects/props/post/PostOffice.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/characters/ponies/smoky.tscn" type="PackedScene" id=14]
@@ -96,12 +96,12 @@
 [ext_resource path="res://assets/audio/music/after-mtn/dramatic-1.mp3" type="AudioStream" id=94]
 [ext_resource path="res://objects/props/furniture/radio/Radio Jr.tscn" type="PackedScene" id=95]
 [ext_resource path="res://assets/audio/radio/Blue Radio/Home after MTH/Bob Crosby and the Bobcats - Happy Times.mp3" type="AudioStream" id=96]
-[ext_resource path="res://assets/scripts/Room.cs" type="Script" id=97]
+[ext_resource path="res://assets/scripts/furniture/Room/Room.cs" type="Script" id=97]
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=98]
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=99]
 [ext_resource path="res://assets/audio/background/bushes/bushes.mp3" type="AudioStream" id=100]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=101]
-[ext_resource path="res://assets/scripts/RoomManager.cs" type="Script" id=102]
+[ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=102]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=103]
 [ext_resource path="res://assets/materials/props/light/halo.material" type="Material" id=104]
 
@@ -1038,7 +1038,6 @@ customInteractionTriggerPath = NodePath("../../triggers/locationExit")
 transform = Transform( -3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 63.3716, -96.4466, 39.562 )
 IsImmortal = true
 dialogueCode = "beginTrade"
-traderCode = "filly"
 
 [node name="terrain" type="Spatial" parent="." groups=["savable"]]
 script = ExtResource( 29 )

@@ -1,0 +1,68 @@
+{
+  "Apple-tree":
+  {
+    "phrase0":
+      {
+        "class": "ActivateCinematic",
+        "key": "Apple-tree",
+        "value": "showTree"
+      },
+    
+      "phrase1":
+      {
+        "speakerCode": "windy",
+        "text": "Remember when Daddy and I planted that little sprout?"
+      },
+
+      "phrase2":
+      {
+        "speakerCode": "windy",
+        "text": "Look what a big tree this sprout has grown into!"
+      },
+
+      "phrase3":
+      {
+        "speakerCode": "windy",
+        "text": "In the morning we picked the first apples."
+      },
+
+      "phrase4":
+      {
+        "speakerCode": "windy",
+        "text": "Big. Juicy. Sweet. Succulent."
+      },
+
+      "phrase5":
+      {
+        "speakerCode": "windy",
+        "text": "Mom used them to make such a delicious pie!"
+      },
+
+      "phrase6":
+      {
+        "speakerCode": "windy",
+        "text": "Daddy would have loved this pie..."
+      },
+
+      "phrase7":
+      {
+        "speakerCode": "strikely",
+        "text": "All right, all right. You've convinced me. Lead me to the pie."
+      },
+
+      "phrase8":
+      {
+        "speakerCode": "windy",
+        "text": "You're very lucky I was stuffed before the pie was over.",
+        "class": "ActivateCinematic",
+        "key": "Apple-tree",
+        "value": "returnToPlayer"
+      },
+
+      "phrase9":
+      {
+        "class": "SetTriggerActive",
+        "value": "windyTeleport5"
+      }
+  }
+}

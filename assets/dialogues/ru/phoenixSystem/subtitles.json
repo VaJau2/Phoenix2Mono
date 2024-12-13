@@ -3,7 +3,7 @@
     "back1": {
       "speakerCode": "phoenixSystem",
       "text": "С возвращением, пуся! Как прошла прогулка?",
-      "timer": 0.03
+      "symbolDelay": 0.025
     }
   },
 
@@ -11,15 +11,15 @@
     "back2": {
       "speakerCode": "phoenixSystem",
       "text": "C возращением домой, милая! Нашла Бельгетса?",
-      "timer": 0.03
+      "symbolDelay": 0.026
     }
   },
 
   "back3": {
     "back3": {
       "speakerCode": "phoenixSystem",
-      "text": "Дом, милый дом. Ты видела грустную кобылку с синей коробкой? …или то был жеребец?",
-      "timer": 0.03
+      "text": "Дом, милый дом. Ты видела грустную кобылку с синей коробкой? Или то был жеребец?",
+      "symbolDelay": 0.025
     }
   },
 
@@ -27,7 +27,7 @@
     "back4": {
       "speakerCode": "phoenixSystem",
       "text": "Добро пожаловать в самое уютное убежище в мире.",
-      "timer": 0.03
+      "symbolDelay": 0.025
     }
   },
 
@@ -35,15 +35,14 @@
     "back5": {
       "speakerCode": "phoenixSystem",
       "text": "О, это ты! Принесла чего-нить хорошенького?",
-      "timer": 0.03
+      "symbolDelay": 0.028
     }
   },
 
   "back6": {
     "back6": {
       "speakerCode": "phoenixSystem",
-      "text": "Поздравляю с успешным выживанием в пустыне!",
-      "timer": 0.03
+      "text": "Поздравляю с успешным выживанием в пустыне!"
     }
   },
 
@@ -51,7 +50,7 @@
     "back7": {
       "speakerCode": "phoenixSystem",
       "text": "Интересно, куда делись все остальные?",
-      "timer": 0.03
+      "symbolDelay": 0.025
     }
   },
 
@@ -59,7 +58,7 @@
     "resurrection1": {
       "speakerCode": "phoenixSystem",
       "text": "Благодарю за использование экспериментальной системы воскрешения именуемой 'Феникс 2'!",
-      "timer": 0.025
+      "symbolDelay": 0.025
     },
     "resurrection2": {
       "speakerCode": "phoenixSystem",
@@ -71,57 +70,51 @@
     "cloneRoom1": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! Не хватает материалов для создания новой партии клонов.",
-      "timer": 0.03
+      "symbolDelay": 0.025
     },
     "cloneRoom2": {
       "speakerCode": "phoenixSystem",
-      "text": "Милая, это твои последние клоны.",
-      "timer": 0.03
+      "text": "Милая, это твои последние клоны."
     },
     "cloneRoom3": {
       "speakerCode": "phoenixSystem",
       "text": "Если все они умрут, то и ты умрёшь окончательно!",
-      "timer": 0.025
+      "symbolDelay": 0.025
     }
   },
 
   "lastClone": {
     "lastClone": {
       "speakerCode": "phoenixSystem",
-      "text": "Дорогая, это твой последний клон! Если умрёшь, то навсегда!",
-      "timer": 0.03
+      "text": "Дорогая, это твой последний клон! Если умрёшь, то навсегда!"
     }
   },
 
   "dieFromFly": {
     "dieFromFly": {
       "speakerCode": "phoenixSystem",
-      "text": "В следующий раз, постарайся лететь аккуратнее.",
-      "timer": 0.03
+      "text": "В следующий раз, постарайся лететь аккуратнее."
     }
   },
 
   "dieFromRadiation": {
     "dieFromRadiation": {
       "speakerCode": "phoenixSystem",
-      "text": "Дорогая, не забывай что радиационный фон всё ещё пугающе высок!",
-      "timer": 0.03
+      "text": "Дорогая, не забывай что радиационный фон всё ещё пугающе высок!"
     }
   },
 
   "dieOften": {
     "dieOften": {
       "speakerCode": "phoenixSystem",
-      "text": "Неужели я настолько плохая компания, что ты так часто убиваешься?",
-      "timer": 0.03
+      "text": "Неужели я настолько плохая компания, что ты так часто убиваешься?"
     }
   },
 
   "fuel": {
     "fuel": {
       "speakerCode": "phoenixSystem",
-      "text": "Внимание! Обнаружено критическое обеднение ТВЭЛов.",
-      "timer": 0.03
+      "text": "Внимание! Обнаружено критическое обеднение ТВЭЛов."
     }
   },
 
@@ -129,15 +122,14 @@
     "kitchen": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! Запасы фуража на исходе. Питьевой фильтр неисправен.",
-      "timer": 0.03
+      "symbolDelay": 0.026
     }
   },
 
   "wc": {
     "wc": {
       "speakerCode": "phoenixSystem",
-      "text": "Внимание! Обнаружен засор в водопроводе.",
-      "timer": 0.03
+      "text": "Внимание! Обнаружен засор в водопроводе."
     }
   },
 
@@ -145,12 +137,12 @@
     "radiation1": {
       "speakerCode": "phoenixSystem",
       "text": "Внимание! На поверхности обнаружен смертельный уровень радиации.",
-      "timer": 0.029
+      "symbolDelay": 0.028
     },
     "radiation2": {
       "speakerCode": "phoenixSystem",
       "text": "Одень антирадиационный костюм, пожалуйста.",
-      "timer": 0.03
+      "symbolDelay": 0.025
     }
   }
 }

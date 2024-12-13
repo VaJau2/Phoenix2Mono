@@ -20,8 +20,6 @@ public class PlayerBody : Spatial
     const int RAGDOLL_IMPULSE = 700;
 
     public PlayerHead Head { get; private set; }
-    public PlayerLegs Legs;
-    public SoundSteps SoundSteps;
     private Player player;
     private Race playerRace;
 
@@ -59,18 +57,7 @@ public class PlayerBody : Spatial
         RotationDegrees = rot;
     }
 
-    private bool isWalking
-    {
-        get
-        {
-            return player.MayMove && (
-                Input.IsActionPressed("ui_left") ||
-                Input.IsActionPressed("ui_right") ||
-                Input.IsActionPressed("ui_up") ||
-                Input.IsActionPressed("ui_down")
-            );
-        }
-    }
+    private bool IsWalking => player.Velocity.Length() > 1f;
 
     private bool playerMakingShy
     {
@@ -123,7 +110,7 @@ public class PlayerBody : Spatial
         string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);
         headBlend.y = float.Parse(stringYAngle);
 
-        if (isWalking || jumpingCooldown > 0)
+        if (IsWalking || jumpingCooldown > 0)
         {
             if (checkPegasusFlyingFast)
             {
@@ -166,7 +153,7 @@ public class PlayerBody : Spatial
         }
 
         float speed = 0;
-        if (isWalking)
+        if (IsWalking)
         {
             speed = (BODY_ROT_SPEED / 90f) * player.Velocity.Length();
             //обрасываем нули, чтоб вращение головы не подрагивало
@@ -208,7 +195,7 @@ public class PlayerBody : Spatial
             }
             else
             {
-                playback.Travel("Walk");
+                AnimateWalking();
             }
         }
     }
@@ -248,7 +235,7 @@ public class PlayerBody : Spatial
             {
                 if (jumpingCooldown <= 0)
                 {
-                    playback.Travel("Walk");
+                    AnimateWalking();
                 }
             }
         }
@@ -263,8 +250,16 @@ public class PlayerBody : Spatial
         }
         else
         {
-            playback.Travel("Walk");
+            AnimateWalking();
         }
+    }
+
+    private void AnimateWalking()
+    {
+        var playerDir = player.Velocity * -player.GlobalTransform.basis.z;
+        var playerMovingForward = playerDir.x + playerDir.z > 0;
+        
+        playback.Travel(playerMovingForward ? "Walk" : "WalkBackwards");
     }
 
     private void AnimateIdlePegasus(Player_Pegasus pegasus)
@@ -282,7 +277,7 @@ public class PlayerBody : Spatial
             }
             else
             {
-                playback.Travel("Idle1");
+                playback.Travel(Character.IDLE_ANIM1);
             }
         }
     }
@@ -298,7 +293,7 @@ public class PlayerBody : Spatial
             }
             else
             {
-                playback.Travel("Idle1");
+                playback.Travel(Character.IDLE_ANIM1);
             }
         }
     }
@@ -350,7 +345,7 @@ public class PlayerBody : Spatial
         }
         else
         {
-            playback.Travel("Idle1");
+            playback.Travel(Character.IDLE_ANIM1);
         }
     }
 
@@ -361,7 +356,7 @@ public class PlayerBody : Spatial
 
     public void AnimateDeath(Character killer)
     {
-        playback.Travel("Idle1");
+        playback.Travel(Character.IDLE_ANIM1);
         bodyRot = 0;
         player.CollisionLayer = 0;
         player.CollisionMask = 0;
@@ -397,21 +392,17 @@ public class PlayerBody : Spatial
         playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
         headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
 
-        Legs = GetNode<PlayerLegs>("frontArea");
-
-        SoundSteps = GetNode<SoundSteps>("floorRay");
-
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
         headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
-        playback.Start("Idle1");
+        playback.Start(Character.IDLE_ANIM1);
     }
 
     public override void _Process(float delta)
     {
         if (player.Health > 0)
         {
-            updateHeadRotation(delta);
+            if (player.MayRotateHead) updateHeadRotation(delta);
 
             //update smiling
             if (bodyRot > 130 || bodyRot < -105)
@@ -467,7 +458,7 @@ public class PlayerBody : Spatial
                 crouchingCooldown -= delta;
             }
 
-            if (isWalking)
+            if (IsWalking)
             {
                 if (player.IsCrouching)
                 {
@@ -567,7 +558,7 @@ public class PlayerBody : Spatial
             {
                 SetRotZero();
             }
-            else if (isWalking)
+            else if (IsWalking)
             {
                 Vector3 rot = RotationDegrees;
 

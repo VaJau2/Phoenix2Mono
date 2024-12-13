@@ -6,7 +6,7 @@ public class NpcPoinitingGun: TriggerBase
 {
     [Export] public string npcPath;
     [Export] public float delayTimer;
-    private NpcWithWeapons npc;
+    private NPC npc;
 
     private float tempTimer;
     private int step;
@@ -44,7 +44,7 @@ public class NpcPoinitingGun: TriggerBase
         if (!IsActive) return;
         if (npc == null)
         {
-            npc = GetNode<NpcWithWeapons>(npcPath);
+            npc = GetNode<NPC>(npcPath);
         }
         
         switch (step)
@@ -54,7 +54,7 @@ public class NpcPoinitingGun: TriggerBase
                 WaitDelayTimer();
                 return;
             case 2:
-                npc?.weapons.SetWeapon(true);
+                npc?.Weapons?.SetWeaponOn(true);
                 break;
         }
         

@@ -317,6 +317,15 @@
         "ammoType": "ammoEnergy",
         "sound": "weapon"
     },
+    "flashlight": {
+        "name": "Фонарик",
+        "description": "Помогает более тщательно изучать темные места преступлений",
+        "type": "weapon",
+        "icon": "flashlight",
+        "isPistol": "true",
+        "price": "40",
+        "sound": "flashlight"
+    },
     
 
     "ammo32": {
@@ -491,7 +500,7 @@
         "icon": "pie",
         "price": "50",
         "heal": "40",
-        "sound": "eating1"
+        "sound": "eating2"
     },
 
 

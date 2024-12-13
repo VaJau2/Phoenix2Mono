@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Effects;
+
 public class MentatsEffect : Effect
 {
     const float PRICE_DELTA = 0.25f;
@@ -21,7 +23,7 @@ public class MentatsEffect : Effect
     {
         var colorRect = player.GetNode<ColorRect>("/root/Main/Scene/canvas/fisheyeShader");
         var shader = (ShaderMaterial)colorRect.Material;
-        
+
         if (on)
         {
             SetShaderOn(colorRect, shader);
@@ -73,7 +75,7 @@ public class MentatsEffect : Effect
     private async void SetShaderOn(ColorRect colorRect, ShaderMaterial shader)
     {
         colorRect.Visible = true;
-        
+
         while (tempAlpha < 1)
         {
             shader.SetShaderParam("alpha", tempAlpha);
@@ -81,7 +83,7 @@ public class MentatsEffect : Effect
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
     }
-    
+
     private async void SetShaderOff(ColorRect colorRect, ShaderMaterial shader)
     {
         while (tempAlpha > 0)
@@ -90,7 +92,7 @@ public class MentatsEffect : Effect
             tempAlpha -= 0.02f;
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
-        
+
         colorRect.Visible = false;
     }
 }
