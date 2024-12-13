@@ -64,7 +64,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         answerText = new Array();
     }
 
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         if (!MenuOn) return;
         

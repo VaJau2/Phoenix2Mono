@@ -15,7 +15,8 @@
         "start3":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Замечательно!"
+            "text": "Замечательно!",
+            "symbolDelay": 0.01
         },
         "start4":
         {
@@ -28,6 +29,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Первая проблема, с которой ты столкнёшься — проникновение в комплекс.",
+            "symbolDelay": 0.01,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -37,7 +39,8 @@
         "vent1":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Одно из решений — засыпанный снегом вентиляционный люк."
+            "text": "Одно из решений — засыпанный снегом вентиляционный люк.",
+            "symbolDelay": 0.015
         },
         "vent2":
         {
@@ -53,6 +56,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Чем ты лучше запомнишь его местоположение, тем меньше будешь раскапывать сугробов.",
+            "symbolDelay": 0.01,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -80,13 +84,15 @@
         "vent8":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Из них есть доступ практически в любую точку комплекса."
+            "text": "Из них есть доступ практически в любую точку комплекса.",
+            "symbolDelay": 0.018
         },
         "vent9":
         {
             "speakerCode": "assistantSparkle",
             "text": "По ним сможешь перемещаться над патрулями террористов, не пересекаясь с ними.",
-            "phraseDelay": 1.5
+            "phraseDelay": 1.5,
+            "symbolDelay": 0.015
         },
         "vent10":
         {
@@ -111,12 +117,14 @@
         "box2":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Как уже говорил Бельгетс, оперативникам приходится поставлять фураж террористам."
+            "text": "Как уже говорил Бельгетс, оперативникам приходится поставлять фураж террористам.",
+            "symbolDelay": 0.02
         },
         "box3":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Поставки осуществляются несколькими большими полупустыми ящиками."
+            "text": "Поставки осуществляются несколькими большими полупустыми ящиками.",
+            "symbolDelay": 0.016
         },
         "box4":
         {
@@ -131,7 +139,8 @@
         "box6":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Нам известно, что террористы проверяют ящики лишь при погрузке в грузовик."
+            "text": "Нам известно, что террористы проверяют ящики лишь при погрузке в грузовик.",
+            "symbolDelay": 0.016
         },
         "box7":
         {
@@ -185,12 +194,13 @@
         "box14":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Воcпользуйся своей невидимостью с умом."
+            "text": "Воспользуйся своей невидимостью с умом."
         },
         "box15":
         {
             "speakerCode": "assistantSparkle",
             "text": "Подкарауль водителя. Выруби его. Добудь у него форму и ключи от грузовика.",
+            "symbolDelay": 0.017,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -199,7 +209,8 @@
         "box16":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Будучи одетой как террорист, ты сможешь свободно перемещаться по комплексу."
+            "text": "Будучи одетой как террорист, ты сможешь свободно перемещаться по комплексу.",
+            "symbolDelay": 0.017
         },
         "box17":
         {
@@ -285,27 +296,30 @@
         "keys2":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Смотри. Есть базовая карта доступа открывающая двери 1-го и 2-го этажа. Её тебе дадут."
+            "text": "Смотри. Есть базовая карта доступа, открывающая двери 1-го и 2-го этажа. Её тебе дадут."
         },
         "keys3":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Есть отедльная ключ-карта отпирающая ветиляционный люк. Её тебе дадут."
+            "text": "Есть отдельная ключ-карта, отпирающая ветиляционный люк. Её тебе дадут.",
+            "symbolDelay": 0.025
         },
         "keys4":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Есть отедльная ключ-карта от изолятора. Её тебе предстоит добыть."
+            "text": "Есть отдельная ключ-карта от изолятора. Её тебе предстоит добыть."
         },
         "keys5":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Каждый ошейник имеет свою индувидуальную ключ-карту. Их тоже нужно будет добыть."
+            "text": "Каждый ошейник имеет свою индувидуальную ключ-карту. Их тоже нужно будет добыть.",
+            "symbolDelay": 0.016
         },
         "keys6":
         {
             "speakerCode": "assistantSparkle",
             "text": "Благо все ключ-карты снабжены радиометками.",
+            "symbolDelay": 0.016,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -315,6 +329,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "И мы точно знаем, что ключ-карта от изолятора находится в восточном блоке офисов.",
+            "symbolDelay": 0.017,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -325,6 +340,7 @@
             "speakerCode": "assistantSparkle",
             "text": "А ключ-карты от ошейников — в западном блоке офисов.",
             "phraseDelay": 1.5,
+            "symbolDelay": 0.019,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -335,7 +351,8 @@
         "free1":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Собственно, заложники заперты в изоляторе, в который возможно попасть только через армированную дверь."
+            "text": "Собственно, заложники заперты в изоляторе, в который возможно попасть только через армированную дверь.",
+            "symbolDelay": 0.018
         },
         "free2":
         {
@@ -356,14 +373,16 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Зато благодаря радиометкам ошейников мы точно знаем местонахождение заложников. На карте оно отмечено X.",
-            "phraseDelay": 1.5
+            "phraseDelay": 1.5,
+            "symbolDelay": 0.016
         },
 
         
         "escape":
         {
             "speakerCode": "assistantSparkle",
-            "text": "После того, как двери изолятора открыты, а ошейники сняты, у тебя будут три варианта.",
+            "text": "Когда двери изолятора будут открыты, а ошейники сняты, у тебя будут три варианта.",
+            "symbolDelay": 0.017,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -379,6 +398,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Так как заложники земнопони, для них нужно будет из мебели выстроить лестницу к вентиляции.",
+            "symbolDelay": 0.017,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -394,7 +414,8 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Выбрашись на поверхность, ползти у стен по слепой зоне.",
-            "phraseDelay": 3
+            "phraseDelay": 3,
+            "symbolDelay": 0.02
         },
         "ventEscape5":
         {
@@ -411,6 +432,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Второй вариант — добыть три формы и переодеться вместе с заложниками.",
+            "symbolDelay": 0.02,
             
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -426,6 +448,7 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "Спрятать заложников в грузовике. Ожидать объявления о следующей поставке.",
+            "symbolDelay": 0.02,
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -455,7 +478,8 @@
         {
             "speakerCode": "assistantSparkle",
             "text": "а самой выбираться через вентиляцию или с помощью грузовика.",
-            "phraseDelay": 1.5
+            "phraseDelay": 1.5,
+            "symbolDelay": 0.02
         },        
 
         "runEscape1":
@@ -466,12 +490,14 @@
         "runEscape2":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Трое террористов покидающих комплекс слишком подозрительны."
+            "text": "Трое террористов, покидающих комплекс, слишком подозрительны.",
+            "symbolDelay": 0.017
         },
         "runEscape3":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Скорее всего террористы откроют огонь на поражение."
+            "text": "Скорее всего террористы откроют огонь на поражение.",
+            "symbolDelay": 0.016
         },
         "runEscape4":
         {

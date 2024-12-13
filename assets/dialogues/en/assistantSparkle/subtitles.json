@@ -27,7 +27,7 @@
         "enter":
         {
             "speakerCode": "assistantSparkle",
-            "text": "The first problem you'll face is breaking into the facility.",
+            "text": "The first problem you'll face — is breaking into the facility.",
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -365,7 +365,7 @@
         "escape":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Once the isolation doors are opened and the collars are removed, you'll have three options.",
+            "text": "After the isolation doors are opened and the collars are removed, you'll have three options.",
 
             "class": "ActivateCinematic",
             "key": "Briefing",
