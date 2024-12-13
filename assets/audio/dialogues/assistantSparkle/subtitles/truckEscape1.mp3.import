@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/truckEscape1.mp3-69bb457b1f2661c5690e19476c643712.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/truckEscape1.mp3"
+dest_files=[ "res://.import/truckEscape1.mp3-69bb457b1f2661c5690e19476c643712.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

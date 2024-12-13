@@ -19,7 +19,6 @@ using Array = Godot.Collections.Array;
 public class Subtitles : Label, ISavable
 {
     private const float VISIBLE_DISTANCE = 50;
-    private const int MAX_LINE_LENGTH = 50;
 
     private static Player Player => Global.Get().player;
 
@@ -255,7 +254,9 @@ public class Subtitles : Label, ISavable
     
     private void CheckTempTalker()
     {
-        if (Talker is not { Health: > 0 })
+        if (Talker == null) return;
+        
+        if (Talker.Health < 0)
         {
             FinishAnimatingText();
             return;

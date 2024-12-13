@@ -122,12 +122,12 @@
         "box4":
         {
             "speakerCode": "assistantSparkle",
-            "text": "This disperses the terrorists' forces and attention. It allows us to plant some stuff in the cargo:"
+            "text": "This disperses the terrorists' forces and attention. It allows us to plant some stuff in the cargo."
         },
         "box5":
         {
             "speakerCode": "assistantSparkle",
-            "text": "microphones, cameras and potentially ponies of your size."
+            "text": "Like microphones, cameras and potentially ponies of your size."
         },
         "box6":
         {
@@ -447,7 +447,7 @@
         "stealthEscape1":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Third and last option is equip the hostages with stealthbucks and a basic access card",
+            "text": "Third and last option is to equip the hostages with stealthbucks and a basic access card",
 
             "class": "ActivateCinematic",
             "key": "Briefing",

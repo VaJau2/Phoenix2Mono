@@ -57,7 +57,7 @@
 [ext_resource path="res://objects/props/furniture/bed-1.tscn" type="PackedScene" id=55]
 [ext_resource path="res://objects/props/furniture/bed-2.tscn" type="PackedScene" id=56]
 [ext_resource path="res://objects/props/furniture/box-down.tscn" type="PackedScene" id=57]
-[ext_resource path="res://objects/props/vehicles/van.tscn" type="PackedScene" id=58]
+[ext_resource path="res://objects/props/vehicles/Bellgates Van.tscn" type="PackedScene" id=58]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=59]
 [ext_resource path="res://assets/models/props/buildings/street-houses/mansion1/01 - Default.material" type="Material" id=60]
 [ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=61]
@@ -562,8 +562,6 @@ script = ExtResource( 10 )
 [node name="windy" parent="npc" instance=ExtResource( 67 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -71.3381, -92.8579, 60.5449 )
 IsImmortal = true
-headBonePath = NodePath("")
-bodyBonePath = NodePath("")
 
 [node name="mother" parent="npc" instance=ExtResource( 66 )]
 transform = Transform( -0.999886, 0, 0.0150966, 0, 1, 0, -0.0150966, 0, -0.999886, -85.6788, -101.587, 52.4112 )
@@ -748,7 +746,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 37.4137
 [node name="car_nt" parent="terrain/props/cars" instance=ExtResource( 26 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0855, -0.343495, 155.736 )
 
-[node name="van" parent="terrain/props/cars" groups=["savable"] instance=ExtResource( 58 )]
+[node name="Bellgates Van" parent="terrain/props/cars" groups=["savable"] instance=ExtResource( 58 )]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -38.1353, -0.348294, -56.6093 )
 script = ExtResource( 75 )
 hintCodes = [ "enterVan" ]

@@ -17,8 +17,6 @@ public class WarningManager : RadioManager, ISavable
     public float Timer => messagePlayer.GetPlaybackPosition();
     
     private EnemiesManager enemiesManager;
-    private AudioStream alarmSound;
-    private bool isAlarmPlaying;
 
     private AudioStreamPlayer3D messagePlayer;
     private Subtitles subtitles;
@@ -43,9 +41,6 @@ public class WarningManager : RadioManager, ISavable
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
         subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
         subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
-        
-        // alarm
-        alarmSound = (AudioStream)GD.Load("res://assets/audio/background/alarm.wav");
         
         enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
         enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/box14.mp3-06387ca30fb9c26520765aa3eadab099.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/box14.mp3"
+dest_files=[ "res://.import/box14.mp3-06387ca30fb9c26520765aa3eadab099.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

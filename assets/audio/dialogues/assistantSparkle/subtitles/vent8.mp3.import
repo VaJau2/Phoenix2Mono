@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vent8.mp3-9bdb9f9eff3e496d0ec1d2361ec6adde.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/vent8.mp3"
+dest_files=[ "res://.import/vent8.mp3-9bdb9f9eff3e496d0ec1d2361ec6adde.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
