@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/buildings/snow-base/open_box/box.material" type="Material" id=2]
-[ext_resource path="res://assets/scripts/furniture/FurnBase.cs" type="Script" id=3]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnBase.cs" type="Script" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"

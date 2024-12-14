@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/scripts/furniture/FurnButton.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnButton.cs" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=32]
 extents = Vector3( 0.0665556, 0.183349, 0.167756 )

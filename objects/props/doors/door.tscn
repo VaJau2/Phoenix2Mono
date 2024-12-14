@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/materials/props/door.tres" type="Material" id=1]
-[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=2]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=2]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=5]
 
 [sub_resource type="ConvexPolygonShape" id=9]

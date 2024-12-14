@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/materials/props/furniture/terminal-body.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=2]
 [ext_resource path="res://objects/interface/terminal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/scripts/furniture/Terminal/Terminal.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/Terminal/Terminal.cs" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=1]
 

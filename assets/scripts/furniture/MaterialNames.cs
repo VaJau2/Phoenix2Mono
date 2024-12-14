@@ -1,8 +1,9 @@
 using Godot;
 using System.Collections.Generic;
 
-public static class MatNames {
-    private static Dictionary<int, string> matNames = new Dictionary<int, string>() 
+public static class MatNames 
+{
+    private static Dictionary<int, string> matNames = new() 
     {
         {1, "glass"},
         {2, "blood"},
@@ -18,9 +19,11 @@ public static class MatNames {
         {70, "water"},
     };
 
-    public static string GetMatName(float friction) {
-        if (!matNames.ContainsKey((int)friction)) {
-            GD.PrintErr(friction.ToString() + " is not in materials array :/");
+    public static string GetMatName(float friction) 
+    {
+        if (!matNames.ContainsKey((int)friction)) 
+        {
+            GD.PrintErr(friction + " is not in materials array :/");
         }
         return matNames[(int)friction];
     }

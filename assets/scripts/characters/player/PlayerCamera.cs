@@ -2,9 +2,11 @@ using Godot;
 using Godot.Collections;
 
 // скрипт взаимодействия с предметами
+//
+// TODO отрефакторить (выделить fov в отдельный класс)
 public class PlayerCamera : Camera
 {
-    private const float RAY_LENGTH = 6;
+    private const float RAY_LENGTH = 8;
     private const float RAY_THIRD_LENGTH = 9;
     private const float EYE_PART_SPEED1 = 1000;
     private const float EYE_PART_SPEED2 = 1200;
@@ -19,21 +21,82 @@ public class PlayerCamera : Camera
     private Player player;
 
     private Label interactionHint;
-    private TextureRect interactionIcon;
-    private TextureRect interactionIconShadow;
     private string closedTextLink = "closed";
+    
+    private Control loadingIcon;
+    private AnimationPlayer loadingAnim;
 
     private Node tempObject;
-    private bool onetimeCross;
 
     private bool fovClosing;
     private Control eyePartUp;
     private Control eyePartDown;
 
+    private bool isHoldingSound;
     private bool isUpdating = true;
     private bool mayUseRay = true;
 
-    RayCast tempRay => player.RotationHelperThird.TempRay;
+    private RayCast tempRay => player.RotationHelperThird.TempRay;
+    
+    private bool MayInteract => !interactionHint.Visible || !(closedTimer <= 0) ||
+                                tempObject is IInteractable { MayInteract: true };
+    
+    public override void _Ready()
+    {
+        player = GetNode<Player>("../../");
+
+        eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
+        eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
+        
+        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
+        interactionHint = point.GetNode<Label>("interactionHint");
+        
+        loadingIcon = point.GetNode<Control>("loadingIcon");
+        loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
+        if (!loadingAnim.IsConnected("animation_finished", this, nameof(HoldAnimationFinished)))
+        {
+            loadingAnim.Connect("animation_finished", this, nameof(HoldAnimationFinished));
+        }
+    }
+    
+    public override void _Process(float delta)
+    {
+        if (!isUpdating) return;
+
+        UpdateFov(delta);
+        UpdateInteractionObject();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!isUpdating) return;
+
+        if (MayInteract && @event is InputEventKey)
+        {
+            UpdateInteractionInput();
+        }
+
+        if (player.ThirdView) return;
+        if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
+        if (@event is not InputEventMouseButton mouseEv) return;
+        if (mouseEv.ButtonIndex == 2)
+        {
+            fovClosing = mouseEv.Pressed;
+        }
+    }
+
+    public void HoldAnimationFinished(string animation)
+    {
+        if (animation != "load") return;
+        
+        if (tempObject is IInteractableHoldSound)
+        {
+            player.GetAudi(true).Stop();
+        }
+        
+        InteractWithItem();
+        HideLoadingIcon();
+    }
 
     public void SetUpdating(bool value)
     {
@@ -75,24 +138,11 @@ public class PlayerCamera : Camera
     public void ShowHint(string textLink, bool triggerClosing = true)
     {
         point.SetInteractionVariant(InteractionVariant.Square);
-
-        var actions = InputMap.GetActionList("use");
-        var action = (InputEventKey)actions[0];
-        var key = OS.GetScancodeString(action.Scancode);
-        var buttonPath = "res://assets/textures/interface/icons/buttons/";
-        var isWideButton = key is "BackSpace" or "CapsLock" or "Kp 0" or "Shift" or "Space" or "Tab";
-
-        interactionIcon.Texture = GD.Load<Texture>( buttonPath + key + ".png");
-        
-        interactionIconShadow.Texture = (isWideButton)
-            ? GD.Load<Texture>(buttonPath + "Empty 48x32.png")
-            : GD.Load<Texture>(buttonPath + "Empty 32x32.png");
-        
         interactionHint.Text = InterfaceLang.GetPhrase("inGame", "cameraHints", textLink);
 
         SetHintVisible(true);
         if (!triggerClosing) return;
-        onetimeHint = onetimeCross = true;
+        onetimeHint = true;
     }
 
     public void HideHint()
@@ -100,21 +150,43 @@ public class PlayerCamera : Camera
         onetimeHint = true;
         ReturnInteractionPoint();
     }
-
-    private void ReturnInteractionPoint()
+    
+    private void UpdateInteractionObject()
     {
-        point.SetInteractionVariant(
-            player.Weapons.GunOn && player.Weapons.IsShootingWeapon 
-                ? InteractionVariant.Cross 
-                : InteractionVariant.Point
-        );
-    }
+        if (closedTimer > 0) return;
+        if (!mayUseRay) return;
 
+        tempObject = (Node)tempRay.GetCollider();
+
+        if (mayUseRay && tempObject != null)
+        {
+            if (tempObject is PhysicalBone)
+            {
+                tempObject = tempObject.GetNode<Node>("../../../");
+            }
+            
+            if (tempObject is IInteractable { MayInteract: true } interactable)
+            {
+                ShowHint(interactable.InteractionHintCode);
+                return;
+            }
+        }
+        
+        ReturnInteractionPoint();
+        HideLoadingIcon();
+        
+        if (isHoldingSound)
+        {
+            player.GetAudi(true).Stop();
+        }
+    }
+    
     private void UpdateFov(float delta)
     {
         if (closedTimer > 0)
         {
             closedTimer -= delta;
+            
             if (!onetimeHint)
             {
                 interactionHint.Text = InterfaceLang.GetPhrase(
@@ -196,60 +268,74 @@ public class PlayerCamera : Camera
             }
         }
     }
-
-    private void UpdateInteracting()
+    
+    private void UpdateInteractionInput()
     {
-        if (closedTimer > 0) return;
-        if (!mayUseRay) return;
-
-        tempObject = (Node)tempRay.GetCollider();
-
-        if (mayUseRay && tempObject != null)
+        if (Input.IsActionJustPressed("use"))
         {
-            if (tempObject is PhysicalBone)
+            if (tempObject is IInteractableHold holdable)
             {
-                tempObject = tempObject.GetNode<Node>("../../../");
-            }
-            
-            if (tempObject is IInteractable { MayInteract: true } interactable)
-            {
-                ShowHint(interactable.InteractionHintCode);
+                ShowLoadingIcon(holdable);
+                        
+                if (tempObject is IInteractableHoldSound soundable)
+                {
+                    PlayInteractionAudio(soundable.HoldingSound, true);
+                }
+
                 return;
             }
+           
+            InteractWithItem();
         }
-        
-        tempObject = null;
-        ReturnInteractionPoint();
+
+        if (Input.IsActionJustReleased("use"))
+        {
+            if (tempObject is IInteractableHold)
+            {
+                HideLoadingIcon();
+            }
+            
+            if (tempObject is IInteractableHoldSound)
+            {
+                player.GetAudi(true).Stop();
+            }
+        }
     }
 
-    private void UpdateInput()
+    private void InteractWithItem()
     {
-        if (!interactionHint.Visible || !(closedTimer <= 0) || tempObject == null) return;
-        if (tempObject is IInteractable { MayInteract: true } interactable)
+        if (tempObject is IInteractableUseSound soundable)
+        {
+            PlayInteractionAudio(soundable.UseSound, false);
+        }
+        
+        if (tempObject is IInteractable interactable)
         {
             interactable.Interact(this);
         }
     }
-
-    void SetHintVisible(bool value)
+    
+    private void PlayInteractionAudio(AudioStream stream, bool holdingSound)
     {
-        interactionHint.Visible = value;
-        interactionIcon.Visible = value;
+        if (stream == null) return;
+        isHoldingSound = holdingSound;
+        
+        player.GetAudi(true).Stream = stream;
+        player.GetAudi(true).Play();
     }
 
-    public override void _Ready()
+    private void ReturnInteractionPoint()
     {
-        point = GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
-        interactionHint = point.GetNode<Label>("interactionHint");
+        point.SetInteractionVariant(
+            player.Weapons.GunOn && player.Weapons.IsShootingWeapon 
+                ? InteractionVariant.Cross 
+                : InteractionVariant.Point
+        );
+    }
 
-        interactionIcon = GetNode<TextureRect>("/root/Main/Scene/canvas/interactionIcon");
-        interactionIconShadow = interactionIcon.GetNode<TextureRect>("shadow");
-        MenuBase.LoadColorForChildren(interactionIcon);
-
-        player = GetNode<Player>("../../");
-
-        eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
-        eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
+    private void SetHintVisible(bool value)
+    {
+        interactionHint.Visible = value;
     }
 
     private Vector2 SetRectY(Vector2 oldPosition, float newY) 
@@ -257,30 +343,17 @@ public class PlayerCamera : Camera
         oldPosition.y = newY;
         return oldPosition;
     }
-
-    public override void _Process(float delta)
+    
+    private void ShowLoadingIcon(IInteractableHold holdable)
     {
-        if (!isUpdating) return;
-
-        UpdateFov(delta);
-        UpdateInteracting();
+        loadingIcon.Visible = true;
+        loadingAnim.PlaybackSpeed = holdable.HoldingAnimSpeed;
+        loadingAnim.Play("load");
     }
 
-    public override void _Input(InputEvent @event)
+    private void HideLoadingIcon()
     {
-        if (!isUpdating) return;
-
-        if (@event is InputEventKey && Input.IsActionJustPressed("use")) 
-        {
-            UpdateInput();
-        }
-
-        if (player.ThirdView) return;
-        if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
-        if (!(@event is InputEventMouseButton mouseEv)) return;
-        if (mouseEv.ButtonIndex == 2)
-        {
-            fovClosing = mouseEv.Pressed;
-        }
+        loadingIcon.Visible = false;
+        loadingAnim.Stop();
     }
 }
