@@ -60,7 +60,7 @@ tracks/1/keys = {
 [node name="LoadingIcon" type="Control" groups=["ignore_color"]]
 anchor_right = 0.021
 anchor_bottom = 0.033
-margin_right = 0.495998
+margin_right = -0.504
 margin_bottom = 0.200001
 
 [node name="Shadow" type="Sprite" parent="."]

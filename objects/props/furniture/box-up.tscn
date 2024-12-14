@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/scripts/furniture/FurnChest.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnChest.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/props/furniture/box-down.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=3]
 [ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=4]

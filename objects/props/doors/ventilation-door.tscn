@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/models/props/buildings/snow-base/laba/inside/ventilation-door.material" type="Material" id=1]
-[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=2]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=2]
 [ext_resource path="res://assets/audio/futniture/prisonDoorOpen.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=4]
 

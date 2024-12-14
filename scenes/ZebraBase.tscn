@@ -62,7 +62,7 @@
 [ext_resource path="res://assets/models/props/buildings/zebra-base/kp_2/inside/tiling1.material" type="Material" id=60]
 [ext_resource path="res://assets/materials/props/materials/stone3.tres" type="Material" id=61]
 [ext_resource path="res://objects/props/doors/door1.tscn" type="PackedScene" id=62]
-[ext_resource path="res://assets/scripts/furniture/DoorTeleport.cs" type="Script" id=63]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/DoorTeleport.cs" type="Script" id=63]
 [ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=64]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=65]
 [ext_resource path="res://objects/props/furniture/trash/storage-shelf.tscn" type="PackedScene" id=66]
@@ -116,6 +116,7 @@
 [ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=114]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=115]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=116]
+
 
 
 [sub_resource type="GDScript" id=1]

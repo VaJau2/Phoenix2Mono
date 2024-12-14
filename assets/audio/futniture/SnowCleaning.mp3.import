@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SnowCleaning.mp3-54d082aa2ab0c4b96eaa4ee5db18b062.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/futniture/SnowCleaning.mp3"
+dest_files=[ "res://.import/SnowCleaning.mp3-54d082aa2ab0c4b96eaa4ee5db18b062.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

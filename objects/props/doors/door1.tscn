@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/scripts/furniture/FurnDoor.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=1]
 [ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/props/door1.tres" type="Material" id=4]

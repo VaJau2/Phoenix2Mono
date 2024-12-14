@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/scripts/furniture/Terminal/Terminal.cs" type="Script" id=1]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/Terminal/Terminal.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=2]
 [ext_resource path="res://objects/interface/terminal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/materials/props/furniture/terminal-table.material" type="Material" id=4]

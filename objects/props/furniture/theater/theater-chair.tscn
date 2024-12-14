@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/buildings/theater/red.material" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/materials/wood2.tres" type="Material" id=3]
-[ext_resource path="res://assets/scripts/furniture/TheaterChair.cs" type="Script" id=4]
+[ext_resource path="res://assets/scripts/furniture/Interaction/Items/TheaterChair.cs" type="Script" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "chair"
