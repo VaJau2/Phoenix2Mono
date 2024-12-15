@@ -75,7 +75,7 @@
 [ext_resource path="res://objects/props/buildings/base-houses/dining.tscn" type="PackedScene" id=73]
 [ext_resource path="res://objects/characters/ponies/private1.tscn" type="PackedScene" id=74]
 [ext_resource path="res://assets/audio/background/night_back.ogg" type="AudioStream" id=75]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=76]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=76]
 [ext_resource path="res://assets/audio/music/after-mtn/dramatic-2.mp3" type="AudioStream" id=77]
 [ext_resource path="res://assets/scripts/triggers/music/LoopingMusicPartTrigger.cs" type="Script" id=78]
 [ext_resource path="res://assets/scripts/triggers/music/LoopingMusicPartChangeTrigger.cs" type="Script" id=79]
@@ -110,6 +110,7 @@
 [ext_resource path="res://assets/scripts/furniture/Room/RoomManager.cs" type="Script" id=108]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=109]
 [ext_resource path="res://objects/props/furniture/light/lamp_off.tscn" type="PackedScene" id=110]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.6651, 2.82989, 0.395357 )

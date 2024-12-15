@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/models/props/buildings/snow-base/laba/inside/ventilation-door.material" type="Material" id=1]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=2]
-[ext_resource path="res://assets/audio/futniture/prisonDoorOpen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/Doors/prisonDoorOpen.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/furniture/Doors/prisonDoorOpenKeyCard.wav" type="AudioStream" id=6]
 
 [sub_resource type="ConvexPolygonShape" id=8]
 points = PoolVector3Array( -0.574162, -0.0109244, -0.00815541, -0.574162, -0.00213079, -0.00815541, 0.583377, -0.0109244, -0.00815541, -0.574162, -0.0109244, 1.09861, -0.574162, -0.00213079, 1.09861, 0.583377, -0.00213079, -0.00815541, 0.583377, -0.0109244, 1.09861, 0.583377, -0.00213079, 1.09861 )
@@ -59,6 +61,8 @@ physics_material_override = ExtResource( 4 )
 script = ExtResource( 2 )
 OpenSound = ExtResource( 3 )
 CloseSound = ExtResource( 3 )
+closedSound = ExtResource( 5 )
+openWithKeySound = ExtResource( 6 )
 
 [node name="shape" type="CollisionShape" parent="."]
 shape = SubResource( 8 )

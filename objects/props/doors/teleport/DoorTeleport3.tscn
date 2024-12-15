@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/DoorTeleport.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=3]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kp/door.material" type="Material" id=5]
 
 [sub_resource type="ArrayMesh" id=1]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/audio/futniture/Bag/bag1.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/furniture/Bag/bag1.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnChest.cs" type="Script" id=3]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=4]
 [ext_resource path="res://assets/models/items/Material.material" type="Material" id=5]

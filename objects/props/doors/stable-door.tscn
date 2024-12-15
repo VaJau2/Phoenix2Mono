@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/audio/futniture/stableDoorClose.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/futniture/stableDoorOpen.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/stableDoorClose.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/furniture/Doors/stableDoorOpen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/scripts/furniture/StableDoors/KillArea.cs" type="Script" id=5]
 [ext_resource path="res://assets/materials/props/buildings/bunker/bunker-door.material" type="Material" id=6]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=7]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/materials/props/buildings/bunker/bunker-door_eng.material" type="Material" id=9]
 [ext_resource path="res://assets/scripts/furniture/StableDoors/DoorTimer.cs" type="Script" id=10]
 [ext_resource path="res://assets/scripts/utils/TextureTranslation.cs" type="Script" id=11]
+[ext_resource path="res://assets/audio/furniture/Doors/stableDoorOpenWithKeyCard.wav" type="AudioStream" id=12]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.286684, 1.60566, 0.635612 )
@@ -120,6 +121,7 @@ script = ExtResource( 7 )
 OpenSound = ExtResource( 3 )
 CloseSound = ExtResource( 2 )
 closedSound = ExtResource( 4 )
+openWithKeySound = ExtResource( 12 )
 openTimer = 2.0
 
 [node name="wall" type="StaticBody" parent="."]
@@ -162,9 +164,9 @@ transform = Transform( 0.999999, 3.14833e-10, 4.83169e-13, -5.17848e-10, 0.99999
 shape = SubResource( 6 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
-unit_db = 3.0
-unit_size = 2.0
-max_db = 1.0
+unit_db = 9.0
+unit_size = 9.0
+max_db = 4.0
 max_distance = 500.0
 bus = "Sound"
 

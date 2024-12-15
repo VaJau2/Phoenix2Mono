@@ -62,9 +62,23 @@
         "icon": "key0",
         "price": "100"
     },
+    "keyCardMASBase": {
+        "name": "MAS base key-card",
+        "description": "Plastic card, which is used to open almost every doors in MAS",
+        "type": "staff",
+        "icon": "keyCard",
+        "price": "50"
+    },
+    "keyCardMASVent":  {
+        "name": "MAS vent key-card",
+        "description": "Plastic card, which is used to open vents in MAS",
+        "type": "staff",
+        "icon": "keyCard",
+        "price": "50"
+    },
     "keyCardMAS": {
-        "name": "MAS key-card",
-        "description": "Plastic card, which is used to opening doors",
+        "name": "MAS isolator key-card",
+        "description": "Plastic card, which is used to open isolator doors",
         "type": "staff",
         "icon": "keyCard",
         "price": "50"
@@ -92,16 +106,8 @@
         "price": "300",
         "questItem": "true"
     },
-    "Quest_blueprints": {
-        "name": "Megaspell blueprints",
-        "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Highly important.",
-        "type": "staff",
-        "icon": "note",
-        "price": "99999999999",
-        "questItem": "true"
-    },
     "blueprints": {
-        "name": "Megaspell blueprints",
+        "name": "Some blueprints",
         "description": "A piece of paper overflowing with various schemes and formulas that are too complicated for you. Useless.",
         "type": "staff",
         "icon": "note",
@@ -109,7 +115,7 @@
     },
     "radiationCounter": {
         "name": "Radiation counter",
-        "description": "His nasty clicking does not bode well",
+        "description": "It's nasty clicking does not bode well",
         "type": "staff",
         "icon": "radiationCounter",
         "price": "20"

@@ -1,0 +1,40 @@
+{
+    "nodes": {
+        "C0": {
+            "kind": "narration",
+            "body": "TakeItem",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "keyCardMASBase"
+                }
+            ],
+            "next": "C1"
+        },
+        "C1": {
+            "kind": "narration",
+            "body": "TakeItem",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "keyCardMASVent"
+                }
+            ],
+            "next": "C2"
+        },
+        "C2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "body": "Надеюсь ты знаешь, что делать, и мне ничего тебе не нужно объяснять. Держи карты доступа.",
+            "speaker": "Клон в плаще",
+            "opposite": "Страйкли"
+        }
+    }
+}

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/materials/props/door1.tres" type="Material" id=4]
-[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/furniture/Doors/openWithKey.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=6]
 
 [sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( 0.133413, 4.03629, 0.125874, -0.133413, 4.03629, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, -1.87413, -0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, -1.87413 )

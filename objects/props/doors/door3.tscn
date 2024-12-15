@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/furniture/Doors/openWithKey.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=6]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=7]
 

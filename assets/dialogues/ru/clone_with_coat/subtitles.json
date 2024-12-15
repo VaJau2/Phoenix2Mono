@@ -1,0 +1,57 @@
+﻿{
+  "talkWithArmored1": {
+    "phrase1": {
+      "speakerCode": "clone_with_coat",
+      "text": "Мы тебя прикроем."
+    },
+    "phrase2": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    }
+  },
+
+  "talkWithArmored2": {
+    "phrase1": {
+      "speakerCode": "clone_with_coat",
+      "text": "It's incredibly cold here. I'd like to get this sorted out as soon as possible."
+    },
+    "end": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    }
+  },
+
+  "talkWithArmored3": {
+    "phrase1": {
+      "speakerCode": "clone_with_coat",
+      "text": "... so... these supplies will last for another 70 hours... then we'll order more ..."
+    },
+    "end": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    }
+  },
+
+  "talkWithArmored4": {
+    "phrase0": {
+      "speakerCode": "clone_with_coat",
+      "text": "There's only one reason you're doing this job for us, and I don't understand it."
+    },
+    "phrase1": {
+      "speakerCode": "clone_with_coat",
+      "text": "Explain your smallness."
+    },
+    "phrase2": {
+      "speakerCode": "strikely",
+      "text": "Uh, well... it just happened?"
+    },
+    "phrase3": {
+      "speakerCode": "clone_with_coat",
+      "text": "[muttering to himself]"
+    },
+    "end": {
+      "class": "ChangeSubtitlesCode",
+      "value": ""
+    }
+  }
+}

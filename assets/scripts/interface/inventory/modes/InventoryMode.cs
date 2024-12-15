@@ -122,6 +122,32 @@ public abstract class InventoryMode
             newAmmoButton.SetCount(ammo[ammoItem]);
         }
     }
+    
+    public ItemIcon FirstEmptyButton
+    {
+        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
+    }
+
+    public ItemIcon AddNewItem(string itemCode) 
+    {
+        var emptyButton = FirstEmptyButton;
+        
+        if (emptyButton != null) 
+        {
+            emptyButton.SetItem(itemCode);
+
+            if (itemCode.Contains("key")) 
+            {
+                inventory.AddKey(itemCode);
+            }
+        } 
+        else 
+        {
+            inventory.ItemsMessage("space");
+        }
+        
+        return emptyButton;
+    }
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
     {
@@ -197,31 +223,6 @@ public abstract class InventoryMode
         }
 
         controlHints.LoadHits(controlTexts);
-    }
-
-    public ItemIcon FirstEmptyButton
-    {
-        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
-    }
-
-    private ItemIcon AddNewItem(string itemCode) 
-    {
-        ItemIcon emptyButton = FirstEmptyButton;
-        if (emptyButton != null) 
-        {
-            emptyButton.SetItem(itemCode);
-
-            if (itemCode.Contains("key")) 
-            {
-                inventory.AddKey(itemCode);
-            }
-        } 
-        else 
-        {
-            inventory.ItemsMessage("space");
-        }
-        
-        return emptyButton;
     }
 
     public virtual void RemoveItemFromButton(ItemIcon button)

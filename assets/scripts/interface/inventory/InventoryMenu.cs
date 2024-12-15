@@ -73,10 +73,9 @@ public class InventoryMenu : Control, IMenu
 
     public bool AddOrDropItem(string itemCode)
     {
-        var emptyButton = mode.FirstEmptyButton;
-        if (IsInstanceValid(emptyButton))
+        var buttonWithItem = mode.AddNewItem(itemCode);
+        if (buttonWithItem != null)
         {
-            emptyButton.SetItem(itemCode);
             return true;
         }
  
