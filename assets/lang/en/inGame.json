@@ -38,6 +38,7 @@
 
     "cameraHints": {
         "pick": "Pick",
+        "pickUp": "Pick Up",
         "putOn": "Put On",
 
         "putSuitcase": "Put suitcase",
@@ -60,8 +61,6 @@
         "talk": "Talk",
         "search": "Search",
 
-        "clearOut": "Clear Out",
-
         "leaveLocation": "Leave location",
         "goToPoniesBase": "Go to base",
         "goToTheater": "Go to theater",
@@ -69,7 +68,14 @@
         "goToSleep": "Go to sleep",
         "enterVan": "Enter van",
         "goToMAS": "Go to MAS",
-        "goToZebrasBase": "Go into exile"   
+        "goToZebrasBase": "Go into exile",
+
+        "clearOut": "Clear Out",
+        "investigate": "Investigate",
+        "putTable": "Put a table",
+        "putSofa": "Put a sofa",
+        "putChair": "Put a chair",
+        "climb": "Climb"
     },
 
     "hints": {

@@ -9,7 +9,7 @@ public class Messages : VBoxContainer, ISavable
 
     private string currentTaskLink = "none";
 
-    private async void waitAndDisappear(Label label, float time)
+    private async void WaitAndDisappear(Label label, float time)
     {
         await global.ToTimer(time, null, true);
         var tempA = label.GetColor("font_color").a;
@@ -64,7 +64,7 @@ public class Messages : VBoxContainer, ISavable
     {
         string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     public void ShowMessage(
@@ -76,7 +76,7 @@ public class Messages : VBoxContainer, ISavable
     {
         string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text + addMessage);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     // Показать "голое" сообщение без поиска его в лангах
@@ -86,7 +86,7 @@ public class Messages : VBoxContainer, ISavable
     )
     {
         var tempLabel = ShowLabel(text);
-        waitAndDisappear(tempLabel, timer);
+        WaitAndDisappear(tempLabel, timer);
     }
 
     public override void _Input(InputEvent @event)

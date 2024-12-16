@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/materials/props/furniture/sofa.material" type="Material" id=2]
+[ext_resource path="res://assets/scripts/utils/SavePosition.cs" type="Script" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "sofa"
@@ -25,10 +26,10 @@ data = PoolVector3Array( 2.368, 0.2086, -1.1242, -2.368, -0.8942, -1.1242, 2.368
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="sofa" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 2 )

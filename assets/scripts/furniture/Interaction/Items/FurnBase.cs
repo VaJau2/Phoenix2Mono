@@ -15,6 +15,9 @@ public class FurnBase: StaticBody, IInteractable
 
     public bool MayInteract => true;
     public string InteractionHintCode => IsOpen ? "close" : "open";
+    
+    [Signal]
+    public delegate void Opened();
 
     public override void _Ready()
     {
@@ -22,9 +25,18 @@ public class FurnBase: StaticBody, IInteractable
         if (HasNode("anim")) 
         {
             animator = GetNode<AnimationPlayer>("anim");
+            animator.Connect("animation_finished", this, nameof(AnimationFinished));
         }
         
         global = Global.Get();
+    }
+    
+    public void AnimationFinished(string animation)
+    {
+        if (animation.ToLower().Contains("open"))
+        {
+            EmitSignal(nameof(Opened));
+        }
     }
     
     public virtual void Interact(PlayerCamera interactor)

@@ -6,6 +6,8 @@ public static class DictionaryHelper
     public static Dictionary Merge(Dictionary dictA, Dictionary dictB)
     {
         var newDict = new Dictionary(dictA);
+
+        if (dictB == null || dictB.Count == 0) return newDict;
         
         foreach (string key in dictB.Keys)
         {
@@ -13,13 +15,5 @@ public static class DictionaryHelper
         }
 
         return newDict;
-    }
-
-    public static void Merge(ref Dictionary dictA, Dictionary dictB)
-    {
-        foreach (string key in dictB.Keys)
-        {
-            dictA[key] = dictB[key];
-        }
     }
 }

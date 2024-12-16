@@ -13,7 +13,7 @@
   "talkWithArmored2": {
     "phrase1": {
       "speakerCode": "clone_with_coat",
-      "text": "It's incredibly cold here. I'd like to get this sorted out as soon as possible."
+      "text": "Здесь невероятно холодно. Поскорей бы со всем этим разобраться."
     },
     "end": {
       "class": "ChangeSubtitlesCode",
@@ -24,7 +24,7 @@
   "talkWithArmored3": {
     "phrase1": {
       "speakerCode": "clone_with_coat",
-      "text": "... so... these supplies will last for another 70 hours... then we'll order more ..."
+      "text": "... так... этих припасов хватит еще на 70 часов... затем нужно будет заказать еще ..."
     },
     "end": {
       "class": "ChangeSubtitlesCode",
@@ -35,19 +35,19 @@
   "talkWithArmored4": {
     "phrase0": {
       "speakerCode": "clone_with_coat",
-      "text": "There's only one reason you're doing this job for us, and I don't understand it."
+      "text": "Ты делаешь эту работу вместо нас только по одной причине, и я её не понимаю."
     },
     "phrase1": {
       "speakerCode": "clone_with_coat",
-      "text": "Explain your smallness."
+      "text": "Объясни свою маленькость."
     },
     "phrase2": {
       "speakerCode": "strikely",
-      "text": "Uh, well... it just happened?"
+      "text": "Эм, ну... так получилось?"
     },
     "phrase3": {
       "speakerCode": "clone_with_coat",
-      "text": "[muttering to himself]"
+      "text": "[бурчит под нос]"
     },
     "end": {
       "class": "ChangeSubtitlesCode",

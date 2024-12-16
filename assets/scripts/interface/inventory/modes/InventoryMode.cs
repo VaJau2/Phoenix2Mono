@@ -103,6 +103,13 @@ public abstract class InventoryMode
     {
         return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
     }
+    
+    public ItemIcon FindButtonWithItemByFirstLetters(string firstLetters)
+    {
+        return itemButtons.FirstOrDefault(button =>
+            button.myItemCode != null && button.myItemCode.StartsWith(firstLetters)
+        );
+    }
 
     public int SameItemCount(string itemCode)
     {

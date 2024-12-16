@@ -197,10 +197,10 @@ public class SaveMenu : Control
         
         var filePath = $"user://saves/{GetLikeLatinString(fileName)}.sav";
         saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
-        saveFile.StoreLine(fileName);                            //название сохранения
+        saveFile.StoreLine(fileName);                                     //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
-        saveFile.StoreLine(AUTOSAVE_PREFIX + Global.Get().autosaveName);      //название слота автосохранения
+        saveFile.StoreLine(AUTOSAVE_PREFIX + Global.Get().autosaveName);  //название слота автосохранения
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
         
         //данные удаленных объектов
@@ -210,28 +210,30 @@ public class SaveMenu : Control
         var objectsData = new Dictionary<string, Dictionary>();
         foreach (Node tempNode in tree.GetNodesInGroup("savable"))
         {
-            if (!(tempNode is ISavable savableNode)) continue;
-            Dictionary tempData = savableNode.GetSaveData();
-            bool isCreated = tempNode.Name.BeginsWith("Created_");
+            if (tempNode is not ISavable savableNode) continue;
+            
+            var saveData = savableNode.GetSaveData();
+            var isCreated = tempNode.Name.BeginsWith("Created_");
 
             if (isCreated)
             {
-                tempData.Add("parent", tempNode.GetParent().Name);
-                tempData.Add("fileName", tempNode.Filename);
+                saveData.Add("name", tempNode.Name);
+                saveData.Add("parentPath", GetNode("/root/Main/Scene").GetPathTo(tempNode.GetParent()));
+                saveData.Add("fileName", tempNode.Filename);
             }
             
-            if (isCreated || tempNode.Name == "Player")
+            if (tempNode.Name == "Player")
             {
-                objectsData.Add(tempNode.Name, tempData);
+                objectsData.Add(tempNode.Name, saveData);
             }
             else
             {
                 //сохраняемые объекты могут иметь одинаковые имена
-                //поэтому вместо имен сохраняем локальные пути от нода Main
-                objectsData.Add(GetNode("/root/Main/Scene").GetPathTo(tempNode), tempData);
+                //поэтому вместо имен сохраняем локальные пути от нода сцены
+                objectsData.Add(GetNode("/root/Main/Scene").GetPathTo(tempNode), saveData);
             }
-            
         }
+        
         saveFile.StoreLine(JSON.Print(objectsData));
         saveFile.Close();
     }

@@ -128,6 +128,42 @@
         "icon": "radiationCounter",
         "price": "20"
     },
+    
+    "tableWood": {
+        "name": "Деревянный стол",
+        "description": "Деревянный стол, довольно тяжелый",
+        "type": "staff",
+        "icon": "table",
+        "price": "100"
+    },
+    "tableMetal": {
+        "name": "Металлический стол",
+        "description": "Металлический стол, довольно крепкий",
+        "type": "staff",
+        "icon": "table",
+        "price": "200"
+    },
+    "sofa": {
+        "name": "Диван",
+        "description": "Бирюзовый диван. Нести его очень сложно, но ты справляешься",
+        "type": "staff",
+        "icon": "sofa",
+        "price": "500"
+    },
+    "sofaBlack": {
+        "name": "Черный диван",
+        "description": "Черный кожаный диван, весьма дорогой",
+        "type": "staff",
+        "icon": "sofa",
+        "price": "600"
+    },
+    "chair": {
+        "name": "Стул",
+        "description": "Простой деревянный стул",
+        "type": "staff",
+        "icon": "chair",
+        "price": "12"
+    },
 
 
     "Quest_agentNote": {

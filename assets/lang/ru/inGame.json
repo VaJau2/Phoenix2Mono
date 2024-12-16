@@ -38,6 +38,7 @@
 
     "cameraHints": {
         "pick": "Взять",
+        "pickUp": "Поднять",
         "putOn": "Надеть",
 
         "putSuitcase": "Положить чемодан",
@@ -59,8 +60,6 @@
         "trade": "Торговать",
         "talk": "Поговорить",
         "search": "Осмотреть",
-        
-        "clearOut": "Расчистить",
 
         "leaveLocation": "Покинуть локацию",
         "goToPoniesBase": "Отправиться на базу",
@@ -69,7 +68,14 @@
         "goToSleep": "Лечь спать",
         "enterVan": "Сесть в фургон",
         "goToMAS": "Отправиться в МТН",
-        "goToZebrasBase": "Отправиться в ссылку"         
+        "goToZebrasBase": "Отправиться в ссылку",
+
+        "clearOut": "Расчистить",
+        "investigate": "Изучить",
+        "putTable": "Поставить стол",
+        "putSofa": "Поставить диван",
+        "putChair": "Поставить стул",
+        "climb": "Забраться"
     },
 
     "hints": {

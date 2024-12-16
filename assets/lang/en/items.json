@@ -122,6 +122,43 @@
     },
 
 
+    "tableWood": {
+        "name": "Wooden table",
+        "description": "Wooden table, pretty heavy",
+        "type": "staff",
+        "icon": "table",
+        "price": "100"
+    },
+    "tableMetal": {
+        "name": "Metal table",
+        "description": "Metal table, quite sturdy",
+        "type": "staff",
+        "icon": "table",
+        "price": "200"
+    },
+    "sofa": {
+        "name": "Sofa",
+        "description": "Turquoise sofa. It's very difficult to carry it, but you can handle it",
+        "type": "staff",
+        "icon": "sofa",
+        "price": "500"
+    },
+    "sofaBlack": {
+        "name": "Black sofa",
+        "description": "Black leather sofa, very expensive",
+        "type": "staff",
+        "icon": "sofa",
+        "price": "600"
+    },
+    "chair": {
+        "name": "Chair",
+        "description": "Simple wooden chair",
+        "type": "staff",
+        "icon": "chair",
+        "price": "12"
+    },
+
+
     "Quest_agentNote": {
         "name": "A drenched note",
         "description": "A rain-soaked note belonging to the stallion in a raincoat. The letters are clearly legible.",

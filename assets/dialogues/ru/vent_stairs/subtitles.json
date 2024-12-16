@@ -1,0 +1,26 @@
+﻿{
+  "NeedTable": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Тут можно собрать мебель для входа в вентиляцию. Нужно начать с какого-нибудь стола."
+    }
+  },
+  "NeedSofa": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Так, дальше нужен какой-нибудь диван."
+    }
+  },
+  "NeedChair": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "И как вишенка - какой-нибудь стульчик."
+    }
+  },
+  "NeedKey": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Так, а куда я дела ключ-карту?.."
+    }
+  }
+}
