@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=9]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=10]
 
+
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 8 )
 

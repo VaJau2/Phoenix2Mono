@@ -1,6 +1,153 @@
 {
     "nodes": {
-        "R1(1.1)": {
+        "suit1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Here you are, darling! I sewed this suit especially for you. In it you will be irresistible on this task!",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "suit2"
+        },
+        "suit2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "With a stealth buck you'll be invisible, and with this suit you'll be silent too! Its noise-reducing fabric is also 30% stronger than kevlar.",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "suit3"
+        },
+        "suit3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "With an eye patch, you won't have to constantly squint your eye for accurate tranquilizer shots.",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "suit4"
+        },
+        "suit4": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And with the bandana... Well, it just completes the look.",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "suitAnswerThx"
+                },
+                {
+                    "body": "answer",
+                    "next": "suitAnswerComplain"
+                }
+            ]
+        },
+
+        "suitAnswerThx": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Thanks!",
+            "speaker": "Strikely",
+            "opposite": "Assistant Rarity",
+            "next": "pleasure1"
+        },
+        "suitAnswerComplain": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Maybe you should have made uniforms like the terrorists?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Rarity",
+            "next": "complain1"
+        },
+
+        "pleasure1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I highly recommend that you complete all training before going on mission.",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "pleasure2"
+        },
+        "pleasure2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Because if such a magnificent suit is ruined by bullets, it will break my heart. And your head.",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "pleasure3"
+        },
+        "pleasure3": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Wear it with pleasure!",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "takeSuit1"
+        },
+
+        "complain1": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Just look at it! I've spent so much effort on it, and you're complaining!",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "complain2"
+        },
+        "complain2": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "There have been so many connoisseurs lately. Maybe you needed a beautiful dress with curlicues on your secret mission?",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "complainAnswerOkay"
+                }
+            ]
+        },
+
+        "complainAnswerOkay": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Okay, okay. Thanks.",
+            "speaker": "Strikely",
+            "opposite": "Assistant Rarity",
+            "next": "threats"
+        },
+
+        "threats": {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Take it and don't even try not to wear it on your mission! I'll find you and kill you personally with my own hoo... robo-hands!",
+            "timer": "0.01",
+            "speaker": "Assistant Rarity",
+            "opposite": "Strikely",
+            "next": "takeSuit1"
+        },
+
+        "takeSuit1": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "clearDummy"
+                }
+            ],
+            "next": "takeSuit2"
+        },
+        "takeSuit2": {
             "kind": "narration",
             "root_node": false,
             "body": "TakeItem",
@@ -11,154 +158,15 @@
                     "value": "stealthArmor"
                 }
             ],
-            "next": "R1(1.2)"
+            "next": "takeSuit3"
         },
-        "R1(1.2)": {
-          "kind": "narration",
-          "root_node": false,
-          "body": "ActivateTrigger",
-          "set": [
-            {
-              "key": "name",
-              "op": "set",
-              "value": "clearDummy"
-            }
-          ],
-          "next": "R1"
-        },
-        "R1": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Here you are, darling! I sewed this suit especially for you. In it you will be irresistible on this task!",
-            "speaker": "Assistant Rarity",
-            "timer": "0.01",
-            "opposite": "Strikely",
-            "next": "R2"
-        },
-        "R2": {
-          "kind": "dialogue",
-          "root_node": false,
-          "body": "I highly recommend that you complete all training before going on mission.",
-          "timer": "0.01",
-          "speaker": "Assistant Rarity",
-          "opposite": "Strikely",
-          "next": "R3"
-        },
-        "R3": {
-          "kind": "dialogue",
-          "root_node": false,
-          "body": "Because if such a magnificent suit is ruined by bullets, it will break my heart. And your head.",
-          "timer": "0.01",
-          "speaker": "Assistant Rarity",
-          "opposite": "Strikely",
-          "options": [
-            {
-              "body": "answer",
-              "next": "R3(1)"
-            },
-            {
-              "body": "answer",
-              "next": "R3(2)"
-            }
-          ]
-        },
-        "R3(1)": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Uh... Thanks. I guess.",
-            "speaker": "Strikely",
-            "opposite": "Assistant Rarity",
-            "next": "R4"
-        },
-        "R3(2)": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "An eye patch? And it will prevent them from recognizing me?",
-            "speaker": "Strikely",
-            "opposite": "Assistant Rarity",
-            "next": "R5"
-        },
-        "R4": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Wear it with pleasure!",
-            "speaker": "Assistant Rarity",
-            "timer": "0.01",
-            "opposite": "Strikely",
-            "next": "R4(1.1)"
-        },
-        "R5": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Just look at it! I've spent so much effort on it, and you're complaining!",
-            "speaker": "Assistant Rarity",
-            "timer": "0.01",
-            "opposite": "Strikely",
-            "next": "R6"
-        },
-        "R6": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "There have been so many connoisseurs lately. Maybe you needed a beautiful dress with curlicues on your secret mission?",
-            "speaker": "Assistant Rarity",
-            "timer": "0.01",
-            "opposite": "Strikely",
-            "options": [
-                {
-                    "body": "answer",
-                    "next": "R6(1)"
-                }
-            ]
-        },
-        "R6(1)": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Okay, okay. Thanks.",
-            "speaker": "Strikely",
-            "opposite": "Assistant Rarity",
-            "next": "R7"
-        },
-        "R7": {
-            "kind": "dialogue",
-            "root_node": false,
-            "body": "Take it and don't even try not to wear it on your mission! I'll find you and kill you personally with my own hoo... robo-hands!",
-            "speaker": "Assistant Rarity",
-            "timer": "0.01",
-            "opposite": "Strikely",
-            "next": "R4(1.1)"
-        },
-        "R4(1.1)": {
+        "takeSuit3": {
             "kind": "narration",
             "root_node": false,
-            "body": "ChangeDialogueCode",
-            "next": "R4(1.2)"
-        },
-        "R4(1.2)": {
-            "kind": "narration",
-            "root_node": false,
-            "body": "ActivateTrigger",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "leaveLocationTask"
-                }
-            ],
-            "next": "R4(1.3)"
-        },
-        "R4(1.3)": {
-            "kind": "narration",
-            "root_node": false,
-            "body": "ActivateTrigger",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "activateVan"
-                }
-            ]
+            "body": "ChangeDialogueCode"
         }
     },
+
     "speakers": {
         "Assistant Rarity": {
             "color": {
