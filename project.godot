@@ -169,6 +169,8 @@ test_camera_down={
 
 [layer_names]
 
+3d_render/layer_2="First Person"
+3d_render/layer_3="Third Person"
 3d_physics/layer_1="Default"
 3d_physics/layer_2="Ragdoll & Floor"
 3d_physics/layer_3="Interactive"
