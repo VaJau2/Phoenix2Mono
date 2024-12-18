@@ -237,9 +237,26 @@ public class NPC : Character, IInteractable, IChest
             case global::Player:
                 navigation.stopAreaEntered = true;
                 break;
-            case FurnDoor { IsOpen: false } door:
-                navigation?.SetDoorWait(door.ClickFurn());
+            case FurnDoor door:
+                OpenDoor(door);
                 break;
+        }
+    }
+
+    private async void OpenDoor(FurnDoor door)
+    {
+        if (MovingController is not NavigationMovingController navigation) return;
+        
+        if (door.IsAnimating)
+        {
+            navigation.stopAreaEntered = true;
+            await ToSignal(door, nameof(FurnBase.AnimationFinished));
+            navigation.stopAreaEntered = false;
+        }
+        
+        if (!door.IsOpen)
+        {
+            navigation.SetDoorWait(door.ClickFurn());
         }
     }
     

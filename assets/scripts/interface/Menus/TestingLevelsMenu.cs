@@ -130,6 +130,7 @@ public class TestingLevelsMenu : Control
         {
             {"itemCodes", ParseItemCodes()},
             {"itemCounts", MakeItemCounts()},
+            {"tempKeys", MakeKeys()},
             {"itemBinds", new Array()},
             {"money", moneyInput.Value},
             {"weapon", ""},
@@ -173,6 +174,21 @@ public class TestingLevelsMenu : Control
             result.Add(item.Contains("ammo") ? AMMO_COUNT : 0);
         }
 
+        return result;
+    }
+
+    private Array MakeKeys()
+    {
+        var result = new Array();
+
+        foreach (var item in itemsList.Text.Split(','))
+        {
+            if (item.Contains("key")) 
+            {
+                result.Add(item.Trim());
+            }
+        }
+        
         return result;
     }
 

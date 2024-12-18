@@ -2,10 +2,12 @@
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine
-) : INpcState
+) : AbstractNpcState
 {
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         body.ChangeMaterial(RoboEyeMaterial.Red);
         
         if (npc.tempVictim.Health <= 0) 
@@ -18,5 +20,5 @@
         movingController.Stop();
     }
 
-    public void Update(NPC npc, float delta) { }
+    public override void _Process(float delta) { }
 }

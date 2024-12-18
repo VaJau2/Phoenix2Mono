@@ -1,0 +1,47 @@
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "body": "Please tell me that you have the key to this disgusting thing....",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "body": "No, I'm still looking for it.",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S2"
+    },
+    "S2": {
+      "kind": "dialogue",
+      "body": "The key is in a closet in a small block of offices. As soon as you leave here, go right through the hall or through the corridor.",
+      "speaker": "Scientist",
+      "opposite": "Strikely",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        }
+      ]
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "body": "Thanks. I'll be right back.",
+      "speaker": "Strikely",
+      "opposite": "Scientist",
+      "next": "S3"
+    },
+    "S3": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  }
+}

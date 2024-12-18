@@ -6,10 +6,23 @@ public class StateMachine: Node, ISavable
 {
     [Export] private Array<SetStateEnum> availableSetStates;
     [Export] private Array<NpcStateEnum> availableNpcStates;
+    
     private NpcStateEnum CurrentStateEnum => NpcStateConverter.ToEnum(currentState);
     
-    private INpcState currentState;
+    private AbstractNpcState currentState;
     private NPC npc;
+    
+    public override void _Ready()
+    {
+        if (availableNpcStates.Count != availableSetStates.Count)
+        {
+            GD.PrintErr("availableSetStates must be the same size as availableNpcStates");    
+        }
+        
+        npc = GetParent<NPC>();
+
+        SetState(SetStateEnum.Idle, false);
+    }
 
     public SetStateEnum GetCurrentSetState()
     {
@@ -26,34 +39,15 @@ public class StateMachine: Node, ISavable
 
     private void SetState(NpcStateEnum npcState, bool checkHealth = true)
     {
+        currentState?.Disable();
+
         if (npc.Health <= 0 && checkHealth) return;
         
         var stateType = NpcStateConverter.FromEnum(npcState);
         var dependencies = new NpcStateDependencies(npc);
-        currentState = DependencyInjection.CreateClass<INpcState>(stateType, dependencies);
+        currentState = DependencyInjection.CreateClass<AbstractNpcState>(stateType, dependencies);
         currentState.Enable(npc);
-    }
-    
-    public override void _Ready()
-    {
-        if (availableNpcStates.Count != availableSetStates.Count)
-        {
-            GD.PrintErr("availableSetStates must be the same size as availableNpcStates");    
-        }
-        
-        npc = GetParent<NPC>();
-
-        SetState(SetStateEnum.Idle, false);
-    }
-
-    public override void _Process(float delta)
-    {
-        if (npc.Health <= 0)
-        {
-            return;
-        }
-        
-        currentState.Update(npc, delta);
+        AddChild(currentState);
     }
 
     public Dictionary GetSaveData()
@@ -118,5 +112,6 @@ public enum SetStateEnum
     Attack,
     Hiding,
     Talk,
+    Follow,
     Disabled
 }

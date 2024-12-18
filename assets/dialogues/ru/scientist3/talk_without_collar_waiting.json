@@ -1,0 +1,53 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "body": "Вот и ты. Идем?",
+            "speaker": "Ученая",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S1(2)"
+                }
+            ]
+        },
+
+        "S1(1)": {
+            "kind": "dialogue",
+            "body": "Да, пошли.",
+            "speaker": "Страйкли",
+            "opposite": "Ученая",
+            "next": "SFollowEnd"
+        },
+        "S3(2)": {
+            "kind": "dialogue",
+            "body": "Еще нет, подожди тут.",
+            "speaker": "Страйкли",
+            "opposite": "Ученая"
+        },
+
+        "SFollowEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "NpcFollowPlayer",
+            "next": "SAnimEnd"
+        },
+        "SAnimEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeNpcIdleAnim",
+            "set": "Idle1",
+            "next": "SEnd"
+        },
+        "SEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

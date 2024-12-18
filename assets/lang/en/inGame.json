@@ -75,7 +75,8 @@
         "putTable": "Put a table",
         "putSofa": "Put a sofa",
         "putChair": "Put a chair",
-        "climb": "Climb"
+        "climb": "Climb",
+        "climbOver": "Climb over"
     },
 
     "hints": {

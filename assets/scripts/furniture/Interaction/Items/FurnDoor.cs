@@ -89,12 +89,12 @@ public class FurnDoor: FurnBase, ISavable
         
         if (openTimer != 0) 
         {
-            await global.ToTimer(openTimer);
+            await Global.ToTimer(openTimer);
         }
         
         if (timer != 0) 
         {
-            await global.ToTimer(timer);
+            await Global.ToTimer(timer);
         }
         
         opening = false;

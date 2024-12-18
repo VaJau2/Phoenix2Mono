@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PonyBody : Node
+public class PonyBody : Node, ISavable
 {
     [Export] private Array<AudioStreamSample> hittedSounds = [];
     [Export] private AudioStreamSample dieSound;
@@ -90,7 +90,7 @@ public class PonyBody : Node
             }
         }
         
-        Vector3 victimPos = npc.tempVictim.GlobalTransform.origin;
+        Vector3 victimPos = npc.tempVictim.GlobalTranslation;
         victimPos.y = npc.GlobalTransform.origin.y;
         npc.LookAt(victimPos, Vector3.Up);
     }
@@ -239,5 +239,19 @@ public class PonyBody : Node
         {
             value = to;
         }
+    }
+
+    public Dictionary GetSaveData()
+    {
+        var saveData = new Dictionary();
+        saveData["idleAnim"] = IdleAnim;
+        saveData["customIdleAnim"] = CustomIdleAnim;
+        return saveData;
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        IdleAnim = data["IdleAnim"].ToString();
+        CustomIdleAnim = data["customIdleAnim"].ToString();
     }
 }

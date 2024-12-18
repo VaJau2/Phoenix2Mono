@@ -11,7 +11,7 @@ public abstract class Character : KinematicBody, ISavable
     [Export] public float BaseSpeed = 10; //скорость берется каждый кадр, поэтому применяется сразу
     public BaseMovingController MovingController;
     
-    public int Health {get; protected set;}
+    public int Health { get; protected set; }
     public int HealthMax;
     public float BaseDamageBlock; //от 0 до 1, процентное блокирование
     public int BaseDamage;
@@ -31,6 +31,9 @@ public abstract class Character : KinematicBody, ISavable
     
     [Signal]
     public delegate void IsCame();
+    
+    [Signal]
+    public delegate void DoorTeleporting(Spatial doorTeleport);
 
     public override void _Ready()
     {
@@ -93,6 +96,14 @@ public abstract class Character : KinematicBody, ISavable
         
         MayMove = value;
         EmitSignal(nameof(ChangeMayMove));
+    }
+
+    public void TeleportToDoor(IDoorTeleport doorTeleport)
+    {
+        GlobalTranslation = doorTeleport.TeleportPos.GlobalTranslation;
+        GlobalRotation = doorTeleport.TeleportPos.GlobalRotation;
+        
+        EmitSignal(nameof(DoorTeleporting), doorTeleport);
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character

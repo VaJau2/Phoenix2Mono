@@ -1,0 +1,93 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "body": "Please tell me that you have the key to this disgusting thing....",
+            "speaker": "Scientist",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                }
+            ]
+        },
+        
+        "S1(1)": {
+            "kind": "dialogue",
+            "body": "Yes, let me take it off...",
+            "speaker": "Strikely",
+            "opposite": "Scientist",
+            "next": "S2"
+        },
+        "S2": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "scientist3/takeOffCollar",
+            "next": "S3"
+        },
+        "S3": {
+            "kind": "dialogue",
+            "body": "Great, it's already numbing my neck. Should I follow you?",
+            "speaker": "Scientist",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S3(2)"
+                }
+            ]
+        },
+        "S3(1)": {
+            "kind": "dialogue",
+            "body": "Let's go.",
+            "speaker": "Strikely",
+            "opposite": "Scientist",
+            "next": "SFollowEnd"
+        },
+        "S3(2)": {
+            "kind": "dialogue",
+            "body": "Not yet. I have some business to finish.",
+            "speaker": "Strikely",
+            "opposite": "Scientist",
+            "next": "S4"
+        },
+        "S4": {
+            "kind": "dialogue",
+            "body": "Fine. I'll be here.",
+            "speaker": "Scientist",
+            "opposite": "Strikely",
+            "next": "SWaitingEnd"
+        },
+
+        "SWaitingEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "set": "talk_without_collar_waiting"
+        },
+        
+        "SFollowEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "NpcFollowPlayer",
+            "next": "SAnimEnd"
+        },
+        "SAnimEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeNpcIdleAnim",
+            "set": "Idle1",
+            "next": "SEnd"
+        },
+        "SEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

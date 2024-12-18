@@ -4,10 +4,12 @@
     NavigationMovingController movingController,
     StateMachine stateMachine,
     PonyBody body
-) : INpcState
+) : AbstractNpcState
 {
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         covers.FindCover(npc);
         
         if (!HasGun && body != null)
@@ -16,11 +18,11 @@
         }
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
-        if (npc.tempVictim.Health <= 0)
+        if (tempNpc.tempVictim.Health <= 0)
         {
-            npc.SetState(SetStateEnum.Idle);
+            tempNpc.SetState(SetStateEnum.Idle);
             return;
         }
 

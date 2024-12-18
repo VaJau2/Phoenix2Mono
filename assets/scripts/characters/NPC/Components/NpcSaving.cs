@@ -5,7 +5,7 @@ using Godot.Collections;
 
 public class NpcSaving(NPC npc)
 {
-    private readonly string[] skipSignals = {"tree_entered", "tree_exiting"};
+    private readonly string[] skipSignals = ["tree_entered", "tree_exiting"];
     
     public void LoadData(Dictionary data)
     {
@@ -67,9 +67,8 @@ public class NpcSaving(NPC npc)
         LoadFollowTarget(data);
     }
 
-    private async void LoadFollowTarget(Dictionary data)
+    private void LoadFollowTarget(Dictionary data)
     {
-        await npc.ToSignal(npc.GetTree(), "idle_frame");
         var newFollowTarget = npc.GetNode<Character>(data["followTarget"].ToString());
         npc.SetFollowTarget(newFollowTarget);
     }

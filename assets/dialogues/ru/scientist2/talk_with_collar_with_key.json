@@ -1,0 +1,93 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "body": "О, привет. Ты здесь, чтобы спасти нас?",
+            "speaker": "Ученая",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                }
+            ]
+        },
+        
+        "S1(1)": {
+            "kind": "dialogue",
+            "body": "Да, сейчас сниму ошейник...",
+            "speaker": "Страйкли",
+            "opposite": "Ученая",
+            "next": "S2"
+        },
+        "S2": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "scientist2/takeOffCollar",
+            "next": "S3"
+        },
+        "S3": {
+            "kind": "dialogue",
+            "body": "Спасибо, мне так гораздо спокойнее. Идем?",
+            "speaker": "Ученая",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S3(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S3(2)"
+                }
+            ]
+        },
+        "S3(1)": {
+            "kind": "dialogue",
+            "body": "Следуй за мной.",
+            "speaker": "Страйкли",
+            "opposite": "Ученая",
+            "next": "SFollowEnd"
+        },
+        "S3(2)": {
+            "kind": "dialogue",
+            "body": "Чуть попозже. Посиди пока тут.",
+            "speaker": "Страйкли",
+            "opposite": "Ученая",
+            "next": "S4"
+        },
+        "S4": {
+            "kind": "dialogue",
+            "body": "Хорошо...",
+            "speaker": "Ученая",
+            "opposite": "Страйкли",
+            "next": "SWaitingEnd"
+        },
+        
+        "SWaitingEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "set": "talk_without_collar_waiting"
+        },
+
+        "SFollowEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "NpcFollowPlayer",
+            "next": "SAnimEnd"
+        },
+        "SAnimEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeNpcIdleAnim",
+            "set": "Idle1",
+            "next": "SEnd"
+        },
+        "SEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

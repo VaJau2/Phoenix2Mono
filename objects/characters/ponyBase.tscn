@@ -2109,7 +2109,7 @@ collision_layer = 2
 collision_mask = 2
 joint_type = 3
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150052, -2.13459e-06, 0.864143 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934053, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934048, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_r"
@@ -2339,13 +2339,13 @@ GunWeaponParentPath = NodePath("../Armature/Skeleton/BoneAttachment 2/weapons")
 [node name="covers" type="Node" parent="."]
 script = ExtResource( 11 )
 
-[node name="body" type="Node" parent="."]
+[node name="body" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 13 )
 
 [node name="stateMachine" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 14 )
-availableSetStates = [ 0, 1, 2, 3, 4 ]
-availableNpcStates = [ 0, 3, 1, 2, 4 ]
+availableSetStates = [ 0, 1, 2, 3, 4, 5 ]
+availableNpcStates = [ 0, 3, 1, 2, 4, 5 ]
 
 [node name="interaction" type="Node" parent="."]
 script = ExtResource( 17 )

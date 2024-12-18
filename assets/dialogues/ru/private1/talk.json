@@ -1,1 +1,0 @@
-{"nodes":{"C1":{"kind":"dialogue","root_node":false,"body":"Новый боец? Лишняя пара копыт нам точно не помешает. Поговори с командиром, он объяснит тебе план действий","speaker":"Солдат","opposite":"Страйкли","options":[{"body":"answer","next":"С1(1)"}]},"С1(1)":{"kind":"dialogue","root_node":false,"body":"Хорошо.","speaker":"Страйкли","opposite":"Солдат"}},"speakers":{}}

@@ -8,6 +8,7 @@ public enum NpcStateEnum
     Hiding,
     Search,
     Talk,
+    Follow,
     
     RoboEyeIdle,
     RoboEyeAttack,
@@ -26,7 +27,7 @@ public static class NpcStateConverter
         return Type.GetType(stateString);
     }
 
-    public static NpcStateEnum ToEnum(INpcState value)
+    public static NpcStateEnum ToEnum(AbstractNpcState value)
     {
         var stateName = value
             .GetType()

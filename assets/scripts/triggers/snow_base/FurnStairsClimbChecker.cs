@@ -39,7 +39,7 @@ public class FurnStairsClimbChecker
             return MayClimbOption.NeedChair;
         }
 
-        if (ventDoor is { IsOpen: false, myKey: not null } && !player.Inventory.HasItem(ventDoor.myKey))
+        if (ventDoor is { IsOpen: false } && !string.IsNullOrEmpty(ventDoor.myKey) && !player.Inventory.HasItem(ventDoor.myKey))
         {
             return MayClimbOption.NeedKey;
         }

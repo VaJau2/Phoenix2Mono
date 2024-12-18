@@ -1,0 +1,53 @@
+{
+    "nodes": {
+        "S1": {
+            "kind": "dialogue",
+            "body": "Here you are. Shall we go?",
+            "speaker": "Scientist",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "S1(1)"
+                },
+                {
+                    "body": "answer",
+                    "next": "S1(2)"
+                }
+            ]
+        },
+
+        "S1(1)": {
+            "kind": "dialogue",
+            "body": "Yes, let's go.",
+            "speaker": "Strikely",
+            "opposite": "Scientist",
+            "next": "SFollowEnd"
+        },
+        "S3(2)": {
+            "kind": "dialogue",
+            "body": "Not yet, wait here.",
+            "speaker": "Strikely",
+            "opposite": "Scientist"
+        },
+
+        "SFollowEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "NpcFollowPlayer",
+            "next": "SAnimEnd"
+        },
+        "SAnimEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeNpcIdleAnim",
+            "set": "Idle1",
+            "next": "SEnd"
+        },
+        "SEnd": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

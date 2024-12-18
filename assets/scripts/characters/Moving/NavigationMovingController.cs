@@ -37,6 +37,12 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     public void GoTo(Vector3 place, float distance = 0, bool mayRun = true)
     {
+        if (stopAreaEntered)
+        {
+            Stop(true);
+            return;
+        }
+        
         if (customFinalDistance != 0) distance = customFinalDistance;
         else if (distance == 0) distance = ComeDistance;
         
@@ -46,11 +52,14 @@ public class NavigationMovingController: BaseMovingController, ISavable
             return;
         }
         
-        cameToPlace = false;
         var pos = character.GlobalTranslation;
-
         var tempDistance = pos.DistanceTo(place);
-        if (tempDistance < distance)
+
+        if (tempDistance > distance)
+        {
+            cameToPlace = false;
+        }
+        else
         {
             FinishGoingTo();
             return;
@@ -151,6 +160,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     private void FinishGoingTo()
     {
+        if (cameToPlace) return;
+        
         customFinalDistance = 0;
         
         if (oldComeDistance != 0)

@@ -1,7 +1,7 @@
 using Godot;
 using FurnStairs;
 
-public class FurnStairsTriggerArea : StaticBody, IInteractable
+public class FurnStairsTriggerArea : StaticBody, IInteractable, IDoorTeleport
 {
     private const string VENT_TALKER_SUB_NAME = "vent_stairs";
     
@@ -12,7 +12,8 @@ public class FurnStairsTriggerArea : StaticBody, IInteractable
     
     public bool MayInteract => true;
     public string InteractionHintCode => GetInteractionCode();
-    
+    public Spatial TeleportPos { get; private set; }
+
     private FurnStairsClimbChecker checker;
     private FurnStairsSpawner spawner;
     
@@ -22,8 +23,6 @@ public class FurnStairsTriggerArea : StaticBody, IInteractable
     private FurnDoor ventDoor;
     private Spatial furnParent;
 
-    private Vector3 teleportPos;
-
     private enum FurnType
     {
         None,
@@ -32,10 +31,12 @@ public class FurnStairsTriggerArea : StaticBody, IInteractable
         Chair
     }
 
+    public bool MayClimb => checker.CheckMayClimb(player) == MayClimbOption.MayClimb;
+
     public override void _Ready()
     {
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
-        teleportPos = GetNode<Spatial>("teleportPoint").GlobalTranslation;
+        TeleportPos = GetNode<Spatial>("teleportPoint");
         furnParent = GetNode<Spatial>("furns");
         
         if (ventDoorPath != null)
@@ -131,8 +132,10 @@ public class FurnStairsTriggerArea : StaticBody, IInteractable
             ventDoor.ClickFurn();
             await ToSignal(ventDoor, nameof(FurnBase.Opened));
         }
+
+        player.TeleportToDoor(this);
         
-        player.GlobalTranslation = teleportPos;
+        ventDoor.ClickFurn();
     }
 
     private string GetInteractionCode()

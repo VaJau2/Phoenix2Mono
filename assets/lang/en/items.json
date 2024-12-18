@@ -56,31 +56,31 @@
         "price": "2" 
     },
     "keyMAS": {
-        "name": "MAS cabinets key",
-        "description": "Key, which opens closed doors in MAS's laboratories",
+        "name": "MAS collars key",
+        "description": "Key, which opens collars in MAS",
         "type": "staff",
         "icon": "key0",
-        "price": "100"
+        "price": "50"
     },
     "keyCardMASBase": {
         "name": "MAS base key-card",
         "description": "Plastic card, which is used to open almost every doors in MAS",
         "type": "staff",
-        "icon": "keyCard",
+        "icon": "keyCard1",
         "price": "50"
     },
     "keyCardMASVent":  {
         "name": "MAS vent key-card",
         "description": "Plastic card, which is used to open vents in MAS",
         "type": "staff",
-        "icon": "keyCard",
+        "icon": "keyCard2",
         "price": "50"
     },
     "keyCardMAS": {
         "name": "MAS isolator key-card",
         "description": "Plastic card, which is used to open isolator doors",
         "type": "staff",
-        "icon": "keyCard",
+        "icon": "keyCard3",
         "price": "50"
     },
     "nucBattery": {
