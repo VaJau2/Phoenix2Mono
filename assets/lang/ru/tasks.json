@@ -20,11 +20,17 @@
         "talkToMom": "Поговорить с мамой",
         "takeFirewood": "Взять дрова на улице",
         "sitInAVan": "Сесть в фургон",
-        "talkToBellgates": "Поговорить с Бельгетсом в главном доме",
-        "getGearFromRarity": "Взять снаряжение у Рарити",
+        "talkToBellgates": "Поговорить с Бельгетсом в главном здании",
         "findBlueprints": "Найти чертежи",
         "leaveLocation": "Покинуть базу",
         "talkToCoronel": "Поговорить с полковником",
-        "findSecretWeapon": "Найти сведения про секретное оружие зебр"
+        "findSecretWeapon": "Найти сведения про секретное оружие зебр",
+
+        "listenBriefingBySparkle": "Послушать брифинг Помощницы Спаркл",
+        "getSuitFromRarity": "Взять стелс-костюм у Помощницы Рэрити",
+        "getGunFromShy": "Взять транквилизатор у Помощницы Шай",
+        "completeStealthFromPie": "Пройти стелс-полигон Помощницы Пай",
+        "completeShootingFromRD": "Пройти тир Помощницы Дэш",
+        "completeFlyingFromRD": "Пройти лётный-полигон Помощницы Дэш"
     }
 }

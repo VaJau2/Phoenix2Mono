@@ -33,7 +33,9 @@
         "gameQuicksaved": "Идет быстрое сохранение...",
         "gameAutosaved": "Игра сохранена",
         "quicksaveNotFound": "Не найден файл быстрого сохранения",
-        "newTask": "Новая цель: "
+        "newTask": "Новая цель: ",
+        "addTask": "Добавлена цель: ",
+        "doneTask": "Выполнена цель: "
     },
 
     "cameraHints": {

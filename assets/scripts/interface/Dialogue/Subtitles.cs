@@ -81,6 +81,14 @@ public class Subtitles : Label, ISavable
         CheckTempTalker();
     }
     
+    public Subtitles SetTalker(AudioStreamPlayer audioPlayer3D, string characterName)
+    {
+        talkerCode = characterName;
+        dialogueAudio.SetAudioPlayer(audioPlayer3D);
+        
+        return this;
+    }
+    
     public Subtitles SetTalker(AudioStreamPlayer3D audioPlayer3D, string characterName)
     {
         talkerCode = characterName;

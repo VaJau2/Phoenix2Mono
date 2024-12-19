@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tearSocks1.mp3-9ac6197d304ac3e663f4c83f356d311d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantRarity/subtitles/tearSocks1.mp3"
+dest_files=[ "res://.import/tearSocks1.mp3-9ac6197d304ac3e663f4c83f356d311d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

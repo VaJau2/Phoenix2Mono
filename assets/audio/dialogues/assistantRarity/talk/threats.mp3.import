@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/threats.mp3-21d26b38c675fe2a9ba00d33e8a76703.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantRarity/talk/threats.mp3"
+dest_files=[ "res://.import/threats.mp3-21d26b38c675fe2a9ba00d33e8a76703.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

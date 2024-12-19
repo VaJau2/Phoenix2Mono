@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/suit2.mp3-1d600cb8d37709a914b6ed34c14d1d4a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantRarity/talk/suit2.mp3"
+dest_files=[ "res://.import/suit2.mp3-1d600cb8d37709a914b6ed34c14d1d4a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

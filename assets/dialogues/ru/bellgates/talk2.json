@@ -432,19 +432,6 @@
             "opposite": "Бельгетс",
             "next": "B5"
         },
-        "B16(1.1)": {
-            "kind": "narration",
-            "root_node": false,
-            "body": "ActivateTrigger",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "openDoors"
-                }
-            ],
-            "next": "B16(1.2)"
-        },
         "B8.1": {
             "kind": "dialogue",
             "root_node": false,
@@ -453,13 +440,13 @@
             "opposite": "Страйкли",
             "next": "B10"
         },
-        "B16(1.2)": {
+        "B16(1.1)": {
             "kind": "narration",
             "root_node": false,
             "body": "ChangeDialogueCode",
-            "next": "B16(1.3)"
+            "next": "B16(1.2)"
         },
-        "B16(1.3)": {
+        "B16(1.2)": {
             "kind": "narration",
             "root_node": false,
             "body": "ActivateTrigger",
