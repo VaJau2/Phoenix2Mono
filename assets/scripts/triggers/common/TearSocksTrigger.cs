@@ -33,7 +33,6 @@ public class TearSocksTrigger : Node
             
             if (tornSocks)
             {
-                GD.Print("Delete");
                 Delete();
                 return;
             }
