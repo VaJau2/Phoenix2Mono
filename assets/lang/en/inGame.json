@@ -33,7 +33,9 @@
         "gameQuicksaved": "Quicksaving...",
         "gameAutosaved": "Game saved",
         "quicksaveNotFound": "Quicksave file not found",
-        "newTask": "New task: "
+        "newTask": "New task: ",
+        "addTask": "Add task: ",
+        "doneTask": "Complete task: "
     },
 
     "cameraHints": {

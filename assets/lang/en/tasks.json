@@ -21,10 +21,16 @@
         "takeFirewood": "Take firewood from street",
         "sitInAVan": "Sit in a van",
         "talkToBellgates": "Talk to Bellgates in main house",
-        "getGearFromRarity": "Get gear from Rarity",
         "findBlueprints": "Find blueprints",
         "leaveLocation": "Leave the base",
         "talkToCoronel": "Talk to coronel",
-        "findSecretWeapon": "Find information about zebra's secret weapon"
+        "findSecretWeapon": "Find information about zebra's secret weapon",
+
+        "listenBriefingBySparkle": "Listen briefing by Assistant Sparkle",
+        "getSuitFromRarity": "Get suit from Assistant Rarity",
+        "getGunFromShy": "Get tranquilizer from Assistant Shy",
+        "completeStealthFromPie": "Complete the stealth training from Assistant Pie",
+        "completeShootingFromRD": "Complete the shooting from Assistant Dash",
+        "completeFlyingFromRD": "Complete the flying from Assistant Dash"
     }
 }

@@ -3,7 +3,7 @@ using Godot;
 
 public class TearSocksTrigger : Node
 {
-    private const float MAX_DISTANCE = 10f;
+    private const float MAX_DISTANCE = 40f;
 
     [Export] private AudioStream tearSound;
 

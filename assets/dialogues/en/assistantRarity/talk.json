@@ -133,21 +133,8 @@
             "opposite": "Strikely",
             "next": "takeSuit1"
         },
-
+        
         "takeSuit1": {
-            "kind": "narration",
-            "root_node": false,
-            "body": "ActivateTrigger",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "clearDummy"
-                }
-            ],
-            "next": "takeSuit2"
-        },
-        "takeSuit2": {
             "kind": "narration",
             "root_node": false,
             "body": "TakeItem",
@@ -158,6 +145,19 @@
                     "value": "stealthArmor"
                 }
             ],
+            "next": "takeSuit2"
+        },
+        "takeSuit2": {
+            "kind": "narration",
+            "root_node": false,
+            "body": "SetTriggerActive",
+            "set": [
+                {
+                    "key": "name",
+                    "op": "set",
+                    "value": "doneRarityTask"
+                }
+            ],
             "next": "takeSuit3"
         },
         "takeSuit3": {
@@ -166,7 +166,6 @@
             "body": "ChangeDialogueCode"
         }
     },
-
     "speakers": {
         "Assistant Rarity": {
             "color": {
