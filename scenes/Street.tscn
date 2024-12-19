@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -58,6 +58,7 @@
 [ext_resource path="res://objects/props/furniture/radio/Radio.tscn" type="PackedScene" id=56]
 [ext_resource path="res://assets/scripts/furniture/Radio/RadioManager.cs" type="Script" id=57]
 [ext_resource path="res://assets/audio/background/bushes/bushes_sneak.mp3" type="AudioStream" id=58]
+[ext_resource path="res://assets/scripts/triggers/DamageTrigger.cs" type="Script" id=59]
 [ext_resource path="res://assets/scripts/background/GridmapStepSound.cs" type="Script" id=60]
 
 [sub_resource type="BoxShape" id=41]
@@ -829,9 +830,9 @@ script = ExtResource( 50 )
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 48 )
 
-[node name="talkTask" type="Node" parent="triggers"]
+[node name="newTalkTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
-NewTaskCode = "talkToAgent"
+taskCode = "talkToAgent"
 showMessage = false
 
 [node name="hint1" type="Area" parent="triggers" groups=["savable"]]
@@ -880,25 +881,52 @@ dialogueStartTimer = 0.5
 [node name="CollisionShape" type="CollisionShape" parent="triggers/dialogue"]
 shape = SubResource( 48 )
 
-[node name="npcDie" type="Node" parent="triggers"]
-script = ExtResource( 33 )
-otherTriggerPaths = [ NodePath("../searchTask"), NodePath("../takeItem") ]
+[node name="agentDamageTrigger" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 59 )
+otherTriggerPaths = [ NodePath("../newFightOffTask") ]
+characterPaths = [ "/root/Main/Scene/npc/agent" ]
 
-[node name="searchTask" type="Node" parent="triggers"]
+[node name="newFightOffTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "searchAgent"
+taskCode = "fightOffAgent"
+
+[node name="npcDie" type="Node" parent="triggers"]
+script = ExtResource( 33 )
+otherTriggerPaths = [ NodePath("../doneFightOffTask"), NodePath("../takeItem") ]
+
+[node name="doneFightOffTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../newSearchTask") ]
+changeMode = 2
+taskCode = "fightOffAgent"
+
+[node name="newSearchTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+taskCode = "searchAgent"
+clearPreviousTasks = false
 
 [node name="takeItem" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 36 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../exit"), NodePath("../leaveTask") ]
+otherTriggerPaths = [ NodePath("../doneSearchTask"), NodePath("../exit") ]
 ItemToTake = "Quest_agentNote"
 
-[node name="leaveTask" type="Node" parent="triggers"]
+[node name="doneSearchTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "talkToCommander"
+otherTriggerPaths = [ NodePath("../newLeaveTask") ]
+changeMode = 2
+taskCode = "searchAgent"
+clearPreviousTasks = false
+
+[node name="newLeaveTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+taskCode = "talkToCommander"
+clearPreviousTasks = false
 
 [node name="exit" type="Area" parent="triggers" groups=["savable"]]
 script = ExtResource( 32 )

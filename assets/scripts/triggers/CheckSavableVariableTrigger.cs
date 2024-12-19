@@ -18,7 +18,15 @@ public class CheckSavableVariableTrigger: TriggerBase
             TriggerBase trigger = GetNode<TriggerBase>(otherTrigger.Value);
             otherTriggers.Add(otherTrigger.Key, trigger);
         }
-
+        
+        var levelsLoader = GetNode<LevelsLoader>("/root/Main");
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+    }
+    
+    private async void OnSaveDataLoaded()
+    {
+        await ToSignal(GetTree(), "idle_frame");
+        
         if (IsActive)
         {
             _on_activate_trigger();

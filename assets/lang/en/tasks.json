@@ -4,6 +4,7 @@
         "none": "?",
 
         "talkToAgent": "Talk to the pony in the raincoat",
+        "fightOffAgent": "Fight off the pony in the raincoat",
         "searchAgent": "Search the body",
         "talkToCommander": "Report to the colonel",
         "goToTheater": "Go to the theater for a presentation",
@@ -18,13 +19,18 @@
         "eatPie": "Taste the pie",
         "goToSleep": "Go to sleep",
         "talkToMom": "Talk to mom",
-        "takeFirewood": "Take firewood from street",
+        "takeFirewood": "Take some firewood from outside and put it in the fireplace",
         "sitInAVan": "Sit in a van",
         "talkToBellgates": "Talk to Bellgates in main house",
         "findBlueprints": "Find blueprints",
         "leaveLocation": "Leave the base",
         "talkToCoronel": "Talk to coronel",
-        "findSecretWeapon": "Find information about zebra's secret weapon",
+        "findSecretWeapon": "Find zebra's secret weapon",
+
+        "bringBattery": "From Room 104, bring a spare nuclear battery for a comrade in power armor",
+
+        "willGiveApologies": "When Opal's daughter arrives, give his apologies to her.",
+        "giveApologies": "Give Opal's daughter his apologies.",
 
         "listenBriefingBySparkle": "Listen briefing by Assistant Sparkle",
         "getSuitFromRarity": "Get suit from Assistant Rarity",

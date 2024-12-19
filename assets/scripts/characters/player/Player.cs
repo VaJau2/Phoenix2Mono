@@ -54,6 +54,7 @@ public class Player : Character
     public Control JumpHint;
     private AudioStreamPlayer audi;
     private AudioStreamPlayer audiHitted;
+    private Listener listener;
 
     //Переменные для передвижения
 
@@ -113,6 +114,11 @@ public class Player : Character
         }
 
         return audi ??= GetNode<AudioStreamPlayer>("sound/audi");
+    }
+
+    public void MakeListenerCurrent()
+    {
+        listener.MakeCurrent();
     }
 
     public void CheckTakeItem(string itemCode)
@@ -693,6 +699,7 @@ public class Player : Character
 
         audi = GetAudi();
         audiHitted = GetAudi(true);
+        listener = CameraHeadPos.GetNode<Listener>("Listener");
 
         sphereCollider = GetNode<CollisionShape>("shape");
         bodyCollider = GetNode<CollisionShape>("body_shape");

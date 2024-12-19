@@ -4,14 +4,23 @@ using Godot.Collections;
 
 public class Messages : VBoxContainer, ISavable
 {
-    Global global = Global.Get();
     public const float HINT_TIMER = 2.5f;
+    private const string NONE_CODE = "none";
+    
     [Export] public Theme tempTheme;
+    
+    private readonly Global global = Global.Get();
 
-    private Array<string> currentTaskLinks = ["none"];
+    private Array<string> currentTaskLinks = [NONE_CODE];
+    private bool isNone => (currentTaskLinks.Count == 1) && (currentTaskLinks[0] == NONE_CODE);
 
     private async void WaitAndDisappear(Label label, float time)
     {
+        if (global.player == null)
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+        
         await global.ToTimer(time, null, true);
         var tempA = label.GetColor("font_color").a;
         
@@ -30,8 +39,8 @@ public class Messages : VBoxContainer, ISavable
     {
         var tempLabel = new Label();
 
-        float tempA = tempLabel.Modulate.a;
-        Color newColor = Global.Get().Settings.interfaceColor;
+        var tempA = tempLabel.Modulate.a;
+        var newColor = Global.Get().Settings.interfaceColor;
         tempLabel.Modulate = new Color(
             newColor.r,
             newColor.g,
@@ -47,18 +56,33 @@ public class Messages : VBoxContainer, ISavable
         return tempLabel;
     }
 
-    public void NewTask(string newTaskCode, bool showMessage = true)
+    public void NewTask(string taskCode, bool showMessage = true, bool clear = true)
     {
-        currentTaskLinks = [newTaskCode];
+        if (clear || isNone)
+        {
+            currentTaskLinks = [taskCode];
+        }
+        else
+        {
+            currentTaskLinks.Insert(0, taskCode);
+        }
+        
         if (!showMessage) return;
 
-        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", newTaskCode);
+        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
         ShowMessage("newTask", taskText, "messages");
     }
 
     public void AddTask(string taskCode, bool showMessage = true)
     {
-        currentTaskLinks.Add(taskCode);
+        if (isNone)
+        {
+            currentTaskLinks = [taskCode];
+        }
+        else
+        {
+            currentTaskLinks.Add(taskCode);
+        }
         
         if (!showMessage) return;
         
@@ -69,10 +93,15 @@ public class Messages : VBoxContainer, ISavable
     public void DoneTask(string taskCode, bool showMessage = true)
     {
         currentTaskLinks.Remove(taskCode);
+
+        if (currentTaskLinks.Count == 0)
+        {
+            currentTaskLinks = [NONE_CODE];
+        }
         
         if (!showMessage) return;
         
-        string taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
+        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
         ShowMessage("doneTask", taskText, "messages");
     }
 
@@ -95,7 +124,7 @@ public class Messages : VBoxContainer, ISavable
         float timer = HINT_TIMER
     )
     {
-        string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
+        var text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text + addMessage);
         WaitAndDisappear(tempLabel, timer);
     }

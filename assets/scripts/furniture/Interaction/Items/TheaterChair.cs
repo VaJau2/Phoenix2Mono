@@ -6,7 +6,7 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
 {
     [Export] public bool isActive;
     [Export] private string otherTriggerPath;
-    [Export] private float triggerTimer;
+    
     private TriggerBase otherTrigger;
     private Spatial strikelyPlace;
     private StaticBody back;
@@ -23,15 +23,16 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         back = GetNode<StaticBody>("back");
     }
 
-    public void Interact(PlayerCamera interactor)
+    public async void Interact(PlayerCamera interactor)
     {
+        if (!MayInteract) return;
+        
         back.CollisionLayer = 0;
         back.CollisionMask = 0;
         
         interactor.HideInteractionSquare();
         
-        player.SitOnChair(true);
-        player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
+        player.Velocity = Vector3.Zero;
         player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
         player.Rotation = new Vector3
         (
@@ -39,6 +40,11 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
             strikelyPlace.Rotation.y,
             player.Rotation.z
         );
+        
+        await Global.Get().ToTimer(0.23f);
+        
+        player.SitOnChair(true);
+        player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
         
         otherTrigger.SetActive(true);
     }

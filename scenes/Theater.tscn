@@ -1228,279 +1228,278 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.032, 7.41, 16 )
 
 [node name="theater-chair" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0539, 0, -12.65 )
-isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair2" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6539, 0, -12.65 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair3" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2535, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair4" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85355, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair5" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45348, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair6" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05355, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair7" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.653103, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair8" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74683, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair9" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14651, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair10" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54645, 5.14984e-05, -12.6497 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair11" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9469, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair12" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3468, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair13" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7469, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair14" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1468, 0.000102997, -12.6494 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair15" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0539, 0, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair16" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6539, 0, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair17" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2535, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair18" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85355, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair19" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45348, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair20" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05355, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair21" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.653103, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair22" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74683, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair23" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14651, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair24" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54645, 5.14984e-05, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair25" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9469, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair26" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3468, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair27" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7469, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair28" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1468, 0.000102997, -5.45 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair29" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0539, 0, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair30" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6539, 0, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair31" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2535, 5.14984e-05, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair32" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85355, 5.14984e-05, 2.05 )
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair33" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45348, 5.14984e-05, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair34" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05355, 5.14984e-05, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair35" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.653103, 0.000102997, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair36" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74683, 0.000102997, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair37" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14651, 5.14984e-05, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair38" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54645, 5.14984e-05, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair39" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9469, 0.000102997, 2.05 )
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair40" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3468, 0.000102997, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair41" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7469, 0.000102997, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair42" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1468, 0.000102997, 2.05 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair43" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0539, 0, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair44" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6539, 0, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair45" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2535, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair46" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85355, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair47" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45348, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair48" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05355, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair49" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.653103, 0.000102997, 9.35 )
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair50" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74683, 0.000102997, 9.35 )
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair51" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14651, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair52" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54645, 5.14984e-05, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair53" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9469, 0.000102997, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair54" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3468, 0.000102997, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair55" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7469, 0.000102997, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="theater-chair56" parent="terrain/props/chairs" groups=["savable"] instance=ExtResource( 29 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1468, 0.000102997, 9.35 )
 isActive = true
-otherTriggerPath = "../../../../triggers/moveNPC"
+otherTriggerPath = "../../../../triggers/doneSitTask"
 
 [node name="chair" parent="terrain/props" instance=ExtResource( 17 )]
 transform = Transform( -0.331087, 0, 0.63936, 0, 0.6, 0, -0.63936, 0, -0.331087, 60.7595, 6.49684, 40.1523 )
@@ -1666,22 +1665,32 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.1203
 script = ExtResource( 40 )
 ItemToCheck = "Quest_nucBattery"
 
-[node name="startTask" type="Node" parent="triggers"]
+[node name="newProtectTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
-NewTaskCode = "protectTwilight"
+taskCode = "protectTwilight"
 showMessage = false
 
 [node name="autosave" type="Node" parent="triggers"]
 script = ExtResource( 39 )
 
-[node name="sitTask" type="Area" parent="triggers"]
+[node name="addSitTask" type="Area" parent="triggers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.4887, 15.0519, -6.11412 )
 script = ExtResource( 41 )
 IsActive = false
-NewTaskCode = "sitOnChair"
+changeMode = 1
+taskCode = "sitOnChair"
+clearPreviousTasks = false
 
-[node name="CollisionShape" type="CollisionShape" parent="triggers/sitTask"]
+[node name="CollisionShape" type="CollisionShape" parent="triggers/addSitTask"]
 shape = SubResource( 26 )
+
+[node name="doneSitTask" type="Node" parent="triggers"]
+script = ExtResource( 41 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../moveNPC") ]
+changeMode = 2
+taskCode = "sitOnChair"
+clearPreviousTasks = false
 
 [node name="moveNPC" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 52 )
@@ -1715,12 +1724,12 @@ otherDialogueCode = "presentation2"
 
 [node name="explosionTriggers" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../duskRunAfterExplode"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../killThemAllTask"), NodePath("../changeSecurityMare"), NodePath("../changeSecurity1") ]
+otherTriggerPaths = [ NodePath("../explosionBegin"), NodePath("../twilightSpikeTeleport"), NodePath("../duskRunAfterExplode"), NodePath("../runAfterExplode"), NodePath("../dialoguesOff/bellgatesDialogueOff"), NodePath("../dialoguesOff/shloerDialogueOff"), NodePath("../playMusic"), NodePath("../corridorSpawner"), NodePath("../corridorSpawner2"), NodePath("../corridorSpawner3"), NodePath("../newKillThemAllTask"), NodePath("../changeSecurityMare"), NodePath("../changeSecurity1") ]
 
-[node name="killThemAllTask" type="Node" parent="triggers"]
+[node name="newKillThemAllTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
-NewTaskCode = "killAllEnemies"
+taskCode = "killAllEnemies"
 
 [node name="explosionBegin" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 54 )
@@ -1906,13 +1915,13 @@ transform = Transform( -0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148,
 
 [node name="afterScientistDialogue" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 34 )
-otherTriggerPaths = [ NodePath("../saveDuskTask") ]
+otherTriggerPaths = [ NodePath("../newSaveDuskTask") ]
 disactiveTriggerPaths = [ NodePath("../scientistMoveCanceler") ]
 
-[node name="saveDuskTask" type="Node" parent="triggers"]
+[node name="newSaveDuskTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
-NewTaskCode = "saveDusk"
+taskCode = "saveDusk"
 
 [node name="scientistMoveCanceler" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203 )
@@ -2138,15 +2147,23 @@ otherDialogueCode = "thanks_kill"
 
 [node name="duskFollowsPlayer" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 66 )
-otherTriggerPaths = [ NodePath("../duskDialogueFollowing"), NodePath("../duskFollowEnd"), NodePath("../takeDuskTask") ]
+otherTriggerPaths = [ NodePath("../duskDialogueFollowing"), NodePath("../duskFollowEnd"), NodePath("../doneSaveDuskTask") ]
 disactiveTriggerPaths = [ NodePath("../playMusic") ]
 npcPath = "../../npc/dusk"
 followPath = "/root/Main/Scene/Player"
 
+[node name="doneSaveDuskTask" type="Node" parent="triggers"]
+script = ExtResource( 41 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../takeDuskTask") ]
+changeMode = 2
+taskCode = "saveDusk"
+clearPreviousTasks = false
+
 [node name="takeDuskTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
-NewTaskCode = "takeDusk"
+taskCode = "takeDusk"
 
 [node name="duskDialogueFollowing" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 13 )
@@ -2159,7 +2176,7 @@ otherSubtitleCode = "following"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.7557, 8.97607, 50.0146 )
 script = ExtResource( 66 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../scientist1Thanks"), NodePath("../duskThanks"), NodePath("../bellgatesThanks"), NodePath("../bellgatesDissapear"), NodePath("../reportTask"), NodePath("../locationExit") ]
+otherTriggerPaths = [ NodePath("../scientist1Thanks"), NodePath("../duskThanks"), NodePath("../bellgatesThanks"), NodePath("../bellgatesDissapear"), NodePath("../doneTakeDuskTask"), NodePath("../locationExit") ]
 disactiveTriggerPaths = [  ]
 npcPath = "../../npc/dusk"
 followPath = ""
@@ -2207,10 +2224,18 @@ npcPath = "/root/Main/Scene/npc/bellgates"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/bellgatesDissapear"]
 shape = SubResource( 30 )
 
+[node name="doneTakeDuskTask" type="Node" parent="triggers"]
+script = ExtResource( 41 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../reportTask") ]
+changeMode = 2
+taskCode = "takeDusk"
+clearPreviousTasks = false
+
 [node name="reportTask" type="Node" parent="triggers"]
 script = ExtResource( 41 )
 IsActive = false
-NewTaskCode = "talkToCommander"
+taskCode = "talkToCommander"
 
 [node name="locationExit" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
@@ -2270,7 +2295,7 @@ radioListPath = [ NodePath("../terrain/props/Radio"), NodePath("../terrain/props
 
 [node name="Royal Radio" parent="Radio Manager" instance=ExtResource( 8 )]
 
-[connection signal="body_entered" from="triggers/sitTask" to="triggers/sitTask" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/addSitTask" to="triggers/addSitTask" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/shloerDissapear" to="triggers/shloerDissapear" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/scientistMoveCanceler" to="triggers/scientistMoveCanceler" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/corridorSpawner" to="triggers/corridorSpawner" method="_on_body_entered"]

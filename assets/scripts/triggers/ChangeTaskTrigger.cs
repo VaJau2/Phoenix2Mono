@@ -4,13 +4,14 @@
 //если активен при старте сцены, меняет задачу сразу
 class ChangeTaskTrigger: ActivateOtherTrigger
 {
-    [Export] private Type type;
-    [Export] private string NewTaskCode;
+    [Export] private ChangeMode changeMode;
+    [Export] private string taskCode;
     [Export] private bool showMessage = true;
+    [Export] private bool clearPreviousTasks = true;
     
     private Messages messages;
     
-    private enum Type
+    private enum ChangeMode
     {
         New,
         Add,
@@ -30,29 +31,35 @@ class ChangeTaskTrigger: ActivateOtherTrigger
     public override void SetActive(bool newActive)
     {
         base.SetActive(newActive);
-        if (IsActive)
-        {
-            _on_activate_trigger();
-        }
+        
+        if (IsActive) _on_activate_trigger();
     }
 
     public override void _on_activate_trigger()
     {
-        switch (type)
+        switch (changeMode)
         {
-            case Type.New:
-                messages.NewTask(NewTaskCode, showMessage);
+            case ChangeMode.New:
+                messages.NewTask(taskCode, showMessage, clearPreviousTasks);
                 break;
             
-            case Type.Add:
-                messages.AddTask(NewTaskCode, showMessage);
+            case ChangeMode.Add:
+                messages.AddTask(taskCode, showMessage);
                 break;
             
-            case Type.Done:
-                messages.DoneTask(NewTaskCode, showMessage);
+            case ChangeMode.Done:
+                messages.DoneTask(taskCode, showMessage);
                 break;
         }
         
         base._on_activate_trigger();
+    }
+    
+    public override void _on_body_entered(Node body)
+    {
+        if (body is Player)
+        {
+            SetActive(true);
+        }
     }
 }

@@ -57,12 +57,6 @@
         "class": "ActivateCinematic",
         "key": "Apple-tree",
         "value": "returnToPlayer"
-      },
-
-      "phrase9":
-      {
-        "class": "SetTriggerActive",
-        "value": "windyTeleport5"
       }
   }
 }
