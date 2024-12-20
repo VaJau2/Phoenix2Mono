@@ -12,7 +12,6 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcInteraction.cs" type="Script" id=10]
 [ext_resource path="res://assets/audio/guns/result/mrHandy_break-2.wav" type="AudioStream" id=11]
 
-
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.17334, 4.80975, 1.41224 )
 
@@ -354,8 +353,8 @@ walkSound = ExtResource( 6 )
 
 [node name="stateMachine" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 4 )
-availableSetStates = [ 0, 2, 1, 5 ]
-availableNpcStates = [ 5, 6, 7, 8 ]
+availableSetStates = [ 0, 2, 1, 6 ]
+availableNpcStates = [ 6, 7, 8, 9 ]
 
 [node name="patroling" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 8 )

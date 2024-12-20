@@ -37,12 +37,6 @@ public class NavigationMovingController: BaseMovingController, ISavable
     
     public void GoTo(Vector3 place, float distance = 0, bool mayRun = true)
     {
-        if (stopAreaEntered)
-        {
-            Stop(true);
-            return;
-        }
-        
         if (customFinalDistance != 0) distance = customFinalDistance;
         else if (distance == 0) distance = ComeDistance;
         
@@ -62,6 +56,12 @@ public class NavigationMovingController: BaseMovingController, ISavable
         else
         {
             FinishGoingTo();
+            return;
+        }
+        
+        if (stopAreaEntered)
+        {
+            Stop(true);
             return;
         }
         

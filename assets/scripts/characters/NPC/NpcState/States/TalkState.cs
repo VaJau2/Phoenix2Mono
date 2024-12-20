@@ -14,6 +14,11 @@ public class TalkState(
 
     public override void _Process(float delta)
     {
+        if (tempNpc.tempVictim == null)
+        {
+            return;
+        }
+        
         if (IsStandingOnFoot())
         {
             LookAtTarget(tempNpc);
