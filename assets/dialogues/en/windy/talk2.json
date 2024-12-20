@@ -27,25 +27,23 @@
       "body": "Then follow me! You should see this!",
       "speaker": "Windy",
       "opposite": "Strikely",
-      "next": "B3"
+      "next": "B3.1"
     },
-    "B3": {
+    "B3.1": {
       "kind": "narration",
-      "root_node": false,
       "body": "ChangeDialogueCode",
-      "next": "B4"
+      "next": "B3.2"
     },
-    "B4": {
+    "B3.2": {
       "kind": "narration",
-      "root_node": false,
       "body": "ActivateTrigger",
-      "set": [
-        {
-          "key": "name",
-          "op": "set",
-          "value": "windyTeleport4"
-        }
-      ]
+      "set": "windyTeleport4",
+      "next": "B3.3"
+    },
+    "B3.3": {
+      "kind": "narration",
+      "body": "SetTriggerActive",
+      "set": "addFollowWindyTask"
     }
   },
   "speakers": {

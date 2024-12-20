@@ -961,17 +961,33 @@ script = ExtResource( 85 )
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 50 )
-NewTaskCode = "talkToCommander"
+taskCode = "talkToCommander"
 showMessage = false
 
 [node name="talkToCoronel" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
-otherTriggerPaths = [ NodePath("../changeTask"), NodePath("../exit") ]
+otherTriggerPaths = [ NodePath("../doneStartTask"), NodePath("../exit") ]
 
-[node name="changeTask" type="Node" parent="triggers" groups=["savable"]]
+[node name="doneStartTask" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 50 )
 IsActive = false
-NewTaskCode = "goToTheater"
+otherTriggerPaths = [ NodePath("../newGoTask") ]
+changeMode = 2
+taskCode = "talkToCommander"
+clearPreviousTasks = false
+
+[node name="newGoTask" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 50 )
+IsActive = false
+taskCode = "goToTheater"
+clearPreviousTasks = false
+
+[node name="addBatteryTask" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 50 )
+IsActive = false
+changeMode = 1
+taskCode = "bringBattery"
+clearPreviousTasks = false
 
 [node name="takeBatteryBefore" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 97 )
@@ -982,7 +998,7 @@ DeletedDisactiveTriggers = true
 
 [node name="changeTakeBattery" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
-otherTriggerPaths = [ NodePath("../takeBatteryAfter") ]
+otherTriggerPaths = [ NodePath("../takeBatteryAfter"), NodePath("../addBatteryTask") ]
 disactiveTriggerPaths = [ NodePath("../takeBatteryBefore") ]
 
 [node name="takeBatteryAfter" type="Node" parent="triggers" groups=["savable"]]
@@ -1006,13 +1022,20 @@ otherDialogueCode = "helping"
 [node name="MakeArmoredSoldierMove" type="Node" parent="triggers" groups=["savable"]]
 pause_mode = 2
 script = ExtResource( 99 )
-otherTriggerPaths = [ NodePath("../armoredSoldierDoor") ]
+otherTriggerPaths = [ NodePath("../armoredSoldierDoor"), NodePath("../doneBatteryTask") ]
 npcPath = "../../npc/armored_soldier"
 showObjects = PoolStringArray( "Armature/Skeleton/BoneAttachment/hair", "Armature/Skeleton/Body" )
 hideObjects = PoolStringArray( "Armature/Skeleton/helmet" )
 newAnimation = "Sit"
 newWalkSpeed = 7
 newRunSpeed = 11
+
+[node name="doneBatteryTask" type="Node" parent="triggers" groups=["savable"]]
+script = ExtResource( 50 )
+IsActive = false
+changeMode = 2
+taskCode = "bringBattery"
+clearPreviousTasks = false
 
 [node name="armoredSoldierDoor" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 100 )

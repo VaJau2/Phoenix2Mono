@@ -130,7 +130,6 @@
 [ext_resource path="res://assets/scripts/triggers/ChangePlayerLookTrigger.cs" type="Script" id=128]
 [ext_resource path="res://assets/scripts/triggers/MovePlayerTrigger.cs" type="Script" id=129]
 
-
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
 
@@ -2312,6 +2311,7 @@ script = ExtResource( 40 )
 
 [node name="Apple-tree" type="Node" parent="cutscenes" groups=["savable"]]
 script = ExtResource( 124 )
+changeListener = true
 DeleteAfterFinished = true
 
 [node name="showTree" type="Node" parent="cutscenes/Apple-tree" groups=["savable"]]
@@ -2320,13 +2320,13 @@ otherTriggerPaths = [ NodePath("MovePlayer"), NodePath("LookTarget") ]
 movePath = NodePath("MoveCinematic")
 rotatePath = NodePath("RotateCinematic")
 
-[node name="MoveCinematic" parent="cutscenes/Apple-tree/showTree" groups=["savable"] instance=ExtResource( 121 )]
+[node name="MoveCinematic" parent="cutscenes/Apple-tree/showTree" instance=ExtResource( 121 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100.644, 1.07984, -45.9894 )
 curve = SubResource( 117 )
 speed = 0.05
 speedRot = 0.0
 
-[node name="RotateCinematic" parent="cutscenes/Apple-tree/showTree" groups=["savable"] instance=ExtResource( 122 )]
+[node name="RotateCinematic" parent="cutscenes/Apple-tree/showTree" instance=ExtResource( 122 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -97.2464, 0.701842, -52.4738 )
 curve = SubResource( 118 )
 speed = 0.05
@@ -2347,25 +2347,26 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -116.878, 3.40713, -52.2797 )
 
 [node name="returnToPlayer" type="Node" parent="cutscenes/Apple-tree" groups=["savable"]]
 script = ExtResource( 123 )
+otherTriggerPaths = [ NodePath("../../../triggers/doneFollowWindyTask"), NodePath("../../../triggers/windyTeleport5") ]
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
 
-[node name="ReturnToPlayer" parent="cutscenes/Apple-tree/returnToPlayer" groups=["savable"] instance=ExtResource( 120 )]
+[node name="ReturnToPlayer" parent="cutscenes/Apple-tree/returnToPlayer" instance=ExtResource( 120 )]
 curve = SubResource( 119 )
 speedRot = 0.0
 smoothTransition = false
 
 [node name="skip" type="Node" parent="cutscenes/Apple-tree" groups=["savable"]]
 script = ExtResource( 127 )
-otherTriggerPaths = [ NodePath("../../../triggers/windyTeleport5") ]
+otherTriggerPaths = [ NodePath("../../../triggers/doneFollowWindyTask"), NodePath("../../../triggers/windyTeleport5") ]
 disactiveTriggerPaths = [ NodePath("../showTree/MovePlayer"), NodePath("../showTree/LookTarget") ]
 
 [node name="triggers" type="Node" parent="."]
 
 [node name="vacationTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
-NewTaskCode = "takeVacation"
+taskCode = "takeVacation"
 showMessage = false
 
 [node name="autosave" type="Node" parent="triggers"]
@@ -2394,7 +2395,7 @@ goToPlayer = true
 
 [node name="windyTeleport2" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 68 )
-otherTriggerPaths = [ NodePath("../putSuitcaseTask") ]
+otherTriggerPaths = [ NodePath("../addPutSuitcaseTask") ]
 NpcPath = "../../npc/windy"
 doorPath = NodePath("../../terrain/props/houses/mansion/DoorTeleport2")
 teleportPointPath = NodePath("../../rooms/mansion/windyPoints/windyPoint1")
@@ -2403,16 +2404,24 @@ teleportPointPath = NodePath("../../rooms/mansion/windyPoints/windyPoint1")
 script = ExtResource( 107 )
 MakeMayMove = true
 
-[node name="putSuitcaseTask" type="Node" parent="triggers"]
+[node name="addPutSuitcaseTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "putSuitcase"
+changeMode = 1
+taskCode = "putSuitcase"
 
 [node name="putSuitcase" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 71 )
-otherTriggerPaths = [ NodePath("../changeDayTime"), NodePath("../windyTeleport3"), NodePath("../windyDialogue2") ]
+otherTriggerPaths = [ NodePath("../donePutSuitcaseTask"), NodePath("../changeDayTime"), NodePath("../windyTeleport3"), NodePath("../windyDialogue2") ]
 itemModelPath = NodePath("../../rooms/mansion/props/Strikley\'s Bed/suitcase")
 itemCode = "Quest_suitcaseVacation"
+
+[node name="donePutSuitcaseTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+changeMode = 2
+taskCode = "putSuitcase"
+clearPreviousTasks = false
 
 [node name="changeDayTime" type="Node" parent="triggers"]
 script = ExtResource( 74 )
@@ -2422,18 +2431,12 @@ envResource = ExtResource( 75 )
 [node name="windyTeleport3" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../followWindyTask") ]
 NpcPaths = [ "../../npc/windy" ]
 pointPaths = [ NodePath("point") ]
 teleportToPoint = true
 
 [node name="point" type="Spatial" parent="triggers/windyTeleport3"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -61.725, -94.3516, 23.4878 )
-
-[node name="followWindyTask" type="Node" parent="triggers"]
-script = ExtResource( 35 )
-IsActive = false
-NewTaskCode = "followWindy"
 
 [node name="windyDialogue2" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.8864, -92.923, 26.6367 )
@@ -2446,9 +2449,16 @@ otherDialogueCode = "talk2"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/windyDialogue2"]
 shape = SubResource( 76 )
 
+[node name="addFollowWindyTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+changeMode = 1
+taskCode = "followWindy"
+clearPreviousTasks = false
+
 [node name="windyTeleport4" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 68 )
-otherTriggerPaths = [ NodePath("../windyMoveToTree") ]
+otherTriggerPaths = [ NodePath("../addFollowWindyTask"), NodePath("../windyMoveToTree") ]
 disactiveTriggerPaths = [  ]
 NpcPath = "../../npc/windy"
 doorPath = NodePath("../../rooms/mansion/DoorTeleport")
@@ -2482,7 +2492,7 @@ shape = SubResource( 77 )
 
 [node name="windyTeleport5" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 68 )
-otherTriggerPaths = [ NodePath("../windyMoveToFridge"), NodePath("../checkGetPie"), NodePath("../addExtraPie"), NodePath("../eatPieTask") ]
+otherTriggerPaths = [ NodePath("../windyMoveToFridge"), NodePath("../checkGetPie"), NodePath("../addExtraPie") ]
 NpcPath = "../../npc/windy"
 doorPath = NodePath("../../terrain/props/houses/mansion/DoorTeleport2")
 teleportPointPath = NodePath("../../rooms/mansion/windyPoints/windySpawn")
@@ -2492,10 +2502,19 @@ script = ExtResource( 77 )
 itemsCode = PoolStringArray( "pie" )
 chestPath = NodePath("../../rooms/mansion/props/fridge")
 
-[node name="eatPieTask" type="Node" parent="triggers"]
+[node name="doneFollowWindyTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "eatPie"
+otherTriggerPaths = [ NodePath("../addEatPieTask") ]
+changeMode = 2
+taskCode = "followWindy"
+clearPreviousTasks = false
+
+[node name="addEatPieTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+taskCode = "eatPie"
+clearPreviousTasks = false
 
 [node name="windyMoveToFridge" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 69 )
@@ -2510,13 +2529,23 @@ transform = Transform( 0.680056, 0, 0.73316, 0, 1, 0, -0.73316, 0, 0.680056, -51
 [node name="checkGetPie" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 76 )
 IsActive = false
-otherTriggerPaths = [ NodePath("../windyDialogue4"), NodePath("../motherDialogue"), NodePath("../talkToMomTask") ]
+otherTriggerPaths = [ NodePath("../windyDialogue4"), NodePath("../motherDialogue"), NodePath("../doneEatPieTask") ]
 ItemToUse = "pie"
 
-[node name="talkToMomTask" type="Node" parent="triggers"]
+[node name="doneEatPieTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "talkToMom"
+otherTriggerPaths = [ NodePath("../addTalkToMomTask") ]
+changeMode = 2
+taskCode = "eatPie"
+clearPreviousTasks = false
+
+[node name="addTalkToMomTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+changeMode = 1
+taskCode = "talkToMom"
+clearPreviousTasks = false
 
 [node name="windyDialogue4" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 69 )
@@ -2551,10 +2580,20 @@ shape = SubResource( 78 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2685, 0, -6.17377 )
 shape = SubResource( 78 )
 
-[node name="goToSleepTask" type="Node" parent="triggers"]
+[node name="doneTalkToMomTask" type="Node" parent="triggers"]
 script = ExtResource( 35 )
 IsActive = false
-NewTaskCode = "goToSleep"
+otherTriggerPaths = [ NodePath("../addGoToSleepTask"), NodePath("../activateBed") ]
+changeMode = 2
+taskCode = "talkToMom"
+clearPreviousTasks = false
+
+[node name="addGoToSleepTask" type="Node" parent="triggers"]
+script = ExtResource( 35 )
+IsActive = false
+changeMode = 1
+taskCode = "goToSleep"
+clearPreviousTasks = false
 
 [node name="activateBed" type="Node" parent="triggers"]
 script = ExtResource( 117 )
@@ -2565,11 +2604,6 @@ script = ExtResource( 96 )
 IsActive = false
 SaveOldInventorySave = true
 newLevelNum = 5
-
-[node name="dialogueTargets" type="Node" parent="."]
-
-[node name="tree" type="Spatial" parent="dialogueTargets"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -117.511, 6.85914, -52.1614 )
 
 [node name="randomItems" type="Node" parent="."]
 script = ExtResource( 3 )

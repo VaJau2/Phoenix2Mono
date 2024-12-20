@@ -1,12 +1,13 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=2]
-[ext_resource path="res://objects/props/mirror/mirror.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/props/mirror/Mirror.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/props/window/transparent.tres" type="Material" id=8]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=9]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=10]
+
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 8 )

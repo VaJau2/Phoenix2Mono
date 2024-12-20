@@ -61,9 +61,13 @@ class TakeItemTrigger: ActivateOtherTrigger
     {
         base.LoadData(data);
 
-        if (IsActive)
+        if (!IsActive) return;
+        
+        if (player.IsConnected(nameof(Player.TakeItem), this, nameof(_on_player_take_item)))
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            return;
         }
+                
+        player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
     }
 }

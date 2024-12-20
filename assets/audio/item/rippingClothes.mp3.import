@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rippingClothes.mp3-929e61e21507ef04178ade8e8b0651d8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/item/rippingClothes.mp3"
+dest_files=[ "res://.import/rippingClothes.mp3-929e61e21507ef04178ade8e8b0651d8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -117,8 +117,6 @@
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=115]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=116]
 
-
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
 
@@ -2221,7 +2219,7 @@ script = ExtResource( 103 )
 
 [node name="startTask" type="Node" parent="triggers"]
 script = ExtResource( 102 )
-NewTaskCode = "findSecretWeapon"
+taskCode = "findSecretWeapon"
 showMessage = false
 
 [node name="stopAlarmButton" type="StaticBody" parent="triggers" groups=["savable"]]
@@ -2282,8 +2280,9 @@ transform = Transform( -0.767982, 0, 0.640472, 0, 1, 0, -0.640472, 0, -0.767982,
 [node name="endTask" type="Node" parent="triggers"]
 script = ExtResource( 102 )
 IsActive = false
-NewTaskCode = "none"
-showMessage = false
+changeMode = 2
+taskCode = "findSecretWeapon"
+clearPreviousTasks = false
 
 [node name="nuclearTrigger" type="Spatial" parent="triggers" groups=["savable"]]
 script = ExtResource( 88 )

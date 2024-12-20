@@ -54,12 +54,12 @@
     "S1(1.1)": {
       "kind": "narration",
       "root_node": false,
-      "body": "ActivateTrigger",
+      "body": "GiveItem",
       "set": [
         {
-          "key": "name",
+          "key": "item",
           "op": "set",
-          "value": "MakeArmoredSoldierMove"
+          "value": "Quest_nucBattery"
         }
       ],
       "next": "S1(1.2)"
@@ -67,12 +67,12 @@
     "S1(1.2)": {
       "kind": "narration",
       "root_node": false,
-      "body": "GiveItem",
+      "body": "ActivateTrigger",
       "set": [
         {
-          "key": "item",
+          "key": "name",
           "op": "set",
-          "value": "Quest_nucBattery"
+          "value": "MakeArmoredSoldierMove"
         }
       ],
       "next": "S2"

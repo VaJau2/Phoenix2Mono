@@ -13,6 +13,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private NodePath assistantPiePath;
     [Export] private string winDialogue;
     [Export] private string loseDialogue;
+    [Export] private NodePath changeTaskPath;
     
     private Array<Spatial> patrolPointParents = [];
     private Array<NPC> roboEyes = [];
@@ -20,6 +21,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     private FurnDoor bagDoor;
     private BagChest bag;
     private NPC assistantPie;
+    private TriggerBase changeTaskTrigger;
     
     private bool isRobotsActive;
     
@@ -28,6 +30,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         base._Ready();
         
         assistantPie = GetNode<NPC>(assistantPiePath);
+        changeTaskTrigger = GetNodeOrNull<TriggerBase>(changeTaskPath);
         
         audi = GetNode<AudioStreamPlayer3D>(audiPath);
         audi.Stream = beepSound;
@@ -93,6 +96,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         audi.Play();
         assistantPie.dialogueCode = winDialogue;
         
+        changeTaskTrigger?.SetActive(true);
         trainingIsDone = true;
         SetActive(false);
     }
