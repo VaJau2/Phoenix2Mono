@@ -1,0 +1,41 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "body": "Great, both hostages are saved. Congratulations on a successfully completed mission.",
+            "speaker": "Clone in the coat",
+            "opposite": "Strikely",
+            "next": "C2"
+        },
+        "C2": {
+            "kind": "dialogue",
+            "body": "Your work here is done. You will receive a reward for completing the task later.",
+            "speaker": "Clone in the coat",
+            "opposite": "Strikely",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "body": "Now come home, we'll take care of the rest.",
+            "speaker": "Clone in the coat",
+            "opposite": "Strikely",
+            "next": "CEnd"
+        },
+        "CEnd": {
+            "kind": "narration",
+            "body": "ChangeDialogueCode",
+            "next": "CEnd1"
+        },
+        "CEnd1": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "leaveTask",
+            "next": "CEnd2"
+        },
+        "CEnd2": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "exit"
+        }
+    }
+}

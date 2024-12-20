@@ -1,0 +1,41 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "body": "Отлично, оба заложника спасены. Поздравляю с успешно завершенной миссией.",
+            "speaker": "Клон в плаще",
+            "opposite": "Страйкли",
+            "next": "C2"
+        },
+        "C2": {
+            "kind": "dialogue",
+            "body": "Твоя работа здесь завершена. Награду за выполненное задание получишь позже.",
+            "speaker": "Клон в плаще",
+            "opposite": "Страйкли",
+            "next": "C3"
+        },
+        "C3": {
+            "kind": "dialogue",
+            "body": "А сейчас возвращайся домой, мы возьмем на себя оставшуюся часть.",
+            "speaker": "Клон в плаще",
+            "opposite": "Страйкли",
+            "next": "CEnd"
+        },
+        "CEnd": {
+            "kind": "narration",
+            "body": "ChangeDialogueCode",
+            "next": "CEnd1"
+        },
+        "CEnd1": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "leaveTask",
+            "next": "CEnd2"
+        },
+        "CEnd2": {
+            "kind": "narration",
+            "body": "ActivateTrigger",
+            "set": "exit"
+        }
+    }
+}

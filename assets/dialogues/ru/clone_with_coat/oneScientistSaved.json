@@ -1,0 +1,27 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "body": "Так. Судя по моим данным, их там должно было быть две. Где вторая?",
+            "speaker": "Клон в плаще",
+            "opposite": "Страйкли",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C1(1)"
+                }
+            ]
+        },
+        "C1(1)": {
+            "kind": "dialogue",
+            "body": "Сейчас вернусь за второй",
+            "speaker": "Страйкли",
+            "opposite": "Клон в плаще",
+            "next": "CEnd"
+        },
+        "CEnd": {
+            "kind": "narration",
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

@@ -3,25 +3,13 @@
         "C0": {
             "kind": "narration",
             "body": "TakeItem",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "keyCardMASBase"
-                }
-            ],
+            "set": "keyCardMASBase",
             "next": "C1"
         },
         "C1": {
             "kind": "narration",
             "body": "TakeItem",
-            "set": [
-                {
-                    "key": "name",
-                    "op": "set",
-                    "value": "keyCardMASVent"
-                }
-            ],
+            "set": "keyCardMASVent",
             "next": "C2"
         },
         "C2": {
