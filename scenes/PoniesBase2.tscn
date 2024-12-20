@@ -1763,14 +1763,28 @@ script = ExtResource( 83 )
 
 [node name="triggers" type="Node" parent="."]
 
-[node name="startTask" type="Node" parent="triggers"]
+[node name="startTalkTask" type="Node" parent="triggers"]
 script = ExtResource( 50 )
-NewTaskCode = "talkToCoronel"
+taskCode = "talkToCoronel"
 showMessage = false
 
 [node name="afterCoronelTalk" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 72 )
-otherTriggerPaths = [ NodePath("../exitTask"), NodePath("../luckyDialogueChangeCode"), NodePath("../exit") ]
+otherTriggerPaths = [ NodePath("../doneTalkTask"), NodePath("../luckyDialogueChangeCode"), NodePath("../exit") ]
+
+[node name="doneTalkTask" type="Node" parent="triggers"]
+script = ExtResource( 50 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../exitTask") ]
+changeMode = 2
+taskCode = "talkToCoronel"
+clearPreviousTasks = false
+
+[node name="exitTask" type="Node" parent="triggers"]
+script = ExtResource( 50 )
+IsActive = false
+taskCode = "leaveLocation"
+clearPreviousTasks = false
 
 [node name="loopingMusicPart" type="Node" parent="triggers"]
 pause_mode = 2
@@ -1784,11 +1798,6 @@ script = ExtResource( 79 )
 NewCheckTime = 193.0
 NewChangeTime = 45.0
 triggerPath = NodePath("../loopingMusicPart")
-
-[node name="exitTask" type="Node" parent="triggers"]
-script = ExtResource( 50 )
-IsActive = false
-NewTaskCode = "leaveLocation"
 
 [node name="luckyDialogueChangeCode" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 98 )

@@ -5,6 +5,7 @@ using Godot.Collections;
 
 public class Cutscene : Node, ISavable
 {
+    [Export] private bool changeListener;
     [Export] private bool DeleteAfterFinished;
     
     private Camera cutsceneCamera;
@@ -102,6 +103,8 @@ public class Cutscene : Node, ISavable
         cutsceneCamera.QueueFree();
         cutsceneCamera = null;
 
+        if (changeListener) player.MakeListenerCurrent();
+
         if (!DeleteAfterFinished) return;
         Global.AddDeletedObject(Name);
         QueueFree();
@@ -111,6 +114,7 @@ public class Cutscene : Node, ISavable
     {
         InitCamera();
         InitHeadTrigger();
+        if (changeListener) InitListener();
         skip.Connect(nameof(global::Skip.SkipEvent), this, nameof(Skip));
         skip.SetActive(true);
     }
@@ -131,6 +135,13 @@ public class Cutscene : Node, ISavable
         player.SetTotalMayMove(false);
     }
 
+    private void InitListener()
+    {
+        var listener = new Listener();
+        cutsceneCamera.AddChild(listener);
+        listener.MakeCurrent();
+    }
+    
     private void InitHeadTrigger()
     {
         var prefab = GD.Load<PackedScene>("res://objects/cinematic/HeadTrigger.tscn");

@@ -98,7 +98,6 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" type="Script" id=96]
 [ext_resource path="res://assets/scripts/background/NpcLookTarget.cs" type="Script" id=97]
 
-
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.8697, 0, 0.133, -0.4688, -0.2343, 0.8539, -0.8697, 0, 1.6845, -0.8697, 0, 0.133, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.8697, 0, -1.8342, -0.4688, -0.2343, -0.0209, -0.8697, 0, 0.133, -0.8697, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 1.0756, 0, 0.1081, 0.628, -0.2343, -1.1301, 1.0756, 0, -1.8342, 1.0756, 0, 0.1081, 0.628, -0.2343, -0.0349, 0.628, -0.2343, -1.1301, 1.0756, 0, 0.1081, 0.6644, 0, 1.6845, 0.6644, 0, 0.133, 1.0756, 0, 0.1081, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 1.0756, 0, 1.6845, 1.0756, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, 0.1081, 2.3042, 0, -2.8435, 2.3042, 0, 3.6534, 1.0756, 0, 1.6845, 0.6644, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 1.6845, 0.6644, 0, 1.6845, 2.3042, 0, 3.6534, -2.31, 0, 3.6534, 1.0756, 0, 1.6845, 2.3042, 0, 3.6534, 0.6644, 0, 1.6845, 2.3042, 0, -2.8435, 48.9256, 0, 39.4051, 2.3042, 0, 3.6534, 2.3042, 0, -2.8435, 48.9256, 0, -77.5596, 48.9256, 0, 39.4051, -0.8697, 0, 1.6845, -2.31, 0, 3.6534, -0.8697, 0, 0.133, -0.8697, 0, 0.133, -2.31, 0, -2.8435, -0.8697, 0, -1.8342, -0.8697, 0, 0.133, -2.31, 0, 3.6534, -2.31, 0, -2.8435, 2.3042, 0, 3.6534, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, 2.3042, 0, 3.6534, 48.9256, 0, 39.4051, -30.0607, 0, 39.4051, -2.31, 0, 3.6534, -30.0607, 0, -77.5596, -2.31, 0, -2.8435, -2.31, 0, 3.6534, -30.0607, 0, 39.4051, -30.0607, 0, -77.5596, 0.6644, 0, -1.8342, 2.3042, 0, -2.8435, 1.0756, 0, -1.8342, -0.8697, 0, -1.8342, 2.3042, 0, -2.8435, 0.6644, 0, -1.8342, -0.8697, 0, -1.8342, -2.31, 0, -2.8435, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, 48.9256, 0, -77.5596, 2.3042, 0, -2.8435, -2.31, 0, -2.8435, -30.0607, 0, -77.5596, 48.9256, 0, -77.5596, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -1.1301, 0.628, -0.2343, -0.0349, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.628, -0.2343, -1.1301, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, -0.0209, -0.4688, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.3962, -0.2343, -0.0209, -0.4688, -0.2343, 0.8539, -0.4688, -0.2343, -0.0209, 0.3962, -0.2343, -0.0209, 0.3962, -0.2343, 0.8539, -0.4688, -0.2343, 0.8539, 1.0756, 0, -1.8342, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, 1.0756, 0, -1.8342, 0.628, -0.2343, -1.1301, 0.3962, -0.2343, -1.1301, 0.6644, 0, -1.8342, -0.4688, -0.2343, -1.1301, -0.8697, 0, -1.8342, 0.6644, 0, -1.8342, 0.3962, -0.2343, -1.1301, -0.4688, -0.2343, -1.1301, 0.6644, 0, 0.133, 0.628, -0.2343, -0.0349, 1.0756, 0, 0.1081, 0.6644, 0, 0.133, 0.3962, -0.2343, -0.0209, 0.628, -0.2343, -0.0349, 0.6644, 0, 1.6845, 0.3962, -0.2343, -0.0209, 0.6644, 0, 0.133, 0.6644, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.3962, -0.2343, -0.0209, -0.8697, 0, 1.6845, 0.3962, -0.2343, 0.8539, 0.6644, 0, 1.6845, -0.8697, 0, 1.6845, -0.4688, -0.2343, 0.8539, 0.3962, -0.2343, 0.8539 )
 
@@ -1456,6 +1455,11 @@ script = ExtResource( 40 )
 
 [node name="triggers" type="Node" parent="."]
 
+[node name="vacationTask" type="Node" parent="triggers"]
+script = ExtResource( 78 )
+taskCode = "takeVacation"
+showMessage = false
+
 [node name="motherTalk1" type="Area" parent="triggers"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.6011, -102.254, 48.6856 )
 script = ExtResource( 69 )
@@ -1472,7 +1476,8 @@ shape = SubResource( 43 )
 [node name="takeFirewoodTask" type="Node" parent="triggers"]
 script = ExtResource( 78 )
 IsActive = false
-NewTaskCode = "takeFirewood"
+changeMode = 1
+taskCode = "takeFirewood"
 
 [node name="pickFirewood" type="Node" parent="triggers"]
 script = ExtResource( 71 )
@@ -1482,12 +1487,20 @@ itemModelPath = NodePath("../../terrain/props/houses/ambar/firewood")
 
 [node name="putFirewood" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 76 )
+otherTriggerPaths = [ NodePath("../doneFirewoodTask") ]
 itemModelPath = NodePath("../../rooms/mansion/fireplate/fire")
 itemCode = "firewood"
 
+[node name="doneFirewoodTask" type="Node" parent="triggers"]
+script = ExtResource( 78 )
+IsActive = false
+changeMode = 2
+taskCode = "takeFirewood"
+clearPreviousTasks = false
+
 [node name="pickPaper" type="Node" parent="triggers"]
 script = ExtResource( 71 )
-otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickSuitcase"), NodePath("../changeWindyDialogue"), NodePath("../goToVanTask"), NodePath("../enterVan") ]
+otherTriggerPaths = [ NodePath("../changeMotherDialogue"), NodePath("../conditionalTrigger"), NodePath("../pickSuitcase"), NodePath("../changeWindyDialogue"), NodePath("../doneVacationTask"), NodePath("../enterVan") ]
 itemCode = "bellgatesPaper"
 itemModelPath = NodePath("../../terrain/props/paper")
 
@@ -1524,10 +1537,19 @@ IsActive = false
 itemCode = "Quest_suitcaseVacation"
 itemModelPath = NodePath("../../rooms/mansion/suitcase")
 
+[node name="doneVacationTask" type="Node" parent="triggers"]
+script = ExtResource( 78 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../goToVanTask") ]
+changeMode = 2
+taskCode = "takeVacation"
+clearPreviousTasks = false
+
 [node name="goToVanTask" type="Node" parent="triggers"]
 script = ExtResource( 78 )
 IsActive = false
-NewTaskCode = "sitInAVan"
+taskCode = "sitInAVan"
+clearPreviousTasks = false
 
 [node name="enterVan" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 92 )

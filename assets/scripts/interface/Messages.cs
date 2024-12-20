@@ -1,16 +1,26 @@
+using System;
 using Godot;
 using Godot.Collections;
 
 public class Messages : VBoxContainer, ISavable
 {
-    Global global = Global.Get();
     public const float HINT_TIMER = 2.5f;
+    private const string NONE_CODE = "none";
+    
     [Export] public Theme tempTheme;
+    
+    private readonly Global global = Global.Get();
 
-    private string currentTaskLink = "none";
+    private Array<string> currentTaskLinks = [NONE_CODE];
+    private bool isNone => (currentTaskLinks.Count == 1) && (currentTaskLinks[0] == NONE_CODE);
 
     private async void WaitAndDisappear(Label label, float time)
     {
+        if (global.player == null)
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+        
         await global.ToTimer(time, null, true);
         var tempA = label.GetColor("font_color").a;
         
@@ -29,8 +39,8 @@ public class Messages : VBoxContainer, ISavable
     {
         var tempLabel = new Label();
 
-        float tempA = tempLabel.Modulate.a;
-        Color newColor = Global.Get().Settings.interfaceColor;
+        var tempA = tempLabel.Modulate.a;
+        var newColor = Global.Get().Settings.interfaceColor;
         tempLabel.Modulate = new Color(
             newColor.r,
             newColor.g,
@@ -46,13 +56,53 @@ public class Messages : VBoxContainer, ISavable
         return tempLabel;
     }
 
-    public void ChangeTaskCode(string newTaskCode, bool showMessage = true)
+    public void NewTask(string taskCode, bool showMessage = true, bool clear = true)
     {
-        currentTaskLink = newTaskCode;
+        if (clear || isNone)
+        {
+            currentTaskLinks = [taskCode];
+        }
+        else
+        {
+            currentTaskLinks.Insert(0, taskCode);
+        }
+        
         if (!showMessage) return;
 
-        string taskText = InterfaceLang.GetPhrase("tasks", "tasks", newTaskCode);
+        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
         ShowMessage("newTask", taskText, "messages");
+    }
+
+    public void AddTask(string taskCode, bool showMessage = true)
+    {
+        if (isNone)
+        {
+            currentTaskLinks = [taskCode];
+        }
+        else
+        {
+            currentTaskLinks.Add(taskCode);
+        }
+        
+        if (!showMessage) return;
+        
+        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
+        ShowMessage("addTask", taskText, "messages");
+    }
+    
+    public void DoneTask(string taskCode, bool showMessage = true)
+    {
+        currentTaskLinks.Remove(taskCode);
+
+        if (currentTaskLinks.Count == 0)
+        {
+            currentTaskLinks = [NONE_CODE];
+        }
+        
+        if (!showMessage) return;
+        
+        var taskText = InterfaceLang.GetPhrase("tasks", "tasks", taskCode);
+        ShowMessage("doneTask", taskText, "messages");
     }
 
     // Все фразы лежат в lang/inGame.json
@@ -74,7 +124,7 @@ public class Messages : VBoxContainer, ISavable
         float timer = HINT_TIMER
     )
     {
-        string text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
+        var text = InterfaceLang.GetPhrase("inGame", sectionLink, phraseLink);
         var tempLabel = ShowLabel(text + addMessage);
         WaitAndDisappear(tempLabel, timer);
     }
@@ -94,23 +144,38 @@ public class Messages : VBoxContainer, ISavable
         if (Input.IsActionJustPressed("task") && global.player.MayMove)
         {
             //задачи лежат в файле tasks.json
-            string header = InterfaceLang.GetPhrase("tasks", "tasks", "tasksHeader");
-            string tasks = InterfaceLang.GetPhrase("tasks", "tasks", currentTaskLink);
+            var header = InterfaceLang.GetPhrase("tasks", "tasks", "tasksHeader");
             ShowMessageRaw(header, 3);
-            ShowMessageRaw(tasks, 3);
+
+            foreach (var taskLink in currentTaskLinks)
+            {
+                var tasks = InterfaceLang.GetPhrase("tasks", "tasks", taskLink);
+                ShowMessageRaw(tasks, 3);
+            }
         }
     }
 
     public Dictionary GetSaveData()
     {
-        return new Dictionary
+        var saveData = new Dictionary();
+        saveData["tasksCount"] = currentTaskLinks.Count;
+
+        for (int i = 0; i < currentTaskLinks.Count; i++)
         {
-            { "task", currentTaskLink }
-        };
+            saveData.Add($"task{i}", currentTaskLinks[i]);
+        }
+
+        return saveData;
     }
 
     public void LoadData(Dictionary data)
     {
-        currentTaskLink = data["task"].ToString();
+        var tasksCount = Convert.ToInt32(data["tasksCount"]);
+        currentTaskLinks.Clear();
+        
+        for (int i = 0; i < tasksCount; i++)
+        {
+            currentTaskLinks.Add(data[$"task{i}"].ToString());
+        }
     }
 }

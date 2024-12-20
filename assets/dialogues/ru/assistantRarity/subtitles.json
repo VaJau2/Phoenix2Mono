@@ -1,0 +1,16 @@
+﻿{
+  "tearSocks": 
+  {
+    "tearSocks1": 
+    {
+      "speakerCode": "assistantRarity",
+      "text": "Ты как умудрилась так быстро порвать носочки?! Они же бронированные! >:C",
+      "symbolDelay": 0.015
+    },
+    "tearSocks2": 
+    {
+      "speakerCode": "strikely",
+      "text": "Ой, прости :с"
+    }
+  }
+}

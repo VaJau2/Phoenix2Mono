@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pleasure3.mp3-a0cad83b08608b42e8d3ed7bc4fdc074.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantRarity/talk/pleasure3.mp3"
+dest_files=[ "res://.import/pleasure3.mp3-a0cad83b08608b42e8d3ed7bc4fdc074.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

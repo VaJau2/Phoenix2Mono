@@ -13,6 +13,13 @@ public class Settings
         1024, 2048, 2560, 4096
     };
 
+    public int reflection => reflectionSettings[reflectionIndex];
+    private int reflectionIndex = 3;
+    private int[] reflectionSettings =
+    {
+        0, 25, 50, 80
+    };
+
     public float soundVolume {get; private set;}
     public float radioVolume {get; private set;}
     public float musicVolume {get; private set;}

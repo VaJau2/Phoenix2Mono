@@ -43,16 +43,7 @@ public class PlayerThirdPerson : Spatial
         player.Weapons.СheckThirdView();
 
         Body.Visible = !on;
-        if (!on)
-        {
-            Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.ShadowsOnly;
-            TempRay = RayFirst;
-        }
-        else
-        {
-            Body_third.CastShadow = GeometryInstance.ShadowCastingSetting.On;
-            TempRay = RayThird;
-        }
+        TempRay = on ? RayThird : RayFirst;
 
         //возвращаем игроку вращение при переходе от 3 лица
         //если он повернулся на больше 180 градусов

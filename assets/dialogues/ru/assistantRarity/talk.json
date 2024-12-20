@@ -1,6 +1,140 @@
 {
   "nodes": {
-    "R1(1.1)": {
+    "suit1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "О, а вот и ты, дорогуша! Я cшила этот костюм специально для тебя. В нём ты будешь неотразимой на этом задании!",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "suit2"
+    },
+    "suit2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Со стелсбаком – ты будешь невидимой, а с этим костюм – ещё и бесшумной! Его шумоподавляющая ткань так же на 30% прочнее кевлара.",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "suit3"
+    },
+    "suit3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "С повязкой на глазу, тебе не придётся постоянно щурить глаз для точной стрельбы с транквилизатора.",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "suit4"
+    },
+    "suit4": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "А c банданой... Ну она просто завершает образ.",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "suitAnswerThx"
+        },
+        {
+          "body": "answer",
+          "next": "suitAnswerComplain"
+        }
+      ]
+    },
+
+    "suitAnswerThx": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Спасибо!",
+      "speaker": "Страйкли",
+      "opposite": "Помощница Рэрити",
+      "next": "pleasure1"
+    },
+    "suitAnswerComplain": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Может тебе лучше было сшить форму как у террористов?",
+      "speaker": "Страйкли",
+      "opposite": "Помощница Рэрити",
+      "next": "complain1"
+    },
+
+    "pleasure1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Настоятельно рекомендую тебе пройти все тренировки перед отправлением на миссию.",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "pleasure2"
+    },
+    "pleasure2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Если столь великолепный костюм будет испорчен пулями, это разобьёт моё сердце. И твою голову.",
+      "timer": "0.018",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "pleasure3"
+    },
+    "pleasure3": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Носи его с удовольствием! ",
+      "timer": "0.01",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "takeSuit1"
+    },
+
+    "complain1": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Вы только посмотрите! Я потратила столько сил на него, а ты жалуешься!",
+      "timer": "0.005",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "complain2"
+    },
+    "complain2": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Столько в последнее время завелось ценителей. Может тебе нужно было прекрасное платье с завитушками на твоей секретной миссии?",
+      "timer": "0.009",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "complainAnswerOkay"
+        }
+      ]
+    },
+
+    "complainAnswerOkay": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Ладно, ладно. Спасибо.",
+      "speaker": "Страйкли",
+      "opposite": "Помощница Рэрити",
+      "next": "threats"
+    },
+
+    "threats": {
+      "kind": "dialogue",
+      "root_node": false,
+      "body": "Бери его и только попробуй не надеть на миссии! Я найду тебя и лично убью этими копы... робо-руками!",
+      "timer": "0.013",
+      "speaker": "Помощница Рэрити",
+      "opposite": "Страйкли",
+      "next": "takeSuit1"
+    },
+
+    "takeSuit1": {
       "kind": "narration",
       "root_node": false,
       "body": "TakeItem",
@@ -11,157 +145,28 @@
           "value": "stealthArmor"
         }
       ],
-      "next": "R1"
+      "next": "takeSuit2"
     },
-    "R1": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "О, а вот и ты, дорогуша! Я шила этот костюм специально для тебя. В нем ты будешь неотразимой на этом… задании!",
-      "timer": "0.01",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "options": [
-        {
-          "body": "answer",
-          "next": "R1(1)"
-        },
-        {
-          "body": "answer",
-          "next": "R1(2)"
-        }
-      ]
-    },
-    "R1(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Спасибо",
-      "speaker": "Страйкли",
-      "opposite": "Помощница Рэрити",
-      "next": "R2"
-    },
-    "R1(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Повязка на глаз? И это помешает им узнать меня?",
-      "speaker": "Страйкли",
-      "opposite": "Помощница Рэрити",
-      "next": "R3"
-    },
-    "R2": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Носи его с удовольствием! ",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "next": "R2(1.1)"
-    },
-    "R3": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Поверь мне, тебя точно никто не узнает! Ты будешь инкогнито в этой повязке.",
-      "timer": "0.01",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "options": [
-        {
-          "body": "answer",
-          "next": "R3(1)"
-        },
-        {
-          "body": "answer",
-          "next": "R3(2)"
-        }
-      ]
-    },
-    "R3(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Ну ладно..",
-      "speaker": "Страйкли",
-      "timer": "0.01",
-      "opposite": "Помощница Рэрити",
-      "next": "R2"
-    },
-    "R3(2)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "А ничего получше нет?",
-      "speaker": "Страйкли",
-      "opposite": "Помощница Рэрити",
-      "next": "R4"
-    },
-    "R4": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Вы только посмотрите! Я потратила столько сил на него, а ты жалуешься!",
-      "timer": "0.01",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "next": "R5"
-    },
-    "R5": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Столько в последнее время завелось ценителей. Может, тебе нужно было прекрасное платье с завитушками на твоем тайном задании?",
-      "timer": "0.01",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "options": [
-        {
-          "body": "answer",
-          "next": "R5(1)"
-        }
-      ]
-    },
-    "R5(1)": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Ладно, ладно. Спасибо.",
-      "speaker": "Страйкли",
-      "opposite": "Помощница Рэрити",
-      "next": "R6"
-    },
-    "R6": {
-      "kind": "dialogue",
-      "root_node": false,
-      "body": "Бери его и только попробуй не надеть, когда отправишься на задание! Я найду тебя и лично убью этими копы...робо-руками!",
-      "timer": "0.01",
-      "speaker": "Помощница Рэрити",
-      "opposite": "Страйкли",
-      "next": "R2(1.1)"
-    },
-    "R2(1.1)": {
+    "takeSuit2": {
       "kind": "narration",
       "root_node": false,
-      "body": "ChangeDialogueCode",
-      "next": "R2(1.2)"
-    },
-    "R2(1.2)": {
-      "kind": "narration",
-      "root_node": false,
-      "body": "ActivateTrigger",
+      "body": "SetTriggerActive",
       "set": [
         {
           "key": "name",
           "op": "set",
-          "value": "leaveLocationTask"
+          "value": "doneRarityTask"
         }
       ],
-      "next": "R2(1.3)"
+      "next": "takeSuit3"
     },
-    "R2(1.3)": {
+    "takeSuit3": {
       "kind": "narration",
       "root_node": false,
-      "body": "ActivateTrigger",
-      "set": [
-        {
-          "key": "name",
-          "op": "set",
-          "value": "activateVan"
-        }
-      ]
+      "body": "ChangeDialogueCode"
     }
   },
+
   "speakers": {
     "Помощница Рэрити": {
       "color": {

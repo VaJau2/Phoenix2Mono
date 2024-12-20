@@ -7,7 +7,7 @@ public class ReturnCinematic : AbstractMoveCinematic
     {
         if (!smoothTransition)
         {
-            Disable();
+            InstantReturn();
             return;
         }
         
@@ -23,6 +23,12 @@ public class ReturnCinematic : AbstractMoveCinematic
         {
             Curve.RemovePoint(1);
         }
+    }
+
+    private async void InstantReturn()
+    {
+        await ToSignal(GetTree(), "idle_frame");
+        Disable();
     }
 
     public override void Disable()

@@ -134,15 +134,8 @@
     },
     "M8": {
       "kind": "narration",
-      "root_node": false,
-      "body": "ActivateTrigger",
-      "set": [
-        {
-          "key": "name",
-          "op": "set",
-          "value": "activateBed"
-        }
-      ]
+      "body": "SetTriggerActive",
+      "set": "doneTalkToMomTask"
     }
   },
   "speakers": {
