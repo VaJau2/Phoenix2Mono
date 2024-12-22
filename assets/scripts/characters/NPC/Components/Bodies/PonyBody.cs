@@ -92,7 +92,11 @@ public class PonyBody : Node, ISavable
         
         Vector3 victimPos = npc.tempVictim.GlobalTranslation;
         victimPos.y = npc.GlobalTransform.origin.y;
-        npc.LookAt(victimPos, Vector3.Up);
+
+        if (npc.GlobalTranslation != victimPos)
+        {
+            npc.LookAt(victimPos, Vector3.Up);
+        }
     }
 
     private void PlayAnim(string animName)

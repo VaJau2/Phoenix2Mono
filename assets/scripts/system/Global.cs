@@ -38,10 +38,13 @@ public class Global
 
     public static void AddDeletedObject(Node objectToDelete)
     {
-        if (!objectToDelete.Name.BeginsWith("Created_") && !deletedObjects.Contains(objectToDelete.GetPath()))
+        if (objectToDelete.Name.BeginsWith("Created_") || deletedObjects.Contains(objectToDelete.GetPath()))
         {
-            deletedObjects.Add(objectToDelete.GetPath());
-        } 
+            return;
+        }
+        
+        var path = objectToDelete.GetNode("/root/Main/Scene").GetPathTo(objectToDelete);
+        deletedObjects.Add(path);
     }
     
     public static void AddDeletedObjectPath(string path)

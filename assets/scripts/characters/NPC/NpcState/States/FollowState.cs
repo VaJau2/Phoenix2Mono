@@ -51,6 +51,7 @@ public class FollowState(
 
     private void OnTargetTeleportToDoor(Spatial door)
     {
+        if (isWaiting) return;
         if (door is not IDoorTeleport teleport) return;
         lastDoorTeleport = teleport;
     }
