@@ -33,7 +33,7 @@ public class DragonIdleState(
     
     private void UpdatePatrolPoints()
     {
-        movingController.MoveTo(patroling.CurrentPatrolPoint, 20);
+        movingController.MoveTo(patroling.CurrentPatrolPoint, 20, tempNpc.BaseSpeed);
         
         if (movingController.CloseToPoint)
         {

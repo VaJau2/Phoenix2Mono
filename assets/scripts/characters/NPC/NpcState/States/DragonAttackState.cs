@@ -28,7 +28,7 @@ public class DragonAttackState(
 
     public override void _Process(float delta)
     {
-        if (tempNpc.tempVictim == null || !Object.IsInstanceValid(tempNpc.tempVictim) || tempNpc.tempVictim.Health <= 0)
+        if (tempNpc.tempVictim == null || !IsInstanceValid(tempNpc.tempVictim) || tempNpc.tempVictim.Health <= 0)
         {
             stateMachine.SetState(SetStateEnum.Idle);
             return;
@@ -47,7 +47,7 @@ public class DragonAttackState(
         }
         
         var distance = isSmashAttack ? SMASH_DISTANCE : FIRE_DISTANCE;
-        movingController.MoveTo(tempNpc.tempVictim.GlobalTransform.origin, distance);
+        movingController.MoveTo(tempNpc.tempVictim.GlobalTransform.origin, distance, tempNpc.BaseSpeed);
         
         if (!movingController.CloseToPoint)
         {

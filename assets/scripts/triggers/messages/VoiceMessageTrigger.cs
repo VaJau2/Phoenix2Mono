@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
     [Export] private List<string> messages;
-    private WarningManager warningManager;
+    protected WarningManager WarningManager;
 
     public override void _Ready()
     {
-        warningManager = GetNode<WarningManager>("/root/Main/Scene/Warning Manager");
+        WarningManager = GetNode<WarningManager>("/root/Main/Scene/Warning Manager");
     }
 
     public void _on_body_entered(Node body)
@@ -36,27 +36,23 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
         }
     }
 
-    private void OnMessageFinished()
+    protected virtual void OnMessageFinished()
     {
-        warningManager.Disconnect
+        WarningManager.Disconnect
         (
             nameof(WarningManager.MessageFinishedEvent), 
             this, 
             nameof(OnMessageFinished)
         );
         
-        if (!DeleteAfterTrigger)
-        {
-            SetActive(true);
-        }
-        
+        SetActive(false);
         _on_activate_trigger();
     }
     
     public void Connect()
     {
         SetActive(false);
-        warningManager.Connect
+        WarningManager.Connect
         (
             nameof(WarningManager.MessageFinishedEvent), 
             this, 
@@ -66,7 +62,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     private void SendMessage(int index)
     {
-        if (warningManager.Message?.code == messages[index]) return;
-        warningManager.SendMessage(messages[index], this);
+        if (WarningManager.Message?.code == messages[index]) return;
+        WarningManager.SendMessage(messages[index], this);
     }
 }

@@ -677,7 +677,6 @@ public class Player : Character
         MovingController.SetProcess(false);
         AudioEffectsController = GetNode<AudioEffectsController>("audioEffectsController");
 
-        BaseSpeed = 15;
         BaseRecoil = 2;
         BaseDamage = 0;
         LegsDamage = 50;

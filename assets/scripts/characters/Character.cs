@@ -8,7 +8,7 @@ public abstract class Character : KinematicBody, ISavable
     public const string IDLE_ANIM1 = "Idle1";
     public const float MIN_WALKING_SPEED = 2;
     
-    [Export] public float BaseSpeed = 10; //скорость берется каждый кадр, поэтому применяется сразу
+    [Export] public float BaseSpeed = 8; //скорость берется каждый кадр, поэтому применяется сразу
     public BaseMovingController MovingController;
     
     public int Health { get; protected set; }

@@ -1860,7 +1860,7 @@ nodes/BlendSpace2D/position = Vector2( -280, 280 )
 nodes/StateMachine/node = SubResource( 57 )
 nodes/StateMachine/position = Vector2( -300, 100 )
 nodes/output/position = Vector2( 400, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D" ]
+node_connections = [ "Blend2", 0, "StateMachine", "Blend2", 1, "BlendSpace2D", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
@@ -1875,6 +1875,7 @@ extents = Vector3( 0.818, 1.537, 1 )
 
 [node name="npc" type="KinematicBody" groups=["savable"]]
 script = ExtResource( 6 )
+BaseSpeed = 5.0
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 0.974927, 0, 0, 0, -0.166209, 0.960654, 0, -0.960654, -0.166209, -0.0198563, 2.60679, 0.630795 )
@@ -2109,7 +2110,7 @@ collision_layer = 2
 collision_mask = 2
 joint_type = 3
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150052, -2.13459e-06, 0.864143 )
-body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934048, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
+body_offset = Transform( 0.986973, 0.11467, 0.112855, 0.11467, -0.00934045, -0.993352, -0.112854, 0.993358, -0.0223682, -0.0827129, 0.860119, 0.017638 )
 mass = 5.0
 weight = 49.0
 bone_name = "leg_2_r"
