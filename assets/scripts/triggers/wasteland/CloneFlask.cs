@@ -8,7 +8,7 @@ public class CloneFlask : Spatial, ISavable
     public Spatial playerPos => GetNode<Spatial>("player_pos");
 
     public AudioStreamSample underwater => GD.Load<AudioStreamSample>("res://assets/audio/underwater.wav");
-    public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/futniture/flaskOpen.wav");
+    public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/furniture/flaskOpen.wav");
 
     private WarningManager warningManager => GetNode<WarningManager>("/root/Main/Scene/Warning Manager");
     

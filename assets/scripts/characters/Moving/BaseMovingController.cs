@@ -13,7 +13,7 @@ public class BaseMovingController : Node
         character = GetParent<Character>();
     }
 
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         if (character.Health <= 0) return;
         

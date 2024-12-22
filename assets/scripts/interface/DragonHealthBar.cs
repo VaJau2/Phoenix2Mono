@@ -1,6 +1,7 @@
 using Godot;
+using Godot.Collections;
 
-public class DragonHealthBar : Control
+public class DragonHealthBar : Control, ISavable
 {
     private NPC dragon;
     private ProgressBar healthBar;
@@ -29,5 +30,22 @@ public class DragonHealthBar : Control
     private void OnDying()
     {
         Visible = false;
+    }
+
+    public Dictionary GetSaveData()
+    {
+        return new Dictionary
+        {
+            { "dragonPath", dragon?.GetPath() ?? "" }
+        };
+    }
+
+    public void LoadData(Dictionary data)
+    {
+        var dragonPath = data["dragonPath"].ToString();
+        if (!string.IsNullOrEmpty(dragonPath))
+        {
+            dragon = GetNode<NPC>(dragonPath);
+        }
     }
 }
