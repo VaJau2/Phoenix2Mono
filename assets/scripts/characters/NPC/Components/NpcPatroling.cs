@@ -24,9 +24,20 @@ public class NpcPatroling : Node, ISavable
         }
     }
 
+    public void SetPatrolPoints(Spatial[] newPatrolPoints)
+    {
+        patrolPoints = newPatrolPoints;
+    }
+
     public bool IsEmpty => patrolPoints == null || patrolPoints.Length == 0;
 
     public Vector3 CurrentPatrolPoint => patrolPoints[patrolI].GlobalTranslation;
+
+    public void ClearPoints()
+    {
+        patrolI = 0;
+        patrolPoints = null;
+    }
 
     public void NextPatrolPoint()
     {

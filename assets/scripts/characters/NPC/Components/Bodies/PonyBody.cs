@@ -251,7 +251,7 @@ public class PonyBody : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        IdleAnim = data["IdleAnim"].ToString();
-        CustomIdleAnim = data["customIdleAnim"].ToString();
+        IdleAnim = data["idleAnim"].ToString();
+        CustomIdleAnim = data["customIdleAnim"]?.ToString();
     }
 }

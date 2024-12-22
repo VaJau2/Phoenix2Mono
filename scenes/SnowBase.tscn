@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=2]
+[gd_scene load_steps=271 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -159,6 +159,8 @@
 [ext_resource path="res://assets/scripts/triggers/ChangeNPCStatesTrigger.cs" type="Script" id=157]
 [ext_resource path="res://assets/scripts/triggers/snow_base/FurnStairsVentDoor.cs" type="Script" id=158]
 [ext_resource path="res://assets/scripts/triggers/TriggersConditionTrigger.cs" type="Script" id=159]
+[ext_resource path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" type="Script" id=160]
+[ext_resource path="res://objects/commonTriggers.tscn" type="PackedScene" id=161]
 
 [sub_resource type="BoxShape" id=119]
 extents = Vector3( 165.365, 1, 303.564 )
@@ -223,7 +225,7 @@ extents = Vector3( 3.02192, 3.19191, 0.308045 )
 extents = Vector3( 1.75436, 2.2386, 0.639664 )
 
 [sub_resource type="BoxShape" id=129]
-extents = Vector3( 1, 2.65749, 7.02913 )
+extents = Vector3( 1, 3.90519, 7.02913 )
 
 [sub_resource type="ArrayMesh" id=25]
 surfaces/0 = {
@@ -893,7 +895,7 @@ patrolArray = [ NodePath("../../terrain/patrolArrays/clone_2"), NodePath("../../
 subtitlesCode = "talkWithArmored1"
 npcCustomDialogueName = "clone_with_coat"
 
-[node name="clone_with_armor5" parent="npc" instance=ExtResource( 33 )]
+[node name="clone_with_armor3" parent="npc" instance=ExtResource( 33 )]
 transform = Transform( -0.539285, 0, 0.842123, 0, 1, 0, -0.842123, 0, -0.539285, -117.457, 1.1336, 246.18 )
 subtitlesCode = "talkWithArmored3"
 npcCustomDialogueName = "clone_with_coat"
@@ -1573,26 +1575,26 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -163.23
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -87.6253, 1.00567, 42.2831 )
 
 [node name="teleportInside" type="StaticBody" parent="terrain/props/cars/btr2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.02892, 0.0352422, -3.25591 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80113, 0.0352422, -3.25591 )
 script = ExtResource( 52 )
 newPlacePath = NodePath("point")
 customInteractionCode = "climbOver"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/cars/btr2/teleportInside"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72525, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09538, 2.72525, 0 )
 shape = SubResource( 129 )
 
 [node name="point" type="Spatial" parent="terrain/props/cars/btr2/teleportInside"]
 transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 13.5248, 0.075263, 0 )
 
 [node name="teleportOutside" type="StaticBody" parent="terrain/props/cars/btr2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0191, -0.0524892, -3.25591 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.63905, -0.0524892, -3.25591 )
 script = ExtResource( 52 )
 newPlacePath = NodePath("point")
 customInteractionCode = "climbOver"
 
 [node name="CollisionShape" type="CollisionShape" parent="terrain/props/cars/btr2/teleportOutside"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63682, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997456, 2.63682, 0 )
 shape = SubResource( 129 )
 
 [node name="point" type="Spatial" parent="terrain/props/cars/btr2/teleportOutside"]
@@ -1941,7 +1943,7 @@ backgroundEnergy = 1.0
 ambientEnergy = 0.1
 
 [node name="spawn" type="Spatial" parent="rooms/1floor"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.999, 1.02557, 1.00443 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.999, 0.146912, 1.00443 )
 
 [node name="lift-spawn" type="Spatial" parent="rooms/1floor"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.3232, 0.808334, 3.02486 )
@@ -2357,6 +2359,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30951, 11.928, 25.9573 )
 stream = ExtResource( 126 )
 unit_size = 4.0
 max_distance = 1500.0
+
+[node name="clonePatrol" type="Spatial" parent="rooms/1floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.144, 0, 0.212086 )
+
+[node name="1" type="Spatial" parent="rooms/1floor/clonePatrol"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9901, 0, 0 )
 
 [node name="2floor" type="Spatial" parent="rooms" groups=["savable"]]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -107.569, -200, -131.339 )
@@ -4347,6 +4355,21 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -159.08
 [node name="8" type="Spatial" parent="rooms/2floor/patrol/7"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4917, 0, -21.4628 )
 
+[node name="clone2" type="Spatial" parent="rooms/2floor/patrol"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80.6446, -4.15224, 26.3575 )
+
+[node name="1" type="Spatial" parent="rooms/2floor/patrol/clone2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3894, 1.52588e-05, -76.4015 )
+
+[node name="2" type="Spatial" parent="rooms/2floor/patrol/clone2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.1135, 1.52588e-05, -136.695 )
+
+[node name="3" type="Spatial" parent="rooms/2floor/patrol/clone2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -130.394, 1.52588e-05, -77.4224 )
+
+[node name="4" type="Spatial" parent="rooms/2floor/patrol/clone2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8021, 1.52588e-05, 78.2017 )
+
 [node name="alarm3" type="AudioStreamPlayer3D" parent="rooms/2floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.606, 3.48531, -31.3253 )
 stream = ExtResource( 126 )
@@ -4645,7 +4668,7 @@ followPath = ""
 newIdlePointPath = NodePath("point")
 
 [node name="point" type="Spatial" parent="triggers/checkEscapeScientist2/moveScientist2"]
-transform = Transform( 0.970279, 0, -0.24199, 0, 1, 0, 0.24199, 0, 0.970279, -108.167, 1.41215, 260.652 )
+transform = Transform( 0.970279, 0, -0.24199, 0, 1, 0, 0.24199, 0, 0.970279, -106.36, 1.41215, 260.084 )
 
 [node name="checkEscapeScientist3" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.2364, 15.6829, 256.116 )
@@ -4664,7 +4687,7 @@ followPath = ""
 newIdlePointPath = NodePath("point")
 
 [node name="point" type="Spatial" parent="triggers/checkEscapeScientist3/moveScientist3"]
-transform = Transform( -0.399501, 0, -0.916733, 0, 1, 0, 0.916733, 0, -0.399501, -110.375, 1.08582, 254.906 )
+transform = Transform( -0.399501, 0, -0.916733, 0, 1, 0, 0.916733, 0, -0.399501, -108.506, 1.08582, 254.227 )
 
 [node name="oneScientistSaved" type="Node" parent="triggers"]
 script = ExtResource( 159 )
@@ -4688,9 +4711,144 @@ onlyChangeCode = true
 npcPath = "../../../npc/clone_with_coat"
 otherDialogueCode = "twoScientistsSaved"
 
+[node name="afterTwoSavedDialogue" type="Node" parent="triggers"]
+script = ExtResource( 155 )
+otherTriggerPaths = [ NodePath("../leaveTask"), NodePath("../exit"), NodePath("../cloneAttacks/changeClone1Subtitles"), NodePath("../cloneAttacks/changeClone1Mortality"), NodePath("../cloneAttacks/changeClone2Subtitles"), NodePath("../cloneAttacks/changeClone2Mortality"), NodePath("../cloneAttacks/changeClone3Subtitles"), NodePath("../cloneAttacks/changeClone3Mortality"), NodePath("../cloneAttacks/changeClone4Subtitles"), NodePath("../cloneAttacks/changeClone4Mortality") ]
+
+[node name="cloneAttacks" type="Node" parent="triggers"]
+
+[node name="changeClone1Subtitles" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/clone_with_armor"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="changeClone1Mortality" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+otherTriggerPaths = [ NodePath("../clone1MoveToBtr") ]
+npcPath = "../../../npc/clone_with_armor"
+newMortality = 1
+
+[node name="clone1MoveToBtr" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone1MoveTo1Floor") ]
+NpcPath = "../../../npc/clone_with_armor"
+doorPath = NodePath("../../../terrain/props/cars/btr2/teleportInside")
+teleportPointPath = NodePath("../../../terrain/props/cars/btr2/teleportInside/point")
+
+[node name="clone1MoveTo1Floor" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone1Patrol") ]
+NpcPath = "../../../npc/clone_with_armor"
+doorPath = NodePath("../../../terrain/props/buildings/lab/DoorTeleport2")
+teleportPointPath = NodePath("../../../rooms/1floor/spawn")
+
+[node name="clone1Patrol" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+npcPath = "../../../npc/clone_with_armor"
+newPatrolPointsPath = [ NodePath("../../../rooms/1floor/clonePatrol"), NodePath("../../../rooms/1floor/clonePatrol/1") ]
+
+[node name="changeClone2Subtitles" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/clone_with_armor2"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="changeClone2Mortality" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+otherTriggerPaths = [ NodePath("../clone2MoveToBtr") ]
+npcPath = "../../../npc/clone_with_armor2"
+newMortality = 1
+
+[node name="clone2MoveToBtr" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone2MoveTo2Floor") ]
+NpcPath = "../../../npc/clone_with_armor2"
+doorPath = NodePath("../../../terrain/props/cars/btr2/teleportInside")
+teleportPointPath = NodePath("../../../terrain/props/cars/btr2/teleportInside/point")
+
+[node name="clone2MoveTo2Floor" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone2Patrol") ]
+NpcPath = "../../../npc/clone_with_armor2"
+doorPath = NodePath("../../../terrain/props/buildings/lab/DoorTeleport2")
+teleportPointPath = NodePath("../../../rooms/2floor/lift-spawn")
+
+[node name="clone2Patrol" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+npcPath = "../../../npc/clone_with_armor2"
+newPatrolPointsPath = [ NodePath("../../../rooms/2floor/patrol/clone2"), NodePath("../../../rooms/2floor/patrol/clone2/1"), NodePath("../../../rooms/2floor/patrol/clone2/2"), NodePath("../../../rooms/2floor/patrol/clone2/3"), NodePath("../../../rooms/2floor/patrol/clone2/4") ]
+
+[node name="changeClone3Subtitles" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/clone_with_armor3"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="changeClone3Mortality" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+otherTriggerPaths = [ NodePath("../clone3MoveToBtr") ]
+npcPath = "../../../npc/clone_with_armor3"
+newMortality = 1
+
+[node name="clone3MoveToBtr" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone3MoveTo2Floor") ]
+NpcPath = "../../../npc/clone_with_armor3"
+doorPath = NodePath("../../../terrain/props/cars/btr2/teleportInside")
+teleportPointPath = NodePath("../../../terrain/props/cars/btr2/teleportInside/point")
+
+[node name="clone3MoveTo2Floor" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone3Patrol") ]
+NpcPath = "../../../npc/clone_with_armor3"
+doorPath = NodePath("../../../terrain/props/buildings/lab/DoorTeleport2")
+teleportPointPath = NodePath("../../../rooms/2floor/lift-spawn")
+
+[node name="clone3Patrol" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+npcPath = "../../../npc/clone_with_armor3"
+newPatrolPointsPath = [ NodePath("../../../rooms/2floor/patrol/5/6"), NodePath("../../../rooms/2floor/patrol/3/4"), NodePath("../../../rooms/2floor/patrol/2/4"), NodePath("../../../rooms/2floor/patrol/clone2"), NodePath("../../../rooms/2floor/patrol/6/7") ]
+
+[node name="changeClone4Subtitles" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/clone_with_armor4"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="changeClone4Mortality" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+otherTriggerPaths = [ NodePath("../clone4MoveToBtr") ]
+npcPath = "../../../npc/clone_with_armor4"
+newMortality = 1
+
+[node name="clone4MoveToBtr" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone4MoveTo2Floor") ]
+NpcPath = "../../../npc/clone_with_armor4"
+doorPath = NodePath("../../../terrain/props/cars/btr2/teleportInside")
+teleportPointPath = NodePath("../../../terrain/props/cars/btr2/teleportInside/point")
+
+[node name="clone4MoveTo2Floor" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 160 )
+otherTriggerPaths = [ NodePath("../clone4Patrol") ]
+NpcPath = "../../../npc/clone_with_armor4"
+doorPath = NodePath("../../../terrain/props/buildings/lab/DoorTeleport2")
+teleportPointPath = NodePath("../../../rooms/2floor/lift-spawn")
+
+[node name="clone4Patrol" type="Node" parent="triggers/cloneAttacks"]
+script = ExtResource( 157 )
+npcPath = "../../../npc/clone_with_armor4"
+newPatrolPointsPath = [ NodePath("../../../rooms/2floor/patrol/3/4"), NodePath("../../../rooms/2floor/patrol/1/2"), NodePath("../../../rooms/2floor/patrol/clone2/2"), NodePath("../../../rooms/2floor/patrol/clone2"), NodePath("../../../rooms/2floor/patrol/6") ]
+
 [node name="leaveTask" type="Node" parent="triggers" groups=["savabel"]]
 script = ExtResource( 35 )
 IsActive = false
+taskCode = "leaveLocation"
 
 [node name="exit" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7127, -0.761533, 336.252 )
@@ -4702,6 +4860,8 @@ HintCode = "leaveLocation"
 [node name="CollisionShape" type="CollisionShape" parent="triggers/exit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376526, 0 )
 shape = SubResource( 130 )
+
+[node name="commonTriggers" parent="." instance=ExtResource( 161 )]
 
 [node name="music" type="AudioStreamPlayer" parent="." groups=["savable", "unpaused_sound"]]
 pause_mode = 2

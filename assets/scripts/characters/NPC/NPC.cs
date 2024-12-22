@@ -162,18 +162,19 @@ public class NPC : Character, IInteractable, IChest
     public void SetNewStartPos(Vector3 newPos, bool run = false)
     {
         myStartPos = newPos;
+        CleanPatrolArray();
         
         if (MovingController is NavigationMovingController navigation)
         {
+            navigation.Stop();
             navigation.RunToPoint = run;
             navigation.cameToPlace = false;
         }
-       
-        CleanPatrolArray();
     }
 
     public void CleanPatrolArray()
     {
+        GetNodeOrNull<NpcPatroling>("patroling")?.ClearPoints();
         patrolArray?.Clear();
     }
 

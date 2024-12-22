@@ -28,6 +28,17 @@ public class NpcSaving(NPC npc)
         
         npc.ChestHandler.LoadData(data);
 
+        if (data["patrolArray"] is Godot.Collections.Array patrolArray)
+        {
+            var pathArray = new Array<NodePath>();
+            foreach (string item in patrolArray)
+            {
+                pathArray.Add(item);
+            }
+            
+            npc.patrolArray = pathArray;
+        }
+
         if (data["signals"] is Godot.Collections.Array signals)
         {
             foreach (Dictionary signalData in signals)
@@ -88,6 +99,7 @@ public class NpcSaving(NPC npc)
         saveData["showObjects"] = npc.objectsChangeActive;
         saveData["ignoreDamager"] = npc.ignoreDamager;
         saveData["followTarget"] = npc.followTarget?.GetPath();
+        saveData["patrolArray"] = npc.patrolArray;
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in npc.GetSignalList())

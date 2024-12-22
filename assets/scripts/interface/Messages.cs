@@ -175,7 +175,10 @@ public class Messages : VBoxContainer, ISavable
         
         for (int i = 0; i < tasksCount; i++)
         {
-            currentTaskLinks.Add(data[$"task{i}"].ToString());
+            if (data[$"task{i}"] != null)
+            {
+                currentTaskLinks.Add(data[$"task{i}"].ToString());
+            }
         }
     }
 }

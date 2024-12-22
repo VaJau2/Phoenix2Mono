@@ -59,12 +59,20 @@ public class MoveNpcToDoorTrigger: ActivateOtherTrigger
 
     private async void SendNpcAndWait()
     {
+        if (npc.GetState() != SetStateEnum.Idle)
+        {
+            await ToSignal(GetTree(), "idle_frame");
+        }
+        
         step = 1;
-        npc.SetNewStartPos(door.GlobalTransform.origin);
+        npc.SetNewStartPos(door.GlobalTranslation);
+        
         await ToSignal(npc, nameof(Character.IsCame));
-        if (npc.GetState() == SetStateEnum.Attack) return;
-
-        step = 2;
+        
+        //Если непись не в айдле, значит, он убежал куда-то в другую сторону
+        //Поэтому запускаем триггер заново
+        step = npc.GetState() != SetStateEnum.Idle ? 0 : 2;
+        
         _on_activate_trigger();
     }
 
