@@ -24,6 +24,8 @@ public class StateMachine: Node, ISavable
         SetState(SetStateEnum.Idle, false);
     }
 
+    public AbstractNpcState GetCurrentStateClass() => currentState;
+
     public SetStateEnum GetCurrentSetState()
     {
         return FindSetState(CurrentStateEnum);

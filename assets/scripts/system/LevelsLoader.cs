@@ -188,10 +188,10 @@ public class LevelsLoader : Node
 		playerSpawner.loadStartItems = false;
 
 		//удаление удаленных в сохранении объектов
-		foreach (string objName in deletedObjects)
+		foreach (string objPath in deletedObjects)
 		{
-			Global.AddDeletedObject(objName);
-			var foundedObject = Global.FindNodeInScene(scene, objName);
+			Global.AddDeletedObjectPath(objPath);
+			var foundedObject = scene.GetNode(objPath);
 			foundedObject?.Free();
 		}
 

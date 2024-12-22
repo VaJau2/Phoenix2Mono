@@ -56,7 +56,7 @@ public class TeleportWhenAttach: TriggerBase
                     Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
             }
 
-            Global.AddDeletedObject(npc.Name);
+            Global.AddDeletedObject(npc);
             npc.QueueFree();
         }
 

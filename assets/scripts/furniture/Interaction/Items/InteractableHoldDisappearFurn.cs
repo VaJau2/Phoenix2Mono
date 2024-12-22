@@ -32,7 +32,7 @@ public class InteractableHoldDisappearFurn :
             inventory.menu.AddOrDropItem(itemToGet);
         }
         
-        Global.AddDeletedObject(Name);
+        Global.AddDeletedObject(this);
         QueueFree();
     }
 }

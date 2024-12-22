@@ -72,7 +72,7 @@ public class BreakableObject: StaticBody
         }
         else
         {
-            Global.AddDeletedObject(Name);
+            Global.AddDeletedObject(this);
             QueueFree();
         }
     }

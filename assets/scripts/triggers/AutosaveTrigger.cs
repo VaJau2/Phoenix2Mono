@@ -27,7 +27,7 @@
         messages.ShowMessage("gameAutosaved");
         
         //добавляем триггер в удаленные объекты заранее, чтобы не сохранял второй раз
-        Global.AddDeletedObject(Name);
+        Global.AddDeletedObject(this);
 
         var saveName = Global.Get().autosaveName;
         saveMenu.SaveGame(saveName, GetTree());

@@ -36,12 +36,17 @@ public class Global
     private static Dictionary jsonCache;
     private static string jsonCachePath;
 
-    public static void AddDeletedObject(string name)
+    public static void AddDeletedObject(Node objectToDelete)
     {
-        if (!name.BeginsWith("Created_") && !deletedObjects.Contains(name))
+        if (!objectToDelete.Name.BeginsWith("Created_") && !deletedObjects.Contains(objectToDelete.GetPath()))
         {
-            deletedObjects.Add(name);
+            deletedObjects.Add(objectToDelete.GetPath());
         } 
+    }
+    
+    public static void AddDeletedObjectPath(string path)
+    {
+        deletedObjects.Add(path);
     }
     
     //Поиск нода в сцене по его имени

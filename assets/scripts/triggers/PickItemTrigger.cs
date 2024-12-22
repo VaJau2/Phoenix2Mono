@@ -18,7 +18,7 @@ public class PickItemTrigger : ActivateOtherTrigger
         InventoryMenu inventory = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         inventory.AddOrDropItem(itemCode);
         
-        Global.AddDeletedObject(itemModel.Name);
+        Global.AddDeletedObject(itemModel);
         itemModel.QueueFree();
         
         Messages messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");

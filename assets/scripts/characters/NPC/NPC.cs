@@ -80,6 +80,8 @@ public class NPC : Character, IInteractable, IChest
 
     public SetStateEnum GetState() => stateMachine.GetCurrentSetState();
 
+    public AbstractNpcState GetStateClass() => stateMachine.GetCurrentStateClass();
+
     public void SetState(SetStateEnum state)
     {
         if (!MayChangeState) return;

@@ -6,6 +6,12 @@ public class FollowState(
 {
     private const float COME_DISTANCE = 10;
     private IDoorTeleport lastDoorTeleport;
+    private bool isWaiting;
+
+    public void SetWaiting(bool value)
+    {
+        isWaiting = value;
+    }
     
     public override void Enable(NPC npc)
     {
@@ -25,6 +31,12 @@ public class FollowState(
         if (tempNpc.followTarget == null)
         {
             tempNpc.SetState(SetStateEnum.Idle);
+            return;
+        }
+
+        if (isWaiting)
+        {
+            movingController.Stop();
             return;
         }
 

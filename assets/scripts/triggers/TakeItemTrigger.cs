@@ -44,14 +44,14 @@ class TakeItemTrigger: ActivateOtherTrigger
             {
                 foreach (var triggerToDisactive in triggersToDisactive)
                 {
-                    Global.AddDeletedObject(triggerToDisactive.Name);
+                    Global.AddDeletedObject(triggerToDisactive);
                     triggerToDisactive.QueueFree();
                 }
             }
             
             if (DeleteAfterTrigger)
             {
-                Global.AddDeletedObject(Name);
+                Global.AddDeletedObject(this);
                 QueueFree();
             }
         }

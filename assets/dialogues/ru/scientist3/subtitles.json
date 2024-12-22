@@ -1,0 +1,110 @@
+﻿{
+  "wait": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Жди здесь."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Окей"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow"
+    }
+  },
+  "follow": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Идём за мной."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Надеюсь, мы почти дошли..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait1"
+    }
+  },
+  "wait1": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Жди здесь."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Только вернись побыстрее..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow1"
+    }
+  },
+  "follow1": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Идём за мной."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Это было... быстро"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait2"
+    }
+  },
+  "wait2": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Жди здесь."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Я-то подожду, а вот эти в масках..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow2"
+    }
+  },
+  "follow2": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Идём за мной."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Слава Селестии, ты здесь! Идем"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait"
+    }
+  }
+}

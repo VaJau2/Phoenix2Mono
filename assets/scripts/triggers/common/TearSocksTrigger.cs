@@ -73,7 +73,7 @@ public class TearSocksTrigger : Node
 
     private void Delete()
     {
-        Global.AddDeletedObject(Name);
+        Global.AddDeletedObject(this);
         QueueFree();
     }
 }
