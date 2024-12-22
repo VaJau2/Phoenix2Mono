@@ -3,21 +3,23 @@
     NavigationMovingController movingController,
     NpcPatroling patroling,
     SeekArea seekArea
-) : INpcState
+) : AbstractNpcState
 {
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         npc.subtitlesCode = null;
         seekArea.SetActive(true);
         body.IdleAnim = "idle";
         body.ChangeMaterial();
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
         if (patroling.IsEmpty)
         {
-            GoToStartPoint(npc);
+            GoToStartPoint(tempNpc);
             return;
         }
         

@@ -2,8 +2,8 @@
 
 [ext_resource path="res://assets/materials/props/furniture/metallic-cabinet.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/props/furniture/metallic-cabinet-door.tres" type="Material" id=2]
-[ext_resource path="res://assets/audio/futniture/FurnOpen.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/FurnClose.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/FurnOpen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/FurnClose.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnChest.cs" type="Script" id=6]
 

@@ -18,7 +18,7 @@ public class PlayerCamera : Camera
     
     private InteractionPointManager point;
 
-    private Player player;
+    public Player Player { get; private set; }
 
     private Label interactionHint;
     private string closedTextLink = "closed";
@@ -36,14 +36,14 @@ public class PlayerCamera : Camera
     private bool isUpdating = true;
     private bool mayUseRay = true;
 
-    private RayCast tempRay => player.RotationHelperThird.TempRay;
+    private RayCast tempRay => Player.RotationHelperThird.TempRay;
     
     private bool MayInteract => !interactionHint.Visible || !(closedTimer <= 0) ||
                                 tempObject is IInteractable { MayInteract: true };
     
     public override void _Ready()
     {
-        player = GetNode<Player>("../../");
+        Player = GetNode<Player>("../../");
 
         eyePartUp = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeUp");
         eyePartDown = GetNode<Control>("/root/Main/Scene/canvas/eyesParts/eyeDown");
@@ -76,7 +76,7 @@ public class PlayerCamera : Camera
             UpdateInteractionInput();
         }
 
-        if (player.ThirdView) return;
+        if (Player.ThirdView) return;
         if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
         if (@event is not InputEventMouseButton mouseEv) return;
         if (mouseEv.ButtonIndex == 2)
@@ -91,7 +91,7 @@ public class PlayerCamera : Camera
         
         if (tempObject is IInteractableHoldSound)
         {
-            player.GetAudi(true).Stop();
+            Player.GetAudi(true).Stop();
         }
         
         InteractWithItem();
@@ -123,7 +123,7 @@ public class PlayerCamera : Camera
 
     public void ReturnRayBack()
     {
-        float oldLength = player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGTH;
+        float oldLength = Player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGTH;
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
         tempRay.CastTo = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
@@ -177,7 +177,7 @@ public class PlayerCamera : Camera
         
         if (isHoldingSound)
         {
-            player.GetAudi(true).Stop();
+            Player.GetAudi(true).Stop();
         }
     }
     
@@ -217,7 +217,7 @@ public class PlayerCamera : Camera
         {
             float closeFov = 42f;
 
-            Dictionary armorProps = player.Inventory.GetArmorProps();
+            Dictionary armorProps = Player.Inventory.GetArmorProps();
             if (armorProps.Contains("closeFov"))
             {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());
@@ -297,7 +297,7 @@ public class PlayerCamera : Camera
             
             if (tempObject is IInteractableHoldSound)
             {
-                player.GetAudi(true).Stop();
+                Player.GetAudi(true).Stop();
             }
         }
     }
@@ -320,14 +320,14 @@ public class PlayerCamera : Camera
         if (stream == null) return;
         isHoldingSound = holdingSound;
         
-        player.GetAudi(true).Stream = stream;
-        player.GetAudi(true).Play();
+        Player.GetAudi(true).Stream = stream;
+        Player.GetAudi(true).Play();
     }
 
     private void ReturnInteractionPoint()
     {
         point.SetInteractionVariant(
-            player.Weapons.GunOn && player.Weapons.IsShootingWeapon 
+            Player.Weapons.GunOn && Player.Weapons.IsShootingWeapon 
                 ? InteractionVariant.Cross 
                 : InteractionVariant.Point
         );

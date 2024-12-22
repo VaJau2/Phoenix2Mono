@@ -238,7 +238,7 @@ public class ChestMode: InventoryMode
         if (!isEmpty || !tempChest.ChestHandler.IsBag) return;
         if (tempChest is Node chestNode)
         {
-            Global.AddDeletedObject(chestNode.Name);
+            Global.AddDeletedObject(chestNode);
             chestNode.QueueFree();
         }
 

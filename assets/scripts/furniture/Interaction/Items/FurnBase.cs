@@ -2,7 +2,7 @@ using Godot;
 
 public class FurnBase: StaticBody, IInteractable
 {
-    protected Global global;
+    protected Global Global => Global.Get();
 
     [Export] public AudioStreamSample OpenSound;
     [Export] public AudioStreamSample CloseSound;
@@ -16,15 +16,32 @@ public class FurnBase: StaticBody, IInteractable
     public bool MayInteract => true;
     public string InteractionHintCode => IsOpen ? "close" : "open";
 
+    public bool IsAnimating => animator.IsPlaying();
+    
+    [Signal]
+    public delegate void AnimationFinished();
+    
+    [Signal]
+    public delegate void Opened();
+
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
         if (HasNode("anim")) 
         {
             animator = GetNode<AnimationPlayer>("anim");
+            animator.Connect("animation_finished", this, nameof(AnimFinished));
         }
+    }
+    
+    private void AnimFinished(string animation)
+    {
+        EmitSignal(nameof(AnimationFinished));
         
-        global = Global.Get();
+        if (animation.ToLower().Contains("open"))
+        {
+            EmitSignal(nameof(Opened));
+        }
     }
     
     public virtual void Interact(PlayerCamera interactor)
@@ -43,7 +60,7 @@ public class FurnBase: StaticBody, IInteractable
         
         if (timer != 0) 
         {
-            await global.ToTimer(timer);
+            await Global.ToTimer(timer);
         }
 
         animator?.Play(anim);

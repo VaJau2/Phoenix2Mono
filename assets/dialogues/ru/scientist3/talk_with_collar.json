@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "S1": {
+      "kind": "dialogue",
+      "body": "Скажи, пожалуйста, что у тебя есть ключ от этой отвратительной штуки...",
+      "speaker": "Ученая",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S1(1)"
+        }
+      ]
+    },
+    "S1(1)": {
+      "kind": "dialogue",
+      "body": "Нет, я все еще ищу его.",
+      "speaker": "Страйкли",
+      "opposite": "Ученая",
+      "next": "S2"
+    },
+    "S2": {
+      "kind": "dialogue",
+      "body": "Ключ лежит в шкафу в маленьком блоке офисов. Как выйдешь отсюда, иди направо через холл или через коридор.",
+      "speaker": "Ученая",
+      "opposite": "Страйкли",
+      "options": [
+        {
+          "body": "answer",
+          "next": "S2(1)"
+        }
+      ]
+    },
+    "S2(1)": {
+      "kind": "dialogue",
+      "body": "Спасибо. Сейчас вернусь.",
+      "speaker": "Страйкли",
+      "opposite": "Ученая",
+      "next": "S3"
+    },
+
+    "S3": {
+      "kind": "narration",
+      "body": "ActivateTrigger",
+      "set": "scientist3/changeTakeCollarKey",
+      "next": "S4"
+    },
+    "S4": {
+      "kind": "narration",
+      "root_node": false,
+      "body": "ChangeDialogueCode"
+    }
+  }
+}

@@ -4,18 +4,20 @@ public class RoboEyeSearchState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine
-) : INpcState
+) : AbstractNpcState
 {
     private const float SEARCH_TIMER = 10f;
     
     private Vector3 lastSeePos;
     private float searchTimer;
     
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         searchTimer = SEARCH_TIMER;
         
-        if (!Object.IsInstanceValid(npc.tempVictim))
+        if (!IsInstanceValid(npc.tempVictim))
         {
             //врага нет, позиции нет, искать нечего
             stateMachine.SetState(SetStateEnum.Idle);
@@ -27,7 +29,7 @@ public class RoboEyeSearchState(
         body.ChangeMaterial(RoboEyeMaterial.Orange);
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
         if (movingController.cameToPlace) 
         {

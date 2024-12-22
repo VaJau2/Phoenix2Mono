@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/materials/props/furniture/stable-table.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/scripts/utils/SavePosition.cs" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 1.00919, 0.886348, 1.84217 )
@@ -25,6 +26,7 @@ surfaces/0 = {
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307151, -0.758327, 0 )

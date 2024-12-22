@@ -6,21 +6,23 @@ public class DragonIdleState(
     StateMachine stateMachine,
     BaseMovingController movingController,
     DragonMouth mouth
-) : INpcState
+) : AbstractNpcState
 {
     private const float ATTACK_COOLDOWN = 1;
     
     private float idleTimer = ATTACK_COOLDOWN;
     
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         body.SetFireOn(false);
         idleTimer = ATTACK_COOLDOWN;
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
-        movingController.UpdateHeight(npc.BaseSpeed / 4f, DragonBody.IDLE_FLY_HEIGHT);
+        movingController.UpdateHeight(tempNpc.BaseSpeed / 4f, DragonBody.IDLE_FLY_HEIGHT);
         UpdatePatrolPoints();
 
         if (mouth.HasEnemy) return;

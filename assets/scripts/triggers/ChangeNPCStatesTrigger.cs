@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 //меняет статы непися, такие как:
 //  - видимые/невидимые объекты внутри нпс
@@ -14,6 +15,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public string newAnimation;
     [Export] public int newWalkSpeed = -1;
     [Export] public int newRunSpeed = -1;
+    [Export] public Array<NodePath> newPatrolPointsPath;
     [Export] public NodePath newIdlePointPath;
     [Export] public Relation newRelation = Relation.Friend;
     [Export] public string newWeaponCode;
@@ -28,17 +30,6 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
     }
     
     private NPC npc;
-    private Spatial newIdlePoint;
-
-    public override void _Ready()
-    {
-        base._Ready();
-        
-        if (newIdlePointPath != null)
-        {
-            newIdlePoint = GetNode<Spatial>(newIdlePointPath);
-        }
-    }
 
     private void ChangeObjectsVisible(ref string[] objects, bool active)
     {
@@ -121,10 +112,26 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
             npc.SetFollowTarget(null);
         }
 
-        if (newIdlePoint != null)
+        if (newIdlePointPath != null)
         {
+            var newIdlePoint = GetNode<Spatial>(newIdlePointPath);
             npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
             npc.myStartRot = newIdlePoint.Rotation;
+        }
+
+        if (newPatrolPointsPath is { Count: > 0 })
+        {
+            npc.patrolArray = newPatrolPointsPath;
+            
+            var patrolPoints = new Spatial[newPatrolPointsPath.Count];
+            for (var i = 0; i < newPatrolPointsPath.Count; i++)
+            {
+                patrolPoints[i] = GetNode<Spatial>(newPatrolPointsPath[i]);
+            }
+            
+            var patroling = npc.GetNodeOrNull<NpcPatroling>("patroling");
+            
+            patroling?.SetPatrolPoints(patrolPoints);
         }
 
         if (newWeaponCode != null)

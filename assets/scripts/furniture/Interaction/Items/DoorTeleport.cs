@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //дверь, перемещающая в отдельную подлокацию
-public class DoorTeleport : StaticBody, ISavable, IInteractable
+public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
 {
     [Export] public bool Closed;
     [Export] private bool Inside;
@@ -13,13 +13,15 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
 
     [Export] private AudioStreamSample openSound;
     [Export] private AudioStreamSample closedSound;
+    [Export] private string customInteractionCode;
 
     private Room oldRoom;
     private Room newRoom;
 
     public DoorTeleport otherDoor { get; private set; }
+    public Spatial TeleportPos { get; private set; }
+
     private AudioStreamPlayer3D audi;
-    private Spatial newPlace;
     private Spatial oldLocation;
     private Spatial newLocation;
 
@@ -27,7 +29,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
     private CheckFall checkFall;
 
     public bool MayInteract => true;
-    public string InteractionHintCode => "open";
+    public string InteractionHintCode => customInteractionCode ?? "open";
     
 
     public override void _Ready()
@@ -44,9 +46,14 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
             newRoom = GetNodeOrNull<Room>(newLocationPath);
         }
         
-        audi = GetNode<AudioStreamPlayer3D>("audi");
-        newPlace = GetNode<Spatial>(newPlacePath);
-        otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
+        if (otherDoorPath != null)
+        {
+            otherDoor = GetNodeOrNull<DoorTeleport>(otherDoorPath);
+        }
+        
+        audi = GetNodeOrNull<AudioStreamPlayer3D>("audi");
+        TeleportPos = GetNode<Spatial>(newPlacePath);
+        
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
                 
         SetProcess(false);
@@ -72,7 +79,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
         }
     }
 
-    public void Open(Spatial character, bool soundOpening = true)
+    public void Open(Character character, bool soundOpening = true)
     {
         player.Camera.HideHint();
         
@@ -92,7 +99,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
 
         if (character != null)
         {
-            character.GlobalTransform = newPlace.GlobalTransform;
+            character.TeleportToDoor(this);
         
             if (character is Player_Unicorn unicorn)
             {
@@ -111,7 +118,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable
         }
 
         if (checkFall == null) return;
-        checkFall.tempDoorTeleport = this;
+        checkFall.TempDoorTeleport = this;
         checkFall.inside = Inside;
 
         oldRoom?.Exit();

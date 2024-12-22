@@ -627,15 +627,15 @@ transform = Transform( 1.287, 0, 0, 0, 1.631, 0, 0, 0, 1.749, -86.9365, 5.84987,
 [node name="door6" parent="terrain/doors" instance=ExtResource( 73 )]
 transform = Transform( 1.287, 0, 0, 0, 1.631, 0, 0, 0, 1.749, -71.5456, 5.94856, -44.6972 )
 
-[node name="door8" parent="terrain/doors" groups=["savable"] instance=ExtResource( 30 )]
+[node name="door8" parent="terrain/doors" instance=ExtResource( 30 )]
 transform = Transform( -4.37114e-08, 0, 1.161, 0, 1.626, 0, -1, 0, -5.07489e-08, -17.259, -9.65698, -11.14 )
 ForceOpening = true
 
-[node name="door9" parent="terrain/doors" groups=["savable"] instance=ExtResource( 30 )]
+[node name="door9" parent="terrain/doors" instance=ExtResource( 30 )]
 transform = Transform( -4.37114e-08, 0, -1.161, 0, 1.626, 0, -1, 0, 5.07489e-08, -26.4019, -9.65698, -11.14 )
 ForceOpening = true
 
-[node name="door10" parent="terrain/doors" groups=["savable"] instance=ExtResource( 31 )]
+[node name="door10" parent="terrain/doors" instance=ExtResource( 31 )]
 transform = Transform( -4.37114e-08, 0, 1.464, 0, 1.473, 0, -1, 0, -6.39935e-08, 27.2547, 4.82517, 45.8771 )
 
 [node name="door11" parent="terrain/doors" instance=ExtResource( 31 )]

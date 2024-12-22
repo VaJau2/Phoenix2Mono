@@ -3,8 +3,8 @@
 [ext_resource path="res://assets/materials/props/locations/snow.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/physics/snow.phymat" type="PhysicsMaterial" id=2]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/InteractableHoldDisappearFurn.cs" type="Script" id=3]
-[ext_resource path="res://assets/audio/futniture/SnowCleaning.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/futniture/SnowCleanFinish.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/furniture/SnowCleaning.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/SnowCleanFinish.mp3" type="AudioStream" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 vertex_color_use_as_albedo = true

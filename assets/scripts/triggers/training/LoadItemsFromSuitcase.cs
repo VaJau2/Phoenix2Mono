@@ -57,7 +57,7 @@ public class LoadItemsFromSuitcase : TriggerBase
             
             if (suitcaseEmpty)
             {
-                Global.AddDeletedObject(suitcase.Name);
+                Global.AddDeletedObject(suitcase);
                 suitcase.QueueFree();
                 
                 base._on_activate_trigger();
@@ -85,7 +85,7 @@ public class LoadItemsFromSuitcase : TriggerBase
         }
         else
         {
-            Global.AddDeletedObject(suitcase.Name);
+            Global.AddDeletedObject(suitcase);
             suitcase.QueueFree();
         }
 

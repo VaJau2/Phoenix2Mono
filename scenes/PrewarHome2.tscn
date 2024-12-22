@@ -60,7 +60,7 @@
 [ext_resource path="res://objects/props/vehicles/Bellgates Van.tscn" type="PackedScene" id=58]
 [ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=59]
 [ext_resource path="res://assets/models/props/buildings/street-houses/mansion1/01 - Default.material" type="Material" id=60]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=61]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=61]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/DoorTeleport.cs" type="Script" id=62]
 [ext_resource path="res://assets/models/props/buildings/street-houses/mansion1/inside/stairs_collision.obj" type="ArrayMesh" id=63]
 [ext_resource path="res://objects/props/furniture/cabinet.tscn" type="PackedScene" id=64]

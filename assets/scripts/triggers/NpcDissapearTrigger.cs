@@ -17,7 +17,7 @@ public class NpcDissapearTrigger : ActivateOtherTrigger
         var npc = GetNode<NPC>(npcPath);
        
         npc.QueueFree();
-        Global.AddDeletedObject(npc.Name);
+        Global.AddDeletedObject(npc);
         base._on_activate_trigger();
     }
     

@@ -2,15 +2,17 @@
     NavigationMovingController movingController,
     RoboEyeBody body,
     SeekArea seekArea
-) : INpcState
+) : AbstractNpcState
 {
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         movingController.Stop();
         body.ChangeMaterial(RoboEyeMaterial.Dead);
         body.Disable();
         seekArea.SetActive(false);
     }
 
-    public void Update(NPC npc, float delta) { }
+    public override void _Process(float delta) { }
 }

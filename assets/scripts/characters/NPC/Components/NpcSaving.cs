@@ -5,7 +5,7 @@ using Godot.Collections;
 
 public class NpcSaving(NPC npc)
 {
-    private readonly string[] skipSignals = {"tree_entered", "tree_exiting"};
+    private readonly string[] skipSignals = ["tree_entered", "tree_exiting"];
     
     public void LoadData(Dictionary data)
     {
@@ -27,6 +27,17 @@ public class NpcSaving(NPC npc)
         npc.ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
         
         npc.ChestHandler.LoadData(data);
+
+        if (data["patrolArray"] is Godot.Collections.Array patrolArray)
+        {
+            var pathArray = new Array<NodePath>();
+            foreach (string item in patrolArray)
+            {
+                pathArray.Add(item);
+            }
+            
+            npc.patrolArray = pathArray;
+        }
 
         if (data["signals"] is Godot.Collections.Array signals)
         {
@@ -67,9 +78,8 @@ public class NpcSaving(NPC npc)
         LoadFollowTarget(data);
     }
 
-    private async void LoadFollowTarget(Dictionary data)
+    private void LoadFollowTarget(Dictionary data)
     {
-        await npc.ToSignal(npc.GetTree(), "idle_frame");
         var newFollowTarget = npc.GetNode<Character>(data["followTarget"].ToString());
         npc.SetFollowTarget(newFollowTarget);
     }
@@ -89,6 +99,7 @@ public class NpcSaving(NPC npc)
         saveData["showObjects"] = npc.objectsChangeActive;
         saveData["ignoreDamager"] = npc.ignoreDamager;
         saveData["followTarget"] = npc.followTarget?.GetPath();
+        saveData["patrolArray"] = npc.patrolArray;
 
         var signals = new Godot.Collections.Array();
         foreach (var signal in npc.GetSignalList())

@@ -3,19 +3,25 @@
 public class TalkState(
     NavigationMovingController movingController,
     PonyBody body
-) : INpcState
+) : AbstractNpcState
 {
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
         if (npc.Velocity.Length() > 0) movingController.Stop();
         body?.SetLookTarget(npc.tempVictim);
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
+        if (tempNpc.tempVictim == null)
+        {
+            return;
+        }
+        
         if (IsStandingOnFoot())
         {
-            LookAtTarget(npc);
+            LookAtTarget(tempNpc);
         }
     }
     

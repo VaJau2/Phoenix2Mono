@@ -1,0 +1,27 @@
+{
+    "nodes": {
+        "C1": {
+            "kind": "dialogue",
+            "body": "According to my data, there should have been two of them. Where's the other one?",
+            "speaker": "Clone in the coat",
+            "opposite": "Strikely",
+            "options": [
+                {
+                    "body": "answer",
+                    "next": "C1(1)"
+                }
+            ]
+        },
+        "C1(1)": {
+            "kind": "dialogue",
+            "body": "I'll be right back.",
+            "speaker": "Strikely",
+            "opposite": "Clone in the coat",
+            "next": "CEnd"
+        },
+        "CEnd": {
+            "kind": "narration",
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

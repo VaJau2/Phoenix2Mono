@@ -3,10 +3,10 @@
 [ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Armor House.material" type="Material" id=1]
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=2]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=3]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/futniture/openWithKey.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/openWithKey.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=7]
 
 [sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( 0.329056, 0.460679, 0.0131229, -0.00177869, -0.00173342, -0.0117787, 0.329056, -0.00173342, -0.0117787, -0.00177869, -0.00173342, 0.0131229, -0.00177869, 0.460679, -0.0117787, 0.329056, -0.00173342, 0.0131229, 0.329056, 0.460679, -0.0117787, -0.00177869, 0.460679, 0.0131229 )

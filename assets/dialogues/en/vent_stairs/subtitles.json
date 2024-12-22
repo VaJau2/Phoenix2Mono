@@ -1,0 +1,26 @@
+﻿{
+  "NeedTable": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Here I can assemble furniture for the entrance to the ventilation. I need to start with a table."
+    }
+  },
+  "NeedSofa": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "So, next thing I need is a sofa."
+    }
+  },
+  "NeedChair": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "And in the end - a chair."
+    }
+  },
+  "NeedKey": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Where did I put the vent key card?.."
+    }
+  }
+}

@@ -34,7 +34,7 @@ public class TriggerBase : Node, ISavable, IActivated
     protected virtual void DeleteTrigger()
     {
         if (!DeleteAfterTrigger) return;
-        Global.AddDeletedObject(Name);
+        Global.AddDeletedObject(this);
         QueueFree();
         IsActive = false;
     }

@@ -106,7 +106,7 @@ public class Cutscene : Node, ISavable
         if (changeListener) player.MakeListenerCurrent();
 
         if (!DeleteAfterFinished) return;
-        Global.AddDeletedObject(Name);
+        Global.AddDeletedObject(this);
         QueueFree();
     }
 

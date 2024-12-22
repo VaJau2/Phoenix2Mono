@@ -6,18 +6,20 @@ public class SearchState(
     NpcWeapons weapons,
     NavigationMovingController movingController,
     PonyBody body
-) : INpcState, ISavable
+) : AbstractNpcState, ISavable
 {
     private const float SEARCH_TIMER = 12f;
 
     private Vector3 lastSeePos;
     private float searchTimer;
 
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         searchTimer = SEARCH_TIMER;
 
-        if (!Object.IsInstanceValid(npc.tempVictim))
+        if (!IsInstanceValid(npc.tempVictim))
         {
             //врага нет, позиции нет, искать нечего
             stateMachine.SetState(SetStateEnum.Idle);
@@ -34,7 +36,7 @@ public class SearchState(
         body?.SetLookTarget(null);
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
         if (searchTimer > 0 && weapons.HasWeapon)
         {
@@ -42,13 +44,13 @@ public class SearchState(
         }
         else
         {
-            npc.SetState(SetStateEnum.Idle);
+            tempNpc.SetState(SetStateEnum.Idle);
             return;
         }
                 
-        if (npc.BaseSpeed == 0)
+        if (tempNpc.BaseSpeed == 0)
         {
-            npc.LookAt(lastSeePos, Vector3.Up);
+            tempNpc.LookAt(lastSeePos, Vector3.Up);
             return;
         }
         

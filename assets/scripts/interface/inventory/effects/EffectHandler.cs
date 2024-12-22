@@ -132,83 +132,50 @@ public class EffectHandler: Node
 
     public static Effect GetEffectByName(string name)
     {
-        switch(name) 
+        return name switch
         {
-            case "heal":
-                return new HealEffect();
-            
-            case "mana":
-                return new ManaEffect();
-            
-            case "buck":
-                return new BuckEffect();
-            
-            case "buckPost":
-                return new BuckPostEffect();
-            
-            case "dash":
-                return new DashEffect();
-            
-            case "dashPost":
-                return new DashPostEffect();
-            
-            case "hydra":
-                return new HydraEffect();
-            
-            case "hydraPost":
-                return new HydraPostEffect();
-            
-            case "rage":
-                return new RageEffect();
-            
-            case "ragePost":
-                return new RagePostEffect();
-            
-            case "medX":
-                return new MedXEffect();
-            
-            case "medXPost":
-                return new MedXPostEffect();
-            
-            case "mentats":
-                return new MentatsEffect();
-            
-            case "mentatsPost":
-                return new MentatsPostEffect();
-            
-            case "detoxine":
-                return new DetoxineEffect();
-            
-            case "stealthBoy":
-                return new StealthBoyEffect();
-        }
-        
-        return null;
+            "heal" => new HealEffect(),
+            "mana" => new ManaEffect(),
+            "buck" => new BuckEffect(),
+            "buckPost" => new BuckPostEffect(),
+            "dash" => new DashEffect(),
+            "dashPost" => new DashPostEffect(),
+            "hydra" => new HydraEffect(),
+            "hydraPost" => new HydraPostEffect(),
+            "rage" => new RageEffect(),
+            "ragePost" => new RagePostEffect(),
+            "medX" => new MedXEffect(),
+            "medXPost" => new MedXPostEffect(),
+            "mentats" => new MentatsEffect(),
+            "mentatsPost" => new MentatsPostEffect(),
+            "detoxine" => new DetoxineEffect(),
+            "stealthBoy" => new StealthBoyEffect(),
+            _ => null
+        };
     }
 
     public static string GetNameByEffect(Effect effect)
     {
-        switch (effect.GetType().ToString())
+        return effect.GetType().Name switch
         {
-            case "HealEffect": return "heal";
-            case "ManaEffect": return "mana";
-            case "BuckEffect": return "buck";
-            case "BuckPostEffect": return "buckPost";
-            case "DashEffect": return "dash";
-            case "DashPostEffect": return "dashPost";
-            case "HydraEffect": return "hydra";
-            case "HydraPostEffect": return "hydraPost";
-            case "RageEffect": return "rage";
-            case "RagePostEffect": return "ragePost";
-            case "MedXEffect": return "medX";
-            case "MedXPostEffect": return "medXPost";
-            case "MentatsEffect": return "mentats";
-            case "MentatsPostEffect": return "mentatsPost";
-            case "DetoxineEffect": return "detoxine";
-            case "StealthBoyEffect": return "stealthBoy";
-        }
-
-        return null;
+            "HealEffect" => "heal",
+            "ManaEffect" => "mana",
+            "BuckEffect" => "buck",
+            "BuckPostEffect" => "buckPost",
+            "DashEffect" => "dash",
+            "DashPostEffect" => "dashPost",
+            "HydraEffect" => "hydra",
+            "HydraPostEffect" => "hydraPost",
+            "RageEffect" => "rage",
+            "RagePostEffect" => "ragePost",
+            "MedXEffect" => "medX",
+            "MedXPostEffect" => "medXPost",
+            "MentatsEffect" => "mentats",
+            "MentatsPostEffect" => "mentatsPost",
+            "DetoxineEffect" => "detoxine",
+            "StealthBoyEffect" => "stealthBoy",
+            _ => null
+        };
     }
 
     private void CheckEmotions(string newEmotion) 

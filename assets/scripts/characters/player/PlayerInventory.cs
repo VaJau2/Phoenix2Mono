@@ -40,6 +40,17 @@ public class PlayerInventory
     {
         return menu.mode.FindButtonWithItem(itemCode) != null;
     }
+
+    public string FindItemStartsWith(string firstItemLetters)
+    {
+        var itemButton = menu.mode.FindButtonWithItemByFirstLetters(firstItemLetters);
+        return itemButton?.myItemCode;
+    }
+
+    public void RemoveItem(string itemCode)
+    {
+        menu.RemoveItemIfExists(itemCode);
+    }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)
     {

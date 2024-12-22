@@ -6,14 +6,12 @@ public class IdleState(
     NavigationMovingController movingController,
     PonyBody body,
     NpcPatroling patroling
-) : INpcState
+) : AbstractNpcState
 {
-    private NPC tempNpc;
-
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
-        tempNpc = npc;
-
+        base.Enable(npc);
+        
         if (weapons is { HasWeapon: true })
         {
             weapons.SetWeaponOn(false);
@@ -34,28 +32,22 @@ public class IdleState(
         npc.tempVictim = null;
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
-        if (npc.followTarget != null)
+        if (tempNpc.followTarget != null)
         {
-            FollowTarget();
+            tempNpc.SetState(SetStateEnum.Follow);
             return;
         }
 
         if (patroling.IsEmpty)
         {
-            GoToStartPoint(npc);
+            GoToStartPoint(tempNpc);
             return;
         }
 
         if (patroling.IsWaiting(delta))
         {
-            return;
-        }
-
-        if (movingController.stopAreaEntered)
-        {
-            movingController.Stop(true);
             return;
         }
         
@@ -69,11 +61,6 @@ public class IdleState(
 
     private void GoToStartPoint(NPC npc)
     {
-        if (movingController.stopAreaEntered)
-        {
-            movingController.Stop(true);
-        }
-        
         movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
         
         if (movingController.cameToPlace)
@@ -81,12 +68,5 @@ public class IdleState(
             npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, npc.myStartPos);
             npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
         }
-    }
-
-    private void FollowTarget()
-    {
-        var targetPos = tempNpc.followTarget.GlobalTranslation;
-        movingController.GoTo(targetPos, movingController.ComeDistance * 2f);
-        movingController.updatePath = tempNpc.followTarget?.Velocity.Length() > Character.MIN_WALKING_SPEED;
     }
 }

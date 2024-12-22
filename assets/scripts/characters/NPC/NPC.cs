@@ -80,6 +80,8 @@ public class NPC : Character, IInteractable, IChest
 
     public SetStateEnum GetState() => stateMachine.GetCurrentSetState();
 
+    public AbstractNpcState GetStateClass() => stateMachine.GetCurrentStateClass();
+
     public void SetState(SetStateEnum state)
     {
         if (!MayChangeState) return;
@@ -162,18 +164,19 @@ public class NPC : Character, IInteractable, IChest
     public void SetNewStartPos(Vector3 newPos, bool run = false)
     {
         myStartPos = newPos;
+        CleanPatrolArray();
         
         if (MovingController is NavigationMovingController navigation)
         {
+            navigation.Stop();
             navigation.RunToPoint = run;
             navigation.cameToPlace = false;
         }
-       
-        CleanPatrolArray();
     }
 
     public void CleanPatrolArray()
     {
+        GetNodeOrNull<NpcPatroling>("patroling")?.ClearPoints();
         patrolArray?.Clear();
     }
 
@@ -237,9 +240,26 @@ public class NPC : Character, IInteractable, IChest
             case global::Player:
                 navigation.stopAreaEntered = true;
                 break;
-            case FurnDoor { IsOpen: false } door:
-                navigation?.SetDoorWait(door.ClickFurn());
+            case FurnDoor door:
+                OpenDoor(door);
                 break;
+        }
+    }
+
+    private async void OpenDoor(FurnDoor door)
+    {
+        if (MovingController is not NavigationMovingController navigation) return;
+        
+        if (door.IsAnimating)
+        {
+            navigation.stopAreaEntered = true;
+            await ToSignal(door, nameof(FurnBase.AnimationFinished));
+            navigation.stopAreaEntered = false;
+        }
+        
+        if (!door.IsOpen)
+        {
+            navigation.SetDoorWait(door.ClickFurn());
         }
     }
     

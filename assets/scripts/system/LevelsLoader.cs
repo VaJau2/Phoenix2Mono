@@ -188,27 +188,41 @@ public class LevelsLoader : Node
 		playerSpawner.loadStartItems = false;
 
 		//удаление удаленных в сохранении объектов
-		foreach (string objName in deletedObjects)
+		foreach (string objPath in deletedObjects)
 		{
-			Global.AddDeletedObject(objName);
-			var foundedObject = Global.FindNodeInScene(scene, objName);
+			Global.AddDeletedObjectPath(objPath);
+			var foundedObject = scene.GetNode(objPath);
 			foundedObject?.Free();
 		}
 
+		//создание создаваемых в сохранении объектов
 		foreach (string objKey in levelData.Keys)
 		{
-			//создание создаваемых в сохранении объектов
-			if (!objKey.BeginsWith("Created_")) continue;
+			var objData = (Dictionary) levelData[objKey];
 			
-			Dictionary objData = (Dictionary) levelData[objKey];
+			if (objData == null
+			    || !objData.Contains("name")
+			    || !objData["name"].ToString().BeginsWith("Created_")
+			   )
+			{
+				continue;
+			}
+			
 			var filename = objData["fileName"].ToString();
-			var parentName = objData["parent"].ToString();
+			var parentPath = objData["parentPath"].ToString();
 
-			PackedScene newNode = (PackedScene)GD.Load(filename);
-			Node newInstance = newNode.Instance();
-			newInstance.Name = objKey;
-			var parent = Global.FindNodeInScene(scene, parentName);
+			var newNode = (PackedScene)GD.Load(filename);
+			var newInstance = newNode.Instance();
+			
+			newInstance.Name = objData["name"].ToString();
+
+			var parent = scene.GetNode(parentPath);
 			parent?.AddChild(newInstance);
+			
+			if (!newInstance.IsInGroup("savable"))
+			{
+				newInstance.AddToGroup("savable");
+			}
 		}
 	}
 
@@ -223,12 +237,11 @@ public class LevelsLoader : Node
 
 			//если это created-нод, у него хранится только имя
 			//если это существующий нод, у него хранится путь от /root/Main...
-			Node node = !objKey.BeginsWith("Created_") 
-				? scene.GetNodeOrNull(objKey) 
-				: Global.FindNodeInScene(scene, objKey);
+			Node node = scene.GetNodeOrNull(objKey);
+			
 			if (node is ISavable savable)
 			{
-				Dictionary objData = (Dictionary) levelData[objKey];
+				Dictionary objData = (Dictionary)levelData[objKey];
 				savable.LoadData(objData);
 			}
 		}

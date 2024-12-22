@@ -4,11 +4,12 @@
     NavigationMovingController movingController,
     PonyBody body,
     StateMachine stateMachine
-) : INpcState
+) : AbstractNpcState
 {
-
-    public void Enable(NPC npc)
+    public override void Enable(NPC npc)
     {
+        base.Enable(npc);
+        
         if (npc.tempVictim is Player player)
         {
             player.Stealth.AddAttackEnemy(npc);
@@ -24,15 +25,15 @@
         body?.SetLookTarget(npc.tempVictim);
     }
 
-    public void Update(NPC npc, float delta)
+    public override void _Process(float delta)
     {
-        if (npc.tempVictim.Health <= 0)
+        if (tempNpc.tempVictim.Health <= 0)
         {
-            npc.SetState(SetStateEnum.Idle);
+            tempNpc.SetState(SetStateEnum.Idle);
             return;
         }
         
-        AttackEnemy(npc);
+        AttackEnemy(tempNpc);
     }
 
     private void AttackEnemy(NPC npc)

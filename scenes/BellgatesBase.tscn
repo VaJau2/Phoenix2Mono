@@ -28,7 +28,7 @@
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=26]
 [ext_resource path="res://objects/props/furniture/light/lamp.tscn" type="PackedScene" id=27]
 [ext_resource path="res://objects/props/furniture/table-old.tscn" type="PackedScene" id=28]
-[ext_resource path="res://assets/audio/futniture/prisonDoorOpen.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/audio/furniture/Doors/prisonDoorOpen.wav" type="AudioStream" id=29]
 [ext_resource path="res://objects/props/boxes/box.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/models/props/buildings/bellgates-base/sklad/inside/stone.material" type="Material" id=31]
 [ext_resource path="res://objects/props/furniture/light/Light-off.tscn" type="PackedScene" id=32]
@@ -57,12 +57,12 @@
 [ext_resource path="res://objects/props/mirror/Mirror.tscn" type="PackedScene" id=55]
 [ext_resource path="res://assets/materials/props/materials/stone2.tres" type="Material" id=56]
 [ext_resource path="res://objects/characters/robots/m6/assistantRarity.tscn" type="PackedScene" id=57]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=58]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=58]
 [ext_resource path="res://assets/textures/props/furniture/posters/pinkie.png" type="Texture" id=59]
 [ext_resource path="res://objects/props/furniture/hanger.tscn" type="PackedScene" id=60]
 [ext_resource path="res://assets/models/props/furniture/trash/Material.material" type="Material" id=61]
 [ext_resource path="res://objects/commonTriggers.tscn" type="PackedScene" id=62]
-[ext_resource path="res://assets/audio/futniture/doorClosed.wav" type="AudioStream" id=63]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=63]
 [ext_resource path="res://objects/props/furniture/light/lamp_off.tscn" type="PackedScene" id=64]
 [ext_resource path="res://objects/props/buildings/bellgates-base-houses/slealth_house.tscn" type="PackedScene" id=65]
 [ext_resource path="res://objects/props/buildings/bellgates-base-houses/main-house.tscn" type="PackedScene" id=66]
@@ -71,7 +71,7 @@
 [ext_resource path="res://objects/characters/other/target.tscn" type="PackedScene" id=69]
 [ext_resource path="res://objects/characters/robots/m6/assistantDash.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/scripts/triggers/training/DashTrainingTrigger.cs" type="Script" id=71]
-[ext_resource path="res://assets/audio/futniture/stealth_fail.wav" type="AudioStream" id=72]
+[ext_resource path="res://assets/audio/furniture/stealth_fail.wav" type="AudioStream" id=72]
 [ext_resource path="res://assets/scripts/triggers/training/DashChangeTimerTrigger.cs" type="Script" id=73]
 [ext_resource path="res://assets/models/props/buildings/bellgates-base/stels_house/01 - Default.material" type="Material" id=74]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=75]
@@ -729,7 +729,7 @@ extents = Vector3( 18.1554, 1, 15.8265 )
 [sub_resource type="PlaneMesh" id=73]
 
 [sub_resource type="BoxShape" id=74]
-extents = Vector3( 6.67913, 4.08533, 4.27221 )
+extents = Vector3( 8.85673, 4.08533, 4.27221 )
 
 [sub_resource type="BoxShape" id=76]
 extents = Vector3( 0.0665556, 0.183349, 0.167756 )
@@ -2225,7 +2225,7 @@ transform = Transform( 1, 0, 0, 0, 1.15, 0, 0, 0, 1.081, -14.0385, -3.70412, -7.
 myKey = "closed"
 doorCode = "Null"
 
-[node name="bag-door" parent="rooms/stels-house/props/doors" groups=["savable"] instance=ExtResource( 76 )]
+[node name="bag-door" parent="rooms/stels-house/props/doors" instance=ExtResource( 76 )]
 transform = Transform( 1, 0, 1.11911e-14, 0, 1.13, 0, -1.06582e-14, 0, 1.05, -53.7928, -3.6908, -35.0742 )
 myKey = "closed"
 
@@ -2502,7 +2502,7 @@ script = ExtResource( 17 )
 suitcasePath = NodePath("../../terrain/props/suitcase")
 
 [node name="sparkleTalk" type="Area" parent="triggers" groups=["savable"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.3462, 3.1858, -10.5844 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 97.4089, 3.1858, -10.5844 )
 script = ExtResource( 21 )
 npcPath = "../../npc/assistantSparkle"
 goToPlayer = true

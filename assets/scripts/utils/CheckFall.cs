@@ -6,7 +6,7 @@ public class CheckFall : Node
     [Export] private NodePath teleportPointPath;
     [Export] private float fallHeight = -100f;
     
-    public DoorTeleport tempDoorTeleport;
+    public DoorTeleport TempDoorTeleport;
     public bool inside;
     
     private Spatial teleportPoint;
@@ -15,7 +15,7 @@ public class CheckFall : Node
     {
         if (defaultDoorPath != null)
         {
-            tempDoorTeleport = GetNode<DoorTeleport>(defaultDoorPath);
+            TempDoorTeleport = GetNode<DoorTeleport>(defaultDoorPath);
             inside = true;
         }
         
@@ -32,9 +32,9 @@ public class CheckFall : Node
         
         player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
         
-        if (inside && tempDoorTeleport != null)
+        if (inside && TempDoorTeleport != null)
         {
-            tempDoorTeleport.otherDoor.Open(player);
+            TempDoorTeleport.otherDoor.Open(player);
         }
     }
 }

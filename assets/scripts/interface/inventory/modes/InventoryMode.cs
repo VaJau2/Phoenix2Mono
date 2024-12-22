@@ -103,6 +103,13 @@ public abstract class InventoryMode
     {
         return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
     }
+    
+    public ItemIcon FindButtonWithItemByFirstLetters(string firstLetters)
+    {
+        return itemButtons.FirstOrDefault(button =>
+            button.myItemCode != null && button.myItemCode.StartsWith(firstLetters)
+        );
+    }
 
     public int SameItemCount(string itemCode)
     {
@@ -121,6 +128,32 @@ public abstract class InventoryMode
             ItemIcon newAmmoButton = AddNewItem(ammoItem);
             newAmmoButton.SetCount(ammo[ammoItem]);
         }
+    }
+    
+    public ItemIcon FirstEmptyButton
+    {
+        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
+    }
+
+    public ItemIcon AddNewItem(string itemCode) 
+    {
+        var emptyButton = FirstEmptyButton;
+        
+        if (emptyButton != null) 
+        {
+            emptyButton.SetItem(itemCode);
+
+            if (itemCode.Contains("key")) 
+            {
+                inventory.AddKey(itemCode);
+            }
+        } 
+        else 
+        {
+            inventory.ItemsMessage("space");
+        }
+        
+        return emptyButton;
     }
 
     public void SetTempButton(ItemIcon newButton, bool showInfo = true)
@@ -197,31 +230,6 @@ public abstract class InventoryMode
         }
 
         controlHints.LoadHits(controlTexts);
-    }
-
-    public ItemIcon FirstEmptyButton
-    {
-        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
-    }
-
-    private ItemIcon AddNewItem(string itemCode) 
-    {
-        ItemIcon emptyButton = FirstEmptyButton;
-        if (emptyButton != null) 
-        {
-            emptyButton.SetItem(itemCode);
-
-            if (itemCode.Contains("key")) 
-            {
-                inventory.AddKey(itemCode);
-            }
-        } 
-        else 
-        {
-            inventory.ItemsMessage("space");
-        }
-        
-        return emptyButton;
     }
 
     public virtual void RemoveItemFromButton(ItemIcon button)

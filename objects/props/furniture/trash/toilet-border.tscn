@@ -2,8 +2,8 @@
 
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
-[ext_resource path="res://assets/audio/futniture/doorOpen.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/futniture/doorClose.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/materials/props/metal.material" type="Material" id=5]
 [ext_resource path="res://assets/models/props/buildings/laboratory/bunker-borders.material" type="Material" id=6]
 
