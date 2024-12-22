@@ -42,12 +42,17 @@
             "root_node": false,
             "body": "ChangeNpcIdleAnim",
             "set": "Idle1",
-            "next": "SEnd"
+            "next": "SEnd1"
         },
-        "SEnd": {
+        "SEnd1": {
             "kind": "narration",
-            "root_node": false,
-            "body": "ChangeDialogueCode"
+            "body": "ChangeDialogueCode",
+            "next": "SEnd2"
+        },
+        "SEnd2": {
+            "kind": "narration",
+            "body": "ChangeSubtitlesCode",
+            "set": "wait"
         }
     }
 }

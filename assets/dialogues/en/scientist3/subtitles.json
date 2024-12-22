@@ -1,0 +1,110 @@
+﻿{
+  "wait": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Wait here."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Fine"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow"
+    }
+  },
+  "follow": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Follow me."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "I hope we almost there..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait1"
+    }
+  },
+  "wait1": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Wait here."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Just come back quickly..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow1"
+    }
+  },
+  "follow1": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Follow me."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "It was... fast"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait2"
+    }
+  },
+  "wait2": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Wait here."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "true"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "I'll wait, but these ponies with masks won't..."
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "follow2"
+    }
+  },
+  "follow2": {
+    "phrase1": {
+      "speakerCode": "strikely",
+      "text": "Follow me."
+    },
+    "makeWait": {
+      "class": "SetNpcFollowWaiting",
+      "value": "false"
+    },
+    "phrase2": {
+      "speakerCode": "scientist3",
+      "text": "Thank Celestia, you're here! Let's go"
+    },
+    "changeSubtitles": {
+      "class": "ChangeSubtitlesCode",
+      "value": "wait"
+    }
+  }
+}
