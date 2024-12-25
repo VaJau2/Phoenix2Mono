@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/complex2.mp3-9cc7ca42e2a6e36df35c8a4996c2c7aa.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/bellgates/generalBriefing/complex2.mp3"
+dest_files=[ "res://.import/complex2.mp3-9cc7ca42e2a6e36df35c8a4996c2c7aa.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

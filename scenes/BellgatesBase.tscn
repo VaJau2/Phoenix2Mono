@@ -1012,7 +1012,7 @@ script = ExtResource( 10 )
 
 [node name="bellgates" parent="npc" instance=ExtResource( 105 )]
 transform = Transform( -0.998659, 0, 0.0517781, 0, 1, 0, -0.0517781, 0, -0.998659, 59.1505, -0.159467, 107.034 )
-dialogueCode = "talk2"
+dialogueCode = "generalBriefing"
 
 [node name="startAnim" type="Node" parent="npc/bellgates"]
 script = ExtResource( 106 )
@@ -1802,7 +1802,7 @@ transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 35.0815
 transform = Transform( -0.224694, 0, -0.0117481, 0, 0.225, 0, 0.0117481, 0, -0.224694, 0.232916, 0.101305, -0.594547 )
 
 [node name="colaBottle" parent="terrain/props/houses/main-house/props/table" instance=ExtResource( 107 )]
-transform = Transform( 0.075, 0, -1.22935e-08, 0, 0.075, 0, 1.22935e-08, 0, 0.075, -0.021801, 0.227705, 0.139427 )
+transform = Transform( 0.075, 0, -1.22935e-08, 0, 0.075, 0, 1.22935e-08, 0, 0.075, 0.354139, 0.227705, -1.34819 )
 
 [node name="map" type="MeshInstance" parent="terrain/props/houses/main-house/props"]
 transform = Transform( 4.35565, 3.10921e-08, -1.35908e-15, 0, -1.74846e-07, -4, 3.10921e-08, 4, -1.74846e-07, 22.206, 5.46067, -17.0777 )
@@ -1836,7 +1836,7 @@ double_sided = false
 texture = ExtResource( 59 )
 
 [node name="2" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
-transform = Transform( -4.49693, 0, -3.93134e-07, 0, 4.49693, 0, 3.93134e-07, 0, -4.49693, 23.837, 5.78888, 5.94761 )
+transform = Transform( -4.49693, 0, -3.93134e-07, 0, 4.49693, 0, 3.93134e-07, 0, -4.49693, 27.5153, 5.78888, 5.94761 )
 cast_shadow = 0
 transparent = false
 shaded = true
@@ -2598,16 +2598,22 @@ shape = SubResource( 76 )
 
 [node name="bellgatesMoveToTerminal" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 108 )
-otherTriggerPaths = [ NodePath("../newSparkleTask"), NodePath("../addRarityTask"), NodePath("../addPieTask"), NodePath("../addRDTask"), NodePath("../twilightMayBriefing"), NodePath("../rarityTalk"), NodePath("../activateVan") ]
+otherTriggerPaths = [ NodePath("../twilightMayBriefing"), NodePath("../rarityTalk"), NodePath("../activateVan") ]
 NpcPaths = [ "../../npc/bellgates" ]
 pointPaths = [ NodePath("../../terrain/props/houses/main-house/points/bellgatesTerminalPoint") ]
 idleAnims = [ "Sit" ]
 stayThere = [ true ]
 lastTimer = 0.0
 
-[node name="newSparkleTask" type="Node" parent="triggers"]
+[node name="newPieTask" type="Node" parent="triggers"]
 script = ExtResource( 110 )
 IsActive = false
+taskCode = "completeStealthFromPie"
+
+[node name="addSparkleTask" type="Node" parent="triggers"]
+script = ExtResource( 110 )
+IsActive = false
+changeMode = 1
 taskCode = "listenBriefingBySparkle"
 
 [node name="doneSparkleTask" type="Node" parent="triggers"]
@@ -2630,12 +2636,6 @@ otherTriggerPaths = [ NodePath("../doneAllAssistantTasks"), NodePath("../clearDu
 changeMode = 2
 taskCode = "getSuitFromRarity"
 
-[node name="addPieTask" type="Node" parent="triggers"]
-script = ExtResource( 110 )
-IsActive = false
-changeMode = 1
-taskCode = "completeStealthFromPie"
-
 [node name="donePieTask" type="Node" parent="triggers"]
 script = ExtResource( 110 )
 IsActive = false
@@ -2643,23 +2643,36 @@ otherTriggerPaths = [ NodePath("../doneAllAssistantTasks") ]
 changeMode = 2
 taskCode = "completeStealthFromPie"
 
-[node name="addRDTask" type="Node" parent="triggers"]
+[node name="addShyTask" type="Node" parent="triggers"]
 script = ExtResource( 110 )
 IsActive = false
 changeMode = 1
-taskCode = "completeShootingFromRD"
+taskCode = "getGunFromShy"
 
-[node name="doneRDTask" type="Node" parent="triggers"]
+[node name="doneShyTask" type="Node" parent="triggers"]
 script = ExtResource( 110 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../doneAllAssistantTasks") ]
 changeMode = 2
-taskCode = "completeShootingFromRD"
+taskCode = "getGunFromShy"
+
+[node name="addAJTask" type="Node" parent="triggers"]
+script = ExtResource( 110 )
+IsActive = false
+changeMode = 1
+taskCode = "completeShootingFromAJ"
+
+[node name="doneAJTask" type="Node" parent="triggers"]
+script = ExtResource( 110 )
+IsActive = false
+otherTriggerPaths = [ NodePath("../doneAllAssistantTasks") ]
+changeMode = 2
+taskCode = "completeShootingFromAJ"
 
 [node name="doneAllAssistantTasks" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 128 )
 otherTriggerPaths = [ NodePath("../leaveLocationTask") ]
-TriggersCount = 4
+TriggersCount = 5
 
 [node name="leaveLocationTask" type="Node" parent="triggers"]
 script = ExtResource( 110 )

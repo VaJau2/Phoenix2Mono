@@ -1,0 +1,959 @@
+{
+    "nodes": 
+    {
+        "start": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And here comes the heroine of the week!",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "assistants_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "place_answer"
+                }
+            ]
+        },
+
+
+        "mission_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What is my mission?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "mission1"
+        },
+        "mission1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "At the same time as the massacre in the theater, there was an assault on the research facility.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission1_answer_1"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex_answer"
+                }
+            ]
+        },
+        "mission1_answer_1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[listen further]",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "mission2"
+        },
+
+        "complex_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What kind of facility? ...or is the question indiscreet?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "complex1"
+        },
+        "complex1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "No. The question isn't indiscreet. But the answer could be.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex2"
+        },
+        "complex2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I think, under the circumstances, we can disregard the NDA. It would be better if Strikely find out about the \"immoral\" experiments on clones now from us than later from terrorists.",
+            "speaker": "Assistant Sparkle",
+            "opposite": "Bellgates",
+            "next": "complex3"
+        },
+        "complex3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The facility produces clones. These clones are used to test sent drugs and devices that would otherwise have to be tested on regular ponies.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex4"
+        },
+        "complex4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Often all sorts of sleeping pills and antidepressants are tested on clones. More rarely, innovations like microwave oven.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex5"
+        },
+        "complex5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Sometimes an RadAway is tested, whose effectiveness cannot be tested without infecting the clone with radiation sickness. Unfortunately.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex6"
+        },
+        "complex6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But nothing more. No biological weapons. No super soldiers.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex7"
+        },
+        "complex7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The last thing tested before the assault is stealth buck, a device that will allow you to stealthily complete your mission even if you're not at all good at stealth.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "complex8"
+        },
+        "complex8":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Strikely, what do you think of this?",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "clones_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex8_answer_2"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex8_answer_3"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+        "complex8_answer_2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "It's better to sacrifice clones instead of ponies to progress.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "back_to_mission"
+        },
+        "complex8_answer_3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "My job is to follow orders, not worry about ethics.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "back_to_mission"
+        },
+
+        "clones_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What do the clones themselves think about it?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "clones1"
+        },
+        "clones1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "They're satisfied. In the decades of the facility's operation, there hasn't been a single escape attempt or rebellion from the clones themselves.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "clones2"
+        },
+        "clones2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "We even take too good care of the clones. There is always someone getting too attached to the clones.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "clones3"
+        },
+        "clones3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Conducting tests with a high risk of irreversible injury is often accompanied by staff turnover, information leaks and an invasion of activists-terrorists who know suspiciously large amount.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "clones3_answer"
+                }
+            ]
+        },
+        "clones3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I suggest return to the current activists-terrorist.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "back_to_mission"
+        },
+
+
+        "stealthbuck_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Can you tell me more about the stealth buck?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "stealthbuck1"
+        },
+        "stealthbuck1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Personal device that generates a modulating refraction field. Using it effectively renders the wearer virtually invisible to the untrained eye.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "stealthbuck2"
+        },
+        "stealthbuck2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The field works a little longer than a minute. The field is fragile and will irreversibly break if you shoot or change clothes from inside it.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "stealthbuck3"
+        },
+        "stealthbuck3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "One prototype is here with Assistant Pie. You can request it from her.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "stealthbuck4"
+        },
+        "stealthbuck4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The fleeing colleagues managed to take one experimental prototype with them. You will be given it upon arrival.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "stealthbuck5"
+        },
+        "stealthbuck5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The last prototype remained on the second floor of the facility, the same floor where the hostages are.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "back_to_mission"
+        },
+
+
+        "back_to_mission":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "All right, then. Back to the mission.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "mission2"
+        },
+
+
+        "mission2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "While the attackers were breaking through to the second floor, the staff of the facility were already sneaking through the secret passages to the exit. By the time the attackers caught two hostages, the complex had already been cordoned off by operatives.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "mission3"
+        },
+        "mission3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Your mission is to free these two hostages. Ideally stealthily, without unnecessary bloodshed.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission3_answer"
+                }
+            ]
+        },
+        "mission3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Why the sudden mercy for terrorists?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "mission4"
+        },
+        "mission4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "In return for your fire, the terrorists may open fire on the hostages – two key scientific staff members of the complex whose lives are best not to be risked.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "mission5"
+        },
+        "mission5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The blueprints and prototypes can be reproduced, but the minds that designed them cannot.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "terrorists_answer"
+                }
+            ]
+        },
+
+
+        "terrorists_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Any word on the terrorists?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "terrorists1"
+        },
+        "terrorists1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "In the negotiations, they identify themselves as clone rights activists. They claim they seized the facility to free the clones. They claim the theater massacre was carried out by their splinter radicals.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists2"
+        },
+        "terrorists2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Fleeing personnel say the terrorists were more trying to get deep into the lower floors than shooting anything alive.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists3"
+        },
+        "terrorists3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The terrorists are making contact. In particular, it has been possible to agree with them on the supply of fodder.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists4"
+        },
+        "terrorists4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The raid has gone on so long that the terrorists have already eaten their supplies. The compound's storage facilities are beyond their reach, and the hostages will be the first to starve.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists5"
+        },
+        "terrorists5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "We agreed to supply fodder because it would give us an opportunity to plant a wire. Then we found out that the terrorist coming to the operatives camp for supplies were also planting a wire. So we started putting laxatives in their forage.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists6"
+        },
+        "terrorists6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "All the while, negotiations are underway to free the hostages in exchange for the release of the terrorists trapped on mid floors. But something tells me that even these negotiations will end with both sides sneakily ambushing each other at the same time.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "terrorists7"
+        },
+        "terrorists7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And yet, the actions of the \"liberals\" so far correlate with their words.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "situation_answer"
+                }
+            ]
+        },
+
+
+        "situation_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Tell more about the current situation in the compound.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "situation1"
+        },
+        "situation1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Emergency door locking is still activated in the facility, you cannot move normally without key cards. Elevator access is still limited to the first two floors. Some of the terrorists are still trapped on mid floors.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "situation2"
+        },
+        "situation2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "There are more operatives. They're better equipped. They're probably better trained. In open combat, the terrorists don't stand a chance. However, the operatives cannot go in for an assault, for then the terrorists might kill the hostages.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "situation3"
+        },
+        "situation3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "It's a sandwich. At the very bottom are the clones the terrorists are trying to reach, the operatives are besieged. Everyone's holding each other by the tails and manes. No one can move.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "situation4"
+        },
+        "situation4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "To break the stalemate, we need a small pony that can fit in a supply crate. A pony so harmless-looking that the terrorists won't see her as a threat, but as a new hostage. A pony that has already rolled up a theater full of terrorists in one muzzle. That pony is you, Strikely Cloud.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "situation4_answer"
+                }
+            ]
+        },
+        "situation4_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But I've never done stealth missions before.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "base1_trigger"
+        },
+
+
+        "place_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What is this place?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "place1"
+        },
+        "place1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "A future vault for storing and training backup-clones of a special agent. Potentially your backup-clones.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "place2"
+        },
+        "place2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You can't access the storage yet, but you can take a drill from Miss Assistants. We'll find out how effective they are.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "mission_answer"
+                }
+            ]
+        },
+
+
+        "assistants_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Why do your Miss Assistans look like M6?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "assistants1"
+        },
+        "assistants1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "They also think like the M6.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "assistants2"
+        },
+        "assistants2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Communicating with my pony version, has shown that our thoughts match at 92.8%. That's about 42 minutes before the first discrepancy in reasoning.",
+            "speaker": "Assistant Sparkle",
+            "opposite": "Strikely",
+            "next": "assistants3"
+        },
+        "assistants3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Twilight after a lengthy conversation with Assistant Sparkle appointed her as her representative. If you want her opinion, you can ask her robot-clone's opinion.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants3_answer"
+                }
+            ]
+        },
+        "assistants3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Let me rephrase my question. Why do you need robo-clones of M6?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "assistants4"
+        },
+        "assistants4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Prime-Minister Sparkle is more at ease when there are at least some backups of her and her closest friends, the bearers of the elements of harmony.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "assistants5"
+        },
+        "assistants5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "She entrusted me with the development of the robo-clones, their testing and their storage.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants5_answer"
+                }
+            ]
+        },
+        "assistants5_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Why aren't robo-clones made in pony form?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "assistants6"
+        },
+        "assistants6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "So that there are no ethical dilemmas. So that we understand who we are. So that when the Phoenix program moves on to the next stage, it will be easier to dispose of us.",
+            "speaker": "Assistant Sparkle",
+            "opposite": "Strikely",
+            "next": "assistants7"
+        },
+        "assistants7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And with manipulators instead of hooves, it's a lot easier to work in the lab с:",
+            "speaker": "Assistant Sparkle",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "phoenix_answer"
+                }
+            ]
+        },
+
+
+        "phoenix_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Phoenix program?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "phoenix1"
+        },
+        "phoenix1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Pony backup program.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix2"
+        },
+        "phoenix2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The moment a pony kick the bucket, her clone will awaken with a completely indeterminate body, mind, and memories.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix3"
+        },
+        "phoenix3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "We've already practiced growing a pony in a flask. We've managed to digitize the memory. We've successfully transferred memories from one clone to another. We've safely copied the personality of a real pony into a robot, and more than once. We've perfected growing an exact copy of an already formed organism.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix4"
+        },
+        "phoenix4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "All that's left is to directly make backup-cloning of the real pony.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix5"
+        },
+        "phoenix5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "It's all calculated. It's all checked and double-checked. The risks are virtually nonexistent. Even found a candidate for a debut backup-cloning.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix6"
+        },
+        "phoenix6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Right now I'm looking at her.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "phoenix7"
+        },
+        "phoenix7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But first, the mission.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "mission1"
+        },
+
+
+        "base1_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "newPieTask",
+            "next": "base1"
+        },
+        "base1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Assistant Pie will teach you stealth tactics and can give a stealth buck.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "base2_trigger"
+        },
+        "base2_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addSparkleTask",
+            "next": "base2"
+        },
+        "base2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "When you are ready, I will give you a thorough briefing on mission strategies.",
+            "speaker": "Assistant Sparkle",
+            "opposite": "Strikely",
+            "next": "base3_trigger"
+        },
+        "base3_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addAJTask",
+            "next": "base3"
+        },
+        "base3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Assistant Apple will teach you how to use a tranquilizer gun.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "base4_trigger"
+        },
+        "base4_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addShyTask",
+            "next": "base4"
+        },
+        "base4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You can get the tranquilizer itself from Assistant Shy.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "base5_trigger"
+        },
+        "base5_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addRarityTask",
+            "next": "base5"
+        },       
+        "base5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Assistant Rarity will give you a stealth suit.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "base6"
+        },
+        "base6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Assistant Dash... she is just making a fuss so far. I mean, guarding the perimeter, yeah.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "base7"
+        },
+        "base7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And I will teleport you to the facility on van.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning1"
+        },
+
+
+        "cloning1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "By completing this mission you will prove that your feat in the theater was no accident.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning2"
+        },
+        "cloning2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "This would make you the perfect candidate to debut the Phoenix system.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning3"
+        },
+        "cloning3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "If backup-cloning succeeds, you will be quasi-immortal, Equestria will have the backup-clones of the talented special agent, and we won't have to wonder what to do with those backup-clones.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning4"
+        },
+        "cloning4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "If something goes wrong, which is extremely unlikely, then... Well, Equestria only found out about Strikely Cloud a week ago and was functioning normally before that.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning5"
+        },
+        "cloning5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But without your will, we're not at liberty to put you in the Phoenix program.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_1"
+                },
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_2"
+                }
+            ]
+        },
+
+        "cloning5_answer_1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You wouldn't let my clones be experimented on in the name of science, would you?",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "cloning6"
+        },
+        "cloning6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "There's no need for that.",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "next": "cloning7"
+        },
+        "cloning7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And if there was, your clones would be lousy test subjects, they could take out an entire building full of thugs in one muzzle!",
+            "speaker": "Bellgates",
+            "opposite": "Strikely",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_2"
+                }
+            ]
+        },
+
+        "cloning5_answer_2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I'll tell you my will after the mission.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "end1"
+        },
+
+
+        "end1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Good. Then get ready for your mission. I will continue to monitor the situation in the facility.",
+            "speaker": "Strikely",
+            "opposite": "Bellgates",
+            "next": "end2"
+        },
+        "end2": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "bellgatesMoveToTerminal",
+            "next": "end3"
+        },
+        "end3": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
+    }
+}

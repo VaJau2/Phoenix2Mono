@@ -20,14 +20,14 @@
         "start4":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Your mission goal — is to rescue hostages, not to eliminate the terrorists."
+            "text": "Your mission goal – is to rescue hostages, not to eliminate the terrorists."
         },
 
 
         "enter":
         {
             "speakerCode": "assistantSparkle",
-            "text": "The first problem you'll face — is breaking into the facility.",
+            "text": "The first problem you'll face – is breaking into the facility.",
 
             "class": "ActivateCinematic",
             "key": "Briefing",

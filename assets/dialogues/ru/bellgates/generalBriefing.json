@@ -1,197 +1,959 @@
 {
-    "dontKill2":
+    "nodes": 
     {
-        "speakerCode": "assistantSparkle",
-        "text": "До твоего первого выстрела, террористы будут пытаться тебя изловить, а не убить."
-    },
-    
-    "box1":
-    {
-        "speakerCode": "bellgates",
-        "text": "Налёт террористов на научно-исследовательский комплекс затянулся.",
-        "timer": 0.03
-    },
-    "box2":
-    {
-        "speakerCode": "bellgates",
-        "text": "Свои запасы фуража террористы уже давно съели.",
-        "timer": 0.03
-    },
-    "box3":
-    {
-        "speakerCode": "bellgates",
-        "text": "Хранилища комплекса им не поддаются, собственно почему налёт и затянулся.",
-        "timer": 0.03
-    },
-    "box4":
-    {
-        "speakerCode": "bellgates",
-        "text": "Террористы расчитывали с наскоку взять весь персонал в заложники, надавить на пару учёных и те сами им всё откроют.",
-        "timer": 0.03
-    },
-    "box5":
-    {
-        "speakerCode": "bellgates",
-        "text": "Однако пока террористы прорвались до второго этажа, персонал уже крался по вентиляционным шахтам на выход.",
-        "timer": 0.03
-    },
-    "box6":
-    {
-        "speakerCode": "bellgates",
-        "text": "И к тому моменту пока террористы таки изловили своих несчастных двух заложников, комплекс уже оцепили оперативники.",
-        "timer": 0.03
-    },
-    "box7":
-    {
-        "speakerCode": "bellgates",
-        "text": "Оперативники дали понять, что жизни терроистов теперь напрямую зависят от жизней заложников.",
-        "timer": 0.03
-    },
-    "box8":
-    {
-        "speakerCode": "bellgates",
-        "text": "Всё таки, радикальное крыло терроистов нашло свою смерть в театре.",
-        "timer": 0.03
-    },
-    "box9":
-    {
-        "speakerCode": "bellgates",
-        "text": "Терроисты, с которыми мы сейчас имеем дело, пошли на штурм комплекса что бы освободить клонов, а не убивать и/или умирать. ",
-        "timer": 0.03
-    },
-    "box10":
-    {
-        "speakerCode": "bellgates",
-        "text": "Тем не менее эти террористы дали понять, что если им не будут поставлять фураж, то от голода в первую очередь умрут заложники.",
-        "timer": 0.03
-    },
-    "box11":
-    {
-        "speakerCode": "bellgates",
-        "text": "Мы, как всегда, поступили хитрожопо. Поставляем им фураж малыми порциям.",
-        "timer": 0.03
-    },
-    "box12":
-    {
-        "speakerCode": "bellgates",
-        "text": "Что бы был регулярный поток ящиков внутрь комплекса, в которые можно что-то подложить.",
-        "timer": 0.03
-    },
-    "box13":
-    {
-        "speakerCode": "bellgates",
-        "text": "Например оперативника. Свободного места в ящике достаточно. Под стелсбаком его ничем не уловишь.",
-        "timer": 0.03
-    },
-    "box14":
-    {
-        "speakerCode": "bellgates",
-        "text": "Собственно, оперативники предлагают тебе так и пробраться в комплекс.",
-        "timer": 0.03
-    },
-    "box15":
-    {
-        "speakerCode": "bellgates",
-        "text": "За подробностями обращайся к Помощнице Спаркл.",
-        "timer": 0.03
-    },
-
-    "stelsback1":
-    {
-        "speakerCode": "strikely",
-        "text": "Что такое стелсбак?"
-    },
-    "stelsback2":
-    {
-        "speakerCode": "bellgates",
-        "text": "Экспериментальное устройство, скрывающее носителя от любых глаз и радаров."
-    },
-    "stelsback3":
-    {
-        "speakerCode": "bellgates",
-        "text": "Разработано и испытано научно-исслеовательским комплексом незадолго до рейда."
-    },
-    "stelsback4":
-    {
-        "speakerCode": "bellgates",
-        "text": "К слову о том, что испытывают на клонах."
-    },
-    "stelsback5":
-    {
-        "speakerCode": "bellgates",
-        "text": "Было изготовлено несколько опытных образцов."
-    },
-    "stelsback6":
-    {
-        "speakerCode": "bellgates",
-        "text": "Мои колеги говрят, что один образец им удалось забрать с собой во время побега."
-    },
-    "stelsback7":
-    {
-        "speakerCode": "bellgates",
-        "text": "Другой остался на втором этаже комплекса. На этом же этаже находятся изолятор с заложниками."
-    },
-    "stelsback8":
-    {
-        "speakerCode": "bellgates",
-        "text": "Последний третий образец мне выделили для программы испытания клонов-агентов. Так как ты потенциальный кандидат и в агенты, и в клоны, можешь его получить у Помощницы Пай. Если докажешь ей, что умеешь стелсить и не проебёшь его."
-    },
+        "start": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А вот и приехала героиня недели!",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "assistants_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "place_answer"
+                }
+            ]
+        },
 
 
-    "vent1":
-    {
-        "speakerCode": "bellgates",
-        "text": "Мы с коллегами долго обсуждали ли стоит рассказывать оперативникам о тайных ходах.",
-        "timer": 0.03
-    },
-    "vent2":
-    {
-        "speakerCode": "bellgates",
-        "text": "С одной стороны, благодаря ним оперативная группа сможет незаметно и близко подобраться к заложникам.",
-        "timer": 0.03
-    },
-    "vent3":
-    {
-        "speakerCode": "bellgates",
-        "text": "С другой стороны, когда по тайным ходам проползёт сток оперативников, они перестанут быть тайными. Сто проц кто-то, когда-то и где-то проболтается.",
-        "timer": 0.03
-    },
-    "vent4":
-    {
-        "speakerCode": "bellgates",
-        "text": "А ведь столько благополучно эквакуировавшегося персонала обязанно именно тайности этих ходов, по которым он сообственно и бежал.",
-        "timer": 0.03
-    },
-    "vent5":
-    {
-        "speakerCode": "bellgates",
-        "text": "Благо появилась ты, понька сумевшая в одну мордочку порешать всех террористов в театре. Один рот будет проще держать на замке с:",
-        "timer": 0.03
-    },
-    
+        "mission_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В чём заключается моя миссия?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "mission1"
+        },
+        "mission1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Одновременно с бойней в театре, произошел штурм научно-исследовательского комплекса.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission1_answer_1"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex_answer"
+                }
+            ]
+        },
+        "mission1_answer_1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "[слушать дальше]",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "mission2"
+        },
+
+        "complex_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что за комплекс? ...или это нескромный вопрос?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "complex1"
+        },
+        "complex1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нет, вопрос-то скромный. Только вот ответ может быть нескромным.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex2"
+        },
+        "complex2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Считаю, что в имеющихся обстоятельствах можно пренебречь NDA. Будет лучше если Страйкли узнает о \"безнравственных\" экспериментах над клонами сейчас от нас, чем потом от террористов.",
+            "speaker": "Помощница Спаркл",
+            "opposite": "Бельгетс",
+            "next": "complex3"
+        },
+        "complex3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Комплекс производит клонов. На этих клонах испытываются присылаемые препараты и устройства, которые в противном случае пришлось бы испытывать на обычных пони.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex4"
+        },
+        "complex4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Зачастую на клонах испытываются всякие снотворные и антидепрессанты. Реже новшества уровня СВЧ-печи.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex5"
+        },
+        "complex5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Порой испытывается антирадин, чью эффективность, не удастся проверить не заразив клона лучевой болезнью. К сожалению.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex6"
+        },
+        "complex6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но не более того. Никакого биологического оружия. Никаких супер-солдат.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex7"
+        },
+        "complex7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Последнее, что было испытано перед штурмом – стелсбак, устройство что позволит тебе скрытно выполнить свою миссию даже если ты совсем не умеешь в скрытность.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "complex8"
+        },
+        "complex8":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Страйлки, что ты об этом думаешь?",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "clones_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex8_answer_2"
+                },
+                {
+                    "body": "answer",
+                    "next": "complex8_answer_3"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+        "complex8_answer_2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Лучше прогрессу жертвовать клонов вместо пони.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "back_to_mission"
+        },
+        "complex8_answer_3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Моя работа приказы выполнять, а не париться этикой.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "back_to_mission"
+        },
+
+        "clones_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А что сами клоны про это думают?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "clones1"
+        },
+        "clones1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Они удовлетворены. За декады лет работы комплекса не было ни одной попытки побега или восстания от самих клонов.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "clones2"
+        },
+        "clones2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы даже слишком хорошо ухаживаем за клонам. Постоянно кто-то черезсчур привязывается к клонам.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "clones3"
+        },
+        "clones3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Проведение испытаний с высоким риском необратимого травматизма у нас зачастую сопровождается текучкой кадров, утечкой информации и нашествием активистов-террористов знающих подозрительно много.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "clones3_answer"
+                }
+            ]
+        },
+        "clones3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Предлагаю вернутся к текущим активистам-террористам.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "back_to_mission"
+        },
 
 
-    "vent7":
-    {
-        "speakerCode": "bellgates",
-        "text": "Сбежавшие учёные предлагают пробраться в комплекс через вентиляцию."
-    },
-    "vent8":
-    {
-        "speakerCode": "bellgates",
-        "text": "Собственно, они по ней и бежали, оставив тяжелоброннированый люк незапертым."
-    },
-    "vent9":
-    {
-        "speakerCode": "bellgates",
-        "text": "Лишь засыпали снегом, что бы его не нашли террористы."
-    },
+        "stealthbuck_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А можно по-подробнее о стелсбаке?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "stealthbuck1"
+        },
+        "stealthbuck1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Персональный генератор модуляционного поля, которое передаёт отражённый свет от одной стороны объекта на другую, что делает носителя практически невидимым для нетренированного глаза.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "stealthbuck2"
+        },
+        "stealthbuck2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Поле работает немногим дольше минуты. Поле хрупкое и необратимо ломается если изнутри него стрелять или переодеваться.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "stealthbuck3"
+        },
+        "stealthbuck3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Один опытный прототип находится здесь, у Помощницы Пай. Можешь у неё его запросить.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "stealthbuck4"
+        },
+        "stealthbuck4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Бежавшим коллегам удалось один опытный прототип забрать с собой. Его тебе выдадут по приезду.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "stealthbuck5"
+        },
+        "stealthbuck5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Последний прототип остался на втором этаже комплекса, на том же этаже, где находятся заложники.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "back_to_mission"
+        },
 
 
+        "back_to_mission":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хорошо. Возращаемся к миссии. Так вот.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "mission2"
+        },
 
-    "vent10":
-    {
-        "speakerCode": "bellgates",
-        "text": "В штатном режиме, тяжелобронированый люк намертво заперт."
+
+        "mission2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Пока нападавшие прорывались до второго этажа, персонал комплекса уже крался по тайным ходам на выход. К тому моменту, когда нападавшие таки изловили своих двух заложников, комплекс уже оцепили оперативники.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "mission3"
+        },
+        "mission3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Твоя миссия – освободить этих двоих заложников. В идеале скрытно, без лишнего кровопролития.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "mission3_answer"
+                }
+            ]
+        },
+        "mission3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "С чего вдруг такое милосердие к террористам?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "mission4"
+        },
+        "mission4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В ответ на твой огонь, террористы могут открыть огонь по заложникам – двоим ключевым научным сотрудникам комплекса, чьими жизнями лучше не рисковать.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "mission5"
+        },
+        "mission5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Чертежи и прототипы возможно воспроизвести, а вот умы их разработавшие – нет.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "terrorists_answer"
+                }
+            ]
+        },
+
+
+        "terrorists_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что-то известно о террористах?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "terrorists1"
+        },
+        "terrorists1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "На переговорах они определяют себя как борцов за права клонов. Заверяют, что захватили комплекс, чтобы освободить клонов. Утверждают, что бойню в театре устроили их отколовшиеся радикалы.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists2"
+        },
+        "terrorists2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Бежавший персонал говорит, что террористы больше пытались прорваться вглубь, на нижние этажи, чем расстрелять всё живое.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists3"
+        },
+        "terrorists3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Террористы идут на контакт. В частности, с ними удалось договориться о поставке фуража.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists4"
+        },
+        "terrorists4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Налёт столь затянулся, что террористы уже съели свои запасы. Хранилища комплекса им не поддаются, а голодать в первую очередь будут заложники.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists5"
+        },
+        "terrorists5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы согласились поставлять фураж, ибо это даёт возможность подложить прослушку. Затем обнаружилось, что террорист приезжающий в лагерь оперативников за поставками тоже подкидывает прослушку. Тогда мы начали подкладывать им слабительное в фураж.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists6"
+        },
+        "terrorists6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Всё это время ведутся переговоры о освобождении заложников взамен на освобождение террористов застрявших на средних этажах. Но что-то мне подсказывает, что и эти переговоры по итогу закончятся тем, что одновремено обе стороны подло нападут друг на друга из засады.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "terrorists7"
+        },
+        "terrorists7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "И всё же, действия \"либералов\" пока сколько-то коррелируют с их словами.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "situation_answer"
+                }
+            ]
+        },
+
+
+        "situation_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Расскажи о текущей обстановке в комплексе по-подробнее.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "situation1"
+        },
+        "situation1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В комплексе всё ещё активировано аварийное запирание дверей, без ключ-карт невозможно нормально перемещаться. Ход лифта всё ещё ограничен первыми двумя этажами. Часть из террористов всё ещё взаперти на средних этажах.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "situation2"
+        },
+        "situation2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Оперативников больше. Они лучше экипированы. Скорее всего они лучше натренированы. В открытом бою у террористов нет шансов. Однако оперативники не могут пойти на штурм, ибо тогда террористы могут убить заложников.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "situation3"
+        },
+        "situation3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Получается бутерброд. В самом низу клоны, до которых пытаются добраться террористы, которых осаждают оперативники. Все друг-друга держат за хвосты и гривы. Никто не может пошевелиться.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "situation4"
+        },
+        "situation4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Чтобы разрулить эту патовую ситуацию нужна маленькая пони, что смогла бы поместится в ящике поставок. Пони столь безобидного вида, что террористы её будут рассматривать не как угрозу, а как новую заложницу. Пони, которая в одну мордочку уже раскатала театр, полный террористов. Эта пони – ты, Страйкли Клауд.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "situation4_answer"
+                }
+            ]
+        },
+        "situation4_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но я никогда раньше не выполняла стелс-миссии.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "base1_trigger"
+        },
+
+
+        "place_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что это за место?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "place1"
+        },
+        "place1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Будущий полигон для хранения и обучения бэкап-клонов спецагента. Потенциально твоих бэкап-клонов.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "place2"
+        },
+        "place2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хранилище тебе пока не доступно, но ты можешь пройти учения у Мисс Помощниц. Заодно узнаем их эффективность.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "mission_answer"
+                }
+            ]
+        },
+
+
+        "assistants_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Почему твои Мисс Помощницы выглядят как М6?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "assistants1"
+        },
+        "assistants1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Они и думают как М6.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "assistants2"
+        },
+        "assistants2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Общение с моей пони-версией, показало, что наши мысли совпадают на 92.8%. Это примерно 42 минуты до первого расхождения в рассуждениях.",
+            "speaker": "Помощница Спаркл",
+            "opposite": "Страйкли",
+            "next": "assistants3"
+        },
+        "assistants3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Твайлайт после продолжительной беседы с Помощницей Спаркл назначила её своим представителем. Мол, если нужно её мнение, то можно спросить мнение её робо-клона.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants3_answer"
+                }
+            ]
+        },
+        "assistants3_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Перефразирую свой вопрос. Зачем тебе робо-клоны М6?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "assistants4"
+        },
+        "assistants4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Премьер-Министру Спаркл спокойнее, когда есть хоть какие-то бэкапы её и её ближайных подруг, носительниц элементов гармонии.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "assistants5"
+        },
+        "assistants5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Она доверила мне разработку робо-клонов, их испытание и их хранение.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "assistants5_answer"
+                }
+            ]
+        },
+        "assistants5_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Почему робо-клоны не сделаны в виде пони?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "assistants6"
+        },
+        "assistants6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Чтобы не было этических дилемм. Чтобы мы понимали, кто мы есть. Чтобы, когда программа Феникс перешла на следующий этап, нас было проще утилизировать.",
+            "speaker": "Помощница Спаркл",
+            "opposite": "Страйкли",
+            "next": "assistants7"
+        },
+        "assistants7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну и с манипуляторами вместо копытц, куда проще работать в лаборатории с:",
+            "speaker": "Помощница Спаркл",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "phoenix_answer"
+                }
+            ]
+        },
+
+
+        "phoenix_answer":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Программа Феникс?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "phoenix1"
+        },
+        "phoenix1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Программа по созданию резервной копии пони.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix2"
+        },
+        "phoenix2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В момент, когда пони отбрасывает копыта, будет пробуждаться её клон с абсолютно индетичным телом, разумом и воспоминаниями.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix3"
+        },
+        "phoenix3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мы уже отработали выращивание пони в колбе. Мы сумели оцифровать воспоминание. Мы успешно передаём воспоминания от одного клона к другому. Мы благополучно скопировали личность реальной пони в робота и не раз. Мы отточили выращивание точной копии уже сформировавшегося организма.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix4"
+        },
+        "phoenix4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Осталось только непосредственно сделать бэкап-клонирование реальной пони.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix5"
+        },
+        "phoenix5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Всё расчитано. Всё проверено и перепроверено. Риски практически отсуствующие. Даже найдена кандидатка для дебютного бэкап-клонирования.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix6"
+        },
+        "phoenix6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Прямо сейчас я смотрю на неё.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "phoenix7"
+        },
+        "phoenix7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но сперва, миссия.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "mission1"
+        },
+
+
+        "base1_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "newPieTask",
+            "next": "base1"
+        },
+        "base1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Помощница Пай обучит тебя стелс-тактике и может выдать стелсбак.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base2_trigger"
+        },
+        "base2_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addSparkleTask",
+            "next": "base2"
+        },
+        "base2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "По твоей готовности, я проведу дотошный брифинг по стратегиям выполнения миссии.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base3_trigger"
+        },
+        "base3_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addAJTask",
+            "next": "base3"
+        },
+        "base3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Помощница Эппл обучит обращению с транквилизатором.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base4_trigger"
+        },
+        "base4_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addShyTask",
+            "next": "base4"
+        },
+        "base4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Сам транквилизатор получишь у Помощницы Шай.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base5_trigger"
+        },
+        "base5_trigger": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "addRarityTask",
+            "next": "base5"
+        },       
+        "base5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Помощница Рэрити выдаст стелс-костюм.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base6"
+        },
+        "base6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Помощница Дэш... кажется она пока лишь суету наводит. Смысле периметр охраняет, да.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "base7"
+        },
+        "base7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А я на фургоне телепортирую тебя к комплексу.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning1"
+        },
+
+
+        "cloning1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Выполнив эту миссию ты докажешь, что твой подвиг в театре не был случайностью.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning2"
+        },
+        "cloning2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Это сделает тебя идеальным кандидатом для дебюта системы Феникс.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning3"
+        },
+        "cloning3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Если бэкап-клонирование удастся – ты станешь квази-бессмертной, Эквестрия получит бэкапы талантливого спецагента, а мы не будем гадать что с этимим бэкапами делать.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning4"
+        },
+        "cloning4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Если же вдруг что-то пойдёт не так, вероятность чего предельно мала, то... Ну Эквестрия о Страйкли Клауд узнала лишь неделю назад и до этого нормально функционировала.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning5"
+        },
+        "cloning5":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но без твоей воли, мы не в праве вписывать тебя в программу Феникс.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_1"
+                },
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_2"
+                }
+            ]
+        },
+
+        "cloning5_answer_1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Моих клонов ж не пустят на опыты во имя науки?",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "cloning6"
+        },
+        "cloning6":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "В этом нет нужды.",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "next": "cloning7"
+        },
+        "cloning7":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А если бы и была, то из твоих клонов были бы хреновые подопытные, они ж в одну мордочку могуть перебить целое здание кишащее головорезами!",
+            "speaker": "Бельгетс",
+            "opposite": "Страйкли",
+            "options":
+            [
+                {
+                    "body": "answer",
+                    "next": "cloning5_answer_2"
+                }
+            ]
+        },
+
+        "cloning5_answer_2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Свою волю я выскажу после миссии.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "end1"
+        },
+
+
+        "end1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Хорошо. Ну тогда готовься к миссии. А я продолжу мониторить обстановку в комплексе.",
+            "speaker": "Страйкли",
+            "opposite": "Бельгетс",
+            "next": "end2"
+        },
+        "end2": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "bellgatesMoveToTerminal",
+            "next": "end3"
+        },
+        "end3": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode"
+        }
     }
 }

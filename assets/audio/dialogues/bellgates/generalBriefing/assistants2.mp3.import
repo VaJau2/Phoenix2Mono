@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/assistants2.mp3-02a5a17b1e3875c113c8accfa950a5b4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/bellgates/generalBriefing/assistants2.mp3"
+dest_files=[ "res://.import/assistants2.mp3-02a5a17b1e3875c113c8accfa950a5b4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

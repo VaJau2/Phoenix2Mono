@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/base2.mp3-cd02f2d2914f688cb8311af8841c5208.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/bellgates/generalBriefing/base2.mp3"
+dest_files=[ "res://.import/base2.mp3-cd02f2d2914f688cb8311af8841c5208.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
