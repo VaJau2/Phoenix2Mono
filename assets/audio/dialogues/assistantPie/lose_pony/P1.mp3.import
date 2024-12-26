@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/P1.mp3-c701f8209aec226a101fe840eed0e6a3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/lose_pony/P1.mp3"
+dest_files=[ "res://.import/P1.mp3-c701f8209aec226a101fe840eed0e6a3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

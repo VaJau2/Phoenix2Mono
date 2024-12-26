@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/briefing1.mp3-82df9b0812f92ffe484593889cf549d4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/briefing1.mp3"
+dest_files=[ "res://.import/briefing1.mp3-82df9b0812f92ffe484593889cf549d4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

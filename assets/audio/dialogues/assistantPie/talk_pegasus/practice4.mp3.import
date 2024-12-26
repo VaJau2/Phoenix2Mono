@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/practice4.mp3-c08d53b0f59970da339064761e4724b4.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/practice4.mp3"
+dest_files=[ "res://.import/practice4.mp3-c08d53b0f59970da339064761e4724b4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

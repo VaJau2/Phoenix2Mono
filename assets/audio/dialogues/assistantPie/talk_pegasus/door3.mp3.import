@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/door3.mp3-a969565aa0b4b933775dbc40459703ad.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/door3.mp3"
+dest_files=[ "res://.import/door3.mp3-a969565aa0b4b933775dbc40459703ad.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

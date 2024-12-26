@@ -1,0 +1,365 @@
+{
+    "nodes": 
+    {
+        "hello": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Привет! Хочешь расскажу как прятаться?",
+            "speaker": "Помощница Пай",
+            "timer": "0.01",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "briefing_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+
+        "briefing_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Рассказывай.",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "briefing1"
+        },
+        "briefing1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Суть любого стелса в том, чтобы считать посты с маршрутами патрулирования и суметь вклинится в тайминги когда постовой посмотрит в другую сторону, а патрульный пойдёт дальше.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "briefing2"
+        },
+        "briefing2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Встань в укромном месте. Прислушайся. Наблюдай через дверные щели. Когда патрульный пройдёт мимо, продвигайся дальше. Можешь хоть идти прямо за патрульным, только соблюдай дистанцию.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "hidingPlace_answer"
+                }
+            ]
+        },
+
+        "hidingPlace_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Каковы примеры укромных мест?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "hidingPlace1"
+        },
+        "hidingPlace1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вдоль всего стелс-полигона мебель расставлена как укромное место. Ну почти укромное. Робо-глаза объезжают точки с которых видно, что находится за мебелью.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "hidingPlace2"
+        },
+        "hidingPlace2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "На миссии в качестве укромных мест выступают офисные кабинеты и вентиляционные шахты.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "door_answer"
+                }
+            ]
+        },
+
+        "door_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "А что если двери кабинета не получится отпереть ключём или не будет ключа?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "door1"
+        },
+        "door1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну на втором этаже, замки крепче офисных дверей. Так ты модешь один мощным ударом её выбить.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "door2"
+        },
+        "door2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Но вот если нет ключа от шлюзовой двери...  Ни одному испытуемому ещё не удавалось её выбить или прожечь. Ну по крайней мере до того как учённым стало скучно за этим наблюдать.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "door3"
+        },
+        "door3": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вот эту серую дверь ты тоже не можешь выбить.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "door4"
+        },
+        "door4": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Зато можешь выбить дверь в конце стелс-полигона. Потренируйся на ней.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "moreBriefing_answer"
+                }
+            ]
+        },
+
+        "moreBriefing_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Что-то ещё?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "moreBriefing1"
+        },
+        "moreBriefing1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Тебе повезло, что террористы ходят в закрытой форме с маской. Надев такую форму, ты сможешь притвориться террористом. Правда такая маскировка будет работать только на втором этаже.  На первом этаже и улице – строго фиксированное количество постовых и увидев свободно гуляющего террориста, они сразу же заподозрят что-то неладное.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "moreBriefing2"
+        },
+        "moreBriefing2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Ну и в самом начале у тебя будет опциальная минутная фора в лице стелсбака.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "moreBriefing_answer_stealthbuck"
+                },
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+        "moreBriefing_answer_stealthbuck": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Напомни, что такое стелсбак?",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "moreBriefing3"
+        },
+        "moreBriefing3": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Штука-дрюка делающая тебя невидимой на короткое время. Штука хрупкая, ломается при выстрелах или переодеваниях.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+
+        "practice_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Давай перейдём к практике.",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "practice1"
+        },
+        "practice1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Цель испытания – незаметно прокрастся мимо робо-глаз до самой дальней комнаты и забеть награду из сумки.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "practice2"
+        },
+        "practice2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "По пути, ты можешь отстреливать робо-глаза из транквилизатора Помощницы Шай. Не волнуйся, им не будет больно. При перезапуске испытания они восстановливаются.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "practice3"
+        },
+        "practice3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Вход в дальнюю комнату закрывается, когда робо-глаза тебя обнаруживают. Формально испытание будет успешно проваленым.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "practice4"
+        },
+        "practice4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Неформально, ты можешь выбить запертую дверь. Так-то умение обохдить двери не менее полезно, чем умение прятатся.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "button"
+        },
+
+
+        "stealthbuck_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Мне сказали, что у тебя можно получить стелсбак.",
+            "speaker": "Страйкли",
+            "opposite": "Помощница Пай",
+            "next": "stealthbuck1"
+        },
+        "stealthbuck1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Да. Он лежит за той дверью, но его охраняют робо-глаза.",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "stealthbuck2"
+        },
+        "stealthbuck2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Не попадись им на их робо-глаза и стелс-бак будет твой!",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "button"
+        },
+
+        "button": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Нажми на красную кнопку рядом с дверью, чтобы начать испытание! ",
+            "timer": "0.01",
+            "speaker": "Помощница Пай",
+            "opposite": "Страйкли",
+            "next": "end1"
+        },
+
+
+        "end1": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "end2"
+        },
+        "end2": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "PieStealthTrigger"
+        }
+    },
+
+    "speakers": 
+    {
+        "Страйкли": 
+        {
+            "color": 
+            {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Помощница Пай": 
+        {
+            "color": 
+            {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hello.mp3-4c70fbb57ecedc2d4a7721f32f211589.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/hello.mp3"
+dest_files=[ "res://.import/hello.mp3-4c70fbb57ecedc2d4a7721f32f211589.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

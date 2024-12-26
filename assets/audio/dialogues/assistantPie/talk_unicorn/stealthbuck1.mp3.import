@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stealthbuck1.mp3-eda3408f30d982c7aef8446334cf2152.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/stealthbuck1.mp3"
+dest_files=[ "res://.import/stealthbuck1.mp3-eda3408f30d982c7aef8446334cf2152.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

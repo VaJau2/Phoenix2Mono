@@ -1,4 +1,4 @@
-[gd_scene load_steps=256 format=2]
+[gd_scene load_steps=258 format=2]
 
 [ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
@@ -128,6 +128,8 @@
 [ext_resource path="res://assets/scripts/triggers/SetVisibleTrigger.cs" type="Script" id=126]
 [ext_resource path="res://assets/materials/props/light/lightglass.material" type="Material" id=127]
 [ext_resource path="res://assets/scripts/triggers/TriggersConditionTrigger.cs" type="Script" id=128]
+[ext_resource path="res://assets/scripts/triggers/RaceTrigger.cs" type="Script" id=129]
+[ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=130]
 [ext_resource path="res://assets/scripts/triggers/MovePlayerTrigger.cs" type="Script" id=137]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=138]
 [ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=139]
@@ -2490,6 +2492,42 @@ ammoCount = {
 
 [node name="triggers" type="Node" parent="."]
 
+[node name="raceTrigger" type="Node" parent="triggers"]
+script = ExtResource( 129 )
+earthponyTriggerPath = NodePath("earthponyTriggers")
+pegasusTriggerPath = NodePath("pegasusTriggers")
+unicornTriggerPath = NodePath("unicornTriggers")
+
+[node name="earthponyTriggers" type="Node" parent="triggers/raceTrigger"]
+script = ExtResource( 130 )
+otherTriggerPaths = [ NodePath("Pie_talk_earhpony") ]
+
+[node name="Pie_talk_earhpony" type="Node" parent="triggers/raceTrigger/earthponyTriggers"]
+script = ExtResource( 21 )
+onlyChangeCode = true
+npcPath = "/root/Main/Scene/npc/assistantPie"
+otherDialogueCode = "talk_earthpony"
+
+[node name="pegasusTriggers" type="Node" parent="triggers/raceTrigger"]
+script = ExtResource( 130 )
+otherTriggerPaths = [ NodePath("Pie_talk_pegasus") ]
+
+[node name="Pie_talk_pegasus" type="Node" parent="triggers/raceTrigger/pegasusTriggers"]
+script = ExtResource( 21 )
+onlyChangeCode = true
+npcPath = "/root/Main/Scene/npc/assistantPie"
+otherDialogueCode = "talk_pegasus"
+
+[node name="unicornTriggers" type="Node" parent="triggers/raceTrigger"]
+script = ExtResource( 130 )
+otherTriggerPaths = [ NodePath("Pie_talk_unicorn") ]
+
+[node name="Pie_talk_unicorn" type="Node" parent="triggers/raceTrigger/unicornTriggers"]
+script = ExtResource( 21 )
+onlyChangeCode = true
+npcPath = "/root/Main/Scene/npc/assistantPie"
+otherDialogueCode = "talk_unicorn"
+
 [node name="deleteItem" type="Node" parent="triggers"]
 script = ExtResource( 18 )
 ItemToCheck = "firewood"
@@ -2583,8 +2621,6 @@ bagDoorPath = NodePath("../../rooms/stels-house/props/doors/bag-door")
 bagPath = NodePath("../../rooms/stels-house/props/bag")
 itemInBag = "stealthBoy"
 assistantPiePath = NodePath("../../npc/assistantPie")
-winDialogue = "win"
-loseDialogue = "lose"
 changeTaskPath = NodePath("../donePieTask")
 
 [node name="audi" type="AudioStreamPlayer3D" parent="triggers/PieStealthTrigger"]

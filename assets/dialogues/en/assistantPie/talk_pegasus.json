@@ -1,0 +1,365 @@
+{
+    "nodes": 
+    {
+        "hello": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Hi! Want to know how to sneaking?",
+            "speaker": "Assistant Pie",
+            "timer": "0.01",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "briefing_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+
+        "briefing_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Tell me about it.",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "briefing1"
+        },
+        "briefing1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The point of any stealth is to read posts with patrol routes and to be able to get into timings when the post looks the other way and the patrolpony goes on.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "briefing2"
+        },
+        "briefing2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Stand in a hiding place. Listen. Watch through the door slits. When the patrolpony passes, move on. You can walk right behind the patrolpony, just keep distance.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "hidingPlace_answer"
+                }
+            ]
+        },
+
+        "hidingPlace_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What are some examples of hiding places?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "hidingPlace1"
+        },
+        "hidingPlace1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "All along the stealth room furniture is set up as a hiding place. Well, almost a hiding place. Robo-eyes bypass points from which they can see what's behind the furniture.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "hidingPlace2"
+        },
+        "hidingPlace2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "On a mission, office rooms and ventilation shafts serve as hiding places.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "door_answer"
+                }
+            ]
+        },
+
+        "door_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "What if the doors can't be unlocked with a key or there is no key?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "door1"
+        },
+        "door1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Well, on the second floor, the locks are stronger than an office door. If you fly fast enough, you can kick it down.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "door2"
+        },
+        "door2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But if there's no key to the vault door...  No clone has ever managed to kick it down or burn it out. At least not before the scientists got bored with it.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "door3"
+        },
+        "door3": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You can't kick down that gray door either.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "door4"
+        },
+        "door4": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "But you can kick down the door at the end of the stealth room. Practice on it.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "moreBriefing_answer"
+                }
+            ]
+        },
+
+        "moreBriefing_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Anything else?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "moreBriefing1"
+        },
+        "moreBriefing1": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "You are lucky that terrorists wear a closed uniform with a mask. By wearing this uniform, you can pretend to be a terrorist. However, this disguise will only work on the second floor. On the first floor and on the street there is a strictly fixed number of guard, and if they see a terrorist walking freely, they will immediately suspect something wrong.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "moreBriefing2"
+        },
+        "moreBriefing2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "And in the beginning, you'll have an optional one-minute head start in the form of a StealthBuck.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "moreBriefing_answer_stealthbuck"
+                },
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+        "moreBriefing_answer_stealthbuck": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Remind me again what a StealthBuck is?",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "moreBriefing3"
+        },
+        "moreBriefing3": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The thingy-doody that makes you invisible for a short period of time. It's fragile, breaks when you are shot or change clothes.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "options": 
+            [
+                {
+                    "body": "answer",
+                    "next": "practice_answer"
+                },
+                {
+                    "body": "answer",
+                    "next": "stealthbuck_answer"
+                }
+            ]
+        },
+
+
+        "practice_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Let's get to the practice.",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "practice1"
+        },
+        "practice1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The goal of the challenge is to sneak past the robo-eyes to the farthest room and score a reward from the bag.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "practice2"
+        },
+        "practice2":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Along the way, you can shoot off the robo-eyes with tranquilizer from Assistant Shy. Don't worry, they won't get hurt. When you restart the challenge, they are restored.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "practice3"
+        },
+        "practice3":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "The entrance to the far room closes when robo-eyes detect you. Formally, the challenge will be successfully failure.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "practice4"
+        },
+        "practice4":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Informally, you can kick down a locked door. The ability to get around doors is just as useful as the ability to sneak.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "button"
+        },
+
+
+        "stealthbuck_answer": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "I was told you could get a StealthBuck from you.",
+            "speaker": "Strikely",
+            "opposite": "Assistant Pie",
+            "next": "stealthbuck1"
+        },
+        "stealthbuck1":
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Yes. It's lying behind that door, but it's being guarded by robo-eyes.",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "stealthbuck2"
+        },
+        "stealthbuck2": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Don't get caught by their robo-eyes, and this StealthBuck will be yours!",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "button"
+        },
+
+        "button": 
+        {
+            "kind": "dialogue",
+            "root_node": false,
+            "body": "Click on the red button next to the door to start the test!",
+            "timer": "0.01",
+            "speaker": "Assistant Pie",
+            "opposite": "Strikely",
+            "next": "end1"
+        },
+
+
+        "end1": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ChangeDialogueCode",
+            "next": "end2"
+        },
+        "end2": 
+        {
+            "kind": "narration",
+            "root_node": false,
+            "body": "ActivateTrigger",
+            "set": "PieStealthTrigger"
+        }
+    },
+
+    "speakers": 
+    {
+        "Strikely": 
+        {
+            "color": 
+            {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        },
+        "Assistant Pie": 
+        {
+            "color": 
+            {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            }
+        }
+    }
+}

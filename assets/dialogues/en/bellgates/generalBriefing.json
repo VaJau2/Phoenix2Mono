@@ -131,7 +131,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "The last thing tested before the assault is stealth buck, a device that will allow you to stealthily complete your mission even if you're not at all good at stealth.",
+            "body": "The last thing tested before the assault is StealthBuck, a device that will allow you to stealthily complete your mission even if you're not at all good at stealth.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "complex8"
@@ -239,7 +239,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Can you tell me more about the stealth buck?",
+            "body": "Can you tell me more about the StealthBuck?",
             "speaker": "Strikely",
             "opposite": "Bellgates",
             "next": "stealthbuck1"
@@ -445,7 +445,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Tell more about the current situation in the compound.",
+            "body": "Tell more about the current situation in the facility.",
             "speaker": "Strikely",
             "opposite": "Bellgates",
             "next": "situation1"
@@ -738,7 +738,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "Assistant Pie will teach you stealth tactics and can give a stealth buck.",
+            "body": "Assistant Pie will teach you stealth tactics and can give you a StealthBuck.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "base2_trigger"
@@ -891,7 +891,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "You wouldn't let my clones be experimented on in the name of science, would you?",
+            "body": "My clones won't be sacrificed to science, will they?",
             "speaker": "Strikely",
             "opposite": "Bellgates",
             "next": "cloning6"

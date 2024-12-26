@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/briefing2.mp3-bafe09193585e66c11c85f9b58fa6650.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/briefing2.mp3"
+dest_files=[ "res://.import/briefing2.mp3-bafe09193585e66c11c85f9b58fa6650.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/briefing2.mp3-cabbf3682504354b38f9ef2122f6dac3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/briefing2.mp3"
+dest_files=[ "res://.import/briefing2.mp3-cabbf3682504354b38f9ef2122f6dac3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

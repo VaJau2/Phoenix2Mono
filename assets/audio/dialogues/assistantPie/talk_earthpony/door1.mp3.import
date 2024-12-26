@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/door1.mp3-85f155b24dd56e6b1606db614ebbfa66.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/door1.mp3"
+dest_files=[ "res://.import/door1.mp3-85f155b24dd56e6b1606db614ebbfa66.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

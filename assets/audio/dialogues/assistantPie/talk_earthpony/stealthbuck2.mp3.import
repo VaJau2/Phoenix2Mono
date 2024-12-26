@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stealthbuck2.mp3-11e7543c6c293e47be0745e3bfafa149.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/stealthbuck2.mp3"
+dest_files=[ "res://.import/stealthbuck2.mp3-11e7543c6c293e47be0745e3bfafa149.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

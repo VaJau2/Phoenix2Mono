@@ -142,12 +142,12 @@
         "box8":
         {
             "speakerCode": "assistantSparkle",
-            "text": "The stealth buck got enough charge."
+            "text": "The StealthBuck got enough charge."
         },
         "box9":
         {
             "speakerCode": "assistantSparkle",
-            "text": "Just a reminder that stealth buck will be issued to you upon arrival.",
+            "text": "Just a reminder that StealthBuck will be issued to you upon arrival.",
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -181,7 +181,7 @@
         "box13":
         {
             "speakerCode": "assistantSparkle",
-            "text": "When you will arrive into the facility inside the crate, the stealth buck will still have a charge."
+            "text": "When you will arrive into the facility inside the crate, the StealthBuck will still have a charge."
         },
         "box14":
         {
@@ -220,7 +220,7 @@
         "run1":
         {
             "speakerCode": "strikely",
-            "text": "What if, with activated stealth buck, I just run into the facility?"
+            "text": "What if, with activated StealthBuck, I just run into the facility?"
         },
         "run2":
         {
@@ -239,7 +239,7 @@
         "run4":
         {
             "speakerCode": "assistantSparkle",
-            "text": "With activated stealth buck, it is possible to stealthily climb over it and get past the guards.",
+            "text": "With activated StealthBuck, it is possible to stealthily climb over it and get past the guards.",
 
             "class": "ActivateCinematic",
             "key": "Briefing",
@@ -270,7 +270,7 @@
         "run8":
         {
             "speakerCode": "assistantSparkle",
-            "text": "You'll have a meaningful, but still finite charge of stealth buck."
+            "text": "You'll have a meaningful, but still finite charge of StealthBuck."
         },
         "run9":
         {

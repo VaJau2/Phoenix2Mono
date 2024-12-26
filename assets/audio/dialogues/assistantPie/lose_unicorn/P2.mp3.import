@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/P2.mp3-d70a434f23a4e40b8c75db1a8dec814e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/lose_unicorn/P2.mp3"
+dest_files=[ "res://.import/P2.mp3-d70a434f23a4e40b8c75db1a8dec814e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

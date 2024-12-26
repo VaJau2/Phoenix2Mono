@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/practice2.mp3-a1becc8138814cc2fbcc7365e900ba91.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/practice2.mp3"
+dest_files=[ "res://.import/practice2.mp3-a1becc8138814cc2fbcc7365e900ba91.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hidingPlace1.mp3-1090e37804e982590c9c228fd2bd1a41.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/hidingPlace1.mp3"
+dest_files=[ "res://.import/hidingPlace1.mp3-1090e37804e982590c9c228fd2bd1a41.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

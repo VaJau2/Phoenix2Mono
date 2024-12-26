@@ -3,6 +3,10 @@ using Godot.Collections;
 
 public class PinkieStealthTrigger : TrainingTriggerWithButton
 {
+    private const string WIN_DIALOGUE = "win";
+    private const string LOSE_PONY_DIALOGUE = "lose_pony";
+    private const string LOSE_UNICORN_DIALOGUE = "lose_unicorn";
+    
     [Export] private Array<NodePath> roboEyesPaths;
     [Export] private Array<NodePath> patrolPointParentsPaths;
     [Export] public AudioStream beepSound;
@@ -11,8 +15,6 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private NodePath bagPath;
     [Export] private string itemInBag;
     [Export] private NodePath assistantPiePath;
-    [Export] private string winDialogue;
-    [Export] private string loseDialogue;
     [Export] private NodePath changeTaskPath;
     
     private Array<Spatial> patrolPointParents = [];
@@ -78,9 +80,13 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         audi.Stream = beepSound;
         audi.Play();
+        
+        var loseDialogue = Global.Get().playerRace == Race.Unicorn 
+            ? LOSE_UNICORN_DIALOGUE 
+            : LOSE_PONY_DIALOGUE;
+        
         assistantPie.dialogueCode = loseDialogue;
         bagDoor.myKey = "closed";
-        
         checkButton = true;
     }
 
@@ -94,7 +100,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         audi.Stream = beepSound;
         audi.Play();
-        assistantPie.dialogueCode = winDialogue;
+        assistantPie.dialogueCode = WIN_DIALOGUE;
         
         changeTaskTrigger?.SetActive(true);
         trainingIsDone = true;
