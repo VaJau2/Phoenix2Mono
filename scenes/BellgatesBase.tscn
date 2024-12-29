@@ -3218,8 +3218,8 @@ radioListPath = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/
 
 [connection signal="body_entered" from="terrain/props/houses/armor-house/props/Mirror/Area" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_entered"]
 [connection signal="body_exited" from="terrain/props/houses/armor-house/props/Mirror/Area" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_exited"]
-[connection signal="Die" from="terrain/props/shootingRange/targets/target" to="triggers/DashTrainingTrigger" method="_on_target_die"]
-[connection signal="Die" from="terrain/props/shootingRange/targets/target2" to="triggers/DashTrainingTrigger" method="_on_target_die"]
-[connection signal="Die" from="terrain/props/shootingRange/targets/target3" to="triggers/DashTrainingTrigger" method="_on_target_die"]
-[connection signal="Die" from="terrain/props/shootingRange/targets/target4" to="triggers/DashTrainingTrigger" method="_on_target_die"]
+[connection signal="DieEvent" from="terrain/props/shootingRange/targets/target" to="triggers/DashTrainingTrigger" method="_on_target_die"]
+[connection signal="DieEvent" from="terrain/props/shootingRange/targets/target2" to="triggers/DashTrainingTrigger" method="_on_target_die"]
+[connection signal="DieEvent" from="terrain/props/shootingRange/targets/target3" to="triggers/DashTrainingTrigger" method="_on_target_die"]
+[connection signal="DieEvent" from="terrain/props/shootingRange/targets/target4" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="body_entered" from="triggers/sparkleTalk" to="triggers/sparkleTalk" method="_on_body_entered"]
