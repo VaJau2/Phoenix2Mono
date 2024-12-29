@@ -2290,18 +2290,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75049, -2.95937, 14.9262 )
 [node name="doors" type="Spatial" parent="rooms/mansion"]
 transform = Transform( 1.16824, 0, 0, 0, 1.16824, 0, 0, 0, 1.16824, 0.0936565, -0.0413895, 0.101593 )
 
-[node name="door2" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
+[node name="door2" parent="rooms/mansion/doors" instance=ExtResource( 41 )]
 transform = Transform( -0.7, 0, -1.31064e-07, 0, 0.986, 0, 1.05697e-07, 0, -0.868, 16.419, -2.66595, -5.88505 )
 myKey = "closed"
 
-[node name="door3" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
+[node name="door3" parent="rooms/mansion/doors" instance=ExtResource( 41 )]
 transform = Transform( -0.7, 0, -1.31064e-07, 0, 0.986, 0, 1.05697e-07, 0, -0.868, 16.419, 4.86504, -5.88505 )
 myKey = "closed"
 
-[node name="door4" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
+[node name="door4" parent="rooms/mansion/doors" instance=ExtResource( 41 )]
 transform = Transform( 0.7, 0, 0, 0, 1.011, 0, 2.84217e-14, 0, 0.978, 0.483356, 4.86504, -2.74091 )
 
-[node name="door5" parent="rooms/mansion/doors" groups=["savable"] instance=ExtResource( 41 )]
+[node name="door5" parent="rooms/mansion/doors" instance=ExtResource( 41 )]
 transform = Transform( 0.7, 0, 0, 0, 1.011, 0, 0, 0, 0.978, 0.483356, 4.86504, 12.9685 )
 
 [node name="shells" type="Spatial" parent="." groups=["savable"]]

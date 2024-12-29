@@ -24,7 +24,7 @@ public abstract class Character : KinematicBody, ISavable
     [Signal]
     public delegate void TakenDamage();
     [Signal]
-    public delegate void Die();
+    public delegate void DieEvent();
     
     [Signal]
     public delegate void ChangeMayMove();
@@ -63,7 +63,7 @@ public abstract class Character : KinematicBody, ISavable
         DecreaseHealth(damage);
         if (Health <= 0)
         {
-            EmitSignal(nameof(Die));
+            EmitSignal(nameof(DieEvent));
         }
     }
     

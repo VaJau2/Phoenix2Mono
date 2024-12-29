@@ -380,9 +380,12 @@ public class PlayerBody : Spatial
 
         var deadSkeleton = GetNode<Skeleton>("Armature/Skeleton");
         
-        var mesh = deadSkeleton.GetNode<MeshInstance>("Body_third");
-        mesh.CastShadow = GeometryInstance.ShadowCastingSetting.On;
-        mesh.SetScript(null);
+        var firstBody = deadSkeleton.GetNode<MeshInstance>("Body");
+        firstBody.Layers = 0;
+        
+        var thirdBody = deadSkeleton.GetNode<MeshInstance>("Body_third");
+        thirdBody.Layers = 1;
+        thirdBody.SetScript(null);
     }
 
     public override void _Ready()

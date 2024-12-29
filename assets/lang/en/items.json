@@ -428,7 +428,7 @@
         "icon": "coat",
         "price": "550",
         "damageBlock": "0.5",
-        "speedDecrease": "3",
+        "speedDecrease": "1",
         "makeShy": "true",
         "sound": "coat"
     },
@@ -470,7 +470,7 @@
         "icon": "powerArmor",
         "onlyForEarthponies": "true",
         "checkHasItem": "nucBattery",
-        "speedDecrease": "5",
+        "speedDecrease": "4",
         "price": "1500",
         "damageBlock": "0.9",
         "ignoreRadiation": "true",

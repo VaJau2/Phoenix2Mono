@@ -11,8 +11,7 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
     private MeshInstance clothMesh;
     private CollisionShape clothShape;
     
-    private static string currentCloth
-        => Global.Get().player.Inventory.cloth;
+    private static string currentCloth => Global.Get().player?.Inventory.cloth;
 
     public bool MayInteract => hasCloth && (string.IsNullOrEmpty(currentCloth) || currentCloth == "empty");
     public string InteractionHintCode => "putOn";
@@ -33,6 +32,8 @@ public class DummyCloth : StaticBody, IInteractable, ISavable
 
     public void Interact(PlayerCamera interactor)
     {
+        if (!MayInteract) return;
+        
         var inventory = global.player.Inventory;
         var wearButton = inventory.GetWearButton(ItemType.armor);
         

@@ -191,7 +191,7 @@ public class LevelsLoader : Node
 		foreach (string objPath in deletedObjects)
 		{
 			Global.AddDeletedObjectPath(objPath);
-			var foundedObject = scene.GetNode(objPath);
+			var foundedObject = scene.GetNodeOrNull(objPath);
 			foundedObject?.Free();
 		}
 

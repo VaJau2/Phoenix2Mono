@@ -49,7 +49,11 @@ public class StateMachine: Node, ISavable
         var dependencies = new NpcStateDependencies(npc);
         currentState = DependencyInjection.CreateClass<AbstractNpcState>(stateType, dependencies);
         currentState.Enable(npc);
-        AddChild(currentState);
+
+        if (currentState.GetParent() != this)
+        {
+            AddChild(currentState);
+        }
     }
 
     public Dictionary GetSaveData()

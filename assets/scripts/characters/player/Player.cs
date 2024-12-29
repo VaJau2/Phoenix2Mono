@@ -293,10 +293,7 @@ public class Player : Character
         
         if (Health <= 0 && !isDead)
         {
-            isDead = true;
-            Weapons.ClearWeapon();
-            Body.AnimateDeath(damager);
-            DeathManager.OnPlayerDeath();
+            Die(damager);
         }
     }
 
@@ -502,6 +499,14 @@ public class Player : Character
             bodyCollider.Scale = bodyScale;
             sphereCollider.Scale = sphereScale;
         }
+    }
+    
+    private void Die(Character damager)
+    {
+        isDead = true;
+        Weapons.ClearWeapon();
+        Body.AnimateDeath(damager);
+        DeathManager.OnPlayerDeath();
     }
 
     private float GetTempShake(float delta)

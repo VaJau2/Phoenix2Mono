@@ -14,7 +14,7 @@ public class PegasusSmash : Area
     public void _on_smasharea_body_entered(Node body)
     {
         if (body is Player) return;
-        if (!player.MaySmash || player.GetSpeed() <= 6) return;
+        if (!player.MaySmash || player.GetSpeed() <= 3) return;
 
         var tempDamage = (int)player.GetSpeed() * 3;
 
@@ -27,7 +27,7 @@ public class PegasusSmash : Area
                 victim.TakeDamage(player, tempDamage);
                 break;
             default:
-                player.TakeDamage(player, tempDamage / 6);
+                player.TakeDamage(player, tempDamage / 5);
                 player.wingsAudi.Stop();
                 player.IsFlying = false;
                 break;

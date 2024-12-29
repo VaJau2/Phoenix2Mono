@@ -34,9 +34,8 @@ public class PlayerHead : MeshInstance
 
     public void PermanentlyCloseEyes()
     {
-        var closedEyesMateralPath = "res://assets/materials/player/player_body_closed_eyes.material";
-        var material = GD.Load<SpatialMaterial>(closedEyesMateralPath);
-        SetSurfaceMaterial(0, material);
+        var closedEyesTexturePath = "res://assets/textures/characters/player/emotions/player_body_closed_eyes.png";
+        bodyMaterial.DetailAlbedo = GD.Load<Texture>(closedEyesTexturePath);;
     }
 
     public void CloseEyes()

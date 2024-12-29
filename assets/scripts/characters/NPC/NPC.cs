@@ -237,7 +237,7 @@ public class NPC : Character, IInteractable, IChest
         if (MovingController is not NavigationMovingController navigation) return;
         switch (body)
         {
-            case global::Player:
+            case Player { MayMove: true }:
                 navigation.stopAreaEntered = true;
                 break;
             case FurnDoor door:

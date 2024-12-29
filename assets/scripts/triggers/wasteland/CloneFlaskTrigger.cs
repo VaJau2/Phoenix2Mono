@@ -65,7 +65,8 @@ public class CloneFlaskTrigger : TriggerBase
                 player.SetMayMove(false);
                 player.Sit(false);
                 player.Camera.eyesClosed = true;
-               
+                player.Inventory.Clear();
+                    
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
                 player.GlobalTransform = Global.SetNewOrigin
                 (

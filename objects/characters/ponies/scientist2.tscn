@@ -260,10 +260,7 @@ surfaces/0 = {
 
 [node name="scientist2" instance=ExtResource( 1 )]
 transform = Transform( 0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0 )
-relation = 1
-
-[node name="Skeleton" parent="Armature" index="0"]
-bones/2/bound_children = [ NodePath("BoneAttachmentNeck") ]
+relation = 2
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27627e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612736, -0.190425 )
@@ -291,9 +288,9 @@ joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00783027, 0.00691299, 0.8
 body_offset = Transform( 0.994481, -0.103757, -0.0151282, -0.00427696, 0.104019, -0.994567, 0.104767, 0.989151, 0.103001, 0.00618351, 0.87062, -0.097894 )
 
 [node name="Physical Bone leg_1_r" parent="Armature/Skeleton" index="5"]
-transform = Transform( 0.996064, 0.0885971, -1.87883e-07, -0.0883894, 0.993732, 0.0684587, 0.00606502, -0.0681892, 0.997657, 0.287084, 1.79373, -0.756681 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652358, -0.00733366, 0.451343 )
-body_offset = Transform( 0.992586, 0.0833252, 0.0884594, 0.0833253, 0.0632026, -0.99452, -0.0884594, 0.994518, 0.0557914, -0.039962, 0.449279, -0.0178299 )
+transform = Transform( 0.996064, 0.0885971, -1.87883e-07, -0.0883894, 0.993732, 0.0684587, 0.00606502, -0.0681892, 0.997657, 0.287084, 1.79373, -0.75668 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000652329, -0.00733354, 0.451343 )
+body_offset = Transform( 0.992586, 0.0833252, 0.0884594, 0.0833253, 0.0632026, -0.99452, -0.0884594, 0.994518, 0.0557914, -0.039962, 0.449279, -0.01783 )
 
 [node name="Physical Bone leg_2_r" parent="Armature/Skeleton" index="6"]
 transform = Transform( 0.993608, 0.112883, 1.02223e-06, -0.111816, 0.984229, -0.137092, -0.0154752, 0.136217, 0.990552, 0.343711, 1.78491, -1.82309 )
@@ -312,7 +309,7 @@ body_offset = Transform( 0.948202, -0.299618, -0.10557, -0.299395, -0.731759, -0
 
 [node name="Physical Bone b_leg_1_r" parent="Armature/Skeleton" index="9"]
 transform = Transform( 0.989945, 0.141449, 6.25348e-05, -0.140915, 0.986245, -0.0863518, -0.0122752, 0.0854728, 0.99627, 0.279958, 0.494002, -0.985855 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00784459, 0.0548373, 0.575102 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0078446, 0.0548373, 0.575102 )
 body_offset = Transform( 0.981044, 0.132604, 0.141313, 0.132729, 0.071519, -0.988574, -0.141195, 0.988581, 0.0525624, -0.0808451, 0.56565, -0.0855474 )
 
 [node name="Physical Bone b_leg_2_r" parent="Armature/Skeleton" index="10"]

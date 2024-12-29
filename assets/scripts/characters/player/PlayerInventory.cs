@@ -3,6 +3,7 @@ using Godot;
 using Godot.Collections;
 
 using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 public class PlayerInventory
 {
@@ -50,6 +51,36 @@ public class PlayerInventory
     public void RemoveItem(string itemCode)
     {
         menu.RemoveItemIfExists(itemCode);
+    }
+
+    public void Clear()
+    {
+        var weaponButton = menu.GetNode<ItemIcon>("helper/back/wearBack/weapon");
+        var clothButton = menu.GetNode<ItemIcon>("helper/back/wearBack/armor");
+        var artifactButton = menu.GetNode<ItemIcon>("helper/back/wearBack/artifact");
+
+        if (!string.IsNullOrEmpty(weaponButton.myItemCode))
+        {
+            weaponButton.ClearItem();
+        }
+
+        if (!string.IsNullOrEmpty(clothButton.myItemCode) && clothButton.myItemCode != "empty")
+        {
+            clothButton.ClearItem();
+        }
+        
+        if (!string.IsNullOrEmpty(clothButton.myItemCode))
+        {
+            artifactButton.ClearItem();
+        }
+        
+        foreach (var button in menu.mode.itemButtons)
+        {
+            if (!string.IsNullOrEmpty(button.myItemCode))
+            {
+                menu.mode.RemoveItemFromButton(button);
+            }
+        }
     }
     
     public void SetAmmoButton(string ammoType, ItemIcon button)

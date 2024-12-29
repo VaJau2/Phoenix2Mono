@@ -5,7 +5,7 @@ using Godot.Collections;
 public class Player_Pegasus : Player
 {
     const float FLYING_FAST_SMASH_COOLDOWN = 0.5f;
-    const float FLY_SPEED = 2.5f;
+    const float FLY_SPEED = 4f;
     
     public bool IsFlyingFast;
     public bool MaySmash;

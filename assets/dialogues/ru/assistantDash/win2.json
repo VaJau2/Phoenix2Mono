@@ -73,7 +73,7 @@
               {
                 "key": "name",
                 "op": "set",
-                "value": "doneRDTask"
+                "value": "doneAJTask"
               }
             ],
             "next": "D4.3"
