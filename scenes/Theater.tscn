@@ -1821,7 +1821,7 @@ StartHealth = 120
 weaponCode = "shotgun20"
 relation = 1
 itemCodes = [ "buck" ]
-triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../../deadEnemiesCount", "DieEvent", "SetActive", [ true ] ] ]
 
 [node name="spawner2" type="Node" parent="triggers/spawners" groups=["savable"]]
 script = ExtResource( 57 )
@@ -1835,7 +1835,7 @@ itemCodes = [ "dash" ]
 ammoCount = {
 "ammo20": 10
 }
-triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../../deadEnemiesCount", "DieEvent", "SetActive", [ true ] ] ]
 
 [node name="spawner3" type="Node" parent="triggers/spawners" groups=["savable"]]
 script = ExtResource( 57 )
@@ -1849,7 +1849,7 @@ relation = 1
 ammoCount = {
 "ammo12": 10
 }
-triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../../deadEnemiesCount", "DieEvent", "SetActive", [ true ] ] ]
 
 [node name="spawner4" type="Node" parent="triggers/spawners" groups=["savable"]]
 script = ExtResource( 57 )
@@ -1862,7 +1862,7 @@ StartHealth = 120
 weaponCode = "shotgun12"
 relation = 1
 itemCodes = [ "healPotion" ]
-triggerConnections = [ [ "../../deadEnemiesCount", "Die", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../../deadEnemiesCount", "DieEvent", "SetActive", [ true ] ] ]
 
 [node name="position1" type="Spatial" parent="triggers/spawners"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.44835, 6.3712, -4.82685 )
@@ -2029,7 +2029,7 @@ StartHealth = 120
 weaponCode = "revolver32"
 relation = 2
 itemCodes = [ "manaPotion" ]
-triggerConnections = [ [ "../duskThanksKill", "Die", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ], [ "../security1DialogueClear", "Die", "SetActive", [ true ] ], [ "../securityMareDialogueClear", "Die", "SetActive", [ true ] ] ]
+triggerConnections = [ [ "../duskThanksKill", "DieEvent", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ], [ "../security1DialogueClear", "DieEvent", "SetActive", [ true ] ], [ "../securityMareDialogueClear", "DieEvent", "SetActive", [ true ] ] ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/spawnerRedPunch"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763, 1.94469, -9.8311 )

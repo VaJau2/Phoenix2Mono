@@ -1014,7 +1014,7 @@ process_material = SubResource( 55 )
 draw_pass_1 = SubResource( 56 )
 script = SubResource( 57 )
 
-[connection signal="Die" from="npc/agent" to="triggers/npcDie" method="_on_activate_trigger"]
+[connection signal="DieEvent" from="npc/agent" to="triggers/npcDie" method="_on_activate_trigger"]
 [connection signal="body_entered" from="triggers/hint1" to="triggers/hint1" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/hint2" to="triggers/hint2" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/hint3" to="triggers/hint3" method="_on_body_entered"]
