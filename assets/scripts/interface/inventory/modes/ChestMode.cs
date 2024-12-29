@@ -279,7 +279,7 @@ public class ChestMode: InventoryMode
         //перетащить из сундука
         if (CheckDragIn(itemButtons, "inventory")) return;
 
-        if (tempItemData.Contains("questItem"))
+        if (tempItemData != null && tempItemData.Contains("questItem"))
         {
             inventory.MessageCantDrop(tempItemData["name"].ToString());
             return;
