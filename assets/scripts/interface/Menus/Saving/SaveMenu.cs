@@ -65,7 +65,11 @@ public class SaveMenu : Control
 
     public override void _Process(float delta)
     {
-        if (!MenuManager.SomeMenuOpen && Input.IsActionJustPressed("ui_quicksave"))
+        if (Global.Get().paused) return;
+        if (Global.Get().player == null) return;
+        if (Global.Get().player.Health <= 0) return;
+        
+        if (Input.IsActionJustPressed("ui_quicksave"))
         {
             SaveGame("quicksave", GetTree());
             CreateTableLine("quicksave");

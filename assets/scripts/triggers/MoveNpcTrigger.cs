@@ -205,7 +205,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
             }
         }
         
-        step = Convert.ToInt16(data["step"]);
+        step = Convert.ToInt32(data["step"]);
         if (step > 0)
         {
             _on_activate_trigger();

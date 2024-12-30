@@ -79,7 +79,7 @@ public class LevelsLoader : Node
 		menuParent.MoveChild(currentMenu, 0);
 	}
 
-	private async void UpdateScene()
+	private void UpdateScene()
 	{
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
@@ -110,7 +110,6 @@ public class LevelsLoader : Node
 		global.player = null;
 		currentScene.QueueFree();
 		currentScene = null;
-		await ToSignal(GetTree(), "idle_frame");
 	}
 
 	private void UpdateMenu()
