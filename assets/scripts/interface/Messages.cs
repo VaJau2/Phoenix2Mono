@@ -170,6 +170,7 @@ public class Messages : VBoxContainer, ISavable
 
     public void LoadData(Dictionary data)
     {
+        if (!data.Contains("tasksCount")) return;
         var tasksCount = Convert.ToInt32(data["tasksCount"]);
         currentTaskLinks.Clear();
         
