@@ -155,6 +155,7 @@ public class PlayerCamera : Camera
     {
         if (closedTimer > 0) return;
         if (!mayUseRay) return;
+        if (!Player.MayMove) return;
 
         tempObject = (Node)tempRay.GetCollider();
 
