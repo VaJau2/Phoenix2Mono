@@ -27,6 +27,12 @@
 
     public override void _Process(float delta)
     {
+        if (tempNpc.tempVictim == null)
+        {
+            tempNpc.SetState(SetStateEnum.Idle);
+            return;
+        }
+        
         if (tempNpc.tempVictim.Health <= 0)
         {
             tempNpc.SetState(SetStateEnum.Idle);

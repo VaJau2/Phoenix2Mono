@@ -39,6 +39,12 @@ public class IdleState(
             tempNpc.SetState(SetStateEnum.Follow);
             return;
         }
+        
+        if (tempNpc.tempVictim != null)
+        {
+            tempNpc.SetState(SetStateEnum.Attack);
+            return;
+        }
 
         if (patroling.IsEmpty)
         {
@@ -55,6 +61,7 @@ public class IdleState(
 
         if (movingController.cameToPlace)
         {
+            tempNpc.GlobalRotation = patroling.CurrentPatrolRotation;
             patroling.NextPatrolPoint();
         }
     }
@@ -65,7 +72,7 @@ public class IdleState(
         
         if (movingController.cameToPlace)
         {
-            npc.GlobalTransform = Global.SetNewOrigin(npc.GlobalTransform, npc.myStartPos);
+            npc.GlobalTranslation = npc.myStartPos;
             npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
         }
     }
