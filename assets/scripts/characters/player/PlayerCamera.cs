@@ -274,6 +274,8 @@ public class PlayerCamera : Camera
     {
         if (Input.IsActionJustPressed("use"))
         {
+            if (!Player.MayMove) return;
+            
             if (tempObject is IInteractableHold holdable)
             {
                 ShowLoadingIcon(holdable);

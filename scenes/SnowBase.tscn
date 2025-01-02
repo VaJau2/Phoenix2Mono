@@ -4653,8 +4653,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.465759, 9.34804, 6.35008 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.2364, 15.6829, 256.116 )
 monitorable = false
 script = ExtResource( 156 )
-otherTriggerPaths = [ NodePath("moveScientist2"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
-disactiveTriggerPaths = [  ]
+otherTriggerPaths = [ NodePath("moveScientist2"), NodePath("changeCodeScientist2"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
 npcNames = [ "scientist2" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/checkEscapeScientist2"]
@@ -4669,11 +4668,21 @@ newIdlePointPath = NodePath("point")
 [node name="point" type="Spatial" parent="triggers/checkEscapeScientist2/moveScientist2"]
 transform = Transform( 0.970279, 0, -0.24199, 0, 1, 0, 0.24199, 0, 0.970279, -106.36, 1.41215, 260.084 )
 
+[node name="changeCodeScientist2" type="Node" parent="triggers/checkEscapeScientist2"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/scientist2"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="point" type="Spatial" parent="triggers/checkEscapeScientist2/changeCodeScientist2"]
+transform = Transform( 0.970279, 0, -0.24199, 0, 1, 0, 0.24199, 0, 0.970279, -106.36, 1.41215, 260.084 )
+
 [node name="checkEscapeScientist3" type="Area" parent="triggers" groups=["savable"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.2364, 15.6829, 256.116 )
 monitorable = false
 script = ExtResource( 156 )
-otherTriggerPaths = [ NodePath("moveScientist3"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
+otherTriggerPaths = [ NodePath("moveScientist3"), NodePath("changeCodeScientist3"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
 npcNames = [ "scientist3" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="triggers/checkEscapeScientist3"]
@@ -4687,6 +4696,16 @@ newIdlePointPath = NodePath("point")
 
 [node name="point" type="Spatial" parent="triggers/checkEscapeScientist3/moveScientist3"]
 transform = Transform( -0.399501, 0, -0.916733, 0, 1, 0, 0.916733, 0, -0.399501, -108.506, 1.08582, 254.227 )
+
+[node name="changeCodeScientist3" type="Node" parent="triggers/checkEscapeScientist3"]
+script = ExtResource( 153 )
+onlyChangeCode = true
+npcPath = "../../../npc/scientist3"
+otherDialogueCode = ""
+otherSubtitleCode = ""
+
+[node name="point" type="Spatial" parent="triggers/checkEscapeScientist3/changeCodeScientist3"]
+transform = Transform( 0.970279, 0, -0.24199, 0, 1, 0, 0.24199, 0, 0.970279, -106.36, 1.41215, 260.084 )
 
 [node name="oneScientistSaved" type="Node" parent="triggers"]
 script = ExtResource( 159 )

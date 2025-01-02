@@ -61,7 +61,6 @@ public class IdleState(
 
         if (movingController.cameToPlace)
         {
-            tempNpc.GlobalRotation = patroling.CurrentPatrolRotation;
             patroling.NextPatrolPoint();
         }
     }
