@@ -105,10 +105,10 @@ public class NpcTrading: Node, ISavable, ITrader
         ammoButtons.Clear();
         
         //текущая сцена во время загрузки данных еще не добавлена на уровень
-        var scene = GetOwner<Node>();
         foreach (string key in newAmmoButtonNames.Keys)
         {
-            ItemIcon tempButton = (ItemIcon)Global.FindNodeInScene(scene, newAmmoButtonNames[key].ToString());
+            var path = $"/root/Main/Scene/canvas/inventory/helper/back/tradeBack/items/{newAmmoButtonNames[key]}";
+            var tempButton = GetNodeOrNull<ItemIcon>(path);
             ammoButtons.Add(key, tempButton);
         }
         

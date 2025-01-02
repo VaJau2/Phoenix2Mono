@@ -1777,7 +1777,6 @@ script = ExtResource( 52 )
 __meta__ = {
 "_editor_description_": "Отдельным триггером, т.к. ей очень далеко бежать, и всем скучно стоять и ждать, пока она там добежит"
 }
-otherTriggerPaths = [  ]
 NpcPaths = [ "../../npc/dusk" ]
 pointPaths = [ NodePath("../../terrain/npcPlaces/after/dusk") ]
 idleAnims = [ "Sit" ]

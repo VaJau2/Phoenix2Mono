@@ -152,10 +152,10 @@ public class ChestHandler
         AmmoButtons.Clear();
         
         //текущая сцена во время загрузки данных еще не добавлена на уровень
-        var scene = chestNode.GetOwner<Node>();
         foreach (string key in newAmmoButtonNames.Keys)
         {
-            ItemIcon tempButton = (ItemIcon)Global.FindNodeInScene(scene, newAmmoButtonNames[key].ToString());
+            var path = $"/root/Main/Scene/canvas/inventory/helper/back/chestBack/items/{newAmmoButtonNames[key]}";
+            var tempButton = chestNode.GetNodeOrNull<ItemIcon>(path);
             AmmoButtons.Add(key, tempButton);
         }
         

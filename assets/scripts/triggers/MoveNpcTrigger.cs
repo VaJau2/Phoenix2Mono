@@ -143,6 +143,7 @@ public class MoveNpcTrigger: ActivateOtherTrigger
         {
             npc[i].Disconnect(nameof(Character.IsCame), this, nameof(AfterNpcCameToPoint));
             connectedEvents.Remove(i);
+            _on_activate_trigger();
         }
     }
     
