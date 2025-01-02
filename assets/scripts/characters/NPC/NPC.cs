@@ -23,6 +23,7 @@ public class NPC : Character, IInteractable, IChest
     public SeekArea SeekArea { get; private set; }
     public BaseMovingController MovingController { get; private set; }
     public ChestHandler ChestHandler { get; private set; }
+
     public CachedHeadPosition HeadPosition;
     
     private NpcInteraction interaction;
@@ -150,7 +151,7 @@ public class NPC : Character, IInteractable, IChest
 
     public override void CheckShotgunShot(bool isShotgun)
     {
-        skeleton.CheckShotgunShot(isShotgun);
+        skeleton?.CheckShotgunShot(isShotgun);
     }
 
     public void SetObjectActive(string objectPath, bool active)

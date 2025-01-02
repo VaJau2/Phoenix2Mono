@@ -7,7 +7,7 @@ public class RoboEyeBody : Node
 
     public string IdleAnim = "idle";
 
-    public NPC npc;
+    private NPC npc;
     private NpcAudio audi;
     private AnimationPlayer anim;
     private RoboEyeMaterial tempMaterial;
@@ -24,6 +24,7 @@ public class RoboEyeBody : Node
     public override void _Process(float delta)
     {
         if (npc.Health <= 0) return;
+        if (tempMaterial == RoboEyeMaterial.Dead) return;
         
         if (npc.Velocity.Length() > Character.MIN_WALKING_SPEED)
         {
@@ -34,7 +35,7 @@ public class RoboEyeBody : Node
                 audi.PlayStream(walkSound);
             }
         }
-        else if (!anim.IsPlaying() && !string.IsNullOrEmpty(IdleAnim))
+        else if (!string.IsNullOrEmpty(IdleAnim) && anim.CurrentAnimation == "walk")
         {
             anim.Play(IdleAnim);
             audi.Stop();
@@ -49,6 +50,7 @@ public class RoboEyeBody : Node
         npc.CollisionMask = 1;
         npc.SetStartHealth(npc.HealthMax);
         
+        ChangeMaterial();
         anim.PlayBackwards("Die");
 
         await ToSignal(anim, "animation_finished");
@@ -58,7 +60,7 @@ public class RoboEyeBody : Node
 
     public void Disable()
     {
-        anim.CurrentAnimation = null;
+        anim.Stop();
     }
     
     public void ChangeMaterial(RoboEyeMaterial material = RoboEyeMaterial.Default)
@@ -82,6 +84,7 @@ public class RoboEyeBody : Node
     
     private void OnNpcDying()
     {
+        ChangeMaterial(RoboEyeMaterial.Dead);
         audi.PlayStream(dieSound);
         anim.Play("Die");
     }

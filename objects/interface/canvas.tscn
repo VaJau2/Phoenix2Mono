@@ -134,6 +134,7 @@ custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 3 )
 text = "[Вас не видят]"
+align = 1
 uppercase = true
 
 [node name="jumpHint" type="ColorRect" parent="."]

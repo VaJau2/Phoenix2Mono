@@ -26,6 +26,9 @@ public class ChestHandler
     private readonly IChest chest;
     private Node chestNode;
     
+    public delegate void TakeItemHandler(string itemCode);
+    public event TakeItemHandler TakeItemEvent;
+    
     public ChestHandler(IChest chest)
     {
         this.chest = chest;
@@ -55,6 +58,11 @@ public class ChestHandler
             MoneyCount = random.RandiRange(0, items.maxMoneyCount);
         }
         return this;
+    }
+    
+    public void TakeItem(string itemCode)
+    {
+        TakeItemEvent?.Invoke(itemCode);
     }
 
     public ChestHandler LoadStartItems(

@@ -402,6 +402,7 @@ public class ChestMode: InventoryMode
                 {
                     inventory.AddKey(tempButton.myItemCode);
                 }
+                tempChest.ChestHandler.TakeItem(tempButton.myItemCode);
                 ChangeItemButtons(tempButton, itemButton);
                 SetTempButton(null, false);
             } 

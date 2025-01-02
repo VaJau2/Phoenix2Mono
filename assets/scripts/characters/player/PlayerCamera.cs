@@ -285,8 +285,11 @@ public class PlayerCamera : Camera
 
                 return;
             }
-           
-            InteractWithItem();
+            
+            if (tempObject is IInteractable { MayInteract: true })
+            {
+                InteractWithItem();
+            }
         }
 
         if (Input.IsActionJustReleased("use"))

@@ -32,6 +32,7 @@ public class NpcPatroling : Node, ISavable
     public bool IsEmpty => patrolPoints == null || patrolPoints.Length == 0;
 
     public Vector3 CurrentPatrolPoint => patrolPoints[patrolI].GlobalTranslation;
+    public Vector3 CurrentPatrolRotation => patrolPoints[patrolI].GlobalRotation;
 
     public void ClearPoints()
     {

@@ -24,6 +24,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     private BagChest bag;
     private NPC assistantPie;
     private TriggerBase changeTaskTrigger;
+    private EnemiesManager enemiesManager;
     
     private bool isRobotsActive;
     
@@ -33,6 +34,7 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         
         assistantPie = GetNode<NPC>(assistantPiePath);
         changeTaskTrigger = GetNodeOrNull<TriggerBase>(changeTaskPath);
+        enemiesManager = GetNode<EnemiesManager>("/root/Main/Scene/npc");
         
         audi = GetNode<AudioStreamPlayer3D>(audiPath);
         audi.Stream = beepSound;
@@ -57,8 +59,19 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         }
 
         await ToSignal(GetTree(), "idle_frame");
-        
-        player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+
+        if (bag != null)
+        {
+            bag.ChestHandler.TakeItemEvent += _on_take_item_from_bag;
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        if (bag != null)
+        {
+            bag.ChestHandler.TakeItemEvent -= _on_take_item_from_bag;
+        }
     }
 
     protected override void PressButton()
@@ -90,10 +103,10 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
         checkButton = true;
     }
 
-    public void _on_player_take_item(string itemCode)
+    public void _on_take_item_from_bag(string itemCode)
     {
         if (itemCode != itemInBag) return;
-        if (!isRobotsActive || trainingIsDone) return;
+        if (trainingIsDone) return;
         
         MakeRoboEyesActive(false);
         ChangeRobotsSubtitlesCode("won");
@@ -111,12 +124,29 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     {
         foreach (var roboEye in roboEyes)
         {
-            if (roboEye.Health <= 0)
+            if (value)
             {
-                roboEye.GetNode<RoboEyeBody>("body").Resurrect();    
+                if (!enemiesManager.enemies.Contains(roboEye))
+                {
+                    enemiesManager.enemies.Add(roboEye);
+                }
+                
+                if (roboEye.Health <= 0)
+                {
+                    roboEye.GetNode<RoboEyeBody>("body").Resurrect();    
+                }
+            }
+            else
+            {
+                if (enemiesManager.enemies.Contains(roboEye))
+                {
+                    enemiesManager.enemies.Remove(roboEye);
+                }
             }
             
             roboEye.SetState(value ? SetStateEnum.Idle : SetStateEnum.Disabled);
+            roboEye.relation = value ? Relation.Enemy : Relation.Friend;
+            roboEye.ignoreDamager = !value;
         }
 
         isRobotsActive = value;
@@ -141,5 +171,23 @@ public class PinkieStealthTrigger : TrainingTriggerWithButton
     {
         base.LoadData(data);
         isRobotsActive = (bool) data["robotsActive"];
+        
+        foreach (var roboEye in roboEyes)
+        {
+            if (isRobotsActive)
+            {
+                if (!enemiesManager.enemies.Contains(roboEye))
+                {
+                    enemiesManager.enemies.Add(roboEye);
+                }
+            }
+            else
+            {
+                if (enemiesManager.enemies.Contains(roboEye))
+                {
+                    enemiesManager.enemies.Remove(roboEye);
+                }
+            }
+        }
     }
 }

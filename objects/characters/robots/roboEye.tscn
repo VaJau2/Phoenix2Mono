@@ -344,6 +344,7 @@ cast_to = Vector3( 0, 0, -1 )
 [node name="movingController" type="Node" parent="." groups=["savable"]]
 script = ExtResource( 7 )
 RotationSpeed = 0.5
+ComeDistance = 1.0
 MayRun = false
 
 [node name="body" type="Node" parent="."]

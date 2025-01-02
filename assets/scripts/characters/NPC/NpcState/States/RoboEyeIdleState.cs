@@ -1,4 +1,6 @@
-﻿public class RoboEyeIdleState(
+﻿using Godot;
+
+public class RoboEyeIdleState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     NpcPatroling patroling,
@@ -32,15 +34,19 @@
         
         if (movingController.cameToPlace)
         {
+            tempNpc.GlobalRotation = patroling.CurrentPatrolRotation;
             patroling.NextPatrolPoint();
         }
     }
 
     private void GoToStartPoint(NPC npc)
     {
-        if (!movingController.cameToPlace)
+        movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
+        
+        if (movingController.cameToPlace)
         {
-            movingController.GoTo(npc.myStartPos, movingController.ComeDistance, false);
-        } 
+            npc.GlobalTranslation = npc.myStartPos;
+            npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
+        }
     }
 }
