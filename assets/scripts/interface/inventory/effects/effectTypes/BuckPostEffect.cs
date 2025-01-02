@@ -4,7 +4,7 @@ public class BuckPostEffect: Effect
 {
     const int RECOIL_DELTA = 4;
     const int LEGS_DELTA = -20;
-    const int HEALTH_DELTA = -30;
+    const int HEALTH_DELTA = 30;
     private Player player;
 
     public BuckPostEffect()
@@ -30,7 +30,7 @@ public class BuckPostEffect: Effect
         
         handler.SetPlayerParameter("recoil", ref player.BaseRecoil, RECOIL_DELTA);
         handler.SetPlayerParameter("legsDamage", ref player.LegsDamage, LEGS_DELTA);
-        handler.SetPlayerParameter("healthMax", ref player.HealthMax, HEALTH_DELTA);
+        handler.SetPlayerParameter("healthMax", ref player.HealthMax, -HEALTH_DELTA);
     }
 
     public override void SetOff(bool startPostEffect = true)
