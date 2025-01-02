@@ -22,12 +22,6 @@ public class BuckPostEffect: Effect
 
         if (handler.HasEffect(this)) return;
         
-        if (player.Health <= HEALTH_DELTA)
-        {
-            player.TakeDamage(player, HEALTH_DELTA);
-            return;
-        }
-        
         handler.SetPlayerParameter("recoil", ref player.BaseRecoil, RECOIL_DELTA);
         handler.SetPlayerParameter("legsDamage", ref player.LegsDamage, LEGS_DELTA);
         handler.SetPlayerParameter("healthMax", ref player.HealthMax, -HEALTH_DELTA);

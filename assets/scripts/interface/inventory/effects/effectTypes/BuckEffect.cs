@@ -37,8 +37,15 @@ public class BuckEffect : Effect
         handler.ClearPlayerParameter("recoil", ref player.BaseRecoil);
         handler.ClearPlayerParameter("legsDamage", ref player.LegsDamage);
         handler.ClearPlayerParameter("healthMax", ref player.HealthMax);
+        
+        if (player.Health <= HEALTH_DELTA)
+        {
+            player.TakeDamage(player, HEALTH_DELTA);
+            return;
+        }
+
         player.HealHealth(-HEALTH_DELTA);
-            
+
         if (startPostEffect) 
         {
             StartPostEffect();
