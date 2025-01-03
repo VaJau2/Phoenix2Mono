@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -267,12 +268,19 @@ public class NpcWeapons : Node, ISavable
     {
         var saveData = new Dictionary();
         saveData["weaponCode"] = WeaponCode;
+        saveData["shootCooldown"] = shootCooldown;
         return saveData;
     }
 
     public void LoadData(Dictionary data)
     {
-        if (data["weaponCode"] == null) return;
-        LoadWeapon(data["weaponCode"].ToString());
+        if (!data.Contains("weaponCode")) return;
+        
+        if (data["weaponCode"] != null)
+        {
+            LoadWeapon(data["weaponCode"].ToString());
+        }
+
+        shootCooldown = Convert.ToSingle(data["shootCooldown"]);
     }
 }

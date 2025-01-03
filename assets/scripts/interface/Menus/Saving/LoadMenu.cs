@@ -100,8 +100,6 @@ public class LoadMenu : Control
     {
         if (parentMenu is not PauseMenu) return;
         if (Global.Get().paused) return;
-        if (Global.Get().player == null) return;
-        if (Global.Get().player.Health <= 0) return;
         
         if (Input.IsActionJustPressed("ui_quickload"))
         {
