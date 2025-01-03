@@ -79,7 +79,7 @@ public class LevelsLoader : Node
 		menuParent.MoveChild(currentMenu, 0);
 	}
 
-	private void UpdateScene()
+	private async void UpdateScene()
 	{
 		global.SetPause(this, false);
 		Engine.TimeScale = 1f;
@@ -87,6 +87,7 @@ public class LevelsLoader : Node
 		if (levelPaths[tempLevelNum] == "menu") 
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
+			DeleteCurrentScene();
 		}
 		else
 		{
@@ -102,9 +103,16 @@ public class LevelsLoader : Node
 			
 			if (loader != null) return;
 			loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+			DeleteCurrentScene();
+			
+			await ToSignal(GetTree(), "idle_frame");
+			
 			SetProcess(true);
 		}
+	}
 
+	private void DeleteCurrentScene()
+	{
 		if (currentScene == null) return;
 		
 		global.player = null;
