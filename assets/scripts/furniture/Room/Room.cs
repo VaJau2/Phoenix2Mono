@@ -18,6 +18,8 @@ public class Room : SaveActive
     [Export] private float ambientEnergy;
     private WorldEnvironment skybox;
 
+    private PlayerSpawner playerSpawner;
+
     private AudioEffectsController audioEffectsController => Global.Get().player?.AudioEffectsController;
     
     private RoomManager roomManager;
@@ -45,6 +47,7 @@ public class Room : SaveActive
         }
 
         skybox = GetNode<WorldEnvironment>("/root/Main/Scene/WorldEnvironment");
+        playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
         levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
@@ -56,6 +59,18 @@ public class Room : SaveActive
         
         if (!Visible) return;
 
+        if (Global.Get().player == null)
+        {
+            playerSpawner.Connect(nameof(PlayerSpawner.Spawned), this, nameof(OnPlayerSpawned));
+            return;
+        }
+
+        Enter(false);
+    }
+
+    private void OnPlayerSpawned()
+    {
+        playerSpawner.Disconnect(nameof(PlayerSpawner.Spawned), this, nameof(OnPlayerSpawned));
         Enter(false);
     }
     

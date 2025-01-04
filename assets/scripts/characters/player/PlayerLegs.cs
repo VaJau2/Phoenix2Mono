@@ -6,8 +6,7 @@ public class PlayerLegs : Node
     const int BACK_INCREASE = 2;
 
     const float BACK_HIT_ANGLE = 60;
-
-    //Player player;
+    
     Global global;
 
     AudioStreamPlayer audi;

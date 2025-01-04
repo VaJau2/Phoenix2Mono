@@ -188,6 +188,22 @@ public class LevelsLoader : Node
 		LoadLevel(levelNum);
 	}
 
+	public void LoadObjectData(string objectKey)
+	{
+		if (levelData == null) return;
+		if (!levelData.Contains(objectKey)) return;
+
+		//если это created-нод, у него хранится только имя
+		//если это существующий нод, у него хранится путь от /root/Main...
+		var node = currentScene?.GetNodeOrNull(objectKey);
+
+		if (node is ISavable savable)
+		{
+			var objectData = (Dictionary)levelData[objectKey];
+			savable.LoadData(objectData);
+		}
+	}
+
 	private void LoadLevelData(Node scene)
 	{
 		//очищаем спавнер от предзаполненных вещей и создаем объект игрока в спавнере
@@ -253,7 +269,6 @@ public class LevelsLoader : Node
 			}
 		}
 		
-		levelData = null;
 		deletedObjects = null;
 		loadSavedData = false;
 	}

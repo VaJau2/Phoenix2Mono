@@ -32,12 +32,6 @@ public class PlayerHead : MeshInstance
         }
     }
 
-    public void PermanentlyCloseEyes()
-    {
-        var closedEyesTexturePath = "res://assets/textures/characters/player/emotions/player_body_closed_eyes.png";
-        bodyMaterial.DetailAlbedo = GD.Load<Texture>(closedEyesTexturePath);;
-    }
-
     public void CloseEyes()
     {
         ChangeMaterialTexture(false);

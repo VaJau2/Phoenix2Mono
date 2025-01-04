@@ -223,7 +223,7 @@ public class SaveMenu : Control
             {
                 saveData.Add("name", tempNode.Name);
                 saveData.Add("parentPath", GetNode("/root/Main/Scene").GetPathTo(tempNode.GetParent()));
-                saveData.Add("fileName", tempNode.Filename);
+                saveData.Add("fileName", GetFilename(tempNode));
             }
             
             if (tempNode.Name == "Player")
@@ -240,6 +240,13 @@ public class SaveMenu : Control
         
         saveFile.StoreLine(JSON.Print(objectsData));
         saveFile.Close();
+    }
+
+    private static string GetFilename(Node node)
+    {
+        return node.Name.Contains("Created_Player") 
+            ? "res://objects/characters/Player/PlayerDead.tscn" 
+            : node.Filename;
     }
     
     public static string GetLikeLatinString(string cyrillicLine)

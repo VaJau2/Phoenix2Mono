@@ -361,6 +361,13 @@ public class PlayerBody : Spatial
         player.CollisionLayer = 0;
         player.CollisionMask = 0;
         playerSkeleton.PhysicalBonesStartSimulation();
+        
+        foreach (var boneObject in playerSkeleton.GetChildren())
+        {
+            if (boneObject is not PhysicalBone bone) continue;
+            bone.CollisionLayer = 6;
+            bone.CollisionMask = 6;
+        }
 
         var dir = Translation.DirectionTo(killer.Translation);
         headBone.ApplyCentralImpulse(-dir * RAGDOLL_IMPULSE);
@@ -369,23 +376,27 @@ public class PlayerBody : Spatial
 
     public void DetachFromPlayer()
     {
-        Head.PermanentlyCloseEyes();
-        
         foreach (Node node in GetChildren())
         {
             if (node.Name == "Armature") continue;
             node.SetProcess(false);
             node.QueueFree();
         }
-
-        var deadSkeleton = GetNode<Skeleton>("Armature/Skeleton");
         
-        var firstBody = deadSkeleton.GetNode<MeshInstance>("Body");
-        firstBody.Layers = 0;
+        playerSkeleton.GetNode<MeshInstance>("Body").QueueFree();
         
-        var thirdBody = deadSkeleton.GetNode<MeshInstance>("Body_third");
+        var thirdBody = playerSkeleton.GetNode<MeshInstance>("Body_third");
         thirdBody.Layers = 1;
         thirdBody.SetScript(null);
+
+        var playerDeadScript = ResourceLoader.Load("res://assets/scripts/characters/player/PlayerDead.cs");
+        GetParent<Node>().SetScript(playerDeadScript);
+        var playerDead = GetParent<PlayerDead>();
+        playerDead.Set(
+            Global.Get().playerRace, 
+            player.Inventory.cloth,
+            false
+        );
     }
 
     public override void _Ready()

@@ -734,6 +734,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 447.19, -61.4027, 198.58 )
 checkSavedData = false
 checkSavedMoney = false
 spawningInside = true
+spawnInReady = false
 deleteAfterSpawn = false
 
 [node name="StartRaceLoader" type="Node" parent="PlayerSpawner"]

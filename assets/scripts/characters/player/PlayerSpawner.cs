@@ -13,10 +13,11 @@ public class PlayerSpawner : Spatial
 
     [Export]
     public string clothCode = "";
-
+    
     [Export] public bool checkSavedData = true;
     [Export] public bool checkSavedMoney = true;
     [Export] public bool spawningInside;
+    [Export] private bool spawnInReady = true;
     [Export] private bool deleteAfterSpawn = true;
 
     public bool loadStartItems = true;
@@ -26,7 +27,7 @@ public class PlayerSpawner : Spatial
 
     public override void _Ready()
     {
-        InitSpawn();
+        if (spawnInReady) InitSpawn();
     }
 
     public void InitSpawn()

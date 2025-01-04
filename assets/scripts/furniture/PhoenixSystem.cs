@@ -17,17 +17,21 @@ public class PhoenixSystem : Node, ISavable
     
     private CloneFlaskTrigger cloneFlaskTrigger;
     private PlayerDeathManager deathManager;
+    private PlayerSpawner playerSpawner;
     private RoomManager roomManager;
+
+    private LevelsLoader levelsLoader;
     
     [Signal]
     public delegate void CloneAwake();
 
     public override void _Ready()
     {
-        roomManager = GetNode<RoomManager>("/root/Main/Scene/rooms");
         room = GetNode<Room>(roomPath);
-        
+        roomManager = GetNode<RoomManager>("/root/Main/Scene/rooms");
         cloneFlaskTrigger = GetNode<CloneFlaskTrigger>("Clone Flask Trigger");
+        playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
+        levelsLoader = GetNode<LevelsLoader>("/root/Main");
         
         foreach (var cloneFlask in cloneFlasksPaths.Select(GetNodeOrNull<CloneFlask>))
         {
@@ -35,8 +39,7 @@ public class PhoenixSystem : Node, ISavable
         }
 
         cloneNumber = cloneFlasks.Count - 1;
-
-        var levelsLoader = GetNode<LevelsLoader>("/root/Main");
+        
         levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
     }
 
@@ -46,7 +49,14 @@ public class PhoenixSystem : Node, ISavable
 
         if (CloneWokeUp)
         {
-            deathManager = Global.Get().player.DeathManager;
+            playerSpawner.InitSpawn();
+            
+            await ToSignal(GetTree(), "idle_frame");
+            
+            var player = Global.Get().player;
+            levelsLoader.LoadObjectData(player.Name);
+            
+            deathManager = player.DeathManager;
             deathManager.permanentDeath = cloneFlasks.Count < 1;
             
             if (deathManager.permanentDeath) return;
@@ -67,10 +77,9 @@ public class PhoenixSystem : Node, ISavable
             node.SetProcess(false);
             node.QueueFree();
         }
-
-        oldPlayer.Body.DetachFromPlayer();
-        oldPlayer.SetScript(null);
         
+        oldPlayer.Name = $"Created_Player_{cloneNumber}";
+        oldPlayer.Body.DetachFromPlayer();
         StartCloning();
     }
 
@@ -116,7 +125,8 @@ public class PhoenixSystem : Node, ISavable
         return new Dictionary
         {
             { "cloneNumber", cloneNumber },
-            { "cloneWokeUp", CloneWokeUp }
+            { "cloneWokeUp", CloneWokeUp },
+            { "playerRace", Global.RaceToString(Global.Get().playerRace) }
         };
     }
 
@@ -132,5 +142,6 @@ public class PhoenixSystem : Node, ISavable
         }
 
         CloneWokeUp = Convert.ToBoolean(data["cloneWokeUp"]);
+        Global.Get().playerRace = Global.RaceFromString(data["playerRace"].ToString());
     }
 }
