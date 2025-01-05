@@ -39,10 +39,11 @@ public class PlayerDead : KinematicBody, ISavable
 
     private void CloseEyes()
     {
-        if (body.Mesh.SurfaceGetMaterial(0) is SpatialMaterial tempMaterial)
-        {
-            tempMaterial.DetailAlbedo = closedEyesTexture;
-        }
+        var deadMesh = (Mesh)body.Mesh.Duplicate();
+        var deadMaterial = (SpatialMaterial)deadMesh.SurfaceGetMaterial(0).Duplicate();
+        deadMaterial.DetailAlbedo = closedEyesTexture;
+        deadMesh.SurfaceSetMaterial(0, deadMaterial);
+        body.Mesh = deadMesh;
     }
     
     public void LoadData(Dictionary data)

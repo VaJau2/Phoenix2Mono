@@ -1,76 +1,63 @@
 using Godot;
-using System;
 
-//класс отвечает за лицо НПЦ
-//за текстуры глаз
-//отличается от NPCFace тем, что не меняет текстуры материалу
-//а меняет сами материалы
+//класс отвечает за лицо НПЦ: за текстуры глаз и рта
+//отличается от NPCFace тем, что меняет не текстуры материала, а меняет сами материалы
 public class NpcFaceMat : NpcFace
 {
-    const int EYES_MATERIAL = 0;
-
-    NPC npc;
+    private const int EYES_MATERIAL = 0;
+    
     private SpatialMaterial openEyes;
     private SpatialMaterial closedEyes;
-    private bool eyesAreOpen = true;
-    private float eyesOpenCooldown = 1f;
-
-    Random rand = new Random();
 
     public override void CloseEyes()
     {
-        eyesAreOpen = false;
+        AreEyesOpen = false;
         Mesh.SurfaceSetMaterial(EYES_MATERIAL, closedEyes);
-        eyesOpenCooldown = 0.2f;
+        EyesOpenCooldown = 0.2f;
     }
 
     private new void ChangeEyesVariant(string variantName)
     {
-        string path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
+        var path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
         openEyes = GD.Load<SpatialMaterial>(path + "/0.material");
         closedEyes = GD.Load<SpatialMaterial>(path + "/1.material");
-        Mesh.SurfaceSetMaterial(EYES_MATERIAL, eyesAreOpen ? openEyes : closedEyes);
+        Mesh.SurfaceSetMaterial(EYES_MATERIAL, AreEyesOpen ? openEyes : closedEyes);
     }
 
-    private void UpdateOpenEyes(float delta)
+    protected override void UpdateOpenEyes(float delta)
     {
-        if (npc.Health > 0)
+        if (EyesOpenCooldown > 0)
         {
-            if (eyesOpenCooldown > 0)
-            {
-                eyesOpenCooldown -= delta;
-            }
-            else
-            {
-                eyesAreOpen = !eyesAreOpen;
-                Mesh.SurfaceSetMaterial(EYES_MATERIAL, eyesAreOpen ? openEyes : closedEyes);
-                if (eyesAreOpen)
-                {
-                    eyesOpenCooldown = (float) rand.Next(3, 6);
-                }
-                else
-                {
-                    eyesOpenCooldown = 0.2f;
-                }
-            }
+            EyesOpenCooldown -= delta;
         }
         else
         {
-            eyesAreOpen = false;
-            Mesh.SurfaceSetMaterial(EYES_MATERIAL, closedEyes);
-            SetProcess(false);
+            AreEyesOpen = !AreEyesOpen;
+            Mesh.SurfaceSetMaterial(EYES_MATERIAL, AreEyesOpen ? openEyes : closedEyes);
+            if (AreEyesOpen)
+            {
+                EyesOpenCooldown = Rand.Next(3, 6);
+            }
+            else
+            {
+                EyesOpenCooldown = 0.2f;
+            }
         }
+    }
+
+    protected override void DeadFace()
+    {
+        var deadMesh = (Mesh)Mesh.Duplicate();
+        deadMesh.SurfaceSetMaterial(EYES_MATERIAL, closedEyes);
+        Mesh = deadMesh;
+        
+        AreEyesOpen = false;
+        SetProcess(false);
     }
 
     public override void _Ready()
     {
-        npc = GetNode<NPC>("../../../");
-
+        Npc = GetNode<NPC>("../../../");
         ChangeEyesVariant(startEyesVariant);
-    }
-
-    public override void _Process(float delta)
-    {
-        UpdateOpenEyes(delta);
     }
 }

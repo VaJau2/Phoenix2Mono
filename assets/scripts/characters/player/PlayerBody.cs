@@ -397,6 +397,7 @@ public class PlayerBody : Spatial
             player.Inventory.cloth,
             false
         );
+        playerDead._Ready();
     }
 
     public override void _Ready()

@@ -2,82 +2,87 @@ using Godot;
 using System;
 using Godot.Collections;
 
-//класс отвечает за лицо НПЦ
-//за текстуры глаз и рта
+//класс отвечает за лицо НПЦ: за текстуры глаз и рта
 public class NpcFace : MeshInstance, ISavable
 {
     [Export] public string npcName;
     [Export] protected string startEyesVariant = "";
     [Export] protected string startMouthVariant = "A";
 
-    NPC npc;
+    protected NPC Npc;
+    protected bool AreEyesOpen = true;
+    protected float EyesOpenCooldown = 1f;
+    protected readonly Random Rand = new();
+    
     private SpatialMaterial eyesMaterial;
     private SpatialMaterial mouthMaterial;
     private StreamTexture openEyes;
     private StreamTexture closedEyes;
-    private bool eyesAreOpen = true;
-    private float eyesOpenCooldown = 1f;
-
-    Random rand = new();
 
     public virtual void CloseEyes()
     {
-        eyesAreOpen = false;
+        AreEyesOpen = false;
         eyesMaterial.AlbedoTexture = closedEyes;
-        eyesOpenCooldown = 0.2f;
+        EyesOpenCooldown = 0.2f;
     }
 
     public void ChangeMouthVariant(string variant)
     {
-        StreamTexture mouthTexture =
-            GD.Load<StreamTexture>("res://assets/textures/characters/" + npcName + "/mouth/" + variant + ".png");
+        var mouthTexturePath = $"res://assets/textures/characters/{npcName}/mouth/{variant}.png";
+        var mouthTexture = GD.Load<StreamTexture>(mouthTexturePath);
         mouthMaterial.AlbedoTexture = mouthTexture;
         startMouthVariant = variant;
     }
 
     public void ChangeEyesVariant(string variantName)
     {
-        string path = "res://assets/textures/characters/" + npcName + "/eyes/" + variantName;
+        var path = $"res://assets/textures/characters/{npcName}/eyes/{variantName}";
         openEyes = GD.Load<StreamTexture>(path + "/0.png");
         closedEyes = GD.Load<StreamTexture>(path + "/1.png");
-        eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
+        eyesMaterial.AlbedoTexture = AreEyesOpen ? openEyes : closedEyes;
         startEyesVariant = variantName;
     }
 
-    private void UpdateOpenEyes(float delta)
+    protected virtual void UpdateOpenEyes(float delta)
     {
-        if (npc.Health > 0)
+        if (EyesOpenCooldown > 0)
         {
-            if (eyesOpenCooldown > 0)
-            {
-                eyesOpenCooldown -= delta;
-            }
-            else
-            {
-                eyesAreOpen = !eyesAreOpen;
-                eyesMaterial.AlbedoTexture = eyesAreOpen ? openEyes : closedEyes;
-                if (eyesAreOpen)
-                {
-                    eyesOpenCooldown = rand.Next(3, 6);
-                }
-                else
-                {
-                    eyesOpenCooldown = 0.2f;
-                }
-            }
+            EyesOpenCooldown -= delta;
         }
         else
         {
-            eyesAreOpen = false;
-            eyesMaterial.AlbedoTexture = closedEyes;
-            SetProcess(false);
+            AreEyesOpen = !AreEyesOpen;
+            eyesMaterial.AlbedoTexture = AreEyesOpen ? openEyes : closedEyes;
+            if (AreEyesOpen)
+            {
+                EyesOpenCooldown = Rand.Next(3, 6);
+            }
+            else
+            {
+                EyesOpenCooldown = 0.2f;
+            }
         }
+    }
+
+    protected virtual void DeadFace()
+    {
+        var deadMesh = (Mesh)Mesh.Duplicate();
+        var deadEyes = (SpatialMaterial)deadMesh.SurfaceGetMaterial(1).Duplicate();
+        var deadMouth = (SpatialMaterial)deadMesh.SurfaceGetMaterial(2).Duplicate();
+            
+        deadEyes.AlbedoTexture = closedEyes;
+        deadMesh.SurfaceSetMaterial(1, deadEyes);
+        deadMesh.SurfaceSetMaterial(2, deadMouth);
+        Mesh = deadMesh;
+            
+        AreEyesOpen = false;
+        SetProcess(false);
     }
 
     public override void _Ready()
     {
         AddToGroup("savable");
-        npc = GetNode<NPC>("../../../");
+        Npc = GetNode<NPC>("../../../");
         eyesMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(1);
         mouthMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(2);
 
@@ -86,10 +91,13 @@ public class NpcFace : MeshInstance, ISavable
 
     public override void _Process(float delta)
     {
-        if (Visible)
+        if (!Visible) return;
+
+        if (Npc.Health > 0)
         {
             UpdateOpenEyes(delta);
         }
+        else DeadFace();
     }
 
     public Dictionary GetSaveData()
