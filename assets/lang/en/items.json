@@ -463,6 +463,15 @@
         "shyHeadYRot": "0.4",
         "sound": "coat"
     },
+    "maid": {
+        "name": "Униформа горничной",
+        "description": "Pretty cute black dress. You definitely don't want to fight in it....",
+        "type": "armor",
+        "icon": "maid",
+        "price": "520",
+        "damageBlock": "0.1",
+        "sound": "coat"
+    },
     "powerArmor": {
         "name": "Power armor",
         "description": "Developed my MWT, turns earthponies to a walking tanks. Needs nuclear battery to work.",
