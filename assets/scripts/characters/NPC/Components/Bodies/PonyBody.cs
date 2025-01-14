@@ -187,8 +187,7 @@ public class PonyBody : Node, ISavable
             
             var headRotation = GetHeadRotationTo(lookTarget);
 
-            SetValueTo(ref headBlend.x, headRotation.x, delta * 4);
-            SetValueTo(ref headBlend.y, headRotation.y, delta * 4);
+            headBlend = headBlend.Lerp(headRotation, delta * 8);
         }
         else
         {
@@ -199,8 +198,7 @@ public class PonyBody : Node, ISavable
                 defaultHeadRotation = GetHeadRotationTo(defaultLookTarget);
             }
             
-            SetValueTo(ref headBlend.x, defaultHeadRotation.x, delta * 2);
-            SetValueTo(ref headBlend.y, defaultHeadRotation.y, delta * 2);
+            headBlend = headBlend.Lerp(defaultHeadRotation, delta * 4);
         }
     }
 
@@ -227,22 +225,6 @@ public class PonyBody : Node, ISavable
         float diffY = targetY - npc.GlobalTranslation.y;
 
         return new Vector2(angle / 1.5f, diffY / 5);
-    }
-
-    private void SetValueTo(ref float value, float to, float delta)
-    {
-        if (value > to + 0.05f)
-        {
-            value -= delta;
-        }
-        else if (value < to - 0.05f)
-        {
-            value += delta;
-        }
-        else
-        {
-            value = to;
-        }
     }
 
     public Dictionary GetSaveData()
