@@ -187,7 +187,7 @@ public class PonyBody : Node, ISavable
             
             var headRotation = GetHeadRotationTo(lookTarget);
 
-            headBlend = headBlend.Lerp(headRotation, delta * 8);
+            headBlend = headBlend.MoveToward(headRotation, delta * 4);
         }
         else
         {
@@ -198,7 +198,7 @@ public class PonyBody : Node, ISavable
                 defaultHeadRotation = GetHeadRotationTo(defaultLookTarget);
             }
             
-            headBlend = headBlend.Lerp(defaultHeadRotation, delta * 4);
+            headBlend = headBlend.MoveToward(defaultHeadRotation, delta * 2);
         }
     }
 
