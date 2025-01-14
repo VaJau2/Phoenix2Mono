@@ -18,7 +18,7 @@ public class RoboEyeBody : Node
         audi = npc.GetNode<NpcAudio>("audi");
         anim = npc.GetNode<AnimationPlayer>("anim");
         
-        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
+        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)

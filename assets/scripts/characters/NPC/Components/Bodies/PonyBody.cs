@@ -28,9 +28,9 @@ public class PonyBody : Node, ISavable
         headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
         
         playback.Start(IdleAnim);
-
-        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
+        
         npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
+        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)
@@ -187,7 +187,7 @@ public class PonyBody : Node, ISavable
             
             var headRotation = GetHeadRotationTo(lookTarget);
 
-            headBlend = headBlend.MoveToward(headRotation, delta * 4);
+            headBlend = headBlend.MoveToward(headRotation, delta * 2);
         }
         else
         {

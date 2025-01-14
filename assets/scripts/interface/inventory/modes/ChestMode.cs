@@ -245,48 +245,84 @@ public class ChestMode: InventoryMode
         MenuManager.CloseMenu(menu);
     }
 
-    private bool CheckDragIn(Array<ItemIcon> iconsArray, string ammoName)
+    private ItemIcon GetDragInButton(Array<ItemIcon> iconsArray, string ammoName)
     {
         foreach (ItemIcon otherButton in iconsArray) 
         {
             Control buttonControl = otherButton;
-            if (tempButton != otherButton && CheckMouseInButton(buttonControl)) 
-            {
-                switch (ammoName) 
-                {
-                    case "chest":
-                        if (CheckAmmoInChest()) return true;
-                        break;
-                    case "inventory":
-                        if (CheckAmmoInInventory()) return true;
-                        break;
-                }
 
-                ChangeItemButtons(tempButton, otherButton);
-                SetTempButton(null, false);
-                dragIcon.SetIcon(null);
-                UpdateChestPositions();
-                return true;
+            if (!CheckMouseInButton(buttonControl)) continue;
+            
+            switch (ammoName) 
+            {
+                case "chest":
+                    if (CheckAmmoInChest()) return otherButton;
+                    break;
+                    
+                case "inventory":
+                    if (CheckAmmoInInventory()) return otherButton;
+                    break;
             }
+            
+            return otherButton;
         }
-        return false;
+        
+        return null;
     }
 
     protected override void CheckDragItem()
     {
         base.CheckDragItem();
         
-        //перетащить из сундука
-        if (CheckDragIn(itemButtons, "inventory")) return;
-
-        if (tempItemData != null && tempItemData.Contains("questItem"))
+        if (tempItemData == null) return;
+        
+        if (GetDragInButton(itemButtons, "inventory") != null) 
+        { 
+            TakeItemFromChest(); 
+            return; 
+        }
+        
+        if (tempItemData.Contains("questItem"))
         {
             inventory.MessageCantDrop(tempItemData["name"].ToString());
             return;
         }
         
-        //перетащить в сундук
-        CheckDragIn(chestButtons, "chest");
+        PlaceItemToChest();
+    }
+
+    protected override void WearDraggedItem(ItemIcon button)
+    {
+        TakeItemFromChest();
+        base.WearDraggedItem(button);
+    }
+
+    private void TakeItemFromChest()
+    {
+        if (chestButtons.Contains(tempButton))
+        {
+            tempChest.ChestHandler.TakeItem(tempButton.myItemCode);
+        }
+    }
+
+    private void PlaceItemToChest()
+    {
+        var dragInButton = GetDragInButton(chestButtons, "chest");
+        
+        if (dragInButton == null) return;
+        
+        var itemType = (ItemType)tempItemData["type"];
+            
+        if (IsUnwearingItem(itemType))
+        {
+            if (!useHandler.CanTakeItemOff()) return;
+            inventory.UnwearItem(tempButton.myItemCode);
+        }
+            
+        ChangeItemButtons(tempButton, dragInButton);
+        SetTempButton(null, false);
+        dragIcon.SetIcon(null);
+        UpdateChestPositions();
     }
 
     //грузим подсказки по управлению предметом

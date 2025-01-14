@@ -26,6 +26,8 @@ public class NpcSkeleton : Skeleton, ISavable
         tempShotgunShot = isShotgun;
     }
 
+    // настройки рэгдолла
+    // вызывается во время загрузки трупика
     public void MakeDead()
     {
         PhysicalBonesStartSimulation();
@@ -33,11 +35,12 @@ public class NpcSkeleton : Skeleton, ISavable
         foreach (var boneObject in GetChildren())
         {
             if (boneObject is not PhysicalBone bone) continue;
-            bone.CollisionLayer = 6;
-            bone.CollisionMask = 6;
+            bone.CollisionLayer = 6; // слои 2 и 3
+            bone.CollisionMask = 6; // слои 2 и 3
         }
     }
 
+    // даёт рэгдоллу импульс
     public void AnimateDeath(Character killer, int shapeID)
     {
         Vector3 dir = GlobalTranslation.DirectionTo(killer.GlobalTranslation);

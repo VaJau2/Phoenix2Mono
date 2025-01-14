@@ -4,7 +4,7 @@ public class BaseMovingController : Node
 {
     public bool CloseToPoint;
     [Export] protected float Gravity;
-    [Export] protected float RotationSpeed = 0.15f;
+    [Export] protected float RotationSpeed = 0.3f;
 
     protected Character character;
 

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public class RadiationArea : Area
@@ -25,12 +26,19 @@ public class RadiationArea : Area
     {
         if (!(body is Player player)) return;
         tempPlayer = player;
+        tempPlayer.Connect(nameof(Character.DieEvent), this, nameof(Disable));
         tempPlayer.Radiation.StartSounding();
     }
 
     private void _on_radiation_body_exited(Node body)
     {
         if (body != tempPlayer) return;
+        Disable();
+    }
+    
+    private void Disable()
+    {
+        tempPlayer.Disconnect(nameof(Character.DieEvent), this, nameof(Disable));
         tempPlayer.Radiation.StopSounding();
         tempPlayer = null;
     }

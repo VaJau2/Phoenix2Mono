@@ -11,7 +11,7 @@ public abstract class Character : KinematicBody, ISavable
     [Export] public float BaseSpeed = 8; //скорость берется каждый кадр, поэтому применяется сразу
     public BaseMovingController MovingController;
     
-    public int Health { get; protected set; }
+    public int Health { get; private set; }
     public int HealthMax;
     public float BaseDamageBlock; //от 0 до 1, процентное блокирование
     public int BaseDamage;
@@ -19,7 +19,9 @@ public abstract class Character : KinematicBody, ISavable
 
     public Vector3 Velocity;
     public Vector3 impulse;
-    public bool MayMove { get; protected set; } = true;
+    public bool MayMove { get; private set; } = true;
+
+    protected bool IsDead;
         
     [Signal]
     public delegate void TakenDamage();
@@ -45,10 +47,9 @@ public abstract class Character : KinematicBody, ISavable
         Health = HealthMax = newHealth;
     }
     
-    public virtual float GetDamageBlock() => BaseDamageBlock;
+    protected virtual float GetDamageBlock() => BaseDamageBlock;
     public virtual float GetSpeed()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
-    public virtual int GetRecoil() => BaseRecoil;
 
     public void DecreaseHealth(int decrease) 
     {
@@ -61,10 +62,17 @@ public abstract class Character : KinematicBody, ISavable
         EmitSignal(nameof(TakenDamage));
         damage -= (int)(damage * GetDamageBlock());
         DecreaseHealth(damage);
-        if (Health <= 0)
+        
+        if (Health <= 0 && !IsDead)
         {
-            EmitSignal(nameof(DieEvent));
+            Die(damager, shapeID);
         }
+    }
+
+    protected virtual void Die(Character damager, int shapeID = 0)
+    {
+        IsDead = true;
+        EmitSignal(nameof(DieEvent));
     }
     
     public virtual void CheckShotgunShot(bool isShotgun) {}

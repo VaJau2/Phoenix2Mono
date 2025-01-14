@@ -1455,6 +1455,7 @@ transform = Transform( -8.39895e-08, 0, -1.92146, 0, 1.92146, 0, 1.92146, 0, -8.
 
 [node name="metallic-cabinet" parent="rooms/bunker/props/frame-room" instance=ExtResource( 26 )]
 transform = Transform( -4.55792e-08, 0, -1.04273, 0, 1.04273, 0, 1.04273, 0, -4.55792e-08, 0.51033, -1.47197, 58.2463 )
+startItemCodes = [ "antiradio", "bowRibbon", "radiationCounter", "flashlight" ]
 
 [node name="metallic-cabinet2" parent="rooms/bunker/props/frame-room" instance=ExtResource( 26 )]
 transform = Transform( -4.55792e-08, 0, -1.04273, 0, 1.04273, 0, 1.04273, 0, -4.55792e-08, 33.9126, -1.51762, 57.5551 )
@@ -2090,6 +2091,7 @@ script = ExtResource( 80 )
 
 [node name="Phoenix System" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 109 )
+onDeathTriggerPath = NodePath("../exit")
 roomPath = NodePath("../../rooms/bunker")
 cloneFlasksPaths = [ NodePath("../../rooms/bunker/props/frame-room/cloneFlask6"), NodePath("../../rooms/bunker/props/frame-room/cloneFlask5"), NodePath("../../rooms/bunker/props/frame-room/cloneFlask4"), NodePath("../../rooms/bunker/props/frame-room/cloneFlask3"), NodePath("../../rooms/bunker/props/frame-room/cloneFlask2"), NodePath("../../rooms/bunker/props/frame-room/cloneFlask") ]
 

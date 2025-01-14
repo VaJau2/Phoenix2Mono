@@ -359,6 +359,11 @@ public abstract class InventoryMode
         }
     }
 
+    protected virtual void WearDraggedItem(ItemIcon button)
+    {
+        useHandler.WearTempItem(button);
+    }
+    
     protected virtual void CheckDragItem()
     {
         var itemType = (ItemType)tempItemData["type"];
@@ -366,17 +371,24 @@ public abstract class InventoryMode
         switch (itemType)
         {
             case ItemType.weapon when CheckMouseInButton(useHandler.weaponButton):
-                useHandler.WearTempItem(useHandler.weaponButton); return;
+                WearDraggedItem(useHandler.weaponButton);
+                return;
+            
             case ItemType.armor when CheckMouseInButton(useHandler.armorButton):
-                useHandler.WearTempItem(useHandler.armorButton); return;
+                WearDraggedItem(useHandler.armorButton);
+                return;
+            
             case ItemType.artifact when CheckMouseInButton(useHandler.artifactButton):
-                useHandler.WearTempItem(useHandler.artifactButton); return;
+                WearDraggedItem(useHandler.artifactButton);
+                return;
         }
 
         foreach (var otherButton in itemButtons)
         {
             var buttonControl = (Control)otherButton;
-            if (tempButton == otherButton || !CheckMouseInButton(buttonControl)) continue;
+            
+            if (!CheckMouseInButton(buttonControl) || tempButton == otherButton) continue;
+            
             if (IsUnwearingItem(itemType))
             {
                 if (!useHandler.CanTakeItemOff()) return;
@@ -389,7 +401,7 @@ public abstract class InventoryMode
         }
     }
 
-    private bool IsUnwearingItem(ItemType itemType)
+    protected bool IsUnwearingItem(ItemType itemType)
     {
         return (itemType == ItemType.weapon && tempButton == useHandler.weaponButton)
         || (itemType == ItemType.armor && tempButton == useHandler.armorButton)
@@ -525,6 +537,8 @@ public abstract class InventoryMode
         return false;
     }
 
+    // проверка на начало перемещения
+    // без этого малейшее движение мыши будет сбивать использование через зажим
     protected bool IsMouseOutsideDeadZone()
     {
         var mousePos = menu.GetGlobalMousePosition();

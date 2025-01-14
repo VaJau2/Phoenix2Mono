@@ -17,8 +17,8 @@ public class MrHandyBody : Node
         var anim = npc.GetNode<AnimationPlayer>("anim");
         anim.Play("Idle");
         
-        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
         npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
+        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
     }
     
     public void OnNpcHitted()

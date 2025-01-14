@@ -17,7 +17,7 @@ public class DragonHealthBar : Control, ISavable
     {
         dragon = spawnedDragon;
         dragon.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
-        dragon.Connect(nameof(NPC.IsDying), this, nameof(OnDying));
+        dragon.Connect(nameof(Character.DieEvent), this, nameof(OnDying));
         Visible = true;
     }
 

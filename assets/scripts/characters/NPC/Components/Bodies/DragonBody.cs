@@ -43,7 +43,7 @@ public class DragonBody: Node
         mouth = npc.GetNode<DragonMouth>("smash-area");
         
         npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
-        npc.Connect(nameof(NPC.IsDying), this, nameof(OnNpcDying));
+        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)

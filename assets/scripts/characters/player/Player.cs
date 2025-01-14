@@ -22,7 +22,6 @@ public class Player : Character
     public bool IsSitting;
     public bool IsTalking;
     public bool IsInvisibleForEnemy;
-    protected bool isDead;
     
     public int LegsDamage = 0;
     public bool FoodCanHeal = true;
@@ -145,7 +144,7 @@ public class Player : Character
         return (int)tempDamage;
     }
 
-    public override float GetDamageBlock()
+    protected override float GetDamageBlock()
     {
         var armorProps = Inventory.GetArmorProps();
         
@@ -286,15 +285,23 @@ public class Player : Character
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamage));
-        base.TakeDamage(damager, damage, shapeID);
+        if (IsDead) return;
+        
         Body.Head.CloseEyes();
         damageEffects.StartEffect();
         
-        if (Health <= 0 && !isDead)
-        {
-            Die(damager);
-        }
+        base.TakeDamage(damager, damage, shapeID);
+    }
+    
+    protected override void Die(Character damager, int shapeID = 0)
+    {
+        SetProcess(false);
+        Camera.SetUpdating(false);
+        Body.AnimateDeath(damager);
+        Weapons.ClearWeapon();
+        DeathManager.OnPlayerDeath();
+        
+        base.Die(damager, shapeID);
     }
 
     public override void HealHealth(int healing)
@@ -499,14 +506,6 @@ public class Player : Character
             bodyCollider.Scale = bodyScale;
             sphereCollider.Scale = sphereScale;
         }
-    }
-    
-    private void Die(Character damager)
-    {
-        isDead = true;
-        Weapons.ClearWeapon();
-        Body.AnimateDeath(damager);
-        DeathManager.OnPlayerDeath();
     }
 
     private float GetTempShake(float delta)

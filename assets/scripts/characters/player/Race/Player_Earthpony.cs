@@ -74,7 +74,8 @@ public class Player_Earthpony : Player
     {
         base._Process(delta);
         
-        if (dashCooldown > 0) {
+        if (dashCooldown > 0) 
+        {
             dashCooldown -= delta;
         }
 

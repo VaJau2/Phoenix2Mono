@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public class PlayerBody : Spatial
 {
@@ -358,15 +359,13 @@ public class PlayerBody : Spatial
     {
         playback.Travel(Character.IDLE_ANIM1);
         bodyRot = 0;
-        player.CollisionLayer = 0;
-        player.CollisionMask = 0;
         playerSkeleton.PhysicalBonesStartSimulation();
         
         foreach (var boneObject in playerSkeleton.GetChildren())
         {
             if (boneObject is not PhysicalBone bone) continue;
-            bone.CollisionLayer = 6;
-            bone.CollisionMask = 6;
+            bone.CollisionLayer = 6; // слои 2 и 3
+            bone.CollisionMask = 6; // слои 2 и 3
         }
 
         var dir = Translation.DirectionTo(killer.Translation);
@@ -388,16 +387,7 @@ public class PlayerBody : Spatial
         var thirdBody = playerSkeleton.GetNode<MeshInstance>("Body_third");
         thirdBody.Layers = 1;
         thirdBody.SetScript(null);
-
-        var playerDeadScript = ResourceLoader.Load("res://assets/scripts/characters/player/PlayerDead.cs");
-        GetParent<Node>().SetScript(playerDeadScript);
-        var playerDead = GetParent<PlayerDead>();
-        playerDead.Set(
-            Global.Get().playerRace, 
-            player.Inventory.cloth,
-            false
-        );
-        playerDead._Ready();
+        SetScript(null);
     }
 
     public override void _Ready()

@@ -50,9 +50,6 @@ public class NPC : Character, IInteractable, IChest
     [Signal]
     public delegate void FoundEnemy();
     
-    [Signal]
-    public delegate void IsDying();
-    
     public override void _Ready()
     {
         base._Ready();
@@ -111,24 +108,23 @@ public class NPC : Character, IInteractable, IChest
         }
 
         base.TakeDamage(damager, damage, shapeID);
-
-        if (Health > 0) 
+        
+        if (!IsDead && !ignoreDamager)
         {
-            if (!ignoreDamager)
-            {
-                SetStateAgainstDamager(damager);
-            }
+            SetStateAgainstDamager(damager);
         }
-        else
-        {
-            if (tempVictim == Player) 
-            {
-                Player.Stealth.RemoveSeekEnemy(this);
-            }
+    }
 
-            MakeDead();
-            AnimateDeath(damager, shapeID);
+    protected override void Die(Character damager, int shapeID = 0)
+    {
+        if (tempVictim == Player) 
+        {
+            Player.Stealth.RemoveSeekEnemy(this);
         }
+        
+        MakeDead();
+        AnimateDeath(damager, shapeID);
+        base.Die(damager, shapeID);
     }
     
     private void SetStateAgainstDamager(Character damager)
@@ -191,10 +187,9 @@ public class NPC : Character, IInteractable, IChest
         }
     }
 
+    // вызывается во время загрузки трупика
     public void MakeDead(bool dropWeapon = true)
     {
-        EmitSignal(nameof(IsDying));
-        
         if (Weapons != null)
         {
             if (dropWeapon)

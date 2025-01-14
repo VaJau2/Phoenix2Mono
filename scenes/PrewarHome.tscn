@@ -2524,7 +2524,7 @@ dialogueStartPointPath = NodePath("point")
 otherDialogueCode = "talk3-1"
 
 [node name="point" type="Spatial" parent="triggers/windyMoveToFridge"]
-transform = Transform( 0.680056, 0, 0.73316, 0, 1, 0, -0.73316, 0, 0.680056, -51.4291, -102.598, 34.441 )
+transform = Transform( 0.680056, 0, 0.73316, 0, 1, 0, -0.73316, 0, 0.680056, -51.429, -103, 34.441 )
 
 [node name="checkGetPie" type="Node" parent="triggers" groups=["savable"]]
 script = ExtResource( 76 )

@@ -27,8 +27,7 @@ public class CheckFall : Node
     {
         var player = Global.Get().player;
         if (player == null) return;
-        
-        if (!(player.GlobalTransform.origin.y <= fallHeight)) return;
+        if (player.GlobalTransform.origin.y > fallHeight) return;
         
         player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
         

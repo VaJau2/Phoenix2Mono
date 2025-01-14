@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/textures/characters/windy/eyes/neitral/0.png" type="Texture" id=4]
 [ext_resource path="res://assets/models/characters/ponies/windy/mouth.material" type="Material" id=5]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "mane"
 surfaces/0 = {
@@ -166,8 +165,11 @@ surfaces/0 = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="windy" instance=ExtResource( 1 )]
-IdleAnim = "Idle1"
 lookHeightFactor = 6.0
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [  ]
+bones/3/bound_children = [  ]
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="0"]
 transform = Transform( 1, -5.27626e-17, 4.73029e-17, -3.65977e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.625431, -0.271819 )
@@ -175,9 +177,9 @@ joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48807e-17, -0.284132, -0.
 body_offset = Transform( 1, 7.91712e-18, 8.39011e-17, -8.25416e-17, 0.292822, 0.956165, -1.69978e-17, -0.956165, 0.292822, 0, 0.455076, -0.157791 )
 
 [node name="Physical Bone back_2" parent="Armature/Skeleton" index="1"]
-transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.97587, 5.53318e-08, 0.975869, -0.21835, -2.98023e-07, 1.49164, -0.113883 )
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1935e-07, 0.00750898, 0.311086 )
-body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.9696, 1.80284e-07, 0.9696, 0.244692, -2.75671e-07, 0.299792, -0.0834011 )
+transform = Transform( 0.999995, -1.87598e-09, 2.45016e-07, 2.38695e-07, -0.218351, -0.97587, 5.53318e-08, 0.975869, -0.21835, -3.12924e-07, 1.49164, -0.113883 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.268e-07, 0.00750898, 0.311086 )
+body_offset = Transform( 0.999995, -2.33047e-07, 1.86677e-07, 2.38028e-07, 0.244691, -0.9696, 1.80284e-07, 0.9696, 0.244692, -2.83122e-07, 0.299792, -0.0834011 )
 
 [node name="Physical Bone neck" parent="Armature/Skeleton" index="2"]
 transform = Transform( 1, 3.86262e-09, 2.65067e-06, 3.60006e-07, -0.990928, -0.134372, 2.6261e-06, 0.13437, -0.990924, -1.2815e-06, 2.04928, 1.75755 )
@@ -235,9 +237,6 @@ transform = Transform( 1.06463, -0.0166514, 0.0702788, 0.0713619, 0.082517, -1.0
 [node name="mane" type="MeshInstance" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform( 1.05588, -6.83094e-07, -2.68358e-06, 4.20139e-13, 1.02325, -0.260464, 2.76916e-06, 0.260464, 1.02325, 0.00526307, 1.21853, 0.417282 )
 mesh = SubResource( 1 )
-
-[node name="BoneAttachment 2" parent="Armature/Skeleton" index="13"]
-transform = Transform( 1, -5.27625e-17, 4.73032e-17, 4.73032e-17, 0.994065, 0.10879, -5.27625e-17, -0.10879, 0.994065, 2.16776e-17, 0.190222, -0.0654569 )
 
 [node name="Body" type="MeshInstance" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 9 )

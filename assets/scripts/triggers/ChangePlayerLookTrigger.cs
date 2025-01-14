@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom.Compiler;
 using Godot;
 using Godot.Collections;
 
@@ -22,9 +23,7 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
         var headRotation = GetHeadRotationToTarget();
         var animTree = player.GetNode<AnimationTree>("player_body/animTree");
         var headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
-        
-        SetValueTo(ref headBlend.x, headRotation.x, delta * 4);
-        SetValueTo(ref headBlend.y, headRotation.y, delta * 4);
+        headBlend = headBlend.MoveToward(headRotation, delta * 2);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
     
@@ -61,22 +60,6 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
         var targetDirPos = target.GlobalTranslation;
         targetDirPos.y = player.GlobalTranslation.y;
         return targetDirPos - player.GlobalTranslation;
-    }
-    
-    private void SetValueTo(ref float value, float to, float delta)
-    {
-        if (value > to + 0.05f)
-        {
-            value -= delta;
-        }
-        else if (value < to - 0.05f)
-        {
-            value += delta;
-        }
-        else
-        {
-            value = to;
-        }
     }
     
     public override Dictionary GetSaveData()

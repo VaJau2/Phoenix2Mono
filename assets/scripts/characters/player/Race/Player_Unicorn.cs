@@ -52,7 +52,7 @@ public class Player_Unicorn : Player
 
         base.TakeDamage(damager, damage, shapeID);
         
-        if (isDead) ClearTeleportMark();
+        if (IsDead) ClearTeleportMark();
     }
 
     public override Spatial GetWeaponParent(bool isPistol)

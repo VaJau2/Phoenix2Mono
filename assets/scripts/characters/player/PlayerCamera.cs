@@ -26,7 +26,7 @@ public class PlayerCamera : Camera
     private Control loadingIcon;
     private AnimationPlayer loadingAnim;
 
-    private Node tempObject;
+    private IInteractable tempInteractable;
 
     private bool fovClosing;
     private Control eyePartUp;
@@ -39,7 +39,7 @@ public class PlayerCamera : Camera
     private RayCast tempRay => Player.RotationHelperThird.TempRay;
     
     private bool MayInteract => !interactionHint.Visible || !(closedTimer <= 0) ||
-                                tempObject is IInteractable { MayInteract: true };
+                                tempInteractable is { MayInteract: true };
     
     public override void _Ready()
     {
@@ -89,7 +89,7 @@ public class PlayerCamera : Camera
     {
         if (animation != "load") return;
         
-        if (tempObject is IInteractableHoldSound)
+        if (tempInteractable is IInteractableHoldSound)
         {
             Player.GetAudi(true).Stop();
         }
@@ -157,20 +157,12 @@ public class PlayerCamera : Camera
         if (!mayUseRay) return;
         if (!Player.MayMove) return;
 
-        tempObject = (Node)tempRay.GetCollider();
+        tempInteractable = GetTempObject();
 
-        if (mayUseRay && tempObject != null)
+        if (tempInteractable is { MayInteract: true })
         {
-            if (tempObject is PhysicalBone)
-            {
-                tempObject = tempObject.GetNode<Node>("../../../");
-            }
-            
-            if (tempObject is IInteractable { MayInteract: true } interactable)
-            {
-                ShowHint(interactable.InteractionHintCode);
-                return;
-            }
+            ShowHint(tempInteractable.InteractionHintCode);
+            return;
         }
         
         ReturnInteractionPoint();
@@ -180,6 +172,32 @@ public class PlayerCamera : Camera
         {
             Player.GetAudi(true).Stop();
         }
+    }
+
+    private IInteractable GetTempObject()
+    {
+        if (!mayUseRay) return null;
+        
+        var obj = (Node)tempRay.GetCollider();
+        
+        if (obj is PhysicalBone)
+        {
+            // путь к NPC
+            obj = obj.GetNode<Node>("../../../");
+        
+            // путь к PlayerDead
+            if (obj.Name == "player_body")
+            {
+                obj = obj.GetParent<Node>();
+            }
+        }
+        
+        if (obj is IInteractable interactable)
+        {
+            return interactable;
+        }
+
+        return null;
     }
     
     private void UpdateFov(float delta)
@@ -276,11 +294,11 @@ public class PlayerCamera : Camera
         {
             if (!Player.MayMove) return;
             
-            if (tempObject is IInteractableHold holdable)
+            if (tempInteractable is IInteractableHold holdable)
             {
                 ShowLoadingIcon(holdable);
                         
-                if (tempObject is IInteractableHoldSound soundable)
+                if (tempInteractable is IInteractableHoldSound soundable)
                 {
                     PlayInteractionAudio(soundable.HoldingSound, true);
                 }
@@ -288,7 +306,7 @@ public class PlayerCamera : Camera
                 return;
             }
             
-            if (tempObject is IInteractable { MayInteract: true })
+            if (tempInteractable is { MayInteract: true })
             {
                 InteractWithItem();
             }
@@ -296,12 +314,12 @@ public class PlayerCamera : Camera
 
         if (Input.IsActionJustReleased("use"))
         {
-            if (tempObject is IInteractableHold)
+            if (tempInteractable is IInteractableHold)
             {
                 HideLoadingIcon();
             }
             
-            if (tempObject is IInteractableHoldSound)
+            if (tempInteractable is IInteractableHoldSound)
             {
                 Player.GetAudi(true).Stop();
             }
@@ -310,15 +328,12 @@ public class PlayerCamera : Camera
 
     private void InteractWithItem()
     {
-        if (tempObject is IInteractableUseSound soundable)
+        if (tempInteractable is IInteractableUseSound soundable)
         {
             PlayInteractionAudio(soundable.UseSound, false);
         }
         
-        if (tempObject is IInteractable interactable)
-        {
-            interactable.Interact(this);
-        }
+        tempInteractable?.Interact(this);
     }
     
     private void PlayInteractionAudio(AudioStream stream, bool holdingSound)

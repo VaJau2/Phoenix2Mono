@@ -2,14 +2,11 @@
 
 public class PlayerDeathManager : Node
 {
-    public bool permanentDeath = true;
+    public bool PermanentDeath = true;
+    public TriggerBase OnDeathTrigger;
     
     private ColorRect blackScreen;
     private LevelsLoader levelsLoader;
-    private Global global = Global.Get();
-    
-    [Signal]
-    public delegate void PlayerDie();
     
     [Signal]
     public delegate void CloneDie();
@@ -36,17 +33,16 @@ public class PlayerDeathManager : Node
             var temp = blackScreen.Color;
             temp.a += 0.01f;
             blackScreen.Color = temp;
-            await global.ToTimer(0.04f);
+            await Global.Get().ToTimer(0.04f);
         }
         
-        if (permanentDeath)
+        if (PermanentDeath)
         {
-            levelsLoader.ShowDeathMenu();
-            EmitSignal(nameof(PlayerDie));
+            if (OnDeathTrigger != null) OnDeathTrigger._on_activate_trigger();
+            else levelsLoader.ShowDeathMenu();
         }
         else
         {
-            EmitSignal(nameof(PlayerDie));
             EmitSignal(nameof(CloneDie));
         }
     }

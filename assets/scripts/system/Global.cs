@@ -11,12 +11,9 @@ public class Global
 
     private Global() {}
 
-    public static Global Get() 
+    public static Global Get()
     {
-        if (instance == null) {
-            instance = new Global();
-        }
-        return instance;
+        return instance ??= new Global();
     }
     //-----------------------------
 
@@ -144,6 +141,12 @@ public class Global
 
     public static Dictionary LoadJsonFile(string filePath)
     {
+        if (string.IsNullOrEmpty(filePath))
+        {
+            GD.PrintErr("empty path");
+            return null;
+        }
+        
         if (jsonCachePath == filePath)
         {
             return jsonCache;
