@@ -35,7 +35,6 @@ public class PlayerBody : Spatial
     private float jumpingCooldown;
     private float crouchingCooldown;
     private float smileCooldown;
-    private float shyCooldown = 1.5f;
 
     public float bodyRot = 0;
     private bool onetimeBodyRotBack;
@@ -50,31 +49,10 @@ public class PlayerBody : Spatial
         get => bodyRot < MAX_ANGLE - 1;
     }
 
-    public void SetRotZero()
-    {
-        bodyRot = 0;
-        Vector3 rot = RotationDegrees;
-        rot.y = 0;
-        RotationDegrees = rot;
-    }
+    private bool IsVelocityMoving => new Vector2(player.Velocity.x, player.Velocity.z).Length() > 1f;
 
-    private bool IsWalking => new Vector2(player.Velocity.x, player.Velocity.z).Length() > 1f;
-
-    private bool playerMakingShy
-    {
-        get
-        {
-            var rotYvalue = 1f;
-
-            if (player.Inventory.GetArmorProps().Contains("shyHeadYRot"))
-            {
-                rotYvalue = Global.ParseFloat(player.Inventory.GetArmorProps()["shyHeadYRot"].ToString());
-            }
-
-            return bodyRot > 27 && bodyRot < 61 && headBlend.y > rotYvalue;
-        }
-    }
-
+    private bool IsMovementInput => Input.IsActionPressed("ui_up") || Input.IsActionPressed("ui_down") ||
+                                    Input.IsActionPressed("ui_left") || Input.IsActionPressed("ui_right");
 
     private bool checkPegasusFlying
     {
@@ -104,14 +82,107 @@ public class PlayerBody : Spatial
         }
     }
 
-    private void updateHeadRotation(float delta)
+    public override void _Ready()
+    {
+        player = GetNode<Player>("../");
+        playerRace = Global.Get().playerRace;
+        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
+        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
+
+        animTree = GetNode<AnimationTree>("animTree");
+        playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
+        headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
+        playback.Start(Character.IDLE_ANIM1);
+    }
+
+    public override void _Process(float delta)
+    {
+        if (player.Health > 0)
+        {
+            if (player.MayRotateHead) UpdateHeadRotation(delta);
+
+            //update smiling
+            if (bodyRot > 130 || bodyRot < -105)
+            {
+                if (smileCooldown < 5)
+                {
+                    smileCooldown += delta;
+                }
+                else
+                {
+                    Head.SmileOn();
+                }
+            }
+            else
+            {
+                if (smileCooldown != 0)
+                {
+                    smileCooldown = 0;
+                    Head.SmileOff();
+                }
+            }
+
+            if (jumpingCooldown > 0)
+            {
+                jumpingCooldown -= delta;
+            }
+
+            if (player.IsCrouching)
+            {
+                notJumpingCooldown = 0.1f;
+            }
+            else if (notJumpingCooldown > 0)
+            {
+                notJumpingCooldown -= delta;
+            }
+
+            if (crouchingCooldown > 0)
+            {
+                crouchingCooldown -= delta;
+            }
+
+            AnimateMoving();
+            UpdateBodyRotValue();
+            SetRotationByBodyRot(delta);
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseMotion &&
+            Input.MouseMode == Input.MouseModeEnum.Captured
+            && player.MayRotateHead)
+        {
+            var mouseEvent = @event as InputEventMouseMotion;
+            float mouseSensivity = player.MouseSensivity;
+            float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
+
+            bool mayRotate = (player.ThirdView && !player.IsSitting && !player.Weapons.GunOn) ||
+                             (mouseEvent.Relative.x < 0 && RotClumpsMin) ||
+                             (mouseEvent.Relative.x > 0 && RotClumpsMax);
+            if (mayRotate)
+            {
+                bodyRot -= speedX;
+            }
+        }
+    }
+
+    public void SetRotZero()
+    {
+        bodyRot = 0;
+        Vector3 rot = RotationDegrees;
+        rot.y = 0;
+        RotationDegrees = rot;
+    }
+
+    private void UpdateHeadRotation(float delta)
     {
         var lookYAngle = (player.GetVerticalLook() / 60f - 0.1f) + walkOffset;
         //обрасываем нули, чтоб вращение головы не подрагивало
         string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);
         headBlend.y = float.Parse(stringYAngle);
 
-        if (IsWalking || jumpingCooldown > 0)
+        if (IsMovementInput || jumpingCooldown > 0)
         {
             if (checkPegasusFlyingFast)
             {
@@ -154,7 +225,7 @@ public class PlayerBody : Spatial
         }
 
         float speed = 0;
-        if (IsWalking)
+        if (IsMovementInput)
         {
             speed = (BODY_ROT_SPEED / 90f) * player.Velocity.Length();
             //обрасываем нули, чтоб вращение головы не подрагивало
@@ -259,7 +330,7 @@ public class PlayerBody : Spatial
     {
         var playerDir = player.Velocity * -player.GlobalTransform.basis.z;
         var playerMovingForward = playerDir.x + playerDir.z > 0;
-        
+
         playback.Travel(playerMovingForward ? "Walk" : "WalkBackwards");
     }
 
@@ -360,7 +431,7 @@ public class PlayerBody : Spatial
         playback.Travel(Character.IDLE_ANIM1);
         bodyRot = 0;
         playerSkeleton.PhysicalBonesStartSimulation();
-        
+
         foreach (var boneObject in playerSkeleton.GetChildren())
         {
             if (boneObject is not PhysicalBone bone) continue;
@@ -381,234 +452,151 @@ public class PlayerBody : Spatial
             node.SetProcess(false);
             node.QueueFree();
         }
-        
+
         playerSkeleton.GetNode<MeshInstance>("Body").QueueFree();
-        
+
         var thirdBody = playerSkeleton.GetNode<MeshInstance>("Body_third");
         thirdBody.Layers = 1;
         thirdBody.SetScript(null);
         SetScript(null);
     }
 
-    public override void _Ready()
+    private void AnimateMoving()
     {
-        player = GetNode<Player>("../");
-        playerRace = Global.Get().playerRace;
-        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
-        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
-
-        animTree = GetNode<AnimationTree>("animTree");
-        playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
-        headBlend = (Vector2)animTree.Get("parameters/BlendSpace2D/blend_position");
-        playback.Start(Character.IDLE_ANIM1);
-    }
-
-    public override void _Process(float delta)
-    {
-        if (player.Health > 0)
+        //Для анимирования сползания по лестнице проверяем через велосити
+        if (IsVelocityMoving)
         {
-            if (player.MayRotateHead) updateHeadRotation(delta);
-
-            //update smiling
-            if (bodyRot > 130 || bodyRot < -105)
-            {
-                if (smileCooldown < 5)
-                {
-                    smileCooldown += delta;
-                }
-                else
-                {
-                    Head.SmileOn();
-                }
-            }
-            else
-            {
-                if (smileCooldown != 0)
-                {
-                    smileCooldown = 0;
-                    Head.SmileOff();
-                }
-            }
-
-            //update shy when in coat
-            if (player.Inventory.GetArmorProps().Contains("makeShy") && playerMakingShy)
-            {
-                if (shyCooldown > 0)
-                {
-                    shyCooldown -= delta;
-                }
-                else
-                {
-                    shyCooldown = 1.5f;
-                    Head.ShyOn();
-                }
-            }
-
-            if (jumpingCooldown > 0)
-            {
-                jumpingCooldown -= delta;
-            }
-
             if (player.IsCrouching)
             {
-                notJumpingCooldown = 0.1f;
-            }
-            else if (notJumpingCooldown > 0)
-            {
-                notJumpingCooldown -= delta;
-            }
-
-            if (crouchingCooldown > 0)
-            {
-                crouchingCooldown -= delta;
-            }
-
-            if (IsWalking)
-            {
-                if (player.IsCrouching)
-                {
-                    playback.Travel("Crouch");
-                    crouchingCooldown = CROUCH_COOLDOWN;
-                }
-                else
-                {
-                    crouchingCooldown = 0;
-
-                    switch (playerRace)
-                    {
-                        case Race.Pegasus:
-                            AnimateWalkPegasus(player as Player_Pegasus);
-                            break;
-                        case Race.Earthpony:
-                            AnimateWalkEarthpony(player as Player_Earthpony);
-                            break;
-                        case Race.Unicorn:
-                            AnimateWalkUnicorn();
-                            break;
-                    }
-                }
-
-                bodyRot = 0;
-                onetimeBodyRotBack = true;
-            }
-            else if (!player.IsHitting && !player.IsSitting)
-            {
-                if (player.IsCrouching)
-                {
-                    if (!player.BodyFollowsCamera && crouchingCooldown <= 0)
-                    {
-                        playback.Travel("Sit");
-                    }
-                    else
-                    {
-                        playback.Travel("Crouch-idle");
-                    }
-                }
-                else
-                {
-                    crouchingCooldown = 0;
-
-                    switch (playerRace)
-                    {
-                        case Race.Pegasus:
-                            AnimateIdlePegasus(player as Player_Pegasus);
-                            break;
-                        case Race.Earthpony:
-                            AnimateIdleEarthpony();
-                            break;
-                        case Race.Unicorn:
-                            AnimateIdleEarthpony();
-                            break;
-                    }
-                }
-
-                if (onetimeBodyRotBack)
-                {
-                    bodyRot = RotationDegrees.y;
-                    onetimeBodyRotBack = false;
-                }
-            }
-
-            if (player.MayMove)
-            {
-                if (Input.IsActionPressed("ui_left") && checkPegasusFlying)
-                {
-                    bodyRot = 90f;
-                    if (Input.IsActionPressed("ui_up"))
-                    {
-                        bodyRot = 45f;
-                    }
-                    else if (Input.IsActionPressed("ui_down"))
-                    {
-                        bodyRot = -45f;
-                    }
-                }
-
-                if (Input.IsActionPressed("ui_right") && checkPegasusFlying)
-                {
-                    bodyRot = -90f;
-                    if (Input.IsActionPressed("ui_up"))
-                    {
-                        bodyRot = -45f;
-                    }
-                    else if (Input.IsActionPressed("ui_down"))
-                    {
-                        bodyRot = 45f;
-                    }
-                }
-            }
-
-
-            if (player.BodyFollowsCamera)
-            {
-                SetRotZero();
-            }
-            else if (IsWalking)
-            {
-                Vector3 rot = RotationDegrees;
-
-                float speed = 0;
-                if (checkPegasusFlyingFast)
-                {
-                    speed = BODY_ROT_SPEED * 10f;
-                }
-                else
-                {
-                    speed = BODY_ROT_SPEED * player.Velocity.Length();
-                }
-
-                rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);
-                RotationDegrees = rot;
+                playback.Travel("Crouch");
+                crouchingCooldown = CROUCH_COOLDOWN;
             }
             else
             {
-                Vector3 rot = RotationDegrees;
-                rot.y = bodyRot;
+                crouchingCooldown = 0;
 
-                RotationDegrees = rot;
+                switch (playerRace)
+                {
+                    case Race.Pegasus:
+                        AnimateWalkPegasus(player as Player_Pegasus);
+                        break;
+                    case Race.Earthpony:
+                        AnimateWalkEarthpony(player as Player_Earthpony);
+                        break;
+                    case Race.Unicorn:
+                        AnimateWalkUnicorn();
+                        break;
+                }
+            }
+        }
+        else if (!player.IsHitting && !player.IsSitting)
+        {
+            if (player.IsCrouching)
+            {
+                if (!player.BodyFollowsCamera && crouchingCooldown <= 0)
+                {
+                    playback.Travel("Sit");
+                }
+                else
+                {
+                    playback.Travel("Crouch-idle");
+                }
+            }
+            else
+            {
+                crouchingCooldown = 0;
 
-                ClumpBodyRot();
+                switch (playerRace)
+                {
+                    case Race.Pegasus:
+                        AnimateIdlePegasus(player as Player_Pegasus);
+                        break;
+                    case Race.Earthpony:
+                        AnimateIdleEarthpony();
+                        break;
+                    case Race.Unicorn:
+                        AnimateIdleEarthpony();
+                        break;
+                }
+            }
+
+            if (onetimeBodyRotBack)
+            {
+                bodyRot = RotationDegrees.y;
+                onetimeBodyRotBack = false;
             }
         }
     }
 
-    public override void _Input(InputEvent @event)
+    private void UpdateBodyRotValue()
     {
-        if (@event is InputEventMouseMotion &&
-            Input.MouseMode == Input.MouseModeEnum.Captured
-            && player.MayRotateHead)
+        if (IsMovementInput)
         {
-            var mouseEvent = @event as InputEventMouseMotion;
-            float mouseSensivity = player.MouseSensivity;
-            float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
+            bodyRot = 0;
+            onetimeBodyRotBack = true;
+        }
 
-            bool mayRotate = (player.ThirdView && !player.IsSitting && !player.Weapons.GunOn) ||
-                             (mouseEvent.Relative.x < 0 && RotClumpsMin) ||
-                             (mouseEvent.Relative.x > 0 && RotClumpsMax);
-            if (mayRotate)
+        if (player.MayMove)
+        {
+            if (Input.IsActionPressed("ui_left") && checkPegasusFlying)
             {
-                bodyRot -= speedX;
+                bodyRot = 90f;
+                if (Input.IsActionPressed("ui_up"))
+                {
+                    bodyRot = 45f;
+                }
+                else if (Input.IsActionPressed("ui_down"))
+                {
+                    bodyRot = -45f;
+                }
             }
+
+            if (Input.IsActionPressed("ui_right") && checkPegasusFlying)
+            {
+                bodyRot = -90f;
+                if (Input.IsActionPressed("ui_up"))
+                {
+                    bodyRot = -45f;
+                }
+                else if (Input.IsActionPressed("ui_down"))
+                {
+                    bodyRot = 45f;
+                }
+            }
+        }
+    }
+
+    private void SetRotationByBodyRot(float delta)
+    {
+        if (player.BodyFollowsCamera)
+        {
+            SetRotZero();
+        }
+        else if (IsMovementInput)
+        {
+            Vector3 rot = RotationDegrees;
+
+            float speed = 0;
+            if (checkPegasusFlyingFast)
+            {
+                speed = BODY_ROT_SPEED * 10f;
+            }
+            else
+            {
+                speed = BODY_ROT_SPEED * player.Velocity.Length();
+            }
+
+            rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);
+            RotationDegrees = rot;
+        }
+        else
+        {
+            Vector3 rot = RotationDegrees;
+            rot.y = bodyRot;
+
+            RotationDegrees = rot;
+
+            ClumpBodyRot();
         }
     }
 }

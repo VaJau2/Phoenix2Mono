@@ -56,7 +56,6 @@ public class Player : Character
     private Listener listener;
 
     //Переменные для передвижения
-
     private Vector3 dir;
     private float sideAngle;
 
