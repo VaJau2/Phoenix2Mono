@@ -34,7 +34,7 @@ public abstract class InventoryMode
 
     public ItemIcon tempButton { get; private set; }
     public Dictionary tempItemData { get; private set; }
-    public Array<ItemIcon> itemButtons {get;} = new Array<ItemIcon>();
+    public Array<ItemIcon> inventoryButtons {get;} = new Array<ItemIcon>();
     
     //key = key, value = button
     protected Dictionary<string, Label> labels = new Dictionary<string, Label>();
@@ -55,15 +55,15 @@ public abstract class InventoryMode
 
         foreach(object button in menu.GetNode<Control>("helper/back/items").GetChildren()) 
         {
-            itemButtons.Add(button as ItemIcon); 
+            inventoryButtons.Add(button as ItemIcon); 
         }
         
         if (!menu.menuLoaded && Global.Get().playerRace != Race.Earthpony) 
         {
             for(int i = 0; i < 5; i++) 
             {
-                itemButtons[itemButtons.Count - 1].QueueFree();
-                itemButtons.RemoveAt(itemButtons.Count - 1);
+                inventoryButtons[inventoryButtons.Count - 1].QueueFree();
+                inventoryButtons.RemoveAt(inventoryButtons.Count - 1);
             }
             menu.menuLoaded = true;
         }
@@ -101,19 +101,19 @@ public abstract class InventoryMode
     
     public ItemIcon FindButtonWithItem(string itemCode)
     {
-        return itemButtons.FirstOrDefault(button => button.myItemCode == itemCode);
+        return inventoryButtons.FirstOrDefault(button => button.myItemCode == itemCode);
     }
     
     public ItemIcon FindButtonWithItemByFirstLetters(string firstLetters)
     {
-        return itemButtons.FirstOrDefault(button =>
+        return inventoryButtons.FirstOrDefault(button =>
             button.myItemCode != null && button.myItemCode.StartsWith(firstLetters)
         );
     }
 
     public int SameItemCount(string itemCode)
     {
-        return itemButtons.Count(inventoryButton => inventoryButton.myItemCode == itemCode);
+        return inventoryButtons.Count(inventoryButton => inventoryButton.myItemCode == itemCode);
     }
 
     public void LoadItemButtons(Array<string> newItems, Dictionary<string, int> ammo)
@@ -132,7 +132,7 @@ public abstract class InventoryMode
     
     public ItemIcon FirstEmptyButton
     {
-        get { return itemButtons.FirstOrDefault(button => button.myItemCode == null); }
+        get { return inventoryButtons.FirstOrDefault(button => button.myItemCode == null); }
     }
 
     public ItemIcon AddNewItem(string itemCode) 
@@ -368,6 +368,7 @@ public abstract class InventoryMode
     {
         var itemType = (ItemType)tempItemData["type"];
 
+        //если надеваем предмет через драггинг
         switch (itemType)
         {
             case ItemType.weapon when CheckMouseInButton(useHandler.weaponButton):
@@ -383,22 +384,52 @@ public abstract class InventoryMode
                 return;
         }
 
-        foreach (var otherButton in itemButtons)
+        var dragInButton = GetDragInButton();
+        if (dragInButton == null) return;
+        
+        //если в слоте что-то лежит, и игрок перетаскивает вещь из экипировочных кнопок в инвентарь
+        if (dragInButton.myItemCode != null 
+            && !inventoryButtons.Contains(tempButton) 
+            && inventoryButtons.Contains(dragInButton))
         {
-            var buttonControl = (Control)otherButton;
+            //получаем тип предмета, который уже лежит в сундуке
+            var otherItemData = ItemJSON.GetItemData(dragInButton.myItemCode);
+            var otherItemType = (ItemType)otherItemData["type"];
             
-            if (!CheckMouseInButton(buttonControl) || tempButton == otherButton) continue;
-            
-            if (IsUnwearingItem(itemType))
+            if (itemType == otherItemType && otherItemType is ItemType.weapon or ItemType.armor or ItemType.artifact)
             {
-                if (!useHandler.CanTakeItemOff()) return;
                 inventory.UnwearItem(tempButton.myItemCode);
+                inventory.WearItem(dragInButton.myItemCode);
+                
+                ChangeItemButtons(tempButton, dragInButton);
+                SetTempButton(dragInButton, false);
+                dragIcon.SetIcon(null);
+                return;
             }
 
-            ChangeItemButtons(tempButton, otherButton);
-            SetTempButton(otherButton, false);
-            dragIcon.SetIcon(null);
+            inventory.ItemsMessage("slotIsBusy");
+            return;
         }
+        
+        if (IsUnwearingItem(itemType))
+        {
+            if (!useHandler.CanTakeItemOff()) return;
+            inventory.UnwearItem(tempButton.myItemCode);
+        }
+
+        ChangeItemButtons(tempButton, dragInButton);
+        SetTempButton(dragInButton, false);
+        dragIcon.SetIcon(null);
+    }
+
+    private ItemIcon GetDragInButton()
+    {
+        return (from otherButton in inventoryButtons
+                let buttonControl = (Control)otherButton
+                where CheckMouseInButton(buttonControl)
+                      && tempButton != otherButton
+                select otherButton)
+            .FirstOrDefault();
     }
 
     protected bool IsUnwearingItem(ItemType itemType)
@@ -556,7 +587,7 @@ public abstract class InventoryMode
         
         var updateMenu = true;
         
-        foreach (var itemButton in itemButtons)
+        foreach (var itemButton in inventoryButtons)
         {
             itemButton.OnModalClosed(updateMenu);
             
@@ -593,7 +624,7 @@ public abstract class InventoryMode
             return;
         }
 
-        foreach (var newTempButton in itemButtons)
+        foreach (var newTempButton in inventoryButtons)
         {
             if (newTempButton.myItemCode == null) continue;
             SetTempButton(newTempButton);

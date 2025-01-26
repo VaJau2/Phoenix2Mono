@@ -478,7 +478,7 @@ public class TradeMode: InventoryMode
                 {
                     tempItemName = itemProps["name"].ToString();
                     
-                    bool isBuyPrice = !itemButtons.Contains(tempButton);
+                    bool isBuyPrice = !inventoryButtons.Contains(tempButton);
                     tempItemPrice = GetItemPrice(itemProps, isBuyPrice);
                     
                     propValue = tempItemPrice.ToString(); 
@@ -500,7 +500,7 @@ public class TradeMode: InventoryMode
 
     private bool CheckSellItem()
     {
-        if (itemButtons.Contains(tempButton)) 
+        if (inventoryButtons.Contains(tempButton)) 
         {
             //если предмет квестовый, его нельзя продать
             if (tempItemData.Contains("questItem"))
@@ -570,7 +570,7 @@ public class TradeMode: InventoryMode
     //проверяем, есть ли в инвентаре патроны, которые собираемся купить
     private bool checkAmmoInInventory()
     {
-        if (itemButtons.Contains(tempButton)) return false;
+        if (inventoryButtons.Contains(tempButton)) return false;
 
         if (buyAmmo) 
         {

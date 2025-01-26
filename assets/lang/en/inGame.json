@@ -25,7 +25,8 @@
         "money": "Not enough money",
         "medsOff": "The drug has worn off. You want more",
         "itemGiven": "Item lost: ",
-        "itemTaken": "You take item: "
+        "itemTaken": "You take item: ",
+        "slotIsBusy": "Slot is already busy"
     },
 
     "messages": {

@@ -74,7 +74,7 @@ public class PlayerInventory
             artifactButton.ClearItem();
         }
         
-        foreach (var button in menu.mode.itemButtons)
+        foreach (var button in menu.mode.inventoryButtons)
         {
             if (!string.IsNullOrEmpty(button.myItemCode))
             {
@@ -288,7 +288,7 @@ public class PlayerInventory
         var itemCodes = new Array();
         var itemCounts = new Array();
         var itemBinds = new Array();
-        foreach (ItemIcon button in menu.mode.itemButtons)
+        foreach (ItemIcon button in menu.mode.inventoryButtons)
         {
             itemCodes.Add(button.myItemCode ?? "_");
             itemCounts.Add(button.GetCount());
@@ -350,7 +350,7 @@ public class PlayerInventory
             if (itemCode == "_") continue;
             
             var itemCount = Convert.ToInt32(itemCounts[i]);
-            ItemIcon tempButton = menu.mode.itemButtons[i];
+            ItemIcon tempButton = menu.mode.inventoryButtons[i];
             tempButton.SetItem(itemCode);
             tempButton.SetCount(itemCount, false);
             

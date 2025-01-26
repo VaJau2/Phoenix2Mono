@@ -122,7 +122,7 @@ public class PhoenixSystem : Node, ISavable
             playerItems.Add(artifact);
         }
         
-        foreach (var itemButton in player.Inventory.menu.mode.itemButtons)
+        foreach (var itemButton in player.Inventory.menu.mode.inventoryButtons)
         {
             playerItems.Add(itemButton.myItemCode);
         }

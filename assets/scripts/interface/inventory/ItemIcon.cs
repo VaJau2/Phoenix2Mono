@@ -135,21 +135,22 @@ public class ItemIcon : ColorRect
         menu = GetNode<InventoryMenu>("/root/Main/Scene/canvas/inventory");
         bindLabel = GetNode<Label>("bindLabel");
         countLabel = GetNode<Label>("countLabel");
-
-        menu.Connect(nameof(InventoryMenu.ModalIsClosed), this, nameof(OnModalClosed));
     }
 
-    public bool OnModalClosed(bool updateMenu)
+    public void OnModalClosed(bool updateMenu)
     {
         SetSelected(IsCursorInside, updateMenu);
-        return IsCursorInside;
     }
     
-    private void SetSelected(bool value, bool updateMenu)
+    private void SetSelected(bool value, bool updateMenu = true)
     {
         selected.Visible = value;
         icon.Modulate = value ? Colors.Black : global.Settings.interfaceColor;
-        if (updateMenu) menu.SetTempButton(value ? this : null);
+        
+        if (value && updateMenu)
+        {
+            menu.SetTempButton(this);
+        }
     }
     
     public virtual void _on_itemIcon_mouse_entered()
@@ -158,7 +159,7 @@ public class ItemIcon : ColorRect
         
         if (myItemCode != null && MayShowInfo())
         {
-            SetSelected(true, true);
+            SetSelected(true);
         }
     }
 
@@ -168,7 +169,7 @@ public class ItemIcon : ColorRect
         
         if (selected.Visible && MayShowInfo())
         {
-            SetSelected(false, true);
+            SetSelected(false);
         }
     }
 }
