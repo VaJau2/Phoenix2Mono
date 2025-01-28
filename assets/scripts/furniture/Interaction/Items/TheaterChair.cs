@@ -23,7 +23,7 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         back = GetNode<StaticBody>("back");
     }
 
-    public async void Interact(PlayerCamera interactor)
+    public void Interact(PlayerCamera interactor)
     {
         if (!MayInteract) return;
         
@@ -33,15 +33,13 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         interactor.HideInteractionSquare();
         
         player.Velocity = Vector3.Zero;
-        player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, strikelyPlace.GlobalTransform.origin);
+        player.GlobalTranslation = strikelyPlace.GlobalTranslation;
         player.Rotation = new Vector3
         (
             player.Rotation.x,
             strikelyPlace.Rotation.y,
             player.Rotation.z
         );
-        
-        await Global.Get().ToTimer(0.23f);
         
         player.SitOnChair(true);
         player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));

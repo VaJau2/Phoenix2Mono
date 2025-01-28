@@ -585,14 +585,12 @@ public class Player : Character
     {
         if (IsSitting)
         {
-            if (speedX > 0 && Body.RotClumpsMin)
+            switch (speedX)
             {
-                RotateY(Mathf.Deg2Rad(speedX));
-            }
-
-            if (speedX < 0 && Body.RotClumpsMax)
-            {
-                RotateY(Mathf.Deg2Rad(speedX));
+                case > 0 when Body.RotClumpsMin:
+                case < 0 when Body.RotClumpsMax:
+                    RotateY(Mathf.Deg2Rad(speedX));
+                    break;
             }
         }
         else

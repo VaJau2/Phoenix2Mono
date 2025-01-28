@@ -8,17 +8,20 @@ public class PlayerBody : Spatial
     //пока угол между ним и головой не больше MAX_ANGLE
     //---------------------------------------------------+
 
-    const float MAX_ANGLE = 90;
-    const int MAX_MOUSE_SPEED = 450;
-    const float OFFSET_SPEED = 3f;
+    private const float MAX_ANGLE = 90;
+    private const int MAX_MOUSE_SPEED = 450;
+    private const float OFFSET_SPEED = 3f;
 
-    const float HEAD_ROT_SPEED = 5f;
-    const float BODY_ROT_SPEED = 26f;
+    private const float HEAD_ROT_SPEED = 5f;
+    private const float BODY_ROT_SPEED = 26f;
 
-    const float CROUCH_COOLDOWN = 5f;
-    const float JUMP_COOLDOWN = 0.7f;
+    private const float CROUCH_COOLDOWN = 5f;
+    private const float JUMP_COOLDOWN = 0.7f;
 
-    const int RAGDOLL_IMPULSE = 700;
+    private const int RAGDOLL_IMPULSE = 700;
+    
+    private const string WALK_FORWARD = "Walk";
+    private const string WALK_BACKWARD = "WalkBackwards";
 
     public PlayerHead Head { get; private set; }
     private Player player;
@@ -39,15 +42,9 @@ public class PlayerBody : Spatial
     public float bodyRot = 0;
     private bool onetimeBodyRotBack;
 
-    public bool RotClumpsMin
-    {
-        get => bodyRot > -MAX_ANGLE + 1;
-    }
+    public bool RotClumpsMin => bodyRot > -MAX_ANGLE + 1;
 
-    public bool RotClumpsMax
-    {
-        get => bodyRot < MAX_ANGLE - 1;
-    }
+    public bool RotClumpsMax => bodyRot < MAX_ANGLE - 1;
 
     private bool IsVelocityMoving => new Vector2(player.Velocity.x, player.Velocity.z).Length() > 1f;
 
@@ -328,10 +325,25 @@ public class PlayerBody : Spatial
 
     private void AnimateWalking()
     {
-        var playerDir = player.Velocity * -player.GlobalTransform.basis.z;
-        var playerMovingForward = playerDir.x + playerDir.z > 0;
+        if (Input.IsActionPressed("ui_up"))
+        {
+            playback.Travel(WALK_FORWARD);
+        }
+        else if (Input.IsActionPressed("ui_down"))
+        {
+            playback.Travel(WALK_BACKWARD);
+        }
+        else if (Input.IsActionPressed("ui_left") || Input.IsActionPressed("ui_right"))
+        {
+            playback.Travel(WALK_FORWARD);
+        }
+        else
+        {
+            var playerDir = player.Velocity * -player.Transform.basis.z;
+            var playerMovingForward = playerDir.x + playerDir.z > 0;
 
-        playback.Travel(playerMovingForward ? "Walk" : "WalkBackwards");
+            playback.Travel(playerMovingForward ? WALK_FORWARD : WALK_BACKWARD);
+        }
     }
 
     private void AnimateIdlePegasus(Player_Pegasus pegasus)
@@ -471,7 +483,7 @@ public class PlayerBody : Spatial
                 playback.Travel("Crouch");
                 crouchingCooldown = CROUCH_COOLDOWN;
             }
-            else
+            else if (player.MayMove)
             {
                 crouchingCooldown = 0;
 
@@ -497,7 +509,7 @@ public class PlayerBody : Spatial
                 {
                     playback.Travel("Sit");
                 }
-                else
+                else if (player.MayMove)
                 {
                     playback.Travel("Crouch-idle");
                 }
@@ -530,49 +542,48 @@ public class PlayerBody : Spatial
 
     private void UpdateBodyRotValue()
     {
+        if (!player.MayMove) return;
+        
         if (IsMovementInput)
         {
             bodyRot = 0;
             onetimeBodyRotBack = true;
         }
-
-        if (player.MayMove)
+        
+        if (Input.IsActionPressed("ui_left") && checkPegasusFlying)
         {
-            if (Input.IsActionPressed("ui_left") && checkPegasusFlying)
+            bodyRot = 90f;
+            if (Input.IsActionPressed("ui_up"))
             {
-                bodyRot = 90f;
-                if (Input.IsActionPressed("ui_up"))
-                {
-                    bodyRot = 45f;
-                }
-                else if (Input.IsActionPressed("ui_down"))
-                {
-                    bodyRot = -45f;
-                }
+                bodyRot = 45f;
             }
-
-            if (Input.IsActionPressed("ui_right") && checkPegasusFlying)
+            else if (Input.IsActionPressed("ui_down"))
             {
-                bodyRot = -90f;
-                if (Input.IsActionPressed("ui_up"))
-                {
-                    bodyRot = -45f;
-                }
-                else if (Input.IsActionPressed("ui_down"))
-                {
-                    bodyRot = 45f;
-                }
+                bodyRot = -45f;
+            }
+        }
+
+        if (Input.IsActionPressed("ui_right") && checkPegasusFlying)
+        {
+            bodyRot = -90f;
+            if (Input.IsActionPressed("ui_up"))
+            {
+                bodyRot = -45f;
+            }
+            else if (Input.IsActionPressed("ui_down"))
+            {
+                bodyRot = 45f;
             }
         }
     }
 
     private void SetRotationByBodyRot(float delta)
     {
-        if (player.BodyFollowsCamera)
+        if (player.BodyFollowsCamera && player.MayMove)
         {
             SetRotZero();
         }
-        else if (IsMovementInput)
+        else if (IsMovementInput && player.MayMove)
         {
             Vector3 rot = RotationDegrees;
 
