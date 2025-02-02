@@ -8,7 +8,7 @@ public class SearchState(
     PonyBody body
 ) : AbstractNpcState, ISavable
 {
-    private const float SEARCH_TIMER = 12f;
+    private const float SEARCH_TIMER = 6f;
 
     private Vector3 lastSeePos;
     private float searchTimer;

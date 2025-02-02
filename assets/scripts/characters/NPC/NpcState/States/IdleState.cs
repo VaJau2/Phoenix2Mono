@@ -8,6 +8,8 @@ public class IdleState(
     NpcPatroling patroling
 ) : AbstractNpcState
 {
+    private bool isTeleported;
+    
     public override void Enable(NPC npc)
     {
         base.Enable(npc);
@@ -15,8 +17,9 @@ public class IdleState(
         if (weapons is { HasWeapon: true })
         {
             weapons.SetWeaponOn(false);
-            covers?.StopHidingInCover();
         }
+        
+        covers?.StopHidingInCover();
 
         if (npc.tempVictim is Player player)
         {
@@ -71,8 +74,16 @@ public class IdleState(
         
         if (movingController.cameToPlace)
         {
-            npc.GlobalTranslation = npc.myStartPos;
-            npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
+            if (!isTeleported)
+            {
+                npc.GlobalTranslation = npc.myStartPos;
+                npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
+                isTeleported = true;
+            }
+        }
+        else
+        {
+            isTeleported = false;
         }
     }
 }

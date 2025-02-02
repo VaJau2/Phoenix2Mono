@@ -93,13 +93,6 @@ public class SeekArea : Area
         //теряем противника, если не видим его
         if (!SeeCharacter(npc.tempVictim))
         {
-            if (CheckHiding())
-            {
-                //если мы прячемся, то то, что мы не 
-                //видим его, это норма
-                return;
-            }
-
             npc.SetState(SetStateEnum.Search);
         }
         else
@@ -114,6 +107,11 @@ public class SeekArea : Area
                 }
             }
         }
+    }
+    
+    private bool CheckHiding()
+    {
+        return npc.Covers is { IsHidingInCover: true } && !string.IsNullOrEmpty(npc.Weapons.WeaponCode);
     }
 
     private void UpdateDefaultState()
@@ -204,11 +202,6 @@ public class SeekArea : Area
             {
                 if (character == npc.tempVictim)
                 {
-                    if (CheckHiding())
-                    {
-                        return;
-                    }
-
                     npc.SetState(SetStateEnum.Search);
                 }
             }
@@ -244,11 +237,6 @@ public class SeekArea : Area
         }
 
         return speed;
-    }
-
-    private bool CheckHiding()
-    {
-        return npc.Covers is { IsHidingInCover: true } && !string.IsNullOrEmpty(npc.Weapons.WeaponCode);
     }
 
     private bool SeeCharacter(Character character)

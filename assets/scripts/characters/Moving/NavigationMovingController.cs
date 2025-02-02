@@ -26,7 +26,9 @@ public class NavigationMovingController: BaseMovingController, ISavable
     private float customFinalDistance;
     private float oldComeDistance;
     private float oldRotationSpeed;
-    
+
+    private Vector3 tempTarget;
+    private Vector3 pathLastPoint;
     private Vector3[] path;
     private int pathI;
     
@@ -35,7 +37,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         doorWait = value;
     }
     
-    public void GoTo(Vector3 place, float distance = 0, bool mayRun = true)
+    public void GoTo(Vector3 target, float distance = 0, bool mayRun = true)
     {
         if (customFinalDistance != 0) distance = customFinalDistance;
         else if (distance == 0) distance = ComeDistance;
@@ -47,7 +49,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         }
         
         var pos = character.GlobalTranslation;
-        var tempDistance = pos.DistanceTo(place);
+        var tempDistance = pos.DistanceTo(GetLastPoint(target));
 
         if (tempDistance > distance)
         {
@@ -67,21 +69,17 @@ public class NavigationMovingController: BaseMovingController, ISavable
         
         CheckMovablePath();
 
-        if (path == null)
+        if (path == null || target != tempTarget)
         {
             pathI = 0;
             path = NavigationServer.MapGetPath(
                 character.GetWorld().NavigationMap, 
                 pos, 
-                place, 
+                target, 
                 true
             );
-        }
-        
-        if (path.Length == 0)
-        {
-            Stop();
-            return;
+            pathLastPoint = path[path.Length - 1];
+            tempTarget = target;
         }
 
         MoveToPoint(tempDistance, mayRun);
@@ -97,6 +95,16 @@ public class NavigationMovingController: BaseMovingController, ISavable
                 FinishGoingTo();
             }
         }
+    }
+
+    private Vector3 GetLastPoint(Vector3 target)
+    {
+        if (target != tempTarget)
+        {
+            return target;
+        }
+        
+        return pathLastPoint != Vector3.Zero ? pathLastPoint : target;
     }
 
     private  void CheckMovablePath()
