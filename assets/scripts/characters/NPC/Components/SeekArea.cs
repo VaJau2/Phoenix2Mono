@@ -239,7 +239,7 @@ public class SeekArea : Area
         return speed;
     }
 
-    private bool SeeCharacter(Character character)
+    public bool SeeCharacter(Character character)
     {
         switch (character)
         {

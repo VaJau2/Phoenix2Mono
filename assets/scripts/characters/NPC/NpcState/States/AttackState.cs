@@ -51,6 +51,12 @@
             stateMachine.SetState(SetStateEnum.Hiding);
             return;
         }
+        
+        if (!seekArea.SeeCharacter(npc.tempVictim))
+        {
+            npc.SetState(SetStateEnum.Search);
+            return;
+        }
 
         var victimPos = npc.tempVictim.GlobalTransform.origin;
         var shootDistance = weapons.GetStatsFloat("shootDistance");
