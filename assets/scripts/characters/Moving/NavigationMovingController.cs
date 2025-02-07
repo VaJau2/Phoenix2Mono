@@ -68,8 +68,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
         }
         
         CheckMovablePath();
-
-        if (path == null || target != tempTarget)
+        
+        if (path == null || !IsTargetsSame(target))
         {
             pathI = 0;
             path = NavigationServer.MapGetPath(
@@ -96,6 +96,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
             }
         }
     }
+
+    private bool IsTargetsSame(Vector3 target) => target.DistanceTo(tempTarget) < 0.01f;
 
     private Vector3 GetLastPoint(Vector3 target)
     {
