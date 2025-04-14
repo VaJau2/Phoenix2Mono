@@ -39,7 +39,7 @@ public class PlayerBody : Spatial
     private float crouchingCooldown;
     private float smileCooldown;
 
-    public float bodyRot = 0;
+    public float bodyRot;
     private bool onetimeBodyRotBack;
 
     public bool RotClumpsMin => bodyRot > -MAX_ANGLE + 1;
@@ -55,9 +55,8 @@ public class PlayerBody : Spatial
     {
         get
         {
-            if (player is Player_Pegasus)
+            if (player is Player_Pegasus pegasus)
             {
-                var pegasus = player as Player_Pegasus;
                 return !pegasus.IsFlying || pegasus.IsFlyingFast;
             }
 
@@ -69,9 +68,8 @@ public class PlayerBody : Spatial
     {
         get
         {
-            if (player is Player_Pegasus)
+            if (player is Player_Pegasus pegasus)
             {
-                var pegasus = player as Player_Pegasus;
                 return pegasus.IsFlyingFast;
             }
 
@@ -475,6 +473,12 @@ public class PlayerBody : Spatial
 
     private void AnimateMoving()
     {
+        if (onetimeBodyRotBack)
+        {
+            bodyRot = RotationDegrees.y;
+            onetimeBodyRotBack = false;
+        }
+        
         //Для анимирования сползания по лестнице проверяем через велосити
         if (IsVelocityMoving)
         {
@@ -531,24 +535,15 @@ public class PlayerBody : Spatial
                         break;
                 }
             }
-
-            if (onetimeBodyRotBack)
-            {
-                bodyRot = RotationDegrees.y;
-                onetimeBodyRotBack = false;
-            }
         }
     }
 
     private void UpdateBodyRotValue()
     {
-        if (!player.MayMove) return;
-        
-        if (IsMovementInput)
-        {
-            bodyRot = 0;
-            onetimeBodyRotBack = true;
-        }
+        if (!player.MayMove || !IsMovementInput) return;
+
+        bodyRot = 0;
+        onetimeBodyRotBack = true;
         
         if (Input.IsActionPressed("ui_left") && checkPegasusFlying)
         {
