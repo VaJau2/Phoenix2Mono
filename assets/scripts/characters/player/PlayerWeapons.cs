@@ -129,8 +129,6 @@ public class PlayerWeapons : CollisionShape
         player.SetWeaponOn(isPistol);
         GunOn = true;
     }
-    
-    
 
     // Просто очищает модельку оружия
     // использовать его как метод для снятия всего оружия нельзя

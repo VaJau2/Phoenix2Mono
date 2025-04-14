@@ -123,21 +123,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 
 [node name="PlayerSpawner" parent="Scene" index="3"]
-itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "flashlight" ]
+itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "flashlight", "plasmaPistol" ]
 ammo = {
 "ammo308": 20,
 "ammo32": 20,
-"ammo762": 20
+"ammo762": 20,
+"ammoEnergy": 999
 }
 
 [node name="test" parent="Scene/npc" index="0" instance=ExtResource( 4 )]
 transform = Transform( -0.0242404, 0, 0.999706, 0, 1, 0, -0.999706, 0, -0.0242404, 18.7172, 0, 12.0301 )
 lookHeightFactor = -2.0
 
-[node name="Navigation" type="Navigation" parent="Scene" index="7"]
+[node name="navmesh" type="NavigationMeshInstance" parent="Scene" index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-
-[node name="mesh" type="NavigationMeshInstance" parent="Scene/Navigation" index="0"]
 navmesh = SubResource( 5 )
 
 [node name="Testing" parent="." index="1" instance=ExtResource( 8 )]

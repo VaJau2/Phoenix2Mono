@@ -56,16 +56,13 @@ script = ExtResource( 8 )
 
 [node name="private1" parent="npc" instance=ExtResource( 20 )]
 transform = Transform( -0.765135, 0, 0.64387, 0, 1, 0, -0.64387, 0, -0.765135, 94.9384, -2.8372, -96.574 )
-IdleAnim = "Sit"
 StartHealth = 150
 dialogueCode = "talk"
-weaponCode = "pistol10S"
 
 [node name="korporal" parent="npc" instance=ExtResource( 21 )]
 transform = Transform( 0.421448, 0, -0.906853, 0, 1, 0, 0.906853, 0, 0.421448, 93.4765, -2.8493, -86.2622 )
 StartHealth = 150
 dialogueCode = "instruction"
-weaponCode = "rifle307"
 itemCodes = [ "medX" ]
 
 [node name="private_mare" parent="npc" instance=ExtResource( 23 )]
@@ -74,31 +71,23 @@ dialogueCode = "talk"
 
 [node name="zebra-helmet" parent="npc" instance=ExtResource( 19 )]
 transform = Transform( 0.998208, 0, 0.0598465, 0, 1, 0, -0.0598465, 0, 0.998208, -27.0996, -3.41641, 101.857 )
-IdleAnim = "Sit"
-weaponCode = "rifle307"
 itemCodes = [ "healPotion" ]
 
 [node name="zebra-helmet2" parent="npc" instance=ExtResource( 19 )]
 transform = Transform( -0.95657, 0, 0.291504, 0, 1, 0, -0.291504, 0, -0.95657, -26.4248, -3.41641, 91.4345 )
-IdleAnim = "Sit"
-weaponCode = "rifle307"
 itemCodes = [ "healPotion" ]
 
 [node name="zebra-mane" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( 0.999536, 0, -0.0304688, 0, 1, 0, 0.0304688, 0, 0.999536, 1.62614, -4.18371, 111.002 )
 patrolArray = [ NodePath("../../terrain/patrolPoints1/1"), NodePath("../../terrain/patrolPoints1/2"), NodePath("../../terrain/patrolPoints1/3") ]
-weaponCode = "revolver32"
 
 [node name="zebra-mane2" parent="npc" instance=ExtResource( 22 )]
 transform = Transform( 0.999536, 0, -0.0304688, 0, 1, 0, 0.0304688, 0, 0.999536, -61.7705, -2.29196, 111.002 )
 patrolArray = [ NodePath("../../terrain/patrolPoints2/1"), NodePath("../../terrain/patrolPoints2/2"), NodePath("../../terrain/patrolPoints2/3") ]
-weaponCode = "revolver32"
 
 [node name="zebra-commander" parent="npc" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -34, -3.66217, 97 )
-IdleAnim = "Sit"
 dialogueCode = ""
-weaponCode = "rifle307"
 
 [node name="terrain" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.65162, 0 )
@@ -165,10 +154,6 @@ collision_mask = 2147483651
 [node name="bag" parent="terrain/props/bags" instance=ExtResource( 17 )]
 transform = Transform( 0.998564, -0.0535734, 0, 0.0535734, 0.998564, 0, 0, 0, 1, 100.738, -2.59609, -70.1901 )
 SpawnRandomItems = true
-startItemCodes = [ "revolver32" ]
-startAmmoCount = {
-"ammo32": 20
-}
 
 [node name="bag2" parent="terrain/props/bags" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -122.297, 5.12118, -110.139 )
@@ -400,9 +385,6 @@ autoplay = true
 transform = Transform( 0.909693, -0.308308, -0.278216, -0.0586786, -0.758654, 0.648846, -0.411114, -0.573926, -0.708233, 0, 17.7334, 0 )
 shadow_enabled = true
 
-[node name="Navigation" type="Navigation" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-
-[node name="mesh" type="NavigationMeshInstance" parent="Navigation"]
-transform = Transform( 1, 0, 0, 0, 0.624289, 0, 0, 0, 1, 0, -1.62537, 0 )
+[node name="mesh" type="NavigationMeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.624289, 0, 0, 0, 1, 0, -0.6257, 0 )
 navmesh = SubResource( 4 )
