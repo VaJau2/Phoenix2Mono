@@ -25,7 +25,6 @@ public class PlayerThirdPerson : Spatial
     private Vector3 oldThird;
 
     private Spatial Body;
-    private GeometryInstance Body_third;
 
     public Camera GetCamera() => player.ThirdView ? thirdCamera : firstCamera;
     
@@ -208,7 +207,6 @@ public class PlayerThirdPerson : Spatial
         TempRay = RayFirst;
 
         Body = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
-        Body_third = GetNode<GeometryInstance>("../player_body/Armature/Skeleton/Body_third");
     }
 
     public override void _Process(float delta)
