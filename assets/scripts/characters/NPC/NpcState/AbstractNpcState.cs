@@ -11,6 +11,8 @@ public abstract class AbstractNpcState : Node
 
     public virtual void Disable()
     {
+        SetProcess(false);
+        
         if (IsInstanceValid(this))
         {
             QueueFree();
