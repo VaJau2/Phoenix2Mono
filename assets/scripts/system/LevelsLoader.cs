@@ -73,7 +73,7 @@ public class LevelsLoader : Node
 
 	private void RespawnMenu(PackedScene newMenu) 
 	{
-		currentMenu.Free();
+		currentMenu.QueueFree();
 		currentMenu = (Control)newMenu.Instance();
 		menuParent.AddChild(currentMenu);
 		menuParent.MoveChild(currentMenu, 0);
@@ -224,8 +224,8 @@ public class LevelsLoader : Node
 			var objData = (Dictionary) levelData[objKey];
 			
 			if (objData == null
-			    || !objData.Contains("name")
-			    || !objData["name"].ToString().BeginsWith("Created_")
+				|| !objData.Contains("name")
+				|| !objData["name"].ToString().BeginsWith("Created_")
 			   )
 			{
 				continue;

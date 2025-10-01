@@ -13,8 +13,9 @@ dest_files=[ "res://.import/Fonar.obj-d789d7567c3d603ce0ee5cc04d2c9e44.mesh", "r
 
 [params]
 
-generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
 optimize_mesh_flags=4286
+generate_tangents=true
+vertex_cache_optimization=true
+octahedral_compression=true

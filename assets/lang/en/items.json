@@ -464,7 +464,7 @@
         "sound": "coat"
     },
     "maid": {
-        "name": "Униформа горничной",
+        "name": "Main uniform",
         "description": "Pretty cute black dress. You definitely don't want to fight in it....",
         "type": "armor",
         "icon": "maid",
