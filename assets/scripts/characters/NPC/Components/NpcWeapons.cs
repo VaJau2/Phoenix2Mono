@@ -134,8 +134,6 @@ public class NpcWeapons : Node, ISavable
         item.Name = "Created_" + npc.Name + "s_" + item.Name;
         var itemsParent = GetNode<Node>("/root/Main/Scene");
         itemsParent.AddChild(item);
-
-        await ToSignal(GetTree(), "idle_frame");
         
         var tempParent = GetWeaponParent();
         item.GlobalTransform = Global.SetNewOrigin(item.GlobalTransform, tempParent.GlobalTransform.origin);
