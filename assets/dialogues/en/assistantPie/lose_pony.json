@@ -26,28 +26,5 @@
             "root_node": false,
             "body": "ChangeDialogueCode"
         }
-    },
-    "speakers": 
-    {
-        "Assistant Pie": 
-        {
-            "color": 
-            {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0
-            }
-        },
-        "Strikely": 
-        {
-            "color": 
-            {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0
-            }
-        }
     }
 }
