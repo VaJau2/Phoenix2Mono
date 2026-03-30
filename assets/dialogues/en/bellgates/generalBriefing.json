@@ -374,7 +374,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "In the negotiations, they identify themselves as clone rights activists. They claim they seized the facility to free the clones. They claim the theater massacre was carried out by their splinter radicals.",
+            "body": "In the negotiations, they identify themselves as clone rights activists. They claim they seized the facility to free the clones. And they claim the theater massacre was carried out by their splinter radicals.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "terrorists2"
@@ -410,7 +410,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "We agreed to supply fodder because it would give us an opportunity to plant a wire. Then we found out that the terrorist coming to the operatives camp for supplies were also planting a wire. So we started putting laxatives in their forage.",
+            "body": "We agreed to supply fodder, and it gave us an opportunity to plant a wire. Then we found out that the terrorist coming to the operatives camp for supplies were also planting a wire. So we started putting laxatives in their forage.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "terrorists6"
@@ -463,7 +463,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "There are more operatives. They're better equipped. They're probably better trained. In open combat, the terrorists don't stand a chance. However, the operatives cannot go in for an assault, for then the terrorists might kill the hostages.",
+            "body": "There are more of our operatives. They're better equipped. They're probably better trained. In open combat, the terrorists don't stand a chance. However, the operatives cannot go in for an assault, for then the terrorists might kill the hostages.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "situation3"
@@ -683,7 +683,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "We've already practiced growing a pony in a flask. We've managed to digitize the memory. We've successfully transferred memories from one clone to another. We've safely copied the personality of a real pony into a robot, and more than once. We've perfected growing an exact copy of an already formed organism.",
+            "body": "We've already practiced growing a pony in a flask and have managed to digitize the memory. We've successfully transferred memories from one clone to another. We've safely copied the personality of a real pony into a robot, and more than once. We've perfected growing an exact copy of an already formed organism.",
             "speaker": "Bellgates",
             "opposite": "Strikely",
             "next": "phoenix4"

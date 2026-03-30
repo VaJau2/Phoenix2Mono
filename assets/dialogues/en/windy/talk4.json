@@ -61,7 +61,7 @@
     "B5": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Mom! Why is it so early?",
+      "body": "Mom! Why so early?",
       "speaker": "Windy",
       "opposite": "Mother",
       "next": "B6"

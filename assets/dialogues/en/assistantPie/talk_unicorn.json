@@ -285,7 +285,7 @@
         {
             "kind": "dialogue",
             "root_node": false,
-            "body": "I was told you could get a StealthBuck from you.",
+            "body": "I was told that I could get a StealthBuck from you.",
             "speaker": "Strikely",
             "opposite": "Assistant Pie",
             "next": "stealthbuck1"

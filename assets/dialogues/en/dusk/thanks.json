@@ -3,7 +3,7 @@
     "D1": {
       "kind": "dialogue",
       "root_node": false,
-      "body": "Thank you again for saving me! Я чувствую себя гораздо спокойнее...",
+      "body": "Thank you again for saving me! I feel a lot safer now...",
       "speaker": "Dusk",
       "opposite": "Strikely",
       "options": [
