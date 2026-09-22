@@ -1288,7 +1288,7 @@ bus = "Sound"
 transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 4.30721, 0, -40.5188 )
 
 [node name="shape" type="CollisionShape" parent="terrain/sky"]
-transform = Transform( 1, 0, 0, 0, 0.986629, 0.162982, 0, -0.162982, 0.986629, -45.3059, 72.3808, 277.34 )
+transform = Transform( 1, 0, 0, 0, 0.986629, 0.162982, 0, -0.162982, 0.986629, -45.3059, 72.3808, 238.119 )
 shape = SubResource( 12 )
 
 [node name="shape2" type="CollisionShape" parent="terrain/sky"]
@@ -1296,7 +1296,7 @@ transform = Transform( 1, 0, 0, 0, 0.959697, -0.281035, 0, 0.281035, 0.959697, -
 shape = SubResource( 12 )
 
 [node name="shape3" type="CollisionShape" parent="terrain/sky"]
-transform = Transform( -1.62921e-07, 0.281035, 0.959697, 0, 0.959697, -0.281035, -1, -4.57865e-08, -1.56355e-07, -190.634, 72.3808, 2.83846 )
+transform = Transform( -1.62921e-07, 0.281035, 0.959697, 0, 0.959697, -0.281035, -1, -4.57865e-08, -1.56355e-07, -190.072, 72.3808, 2.83846 )
 shape = SubResource( 13 )
 
 [node name="shape4" type="CollisionShape" parent="terrain/sky"]
