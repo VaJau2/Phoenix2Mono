@@ -45,6 +45,8 @@ public class ItemIcon : ColorRect
 
     public void SetItem(string itemCode)
     {
+        if (string.IsNullOrEmpty(itemCode)) return;
+        
         myItemCode = itemCode;
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         string path = "assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
