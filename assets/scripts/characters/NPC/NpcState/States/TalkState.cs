@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class TalkState(
+public partial class TalkState(
     NavigationMovingController movingController,
     PonyBody body
 ) : AbstractNpcState
@@ -12,7 +12,7 @@ public class TalkState(
         body?.SetLookTarget(npc.tempVictim);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.tempVictim == null)
         {
@@ -27,8 +27,8 @@ public class TalkState(
     
     private void LookAtTarget(NPC npc)
     {
-        Vector3 targetPos = npc.tempVictim.GlobalTransform.origin;
-        targetPos.y = npc.GlobalTransform.origin.y;
+        Vector3 targetPos = npc.tempVictim.GlobalTransform.Origin;
+        targetPos.Y = npc.GlobalTransform.Origin.Y;
         npc.LookAt(targetPos, Vector3.Up);
     }
     

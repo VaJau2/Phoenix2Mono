@@ -2,7 +2,7 @@
 
 //загружает уровень
 //сохраняет инвентарь в отдельный нод в корне
-public class LoadLevelTrigger: TriggerBase
+public partial class LoadLevelTrigger: TriggerBase
 {
     [Export] public int NewLevelNum;
     [Export] public bool SaveInventory = true;
@@ -16,7 +16,7 @@ public class LoadLevelTrigger: TriggerBase
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         player.Camera.ShowHint(HintCode, false);
         

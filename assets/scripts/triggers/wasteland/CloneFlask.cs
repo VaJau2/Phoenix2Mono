@@ -1,20 +1,20 @@
 using Godot;
 using Godot.Collections;
 
-public class CloneFlask : Spatial, ISavable
+public partial class CloneFlask : Node3D, ISavable
 {
     public AnimationPlayer anim { private set; get; }
     public CloneFlaskCamera camera => GetNode<CloneFlaskCamera>("Camera");
-    public Spatial playerPos => GetNode<Spatial>("player_pos");
+    public Node3D playerPos => GetNode<Node3D>("player_pos");
 
-    public AudioStreamSample underwater => GD.Load<AudioStreamSample>("res://assets/audio/underwater.wav");
-    public AudioStreamSample flaskOpen => GD.Load<AudioStreamSample>("res://assets/audio/furniture/flaskOpen.wav");
+    public AudioStreamWav underwater => GD.Load<AudioStreamWav>("res://assets/audio/underwater.wav");
+    public AudioStreamWav flaskOpen => GD.Load<AudioStreamWav>("res://assets/audio/furniture/flaskOpen.wav");
 
     private WarningManager warningManager => GetNode<WarningManager>("/root/Main/Scene/Warning Manager");
     
     private bool wokenUp;
 
-    private Spatial water, glass;
+    private Node3D water, glass;
     private bool animateWater;
     private bool animateGlass;
 
@@ -35,7 +35,7 @@ public class CloneFlask : Spatial, ISavable
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (animateWater)
         {
@@ -53,7 +53,7 @@ public class CloneFlask : Spatial, ISavable
         }
     }
 
-    private void AnimateObjectDown(Spatial _object, ref bool animate, float speed = 1f)
+    private void AnimateObjectDown(Node3D _object, ref bool animate, float speed = 1f)
     {
         if (!IsInstanceValid(_object))
         {
@@ -61,7 +61,7 @@ public class CloneFlask : Spatial, ISavable
             return;
         }
 
-        if (_object.Translation.y > -2)
+        if (_object.Position.Y > -2)
         {
             _object.Translate(speed * Vector3.Down);
         }
@@ -79,7 +79,7 @@ public class CloneFlask : Spatial, ISavable
     
     public void AnimateWater()
     {
-        water = GetNode<Spatial>("water");
+        water = GetNode<Node3D>("water");
         animateWater = true;
         SetProcess(true);
     }
@@ -87,17 +87,17 @@ public class CloneFlask : Spatial, ISavable
     public void AnimateGlass()
     {
         wokenUp = true;
-        glass = GetNode<Spatial>("flask-glass");
+        glass = GetNode<Node3D>("flask-glass");
         animateGlass = true;
         SetProcess(true);
     }
 
     public void PrepareFlaskForPlayer()
     {
-        var head = GetNode<MeshInstance>("Armature/Skeleton/Body002");
-        var mane = GetNode<MeshInstance>("Armature/Skeleton/BoneAttachment/Cube");
-        var horn = GetNode<MeshInstance>("Armature/Skeleton/BoneAttachment2/horn");
-        var wires = GetNode<MeshInstance>("wires");
+        var head = GetNode<MeshInstance3D>("Armature/Skeleton/Body002");
+        var mane = GetNode<MeshInstance3D>("Armature/Skeleton/BoneAttachment/Cube");
+        var horn = GetNode<MeshInstance3D>("Armature/Skeleton/BoneAttachment2/horn");
+        var wires = GetNode<MeshInstance3D>("wires");
 
         head.Layers = 2;
         mane.Layers = 2;
@@ -107,10 +107,10 @@ public class CloneFlask : Spatial, ISavable
 
     public void DeleteBody()
     {
-        var armature = GetNode<Spatial>("Armature");
+        var armature = GetNode<Node3D>("Armature");
         armature.QueueFree();
 
-        var light = GetNode<Spatial>("light");
+        var light = GetNode<Node3D>("light");
         light.QueueFree();
         
         anim.QueueFree();
@@ -119,9 +119,9 @@ public class CloneFlask : Spatial, ISavable
     public void SetRace(Race newRace)
     {
         cloneRace = newRace;
-        var horn = GetNode<MeshInstance>("Armature/Skeleton/BoneAttachment2/horn");
-        var wingL = GetNode<MeshInstance>("Armature/Skeleton/WingL");
-        var wingR = GetNode<MeshInstance>("Armature/Skeleton/WingR");
+        var horn = GetNode<MeshInstance3D>("Armature/Skeleton/BoneAttachment2/horn");
+        var wingL = GetNode<MeshInstance3D>("Armature/Skeleton/WingL");
+        var wingR = GetNode<MeshInstance3D>("Armature/Skeleton/WingR");
 
         switch (newRace)
         {
@@ -155,8 +155,8 @@ public class CloneFlask : Spatial, ISavable
         if (!wokenUp) return;
         
         DeleteBody();
-        GetNode<MeshInstance>("wires").QueueFree();
-        GetNode<Spatial>("water").QueueFree();
-        GetNode<Spatial>("flask-glass").QueueFree();
+        GetNode<MeshInstance3D>("wires").QueueFree();
+        GetNode<Node3D>("water").QueueFree();
+        GetNode<Node3D>("flask-glass").QueueFree();
     }
 }

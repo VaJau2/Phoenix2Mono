@@ -1,6 +1,6 @@
 using Godot;
 
-public class IconWithShadow : TextureRect
+public partial class IconWithShadow : TextureRect
 {
     private TextureRect shadow;
     
@@ -9,7 +9,7 @@ public class IconWithShadow : TextureRect
         shadow = GetNodeOrNull<TextureRect>("shadow");
     }
 
-    public void SetIcon(Texture icon)
+    public void SetIcon(Texture2D icon)
     {
         Texture = icon;
         

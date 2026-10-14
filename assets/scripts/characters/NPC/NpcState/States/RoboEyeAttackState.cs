@@ -1,4 +1,4 @@
-﻿public class RoboEyeAttackState(
+﻿public partial class RoboEyeAttackState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine
@@ -16,9 +16,9 @@
             return;
         }
         
-        npc.EmitSignal(nameof(NPC.FoundEnemy));
+        npc.EmitSignal(NPC.SignalName.FoundEnemy);
         movingController.Stop();
     }
 
-    public override void _Process(float delta) { }
+    public override void _Process(double delta) { }
 }

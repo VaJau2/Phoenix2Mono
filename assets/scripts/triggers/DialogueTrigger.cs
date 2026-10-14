@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class DialogueTrigger : TriggerBase
+public partial class DialogueTrigger : TriggerBase
 {
     [Export] public bool onlyChangeCode;
     [Export] public string npcPath;
@@ -21,8 +21,8 @@ public class DialogueTrigger : TriggerBase
     private bool isPlayerHere;
     private bool isNPCHere;
     
-    private Spatial startPoint;
-    private Spatial afterDialoguePoint;
+    private Node3D startPoint;
+    private Node3D afterDialoguePoint;
 
     private DialogueMenu dialogueMenu;
     private Subtitles subtitles;
@@ -39,16 +39,16 @@ public class DialogueTrigger : TriggerBase
 
         if (dialogueStartPointPath != null)
         {
-            startPoint = GetNode<Spatial>(dialogueStartPointPath);
+            startPoint = GetNode<Node3D>(dialogueStartPointPath);
         }
 
         if (afterDialoguePointPath != null)
         {
-            afterDialoguePoint = GetNode<Spatial>(afterDialoguePointPath);
+            afterDialoguePoint = GetNode<Node3D>(afterDialoguePointPath);
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -134,9 +134,9 @@ public class DialogueTrigger : TriggerBase
         if (startPoint != null)
         {
             npc.SetFollowTarget(null);
-            npc.SetNewStartPos(startPoint.GlobalTransform.origin);
+            npc.SetNewStartPos(startPoint.GlobalTransform.Origin);
             npc.myStartRot = startPoint.Rotation;
-            await ToSignal(npc, nameof(Character.IsCame));
+            await ToSignal(npc, Character.SignalName.IsCame);
         }
         
         step = 2;
@@ -155,14 +155,14 @@ public class DialogueTrigger : TriggerBase
         if (goToPlayer)
         {
             npc.SetFollowTarget(Global.Get().player);
-            await ToSignal(npc, nameof(Character.IsCame));
+            await ToSignal(npc, Character.SignalName.IsCame);
             npc.SetFollowTarget(null);
 
             var player = Global.Get().player;
             if (player.IsTalking)
             {
-                await ToSignal(dialogueMenu, nameof(DialogueMenu.FinishTalking));
-                await ToSignal(GetTree(), "idle_frame");
+                await ToSignal(dialogueMenu, DialogueMenu.SignalName.FinishTalking);
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             }
         }
         
@@ -188,7 +188,7 @@ public class DialogueTrigger : TriggerBase
 
         if (afterDialoguePoint != null)
         {
-            npc.SetNewStartPos(afterDialoguePoint.GlobalTransform.origin);
+            npc.SetNewStartPos(afterDialoguePoint.GlobalTransform.Origin);
             npc.myStartRot = afterDialoguePoint.Rotation;
         }
     }

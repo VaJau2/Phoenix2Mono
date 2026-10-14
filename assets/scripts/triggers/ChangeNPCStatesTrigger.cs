@@ -5,7 +5,7 @@ using Godot.Collections;
 //  - видимые/невидимые объекты внутри нпс
 //  - idleanim
 //  - скорость ходьбы и бега (если нпц понь)
-class ChangeNPCStatesTrigger: ActivateOtherTrigger
+partial class ChangeNPCStatesTrigger: ActivateOtherTrigger
 {
     [Export] public string npcPath;
     [Export] public string followPath;
@@ -114,8 +114,8 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
         if (newIdlePointPath != null)
         {
-            var newIdlePoint = GetNode<Spatial>(newIdlePointPath);
-            npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
+            var newIdlePoint = GetNode<Node3D>(newIdlePointPath);
+            npc.SetNewStartPos(newIdlePoint.GlobalTransform.Origin);
             npc.myStartRot = newIdlePoint.Rotation;
         }
 
@@ -123,10 +123,10 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         {
             npc.patrolArray = newPatrolPointsPath;
             
-            var patrolPoints = new Spatial[newPatrolPointsPath.Count];
+            var patrolPoints = new Node3D[newPatrolPointsPath.Count];
             for (var i = 0; i < newPatrolPointsPath.Count; i++)
             {
-                patrolPoints[i] = GetNode<Spatial>(newPatrolPointsPath[i]);
+                patrolPoints[i] = GetNode<Node3D>(newPatrolPointsPath[i]);
             }
             
             var patroling = npc.GetNodeOrNull<NpcPatroling>("patroling");

@@ -3,13 +3,13 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class TestingLevelsMenu : Control
+public partial class TestingLevelsMenu : Control
 {
     private const string AUTOSAVE_NAME = "testing";
     private const int AMMO_COUNT = 50;
     
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
 
     private LevelsLoader levelsLoader;
     private MenuBase parentMenu;
@@ -87,7 +87,7 @@ public class TestingLevelsMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(SignalName.BackPressed);
     }
     
     public void _on_mouse_entered(string section, string messageLink)

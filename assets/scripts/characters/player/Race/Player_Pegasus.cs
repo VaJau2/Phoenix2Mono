@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class Player_Pegasus : Player
+public partial class Player_Pegasus : Player
 {
     const float FLYING_FAST_SMASH_COOLDOWN = 0.5f;
     const float FLY_SPEED = 4f;
@@ -18,7 +18,7 @@ public class Player_Pegasus : Player
     private float flySpeed = FLY_SPEED;
 
     public AudioStreamPlayer wingsAudi;
-    private AudioStreamSample wingsSound;
+    private AudioStreamWav wingsSound;
 
     public bool IsFlying
     {
@@ -44,41 +44,41 @@ public class Player_Pegasus : Player
     {
         base._Ready();
         wingsAudi = GetNode<AudioStreamPlayer>("sound/audi_wings");
-        wingsSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/pegasus-wings.wav");
+        wingsSound = GD.Load<AudioStreamWav>("res://assets/audio/flying/pegasus-wings.wav");
         SetStartHealth(125);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
-        if (Body.RotationDegrees.z != 0)
+        if (Body.RotationDegrees.Z != 0)
         {
             Vector3 newRot = Body.RotationDegrees;
-            float decreaseSpeed = Mathf.Abs(newRot.z) * delta;
+            float decreaseSpeed = Mathf.Abs(newRot.Z) * delta;
 
             if (IsFlyingFast)
             {
-                if (newRot.z > 1)
+                if (newRot.Z > 1)
                 {
-                    newRot.z -= decreaseSpeed;
+                    newRot.Z -= decreaseSpeed;
                 }
-                else if (newRot.z < -1)
+                else if (newRot.Z < -1)
                 {
-                    newRot.z += decreaseSpeed;
+                    newRot.Z += decreaseSpeed;
                 }
                 else
                 {
-                    newRot.z = 0;
+                    newRot.Z = 0;
                 }
             }
             else if (IsFlying)
             {
-                newRot.z = Mathf.MoveToward(newRot.z, 0, 150f * delta);
+                newRot.Z = Mathf.MoveToward(newRot.Z, 0, 150f * delta);
             }
             else
             {
-                newRot.z = 0;
+                newRot.Z = 0;
             }
 
             Body.RotationDegrees = newRot;
@@ -185,7 +185,7 @@ public class Player_Pegasus : Player
         }
         else
         {
-            return Velocity.y + (GRAVITY * delta + tempShake);
+            return Velocity.Y + (GRAVITY * delta + tempShake);
         }
     }
 
@@ -227,7 +227,7 @@ public class Player_Pegasus : Player
             if (speedX != 0)
             {
                 Vector3 newRot = Body.RotationDegrees;
-                newRot.z += speedX * -MouseSensivity * 0.5f;
+                newRot.Z += speedX * -MouseSensivity * 0.5f;
                 Body.RotationDegrees = newRot;
             }
         }

@@ -15,7 +15,7 @@ public class FurnStairsSpawner
         { "chair", "res://objects/props/furniture/chair.tscn" },
     };
 
-    public Spatial SpawnFurnByItemCode(string furnItemCode)
+    public Node3D SpawnFurnByItemCode(string furnItemCode)
     {
         if (!prefabsByKeys.TryGetValue(furnItemCode, out var prefabPath))
         {
@@ -23,7 +23,7 @@ public class FurnStairsSpawner
         }
         
         var prefab = GD.Load<PackedScene>(prefabPath);
-        if (prefab.Instance() is not Spatial furn) return null;
+        if (prefab.Instantiate() is not Node3D furn) return null;
         
         furn.AddToGroup("savable");
         furn.Name = "Created_" + furn.Name;

@@ -2,22 +2,22 @@ using System;
 using Godot.Collections;
 using Godot;
 
-public class PathBase : Path, ISavable
+public partial class PathBase : Path3D, ISavable
 {
     [Export] private float speed = 0.1f;
     
-    protected PathFollow pathFollow;
+    protected PathFollow3D pathFollow;
     
     [Signal]
-    public delegate void Finished();
+    public delegate void FinishedEventHandler();
     
     public override void _Ready()
     {
         SetPhysicsProcess(false);
-        pathFollow = GetNode<PathFollow>("PathFollow");
+        pathFollow = GetNode<PathFollow3D>("PathFollow");
     }
     
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         var newOffset = pathFollow.UnitOffset + speed * delta;
         
@@ -38,7 +38,7 @@ public class PathBase : Path, ISavable
     public virtual void Disable()
     {
         SetPhysicsProcess(false);
-        EmitSignal(nameof(Finished), this);
+        EmitSignal(SignalName.Finished, this);
     }
 
     public virtual Dictionary GetSaveData()

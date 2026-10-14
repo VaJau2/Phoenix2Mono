@@ -2,7 +2,7 @@
 
 namespace DialogueScripts;
 
-public class ChangeItemName : IDialogueScript
+public partial class ChangeItemName : IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

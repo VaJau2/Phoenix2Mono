@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class RaceTrigger : TriggerBase
+public partial class RaceTrigger : TriggerBase
 {
     [Export] private NodePath earthponyTriggerPath;
     [Export] private NodePath pegasusTriggerPath;
@@ -16,7 +16,7 @@ public class RaceTrigger : TriggerBase
     
     public override async void _Ready()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         if (IsActive) _on_activate_trigger();
     }
     

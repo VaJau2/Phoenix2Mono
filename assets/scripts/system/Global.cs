@@ -35,7 +35,7 @@ public class Global
 
     public static void AddDeletedObject(Node objectToDelete)
     {
-        if (objectToDelete.Name.BeginsWith("Created_") || deletedObjects.Contains(objectToDelete.GetPath()))
+        if (objectToDelete.Name.StartsWith("Created_") || deletedObjects.Contains(objectToDelete.GetPath()))
         {
             return;
         }
@@ -177,10 +177,10 @@ public class Global
         return null;
     }
 
-    public static Transform SetNewOrigin(Transform transform, Vector3 newOrigin)
+    public static Transform3D SetNewOrigin(Transform3D transform, Vector3 newOrigin)
     {
-        Transform tempTrans = transform;
-        tempTrans.origin = newOrigin;
+        Transform3D tempTrans = transform;
+        tempTrans.Origin = newOrigin;
         return tempTrans;
     }
 
@@ -189,10 +189,10 @@ public class Global
         var newTimer = new Timer {Autostart = true, OneShot = true, WaitTime = time};
         if (pauseProcess)
         {
-            newTimer.PauseMode = Node.PauseModeEnum.Process;
+            newTimer.ProcessMode = Node.ProcessModeEnum.Always;
         }
 
-        if (Object.IsInstanceValid(_object))
+        if (GodotObject.IsInstanceValid(_object))
         {
             _object?.AddChild(newTimer);
         }
@@ -218,10 +218,10 @@ public class Global
     //возвращает название кнопки клавиатуры по её экшну
     public static string GetKeyName(string actionName) 
     {
-        var actions = InputMap.GetActionList(actionName);
+        var actions = InputMap.ActionGetEvents(actionName);
         if (actions.Count == 0) return null;
         if (!(actions[0] is InputEventKey action)) return null;
-        return OS.GetScancodeString(action.Scancode);
+        return OS.GetKeycodeString(action.Keycode);
     }
 
     public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);
@@ -300,7 +300,7 @@ public class Global
         {
             string file = dir.GetNext();
             if (file == "") break;
-            if (!file.BeginsWith("."))
+            if (!file.StartsWith("."))
             {
                 files.Add("user://saves/" + file);
             }

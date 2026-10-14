@@ -2,7 +2,7 @@
 using Godot;
 using Godot.Collections;
 
-public class NpcPoinitingGun: TriggerBase
+public partial class NpcPoinitingGun: TriggerBase
 {
     [Export] public string npcPath;
     [Export] public float delayTimer;
@@ -20,7 +20,7 @@ public class NpcPoinitingGun: TriggerBase
         }
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {

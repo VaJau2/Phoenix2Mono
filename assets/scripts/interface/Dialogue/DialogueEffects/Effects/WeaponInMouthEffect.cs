@@ -2,7 +2,7 @@
 
 namespace DialogueEffects;
 
-public class WeaponInMouthEffect : IDialogueEffect
+public partial class WeaponInMouthEffect : IDialogueEffect
 {
     private System.Collections.Generic.Dictionary<string, string> replaceLetters = new()
     {

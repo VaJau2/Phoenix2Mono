@@ -3,7 +3,7 @@
 namespace DialogueScripts;
 
 //Скрипт, запускающий торговлю с неписем, если он реализует интерфейс ITrader
-public class DialogueTrade : BaseChangeInNPC
+public partial class DialogueTrade : BaseChangeInNPC
 {
     public override async void initiate(Node node, string parameter, string key = "")
     {
@@ -13,7 +13,7 @@ public class DialogueTrade : BaseChangeInNPC
         if (DialogueMenu.GetNode<Control>("../").Visible)
         {
             //ожидание закрытия диалогового меню
-            await node.ToSignal(DialogueMenu, nameof(DialogueMenu.FinishTalking));
+            await node.ToSignal(DialogueMenu, DialogueMenu.SignalName.FinishTalking);
         }
         
         // ожидание прорисовки нового кадра, дабы menu manager или subtitles очистились

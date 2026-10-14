@@ -1,11 +1,11 @@
 using Godot;
 using Godot.Collections;
 
-public class Explosion : Spatial, ISavable
+public partial class Explosion : Node3D, ISavable
 {
     public bool checkWalls = true;
 
-    private Array<Particles> parts = new Array<Particles>();
+    private Array<GpuParticles3D> parts = new Array<GpuParticles3D>();
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
 
@@ -16,7 +16,7 @@ public class Explosion : Spatial, ISavable
         anim = GetNode<AnimationPlayer>("anim");
         audi = GetNode<AudioStreamPlayer3D>("audi");
         var partsParent = GetNode("parts");
-        foreach (Particles tempPart in partsParent.GetChildren())
+        foreach (GpuParticles3D tempPart in partsParent.GetChildren())
         {
             parts.Add(tempPart);
         }
@@ -30,7 +30,7 @@ public class Explosion : Spatial, ISavable
         if (checkWalls)
         {
             GetNode<AnimationPlayer>("../wallparts/anim").Play("explode");
-            GetNode<CollisionShape>("../WallShape").Disabled = true;
+            GetNode<CollisionShape3D>("../WallShape").Disabled = true;
         }
        
         foreach (var part in parts)
@@ -68,6 +68,6 @@ public class Explosion : Spatial, ISavable
         var wallsAnim = GetNode<AnimationPlayer>("../wallparts/anim");
         wallsAnim.Play("explode");
         wallsAnim.Seek(wallsAnim.CurrentAnimationLength, true);
-        GetNode<CollisionShape>("../WallShape").Disabled = true;
+        GetNode<CollisionShape3D>("../WallShape").Disabled = true;
     }
 }

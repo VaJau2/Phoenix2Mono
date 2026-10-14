@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class ChestMode: InventoryMode
+public partial class ChestMode: InventoryMode
 {
     private Control chestBack;
     private Label chestLabel;
@@ -54,7 +54,7 @@ public class ChestMode: InventoryMode
         var point = menu.GetNode<InteractionPointManager>("/root/Main/Scene/canvas/pointManager");
         point.ShowSquareAgain();
         
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
+        menu.EmitSignal(InventoryMenu.SignalName.MenuIsClosed);
         chestBack.Visible = false;
         base.CloseMenu();
         menu.ChangeMode(NewInventoryMode.Usual);

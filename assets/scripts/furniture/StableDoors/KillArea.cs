@@ -3,7 +3,7 @@ using Godot;
 namespace Phoenix2Mono.assets.scripts.furniture.StableDoors
 {
     //Закрывающаяся бункерная дверь убивает персонажей, которые под ней стоят
-    public class KillArea : Area
+    public partial class KillArea : Area3D
     {
         private const int DOOR_DAMAGE = 50;
         private FurnDoor myDoor;
@@ -15,7 +15,7 @@ namespace Phoenix2Mono.assets.scripts.furniture.StableDoors
             myDoor = GetNode<FurnDoor>("../../../");
         }
 
-        public override void _Process(float delta)
+        public override void _Process(double delta)
         {
             if (bodyHere == null || !IsInstanceValid(bodyHere)) return;
             if (timer > 0)

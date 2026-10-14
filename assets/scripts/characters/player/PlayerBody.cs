@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PlayerBody : Spatial
+public partial class PlayerBody : Node3D
 {
     //---------------------------------------------------+
     //скрипт анимирует тело и не дает ему поворачиваться,
@@ -27,8 +27,8 @@ public class PlayerBody : Spatial
     private Player player;
     private Race playerRace;
 
-    private Skeleton playerSkeleton;
-    private PhysicalBone headBone;
+    private Skeleton3D playerSkeleton;
+    private PhysicalBone3D headBone;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -46,7 +46,7 @@ public class PlayerBody : Spatial
 
     public bool RotClumpsMax => bodyRot < MAX_ANGLE - 1;
 
-    private bool IsVelocityMoving => new Vector2(player.Velocity.x, player.Velocity.z).Length() > 1f;
+    private bool IsVelocityMoving => new Vector2(player.Velocity.X, player.Velocity.Z).Length() > 1f;
 
     private bool IsMovementInput => Input.IsActionPressed("ui_up") || Input.IsActionPressed("ui_down") ||
                                     Input.IsActionPressed("ui_left") || Input.IsActionPressed("ui_right");
@@ -81,8 +81,8 @@ public class PlayerBody : Spatial
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
-        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
+        playerSkeleton = GetNode<Skeleton3D>("Armature/Skeleton");
+        headBone = playerSkeleton.GetNode<PhysicalBone3D>("Physical Bone neck");
 
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
@@ -90,7 +90,7 @@ public class PlayerBody : Spatial
         playback.Start(Character.IDLE_ANIM1);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (player.Health > 0)
         {
@@ -150,11 +150,11 @@ public class PlayerBody : Spatial
         {
             var mouseEvent = @event as InputEventMouseMotion;
             float mouseSensivity = player.MouseSensivity;
-            float speedX = Mathf.Clamp(mouseEvent.Relative.x, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
+            float speedX = Mathf.Clamp(mouseEvent.Relative.X, -MAX_MOUSE_SPEED, MAX_MOUSE_SPEED) * -mouseSensivity;
 
             bool mayRotate = (player.ThirdView && !player.IsSitting && !player.Weapons.GunOn) ||
-                             (mouseEvent.Relative.x < 0 && RotClumpsMin) ||
-                             (mouseEvent.Relative.x > 0 && RotClumpsMax);
+                             (mouseEvent.Relative.X < 0 && RotClumpsMin) ||
+                             (mouseEvent.Relative.X > 0 && RotClumpsMax);
             if (mayRotate)
             {
                 bodyRot -= speedX;
@@ -166,7 +166,7 @@ public class PlayerBody : Spatial
     {
         bodyRot = 0;
         Vector3 rot = RotationDegrees;
-        rot.y = 0;
+        rot.Y = 0;
         RotationDegrees = rot;
     }
 
@@ -175,7 +175,7 @@ public class PlayerBody : Spatial
         var lookYAngle = (player.GetVerticalLook() / 60f - 0.1f) + walkOffset;
         //обрасываем нули, чтоб вращение головы не подрагивало
         string stringYAngle = System.String.Format("{0:0.00}", lookYAngle);
-        headBlend.y = float.Parse(stringYAngle);
+        headBlend.Y = float.Parse(stringYAngle);
 
         if (IsMovementInput || jumpingCooldown > 0)
         {
@@ -205,12 +205,12 @@ public class PlayerBody : Spatial
         {
             if (bodyRot > 130f)
             {
-                headBlend.y *= -1;
+                headBlend.Y *= -1;
                 rotX = (bodyRot - 200f) / 90f;
             }
             else if (bodyRot < -105f)
             {
-                headBlend.y *= -1;
+                headBlend.Y *= -1;
                 rotX = (bodyRot + 159f) / 90f;
             }
             else
@@ -232,7 +232,7 @@ public class PlayerBody : Spatial
             speed = HEAD_ROT_SPEED;
         }
 
-        headBlend.x = Mathf.MoveToward(headBlend.x, rotX, speed * delta);
+        headBlend.X = Mathf.MoveToward(headBlend.X, rotX, speed * delta);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
@@ -337,8 +337,8 @@ public class PlayerBody : Spatial
         }
         else
         {
-            var playerDir = player.Velocity * -player.Transform.basis.z;
-            var playerMovingForward = playerDir.x + playerDir.z > 0;
+            var playerDir = player.Velocity * -player.Transform.Basis.Z;
+            var playerMovingForward = playerDir.X + playerDir.Z > 0;
 
             playback.Travel(playerMovingForward ? WALK_FORWARD : WALK_BACKWARD);
         }
@@ -444,12 +444,12 @@ public class PlayerBody : Spatial
 
         foreach (var boneObject in playerSkeleton.GetChildren())
         {
-            if (boneObject is not PhysicalBone bone) continue;
+            if (boneObject is not PhysicalBone3D bone) continue;
             bone.CollisionLayer = 6; // слои 2 и 3
             bone.CollisionMask = 6; // слои 2 и 3
         }
 
-        var dir = Translation.DirectionTo(killer.Translation);
+        var dir = Position.DirectionTo(killer.Position);
         headBone.ApplyCentralImpulse(-dir * RAGDOLL_IMPULSE);
         SetProcess(false);
     }
@@ -463,9 +463,9 @@ public class PlayerBody : Spatial
             node.QueueFree();
         }
 
-        playerSkeleton.GetNode<MeshInstance>("Body").QueueFree();
+        playerSkeleton.GetNode<MeshInstance3D>("Body").QueueFree();
 
-        var thirdBody = playerSkeleton.GetNode<MeshInstance>("Body_third");
+        var thirdBody = playerSkeleton.GetNode<MeshInstance3D>("Body_third");
         thirdBody.Layers = 1;
         thirdBody.SetScript(null);
         SetScript(null);
@@ -475,7 +475,7 @@ public class PlayerBody : Spatial
     {
         if (onetimeBodyRotBack)
         {
-            bodyRot = RotationDegrees.y;
+            bodyRot = RotationDegrees.Y;
             onetimeBodyRotBack = false;
         }
         
@@ -592,13 +592,13 @@ public class PlayerBody : Spatial
                 speed = BODY_ROT_SPEED * player.Velocity.Length();
             }
 
-            rot.y = Mathf.MoveToward(rot.y, bodyRot, speed * delta);
+            rot.Y = Mathf.MoveToward(rot.Y, bodyRot, speed * delta);
             RotationDegrees = rot;
         }
         else
         {
             Vector3 rot = RotationDegrees;
-            rot.y = bodyRot;
+            rot.Y = bodyRot;
 
             RotationDegrees = rot;
 

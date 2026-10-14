@@ -1,17 +1,17 @@
 using Godot;
 
 [Tool]
-public class Lamp : BreakableObject
+public partial class Lamp : BreakableObject
 {
     [Export] private float range = 42f;
     [Export] private float energy = 1f;
     [Export] private float bias = 0.95f;
 
-    private Light light;
+    private Light3D light;
     
     public override void _Ready()
     {
-        light = GetNode<Light>("light");
+        light = GetNode<Light3D>("light");
 
         switch (light)
         {
@@ -30,7 +30,7 @@ public class Lamp : BreakableObject
         base._Ready();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Engine.EditorHint)
         {

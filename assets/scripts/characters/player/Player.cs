@@ -3,7 +3,7 @@ using Effects;
 using Godot;
 using Godot.Collections;
 
-public class Player : Character
+public partial class Player : Character
 {
     protected Global global = Global.Get();
     public float MouseSensivity = 0.1f;
@@ -30,10 +30,10 @@ public class Player : Character
 
     //Ссылки на классы игрока
     public PlayerCamera Camera { get; private set; }
-    public Spatial RotationHelper { get; private set; }
-    private Spatial headShape;
+    public Node3D RotationHelper { get; private set; }
+    private Node3D headShape;
     public PlayerThirdPerson RotationHelperThird;
-    private Spatial CameraHeadPos;
+    private Node3D CameraHeadPos;
 
     public PlayerBody Body;
     //сслыки внутри Body:
@@ -53,7 +53,7 @@ public class Player : Character
     public Control JumpHint;
     private AudioStreamPlayer audi;
     private AudioStreamPlayer audiHitted;
-    private Listener listener;
+    private AudioListener3D listener;
 
     //Переменные для передвижения
     private Vector3 dir;
@@ -61,8 +61,8 @@ public class Player : Character
 
     private Vector3 oldRot;
 
-    private CollisionShape sphereCollider;
-    private CollisionShape bodyCollider;
+    private CollisionShape3D sphereCollider;
+    private CollisionShape3D bodyCollider;
 
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
@@ -76,26 +76,26 @@ public class Player : Character
     float shakeTimer = 0;
 
     [Signal]
-    public delegate void ChangeView(bool toThird);
+    public delegate void ChangeViewEventHandler(bool toThird);
 
     [Signal]
-    public delegate void FireWithWeapon();
+    public delegate void FireWithWeaponEventHandler();
 
     [Signal]
-    public delegate void TakeItem(string itemCode);
+    public delegate void TakeItemEventHandler(string itemCode);
 
     [Signal]
-    public delegate void UseItem(string itemCode);
+    public delegate void UseItemEventHandler(string itemCode);
 
     [Signal]
-    public delegate void WearItem(string itemCode);
+    public delegate void WearItemEventHandler(string itemCode);
 
     [Signal]
-    public delegate void UnwearItem(string itemCode);
+    public delegate void UnwearItemEventHandler(string itemCode);
     
     public float GetVerticalLook()
     {
-        return RotationHelper.RotationDegrees.x;
+        return RotationHelper.RotationDegrees.X;
     }
 
     private bool OnFloor()
@@ -156,15 +156,15 @@ public class Player : Character
         return base.GetDamageBlock();
     }
 
-    public virtual Spatial GetWeaponParent(bool isPistol)
+    public virtual Node3D GetWeaponParent(bool isPistol)
     {
         if (isPistol)
         {
-            if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            return GetNode<Spatial>("rotation_helper/camera/weapons");
+            if (ThirdView) return GetNode<Node3D>("player_body/Armature/Skeleton/BoneAttachment/weapons");
+            return GetNode<Node3D>("rotation_helper/camera/weapons");
         }
 
-        return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
+        return GetNode<Node3D>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
     }
 
     public void SetTalking(bool value, NPC npc = null)
@@ -188,23 +188,23 @@ public class Player : Character
 
     public virtual void SetWeaponOn(bool isPistol)
     {
-        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        var bug = GetNode<Node3D>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
         bug.Visible = !isPistol;
         BodyFollowsCamera = !isPistol;
     }
 
     public virtual void SetWeaponOff()
     {
-        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        var bug = GetNode<Node3D>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
         bug.Visible = false;
         BodyFollowsCamera = false;
     }
 
     public void LoadBodyMesh()
     {
-        var bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
+        var bodyMesh = GetNode<MeshInstance3D>("player_body/Armature/Skeleton/Body");
         LoadClothMesh(Inventory.cloth, "first", bodyMesh);
-        var bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        var bodyThirdMesh = GetNode<MeshInstance3D>("player_body/Armature/Skeleton/Body_third");
         LoadClothMesh(Inventory.cloth, "third", bodyThirdMesh);
 
         var head = bodyThirdMesh as PlayerHead;
@@ -214,7 +214,7 @@ public class Player : Character
         Body.SetHead(head);
     }
 
-    private void LoadClothMesh(string clothName, string viewName, MeshInstance meshInstance)
+    private void LoadClothMesh(string clothName, string viewName, MeshInstance3D meshInstance)
     {
         //определяем название расы по текущей Race
         //(у единорогов от первого лица нет своей модельки)
@@ -249,7 +249,7 @@ public class Player : Character
 
     public void LoadArtifactMesh(string artifactName = null)
     {
-        var artifact = GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
+        var artifact = GetNode<MeshInstance3D>("player_body/Armature/Skeleton/artifact");
         artifact.Visible = artifactName != null;
 
         if (artifactName != null)
@@ -264,7 +264,7 @@ public class Player : Character
 
     public bool IsRotating()
     {
-        return Mathf.Abs(RotationHelper.RotationDegrees.x - oldRot.x) > 0.01f;
+        return Mathf.Abs(RotationHelper.RotationDegrees.X - oldRot.X) > 0.01f;
     }
 
     public float GetCurrentSpeed()
@@ -395,7 +395,7 @@ public class Player : Character
             else
             {
                 OnStairs = false;
-                Velocity.y = JUMP_SPEED;
+                Velocity.Y = JUMP_SPEED;
                 soundSteps.PlayJumpSound();
             }
         }
@@ -408,17 +408,17 @@ public class Player : Character
         if (ThirdView)
         {
             var thirdRot = RotationHelperThird.Rotation;
-            thirdRot.x = RotationHelper.Rotation.x;
+            thirdRot.X = RotationHelper.Rotation.X;
             RotationHelperThird.Rotation = thirdRot;
         }
         else
         {
             var cameraTransf = RotationHelper.GlobalTransform;
-            cameraTransf.origin = CameraHeadPos.GlobalTransform.origin;
+            cameraTransf.Origin = CameraHeadPos.GlobalTransform.Origin;
 
             if (Health <= 0)
             {
-                cameraTransf.basis = CameraHeadPos.GlobalTransform.basis;
+                cameraTransf.Basis = CameraHeadPos.GlobalTransform.Basis;
             }
 
             RotationHelper.GlobalTransform = cameraTransf;
@@ -435,24 +435,24 @@ public class Player : Character
 
         if (Input.IsActionPressed("ui_up"))
         {
-            inputMovementVector.y += 1;
+            inputMovementVector.Y += 1;
             UpdateGoForward();
         }
 
         if (Input.IsActionPressed("ui_down"))
         {
-            inputMovementVector.y -= 1;
+            inputMovementVector.Y -= 1;
         }
 
         if (Input.IsActionPressed("ui_left"))
         {
-            inputMovementVector.x -= 1;
+            inputMovementVector.X -= 1;
             goSide = 1;
         }
 
         if (Input.IsActionPressed("ui_right"))
         {
-            inputMovementVector.x += 1;
+            inputMovementVector.X += 1;
             goSide = -1;
         }
 
@@ -468,17 +468,17 @@ public class Player : Character
         }
 
         Camera.RotationDegrees = new Vector3(
-            Camera.RotationDegrees.x,
-            Camera.RotationDegrees.y,
+            Camera.RotationDegrees.X,
+            Camera.RotationDegrees.Y,
             global.Settings.cameraAngle ? sideAngle : 0
         );
 
         inputMovementVector = inputMovementVector.Normalized();
         IsWalking = inputMovementVector.Length() > 0;
 
-        Transform camXForm = Camera.GlobalTransform;
-        dir += -camXForm.basis.z * inputMovementVector.y;
-        dir += camXForm.basis.x * inputMovementVector.x;
+        Transform3D camXForm = Camera.GlobalTransform;
+        dir += -camXForm.Basis.Z * inputMovementVector.Y;
+        dir += camXForm.Basis.X * inputMovementVector.X;
 
         if (OnFloor())
         {
@@ -496,12 +496,12 @@ public class Player : Character
             Fly();
         }
 
-        if (bodyCollider.Scale.y != bodyColliderSize)
+        if (bodyCollider.Scale.Y != bodyColliderSize)
         {
             Vector3 bodyScale = bodyCollider.Scale;
             Vector3 sphereScale = sphereCollider.Scale;
-            bodyScale.y = bodyColliderSize;
-            sphereScale.y = bodyColliderSize;
+            bodyScale.Y = bodyColliderSize;
+            sphereScale.Y = bodyColliderSize;
             bodyCollider.Scale = bodyScale;
             sphereCollider.Scale = sphereScale;
         }
@@ -531,7 +531,7 @@ public class Player : Character
 
     protected virtual float GetGravitySpeed(float tempShake, float delta)
     {
-        return Velocity.y + (GRAVITY * delta + tempShake);
+        return Velocity.Y + (GRAVITY * delta + tempShake);
     }
 
     protected virtual float GetDeacceleration()
@@ -541,7 +541,7 @@ public class Player : Character
 
     private void ProcessMovement(float delta)
     {
-        dir.y = 0;
+        dir.Y = 0;
         dir = dir.Normalized();
 
         float tempShake = 0;
@@ -550,17 +550,17 @@ public class Player : Character
             tempShake = GetTempShake(delta);
         }
 
-        if (OnStairs && OnFloor() && !IsWalking && Velocity.y <= 0)
+        if (OnStairs && OnFloor() && !IsWalking && Velocity.Y <= 0)
         {
-            Velocity.y = 0;
+            Velocity.Y = 0;
         }
         else
         {
-            Velocity.y = GetGravitySpeed(tempShake, delta);
+            Velocity.Y = GetGravitySpeed(tempShake, delta);
         }
 
         var hvel = Velocity;
-        hvel.y = 0;
+        hvel.Y = 0;
 
         var target = dir;
         target *= GetSpeed();
@@ -575,9 +575,9 @@ public class Player : Character
             acceleration = GetDeacceleration();
         }
 
-        hvel = hvel.LinearInterpolate(target, acceleration * delta);
-        Velocity.x = hvel.x;
-        Velocity.z = hvel.z;
+        hvel = hvel.Lerp(target, acceleration * delta);
+        Velocity.X = hvel.X;
+        Velocity.Z = hvel.Z;
         Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4);
     }
 
@@ -589,13 +589,13 @@ public class Player : Character
             {
                 case > 0 when Body.RotClumpsMin:
                 case < 0 when Body.RotClumpsMax:
-                    RotateY(Mathf.Deg2Rad(speedX));
+                    RotateY(Mathf.DegToRad(speedX));
                     break;
             }
         }
         else
         {
-            RotateY(Mathf.Deg2Rad(speedX));
+            RotateY(Mathf.DegToRad(speedX));
         }
     }
 
@@ -609,30 +609,30 @@ public class Player : Character
         {
             oldRot = RotationHelper.RotationDegrees;
 
-            RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
-            RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
+            RotationHelper.RotateX(Mathf.DegToRad(mouseEvent.Relative.Y * -MouseSensivity));
+            RotateBodyClumped(mouseEvent.Relative.X * -MouseSensivity);
             ClumpCameraRotation();
-            OnCameraRotatingX(mouseEvent.Relative.x);
+            OnCameraRotatingX(mouseEvent.Relative.X);
         }
     }
 
     private void ClumpCameraRotation()
     {
         var cameraRot = RotationHelper.RotationDegrees;
-        cameraRot.x = Mathf.Clamp(cameraRot.x, CAMERA_MIN_Y, CAMERA_MAX_Y);
-        cameraRot.y = 0;
-        cameraRot.z = global.Settings.cameraAngle ? sideAngle : 0;
+        cameraRot.X = Mathf.Clamp(cameraRot.X, CAMERA_MIN_Y, CAMERA_MAX_Y);
+        cameraRot.Y = 0;
+        cameraRot.Z = global.Settings.cameraAngle ? sideAngle : 0;
         RotationHelper.RotationDegrees = cameraRot;
     }
 
     public void LookAt(Vector3 target)
     {
-        var targetDir = target - GlobalTransform.origin;
-        var forward = -GlobalTransform.basis.z;
+        var targetDir = target - GlobalTransform.Origin;
+        var forward = -GlobalTransform.Basis.Z;
 
         //берем угол по плоскости XZ (горизонтальное вращение)
-        var horizontalDir = new Vector2(targetDir.x, targetDir.z);
-        var horizontalPos = new Vector2(forward.x, forward.z);
+        var horizontalDir = new Vector2(targetDir.X, targetDir.Z);
+        var horizontalPos = new Vector2(forward.X, forward.Z);
         var horizontalAngle = horizontalPos.AngleTo(horizontalDir);
         
         //вращаем тело на этот угол (который постепенно уменьшается до нуля)
@@ -654,7 +654,7 @@ public class Player : Character
         if (sittingOnChair)
         {
             //await нужен, чтоб PlayerBody успел загрузиться
-            await ToSignal(GetTree(), "idle_frame");
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             SitOnChair(true);
         }
     }
@@ -693,29 +693,29 @@ public class Player : Character
         JumpHint = canvas.GetNode<Control>("jumpHint");
         damageEffects = canvas.GetNode<DamageEffects>("redScreen");
         Camera = GetNode<PlayerCamera>("rotation_helper/camera");
-        RotationHelper = GetNode<Spatial>("rotation_helper");
-        headShape = GetNode<Spatial>("headShape");
-        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
+        RotationHelper = GetNode<Node3D>("rotation_helper");
+        headShape = GetNode<Node3D>("headShape");
+        CameraHeadPos = GetNode<Node3D>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
 
         audi = GetAudi();
         audiHitted = GetAudi(true);
-        listener = CameraHeadPos.GetNode<Listener>("Listener");
+        listener = CameraHeadPos.GetNode<AudioListener3D>("Listener");
 
-        sphereCollider = GetNode<CollisionShape>("shape");
-        bodyCollider = GetNode<CollisionShape>("body_shape");
+        sphereCollider = GetNode<CollisionShape3D>("shape");
+        bodyCollider = GetNode<CollisionShape3D>("body_shape");
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        Connect(nameof(TakeItem), this, nameof(CheckTakeItem));
+        Connect(SignalName.TakeItem, this, nameof(CheckTakeItem));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         bodyCollider.Rotation = Body.Rotation;
         oldRot = RotationHelper.RotationDegrees;
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (Health > 0)
         {

@@ -2,7 +2,7 @@
 
 //Меняет код текущей задачи при активации
 //если активен при старте сцены, меняет задачу сразу
-class ChangeTaskTrigger: ActivateOtherTrigger
+partial class ChangeTaskTrigger: ActivateOtherTrigger
 {
     [Export] private ChangeMode changeMode;
     [Export] private string taskCode;

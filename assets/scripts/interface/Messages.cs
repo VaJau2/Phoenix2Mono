@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class Messages : VBoxContainer, ISavable
+public partial class Messages : VBoxContainer, ISavable
 {
     public const float HINT_TIMER = 2.5f;
     private const string NONE_CODE = "none";
@@ -18,11 +18,11 @@ public class Messages : VBoxContainer, ISavable
     {
         if (global.player == null)
         {
-            await ToSignal(GetTree(), "idle_frame");
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
         
         await global.ToTimer(time, null, true);
-        var tempA = label.GetColor("font_color").a;
+        var tempA = label.GetColor("font_color").A;
         
         while (tempA > 0)
         {
@@ -39,12 +39,12 @@ public class Messages : VBoxContainer, ISavable
     {
         var tempLabel = new Label();
 
-        var tempA = tempLabel.Modulate.a;
+        var tempA = tempLabel.Modulate.A;
         var newColor = Global.Get().Settings.interfaceColor;
         tempLabel.Modulate = new Color(
-            newColor.r,
-            newColor.g,
-            newColor.b,
+            newColor.R,
+            newColor.G,
+            newColor.B,
             tempA
         );
 

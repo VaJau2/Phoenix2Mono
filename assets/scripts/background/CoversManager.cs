@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 
 //Класс укрытий для неписей
-public class CoversManager : Node
+public partial class CoversManager : Node
 {
     public List<Cover> Covers = [];
     
@@ -10,12 +10,12 @@ public class CoversManager : Node
     {
         foreach (Node child in GetChildren())
         {
-            Covers.Add(new Cover(child as Spatial));
+            Covers.Add(new Cover(child as Node3D));
         }
     }
 
     //Берет ближайшее к себе укрытие
-    public Cover GetCover(Spatial npc)
+    public Cover GetCover(Node3D npc)
     {
         if (Covers.Count == 0)
         {
@@ -27,7 +27,7 @@ public class CoversManager : Node
         //если первое укрытие занято, не проверяем
         if (Covers.Count > 1)
         {
-            Vector3 npcPos = npc.GlobalTransform.origin;
+            Vector3 npcPos = npc.GlobalTransform.Origin;
             float oldDistance = closestCover.center.DistanceTo(npcPos);
 
             for (int i = 1; i < Covers.Count; i++)

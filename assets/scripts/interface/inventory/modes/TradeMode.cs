@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class TradeMode: InventoryMode 
+public partial class TradeMode: InventoryMode 
 {
     const float PRICE_DIFF = 0.8f;
 
@@ -75,7 +75,7 @@ public class TradeMode: InventoryMode
 
     public override void CloseMenu()
     {
-        menu.EmitSignal(nameof(InventoryMenu.MenuIsClosed));
+        menu.EmitSignal(InventoryMenu.SignalName.MenuIsClosed);
         _on_modal_no_pressed();
         tradeBack.Visible = false;
         base.CloseMenu();

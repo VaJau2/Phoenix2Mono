@@ -1,4 +1,4 @@
-﻿public class AttackState(
+﻿public partial class AttackState(
     SeekArea seekArea,
     NpcWeapons weapons,
     NavigationMovingController movingController,
@@ -25,7 +25,7 @@
         body?.SetLookTarget(npc.tempVictim);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.tempVictim == null)
         {
@@ -58,9 +58,9 @@
             return;
         }
 
-        var victimPos = npc.tempVictim.GlobalTransform.origin;
+        var victimPos = npc.tempVictim.GlobalTransform.Origin;
         var shootDistance = weapons.GetStatsFloat("shootDistance");
-        var tempDistance = npc.GlobalTranslation.DistanceTo(victimPos);
+        var tempDistance = npc.GlobalPosition.DistanceTo(victimPos);
         
         movingController.GoTo(victimPos, shootDistance / 2f);
         movingController.updatePath = npc.tempVictim.Velocity.Length() > Character.MIN_WALKING_SPEED;

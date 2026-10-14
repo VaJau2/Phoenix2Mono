@@ -2,7 +2,7 @@
 
 namespace DialogueScripts;
 
-public class ChangeNpcFaceTexture : BaseChangeInNPC
+public partial class ChangeNpcFaceTexture : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

@@ -2,7 +2,7 @@
 
 //Выводит список дверей (копия ReadMode)
 //Открывает/Закрывает выбранные двери
-public class TerminalDoorsMode: TerminalMode
+public partial class TerminalDoorsMode: TerminalMode
 {
     private const int MAX_LINES_COUNT = 10;
     private int tempChoose;
@@ -32,7 +32,7 @@ public class TerminalDoorsMode: TerminalMode
     {
         if (keyEvent.Pressed) {
             //обрабатываем кнопку выхода
-            if (keyEvent.Scancode == (uint)KeyList.Backspace) {
+            if (keyEvent.Keycode == (uint)Key.Backspace) {
                 var newMode = new TerminalUsualMode(terminal);
                 terminal.ChangeMode(newMode);
                 return;
@@ -40,7 +40,7 @@ public class TerminalDoorsMode: TerminalMode
             
             //обрабатываем стрелочки
             //если нажата стрелочка вверх, перемещаем курсор вверх
-            if (keyEvent.Scancode == (uint)KeyList.Up) {
+            if (keyEvent.Keycode == (uint)Key.Up) {
                 if (tempChoose > 0) {
                     tempChoose--;
                 } else {
@@ -48,7 +48,7 @@ public class TerminalDoorsMode: TerminalMode
                 }
             }
             //если нажата стрелочка вниз, перемещаем курсор вниз
-            if(keyEvent.Scancode == (uint)KeyList.Down) {
+            if(keyEvent.Keycode == (uint)Key.Down) {
                 if (tempChoose < terminal.doors.Count - 1) {
                     tempChoose++;
                 } else {
@@ -57,7 +57,7 @@ public class TerminalDoorsMode: TerminalMode
             }
 
             //обрабатываем enter
-            if(keyEvent.Scancode == (uint)KeyList.Enter) {
+            if(keyEvent.Keycode == (uint)Key.Enter) {
                 ChangeDoorKey(terminal.doors[tempChoose]);
             }
 

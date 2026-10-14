@@ -1,6 +1,6 @@
 using Godot;
 
-public class MenuBase : Control
+public partial class MenuBase : Control
 {
     Global global = Global.Get();
     public string menuName = "mainMenu";
@@ -49,12 +49,12 @@ public class MenuBase : Control
             item.AddToGroup("color_loaded");
         }
             
-        float tempA = item.Modulate.a;
+        float tempA = item.Modulate.A;
         Color newColor = Global.Get().Settings.interfaceColor;
         item.Modulate = new Color (
-            newColor.r,
-            newColor.g,
-            newColor.b,
+            newColor.R,
+            newColor.G,
+            newColor.B,
             tempA
         );
     }
@@ -115,7 +115,7 @@ public class MenuBase : Control
         downLabel.Text = downAdded ? "_" : "";
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (downLabelTimer > 0) 
         {

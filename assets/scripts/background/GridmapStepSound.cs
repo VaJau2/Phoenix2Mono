@@ -4,7 +4,7 @@ using Godot;
  * Проверяет, двигается ли игрок внутри объекта гридмапа
  * если двигается, играет звуки
  */
-public class GridmapStepSound : GridMap
+public partial class GridmapStepSound : GridMap
 {
     private const float CHECK_DELAY_TIME = 0.5f;
     
@@ -30,7 +30,7 @@ public class GridmapStepSound : GridMap
         audi = GetNode<AudioStreamPlayer3D>("sound");
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Player == null) return;
 
@@ -44,8 +44,8 @@ public class GridmapStepSound : GridMap
 
     private void UpdatePlaying()
     {
-        audi.UnitDb = Player.IsCrouching ? 4 : -2;
-        audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
+        audi.VolumeDb = Player.IsCrouching ? 4 : -2;
+        audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.Origin);
 
         if (!audi.Playing || audi.Stream != TempSound)
         {
@@ -58,7 +58,7 @@ public class GridmapStepSound : GridMap
     {
         if (audi.Playing)
         {
-            if (audi.UnitDb > MIN_VOLUME) audi.UnitDb -= VOLUME_SPEED * delta;
+            if (audi.VolumeDb > MIN_VOLUME) audi.VolumeDb -= VOLUME_SPEED * delta;
             else audi.Stop();
         }
     }
@@ -91,11 +91,11 @@ public class GridmapStepSound : GridMap
     private bool playerIsOnGridItem()
     {
         if (Global.Get().player == null) return false;
-        var playerGlobalPos = Global.Get().player.GlobalTransform.origin;
-        var playerLocalPos = playerGlobalPos - GlobalTransform.origin;
+        var playerGlobalPos = Global.Get().player.GlobalTransform.Origin;
+        var playerLocalPos = playerGlobalPos - GlobalTransform.Origin;
         var mapPos = WorldToMap(playerLocalPos);
-        if (!Player.IsCrouching) mapPos.y -= 1;
-        var cellItem = GetCellItem((int)mapPos.x, (int)mapPos.y, (int)mapPos.z);
+        if (!Player.IsCrouching) mapPos.Y -= 1;
+        var cellItem = GetCellItem((int)mapPos.X, (int)mapPos.Y, (int)mapPos.Z);
         return cellItem > -1;
     }
 }

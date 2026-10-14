@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class DragonHealthBar : Control, ISavable
+public partial class DragonHealthBar : Control, ISavable
 {
     private NPC dragon;
     private ProgressBar healthBar;
@@ -16,8 +16,8 @@ public class DragonHealthBar : Control, ISavable
     public void OnDragonSpawned(NPC spawnedDragon)
     {
         dragon = spawnedDragon;
-        dragon.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
-        dragon.Connect(nameof(Character.DieEvent), this, nameof(OnDying));
+        dragon.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(OnTakeDamage)));
+        dragon.Connect(Character.SignalName.DieEvent, new Callable(this, nameof(OnDying)));
         Visible = true;
     }
 

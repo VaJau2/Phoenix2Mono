@@ -1,13 +1,13 @@
 using Godot;
 
-public class InteractionPointManager : Control
+public partial class InteractionPointManager : Control
 {
     private InteractionPoint point;
     private InteractionPoint shadow;
     
     public override async void _Ready()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         MenuBase.LoadColorForChildren(this);
         
         point = GetNode<InteractionPoint>("point");
@@ -16,7 +16,7 @@ public class InteractionPointManager : Control
     
     public void SetInteractionVariant(InteractionVariant newVariant)
     {
-        shadow.RectPosition = (newVariant == InteractionVariant.Square)
+        shadow.Position = (newVariant == InteractionVariant.Square)
             ? new Vector2(2, 2)
             : new Vector2(1, 1);
 

@@ -1,11 +1,11 @@
 using Godot;
 
-public class FurnBase: StaticBody, IInteractable
+public partial class FurnBase: StaticBody3D, IInteractable
 {
     protected Global Global => Global.Get();
 
-    [Export] public AudioStreamSample OpenSound;
-    [Export] public AudioStreamSample CloseSound;
+    [Export] public AudioStreamWav OpenSound;
+    [Export] public AudioStreamWav CloseSound;
 
     public bool IsOpen {get; private set;}
     protected bool OtherSided;
@@ -19,10 +19,10 @@ public class FurnBase: StaticBody, IInteractable
     public bool IsAnimating => animator.IsPlaying();
     
     [Signal]
-    public delegate void AnimationFinished();
+    public delegate void AnimationFinishedEventHandler();
     
     [Signal]
-    public delegate void Opened();
+    public delegate void OpenedEventHandler();
 
     public override void _Ready()
     {
@@ -36,11 +36,11 @@ public class FurnBase: StaticBody, IInteractable
     
     private void AnimFinished(string animation)
     {
-        EmitSignal(nameof(AnimationFinished));
+        EmitSignal(SignalName.AnimationFinished);
         
         if (animation.ToLower().Contains("open"))
         {
-            EmitSignal(nameof(Opened));
+            EmitSignal(SignalName.Opened);
         }
     }
     
@@ -50,7 +50,7 @@ public class FurnBase: StaticBody, IInteractable
         ClickFurn();
     }
 
-    public async void SetOpen(string anim, AudioStreamSample sound, float timer = 0, bool otherSide = false) 
+    public async void SetOpen(string anim, AudioStreamWav sound, float timer = 0, bool otherSide = false) 
     {
         if (IsInstanceValid(audi))
         {
@@ -68,7 +68,7 @@ public class FurnBase: StaticBody, IInteractable
         IsOpen = !IsOpen;
     }
 
-    public virtual void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null) 
+    public virtual void ClickFurn(AudioStreamWav openSound = null, float timer = 0, string openAnim = null) 
     {
         if (IsOpen) 
         {

@@ -1,6 +1,6 @@
 using Godot;
 
-public class SubtitlesTrigger : TriggerBase
+public partial class SubtitlesTrigger : TriggerBase
 {
     [Export] private string code;
     [Export] private NodePath npcPath;

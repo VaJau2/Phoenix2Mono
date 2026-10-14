@@ -3,7 +3,7 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Table : VBoxContainer
+public partial class Table : VBoxContainer
 {
     private const int SYMBOL_PIXEL_SIZE = 8;
     private static List<FileTableLine> filesArray => Global.saveFilesArray;
@@ -175,7 +175,7 @@ public class Table : VBoxContainer
         parent = GetParent<TableSignals>();
         buttonsTheme = GD.Load<Theme>("res://assets/materials/fonts/terminal_theme.tres");
 
-        allSymbolsSize = (int)((RectSize.x - 10) / SYMBOL_PIXEL_SIZE);
+        allSymbolsSize = (int)((Size.X - 10) / SYMBOL_PIXEL_SIZE);
         firstColumnsSize = (allSymbolsSize - secondColumnSize) / 2;
 
         UpdateHeader();
@@ -192,7 +192,7 @@ public class Table : VBoxContainer
         if (!IsInstanceValid(tempButton)) return;
         
         var fileI = int.Parse(buttonName);
-        parent.EmitSignal(nameof(TableSignals.TableButtonPressed), filesArray[fileI].name);
+        parent.EmitSignal(TableSignals.SignalName.TableButtonPressed, filesArray[fileI].name);
     }
 }
 

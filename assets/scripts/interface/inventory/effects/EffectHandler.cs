@@ -6,7 +6,7 @@ using System.Collections.Generic;
 //обработчик эффектов
 //рисует иконки эффектов через интерфейс
 //вызывает нужные методы эффектов
-public class EffectHandler: Node
+public partial class EffectHandler: Node
 {
     public List<Effect> tempEffects { get; } = new();
     private PackedScene iconPrefab;
@@ -85,7 +85,7 @@ public class EffectHandler: Node
         newEffect.SetOn(this);
         tempEffects.Add(newEffect);
 
-        EffectIcon newIcon = (EffectIcon)iconPrefab.Instance();
+        EffectIcon newIcon = (EffectIcon)iconPrefab.Instantiate();
         AddChild(newIcon);
         newIcon.SetData(newEffect.GetType().Name, newEffect.iconTexture);
         newEffect.icon = newIcon;
@@ -208,7 +208,7 @@ public class EffectHandler: Node
         messages = GetNode<Messages>("../messages");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempEffects.Count > 0) 
         {

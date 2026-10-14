@@ -2,14 +2,14 @@
 using Godot;
 using Godot.Collections;
 
-public class MovePlayerTrigger : ActivateOtherTrigger
+public partial class MovePlayerTrigger : ActivateOtherTrigger
 {
     [Export] private bool isTeleport;
     [Export] private bool changeMayMove;
     [Export] private float speed = 5;
     [Export] private NodePath pointPath;
     
-    private Spatial point;
+    private Node3D point;
     private float speedCache;
 
     private Player player => Global.Get().player;
@@ -17,15 +17,15 @@ public class MovePlayerTrigger : ActivateOtherTrigger
     public override void _Ready()
     {
         base._Ready();
-        point = GetNode<Spatial>(pointPath);
+        point = GetNode<Node3D>(pointPath);
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (player?.MovingController is NavigationMovingController navigationMovingController)
         {
-            navigationMovingController.GoTo(point.GlobalTranslation);
+            navigationMovingController.GoTo(point.GlobalPosition);
         }
         else FinishMoving();
         
@@ -50,7 +50,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
             if (player == null) return;
             
             player.BaseSpeed = speedCache;
-            player.Disconnect(nameof(Character.IsCame), this, nameof(FinishMoving));
+            player.Disconnect(Character.SignalName.IsCame, new Callable(this, nameof(FinishMoving)));
             player.MovingController.SetProcess(false);
             if (player.MovingController is NavigationMovingController navigationMovingController)
             {
@@ -66,7 +66,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
         
         if (isTeleport)
         {
-            player.GlobalTranslation = point.GlobalTranslation;
+            player.GlobalPosition = point.GlobalPosition;
             player.GlobalRotation = point.GlobalRotation;
         }
         else
@@ -78,7 +78,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
             
             speedCache = player.BaseSpeed;
             player.BaseSpeed = speed;
-            player.Connect(nameof(Character.IsCame), this, nameof(FinishMoving));
+            player.Connect(Character.SignalName.IsCame, new Callable(this, nameof(FinishMoving)));
             player.MovingController.SetProcess(true);
             SetProcess(true);
         }
@@ -91,7 +91,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
         if (player == null) return;
         
         player.MovingController.SetProcess(false);
-        player.Disconnect(nameof(Character.IsCame), this, nameof(FinishMoving));
+        player.Disconnect(Character.SignalName.IsCame, new Callable(this, nameof(FinishMoving)));
         player.GlobalRotation = point.GlobalRotation;
 
         if (changeMayMove)
@@ -122,7 +122,7 @@ public class MovePlayerTrigger : ActivateOtherTrigger
 
     protected override void DeleteTrigger()
     {
-        if (player.GlobalTranslation != point.GlobalTranslation) return;
+        if (player.GlobalPosition != point.GlobalPosition) return;
         if (player.GlobalRotation != point.GlobalRotation) return;
         base.DeleteTrigger();
     }

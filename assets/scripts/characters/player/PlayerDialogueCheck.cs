@@ -2,7 +2,7 @@ using Godot;
 
 // Управляет камерой во время диалога с НПЦ
 // Искусственно отдаляет игрока от НПЦ, если он стоит слишком близко к нему
-public class PlayerDialogueCheck : Node
+public partial class PlayerDialogueCheck : Node
 {
     private const float MIN_NPC_DISTANCE_CHECK = 1f;
     private const float LOOK_POS_DELTA = 1.5f;
@@ -20,17 +20,17 @@ public class PlayerDialogueCheck : Node
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!player.IsTalking || npc == null) return;
         
         player.LookAt(GetLookAtPosition());
         
-        var distance = player.GlobalTranslation.DistanceTo(npc.GlobalTranslation);
+        var distance = player.GlobalPosition.DistanceTo(npc.GlobalPosition);
         
         if (distance < MIN_DISTANCE_TO_TALK)
         {
-            var dir = player.GlobalTransform.basis.z;
+            var dir = player.GlobalTransform.Basis.Z;
             player.Velocity = dir * MOVING_SPEED;
         }
         else
@@ -57,10 +57,10 @@ public class PlayerDialogueCheck : Node
             ? lookTarget
             : npc.GetHeadPosition();
         
-        var playerRelativePos = player.GlobalTransform.origin - targetPos;
+        var playerRelativePos = player.GlobalTransform.Origin - targetPos;
 
-        targetPos.x += GetLookPosDelta(playerRelativePos.z);
-        targetPos.z += GetLookPosDelta(-playerRelativePos.x);
+        targetPos.X += GetLookPosDelta(playerRelativePos.Z);
+        targetPos.Z += GetLookPosDelta(-playerRelativePos.X);
         
         return targetPos;
     }

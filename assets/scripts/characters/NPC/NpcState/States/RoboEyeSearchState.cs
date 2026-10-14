@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class RoboEyeSearchState(
+public partial class RoboEyeSearchState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine
@@ -24,12 +24,12 @@ public class RoboEyeSearchState(
             return;
         }
         
-        lastSeePos = npc.tempVictim.GlobalTranslation;
+        lastSeePos = npc.tempVictim.GlobalPosition;
         
         body.ChangeMaterial(RoboEyeMaterial.Orange);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (movingController.cameToPlace) 
         {

@@ -1,7 +1,7 @@
 using Godot;
 
 //Позволяет запускать тестовые сцены напрямую без необходимости копировать туда ноды менюшек
-public class TestSceneLoader : Node
+public partial class TestSceneLoader : Node
 {
     [Export] private Race playerRace;
     
@@ -16,7 +16,7 @@ public class TestSceneLoader : Node
         //загружаем и скрываем менюшки паузы и настроек (если их нет на сцене)
         if (HasNode("/root/Main/Menu")) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         var main = GetNode("/root/Main");
         var canvas = new CanvasLayer();
@@ -26,8 +26,8 @@ public class TestSceneLoader : Node
         
         var pauseMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/PauseMenu.tscn");
         var settingsMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/SettingsMenu.tscn");
-        var pauseMenu = (Control)pauseMenuPrefab.Instance();
-        var settingsMenu = (Control)settingsMenuPrefab.Instance();
+        var pauseMenu = (Control)pauseMenuPrefab.Instantiate();
+        var settingsMenu = (Control)settingsMenuPrefab.Instantiate();
         
         canvas.AddChild(settingsMenu);
         canvas.AddChild(pauseMenu);

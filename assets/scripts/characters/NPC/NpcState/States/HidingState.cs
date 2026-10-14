@@ -1,4 +1,4 @@
-﻿public class HidingState(
+﻿public partial class HidingState(
     NpcWeapons weapons,
     NpcCovers covers,
     NavigationMovingController movingController,
@@ -18,7 +18,7 @@
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.tempVictim == null)
         {

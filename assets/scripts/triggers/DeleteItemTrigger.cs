@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DeleteItemTrigger : TriggerBase
+public partial class DeleteItemTrigger : TriggerBase
 {
     [Export] public string ItemToCheck;
     
@@ -10,7 +10,7 @@ public class DeleteItemTrigger : TriggerBase
     {
         if (!IsActive) return;
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         _on_activate_trigger();
     }
 

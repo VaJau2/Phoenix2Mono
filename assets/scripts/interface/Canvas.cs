@@ -4,7 +4,7 @@ using Godot;
  * Внутриигровой канвас
  * играет анимацию плавного черного экрана при загрузке локаций
  */
-public class Canvas : CanvasLayer
+public partial class Canvas : CanvasLayer
 {
     private const float SPEED = 2.0f;
     private const float TIME = 1.0f;
@@ -26,7 +26,7 @@ public class Canvas : CanvasLayer
         SetProcess(true);
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timer > 0)
         {
@@ -34,10 +34,10 @@ public class Canvas : CanvasLayer
             return;
         }
 
-        if (blackScreen.Color.a > 0)
+        if (blackScreen.Color.A > 0)
         {
             var oldColor = blackScreen.Color;
-            oldColor.a -= SPEED * delta;
+            oldColor.A -= SPEED * delta;
             blackScreen.Color = oldColor;
             return;
         }

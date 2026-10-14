@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public abstract class AbstractNpcState : Node
+public abstract partial class AbstractNpcState : Node
 {
     protected NPC tempNpc;
 

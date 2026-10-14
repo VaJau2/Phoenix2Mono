@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Radiostation : Node
+public partial class Radiostation : Node
 {
 	public AudioStream song { private set; get; }
 
@@ -18,10 +18,10 @@ public class Radiostation : Node
 	private int songID = 0;
 
 	[Signal]
-	public delegate void SyncTimeEvent();
+	public delegate void SyncTimeEventEventHandler();
 
 	[Signal]
-	public delegate void ChangeSongEvent(AudioStream song);
+	public delegate void ChangeSongEventEventHandler(AudioStream song);
 
 	public new enum Name
 	{
@@ -33,7 +33,7 @@ public class Radiostation : Node
 		CountryStation
 	}
 
-	public override void _Process(float delta)
+	public override void _Process(double delta)
     {
 		timer += delta;
 		if (timer >= song.GetLength())
@@ -89,12 +89,12 @@ public class Radiostation : Node
 		else songID = 0;
 
 		song = songs[songID];
-		EmitSignal(nameof(ChangeSongEvent), song);
+		EmitSignal(SignalName.ChangeSongEvent, song);
 	}
 	
 	public void SyncTimer()
     {
-		EmitSignal(nameof(SyncTimeEvent));
+		EmitSignal(SignalName.SyncTimeEvent);
     }
 
 	public static Radiostation GetRadiostation(Node node, Name stationName)

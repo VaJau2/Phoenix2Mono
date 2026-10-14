@@ -10,7 +10,7 @@ public class Effect
     public float time;
     public float maxTime {get; protected set;}
     public string emotion {get; protected set;} = null;
-    public StreamTexture iconTexture {get; private set;}
+    public CompressedTexture2D iconTexture {get; private set;}
     public EffectIcon icon;
     public bool badEffect = false;
 
@@ -19,7 +19,7 @@ public class Effect
     {
         this.handler = handler;
         time = maxTime;
-        iconTexture = GD.Load<StreamTexture>("res://assets/textures/interface/icons/items/" + iconName + ".png");
+        iconTexture = GD.Load<CompressedTexture2D>("res://assets/textures/interface/icons/items/" + iconName + ".png");
 
         if (postEffect != null) handler.ClearEffect(postEffect);
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class WarningManager : RadioManager, ISavable
+public partial class WarningManager : RadioManager, ISavable
 {
     [Export] private string systemName;
     private readonly List<Receiver> receivers = [];
@@ -22,10 +22,10 @@ public class WarningManager : RadioManager, ISavable
     private Subtitles subtitles;
     
     [Signal]
-    public delegate void StartMessageEvent(AudioStream stream = null);
+    public delegate void StartMessageEventEventHandler(AudioStream stream = null);
     
     [Signal]
-    public delegate void MessageFinishedEvent();
+    public delegate void MessageFinishedEventEventHandler();
     
     public override void _Ready()
     {
@@ -39,12 +39,12 @@ public class WarningManager : RadioManager, ISavable
 
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
-        subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
-        subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
+        subtitles.Connect(Subtitles.SignalName.End, new Callable(this, nameof(OnMessageEnd)));
+        subtitles.Connect(Subtitles.SignalName.ChangePhrase, new Callable(this, nameof(OnAudioChange)));
         
         enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmEnded), this, nameof(OnAlarmEnd));
+        enemiesManager?.Connect(EnemiesManager.SignalName.AlarmStarted, new Callable(this, nameof(OnAlarmStart)));
+        enemiesManager?.Connect(EnemiesManager.SignalName.AlarmEnded, new Callable(this, nameof(OnAlarmEnd)));
         
         base._Ready();
     }
@@ -69,7 +69,7 @@ public class WarningManager : RadioManager, ISavable
     
     private void StartMessage(string code, VoiceMessageTrigger trigger)
     {
-        ChangeRadioPauseMode(PauseModeEnum.Inherit);
+        ChangeRadioPauseMode(ProcessModeEnum.Inherit);
         trigger?.Connect();
         
         subtitles.SetTalker(messagePlayer, systemName)
@@ -77,12 +77,12 @@ public class WarningManager : RadioManager, ISavable
             .StartAnimatingText();
         
         Message = new WarningMessage(code, trigger);
-        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+        EmitSignal(SignalName.StartMessageEvent, messagePlayer.Stream);
     }
 
     private void OnAudioChange()
     {
-        EmitSignal(nameof(StartMessageEvent), messagePlayer.Stream);
+        EmitSignal(SignalName.StartMessageEvent, messagePlayer.Stream);
     }
     
     private void OnMessageEnd()
@@ -100,8 +100,8 @@ public class WarningManager : RadioManager, ISavable
             }
             
             Message = null;
-            ChangeRadioPauseMode(PauseModeEnum.Process);
-            EmitSignal(nameof(MessageFinishedEvent));
+            ChangeRadioPauseMode(ProcessModeEnum.Always);
+            EmitSignal(SignalName.MessageFinishedEvent);
         }
     }
     

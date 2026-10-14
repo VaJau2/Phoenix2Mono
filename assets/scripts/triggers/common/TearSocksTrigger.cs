@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class TearSocksTrigger : Node
+public partial class TearSocksTrigger : Node
 {
     private const float MAX_DISTANCE = 40f;
 
@@ -20,12 +20,12 @@ public class TearSocksTrigger : Node
         saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(LevelsLoader.SignalName.SaveDataLoaded, new Callable(this, nameof(OnSaveDataLoaded)));
     }
     
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         if (saveNode.SavedVariables.Contains("tornSocks"))
         {
@@ -38,7 +38,7 @@ public class TearSocksTrigger : Node
             }
         }
         
-        player.Connect(nameof(Player.WearItem), this, nameof(_on_player_wear_item));
+        player.Connect(Player.SignalName.WearItem, new Callable(this, nameof(_on_player_wear_item)));
     }
 
     public void _on_player_wear_item(string itemCode)
@@ -54,7 +54,7 @@ public class TearSocksTrigger : Node
     private void Comment()
     {
         if (assistantRarity != null 
-            && player.GlobalTranslation.DistanceTo(assistantRarity.GlobalTranslation) < MAX_DISTANCE)
+            && player.GlobalPosition.DistanceTo(assistantRarity.GlobalPosition) < MAX_DISTANCE)
         {
             subtitles.SetTalker(assistantRarity)
                 .LoadSubtitlesFile("tearSocks")

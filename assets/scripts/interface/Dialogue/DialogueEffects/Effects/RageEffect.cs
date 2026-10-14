@@ -2,7 +2,7 @@
 
 namespace DialogueEffects;
 
-public class RageEffect : IDialogueEffect
+public partial class RageEffect : IDialogueEffect
 {
     public bool NeedToEnable(string characterName)
     {

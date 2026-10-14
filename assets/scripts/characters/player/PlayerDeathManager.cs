@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class PlayerDeathManager : Node
+public partial class PlayerDeathManager : Node
 {
     public bool PermanentDeath = true;
     public TriggerBase OnDeathTrigger;
@@ -9,7 +9,7 @@ public class PlayerDeathManager : Node
     private LevelsLoader levelsLoader;
     
     [Signal]
-    public delegate void CloneDie();
+    public delegate void CloneDieEventHandler();
     
     public override void _Ready()
     {
@@ -19,7 +19,7 @@ public class PlayerDeathManager : Node
     
     public async void OnPlayerDeath()
     {
-        while (blackScreen.Color.a < 1)
+        while (blackScreen.Color.A < 1)
         {
             //затухание всей музыки на уровне
             foreach (Node node in GetTree().GetNodesInGroup("unpaused_sound"))
@@ -31,7 +31,7 @@ public class PlayerDeathManager : Node
             }
 
             var temp = blackScreen.Color;
-            temp.a += 0.01f;
+            temp.A += 0.01f;
             blackScreen.Color = temp;
             await Global.Get().ToTimer(0.04f);
         }
@@ -43,7 +43,7 @@ public class PlayerDeathManager : Node
         }
         else
         {
-            EmitSignal(nameof(CloneDie));
+            EmitSignal(SignalName.CloneDie);
         }
     }
 }

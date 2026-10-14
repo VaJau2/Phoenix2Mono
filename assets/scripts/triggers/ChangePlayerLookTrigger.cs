@@ -3,20 +3,20 @@ using System.CodeDom.Compiler;
 using Godot;
 using Godot.Collections;
 
-public class ChangePlayerLookTrigger : ActivateOtherTrigger
+public partial class ChangePlayerLookTrigger : ActivateOtherTrigger
 { 
     [Export] private NodePath targetPath;
-    private Spatial target;
+    private Node3D target;
 
     private Player player => Global.Get().player;
     
     public override void _Ready()
     {
-        target = GetNode<Spatial>(targetPath);
+        target = GetNode<Node3D>(targetPath);
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (player == null) return;
         
@@ -42,12 +42,12 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
     
     private Vector2 GetHeadRotationToTarget()
     {
-        var forward = -player.GlobalTransform.basis.z;
+        var forward = -player.GlobalTransform.Basis.Z;
         var dir = GetDirToTarget();
         var angle = forward.AngleTo(dir);
-        var diffY = target.GlobalTranslation.y - player.GlobalTranslation.y;
+        var diffY = target.GlobalPosition.Y - player.GlobalPosition.Y;
         
-        if (player.GlobalTransform.basis.x.Dot(dir) < 0)
+        if (player.GlobalTransform.Basis.X.Dot(dir) < 0)
         {
             angle = -angle;
         }
@@ -57,9 +57,9 @@ public class ChangePlayerLookTrigger : ActivateOtherTrigger
     
     private Vector3 GetDirToTarget()
     {
-        var targetDirPos = target.GlobalTranslation;
-        targetDirPos.y = player.GlobalTranslation.y;
-        return targetDirPos - player.GlobalTranslation;
+        var targetDirPos = target.GlobalPosition;
+        targetDirPos.Y = player.GlobalPosition.Y;
+        return targetDirPos - player.GlobalPosition;
     }
     
     public override Dictionary GetSaveData()

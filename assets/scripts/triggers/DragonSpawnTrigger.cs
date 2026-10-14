@@ -1,12 +1,12 @@
 using Godot;
 using Godot.Collections;
 
-public class DragonSpawnTrigger : TriggerBase
+public partial class DragonSpawnTrigger : TriggerBase
 {
     [Export] private PackedScene dragonPrefab;
     [Export] private NodePath spawnPointPath;
     [Export] public Array<NodePath> patrolArray;
-    private Spatial spawnPoint;
+    private Node3D spawnPoint;
     
     //0 - путь до триггера, строка
     //1 - сигнал нпц, строка
@@ -15,13 +15,13 @@ public class DragonSpawnTrigger : TriggerBase
     [Export] private Array triggerConnections;
     
     [Signal]
-    public delegate void Spawned(NPC dragon);
+    public delegate void SpawnedEventHandler(NPC dragon);
 
     public override void _Ready()
     {
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Spatial>(spawnPointPath);
+            spawnPoint = GetNode<Node3D>(spawnPointPath);
         }
         base._Ready();
     }
@@ -37,14 +37,14 @@ public class DragonSpawnTrigger : TriggerBase
         if (!IsActive) return;
 
         var dragon = SpawnNpc();
-        EmitSignal(nameof(Spawned), dragon);
+        EmitSignal(SignalName.Spawned, dragon);
 
         base._on_activate_trigger();
     }
     
     private NPC SpawnNpc()
     {
-        if (dragonPrefab.Instance() is not NPC npcInstance)
+        if (dragonPrefab.Instantiate() is not NPC npcInstance)
         {
             return null;
         }
@@ -52,8 +52,8 @@ public class DragonSpawnTrigger : TriggerBase
         npcInstance.Name = "Created_" + npcInstance.Name;
         npcInstance.patrolArray = patrolArray;
         GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
-        npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
+        npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.Origin);
+        npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.Y,0);
 
         if (triggerConnections == null)
         {

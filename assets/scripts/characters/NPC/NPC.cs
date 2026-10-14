@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //класс отвечает за поведение НПЦ
-public class NPC : Character, IInteractable, IChest
+public partial class NPC : Character, IInteractable, IChest
 {
     [Export] public Array<NodePath> patrolArray = [];
     [Export] public bool IsImmortal;
@@ -48,7 +48,7 @@ public class NPC : Character, IInteractable, IChest
     private static Player Player => Global.Get().player;
     
     [Signal]
-    public delegate void FoundEnemy();
+    public delegate void FoundEnemyEventHandler();
     
     public override void _Ready()
     {
@@ -70,7 +70,7 @@ public class NPC : Character, IInteractable, IChest
         
         if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
             
-        myStartPos = GlobalTransform.origin;
+        myStartPos = GlobalTransform.Origin;
         myStartRot = Rotation;
     }
 
@@ -87,7 +87,7 @@ public class NPC : Character, IInteractable, IChest
         stateMachine.SetState(state);
     }
 
-    public Vector3 GetHeadPosition() => HeadPosition?.GetPosition() ?? GlobalTranslation;
+    public Vector3 GetHeadPosition() => HeadPosition?.GetPosition() ?? GlobalPosition;
 
     public override int GetDamage()
     {
@@ -98,7 +98,7 @@ public class NPC : Character, IInteractable, IChest
 
     public override void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamage));
+        EmitSignal(SignalName.TakenDamage);
         
         if (IsImmortal) return;
         
@@ -152,7 +152,7 @@ public class NPC : Character, IInteractable, IChest
 
     public void SetObjectActive(string objectPath, bool active)
     {
-        var showObject = GetNode<Spatial>(objectPath);
+        var showObject = GetNode<Node3D>(objectPath);
         if (showObject == null) return;
         showObject.Visible = active;
         objectsChangeActive[objectPath] = active;
@@ -249,7 +249,7 @@ public class NPC : Character, IInteractable, IChest
         if (door.IsAnimating)
         {
             navigation.stopAreaEntered = true;
-            await ToSignal(door, nameof(FurnBase.AnimationFinished));
+            await ToSignal(door, FurnBase.SignalName.AnimationFinished);
             navigation.stopAreaEntered = false;
         }
         

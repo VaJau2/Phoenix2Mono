@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class Player_Unicorn : Player
+public partial class Player_Unicorn : Player
 {
     private const float MANA_SPEED = 5f;
     private const float TELEPORT_COST = 50f;
@@ -13,9 +13,9 @@ public class Player_Unicorn : Player
     public float ManaDelta = 1f;
 
     public AudioStreamPlayer audiHorn;
-    private AudioStreamSample teleportSound;
+    private AudioStreamWav teleportSound;
     private Messages messages;
-    private Particles hornMagic;
+    private GpuParticles3D hornMagic;
     public UnicornShield shield;
 
     private PackedScene teleportMark;
@@ -55,9 +55,9 @@ public class Player_Unicorn : Player
         if (IsDead) ClearTeleportMark();
     }
 
-    public override Spatial GetWeaponParent(bool isPistol)
+    public override Node3D GetWeaponParent(bool isPistol)
     {
-        return GetNode<Spatial>("levitation/weapons");
+        return GetNode<Node3D>("levitation/weapons");
     }
 
     public override void SetWeaponOn(bool isPistol)
@@ -74,10 +74,10 @@ public class Player_Unicorn : Player
     {
         base._Ready();
         audiHorn = GetNode<AudioStreamPlayer>("sound/audi_horn");
-        teleportSound = GD.Load<AudioStreamSample>("res://assets/audio/magic/teleporting.wav");
+        teleportSound = GD.Load<AudioStreamWav>("res://assets/audio/magic/teleporting.wav");
 
         shield = GetNode<UnicornShield>("shield");
-        hornMagic = GetNode<Particles>("player_body/Armature/Skeleton/BoneAttachment/HeadPos/Particles");
+        hornMagic = GetNode<GpuParticles3D>("player_body/Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         teleportMark = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportMark.tscn");
         teleportEffect = GD.Load<PackedScene>("res://objects/characters/Player/magic/TeleportEffect.tscn");
 
@@ -86,7 +86,7 @@ public class Player_Unicorn : Player
     }
 
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -125,11 +125,11 @@ public class Player_Unicorn : Player
     private void SpawnTeleportMark()
     {
         if (tempTeleportMark != null) return;
-        tempTeleportMark = (TeleportMark)teleportMark.Instance();
+        tempTeleportMark = (TeleportMark)teleportMark.Instantiate();
         GetParent().AddChild(tempTeleportMark);
         tempTeleportMark.GlobalTransform = Global.SetNewOrigin(
             tempTeleportMark.GlobalTransform,
-            GlobalTransform.origin
+            GlobalTransform.Origin
         );
     }
 
@@ -142,18 +142,18 @@ public class Player_Unicorn : Player
 
     private void SpawnTeleportEffect()
     {
-        var effect = (Spatial)teleportEffect.Instance();
+        var effect = (Node3D)teleportEffect.Instantiate();
         GetParent().AddChild(effect);
 
         effect.GlobalTransform = Global.SetNewOrigin(
             effect.GlobalTransform,
-            GlobalTransform.origin
+            GlobalTransform.Origin
         );
     }
 
     private float GetTeleportCost()
     {
-        var tempDistance = GlobalTransform.origin.DistanceTo(tempTeleportMark.GlobalTransform.origin);
+        var tempDistance = GlobalTransform.Origin.DistanceTo(tempTeleportMark.GlobalTransform.Origin);
         return TELEPORT_MIN_COST + TELEPORT_COST * ManaDelta * (tempDistance / TELEPORT_DISTANCE);
     }
 
@@ -196,7 +196,7 @@ public class Player_Unicorn : Player
             }
             else if (tempRay.IsColliding())
             {
-                Spatial collider = (Spatial)tempRay.GetCollider();
+                Node3D collider = (Node3D)tempRay.GetCollider();
                 if (collider.Name == "sky") return;
                 //оно может внезапно стереться даже здесь
                 if (tempTeleportMark != null)

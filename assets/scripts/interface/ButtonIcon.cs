@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class ButtonIcon : IconWithShadow
+public partial class ButtonIcon : IconWithShadow
 {
     [Export] private string key;
     
@@ -8,15 +8,15 @@ public class ButtonIcon : IconWithShadow
     {
         base._Ready();
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(LevelsLoader.SignalName.SaveDataLoaded, new Callable(this, nameof(OnSaveDataLoaded)));
     }
 
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         var settings = GetNode<ControlsSubmenu>("/root/Main/Menu/SettingsMenu/Controls");
-        settings.Connect(nameof(ControlsSubmenu.ChangeControlEvent), this, nameof(UpdateIcon));
+        settings.Connect(ControlsSubmenu.SignalName.ChangeControlEvent, new Callable(this, nameof(UpdateIcon)));
         
         UpdateIcon();
     }
@@ -24,7 +24,7 @@ public class ButtonIcon : IconWithShadow
     private void UpdateIcon()
     {
         var path = $"res://assets/textures/interface/icons/buttons/{Global.GetKeyName(key)}.png";
-        var icon = GD.Load<Texture>(path);
+        var icon = GD.Load<Texture2D>(path);
         SetIcon(icon);
     }
 }

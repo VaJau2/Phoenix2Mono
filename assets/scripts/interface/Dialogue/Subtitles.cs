@@ -16,7 +16,7 @@ using Array = Godot.Collections.Array;
 //    .LoadSubtitlesFile(subtitlesCode)
 //    .StartAnimatingText();
 //
-public class Subtitles : Label, ISavable
+public partial class Subtitles : Label, ISavable
 {
     private const float VISIBLE_DISTANCE = 50;
 
@@ -49,10 +49,10 @@ public class Subtitles : Label, ISavable
     private float symbolTimer;
     
     [Signal]
-    public delegate void ChangePhrase();
+    public delegate void ChangePhraseEventHandler();
     
     [Signal]
-    public delegate void End();
+    public delegate void EndEventHandler();
     
     public override void _Ready()
     {
@@ -61,7 +61,7 @@ public class Subtitles : Label, ISavable
         MenuBase.LoadColorForChildren(this);
     }
     
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (!IsAnimatingText) return;
         
@@ -135,7 +135,7 @@ public class Subtitles : Label, ISavable
 
         ReadPhraseText();
         
-        EmitSignal(nameof(ChangePhrase));
+        EmitSignal(SignalName.ChangePhrase);
     }
     
     private static string GetNpcName(NPC npc) => !string.IsNullOrEmpty(npc.npcCustomDialogueName) 
@@ -150,7 +150,7 @@ public class Subtitles : Label, ISavable
         symbolTimer = 0;
         
         ClearSubtitles();
-        EmitSignal(nameof(End));
+        EmitSignal(SignalName.End);
     }
     
     private void ReadPhraseText()
@@ -219,7 +219,7 @@ public class Subtitles : Label, ISavable
         else
         {
             ClearSubtitles();
-            EmitSignal(nameof(End));
+            EmitSignal(SignalName.End);
         }
     }
 
@@ -271,7 +271,7 @@ public class Subtitles : Label, ISavable
         }
 
         if (Player == null) return;
-        var distance = Player.GlobalTranslation.DistanceTo(Talker.GlobalTranslation);
+        var distance = Player.GlobalPosition.DistanceTo(Talker.GlobalPosition);
         Visible = distance < VISIBLE_DISTANCE;
     }
     

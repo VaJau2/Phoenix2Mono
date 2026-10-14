@@ -1,8 +1,8 @@
 using Godot;
 
-public class MoveCinematic : AbstractMoveCinematic
+public partial class MoveCinematic : AbstractMoveCinematic
 {
-    [Export] private PathFollow.RotationModeEnum rotationMode;
+    [Export] private PathFollow3D.RotationModeEnum rotationMode;
     [Export] private Vector3 cameraAngle;
     
     public override void _Ready()
@@ -11,9 +11,9 @@ public class MoveCinematic : AbstractMoveCinematic
         pathFollow.RotationMode = rotationMode;
         
         cameraAngleRad = new Vector3(
-            Mathf.Deg2Rad(cameraAngle.x),
-            Mathf.Deg2Rad(cameraAngle.y),
-            Mathf.Deg2Rad(cameraAngle.z)
+            Mathf.DegToRad(cameraAngle.X),
+            Mathf.DegToRad(cameraAngle.Y),
+            Mathf.DegToRad(cameraAngle.Z)
         );
     }
 

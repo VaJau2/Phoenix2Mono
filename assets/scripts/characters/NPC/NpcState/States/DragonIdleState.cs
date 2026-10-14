@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class DragonIdleState(
+public partial class DragonIdleState(
     NpcPatroling patroling,
     DragonBody body,
     StateMachine stateMachine,
@@ -20,7 +20,7 @@ public class DragonIdleState(
         idleTimer = ATTACK_COOLDOWN;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         movingController.UpdateHeight(tempNpc.BaseSpeed / 4f, DragonBody.IDLE_FLY_HEIGHT);
         UpdatePatrolPoints();

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class FollowState(
+public partial class FollowState(
     NavigationMovingController movingController
 ) : AbstractNpcState
 {
@@ -17,16 +17,16 @@ public class FollowState(
     {
         base.Enable(npc);
 
-        npc.followTarget.Connect(nameof(Character.DoorTeleporting), this, nameof(OnTargetTeleportToDoor));
+        npc.followTarget.Connect(Character.SignalName.DoorTeleporting, new Callable(this, nameof(OnTargetTeleportToDoor)));
     }
 
     public override void Disable()
     {
-        tempNpc.followTarget?.Disconnect(nameof(Character.DoorTeleporting), this, nameof(OnTargetTeleportToDoor));
+        tempNpc.followTarget?.Disconnect(Character.SignalName.DoorTeleporting, new Callable(this, nameof(OnTargetTeleportToDoor)));
         base.Disable();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.followTarget == null)
         {
@@ -49,7 +49,7 @@ public class FollowState(
         FollowTarget();
     }
 
-    private void OnTargetTeleportToDoor(Spatial door)
+    private void OnTargetTeleportToDoor(Node3D door)
     {
         if (isWaiting) return;
         if (door is not IDoorTeleport teleport) return;
@@ -58,7 +58,7 @@ public class FollowState(
 
     private void GoToLastDoorTeleport()
     {
-        movingController.GoTo(lastDoorTeleport.GlobalTranslation, COME_DISTANCE);
+        movingController.GoTo(lastDoorTeleport.GlobalPosition, COME_DISTANCE);
         if (!movingController.cameToPlace) return;
         
         tempNpc.TeleportToDoor(lastDoorTeleport);
@@ -67,7 +67,7 @@ public class FollowState(
 
     private void FollowTarget()
     {
-        var targetPos = tempNpc.followTarget.GlobalTranslation;
+        var targetPos = tempNpc.followTarget.GlobalPosition;
         movingController.GoTo(targetPos, movingController.ComeDistance * 2f);
         movingController.updatePath = tempNpc.followTarget?.Velocity.Length() > Character.MIN_WALKING_SPEED;
     }

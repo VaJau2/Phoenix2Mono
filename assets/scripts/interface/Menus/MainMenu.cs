@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class MainMenu : MenuBase
+public partial class MainMenu : MenuBase
 {
     Global global = Global.Get();
     MenuAudi audi;
@@ -51,7 +51,7 @@ public class MainMenu : MenuBase
     private Button modalOk;
 
     [Signal]
-    public delegate void labelChanged();
+    public delegate void labelChangedEventHandler();
 
     private void LoadMenu()
     {
@@ -104,7 +104,7 @@ public class MainMenu : MenuBase
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
 
         var raceStr = Global.RaceToString(global.playerRace);
-        var bgPicRes = GD.Load<StreamTexture>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
+        var bgPicRes = GD.Load<CompressedTexture2D>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
 
         var bgPic = GetNode<TextureRect>("bgPony");
         bgPic.Texture = bgPicRes;
@@ -123,7 +123,7 @@ public class MainMenu : MenuBase
             label.PercentVisible += 0.1f;
             await global.ToTimer(0.05f, this);
         }
-        EmitSignal(nameof(labelChanged));
+        EmitSignal(SignalName.labelChanged);
     }
 
     public override void LoadInterfaceLanguage()
@@ -200,12 +200,12 @@ public class MainMenu : MenuBase
             pageLabel.Text = GetMenuText("page");
             ChangeLabel(pageLabel);
 
-            while(backgroundRect.Color.a > 0) {
+            while(backgroundRect.Color.A > 0) {
                 backgroundRect.Color = new Color(
                     0, 0, 0,
-                    backgroundRect.Color.a - 0.1f
+                    backgroundRect.Color.A - 0.1f
                 );
-                await ToSignal(GetTree(), "idle_frame");
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             }
         }
         else

@@ -3,7 +3,7 @@ using Godot.Collections;
 
 //коннектится к событию получения урона у персонажей
 //заставляет их пропасть и добавляет вместо них эффект телепорта
-public class TeleportWhenAttach: TriggerBase
+public partial class TeleportWhenAttach: TriggerBase
 {
     [Export] private PackedScene teleportEffect;
     [Export] private Array<NodePath> charPaths;
@@ -17,7 +17,7 @@ public class TeleportWhenAttach: TriggerBase
             {
                 var tempChar = GetNode<Character>(charPath);
                 characters.Add(tempChar);
-                tempChar.Connect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
+                tempChar.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(_on_activate_trigger)));
             }
         }
     }
@@ -48,12 +48,12 @@ public class TeleportWhenAttach: TriggerBase
 
         foreach (var npc in characters)
         {
-            npc.Disconnect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
-            if (teleportEffect.Instance() is Spatial effect)
+            npc.Disconnect(Character.SignalName.TakenDamage, new Callable(this, nameof(_on_activate_trigger)));
+            if (teleportEffect.Instantiate() is Node3D effect)
             {
                 GetNode("/root/Main/Scene").AddChild(effect);
                 effect.GlobalTransform =
-                    Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.origin);
+                    Global.SetNewOrigin(effect.GlobalTransform, npc.GlobalTransform.Origin);
             }
 
             Global.AddDeletedObject(npc);

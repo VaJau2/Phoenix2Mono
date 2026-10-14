@@ -1,6 +1,6 @@
 using Godot;
 
-public class BindIcon : ItemIcon
+public partial class BindIcon : ItemIcon
 {
     private AnimationPlayer anim;
     private bool isSelected;
@@ -10,7 +10,7 @@ public class BindIcon : ItemIcon
     private Player player => Global.Get().player;
 
     [Signal]
-    public delegate void IsDeleting();
+    public delegate void IsDeletingEventHandler();
     
     public override async void _Ready()
     {
@@ -19,8 +19,8 @@ public class BindIcon : ItemIcon
         anim = GetNode<AnimationPlayer>("anim");
         anim.Play("RESET");
         
-        await ToSignal(GetTree(), "idle_frame");
-        player.Connect(nameof(Player.UseItem), this, nameof(OnPlayerUseItem));
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        player.Connect(Player.SignalName.UseItem, new Callable(this, nameof(OnPlayerUseItem)));
 
         if (myItemCode == player.Inventory.weapon)
         {
@@ -28,7 +28,7 @@ public class BindIcon : ItemIcon
         }
     }
 
-    public override void SetIcon(StreamTexture newIcon)
+    public override void SetIcon(CompressedTexture2D newIcon)
     {
         base.SetIcon(newIcon);
         shadow.Texture = newIcon;
@@ -49,7 +49,7 @@ public class BindIcon : ItemIcon
             await ToSignal(anim, "animation_finished");
         }
         
-        EmitSignal(nameof(IsDeleting));
+        EmitSignal(SignalName.IsDeleting);
         QueueFree();
     }
 

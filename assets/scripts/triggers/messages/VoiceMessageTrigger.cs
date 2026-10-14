@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
+public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
     [Export] private List<string> messages;
     protected WarningManager WarningManager;
@@ -40,7 +40,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
     {
         WarningManager.Disconnect
         (
-            nameof(WarningManager.MessageFinishedEvent), 
+            WarningManager.SignalName.MessageFinishedEvent, 
             this, 
             nameof(OnMessageFinished)
         );
@@ -54,7 +54,7 @@ public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
         SetActive(false);
         WarningManager.Connect
         (
-            nameof(WarningManager.MessageFinishedEvent), 
+            WarningManager.SignalName.MessageFinishedEvent, 
             this, 
             nameof(OnMessageFinished)
         );

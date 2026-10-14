@@ -3,7 +3,7 @@
 //Ищет по пути /audio/dialogues/lang/npc/dialogue/ озвучку для диалогового нода
 //Проигрывает, если файл существует
 //Если не существует, озвучивает через динамическую озвучку
-class DialogueAudio: Node
+partial class DialogueAudio: Node
 {
     [Export] private NodePath audioPlayerPath;
     private string tempAudioPath;

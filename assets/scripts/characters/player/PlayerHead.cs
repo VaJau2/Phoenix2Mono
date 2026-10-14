@@ -2,13 +2,13 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class PlayerHead : MeshInstance
+public partial class PlayerHead : MeshInstance3D
 {
     const float SHY_TIMER = 10f;
     private static string path = "res://assets/textures/characters/player/emotions/";
-    private Dictionary<string, StreamTexture> openEyes = new Dictionary<string, StreamTexture>();
-    private Dictionary<string, StreamTexture> closeEyes = new Dictionary<string, StreamTexture>();
-    private SpatialMaterial bodyMaterial;
+    private Dictionary<string, CompressedTexture2D> openEyes = new Dictionary<string, CompressedTexture2D>();
+    private Dictionary<string, CompressedTexture2D> closeEyes = new Dictionary<string, CompressedTexture2D>();
+    private StandardMaterial3D bodyMaterial;
     private Player player => Global.Get().player;
 
     private string emotion = "empty";
@@ -23,7 +23,7 @@ public class PlayerHead : MeshInstance
         int count = GetSurfaceMaterialCount();
         for (int i = 0; i < count; i++)
         {
-            SpatialMaterial tempMaterial = Mesh.SurfaceGetMaterial(i) as SpatialMaterial;
+            StandardMaterial3D tempMaterial = Mesh.SurfaceGetMaterial(i) as StandardMaterial3D;
             if (tempMaterial.DetailEnabled)
             {
                 bodyMaterial = tempMaterial;
@@ -93,7 +93,7 @@ public class PlayerHead : MeshInstance
 
     private void ChangeMaterialTexture(bool eyesAreOpen)
     {
-        StreamTexture newTexture;
+        CompressedTexture2D newTexture;
         newTexture = eyesAreOpen ? openEyes[emotion] : closeEyes[emotion];
         bodyMaterial.DetailAlbedo = newTexture;
     }
@@ -116,7 +116,7 @@ public class PlayerHead : MeshInstance
     //после перезагрузки ГГ спавнится с закрытыми глазами
     private async void StartOpenEyes()
     {
-        await (ToSignal(GetTree(), "idle_frame"));
+        await (ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame));
         emotion = "empty";
         OpenEyes();
     }
@@ -124,25 +124,25 @@ public class PlayerHead : MeshInstance
 
     public override void _Ready()
     {
-        openEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body.png"));
-        closeEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body_closed_eyes.png"));
+        openEyes.Add("empty", GD.Load<CompressedTexture2D>(path + "player_body.png"));
+        closeEyes.Add("empty", GD.Load<CompressedTexture2D>(path + "player_body_closed_eyes.png"));
 
-        openEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling.png"));
-        closeEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling_closed_eyes.png"));
+        openEyes.Add("smile", GD.Load<CompressedTexture2D>(path + "player_body_smiling.png"));
+        closeEyes.Add("smile", GD.Load<CompressedTexture2D>(path + "player_body_smiling_closed_eyes.png"));
 
-        openEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy.png"));
-        closeEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy_closed_eyes.png"));
+        openEyes.Add("shy", GD.Load<CompressedTexture2D>(path + "player_body_shy.png"));
+        closeEyes.Add("shy", GD.Load<CompressedTexture2D>(path + "player_body_shy_closed_eyes.png"));
 
-        openEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds.png"));
-        closeEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds_closed_eyes.png"));
+        openEyes.Add("meds", GD.Load<CompressedTexture2D>(path + "player_body_meds.png"));
+        closeEyes.Add("meds", GD.Load<CompressedTexture2D>(path + "player_body_meds_closed_eyes.png"));
 
-        openEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after.png"));
-        closeEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after_closed_eyes.png"));
+        openEyes.Add("meds_after", GD.Load<CompressedTexture2D>(path + "player_body_meds_after.png"));
+        closeEyes.Add("meds_after", GD.Load<CompressedTexture2D>(path + "player_body_meds_after_closed_eyes.png"));
 
         StartOpenEyes();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         //тело игрока всегда видимо, но от 1 лица оно только бросает тени
         if (CastShadow == ShadowCastingSetting.On)

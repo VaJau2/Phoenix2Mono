@@ -1,6 +1,6 @@
 using Godot;
 
-public class ManaBar : Control
+public partial class ManaBar : Control
 {
     private Player player;
     private Control mask;
@@ -14,30 +14,30 @@ public class ManaBar : Control
         MenuBase.LoadColorForChildren(this);
 
         var phoenixSystem = GetNodeOrNull<PhoenixSystem>("/root/Main/Scene/triggers/Phoenix System");
-        phoenixSystem?.Connect(nameof(PhoenixSystem.CloneAwake), this, nameof(Reset));
+        phoenixSystem?.Connect(PhoenixSystem.SignalName.CloneAwake, new Callable(this, nameof(Reset)));
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         player = Global.Get().player;
 
         if (player is not Player_Unicorn unicorn) return;
         if (unicorn.Mana >= Player_Unicorn.MANA_MAX) return;
         
-        if (float.IsNaN(mask.RectSize.y))
+        if (float.IsNaN(mask.Size.Y))
         {
             mask.QueueFree();
-            mask = prefab.Instance<Control>();
+            mask = prefab.Instantiate<Control>();
             mask.Modulate = Global.Get().Settings.interfaceColor;
             AddChild(mask);
         }
         
         var ratio = unicorn.Mana / Player_Unicorn.MANA_MAX;
-        mask.RectSize = new Vector2(128, ratio * 128);
+        mask.Size = new Vector2(128, ratio * 128);
     }
 
     private void Reset()
     {
-        mask.RectSize = new Vector2(128, 128);
+        mask.Size = new Vector2(128, 128);
     }
 }

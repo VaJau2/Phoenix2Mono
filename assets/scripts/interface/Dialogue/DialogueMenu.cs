@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class DialogueMenu : Control, IMenu, ISavable
+public partial class DialogueMenu : Control, IMenu, ISavable
 {
     public bool mustBeClosed => false;
     
@@ -42,7 +42,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     private DialogueAudio dialogueAudio;
     
     [Signal]
-    public delegate void FinishTalking();
+    public delegate void FinishTalkingEventHandler();
 
     public override void _Ready()
     {
@@ -64,7 +64,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         answerText = new Array();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (!MenuOn) return;
         
@@ -97,7 +97,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         npc.SetState(SetStateEnum.Talk);
         player.SetTalking(true, npc);
         
-        text.BbcodeText = "";
+        text.Text = "";
         skipLabel.Text = InterfaceLang.GetPhrase("inGame", "dialogue", "skip");
         LoadDialogueFile();
     }
@@ -160,7 +160,7 @@ public class DialogueMenu : Control, IMenu, ISavable
                 {
                     //имя персонажа
                     string uName = GetBlockText(tempNode["speaker"].ToString(), "u");
-                    text.BbcodeText += GetBlockText(uName + ":", "right") + "\n";
+                    text.Text += GetBlockText(uName + ":", "right") + "\n";
                 }
                 
                 var spacedText = GetSpacedText(tempNode["body"].ToString()) + "\n";
@@ -238,7 +238,7 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     public void OpenMenu()
     {
-        player.Connect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
+        player.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(CloseUsingManager)));
         
         Input.MouseMode = Input.MouseModeEnum.Visible;
         ((Control)GetParent()).Visible = true;
@@ -257,7 +257,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         Input.MouseMode = Input.MouseModeEnum.Captured;
         
         player.SetTalking(false);
-        player.Disconnect(nameof(Character.TakenDamage), this, nameof(CloseUsingManager));
+        player.Disconnect(Character.SignalName.TakenDamage, new Callable(this, nameof(CloseUsingManager)));
         
         if (npc != null) 
         {
@@ -265,9 +265,9 @@ public class DialogueMenu : Control, IMenu, ISavable
             npc = null;
         }
 
-        text.BbcodeText = "";
+        text.Text = "";
         ((Control)GetParent()).Visible = false;
-        EmitSignal(nameof(FinishTalking));
+        EmitSignal(SignalName.FinishTalking);
     }
 
     public void _on_answer_mouse_entered(int i)
@@ -309,7 +309,7 @@ public class DialogueMenu : Control, IMenu, ISavable
         else 
         {
             animatingAnswerNum = i;
-            text.BbcodeText += GetBlockText(leftName.Text, "u") + ":\n";
+            text.Text += GetBlockText(leftName.Text, "u") + ":\n";
 
             var customEffect = DialogueEffectsManager.GetCustomAudioConfig("strikely");
             dialogueAudio.LoadCharacter("strikely", "", customEffect);
@@ -351,10 +351,10 @@ public class DialogueMenu : Control, IMenu, ISavable
         tempTextBlock = block;
         if (block != null)
         {
-            text.BbcodeText += "[" + block + "]";
+            text.Text += "[" + block + "]";
         }
 
-        text.BbcodeText += MakeSpacesString(cleanAnimatingText);
+        text.Text += MakeSpacesString(cleanAnimatingText);
         
         symbolDelay = animatingAnswerNum == -1 && tempNode.Contains("timer")
             ? Global.ParseFloat(tempNode["timer"].ToString())
@@ -373,7 +373,7 @@ public class DialogueMenu : Control, IMenu, ISavable
     {
         if (tempTextBlock != null)
         {
-            text.BbcodeText += "[/" + tempTextBlock + "]";
+            text.Text += "[/" + tempTextBlock + "]";
         }
         skipLabel.Visible = false;
         isAnimatingText = false;
@@ -467,11 +467,11 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     private void AddStringToText(string value)
     {
-        var replacePos = text.BbcodeText.Length - cleanAnimatingText.Length;
+        var replacePos = text.Text.Length - cleanAnimatingText.Length;
         
-        if (value == text.BbcodeText[replacePos].ToString()) return;
+        if (value == text.Text[replacePos].ToString()) return;
         
-        text.BbcodeText = text.BbcodeText
+        text.Text = text.Text
             .Remove(replacePos, value.Length)
             .Insert(replacePos, value);
     }
@@ -510,18 +510,18 @@ public class DialogueMenu : Control, IMenu, ISavable
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
 
-        switch (eventKey.Scancode)
+        switch (eventKey.Keycode)
         {
-            case (uint)KeyList.Key1:
+            case (uint)Key.Key1:
                 _on_answer_pressed(0);
                 break;
-            case (uint)KeyList.Key2:
+            case (uint)Key.Key2:
                 _on_answer_pressed(1);
                 break;
-            case (uint)KeyList.Key3:
+            case (uint)Key.Key3:
                 _on_answer_pressed(2);
                 break;
-            case (uint)KeyList.Key4:
+            case (uint)Key.Key4:
                 _on_answer_pressed(3);
                 break;
         }
@@ -555,7 +555,7 @@ public class DialogueMenu : Control, IMenu, ISavable
 
     private async  void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         StartTalkingTo(npc);
     }
 }

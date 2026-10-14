@@ -4,7 +4,7 @@ using Godot.Collections;
 
 //триггер, который активирует другие триггеры
 //только если досчитает до счетчика собственных активаций
-public class TriggersConditionTrigger: ActivateOtherTrigger
+public partial class TriggersConditionTrigger: ActivateOtherTrigger
 {
     [Export] private int TriggersCount;
     [Export] private bool CheckPlayerEnterArea;

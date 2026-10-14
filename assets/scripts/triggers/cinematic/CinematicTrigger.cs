@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public class CinematicTrigger : ActivateOtherTrigger
+public partial class CinematicTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath movePath;
     [Export] private NodePath rotatePath;
@@ -39,7 +39,7 @@ public class CinematicTrigger : ActivateOtherTrigger
         }
     }
     
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (timer > 0)
         {
@@ -71,7 +71,7 @@ public class CinematicTrigger : ActivateOtherTrigger
         
         foreach (var cinematic in cinematicList)
         {
-            cinematic.Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
+            cinematic.Connect(PathBase.SignalName.Finished, new Callable(this, nameof(OnCinematicFinished)));
             cinematic.Enable();
         }
         
@@ -98,7 +98,7 @@ public class CinematicTrigger : ActivateOtherTrigger
 
     private void OnCinematicFinished(PathBase cinematic)
     {
-        cinematic.Disconnect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
+        cinematic.Disconnect(PathBase.SignalName.Finished, new Callable(this, nameof(OnCinematicFinished)));
         finishedCinematics++;
 
         if (finishedCinematics != cinematicList.Count) return;
@@ -146,7 +146,7 @@ public class CinematicTrigger : ActivateOtherTrigger
         for (var i = 0; i < cinematicList.Count; i++)
         {
             if (!Convert.ToBoolean(data[$"isCinematic{i}Enabled"])) continue;
-            cinematicList[i].Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
+            cinematicList[i].Connect(PathBase.SignalName.Finished, new Callable(this, nameof(OnCinematicFinished)));
         }
         
         finishedCinematics = Convert.ToInt32(data["finishedCinematics"]);

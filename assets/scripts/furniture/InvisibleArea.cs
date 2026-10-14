@@ -2,7 +2,7 @@ using Godot;
 
 //Если игрок попадает в эту область
 //Враги не могут его обнаружить
-public class InvisibleArea : Area
+public partial class InvisibleArea : Area3D
 {
     public void _on_invisibleArea_body_entered(Node body)
     {

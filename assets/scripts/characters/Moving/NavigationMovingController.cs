@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class NavigationMovingController: BaseMovingController, ISavable
+public partial class NavigationMovingController: BaseMovingController, ISavable
 {
     private const float RUN_DISTANCE = 12f;
     private const float MIN_MOVING_DISTANCE = 0.5f;
@@ -48,7 +48,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
             return;
         }
         
-        var pos = character.GlobalTranslation;
+        var pos = character.GlobalPosition;
         var tempDistance = pos.DistanceTo(GetLastPoint(target));
 
         if (tempDistance > distance)
@@ -72,8 +72,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
         if (path == null || !IsTargetsSame(target))
         {
             pathI = 0;
-            path = NavigationServer.MapGetPath(
-                character.GetWorld().NavigationMap, 
+            path = NavigationServer3D.MapGetPath(
+                character.GetWorld3D().NavigationMap, 
                 pos, 
                 target, 
                 true
@@ -122,11 +122,11 @@ public class NavigationMovingController: BaseMovingController, ISavable
         {
             if (oldCharacterPosition == Vector3.Zero)
             {
-                oldCharacterPosition = character.GlobalTranslation;
+                oldCharacterPosition = character.GlobalPosition;
             }
             else
             {
-                var newPosition = character.GlobalTranslation;
+                var newPosition = character.GlobalPosition;
                 if (newPosition.DistanceTo(oldCharacterPosition) < MIN_MOVING_DISTANCE)
                 {
                     //Делаем персонажа резким как пуля
@@ -188,7 +188,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         
         Stop();
         cameToPlace = true;
-        character.EmitSignal(nameof(Character.IsCame));
+        character.EmitSignal(Character.SignalName.IsCame);
     }
     
     private void UpdatePath(float delta)
@@ -236,7 +236,7 @@ public class NavigationMovingController: BaseMovingController, ISavable
         RunToPoint = Convert.ToBoolean(data["runToPoint"]);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
         

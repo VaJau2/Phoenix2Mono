@@ -14,9 +14,9 @@ public enum MayClimbOption
 public class FurnStairsClimbChecker
 {
     private readonly FurnDoor ventDoor;
-    private readonly Spatial furnsParent;
+    private readonly Node3D furnsParent;
 
-    public FurnStairsClimbChecker(FurnDoor ventDoor, Spatial furnsParent)
+    public FurnStairsClimbChecker(FurnDoor ventDoor, Node3D furnsParent)
     {
         this.ventDoor = ventDoor;
         this.furnsParent = furnsParent;

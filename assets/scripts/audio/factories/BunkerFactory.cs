@@ -3,7 +3,7 @@ using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class BunkerFactory : IAudioEffectsFactory
+public partial class BunkerFactory : IAudioEffectsFactory
 {
     private const string key = "bunker";
     

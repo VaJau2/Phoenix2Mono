@@ -2,7 +2,7 @@
 
 public interface IDoorTeleport
 { 
-    Spatial TeleportPos { get; }
+    Node3D TeleportPos { get; }
 
-    Vector3 GlobalTranslation { get; }
+    Vector3 GlobalPosition { get; }
 }

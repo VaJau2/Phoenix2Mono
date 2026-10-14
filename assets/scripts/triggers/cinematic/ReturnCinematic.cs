@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class ReturnCinematic : AbstractMoveCinematic
+public partial class ReturnCinematic : AbstractMoveCinematic
 {
     public override void Enable()
     {
@@ -14,7 +14,7 @@ public class ReturnCinematic : AbstractMoveCinematic
         var playerCamera = cutscene.GetPlayerCamera();
         cameraAngleRad = playerCamera.GlobalRotation;
         
-        var playerLocalPos = playerCamera.GlobalTranslation - GlobalTranslation;
+        var playerLocalPos = playerCamera.GlobalPosition - GlobalPosition;
         Curve.AddPoint(playerLocalPos);
         
         base.Enable();
@@ -27,7 +27,7 @@ public class ReturnCinematic : AbstractMoveCinematic
 
     private async void InstantReturn()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         Disable();
     }
 
@@ -39,12 +39,12 @@ public class ReturnCinematic : AbstractMoveCinematic
         if (smoothTransition) Curve.RemovePoint(0);
         Curve.RemovePoint(Curve.GetPointCount() - 1);
         
-        EmitSignal(nameof(Finished), this);
+        EmitSignal(SignalName.Finished, this);
     }
 
     public override async void LoadData(Dictionary data)
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         base.LoadData(data);
     }
 }

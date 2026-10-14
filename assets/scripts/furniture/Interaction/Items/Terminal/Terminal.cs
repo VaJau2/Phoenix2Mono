@@ -7,7 +7,7 @@ using Godot.Collections;
 
 //работает в нескольких режимах
 //которые реализованы через TerminalMode
-public class Terminal : StaticBody, IMenu, IInteractable
+public partial class Terminal : StaticBody3D, IMenu, IInteractable
 {
     //при открытии инвентаря, включенный терминал переходит на фон, но не закрывается
     public bool mustBeClosed => false;
@@ -69,7 +69,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
     {
         //закрытие терминала нужно переместить в конец кадра
         //тк инвентарь проверяется на открытие сразу после закрытия терминала
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         MenuManager.CloseMenu(this);
     }
 
@@ -77,7 +77,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
     {
         mode.ClearOutput();
         mode = newMode;
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         mode.LoadMode();
     }
 
@@ -93,7 +93,7 @@ public class Terminal : StaticBody, IMenu, IInteractable
         }
         
         mode = new TerminalUsualMode(this);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         mode.LoadMode();
     }
 

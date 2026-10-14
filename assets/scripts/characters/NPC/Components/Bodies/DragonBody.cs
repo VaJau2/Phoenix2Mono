@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class DragonBody: Node
+public partial class DragonBody: Node
 {
     public const int MOUTH_DAMAGE = 40;
     public const int FIRE_DAMAGE = 30;
@@ -12,13 +12,13 @@ public class DragonBody: Node
     private DragonMouth mouth;
     private AnimationPlayer anim;
     
-    [Export] private Array<AudioStreamSample> idleSounds;
-    [Export] private AudioStreamSample fireSound;
-    [Export] private Array<AudioStreamSample> hittedSounds;
-    [Export] private AudioStreamSample dieSound;
+    [Export] private Array<AudioStreamWav> idleSounds;
+    [Export] private AudioStreamWav fireSound;
+    [Export] private Array<AudioStreamWav> hittedSounds;
+    [Export] private AudioStreamWav dieSound;
 
-    private Spatial fireObj;
-    private Array<Particles> fireParts = new();
+    private Node3D fireObj;
+    private Array<GpuParticles3D> fireParts = new();
     private AnimationPlayer fireAnim;
     private AudioStreamPlayer3D audiFire;
     
@@ -34,19 +34,19 @@ public class DragonBody: Node
         
         anim = npc.GetNode<AnimationPlayer>("anim");
         anim.Play("fly");
-        fireObj = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
-        fireParts.Add(fireObj.GetNode<Particles>("Particles"));
-        fireParts.Add(fireObj.GetNode<Particles>("Particles2"));
-        fireParts.Add(fireObj.GetNode<Particles>("Particles3"));
+        fireObj = npc.GetNode<Node3D>("Armature/Skeleton/BoneAttachment/mouth/fire");
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles"));
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles2"));
+        fireParts.Add(fireObj.GetNode<GpuParticles3D>("Particles3"));
         fireAnim = fireObj.GetNode<AnimationPlayer>("fireAnim");
         audiFire = npc.GetNode<AudioStreamPlayer3D>("audi-fire");
         mouth = npc.GetNode<DragonMouth>("smash-area");
         
-        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
-        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
+        npc.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(OnTakeDamage)));
+        npc.Connect(Character.SignalName.DieEvent, new Callable(this, nameof(OnNpcDying)));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (npc.Velocity.Length() > 0 && !onetimeAnim)
         {
@@ -66,7 +66,7 @@ public class DragonBody: Node
     {
         if (IsInstanceValid(npc.tempVictim) && npc.tempVictim.Health > 0)
         {
-            return npc.GlobalTranslation.DistanceTo(npc.tempVictim.GlobalTranslation);
+            return npc.GlobalPosition.DistanceTo(npc.tempVictim.GlobalPosition);
         }
 
         return -1;
@@ -112,12 +112,12 @@ public class DragonBody: Node
         
         onetimeAnim = true;
         
-        var rotY1 = npc.Rotation.y;
+        var rotY1 = npc.Rotation.Y;
         
         await Global.Get().ToTimer(0.1f, this);
         
         var animationPosition = anim.CurrentAnimationPosition;
-        var rotY2 = npc.Rotation.y;
+        var rotY2 = npc.Rotation.Y;
         
         if (rotY2 < rotY1)
         {
@@ -154,7 +154,7 @@ public class DragonBody: Node
         isFiring = on;
         anim.Play("attack");
         
-        foreach (Particles fire in fireParts)
+        foreach (GpuParticles3D fire in fireParts)
         {
             fire.Emitting = on;
         }

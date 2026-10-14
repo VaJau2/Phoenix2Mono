@@ -54,7 +54,7 @@ public static class MenuManager
     private static bool IsMenuExists(IMenu menu)
     {
         var menuNode = menu as Node;
-        return menuNode != null && Godot.Object.IsInstanceValid(menuNode);
+        return menuNode != null && GodotObject.IsInstanceValid(menuNode);
     }
 }
 

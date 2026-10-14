@@ -1,17 +1,17 @@
 using Godot;
 using System.Collections.Generic;
 
-public class LightsCheck : Area
+public partial class LightsCheck : Area3D
 {
-    private List<Spatial> myLights = new List<Spatial>();
+    private List<Node3D> myLights = new List<Node3D>();
     private int lightI;
 
-    private List<Spatial> myLamps = new List<Spatial>();
+    private List<Node3D> myLamps = new List<Node3D>();
     private int lampI;
 
     public bool OnLight;
 
-    public void _on_lightsCheck_body_entered(Spatial body)
+    public void _on_lightsCheck_body_entered(Node3D body)
     {
         if (body.Name.Contains("Light"))
         {
@@ -33,7 +33,7 @@ public class LightsCheck : Area
         }
     }
 
-    public void _on_lightsCheck_body_exited(Spatial body)
+    public void _on_lightsCheck_body_exited(Node3D body)
     {
         if (body.Name.Contains("Light") && myLights.Contains(body))
         {
@@ -65,7 +65,7 @@ public class LightsCheck : Area
         return value;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (myLights.Count > 0)
         {

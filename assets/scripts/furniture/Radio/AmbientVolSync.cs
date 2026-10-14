@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class AmbientVolSync : Spatial
+public partial class AmbientVolSync : Node3D
 {
     float distance;
     bool isEmpty = true;
@@ -16,13 +16,13 @@ public class AmbientVolSync : Spatial
     public override void _Ready()
     {
         var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
-        settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(OnChangeRadioVolume));
+        settings.Connect(SettingsSubmenu.SignalName.ChangeRadioVolumeEvent, new Callable(this, nameof(OnChangeRadioVolume)));
         minVolume = (float)settings.musicSlider.MinValue;
 
         SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         distance = 100;
         isEmpty = true;
@@ -32,7 +32,7 @@ public class AmbientVolSync : Spatial
             if (radio.MusicPlayer.Playing || radio.NoisePlayer.Playing)
             {
                 isEmpty = false;
-                float newDistance = GlobalTransform.origin.DistanceTo(radio.GlobalTransform.origin);
+                float newDistance = GlobalTransform.Origin.DistanceTo(radio.GlobalTransform.Origin);
 
                 if (newDistance <= distance)
                 {
@@ -61,10 +61,10 @@ public class AmbientVolSync : Spatial
 
         radioList.Add(radio);
         
-        if (radio.IsConnected(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline))) 
+        if (radio.IsConnected(RadioBase.SignalName.ChangeOnline, new Callable(this, nameof(OnRadioChangeOnline)))) 
             return;
         
-        radio.Connect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
+        radio.Connect(RadioBase.SignalName.ChangeOnline, new Callable(this, nameof(OnRadioChangeOnline)));
         if (!IsProcessing() && global.Settings.radioVolume > minVolume) SetProcess(true);
     }
 
@@ -74,7 +74,7 @@ public class AmbientVolSync : Spatial
         
         if (radioList.Contains(radio))
         {
-            radio.Disconnect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
+            radio.Disconnect(RadioBase.SignalName.ChangeOnline, new Callable(this, nameof(OnRadioChangeOnline)));
             radioList.Remove(radio);
 
             if (radioList.Count == 0)

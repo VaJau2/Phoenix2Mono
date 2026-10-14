@@ -1,6 +1,6 @@
 using Godot;
 
-public class Player_Earthpony : Player
+public partial class Player_Earthpony : Player
 {
     const float DASH_COOLDOWN = 0.02f;
     const float DASH_BLOCK_TIMER = 1;
@@ -64,13 +64,13 @@ public class Player_Earthpony : Player
         if (!IsCrouching || !dash) return;
         soundSteps.SoundDash();
         Velocity = Velocity.Normalized();
-        Velocity.y = 0;
+        Velocity.Y = 0;
         Velocity *= 120f;
         dashCooldown = DASH_COOLDOWN;
         DashBlock();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
         

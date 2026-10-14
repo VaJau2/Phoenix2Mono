@@ -1,13 +1,13 @@
 using Godot;
 
-public class Mirror : MeshInstance
+public partial class Mirror : MeshInstance3D
 {
     [Export] private Vector2 size = new(5,7);
    
     private int pixelPerUnit;
     private Viewport viewport;
-    private Spatial planeMark;
-    private Camera mirrorCamera;
+    private Node3D planeMark;
+    private Camera3D mirrorCamera;
     
     private bool mayOn => isPlayerSee && isPlayerAround && Global.Get().Settings.reflection != 0;
     private bool isOn;
@@ -19,7 +19,7 @@ public class Mirror : MeshInstance
     public override void _Ready()
     {
         viewport = GetNode<Viewport>("Viewport");
-        planeMark = GetNode<Spatial>("PlaneTransform");
+        planeMark = GetNode<Node3D>("PlaneTransform");
         
         if (Mesh is PlaneMesh planeMesh)
         {
@@ -27,22 +27,22 @@ public class Mirror : MeshInstance
         }
         
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(LevelsLoader.SignalName.SaveDataLoaded, new Callable(this, nameof(OnSaveDataLoaded)));
     }
     
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         pixelPerUnit = Global.Get().Settings.reflection;
         On();
         
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         Off();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (!isOn) return;
         if (mirrorCamera == null) return;
@@ -52,13 +52,13 @@ public class Mirror : MeshInstance
         
         // Compute reflection plane and its global transform  (origin in the middle, 
         //  X and Y axis properly aligned with the viewport, -Z is the mirror's forward direction)
-        var planeOrigin = planeMark.GlobalTransform.origin;
-        var planeNormal = planeMark.GlobalTransform.basis.z.Normalized();
+        var planeOrigin = planeMark.GlobalTransform.Origin;
+        var planeNormal = planeMark.GlobalTransform.Basis.Z.Normalized();
         var reflectionPlane = new Plane(planeNormal, planeOrigin.Dot(planeNormal));
         var reflectionTransform = planeMark.GlobalTransform;
         
         // Player camera position
-        var playerCameraPos = player.RotationHelperThird.GetCamera().GlobalTransform.origin;
+        var playerCameraPos = player.RotationHelperThird.GetCamera().GlobalTransform.Origin;
         
         // The projected point of main camera's position onto the reflection plane
         var projectPos = reflectionPlane.Project(playerCameraPos);
@@ -70,14 +70,14 @@ public class Mirror : MeshInstance
         // - translation at the mirrored position
         // - looking perpendicularly into the reflection plane (this way the near clip plane will be 
         //   parallel to the reflection plane)
-        var t = new Transform(new Basis(), mirroredPos);
-        t = t.LookingAt(projectPos, reflectionTransform.basis.y.Normalized());
+        var t = new Transform3D(new Basis(), mirroredPos);
+        t = t.LookingAt(projectPos, reflectionTransform.Basis.Y.Normalized());
         mirrorCamera.GlobalTransform = t;
         
         // Compute the tilting offset for the frustum (the X and Y coordinates of the mirrored camera position
         // when expressed in the reflection plane coordinate system)
         var rawOffset = reflectionTransform.XformInv(playerCameraPos);
-        var offset = new Vector2(rawOffset.x, rawOffset.y);
+        var offset = new Vector2(rawOffset.X, rawOffset.Y);
         
         // Set mirror camera frustum
         // - size   -> mirror's width (camera is set to KEEP_WIDTH)
@@ -85,7 +85,7 @@ public class Mirror : MeshInstance
         // - z_near -> distance between the mirror camera and the reflection plane (this ensures we won't
         //               be reflecting anything behind the mirror)
         // - z_far	-> large arbitrary value (render distance limit form th mirror camera position)
-        mirrorCamera.SetFrustum(size.x, -offset, projectPos.DistanceTo(playerCameraPos), 150);
+        mirrorCamera.SetFrustum(size.X, -offset, projectPos.DistanceTo(playerCameraPos), 150);
     }
 
     private void On()
@@ -107,19 +107,19 @@ public class Mirror : MeshInstance
     {
         mirrorCamera?.QueueFree();
 
-        mirrorCamera = new Camera();
+        mirrorCamera = new Camera3D();
         viewport.AddChild(mirrorCamera);
         mirrorCamera.CullMask = 5;
-        mirrorCamera.KeepAspect = Camera.KeepAspectEnum.Width;
+        mirrorCamera.KeepAspect = Camera3D.KeepAspectEnum.Width;
         mirrorCamera.Current = true;
 
         viewport.Size = size * pixelPerUnit;
         SetTexture(viewport.GetTexture());
     }
 
-    private void SetTexture(Texture texture)
+    private void SetTexture(Texture2D texture)
     {
-        if (GetSurfaceMaterial(0) is SpatialMaterial material)
+        if (GetSurfaceOverrideMaterial(0) is StandardMaterial3D material)
         {
             material.AlbedoTexture = texture;
         }

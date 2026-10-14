@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class SearchState(
+public partial class SearchState(
     StateMachine stateMachine,
     NpcWeapons weapons,
     NavigationMovingController movingController,
@@ -31,12 +31,12 @@ public class SearchState(
             player.Stealth.AddSeekEnemy(npc);
         }
 
-        lastSeePos = npc.tempVictim.GlobalTranslation;
+        lastSeePos = npc.tempVictim.GlobalPosition;
         
         body?.SetLookTarget(null);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (searchTimer > 0 && weapons.HasWeapon)
         {

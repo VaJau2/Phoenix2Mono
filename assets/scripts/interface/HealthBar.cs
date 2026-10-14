@@ -1,6 +1,6 @@
 using Godot;
 
-public class HealthBar : Control
+public partial class HealthBar : Control
 {
     private const int SIZE_X = 65;
     private const int SIZE_Y = 80;
@@ -23,7 +23,7 @@ public class HealthBar : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         player = Global.Get().player;
         if (player == null) return;
@@ -34,28 +34,28 @@ public class HealthBar : Control
 
     private void UpdateHealthBar()
     {
-        if (float.IsNaN(mask.RectSize.y))
+        if (float.IsNaN(mask.Size.Y))
         {
             mask.QueueFree();
-            mask = healthPrefab.Instance<Control>();
+            mask = healthPrefab.Instantiate<Control>();
             mask.Modulate = Global.Get().Settings.interfaceColor;
             AddChild(mask);
         }
         
         var healthRatio = (float)player.Health / player.HealthMax;
-        mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);
+        mask.Size = new Vector2(SIZE_X, healthRatio * SIZE_Y);
     }
     
     private void UpdateRadiationBar()
     {
-        if (float.IsNaN(radiationMask.RectSize.y))
+        if (float.IsNaN(radiationMask.Size.Y))
         {
             radiationMask.QueueFree();
-            radiationMask = radiationPrefab.Instance<Control>();
+            radiationMask = radiationPrefab.Instantiate<Control>();
             AddChild(radiationMask);
         }
         
         var radiationRatio = (float)player.Radiation.GetRadLevel() / player.HealthMax;
-        radiationMask.RectSize = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
+        radiationMask.Size = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
     }
 }

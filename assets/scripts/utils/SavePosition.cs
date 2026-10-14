@@ -1,13 +1,13 @@
 using Godot;
 using Godot.Collections;
 
-public class SavePosition : Spatial, ISavable
+public partial class SavePosition : Node3D, ISavable
 {
     public Dictionary GetSaveData()
     {
         return new Dictionary
         {
-            { "pos", GlobalTranslation },
+            { "pos", GlobalPosition },
             { "rot", GlobalRotation },
             { "scale", Scale }
         };
@@ -15,7 +15,7 @@ public class SavePosition : Spatial, ISavable
 
     public void LoadData(Dictionary data)
     {
-        GlobalTranslation = data["pos"].ToString().ParseToVector3();
+        GlobalPosition = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3();
         Scale = data["scale"].ToString().ParseToVector3();
     }

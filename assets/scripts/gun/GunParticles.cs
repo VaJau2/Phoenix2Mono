@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class GunParticles : Spatial
+public partial class GunParticles : Node3D
 {
     private Dictionary materials = new() 
     {
@@ -14,14 +14,14 @@ public class GunParticles : Spatial
         {"water", GD.Load<Material>("res://assets/materials/weapon/result/water.tres")},
     };
 
-    private Particles parts;
+    private GpuParticles3D parts;
     private bool deleteParts;
     private float timerParts = 1.0f;
 
     private bool deleteSelf;
     private float timerSelf = 100.0f;
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (deleteParts)
         {
@@ -51,7 +51,7 @@ public class GunParticles : Spatial
 
     public void StartEmitting(Vector3 direction, string materialName, string objName = "")
     {
-        parts = GetNode<Particles>("Particles");
+        parts = GetNode<GpuParticles3D>("Particles");
         parts.ProcessMaterial.Set("direction", direction);
         
         if (!string.IsNullOrEmpty(materialName) && materials.Contains(materialName))
@@ -60,7 +60,7 @@ public class GunParticles : Spatial
             parts.Emitting = true;
         }
 
-        var hole = GetNode<Spatial>("hole");
+        var hole = GetNode<Node3D>("hole");
 
         if (!string.IsNullOrEmpty(materialName)
             && materialName != "blood"
@@ -71,12 +71,12 @@ public class GunParticles : Spatial
             && !objName.Contains("door")
             && !objName.Contains("box"))
         {
-            if (direction.z < 0.9 && direction.z > -0.9)
+            if (direction.Z < 0.9 && direction.Z > -0.9)
             {
-                hole.LookAt(hole.GlobalTransform.origin + direction, Vector3.Back);
+                hole.LookAt(hole.GlobalTransform.Origin + direction, Vector3.Back);
             }
 
-            hole.Translation += (direction / 15);
+            hole.Position += (direction / 15);
         }
         else
         {

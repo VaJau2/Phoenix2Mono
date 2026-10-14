@@ -97,9 +97,9 @@ public class Settings
         var config = new ConfigFile();
         config.SetValue("controls", "mouse_sensivity", mouseSensivity);
         foreach(string action in controlActions) {
-            var actions = InputMap.GetActionList(action);
+            var actions = InputMap.ActionGetEvents(action);
             var keyAction = actions[0] as InputEventKey;
-            var key = OS.GetScancodeString(keyAction.Scancode);
+            var key = OS.GetKeycodeString(keyAction.Keycode);
             config.SetValue("controls", action, key);
         }
         config.SetValue("screen", "distance", distance);
@@ -108,8 +108,8 @@ public class Settings
         config.SetValue("screen", "cameraAngle", cameraAngle);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
         var screenSize = OS.WindowSize;
-        config.SetValue("screen", "width", screenSize.x);
-        config.SetValue("screen", "height", screenSize.y);
+        config.SetValue("screen", "width", screenSize.X);
+        config.SetValue("screen", "height", screenSize.Y);
         config.SetValue("screen", "color", interfaceColor);
 
         config.SetValue("audio", "sound_volume", soundVolume);
@@ -136,7 +136,7 @@ public class Settings
                 string key = config.GetValue("controls", action).ToString();
                 var keyCode = (uint)OS.FindScancodeFromString(key);
                 var newEvent = new InputEventKey();
-                newEvent.Scancode = keyCode;
+                newEvent.Keycode = keyCode;
 
                 InputMap.ActionEraseEvents(action);
                 InputMap.ActionAddEvent(action, newEvent);
@@ -150,8 +150,8 @@ public class Settings
             cameraAngle = (bool)config.GetValue("screen", "cameraAngle");
             InterfaceLang.LoadLanguage(config.GetValue("screen", "language").ToString());
             var screenSize = new Vector2();
-            screenSize.x = (float)config.GetValue("screen", "width");
-            screenSize.y = (float)config.GetValue("screen", "height");
+            screenSize.X = (float)config.GetValue("screen", "width");
+            screenSize.Y = (float)config.GetValue("screen", "height");
             OS.WindowSize = screenSize;
 
             interfaceColor = (Color)config.GetValue("screen", "color");

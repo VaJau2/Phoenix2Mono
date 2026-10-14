@@ -1,6 +1,6 @@
 using Godot;
 
-public class MenuPart : Control
+public partial class MenuPart : Control
 {
     public override void _Ready()
     {

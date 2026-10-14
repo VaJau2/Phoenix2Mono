@@ -1,13 +1,13 @@
 using Godot;
 
-public class Bullet : Area
+public partial class Bullet : Area3D
 {
     [Export] public float speed;
     public int Damage;
     public float Timer;
     public Character Shooter;
     
-    private void HandleVictim(Spatial victim, int shapeID = 0)
+    private void HandleVictim(Node3D victim, int shapeID = 0)
     {
         switch (victim)
         {
@@ -48,7 +48,7 @@ public class Bullet : Area
             return;
         }
         
-        HandleVictim(body as Spatial, bodyShape);
+        HandleVictim(body as Node3D, bodyShape);
         QueueFree();
     }
 
@@ -56,7 +56,7 @@ public class Bullet : Area
     {
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         Translate(Vector3.Forward * speed);
 

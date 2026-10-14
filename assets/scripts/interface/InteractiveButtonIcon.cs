@@ -1,6 +1,6 @@
 using Godot;
 
-public class InteractiveButtonIcon : ButtonIcon
+public partial class InteractiveButtonIcon : ButtonIcon
 {
     public override void _Ready()
     {

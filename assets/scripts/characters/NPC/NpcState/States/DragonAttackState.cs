@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class DragonAttackState(
+public partial class DragonAttackState(
     StateMachine stateMachine,
     BaseMovingController movingController,
     DragonBody body
@@ -26,7 +26,7 @@ public class DragonAttackState(
         damageTimer = isSmashAttack ? 0.5f : 3;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.tempVictim == null || !IsInstanceValid(tempNpc.tempVictim) || tempNpc.tempVictim.Health <= 0)
         {
@@ -39,7 +39,7 @@ public class DragonAttackState(
         
         if (enemyDistance is > 0 and < 60)
         {
-            movingController.UpdateHeight(tempNpc.BaseSpeed, tempNpc.tempVictim.Translation.y + newHeight);
+            movingController.UpdateHeight(tempNpc.BaseSpeed, tempNpc.tempVictim.Position.Y + newHeight);
         }
         else
         {
@@ -47,7 +47,7 @@ public class DragonAttackState(
         }
         
         var distance = isSmashAttack ? SMASH_DISTANCE : FIRE_DISTANCE;
-        movingController.MoveTo(tempNpc.tempVictim.GlobalTransform.origin, distance, tempNpc.BaseSpeed);
+        movingController.MoveTo(tempNpc.tempVictim.GlobalTransform.Origin, distance, tempNpc.BaseSpeed);
         
         if (!movingController.CloseToPoint)
         {
@@ -111,10 +111,10 @@ public class DragonAttackState(
     
     private void LookAtEnemy(NPC npc)
     {
-        if (tempNpc.tempVictim == null || !Object.IsInstanceValid(tempNpc.tempVictim))  return;
+        if (tempNpc.tempVictim == null || !GodotObject.IsInstanceValid(tempNpc.tempVictim))  return;
 
-        var pos = tempNpc.tempVictim.GlobalTransform.origin;
-        pos.y = tempNpc.GlobalTranslation.y;
+        var pos = tempNpc.tempVictim.GlobalTransform.Origin;
+        pos.Y = tempNpc.GlobalPosition.Y;
         tempNpc.LookAt(pos, Vector3.Up);
     }
     

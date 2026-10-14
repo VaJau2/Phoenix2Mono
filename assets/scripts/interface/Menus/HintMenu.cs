@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-public class HintMenu: Control, IMenu
+public partial class HintMenu: Control, IMenu
 {
     [Export] private Array<NodePath> canceledHintsPaths;
     private Array<HintTrigger> canceledHints;
@@ -36,7 +36,7 @@ public class HintMenu: Control, IMenu
         
     }
     
-    public override void _Process(float _delta)
+    public override void _Process(double _delta)
     {
         if (Input.IsActionJustPressed("use"))
         {
@@ -59,7 +59,7 @@ public class HintMenu: Control, IMenu
     private async void StartClosingMenu()
     {
         SetProcess(false);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         Global.Get().SetPause(this, false, false);
         MenuManager.CloseMenu(this);
     }

@@ -1,6 +1,6 @@
 using Godot;
 
-public abstract class AbstractMoveCinematic : PathBase
+public abstract partial class AbstractMoveCinematic : PathBase
 {
     [Export] private float speedRot = 1f;
     [Export] protected bool smoothTransition = true;
@@ -14,7 +14,7 @@ public abstract class AbstractMoveCinematic : PathBase
         cutscene = GetNode<Cutscene>("../../");
     }
     
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (speedRot > 0)
         {
@@ -22,9 +22,9 @@ public abstract class AbstractMoveCinematic : PathBase
             if (camera.GlobalRotation != cameraAngleRad)
             {
                 var rot = camera.GlobalRotation;
-                rot.x = Mathf.LerpAngle(rot.x, cameraAngleRad.x, delta * speedRot);
-                rot.y = Mathf.LerpAngle(rot.y, cameraAngleRad.y, delta * speedRot);
-                rot.z = Mathf.LerpAngle(rot.z, cameraAngleRad.z, delta * speedRot);
+                rot.X = Mathf.LerpAngle(rot.X, cameraAngleRad.X, delta * speedRot);
+                rot.Y = Mathf.LerpAngle(rot.Y, cameraAngleRad.Y, delta * speedRot);
+                rot.Z = Mathf.LerpAngle(rot.Z, cameraAngleRad.Z, delta * speedRot);
                 camera.GlobalRotation = rot;
             }
         }
@@ -39,11 +39,11 @@ public abstract class AbstractMoveCinematic : PathBase
 
         if (smoothTransition)
         {
-            var cameraLocalPos = camera.GlobalTranslation - GlobalTranslation;
+            var cameraLocalPos = camera.GlobalPosition - GlobalPosition;
             Curve.AddPoint(cameraLocalPos, null, null, 0);
         }
         
-        camera.Translation = Vector3.Zero;
+        camera.Position = Vector3.Zero;
         base.Enable();
     }
     
@@ -51,6 +51,6 @@ public abstract class AbstractMoveCinematic : PathBase
     {
         SetPhysicsProcess(false);
         if (smoothTransition) Curve.RemovePoint(0);
-        EmitSignal(nameof(Finished), this);
+        EmitSignal(SignalName.Finished, this);
     }
 }

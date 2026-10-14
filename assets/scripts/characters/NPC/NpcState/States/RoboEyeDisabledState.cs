@@ -1,4 +1,4 @@
-﻿public class RoboEyeDisabledState(
+﻿public partial class RoboEyeDisabledState(
     NavigationMovingController movingController,
     RoboEyeBody body,
     SeekArea seekArea
@@ -14,5 +14,5 @@
         seekArea.SetActive(false);
     }
 
-    public override void _Process(float delta) { }
+    public override void _Process(double delta) { }
 }

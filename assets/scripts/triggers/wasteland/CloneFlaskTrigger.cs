@@ -1,6 +1,6 @@
 using Godot;
 
-public class CloneFlaskTrigger : TriggerBase
+public partial class CloneFlaskTrigger : TriggerBase
 {
     private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
@@ -15,12 +15,12 @@ public class CloneFlaskTrigger : TriggerBase
     {
         SetProcess(false);
 
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         canvas = GetNode<Canvas>("/root/Main/Scene/canvas");
         pauseMenu = GetNode<PauseMenu>("/root/Main/Menu/PauseMenu");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timer > 0)
         {
@@ -45,7 +45,7 @@ public class CloneFlaskTrigger : TriggerBase
             var playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
             playerSpawner.InitSpawn();
             
-            await playerSpawner.ToSignal(playerSpawner, nameof(PlayerSpawner.Spawned));
+            await playerSpawner.ToSignal(playerSpawner, PlayerSpawner.SignalName.Spawned);
         }
         
         _on_activate_trigger();
@@ -71,11 +71,11 @@ public class CloneFlaskTrigger : TriggerBase
                 player.GlobalTransform = Global.SetNewOrigin
                 (
                     player.GlobalTransform,
-                    playerPosTransform.origin
+                    playerPosTransform.Origin
                 );
 
-                var flaskRotation = playerPosTransform.basis.GetEuler();
-                player.Rotation = new Vector3(0, flaskRotation.y, 0);
+                var flaskRotation = playerPosTransform.Basis.GetEuler();
+                player.Rotation = new Vector3(0, flaskRotation.Y, 0);
                 
                 cloneFlask.camera.MakeCurrent(true);
                 cloneFlask.PrepareFlaskForPlayer();

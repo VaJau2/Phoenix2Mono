@@ -2,7 +2,7 @@
 
 namespace DialogueScripts;
 
-public class ChangeNpcIdleAnim : BaseChangeInNPC
+public partial class ChangeNpcIdleAnim : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

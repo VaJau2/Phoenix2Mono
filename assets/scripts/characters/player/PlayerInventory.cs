@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 using Array = Godot.Collections.Array;
-using Object = Godot.Object;
+using Object = Godot.GodotObject;
 
 public class PlayerInventory
 {
@@ -212,7 +212,7 @@ public class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.WearItem), itemCode);
+        if (emmitSignal) player.EmitSignal(Player.SignalName.WearItem, itemCode);
     }
 
     public void UnwearItem(string itemCode, bool changeModel = true, bool emmitSignal = true)
@@ -244,7 +244,7 @@ public class PlayerInventory
                 break;
         }
         
-        if (emmitSignal) player.EmitSignal(nameof(Player.UnwearItem), itemCode);
+        if (emmitSignal) player.EmitSignal(Player.SignalName.UnwearItem, itemCode);
     }
 
     public void MessageCantSell(string itemName)
@@ -409,7 +409,7 @@ public class PlayerInventory
         if (!itemData.Contains("sound")) return;
         
         var path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
-        var sound = GD.Load<AudioStreamSample>(path);
+        var sound = GD.Load<AudioStreamWav>(path);
             
         player.GetAudi(true).Stream = sound;
         player.GetAudi(true).Play();

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class LevelsLoader : Node
+public partial class LevelsLoader : Node
 {
 	Global global = Global.Get();
 	public static int tempLevelNum;
@@ -18,13 +18,13 @@ public class LevelsLoader : Node
 	private PackedScene loadingMenuPrefab;
 	private PackedScene deathMenuPrefab;
 	private bool mainMenuOn = true;
-	private ResourceInteractiveLoader loader;
+	private string loadingPath; //путь уровня, который сейчас грузится в фоне
 
 	[Signal]
-	public delegate void LevelLoaded();
+	public delegate void LevelLoadedEventHandler();
 
 	[Signal]
-	public delegate void SaveDataLoaded();
+	public delegate void SaveDataLoadedEventHandler();
 
 	private bool loadSavedData;
 	private Dictionary levelData;
@@ -49,7 +49,7 @@ public class LevelsLoader : Node
 		loadingMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/LoadingMenu.tscn");
 		deathMenuPrefab = GD.Load<PackedScene>("res://objects/interface/menus/DeathMenu.tscn");
 
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		
 		menuParent = GetNode<Node>("Menu");
 		currentMenu = menuParent.GetNode<Control>(
@@ -74,7 +74,7 @@ public class LevelsLoader : Node
 	private void RespawnMenu(PackedScene newMenu) 
 	{
 		currentMenu.QueueFree();
-		currentMenu = (Control)newMenu.Instance();
+		currentMenu = (Control)newMenu.Instantiate();
 		menuParent.AddChild(currentMenu);
 		menuParent.MoveChild(currentMenu, 0);
 	}
@@ -93,7 +93,7 @@ public class LevelsLoader : Node
 		{
 			if (useLoadingMenu)
 			{
-				currentLoading = (Control)loadingMenuPrefab.Instance();
+				currentLoading = (Control)loadingMenuPrefab.Instantiate();
 				menuParent.AddChild(currentLoading);
 			}
 			else
@@ -101,11 +101,12 @@ public class LevelsLoader : Node
 				useLoadingMenu = true;
 			}
 			
-			if (loader != null) return;
-			loader = ResourceLoader.LoadInteractive(levelPaths[tempLevelNum]);
+			if (loadingPath != null) return;
+			loadingPath = levelPaths[tempLevelNum];
+			ResourceLoader.LoadThreadedRequest(loadingPath);
 			DeleteCurrentScene();
 			
-			await ToSignal(GetTree(), "idle_frame");
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 			
 			SetProcess(true);
 		}
@@ -225,7 +226,7 @@ public class LevelsLoader : Node
 			
 			if (objData == null
 				|| !objData.Contains("name")
-				|| !objData["name"].ToString().BeginsWith("Created_")
+				|| !objData["name"].ToString().StartsWith("Created_")
 			   )
 			{
 				continue;
@@ -235,7 +236,7 @@ public class LevelsLoader : Node
 			var parentPath = objData["parentPath"].ToString();
 
 			var newNode = (PackedScene)GD.Load(filename);
-			var newInstance = newNode.Instance();
+			var newInstance = newNode.Instantiate();
 			
 			newInstance.Name = objData["name"].ToString();
 
@@ -252,7 +253,7 @@ public class LevelsLoader : Node
 	private async void LoadLevelObjects(Node scene)
 	{
 		//ждем загрузки сцены
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
 		foreach (string objKey in levelData.Keys)
 		{
@@ -277,28 +278,27 @@ public class LevelsLoader : Node
 	{
 		if (currentLoading == null) return;
 		
-		await ToSignal(GetTree(), "idle_frame");
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		
 		currentLoading.QueueFree();
 		currentLoading = null;
 	}
 	
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
-		if (loader == null) 
+		if (loadingPath == null)
 		{
 			SetProcess(false);
 			return;
 		}
 
-		var err = loader.Poll();
-		if (err == Error.FileEof) 
+		var status = ResourceLoader.LoadThreadedGetStatus(loadingPath);
+		if (status == ResourceLoader.ThreadLoadStatus.Loaded)
 		{
-			var resource = (PackedScene)loader.GetResource();
-			loader.Dispose();
-			loader = null;
-			
-			var newScene = resource.Instance();
+			var resource = (PackedScene)ResourceLoader.LoadThreadedGet(loadingPath);
+			loadingPath = null;
+
+			var newScene = resource.Instantiate();
 			
 			if (loadSavedData)
 			{
@@ -308,18 +308,19 @@ public class LevelsLoader : Node
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
 			DeleteLoadingMenu();
-			EmitSignal(nameof(LevelLoaded));
+			EmitSignal(SignalName.LevelLoaded);
 
 			if (loadSavedData)
 			{
 				LoadLevelObjects(newScene);
 			}
 			
-			EmitSignal(nameof(SaveDataLoaded));
+			EmitSignal(SignalName.SaveDataLoaded);
 		}
-		else if (err != Error.Ok) 
+		else if (status != ResourceLoader.ThreadLoadStatus.InProgress)
 		{
-			GD.PrintErr(err);
+			GD.PrintErr($"level loading failed ({status}): {loadingPath}");
+			loadingPath = null;
 		}
 	}
 }

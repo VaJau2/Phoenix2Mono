@@ -3,7 +3,7 @@
 namespace DialogueScripts;
 
 // адаптер для скриптов что-то меняющих в npc с которым общаеться игрок
-public abstract class BaseChangeInNPC : IDialogueScript
+public abstract partial class BaseChangeInNPC : IDialogueScript
 {
     protected DialogueMenu DialogueMenu;
     protected Subtitles Subtitles;

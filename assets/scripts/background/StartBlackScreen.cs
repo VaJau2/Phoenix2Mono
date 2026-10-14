@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class StartBlackScreen : CanvasLayer, ISavable
+public partial class StartBlackScreen : CanvasLayer, ISavable
 {
     private const float SPEED = 2.0f;
     private const float TIMER_1 = 1.5f;
@@ -40,12 +40,12 @@ public class StartBlackScreen : CanvasLayer, ISavable
         done = true;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        if (blackScreen.Color.a > 0 && !done)
+        if (blackScreen.Color.A > 0 && !done)
         {
             blackScreen.Color = new Color(blackScreen.Color,
-                blackScreen.Color.a - SPEED * delta
+                blackScreen.Color.A - SPEED * delta
             );
         }
         else

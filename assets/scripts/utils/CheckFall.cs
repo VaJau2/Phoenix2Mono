@@ -1,6 +1,6 @@
 using Godot;
 
-public class CheckFall : Node
+public partial class CheckFall : Node
 {
     [Export] private NodePath defaultDoorPath;
     [Export] private NodePath teleportPointPath;
@@ -9,7 +9,7 @@ public class CheckFall : Node
     public DoorTeleport TempDoorTeleport;
     public bool inside;
     
-    private Spatial teleportPoint;
+    private Node3D teleportPoint;
 
     public override async void _Ready()
     {
@@ -19,17 +19,17 @@ public class CheckFall : Node
             inside = true;
         }
         
-        teleportPoint = GetNode<Spatial>(teleportPointPath);
-        await ToSignal(GetTree(), "idle_frame");
+        teleportPoint = GetNode<Node3D>(teleportPointPath);
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         var player = Global.Get().player;
         if (player == null) return;
-        if (player.GlobalTransform.origin.y > fallHeight) return;
+        if (player.GlobalTransform.Origin.Y > fallHeight) return;
         
-        player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.origin);
+        player.GlobalTransform = Global.SetNewOrigin(player.GlobalTransform, teleportPoint.GlobalTransform.Origin);
         
         if (inside && TempDoorTeleport != null)
         {

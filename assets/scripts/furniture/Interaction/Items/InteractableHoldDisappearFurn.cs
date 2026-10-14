@@ -1,8 +1,8 @@
 using Godot;
 
 // Объект, который пропадает при интеракции
-public class InteractableHoldDisappearFurn : 
-    StaticBody, 
+public partial class InteractableHoldDisappearFurn : 
+    StaticBody3D, 
     IInteractable, 
     IInteractableHold, 
     IInteractableHoldSound,

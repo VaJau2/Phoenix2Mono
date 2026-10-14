@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class Skip : Control
+public partial class Skip : Control
 {
     private const float SPEED = 2.0f;
     private const float TIME = 3.0f;
@@ -12,7 +12,7 @@ public class Skip : Control
     private Label label;
     
     [Signal]
-    public delegate void SkipEvent();
+    public delegate void SkipEventEventHandler();
     
     public override void _Input(InputEvent @event)
     {
@@ -23,7 +23,7 @@ public class Skip : Control
             if (Visible)
             {
                 SetActive(false);
-                EmitSignal(nameof(SkipEvent));
+                EmitSignal(SignalName.SkipEvent);
             }
             
             Show(!Visible);
@@ -38,7 +38,7 @@ public class Skip : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Visible)
         {
@@ -51,9 +51,9 @@ public class Skip : Control
             return;
         }
         
-        if (label.Modulate.a > 0)
+        if (label.Modulate.A > 0)
         {
-            var alpha = label.Modulate.a - delta * SPEED;
+            var alpha = label.Modulate.A - delta * SPEED;
             SetTransparency(alpha);
             return;
         }

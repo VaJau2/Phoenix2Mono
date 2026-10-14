@@ -1,6 +1,6 @@
 using Godot;
 
-public class BaseMovingController : Node
+public partial class BaseMovingController : Node
 {
     public bool CloseToPoint;
     [Export] protected float Gravity;
@@ -13,7 +13,7 @@ public class BaseMovingController : Node
         character = GetParent<Character>();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (character.Health <= 0) return;
         
@@ -27,8 +27,8 @@ public class BaseMovingController : Node
 
     public void MoveTo(Vector3 place, float distance, float speed = 1)
     {
-        var pos = character.GlobalTransform.origin;
-        place.y = pos.y;
+        var pos = character.GlobalTransform.Origin;
+        place.Y = pos.Y;
         
         var tempDistance = pos.DistanceTo(place);
         CloseToPoint = tempDistance <= distance;
@@ -37,8 +37,8 @@ public class BaseMovingController : Node
 
         RotateTo(place);
 
-        character.Rotation = new Vector3(0, character.Rotation.y, 0);
-        character.Velocity = new Vector3(0, -Gravity, -speed).Rotated(Vector3.Up, character.Rotation.y);
+        character.Rotation = new Vector3(0, character.Rotation.Y, 0);
+        character.Velocity = new Vector3(0, -Gravity, -speed).Rotated(Vector3.Up, character.Rotation.Y);
     }
     
     public virtual void Stop(bool moveDown = false)
@@ -55,24 +55,24 @@ public class BaseMovingController : Node
     
     private void RotateTo(Vector3 place)
     {
-        var rotA = character.Transform.basis.Quat().Normalized();
-        var rotB = character.Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
+        var rotA = character.Transform.Basis.Quat().Normalized();
+        var rotB = character.Transform.LookingAt(place, Vector3.Up).Basis.Quat().Normalized();
         var tempRotation = rotA.Slerp(rotB, RotationSpeed);
 
         var oldScale = character.Scale;
-        Transform tempTransform = character.Transform;
-        tempTransform.basis = new Basis(tempRotation);
+        Transform3D tempTransform = character.Transform;
+        tempTransform.Basis = new Basis(tempRotation);
         character.Transform = tempTransform;
         character.Scale = oldScale;
     }
     
     public void UpdateHeight(float speed, float newHeight)
     {
-        if (character.Translation.y > newHeight + 2f)
+        if (character.Position.Y > newHeight + 2f)
         {
             Gravity = speed;
         } 
-        else if (character.Translation.y < newHeight - 2f)
+        else if (character.Position.Y < newHeight - 2f)
         {
             Gravity = -speed;
         }

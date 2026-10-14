@@ -2,14 +2,14 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class TheaterChair : StaticBody, ISavable, IInteractable
+public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
 {
     [Export] public bool isActive;
     [Export] private string otherTriggerPath;
     
     private TriggerBase otherTrigger;
-    private Spatial strikelyPlace;
-    private StaticBody back;
+    private Node3D strikelyPlace;
+    private StaticBody3D back;
 
     private Player player => Global.Get().player;
     public bool MayInteract => isActive && !player.IsSitting;
@@ -19,8 +19,8 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
     {
         if (!isActive) return;
         otherTrigger = GetNodeOrNull<TriggerBase>(otherTriggerPath);
-        strikelyPlace = GetNode<Spatial>("strikelyPlace");
-        back = GetNode<StaticBody>("back");
+        strikelyPlace = GetNode<Node3D>("strikelyPlace");
+        back = GetNode<StaticBody3D>("back");
     }
 
     public void Interact(PlayerCamera interactor)
@@ -33,16 +33,16 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         interactor.HideInteractionSquare();
         
         player.Velocity = Vector3.Zero;
-        player.GlobalTranslation = strikelyPlace.GlobalTranslation;
+        player.GlobalPosition = strikelyPlace.GlobalPosition;
         player.Rotation = new Vector3
         (
-            player.Rotation.x,
-            strikelyPlace.Rotation.y,
-            player.Rotation.z
+            player.Rotation.X,
+            strikelyPlace.Rotation.Y,
+            player.Rotation.Z
         );
         
         player.SitOnChair(true);
-        player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
+        player.Connect(Character.SignalName.ChangeMayMove, new Callable(this, nameof(OnPlayerStandUp)));
         
         otherTrigger.SetActive(true);
     }
@@ -53,7 +53,7 @@ public class TheaterChair : StaticBody, ISavable, IInteractable
         {
             back.CollisionLayer = 3;
             back.CollisionMask = 3;
-            player.Disconnect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
+            player.Disconnect(Character.SignalName.ChangeMayMove, new Callable(this, nameof(OnPlayerStandUp)));
         }
     }
 

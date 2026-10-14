@@ -3,12 +3,12 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class SaveMenu : Control
+public partial class SaveMenu : Control
 {
     public const string AUTOSAVE_PREFIX = "autosave";
     
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
 
     private MenuBase parentMenu;
 
@@ -63,7 +63,7 @@ public class SaveMenu : Control
         UpdateTable();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Global.Get().paused) return;
         if (Global.Get().player == null) return;
@@ -81,7 +81,7 @@ public class SaveMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(SignalName.BackPressed);
     }
 
     public void _on_mouse_entered(string section, string messageLink)
@@ -217,7 +217,7 @@ public class SaveMenu : Control
             if (tempNode is not ISavable savableNode) continue;
             
             var saveData = savableNode.GetSaveData();
-            var isCreated = tempNode.Name.BeginsWith("Created_");
+            var isCreated = tempNode.Name.StartsWith("Created_");
 
             if (isCreated)
             {
@@ -246,7 +246,7 @@ public class SaveMenu : Control
     {
         return node.Name.Contains("Created_Player") 
             ? "res://objects/characters/Player/PlayerDead.tscn" 
-            : node.Filename;
+            : node.SceneFilePath;
     }
     
     public static string GetLikeLatinString(string cyrillicLine)

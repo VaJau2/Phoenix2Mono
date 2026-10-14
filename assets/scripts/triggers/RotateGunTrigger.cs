@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class RotateGunTrigger: TriggerBase
+public partial class RotateGunTrigger: TriggerBase
 {
     [Export] public string gunPath;
     [Export] public Vector3 newPos;
@@ -20,7 +20,7 @@ public class RotateGunTrigger: TriggerBase
             return;
         }
 
-        Spatial gun = GetNode<Spatial>(gunPath);
+        Node3D gun = GetNode<Node3D>(gunPath);
         gun.Transform = Global.SetNewOrigin(gun.Transform, newPos);
         gun.Rotation = newRot;
         

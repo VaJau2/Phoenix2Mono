@@ -2,7 +2,7 @@
 
 namespace Effects;
 
-public class StealthBoyEffect : Effect
+public partial class StealthBoyEffect : Effect
 {
     private Player player;
     public StealthBoyEffect()
@@ -12,7 +12,7 @@ public class StealthBoyEffect : Effect
     }
 
     // проходит по первым дочерним элементам и имет там меш
-    private static MeshInstance FindMeshesInParent(Spatial parent)
+    private static MeshInstance3D FindMeshesInParent(Node3D parent)
     {
         while (true)
         {
@@ -21,9 +21,9 @@ public class StealthBoyEffect : Effect
                 return null;
             }
             
-            parent = parent.GetChild(0) as Spatial;
+            parent = parent.GetChild(0) as Node3D;
 
-            if (parent is MeshInstance instance)
+            if (parent is MeshInstance3D instance)
             {
                 return instance;
             }
@@ -35,13 +35,13 @@ public class StealthBoyEffect : Effect
         return !material.ResourcePath.EndsWith("wings.tres");
     }
 
-    private static void ChangeMeshVisibility(MeshInstance meshInstance, bool visible)
+    private static void ChangeMeshVisibility(MeshInstance3D meshInstance, bool visible)
     {
         Mesh mesh = meshInstance.Mesh;
         int materialsCount = mesh.GetSurfaceCount();
         for (int i = 0; i < materialsCount; i++)
         {
-            SpatialMaterial tempMaterial = mesh.SurfaceGetMaterial(i) as SpatialMaterial;
+            StandardMaterial3D tempMaterial = mesh.SurfaceGetMaterial(i) as StandardMaterial3D;
             if (tempMaterial == null) continue;
             if (CanChangeTransparency(tempMaterial))
             {
@@ -49,21 +49,21 @@ public class StealthBoyEffect : Effect
             }
             
             Color old = tempMaterial.AlbedoColor;
-            tempMaterial.AlbedoColor = new Color(old.r, old.g, old.b, visible ? 1 : 0.1f);
+            tempMaterial.AlbedoColor = new Color(old.R, old.G, old.B, visible ? 1 : 0.1f);
         }
     }
 
     private void ChangePlayerVisibility(bool visible)
     {
-        var bodyMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
-        var bodyThirdMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        var bodyMesh = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton/Body");
+        var bodyThirdMesh = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton/Body_third");
 
         ChangeMeshVisibility(bodyMesh, visible);
         ChangeMeshVisibility(bodyThirdMesh, visible);
         
         if (Global.Get().playerRace == Race.Pegasus)
         {
-            var wingsShadow = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Wings");
+            var wingsShadow = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton/Wings");
             wingsShadow.Visible = visible;
         }
         
@@ -76,7 +76,7 @@ public class StealthBoyEffect : Effect
         if (player.Weapons.GunOn)
         {
             var weaponParent = player.Weapons.TempWeapon;
-            var gunArmature = Global.FindNodeInScene(weaponParent, "Gun-armature") as Spatial;
+            var gunArmature = Global.FindNodeInScene(weaponParent, "Gun-armature") as Node3D;
             var weaponMesh = FindMeshesInParent(gunArmature);
             if (weaponMesh != null)
             {
@@ -85,7 +85,7 @@ public class StealthBoyEffect : Effect
 
             if (!player.Weapons.isPistol)
             {
-                var weaponBag = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+                var weaponBag = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
                 ChangeMeshVisibility(weaponBag, visible);
             }
         }
@@ -93,7 +93,7 @@ public class StealthBoyEffect : Effect
 
     public void ChangeArtifactVisibility(bool visible)
     {
-        var artifact = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
+        var artifact = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton/artifact");
         if (artifact.Visible)
         {
             ChangeMeshVisibility(artifact, visible);

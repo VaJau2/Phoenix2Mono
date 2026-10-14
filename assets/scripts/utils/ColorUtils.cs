@@ -4,7 +4,7 @@ public class ColorUtils
 {
     public static Color SetAlpha(Color color, float value)
     {
-         color.a = value;
+         color.A = value;
          return color;
     }
 }

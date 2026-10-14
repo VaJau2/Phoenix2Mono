@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot.Collections;
 
-public class EnemiesManager : Node, ISavable
+public partial class EnemiesManager : Node, ISavable
 {
     [Export] private float TRIGGER_COOLDOWN = 5f;
     private const float PLAYER_MIN_DIST = 15f;
@@ -21,8 +21,8 @@ public class EnemiesManager : Node, ISavable
     
     private float triggerCooldown;
 
-    [Signal] public delegate void AlarmStarted();
-    [Signal] public delegate void AlarmEnded();
+    [Signal] public delegate void AlarmStartedEventHandler();
+    [Signal] public delegate void AlarmEndedEventHandler();
 
     private void StartAlarm()
     {
@@ -34,7 +34,7 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = true;
-        EmitSignal(nameof(AlarmStarted));
+        EmitSignal(SignalName.AlarmStarted);
         SetProcess(true);
     }
 
@@ -46,13 +46,13 @@ public class EnemiesManager : Node, ISavable
         }
 
         isAlarming = false;
-        EmitSignal(nameof(AlarmEnded));
+        EmitSignal(SignalName.AlarmEnded);
         SetProcess(false);
     }
 
     private bool PositionIsCloseToPlayer(Vector3 position)
     {
-        var tempDistance = player.GlobalTransform.origin.DistanceTo(position);
+        var tempDistance = player.GlobalTransform.Origin.DistanceTo(position);
         return tempDistance > PLAYER_MIN_DIST && tempDistance < PLAYER_MAX_DIST;
     }
 
@@ -61,7 +61,7 @@ public class EnemiesManager : Node, ISavable
     {
         foreach (var enemy in enemies.Where(enemy => 
             enemy.GetState() == SetStateEnum.Idle 
-            && PositionIsCloseToPlayer(enemy.GlobalTransform.origin))
+            && PositionIsCloseToPlayer(enemy.GlobalTransform.Origin))
         )
         {
             enemy.tempVictim = player;
@@ -74,8 +74,8 @@ public class EnemiesManager : Node, ISavable
     {
         foreach (var temp in from temp in enemies
             where IsInstanceValid(temp) && temp.Health > 0 && temp.GetState() != SetStateEnum.Attack
-            let enemyPos = temp.GlobalTransform.origin
-            where shooter.GlobalTranslation.DistanceTo(enemyPos) <= distance
+            let enemyPos = temp.GlobalTransform.Origin
+            where shooter.GlobalPosition.DistanceTo(enemyPos) <= distance
             select temp)
         {
             temp.tempVictim = shooter;
@@ -110,7 +110,7 @@ public class EnemiesManager : Node, ISavable
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!isAlarming) return;
 

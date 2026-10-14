@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class Credits : Control
+public partial class Credits : Control
 {
     private const float TIMER_COOLDOWN = 3f;
     
@@ -47,7 +47,7 @@ public class Credits : Control
         SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         timer += delta;
 

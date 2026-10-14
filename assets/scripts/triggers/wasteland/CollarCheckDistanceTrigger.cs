@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class CollarCheckDistanceTrigger: TriggerBase
+public partial class CollarCheckDistanceTrigger: TriggerBase
 {
     const int COLOR_RED = 2;
     const int COLOR_ORANGE = 1;
@@ -10,9 +10,9 @@ public class CollarCheckDistanceTrigger: TriggerBase
 
     [Export] private NodePath pointPath;
     [Export] private float[] distances = new float[3];
-    [Export] private SpatialMaterial[] colors = new SpatialMaterial[3];
+    [Export] private StandardMaterial3D[] colors = new StandardMaterial3D[3];
     [Export] private float[] peekTimers = new float[3];
-    [Export] private AudioStreamSample peekSound;
+    [Export] private AudioStreamWav peekSound;
     [Export] private PackedScene explosionPrefab;
     [Export] private string collarPath;
     [Export] private int colorIndex;
@@ -20,8 +20,8 @@ public class CollarCheckDistanceTrigger: TriggerBase
     float peekTimer;
     int tempColor;
     Player player;
-    MeshInstance collar;
-    Spatial point;
+    MeshInstance3D collar;
+    Node3D point;
 
     private void UpdatePeeking(float delta)
     {
@@ -49,10 +49,10 @@ public class CollarCheckDistanceTrigger: TriggerBase
 
     public override void _on_activate_trigger()
     {
-        Explosion explosion = explosionPrefab.Instance() as Explosion;
+        Explosion explosion = explosionPrefab.Instantiate() as Explosion;
         explosion.checkWalls = false;
         collar.AddChild(explosion);
-        explosion.Translation = Vector3.Zero;
+        explosion.Position = Vector3.Zero;
         explosion.Explode();
 
         player.TakeDamage(player, EXPLOSION_DAMAGE);
@@ -62,22 +62,22 @@ public class CollarCheckDistanceTrigger: TriggerBase
     public override async void _Ready()
     {
         SetProcess(false);
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
-        point = GetNode<Spatial>(pointPath);
+        point = GetNode<Node3D>(pointPath);
         player = Global.Get().player;
-        collar = player.GetNode<MeshInstance>(collarPath);
+        collar = player.GetNode<MeshInstance3D>(collarPath);
         peekTimer = peekTimers[COLOR_GREEN];
 
         SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (distances == null) return;
         if (!IsActive) return;
 
-        float tempDistance = player.GlobalTransform.origin.DistanceTo(point.GlobalTransform.origin);
+        float tempDistance = player.GlobalTransform.Origin.DistanceTo(point.GlobalTransform.Origin);
 
         if (tempDistance > distances[COLOR_RED])
         {

@@ -2,7 +2,7 @@
 
 namespace DialogueScripts
 {
-    public class SetLookAtTarget : IDialogueScript
+    public partial class SetLookAtTarget : IDialogueScript
     {
         public void initiate(Node node, string parameter, string key = "")
         {
@@ -13,8 +13,8 @@ namespace DialogueScripts
             if (!string.IsNullOrEmpty(parameter))
             {
                 target = node
-                    .GetNodeOrNull<Spatial>($"/root/Main/Scene/dialogueTargets/{parameter}")
-                    .GlobalTranslation;
+                    .GetNodeOrNull<Node3D>($"/root/Main/Scene/dialogueTargets/{parameter}")
+                    .GlobalPosition;
             }
             
             player.DialogueCheck.SetLookAtTarget(target);

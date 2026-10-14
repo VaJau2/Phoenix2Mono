@@ -15,11 +15,11 @@ public class BagSpawner
 
     public IChest SpawnItemBag()
     {
-        var newBag = (BagChest)bagPrefab.Instance();
+        var newBag = (BagChest)bagPrefab.Instantiate();
         Node parent = player.GetNode("/root/Main/Scene");
         parent.AddChild(newBag);
         newBag.Name = "Created_" + newBag.Name;
-        newBag.GlobalTranslation = GetSpawnPoint();
+        newBag.GlobalPosition = GetSpawnPoint();
         return newBag;
     }
     
@@ -32,7 +32,7 @@ public class BagSpawner
 
         var point = tempRay.IsColliding()
             ? tempRay.GetCollisionPoint()
-            : player.GlobalTranslation;
+            : player.GlobalPosition;
         
         player.Camera.ReturnRayBack();
 

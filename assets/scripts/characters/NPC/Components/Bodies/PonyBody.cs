@@ -1,10 +1,10 @@
 using Godot;
 using Godot.Collections;
 
-public class PonyBody : Node, ISavable
+public partial class PonyBody : Node, ISavable
 {
-    [Export] private Array<AudioStreamSample> hittedSounds = [];
-    [Export] private AudioStreamSample dieSound;
+    [Export] private Array<AudioStreamWav> hittedSounds = [];
+    [Export] private AudioStreamWav dieSound;
     
     public string IdleAnim = "Idle1";
     public string CustomIdleAnim = null;
@@ -15,8 +15,8 @@ public class PonyBody : Node, ISavable
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
 
-    private Spatial defaultLookTarget;
-    private Spatial lookTarget;
+    private Node3D defaultLookTarget;
+    private Node3D lookTarget;
     private float lookTimer = 2f;
     
     public override void _Ready()
@@ -29,11 +29,11 @@ public class PonyBody : Node, ISavable
         
         playback.Start(IdleAnim);
         
-        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
-        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
+        npc.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(OnNpcHitted)));
+        npc.Connect(Character.SignalName.DieEvent, new Callable(this, nameof(OnNpcDying)));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (npc.BaseSpeed == 0)
         {
@@ -57,19 +57,19 @@ public class PonyBody : Node, ISavable
         PlayAnim(Character.IDLE_ANIM1);
     }
     
-    public Vector3 GetDirToTarget(Spatial target)
+    public Vector3 GetDirToTarget(Node3D target)
     {
-        Vector3 targetDirPos = target.GlobalTranslation;
-        targetDirPos.y = npc.GlobalTranslation.y;
-        return targetDirPos - npc.GlobalTranslation;
+        Vector3 targetDirPos = target.GlobalPosition;
+        targetDirPos.Y = npc.GlobalPosition.Y;
+        return targetDirPos - npc.GlobalPosition;
     }
 
-    public void SetDefaultLookTarget(Spatial value)
+    public void SetDefaultLookTarget(Node3D value)
     {
         defaultLookTarget = value;
     }
 
-    public void SetLookTarget(Spatial value)
+    public void SetLookTarget(Node3D value)
     {
         lookTarget = value;
     }
@@ -78,22 +78,22 @@ public class PonyBody : Node, ISavable
     {
         if (npc.tempVictim == null) return;
         
-        var npcForward = -npc.GlobalTransform.basis.z;
+        var npcForward = -npc.GlobalTransform.Basis.Z;
         var npcDir = GetDirToTarget(npc.tempVictim);
         var rotationToVictim = npcForward.AngleTo(npcDir);
 
         if (npc.Weapons is { IsPistol: true })
         {
-            if (Mathf.Rad2Deg(rotationToVictim) < 80)
+            if (Mathf.RadToDeg(rotationToVictim) < 80)
             {
                 return;
             }
         }
         
-        Vector3 victimPos = npc.tempVictim.GlobalTranslation;
-        victimPos.y = npc.GlobalTransform.origin.y;
+        Vector3 victimPos = npc.tempVictim.GlobalPosition;
+        victimPos.Y = npc.GlobalTransform.Origin.Y;
 
-        if (npc.GlobalTranslation != victimPos)
+        if (npc.GlobalPosition != victimPos)
         {
             npc.LookAt(victimPos, Vector3.Up);
         }
@@ -204,25 +204,25 @@ public class PonyBody : Node, ISavable
 
     private bool MayRotateHead => IdleAnim != "Frozen";
 
-    private Vector2 GetHeadRotationTo(Spatial target)
+    private Vector2 GetHeadRotationTo(Node3D target)
     {
-        Vector3 npcForward = -npc.GlobalTransform.basis.z;
+        Vector3 npcForward = -npc.GlobalTransform.Basis.Z;
         Vector3 dir = GetDirToTarget(target);
 
         float angle = npcForward.AngleTo(dir);
-        if (npc.GlobalTransform.basis.x.Dot(dir) < 0)
+        if (npc.GlobalTransform.Basis.X.Dot(dir) < 0)
         {
             angle = -angle;
         }
         
-        var targetY = target.GlobalTranslation.y;
+        var targetY = target.GlobalPosition.Y;
         //точка центра игрока чуть выше, тк он умеет красться и приседать с:
         if (target is Player)
         {
             targetY += 0.25f * npc.lookHeightFactor;
         }
 
-        float diffY = targetY - npc.GlobalTranslation.y;
+        float diffY = targetY - npc.GlobalPosition.Y;
 
         return new Vector2(angle / 1.5f, diffY / 5);
     }

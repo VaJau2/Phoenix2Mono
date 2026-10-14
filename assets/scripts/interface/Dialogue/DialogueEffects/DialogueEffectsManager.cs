@@ -36,7 +36,7 @@ public class DialogueEffectsManager
         
         foreach (var part in textParts)
         {
-            if (part.BeginsWith("["))
+            if (part.StartsWith("["))
             {
                 result += part;
             }

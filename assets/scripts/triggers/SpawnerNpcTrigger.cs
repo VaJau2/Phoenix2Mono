@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class SpawnerNpcTrigger: ActivateOtherTrigger
+public partial class SpawnerNpcTrigger: ActivateOtherTrigger
 {
     [Export] private PackedScene npcPrefab;
     [Export] private string npcName;
@@ -26,8 +26,8 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
     //3 - binds, массив
     [Export] private Array triggerConnections;
 
-    private Spatial spawnPoint;
-    private Spatial movePoint;
+    private Node3D spawnPoint;
+    private Node3D movePoint;
 
     private float tempTimer;
     private int step;
@@ -37,17 +37,17 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
         SetProcess(false);
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Spatial>(spawnPointPath);
+            spawnPoint = GetNode<Node3D>(spawnPointPath);
         }
         if (movePointPath != null)
         {
-            movePoint = GetNode<Spatial>(movePointPath);
+            movePoint = GetNode<Node3D>(movePointPath);
         }
 
         base._Ready();
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempTimer > 0)
         {
@@ -93,7 +93,7 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
 
     private void SpawnNpc()
     {
-        if (npcPrefab.Instance() is NPC npcInstance)
+        if (npcPrefab.Instantiate() is NPC npcInstance)
         {
             npcInstance.Name = "Created_" + (!string.IsNullOrEmpty(npcName) ? npcName : npcInstance.Name);
             npcInstance.StartHealth = StartHealth;
@@ -102,16 +102,16 @@ public class SpawnerNpcTrigger: ActivateOtherTrigger
             npcInstance.itemCodes = itemCodes;
             npcInstance.ammoCount = ammoCount;
             GetNode<Node>("/root/Main/Scene/npc").AddChild(npcInstance);
-            npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.origin);
-            npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.y,0);
+            npcInstance.GlobalTransform = Global.SetNewOrigin(npcInstance.GlobalTransform, spawnPoint.GlobalTransform.Origin);
+            npcInstance.Rotation = new Vector3(0, spawnPoint.Rotation.Y,0);
             if (movePoint != null)
             {
-                npcInstance.SetNewStartPos(movePoint.GlobalTransform.origin, run);
-                npcInstance.myStartRot = new Vector3(0, movePoint.Rotation.y, 0);
+                npcInstance.SetNewStartPos(movePoint.GlobalTransform.Origin, run);
+                npcInstance.myStartRot = new Vector3(0, movePoint.Rotation.Y, 0);
             }
             else
             {
-                npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.origin, run);
+                npcInstance.SetNewStartPos(spawnPoint.GlobalTransform.Origin, run);
                 npcInstance.myStartRot = spawnPoint.Rotation;
             }
             

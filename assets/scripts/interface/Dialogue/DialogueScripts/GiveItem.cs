@@ -2,7 +2,7 @@
 
 namespace DialogueScripts;
 
-public class GiveItem : IDialogueScript
+public partial class GiveItem : IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

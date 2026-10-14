@@ -2,7 +2,7 @@
 
 namespace DialogueScripts
 {
-    public class SetNpcFollowWaiting: BaseChangeInNPC
+    public partial class SetNpcFollowWaiting: BaseChangeInNPC
     {
         public override void initiate(Node node, string parameter, string key = "")
         {

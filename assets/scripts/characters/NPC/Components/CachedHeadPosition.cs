@@ -2,7 +2,7 @@ using Godot;
 
 // Сохраняет позицию головы "статичной" на небольшом расстоянии
 // Чтобы камера во время диалога не шаталась вслед за головой
-public class CachedHeadPosition : BoneAttachment
+public partial class CachedHeadPosition : BoneAttachment3D
 {
     [Export] private NodePath npcPath;
     
@@ -20,7 +20,7 @@ public class CachedHeadPosition : BoneAttachment
     {
         if (NeedToUpdatePosition())
         {
-            tempHeadPosition = GlobalTranslation;
+            tempHeadPosition = GlobalPosition;
         }
         
         return tempHeadPosition;
@@ -33,6 +33,6 @@ public class CachedHeadPosition : BoneAttachment
             return true;
         }
 
-        return tempHeadPosition.DistanceTo(GlobalTranslation) > MIN_CHANGE_DISTANCE;
+        return tempHeadPosition.DistanceTo(GlobalPosition) > MIN_CHANGE_DISTANCE;
     }
 }

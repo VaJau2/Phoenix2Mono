@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PlayerWeapons : CollisionShape
+public partial class PlayerWeapons : CollisionShape3D
 {
     private Global global;
     private const float SHAKE_SPEED = 2f;
@@ -28,12 +28,12 @@ public class PlayerWeapons : CollisionShape
 
     //--эффекты и анимания выстрела
     public ItemIcon TempAmmoButton { get; private set; }
-    public Spatial TempWeapon { get; private set; }
+    public Node3D TempWeapon { get; private set; }
     
     private AnimationPlayer gunAnim;
-    private Spatial gunLight;
-    private Spatial gunFire;
-    private Particles gunSmoke;
+    private Node3D gunLight;
+    private Node3D gunFire;
+    private GpuParticles3D gunSmoke;
     private PackedScene gunParticlesPrefab;
     private Node particlesParent;
     private WeaponShellSpawner shellSpawner;
@@ -44,8 +44,8 @@ public class PlayerWeapons : CollisionShape
 
     //--звуки-------------
     private AudioStreamPlayer audiShoot;
-    private AudioStreamSample tryShootSound;
-    private AudioStreamSample shootSound;
+    private AudioStreamWav tryShootSound;
+    private AudioStreamWav shootSound;
 
     private EnemiesManager enemiesManager;
 
@@ -65,12 +65,12 @@ public class PlayerWeapons : CollisionShape
         particlesParent = GetNode("/root/Main/Scene");
 
         audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
-        tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
+        tryShootSound = GD.Load<AudioStreamWav>("res://assets/audio/guns/TryShoot.wav");
 
         enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
     }
     
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (!global.paused && player.Health > 0 && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
@@ -105,18 +105,18 @@ public class PlayerWeapons : CollisionShape
 
         var shootSoundPath = "res://assets/audio/guns/shoot/" + weaponCode + ".wav";
         shootSound = ResourceLoader.Exists(shootSoundPath)
-            ? GD.Load<AudioStreamSample>(shootSoundPath)
+            ? GD.Load<AudioStreamWav>(shootSoundPath)
             : null;
 
         //вытаскиваем родительский нод из игрока
-        Spatial tempParent = player.GetWeaponParent(isPistol);
+        Node3D tempParent = player.GetWeaponParent(isPistol);
 
         //отправляем префаб туда
-        var weapon = weaponPrefab.Instance();
+        var weapon = weaponPrefab.Instantiate();
         tempParent.AddChild(weapon);
 
         //сохраняем его для будущих перемещений по нодам
-        TempWeapon = (Spatial)weapon;
+        TempWeapon = (Node3D)weapon;
         LoadNewAmmo();
         LoadGunEffects();
 
@@ -150,8 +150,8 @@ public class PlayerWeapons : CollisionShape
         //если сменился вид, моделька перемещается в новый нод
         if (GunOn && isPistol)
         {
-            Spatial oldParent = (Spatial)TempWeapon.GetParent();
-            Spatial newParent = player.GetWeaponParent(isPistol);
+            Node3D oldParent = (Node3D)TempWeapon.GetParent();
+            Node3D newParent = player.GetWeaponParent(isPistol);
 
             if (oldParent != newParent)
             {
@@ -178,7 +178,7 @@ public class PlayerWeapons : CollisionShape
     {
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
-        StreamTexture newIcon = GD.Load<StreamTexture>(path);
+        CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         ammoIcon.SetIcon(newIcon);
     }
 
@@ -252,15 +252,15 @@ public class PlayerWeapons : CollisionShape
             gunAnim = null;
         }
 
-        gunLight = TempWeapon.GetNodeOrNull<Spatial>("light");
-        gunFire = TempWeapon.GetNodeOrNull<Spatial>("fire");
-        gunSmoke = TempWeapon.GetNodeOrNull<Particles>("smoke");
+        gunLight = TempWeapon.GetNodeOrNull<Node3D>("light");
+        gunFire = TempWeapon.GetNodeOrNull<Node3D>("fire");
+        gunSmoke = TempWeapon.GetNodeOrNull<GpuParticles3D>("smoke");
         shellSpawner = TempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
 
     private Vector3 SetRotX(Vector3 origin, float newRotX)
     {
-        origin.x = newRotX;
+        origin.X = newRotX;
         return origin;
     }
 
@@ -275,10 +275,10 @@ public class PlayerWeapons : CollisionShape
                 if (tempShake < recoil)
                 {
                     tempShake += SHAKE_SPEED;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
-                        camera.RotationDegrees.x + SHAKE_SPEED
+                        camera.RotationDegrees.X + SHAKE_SPEED
                     );
                 }
                 else
@@ -292,10 +292,10 @@ public class PlayerWeapons : CollisionShape
                 {
                     var diff = SHAKE_SPEED * SHAKE_DIFF;
                     tempShake -= diff;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
-                        camera.RotationDegrees.x - SHAKE_SPEED * SHAKE_DIFF
+                        camera.RotationDegrees.X - SHAKE_SPEED * SHAKE_DIFF
                     );
                 }
                 else
@@ -309,7 +309,7 @@ public class PlayerWeapons : CollisionShape
         }
     }
 
-    private string HandleVictim(Spatial victim, int shapeID = 0)
+    private string HandleVictim(Node3D victim, int shapeID = 0)
     {
         string name = null;
         switch (victim)
@@ -371,7 +371,7 @@ public class PlayerWeapons : CollisionShape
     {
         string bullet = tempWeaponStats["bullet"].ToString();
         var bulletPrefab = GD.Load<PackedScene>("res://objects/guns/bullets/" + bullet + ".tscn");
-        Bullet newBullet = (Bullet)bulletPrefab.Instance();
+        Bullet newBullet = (Bullet)bulletPrefab.Instantiate();
         newBullet.Damage = player.GetDamage();
         newBullet.Shooter = player;
         newBullet.Timer = GetStatsFloat("shootDistance");
@@ -417,7 +417,7 @@ public class PlayerWeapons : CollisionShape
         var tempRay = player.Camera.UseRay(tempDistance);
             
         tempRay.ForceRaycastUpdate();
-        var obj = (Spatial)tempRay.GetCollider();
+        var obj = (Node3D)tempRay.GetCollider();
 
         if (obj is NPC { IsImmortal: true })
         {
@@ -439,18 +439,18 @@ public class PlayerWeapons : CollisionShape
         await global.ToTimer(0.05f);
         
         // костыль для фикса дисинхронизации объекта попадания
-        obj = (Spatial)tempRay.GetCollider();
+        obj = (Node3D)tempRay.GetCollider();
 
         //обрабатываем попадания
             
         if (tempWeaponStats.Contains("isShotgun"))
         {
-            player.impulse = player.RotationHelper.GlobalTransform.basis.z / 2;
+            player.impulse = player.RotationHelper.GlobalTransform.Basis.Z / 2;
         }
         
         if (obj != null && IsInstanceValid(obj))
         {
-            var gunParticles = (GunParticles)gunParticlesPrefab.Instance();
+            var gunParticles = (GunParticles)gunParticlesPrefab.Instantiate();
             particlesParent.AddChild(gunParticles);
             gunParticles.GlobalTransform = Global.SetNewOrigin
             (
@@ -497,7 +497,7 @@ public class PlayerWeapons : CollisionShape
         onetimeShoot = false;
             
         player.StealthBoy?.SetOff(false);
-        player.EmitSignal(nameof(Player.FireWithWeapon));
+        player.EmitSignal(Player.SignalName.FireWithWeapon);
     }
 
     private float GetTempDistance()

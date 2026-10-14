@@ -1,14 +1,14 @@
 using Godot;
 
-public class PegasusSmash : Area
+public partial class PegasusSmash : Area3D
 {
     private Player_Pegasus player;
-    private AudioStreamSample hitSound;
+    private AudioStreamWav hitSound;
 
     public override void _Ready()
     {
         player = GetParent<Player_Pegasus>();
-        hitSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
+        hitSound = GD.Load<AudioStreamWav>("res://assets/audio/flying/PegasusHit.wav");
     }
 
     public void _on_smasharea_body_entered(Node body)

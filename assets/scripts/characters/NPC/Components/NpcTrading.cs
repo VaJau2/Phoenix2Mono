@@ -5,7 +5,7 @@ using Array = Godot.Collections.Array;
 
 //класс используется неписями-торговцами (пнями и роботоми)
 //по сути, вытащенный за скобки общий функционал торговли
-public class NpcTrading: Node, ISavable, ITrader
+public partial class NpcTrading: Node, ISavable, ITrader
 {
     [Export]
     public int moneyCount {get; set;}   

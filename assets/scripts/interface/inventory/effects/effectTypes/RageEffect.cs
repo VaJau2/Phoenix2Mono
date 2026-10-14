@@ -1,6 +1,6 @@
 namespace Effects;
 
-public class RageEffect : Effect 
+public partial class RageEffect : Effect 
 {
     const int DAMAGE_DELTA = 20;
     private Player player;

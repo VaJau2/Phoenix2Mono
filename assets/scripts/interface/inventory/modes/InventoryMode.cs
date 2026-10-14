@@ -190,7 +190,7 @@ public abstract class InventoryMode
         
         if (!tempButton.isInventoryIcon)
         {
-            player.EmitSignal(nameof(Player.TakeItem), tempButton.myItemCode);
+            player.EmitSignal(Player.SignalName.TakeItem, tempButton.myItemCode);
         }
         
         useHandler.HideLoadingIcon();
@@ -317,8 +317,8 @@ public abstract class InventoryMode
     public bool CheckMouseInButton(Control button) 
     {
         var mouse = button.GetLocalMousePosition();
-        return mouse.x >= 0 && mouse.x <= button.RectSize.x 
-            && mouse.y >= 0 && mouse.y <= button.RectSize.y;
+        return mouse.X >= 0 && mouse.X <= button.Size.X 
+            && mouse.Y >= 0 && mouse.Y <= button.Size.Y;
     }
 
     public virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
@@ -500,9 +500,9 @@ public abstract class InventoryMode
     
     private void FinishDragging()
     {
-        tempButton?.SetIcon((StreamTexture) dragIcon.Texture);
+        tempButton?.SetIcon((CompressedTexture2D) dragIcon.Texture);
         dragIcon.SetIcon(null);
-        dragIcon.RectGlobalPosition = Vector2.Zero;
+        dragIcon.GlobalPosition = Vector2.Zero;
         isDragging = false;
     }
 
@@ -530,13 +530,13 @@ public abstract class InventoryMode
                     useHandler.HideLoadingIcon();
 
                     dragIcon.SetIcon(tempButton.GetIcon());
-                    dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
+                    dragIcon.GlobalPosition = tempButton.GlobalPosition;
 
                     tempButton.SetIcon(null);
                     isDragging = true;
                 }
 
-                dragIcon.RectGlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
+                dragIcon.GlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
             }
             else
             {
@@ -616,7 +616,7 @@ public abstract class InventoryMode
 
     private void CheckAutoheal()
     {
-        if (!Godot.Object.IsInstanceValid(player)) return;
+        if (!GodotObject.IsInstanceValid(player)) return;
         if (!Input.IsActionJustPressed("autoheal") || !player.MayMove) return;
         if (player.Health == player.HealthMax) 
         {

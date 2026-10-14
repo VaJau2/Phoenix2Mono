@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class TradeTerminal: StaticBody, ITrader 
+public partial class TradeTerminal: StaticBody3D, ITrader 
 {
     [Export]
     public int moneyCount {get; set;}   

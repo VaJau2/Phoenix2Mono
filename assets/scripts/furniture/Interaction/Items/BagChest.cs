@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public class BagChest : RigidBody, IChest, IInteractable, ISavable
+public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
 {
     private const float AUDI_COOLDOWN = 0.3f;
     
     [Export] private bool SpawnRandomItems;
-    [Export] private List<AudioStreamSample> openSounds;
-    [Export] private List<AudioStreamSample> dropSounds;
-    [Export] private AudioStreamSample bottleSound;
+    [Export] private List<AudioStreamWav> openSounds;
+    [Export] private List<AudioStreamWav> dropSounds;
+    [Export] private AudioStreamWav bottleSound;
     
     private AudioStreamPlayer3D audi;
     private float audiCooldown;
@@ -40,7 +40,7 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (audiCooldown > 0)
         {
@@ -69,7 +69,7 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
         }
     }
     
-    private void PlaySound(List<AudioStreamSample> soundsArray)
+    private void PlaySound(List<AudioStreamWav> soundsArray)
     {
         var rand = new Random();
         var randI = rand.Next(0, soundsArray.Count);
@@ -98,10 +98,10 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
     {
         Dictionary saveData = ChestHandler.GetSaveData();
 
-        if (Name.BeginsWith("Created_"))
+        if (Name.StartsWith("Created_"))
         {
-            saveData.Add("pos", Transform.origin);
-            saveData.Add("rot", Transform.basis.GetEuler());
+            saveData.Add("pos", Transform.Origin);
+            saveData.Add("rot", Transform.Basis.GetEuler());
         }
 
         return saveData;
@@ -111,7 +111,7 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
     {
         if (audiCooldown > 0) return;
         
-        if (body is StaticBody { PhysicsMaterialOverride: not null } collideBody)
+        if (body is StaticBody3D { PhysicsMaterialOverride: not null } collideBody)
         {
             PlayDropSound();
             audiCooldown = AUDI_COOLDOWN;
@@ -122,13 +122,13 @@ public class BagChest : RigidBody, IChest, IInteractable, ISavable
     {
         if (data.Count == 0) return;
         
-        if (Name.BeginsWith("Created_"))
+        if (Name.StartsWith("Created_"))
         {
             Vector3 newPos = data["pos"].ToString().ParseToVector3();
             Vector3 newRot = data["rot"].ToString().ParseToVector3();
 
             Basis newBasis = new Basis(newRot);
-            Transform newTransform = new Transform(newBasis, newPos);
+            Transform3D newTransform = new Transform3D(newBasis, newPos);
             Transform = newTransform;
         }
 

@@ -1,6 +1,6 @@
 using Godot;
 
-public class NpcCovers : Node
+public partial class NpcCovers : Node
 {
     private readonly float[] COVER_TIMER = [1f, 5f];
     
@@ -34,7 +34,7 @@ public class NpcCovers : Node
             TempCover = coversManager.GetCover(npc);
             if (TempCover != null)
             {
-                TempCoverPlace = TempCover.GetFarPlace(npc.tempVictim.GlobalTranslation);
+                TempCoverPlace = TempCover.GetFarPlace(npc.tempVictim.GlobalPosition);
             }
 
             InCover = false;

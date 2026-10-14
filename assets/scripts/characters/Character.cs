@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public abstract class Character : KinematicBody, ISavable
+public abstract partial class Character : CharacterBody3D, ISavable
 {
     public const string IDLE_ANIM = "Idle";
     public const string IDLE_ANIM1 = "Idle1";
@@ -24,18 +24,18 @@ public abstract class Character : KinematicBody, ISavable
     protected bool IsDead;
         
     [Signal]
-    public delegate void TakenDamage();
+    public delegate void TakenDamageEventHandler();
     [Signal]
-    public delegate void DieEvent();
+    public delegate void DieEventEventHandler();
     
     [Signal]
-    public delegate void ChangeMayMove();
+    public delegate void ChangeMayMoveEventHandler();
     
     [Signal]
-    public delegate void IsCame();
+    public delegate void IsCameEventHandler();
     
     [Signal]
-    public delegate void DoorTeleporting(Spatial doorTeleport);
+    public delegate void DoorTeleportingEventHandler(Node3D doorTeleport);
 
     public override void _Ready()
     {
@@ -59,7 +59,7 @@ public abstract class Character : KinematicBody, ISavable
 
     public virtual void TakeDamage(Character damager, int damage, int shapeID = 0)
     {
-        EmitSignal(nameof(TakenDamage));
+        EmitSignal(SignalName.TakenDamage);
         damage -= (int)(damage * GetDamageBlock());
         DecreaseHealth(damage);
         
@@ -72,7 +72,7 @@ public abstract class Character : KinematicBody, ISavable
     protected virtual void Die(Character damager, int shapeID = 0)
     {
         IsDead = true;
-        EmitSignal(nameof(DieEvent));
+        EmitSignal(SignalName.DieEvent);
     }
     
     public virtual void CheckShotgunShot(bool isShotgun) {}
@@ -103,15 +103,15 @@ public abstract class Character : KinematicBody, ISavable
         if (MayMove == value) return;
         
         MayMove = value;
-        EmitSignal(nameof(ChangeMayMove));
+        EmitSignal(SignalName.ChangeMayMove);
     }
 
     public void TeleportToDoor(IDoorTeleport doorTeleport)
     {
-        GlobalTranslation = doorTeleport.TeleportPos.GlobalTranslation;
+        GlobalPosition = doorTeleport.TeleportPos.GlobalPosition;
         GlobalRotation = doorTeleport.TeleportPos.GlobalRotation;
         
-        EmitSignal(nameof(DoorTeleporting), doorTeleport);
+        EmitSignal(SignalName.DoorTeleporting, doorTeleport);
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
@@ -119,7 +119,7 @@ public abstract class Character : KinematicBody, ISavable
     {
         var savingData = new Dictionary
         {
-            { "pos", GlobalTranslation },
+            { "pos", GlobalPosition },
             { "rot", GlobalRotation },
             { "health", Health }
         };
@@ -131,7 +131,7 @@ public abstract class Character : KinematicBody, ISavable
     public virtual void LoadData(Dictionary data)
     {
         var oldScale = Scale;
-        GlobalTranslation = data["pos"].ToString().ParseToVector3();
+        GlobalPosition = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3();
         Scale = oldScale;
         Health = Convert.ToInt32(data["health"]);

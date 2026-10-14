@@ -1,7 +1,7 @@
 using Godot;
 
 //Триггер позволяет изменить значения триггера LoopingMusicPartTrigger
-public class LoopingMusicPartChangeTrigger : TriggerBase
+public partial class LoopingMusicPartChangeTrigger : TriggerBase
 {
     [Export] public float NewCheckTime;
     [Export] public float NewChangeTime;

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public class LoadMenu : Control
+public partial class LoadMenu : Control
 {
     [Signal]
-    public delegate void BackPressed();
+    public delegate void BackPressedEventHandler();
     
     private MenuBase parentMenu;
     
@@ -96,7 +96,7 @@ public class LoadMenu : Control
         return lastFileName;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (parentMenu is not PauseMenu) return;
         if (Global.Get().paused) return;
@@ -119,7 +119,7 @@ public class LoadMenu : Control
     public void _on_back_pressed()
     {
         parentMenu.SoundClick();
-        EmitSignal(nameof(BackPressed));
+        EmitSignal(SignalName.BackPressed);
     }
 
     public void _on_mouse_entered(string section, string messageLink)
@@ -170,7 +170,7 @@ public class LoadMenu : Control
 
             //для поддержки старых сохранений, в которых не было строчки с названием автосейва
             var checkLine = saveFile.GetLine();
-            if (checkLine.BeginsWith(SaveMenu.AUTOSAVE_PREFIX))
+            if (checkLine.StartsWith(SaveMenu.AUTOSAVE_PREFIX))
             {
                 Global.Get().autosaveName = checkLine.Remove(0, SaveMenu.AUTOSAVE_PREFIX.Length);
                 Global.Get().playerRace = Global.RaceFromString(saveFile.GetLine());

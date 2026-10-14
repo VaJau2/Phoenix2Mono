@@ -58,9 +58,9 @@ public class UseHandler
     public void ShowLoadingIcon()
     {
         Vector2 iconPos = menu.GetGlobalMousePosition();
-        iconPos.x += 10;
-        iconPos.y += 10;
-        loadingIcon.RectGlobalPosition = iconPos;
+        iconPos.X += 10;
+        iconPos.Y += 10;
+        loadingIcon.GlobalPosition = iconPos;
         loadingIcon.Visible = true;
         loadingAnim.Play("load");
     }
@@ -76,7 +76,7 @@ public class UseHandler
         if (Player.Health <= 0) return;
         if (tempButton == null) return;
         
-        Player.EmitSignal(nameof(Player.UseItem), tempButton.myItemCode);
+        Player.EmitSignal(Player.SignalName.UseItem, tempButton.myItemCode);
 
         var itemType = (ItemType)mode.tempItemData["type"];
         if (Inventory.ItemIsUsable(itemType)) 
@@ -107,9 +107,9 @@ public class UseHandler
                     mode.RemoveTempItem();
 
                     var tempDeletingItem = bindsHandler.TempDeletingIcon;
-                    if (Object.IsInstanceValid(tempDeletingItem))
+                    if (GodotObject.IsInstanceValid(tempDeletingItem))
                     {
-                        await menu.ToSignal(tempDeletingItem, nameof(BindIcon.IsDeleting));
+                        await menu.ToSignal(tempDeletingItem, BindIcon.SignalName.IsDeleting);
                     }
 
                     //если использовался забинденный предмет
@@ -186,7 +186,7 @@ public class UseHandler
     {
         if (Player.Health <= 0) return;
         
-        Player.EmitSignal(nameof(Player.UseItem), item.myItemCode);
+        Player.EmitSignal(Player.SignalName.UseItem, item.myItemCode);
         UnwearItem(item);
     }
     
@@ -264,9 +264,9 @@ public class UseHandler
 
     private void CheckTempBag()
     {
-        if (tempBag is Spatial bagPoint)
+        if (tempBag is Node3D bagPoint)
         {
-            var distance = Player.GlobalTransform.origin.DistanceTo(bagPoint.GlobalTransform.origin);
+            var distance = Player.GlobalTransform.Origin.DistanceTo(bagPoint.GlobalTransform.Origin);
             if (distance > CLEAR_BAG_DISTANCE)
             {
                 tempBag = null;

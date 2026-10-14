@@ -3,7 +3,7 @@ using Godot.Collections;
 
 //если активен, следит за инвентарем и получаемыми предметами
 //включает другие триггеры, если игрок получает нужный предмет
-class TakeItemTrigger: ActivateOtherTrigger
+partial class TakeItemTrigger: ActivateOtherTrigger
 {
     [Export] private string ItemToTake;
     [Export] private bool DeletedDisactiveTriggers;
@@ -13,11 +13,11 @@ class TakeItemTrigger: ActivateOtherTrigger
     public override async void _Ready()
     {
         base._Ready();
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Connect(Player.SignalName.TakeItem, new Callable(this, nameof(_on_player_take_item)));
         }
     }
 
@@ -26,11 +26,11 @@ class TakeItemTrigger: ActivateOtherTrigger
         base.SetActive(newActive);
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Connect(Player.SignalName.TakeItem, new Callable(this, nameof(_on_player_take_item)));
         }
         else
         {
-            player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Disconnect(Player.SignalName.TakeItem, new Callable(this, nameof(_on_player_take_item)));
         }
     }
 
@@ -63,11 +63,11 @@ class TakeItemTrigger: ActivateOtherTrigger
 
         if (!IsActive) return;
         
-        if (player.IsConnected(nameof(Player.TakeItem), this, nameof(_on_player_take_item)))
+        if (player.IsConnected(Player.SignalName.TakeItem, new Callable(this, nameof(_on_player_take_item))))
         {
             return;
         }
                 
-        player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        player.Connect(Player.SignalName.TakeItem, new Callable(this, nameof(_on_player_take_item)));
     }
 }

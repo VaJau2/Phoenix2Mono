@@ -1,10 +1,10 @@
 using Godot;
 
-public class DragonMouth : Area
+public partial class DragonMouth : Area3D
 {
     private const float MOUTH_COOLDOWN = 1f;
     
-    public Spatial mouthPos;
+    public Node3D mouthPos;
     public bool HasEnemy => enemyInMouth != null && IsInstanceValid(enemyInMouth);
 
     private NPC npc;
@@ -15,19 +15,19 @@ public class DragonMouth : Area
     private float mouthCooldown;
     private float damageTimer = 3f;
     
-    [Export] private AudioStreamSample eatSound;
+    [Export] private AudioStreamWav eatSound;
 
     public override async void _Ready()
     {
         npc = GetParent<NPC>();
         body = npc.GetNode<DragonBody>("body");
         audi = npc.GetNode<NpcAudio>("audi");
-        mouthPos = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
+        mouthPos = npc.GetNode<Node3D>("Armature/Skeleton/BoneAttachment/mouth");
         
-        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
+        npc.Connect(Character.SignalName.TakenDamage, new Callable(this, nameof(OnTakeDamage)));
         
-        await npc.ToSignal(GetTree(), "idle_frame");
-        Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
+        await npc.ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        Global.Get().player.Connect(Player.SignalName.FireWithWeapon, new Callable(this, nameof(CheckPlayerShooting)));
     }
     
     private void CheckPlayerShooting()
@@ -62,7 +62,7 @@ public class DragonMouth : Area
             character.TakeDamage(npc, DragonBody.MOUTH_DAMAGE);
             character.GlobalTransform = Global.SetNewOrigin(
                 character.GlobalTransform, 
-                mouthPos.GlobalTransform.origin
+                mouthPos.GlobalTransform.Origin
             );
 
             enemyMouthTimer = 3;
@@ -83,9 +83,9 @@ public class DragonMouth : Area
         
         enemyInMouth.GlobalTransform = Global.SetNewOrigin(
             enemyInMouth.GlobalTransform, 
-            mouthPos.GlobalTransform.origin
+            mouthPos.GlobalTransform.Origin
         );
-        enemyInMouth.RotationDegrees = new Vector3(0, npc.RotationDegrees.y + 90, -90);
+        enemyInMouth.RotationDegrees = new Vector3(0, npc.RotationDegrees.Y + 90, -90);
         if (enemyInMouth is Player player)
         {
             player.Body.bodyRot = 0;
@@ -129,12 +129,12 @@ public class DragonMouth : Area
         enemyInMouth.SetMayMove(true);
         enemyInMouth.CollisionLayer = 1;
         enemyInMouth.CollisionMask = 1;
-        enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.y, 0);
-        enemyInMouth.impulse = -npc.GlobalTransform.basis.z * 3 + new Vector3(0, -2, 0);
+        enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.Y, 0);
+        enemyInMouth.impulse = -npc.GlobalTransform.Basis.Z * 3 + new Vector3(0, -2, 0);
         enemyInMouth = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (npc.Health <= 0) return;
 

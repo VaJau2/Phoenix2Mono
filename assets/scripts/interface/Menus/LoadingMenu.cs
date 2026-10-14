@@ -1,6 +1,6 @@
 using Godot;
 
-public class LoadingMenu : Control
+public partial class LoadingMenu : Control
 {
     private const float TIME = 0.5f;
     private Label loadingLabel;
@@ -21,7 +21,7 @@ public class LoadingMenu : Control
         MenuBase.LoadColorForChildren(this);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (timer < TIME) {
             timer += delta;

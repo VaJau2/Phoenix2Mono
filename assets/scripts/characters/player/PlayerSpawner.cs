@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class PlayerSpawner : Spatial
+public partial class PlayerSpawner : Node3D
 {
     [Export]
     public int moneyCount;
@@ -23,7 +23,7 @@ public class PlayerSpawner : Spatial
     public bool loadStartItems = true;
 
     [Signal]
-    public delegate void Spawned();
+    public delegate void SpawnedEventHandler();
 
     public override void _Ready()
     {
@@ -36,7 +36,7 @@ public class PlayerSpawner : Spatial
         path += GetRacePath();
 
         var playerPrefab = GD.Load<PackedScene>(path);
-        var newPlayer = (Player)playerPrefab.Instance();
+        var newPlayer = (Player)playerPrefab.Instantiate();
 
         SpawnPlayer(newPlayer);
     }
@@ -54,7 +54,7 @@ public class PlayerSpawner : Spatial
 
     private async void SpawnPlayer(Player player) 
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
         player.Camera.Current = true;
@@ -110,6 +110,6 @@ public class PlayerSpawner : Spatial
             return;
         }
         
-        EmitSignal(nameof(Spawned));
+        EmitSignal(SignalName.Spawned);
     }
 }

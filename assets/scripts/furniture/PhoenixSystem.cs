@@ -4,7 +4,7 @@ using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PhoenixSystem : Node, ISavable
+public partial class PhoenixSystem : Node, ISavable
 {
     [Export] private NodePath onDeathTriggerPath;
     [Export] private NodePath roomPath;
@@ -24,7 +24,7 @@ public class PhoenixSystem : Node, ISavable
     private LevelsLoader levelsLoader;
     
     [Signal]
-    public delegate void CloneAwake();
+    public delegate void CloneAwakeEventHandler();
 
     public override void _Ready()
     {
@@ -41,18 +41,18 @@ public class PhoenixSystem : Node, ISavable
 
         cloneNumber = cloneFlasks.Count - 1;
         
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(LevelsLoader.SignalName.SaveDataLoaded, new Callable(this, nameof(OnSaveDataLoaded)));
     }
 
     private async void OnSaveDataLoaded()
     {
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
         if (CloneWokeUp)
         {
             playerSpawner.InitSpawn();
             
-            await ToSignal(GetTree(), "idle_frame");
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             
             var player = Global.Get().player;
             levelsLoader.LoadObjectData(player.Name);
@@ -63,7 +63,7 @@ public class PhoenixSystem : Node, ISavable
             
             if (deathManager.PermanentDeath) return;
             
-            deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+            deathManager.Connect(PlayerDeathManager.SignalName.CloneDie, new Callable(this, nameof(OnCloneDie)));
         }
         else StartCloning();
     }
@@ -161,7 +161,7 @@ public class PhoenixSystem : Node, ISavable
         cloneFlasks.Remove(cloneFlask);
         cloneNumber = cloneFlasks.Count - 1;
         
-        await ToSignal(GetTree(), "idle_frame");
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
         var player = Global.Get().player;
         
@@ -185,9 +185,9 @@ public class PhoenixSystem : Node, ISavable
         deathManager.PermanentDeath = cloneFlasks.Count < 1;
         InitDeathTrigger();
         
-        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+        deathManager.Connect(PlayerDeathManager.SignalName.CloneDie, new Callable(this, nameof(OnCloneDie)));
         
-        EmitSignal(nameof(CloneAwake));
+        EmitSignal(SignalName.CloneAwake);
     }
 
     public Dictionary GetSaveData()

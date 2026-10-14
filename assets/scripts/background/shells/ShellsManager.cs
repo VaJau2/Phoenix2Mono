@@ -5,12 +5,12 @@ using System;
 //управляет статичными мешами гильз
 //ограничивает их общее количество
 //сохраняет и загружает сохраненные меши гильз
-public class ShellsManager : Spatial, ISavable
+public partial class ShellsManager : Node3D, ISavable
 {
     [Export]
     private int shellsLimit = 20;
 
-    public void AddShell(MeshInstance shell)
+    public void AddShell(MeshInstance3D shell)
     {
         AddChild(shell);
         if (GetChildCount() >= shellsLimit)
@@ -22,14 +22,14 @@ public class ShellsManager : Spatial, ISavable
     public Dictionary GetSaveData()
     {
         Dictionary savingData = new Dictionary();
-        foreach(MeshInstance shell in GetChildren())
+        foreach(MeshInstance3D shell in GetChildren())
         {
             savingData.Add(shell.Name, new Dictionary
             {
                 { "meshPath", shell.Mesh.ResourcePath },
-                { "pos", shell.GlobalTransform.origin },
-                { "rot", shell.GlobalTransform.basis.GetEuler() },
-                { "scale", shell.Scale.x }
+                { "pos", shell.GlobalTransform.Origin },
+                { "rot", shell.GlobalTransform.Basis.GetEuler() },
+                { "scale", shell.Scale.X }
             });
         }
         return savingData;
@@ -54,9 +54,9 @@ public class ShellsManager : Spatial, ISavable
         Vector3 newScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
         Basis newBasis = new Basis(newRot);
-        Transform newTransform = new Transform(newBasis, newPos);
+        Transform3D newTransform = new Transform3D(newBasis, newPos);
 
-        MeshInstance shell = new MeshInstance();
+        MeshInstance3D shell = new MeshInstance3D();
         Mesh newMesh = GD.Load<Mesh>(GetMeshPath(shellData["meshPath"].ToString()));
         shell.Mesh = newMesh;
         AddChild(shell);

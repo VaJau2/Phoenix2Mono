@@ -2,19 +2,19 @@
 
 namespace FurnStairs;
 
-public class FurnStairsVentDoor: FurnDoor, IDoorTeleport
+public partial class FurnStairsVentDoor: FurnDoor, IDoorTeleport
 {
     [Export] private NodePath teleportPointPath;
     [Export] private NodePath triggerAreaPath;
     
-    public Spatial TeleportPos { get; private set; }
+    public Node3D TeleportPos { get; private set; }
 
     private FurnStairsTriggerArea triggerArea;
 
     public override void _Ready()
     {
         base._Ready();
-        TeleportPos = GetNode<Spatial>(teleportPointPath);
+        TeleportPos = GetNode<Node3D>(teleportPointPath);
         triggerArea = GetNode<FurnStairsTriggerArea>(triggerAreaPath);
     }
     
@@ -34,7 +34,7 @@ public class FurnStairsVentDoor: FurnDoor, IDoorTeleport
         if (this is { IsOpen: false })
         {
             ClickFurn();
-            await ToSignal(this, nameof(Opened));
+            await ToSignal(this, SignalName.Opened);
         }
 
         player.TeleportToDoor(this);

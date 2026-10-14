@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class IdleState(
+public partial class IdleState(
     NpcCovers covers,
     NpcWeapons weapons,
     NavigationMovingController movingController,
@@ -35,7 +35,7 @@ public class IdleState(
         npc.tempVictim = null;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (tempNpc.followTarget != null)
         {
@@ -76,8 +76,8 @@ public class IdleState(
         {
             if (!isTeleported)
             {
-                npc.GlobalTranslation = npc.myStartPos;
-                npc.Rotation = new Vector3(0, npc.myStartRot.y, 0);
+                npc.GlobalPosition = npc.myStartPos;
+                npc.Rotation = new Vector3(0, npc.myStartRot.Y, 0);
                 isTeleported = true;
             }
         }

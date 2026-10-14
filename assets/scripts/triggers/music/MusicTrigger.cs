@@ -5,7 +5,7 @@ using Godot.Collections;
 //При запуске действует в зависимости от активности
 //Если активен, врубает первый "боевой" трек
 //Если неактивен, вырубает его и, если есть второй "спокойный" трек, врубает его
-public class MusicTrigger: TriggerBase
+public partial class MusicTrigger: TriggerBase
 {
     [Export] public NodePath audiPath;
     [Export] public AudioStream track;
@@ -40,7 +40,7 @@ public class MusicTrigger: TriggerBase
         SetProcess(true);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         //если не активен, заглушаем первый трек
         //если есть второй трек, врубаем его
