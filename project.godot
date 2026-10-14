@@ -201,6 +201,11 @@ textures/vram_compression/import_etc2_astc=false
 environment/defaults/default_clear_color=Color( 0, 0, 0, 1 )
 environment/defaults/default_environment="res://default_env.tres"
 
+[navigation]
+
+3d/default_cell_size=0.3
+3d/default_cell_height=0.2
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
