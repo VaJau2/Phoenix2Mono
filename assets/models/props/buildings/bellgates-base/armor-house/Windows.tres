@@ -5,6 +5,6 @@ resource_name = "Windows"
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.258821, 0.725491, 0.729412, 0.5 )
 roughness = 0.5

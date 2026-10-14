@@ -29,7 +29,7 @@ offset_bottom = 32.0
 scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 4 )
 texture = ExtResource( 7 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 offset_left = 40.0

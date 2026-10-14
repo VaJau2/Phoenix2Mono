@@ -4,7 +4,7 @@
 resource_name = "Glass"
 flags_transparent = true
 vertex_color_use_as_albedo = true
-params_depth_draw_mode = 3
+transparency = 4
 params_line_width = 0.1
 params_point_size = 0.1
 albedo_color = Color( 0, 1, 0.882353, 0.141176 )

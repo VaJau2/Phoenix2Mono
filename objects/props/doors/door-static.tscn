@@ -28,7 +28,7 @@ physics_material_override = ExtResource( 1 )
 transform = Transform3D( 1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
-material/0 = ExtResource( 7 )
+surface_material_override/0 = ExtResource( 7 )
 
 [node name="shape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00236702, 2.86101, -1.50955 )

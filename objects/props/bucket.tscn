@@ -24,7 +24,7 @@ extents = Vector3( 1, 1.00098, 1 )
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource( 2 )

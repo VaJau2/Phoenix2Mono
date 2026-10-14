@@ -142,38 +142,38 @@ surfaces/0 = {
 [node name="bush01" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5838, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush02" type="MeshInstance3D" parent="."]
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush03" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1002, 0, 0 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush04" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2775, 0, 14.4207 )
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush05" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.9814 )
 mesh = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush06" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1394, 0, 13.3476 )
 mesh = SubResource( 6 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush07" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.018, 0, -1.006 )
 mesh = SubResource( 7 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="bush08" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.1715, 1.90735e-06, 12.7251 )
 mesh = SubResource( 8 )
-material/0 = null
+surface_material_override/0 = null

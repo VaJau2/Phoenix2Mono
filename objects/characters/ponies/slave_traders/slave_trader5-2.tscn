@@ -220,27 +220,27 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 transform = Transform3D( 1.26706, -8.12113e-07, -3.21865e-06, -2.98023e-08, 1.2279, -0.312557, 3.33786e-06, 0.312557, 1.2279, 0.00631635, 0.608232, 0.236319 )
 mesh = SubResource( 6 )
 skeleton = NodePath("")
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 10 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="coat" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 4 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="gasMask" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 5 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="18"]
 mesh = SubResource( 8 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 9 )

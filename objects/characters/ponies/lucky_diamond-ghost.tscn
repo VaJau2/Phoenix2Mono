@@ -339,8 +339,8 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 transform = Transform3D( 1.1, 2.44472e-09, 9.31323e-10, -3.49246e-10, 1.1, 1.19209e-07, -1.86265e-09, 1.19209e-07, 1.1, 0.0123156, -2.80294, 1.34189 )
 mesh = SubResource( 6 )
 skin = SubResource( 2 )
-material/0 = SubResource( 7 )
-material/1 = SubResource( 8 )
+surface_material_override/0 = SubResource( 7 )
+surface_material_override/1 = SubResource( 8 )
 
 [node name="floorRay" parent="Armature/Skeleton" index="14"]
 parentPath = NodePath("../../../../lucky_diamond")
@@ -349,7 +349,7 @@ isActive = false
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
-material/0 = SubResource( 7 )
+surface_material_override/0 = SubResource( 7 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 11 )
@@ -362,7 +362,7 @@ startEyesVariant = "neitral"
 parameters/StateMachine/playback = SubResource( 5 )
 
 [node name="material-anim" type="AnimationPlayer" parent="." index="11"]
-playback_speed = 0.5
+speed_scale = 0.5
 anims/RESET = SubResource( 12 )
 anims/idle = SubResource( 13 )
 script = SubResource( 14 )

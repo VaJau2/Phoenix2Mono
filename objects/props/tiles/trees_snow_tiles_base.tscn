@@ -9,7 +9,7 @@
 [sub_resource type="StandardMaterial3D" id=1]
 resource_name = "tree01"
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 2 )
 metallic = 1.0
@@ -36,7 +36,7 @@ extents = Vector3( 0.266074, 4.49729, 0.237883 )
 [sub_resource type="StandardMaterial3D" id=4]
 resource_name = "tree04"
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 3 )
 metallic = 1.0
@@ -63,7 +63,7 @@ extents = Vector3( 0.267323, 4.49729, 0.296129 )
 [sub_resource type="StandardMaterial3D" id=7]
 resource_name = "tree05"
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 5 )
 metallic = 1.0
@@ -90,7 +90,7 @@ extents = Vector3( 0.490107, 4.49729, 0.548255 )
 [sub_resource type="StandardMaterial3D" id=10]
 resource_name = "tree12"
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 4 )
 metallic = 1.0
@@ -119,7 +119,7 @@ extents = Vector3( 0.316197, 4.49729, 0.356642 )
 [node name="tree01" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, -10, 0, -1 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="tree01"]
 physics_material_override = ExtResource( 1 )
@@ -131,7 +131,7 @@ shape = SubResource( 3 )
 [node name="tree04" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, -2.4373, 0, 0 )
 mesh = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="tree04"]
 physics_material_override = ExtResource( 1 )
@@ -143,7 +143,7 @@ shape = SubResource( 6 )
 [node name="tree05" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.3, 0, 0, 0, 1, 0, 0, 0, 1.3, 4.76406, -1.90735e-06, 0.188 )
 mesh = SubResource( 8 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="tree05"]
 physics_material_override = ExtResource( 1 )
@@ -155,7 +155,7 @@ shape = SubResource( 9 )
 [node name="tree12" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 12, 0, 0 )
 mesh = SubResource( 11 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="tree12"]
 transform = Transform3D( 1.08333, 0, 0, 0, 1, 0, 0, 0, 1.08333, 0, 0, 0 )

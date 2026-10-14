@@ -24,7 +24,7 @@ data = PackedVector3Array( -1.2852, -0.0002, 1.701, -1.2852, 2.0276, -2, -1.2852
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource( 2 )

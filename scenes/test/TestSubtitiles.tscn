@@ -168,14 +168,14 @@ transform = Transform3D( -1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.
 cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="map2" type="MeshInstance3D" parent="Scene/terrain" index="9"]
 transform = Transform3D( -1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799 )
 cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 11 )
+surface_material_override/0 = ExtResource( 11 )
 
 [node name="mesh" type="NavigationRegion3D" parent="Scene" index="7"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )

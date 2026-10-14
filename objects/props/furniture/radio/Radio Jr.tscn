@@ -116,57 +116,57 @@ script = ExtResource( 10 )
 [node name="Radio JR" type="MeshInstance3D" parent="."]
 transform = Transform3D( 100, 0, 0, 0, -3.57628e-05, 100, 0, -100, -3.57628e-05, 0, 0.349607, 0 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="Antenna" type="MeshInstance3D" parent="."]
 transform = Transform3D( 70.7107, -1.28028e-06, 70.7107, -70.7107, -3.09086e-06, 70.7107, 1.28028e-06, -100, -3.09086e-06, -0.38, 0.349607, 0.25 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="Hoofle" type="MeshInstance3D" parent="."]
 transform = Transform3D( -4.37114e-06, -100, 0, 25.8819, -1.13133e-06, 96.5926, -96.5926, 4.2222e-06, 25.8819, 0, 0.464607, 0 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 4 )
+surface_material_override/0 = ExtResource( 4 )
 
 [node name="Arrow" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.91069e-13, -4.37114e-06, -100, -100, -4.37114e-06, 0, -4.37114e-06, 100, -4.37114e-06, -0.23, 0.349607, -0.145 )
 mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="Volume Lever" type="MeshInstance3D" parent="."]
 transform = Transform3D( -4.37114e-06, 100, 4.37114e-06, 0, -4.37114e-06, 100, 100, 4.37114e-06, 1.91069e-13, 0.58, 0.34, 0 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="Frequency Lever" type="MeshInstance3D" parent="."]
 transform = Transform3D( -4.37114e-06, -100, -4.37114e-06, 0, -4.37114e-06, 100, -100, 4.37114e-06, 0, -0.58, 0.34, 0 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="L" type="MeshInstance3D" parent="."]
 transform = Transform3D( -100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0.35, 0.68, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="M" type="MeshInstance3D" parent="."]
 transform = Transform3D( -100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0.175, 0.68, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="K" type="MeshInstance3D" parent="."]
 transform = Transform3D( -100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0, 0.68, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="U1" type="MeshInstance3D" parent="."]
 transform = Transform3D( -100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, -0.175, 0.68, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="U2" type="MeshInstance3D" parent="."]
 transform = Transform3D( -100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, -0.35, 0.68, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.349607, 0 )

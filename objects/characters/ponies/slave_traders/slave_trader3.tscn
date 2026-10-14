@@ -195,12 +195,12 @@ bone_name = "head"
 [node name="Mane" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment2" index="0"]
 transform = Transform3D( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631622, 1.54469, 0.294212 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 script = ExtResource( 5 )
 npcName = "slave_trader3"
 startEyesVariant = "neitral"
@@ -208,4 +208,4 @@ startEyesVariant = "neitral"
 [node name="Tail" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 4 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null

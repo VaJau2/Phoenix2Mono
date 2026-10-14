@@ -43,4 +43,4 @@ shape = SubResource( 1 )
 
 [node name="lightstand" type="MeshInstance3D" parent="."]
 mesh = SubResource( 3 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )

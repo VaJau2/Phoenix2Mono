@@ -362,7 +362,7 @@ parameters/BlendSpace2D/blend_position = Vector2( 0, 0 )
 parameters/StateMachine/playback = SubResource( 5 )
 
 [node name="material-anim" type="AnimationPlayer" parent="." index="11"]
-playback_speed = 0.5
+speed_scale = 0.5
 anims/RESET = SubResource( 17 )
 anims/idle = SubResource( 18 )
 script = SubResource( 19 )

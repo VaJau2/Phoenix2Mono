@@ -71,7 +71,7 @@ func _ready():
 transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0198243, -0.143151, -0.194114 )
 cast_shadow = 0
 mesh = ExtResource( 2 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="sprite" type="Sprite3D" parent="."]
 transform = Transform3D( 4.94923, -0.924958, -4.86308, 0, 6.87672, -1.30795, 4.95026, 0.924765, 4.86207, 0.0025053, 1.33985, -0.0143251 )

@@ -39,7 +39,7 @@ offset_top = -29.99
 offset_right = 30.01
 offset_bottom = 0.0100002
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 
 [node name="timer" type="ColorRect" parent="back" groups=["ignore_color"]]
 anchor_top = 1.033
@@ -59,7 +59,7 @@ offset_right = 30.0
 offset_bottom = 60.008
 scale = Vector2( 1, -1 )
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 
 [node name="message" type="Label" parent="."]
 visible = false

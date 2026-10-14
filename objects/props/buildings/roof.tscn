@@ -32,10 +32,10 @@ shape = SubResource( 6 )
 transform = Transform3D( 1.5, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="roof2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.5, 0, 0, 0, -1, 0, 0, 0, 2, 0, -0.005, 0 )
 use_in_baked_light = true
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )

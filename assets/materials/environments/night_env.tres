@@ -2,21 +2,24 @@
 
 [ext_resource path="res://assets/textures/background/nightskybox.png" type="Texture2D" id=1]
 
-[sub_resource type="Sky" id=1]
+[sub_resource type="PanoramaSkyMaterial" id=2]
 panorama = ExtResource( 1 )
+
+[sub_resource type="Sky" id=1]
+sky_material = SubResource( 2 )
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_custom_fov = 75.0
-background_energy = 0.5
+background_energy_multiplier = 0.5
 ambient_light_color = Color( 0.0627451, 0.0784314, 0.184314, 1 )
 ambient_light_energy = 0.5
 ambient_light_sky_contribution = 0.69
 fog_enabled = true
-fog_color = Color( 0.105882, 0.105882, 0.12549, 1 )
+fog_light_color = Color( 0.105882, 0.105882, 0.12549, 1 )
 fog_sun_color = Color( 0, 0, 0, 1 )
-fog_sun_amount = 0.51
+fog_sun_scatter = 0.51
 fog_depth_begin = 15.0
 fog_depth_curve = 1.03527
 fog_transmit_enabled = true

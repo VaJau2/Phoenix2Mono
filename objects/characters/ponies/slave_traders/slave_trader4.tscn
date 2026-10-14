@@ -220,12 +220,12 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 transform = Transform3D( 1.26706, -8.12113e-07, -3.21865e-06, -2.98023e-08, 1.2279, -0.312557, 3.33786e-06, 0.312557, 1.2279, 0.00631568, 1.09776, 0.488928 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 script = ExtResource( 1 )
 npcName = "slave_trader4"
 
@@ -233,14 +233,14 @@ npcName = "slave_trader4"
 transform = Transform3D( 1.05, 0, 0, 0, 1.07, -8.9407e-08, 0, 8.9407e-08, 1.05, 0, -0.0868466, -0.0150259 )
 mesh = SubResource( 4 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="mask" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 5 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="18"]
 mesh = SubResource( 6 )
 skin = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null

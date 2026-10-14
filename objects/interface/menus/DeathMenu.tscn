@@ -89,7 +89,7 @@ offset_right = -44.0
 offset_bottom = -51.0
 theme = ExtResource( 2 )
 text = "               [Последнее сохранение]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,7 +104,7 @@ offset_right = -44.0
 offset_bottom = -19.0
 theme = ExtResource( 2 )
 text = "               [Выбрать сохранение]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,7 +119,7 @@ offset_right = -44.0
 offset_bottom = 13.0
 theme = ExtResource( 2 )
 text = "               [В главное меню]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }

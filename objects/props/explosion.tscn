@@ -43,8 +43,10 @@ emission_box_extents = Vector3( 3, 3, 3 )
 direction = Vector3( 1, 1, 1 )
 spread = 180.0
 gravity = Vector3( 0, 1, 0 )
-initial_velocity = 40.0
-scale = 2.0
+initial_velocity_min = 40
+initial_velocity_max = 40
+scale_min = 2
+scale_max = 2
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=5]
@@ -85,7 +87,8 @@ emission_box_extents = Vector3( 10, 10, 10 )
 direction = Vector3( 0.5, 1, 0.5 )
 spread = 90.0
 gravity = Vector3( 0, -0.4, 0 )
-initial_velocity = 10.0
+initial_velocity_min = 10
+initial_velocity_max = 10
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=10]
@@ -105,9 +108,12 @@ emission_box_extents = Vector3( 15, 10, 15 )
 direction = Vector3( 1, 1, 1 )
 spread = 180.0
 gravity = Vector3( 0, -0.4, 0 )
-initial_velocity = 15.0
-angular_velocity = 5.0
-scale = 3.0
+initial_velocity_min = 15
+initial_velocity_max = 15
+angular_velocity_min = 5
+angular_velocity_max = 5
+scale_min = 3
+scale_max = 3
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=13]

@@ -117,9 +117,10 @@ emission_shape = 2
 emission_box_extents = Vector3( 45, 10, 45 )
 direction = Vector3( 0, -1, 0 )
 spread = 0.0
-initial_velocity = 120.0
-scale = 0.1
-scale_random = 0.5
+initial_velocity_min = 120
+initial_velocity_max = 120
+scale_min = 0.05
+scale_max = 0.1
 
 [sub_resource type="StandardMaterial3D" id=52]
 flags_transparent = true
@@ -150,10 +151,12 @@ func _process(_delta):
 emission_shape = 2
 emission_box_extents = Vector3( 40, 2, 40 )
 direction = Vector3( 0, 1, 0 )
-initial_velocity = 2.0
-damping = 0.5
-scale = 0.1
-scale_random = 0.5
+initial_velocity_min = 2
+initial_velocity_max = 2
+damping_min = 0.5
+damping_max = 0.5
+scale_min = 0.05
+scale_max = 0.1
 
 [sub_resource type="QuadMesh" id=56]
 material = SubResource( 52 )
@@ -234,7 +237,7 @@ text = "Чтобы прочитать подсказку, прочтите эт�
 текст подсказки."
 align = 1
 valign = 1
-autowrap = true
+autowrap_mode = 3
 
 [node name="ok" type="Label" parent="canvas/hintModal/back"]
 anchor_top = 1.0
@@ -762,37 +765,37 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0871868, 0, 4.97528 )
 [node name="pic" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 314.055, 0, 0, 0, 55.517, 0, 0, 0, 23.0835, -8.10192, 15, -233.14 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="pic7" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -5.11661e-05, 0, 23.0835, 0, 55.517, 0, -314.055, 0, -3.76078e-06, -144.92, 15, -73.4247 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="pic2" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -5.11661e-05, 0, 23.0835, 0, 55.517, 0, -314.055, 0, -3.76078e-06, -131.831, 20.8836, -54.5629 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 20 )
+surface_material_override/0 = ExtResource( 20 )
 
 [node name="pic4" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -314.055, 0, -7.52156e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, -8.10192, 15, 168.861 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic5" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -314.055, 0, -7.52156e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, -321.923, 15, 168.861 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic6" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -314.055, 0, -7.52156e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, 305.035, 15, 168.861 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic3" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -5.32203e-05, 0, -23.8414, 0, 55.517, 0, 316.28, 0, -3.76078e-06, 144.929, 15, -73.7851 )
 mesh = SubResource( 46 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="checkFall" type="Node" parent="terrain"]
 script = ExtResource( 39 )

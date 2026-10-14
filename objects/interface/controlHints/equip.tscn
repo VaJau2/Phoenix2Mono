@@ -50,7 +50,7 @@ offset_bottom = 32.0
 scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 2 )
 texture = ExtResource( 1 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Hold" type="Sprite2D" parent="Icon"]
 position = Vector2( 24, 16 )
@@ -77,6 +77,6 @@ valign = 1
 
 [node name="anim" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Icon")
-playback_speed = 4.0
+speed_scale = 4.0
 anims/RESET = SubResource( 1 )
 anims/hold = SubResource( 2 )

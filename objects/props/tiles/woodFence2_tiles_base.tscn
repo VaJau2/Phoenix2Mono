@@ -61,7 +61,7 @@ points = PackedVector3Array( -0.174236, 0, 0.2, -0.174236, 0, 0.2, -0.174236, 3.
 
 [node name="fence" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="fence"]
 physics_material_override = ExtResource( 2 )
@@ -72,7 +72,7 @@ shape = SubResource( 4 )
 [node name="fence001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="fence001"]
 physics_material_override = ExtResource( 2 )
@@ -83,7 +83,7 @@ shape = SubResource( 5 )
 [node name="fence002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.4 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="fence002"]
 physics_material_override = ExtResource( 2 )

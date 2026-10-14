@@ -192,22 +192,22 @@ transform = Transform3D( 2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, 116.289, 2.00774, 130.
 [node name="pic" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 314.055, 0, 0, 0, 55.517, 0, 0, 0, 23.0835, 0.277929, 15, -157.554 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="pic4" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -314.055, 0, -3.59995e-06, 0, 55.517, 0, 4.59135e-05, 0, -23.0835, 0.354576, 15, 158.702 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="pic2" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -5.32203e-05, 0, 23.8414, 0, 55.517, 0, -316.28, 0, -3.76078e-06, -156.648, 15, 0.655805 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="pic3" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -5.32203e-05, 0, -23.8414, 0, 55.517, 0, 316.28, 0, -3.76078e-06, 156.721, 15, 0.655805 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="sky" type="StaticBody3D" parent="terrain"]
 

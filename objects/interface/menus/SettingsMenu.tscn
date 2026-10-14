@@ -894,7 +894,7 @@ offset_bottom = -152.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyBackLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -920,7 +920,7 @@ offset_bottom = -120.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyLeftLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -946,7 +946,7 @@ offset_bottom = -88.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyRightLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -975,7 +975,7 @@ offset_bottom = -56.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyJumpLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1001,7 +1001,7 @@ offset_bottom = -18.0
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyRunLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1027,7 +1027,7 @@ offset_bottom = 7.39999
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyUseLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1056,7 +1056,7 @@ offset_bottom = 39.4
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyCrouchLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1085,7 +1085,7 @@ offset_bottom = 71.4
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyDashLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1111,7 +1111,7 @@ offset_bottom = 103.4
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyLegsLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1137,7 +1137,7 @@ offset_bottom = 135.4
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyCameraLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1163,7 +1163,7 @@ offset_bottom = -152.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyTaskLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1189,7 +1189,7 @@ offset_bottom = -120.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyInventoryLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1218,7 +1218,7 @@ offset_bottom = -88.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyAutohealLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1244,7 +1244,7 @@ offset_bottom = -56.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyQuicksaveLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1270,7 +1270,7 @@ offset_bottom = -24.6
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="keyQuickloadLabel" type="Label" parent="Controls"]
 anchor_left = 0.5
@@ -1296,7 +1296,7 @@ offset_bottom = 7.39999
 scale = Vector2( 0.6, 0.6 )
 pivot_offset = Vector2( 24, 16 )
 texture = ExtResource( 11 )
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Difficulty" type="Control" parent="." groups=["ignore_color"]]
 visible = false

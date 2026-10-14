@@ -155,37 +155,37 @@ shape = SubResource( 1 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20694, 0 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="door1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.04, 1.03246e-07, 0, -3.49691e-09, 1.181, 0, 0, 0, -0.855, 0.881658, 0.0183339, 1.62745 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="door2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.0395067, 0, 0, 0, 1.18115, 0, 0, 0, 0.855048, 0.881658, 0.0183339, -1.66032 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="books3" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20694, 0 )
 use_in_baked_light = true
 mesh = SubResource( 4 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="books2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3209, 0 )
 use_in_baked_light = true
 mesh = SubResource( 5 )
-material/0 = ExtResource( 4 )
+surface_material_override/0 = ExtResource( 4 )
 
 [node name="books1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0858641, 0 )
 use_in_baked_light = true
 mesh = SubResource( 6 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20694, 0 )

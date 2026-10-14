@@ -285,7 +285,7 @@ skeleton = NodePath("")
 [node name="helmet" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="2"]
 transform = Transform3D( 1.32733, 0.0380084, 0.00906104, -0.0344255, 1.28323, -0.339835, -0.0184838, 0.339454, 1.28365, 0.0154551, 1.53369, 0.227691 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 6 )
+surface_material_override/0 = ExtResource( 6 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 11 )

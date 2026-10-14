@@ -250,19 +250,19 @@ transform = Transform3D( 0.998633, 0.0127738, -0.0506928, -0.0514903, 0.072699, 
 [node name="hair" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform3D( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631587, 1.30521, 0.429072 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="horn" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="2"]
 transform = Transform3D( 1.3015, 5.52138e-07, -3.36691e-06, 3.69909e-13, 1.26352, 0.21391, 3.41333e-06, -0.210531, 1.2838, 0.00760086, 1.56884, -0.274309 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
-material/0 = null
-material/1 = null
-material/2 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
 script = ExtResource( 8 )
 npcName = "goldenblood"
 startEyesVariant = "neitral"
@@ -270,13 +270,13 @@ startEyesVariant = "neitral"
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 5 )
 skin = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="scarf" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 transform = Transform3D( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0 )
 mesh = SubResource( 6 )
 skin = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="animTree" parent="." index="4"]
 parameters/BlendSpace2D/blend_position = Vector2( 0.033, 0.003 )

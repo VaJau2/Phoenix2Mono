@@ -47,7 +47,7 @@ openSound = ExtResource( 4 )
 [node name="Box002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.240647, 0, 0, 0, 0.240647, 0, 0, 0, 0.240647, 0.0556159, 2.12901, -2.56769 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="Box003" type="MeshInstance3D" parent="Box002"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, 0.744057, 0, 13.5953 )

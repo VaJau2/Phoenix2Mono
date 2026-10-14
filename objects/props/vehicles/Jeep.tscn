@@ -49,12 +49,12 @@ physics_material_override = ExtResource( 3 )
 [node name="jeap2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 2.06937, 0, 0, 0, 2.06937, 0, 0, 0, 2.06937, -0.0871072, -0.604929, 1.57622 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="Cube2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.0684332, 0, 0, 0, 0.0681405, 0, 0, 0, 1.15181, -0.0730351, 5.13666, 1.1925 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 2.06937, 0, 0, 0, 2.06937, 0, 0, 0, 2.06937, -0.107592, 0.951368, 0.506172 )

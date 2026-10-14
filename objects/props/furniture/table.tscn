@@ -35,4 +35,4 @@ shape = SubResource( 1 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1.10829, 0, -1.03339, 0 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )

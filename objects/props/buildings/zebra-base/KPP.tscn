@@ -44,7 +44,7 @@ spot_angle = 49.0357
 [node name="Box002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.367683, 0, 0, 0, 0.367683, 0, 0, 0, 0.367683, -0.595333, 0.458325, -0.127929 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 0.915045, 0, 0, 0, 0.915045, 0, 0, 0, 0.915045, -0.595333, 5.43878, -0.127929 )

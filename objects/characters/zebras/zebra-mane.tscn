@@ -207,7 +207,7 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 [node name="Mane" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform3D( 0.124367, -8.19713e-07, -3.2203e-06, 4.24165e-14, 1.2279, -0.312557, 3.26164e-07, 0.312557, 1.2279, 0.00658495, 2.56006, 0.545186 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
@@ -219,7 +219,7 @@ startEyesVariant = "neitral"
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 4 )
 skin = SubResource( 3 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 5 )

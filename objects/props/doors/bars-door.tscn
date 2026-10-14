@@ -125,7 +125,7 @@ shape = SubResource( 9 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000112537, -6.34789e-05, 6.62208e-05 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 volume_db = 10.0

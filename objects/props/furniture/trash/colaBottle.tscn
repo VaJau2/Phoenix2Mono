@@ -37,7 +37,7 @@ surfaces/0 = {
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+surface_material_override/0 = SubResource( 2 )
 
 [node name="water-level" type="MeshInstance3D" parent="."]
 transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.196325, -0.788346, 0 )

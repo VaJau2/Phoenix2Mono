@@ -49,9 +49,9 @@ shape = SubResource( 2 )
 [node name="Box002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.303, 0, 0, 0, 0.303, 0, 0, 0, 0.303, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="wood" type="MeshInstance3D" parent="."]
 transform = Transform3D( 9.34021, 0, 0, 0, 9.34021, 0, 0, 0, 9.34021, 0, 0, 0 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null

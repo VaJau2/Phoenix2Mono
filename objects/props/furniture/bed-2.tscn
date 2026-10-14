@@ -45,4 +45,4 @@ shape = SubResource( 3 )
 [node name="bed" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.721203, 0, 0, 0, 0.721203, 0, 0, 0, 0.721203, -0.0266383, 0.571382, -3.52307 )
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null

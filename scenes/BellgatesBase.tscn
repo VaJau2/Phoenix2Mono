@@ -317,7 +317,7 @@ extents = Vector3( 0.231829, 1.91529, 0.184935 )
 [sub_resource type="StandardMaterial3D" id=21]
 render_priority = 4
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 7 )
@@ -378,7 +378,8 @@ albedo_color = Color( 0.960784, 1, 0.262745, 0.392157 )
 [sub_resource type="ParticleProcessMaterial" id=3]
 spread = 50.0
 gravity = Vector3( 0, -6, 0 )
-initial_velocity = 2.0
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id=4]
 material = ExtResource( 138 )
@@ -481,7 +482,8 @@ albedo_color = Color( 0.960784, 1, 0.262745, 0.392157 )
 [sub_resource type="ParticleProcessMaterial" id=349]
 spread = 50.0
 gravity = Vector3( 0, -6, 0 )
-initial_velocity = 2.0
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id=350]
 material = ExtResource( 138 )
@@ -1255,21 +1257,21 @@ transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 89.1041, -0.350516, 30
 
 [node name="ElectricLine" parent="terrain/props/light/Light" instance=ExtResource( 33 )]
 transform = Transform3D( -0.356755, -0.00175162, -0.352472, -0.00248445, 0.499994, 0, 0.354582, 0.00174095, -0.354631, 4.34157, 19.6195, 0.432514 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="Light2" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( -3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 64.1669, -0.350516, 56.0873 )
 
 [node name="ElectricLine" parent="terrain/props/light/Light2" instance=ExtResource( 33 )]
 transform = Transform3D( -8.14572e-08, -7.10867e-10, -0.5, -0.00436327, 0.499981, 0, 0.499981, 0.00436327, -8.14603e-08, 4.34158, 19.6195, 0.43251 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="Light3" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( -3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 24.8428, -0.350516, 56.0571 )
 
 [node name="ElectricLine" parent="terrain/props/light/Light3" instance=ExtResource( 33 )]
 transform = Transform3D( -8.14572e-08, -7.10867e-10, -0.5, -0.00436327, 0.499981, 0, 0.499981, 0.00436327, -8.14603e-08, 4.34158, 19.6195, 0.43251 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="Light4" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( -3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -14.5024, -0.350516, 55.9703 )
@@ -1279,21 +1281,21 @@ transform = Transform3D( -1.14044e-07, 0, -0.7, 0, 0.7, 0, 0.7, 0, -1.14044e-07,
 
 [node name="ElectricLine2" parent="terrain/props/light/Light5" instance=ExtResource( 33 )]
 transform = Transform3D( 0.00515126, 0, -0.499983, 0, 0.5, 0, 0.623979, 0, 0.00412761, 3.946, 19.308, 0.665054 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="Light6" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( -1.14044e-07, 0, -0.7, 0, 0.7, 0, 0.7, 0, -1.14044e-07, 152.683, -0.351, 55.215 )
 
 [node name="ElectricLine" parent="terrain/props/light/Light6" instance=ExtResource( 33 )]
 transform = Transform3D( -2.18548e-08, -1.90724e-10, -0.5, -0.00436326, 0.499981, 0, 0.499981, 0.00436327, -2.18557e-08, 4.34157, 19.6195, 0.432518 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="Light7" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 161.032, -0.351, 88.4783 )
 
 [node name="ElectricLine" parent="terrain/props/light/Light7" instance=ExtResource( 33 )]
 transform = Transform3D( -0.145329, -0.00145778, 0.471268, -0.00379604, 0.499981, 0, -0.409988, -0.00411254, -0.167051, 4.34154, 19.6195, -0.181206 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="houses" type="Node3D" parent="terrain/props"]
 
@@ -1322,7 +1324,7 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/armor-house/props/lamp"]
 transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 346 )
+surface_material_override/0 = SubResource( 346 )
 
 [node name="light" type="OmniLight3D" parent="terrain/props/houses/armor-house/props/lamp"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0147314, -0.579936, 0.0529908 )
@@ -1374,7 +1376,7 @@ shape = SubResource( 2 )
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/armor-house/props/lamp2"]
 transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150375, 0.945635, 0.0530243 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 127 )
+surface_material_override/0 = ExtResource( 127 )
 
 [node name="light" type="OmniLight3D" parent="terrain/props/houses/armor-house/props/lamp2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0147314, -0.579936, 0.0529908 )
@@ -1496,7 +1498,7 @@ texture = ExtResource( 12 )
 [node name="Mirror" parent="terrain/props/houses/armor-house/props" instance=ExtResource( 55 )]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0324, 6.2, -8.4992 )
 skeleton = NodePath("../plakat2")
-material/0 = SubResource( 357 )
+surface_material_override/0 = SubResource( 357 )
 
 [node name="Area" type="Area3D" parent="terrain/props/houses/armor-house/props/Mirror"]
 
@@ -1618,7 +1620,7 @@ shape = SubResource( 347 )
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp1"]
 transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
-material/0 = SubResource( 209 )
+surface_material_override/0 = SubResource( 209 )
 
 [node name="light" type="OmniLight3D" parent="terrain/props/houses/main-house/props/light/lamp1"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0147314, -0.579936, 0.0529908 )
@@ -1670,7 +1672,7 @@ shape = SubResource( 347 )
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp2"]
 transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
-material/0 = SubResource( 210 )
+surface_material_override/0 = SubResource( 210 )
 
 [node name="light" type="OmniLight3D" parent="terrain/props/houses/main-house/props/light/lamp2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0147314, -0.579936, 0.0529908 )
@@ -1722,7 +1724,7 @@ shape = SubResource( 347 )
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp3"]
 transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
-material/0 = SubResource( 211 )
+surface_material_override/0 = SubResource( 211 )
 
 [node name="light" type="OmniLight3D" parent="terrain/props/houses/main-house/props/light/lamp3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0147314, -0.579936, 0.0529908 )
@@ -1810,13 +1812,13 @@ transform = Transform3D( 0.075, 0, -1.22935e-08, 0, 0.075, 0, 1.22935e-08, 0, 0.
 transform = Transform3D( 4.35565, 3.10921e-08, -1.35908e-15, 0, -1.74846e-07, -4, 3.10921e-08, 4, -1.74846e-07, 22.206, 5.46067, -17.0777 )
 cast_shadow = 0
 mesh = SubResource( 69 )
-material/0 = ExtResource( 95 )
+surface_material_override/0 = ExtResource( 95 )
 
 [node name="map2" type="MeshInstance3D" parent="terrain/props/houses/main-house/props"]
 transform = Transform3D( 3.97801, 8.82653e-09, 0.209438, 0.418877, -1.68112e-07, -1.989, 8.82653e-09, 4, -8.40558e-08, 15.7715, 6.99284, -17.0707 )
 cast_shadow = 0
 mesh = SubResource( 69 )
-material/0 = ExtResource( 100 )
+surface_material_override/0 = ExtResource( 100 )
 
 [node name="terminal" parent="terrain/props/houses/main-house/props" instance=ExtResource( 92 )]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62807, 3.94334, 1.37274 )
@@ -1892,7 +1894,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -98.2579, 0.447155, 88.1374 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/shootingRange/wall"]
 transform = Transform3D( 1, 0, 0, 0, 8, 0, 0, 0, 20, 0, 6.935, 0 )
 mesh = SubResource( 28 )
-material/0 = ExtResource( 67 )
+surface_material_override/0 = ExtResource( 67 )
 
 [node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/shootingRange/wall"]
 transform = Transform3D( 1.48048, 0, 0, 0, 8.41748, 0, 0, 0, 23.8927, 0, 7.477, 0 )
@@ -1986,47 +1988,47 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.5631, 0, 23.9769 )
 [node name="pic4" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -210.572, 0, -5.04316e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, 101.303, 6.64061, 542.316 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic5" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -184.856, 0, 11.0545, 0, 55.517, 0, -100.841, 0, -20.2644, -92.0737, 5.92011, 494.807 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic8" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -148.005, 0, 16.4196, 0, 55.517, 0, -149.783, 0, -16.2248, -257.864, 6.20327, 370.132 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic9" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -174.578, 0, -12.9071, 0, 55.517, 0, 117.741, 0, -19.1378, 407.778, 7.20751, 468.559 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic10" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -136.909, 0, -17.5384, 0, 55.517, 0, 159.989, 0, -15.0083, 563.254, 7.20752, 330.145 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic11" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -111.199, 4.16986, -19.5256, 29.6517, 54.9638, 0, 176.341, -6.61267, -12.3125, 686.74, -7.92163, 162.884 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic12" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -87.8441, 0, 20.9789, 0, 55.517, 0, -191.374, 0, -9.62972, -375.17, 6.56421, 201.035 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic13" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -48.7836, -1.81057, 22.4428, -29.3533, 54.975, -1.07444e-08, -202.729, -7.52417, -5.40049, -442.736, -7.78323, 4.62217 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="pic6" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -202.059, 0, -6.49696, 0, 55.517, 0, 59.2663, 0, -22.1504, 305.199, 6.64061, 513.501 )
 mesh = SubResource( 120 )
-material/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource( 16 )
 
 [node name="twilightPatrol" type="Node3D" parent="terrain"]
 
@@ -2092,8 +2094,8 @@ mesh = SubResource( 43 )
 [node name="walls" type="MeshInstance3D" parent="rooms/sklad/walls"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00910948, 0 )
 mesh = SubResource( 44 )
-material/0 = ExtResource( 36 )
-material/1 = ExtResource( 38 )
+surface_material_override/0 = ExtResource( 36 )
+surface_material_override/1 = ExtResource( 38 )
 
 [node name="CollisionShape" type="CollisionShape3D" parent="rooms/sklad/walls"]
 transform = Transform3D( 1, 0, 0, 0, 1.03534, 0, 0, 0, 1, 0, -0.0331292, 0 )
@@ -2467,7 +2469,7 @@ shape = SubResource( 72 )
 [node name="MeshInstance" type="MeshInstance3D" parent="rooms/bunker/floor"]
 transform = Transform3D( 17.4717, 0, 0, 0, 1, 0, 0, 0, 16.3122, 0, 0, 0 )
 mesh = SubResource( 73 )
-material/0 = ExtResource( 36 )
+surface_material_override/0 = ExtResource( 36 )
 
 [node name="sparkleTeleport" type="Node3D" parent="rooms/bunker"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01707, 0 )

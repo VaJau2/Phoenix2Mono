@@ -59,7 +59,7 @@ shape = SubResource( 4 )
 [node name="hanger" type="MeshInstance3D" parent="."]
 transform = Transform3D( 2.2539e-08, 0.4727, 0, -0.378142, 2.81751e-08, 0, 0, 0, 0.46767, 0.0145369, 0.673771, 0 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="coat" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.851695, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85681, 1.67994 )

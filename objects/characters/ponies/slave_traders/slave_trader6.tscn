@@ -235,27 +235,27 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="coat" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="glasses" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 7 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="rings" type="MeshInstance3D" parent="Armature/Skeleton" index="18"]
 mesh = SubResource( 8 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="19"]
 mesh = SubResource( 9 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="BoneAttachment2" type="BoneAttachment3D" parent="Armature/Skeleton" index="20"]
 transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.86476, 0.00492323, 0.897315, 0.441363, -6.66017e-13, 1.69933, 1.11108 )
@@ -264,4 +264,4 @@ bone_name = "head"
 [node name="mane" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment2" index="0"]
 transform = Transform3D( 1.26649, 0.00180435, -0.0380158, -0.00426758, 1.26438, -0.0821615, 0.0378186, 0.0822525, 1.26382, 0.0435127, 1.23038, 0.222755 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null

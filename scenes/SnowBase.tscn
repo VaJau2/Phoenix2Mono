@@ -670,8 +670,10 @@ emission_shape = 2
 emission_box_extents = Vector3( 2, 1, 1 )
 spread = 50.0
 gravity = Vector3( 0, -6, 0 )
-initial_velocity = 2.0
-scale = 2.0
+initial_velocity_min = 2
+initial_velocity_max = 2
+scale_min = 2
+scale_max = 2
 
 [sub_resource type="QuadMesh" id=61]
 material = ExtResource( 98 )
@@ -1246,42 +1248,42 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -93.1
 [node name="pic4" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -210.572, 0, -5.04316e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, -8.21464, 27.6253, 187.759 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic10" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -9.20439e-06, 0, -23.0835, 0, 55.517, 0, 210.572, 0, -1.00901e-06, 320.218, 27.6253, 60.3232 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic11" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -9.20439e-06, 0, -23.0835, 0, 55.517, 0, 210.572, 0, -1.00901e-06, 322.796, 27.6253, -53.6188 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic5" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -210.572, 0, -5.04316e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, 138.546, 27.625, 187.019 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic6" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -210.572, 0, -5.04316e-06, 0, 55.517, 0, 0.000102332, 0, -23.0835, -214.671, 27.6253, 187.759 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic7" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 210.572, 0, 0, 0, 55.517, 0, 0, 0, 23.0835, -8.21462, 27.6253, -206.584 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic8" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 210.572, 0, 0, 0, 55.517, 0, 0, 0, 23.0835, 138.546, 27.6253, -206.584 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="pic9" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 210.572, 0, 0, 0, 55.517, 0, 0, 0, 23.0835, -214.671, 27.6253, -206.584 )
 mesh = SubResource( 19 )
-material/0 = ExtResource( 18 )
+surface_material_override/0 = ExtResource( 18 )
 
 [node name="props" type="Node3D" parent="terrain"]
 
@@ -2245,7 +2247,7 @@ transform = Transform3D( 4.35445, 0, 0, 0, 2.909, 0, 0, 0, 3.602, -23.3643, 0.22
 [node name="MeshInstance" type="MeshInstance3D" parent="rooms/1floor/props/water"]
 transform = Transform3D( 0.00793071, 0, 0, 0, 0.0740566, 0, 0, 0, 0.660473, 1.49199, -0.146513, -0.0745335 )
 mesh = SubResource( 40 )
-material/0 = ExtResource( 45 )
+surface_material_override/0 = ExtResource( 45 )
 
 [node name="fusion_air" parent="rooms/1floor/props" instance=ExtResource( 61 )]
 transform = Transform3D( -2.52429, 0, -2.2068e-07, 0, 2.52429, 0, 2.2068e-07, 0, -2.52429, 14.8956, 3.07848, 36.0953 )
@@ -2543,7 +2545,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.184, 6.83226, 47.2942 )
 shape = SubResource( 54 )
 
 [node name="anim" type="AnimationPlayer" parent="rooms/2floor/van"]
-playback_speed = 2.0
+speed_scale = 2.0
 anims/rotate = SubResource( 55 )
 script = SubResource( 56 )
 

@@ -59,7 +59,8 @@ curve = SubResource( 3 )
 [sub_resource type="ParticleProcessMaterial" id=5]
 spread = 20.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
+initial_velocity_min = 2
+initial_velocity_max = 2
 scale_curve = SubResource( 4 )
 
 [sub_resource type="QuadMesh" id=6]
@@ -86,7 +87,7 @@ shadow_enabled = true
 omni_range = 40.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
-playback_speed = 0.5
+speed_scale = 0.5
 anims/fire = SubResource( 1 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
@@ -102,7 +103,7 @@ visible = false
 [node name="MeshInstance" type="MeshInstance3D" parent="rocket"]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="Particles" type="Particles" parent="rocket"]
 transform = Transform3D( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.185927, -0.0524101, -0.378815 )

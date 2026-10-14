@@ -327,13 +327,13 @@ offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 3 )
-stretch_mode = 5
+stretch_mode = 4
 
 [node name="shadow" parent="icon" index="0"]
 self_modulate = Color( 0, 0, 0, 0.784314 )
 show_behind_parent = true
 texture = ExtResource( 3 )
-stretch_mode = 5
+stretch_mode = 4
 
 [node name="bindLabel" parent="." index="3"]
 theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )

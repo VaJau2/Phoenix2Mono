@@ -96,9 +96,9 @@ extents = Vector3( 6.07705, 1.56353, 0.106078 )
 
 [node name="fence" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
-material/1 = null
-material/2 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="fence"]
 collision_layer = 3
@@ -112,9 +112,9 @@ shape = SubResource( 3 )
 [node name="fence_open" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8056, 0, 0 )
 mesh = SubResource( 2 )
-material/0 = null
-material/1 = null
-material/2 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
 
 [node name="StaticBody" type="StaticBody3D" parent="fence_open"]
 collision_layer = 3

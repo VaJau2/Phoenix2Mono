@@ -57,13 +57,13 @@ extents = Vector3( 0.479994, 0.479961, 0.994057 )
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = null
-material/1 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="Cube001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.547829, 2.52756, -0.589423 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39241, 0 )

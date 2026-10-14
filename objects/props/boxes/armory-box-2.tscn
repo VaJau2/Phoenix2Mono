@@ -34,7 +34,7 @@ extents = Vector3( 0.42291, 0.255533, 1.32114 )
 [node name="Box001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.0620507, 0, 0, 0, 0.0620507, 0, 0, 0, 0.0620507, -0.27793, 0, -0.328849 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.343878, 0.30128, -2.19995 )

@@ -56,7 +56,8 @@ emission_shape = 2
 emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
 direction = Vector3( 0, 0, -1 )
 gravity = Vector3( 0, -3, 0 )
-initial_velocity = 2.0
+initial_velocity_min = 2
+initial_velocity_max = 2
 scale_curve = SubResource( 4 )
 
 [sub_resource type="QuadMesh" id=6]
@@ -195,8 +196,8 @@ surfaces/0 = {
 emission_shape = 2
 emission_box_extents = Vector3( 0.5, 0.5, 1 )
 gravity = Vector3( 0, 0.1, 0 )
-scale = 0.5
-scale_random = 1.0
+scale_min = 0
+scale_max = 0.5
 
 [sub_resource type="QuadMesh" id=13]
 material = ExtResource( 5 )

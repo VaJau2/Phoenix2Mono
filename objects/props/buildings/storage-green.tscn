@@ -41,19 +41,19 @@ shape = SubResource( 5 )
 [node name="Cube002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.775, 0, 0, 0, 0.775, 0, 0, 0, 0.775, -4.177, 0.944, -0.048 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="window1" type="MeshInstance3D" parent="."]
 transform = Transform3D( -2.84325e-07, 0, 3.41949, 0, 3.14648, 0, -6.9446, 0, -2.2169e-06, -32.9776, 7.45045, -0.375246 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="MeshInstance" type="MeshInstance3D" parent="window1"]
 transform = Transform3D( -0.0226941, -9.01702e-15, 7.60608e-08, 1.29676e-14, 1.07138, 7.95946e-08, -3.88185e-08, 2.82465e-08, -0.226684, -0.216913, 0.101181, -0.0162859 )
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="MeshInstance2" type="MeshInstance3D" parent="window1"]
 transform = Transform3D( -0.0226941, -9.01702e-15, 7.60608e-08, 1.29676e-14, 1.07138, 7.95946e-08, -3.88185e-08, 2.82465e-08, -0.226684, 0.154522, 0.101181, -0.0162859 )
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null

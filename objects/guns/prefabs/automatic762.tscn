@@ -16,8 +16,10 @@ curve = SubResource( 1 )
 direction = Vector3( 0, 1, -0.5 )
 spread = 30.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 3.0
-radial_accel = 0.5
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 scale_curve = SubResource( 2 )
 color = Color( 0.972549, 0.941176, 0.941176, 1 )
 

@@ -5,7 +5,7 @@
 [sub_resource type="StandardMaterial3D" id=5]
 render_priority = 4
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_texture = ExtResource( 1 )
 
 [resource]

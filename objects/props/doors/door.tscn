@@ -128,7 +128,7 @@ shape = SubResource( 9 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 volume_db = 10.0

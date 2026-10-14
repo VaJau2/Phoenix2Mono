@@ -109,13 +109,13 @@ shape = SubResource( 1 )
 transform = Transform3D( -1, 4.92007e-14, 3.25841e-07, 0, -1, 1.50996e-07, 3.25841e-07, 1.50996e-07, 1, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="Cube002" type="MeshInstance3D" parent="."]
 transform = Transform3D( -1, 0, -3.94477e-07, 0, 1.104, 0, 3.89414e-07, 0, -1.013, 0.013, 0.445, 0.009 )
 use_in_baked_light = true
 mesh = SubResource( 6 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 7 )

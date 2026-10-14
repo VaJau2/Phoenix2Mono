@@ -3,7 +3,7 @@
 [resource]
 resource_name = "front-door"
 flags_transparent = true
-params_depth_draw_mode = 1
+depth_draw_mode = 1
 albedo_color = Color( 0.486275, 0.521569, 0.521569, 0.254902 )
 metallic = 0.3
 metallic_specular = 0.7

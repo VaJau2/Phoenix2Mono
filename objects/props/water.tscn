@@ -18,8 +18,10 @@ emission_box_extents = Vector3( 2, 0.2, 2 )
 direction = Vector3( 0.2, 1, 0.2 )
 spread = 40.0
 gravity = Vector3( 0, -20, 0 )
-initial_velocity = 15.0
-scale = 0.5
+initial_velocity_min = 15
+initial_velocity_max = 15
+scale_min = 0.5
+scale_max = 0.5
 scale_curve = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=4]
@@ -46,7 +48,7 @@ draw_pass_1 = SubResource( 4 )
 [node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D( 3, 0, 3.45993e-17, 1.0093e-20, -1.74846e-07, 3, -8.32667e-17, -4, -1.31134e-07, 0, -0.0750582, 0 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="area" type="Area3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291538, 0 )

@@ -117,7 +117,7 @@ script = ExtResource( 7 )
 visible = false
 cast_shadow = 0
 mesh = SubResource( 3 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="light" type="OmniLight3D" parent="shield/first" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74101, 0 )
@@ -131,7 +131,7 @@ omni_attenuation = 2.28
 visible = false
 cast_shadow = 0
 mesh = SubResource( 4 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="light" type="OmniLight3D" parent="shield/third" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74101, 0 )

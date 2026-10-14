@@ -43,5 +43,5 @@ __meta__ = {
 }
 
 [node name="anim" type="AnimationPlayer" parent="."]
-playback_speed = 1.5
+speed_scale = 1.5
 anims/noise = SubResource( 1 )

@@ -37,4 +37,4 @@ shape = SubResource( 2 )
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource( 3 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )

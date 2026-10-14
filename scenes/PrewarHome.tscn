@@ -1526,27 +1526,27 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9195 )
 [node name="pic" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( 360, 0, 0, 0, 55.517, 0, 0, 0, 23.083, -28.3796, 15, -272.416 )
 mesh = SubResource( 21 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="pic4" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -360, 0, -2.01798e-06, 0, 55.517, 0, 3.14722e-05, 0, -23.083, -28.3796, 15, 213.344 )
 mesh = SubResource( 21 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="pic7" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -7.98311e-05, 0, 23.083, 0, 55.517, 0, -490, 0, -3.7607e-06, -198.648, 15, -29.5832 )
 mesh = SubResource( 21 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="pic2" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -1.37278e-05, 0, 23.0835, 0, 55.517, 0, -314.055, 0, -1.00901e-06, -227.809, 20.8836, -64.5449 )
 mesh = SubResource( 21 )
-material/0 = ExtResource( 8 )
+surface_material_override/0 = ExtResource( 8 )
 
 [node name="pic3" type="MeshInstance3D" parent="terrain/background"]
 transform = Transform3D( -7.98311e-05, 0, -23.841, 0, 55.517, 0, 490, 0, -3.88419e-06, 143.835, 15, -27.0906 )
 mesh = SubResource( 21 )
-material/0 = ExtResource( 19 )
+surface_material_override/0 = ExtResource( 19 )
 
 [node name="covers" type="Node" parent="terrain"]
 script = ExtResource( 11 )
@@ -1577,7 +1577,7 @@ radioPaths = [ NodePath("props/Radio") ]
 [node name="door2" type="MeshInstance3D" parent="rooms/market"]
 transform = Transform3D( 0.300551, 0, 0, 0, 0.300551, 0, 0, 0, 0.300551, 8.14049, -0.345161, 0.0993366 )
 mesh = SubResource( 27 )
-material/0 = ExtResource( 81 )
+surface_material_override/0 = ExtResource( 81 )
 
 [node name="window1" type="MeshInstance3D" parent="rooms/market"]
 transform = Transform3D( -0.300551, 0, -2.6275e-08, 0, 0.300551, 0, 2.6275e-08, 0, -0.300551, -9.50167, -0.345161, -0.0744476 )

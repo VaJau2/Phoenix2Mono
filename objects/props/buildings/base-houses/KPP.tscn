@@ -32,4 +32,4 @@ shape = SubResource( 1 )
 [node name="Box001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.24425, 0, 0, 0, 0.24425, 0, 0, 0, 0.24425, -2.13431, -0.00454211, 3.85551 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null

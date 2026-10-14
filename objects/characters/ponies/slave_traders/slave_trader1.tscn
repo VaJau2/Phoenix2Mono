@@ -217,19 +217,19 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 transform = Transform3D( 1.26706, -8.12113e-07, -3.21865e-06, -2.98023e-08, 1.2279, -0.312557, 3.33786e-06, 0.312557, 1.2279, 0.00631583, 1.30521, 0.429072 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="collar" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="2"]
 transform = Transform3D( 1.07915, 4.02331e-07, -3.32296e-06, -1.49012e-08, 1.25794, 0.151757, 2.86102e-06, -0.151757, 1.25794, 0.0147185, 0.681571, -1.43997 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
-material/0 = null
-material/1 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 script = ExtResource( 6 )
 npcName = "slave_trader1"
 startEyesVariant = "neitral"
@@ -237,7 +237,7 @@ startEyesVariant = "neitral"
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="animTree" parent="." index="4"]
 parameters/StateMachine/playback = SubResource( 7 )

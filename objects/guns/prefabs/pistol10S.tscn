@@ -164,8 +164,10 @@ curve = SubResource( 6 )
 direction = Vector3( 0, 1, -0.5 )
 spread = 30.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 3.0
-radial_accel = 0.5
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 scale_curve = SubResource( 7 )
 color = Color( 0.972549, 0.941176, 0.941176, 1 )
 
@@ -186,7 +188,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13108e-16, 0.601026, 0.296
 transform = Transform3D( 1, 2.22045e-16, -2.22045e-16, -2.22045e-16, 0, -1, -2.22045e-16, 1, 0, 7.40305e-17, 1.2035, -0.552587 )
 layers = 1024
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Bone002" type="Node3D" parent="Gun-armature/Bone"]
 transform = Transform3D( 1, -2.22044e-16, 0, 0, 0, 1, -2.22044e-16, -1, 0, -1.38033e-16, 0.341192, -0.117603 )
@@ -195,7 +197,7 @@ transform = Transform3D( 1, -2.22044e-16, 0, 0, 0, 1, -2.22044e-16, -1, 0, -1.38
 transform = Transform3D( 1, -3.13227e-23, -2.22045e-16, -2.16168e-23, -1, 4.37114e-08, -2.22045e-16, -4.37114e-08, -1, 1.49791e-16, 0.0565603, 0.00352609 )
 layers = 1024
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Bone003" type="Node3D" parent="Gun-armature/Bone"]
 transform = Transform3D( 1, 8.52651e-14, -7.15255e-07, -6.36051e-07, -0.457391, -0.889266, -3.27151e-07, 0.889266, -0.457391, -1.39518e-16, -0.288704, 0.0483283 )
@@ -204,13 +206,13 @@ transform = Transform3D( 1, 8.52651e-14, -7.15255e-07, -6.36051e-07, -0.457391, 
 transform = Transform3D( 1, -3.27151e-07, 6.36052e-07, 5.68434e-14, 0.889266, 0.457391, -7.15255e-07, -0.457391, 0.889266, 1.44489e-08, -0.0426273, 0.0202014 )
 layers = 1024
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="white-thing" type="MeshInstance3D" parent="Gun-armature/Bone"]
 transform = Transform3D( 1, 2.22045e-16, -2.22045e-16, -2.22045e-16, 0, -1, -2.22045e-16, 1, 0, 3.21355e-16, 0.858259, 0.294499 )
 layers = 1024
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="shells" type="Node3D" parent="."]
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.875885, 0.527041, -0.293035 )
@@ -220,7 +222,7 @@ spawnDelay = 0.02
 forceDirection = Vector3( 0, 1, -2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-playback_speed = 1.5
+speed_scale = 1.5
 anims/shoot = SubResource( 5 )
 
 [node name="light" type="OmniLight3D" parent="."]

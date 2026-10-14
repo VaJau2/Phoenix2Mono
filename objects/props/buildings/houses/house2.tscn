@@ -36,7 +36,7 @@ physics_material_override = ExtResource( 4 )
 [node name="Box001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.279971, 0, 0, 0, 0.279971, 0, 0, 0, 0.279971, -1.91482, 0.043067, -0.139247 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+surface_material_override/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 0.279971, 0, 0, 0, 0.279971, 0, 0, 0, 0.279971, -1.91482, 0.043067, -0.139247 )

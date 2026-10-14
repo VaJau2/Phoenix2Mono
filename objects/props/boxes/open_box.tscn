@@ -121,7 +121,7 @@ script = ExtResource( 3 )
 [node name="box" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.62759, 0, 0, 0, 1.62759, 0, 0, 0, 1.62759, -0.0442357, 1.64851, 0.0706779 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0376444, 0.0125344, 0.0607381 )
@@ -149,7 +149,7 @@ shape = SubResource( 3 )
 
 [node name="door" type="MeshInstance3D" parent="CollisionShape6"]
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 5 )

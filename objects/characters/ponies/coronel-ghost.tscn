@@ -435,7 +435,7 @@ startEyesVariant = "neitral"
 parameters/StateMachine/playback = SubResource( 6 )
 
 [node name="material-anim" type="AnimationPlayer" parent="." index="11"]
-playback_speed = 0.5
+speed_scale = 0.5
 anims/RESET = SubResource( 14 )
 anims/idle = SubResource( 15 )
 script = SubResource( 16 )

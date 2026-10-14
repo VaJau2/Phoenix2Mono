@@ -311,7 +311,7 @@ mesh = SubResource( 1 )
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
-material/0 = ExtResource( 3 )
+surface_material_override/0 = ExtResource( 3 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="17"]
 mesh = SubResource( 5 )

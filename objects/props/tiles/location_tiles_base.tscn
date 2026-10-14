@@ -278,89 +278,89 @@ surfaces/0 = {
 [node name="grass1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="grass1001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 0.5 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="sand1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 0.5 )
 mesh = SubResource( 3 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="grass2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 0 )
 mesh = SubResource( 4 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="grass2001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.4, 0, 0 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="sand1001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.4, 0, 0.5 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="dirt1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.1, 0, 0 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="dirt2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.6, 0, 0 )
 mesh = SubResource( 8 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="grass2004" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.1, 0, 0 )
 mesh = SubResource( 9 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="sand3" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.1, 0, 0.5 )
 mesh = SubResource( 10 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="sand4" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.6, 0, 0.5 )
 mesh = SubResource( 11 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="stone1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.1, 0, 0.5 )
 mesh = SubResource( 12 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="lightstone" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 1 )
 mesh = SubResource( 13 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="road" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.9, 0, 1 )
 mesh = SubResource( 14 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="snow-road" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.1, 0, 1 )
 mesh = SubResource( 15 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="snow" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.4, 0, 1 )
 mesh = SubResource( 16 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="snow-road001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.6, 0, 1 )
 mesh = SubResource( 17 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )
 
 [node name="snow-road002" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.10212, 0, 1 )
 mesh = SubResource( 18 )
-material/0 = ExtResource( 1 )
+surface_material_override/0 = ExtResource( 1 )

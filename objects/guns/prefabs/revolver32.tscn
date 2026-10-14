@@ -128,8 +128,10 @@ curve = SubResource( 5 )
 direction = Vector3( 0, 1, -0.5 )
 spread = 30.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 3.0
-radial_accel = 0.5
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 scale_curve = SubResource( 6 )
 color = Color( 0.972549, 0.941176, 0.941176, 1 )
 
@@ -151,7 +153,7 @@ transform = Transform3D( 0.971134, 1.47032e-08, -0.238534, 1.48897e-08, -1, -1.0
 transform = Transform3D( 0.299969, -2.62241e-08, 1.0657e-15, -1.0657e-15, 0, 0.299969, -2.62241e-08, -0.299969, 0, -0.00159194, -0.0625917, 0.248412 )
 layers = 1024
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Bone003" type="Node3D" parent="Gun-armature/Bone"]
 transform = Transform3D( 1, 1.46372e-12, -7.15256e-07, -4.69271e-07, -0.754683, -0.656089, -5.39793e-07, 0.656089, -0.754683, -6.05977e-15, 0.0600826, 0.179837 )
@@ -160,13 +162,13 @@ transform = Transform3D( 1, 1.46372e-12, -7.15256e-07, -4.69271e-07, -0.754683, 
 transform = Transform3D( 0.299969, -1.59193e-07, 1.43845e-07, 1.70513e-14, 0.201109, 0.222568, -2.14555e-07, -0.222568, 0.201109, -9.21754e-08, -0.543899, -0.128871 )
 layers = 2147484672
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="revolver" type="MeshInstance3D" parent="Gun-armature/Bone"]
 transform = Transform3D( 0.299969, 6.66066e-17, -6.66066e-17, -6.66066e-17, 0, -0.299969, -6.66066e-17, 0.299969, 0, 8.25234e-17, 0.550039, -0.0891933 )
 layers = 1024
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="shells" type="Node3D" parent="."]
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0885176, 0.221035, -0.955624 )

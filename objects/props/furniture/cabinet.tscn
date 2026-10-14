@@ -109,19 +109,19 @@ shape = SubResource( 1 )
 transform = Transform3D( 1.46387, 0, 0, 0, 1.46387, 0, 0, 0, 1.46387, -0.131344, 0, -0.0070473 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="door" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.46387, 0, 0, 0, 1.46387, 0, 0, 0, 1.46387, 0.697644, 0, -1.42556 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
-material/0 = ExtResource( 4 )
+surface_material_override/0 = ExtResource( 4 )
 
 [node name="door2" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1.46387, 1.27975e-07, 0, -1.27975e-07, 1.46387, 0, 0, 0, -1.46387, 0.697644, 0, 1.45594 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
-material/0 = ExtResource( 4 )
+surface_material_override/0 = ExtResource( 4 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]
 volume_db = 5.0

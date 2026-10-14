@@ -206,8 +206,8 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 transform = Transform3D( 1.26706, -8.12113e-07, -3.21865e-06, -2.98023e-08, 1.2279, -0.312557, 3.33786e-06, 0.312557, 1.2279, 0.00631566, 1.00944, 0.501013 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
-material/0 = null
-material/1 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="BoneAttachment3" type="BoneAttachment3D" parent="Armature/Skeleton" index="15"]
 transform = Transform3D( 1, 1.24758e-14, 2.38417e-07, -2.58592e-08, -0.994101, 0.108461, 2.37012e-07, -0.108462, -0.994097, 0.0147704, -0.0508673, 0.0760939 )
@@ -216,12 +216,12 @@ bone_name = "tail_1"
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment3" index="0"]
 transform = Transform3D( 1.50069, 3.57093e-07, -2.24011e-08, 1.81272e-12, 0.09395, 1.49775, 3.57793e-07, -1.49776, 0.0939495, -0.0084534, -0.114472, -0.0181828 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 script = ExtResource( 1 )
 npcName = "slave_trader2-1"
 startEyesVariant = "neitral"

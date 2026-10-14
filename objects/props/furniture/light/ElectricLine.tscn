@@ -17,4 +17,4 @@ surfaces/0 = {
 [node name="ElectricLine" type="MeshInstance3D"]
 transform = Transform3D( 0, 0, 0.800545, 0, 0.800545, 0, -1.03325, 0, 0, 3.15645, 19.6195, 70.1595 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null

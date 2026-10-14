@@ -214,12 +214,12 @@ transform = Transform3D( 0.964337, 0.112541, -0.239559, -0.264631, 0.426803, -0.
 [node name="hair" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform3D( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631587, 1.30521, 0.429072 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 7 )
+surface_material_override/0 = ExtResource( 7 )
 
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
-material/0 = ExtResource( 7 )
+surface_material_override/0 = ExtResource( 7 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 6 )

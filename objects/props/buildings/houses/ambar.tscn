@@ -233,72 +233,72 @@ physics_material_override = ExtResource( 2 )
 [node name="Box001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.215112, 0, 0, 0, 0.215112, 0, 0, 0, 0.215112, 3.18303, -0.275352, -4.02586 )
 mesh = SubResource( 1 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Box003" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6282, 0, 49.0669 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Box004" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6282, 0, -3.06203 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder001" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 1.53777, 0.152033 )
 mesh = SubResource( 4 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder002" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -23.5144, 1.53777, 3.95941 )
 mesh = SubResource( 5 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder003" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 1.53777, 7.76679 )
 mesh = SubResource( 6 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder004" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -23.6874, 1.53777, 11.5742 )
 mesh = SubResource( 7 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder005" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 1.53777, 15.3815 )
 mesh = SubResource( 8 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder006" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 1.53777, 19.1889 )
 mesh = SubResource( 9 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder007" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -23.3408, 1.53777, 22.9963 )
 mesh = SubResource( 10 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder008" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 1.53777, 26.8037 )
 mesh = SubResource( 11 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder009" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.5503, 1.53777, 30.6111 )
 mesh = SubResource( 12 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder010" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -22.8834, 4.5313, 5.78847 )
 mesh = SubResource( 13 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Cylinder011" type="MeshInstance3D" parent="Box001"]
 transform = Transform3D( -2.38419e-07, -1, 2.98023e-08, -2.98023e-08, 0, -1, 1, -2.68221e-07, 0, -21.8962, 4.5313, 9.59584 )
 mesh = SubResource( 14 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 0.215112, 0, 0, 0, 0.215112, 0, 0, 0, 0.215112, 3.18303, -0.275352, -4.02586 )

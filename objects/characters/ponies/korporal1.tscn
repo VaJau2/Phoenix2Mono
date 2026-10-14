@@ -152,7 +152,7 @@ transform = Transform3D( 0.99999, 0.00128411, -0.0042297, -0.00438519, 0.167779,
 [node name="hair" type="MeshInstance3D" parent="Armature/Skeleton/BoneAttachment" index="1"]
 transform = Transform3D( 1.26706, -8.19713e-07, -3.2203e-06, 4.68155e-13, 1.2279, -0.312557, 3.32299e-06, 0.312557, 1.2279, 0.00631587, 1.30521, 0.429072 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="Physical Bone back_1" parent="Armature/Skeleton" index="2"]
 transform = Transform3D( 1, -5.27626e-17, 4.7303e-17, -3.65978e-17, 0.187063, 0.982346, -6.06797e-17, -0.982346, 0.187063, 0, 0.612737, -0.190428 )
@@ -217,14 +217,14 @@ body_offset = Transform3D( 0.999999, -2.35762e-07, 2.73916e-07, 2.3576e-07, -0.1
 [node name="tail" type="MeshInstance3D" parent="Armature/Skeleton" index="15"]
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="Body" type="MeshInstance3D" parent="Armature/Skeleton" index="16"]
 mesh = SubResource( 4 )
 skin = SubResource( 3 )
-material/0 = null
-material/1 = null
-material/2 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
 script = ExtResource( 5 )
 npcName = "korporal"
 startEyesVariant = "neitral"

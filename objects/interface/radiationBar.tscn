@@ -23,5 +23,5 @@ offset_right = 103.0
 offset_bottom = 228.0
 scale = Vector2( 1, -1 )
 texture = ExtResource( 1 )
-stretch_mode = 5
+stretch_mode = 4
 flip_v = true

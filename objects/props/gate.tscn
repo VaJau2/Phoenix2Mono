@@ -10,7 +10,7 @@ extents = Vector3( 5.44829, 1, 0.291515 )
 
 [node name="gate" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 1 )
-material/0 = ExtResource( 2 )
+surface_material_override/0 = ExtResource( 2 )
 
 [node name="shape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9346, 1.08459, 0 )

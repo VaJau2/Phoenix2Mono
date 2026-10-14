@@ -88,14 +88,14 @@ physics_material_override = ExtResource( 4 )
 [node name="Foliage001" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.014586, 0, -0.061692 )
 mesh = SubResource( 1 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
 
 [node name="Object001" type="MeshInstance3D" parent="Foliage001"]
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0657628, 4.31748, -0.0671679 )

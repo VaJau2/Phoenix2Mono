@@ -8,7 +8,7 @@
 [sub_resource type="StandardMaterial3D" id=1]
 resource_name = "tree01"
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 1 )
 metallic = 1.0
@@ -47,7 +47,7 @@ extents = Vector3( 0.266074, 4.49729, 0.237883 )
 
 [sub_resource type="StandardMaterial3D" id=6]
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 2 )
 metallic = 1.0
@@ -86,7 +86,7 @@ extents = Vector3( 0.267323, 4.49729, 0.296129 )
 
 [sub_resource type="StandardMaterial3D" id=11]
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 4 )
 metallic = 1.0
@@ -125,7 +125,7 @@ extents = Vector3( 0.490107, 4.49729, 0.548255 )
 
 [sub_resource type="StandardMaterial3D" id=16]
 flags_transparent = true
-params_depth_draw_mode = 3
+transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 3 )
 metallic = 1.0

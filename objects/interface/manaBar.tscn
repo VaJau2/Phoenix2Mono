@@ -23,4 +23,4 @@ offset_bottom = 256.0
 scale = Vector2( 1, -1 )
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 6
+stretch_mode = 5

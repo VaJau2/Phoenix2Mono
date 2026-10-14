@@ -60,8 +60,10 @@ curve = SubResource( 4 )
 direction = Vector3( 0, 1, -0.5 )
 spread = 30.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 3.0
-radial_accel = 0.5
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 scale_curve = SubResource( 5 )
 color = Color( 0.972549, 0.941176, 0.941176, 1 )
 
@@ -79,12 +81,12 @@ transform = Transform3D( -1.8, 0, 7.00946e-07, 0, 1.8, 0, -7.00946e-07, 0, -1.8,
 [node name="Cylinder001" type="MeshInstance3D" parent="Gun-armature"]
 transform = Transform3D( 0.0254, 0, 0, 0, -3.02792e-09, -0.0254, 0, 0.0254, -3.02792e-09, -0.300819, 0.403026, 0.11793 )
 mesh = SubResource( 2 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="Object001" type="MeshInstance3D" parent="Gun-armature"]
 transform = Transform3D( 0.0254, 0, 0, 0, 1.5956e-05, -0.0254, 0, 0.0254, 1.5956e-05, -0.300819, 0.403026, 0.11793 )
 mesh = SubResource( 3 )
-material/0 = null
+surface_material_override/0 = null
 
 [node name="light" type="OmniLight3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567037, 0.274954, -2.69576 )

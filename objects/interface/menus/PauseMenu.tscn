@@ -64,7 +64,7 @@ offset_right = -44.0
 offset_bottom = -83.0
 theme = ExtResource( 1 )
 text = "               [Продолжить]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,7 +79,7 @@ offset_right = -44.0
 offset_bottom = -51.0
 theme = ExtResource( 1 )
 text = "               [Сохранить]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,7 +94,7 @@ offset_right = -44.0
 offset_bottom = -19.0
 theme = ExtResource( 1 )
 text = "               [Загрузить]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -109,7 +109,7 @@ offset_right = -44.0
 offset_bottom = 13.0
 theme = ExtResource( 1 )
 text = "               [Настройки]"
-align = 0
+alignment = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -125,7 +125,7 @@ offset_right = -44.0
 offset_bottom = 42.6
 theme = ExtResource( 1 )
 text = "               [В главное меню]"
-align = 0
+alignment = 0
 
 [node name="Load" parent="." instance=ExtResource( 5 )]
 visible = false

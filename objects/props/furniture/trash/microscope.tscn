@@ -37,5 +37,5 @@ transform = Transform3D( 0.295429, 0, 0, 0, 0.295429, 0, 0, 0, 0.295429, 0, 0, 0
 
 [node name="microscope" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
-material/0 = null
-material/1 = null
+surface_material_override/0 = null
+surface_material_override/1 = null

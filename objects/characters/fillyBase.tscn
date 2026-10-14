@@ -2710,7 +2710,7 @@ xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=83]
 switch_mode = 2
-auto_advance = true
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=84]
 
@@ -3178,7 +3178,7 @@ bone_name = "back_1"
 transform = Transform3D( 0.00494551, 0.0806858, -0.0428143, -0.0862132, 0.018512, 0.170515, 0.221795, 0.00534018, 0.0776728, 0.5802, 1.83292, 0.102984 )
 visible = false
 mesh = SubResource( 4 )
-material/0 = ExtResource( 5 )
+surface_material_override/0 = ExtResource( 5 )
 
 [node name="weapons" type="Node3D" parent="Armature/Skeleton/BoneAttachment 2"]
 transform = Transform3D( 0.997703, 0.00102316, 0.0677289, 0.0650926, -0.291119, -0.954469, 0.0187406, 0.956685, -0.290517, 0.820563, 1.05585, -0.0155306 )

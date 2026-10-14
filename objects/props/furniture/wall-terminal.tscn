@@ -46,8 +46,8 @@ shape = SubResource( 1 )
 
 [node name="terminal" type="MeshInstance3D" parent="."]
 mesh = SubResource( 2 )
-material/0 = ExtResource( 1 )
-material/1 = SubResource( 3 )
+surface_material_override/0 = ExtResource( 1 )
+surface_material_override/1 = SubResource( 3 )
 
 [node name="Viewport" type="SubViewport" parent="."]
 size = Vector2( 525, 525 )

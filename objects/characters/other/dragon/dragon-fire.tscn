@@ -13,12 +13,13 @@ width = 1024
 curve = SubResource( 1 )
 
 [sub_resource type="ParticleProcessMaterial" id=3]
-trail_divisor = 2
 direction = Vector3( 0, 0, 1 )
 spread = 8.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 35.0
-linear_accel = 5.0
+initial_velocity_min = 35
+initial_velocity_max = 35
+linear_accel_min = 5
+linear_accel_max = 5
 scale_curve = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=4]
@@ -29,24 +30,26 @@ width = 1024
 curve = SubResource( 1 )
 
 [sub_resource type="ParticleProcessMaterial" id=6]
-trail_divisor = 2
 direction = Vector3( 0, 0, 1 )
 spread = 10.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-linear_accel = 5.0
+initial_velocity_min = 20
+initial_velocity_max = 20
+linear_accel_min = 5
+linear_accel_max = 5
 scale_curve = SubResource( 5 )
 
 [sub_resource type="QuadMesh" id=7]
 material = ExtResource( 2 )
 
 [sub_resource type="ParticleProcessMaterial" id=8]
-trail_divisor = 2
 direction = Vector3( 0, 0, 1 )
 spread = 15.0
 gravity = Vector3( 0, 9.8, 0 )
-initial_velocity = 20.0
-linear_accel = 5.0
+initial_velocity_min = 20
+initial_velocity_max = 20
+linear_accel_min = 5
+linear_accel_max = 5
 scale_curve = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=9]
