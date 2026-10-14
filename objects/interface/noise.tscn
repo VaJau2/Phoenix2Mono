@@ -11,7 +11,7 @@
 [sub_resource type="Animation" id=1]
 resource_name = "noise"
 length = 0.6
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:texture")
 tracks/0/interp = 1

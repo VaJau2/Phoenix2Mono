@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Color.tres" type="Material" id=2]
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Glass.tres" type="Material" id=3]
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Taillight.tres" type="Material" id=4]
-[ext_resource path="res://assets/models/props/vehicles/Bronco Express/Light3D.tres" type="Material" id=5]
+[ext_resource path="res://assets/models/props/vehicles/Bronco Express/Light.tres" type="Material" id=5]
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Metal.tres" type="Material" id=6]
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Black.tres" type="Material" id=7]
 [ext_resource path="res://assets/models/props/vehicles/Bronco Express/Logo.tres" type="Material" id=8]

@@ -9,6 +9,7 @@
 #   [node ...]        — атрибуты name, parent, groups берутся из оригинала;
 #   [connection ...]  — атрибуты from, to берутся из оригинала (signal и method — из результата);
 #   [editable ...]    — строка целиком из оригинала;
+#   [ext_resource]    — атрибут path из оригинала (кроме .shader -> .gdshader);
 #   NodePath("a/b:c") — в любой строке: путь к узлу ("a/b") из оригинала, свойство (":c") из результата.
 #
 # Запуск из корня репозитория:
@@ -65,6 +66,11 @@ sub restore_line {
 
     if ($conv =~ /^\[editable /) {
         return $orig;
+    }
+    # Пути к файлам конвертер тоже переименовывает ("Light.tres" -> "Light3D.tres"),
+    # кроме шейдеров — их файлы действительно переименованы в .gdshader
+    if ($conv =~ /^\[ext_resource / && $orig !~ /\.shader"/) {
+        $conv = copy_attr($orig, $conv, 'path');
     }
     if ($conv =~ /^\[node /) {
         $conv = copy_attr($orig, $conv, $_) for qw(name parent);

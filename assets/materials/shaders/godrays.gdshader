@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode blend_mix;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
 float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord, float seedA, float seedB, float speed, float time, vec2 iResolution)
 {
 	vec2 sourceToCoord = coord - raySource;

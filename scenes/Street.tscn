@@ -131,13 +131,13 @@ material = SubResource( 52 )
 size = Vector2( 0.3, 5 )
 
 [sub_resource type="GDScript" id=54]
-script/source = "extends Particles
+script/source = "extends GPUParticles3D
 
 var player
 
 func _ready():
 	set_process(false)
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	player = get_node(\"/root/Main/Scene/Player\")
 	set_process(true)
 
@@ -160,7 +160,7 @@ material = SubResource( 52 )
 size = Vector2( 0.2, 0.2 )
 
 [sub_resource type="GDScript" id=57]
-script/source = "extends Particles
+script/source = "extends GPUParticles3D
  
 @onready var rain = get_node(\"../rain\")
 

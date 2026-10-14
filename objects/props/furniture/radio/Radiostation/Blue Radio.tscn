@@ -10,7 +10,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
 
-@export var songs # (Array, AudioStream)
+@export var songs: Array[AudioStream]
 "
 
 [node name="Blue Radio" type="Node"]

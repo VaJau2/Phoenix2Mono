@@ -8,7 +8,7 @@
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.7
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1

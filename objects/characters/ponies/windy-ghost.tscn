@@ -230,7 +230,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=18]
 resource_name = "idle"
 length = 10.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Armature/Skeleton/BoneAttachment/mane:mesh:surface_1/material:albedo_color")
 tracks/0/interp = 1

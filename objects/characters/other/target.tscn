@@ -28,7 +28,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "Lie"
 length = 0.1
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1

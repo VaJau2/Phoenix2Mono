@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
 uniform float fisheye_strength = -0.05; // Control the fisheye effect strength
 uniform float alpha = 0.0;
 

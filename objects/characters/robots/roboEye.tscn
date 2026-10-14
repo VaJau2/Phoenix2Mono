@@ -116,7 +116,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=9]
 length = 3.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("corpus:rotation_degrees")
 tracks/0/interp = 1
@@ -180,7 +180,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=10]
 length = 0.2
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("corpus/monitor:rotation_degrees")
 tracks/0/interp = 1
@@ -196,7 +196,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=11]
 length = 0.2
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("corpus/monitor:rotation_degrees")
 tracks/0/interp = 1
@@ -212,7 +212,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=12]
 length = 1.6
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("wheel:rotation_degrees")
 tracks/0/interp = 1

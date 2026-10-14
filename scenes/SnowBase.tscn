@@ -635,7 +635,7 @@ extents = Vector3( 1, 3.73512, 6.38923 )
 
 [sub_resource type="Animation" id=55]
 length = 4.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("van:rotation_degrees")
 tracks/0/interp = 1
