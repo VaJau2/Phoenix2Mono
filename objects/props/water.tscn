@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/scripts/background/Water.cs" type="Script" id=1]
 [ext_resource path="res://assets/materials/props/materials/water.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/materials/water-parts.tres" type="Material" id=3]
-[ext_resource path="res://assets/materials/physics/water.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/materials/physics/water.tres" type="PhysicsMaterial" id=4]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.251136, 0.0, 0, 0 ]

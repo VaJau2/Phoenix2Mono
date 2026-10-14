@@ -1,0 +1,15 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1.png" type="Texture" id=1]
+[ext_resource path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1Ligh.png" type="Texture" id=2]
+
+[resource]
+resource_name = "BackHouse"
+params_cull_mode = 2
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.27451, 0.27451, 0.27451, 1 )
+emission_energy = 1.0
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )

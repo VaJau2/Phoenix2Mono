@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/models/props/vehicles/vertibird_T/01 - Default.material" type="Material" id=1]
+[ext_resource path="res://assets/models/props/vehicles/vertibird_T/01 - Default.tres" type="Material" id=1]
 [ext_resource path="res://assets/audio/background/vertibird.mp3" type="AudioStream" id=2]
-[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/materials/physics/metal.tres" type="PhysicsMaterial" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Box001"

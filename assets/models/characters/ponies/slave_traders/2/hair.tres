@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "hair"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.591563, 0.842177, 0.953327, 1 )
+roughness = 0.5

@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/BagChest.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/characters/shotgun-bag.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/characters/shotgun-bag.tres" type="Material" id=2]
 [ext_resource path="res://assets/audio/furniture/Bag/bagDrop2.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/furniture/Bag/bagDrop1.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=5]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/audio/furniture/Bag/bagBottleDrop.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/furniture/Bag/bagOpen5.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/furniture/Bag/bagOpen4.wav" type="AudioStream" id=8]

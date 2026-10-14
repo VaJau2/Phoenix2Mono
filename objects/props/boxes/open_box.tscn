@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/models/props/buildings/snow-base/open_box/box.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/models/props/buildings/snow-base/open_box/box.tres" type="Material" id=2]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnBase.cs" type="Script" id=3]
 
 [sub_resource type="ArrayMesh" id=1]

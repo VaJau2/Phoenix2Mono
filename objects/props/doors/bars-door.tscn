@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=5]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=6]
+[ext_resource path="res://assets/materials/props/metal.tres" type="Material" id=5]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=6]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=7]
 
 [sub_resource type="ConcavePolygonShape" id=9]

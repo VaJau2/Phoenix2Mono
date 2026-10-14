@@ -19,8 +19,8 @@ public class NpcFaceMat : NpcFace
     private new void ChangeEyesVariant(string variantName)
     {
         var path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
-        openEyes = GD.Load<SpatialMaterial>(path + "/0.material");
-        closedEyes = GD.Load<SpatialMaterial>(path + "/1.material");
+        openEyes = GD.Load<SpatialMaterial>(path + "/0.tres");
+        closedEyes = GD.Load<SpatialMaterial>(path + "/1.tres");
         Mesh.SurfaceSetMaterial(EYES_MATERIAL, AreEyesOpen ? openEyes : closedEyes);
     }
 

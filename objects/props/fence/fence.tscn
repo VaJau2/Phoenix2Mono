@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/materials/props/fence2.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/props/fence.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/materials/props/fence.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 2.04199, 1.10413, 0.0163869 )

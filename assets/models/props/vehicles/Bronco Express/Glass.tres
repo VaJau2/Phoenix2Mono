@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "Glass"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.429342, 0.700019, 0.700019, 1 )
+roughness = 0.1

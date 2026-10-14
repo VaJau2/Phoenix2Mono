@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/materials/weapon/ak47.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/weapon/ak47.tres" type="Material" id=1]
 [ext_resource path="res://objects/guns/items/itemBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/guns/drop/drop1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/guns/drop/drop2.wav" type="AudioStream" id=4]

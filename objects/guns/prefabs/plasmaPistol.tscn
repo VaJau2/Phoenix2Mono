@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=1]
-[ext_resource path="res://assets/materials/weapon/plasmaPistol.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=3]
+[ext_resource path="res://assets/materials/weapon/plasmaPistol.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/weapon/result/smoke.tres" type="Material" id=3]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.451724, 0.706818 ), 0.0, -0.467204, 0, 0, Vector2( 1, 0.0795454 ), -0.282468, 0.0, 0, 0 ]

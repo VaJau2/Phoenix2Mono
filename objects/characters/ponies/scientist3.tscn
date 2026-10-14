@@ -2,13 +2,13 @@
 
 [ext_resource path="res://assets/models/characters/ponies/scientist3/wing.tres" type="Material" id=1]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=2]
-[ext_resource path="res://assets/models/characters/ponies/scientist3/body.material" type="Material" id=3]
-[ext_resource path="res://assets/models/characters/ponies/scientist3/eyes.material" type="Material" id=4]
-[ext_resource path="res://assets/models/characters/ponies/scientist3/mouth_001.material" type="Material" id=5]
+[ext_resource path="res://assets/models/characters/ponies/scientist3/body.tres" type="Material" id=3]
+[ext_resource path="res://assets/models/characters/ponies/scientist3/eyes.tres" type="Material" id=4]
+[ext_resource path="res://assets/models/characters/ponies/scientist3/mouth_001.tres" type="Material" id=5]
 [ext_resource path="res://assets/textures/enemies/bodyArmor.png" type="Texture" id=6]
 [ext_resource path="res://objects/characters/pegasusBase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=8]
-[ext_resource path="res://assets/materials/props/light/lightglass-green.material" type="Material" id=9]
+[ext_resource path="res://assets/materials/props/metal.tres" type="Material" id=8]
+[ext_resource path="res://assets/materials/props/light/lightglass-green.tres" type="Material" id=9]
 [ext_resource path="res://assets/scripts/utils/SaveActive.cs" type="Script" id=10]
 
 [sub_resource type="ArrayMesh" id=17]

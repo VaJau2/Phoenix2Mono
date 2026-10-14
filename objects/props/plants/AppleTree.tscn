@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/models/props/plants/apple_tree/03 - Default.material" type="Material" id=1]
-[ext_resource path="res://assets/models/props/plants/apple_tree/Material #1.material" type="Material" id=2]
-[ext_resource path="res://assets/models/props/plants/apple_tree/Material #0.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/physics/grass.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/models/props/plants/apple_tree/03 - Default.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/props/plants/apple_tree/Material #1.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/props/plants/apple_tree/Material #0.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/physics/grass.tres" type="PhysicsMaterial" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Foliage001"

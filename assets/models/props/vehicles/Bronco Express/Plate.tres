@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "Plate"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.158219, 0.158219, 0.158219, 1 )
+roughness = 0.3

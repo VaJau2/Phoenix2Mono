@@ -2,9 +2,9 @@
 
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/materials/characters/coronel/eyes.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/characters/bossCap.material" type="Material" id=4]
-[ext_resource path="res://assets/materials/characters/coronel/mouth.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/characters/coronel/eyes.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/characters/bossCap.tres" type="Material" id=4]
+[ext_resource path="res://assets/materials/characters/coronel/mouth.tres" type="Material" id=5]
 [ext_resource path="res://assets/textures/characters/coronel/body.png" type="Texture" id=6]
 
 

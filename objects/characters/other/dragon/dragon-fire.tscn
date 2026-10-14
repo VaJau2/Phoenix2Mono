@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/weapon/result/smoke.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/characters/fire/orange.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/characters/fire/red.tres" type="Material" id=3]
 [ext_resource path="res://assets/textures/enemies/dragon-fire/flame_fire.png" type="Texture" id=4]

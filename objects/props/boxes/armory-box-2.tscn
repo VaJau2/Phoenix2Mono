@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/models/props/buildings/snow-base/boxes_1/01 - Default.material" type="Material" id=1]
+[ext_resource path="res://assets/models/props/buildings/snow-base/boxes_1/01 - Default.tres" type="Material" id=1]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Box001"

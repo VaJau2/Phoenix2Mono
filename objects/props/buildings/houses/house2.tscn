@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/models/props/buildings/street-houses/house2/Hs2__color.tga" type="Texture" id=1]
 [ext_resource path="res://assets/models/props/buildings/street-houses/house2/dc9918b642.png" type="Texture" id=2]
 [ext_resource path="res://assets/models/props/buildings/street-houses/house2/Hs2__nmap.tga" type="Texture" id=3]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Box001"

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/furniture/Fonar/Fonar.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/materials/props/light/light2_texture.tres" type="Material" id=3]
-[ext_resource path="res://assets/materials/props/light/lightwhite.material" type="Material" id=4]
+[ext_resource path="res://assets/materials/props/light/lightwhite.tres" type="Material" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.32911, 25.349, 1 )

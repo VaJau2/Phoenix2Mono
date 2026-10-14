@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/textures/props/furniture/cooker.png" type="Texture" id=2]
 [ext_resource path="res://objects/props/furniture/cooker/cooker.tres" type="ArrayMesh" id=3]
 

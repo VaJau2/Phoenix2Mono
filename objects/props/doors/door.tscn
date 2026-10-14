@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/props/door.tres" type="Material" id=1]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=2]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=5]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=5]
 
 [sub_resource type="ConvexPolygonShape" id=9]
 points = PoolVector3Array( 0.133413, 4.03629, 0.125874, -0.133413, 4.03629, 0.125874, 0.133413, -0.0371488, 0.125874, 0.133413, 4.03629, -1.87413, -0.133413, 4.03629, -1.87413, -0.133413, -0.0371488, 0.125874, 0.133413, -0.0371488, -1.87413, -0.133413, -0.0371488, -1.87413 )

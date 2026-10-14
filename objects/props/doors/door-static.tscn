@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/materials/props/door2.tres" type="Material" id=7]
 
 [sub_resource type="ArrayMesh" id=1]

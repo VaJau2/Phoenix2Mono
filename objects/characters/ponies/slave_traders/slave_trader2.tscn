@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/materials/characters/slave_trader2/eyes/neitral/0.material" type="Material" id=2]
-[ext_resource path="res://assets/models/characters/ponies/slave_traders/2/hair.material" type="Material" id=3]
-[ext_resource path="res://assets/models/characters/ponies/slave_traders/2/headrope.material" type="Material" id=4]
+[ext_resource path="res://assets/materials/characters/slave_trader2/eyes/neitral/0.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/characters/ponies/slave_traders/2/hair.tres" type="Material" id=3]
+[ext_resource path="res://assets/models/characters/ponies/slave_traders/2/headrope.tres" type="Material" id=4]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=5]
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/characters/spike/eyes/neitral/0.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/characters/spike/eyes/neitral/0.tres" type="Material" id=2]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/CachedHeadPosition.cs" type="Script" id=3]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcCovers.cs" type="Script" id=4]
 [ext_resource path="res://assets/scripts/characters/Moving/NavigationMovingController.cs" type="Script" id=5]

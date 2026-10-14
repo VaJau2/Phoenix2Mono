@@ -1,0 +1,16 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/models/props/fence/stone-fence_2.png" type="Texture" id=1]
+[ext_resource path="res://assets/models/props/fence/stone-fence.png" type="Texture" id=2]
+
+[resource]
+resource_name = "stone-fence"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_texture = ExtResource( 2 )
+metallic = 0.17
+metallic_specular = 0.26
+roughness = 0.7
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 1 )

@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/models/props/buildings/street-houses/ambar/ambar.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Box001"

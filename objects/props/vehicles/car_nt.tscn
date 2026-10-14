@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/vehicles/car_nt/car_nt_UVChannel_1_color.tga" type="Texture" id=2]
 [ext_resource path="res://assets/models/props/vehicles/car_nt/car_nt_UVChannel_1_nmap.tga" type="Texture" id=3]
 

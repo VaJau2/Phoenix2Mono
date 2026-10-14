@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/textures/background/nuclear.png" type="Texture" id=1]
-[ext_resource path="res://assets/materials/weapon/result/white-smoke.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/props/light/lightwhite.material" type="Material" id=3]
+[ext_resource path="res://assets/materials/weapon/result/white-smoke.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/props/light/lightwhite.tres" type="Material" id=3]
 [ext_resource path="res://assets/scripts/triggers/zebra_base/NuclearBombTrigger.cs" type="Script" id=4]
 [ext_resource path="res://assets/audio/background/nuclear/rocket_fly.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion2.wav" type="AudioStream" id=6]

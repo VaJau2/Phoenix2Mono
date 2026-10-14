@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/materials/characters/private_mare/hair.material" type="Material" id=1]
-[ext_resource path="res://assets/materials/characters/private_mare/body.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/characters/private_mare/eyes.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/characters/private_mare/mouth.material" type="Material" id=4]
-[ext_resource path="res://assets/materials/characters/private_mare/tie.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/characters/private_mare/hair.tres" type="Material" id=1]
+[ext_resource path="res://assets/materials/characters/private_mare/body.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/characters/private_mare/eyes.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/characters/private_mare/mouth.tres" type="Material" id=4]
+[ext_resource path="res://assets/materials/characters/private_mare/tie.tres" type="Material" id=5]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=7]
 

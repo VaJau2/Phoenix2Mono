@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/materials/props/light/glass-off.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/props/light/glass-off.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/light/light2_texture.tres" type="Material" id=3]
 [ext_resource path="res://assets/models/props/furniture/Fonar/Fonar.obj" type="ArrayMesh" id=4]
 

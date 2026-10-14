@@ -1,22 +1,20 @@
 [gd_scene load_steps=46 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/materials/props/buildings/wall.material" type="Material" id=2]
-[ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=3]
+[ext_resource path="res://assets/materials/physics/glass.tres" type="PhysicsMaterial" id=3]
 [ext_resource path="res://assets/materials/props/buildings/CP-walls.material" type="Material" id=4]
-[ext_resource path="res://assets/scripts/furns/broken-glass.gd" type="Script" id=5]
 [ext_resource path="res://assets/materials/props/window/transparent.tres" type="Material" id=6]
 [ext_resource path="res://assets/materials/props/buildings/CP-inside-walls.material" type="Material" id=7]
 [ext_resource path="res://objects/props/buildings/window.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/props/mirror/Mirror.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/materials/props/window/mirror-broken.tres" type="Material" id=10]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=11]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=12]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=13]
-[ext_resource path="res://assets/scripts/furns/climbing.gd" type="Script" id=14]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.tres" type="Material" id=11]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.tres" type="Material" id=12]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.tres" type="Material" id=13]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/materials/physics/stairs.phymat" type="PhysicsMaterial" id=17]
+[ext_resource path="res://assets/materials/physics/stairs.tres" type="PhysicsMaterial" id=17]
 
 
 [sub_resource type="ConcavePolygonShape" id=1]
@@ -289,8 +287,6 @@ sound = {
 
 [node name="climbing9" type="Spatial" parent="."]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.000289917, 1.77321, -3.95679 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window")
 
 [node name="climbIn" type="Area" parent="climbing9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.740013, 0.102689, 0.0117898 )
@@ -317,8 +313,6 @@ sound = {
 
 [node name="climbing7" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -5.98719, 1.64827, 1.92769 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window2")
 
 [node name="climbIn" type="Area" parent="climbing7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -347,8 +341,6 @@ sound = {
 
 [node name="climbing8" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -6.03188, -0.116905, 1.83973 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window3")
 
 [node name="climbIn" type="Area" parent="climbing8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -375,8 +367,6 @@ sound = {
 
 [node name="climbing6" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -5.98719, 1.64827, -10.0372 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window5")
 
 [node name="climbIn" type="Area" parent="climbing6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -404,8 +394,6 @@ sound = {
 
 [node name="climbing5" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -5.98719, -0.117, -10.0372 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window4")
 
 [node name="climbIn" type="Area" parent="climbing5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -431,8 +419,6 @@ sound = {
 
 [node name="climbing4" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0124, 1.7227, -7.98584 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window7")
 
 [node name="climbIn" type="Area" parent="climbing4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -460,8 +446,6 @@ sound = {
 
 [node name="climbing" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0124, -0.116905, -7.98584 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window6")
 
 [node name="climbIn" type="Area" parent="climbing"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -488,8 +472,6 @@ sound = {
 
 [node name="climbing2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0124, -0.116905, -0.027528 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window8")
 
 [node name="climbIn" type="Area" parent="climbing2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -516,8 +498,6 @@ sound = {
 
 [node name="climbing3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0124, 1.77321, -0.027528 )
-script = ExtResource( 14 )
-windowPath = NodePath("../window9")
 
 [node name="climbIn" type="Area" parent="climbing3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.804373, 0.106965, 0.0117898 )
@@ -540,13 +520,6 @@ shape = SubResource( 19 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.65999, 2.39986, -9.9092 )
 collision_layer = 3
 physics_material_override = ExtResource( 3 )
-script = ExtResource( 5 )
-broken_material = ExtResource( 10 )
-mirror = true
-sound = {
-"brake1": ExtResource( 16 ),
-"brake2": ExtResource( 15 )
-}
 
 [node name="window" type="MeshInstance" parent="Mirror"]
 transform = Transform( 1.10376, 0, 0, 0, -8.97746e-08, -0.551033, 0, 1, -1.62921e-07, 0.0435028, 0.0101292, 0.04 )
@@ -602,39 +575,3 @@ transform = Transform( 1, 0, 0, 0, -4.15258e-08, -1, 0, 0.95, -4.37114e-08, 0, 0
 shape = SubResource( 14 )
 [connection signal="body_entered" from="boss-window" to="boss-window" method="_on_bosswindow_body_entered"]
 [connection signal="body_exited" from="boss-window" to="boss-window" method="_on_bosswindow_body_exited"]
-[connection signal="body_entered" from="climbing9/climbIn" to="climbing9" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing9/climbIn" to="climbing9" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing9/climbOut" to="climbing9" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing9/climbOut" to="climbing9" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing7/climbIn" to="climbing7" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing7/climbIn" to="climbing7" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing7/climbOut" to="climbing7" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing7/climbOut" to="climbing7" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing8/climbIn" to="climbing8" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing8/climbIn" to="climbing8" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing8/climbOut" to="climbing8" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing8/climbOut" to="climbing8" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing6/climbIn" to="climbing6" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing6/climbIn" to="climbing6" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing6/climbOut" to="climbing6" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing6/climbOut" to="climbing6" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing5/climbIn" to="climbing5" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing5/climbIn" to="climbing5" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing5/climbOut" to="climbing5" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing5/climbOut" to="climbing5" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing4/climbIn" to="climbing4" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing4/climbIn" to="climbing4" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing4/climbOut" to="climbing4" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing4/climbOut" to="climbing4" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing/climbIn" to="climbing" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing/climbIn" to="climbing" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing/climbOut" to="climbing" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing/climbOut" to="climbing" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing2/climbIn" to="climbing2" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing2/climbIn" to="climbing2" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing2/climbOut" to="climbing2" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing2/climbOut" to="climbing2" method="_on_climbOut_body_exited"]
-[connection signal="body_entered" from="climbing3/climbIn" to="climbing3" method="_on_climbIn_body_entered"]
-[connection signal="body_exited" from="climbing3/climbIn" to="climbing3" method="_on_climbIn_body_exited"]
-[connection signal="body_entered" from="climbing3/climbOut" to="climbing3" method="_on_climbOut_body_entered"]
-[connection signal="body_exited" from="climbing3/climbOut" to="climbing3" method="_on_climbOut_body_exited"]

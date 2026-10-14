@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/scripts/characters/player/PlayerDead.cs" type="Script" id=1]
-[ext_resource path="res://assets/models/player_variants/empty/third/earthpony.res" type="ArrayMesh" id=3]
-[ext_resource path="res://assets/models/player_variants/artifacts/collar/mesh.res" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/models/player_variants/artifacts/collar/skin.res" type="Skin" id=6]
+[ext_resource path="res://assets/models/player_variants/empty/third/earthpony.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/models/player_variants/artifacts/collar/mesh.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/models/player_variants/artifacts/collar/skin.tres" type="Skin" id=6]
 
 [sub_resource type="CapsuleShape" id=8]
 radius = 0.488123

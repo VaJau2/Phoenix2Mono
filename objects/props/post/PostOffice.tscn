@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/materials/props/materials/stone2.tres" type="Material" id=1]
-[ext_resource path="res://assets/models/props/plants/apple_tree/03 - Default.material" type="Material" id=2]
+[ext_resource path="res://assets/models/props/plants/apple_tree/03 - Default.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/materials/wood.tres" type="Material" id=3]
 
 [sub_resource type="ArrayMesh" id=1]

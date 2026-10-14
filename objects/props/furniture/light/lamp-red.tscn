@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/scripts/furniture/BreakableObject.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/materials/physics/glass.tres" type="PhysicsMaterial" id=2]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/materials/weapon/result/glass.tres" type="Material" id=5]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=6]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=7]
-[ext_resource path="res://assets/materials/props/light/lightglass-red.material" type="Material" id=8]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=9]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.tres" type="Material" id=6]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.tres" type="Material" id=7]
+[ext_resource path="res://assets/materials/props/light/lightglass-red.tres" type="Material" id=8]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.tres" type="Material" id=9]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.4

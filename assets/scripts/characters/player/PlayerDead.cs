@@ -54,7 +54,7 @@ public class PlayerDead : KinematicBody, IInteractable, IChest, ISavable
 
     private void ChangeCloth(string newClothCode)
     {
-        var path = $"res://assets/models/player_variants/{newClothCode}/third/{race.ToString().ToLower()}.res";
+        var path = $"res://assets/models/player_variants/{newClothCode}/third/{race.ToString().ToLower()}.tres";
         cloth.Mesh = GD.Load<Mesh>(path);
         clothCode = newClothCode;
     }
@@ -69,7 +69,7 @@ public class PlayerDead : KinematicBody, IInteractable, IChest, ISavable
             return;
         }
         
-        var path = $"res://assets/models/player_variants/artifacts/{artifactCode}/mesh.res";
+        var path = $"res://assets/models/player_variants/artifacts/{artifactCode}/mesh.tres";
         artifact.Mesh = GD.Load<Mesh>(path);
         artifact.Visible = true;
     }

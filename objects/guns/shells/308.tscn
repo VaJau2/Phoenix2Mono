@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/audio/guns/shells/762_3.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/guns/shells/762_2.mp3" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/guns/shells/762_4.mp3" type="AudioStream" id=6]
-[ext_resource path="res://objects/guns/shells/meshes/308.mesh" type="ArrayMesh" id=7]
+[ext_resource path="res://objects/guns/shells/meshes/308.tres" type="ArrayMesh" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.218888, 0.0438298, 0.0467328 )

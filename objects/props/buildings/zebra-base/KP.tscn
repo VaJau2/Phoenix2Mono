@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/models/props/buildings/zebra-base/kp_2/Material #27.material" type="Material" id=2]
-[ext_resource path="res://assets/models/props/buildings/zebra-base/kp_2/01 - Default.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/physics/stairs.phymat" type="PhysicsMaterial" id=4]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/models/props/buildings/zebra-base/kp_2/Material #27.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/props/buildings/zebra-base/kp_2/01 - Default.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/physics/stairs.tres" type="PhysicsMaterial" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "wall-door001_Plane005"

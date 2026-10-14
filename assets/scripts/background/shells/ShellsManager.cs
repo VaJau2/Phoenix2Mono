@@ -57,10 +57,18 @@ public class ShellsManager : Spatial, ISavable
         Transform newTransform = new Transform(newBasis, newPos);
 
         MeshInstance shell = new MeshInstance();
-        Mesh newMesh = GD.Load<Mesh>(shellData["meshPath"].ToString());
+        Mesh newMesh = GD.Load<Mesh>(GetMeshPath(shellData["meshPath"].ToString()));
         shell.Mesh = newMesh;
         AddChild(shell);
         shell.GlobalTransform = newTransform;
         shell.Scale = newScale;
+    }
+
+    //в старых сохранениях меши гильз лежат в бинарных .mesh,
+    //которые были переведены в .tres при подготовке к Godot 4
+    private static string GetMeshPath(string savedPath)
+    {
+        if (ResourceLoader.Exists(savedPath)) return savedPath;
+        return savedPath.BaseName() + ".tres";
     }
 }

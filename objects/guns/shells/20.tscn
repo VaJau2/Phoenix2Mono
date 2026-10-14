@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/audio/guns/shells/12_1.mp3" type="AudioStream" id=2]
 [ext_resource path="res://assets/audio/guns/shells/12_2.mp3" type="AudioStream" id=3]
 [ext_resource path="res://objects/guns/shells/shell-base.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/models/weapon/shells/20.material" type="Material" id=5]
+[ext_resource path="res://assets/models/weapon/shells/20.tres" type="Material" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.158932, 0.0612738, 0.0578685 )

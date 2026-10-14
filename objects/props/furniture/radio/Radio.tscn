@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://assets/models/props/furniture/Radio/Button/Button.material" type="Material" id=1]
-[ext_resource path="res://assets/models/props/furniture/Radio/Antenna/Antenna.material" type="Material" id=2]
-[ext_resource path="res://assets/models/props/furniture/Radio/Lever/Lever.material" type="Material" id=3]
-[ext_resource path="res://assets/models/props/furniture/Radio/Radio.material" type="Material" id=4]
+[ext_resource path="res://assets/models/props/furniture/Radio/Button/Button.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/props/furniture/Radio/Antenna/Antenna.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/props/furniture/Radio/Lever/Lever.tres" type="Material" id=3]
+[ext_resource path="res://assets/models/props/furniture/Radio/Radio.tres" type="Material" id=4]
 [ext_resource path="res://assets/scripts/furniture/Radio/Receiver.cs" type="Script" id=5]
 [ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=6]
 

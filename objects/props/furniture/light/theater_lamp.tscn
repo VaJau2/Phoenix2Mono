@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/models/props/furniture/lustra/01 - Default.material" type="Material" id=2]
-[ext_resource path="res://assets/models/props/furniture/lustra/02 - Default.material" type="Material" id=3]
+[ext_resource path="res://assets/materials/physics/glass.tres" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/models/props/furniture/lustra/01 - Default.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/props/furniture/lustra/02 - Default.tres" type="Material" id=3]
 
 [sub_resource type="BoxShape" id=19]
 extents = Vector3( 2.49928, 0.63041, 2.23065 )

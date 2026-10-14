@@ -1,7 +1,7 @@
 [gd_resource type="ArrayMesh" load_steps=3 format=2]
 
-[ext_resource path="res://assets/materials/props/furniture/trash/green.material" type="Material" id=1]
-[ext_resource path="res://assets/materials/props/furniture/trash/bottle.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/props/furniture/trash/green.tres" type="Material" id=1]
+[ext_resource path="res://assets/materials/props/furniture/trash/bottle.tres" type="Material" id=2]
 
 
 

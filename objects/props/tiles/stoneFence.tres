@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" load_steps=7 format=2]
 
-[ext_resource path="res://assets/models/props/fence/black.material" type="Material" id=1]
-[ext_resource path="res://assets/models/props/fence/stone-fence.material" type="Material" id=2]
+[ext_resource path="res://assets/models/props/fence/black.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/props/fence/stone-fence.tres" type="Material" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"

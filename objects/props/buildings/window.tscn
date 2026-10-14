@@ -1,11 +1,10 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/materials/props/window/window.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/physics/glass.phymat" type="PhysicsMaterial" id=2]
-[ext_resource path="res://assets/scripts/furns/broken-glass.gd" type="Script" id=3]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.material" type="Material" id=4]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.material" type="Material" id=5]
-[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.material" type="Material" id=6]
+[ext_resource path="res://assets/materials/physics/glass.tres" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part0.tres" type="Material" id=4]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part1.tres" type="Material" id=5]
+[ext_resource path="res://assets/materials/weapon/result/glass_parts/glass_part2.tres" type="Material" id=6]
 [ext_resource path="res://assets/materials/props/window/window-broken.tres" type="Material" id=7]
 [ext_resource path="res://assets/audio/guns/result/glass_brake1.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/guns/result/glass_brake2.wav" type="AudioStream" id=9]
@@ -49,12 +48,6 @@ extents = Vector3( 6.52819, 2.3378, 9.37135 )
 
 [node name="Window" type="StaticBody"]
 physics_material_override = ExtResource( 2 )
-script = ExtResource( 3 )
-broken_material = ExtResource( 7 )
-sound = {
-"brake1": ExtResource( 8 ),
-"brake2": ExtResource( 9 )
-}
 
 [node name="window" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.03315, 3.36643e-07, 0, -3.29708e-07, -1.01187, -0.104811, 0.668214, -0.0523265 )
@@ -91,5 +84,3 @@ monitorable = false
 
 [node name="shape" type="CollisionShape" parent="enemyArea"]
 shape = SubResource( 7 )
-[connection signal="body_entered" from="enemyArea" to="." method="_on_enemyArea_body_entered"]
-[connection signal="body_exited" from="enemyArea" to="." method="_on_enemyArea_body_exited"]

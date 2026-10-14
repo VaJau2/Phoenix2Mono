@@ -242,7 +242,7 @@ public class Player : Character
         }
 
 
-        var path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".res";
+        var path = "res://assets/models/player_variants/" + clothName + "/" + viewName + "/" + raceName + ".tres";
         var loadedMesh = GD.Load<Mesh>(path);
         meshInstance.Mesh = loadedMesh;
     }
@@ -255,8 +255,8 @@ public class Player : Character
         if (artifactName != null)
         {
             var path = "res://assets/models/player_variants/artifacts/" + artifactName + "/";
-            var loadedMesh = GD.Load<Mesh>(path + "mesh.res");
-            var loadedSkin = GD.Load<Skin>(path + "skin.res");
+            var loadedMesh = GD.Load<Mesh>(path + "mesh.tres");
+            var loadedSkin = GD.Load<Skin>(path + "skin.tres");
             artifact.Mesh = loadedMesh;
             artifact.Skin = loadedSkin;
         }

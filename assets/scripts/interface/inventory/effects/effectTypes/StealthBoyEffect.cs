@@ -32,7 +32,7 @@ public class StealthBoyEffect : Effect
 
     private static bool CanChangeTransparency(Resource material)
     {
-        return !material.ResourcePath.EndsWith("wings.material");
+        return !material.ResourcePath.EndsWith("wings.tres");
     }
 
     private static void ChangeMeshVisibility(MeshInstance meshInstance, bool visible)

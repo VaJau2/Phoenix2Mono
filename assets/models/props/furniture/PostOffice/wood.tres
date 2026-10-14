@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "wood"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.379993, 0.160366, 0.111665, 1 )
+roughness = 0.5

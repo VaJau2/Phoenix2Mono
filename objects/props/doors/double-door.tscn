@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/Windows.material" type="Material" id=1]
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/01 - Default.material" type="Material" id=2]
+[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/Windows.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/01 - Default.tres" type="Material" id=2]
 [ext_resource path="res://assets/audio/furniture/Doors/doorOpen.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/furniture/Doors/doorClosed.wav" type="AudioStream" id=5]

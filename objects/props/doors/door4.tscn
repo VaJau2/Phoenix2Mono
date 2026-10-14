@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Armor House.material" type="Material" id=1]
-[ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.material" type="Material" id=2]
+[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Armor House.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/02 - Default_002.tres" type="Material" id=2]
 [ext_resource path="res://assets/scripts/furniture/Interaction/Items/FurnDoor.cs" type="Script" id=3]
 [ext_resource path="res://assets/audio/furniture/Doors/doorClose.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/furniture/Doors/openWithKey.wav" type="AudioStream" id=5]

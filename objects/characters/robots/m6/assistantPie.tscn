@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/characters/robots/mrHandyBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/materials/characters/robots/m6/pinkie-mane.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/characters/robots/m6/pinkie-mane.tres" type="Material" id=5]
 [ext_resource path="res://assets/materials/characters/robots/m6/mrHandy-pinkie.tres" type="Material" id=6]
 
 

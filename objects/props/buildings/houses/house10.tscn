@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/buildings/street-houses/hs10/House_1_UVChannel_1_color.tga" type="Texture" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/models/characters/ponies/misterious_stranger/body.material" type="Material" id=1]
-[ext_resource path="res://assets/models/characters/ponies/misterious_stranger/coat.material" type="Material" id=2]
+[ext_resource path="res://assets/models/characters/ponies/misterious_stranger/body.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/characters/ponies/misterious_stranger/coat.tres" type="Material" id=2]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFaceMat.cs" type="Script" id=3]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/materials/characters/helmet.material" type="Material" id=6]
+[ext_resource path="res://assets/materials/characters/helmet.tres" type="Material" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "rorschach_hat"

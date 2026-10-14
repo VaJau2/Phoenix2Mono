@@ -1,6 +1,6 @@
 [gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://assets/materials/characters/dragon.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/characters/dragon.tres" type="Material" id=1]
 [ext_resource path="res://assets/scripts/characters/NPC/Components/SeekArea.cs" type="Script" id=2]
 [ext_resource path="res://assets/audio/enemies/dragon/dragon-fly.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/scripts/characters/NPC/NPC.cs" type="Script" id=4]

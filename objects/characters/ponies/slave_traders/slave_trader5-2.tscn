@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/materials/characters/slave_traders5/hair2.material" type="Material" id=1]
+[ext_resource path="res://assets/materials/characters/slave_traders5/hair2.tres" type="Material" id=1]
 [ext_resource path="res://objects/characters/ponyBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/materials/characters/slave_traders5/body3.material" type="Material" id=3]
-[ext_resource path="res://assets/materials/characters/slave_traders5/coat.material" type="Material" id=4]
-[ext_resource path="res://assets/materials/characters/slave_traders5/gasMask.material" type="Material" id=5]
+[ext_resource path="res://assets/materials/characters/slave_traders5/body3.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/characters/slave_traders5/coat.tres" type="Material" id=4]
+[ext_resource path="res://assets/materials/characters/slave_traders5/gasMask.tres" type="Material" id=5]
 
 [sub_resource type="ArrayMesh" id=6]
 resource_name = "slave_trader5_Cube"

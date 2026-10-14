@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
 [ext_resource path="res://assets/scripts/triggers/cinematic/CinematicExit.cs" type="Script" id=4]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=5]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=5]
 [ext_resource path="res://assets/materials/props/locations/sand.tres" type="Material" id=6]
 [ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
 [ext_resource path="res://objects/props/vehicles/Mercury.tscn" type="PackedScene" id=8]
@@ -14,8 +14,8 @@
 [ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
 [ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
 [ext_resource path="res://objects/props/vehicles/car_nt.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/materials/props/metal.material" type="Material" id=15]
-[ext_resource path="res://assets/materials/props/furniture/trash/green.material" type="Material" id=16]
+[ext_resource path="res://assets/materials/props/metal.tres" type="Material" id=15]
+[ext_resource path="res://assets/materials/props/furniture/trash/green.tres" type="Material" id=16]
 
 
 [sub_resource type="CubeMesh" id=6]

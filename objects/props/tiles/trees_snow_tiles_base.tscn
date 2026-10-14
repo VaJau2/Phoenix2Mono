@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree01-snow.png" type="Texture" id=2]
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree04-snow.png" type="Texture" id=3]
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree12-snow.png" type="Texture" id=4]

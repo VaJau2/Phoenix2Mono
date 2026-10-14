@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/materials/physics/metal.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/metal.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/models/props/vehicles/car_future/_base_color.tga" type="Texture" id=2]
 [ext_resource path="res://assets/models/props/vehicles/car_future/_roughness.tga" type="Texture" id=5]
 

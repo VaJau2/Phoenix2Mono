@@ -116,11 +116,32 @@ Godot 4 полностью поменял C# API: проект **не скомп
 3. **Физика**: Jolt, если на практике он не хуже GodotPhysics (решается одной настройкой проекта).
 4. `.fbx`: пока импорт встроенным ufbx; переконвертация в `.glb` — только для моделей с проблемами.
 
-## 6. Бинарные ресурсы — проверка автоматической конвертации
+## 6. Бинарные ресурсы — конвертация выполнена (этап 0.4, 2026-10-14)
 
-Проверено 2026-10-14: скрипт на GDScript, запущенный в Godot 3.6.3 (`--no-window -s`), загружает и пересохраняет в `.tres` все шесть типов (`.material`, `.meshlib`, `.anim`, `.res`, `.mesh`, `.phymat`); внешние ссылки (текстуры, материалы) сохраняются как `ext_resource`.
+Инструменты: `docs/migration/tools/convert_binary_resources.{gd,sh}`, соответствия путей «старый → новый» — `docs/migration/tools/binary_resources_map.tsv`.
 
-Нюансы:
-- 3 конфликта имён с уже существующими `.tres`: `assets/models/characters/ponies/scientist3/wing`, `assets/models/props/buildings/base-houses/stolovaya/walls`, `assets/models/props/buildings/street-houses/market/inside/market`.
-- Пути к бинарным ресурсам собираются в C# коде динамически: `Player.cs` (`mesh.res`, `skin.res`, `.res`), `PlayerDead.cs`, `NpcFaceMat.cs` (`/0.material`, `/1.material`), `RoboEyeBody.cs`, `StealthBoyEffect.cs`.
-- Суммарный объём бинарных файлов ~28 МБ; в текстовом виде меши (`.res`, `.meshlib`) увеличатся в несколько раз.
+Результат:
+- 770 бинарных файлов пересохранены в `.tres` (имя то же, расширение `.tres`), исходники удалены. Ссылки в `.tscn/.tres` заменены, динамические пути в C# исправлены (`Player.cs`, `PlayerDead.cs`, `NpcFaceMat.cs`, `RoboEyeBody.cs`, `StealthBoyEffect.cs`).
+- Встроенные в материалы текстуры вынесены в 263 `.png` рядом с материалом (одинаковые картинки — один файл). Импорт — как у остальных 3D-текстур проекта: без фильтрации, без mipmap-карт, без VRAM-сжатия, `detect_3d=false` (с `detect_3d=true` Godot сам включает фильтрацию — текстуры замыливаются). Карты нормалей/metallic/roughness/ao (39 шт.) — `srgb=0`. Превью тайлов в `MeshLibrary` оставлены встроенными.
+- **Пути ресурсов в сохранениях:** `ShellsManager` сохраняет путь к мешу гильзы (`meshPath`), в старых сохранениях там `.mesh` — при загрузке подставляется `.tres`, если старого файла нет.
+- 3 файла получили суффикс из-за конфликта имён: `scientist3/wing_material.tres`, `stolovaya/walls_material.tres`, `market/inside/market_material.tres`.
+- Объём: −42.5 МБ бинарных, +21 МБ `.tres`, +7 МБ `.png`.
+- Проверка `docs/migration/tools/load_all.gd` (загрузка всех 1261 `.tscn/.tres` в Godot 3): ошибки те же, что и до конвертации (см. ниже).
+
+**Оставлены бинарными 5 файлов** — их использует импортёр Godot 3 для моделей, которые уровни инстанцируют напрямую (`materials/storage=1` в `.import`):
+- `lab-sofa.glb` → `assets/models/props/furniture/lab-sofa/sofa.material`
+- `bread.glb` → `assets/models/props/furniture/trash/{dark-bread,green,white-bread}.material`
+- `poolLand.glb` → `assets/models/props/terrain/poolLand/Material.material`
+
+Рядом лежат их `.tres`-копии. **На этапе 1** бинарные копии удалить, а в импорте этих трёх моделей в Godot 4 указать внешние материалы (`Use External` → `.tres`).
+
+Остальные модели с `materials/storage=1` в сценах не используются (меши сохранены отдельно), но при импорте с нуля (свежий клон в Godot 3) импортёр заново создаст для них бинарные `.material` — это ожидаемый мусор, его не коммитить.
+
+## 7. Сломано ещё до миграции
+
+Обнаружено проверкой `load_all.gd`, не связано с конвертацией:
+- `objects/props/buildings/CP.tscn`, `roof.tscn` — ссылаются на несуществующие `wall.material`, `CP-walls.material`, `CP-inside-walls.material`; нигде не используются.
+- `objects/props/training/wall-gun.tscn` — ссылается на несуществующий `assets/materials/props/buildings/stone.tres`.
+- `scenes/test/TestSeekArea.tscn` — повреждён (`Parse Error: Expected '['`).
+- `objects/props/PropDamage.tscn` — встроенный GDScript обращается к несуществующему автозагрузу `G` (`G.player.stats.TakeDamage`), скрипт не компилируется.
+- Удалены ссылки на отсутствующие `.gd` в неиспользуемых `CP.tscn`, `window.tscn`, `flyingRing.tscn` (этап 0.3).

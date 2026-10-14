@@ -73,7 +73,7 @@ public class RoboEyeBody : Node
         
         string path = "res://assets/models/characters/robots/roboEye/roboEye";
         path += (materialName != "") ? "-" + materialName : "";
-        path += ".material";
+        path += ".tres";
         SpatialMaterial newMaterial = GD.Load<SpatialMaterial>(path);
 
         var monitor = GetNode("../corpus/monitor");

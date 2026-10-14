@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/guns/shells/shell-base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/guns/shells/meshes/12.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://objects/guns/shells/meshes/12.tres" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/audio/guns/shells/12_1.mp3" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/guns/shells/12_2.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/guns/shells/12_3.mp3" type="AudioStream" id=5]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=1]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/materials/props/materials/wood.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/props/materials/stone.tres" type="Material" id=3]
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Windows.material" type="Material" id=4]
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Armor House.material" type="Material" id=5]
+[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Windows.tres" type="Material" id=4]
+[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/Armor House.tres" type="Material" id=5]
 [ext_resource path="res://assets/materials/props/materials/stone3.tres" type="Material" id=6]
 [ext_resource path="res://objects/props/doors/door4.tscn" type="PackedScene" id=7]
 

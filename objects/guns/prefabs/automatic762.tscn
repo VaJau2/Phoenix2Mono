@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/materials/weapon/ak47.material" type="Material" id=1]
-[ext_resource path="res://assets/materials/weapon/result/smoke.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/weapon/ak47.tres" type="Material" id=1]
+[ext_resource path="res://assets/materials/weapon/result/smoke.tres" type="Material" id=2]
 [ext_resource path="res://assets/textures/weapon/result/shotFire.png" type="Texture" id=3]
 [ext_resource path="res://objects/guns/shells/762.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scripts/background/shells/WeaponShellSpawner.cs" type="Script" id=5]

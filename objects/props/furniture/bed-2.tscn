@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/materials/props/furniture/bed2.material" type="Material" id=1]
-[ext_resource path="res://assets/materials/physics/wood.phymat" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/materials/props/furniture/bed2.tres" type="Material" id=1]
+[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.61706, 0.725971, 3.13771 )

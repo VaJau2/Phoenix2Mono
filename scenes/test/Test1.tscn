@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/props/furniture/cabinet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/materials/physics/stone.phymat" type="PhysicsMaterial" id=6]
+[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=6]
 [ext_resource path="res://objects/props/furniture/metallic-cabinet.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/testing/Testing.tscn" type="PackedScene" id=8]
 
