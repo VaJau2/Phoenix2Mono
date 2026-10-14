@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class HeartbeatEffect 
+public class HeartbeatEffect 
 {
     const int COUNT_0 = 3;
     const int COUNT_1 = 4;
@@ -14,7 +14,7 @@ public partial class HeartbeatEffect
     private int count;
     private float damageCooldown = DAMAGE_TIMER;
 
-    private Dictionary<int, AudioStreamWAV> sounds = new Dictionary<int, AudioStreamWAV>();
+    private Dictionary<int, AudioStreamSample> sounds = new Dictionary<int, AudioStreamSample>();
     private AudioStreamPlayer audi;
 
     public HeartbeatEffect()
@@ -25,9 +25,9 @@ public partial class HeartbeatEffect
         sounds.Add(COUNT_3, GetAudio("3"));
     }
 
-    private AudioStreamWAV GetAudio(string name)
+    private AudioStreamSample GetAudio(string name)
     {
-        return GD.Load<AudioStreamWAV>("res://assets/audio/heartbeat/" + name + ".wav");
+        return GD.Load<AudioStreamSample>("res://assets/audio/heartbeat/" + name + ".wav");
     }
 
     private void CheckPlayerEmpty()

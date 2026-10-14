@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class Explosion : Node3D, ISavable
+public class Explosion : Spatial, ISavable
 {
     public bool checkWalls = true;
 
@@ -30,7 +30,7 @@ public partial class Explosion : Node3D, ISavable
         if (checkWalls)
         {
             GetNode<AnimationPlayer>("../wallparts/anim").Play("explode");
-            GetNode<CollisionShape3D>("../WallShape").Disabled = true;
+            GetNode<CollisionShape>("../WallShape").Disabled = true;
         }
        
         foreach (var part in parts)
@@ -68,6 +68,6 @@ public partial class Explosion : Node3D, ISavable
         var wallsAnim = GetNode<AnimationPlayer>("../wallparts/anim");
         wallsAnim.Play("explode");
         wallsAnim.Seek(wallsAnim.CurrentAnimationLength, true);
-        GetNode<CollisionShape3D>("../WallShape").Disabled = true;
+        GetNode<CollisionShape>("../WallShape").Disabled = true;
     }
 }

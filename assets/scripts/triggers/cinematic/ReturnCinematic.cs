@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class ReturnCinematic : AbstractMoveCinematic
+public class ReturnCinematic : AbstractMoveCinematic
 {
     public override void Enable()
     {

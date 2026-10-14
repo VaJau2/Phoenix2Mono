@@ -33,7 +33,7 @@ surfaces/0 = {
 "vertex_count": 741
 }
 
-[node name="Light3D" type="StaticBody3D"]
+[node name="Light" type="StaticBody3D"]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
 physics_material_override = ExtResource( 1 )
 

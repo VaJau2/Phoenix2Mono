@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class MedXEffect : Effect
+public class MedXEffect : Effect
 {
     const float DAMAGE_BLOCK_DELTA = 0.2f;
 

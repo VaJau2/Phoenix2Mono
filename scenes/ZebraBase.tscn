@@ -618,7 +618,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrainBody"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrainBody"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.467, -1.03045, 5.25 )
 shape = SubResource( 50 )
 
@@ -627,7 +627,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 101 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrainBody/fence-collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrainBody/fence-collision"]
 transform = Transform3D( 1, 6.04257e-11, 0, 2.21778e-12, 1, -3.63798e-12, -2.91038e-11, -2.36469e-11, 1, 8.747, 3.955, -124.367 )
 shape = SubResource( 3 )
 
@@ -670,7 +670,7 @@ collision_layer = 2
 collision_mask = 2
 physics_material_override = ExtResource( 47 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/grass"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/grass"]
 shape = SubResource( 8 )
 
 [node name="trees" type="GridMap" parent="terrain"]
@@ -816,7 +816,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/KP/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/KP/DoorTeleport"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.38924, 6.88347, 3.73178 )
 shape = SubResource( 47 )
 
@@ -841,7 +841,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/KP/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/KP/DoorTeleport2"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.320581, 2.75925, 0.838511 )
 shape = SubResource( 48 )
 
@@ -869,7 +869,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/KPP/DoorTeleport3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/KPP/DoorTeleport3"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.223244, 2.08163, 1.58583 )
 shape = SubResource( 49 )
 
@@ -1330,7 +1330,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/storage1/props/collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/storage1/props/collision"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32688, -9.25906, -7.2272 )
 shape = SubResource( 19 )
 
@@ -1494,7 +1494,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/storage2/props/collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/storage2/props/collision"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32688, -9.25906, -7.2272 )
 shape = SubResource( 19 )
 
@@ -1621,7 +1621,7 @@ mesh = SubResource( 25 )
 transform = Transform3D( 4.41393, 0, 0, 0, 4.41393, 0, 0, 0, 4.41393, -0.198784, -7.62939e-06, 0.419109 )
 mesh = SubResource( 26 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cp/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cp/walls"]
 transform = Transform3D( 4.414, 0, 0, 0, 4.414, 0, 0, 0, 4.414, -0.199, -0.001, 0.419 )
 shape = SubResource( 27 )
 
@@ -1630,7 +1630,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 53 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cp/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cp/floor"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228653, 0 )
 shape = SubResource( 52 )
 
@@ -1655,7 +1655,7 @@ physics_material_override = ExtResource( 54 )
 transform = Transform3D( 4.41393, 0, 0, 0, -5.26181e-07, -4.41393, 0, 4.41393, -5.26181e-07, -0.198784, -0.000976563, 0.419109 )
 mesh = SubResource( 30 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cp/stair"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cp/stair"]
 transform = Transform3D( 4.41393, 0, 0, 0, -5.26181e-07, -4.41393, 0, 4.41393, -5.26181e-07, -0.198784, -0.000976563, 0.419109 )
 shape = SubResource( 31 )
 
@@ -1997,7 +1997,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cp/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cp/DoorTeleport"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.0185547, 2.829, -0.0865974 )
 shape = SubResource( 45 )
 
@@ -2021,7 +2021,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cp/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cp/DoorTeleport2"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, 0.334332, 2.14836, -0.0690155 )
 shape = SubResource( 46 )
 
@@ -2046,7 +2046,7 @@ mesh = SubResource( 34 )
 transform = Transform3D( 15.2352, 0, 0, 0, 15.2352, 0, 0, 0, 15.2352, 0, 0, 0 )
 mesh = SubResource( 35 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cpp/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cpp/walls"]
 transform = Transform3D( 15.2352, 0, 0, 0, 15.2352, 0, 0, 0, 15.2352, 0, 0, 0 )
 shape = SubResource( 36 )
 
@@ -2055,7 +2055,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 53 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cpp/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cpp/floor"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.424622, -4.391 )
 shape = SubResource( 56 )
 
@@ -2189,7 +2189,7 @@ max_db = 5.0
 max_distance = 500.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/cpp/DoorTeleport3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/cpp/DoorTeleport3"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -0.559517, 3.43057, -0.489868 )
 shape = SubResource( 44 )
 
@@ -2216,7 +2216,7 @@ script = ExtResource( 35 )
 DeleteAfterTrigger = false
 HintCode = "pressButton"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/stopAlarmButton"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/stopAlarmButton"]
 shape = SubResource( 39 )
 
 [node name="blockAlarmArea" type="Area3D" parent="triggers" groups=["savable"]]
@@ -2224,7 +2224,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3381, -86.5011, 32.9672 )
 script = ExtResource( 104 )
 managerPath = NodePath("../../npc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/blockAlarmArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/blockAlarmArea"]
 shape = SubResource( 40 )
 
 [node name="commanderAlarmDialogue" type="Node" parent="triggers" groups=["savable"]]
@@ -2241,7 +2241,7 @@ npcPath = "../../npc/zebra-commander"
 goToPlayer = true
 changeStateToIdle = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/commanderStartDialogue"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/commanderStartDialogue"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.370419, 2.78024, -5.53674 )
 shape = SubResource( 41 )
 
@@ -2251,7 +2251,7 @@ script = ExtResource( 97 )
 IsActive = false
 otherTriggerPaths = [ NodePath("../dragonSpawn"), NodePath("../deleteAlarmMusic"), NodePath("../DragonMusic"), NodePath("../endTask") ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/dragonBegin"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/dragonBegin"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247875, -5.85937, 4.05937 )
 shape = SubResource( 42 )
 
@@ -2358,7 +2358,7 @@ startTrack = ExtResource( 99 )
 loopTrack = ExtResource( 100 )
 volumeSpeed = 0.2
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D( 0.94562, -0.149298, -0.288985, 0.14183, -0.61028, 0.779386, -0.292722, -0.77799, -0.555919, 0, 8.63824, -21.8162 )
 light_color = Color( 0.454902, 0.470588, 0.635294, 1 )
 light_energy = 0.02

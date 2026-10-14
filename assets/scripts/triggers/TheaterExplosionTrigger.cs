@@ -1,17 +1,17 @@
-using Godot;
+﻿using Godot;
 
-public partial class TheaterExplosionTrigger: TriggerBase
+public class TheaterExplosionTrigger: TriggerBase
 {
     [Export] public NodePath explosionPath;
     [Export] public NodePath chairsParentPath;
-    private Node3D chairsParent;
+    private Spatial chairsParent;
     private Explosion explosion;
 
     public override void _Ready()
     {
         base._Ready();
         explosion = GetNode<Explosion>(explosionPath);
-        chairsParent = GetNode<Node3D>(chairsParentPath);
+        chairsParent = GetNode<Spatial>(chairsParentPath);
     }
 
     public override void SetActive(bool newActive)

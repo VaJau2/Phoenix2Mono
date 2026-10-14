@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class DetoxineEffect: Effect 
+public class DetoxineEffect: Effect 
 {
     private Player player;
     public DetoxineEffect()

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class PlayerBody : Node3D
+public class PlayerBody : Spatial
 {
     //---------------------------------------------------+
     //скрипт анимирует тело и не дает ему поворачиваться,
@@ -27,8 +27,8 @@ public partial class PlayerBody : Node3D
     private Player player;
     private Race playerRace;
 
-    private Skeleton3D playerSkeleton;
-    private PhysicalBone3D headBone;
+    private Skeleton playerSkeleton;
+    private PhysicalBone headBone;
     private AnimationTree animTree;
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
@@ -81,8 +81,8 @@ public partial class PlayerBody : Node3D
     {
         player = GetNode<Player>("../");
         playerRace = Global.Get().playerRace;
-        playerSkeleton = GetNode<Skeleton3D>("Armature/Skeleton3D");
-        headBone = playerSkeleton.GetNode<PhysicalBone3D>("Physical Bone neck");
+        playerSkeleton = GetNode<Skeleton>("Armature/Skeleton");
+        headBone = playerSkeleton.GetNode<PhysicalBone>("Physical Bone neck");
 
         animTree = GetNode<AnimationTree>("animTree");
         playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/StateMachine/playback");
@@ -337,7 +337,7 @@ public partial class PlayerBody : Node3D
         }
         else
         {
-            var playerDir = player.Velocity * -player.Transform3D.basis.z;
+            var playerDir = player.Velocity * -player.Transform.basis.z;
             var playerMovingForward = playerDir.x + playerDir.z > 0;
 
             playback.Travel(playerMovingForward ? WALK_FORWARD : WALK_BACKWARD);
@@ -444,12 +444,12 @@ public partial class PlayerBody : Node3D
 
         foreach (var boneObject in playerSkeleton.GetChildren())
         {
-            if (boneObject is not PhysicalBone3D bone) continue;
+            if (boneObject is not PhysicalBone bone) continue;
             bone.CollisionLayer = 6; // слои 2 и 3
             bone.CollisionMask = 6; // слои 2 и 3
         }
 
-        var dir = Position.DirectionTo(killer.Position);
+        var dir = Translation.DirectionTo(killer.Translation);
         headBone.ApplyCentralImpulse(-dir * RAGDOLL_IMPULSE);
         SetProcess(false);
     }
@@ -463,9 +463,9 @@ public partial class PlayerBody : Node3D
             node.QueueFree();
         }
 
-        playerSkeleton.GetNode<MeshInstance3D>("Body").QueueFree();
+        playerSkeleton.GetNode<MeshInstance>("Body").QueueFree();
 
-        var thirdBody = playerSkeleton.GetNode<MeshInstance3D>("Body_third");
+        var thirdBody = playerSkeleton.GetNode<MeshInstance>("Body_third");
         thirdBody.Layers = 1;
         thirdBody.SetScript(null);
         SetScript(null);

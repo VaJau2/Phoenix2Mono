@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class TitleItem : Label
+public class TitleItem : Label
 {
     [Export] private bool isMoveTitle;
     [Export] private string key;

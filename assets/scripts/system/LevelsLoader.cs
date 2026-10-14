@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class LevelsLoader : Node
+public class LevelsLoader : Node
 {
 	Global global = Global.Get();
 	public static int tempLevelNum;
@@ -18,7 +18,7 @@ public partial class LevelsLoader : Node
 	private PackedScene loadingMenuPrefab;
 	private PackedScene deathMenuPrefab;
 	private bool mainMenuOn = true;
-	private ResourceLoader loader;
+	private ResourceInteractiveLoader loader;
 
 	[Signal]
 	public delegate void LevelLoaded();

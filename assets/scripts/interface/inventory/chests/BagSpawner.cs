@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class BagSpawner
+public class BagSpawner
 {
     private const float RAY_FIRST_DISTANCE = 5f;
     private const float RAY_THIRD_DISTANCE = 10f;
@@ -27,14 +27,14 @@ public partial class BagSpawner
     {
         var distance = player.ThirdView ? RAY_THIRD_DISTANCE : RAY_FIRST_DISTANCE;
         
-        var tempRay = player.Camera3D.UseRay(distance);
+        var tempRay = player.Camera.UseRay(distance);
         tempRay.ForceRaycastUpdate();
 
         var point = tempRay.IsColliding()
             ? tempRay.GetCollisionPoint()
             : player.GlobalTranslation;
         
-        player.Camera3D.ReturnRayBack();
+        player.Camera.ReturnRayBack();
 
         return point;
     }

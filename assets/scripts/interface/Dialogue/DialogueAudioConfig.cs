@@ -1,7 +1,7 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
-public partial class DialogueAudioConfig
+public class DialogueAudioConfig
 {
     private readonly Array defaultSoundCodes = new()
     {
@@ -12,7 +12,7 @@ public partial class DialogueAudioConfig
     private const float DEFAULT_MAX_PITCH = 2f;
     private const int DEFAULT_CHARS_TO_SOUND = 3;
 
-    public Array<AudioStreamWAV> Sounds { get; } = [];
+    public Array<AudioStreamSample> Sounds { get; } = [];
     public float MinPitch { get; private set; } = 0.5f;
     public float MaxPitch { get; private set; } = 3f;
     public int CharsToSound { get; private set; } = 3;
@@ -72,7 +72,7 @@ public partial class DialogueAudioConfig
         Sounds.Clear();
         foreach (string soundCode in soundCodes)
         {
-            var sound = GD.Load<AudioStreamWAV>($"res://assets/audio/dialogues/dynamic/{soundCode}.wav");
+            var sound = GD.Load<AudioStreamSample>($"res://assets/audio/dialogues/dynamic/{soundCode}.wav");
             Sounds.Add(sound);
         }
     }

@@ -1,7 +1,7 @@
 using Godot;
 using FurnStairs;
 
-public partial class FurnStairsTriggerArea : StaticBody3D, IInteractable, IDoorTeleport
+public class FurnStairsTriggerArea : StaticBody, IInteractable, IDoorTeleport
 {
     private const string VENT_TALKER_SUB_NAME = "vent_stairs";
     
@@ -12,7 +12,7 @@ public partial class FurnStairsTriggerArea : StaticBody3D, IInteractable, IDoorT
     
     public bool MayInteract => true;
     public string InteractionHintCode => GetInteractionCode();
-    public Node3D TeleportPos { get; private set; }
+    public Spatial TeleportPos { get; private set; }
 
     private FurnStairsClimbChecker checker;
     private FurnStairsSpawner spawner;
@@ -21,7 +21,7 @@ public partial class FurnStairsTriggerArea : StaticBody3D, IInteractable, IDoorT
     private Subtitles subtitles;
 
     private FurnDoor ventDoor;
-    private Node3D furnParent;
+    private Spatial furnParent;
 
     private enum FurnType
     {
@@ -36,8 +36,8 @@ public partial class FurnStairsTriggerArea : StaticBody3D, IInteractable, IDoorT
     public override void _Ready()
     {
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
-        TeleportPos = GetNode<Node3D>("teleportPoint");
-        furnParent = GetNode<Node3D>("furns");
+        TeleportPos = GetNode<Spatial>("teleportPoint");
+        furnParent = GetNode<Spatial>("furns");
         
         if (ventDoorPath != null)
         {
@@ -96,8 +96,8 @@ public partial class FurnStairsTriggerArea : StaticBody3D, IInteractable, IDoorT
         inventory.RemoveItem(furnCode);
 
         var furn = spawner.SpawnFurnByItemCode(furnCode);
-        furnParent.GetNode<Node3D>(typeString).AddChild(furn);
-        furn.Position = furn.Rotation = Vector3.Zero;
+        furnParent.GetNode<Spatial>(typeString).AddChild(furn);
+        furn.Translation = furn.Rotation = Vector3.Zero;
 
         player.GetAudi(true).Stream = GetAudioFromFurnType(furnType);
         player.GetAudi(true).Play();

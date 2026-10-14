@@ -1,16 +1,16 @@
 using Godot;
 
-public partial class RotateCinematic : PathBase
+public class RotateCinematic : PathBase
 {
     private bool isFinished;
-    private Node3D target;
+    private Spatial target;
     private PathBase waitingCinematic;
     private Cutscene cutscene;
     
     public override void _Ready()
     {
         base._Ready();
-        target = GetNode<Node3D>("PathFollow3D/Target");
+        target = GetNode<Spatial>("PathFollow/Target");
         cutscene = GetNode<Cutscene>("../../");
     }
 
@@ -23,13 +23,13 @@ public partial class RotateCinematic : PathBase
     public override void _PhysicsProcess(float delta)
     {
         if (!isFinished) base._PhysicsProcess(delta);
-        cutscene.GetCamera3d().LookAt(target.GlobalTranslation, Vector3.Up);
+        cutscene.GetCamera().LookAt(target.GlobalTranslation, Vector3.Up);
     }
 
     public void SetWaiting(PathBase pathBase)
     {
         waitingCinematic = pathBase;
-        waitingCinematic.Connect(nameof(Finished), new Callable(this, nameof(OnFinished)));
+        waitingCinematic.Connect(nameof(Finished), this, nameof(OnFinished));
     }
 
     public void OnFinished(PathBase pathBase = null)

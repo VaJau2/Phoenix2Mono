@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //включает другие триггеры
-public partial class ActivateOtherTrigger: TriggerBase
+public class ActivateOtherTrigger: TriggerBase
 {
     [Export] public Array<NodePath> otherTriggerPaths;
     [Export] public Array<NodePath> disactiveTriggerPaths;

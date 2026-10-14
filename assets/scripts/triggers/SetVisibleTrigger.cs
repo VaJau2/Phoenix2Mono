@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class SetVisibleTrigger : TriggerBase
+public class SetVisibleTrigger : TriggerBase
 {
     [Export] private Array<NodePath> showObjectsPath = [];
     [Export] private Array<NodePath> hideObjectsPath = [];
@@ -22,7 +22,7 @@ public partial class SetVisibleTrigger : TriggerBase
     {
         foreach (var path in objectsPath)
         {
-            GetNode<Node3D>(path).Visible = value;
+            GetNode<Spatial>(path).Visible = value;
         }
     }
 }

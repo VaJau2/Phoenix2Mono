@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 //Ищет по пути /audio/dialogues/lang/npc/dialogue/ озвучку для диалогового нода
 //Проигрывает, если файл существует

@@ -332,7 +332,7 @@ unit_size = 4.0
 monitorable = false
 script = ExtResource( 5 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="seekArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="seekArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.27021, -18.3623 )
 shape = SubResource( 13 )
 

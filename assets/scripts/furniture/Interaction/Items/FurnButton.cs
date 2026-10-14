@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class FurnButton : ActivateOtherTrigger, IInteractable
+public class FurnButton : ActivateOtherTrigger, IInteractable
 {
     public bool MayInteract { get; } = true;
     public string InteractionHintCode { get; } = "pressButton";

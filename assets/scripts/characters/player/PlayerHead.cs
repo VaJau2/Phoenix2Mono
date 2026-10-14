@@ -2,13 +2,13 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class PlayerHead : MeshInstance3D
+public class PlayerHead : MeshInstance
 {
     const float SHY_TIMER = 10f;
     private static string path = "res://assets/textures/characters/player/emotions/";
-    private Dictionary<string, CompressedTexture2D> openEyes = new Dictionary<string, CompressedTexture2D>();
-    private Dictionary<string, CompressedTexture2D> closeEyes = new Dictionary<string, CompressedTexture2D>();
-    private StandardMaterial3D bodyMaterial;
+    private Dictionary<string, StreamTexture> openEyes = new Dictionary<string, StreamTexture>();
+    private Dictionary<string, StreamTexture> closeEyes = new Dictionary<string, StreamTexture>();
+    private SpatialMaterial bodyMaterial;
     private Player player => Global.Get().player;
 
     private string emotion = "empty";
@@ -20,10 +20,10 @@ public partial class PlayerHead : MeshInstance3D
 
     public void FindFaceMaterial()
     {
-        int count = GetSurfaceOverrideMaterialCount();
+        int count = GetSurfaceMaterialCount();
         for (int i = 0; i < count; i++)
         {
-            StandardMaterial3D tempMaterial = Mesh.SurfaceGetMaterial(i) as StandardMaterial3D;
+            SpatialMaterial tempMaterial = Mesh.SurfaceGetMaterial(i) as SpatialMaterial;
             if (tempMaterial.DetailEnabled)
             {
                 bodyMaterial = tempMaterial;
@@ -93,7 +93,7 @@ public partial class PlayerHead : MeshInstance3D
 
     private void ChangeMaterialTexture(bool eyesAreOpen)
     {
-        CompressedTexture2D newTexture;
+        StreamTexture newTexture;
         newTexture = eyesAreOpen ? openEyes[emotion] : closeEyes[emotion];
         bodyMaterial.DetailAlbedo = newTexture;
     }
@@ -124,20 +124,20 @@ public partial class PlayerHead : MeshInstance3D
 
     public override void _Ready()
     {
-        openEyes.Add("empty", GD.Load<CompressedTexture2D>(path + "player_body.png"));
-        closeEyes.Add("empty", GD.Load<CompressedTexture2D>(path + "player_body_closed_eyes.png"));
+        openEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body.png"));
+        closeEyes.Add("empty", GD.Load<StreamTexture>(path + "player_body_closed_eyes.png"));
 
-        openEyes.Add("smile", GD.Load<CompressedTexture2D>(path + "player_body_smiling.png"));
-        closeEyes.Add("smile", GD.Load<CompressedTexture2D>(path + "player_body_smiling_closed_eyes.png"));
+        openEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling.png"));
+        closeEyes.Add("smile", GD.Load<StreamTexture>(path + "player_body_smiling_closed_eyes.png"));
 
-        openEyes.Add("shy", GD.Load<CompressedTexture2D>(path + "player_body_shy.png"));
-        closeEyes.Add("shy", GD.Load<CompressedTexture2D>(path + "player_body_shy_closed_eyes.png"));
+        openEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy.png"));
+        closeEyes.Add("shy", GD.Load<StreamTexture>(path + "player_body_shy_closed_eyes.png"));
 
-        openEyes.Add("meds", GD.Load<CompressedTexture2D>(path + "player_body_meds.png"));
-        closeEyes.Add("meds", GD.Load<CompressedTexture2D>(path + "player_body_meds_closed_eyes.png"));
+        openEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds.png"));
+        closeEyes.Add("meds", GD.Load<StreamTexture>(path + "player_body_meds_closed_eyes.png"));
 
-        openEyes.Add("meds_after", GD.Load<CompressedTexture2D>(path + "player_body_meds_after.png"));
-        closeEyes.Add("meds_after", GD.Load<CompressedTexture2D>(path + "player_body_meds_after_closed_eyes.png"));
+        openEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after.png"));
+        closeEyes.Add("meds_after", GD.Load<StreamTexture>(path + "player_body_meds_after_closed_eyes.png"));
 
         StartOpenEyes();
     }

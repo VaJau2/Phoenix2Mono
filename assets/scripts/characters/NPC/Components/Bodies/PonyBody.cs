@@ -1,10 +1,10 @@
 using Godot;
 using Godot.Collections;
 
-public partial class PonyBody : Node, ISavable
+public class PonyBody : Node, ISavable
 {
-    [Export] private Array<AudioStreamWAV> hittedSounds = [];
-    [Export] private AudioStreamWAV dieSound;
+    [Export] private Array<AudioStreamSample> hittedSounds = [];
+    [Export] private AudioStreamSample dieSound;
     
     public string IdleAnim = "Idle1";
     public string CustomIdleAnim = null;
@@ -15,8 +15,8 @@ public partial class PonyBody : Node, ISavable
     private AnimationNodeStateMachinePlayback playback;
     private Vector2 headBlend;
 
-    private Node3D defaultLookTarget;
-    private Node3D lookTarget;
+    private Spatial defaultLookTarget;
+    private Spatial lookTarget;
     private float lookTimer = 2f;
     
     public override void _Ready()
@@ -29,8 +29,8 @@ public partial class PonyBody : Node, ISavable
         
         playback.Start(IdleAnim);
         
-        npc.Connect(nameof(Character.TakenDamage), new Callable(this, nameof(OnNpcHitted)));
-        npc.Connect(nameof(Character.DieEvent), new Callable(this, nameof(OnNpcDying)));
+        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnNpcHitted));
+        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
     }
 
     public override void _Process(float delta)
@@ -57,19 +57,19 @@ public partial class PonyBody : Node, ISavable
         PlayAnim(Character.IDLE_ANIM1);
     }
     
-    public Vector3 GetDirToTarget(Node3D target)
+    public Vector3 GetDirToTarget(Spatial target)
     {
         Vector3 targetDirPos = target.GlobalTranslation;
         targetDirPos.y = npc.GlobalTranslation.y;
         return targetDirPos - npc.GlobalTranslation;
     }
 
-    public void SetDefaultLookTarget(Node3D value)
+    public void SetDefaultLookTarget(Spatial value)
     {
         defaultLookTarget = value;
     }
 
-    public void SetLookTarget(Node3D value)
+    public void SetLookTarget(Spatial value)
     {
         lookTarget = value;
     }
@@ -84,7 +84,7 @@ public partial class PonyBody : Node, ISavable
 
         if (npc.Weapons is { IsPistol: true })
         {
-            if (Mathf.RadToDeg(rotationToVictim) < 80)
+            if (Mathf.Rad2Deg(rotationToVictim) < 80)
             {
                 return;
             }
@@ -204,7 +204,7 @@ public partial class PonyBody : Node, ISavable
 
     private bool MayRotateHead => IdleAnim != "Frozen";
 
-    private Vector2 GetHeadRotationTo(Node3D target)
+    private Vector2 GetHeadRotationTo(Spatial target)
     {
         Vector3 npcForward = -npc.GlobalTransform.basis.z;
         Vector3 dir = GetDirToTarget(target);

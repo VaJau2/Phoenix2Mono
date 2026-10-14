@@ -4,11 +4,11 @@ using Godot;
 /// Тестовая камера включается при нажатии на F12 и позволяет летать по миру
 /// Повторное нажатие F12 выключает камеру
 /// </summary>
-public partial class TestingCamera : Camera3D
+public class TestingCamera : Camera
 {
     private const float PLAYER_HEIGHT = 1.5f;
     private Global global;
-    private Node3D pivot;
+    private Spatial pivot;
     
     public override void _Ready()
     {
@@ -18,7 +18,7 @@ public partial class TestingCamera : Camera3D
             return;
         }
         
-        pivot = GetParent<Node3D>();
+        pivot = GetParent<Spatial>();
         global = Global.Get();
         UpdateSettingCamera(true);
     }
@@ -67,8 +67,8 @@ public partial class TestingCamera : Camera3D
             return;
         
         var mouseSensitivity = global.Settings.mouseSensivity;
-        RotateX(Mathf.DegToRad(mouseEvent.Relative.y * -mouseSensitivity));
-        pivot.RotateY(Mathf.DegToRad(mouseEvent.Relative.x * -mouseSensitivity));
+        RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));
+        pivot.RotateY(Mathf.Deg2Rad(mouseEvent.Relative.x * -mouseSensitivity));
 
         var cameraRot = RotationDegrees;
         cameraRot.x = Mathf.Clamp(cameraRot.x, Player.CAMERA_MIN_Y, Player.CAMERA_MAX_Y);
@@ -82,11 +82,11 @@ public partial class TestingCamera : Camera3D
         
         if (Input.IsActionPressed("ui_up"))
         {
-            dir -= Transform3D.basis.z;
+            dir -= Transform.basis.z;
         }
         if (Input.IsActionPressed("ui_down"))
         {
-            dir += Transform3D.basis.z;
+            dir += Transform.basis.z;
         }
         if (Input.IsActionPressed("ui_left"))
         {

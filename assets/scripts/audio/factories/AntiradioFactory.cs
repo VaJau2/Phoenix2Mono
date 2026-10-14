@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public partial class AntiradioFactory : IAudioEffectsFactory
+public class AntiradioFactory : IAudioEffectsFactory
 {
     private const string key = "antiradio";
     

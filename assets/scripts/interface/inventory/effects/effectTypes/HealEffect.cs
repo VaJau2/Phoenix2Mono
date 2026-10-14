@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class HealEffect : Effect
+public class HealEffect : Effect
 {
     const float HEAL_COOLDOWN = 0.6f;
     private Player player;

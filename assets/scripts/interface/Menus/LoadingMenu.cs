@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class LoadingMenu : Control
+public class LoadingMenu : Control
 {
     private const float TIME = 0.5f;
     private Label loadingLabel;

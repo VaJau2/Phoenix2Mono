@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Godot;
 using Object = Godot.Object;
 
 //общий класс для работы с 2д аудио и 3д аудио (потому что разрабы годота так не умеют)
-public partial class AudioPlayerCommon
+public class AudioPlayerCommon
 {
     private AudioStreamPlayer player;
     private AudioStreamPlayer3D player3D;
@@ -41,15 +41,15 @@ public partial class AudioPlayerCommon
         }
     }
 
-    public void Connect(string signal, new Callable(Object target, string method))
+    public void Connect(string signal, Object target, string method)
     {
         if (audio3D)
         {
-            player3D.Connect(signal, new Callable(target, method));
+            player3D.Connect(signal, target, method);
         }
         else
         {
-            player.Connect(signal, new Callable(target, method));
+            player.Connect(signal, target, method);
         }
     }
 
@@ -91,12 +91,12 @@ public partial class AudioPlayerCommon
 
     public float Volume
     {
-        get => audio3D ? player3D.VolumeDb : player.VolumeDb;
+        get => audio3D ? player3D.UnitDb : player.VolumeDb;
         set
         {
             if (audio3D)
             {
-                player3D.VolumeDb = value;
+                player3D.UnitDb = value;
             }
             else
             {

@@ -2,12 +2,12 @@ using Godot;
 
 //класс отвечает за лицо НПЦ: за текстуры глаз и рта
 //отличается от NPCFace тем, что меняет не текстуры материала, а меняет сами материалы
-public partial class NpcFaceMat : NpcFace
+public class NpcFaceMat : NpcFace
 {
     private const int EYES_MATERIAL = 0;
     
-    private StandardMaterial3D openEyes;
-    private StandardMaterial3D closedEyes;
+    private SpatialMaterial openEyes;
+    private SpatialMaterial closedEyes;
 
     public override void CloseEyes()
     {
@@ -19,8 +19,8 @@ public partial class NpcFaceMat : NpcFace
     private new void ChangeEyesVariant(string variantName)
     {
         var path = "res://assets/materials/characters/" + npcName + "/eyes/" + variantName;
-        openEyes = GD.Load<StandardMaterial3D>(path + "/0.tres");
-        closedEyes = GD.Load<StandardMaterial3D>(path + "/1.tres");
+        openEyes = GD.Load<SpatialMaterial>(path + "/0.tres");
+        closedEyes = GD.Load<SpatialMaterial>(path + "/1.tres");
         Mesh.SurfaceSetMaterial(EYES_MATERIAL, AreEyesOpen ? openEyes : closedEyes);
     }
 

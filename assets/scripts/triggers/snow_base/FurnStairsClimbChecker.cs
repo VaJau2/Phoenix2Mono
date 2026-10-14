@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 namespace FurnStairs;
 
@@ -11,12 +11,12 @@ public enum MayClimbOption
     MayClimb
 }
 
-public partial class FurnStairsClimbChecker
+public class FurnStairsClimbChecker
 {
     private readonly FurnDoor ventDoor;
-    private readonly Node3D furnsParent;
+    private readonly Spatial furnsParent;
 
-    public FurnStairsClimbChecker(FurnDoor ventDoor, Node3D furnsParent)
+    public FurnStairsClimbChecker(FurnDoor ventDoor, Spatial furnsParent)
     {
         this.ventDoor = ventDoor;
         this.furnsParent = furnsParent;

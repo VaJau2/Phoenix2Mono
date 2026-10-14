@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=2]
 
 [resource]
-resource_name = "Light3D"
+resource_name = "Light"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 albedo_color = Color( 0.906332, 0.800494, 0.123078, 1 )

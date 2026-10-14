@@ -71,9 +71,9 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 size = Vector2( 8, 4 )
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mirror"]
+[node name="StaticBody" type="StaticBody3D" parent="Mirror"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mirror/StaticBody3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Mirror/StaticBody"]
 shape = SubResource( 5 )
 
 [node name="audi" type="AudioStreamPlayer3D" parent="."]

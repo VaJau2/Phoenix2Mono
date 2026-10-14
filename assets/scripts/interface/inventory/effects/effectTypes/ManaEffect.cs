@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class ManaEffect : Effect
+public class ManaEffect : Effect
 {
     const float MANA_SPEED_DELTA = 0.5f;
     private Player_Unicorn player;

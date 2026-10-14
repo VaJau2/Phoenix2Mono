@@ -1,16 +1,16 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 using System;
 
 //управляет статичными мешами гильз
 //ограничивает их общее количество
 //сохраняет и загружает сохраненные меши гильз
-public partial class ShellsManager : Node3D, ISavable
+public class ShellsManager : Spatial, ISavable
 {
     [Export]
     private int shellsLimit = 20;
 
-    public void AddShell(MeshInstance3D shell)
+    public void AddShell(MeshInstance shell)
     {
         AddChild(shell);
         if (GetChildCount() >= shellsLimit)
@@ -22,7 +22,7 @@ public partial class ShellsManager : Node3D, ISavable
     public Dictionary GetSaveData()
     {
         Dictionary savingData = new Dictionary();
-        foreach(MeshInstance3D shell in GetChildren())
+        foreach(MeshInstance shell in GetChildren())
         {
             savingData.Add(shell.Name, new Dictionary
             {
@@ -54,9 +54,9 @@ public partial class ShellsManager : Node3D, ISavable
         Vector3 newScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
         Basis newBasis = new Basis(newRot);
-        Transform3D newTransform = new Transform3D(newBasis, newPos);
+        Transform newTransform = new Transform(newBasis, newPos);
 
-        MeshInstance3D shell = new MeshInstance3D();
+        MeshInstance shell = new MeshInstance();
         Mesh newMesh = GD.Load<Mesh>(GetMeshPath(shellData["meshPath"].ToString()));
         shell.Mesh = newMesh;
         AddChild(shell);

@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts
 {
-    public partial class SetLookAtTarget : IDialogueScript
+    public class SetLookAtTarget : IDialogueScript
     {
         public void initiate(Node node, string parameter, string key = "")
         {
@@ -13,7 +13,7 @@ namespace DialogueScripts
             if (!string.IsNullOrEmpty(parameter))
             {
                 target = node
-                    .GetNodeOrNull<Node3D>($"/root/Main/Scene/dialogueTargets/{parameter}")
+                    .GetNodeOrNull<Spatial>($"/root/Main/Scene/dialogueTargets/{parameter}")
                     .GlobalTranslation;
             }
             

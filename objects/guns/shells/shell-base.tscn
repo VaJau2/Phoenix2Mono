@@ -22,7 +22,7 @@ max_db = 2.0
 max_distance = 100.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class TradeTerminal: StaticBody3D, ITrader 
+public class TradeTerminal: StaticBody, ITrader 
 {
     [Export]
     public int moneyCount {get; set;}   
@@ -50,7 +50,7 @@ public partial class TradeTerminal: StaticBody3D, ITrader
             TradeMode tempMode = menu.mode as TradeMode;
             tempMode.SetTrader(this);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
+            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
             isTrading = true;
         }
     }
@@ -58,6 +58,6 @@ public partial class TradeTerminal: StaticBody3D, ITrader
     public void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
+        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
     }
 }

@@ -31,6 +31,6 @@ transform = Transform3D( 0.0575742, 0, 0, 0, 0.0575742, 0, 0, 0, 0.0575742, 0.15
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161155, 0.515696, 0 )
 shape = SubResource( 2 )

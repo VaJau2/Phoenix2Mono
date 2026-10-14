@@ -4,7 +4,7 @@ using Godot.Collections;
 //Скрипт меню настроек
 //Отвечает за переключение между подменюшками настроек
 //И их взаимодействие
-public partial class SettingsMenu : MenuBase
+public class SettingsMenu : MenuBase
 {
     [Export] private string mainSubmenuCode = "Settings";
     [Export] private Dictionary<string, NodePath> submenuPaths;

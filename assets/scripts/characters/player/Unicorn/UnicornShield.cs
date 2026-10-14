@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public partial class UnicornShield : Node3D
+public class UnicornShield : Spatial
 {
     private const float SHIELD_COST = 30f;
     public bool shieldOn = false;
     public float shieldCooldown = 0f;
     private Player_Unicorn player;
-    private MeshInstance3D firstShield;
-    private MeshInstance3D thirdShield;
+    private MeshInstance firstShield;
+    private MeshInstance thirdShield;
 
-    private StandardMaterial3D material;
+    private SpatialMaterial material;
     private bool playOnetime;
 
     private LightsCheck lights;
@@ -21,11 +21,11 @@ public partial class UnicornShield : Node3D
     public override void _Ready()
     {
         player = GetParent<Player_Unicorn>();
-        firstShield = GetNode<MeshInstance3D>("first");
-        thirdShield = GetNode<MeshInstance3D>("third");
+        firstShield = GetNode<MeshInstance>("first");
+        thirdShield = GetNode<MeshInstance>("third");
         lights = GetNode<LightsCheck>("../lightsCheck");
 
-        material = (StandardMaterial3D)firstShield.GetSurfaceOverrideMaterial(0);
+        material = (SpatialMaterial)firstShield.GetSurfaceMaterial(0);
 
         audi = GetNode<AudioStreamPlayer>("../sound/audi_shield");
     }
@@ -52,8 +52,8 @@ public partial class UnicornShield : Node3D
             var color = material.AlbedoColor;
             color.a = player.Mana / 150f;
             material.AlbedoColor = color;
-            firstShield.SetSurfaceOverrideMaterial(0, material);
-            thirdShield.SetSurfaceOverrideMaterial(0, material);
+            firstShield.SetSurfaceMaterial(0, material);
+            thirdShield.SetSurfaceMaterial(0, material);
             lights.OnLight = true;
             if (!playOnetime)
             {

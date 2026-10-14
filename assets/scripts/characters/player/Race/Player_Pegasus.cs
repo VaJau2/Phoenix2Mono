@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class Player_Pegasus : Player
+public class Player_Pegasus : Player
 {
     const float FLYING_FAST_SMASH_COOLDOWN = 0.5f;
     const float FLY_SPEED = 4f;
@@ -18,7 +18,7 @@ public partial class Player_Pegasus : Player
     private float flySpeed = FLY_SPEED;
 
     public AudioStreamPlayer wingsAudi;
-    private AudioStreamWAV wingsSound;
+    private AudioStreamSample wingsSound;
 
     public bool IsFlying
     {
@@ -44,7 +44,7 @@ public partial class Player_Pegasus : Player
     {
         base._Ready();
         wingsAudi = GetNode<AudioStreamPlayer>("sound/audi_wings");
-        wingsSound = GD.Load<AudioStreamWAV>("res://assets/audio/flying/pegasus-wings.wav");
+        wingsSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/pegasus-wings.wav");
         SetStartHealth(125);
     }
 
@@ -190,7 +190,7 @@ public partial class Player_Pegasus : Player
     }
 
 
-    public override float GetVelocity()
+    public override float GetSpeed()
     {
         if (IsFlying)
         {
@@ -209,10 +209,10 @@ public partial class Player_Pegasus : Player
                 flyIncrease = 5f;
             }
 
-            return (int)(base.GetVelocity() * flySpeed);
+            return (int)(base.GetSpeed() * flySpeed);
         }
 
-        return base.GetVelocity();
+        return base.GetSpeed();
     }
 
     protected override float GetDeacceleration()

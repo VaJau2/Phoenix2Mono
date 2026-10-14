@@ -8,13 +8,13 @@ using Godot.Collections;
  * Играет звук ударов из audi
  * Замораживается через некоторое время, если не движется
  */
-public partial class PickupItem : RigidBody3D, IInteractable, ISavable
+public class PickupItem : RigidBody, IInteractable, ISavable
 {
     private const float AUDI_COOLDOWN = 0.3f;
     private const float MIN_VELOCITY_TO_SOUND = 0.3f;
     
     [Export] private string itemCode;
-    [Export] private List<AudioStreamWAV> sounds;
+    [Export] private List<AudioStreamSample> sounds;
     
     public bool MayInteract => inventoryMenu.HasEmptyButton;
     public string InteractionHintCode => "pick";
@@ -58,7 +58,7 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
         if (audiCooldown > 0) return;
         if (currentSpeed < MIN_VELOCITY_TO_SOUND) return;
         
-        if (body is StaticBody3D { PhysicsMaterialOverride: not null } collideBody)
+        if (body is StaticBody { PhysicsMaterialOverride: not null } collideBody)
         {
             PlaySound();
             audiCooldown = AUDI_COOLDOWN;
@@ -95,7 +95,7 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
         Vector3 oldScale = Scale;
 
         Basis newBasis = new Basis(newRot);
-        Transform3D newTransform = new Transform3D(newBasis, newPos);
+        Transform newTransform = new Transform(newBasis, newPos);
         GlobalTransform = newTransform;
         Scale = oldScale;
     }

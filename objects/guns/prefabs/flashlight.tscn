@@ -37,7 +37,7 @@ transform = Transform3D( -0.154191, 5.4946e-05, -0.0011931, 3.17102e-05, 0.16021
 mesh = SubResource( 1 )
 skeleton = NodePath("")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight" type="SpotLight3D" parent="."]
 transform = Transform3D( 0.99997, 0.00035634, 0.00773764, -0.000197881, 0.99979, -0.0204701, -0.00774331, 0.020468, 0.999761, -0.00757602, -0.26705, -1.35826 )
 light_color = Color( 0.964706, 0.992157, 0.827451, 1 )
 light_energy = 2.5

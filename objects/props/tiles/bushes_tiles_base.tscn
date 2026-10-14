@@ -137,7 +137,7 @@ surfaces/0 = {
 "vertex_count": 48
 }
 
-[node name="Node3D" type="Node3D"]
+[node name="Spatial" type="Node3D"]
 
 [node name="bush01" type="MeshInstance3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5838, 0, 0 )

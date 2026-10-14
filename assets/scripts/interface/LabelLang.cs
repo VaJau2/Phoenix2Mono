@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class LabelLang : Label
+public class LabelLang : Label
 {
     [Export] private string phraseCode;
     

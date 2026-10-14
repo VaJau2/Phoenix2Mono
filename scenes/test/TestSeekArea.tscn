@@ -31,11 +31,11 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0"]
 transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1"]
 shape = SubResource( 2 )
 
 [node name="props" type="Node3D" parent="Scene/terrain" index="2"]
@@ -60,7 +60,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain/props/box" index="0"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box" index="0"]
 shape = SubResource( 4 )
 
 [node name="box2" type="StaticBody3D" parent="Scene/terrain/props" index="4"]
@@ -69,11 +69,11 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain/props/box2" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box2" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0435208, 0, 0 )
 mesh = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain/props/box2" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box2" index="1"]
 shape = SubResource( 4 )
 
 [node name="box3" type="StaticBody3D" parent="Scene/terrain/props" index="5"]
@@ -82,11 +82,11 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain/props/box3" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box3" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110343, 0, 0 )
 mesh = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain/props/box3" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box3" index="1"]
 shape = SubResource( 4 )
 
 [node name="box4" type="StaticBody3D" parent="Scene/terrain/props" index="6"]
@@ -95,10 +95,10 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain/props/box4" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box4" index="0"]
 mesh = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain/props/box4" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box4" index="1"]
 shape = SubResource( 4 )
 
 [node name="box5" type="StaticBody3D" parent="Scene/terrain/props" index="7"]
@@ -107,13 +107,13 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain/props/box5" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box5" index="0"]
 mesh = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain/props/box5" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box5" index="1"]
 shape = SubResource( 4 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
 transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true
 

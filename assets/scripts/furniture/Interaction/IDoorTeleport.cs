@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 public interface IDoorTeleport
 { 
-    Node3D TeleportPos { get; }
+    Spatial TeleportPos { get; }
 
     Vector3 GlobalTranslation { get; }
 }

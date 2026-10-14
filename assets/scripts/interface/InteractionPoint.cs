@@ -5,7 +5,7 @@ using Godot;
 //Если игрок взаимодействует с предметами - квадратные рамочки
 //Если игрок ни с чем не взаимодействует - точка
 //Плюс, пропадает через время, будучи точкой
-public partial class InteractionPoint : Control
+public class InteractionPoint : Control
 {
     private AnimationPlayer anim;
     private InteractionVariant tempVariant = InteractionVariant.Point;
@@ -30,7 +30,7 @@ public partial class InteractionPoint : Control
         if (fadeTimer == null)
         {
             fadeTimer = new Timer();
-            fadeTimer.Connect("timeout", new Callable(this, nameof(HidePoint)));
+            fadeTimer.Connect("timeout", this, nameof(HidePoint));
             AddChild(fadeTimer);
         }
             

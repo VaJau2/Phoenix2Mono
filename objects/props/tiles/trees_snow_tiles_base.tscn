@@ -121,10 +121,10 @@ transform = Transform3D( 1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, -10, 0, -1 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tree01"]
+[node name="StaticBody" type="StaticBody3D" parent="tree01"]
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree01/StaticBody3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="tree01/StaticBody"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213013, 4.42747, 0 )
 shape = SubResource( 3 )
 
@@ -133,10 +133,10 @@ transform = Transform3D( 1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, -2.4373, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = null
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tree04"]
+[node name="StaticBody" type="StaticBody3D" parent="tree04"]
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree04/StaticBody3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="tree04/StaticBody"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0760136, 4.42747, 0 )
 shape = SubResource( 6 )
 
@@ -145,10 +145,10 @@ transform = Transform3D( 1.3, 0, 0, 0, 1, 0, 0, 0, 1.3, 4.76406, -1.90735e-06, 0
 mesh = SubResource( 8 )
 material/0 = null
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tree05"]
+[node name="StaticBody" type="StaticBody3D" parent="tree05"]
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree05/StaticBody3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="tree05/StaticBody"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0335779, 4.42747, 0 )
 shape = SubResource( 9 )
 
@@ -157,10 +157,10 @@ transform = Transform3D( 1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 12, 0, 0 )
 mesh = SubResource( 11 )
 material/0 = null
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tree12"]
+[node name="StaticBody" type="StaticBody3D" parent="tree12"]
 transform = Transform3D( 1.08333, 0, 0, 0, 1, 0, 0, 0, 1.08333, 0, 0, 0 )
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree12/StaticBody3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="tree12/StaticBody"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00694923, 4.42747, 0 )
 shape = SubResource( 12 )

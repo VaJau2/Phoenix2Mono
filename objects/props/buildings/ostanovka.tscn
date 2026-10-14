@@ -65,7 +65,7 @@ shape = SubResource( 4 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.218585, 0.397078, -0.655692 )
 shape = SubResource( 5 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30647, 0.990993, 1.62242 )
 shape = SubResource( 6 )
 

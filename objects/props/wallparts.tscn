@@ -288,7 +288,7 @@ transform = Transform3D( 1, -2.01212e-10, 6.01688e-11, -2.01212e-10, 1, 0, -5.62
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-broken002"]
+[node name="CollisionShape" type="CollisionShape3D" parent="wall-broken002"]
 transform = Transform3D( 1, -2.01212e-10, 6.01688e-11, -2.01212e-10, 1, 0, -5.62466e-11, 0, 1, 0, 0, 0 )
 shape = SubResource( 7 )
 
@@ -301,7 +301,7 @@ collision_mask = 6
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-broken004"]
+[node name="CollisionShape" type="CollisionShape3D" parent="wall-broken004"]
 shape = SubResource( 8 )
 
 [node name="wall-broken003" type="StaticBody3D" parent="."]
@@ -313,7 +313,7 @@ collision_mask = 6
 mesh = SubResource( 3 )
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-broken003"]
+[node name="CollisionShape" type="CollisionShape3D" parent="wall-broken003"]
 shape = SubResource( 9 )
 
 [node name="wall-broken001" type="StaticBody3D" parent="."]
@@ -325,7 +325,7 @@ collision_mask = 6
 mesh = SubResource( 4 )
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-broken001"]
+[node name="CollisionShape" type="CollisionShape3D" parent="wall-broken001"]
 shape = SubResource( 10 )
 
 [node name="wall-broken005" type="StaticBody3D" parent="."]
@@ -337,7 +337,7 @@ collision_mask = 6
 mesh = SubResource( 5 )
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-broken005"]
+[node name="CollisionShape" type="CollisionShape3D" parent="wall-broken005"]
 shape = SubResource( 11 )
 
 [node name="anim" type="AnimationPlayer" parent="."]

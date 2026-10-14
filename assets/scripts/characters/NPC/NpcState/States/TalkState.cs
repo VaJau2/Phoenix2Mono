@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class TalkState(
+public class TalkState(
     NavigationMovingController movingController,
     PonyBody body
 ) : AbstractNpcState

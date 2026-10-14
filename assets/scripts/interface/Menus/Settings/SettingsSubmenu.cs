@@ -1,7 +1,7 @@
 using Godot;
 
 //Сабменю настроек графики, интерфейса и громкости
-public partial class SettingsSubmenu : SubmenuBase
+public class SettingsSubmenu : SubmenuBase
 {
     const float MIN_COLOR_SUM = 0.7f;
     

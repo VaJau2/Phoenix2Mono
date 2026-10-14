@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts
 {
-    public partial class SetSavableValue: IDialogueScript
+    public class SetSavableValue: IDialogueScript
     {
         public void initiate(Node node, string parameter, string key = "")
         {

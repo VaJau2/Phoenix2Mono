@@ -1,4 +1,4 @@
-public interface IActivated
+﻿public interface IActivated
 {
     bool IsActive { get; }
 

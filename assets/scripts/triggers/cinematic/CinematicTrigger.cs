@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public partial class CinematicTrigger : ActivateOtherTrigger
+public class CinematicTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath movePath;
     [Export] private NodePath rotatePath;
@@ -71,7 +71,7 @@ public partial class CinematicTrigger : ActivateOtherTrigger
         
         foreach (var cinematic in cinematicList)
         {
-            cinematic.Connect(nameof(PathBase.Finished), new Callable(this, nameof(OnCinematicFinished)));
+            cinematic.Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
             cinematic.Enable();
         }
         
@@ -98,7 +98,7 @@ public partial class CinematicTrigger : ActivateOtherTrigger
 
     private void OnCinematicFinished(PathBase cinematic)
     {
-        cinematic.Disconnect(nameof(PathBase.Finished), new Callable(this, nameof(OnCinematicFinished)));
+        cinematic.Disconnect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
         finishedCinematics++;
 
         if (finishedCinematics != cinematicList.Count) return;
@@ -146,7 +146,7 @@ public partial class CinematicTrigger : ActivateOtherTrigger
         for (var i = 0; i < cinematicList.Count; i++)
         {
             if (!Convert.ToBoolean(data[$"isCinematic{i}Enabled"])) continue;
-            cinematicList[i].Connect(nameof(PathBase.Finished), new Callable(this, nameof(OnCinematicFinished)));
+            cinematicList[i].Connect(nameof(PathBase.Finished), this, nameof(OnCinematicFinished));
         }
         
         finishedCinematics = Convert.ToInt32(data["finishedCinematics"]);

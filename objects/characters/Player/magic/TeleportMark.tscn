@@ -61,7 +61,7 @@ target_position = Vector3( 0, 3.4, 0 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70617, 0 )
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="checkArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="checkArea"]
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="checkArea" to="." method="_on_checkArea_body_entered"]

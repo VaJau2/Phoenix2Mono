@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class StartBlackScreen : CanvasLayer, ISavable
+public class StartBlackScreen : CanvasLayer, ISavable
 {
     private const float SPEED = 2.0f;
     private const float TIMER_1 = 1.5f;

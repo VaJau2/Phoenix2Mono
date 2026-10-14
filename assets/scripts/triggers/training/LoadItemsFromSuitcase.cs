@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public partial class LoadItemsFromSuitcase : TriggerBase
+public class LoadItemsFromSuitcase : TriggerBase
 {
     [Export] private NodePath suitcasePath;
     

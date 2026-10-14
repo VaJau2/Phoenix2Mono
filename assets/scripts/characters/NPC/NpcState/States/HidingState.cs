@@ -1,4 +1,4 @@
-public partial class HidingState(
+﻿public class HidingState(
     NpcWeapons weapons,
     NpcCovers covers,
     NavigationMovingController movingController,

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Player_Earthpony : Player
+public class Player_Earthpony : Player
 {
     const float DASH_COOLDOWN = 0.02f;
     const float DASH_BLOCK_TIMER = 1;
@@ -40,10 +40,10 @@ public partial class Player_Earthpony : Player
         IsRunning = false;
     }
 
-    public override float GetVelocity()
+    public override float GetSpeed()
     {
         if (IsRunning) return BaseSpeed * 3;
-        return base.GetVelocity();
+        return base.GetSpeed();
     }
 
     private void DashBlock() 

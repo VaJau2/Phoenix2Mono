@@ -1,4 +1,4 @@
-public partial class RoboEyeAttackState(
+﻿public class RoboEyeAttackState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine

@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 //класс используется неписями-торговцами (пнями и роботоми)
 //по сути, вытащенный за скобки общий функционал торговли
-public partial class NpcTrading: Node, ISavable, ITrader
+public class NpcTrading: Node, ISavable, ITrader
 {
     [Export]
     public int moneyCount {get; set;}   
@@ -47,7 +47,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
             
             tempMode.SetTrader(this);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
+            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
             isTrading = true;
         }
     }
@@ -55,7 +55,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
     public void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
+        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
     }
 
     private void LoadTradingData()

@@ -1,25 +1,25 @@
 using Godot;
 
 [Tool]
-public partial class Lamp : BreakableObject
+public class Lamp : BreakableObject
 {
     [Export] private float range = 42f;
     [Export] private float energy = 1f;
     [Export] private float bias = 0.95f;
 
-    private Light3D light;
+    private Light light;
     
     public override void _Ready()
     {
-        light = GetNode<Light3D>("light");
+        light = GetNode<Light>("light");
 
         switch (light)
         {
-            case OmniLight3D omniLight:
+            case OmniLight omniLight:
                 omniLight.OmniRange = range;
                 break;
             
-            case SpotLight3D spotLight:
+            case SpotLight spotLight:
                 spotLight.SpotRange = range;
                 break;
         }

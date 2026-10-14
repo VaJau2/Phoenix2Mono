@@ -2,7 +2,7 @@ using Godot;
 
 namespace DialogueScripts;
 
-public partial class NpcDisappear : BaseChangeInNPC
+public class NpcDisappear : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

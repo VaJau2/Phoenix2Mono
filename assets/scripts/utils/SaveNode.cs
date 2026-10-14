@@ -1,9 +1,9 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
 //нод, сохраняемый во время перехода между уровнями
 //хранит в себе данные инвентаря
-public partial class SaveNode: Node, ISavable
+public class SaveNode: Node, ISavable
 {
     public Dictionary InventoryData = new();
     public Dictionary SavedVariables = new();

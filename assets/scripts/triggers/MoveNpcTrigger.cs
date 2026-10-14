@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class MoveNpcTrigger: ActivateOtherTrigger
+public class MoveNpcTrigger: ActivateOtherTrigger
 {
     [Export] public Array<string> NpcPaths; 
     [Export] public Array<NodePath> pointPaths;
@@ -15,7 +15,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
     [Export] public bool setStartPoint = true;
 
     private Array<NPC> npc = [];
-    private Array<Node3D> points = [];
+    private Array<Spatial> points = [];
     private bool activated;
     private Array<int> connectedEvents = [];
     private float tempTimer;
@@ -85,7 +85,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
         for (int i = 0; i < NpcPaths.Count; i++)
         {
             npc.Add(GetNode<NPC>(NpcPaths[i]));
-            points.Add(GetNode<Node3D>(pointPaths[i]));
+            points.Add(GetNode<Spatial>(pointPaths[i]));
         }
         
         activated = true;
@@ -104,7 +104,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                npc[i].Connect(nameof(Character.IsCame), new Callable(this, nameof(AfterNpcCameToPoint)), [i]);
+                npc[i].Connect(nameof(Character.IsCame), this, nameof(AfterNpcCameToPoint), [i]);
                 connectedEvents.Add(i);
             }
 
@@ -141,7 +141,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
 
         if (connectedEvents.Contains(i))
         {
-            npc[i].Disconnect(nameof(Character.IsCame), new Callable(this, nameof(AfterNpcCameToPoint)));
+            npc[i].Disconnect(nameof(Character.IsCame), this, nameof(AfterNpcCameToPoint));
             connectedEvents.Remove(i);
             _on_activate_trigger();
         }

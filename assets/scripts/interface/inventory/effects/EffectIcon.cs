@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class EffectIcon : Control
+public class EffectIcon : Control
 {
     private Control timer;
     private TextureRect icon;
@@ -21,7 +21,7 @@ public partial class EffectIcon : Control
         if (time > 0) 
         {
             var ratio = time / maxTime;
-            timer.Size = new Vector2(31, ratio * 31);
+            timer.RectSize = new Vector2(31, ratio * 31);
         } 
         else 
         {
@@ -29,10 +29,10 @@ public partial class EffectIcon : Control
         }
     }
 
-    public void SetData(string code, CompressedTexture2D newIcon)
+    public void SetData(string code, StreamTexture newIcon)
     {
-        icon.Texture2D = newIcon;
-        shadow.Texture2D = newIcon;
+        icon.Texture = newIcon;
+        shadow.Texture = newIcon;
         messageLabel.Text = InterfaceLang.GetPhrase("inventory", "effectIconsText", code);
     }
 

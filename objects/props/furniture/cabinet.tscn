@@ -101,7 +101,7 @@ OpenSound = ExtResource( 1 )
 CloseSound = ExtResource( 3 )
 chestCode = "cabinet"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1.46387, 0, 0, 0, 1.46387, 0, 0, 0, 1.46387, -0.0549704, 0, -0.0070473 )
 shape = SubResource( 1 )
 

@@ -582,7 +582,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body"]
 transform = Transform3D( 8.90769, 0, 0, 0, 8.90769, 0, 0, 0, 8.90769, -117.95, -0.279, 27.6541 )
 shape = SubResource( 1 )
 
@@ -612,7 +612,7 @@ collision_layer = 2
 collision_mask = 2
 physics_material_override = ExtResource( 42 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/road"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/road"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.468, -1.62, -22.329 )
 shape = SubResource( 2 )
 
@@ -754,7 +754,7 @@ activateTriggerPaths = [ NodePath("../../../../triggers/enterVan") ]
 
 [node name="lights" type="Node3D" parent="terrain/props"]
 
-[node name="Light3D" parent="terrain/props/lights" instance=ExtResource( 5 )]
+[node name="Light" parent="terrain/props/lights" instance=ExtResource( 5 )]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -20.1928, -0.327339, 170.646 )
 
 [node name="Light2" parent="terrain/props/lights" instance=ExtResource( 5 )]
@@ -812,7 +812,7 @@ newLocationPath = NodePath("../../../../../rooms/mansion")
 otherDoorPath = NodePath("../../../../../rooms/mansion/DoorTeleport")
 openSound = ExtResource( 61 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/mansion/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/mansion/DoorTeleport2"]
 transform = Transform3D( 1, 0, 5.68434e-14, 0, 1, 0, -5.68434e-14, 0, 1, 0.146695, 0.512289, -2.14738 )
 shape = SubResource( 48 )
 
@@ -1008,7 +1008,7 @@ script = ExtResource( 75 )
 hintCodes = [ "putFirewood" ]
 activateTriggerPaths = [ NodePath("../../../../triggers/putFirewood") ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/mansion/fireplate/firewoodInteraction"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/mansion/fireplate/firewoodInteraction"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944649, -0.466957, 0.354931 )
 shape = SubResource( 44 )
 
@@ -1036,7 +1036,7 @@ shape = SubResource( 55 )
 transform = Transform3D( 3.87045, 0, -1.13687e-13, 0, 3.87045, 0, 1.13687e-13, 0, 3.87045, 8.0633, 4.0555, 7.28215 )
 shape = SubResource( 56 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/mansion/walls2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/mansion/walls2"]
 transform = Transform3D( 1, 0, -4.9738e-14, 0, 1, 0, 4.9738e-14, 0, 1, 0, -3.63834, 5.27827 )
 shape = SubResource( 106 )
 
@@ -1063,7 +1063,7 @@ transform = Transform3D( 15.185, 0, 0, 0, 15.573, 0, 0, 0, 15.185, 12.5108, -2.6
 visible = false
 mesh = ExtResource( 63 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/mansion/stairs2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/mansion/stairs2"]
 transform = Transform3D( 15.185, 0, 0, 0, 15.573, 0, 0, 0, 15.185, 12.5108, -2.69627, 12.708 )
 shape = SubResource( 57 )
 
@@ -1091,7 +1091,7 @@ activateTriggerPaths = [ NodePath("../../../triggers/pickSuitcase") ]
 [node name="mesh" type="MeshInstance3D" parent="rooms/mansion/suitcase"]
 mesh = SubResource( 42 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/mansion/suitcase"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/mansion/suitcase"]
 transform = Transform3D( 1, 7.45058e-08, 0, -7.45058e-08, 1, 0, -1.06581e-14, -5.32907e-15, 1, 7.62939e-05, 0.485809, 0 )
 shape = SubResource( 100 )
 
@@ -1122,7 +1122,7 @@ newLocationPath = NodePath("../../../terrain")
 otherDoorPath = NodePath("../../../terrain/props/houses/mansion/DoorTeleport2")
 openSound = ExtResource( 61 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/mansion/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/mansion/DoorTeleport"]
 transform = Transform3D( 0.330495, 0, 4.3154e-09, 0, 0.424027, 0, 4.3154e-09, 0, 0.231771, 0.0102177, 0.459869, -0.47562 )
 shape = SubResource( 58 )
 
@@ -1466,7 +1466,7 @@ script = ExtResource( 69 )
 npcPath = "../../npc/mother"
 otherDialogueCode = "talk3"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/motherTalk1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/motherTalk1"]
 shape = SubResource( 43 )
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="triggers/motherTalk1"]
@@ -1571,7 +1571,7 @@ navigation_mesh = SubResource( 98 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, -0.769322, 0.638862, 0, -0.638862, -0.769322, 0, 8.63824, -21.8162 )
 light_color = Color( 0.847059, 0.854902, 0.760784, 1 )
 light_energy = 0.9

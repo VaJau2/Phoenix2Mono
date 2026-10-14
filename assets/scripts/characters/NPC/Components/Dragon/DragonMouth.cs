@@ -1,10 +1,10 @@
 using Godot;
 
-public partial class DragonMouth : Area3D
+public class DragonMouth : Area
 {
     private const float MOUTH_COOLDOWN = 1f;
     
-    public Node3D mouthPos;
+    public Spatial mouthPos;
     public bool HasEnemy => enemyInMouth != null && IsInstanceValid(enemyInMouth);
 
     private NPC npc;
@@ -15,19 +15,19 @@ public partial class DragonMouth : Area3D
     private float mouthCooldown;
     private float damageTimer = 3f;
     
-    [Export] private AudioStreamWAV eatSound;
+    [Export] private AudioStreamSample eatSound;
 
     public override async void _Ready()
     {
         npc = GetParent<NPC>();
         body = npc.GetNode<DragonBody>("body");
         audi = npc.GetNode<NpcAudio>("audi");
-        mouthPos = npc.GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/mouth");
+        mouthPos = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth");
         
-        npc.Connect(nameof(Character.TakenDamage), new Callable(this, nameof(OnTakeDamage)));
+        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
         
         await npc.ToSignal(GetTree(), "idle_frame");
-        Global.Get().player.Connect(nameof(Player.FireWithWeapon), new Callable(this, nameof(CheckPlayerShooting)));
+        Global.Get().player.Connect(nameof(Player.FireWithWeapon), this, nameof(CheckPlayerShooting));
     }
     
     private void CheckPlayerShooting()

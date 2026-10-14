@@ -1,9 +1,9 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts;
 
 // меняет имя торговца в заголовке меню торговли
-public partial class ChangeTraderCode : BaseChangeInNPC
+public class ChangeTraderCode : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

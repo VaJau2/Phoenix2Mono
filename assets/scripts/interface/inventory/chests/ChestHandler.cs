@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Linq;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public partial class ChestHandler
+public class ChestHandler
 {
     public bool IsBag { get; private set; }
     public string ChestCode { get; private set; }

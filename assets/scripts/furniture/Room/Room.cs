@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Room : SaveActive
+public class Room : SaveActive
 {
     [Export] private float depth = 100 / 1.5f;
     
@@ -50,7 +50,7 @@ public partial class Room : SaveActive
         playerSpawner = GetNode<PlayerSpawner>("/root/Main/Scene/PlayerSpawner");
 
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), new Callable(this, nameof(OnSaveDataLoaded)));
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
     }
 
     private async void OnSaveDataLoaded()
@@ -61,7 +61,7 @@ public partial class Room : SaveActive
 
         if (Global.Get().player == null)
         {
-            playerSpawner.Connect(nameof(PlayerSpawner.Spawned), new Callable(this, nameof(OnPlayerSpawned)));
+            playerSpawner.Connect(nameof(PlayerSpawner.Spawned), this, nameof(OnPlayerSpawned));
             return;
         }
 
@@ -70,7 +70,7 @@ public partial class Room : SaveActive
 
     private void OnPlayerSpawned()
     {
-        playerSpawner.Disconnect(nameof(PlayerSpawner.Spawned), new Callable(this, nameof(OnPlayerSpawned)));
+        playerSpawner.Disconnect(nameof(PlayerSpawner.Spawned), this, nameof(OnPlayerSpawned));
         Enter(false);
     }
     

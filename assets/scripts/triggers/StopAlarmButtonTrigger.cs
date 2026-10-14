@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class StopAlarmButtonTrigger : TriggerBase, IInteractable
+public class StopAlarmButtonTrigger : TriggerBase, IInteractable
 {
     [Export] public string HintCode = "clickButton";
     

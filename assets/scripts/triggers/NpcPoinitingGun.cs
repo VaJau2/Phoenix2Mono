@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 
-public partial class NpcPoinitingGun: TriggerBase
+public class NpcPoinitingGun: TriggerBase
 {
     [Export] public string npcPath;
     [Export] public float delayTimer;

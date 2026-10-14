@@ -1,16 +1,16 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 
 //перемещает непися к двери в помещение
 //затем телепортирует в точку
-public partial class MoveNpcToDoorTrigger: ActivateOtherTrigger
+public class MoveNpcToDoorTrigger: ActivateOtherTrigger
 { 
     [Export] public string NpcPath; 
     [Export] public NodePath doorPath;
     [Export] public NodePath teleportPointPath;
     
-    private Node3D teleportPoint;
+    private Spatial teleportPoint;
     private NPC npc;
     private DoorTeleport door;
     
@@ -52,7 +52,7 @@ public partial class MoveNpcToDoorTrigger: ActivateOtherTrigger
         
         npc = GetNode<NPC>(NpcPath);
         door = GetNode<DoorTeleport>(doorPath);
-        teleportPoint = GetNode<Node3D>(teleportPointPath);
+        teleportPoint = GetNode<Spatial>(teleportPointPath);
 
         return true;
     }

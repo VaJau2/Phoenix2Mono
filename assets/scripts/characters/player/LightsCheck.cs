@@ -1,19 +1,19 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class LightsCheck : Area3D
+public class LightsCheck : Area
 {
-    private List<Node3D> myLights = new List<Node3D>();
+    private List<Spatial> myLights = new List<Spatial>();
     private int lightI;
 
-    private List<Node3D> myLamps = new List<Node3D>();
+    private List<Spatial> myLamps = new List<Spatial>();
     private int lampI;
 
     public bool OnLight;
 
-    public void _on_lightsCheck_body_entered(Node3D body)
+    public void _on_lightsCheck_body_entered(Spatial body)
     {
-        if (body.Name.Contains("Light3D"))
+        if (body.Name.Contains("Light"))
         {
             var lightSource = body.GetNodeOrNull<BreakableObject>("lightSource");
             if (lightSource != null && !lightSource.Broken) 
@@ -33,9 +33,9 @@ public partial class LightsCheck : Area3D
         }
     }
 
-    public void _on_lightsCheck_body_exited(Node3D body)
+    public void _on_lightsCheck_body_exited(Spatial body)
     {
-        if (body.Name.Contains("Light3D") && myLights.Contains(body))
+        if (body.Name.Contains("Light") && myLights.Contains(body))
         {
             myLamps.Remove(body);
             checkOff();

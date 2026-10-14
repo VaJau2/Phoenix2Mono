@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class TakeOffCollarTrigger : TriggerBase
+public class TakeOffCollarTrigger : TriggerBase
 {
     [Export] private NodePath npcPath;
     [Export] private string collarPath;
@@ -11,7 +11,7 @@ public partial class TakeOffCollarTrigger : TriggerBase
         if (!IsActive) return;
 
         var npc = GetNode(npcPath);
-        var collar = npc.GetNode<Node3D>(collarPath);
+        var collar = npc.GetNode<Spatial>(collarPath);
         collar.Visible = false;
 
         var player = Global.Get().player;

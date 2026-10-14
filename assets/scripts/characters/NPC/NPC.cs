@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //класс отвечает за поведение НПЦ
-public partial class NPC : Character, IInteractable, IChest
+public class NPC : Character, IInteractable, IChest
 {
     [Export] public Array<NodePath> patrolArray = [];
     [Export] public bool IsImmortal;
@@ -66,7 +66,7 @@ public partial class NPC : Character, IInteractable, IChest
         MovingController = GetNodeOrNull<BaseMovingController>("movingController");
         stateMachine = GetNode<StateMachine>("stateMachine");
         interaction = GetNodeOrNull<NpcInteraction>("interaction");
-        skeleton = GetNodeOrNull<NpcSkeleton>("Armature/Skeleton3D");
+        skeleton = GetNodeOrNull<NpcSkeleton>("Armature/Skeleton");
         
         if (myStartPos != Vector3.Zero || myStartRot != Vector3.Zero) return;
             
@@ -152,7 +152,7 @@ public partial class NPC : Character, IInteractable, IChest
 
     public void SetObjectActive(string objectPath, bool active)
     {
-        var showObject = GetNode<Node3D>(objectPath);
+        var showObject = GetNode<Spatial>(objectPath);
         if (showObject == null) return;
         showObject.Visible = active;
         objectsChangeActive[objectPath] = active;

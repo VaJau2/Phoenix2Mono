@@ -2,7 +2,7 @@ using Godot;
 
 namespace Effects;
 
-public partial class MentatsPostEffect : Effect
+public class MentatsPostEffect : Effect
 {
     const float BRIGHTNESS = -0.05f;
     const float CONTRAST = 0.75f;
@@ -23,9 +23,9 @@ public partial class MentatsPostEffect : Effect
         if (on)
         {
             var shaders = (ShaderMaterial)colorRect.Material;
-            shaders.SetShaderParameter("brightness", BRIGHTNESS);
-            shaders.SetShaderParameter("contrast", CONTRAST);
-            shaders.SetShaderParameter("saturation", SATURATION);
+            shaders.SetShaderParam("brightness", BRIGHTNESS);
+            shaders.SetShaderParam("contrast", CONTRAST);
+            shaders.SetShaderParam("saturation", SATURATION);
         }
 
         colorRect.Visible = on;

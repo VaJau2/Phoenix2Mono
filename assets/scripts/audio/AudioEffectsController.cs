@@ -7,7 +7,7 @@ using Godot.Collections;
 using Array = Godot.Collections.Array;
 using Phoenix2Mono.assets.scripts.audio.factories;
 
-public partial class AudioEffectsController : Node, ISavable
+public class AudioEffectsController : Node, ISavable
 {
     private List<string> effectsKeys = new();
     private Player player;
@@ -17,9 +17,9 @@ public partial class AudioEffectsController : Node, ISavable
     public override async void _Ready()
     {
         player = GetParent<Player>();
-        player.Connect(nameof(Player.WearItem), new Callable(this, nameof(OnClothWear)));
-        player.Connect(nameof(Player.UnwearItem), new Callable(this, nameof(RemoveEffects)));
-        player.Connect(nameof(Player.ChangeView), new Callable(this, nameof(OnChangeView)));
+        player.Connect(nameof(Player.WearItem), this, nameof(OnClothWear));
+        player.Connect(nameof(Player.UnwearItem), this, nameof(RemoveEffects));
+        player.Connect(nameof(Player.ChangeView), this, nameof(OnChangeView));
         
         await ToSignal(GetTree(), "idle_frame");
         

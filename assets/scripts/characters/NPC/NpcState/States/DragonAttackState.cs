@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class DragonAttackState(
+public class DragonAttackState(
     StateMachine stateMachine,
     BaseMovingController movingController,
     DragonBody body
@@ -39,7 +39,7 @@ public partial class DragonAttackState(
         
         if (enemyDistance is > 0 and < 60)
         {
-            movingController.UpdateHeight(tempNpc.BaseSpeed, tempNpc.tempVictim.Position.y + newHeight);
+            movingController.UpdateHeight(tempNpc.BaseSpeed, tempNpc.tempVictim.Translation.y + newHeight);
         }
         else
         {

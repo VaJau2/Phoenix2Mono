@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class InteractionPointManager : Control
+public class InteractionPointManager : Control
 {
     private InteractionPoint point;
     private InteractionPoint shadow;
@@ -16,7 +16,7 @@ public partial class InteractionPointManager : Control
     
     public void SetInteractionVariant(InteractionVariant newVariant)
     {
-        shadow.Position = (newVariant == InteractionVariant.Square)
+        shadow.RectPosition = (newVariant == InteractionVariant.Square)
             ? new Vector2(2, 2)
             : new Vector2(1, 1);
 

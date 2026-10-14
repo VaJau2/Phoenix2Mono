@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class PinkieStealthTrigger : TrainingTriggerWithButton
+public class PinkieStealthTrigger : TrainingTriggerWithButton
 {
     private const string WIN_DIALOGUE = "win";
     private const string LOSE_PONY_DIALOGUE = "lose_pony";
@@ -17,7 +17,7 @@ public partial class PinkieStealthTrigger : TrainingTriggerWithButton
     [Export] private NodePath assistantPiePath;
     [Export] private NodePath changeTaskPath;
     
-    private Array<Node3D> patrolPointParents = [];
+    private Array<Spatial> patrolPointParents = [];
     private Array<NPC> roboEyes = [];
     private FurnDoor enterDoor;
     private FurnDoor bagDoor;
@@ -48,14 +48,14 @@ public partial class PinkieStealthTrigger : TrainingTriggerWithButton
         {
             var roboEye = GetNode<NPC>(roboEyePath);
             roboEyes.Add(roboEye);
-            roboEye.Connect(nameof(NPC.FoundEnemy), new Callable(this, nameof(_on_found_enemy)));
+            roboEye.Connect(nameof(NPC.FoundEnemy), this, nameof(_on_found_enemy));
         }
 
         MakeRoboEyesActive(false);
         
         foreach (NodePath patrolParentPath in patrolPointParentsPaths)
         {
-            patrolPointParents.Add(GetNode<Node3D>(patrolParentPath));
+            patrolPointParents.Add(GetNode<Spatial>(patrolParentPath));
         }
 
         await ToSignal(GetTree(), "idle_frame");

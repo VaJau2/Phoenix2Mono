@@ -27,7 +27,7 @@ surfaces/0 = {
 [node name="32-shell" instance=ExtResource( 1 )]
 shellSound = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
 
-[node name="CollisionShape3D" parent="." index="1"]
+[node name="CollisionShape" parent="." index="1"]
 shape = SubResource( 3 )
 
 [node name="mesh" type="MeshInstance3D" parent="." index="2"]

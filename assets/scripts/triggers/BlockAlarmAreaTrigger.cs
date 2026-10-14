@@ -4,7 +4,7 @@ using Godot.Collections;
 
 //Пока игрок находится внутри области триггера
 //Тревога на уровне не будет включаться
-public partial class BlockAlarmAreaTrigger : TriggerBase
+public class BlockAlarmAreaTrigger : TriggerBase
 {
     [Export] private NodePath managerPath;
     private EnemiesManager enemiesManager;

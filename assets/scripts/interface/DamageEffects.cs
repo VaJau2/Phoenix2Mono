@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public partial class DamageEffects : TextureRect
+public class DamageEffects : TextureRect
 {
     const float RED_SPEED = 0.1f;
-    private Node3D camera;
+    private Spatial camera;
     private Vector3 dir;
     private bool moveUp;
     Random rand = new Random();
     
     private Vector3 GetRotateSide(Vector2 angles)
     {
-        float angleFront = Mathf.RadToDeg(angles.x);
+        float angleFront = Mathf.Rad2Deg(angles.x);
             //< 130 - игрок смотрит на врага
             //> 55 - игрок смотрит не на врага
         float angleSide = angles.y;
@@ -36,7 +36,7 @@ public partial class DamageEffects : TextureRect
 
     public void StartEffect() 
     {
-        camera = Global.Get().player.Camera3D;
+        camera = Global.Get().player.Camera;
         float randX = rand.Next(0, 180);
         float randY = rand.Next(0, 180);
         Vector2 angles = new Vector2(randX, randY);

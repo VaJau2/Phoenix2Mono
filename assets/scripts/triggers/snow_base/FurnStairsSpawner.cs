@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 
 namespace FurnStairs;
 
-public partial class FurnStairsSpawner
+public class FurnStairsSpawner
 {
     private Dictionary<string, string> prefabsByKeys = new()
     {
@@ -15,7 +15,7 @@ public partial class FurnStairsSpawner
         { "chair", "res://objects/props/furniture/chair.tscn" },
     };
 
-    public Node3D SpawnFurnByItemCode(string furnItemCode)
+    public Spatial SpawnFurnByItemCode(string furnItemCode)
     {
         if (!prefabsByKeys.TryGetValue(furnItemCode, out var prefabPath))
         {
@@ -23,7 +23,7 @@ public partial class FurnStairsSpawner
         }
         
         var prefab = GD.Load<PackedScene>(prefabPath);
-        if (prefab.Instance() is not Node3D furn) return null;
+        if (prefab.Instance() is not Spatial furn) return null;
         
         furn.AddToGroup("savable");
         furn.Name = "Created_" + furn.Name;

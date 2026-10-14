@@ -1080,7 +1080,7 @@ __meta__ = {
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -0.7, 60 )
 shape = SubResource( 108 )
 
@@ -1090,7 +1090,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/road"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/road"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -1.62, -56 )
 shape = SubResource( 109 )
 
@@ -1105,7 +1105,7 @@ shape = SubResource( 111 )
 [node name="fence-collision" type="StaticBody3D" parent="terrain/terrain_body"]
 physics_material_override = ExtResource( 88 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/fence-collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/fence-collision"]
 transform = Transform3D( 1, 6.04257e-11, 0, 2.21778e-12, 1, -3.63798e-12, -2.91038e-11, -2.36469e-11, 1, 149.13, 3.56264, -10.193 )
 shape = SubResource( 112 )
 
@@ -1125,7 +1125,7 @@ shape = SubResource( 115 )
 transform = Transform3D( -1.62923e-07, 4.58742e-11, 1, 0, 1, -3.8879e-11, -1, -1.81899e-11, -1.62923e-07, 190.502, 3.947, 56.524 )
 shape = SubResource( 115 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="terrain"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="terrain"]
 transform = Transform3D( 0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0 )
 shadow_enabled = true
 
@@ -1250,10 +1250,10 @@ activateTriggerPaths = [ NodePath("../../../../triggers/goToMAS") ]
 
 [node name="light" type="Node3D" parent="terrain/props"]
 
-[node name="Light3D" parent="terrain/props/light" instance=ExtResource( 32 )]
+[node name="Light" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 89.1041, -0.350516, 30.6922 )
 
-[node name="ElectricLine" parent="terrain/props/light/Light3D" instance=ExtResource( 33 )]
+[node name="ElectricLine" parent="terrain/props/light/Light" instance=ExtResource( 33 )]
 transform = Transform3D( -0.356755, -0.00175162, -0.352472, -0.00248445, 0.499994, 0, 0.354582, 0.00174095, -0.354631, 4.34157, 19.6195, 0.432514 )
 material/0 = ExtResource( 19 )
 
@@ -1498,9 +1498,9 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0324, 6.2, -8.4992 )
 skeleton = NodePath("../plakat2")
 material/0 = SubResource( 357 )
 
-[node name="Area3D" type="Area3D" parent="terrain/props/houses/armor-house/props/Mirror"]
+[node name="Area" type="Area3D" parent="terrain/props/houses/armor-house/props/Mirror"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/armor-house/props/Mirror/Area3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/armor-house/props/Mirror/Area"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32805, 0.526443, 25.7539 )
 shape = SubResource( 362 )
 
@@ -1522,7 +1522,7 @@ otherDoorPath = NodePath("../../../../../rooms/sklad/DoorTeleport")
 openSound = ExtResource( 29 )
 closedSound = ExtResource( 63 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/sklad/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/sklad/DoorTeleport2"]
 transform = Transform3D( 1, 0, -2.62901e-13, 0, 1, 0, 2.62901e-13, 0, 1, 0.39554, -0.945274, 0.766987 )
 shape = SubResource( 95 )
 
@@ -1551,7 +1551,7 @@ otherDoorPath = NodePath("../../../../../rooms/stels-house/props/doors/DoorTelep
 openSound = ExtResource( 58 )
 closedSound = ExtResource( 63 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/stealth_house/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/stealth_house/DoorTeleport"]
 transform = Transform3D( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0.0313816, 0.0256215, 0.207228 )
 shape = SubResource( 86 )
 
@@ -1894,7 +1894,7 @@ transform = Transform3D( 1, 0, 0, 0, 8, 0, 0, 0, 20, 0, 6.935, 0 )
 mesh = SubResource( 28 )
 material/0 = ExtResource( 67 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/shootingRange/wall"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/shootingRange/wall"]
 transform = Transform3D( 1.48048, 0, 0, 0, 8.41748, 0, 0, 0, 23.8927, 0, 7.477, 0 )
 shape = SubResource( 29 )
 
@@ -2067,7 +2067,7 @@ openSound = ExtResource( 29 )
 transform = Transform3D( -0.415, 0, -6.13043e-08, 0, 0.428, 0, 6.26633e-08, 0, -0.406, 0, -0.0472488, 0.319796 )
 mesh = SubResource( 40 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/sklad/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/sklad/DoorTeleport"]
 transform = Transform3D( -0.4064, 0, -3.55286e-08, 0, 0.427941, 0, 3.55286e-08, 0, -0.4064, 1.8034, 3.45411, 16.1051 )
 shape = SubResource( 97 )
 
@@ -2095,7 +2095,7 @@ mesh = SubResource( 44 )
 material/0 = ExtResource( 36 )
 material/1 = ExtResource( 38 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/sklad/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/sklad/walls"]
 transform = Transform3D( 1, 0, 0, 0, 1.03534, 0, 0, 0, 1, 0, -0.0331292, 0 )
 shape = SubResource( 45 )
 
@@ -2104,7 +2104,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 75 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/sklad/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/sklad/floor"]
 shape = SubResource( 46 )
 
 [node name="lamp" parent="rooms/sklad" instance=ExtResource( 27 )]
@@ -2131,7 +2131,7 @@ physics_material_override = ExtResource( 25 )
 [node name="mesh" type="MeshInstance3D" parent="rooms/sklad/props/shelf"]
 mesh = SubResource( 47 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/sklad/props/shelf"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/sklad/props/shelf"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05972, 0 )
 shape = SubResource( 48 )
 
@@ -2174,7 +2174,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/stels-house/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/stels-house/walls"]
 transform = Transform3D( 5.852, 0, 0, 0, 5.967, 0, 0, 0, 5.852, 11.473, -4.404, -7.747 )
 shape = SubResource( 56 )
 
@@ -2210,7 +2210,7 @@ openSound = ExtResource( 29 )
 transform = Transform3D( 5.13209, 0, 0, 0, 5.13209, 0, 0, 0, 5.13209, 1.00064, 3.0095, 1.14713 )
 mesh = SubResource( 59 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/stels-house/props/doors/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/stels-house/props/doors/DoorTeleport"]
 transform = Transform3D( 5.1321, 0, 0, 0, 5.1321, 0, 0, 0, 5.1321, 1.42929, 3.28602, 1.05449 )
 shape = SubResource( 89 )
 
@@ -2461,10 +2461,10 @@ visible = false
 [node name="floor" type="StaticBody3D" parent="rooms/bunker"]
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/floor"]
 shape = SubResource( 72 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/bunker/floor"]
+[node name="MeshInstance" type="MeshInstance3D" parent="rooms/bunker/floor"]
 transform = Transform3D( 17.4717, 0, 0, 0, 1, 0, 0, 0, 16.3122, 0, 0, 0 )
 mesh = SubResource( 73 )
 material/0 = ExtResource( 36 )
@@ -2547,7 +2547,7 @@ goToPlayer = true
 changeStateToIdle = true
 otherDialogueCode = "talk1"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/sparkleTalk"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/sparkleTalk"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457331, 0 )
 shape = SubResource( 74 )
 
@@ -2599,7 +2599,7 @@ TargetPaths = [ NodePath("../../terrain/props/shootingRange/targets/target"), No
 beepSound = ExtResource( 72 )
 assistantDashPath = NodePath("../../npc/assistantDash")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/DashTrainingTrigger"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/DashTrainingTrigger"]
 transform = Transform3D( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 76 )
 
@@ -2629,7 +2629,7 @@ unit_size = 20.0
 max_db = 5.0
 bus = "Sound"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/PieStealthTrigger"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/PieStealthTrigger"]
 shape = SubResource( 76 )
 
 [node name="bellgatesMoveToTerminal" type="Node" parent="triggers" groups=["savable"]]
@@ -3193,7 +3193,7 @@ visible = false
 mesh = SubResource( 216 )
 skeleton = NodePath("../../terrain/terrain_body")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="navMesh"]
+[node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0 )
 visible = false
 mesh = SubResource( 133 )
@@ -3216,8 +3216,8 @@ radioListPath = [ NodePath("../terrain/props/Radio Street"), NodePath("../rooms/
 
 [node name="Country Station" parent="Radio Manager" instance=ExtResource( 23 )]
 
-[connection signal="body_entered" from="terrain/props/houses/armor-house/props/Mirror/Area3D" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_entered"]
-[connection signal="body_exited" from="terrain/props/houses/armor-house/props/Mirror/Area3D" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_exited"]
+[connection signal="body_entered" from="terrain/props/houses/armor-house/props/Mirror/Area" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_entered"]
+[connection signal="body_exited" from="terrain/props/houses/armor-house/props/Mirror/Area" to="terrain/props/houses/armor-house/props/Mirror" method="_on_body_exited"]
 [connection signal="DieEvent" from="terrain/props/shootingRange/targets/target" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="DieEvent" from="terrain/props/shootingRange/targets/target2" to="triggers/DashTrainingTrigger" method="_on_target_die"]
 [connection signal="DieEvent" from="terrain/props/shootingRange/targets/target3" to="triggers/DashTrainingTrigger" method="_on_target_die"]

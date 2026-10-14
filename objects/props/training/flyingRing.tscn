@@ -14,5 +14,5 @@ cast_shadow = 0
 alpha_cut = 2
 texture = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )

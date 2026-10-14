@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Globalization;
 
-public partial class DialogueDelay
+public class DialogueDelay
 {
     public const char DELAY_SYMBOL = '@';
     public const float DEFAULT_SYMBOL_DELAY = 0.03f;

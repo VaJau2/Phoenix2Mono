@@ -2,7 +2,7 @@ using Godot;
 
 namespace Phoenix2Mono.assets.scripts.furniture.StableDoors
 {
-    public partial class DoorTimer : Node
+    public class DoorTimer : Node
     {
         private FurnDoor myDoor;
         private float timer = 10;

@@ -25,7 +25,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 0.24425, 0, 0, 0, 0.24425, 0, 0, 0, 0.24425, -2.13431, -0.00454211, 3.85551 )
 shape = SubResource( 1 )
 

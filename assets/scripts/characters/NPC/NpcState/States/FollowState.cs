@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class FollowState(
+public class FollowState(
     NavigationMovingController movingController
 ) : AbstractNpcState
 {
@@ -17,12 +17,12 @@ public partial class FollowState(
     {
         base.Enable(npc);
 
-        npc.followTarget.Connect(nameof(Character.DoorTeleporting), new Callable(this, nameof(OnTargetTeleportToDoor)));
+        npc.followTarget.Connect(nameof(Character.DoorTeleporting), this, nameof(OnTargetTeleportToDoor));
     }
 
     public override void Disable()
     {
-        tempNpc.followTarget?.Disconnect(nameof(Character.DoorTeleporting), new Callable(this, nameof(OnTargetTeleportToDoor)));
+        tempNpc.followTarget?.Disconnect(nameof(Character.DoorTeleporting), this, nameof(OnTargetTeleportToDoor));
         base.Disable();
     }
 
@@ -49,7 +49,7 @@ public partial class FollowState(
         FollowTarget();
     }
 
-    private void OnTargetTeleportToDoor(Node3D door)
+    private void OnTargetTeleportToDoor(Spatial door)
     {
         if (isWaiting) return;
         if (door is not IDoorTeleport teleport) return;

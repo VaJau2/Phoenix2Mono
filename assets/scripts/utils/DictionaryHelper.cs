@@ -1,4 +1,4 @@
-using Godot.Collections;
+﻿using Godot.Collections;
 
 //Содержит глобальные методы для работы со словарями
 public static class DictionaryHelper

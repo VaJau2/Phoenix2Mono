@@ -1,12 +1,12 @@
 using Godot;
 using Godot.Collections;
 
-public partial class DragonSpawnTrigger : TriggerBase
+public class DragonSpawnTrigger : TriggerBase
 {
     [Export] private PackedScene dragonPrefab;
     [Export] private NodePath spawnPointPath;
     [Export] public Array<NodePath> patrolArray;
-    private Node3D spawnPoint;
+    private Spatial spawnPoint;
     
     //0 - путь до триггера, строка
     //1 - сигнал нпц, строка
@@ -21,7 +21,7 @@ public partial class DragonSpawnTrigger : TriggerBase
     {
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Node3D>(spawnPointPath);
+            spawnPoint = GetNode<Spatial>(spawnPointPath);
         }
         base._Ready();
     }
@@ -68,7 +68,7 @@ public partial class DragonSpawnTrigger : TriggerBase
             var signal = triggerData[1].ToString();
             var method = triggerData[2].ToString();
             var binds = triggerData[3] as Array;
-            npcInstance.Connect(signal, new Callable(trigger, method), binds);
+            npcInstance.Connect(signal, trigger, method, binds);
         }
 
         return npcInstance;

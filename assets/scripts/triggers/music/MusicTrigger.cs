@@ -1,11 +1,11 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
 //Работает с одним "боевым" треком или с одним "спокойным" и одним "боевым" треком
 //При запуске действует в зависимости от активности
 //Если активен, врубает первый "боевой" трек
 //Если неактивен, вырубает его и, если есть второй "спокойный" трек, врубает его
-public partial class MusicTrigger: TriggerBase
+public class MusicTrigger: TriggerBase
 {
     [Export] public NodePath audiPath;
     [Export] public AudioStream track;

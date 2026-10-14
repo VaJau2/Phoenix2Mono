@@ -60,6 +60,6 @@ unit_size = 10.0
 max_distance = 120.0
 bus = "Radio"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 0.892539, 0.157379, -0.422618, -0.0208279, 0.950516, 0.309976, 0.450489, -0.267863, 0.851651, 0.414961, -0.291337, -0.360136 )
 shape = SubResource( 3 )

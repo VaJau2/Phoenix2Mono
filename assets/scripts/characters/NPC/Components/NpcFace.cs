@@ -3,7 +3,7 @@ using System;
 using Godot.Collections;
 
 //класс отвечает за лицо НПЦ: за текстуры глаз и рта
-public partial class NpcFace : MeshInstance3D, ISavable
+public class NpcFace : MeshInstance, ISavable
 {
     [Export] public string npcName;
     [Export] protected string startEyesVariant = "";
@@ -14,10 +14,10 @@ public partial class NpcFace : MeshInstance3D, ISavable
     protected float EyesOpenCooldown = 1f;
     protected readonly Random Rand = new();
     
-    private StandardMaterial3D eyesMaterial;
-    private StandardMaterial3D mouthMaterial;
-    private CompressedTexture2D openEyes;
-    private CompressedTexture2D closedEyes;
+    private SpatialMaterial eyesMaterial;
+    private SpatialMaterial mouthMaterial;
+    private StreamTexture openEyes;
+    private StreamTexture closedEyes;
 
     public virtual void CloseEyes()
     {
@@ -29,7 +29,7 @@ public partial class NpcFace : MeshInstance3D, ISavable
     public void ChangeMouthVariant(string variant)
     {
         var mouthTexturePath = $"res://assets/textures/characters/{npcName}/mouth/{variant}.png";
-        var mouthTexture = GD.Load<CompressedTexture2D>(mouthTexturePath);
+        var mouthTexture = GD.Load<StreamTexture>(mouthTexturePath);
         mouthMaterial.AlbedoTexture = mouthTexture;
         startMouthVariant = variant;
     }
@@ -37,8 +37,8 @@ public partial class NpcFace : MeshInstance3D, ISavable
     public void ChangeEyesVariant(string variantName)
     {
         var path = $"res://assets/textures/characters/{npcName}/eyes/{variantName}";
-        openEyes = GD.Load<CompressedTexture2D>(path + "/0.png");
-        closedEyes = GD.Load<CompressedTexture2D>(path + "/1.png");
+        openEyes = GD.Load<StreamTexture>(path + "/0.png");
+        closedEyes = GD.Load<StreamTexture>(path + "/1.png");
         eyesMaterial.AlbedoTexture = AreEyesOpen ? openEyes : closedEyes;
         startEyesVariant = variantName;
     }
@@ -67,8 +67,8 @@ public partial class NpcFace : MeshInstance3D, ISavable
     protected virtual void DeadFace()
     {
         var deadMesh = (Mesh)Mesh.Duplicate();
-        var deadEyes = (StandardMaterial3D)deadMesh.SurfaceGetMaterial(1).Duplicate();
-        var deadMouth = (StandardMaterial3D)deadMesh.SurfaceGetMaterial(2).Duplicate();
+        var deadEyes = (SpatialMaterial)deadMesh.SurfaceGetMaterial(1).Duplicate();
+        var deadMouth = (SpatialMaterial)deadMesh.SurfaceGetMaterial(2).Duplicate();
             
         deadEyes.AlbedoTexture = closedEyes;
         deadMesh.SurfaceSetMaterial(1, deadEyes);
@@ -83,8 +83,8 @@ public partial class NpcFace : MeshInstance3D, ISavable
     {
         AddToGroup("savable");
         Npc = GetNode<NPC>("../../../");
-        eyesMaterial = (StandardMaterial3D) Mesh.SurfaceGetMaterial(1);
-        mouthMaterial = (StandardMaterial3D) Mesh.SurfaceGetMaterial(2);
+        eyesMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(1);
+        mouthMaterial = (SpatialMaterial) Mesh.SurfaceGetMaterial(2);
 
         ChangeEyesVariant(startEyesVariant);
     }

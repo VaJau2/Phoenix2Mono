@@ -1,8 +1,8 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace DialogueEffects;
 
-public partial class WeaponInMouthEffect : IDialogueEffect
+public class WeaponInMouthEffect : IDialogueEffect
 {
     private System.Collections.Generic.Dictionary<string, string> replaceLetters = new()
     {

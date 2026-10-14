@@ -572,7 +572,7 @@ mesh = SubResource( 2 )
 transform = Transform3D( 5.68636, 0, 0, 0, 5.68636, 0, 0, 0, 5.68636, -18.0172, -0.865949, -0.706693 )
 mesh = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain"]
 transform = Transform3D( 5.686, 0, 0, 0, 5.686, 0, 0, 0, 5.686, -18.0172, -0.865949, -0.706693 )
 shape = SubResource( 4 )
 
@@ -585,7 +585,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 37 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/scene-stair"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/scene-stair"]
 transform = Transform3D( 5.686, 0, 0, 0, 5.686, 0, 0, 0, 5.686, -18.0172, -0.865949, -0.706693 )
 shape = SubResource( 6 )
 
@@ -654,7 +654,7 @@ script = ExtResource( 77 )
 hintCodes = [ "leaveLocation" ]
 activateTriggerPaths = [ NodePath("../../../triggers/locationExit") ]
 
-[node name="Shape3D" type="CollisionShape3D" parent="terrain/doors/Exit Doors"]
+[node name="Shape" type="CollisionShape3D" parent="terrain/doors/Exit Doors"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, -3.55271e-15, 0, 1, 0, 2.75569, -3.92602 )
 shape = SubResource( 40 )
 
@@ -699,7 +699,7 @@ physics_material_override = ExtResource( 37 )
 transform = Transform3D( 7.49371, 0, 0, 0, 7.49371, 0, 0, 0, 7.49371, -19.0531, -9.60073, -40.2372 )
 mesh = SubResource( 10 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/stair"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/stair"]
 transform = Transform3D( 7.49323, 0, 0, 0, 7.49323, 0, 0, 0, 7.49323, -21.1741, -2.11256, -46.5158 )
 shape = SubResource( 11 )
 
@@ -787,7 +787,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column0"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column0"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -799,7 +799,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column1"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -811,7 +811,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column2"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -823,7 +823,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column3"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -835,7 +835,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column4"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column4"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -847,7 +847,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 mesh = SubResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column5"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column5"]
 transform = Transform3D( -1.0568, 0, -3.44349e-07, 0, 1.0568, 0, 3.44349e-07, 0, -1.0568, 0, 0, 0 )
 shape = SubResource( 14 )
 
@@ -859,7 +859,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 1.20156, 0, 0, 0, 5.81422, 0, 0, 0, 1.20156, -0.0430732, 0.0165718, -0.164375 )
 mesh = SubResource( 15 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column-big"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column-big"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.28594, -0.114785 )
 shape = SubResource( 16 )
 
@@ -879,7 +879,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 1.20156, 0, 0, 0, 5.81422, 0, 0, 0, 1.20156, -0.0430732, 0.0165718, -0.164375 )
 mesh = SubResource( 15 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column-big2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column-big2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.28594, -0.114785 )
 shape = SubResource( 16 )
 
@@ -899,7 +899,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 1.20156, 0, 0, 0, 5.81422, 0, 0, 0, 1.20156, -0.0430732, 0.0165718, -0.164375 )
 mesh = SubResource( 15 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column-big3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column-big3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.28594, -0.114785 )
 shape = SubResource( 16 )
 
@@ -919,7 +919,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 1.20156, 0, 0, 0, 5.81422, 0, 0, 0, 1.20156, -0.0430732, 0.0165718, -0.164375 )
 mesh = SubResource( 15 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/columns/column-big4"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/columns/column-big4"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.28594, -0.114785 )
 shape = SubResource( 16 )
 
@@ -1009,7 +1009,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 0.358346, 0, 0, 0, 0.358346, 0, 0, 0, 0.358346, 0, 0, 0 )
 mesh = SubResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1021,7 +1021,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 0.358346, 0, 0, 0, 0.358346, 0, 0, 0, 0.358346, 0, 0, 0 )
 mesh = SubResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1033,7 +1033,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 0.358346, 0, 0, 0, 0.358346, 0, 0, 0, 0.358346, 0, 0, 0 )
 mesh = SubResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1045,7 +1045,7 @@ physics_material_override = ExtResource( 19 )
 transform = Transform3D( 0.358346, 0, 0, 0, 0.358346, 0, 0, 0, 0.358346, 0, 0.129108, 0 )
 mesh = SubResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline4"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline4"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1053,7 +1053,7 @@ shape = SubResource( 20 )
 transform = Transform3D( 0.947249, 0, -0.320497, 0, 1.648, 0, 0.320497, 0, 0.947249, -15.3682, -7.62979, 23.9483 )
 physics_material_override = ExtResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline-end"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline-end"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1065,7 +1065,7 @@ mesh = SubResource( 21 )
 transform = Transform3D( 0.949354, 0, 0.314208, 0, 1.648, 0, -0.314208, 0, 0.949354, -27.1938, -7.62979, 21.5742 )
 physics_material_override = ExtResource( 19 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/redlines/redline-end2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/redlines/redline-end2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9134, -0.38064, 0 )
 shape = SubResource( 20 )
 
@@ -1084,7 +1084,7 @@ physics_material_override = ExtResource( 38 )
 transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 1.53042, 1.70657, -0.0440416, -0.782694 )
 mesh = SubResource( 22 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/table2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/table2"]
 transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 1.53042, 1.70657, -0.0440416, -0.782694 )
 shape = SubResource( 23 )
 
@@ -1681,7 +1681,7 @@ changeMode = 1
 taskCode = "sitOnChair"
 clearPreviousTasks = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/addSitTask"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/addSitTask"]
 shape = SubResource( 26 )
 
 [node name="doneSitTask" type="Node" parent="triggers"]
@@ -1791,7 +1791,7 @@ script = ExtResource( 65 )
 IsActive = false
 npcPath = "/root/Main/Scene/npc/shloer"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/shloerDissapear"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/shloerDissapear"]
 shape = SubResource( 27 )
 
 [node name="dialoguesOff" type="Node" parent="triggers"]
@@ -1929,7 +1929,7 @@ IsActive = false
 otherTriggerPaths = [ NodePath("../changeScientistDialogue") ]
 disactiveTriggerPaths = [ NodePath("../scientistDialogue") ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/scientistMoveCanceler"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/scientistMoveCanceler"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4905, 2.26303, -8.67308 )
 shape = SubResource( 28 )
 
@@ -1959,7 +1959,7 @@ ammoCount = {
 "ammo12": 6
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/corridorSpawner"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/corridorSpawner"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4905, 2.26303, -8.67308 )
 shape = SubResource( 28 )
 
@@ -1982,7 +1982,7 @@ ammoCount = {
 "ammo12": 8
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/corridorSpawner2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/corridorSpawner2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.3231, 2.26303, -12.2243 )
 shape = SubResource( 28 )
 
@@ -2006,7 +2006,7 @@ ammoCount = {
 "ammo20": 4
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/corridorSpawner3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/corridorSpawner3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -80.6556, 2.26303, -12.2243 )
 shape = SubResource( 28 )
 
@@ -2030,7 +2030,7 @@ relation = 2
 itemCodes = [ "manaPotion" ]
 triggerConnections = [ [ "../duskThanksKill", "DieEvent", "SetActive", [ true ] ], [ "../redPunchRotateGun", "TakenDamage", "SetActive", [ true ] ], [ "../duskRun", "TakenDamage", "SetActive", [ true ] ], [ "../security1DialogueClear", "DieEvent", "SetActive", [ true ] ], [ "../securityMareDialogueClear", "DieEvent", "SetActive", [ true ] ] ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/spawnerRedPunch"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/spawnerRedPunch"]
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.6763, 1.94469, -9.8311 )
 shape = SubResource( 34 )
 
@@ -2069,7 +2069,7 @@ otherDialogueCode = "talk"
 otherSubtitleCode = ""
 codeWithoutGun = "talk_without_gun"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/redPunchDialogue"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/redPunchDialogue"]
 shape = SubResource( 29 )
 
 [node name="RedPunchRun" type="Node" parent="triggers" groups=["savable"]]
@@ -2090,7 +2090,7 @@ script = ExtResource( 65 )
 otherTriggerPaths = [ NodePath("../duskThanksNotKill"), NodePath("../security1Dialogue2"), NodePath("../securityMareDialogue2") ]
 npcPath = "../../npc/Created_red_punch"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/redPunchDissapear"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/redPunchDissapear"]
 shape = SubResource( 30 )
 
 [node name="redPunchDissapearWithoutDialogue" type="Area3D" parent="triggers" groups=["savable"]]
@@ -2101,7 +2101,7 @@ otherTriggerPaths = [ NodePath("../duskThanksNotKill"), NodePath("../security1Di
 disactiveTriggerPaths = [  ]
 npcPath = "../../npc/Created_red_punch"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/redPunchDissapearWithoutDialogue"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/redPunchDissapearWithoutDialogue"]
 shape = SubResource( 30 )
 
 [node name="security1Dialogue2" type="Node" parent="triggers" groups=["savable"]]
@@ -2182,7 +2182,7 @@ followPath = ""
 newAnimation = "Idle1"
 newIdlePointPath = NodePath("movePoint")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/duskFollowEnd"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/duskFollowEnd"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.71884, 1.03689 )
 shape = SubResource( 31 )
 
@@ -2220,7 +2220,7 @@ script = ExtResource( 65 )
 IsActive = false
 npcPath = "/root/Main/Scene/npc/bellgates"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/bellgatesDissapear"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/bellgatesDissapear"]
 shape = SubResource( 30 )
 
 [node name="doneTakeDuskTask" type="Node" parent="triggers"]
@@ -2269,7 +2269,7 @@ visible = false
 mesh = SubResource( 36 )
 skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="navMesh"]
+[node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
 transform = Transform3D( 1.5, 0, 0, 0, -6.55671e-08, -3, 0, 1.5, -1.31134e-07, -10.5448, 0, -35.797 )
 visible = false
 mesh = SubResource( 39 )

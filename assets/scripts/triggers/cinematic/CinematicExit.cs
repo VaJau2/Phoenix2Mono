@@ -5,7 +5,7 @@ using Godot.Collections;
 
 // Создает отдельную следящую за игроком камеру
 // при выходе из области
-public partial class CinematicExit : Area3D, ISavable
+public class CinematicExit : Area, ISavable
 {
     // насколько сильно зенитное замедление камеры в начале и ускорение в конце
     private const float MAX_DISTANCE = 400f;
@@ -25,7 +25,7 @@ public partial class CinematicExit : Area3D, ISavable
     // соотношение высоты камеры к пройденной игроком дистанции от границы
     private const float CAMERA_HEIGHT_RATIO = 0.05f;
 
-    private Camera3D cinematicCamera;
+    private Camera cinematicCamera;
     
     private Player player;
     private bool wasThirdView;
@@ -63,7 +63,7 @@ public partial class CinematicExit : Area3D, ISavable
             cinematicCamera.GlobalTransform.origin.z
         );
         var transform = cinematicCamera.GlobalTransform;
-        transform.origin = transform.origin.Lerp(target, delta * CAMERA_SPEED);
+        transform.origin = transform.origin.LinearInterpolate(target, delta * CAMERA_SPEED);
         cinematicCamera.GlobalTransform = transform;
     }
 
@@ -73,7 +73,7 @@ public partial class CinematicExit : Area3D, ISavable
         
         player.RotationHelperThird.MayChange = true;
         player.RotationHelperThird.SetThirdView(wasThirdView);
-        player.Disconnect(nameof(Character.DieEvent), new Callable(this, nameof(OnPlayerDeath)));
+        player.Disconnect(nameof(Character.DieEvent), this, nameof(OnPlayerDeath));
         player = null;
         
         exitPoint = Vector3.Zero;
@@ -94,12 +94,12 @@ public partial class CinematicExit : Area3D, ISavable
         
         SpawnCamera();
 
-        player.Connect(nameof(Character.DieEvent), new Callable(this, nameof(OnPlayerDeath)));
+        player.Connect(nameof(Character.DieEvent), this, nameof(OnPlayerDeath));
     }
 
     private async void SpawnCamera()
     {
-        cinematicCamera = new Camera3D();
+        cinematicCamera = new Camera();
         cinematicCamera.Name = "Created_CinematicCamera";
         GetNode("../../").CallDeferred("add_child", cinematicCamera);
 
@@ -130,7 +130,7 @@ public partial class CinematicExit : Area3D, ISavable
     
     private async void SpawnCamera(Vector3 pos)
     {
-        cinematicCamera = new Camera3D();
+        cinematicCamera = new Camera();
         cinematicCamera.Name = "Created_CinematicCamera";
         GetNode("../../").CallDeferred("add_child", cinematicCamera);
         

@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using Godot.Collections;
 
-public partial class Cutscene : Node, ISavable
+public class Cutscene : Node, ISavable
 {
     [Export] private bool changeListener;
     [Export] private bool DeleteAfterFinished;
     
-    private Camera3D cutsceneCamera;
-    private Area3D area;
+    private Camera cutsceneCamera;
+    private Area area;
     
     private Player player => Global.Get().player;
     private bool wasThirdView;
@@ -27,14 +27,14 @@ public partial class Cutscene : Node, ISavable
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
     }
 
-    public Camera3D GetPlayerCamera()
+    public Camera GetPlayerCamera()
     {
         return wasThirdView 
             ? player.RotationHelperThird.thirdCamera 
             : player.RotationHelperThird.firstCamera;
     }
 
-    public Camera3D GetCamera3d()
+    public Camera GetCamera()
     {
         return cutsceneCamera;
     }
@@ -90,11 +90,11 @@ public partial class Cutscene : Node, ISavable
     
     public void ReturnPlayerCamera()
     {
-        skip.Disconnect(nameof(global::Skip.SkipEvent), new Callable(this, nameof(Skip)));
+        skip.Disconnect(nameof(global::Skip.SkipEvent), this, nameof(Skip));
         skip.SetActive(false);
         
-        area.Disconnect("body_exited", new Callable(this, nameof(ShowPlayerHead)));
-        area.Disconnect("body_entered", new Callable(this, nameof(HidePlayerHead)));
+        area.Disconnect("body_exited", this, nameof(ShowPlayerHead));
+        area.Disconnect("body_entered", this, nameof(HidePlayerHead));
         area.QueueFree();
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
@@ -115,7 +115,7 @@ public partial class Cutscene : Node, ISavable
         InitCamera();
         InitHeadTrigger();
         if (changeListener) InitListener();
-        skip.Connect(nameof(global::Skip.SkipEvent), new Callable(this, nameof(Skip)));
+        skip.Connect(nameof(global::Skip.SkipEvent), this, nameof(Skip));
         skip.SetActive(true);
     }
     
@@ -123,9 +123,9 @@ public partial class Cutscene : Node, ISavable
     {
         var prefab = GD.Load<PackedScene>("res://objects/cinematic/Camera.tscn");
         
-        if (prefab.Instance() is not Camera3D tempCamera)
+        if (prefab.Instance() is not Camera tempCamera)
         {
-            throw new Exception("Camera3D prefab is not found");
+            throw new Exception("Camera prefab is not found");
         }
         
         cutsceneCamera = tempCamera;
@@ -137,7 +137,7 @@ public partial class Cutscene : Node, ISavable
 
     private void InitListener()
     {
-        var listener = new AudioListener3D();
+        var listener = new Listener();
         cutsceneCamera.AddChild(listener);
         listener.MakeCurrent();
     }
@@ -146,19 +146,19 @@ public partial class Cutscene : Node, ISavable
     {
         var prefab = GD.Load<PackedScene>("res://objects/cinematic/HeadTrigger.tscn");
         
-        if (prefab.Instance() is not Area3D tempArea)
+        if (prefab.Instance() is not Area tempArea)
         {
-            throw new Exception("Area3D prefab is not found");
+            throw new Exception("Area prefab is not found");
         }
 
         area = tempArea;
 
-        var headBone = player.Body.GetNode<BoneAttachment3D>("Armature/Skeleton3D/BoneAttachment3D");
+        var headBone = player.Body.GetNode<BoneAttachment>("Armature/Skeleton/BoneAttachment");
         headBone.AddChild(area);
         
         area.GlobalTranslation = player.RotationHelperThird.firstCamera.GlobalTranslation;
-        area.Connect("body_exited", new Callable(this, nameof(ShowPlayerHead)));
-        area.Connect("body_entered", new Callable(this, nameof(HidePlayerHead)));
+        area.Connect("body_exited", this, nameof(ShowPlayerHead));
+        area.Connect("body_entered", this, nameof(HidePlayerHead));
     }
     
     private void ShowPlayerHead(Node body)

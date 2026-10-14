@@ -2,11 +2,11 @@ using System;
 using Godot.Collections;
 using Godot;
 
-public partial class PathBase : Path3D, ISavable
+public class PathBase : Path, ISavable
 {
     [Export] private float speed = 0.1f;
     
-    protected PathFollow3D pathFollow;
+    protected PathFollow pathFollow;
     
     [Signal]
     public delegate void Finished();
@@ -14,23 +14,23 @@ public partial class PathBase : Path3D, ISavable
     public override void _Ready()
     {
         SetPhysicsProcess(false);
-        pathFollow = GetNode<PathFollow3D>("PathFollow3D");
+        pathFollow = GetNode<PathFollow>("PathFollow");
     }
     
     public override void _PhysicsProcess(float delta)
     {
-        var newOffset = pathFollow.ProgressRatio + speed * delta;
+        var newOffset = pathFollow.UnitOffset + speed * delta;
         
         if (newOffset < 1f)
         {
-            pathFollow.ProgressRatio = newOffset;
+            pathFollow.UnitOffset = newOffset;
         }
         else Disable();
     }
 
     public virtual void Enable()
     {
-        pathFollow.ProgressRatio = 0;
+        pathFollow.UnitOffset = 0;
         pathFollow.Rotation = Vector3.Zero;
         SetPhysicsProcess(true);
     }
@@ -45,7 +45,7 @@ public partial class PathBase : Path3D, ISavable
     {
         return new Dictionary
         {
-            { "unitOffset", pathFollow.ProgressRatio },
+            { "unitOffset", pathFollow.UnitOffset },
             { "rotation", pathFollow.Rotation },
             { "isProcess", IsPhysicsProcessing() }
         };
@@ -57,7 +57,7 @@ public partial class PathBase : Path3D, ISavable
         if (!Convert.ToBoolean(data["isProcess"])) return;
         
         Enable();
-        pathFollow.ProgressRatio = (float)data["unitOffset"];
+        pathFollow.UnitOffset = (float)data["unitOffset"];
         pathFollow.Rotation = data["rotation"].ToString().ParseToVector3();
     }
 }

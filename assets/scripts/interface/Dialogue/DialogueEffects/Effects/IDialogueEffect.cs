@@ -1,4 +1,4 @@
-namespace DialogueEffects;
+﻿namespace DialogueEffects;
 
 public interface IDialogueEffect
 {

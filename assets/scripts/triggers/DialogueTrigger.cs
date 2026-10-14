@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class DialogueTrigger : TriggerBase
+public class DialogueTrigger : TriggerBase
 {
     [Export] public bool onlyChangeCode;
     [Export] public string npcPath;
@@ -21,8 +21,8 @@ public partial class DialogueTrigger : TriggerBase
     private bool isPlayerHere;
     private bool isNPCHere;
     
-    private Node3D startPoint;
-    private Node3D afterDialoguePoint;
+    private Spatial startPoint;
+    private Spatial afterDialoguePoint;
 
     private DialogueMenu dialogueMenu;
     private Subtitles subtitles;
@@ -39,12 +39,12 @@ public partial class DialogueTrigger : TriggerBase
 
         if (dialogueStartPointPath != null)
         {
-            startPoint = GetNode<Node3D>(dialogueStartPointPath);
+            startPoint = GetNode<Spatial>(dialogueStartPointPath);
         }
 
         if (afterDialoguePointPath != null)
         {
-            afterDialoguePoint = GetNode<Node3D>(afterDialoguePointPath);
+            afterDialoguePoint = GetNode<Spatial>(afterDialoguePointPath);
         }
     }
 

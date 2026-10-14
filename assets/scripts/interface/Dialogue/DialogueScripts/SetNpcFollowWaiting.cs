@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts
 {
-    public partial class SetNpcFollowWaiting: BaseChangeInNPC
+    public class SetNpcFollowWaiting: BaseChangeInNPC
     {
         public override void initiate(Node node, string parameter, string key = "")
         {

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class BaseMovingController : Node
+public class BaseMovingController : Node
 {
     public bool CloseToPoint;
     [Export] protected float Gravity;
@@ -55,24 +55,24 @@ public partial class BaseMovingController : Node
     
     private void RotateTo(Vector3 place)
     {
-        var rotA = character.Transform3D.basis.Quaternion().Normalized();
-        var rotB = character.Transform3D.LookingAt(place, Vector3.Up).basis.Quaternion().Normalized();
+        var rotA = character.Transform.basis.Quat().Normalized();
+        var rotB = character.Transform.LookingAt(place, Vector3.Up).basis.Quat().Normalized();
         var tempRotation = rotA.Slerp(rotB, RotationSpeed);
 
         var oldScale = character.Scale;
-        Transform3D tempTransform = character.Transform3D;
+        Transform tempTransform = character.Transform;
         tempTransform.basis = new Basis(tempRotation);
-        character.Transform3D = tempTransform;
+        character.Transform = tempTransform;
         character.Scale = oldScale;
     }
     
     public void UpdateHeight(float speed, float newHeight)
     {
-        if (character.Position.y > newHeight + 2f)
+        if (character.Translation.y > newHeight + 2f)
         {
             Gravity = speed;
         } 
-        else if (character.Position.y < newHeight - 2f)
+        else if (character.Translation.y < newHeight - 2f)
         {
             Gravity = -speed;
         }

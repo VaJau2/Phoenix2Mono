@@ -1079,7 +1079,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 5 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.222, 0, 81.566 )
 shape = SubResource( 119 )
 
@@ -1089,7 +1089,7 @@ collision_layer = 2
 collision_mask = 2
 physics_material_override = ExtResource( 21 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/road"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/road"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616089, -0.32, -42.3242 )
 shape = SubResource( 2 )
 
@@ -1156,7 +1156,7 @@ shape = SubResource( 11 )
 [node name="fenceCollision" type="StaticBody3D" parent="terrain/terrain_body"]
 physics_material_override = ExtResource( 21 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/fenceCollision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/fenceCollision"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8548, 3.83814, 69.4335 )
 shape = SubResource( 12 )
 
@@ -1528,7 +1528,7 @@ unit_size = 10.0
 max_db = 5.0
 max_distance = 500.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/buildings/lab/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/buildings/lab/DoorTeleport2"]
 transform = Transform3D( 1, 0, 5.68434e-14, 0, 1, 0, 1.42109e-14, 0, 0.999999, -1.67802, 3.03658, -0.659645 )
 shape = SubResource( 21 )
 
@@ -1582,7 +1582,7 @@ script = ExtResource( 52 )
 newPlacePath = NodePath("point")
 customInteractionCode = "climbOver"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/cars/btr2/teleportInside"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/cars/btr2/teleportInside"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09538, 2.72525, 0 )
 shape = SubResource( 129 )
 
@@ -1595,7 +1595,7 @@ script = ExtResource( 52 )
 newPlacePath = NodePath("point")
 customInteractionCode = "climbOver"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/cars/btr2/teleportOutside"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/cars/btr2/teleportOutside"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997456, 2.63682, 0 )
 shape = SubResource( 129 )
 
@@ -1634,7 +1634,7 @@ openSound = ExtResource( 85 )
 transform = Transform3D( 2.81241, 0, 0, 0, 1.12383, 0, 0, 0, 2.81241, -0.0569305, 0, 0.230736 )
 mesh = SubResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/ventilation-luk"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/ventilation-luk"]
 transform = Transform3D( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0.277319, 0.170311 )
 shape = SubResource( 126 )
 
@@ -1956,7 +1956,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 21 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/1floor/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/1floor/walls"]
 transform = Transform3D( -1.86473e-07, 0, 4.26601, 0, 4.26601, 0, -4.26601, 0, -1.86473e-07, 0, 0, 0 )
 shape = SubResource( 32 )
 
@@ -2012,7 +2012,7 @@ shape = SubResource( 124 )
 transform = Transform3D( 4.26601, 0, -2.14517e-13, 0, 4.26601, 0, 2.14517e-13, 0, 4.26601, -26.7555, 4.01738, -7.0964 )
 shape = SubResource( 124 )
 
-[node name="Lift CollisionShape3D" type="CollisionShape3D" parent="rooms/1floor/walls"]
+[node name="Lift CollisionShape" type="CollisionShape3D" parent="rooms/1floor/walls"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9917, 4.02686, -0.0939903 )
 shape = SubResource( 39 )
 
@@ -2121,7 +2121,7 @@ bus = "Sound"
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493748, 0, -0.480939, 0, -2.10225e-08, -28.6139, -1.48547, 0.0306587 )
 mesh = SubResource( 36 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/1floor/props/doors/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/1floor/props/doors/DoorTeleport2"]
 transform = Transform3D( -1.97421e-08, 0, 0.451646, 0, 0.493747, 0, -0.480939, 0, -2.10225e-08, 0.0152206, 1.8416, 0.0306587 )
 shape = SubResource( 110 )
 
@@ -2196,7 +2196,7 @@ openSound = ExtResource( 83 )
 transform = Transform3D( -1.87959e-07, 0, 4.3, 0, 4.3, 0, -4.3, 0, -1.87959e-07, 0, 0, 0 )
 mesh = SubResource( 38 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/1floor/props/lift"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/1floor/props/lift"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0189, 2.51507, 2.81069 )
 shape = SubResource( 111 )
 
@@ -2242,7 +2242,7 @@ transform = Transform3D( 0.565078, 0, 0, 0, 0.565078, 0, 0, 0, 0.565078, -18.277
 [node name="water" parent="rooms/1floor/props" instance=ExtResource( 59 )]
 transform = Transform3D( 4.35445, 0, 0, 0, 2.909, 0, 0, 0, 3.602, -23.3643, 0.228699, -44.1478 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/1floor/props/water"]
+[node name="MeshInstance" type="MeshInstance3D" parent="rooms/1floor/props/water"]
 transform = Transform3D( 0.00793071, 0, 0, 0, 0.0740566, 0, 0, 0, 0.660473, 1.49199, -0.146513, -0.0745335 )
 mesh = SubResource( 40 )
 material/0 = ExtResource( 45 )
@@ -2383,7 +2383,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 21 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/walls"]
 transform = Transform3D( 2.75188, 0, 0, 0, 2.75188, 0, 0, 0, 2.75188, -55.1559, -3.16606, -15.4837 )
 shape = SubResource( 94 )
 
@@ -2439,7 +2439,7 @@ transform = Transform3D( 2.75188, 0, 0, 0, 2.75188, 0, 0, 0, 2.75188, -55.1559, 
 mesh = SubResource( 97 )
 skeleton = NodePath("../../walls")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/ventilation"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/ventilation"]
 transform = Transform3D( 2.75188, 0, 0, 0, 2.75188, 0, 0, 0, 2.75188, -55.1559, -3.16606, -15.4837 )
 shape = SubResource( 98 )
 
@@ -2538,7 +2538,7 @@ mesh = SubResource( 52 )
 transform = Transform3D( 1.67857e-07, 2.81617, -2.62277e-09, -2.81557, 1.67857e-07, 0.0584096, 0.0584096, -2.62277e-09, 2.81557, 118.097, 6.86772, 47.7218 )
 mesh = SubResource( 53 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/van"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/van"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.184, 6.83226, 47.2942 )
 shape = SubResource( 54 )
 
@@ -2620,7 +2620,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.4169, 0, -5.30844 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/parking/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/parking/VisibleArea"]
 shape = SubResource( 57 )
 
 [node name="kpp" type="Node3D" parent="rooms/2floor/props"]
@@ -2886,7 +2886,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.57884, 0, 45.2987 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/kpp/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/kpp/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.82082, 0, 0 )
 shape = SubResource( 57 )
 
@@ -2979,7 +2979,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0549, 1.61102, 2.90257 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/generators/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/generators/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8162, 0, -2.43759 )
 shape = SubResource( 68 )
 
@@ -3157,7 +3157,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.327, 0, -4.68625 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/frame-room/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/frame-room/VisibleArea"]
 shape = SubResource( 69 )
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="rooms/2floor/props/frame-room/VisibleArea"]
@@ -3340,7 +3340,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3734, 0, -3.08246 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/hall/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/hall/VisibleArea"]
 shape = SubResource( 71 )
 
 [node name="cabinets1" type="Node3D" parent="rooms/2floor/props"]
@@ -3545,7 +3545,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2764, 0, -4.94516 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/cabinets1/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/cabinets1/VisibleArea"]
 shape = SubResource( 72 )
 
 [node name="corridor1" type="Node3D" parent="rooms/2floor/props"]
@@ -3566,7 +3566,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6105, 0, -3.08693 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/corridor1/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/corridor1/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9822, 0, 8.28271 )
 shape = SubResource( 73 )
 
@@ -3591,7 +3591,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1471, 0, -9.62245 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/corridor2/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/corridor2/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.01743 )
 shape = SubResource( 74 )
 
@@ -3915,7 +3915,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6257, 0, -11.4148 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/cabinets2/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/cabinets2/VisibleArea"]
 shape = SubResource( 75 )
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="rooms/2floor/props/cabinets2/VisibleArea"]
@@ -3949,7 +3949,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -138.337, 0, 3.76723 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/corridor3/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/corridor3/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.66573, 0, 0 )
 shape = SubResource( 77 )
 
@@ -4146,7 +4146,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4731, 0, -10.0814 )
 monitorable = false
 script = ExtResource( 118 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/props/main-cabinet/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/props/main-cabinet/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9357, 0, -6.46054 )
 shape = SubResource( 78 )
 
@@ -4218,7 +4218,7 @@ openSound = ExtResource( 83 )
 transform = Transform3D( 3.63958, 0, 0, 0, 3.63958, 0, 0, 0, 3.63958, 0.163082, -0.571991, 14.9456 )
 mesh = SubResource( 81 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/lift1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/lift1"]
 transform = Transform3D( 1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, -2.46, 2.097, 0.25 )
 shape = SubResource( 112 )
 
@@ -4250,7 +4250,7 @@ openSound = ExtResource( 83 )
 transform = Transform3D( 4.44918, 0, 0, 0, 4.44918, 0, 0, 0, 4.44918, 1.52867, -0.628204, -0.726059 )
 mesh = SubResource( 84 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/lift2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/lift2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00604, 4.49925, 0 )
 shape = SubResource( 113 )
 
@@ -4388,7 +4388,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5645, 8.12994, 65.226 )
 monitorable = false
 script = ExtResource( 141 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/2floor/invisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/2floor/invisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0017, 0, 0 )
 shape = SubResource( 99 )
 
@@ -4456,7 +4456,7 @@ pathToBox = NodePath("../../terrain/props/boxes/open_box")
 movingSound = ExtResource( 123 )
 pathToDoorTeleport = NodePath("../../terrain/props/buildings/transp_lift")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/waitInBox"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/waitInBox"]
 shape = SubResource( 88 )
 
 [node name="newBoxPosition" type="Node3D" parent="triggers/waitInBox"]
@@ -4467,7 +4467,7 @@ script = ExtResource( 127 )
 DeleteAfterTrigger = false
 HintCode = "pressButton"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/stopAlarmButton"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/stopAlarmButton"]
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -138.827, -199.53, -23.2473 )
 shape = SubResource( 91 )
 
@@ -4492,7 +4492,7 @@ script = ExtResource( 140 )
 DeleteAfterTrigger = false
 managerPath = NodePath("../../npc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/noAlarmArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/noAlarmArea"]
 shape = SubResource( 93 )
 
 [node name="scientist2" type="Node" parent="triggers"]
@@ -4531,7 +4531,7 @@ otherDialogueCode = "talk_with_collar_with_key_again"
 [node name="takeOffCollar" type="Node" parent="triggers/scientist2"]
 script = ExtResource( 154 )
 npcPath = NodePath("../../../npc/scientist2")
-collarPath = "Armature/Skeleton3D/BoneAttachmentNeck/collar"
+collarPath = "Armature/Skeleton/BoneAttachmentNeck/collar"
 deactivatingSound = ExtResource( 152 )
 
 [node name="scientist3" type="Node" parent="triggers"]
@@ -4570,7 +4570,7 @@ otherDialogueCode = "talk_with_collar_with_key_again"
 [node name="takeOffCollar" type="Node" parent="triggers/scientist3"]
 script = ExtResource( 154 )
 npcPath = NodePath("../../../npc/scientist3")
-collarPath = "Armature/Skeleton3D/BoneAttachmentNeck/collar"
+collarPath = "Armature/Skeleton/BoneAttachmentNeck/collar"
 deactivatingSound = ExtResource( 152 )
 
 [node name="ventFurnStairs" type="Node" parent="triggers"]
@@ -4585,7 +4585,7 @@ tableSound = ExtResource( 150 )
 sofaSound = ExtResource( 151 )
 chairSound = ExtResource( 150 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/ventFurnStairs/main-cabinet"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/ventFurnStairs/main-cabinet"]
 shape = SubResource( 127 )
 
 [node name="furns" type="Node3D" parent="triggers/ventFurnStairs/main-cabinet"]
@@ -4612,7 +4612,7 @@ tableSound = ExtResource( 150 )
 sofaSound = ExtResource( 151 )
 chairSound = ExtResource( 150 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/ventFurnStairs/cabinets2-1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/ventFurnStairs/cabinets2-1"]
 shape = SubResource( 127 )
 
 [node name="furns" type="Node3D" parent="triggers/ventFurnStairs/cabinets2-1"]
@@ -4639,7 +4639,7 @@ tableSound = ExtResource( 150 )
 sofaSound = ExtResource( 151 )
 chairSound = ExtResource( 150 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/ventFurnStairs/cabinets2-2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/ventFurnStairs/cabinets2-2"]
 shape = SubResource( 127 )
 
 [node name="furns" type="Node3D" parent="triggers/ventFurnStairs/cabinets2-2"]
@@ -4663,7 +4663,7 @@ script = ExtResource( 156 )
 otherTriggerPaths = [ NodePath("moveScientist2"), NodePath("changeCodeScientist2"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
 npcNames = [ "scientist2" ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/checkEscapeScientist2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/checkEscapeScientist2"]
 shape = SubResource( 128 )
 
 [node name="moveScientist2" type="Node" parent="triggers/checkEscapeScientist2"]
@@ -4692,7 +4692,7 @@ script = ExtResource( 156 )
 otherTriggerPaths = [ NodePath("moveScientist3"), NodePath("changeCodeScientist3"), NodePath("../oneScientistSaved"), NodePath("../twoScientistsSaved") ]
 npcNames = [ "scientist3" ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/checkEscapeScientist3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/checkEscapeScientist3"]
 shape = SubResource( 128 )
 
 [node name="moveScientist3" type="Node" parent="triggers/checkEscapeScientist3"]
@@ -4882,7 +4882,7 @@ IsActive = false
 NewLevelNum = 8
 HintCode = "leaveLocation"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/exit"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/exit"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376526, 0 )
 shape = SubResource( 130 )
 
@@ -4902,7 +4902,7 @@ stream = ExtResource( 137 )
 volume_db = -30.0
 bus = "Music"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D( 0.959764, 0.0902948, 0.265894, -0.26532, 0.601711, 0.753359, -0.0919667, -0.793594, 0.601458, 0, 8.63824, -21.8162 )
 light_color = Color( 0.321569, 0.333333, 0.470588, 1 )
 light_energy = 0.9
@@ -4924,7 +4924,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
 visible = false
 navigation_mesh = SubResource( 115 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="navMesh"]
+[node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
 transform = Transform3D( 0.0260473, 0, -2.42854, 0, 1.324, 0, 0.147721, 0, 0.428217, -10.423, -203.92, -52.4039 )
 visible = false
 mesh = SubResource( 116 )

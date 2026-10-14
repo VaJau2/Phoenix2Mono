@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class Messages : VBoxContainer, ISavable
+public class Messages : VBoxContainer, ISavable
 {
     public const float HINT_TIMER = 2.5f;
     private const string NONE_CODE = "none";
@@ -27,8 +27,8 @@ public partial class Messages : VBoxContainer, ISavable
         while (tempA > 0)
         {
             tempA -= 0.1f;
-            label.AddThemeColorOverride("font_color", new Color(1, 1, 1, tempA));
-            label.AddThemeColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
+            label.AddColorOverride("font_color", new Color(1, 1, 1, tempA));
+            label.AddColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
             await global.ToTimer(0.05f, null, true);
         }
 

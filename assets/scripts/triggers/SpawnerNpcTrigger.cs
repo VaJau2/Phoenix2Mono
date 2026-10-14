@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public partial class SpawnerNpcTrigger: ActivateOtherTrigger
+public class SpawnerNpcTrigger: ActivateOtherTrigger
 {
     [Export] private PackedScene npcPrefab;
     [Export] private string npcName;
@@ -26,8 +26,8 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
     //3 - binds, массив
     [Export] private Array triggerConnections;
 
-    private Node3D spawnPoint;
-    private Node3D movePoint;
+    private Spatial spawnPoint;
+    private Spatial movePoint;
 
     private float tempTimer;
     private int step;
@@ -37,11 +37,11 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
         SetProcess(false);
         if (spawnPointPath != null)
         {
-            spawnPoint = GetNode<Node3D>(spawnPointPath);
+            spawnPoint = GetNode<Spatial>(spawnPointPath);
         }
         if (movePointPath != null)
         {
-            movePoint = GetNode<Node3D>(movePointPath);
+            movePoint = GetNode<Spatial>(movePointPath);
         }
 
         base._Ready();
@@ -125,7 +125,7 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
                     var signal = triggerData[1].ToString();
                     var method = triggerData[2].ToString();
                     var binds = triggerData[3] as Array;
-                    npcInstance.Connect(signal, new Callable(trigger, method), binds);
+                    npcInstance.Connect(signal, trigger, method, binds);
                 }
             }
         }

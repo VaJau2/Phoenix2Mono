@@ -31,5 +31,5 @@ script = ExtResource( 3 )
 [node name="sofa" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 2 )

@@ -1,7 +1,7 @@
 using Godot;
 
 //базовый класс для эффектов
-public partial class Effect 
+public class Effect 
 {
     protected string iconName;
     protected Effect postEffect = null;
@@ -10,7 +10,7 @@ public partial class Effect
     public float time;
     public float maxTime {get; protected set;}
     public string emotion {get; protected set;} = null;
-    public CompressedTexture2D iconTexture {get; private set;}
+    public StreamTexture iconTexture {get; private set;}
     public EffectIcon icon;
     public bool badEffect = false;
 
@@ -19,7 +19,7 @@ public partial class Effect
     {
         this.handler = handler;
         time = maxTime;
-        iconTexture = GD.Load<CompressedTexture2D>("res://assets/textures/interface/icons/items/" + iconName + ".png");
+        iconTexture = GD.Load<StreamTexture>("res://assets/textures/interface/icons/items/" + iconName + ".png");
 
         if (postEffect != null) handler.ClearEffect(postEffect);
     }

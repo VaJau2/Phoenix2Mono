@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ChangeEnvironmentTrigger : TriggerBase
+public class ChangeEnvironmentTrigger : TriggerBase
 {
     [Export] private NodePath envPath;
     [Export] private Environment envResource;

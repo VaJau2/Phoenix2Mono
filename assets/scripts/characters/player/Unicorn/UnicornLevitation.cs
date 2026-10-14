@@ -4,7 +4,7 @@ using Godot.Collections;
 //Класс для анимирования левитирующего оружия у единорогов
 //Умеет работать с игроком-единорогом класса Player_Unicorn
 //или с неписем-единорогом класса Pony
-public partial class UnicornLevitation : Node3D, ISavable
+public class UnicornLevitation : Spatial, ISavable
 {
     private const float PLAYER_HEIGHT_MIN = -0.1f;
     private const float PLAYER_HEIGHT_MAX = 0.2f;
@@ -16,7 +16,7 @@ public partial class UnicornLevitation : Node3D, ISavable
     private const float CLOSING_SPEED = 10f;
     
     private Particles cloud;
-    private Node3D weaponNode;
+    private Spatial weaponNode;
     private Player_Unicorn player;
     private NPC npc;
 
@@ -42,19 +42,19 @@ public partial class UnicornLevitation : Node3D, ISavable
         }
 
         cloud = GetNode<Particles>("cloud");
-        weaponNode = GetNode<Node3D>("weapons");
-        startXPos = weaponNode.Position.x;
-        startZPos = weaponNode.Position.z;
+        weaponNode = GetNode<Spatial>("weapons");
+        startXPos = weaponNode.Translation.x;
+        startZPos = weaponNode.Translation.z;
     }
 
     public override void _Process(float delta)
     {
         if (CheckGunOn())
         {
-            Vector3 weaponPos = weaponNode.Position;
+            Vector3 weaponPos = weaponNode.Translation;
             AnimateUpDown(ref weaponPos, delta);
             UpdateWeaponNode(ref weaponPos, delta);
-            weaponNode.Position = weaponPos;
+            weaponNode.Translation = weaponPos;
 
             Vector3 oldRot = Rotation;
             oldRot.x = GetPlayerRotation();
@@ -69,14 +69,14 @@ public partial class UnicornLevitation : Node3D, ISavable
         return gunOn;
     }
 
-    public void _on_collisionArea_body_entered(PhysicsBody3D body)
+    public void _on_collisionArea_body_entered(PhysicsBody body)
     {
         if (body == GetCharacterOwner()) return;
         if (body.Name.Contains("shell")) return;
         weaponClose = true;
     }
 
-    public void _on_collisionArea_body_exited(PhysicsBody3D body)
+    public void _on_collisionArea_body_exited(PhysicsBody body)
     {
         if (body == GetCharacterOwner()) return;
         if (body.Name.Contains("shell")) return;
@@ -102,7 +102,7 @@ public partial class UnicornLevitation : Node3D, ISavable
         return npcForward.AngleTo(npcDir);
     }
     
-    private Vector3 GetDirToTarget(Node3D target)
+    private Vector3 GetDirToTarget(Spatial target)
     {
         Vector3 targetDirPos = target.GlobalTranslation;
         targetDirPos.y = npc.GlobalTranslation.y;

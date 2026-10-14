@@ -788,7 +788,7 @@ __meta__ = {
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -0.7, 60 )
 shape = SubResource( 162 )
 
@@ -798,7 +798,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/road"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/road"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -1.62, -56 )
 shape = SubResource( 2 )
 
@@ -813,7 +813,7 @@ shape = SubResource( 4 )
 [node name="fence-collision" type="StaticBody3D" parent="terrain/terrain_body"]
 physics_material_override = ExtResource( 88 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/fence-collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/fence-collision"]
 transform = Transform3D( 1, 6.04257e-11, 0, 2.21778e-12, 1, -3.63798e-12, -2.91038e-11, -2.36469e-11, 1, 149.13, 3.56264, -10.193 )
 shape = SubResource( 5 )
 
@@ -833,7 +833,7 @@ shape = SubResource( 8 )
 transform = Transform3D( -1.62923e-07, 4.58742e-11, 1, 0, 1, -3.8879e-11, -1, -1.81899e-11, -1.62923e-07, 190.502, 3.947, 56.524 )
 shape = SubResource( 8 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="terrain"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="terrain"]
 transform = Transform3D( 0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0 )
 light_color = Color( 0.592157, 0.615686, 0.592157, 1 )
 shadow_enabled = true
@@ -887,10 +887,10 @@ __meta__ = {
 
 [node name="light" type="Node3D" parent="terrain/props"]
 
-[node name="Light3D" parent="terrain/props/light" instance=ExtResource( 32 )]
+[node name="Light" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( 0.7, 0, 0, 0, 0.678633, 0.171632, 0, -0.171632, 0.678633, 89.1041, -0.350516, 31.2093 )
 
-[node name="ElectricLine" parent="terrain/props/light/Light3D" instance=ExtResource( 33 )]
+[node name="ElectricLine" parent="terrain/props/light/Light" instance=ExtResource( 33 )]
 transform = Transform3D( -0.354313, -0.00131275, -0.39591, -0.105658, 0.482462, 0.0918321, 0.388658, 0.131299, -0.344121, 4.34157, 19.6195, 0.432514 )
 material/0 = ExtResource( 19 )
 
@@ -1040,7 +1040,7 @@ transform = Transform3D( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 35.08
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62807, 3.94334, 1.37274 )
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/main-house/props/terminal"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/main-house/props/terminal"]
 shape = SubResource( 234 )
 
 [node name="terminal" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/terminal"]
@@ -1114,7 +1114,7 @@ otherDoorPath = NodePath("../../../../../rooms/bunker/doors/DoorTeleport2")
 openSound = ExtResource( 104 )
 closedSound = ExtResource( 63 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/houses/bunker_entry/DoorTeleport"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/houses/bunker_entry/DoorTeleport"]
 transform = Transform3D( 1, 0, 1.98952e-13, 0, 1, 0, -1.98952e-13, 0, 1, 0.0286293, -0.241662, 0.343498 )
 shape = SubResource( 26 )
 
@@ -1138,7 +1138,7 @@ transform = Transform3D( 1, 0, 0, 0, 8, 0, 0, 0, 20, 0, 6.935, 0 )
 mesh = SubResource( 28 )
 material/0 = ExtResource( 67 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/props/shootingRange/wall"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/props/shootingRange/wall"]
 transform = Transform3D( 1.48048, 0, 0, 0, 8.41748, 0, 0, 0, 23.8927, 0, 7.477, 0 )
 shape = SubResource( 29 )
 
@@ -1152,7 +1152,7 @@ transform = Transform3D( -0.000840566, 0.263175, 1.47716, 1.50042, 0.00479225, 0
 monitorable = false
 script = ExtResource( 83 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/radiation"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/radiation"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 265, 60 )
 shape = SubResource( 167 )
 
@@ -1287,7 +1287,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 25 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/meshes/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/meshes/walls"]
 transform = Transform3D( 0, 0, -3.71527, 0, 3.00887, 0, 3.71527, 0, 0, -18.0585, -3.44391, 12.0374 )
 shape = SubResource( 92 )
 
@@ -1326,7 +1326,7 @@ otherDoorPath = NodePath("../../../../terrain/props/houses/bunker_entry/DoorTele
 openSound = ExtResource( 104 )
 closedSound = ExtResource( 63 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/doors/DoorTeleport2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/doors/DoorTeleport2"]
 transform = Transform3D( 1, 0, 7.81597e-14, 0, 1, 0, -7.81597e-14, 0, 1, -0.291798, 0.854377, 0.671314 )
 shape = SubResource( 26 )
 
@@ -1350,7 +1350,7 @@ mesh = SubResource( 121 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 122 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/doors/stable-front-door"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/doors/stable-front-door"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15651, 2.89059, 1.27222 )
 shape = SubResource( 123 )
 
@@ -1370,7 +1370,7 @@ shape = SubResource( 124 )
 
 [node name="frame-room" type="Node3D" parent="rooms/bunker/props"]
 
-[node name="Mainframe Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 1" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.93323, 4.5342, 66.0699 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1379,7 +1379,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Mainframe Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 2" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.59442, 5.64946, 84.0856 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1388,7 +1388,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Mainframe Light3D 3" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 3" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.59442, 5.64946, 99.9926 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1397,7 +1397,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Mainframe Light3D 4" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 4" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.8804, 4.55835, 66.0699 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1406,7 +1406,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Mainframe Light3D 5" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 5" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.5416, 5.64946, 84.0856 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1415,7 +1415,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Mainframe Light3D 6" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Mainframe Light 6" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.5416, 5.64946, 99.9926 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 light_energy = 1.5
@@ -1424,7 +1424,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 16.0
 
-[node name="Generator Light3D" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
+[node name="Generator Light" type="SpotLight3D" parent="rooms/bunker/props/frame-room"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.25029, 5.63424, 42.5859 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1536,7 +1536,7 @@ physics_material_override = ExtResource( 25 )
 script = ExtResource( 38 )
 files = PackedStringArray( "phoenix2_1", "phoenix2_2", "phoenix2_3", "phoenix2_4", "phoenix2_5", "phoenix2_6", "phoenix2_7" )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/frame-room/terminal"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/frame-room/terminal"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590237, 0.638412, -9.6162e-08 )
 shape = SubResource( 129 )
 
@@ -1546,12 +1546,12 @@ mesh = SubResource( 130 )
 material/0 = ExtResource( 77 )
 material/1 = SubResource( 131 )
 
-[node name="SubViewport" type="SubViewport" parent="rooms/bunker/props/frame-room/terminal"]
+[node name="Viewport" type="SubViewport" parent="rooms/bunker/props/frame-room/terminal"]
 size = Vector2( 525, 525 )
 hdr = false
 usage = 0
 
-[node name="Control" parent="rooms/bunker/props/frame-room/terminal/SubViewport" instance=ExtResource( 78 )]
+[node name="Control" parent="rooms/bunker/props/frame-room/terminal/Viewport" instance=ExtResource( 78 )]
 
 [node name="generator" parent="rooms/bunker/props/frame-room" instance=ExtResource( 59 )]
 transform = Transform3D( 1.18497, 0, 0, 0, 1.18497, 0, 0, 0, 1.18497, 1.34245, -3.7994, 47.5002 )
@@ -1564,7 +1564,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3593, 0.0343323, 80.4744 
 monitorable = false
 script = ExtResource( 44 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/frame-room/VisibleArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/frame-room/VisibleArea"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.880722, 2.4968, -14.7559 )
 shape = SubResource( 173 )
 
@@ -1633,7 +1633,7 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.23
 unitSize = 40.0
 maxDistance = 200.0
 
-[node name="Kitchen Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
+[node name="Kitchen Light 1" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.22905, 4.99335, 6.76868 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1641,7 +1641,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Kitchen Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
+[node name="Kitchen Light 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.12164, 4.99335, 6.57031 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1672,7 +1672,7 @@ transform = Transform3D( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -12.954
 unitSize = 40.0
 maxDistance = 200.0
 
-[node name="WC Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
+[node name="WC Light 1" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.13072, 5.06952, -25.4652 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1680,7 +1680,7 @@ shadow_bias = 0.01
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="WC Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
+[node name="WC Light 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.09921, 5.06952, -25.5113 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1707,14 +1707,14 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11084, 0.0343323, -12.510
 monitorable = false
 script = ExtResource( 44 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/kitchen-toilet/VisibleArea2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/kitchen-toilet/VisibleArea2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9442, 2.13705, 5.57416 )
 shape = SubResource( 174 )
 
 [node name="bedroom" type="Node3D" parent="rooms/bunker/props"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9678, 0, 35.5244 )
 
-[node name="Bedroom Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 1" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.35001, 4.98569, 7.42001 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1722,7 +1722,7 @@ shadow_bias = 1.2
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Bedroom Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 2" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, 7.42001 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1730,7 +1730,7 @@ shadow_bias = 1.2
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Bedroom Light3D 3" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 3" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.35001, 4.98569, -6.17813 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1738,7 +1738,7 @@ shadow_bias = 1.2
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Bedroom Light3D 4" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 4" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, -6.17813 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1746,7 +1746,7 @@ shadow_bias = 1.2
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Bedroom Light3D 5" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 5" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.35001, 4.98569, -21.8073 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1754,7 +1754,7 @@ shadow_bias = 1.2
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Bedroom Light3D 6" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
+[node name="Bedroom Light 6" type="SpotLight3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, -21.8073 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1805,7 +1805,7 @@ physics_material_override = ExtResource( 25 )
 script = ExtResource( 38 )
 files = PackedStringArray( "phoenix1_1", "phoenix1_2" )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/bedroom/terminal"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/bedroom/terminal"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590237, 0.638412, -9.6162e-08 )
 shape = SubResource( 129 )
 
@@ -1815,12 +1815,12 @@ mesh = SubResource( 130 )
 material/0 = ExtResource( 77 )
 material/1 = SubResource( 132 )
 
-[node name="SubViewport" type="SubViewport" parent="rooms/bunker/props/bedroom/terminal"]
+[node name="Viewport" type="SubViewport" parent="rooms/bunker/props/bedroom/terminal"]
 size = Vector2( 525, 525 )
 hdr = false
 usage = 0
 
-[node name="Control" parent="rooms/bunker/props/bedroom/terminal/SubViewport" instance=ExtResource( 78 )]
+[node name="Control" parent="rooms/bunker/props/bedroom/terminal/Viewport" instance=ExtResource( 78 )]
 
 [node name="poster3" type="Sprite3D" parent="rooms/bunker/props/bedroom"]
 transform = Transform3D( 3.58581, 0, 0, 0, 3.58581, 0, 0, 0, 3.58581, 2.10117, 0.0975189, -30.737 )
@@ -1841,7 +1841,7 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.37
 monitorable = false
 script = ExtResource( 44 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/bedroom/VisibleArea3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/bedroom/VisibleArea3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7051, 2.35853, 41.6922 )
 shape = SubResource( 175 )
 
@@ -1955,21 +1955,21 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47333, 3.62206, 89.4538 )
 unitSize = 50.0
 maxDistance = 200.0
 
-[node name="Hall Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Hall Light 1" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.1893, 6.06988, 83.2589 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Hall Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Hall Light 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.733017, 6.06988, 83.2589 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 15.0
 
-[node name="Exit Light3D" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Exit Light" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69781, 2.72139, 64.6046 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -1983,28 +1983,28 @@ transform = Transform3D( -0.0436543, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.0436
 [node name="truck" parent="rooms/bunker/props/corridors2" instance=ExtResource( 47 )]
 transform = Transform3D( 0.949896, 0, -0.312567, 0, 1, 0, 0.312567, 0, 0.949896, -8.8152, -6.81119, 27.4607 )
 
-[node name="Garage Light3D 1" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Garage Light 1" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 17.2538, 9.24969, 61.312 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 25.0
 
-[node name="Garage Light3D 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Garage Light 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.14017, 9.24969, 61.312 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 25.0
 
-[node name="Garage Light3D 3" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Garage Light 3" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 17.2538, 9.24969, 3.32809 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 25.0
 
-[node name="Garage Light3D 4" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Garage Light 4" type="SpotLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.14017, 9.24969, 3.32809 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -2016,25 +2016,25 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.16
 monitorable = false
 script = ExtResource( 44 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/bunker/props/corridors2/VisibleArea5"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/bunker/props/corridors2/VisibleArea5"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5391, 20.7747, 33.2961 )
 shape = SubResource( 111 )
 
-[node name="Tunel Light3D 1" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Tunel Light 1" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87689, 11.6844, -14.9231 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_bias = 0.8
 omni_range = 20.0
 
-[node name="Tunel Light3D 2" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Tunel Light 2" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86293, 24.477, -68.3188 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
 shadow_bias = 1.2
 omni_range = 20.0
 
-[node name="Tunel Light3D 3" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Tunel Light 3" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4799, 29.9073, -105.143 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -2042,7 +2042,7 @@ shadow_bias = 2.0
 omni_range = 35.0
 omni_attenuation = 2.14355
 
-[node name="Tunel Light3D 4" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
+[node name="Tunel Light 4" type="OmniLight3D" parent="rooms/bunker/props/corridors2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.792, 42.2691, -105.426 )
 light_color = Color( 0.94902, 0.956863, 0.780392, 1 )
 shadow_enabled = true
@@ -2106,7 +2106,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 439.842, -57.0418, 197.235 )
 script = ExtResource( 90 )
 messages = [ "cloneRoom" ]
 
-[node name="Collision Shape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/Clone Room"]
+[node name="Collision Shape" type="CollisionShape3D" parent="triggers/Phoenix Messages/Clone Room"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2761, 0.889076, 1.63869 )
 shape = SubResource( 193 )
 
@@ -2115,7 +2115,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 397.792, -57.0418, 179.067 )
 script = ExtResource( 90 )
 messages = [ "kitchen" ]
 
-[node name="Collision Shape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/Kitchen"]
+[node name="Collision Shape" type="CollisionShape3D" parent="triggers/Phoenix Messages/Kitchen"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418396, 0.889076, 1.62099 )
 shape = SubResource( 200 )
 
@@ -2124,7 +2124,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 397.792, -57.0418, 210.316 )
 script = ExtResource( 90 )
 messages = [ "fuel" ]
 
-[node name="Collision Shape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/Generator Room"]
+[node name="Collision Shape" type="CollisionShape3D" parent="triggers/Phoenix Messages/Generator Room"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0675964, 0.889076, 1.83992 )
 shape = SubResource( 187 )
 
@@ -2133,7 +2133,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 366.007, -57.0418, 179.067 )
 script = ExtResource( 90 )
 messages = [ "wc" ]
 
-[node name="Collision Shape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/WC"]
+[node name="Collision Shape" type="CollisionShape3D" parent="triggers/Phoenix Messages/WC"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.330475, 0.96954, 1.32314 )
 shape = SubResource( 188 )
 
@@ -2142,7 +2142,7 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 349.0
 script = ExtResource( 90 )
 messages = [ "radiation" ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/Hall"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/Phoenix Messages/Hall"]
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.1266, -2.09705, -6.21869 )
 shape = SubResource( 198 )
 
@@ -2153,7 +2153,7 @@ IsActive = false
 DeleteAfterTrigger = false
 messages = [ "back1", "back2", "back3", "back4", "back5", "back6", "back7" ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/Phoenix Messages/Welcome Back"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/Phoenix Messages/Welcome Back"]
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.1266, -2.09705, -6.21869 )
 shape = SubResource( 198 )
 
@@ -2164,11 +2164,11 @@ pointPaths = [ NodePath("point") ]
 teleportToPoint = true
 setStartPoint = false
 
-[node name="Area3D" type="Area3D" parent="triggers/MoveCoronel"]
+[node name="Area" type="Area3D" parent="triggers/MoveCoronel"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 166.683, 2.56639, 88.3601 )
 monitorable = false
 
-[node name="shape" type="CollisionShape3D" parent="triggers/MoveCoronel/Area3D"]
+[node name="shape" type="CollisionShape3D" parent="triggers/MoveCoronel/Area"]
 shape = SubResource( 219 )
 
 [node name="point" type="Node3D" parent="triggers/MoveCoronel"]
@@ -2233,7 +2233,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
 visible = false
 navigation_mesh = SubResource( 79 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="navMesh"]
+[node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
 transform = Transform3D( -0.348327, 0, -9.9499, 0, 9.95599, 0, 9.9499, 0, -0.348327, 158.818, 0, 37.0158 )
 mesh = SubResource( 80 )
 
@@ -2272,7 +2272,7 @@ bus = "Voice"
 [connection signal="body_entered" from="triggers/Phoenix Messages/WC" to="triggers/Phoenix Messages/WC" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/Phoenix Messages/Hall" to="triggers/Phoenix Messages/Hall" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/Phoenix Messages/Welcome Back" to="triggers/Phoenix Messages/Welcome Back" method="_on_body_entered"]
-[connection signal="body_entered" from="triggers/MoveCoronel/Area3D" to="triggers/MoveCoronel" method="_on_body_entered"]
+[connection signal="body_entered" from="triggers/MoveCoronel/Area" to="triggers/MoveCoronel" method="_on_body_entered"]
 [connection signal="body_entered" from="triggers/cinematicTrigger" to="triggers/cinematicTrigger" method="OnAreaEntered"]
 [connection signal="body_exited" from="triggers/cinematicTrigger" to="triggers/cinematicTrigger" method="OnAreaExited"]
 [connection signal="body_exited" from="triggers/exit" to="triggers/exit" method="_on_player_exited"]

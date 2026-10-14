@@ -5,7 +5,7 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -33,7 +33,7 @@ tracks/1/keys = {
 resource_name = "load"
 length = 2.9
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -73,7 +73,7 @@ hframes = 5
 vframes = 5
 frame = 24
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2( 11, 10 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )

@@ -1,16 +1,16 @@
 using Godot;
 using Godot.Collections;
 
-public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavable
+public class PlayerDead : KinematicBody, IInteractable, IChest, ISavable
 {
     private Race race;
     private string clothCode;
     private string artifactCode;
 
-    private Skeleton3D skeleton;
-    private MeshInstance3D cloth;
-    private MeshInstance3D artifact;
-    private Texture2D closedEyesTexture;
+    private Skeleton skeleton;
+    private MeshInstance cloth;
+    private MeshInstance artifact;
+    private Texture closedEyesTexture;
 
     public string ChestCode => "body";
     public ChestHandler ChestHandler { get; private set; }
@@ -24,10 +24,10 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
     
     public override void _Ready()
     {
-        skeleton = GetNode<Skeleton3D>("player_body/Armature/Skeleton3D");
-        cloth = skeleton.GetNode<MeshInstance3D>("Body_third");
-        artifact = skeleton.GetNode<MeshInstance3D>("artifact");
-        closedEyesTexture = GD.Load<Texture2D>("res://assets/textures/characters/player/emotions/player_body_closed_eyes.png");
+        skeleton = GetNode<Skeleton>("player_body/Armature/Skeleton");
+        cloth = skeleton.GetNode<MeshInstance>("Body_third");
+        artifact = skeleton.GetNode<MeshInstance>("artifact");
+        closedEyesTexture = GD.Load<Texture>("res://assets/textures/characters/player/emotions/player_body_closed_eyes.png");
         CloseEyes();
 
         ChestHandler = new ChestHandler(this).SetCode(ChestCode);
@@ -96,7 +96,7 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
     private void CloseEyes()
     {
         var deadMesh = (Mesh)cloth.Mesh.Duplicate();
-        var deadMaterial = (StandardMaterial3D)deadMesh.SurfaceGetMaterial(0).Duplicate();
+        var deadMaterial = (SpatialMaterial)deadMesh.SurfaceGetMaterial(0).Duplicate();
         deadMaterial.DetailAlbedo = closedEyesTexture;
         deadMesh.SurfaceSetMaterial(0, deadMaterial);
         cloth.Mesh = deadMesh;
@@ -107,16 +107,16 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
         GlobalTranslation = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3(); 
         
-        foreach (Node3D bone in skeleton.GetChildren())
+        foreach (Spatial bone in skeleton.GetChildren())
         {
-            if (bone is not PhysicalBone3D) continue;
+            if (bone is not PhysicalBone) continue;
 
             var newPos = data[$"rb_{bone.Name}_pos"].ToString().ParseToVector3();
             var newRot = data[$"rb_{bone.Name}_rot"].ToString().ParseToVector3();
             var oldScale = bone.Scale;
 
             var newBasis = new Basis(newRot);
-            var newTransform = new Transform3D(newBasis, newPos);
+            var newTransform = new Transform(newBasis, newPos);
             bone.GlobalTransform = newTransform;
             bone.Scale = oldScale;
         }
@@ -131,7 +131,7 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
 
         if (race == Race.Pegasus) return;
         
-        var wings = GetNode<Node>("player_body/Armature/Skeleton3D/Wings");
+        var wings = GetNode<Node>("player_body/Armature/Skeleton/Wings");
         wings.QueueFree();
     }
 
@@ -141,10 +141,10 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
         saveData["pos"] = GlobalTranslation;
         saveData["rot"] = GlobalRotation;
         
-        var skeleton = GetNode<Skeleton3D>("player_body/Armature/Skeleton3D");
-        foreach (Node3D bone in skeleton.GetChildren())
+        var skeleton = GetNode<Skeleton>("player_body/Armature/Skeleton");
+        foreach (Spatial bone in skeleton.GetChildren())
         {
-            if (bone is not PhysicalBone3D) continue;
+            if (bone is not PhysicalBone) continue;
             saveData[$"rb_{bone.Name}_pos"] = bone.GlobalTransform.origin;
             saveData[$"rb_{bone.Name}_rot"] = bone.GlobalTransform.basis.GetEuler();
         }

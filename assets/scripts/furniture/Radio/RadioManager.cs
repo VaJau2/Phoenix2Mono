@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class RadioManager : Node
+public class RadioManager : Node
 {
     [Export] private List<NodePath> radioListPath = new ();
     protected List<RadioBase> radioList = new ();
@@ -77,7 +77,7 @@ public partial class RadioManager : Node
     {
         foreach (var radio in radioList)
         {
-            radio.ProcessMode = mode;
+            radio.PauseMode = mode;
         }
     }
 }

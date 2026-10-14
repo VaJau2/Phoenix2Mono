@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class DashPostEffect: Effect 
+public class DashPostEffect: Effect 
 {
     const int SPEED_DELTA = -5;
     private Player player;

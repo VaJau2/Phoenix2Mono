@@ -6,7 +6,7 @@ using Godot.Collections;
 //Активируется, если игрок закрывает коробку изнутри
 //Лишает игрока движений, анимирует "движение" коробки
 //Затем телепортирует игрока в лабораторию
-public partial class WaitInBoxTrigger : TriggerBase
+public class WaitInBoxTrigger : TriggerBase
 {
     [Export] private NodePath pathToBox;
     [Export] private AudioStream movingSound;
@@ -15,7 +15,7 @@ public partial class WaitInBoxTrigger : TriggerBase
     private AnimationPlayer movingBoxAnim;
     private AudioStreamPlayer3D movingBoxAudi;
     private Player playerHere;
-    private Node3D newBoxPosition;
+    private Spatial newBoxPosition;
     private DoorTeleport doorToParking;
     private bool isAnimating;
 
@@ -61,7 +61,7 @@ public partial class WaitInBoxTrigger : TriggerBase
         myBox = GetNode<FurnBase>(pathToBox);
         movingBoxAnim = myBox.GetNode<AnimationPlayer>("anim");
         movingBoxAudi = myBox.GetNode<AudioStreamPlayer3D>("audi");
-        newBoxPosition = GetNode<Node3D>("newBoxPosition");
+        newBoxPosition = GetNode<Spatial>("newBoxPosition");
         doorToParking = GetNode<DoorTeleport>(pathToDoorTeleport);
     }
 

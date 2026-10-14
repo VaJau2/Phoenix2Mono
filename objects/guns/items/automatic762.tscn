@@ -84,7 +84,7 @@ transform = Transform3D( 8.1375e-05, -1.37805e-05, 0.0355598, 0.00593704, 0.0350
 mesh = SubResource( 9 )
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183995, -0.663844 )
 shape = SubResource( 10 )
 

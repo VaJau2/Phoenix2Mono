@@ -1,13 +1,13 @@
 using Godot;
 
-public partial class Mirror : MeshInstance3D
+public class Mirror : MeshInstance
 {
     [Export] private Vector2 size = new(5,7);
    
     private int pixelPerUnit;
-    private SubViewport viewport;
-    private Node3D planeMark;
-    private Camera3D mirrorCamera;
+    private Viewport viewport;
+    private Spatial planeMark;
+    private Camera mirrorCamera;
     
     private bool mayOn => isPlayerSee && isPlayerAround && Global.Get().Settings.reflection != 0;
     private bool isOn;
@@ -18,8 +18,8 @@ public partial class Mirror : MeshInstance3D
     
     public override void _Ready()
     {
-        viewport = GetNode<SubViewport>("SubViewport");
-        planeMark = GetNode<Node3D>("PlaneTransform");
+        viewport = GetNode<Viewport>("Viewport");
+        planeMark = GetNode<Spatial>("PlaneTransform");
         
         if (Mesh is PlaneMesh planeMesh)
         {
@@ -27,7 +27,7 @@ public partial class Mirror : MeshInstance3D
         }
         
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), new Callable(this, nameof(OnSaveDataLoaded)));
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
     }
     
     private async void OnSaveDataLoaded()
@@ -58,7 +58,7 @@ public partial class Mirror : MeshInstance3D
         var reflectionTransform = planeMark.GlobalTransform;
         
         // Player camera position
-        var playerCameraPos = player.RotationHelperThird.GetCamera3d().GlobalTransform.origin;
+        var playerCameraPos = player.RotationHelperThird.GetCamera().GlobalTransform.origin;
         
         // The projected point of main camera's position onto the reflection plane
         var projectPos = reflectionPlane.Project(playerCameraPos);
@@ -70,7 +70,7 @@ public partial class Mirror : MeshInstance3D
         // - translation at the mirrored position
         // - looking perpendicularly into the reflection plane (this way the near clip plane will be 
         //   parallel to the reflection plane)
-        var t = new Transform3D(new Basis(), mirroredPos);
+        var t = new Transform(new Basis(), mirroredPos);
         t = t.LookingAt(projectPos, reflectionTransform.basis.y.Normalized());
         mirrorCamera.GlobalTransform = t;
         
@@ -107,19 +107,19 @@ public partial class Mirror : MeshInstance3D
     {
         mirrorCamera?.QueueFree();
 
-        mirrorCamera = new Camera3D();
+        mirrorCamera = new Camera();
         viewport.AddChild(mirrorCamera);
         mirrorCamera.CullMask = 5;
-        mirrorCamera.KeepAspect = Camera3D.KeepAspectEnum.Width;
+        mirrorCamera.KeepAspect = Camera.KeepAspectEnum.Width;
         mirrorCamera.Current = true;
 
         viewport.Size = size * pixelPerUnit;
         SetTexture(viewport.GetTexture());
     }
 
-    private void SetTexture(Texture2D texture)
+    private void SetTexture(Texture texture)
     {
-        if (GetSurfaceOverrideMaterial(0) is StandardMaterial3D material)
+        if (GetSurfaceMaterial(0) is SpatialMaterial material)
         {
             material.AlbedoTexture = texture;
         }

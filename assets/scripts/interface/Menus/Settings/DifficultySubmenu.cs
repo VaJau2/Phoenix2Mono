@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //Сабменю настроек сложности
-public partial class DifficultySubmenu : SubmenuBase
+public class DifficultySubmenu : SubmenuBase
 {
     public const float DEFAULT_SLIDERS_VALUE = 1f;
 

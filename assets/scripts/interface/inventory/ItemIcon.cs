@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class ItemIcon : ColorRect
+public class ItemIcon : ColorRect
 {
     Global global => Global.Get();
     Player player => global.player;
@@ -17,9 +17,9 @@ public partial class ItemIcon : ColorRect
 
     public string myItemCode { get; private set; } = null;
 
-    public CompressedTexture2D GetIcon() => (CompressedTexture2D)icon.Texture2D;
+    public StreamTexture GetIcon() => (StreamTexture)icon.Texture;
 
-    public virtual void SetIcon(CompressedTexture2D newIcon) => icon.Texture2D = newIcon;
+    public virtual void SetIcon(StreamTexture newIcon) => icon.Texture = newIcon;
 
     public int GetCount() => int.Parse(countLabel.Text);
 
@@ -50,7 +50,7 @@ public partial class ItemIcon : ColorRect
         myItemCode = itemCode;
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
         string path = "assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
-        CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
+        StreamTexture newIcon = GD.Load<StreamTexture>(path);
         SetIcon(newIcon);
 
         var itemType = (ItemType)itemData["type"];
@@ -107,7 +107,7 @@ public partial class ItemIcon : ColorRect
 
         SetBindKey(null);
         myItemCode = null;
-        icon.Texture2D = null;
+        icon.Texture = null;
         countLabel.Text = "-1";
         countLabel.Visible = false;
         _on_itemIcon_mouse_exited();

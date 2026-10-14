@@ -273,7 +273,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[node name="Node3D" type="Node3D"]
+[node name="Spatial" type="Node3D"]
 
 [node name="grass1" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4, 0, 0 )

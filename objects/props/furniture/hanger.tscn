@@ -52,7 +52,7 @@ surfaces/0 = {
 
 [node name="hanger" type="StaticBody3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 2.2539e-08, 0.4727, 0, -0.378142, 2.81751e-08, 0, 0, 0, 0.46767, 0.0145369, 0.673771, 0 )
 shape = SubResource( 4 )
 

@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class HydraPostEffect : Effect
+public class HydraPostEffect : Effect
 {
     private Player player;
 

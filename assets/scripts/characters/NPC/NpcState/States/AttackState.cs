@@ -1,4 +1,4 @@
-public partial class AttackState(
+﻿public class AttackState(
     SeekArea seekArea,
     NpcWeapons weapons,
     NavigationMovingController movingController,

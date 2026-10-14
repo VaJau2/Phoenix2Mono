@@ -2,7 +2,7 @@ using Godot;
 
 //поддержка патронов не добавлена
 //если необходима, нужно будет добавить сюда
-public partial class AddItemInChestTrigger : TriggerBase
+public class AddItemInChestTrigger : TriggerBase
 {
     [Export] private string[] itemsCode;
     [Export] private NodePath chestPath;

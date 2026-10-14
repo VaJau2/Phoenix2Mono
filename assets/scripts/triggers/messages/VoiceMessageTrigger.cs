@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
+public class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
     [Export] private List<string> messages;
     protected WarningManager WarningManager;

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class TearSocksTrigger : Node
+public class TearSocksTrigger : Node
 {
     private const float MAX_DISTANCE = 40f;
 
@@ -20,7 +20,7 @@ public partial class TearSocksTrigger : Node
         saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), new Callable(this, nameof(OnSaveDataLoaded)));
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
     }
     
     private async void OnSaveDataLoaded()
@@ -38,7 +38,7 @@ public partial class TearSocksTrigger : Node
             }
         }
         
-        player.Connect(nameof(Player.WearItem), new Callable(this, nameof(_on_player_wear_item)));
+        player.Connect(nameof(Player.WearItem), this, nameof(_on_player_wear_item));
     }
 
     public void _on_player_wear_item(string itemCode)
@@ -46,7 +46,7 @@ public partial class TearSocksTrigger : Node
         if (itemCode != "stealthArmor") return;
 
         var audioPlayer = player.GetAudi(true);
-        audioPlayer.Connect("finished", new Callable(this, nameof(Comment)));
+        audioPlayer.Connect("finished", this, nameof(Comment));
         audioPlayer.Stream = tearSound;
         audioPlayer.Play();
     }

@@ -99,7 +99,7 @@ bus = "Sound"
 transform = Transform3D( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 300, 40, 0 )
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rocket"]
+[node name="MeshInstance" type="MeshInstance3D" parent="rocket"]
 transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 3 )

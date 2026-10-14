@@ -118,16 +118,16 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain" index="0"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0"]
 transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain" index="1"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1"]
 shape = SubResource( 2 )
 
 [node name="props" type="Node3D" parent="Scene/terrain" index="2"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
 transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true
 
@@ -224,19 +224,19 @@ speedRot = 2.0
 [node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="1"]
 script = ExtResource( 15 )
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("Node3D/Area3D") ]
-pointPath = NodePath("Node3D")
+otherTriggerPaths = [ NodePath("Spatial/Area") ]
+pointPath = NodePath("Spatial")
 
-[node name="Node3D" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
+[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
 transform = Transform3D( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481 )
 
-[node name="Area3D" type="Area3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D" index="0"]
+[node name="Area" type="Area3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0"]
 script = ExtResource( 16 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("../../../../continueSpeech") ]
 disactiveTriggerPaths = [ NodePath(".") ]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" index="0"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 17 )
 
@@ -249,9 +249,9 @@ npcPath = NodePath("../../../npc/test")
 [node name="lookAtTarget" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
 script = ExtResource( 19 )
 DeleteAfterTrigger = false
-targetPath = NodePath("Node3D")
+targetPath = NodePath("Spatial")
 
-[node name="Node3D" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
+[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718 )
 
 [node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="3"]
@@ -268,7 +268,7 @@ returnPath = NodePath("ReturnToPlayer")
 script = ExtResource( 5 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("MovePlayer") ]
-disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Node3D/Area3D"), NodePath("../lookAtTarget") ]
+disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area"), NodePath("../lookAtTarget") ]
 npcPath = NodePath("../../../npc/test")
 newSubtitlesCode = "testPlayerMove"
 
@@ -277,7 +277,7 @@ script = ExtResource( 15 )
 DeleteAfterTrigger = false
 disactiveTriggerPaths = [  ]
 isTeleport = true
-pointPath = NodePath("../../cinematic/MovePlayer/Node3D")
+pointPath = NodePath("../../cinematic/MovePlayer/Spatial")
 
 [node name="Briefing" type="Node" parent="Scene/cutscenes" index="2"]
 script = ExtResource( 13 )
@@ -369,4 +369,4 @@ newSubtitlesCode = "cinematicTest"
 
 [node name="Testing" parent="." index="1" instance=ExtResource( 17 )]
 
-[connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" method="_on_body_entered"]

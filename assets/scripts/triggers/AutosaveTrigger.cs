@@ -1,4 +1,4 @@
-public partial class AutosaveTrigger: TriggerBase
+﻿public class AutosaveTrigger: TriggerBase
 {
     private Messages messages;
     private SaveMenu saveMenu;

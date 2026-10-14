@@ -8,7 +8,7 @@ using Godot;
 /// F3 - убийство игрока
 /// 
 /// </summary>
-public partial class PlayerTestingCommands : Node
+public class PlayerTestingCommands : Node
 {
     private const int KILL_DAMAGE = 9999;
 
@@ -87,7 +87,7 @@ public partial class PlayerTestingCommands : Node
         if (@event is not InputEventKey eventKey) return;
         if (!eventKey.IsPressed()) return;
         
-        tempCommand = eventKey.Keycode switch
+        tempCommand = eventKey.Scancode switch
         {
             (uint)KeyList.F1 => CommandType.Heal,
             (uint)KeyList.F2 => CommandType.KillEnemies,

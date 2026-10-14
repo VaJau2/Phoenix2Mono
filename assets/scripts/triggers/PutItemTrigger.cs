@@ -1,15 +1,15 @@
 using Godot;
 
-public partial class PutItemTrigger : ActivateOtherTrigger
+public class PutItemTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath itemModelPath;
     [Export] private string itemCode;
 
-    private Node3D itemModel;
+    private Spatial itemModel;
 
     public override void _Ready()
     {
-        itemModel = GetNode<Node3D>(itemModelPath);
+        itemModel = GetNode<Spatial>(itemModelPath);
         base._Ready();
     }
 

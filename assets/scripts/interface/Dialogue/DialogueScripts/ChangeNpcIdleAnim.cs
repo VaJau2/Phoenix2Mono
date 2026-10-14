@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts;
 
-public partial class ChangeNpcIdleAnim : BaseChangeInNPC
+public class ChangeNpcIdleAnim : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

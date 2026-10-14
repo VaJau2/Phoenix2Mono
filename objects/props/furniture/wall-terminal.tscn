@@ -41,7 +41,7 @@ transform = Transform3D( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0,
 physics_material_override = ExtResource( 2 )
 script = ExtResource( 4 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
 
 [node name="terminal" type="MeshInstance3D" parent="."]
@@ -49,9 +49,9 @@ mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
 material/1 = SubResource( 3 )
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="Viewport" type="SubViewport" parent="."]
 size = Vector2( 525, 525 )
 hdr = false
 usage = 0
 
-[node name="Control" parent="SubViewport" instance=ExtResource( 3 )]
+[node name="Control" parent="Viewport" instance=ExtResource( 3 )]

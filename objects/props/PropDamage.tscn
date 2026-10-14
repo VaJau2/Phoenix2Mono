@@ -37,7 +37,7 @@ extents = Vector3( 0.416579, 1, 0.460156 )
 [node name="PropDamage" type="Area3D"]
 script = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_PropDamage_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_PropDamage_body_exited"]

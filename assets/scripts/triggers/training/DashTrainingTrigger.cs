@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class DashTrainingTrigger : TrainingTriggerWithButton
+public class DashTrainingTrigger : TrainingTriggerWithButton
 {
     [Export] public Array<NodePath> TargetPaths;
     [Export] public float StartTime = 1f;

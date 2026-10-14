@@ -48,7 +48,7 @@ script = ExtResource( 4 )
 transform = Transform3D( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.44267, 0.00348286 )
 shape = SubResource( 2 )
 

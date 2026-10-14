@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class NuclearManagerTrigger : TriggerBase
+public class NuclearManagerTrigger : TriggerBase
 {
     [Export] private NodePath afterAudiPath;
     [Export] public int NewLevelNum;

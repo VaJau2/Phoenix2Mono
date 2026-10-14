@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace DialogueScripts;
 
-public partial class ChangeItemName : IDialogueScript
+public class ChangeItemName : IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

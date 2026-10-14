@@ -89,7 +89,7 @@ surfaces/0 = {
 "vertex_count": 72
 }
 
-[node name="Light3D" type="StaticBody3D"]
+[node name="Light" type="StaticBody3D"]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
 collision_layer = 3
 collision_mask = 3
@@ -136,7 +136,7 @@ bus = "Sound"
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75041, -19.0267, 0 )
 mesh = SubResource( 9 )
 
-[node name="SpotLight3D" type="SpotLight3D" parent="lightSource/mesh"]
+[node name="SpotLight" type="SpotLight3D" parent="lightSource/mesh"]
 transform = Transform3D( 1.41509, 3.18969e-08, -0.195781, 0.195781, -2.30548e-07, 1.41509, 0, -1.42857, -2.32744e-07, 6.68756, 20.8751, -0.234133 )
 light_color = Color( 0.968627, 0.909804, 0.6, 1 )
 light_bake_mode = 2

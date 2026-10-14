@@ -1,22 +1,22 @@
 using Godot;
 
-public partial class PegasusSmash : Area3D
+public class PegasusSmash : Area
 {
     private Player_Pegasus player;
-    private AudioStreamWAV hitSound;
+    private AudioStreamSample hitSound;
 
     public override void _Ready()
     {
         player = GetParent<Player_Pegasus>();
-        hitSound = GD.Load<AudioStreamWAV>("res://assets/audio/flying/PegasusHit.wav");
+        hitSound = GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
     }
 
     public void _on_smasharea_body_entered(Node body)
     {
         if (body is Player) return;
-        if (!player.MaySmash || player.GetVelocity() <= 3) return;
+        if (!player.MaySmash || player.GetSpeed() <= 3) return;
 
-        var tempDamage = (int)player.GetVelocity() * 3;
+        var tempDamage = (int)player.GetSpeed() * 3;
 
         switch (body)
         {

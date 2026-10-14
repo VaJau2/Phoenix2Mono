@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Godot;
 
-public partial class DamageTrigger : ActivateOtherTrigger
+public class DamageTrigger : ActivateOtherTrigger
 {
     [Export] private List<string> characterPaths;
 
@@ -15,7 +15,7 @@ public partial class DamageTrigger : ActivateOtherTrigger
         foreach (var characterPath in characterPaths)
         {
             var character = GetNodeOrNull<Character>(characterPath);
-            character?.Connect(nameof(Character.TakenDamage), new Callable(this, nameof(_on_activate_trigger)));
+            character?.Connect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
         }
     }
 
@@ -28,7 +28,7 @@ public partial class DamageTrigger : ActivateOtherTrigger
             foreach (var characterPath in characterPaths)
             {
                 var character = GetNodeOrNull<Character>(characterPath);
-                character?.Connect(nameof(Character.TakenDamage), new Callable(this, nameof(_on_activate_trigger)));
+                character?.Connect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
             }
         }
         else
@@ -36,7 +36,7 @@ public partial class DamageTrigger : ActivateOtherTrigger
             foreach (var characterPath in characterPaths)
             {
                 var character = GetNodeOrNull<Character>(characterPath);
-                character?.Disconnect(nameof(Character.TakenDamage), new Callable(this, nameof(_on_activate_trigger)));
+                character?.Disconnect(nameof(Character.TakenDamage), this, nameof(_on_activate_trigger));
             }
         }
     }

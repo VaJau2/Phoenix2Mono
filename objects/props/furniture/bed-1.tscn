@@ -30,7 +30,7 @@ surfaces/0 = {
 [node name="bed-1" type="StaticBody3D"]
 physics_material_override = ExtResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0793324, -0.222354, -1.21801 )
 shape = SubResource( 2 )
 

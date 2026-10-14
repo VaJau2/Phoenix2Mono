@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 //Общий класс для всех сабменю
 public abstract class SubmenuBase: Control

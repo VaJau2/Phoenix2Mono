@@ -93,9 +93,9 @@ public abstract class InventoryMode
         useHandler = new UseHandler(menu, this, bindsHandler);
         bagSpawner = new BagSpawner();
         
-        if (!anim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.OpenAnimFinished))))
+        if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
         {
-            anim.Connect("animation_finished", new Callable(menu, nameof(InventoryMenu.OpenAnimFinished)));
+            anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
         }
     }
     
@@ -317,8 +317,8 @@ public abstract class InventoryMode
     public bool CheckMouseInButton(Control button) 
     {
         var mouse = button.GetLocalMousePosition();
-        return mouse.x >= 0 && mouse.x <= button.Size.x 
-            && mouse.y >= 0 && mouse.y <= button.Size.y;
+        return mouse.x >= 0 && mouse.x <= button.RectSize.x 
+            && mouse.y >= 0 && mouse.y <= button.RectSize.y;
     }
 
     public virtual void ChangeItemButtons(ItemIcon oldButton, ItemIcon newButton)
@@ -500,9 +500,9 @@ public abstract class InventoryMode
     
     private void FinishDragging()
     {
-        tempButton?.SetIcon((CompressedTexture2D) dragIcon.Texture2D);
+        tempButton?.SetIcon((StreamTexture) dragIcon.Texture);
         dragIcon.SetIcon(null);
-        dragIcon.GlobalPosition = Vector2.Zero;
+        dragIcon.RectGlobalPosition = Vector2.Zero;
         isDragging = false;
     }
 
@@ -530,13 +530,13 @@ public abstract class InventoryMode
                     useHandler.HideLoadingIcon();
 
                     dragIcon.SetIcon(tempButton.GetIcon());
-                    dragIcon.GlobalPosition = tempButton.GlobalPosition;
+                    dragIcon.RectGlobalPosition = tempButton.RectGlobalPosition;
 
                     tempButton.SetIcon(null);
                     isDragging = true;
                 }
 
-                dragIcon.GlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
+                dragIcon.RectGlobalPosition = tempButton.GetGlobalMousePosition() - dragIconOffset;
             }
             else
             {

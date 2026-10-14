@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class Skip : Control
+public class Skip : Control
 {
     private const float SPEED = 2.0f;
     private const float TIME = 3.0f;

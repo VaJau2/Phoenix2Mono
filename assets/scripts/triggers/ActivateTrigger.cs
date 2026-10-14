@@ -1,7 +1,7 @@
-using Godot;
+﻿using Godot;
 using System.Collections.Generic;
 
-public partial class ActivateTrigger : TriggerBase
+public class ActivateTrigger : TriggerBase
 {
     [Export] private List<NodePath> nodePaths;
     private List<IActivated> nodes = new List<IActivated>();

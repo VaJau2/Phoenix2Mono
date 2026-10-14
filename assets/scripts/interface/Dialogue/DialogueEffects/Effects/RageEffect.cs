@@ -1,8 +1,8 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace DialogueEffects;
 
-public partial class RageEffect : IDialogueEffect
+public class RageEffect : IDialogueEffect
 {
     public bool NeedToEnable(string characterName)
     {

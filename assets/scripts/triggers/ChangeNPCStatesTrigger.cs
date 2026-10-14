@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
 //меняет статы непися, такие как:
@@ -78,7 +78,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         
         if (!string.IsNullOrEmpty(newEyesTexture))
         {
-            npc.GetNode<NpcFace>("Armature/Skeleton3D/Body")?
+            npc.GetNode<NpcFace>("Armature/Skeleton/Body")?
                 .ChangeEyesVariant(newEyesTexture);
         }
     
@@ -114,7 +114,7 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
 
         if (newIdlePointPath != null)
         {
-            var newIdlePoint = GetNode<Node3D>(newIdlePointPath);
+            var newIdlePoint = GetNode<Spatial>(newIdlePointPath);
             npc.SetNewStartPos(newIdlePoint.GlobalTransform.origin);
             npc.myStartRot = newIdlePoint.Rotation;
         }
@@ -123,10 +123,10 @@ class ChangeNPCStatesTrigger: ActivateOtherTrigger
         {
             npc.patrolArray = newPatrolPointsPath;
             
-            var patrolPoints = new Node3D[newPatrolPointsPath.Count];
+            var patrolPoints = new Spatial[newPatrolPointsPath.Count];
             for (var i = 0; i < newPatrolPointsPath.Count; i++)
             {
-                patrolPoints[i] = GetNode<Node3D>(newPatrolPointsPath[i]);
+                patrolPoints[i] = GetNode<Spatial>(newPatrolPointsPath[i]);
             }
             
             var patroling = npc.GetNodeOrNull<NpcPatroling>("patroling");

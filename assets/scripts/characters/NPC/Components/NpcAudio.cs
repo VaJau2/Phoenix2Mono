@@ -1,9 +1,9 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
-public partial class NpcAudio : AudioStreamPlayer3D
+public class NpcAudio : AudioStreamPlayer3D
 {
-    public void PlayRandomSound(Array<AudioStreamWAV> array)
+    public void PlayRandomSound(Array<AudioStreamSample> array)
     {
         if (array is not { Count: > 0 }) return;
         var rand = new RandomNumberGenerator();
@@ -13,7 +13,7 @@ public partial class NpcAudio : AudioStreamPlayer3D
         Play();
     }
 
-    public void PlayStream(AudioStreamWAV stream)
+    public void PlayStream(AudioStreamSample stream)
     {
         if (stream == null) return;
         

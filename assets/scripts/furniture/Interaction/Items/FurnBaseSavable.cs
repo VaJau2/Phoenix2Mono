@@ -1,7 +1,7 @@
 using System;
 using Godot.Collections;
 
-public partial class FurnBaseSavable : FurnBase, ISavable
+public class FurnBaseSavable : FurnBase, ISavable
 {
     public Dictionary GetSaveData()
     {

@@ -28,7 +28,7 @@ collision_layer = 3
 script = ExtResource( 3 )
 speed = 1.4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.4, 0, 0, 0 )
 mesh = SubResource( 1 )
 
@@ -41,7 +41,7 @@ local_coords = false
 process_material = SubResource( 2 )
 draw_pass_1 = SubResource( 3 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0588598 )
 shape = SubResource( 4 )
 

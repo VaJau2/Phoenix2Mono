@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public partial class NpcSaving(NPC npc)
+public class NpcSaving(NPC npc)
 {
     private readonly string[] skipSignals = ["tree_entered", "tree_exiting"];
     
@@ -51,9 +51,9 @@ public partial class NpcSaving(NPC npc)
                 var target = npc.GetNodeOrNull(targetPath);
                 if (target == null) continue;
 
-                if (!npc.IsConnected(signalName, new Callable(target, method)))
+                if (!npc.IsConnected(signalName, target, method))
                 {
-                    npc.Connect(signalName, new Callable(target, method), binds);
+                    npc.Connect(signalName, target, method, binds);
                 }
             }
         }

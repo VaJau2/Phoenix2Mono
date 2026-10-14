@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class ColorUtils
+public class ColorUtils
 {
     public static Color SetAlpha(Color color, float value)
     {

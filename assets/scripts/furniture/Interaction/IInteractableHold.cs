@@ -1,4 +1,4 @@
-public interface IInteractableHold
+﻿public interface IInteractableHold
 {
     float HoldingAnimSpeed { get; }
 }

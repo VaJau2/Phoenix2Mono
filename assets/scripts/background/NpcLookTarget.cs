@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class NpcLookTarget : Node3D
+public class NpcLookTarget : Spatial
 {
     [Export] private NodePath npcPath;
     

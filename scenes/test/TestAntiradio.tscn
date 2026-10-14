@@ -47,11 +47,11 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 11 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain"]
 transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain"]
 shape = SubResource( 2 )
 
 [node name="props" type="Node3D" parent="Scene/terrain"]
@@ -67,6 +67,6 @@ pegasCloth = ExtResource( 4 )
 [node name="cloneFlask" parent="Scene/terrain/props" instance=ExtResource( 5 )]
 transform = Transform3D( -4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.15743, -32.5678, 2.62048, -10.9731 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/terrain"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain"]
 transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true

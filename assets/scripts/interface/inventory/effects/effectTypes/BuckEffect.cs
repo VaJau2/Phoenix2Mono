@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class BuckEffect : Effect 
+public class BuckEffect : Effect 
 {
     const int RECOIL_DELTA = -2;
     const int LEGS_DELTA = 20;

@@ -2,7 +2,7 @@ using Godot;
 
 namespace Effects;
 
-public partial class MentatsEffect : Effect
+public class MentatsEffect : Effect
 {
     const float PRICE_DELTA = 0.25f;
     const float MANA_DELTA = -0.6f;
@@ -78,7 +78,7 @@ public partial class MentatsEffect : Effect
 
         while (tempAlpha < 1)
         {
-            shader.SetShaderParameter("alpha", tempAlpha);
+            shader.SetShaderParam("alpha", tempAlpha);
             tempAlpha += 0.02f;
             await player.ToSignal(player.GetTree(), "idle_frame");
         }
@@ -88,7 +88,7 @@ public partial class MentatsEffect : Effect
     {
         while (tempAlpha > 0)
         {
-            shader.SetShaderParameter("alpha", tempAlpha);
+            shader.SetShaderParam("alpha", tempAlpha);
             tempAlpha -= 0.02f;
             await player.ToSignal(player.GetTree(), "idle_frame");
         }

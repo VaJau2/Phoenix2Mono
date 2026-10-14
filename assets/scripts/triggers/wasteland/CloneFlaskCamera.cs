@@ -1,12 +1,12 @@
 using Godot;
 
-public partial class CloneFlaskCamera : Camera3D
+public class CloneFlaskCamera : Camera
 {
-    Node3D head;
+    Spatial head;
 
     public override void _Ready()
     {
-        head = GetNodeOrNull<Node3D>("../Armature/Skeleton3D/BoneAttachment3D/head_pos");
+        head = GetNodeOrNull<Spatial>("../Armature/Skeleton/BoneAttachment/head_pos");
         SetProcess(false);
         SetProcessInput(false);
     }
@@ -32,8 +32,8 @@ public partial class CloneFlaskCamera : Camera3D
     {
         if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
-            RotateZ(Mathf.DegToRad(motion.Relative.y * Global.Get().Settings.mouseSensivity));
-            RotateY(Mathf.DegToRad(-motion.Relative.x * Global.Get().Settings.mouseSensivity));
+            RotateZ(Mathf.Deg2Rad(motion.Relative.y * Global.Get().Settings.mouseSensivity));
+            RotateY(Mathf.Deg2Rad(-motion.Relative.x * Global.Get().Settings.mouseSensivity));
 
             RotationDegrees = new Vector3(
                 Mathf.Clamp(RotationDegrees.x, -50, 60),

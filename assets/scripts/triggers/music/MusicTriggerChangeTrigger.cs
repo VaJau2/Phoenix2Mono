@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class MusicTriggerChangeTrigger : TriggerBase
+public class MusicTriggerChangeTrigger : TriggerBase
 {
     [Export] private NodePath musicTriggerPath;
     [Export] public AudioStream newTrack;

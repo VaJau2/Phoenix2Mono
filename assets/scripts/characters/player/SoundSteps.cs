@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class SoundSteps : RayCast3D
+public class SoundSteps : RayCast
 {
     //ссылка на скрипт через player.Body.SoundSteps
 
@@ -28,9 +28,9 @@ public partial class SoundSteps : RayCast3D
     private AudioStream dash;
     private AudioStream jump;
 
-    private Dictionary<string, Array<AudioStreamWAV>> steps;
-    private Dictionary<string, Array<AudioStreamWAV>> stepsRun;
-    private Dictionary<string, Array<AudioStreamWAV>> stepsCrouch;
+    private Dictionary<string, Array<AudioStreamSample>> steps;
+    private Dictionary<string, Array<AudioStreamSample>> stepsRun;
+    private Dictionary<string, Array<AudioStreamSample>> stepsCrouch;
 
     private Character Player => parent;
     private bool IsPlayer => parent is Player;
@@ -72,13 +72,13 @@ public partial class SoundSteps : RayCast3D
         }
     }
 
-    private Array<AudioStreamWAV> LoadSounds(string materialName, string fileName)
+    private Array<AudioStreamSample> LoadSounds(string materialName, string fileName)
     {
-        var tempArray = new Array<AudioStreamWAV>();
+        var tempArray = new Array<AudioStreamSample>();
 
         for (int i = 1; i < SOUNDS_COUNT + 1; i++)
         {
-            var tempSound = GD.Load<AudioStreamWAV>("res://assets/audio/steps/" + materialName + "/" + fileName +
+            var tempSound = GD.Load<AudioStreamSample>("res://assets/audio/steps/" + materialName + "/" + fileName +
                                                        i.ToString() + ".wav");
             tempArray.Add(tempSound);
         }
@@ -101,7 +101,7 @@ public partial class SoundSteps : RayCast3D
         dash = GD.Load<AudioStream>("res://assets/audio/steps/dash.wav");
         jump = GD.Load<AudioStream>("res://assets/audio/steps/jump.mp3");
 
-        steps = new Dictionary<string, Array<AudioStreamWAV>>()
+        steps = new Dictionary<string, Array<AudioStreamSample>>()
         {
             { "grass", LoadSounds("grass", "stepGrassFast") },
             { "dirt", LoadSounds("dirt", "stepDirtFast") },
@@ -112,7 +112,7 @@ public partial class SoundSteps : RayCast3D
             { "metal", LoadSounds("metal", "stepMetalFast") }
         };
 
-        stepsRun = new Dictionary<string, Array<AudioStreamWAV>>()
+        stepsRun = new Dictionary<string, Array<AudioStreamSample>>()
         {
             { "grass", LoadSounds("grass", "stepGrassRun") },
             { "dirt", LoadSounds("dirt", "stepDirtRun") },
@@ -123,7 +123,7 @@ public partial class SoundSteps : RayCast3D
             { "metal", LoadSounds("metal", "stepMetalFast") }
         };
 
-        stepsCrouch = new Dictionary<string, Array<AudioStreamWAV>>()
+        stepsCrouch = new Dictionary<string, Array<AudioStreamSample>>()
         {
             { "grass", LoadSounds("grass", "stepGrass") },
             { "dirt", LoadSounds("dirt", "stepDirt") },
@@ -154,7 +154,7 @@ public partial class SoundSteps : RayCast3D
         }
 
         var collideObj = GetCollider();
-        if (collideObj is StaticBody3D collideBody && collideBody.PhysicsMaterialOverride != null)
+        if (collideObj is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null)
         {
             var friction = collideBody.PhysicsMaterialOverride.Friction;
             var materialName = MatNames.GetMatName(friction);

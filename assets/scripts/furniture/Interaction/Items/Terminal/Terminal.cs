@@ -7,7 +7,7 @@ using Godot.Collections;
 
 //работает в нескольких режимах
 //которые реализованы через TerminalMode
-public partial class Terminal : StaticBody3D, IMenu, IInteractable
+public class Terminal : StaticBody, IMenu, IInteractable
 {
     //при открытии инвентаря, включенный терминал переходит на фон, но не закрывается
     public bool mustBeClosed => false;

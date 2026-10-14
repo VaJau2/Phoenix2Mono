@@ -14,7 +14,7 @@ extents = Vector3( 0.218888, 0.0438298, 0.0467328 )
 [node name="308-shell" instance=ExtResource( 1 )]
 shellSound = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ) ]
 
-[node name="CollisionShape3D" parent="." index="1"]
+[node name="CollisionShape" parent="." index="1"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035203, 0, 0 )
 shape = SubResource( 1 )
 

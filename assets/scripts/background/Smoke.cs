@@ -1,20 +1,20 @@
 using Godot;
 
-public partial class Smoke : Node3D
+public class Smoke : Spatial
 {
     [Export] private Vector3 mapCenter;
     [Export] private int mapSize;
 
-    private Node3D parent;
+    private Spatial parent;
     
     private string cameraPath = "/root/Main/Scene/Created_CinematicCamera";
-    private Node3D camera;
+    private Spatial camera;
 
     private Global global;
 
     public override void _Ready()
     {
-        parent = GetParent<Node3D>();
+        parent = GetParent<Spatial>();
         global = Global.Get();
     }
 
@@ -30,9 +30,9 @@ public partial class Smoke : Node3D
 
         var isPlayerExiting =
         (
-            player.Position.x > mapCenter.x + mapSize
-            || player.Position.y > mapCenter.y + mapSize
-            || player.Position.z > mapCenter.z + mapSize
+            player.Translation.x > mapCenter.x + mapSize
+            || player.Translation.y > mapCenter.y + mapSize
+            || player.Translation.z > mapCenter.z + mapSize
         );
         
         if (camera != null && !isPlayerExiting)
@@ -47,12 +47,12 @@ public partial class Smoke : Node3D
 
         if (Visible && isPlayerExiting)
         {
-            camera ??= GetNode<Node3D>(cameraPath);
-            Position = new Vector3(camera.Position.x, Position.y, camera.Position.z);
+            camera ??= GetNode<Spatial>(cameraPath);
+            Translation = new Vector3(camera.Translation.x, Translation.y, camera.Translation.z);
         }
         else
         {
-            Position = new Vector3(player.Position.x, Position.y, player.Position.z);
+            Translation = new Vector3(player.Translation.x, Translation.y, player.Translation.z);
         }
     }
 }

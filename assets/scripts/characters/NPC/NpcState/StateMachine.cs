@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using Godot;
 using Godot.Collections;
 
-public partial class StateMachine: Node, ISavable
+public class StateMachine: Node, ISavable
 {
     [Export] private Array<SetStateEnum> availableSetStates;
     [Export] private Array<NpcStateEnum> availableNpcStates;

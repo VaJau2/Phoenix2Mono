@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class MedXPostEffect : Effect
+public class MedXPostEffect : Effect
 {
     const float DAMAGE_BLOCK_DELTA = -0.2f;
     private Player player;

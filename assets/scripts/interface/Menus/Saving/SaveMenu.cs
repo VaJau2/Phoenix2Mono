@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public partial class SaveMenu : Control
+public class SaveMenu : Control
 {
     public const string AUTOSAVE_PREFIX = "autosave";
     
@@ -116,9 +116,9 @@ public partial class SaveMenu : Control
         {
             if (!IsValidFilename(newText))
             {
-                int oldCaretPosition = lineEdit.CaretColumn;
+                int oldCaretPosition = lineEdit.CaretPosition;
                 lineEdit.Text = tempText;
-                lineEdit.CaretColumn = oldCaretPosition - 1;
+                lineEdit.CaretPosition = oldCaretPosition - 1;
                 return;
             }
 

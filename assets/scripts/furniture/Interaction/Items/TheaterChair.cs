@@ -2,14 +2,14 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
+public class TheaterChair : StaticBody, ISavable, IInteractable
 {
     [Export] public bool isActive;
     [Export] private string otherTriggerPath;
     
     private TriggerBase otherTrigger;
-    private Node3D strikelyPlace;
-    private StaticBody3D back;
+    private Spatial strikelyPlace;
+    private StaticBody back;
 
     private Player player => Global.Get().player;
     public bool MayInteract => isActive && !player.IsSitting;
@@ -19,8 +19,8 @@ public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
     {
         if (!isActive) return;
         otherTrigger = GetNodeOrNull<TriggerBase>(otherTriggerPath);
-        strikelyPlace = GetNode<Node3D>("strikelyPlace");
-        back = GetNode<StaticBody3D>("back");
+        strikelyPlace = GetNode<Spatial>("strikelyPlace");
+        back = GetNode<StaticBody>("back");
     }
 
     public void Interact(PlayerCamera interactor)
@@ -42,7 +42,7 @@ public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
         );
         
         player.SitOnChair(true);
-        player.Connect(nameof(Character.ChangeMayMove), new Callable(this, nameof(OnPlayerStandUp)));
+        player.Connect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
         
         otherTrigger.SetActive(true);
     }
@@ -53,7 +53,7 @@ public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
         {
             back.CollisionLayer = 3;
             back.CollisionMask = 3;
-            player.Disconnect(nameof(Character.ChangeMayMove), new Callable(this, nameof(OnPlayerStandUp)));
+            player.Disconnect(nameof(Character.ChangeMayMove), this, nameof(OnPlayerStandUp));
         }
     }
 

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 using System;
 
@@ -6,7 +6,7 @@ using System;
 //играет звуки падения
 //удаляет все, кроме меша, когда перестает двигаться
 //перемещает меш в ShellsManager, чтобы он там сохранялся
-public partial class WeaponShell : RigidBody3D
+public class WeaponShell : RigidBody
 {
     const float STATIC_TIME = 0.5f;
     const float MIN_STATIC_SPEED = 0.5f;
@@ -16,7 +16,7 @@ public partial class WeaponShell : RigidBody3D
     [Export]
     public Array<AudioStream> shellSound;
 
-    private MeshInstance3D mesh;
+    private MeshInstance mesh;
     private AudioStreamPlayer3D audi;
 
     float audiCooldown;
@@ -26,7 +26,7 @@ public partial class WeaponShell : RigidBody3D
     public override void _Ready()
     {
         audi = GetNode<AudioStreamPlayer3D>("audi");
-        mesh = GetNode<MeshInstance3D>("mesh");
+        mesh = GetNode<MeshInstance>("mesh");
     }
 
     public override void _Process(float delta)
@@ -80,7 +80,7 @@ public partial class WeaponShell : RigidBody3D
         if (shellSound.Count == 0) return;
         if (audiCooldown > 0) return;
 
-        if (body is StaticBody3D collideBody && collideBody.PhysicsMaterialOverride != null)
+        if (body is StaticBody collideBody && collideBody.PhysicsMaterialOverride != null)
         {
             var friction = collideBody.PhysicsMaterialOverride.Friction;
             var materialName = MatNames.GetMatName(friction);

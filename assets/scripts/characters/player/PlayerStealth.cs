@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class PlayerStealth : Node
+public class PlayerStealth : Node
 {
     private Label StealthLabel;
     private string currentState = "safe";

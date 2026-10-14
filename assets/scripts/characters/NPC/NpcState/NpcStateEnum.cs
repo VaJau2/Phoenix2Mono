@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 // Все эти стейты точно-точно используются неписями
 public enum NpcStateEnum

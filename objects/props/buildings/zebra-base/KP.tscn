@@ -68,7 +68,7 @@ transform = Transform3D( 0.141517, 0, 0, 0, 0.141517, 0, 0, 0, 0.141517, -19.640
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1.66682, 0, 0, 0, 1.66682, 0, 0, 0, 1.66682, -19.5571, 11.773, 0.104894 )
 shape = SubResource( 3 )
 
@@ -102,7 +102,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 4 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs"]
+[node name="CollisionShape" type="CollisionShape3D" parent="stairs"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.785799, 1.19457, 4.87872 )
 shape = SubResource( 7 )
 

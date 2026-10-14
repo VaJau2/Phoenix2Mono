@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public partial class NpcWeapons : Node, ISavable
+public class NpcWeapons : Node, ISavable
 {
     [Export] public string WeaponCode = "";
     [Export] public NodePath PistolWeaponParentPath;
@@ -14,22 +14,22 @@ public partial class NpcWeapons : Node, ISavable
     private NPC npc;
     
     private Dictionary tempWeaponStats;
-    private Node3D tempWeapon;
+    private Spatial tempWeapon;
     private AnimationPlayer gunAnim;
-    private Node3D gunLight;
-    private Node3D gunFire;
+    private Spatial gunLight;
+    private Spatial gunFire;
     private Particles gunSmoke;
     private PackedScene gunParticlesPrefab;
     private WeaponShellSpawner shellSpawner;
 
     //--звуки-------------
     private AudioStreamPlayer3D audiShoot;
-    private AudioStreamWAV shootSound;
-    private AudioStreamWAV missSound;
+    private AudioStreamSample shootSound;
+    private AudioStreamSample missSound;
 
     private RandomNumberGenerator rand = new();
-    private Node3D PistolWeaponParent;
-    private Node3D GunWeaponParent;
+    private Spatial PistolWeaponParent;
+    private Spatial GunWeaponParent;
 
     private float shootCooldown;
 
@@ -42,10 +42,10 @@ public partial class NpcWeapons : Node, ISavable
     {
         npc = GetParent<NPC>();
         gunParticlesPrefab = GD.Load<PackedScene>("res://objects/guns/gunParticles.tscn");
-        missSound = GD.Load<AudioStreamWAV>("res://assets/audio/guns/ShotBeside.wav");
+        missSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/ShotBeside.wav");
         audiShoot = GetNode<AudioStreamPlayer3D>("../audiShoot");
-        PistolWeaponParent = GetNodeOrNull<Node3D>(PistolWeaponParentPath);
-        GunWeaponParent = GetNodeOrNull<Node3D>(GunWeaponParentPath);
+        PistolWeaponParent = GetNodeOrNull<Spatial>(PistolWeaponParentPath);
+        GunWeaponParent = GetNodeOrNull<Spatial>(GunWeaponParentPath);
         rand.Randomize();
 
         LoadWeapon(WeaponCode);
@@ -84,17 +84,17 @@ public partial class NpcWeapons : Node, ISavable
         Dictionary weaponData = ItemJSON.GetItemData(newWeaponCode);
         tempWeaponStats = weaponData;
         IsPistol = weaponData.Contains("isPistol");
-        shootSound = GD.Load<AudioStreamWAV>("res://assets/audio/guns/shoot/" + newWeaponCode + ".wav");
+        shootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/shoot/" + newWeaponCode + ".wav");
         npc.BaseDamage = GetStatsInt("damage");
 
         //вытаскиваем родительский нод из непися
-        Node3D tempParent = GetWeaponParent();
+        Spatial tempParent = GetWeaponParent();
 
         //отправляем префаб туда
         var weapon = weaponPrefab.Instance();
         tempParent.AddChild(weapon);
 
-        tempWeapon = (Node3D) weapon;
+        tempWeapon = (Spatial) weapon;
         LoadGunEffects();
 
         SetWeaponOn(false);
@@ -111,14 +111,14 @@ public partial class NpcWeapons : Node, ISavable
         CheckMagicParticles(on);
     }
 
-    private Node3D GetWeaponParent()
+    private Spatial GetWeaponParent()
     {
         return IsPistol ? PistolWeaponParent : GunWeaponParent;
     }
 
     private void CheckMagicParticles(bool on)
     {
-        var particles = npc.GetNodeOrNull<Particles>("Armature/Skeleton3D/BoneAttachment3D/HeadPos/Particles");
+        var particles = npc.GetNodeOrNull<Particles>("Armature/Skeleton/BoneAttachment/HeadPos/Particles");
         if (particles == null) return;
         particles.Emitting = on;
     }
@@ -130,7 +130,7 @@ public partial class NpcWeapons : Node, ISavable
         string path = "res://objects/guns/items/" + WeaponCode + ".tscn";
         if (!ResourceLoader.Exists(path)) return;
         PackedScene itemPrefab = GD.Load<PackedScene>(path);
-        var item = (Node3D)itemPrefab.Instance();
+        var item = (Spatial)itemPrefab.Instance();
         item.Name = "Created_" + npc.Name + "s_" + item.Name;
         var itemsParent = GetNode<Node>("/root/Main/Scene");
         itemsParent.AddChild(item);
@@ -148,7 +148,7 @@ public partial class NpcWeapons : Node, ISavable
         audiShoot.Play();
         gunAnim?.Play("shoot");
 
-        var eyes = npc.GetNodeOrNull<NpcFace>("Armature/Skeleton3D/Body");
+        var eyes = npc.GetNodeOrNull<NpcFace>("Armature/Skeleton/Body");
         eyes?.CloseEyes();
         
         var statsDistance = GetStatsInt("shootDistance");
@@ -247,8 +247,8 @@ public partial class NpcWeapons : Node, ISavable
             gunAnim = null;
         }
 
-        gunLight = tempWeapon.GetNode<Node3D>("light");
-        gunFire = tempWeapon.GetNode<Node3D>("fire");
+        gunLight = tempWeapon.GetNode<Spatial>("light");
+        gunFire = tempWeapon.GetNode<Spatial>("fire");
         gunSmoke = tempWeapon.GetNode<Particles>("smoke");
         shellSpawner = tempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }

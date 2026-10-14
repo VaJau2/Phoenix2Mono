@@ -1,6 +1,6 @@
-using Godot;
+﻿using Godot;
 
-public partial class WeaponShellSpawner : Node3D
+public class WeaponShellSpawner : Spatial
 {
     [Export]
     public PackedScene shellPrefab;
@@ -44,8 +44,8 @@ public partial class WeaponShellSpawner : Node3D
             shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.origin);
             shell.Rotation = GlobalTransform.basis.GetEuler();
 
-            var dir = shell.Transform3D.basis.Xform(forceDirection);
-            shell.AddConstantCentralForce(dir * 950);
+            var dir = shell.Transform.basis.Xform(forceDirection);
+            shell.AddCentralForce(dir * 950);
         }
     }
 }

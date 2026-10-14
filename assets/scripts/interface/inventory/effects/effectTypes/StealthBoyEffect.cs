@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 namespace Effects;
 
-public partial class StealthBoyEffect : Effect
+public class StealthBoyEffect : Effect
 {
     private Player player;
     public StealthBoyEffect()
@@ -12,7 +12,7 @@ public partial class StealthBoyEffect : Effect
     }
 
     // проходит по первым дочерним элементам и имет там меш
-    private static MeshInstance3D FindMeshesInParent(Node3D parent)
+    private static MeshInstance FindMeshesInParent(Spatial parent)
     {
         while (true)
         {
@@ -21,9 +21,9 @@ public partial class StealthBoyEffect : Effect
                 return null;
             }
             
-            parent = parent.GetChild(0) as Node3D;
+            parent = parent.GetChild(0) as Spatial;
 
-            if (parent is MeshInstance3D instance)
+            if (parent is MeshInstance instance)
             {
                 return instance;
             }
@@ -35,13 +35,13 @@ public partial class StealthBoyEffect : Effect
         return !material.ResourcePath.EndsWith("wings.tres");
     }
 
-    private static void ChangeMeshVisibility(MeshInstance3D meshInstance, bool visible)
+    private static void ChangeMeshVisibility(MeshInstance meshInstance, bool visible)
     {
         Mesh mesh = meshInstance.Mesh;
         int materialsCount = mesh.GetSurfaceCount();
         for (int i = 0; i < materialsCount; i++)
         {
-            StandardMaterial3D tempMaterial = mesh.SurfaceGetMaterial(i) as StandardMaterial3D;
+            SpatialMaterial tempMaterial = mesh.SurfaceGetMaterial(i) as SpatialMaterial;
             if (tempMaterial == null) continue;
             if (CanChangeTransparency(tempMaterial))
             {
@@ -55,15 +55,15 @@ public partial class StealthBoyEffect : Effect
 
     private void ChangePlayerVisibility(bool visible)
     {
-        var bodyMesh = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/Body");
-        var bodyThirdMesh = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/Body_third");
+        var bodyMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
+        var bodyThirdMesh = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
 
         ChangeMeshVisibility(bodyMesh, visible);
         ChangeMeshVisibility(bodyThirdMesh, visible);
         
         if (Global.Get().playerRace == Race.Pegasus)
         {
-            var wingsShadow = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/Wings");
+            var wingsShadow = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/Wings");
             wingsShadow.Visible = visible;
         }
         
@@ -76,7 +76,7 @@ public partial class StealthBoyEffect : Effect
         if (player.Weapons.GunOn)
         {
             var weaponParent = player.Weapons.TempWeapon;
-            var gunArmature = Global.FindNodeInScene(weaponParent, "Gun-armature") as Node3D;
+            var gunArmature = Global.FindNodeInScene(weaponParent, "Gun-armature") as Spatial;
             var weaponMesh = FindMeshesInParent(gunArmature);
             if (weaponMesh != null)
             {
@@ -85,7 +85,7 @@ public partial class StealthBoyEffect : Effect
 
             if (!player.Weapons.isPistol)
             {
-                var weaponBag = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/BoneAttachment3D 2/shotgunBag");
+                var weaponBag = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
                 ChangeMeshVisibility(weaponBag, visible);
             }
         }
@@ -93,7 +93,7 @@ public partial class StealthBoyEffect : Effect
 
     public void ChangeArtifactVisibility(bool visible)
     {
-        var artifact = player.GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/artifact");
+        var artifact = player.GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
         if (artifact.Visible)
         {
             ChangeMeshVisibility(artifact, visible);

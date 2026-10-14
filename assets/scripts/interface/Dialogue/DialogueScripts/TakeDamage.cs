@@ -2,7 +2,7 @@ using Godot;
 
 namespace DialogueScripts
 {
-    public partial class TakeDamage : IDialogueScript
+    public class TakeDamage : IDialogueScript
     {
         public void initiate(Node node, string parameter, string key = "")
         {

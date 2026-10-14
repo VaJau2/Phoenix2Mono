@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ChangeSubtitlesTrigger : ActivateOtherTrigger
+public class ChangeSubtitlesTrigger : ActivateOtherTrigger
 {
     [Export] private NodePath npcPath;
     [Export] private string newSubtitlesCode;

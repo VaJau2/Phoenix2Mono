@@ -1,4 +1,4 @@
-public partial class WarningMessage
+﻿public class WarningMessage
 {
     public string code;
     public VoiceMessageTrigger trigger;

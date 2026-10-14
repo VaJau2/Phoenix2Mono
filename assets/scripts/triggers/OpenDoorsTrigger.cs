@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class OpenDoorsTrigger : TriggerBase
+public class OpenDoorsTrigger : TriggerBase
 {
     [Export] private Array<NodePath> doorPaths;
     [Export] private Array<DoorType> doorTypes;

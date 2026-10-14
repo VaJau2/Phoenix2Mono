@@ -2,7 +2,7 @@ using Godot;
 
 namespace Effects;
 
-public partial class DashEffect : Effect
+public class DashEffect : Effect
 {
     const int SPEED_DELTA = 10;
     const float SLOW_GAME_SPEED = 0.6f;

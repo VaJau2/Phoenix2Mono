@@ -1,7 +1,7 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
-public partial class SearchState(
+public class SearchState(
     StateMachine stateMachine,
     NpcWeapons weapons,
     NavigationMovingController movingController,

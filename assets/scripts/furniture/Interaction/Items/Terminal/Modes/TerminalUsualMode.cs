@@ -4,7 +4,7 @@ using Godot.Collections;
 
 //режим консоли
 //управляется через ввод команд в консоль
-public partial class TerminalUsualMode: TerminalMode {
+public class TerminalUsualMode: TerminalMode {
     
     bool shiftKeyPressed = false;
     string tempCommand;
@@ -142,28 +142,28 @@ public partial class TerminalUsualMode: TerminalMode {
 
     public override void UpdateInput(InputEventKey keyEvent)
     {
-        if (keyEvent.Keycode == (uint)KeyList.Shift) {
+        if (keyEvent.Scancode == (uint)KeyList.Shift) {
             shiftKeyPressed = keyEvent.Pressed;
         }
         else if(keyEvent.Pressed) {
-            if(keyEvent.Keycode == (uint)KeyList.Enter) {
+            if(keyEvent.Scancode == (uint)KeyList.Enter) {
                 EnableCommand();
             }
-            else if(keyEvent.Keycode == (uint)KeyList.Backspace) {
+            else if(keyEvent.Scancode == (uint)KeyList.Backspace) {
                 RemoveLetterFromCommand();
             }
-            else if(keyEvent.Keycode == (uint)KeyList.Space) {
+            else if(keyEvent.Scancode == (uint)KeyList.Space) {
                 AddLetterToCommand(" ");
             }
-            else if(keyEvent.Keycode == (uint)KeyList.Slash
-                    || keyEvent.Keycode == (uint)KeyList.Period) {
+            else if(keyEvent.Scancode == (uint)KeyList.Slash
+                    || keyEvent.Scancode == (uint)KeyList.Period) {
                 AddLetterToCommand(".");
             }
-            else if (IsLetterKey(keyEvent.Keycode)) {
+            else if (IsLetterKey(keyEvent.Scancode)) {
                 if (startKeyPressed) {
                     startKeyPressed = false;
                 } else {
-                    string newKey = OS.GetKeycodeString(keyEvent.Keycode);
+                    string newKey = OS.GetScancodeString(keyEvent.Scancode);
                     AddLetterToCommand(shiftKeyPressed ? newKey : newKey.ToLower());
                 }
             }

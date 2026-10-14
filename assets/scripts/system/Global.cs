@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Collections.Generic;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
-public partial class Global 
+public class Global 
 {
     //----Using singleton pattern----
     private static Global instance;
@@ -177,9 +177,9 @@ public partial class Global
         return null;
     }
 
-    public static Transform3D SetNewOrigin(Transform3D transform, Vector3 newOrigin)
+    public static Transform SetNewOrigin(Transform transform, Vector3 newOrigin)
     {
-        Transform3D tempTrans = transform;
+        Transform tempTrans = transform;
         tempTrans.origin = newOrigin;
         return tempTrans;
     }
@@ -189,7 +189,7 @@ public partial class Global
         var newTimer = new Timer {Autostart = true, OneShot = true, WaitTime = time};
         if (pauseProcess)
         {
-            newTimer.ProcessMode = Node.PauseModeEnum.Process;
+            newTimer.PauseMode = Node.PauseModeEnum.Process;
         }
 
         if (Object.IsInstanceValid(_object))
@@ -201,7 +201,7 @@ public partial class Global
             player.GetNode("/root/Main/Scene").AddChild(newTimer);
         }
 
-        newTimer.Connect("timeout", new Callable(newTimer, "queue_free"));
+        newTimer.Connect("timeout", newTimer, "queue_free");
         return newTimer.ToSignal(newTimer, "timeout");
     }
 
@@ -218,10 +218,10 @@ public partial class Global
     //возвращает название кнопки клавиатуры по её экшну
     public static string GetKeyName(string actionName) 
     {
-        var actions = InputMap.ActionGetEvents(actionName);
+        var actions = InputMap.GetActionList(actionName);
         if (actions.Count == 0) return null;
         if (!(actions[0] is InputEventKey action)) return null;
-        return OS.GetKeycodeString(action.Keycode);
+        return OS.GetScancodeString(action.Scancode);
     }
 
     public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);
@@ -284,7 +284,7 @@ public partial class Global
     public static Array<string> GetSaveFiles()
     {
         var files = new Array<string>();
-        var dir = new DirAccess();
+        var dir = new Directory();
         dir.Open("user://");
 
         if (!dir.DirExists("user://saves/"))
@@ -329,7 +329,7 @@ public partial class Global
 
     public static void DeleteSaveFile(string fileName)
     {
-        new DirAccess().Remove("user://saves/" + fileName);
+        new Directory().Remove("user://saves/" + fileName);
     }
 }
 

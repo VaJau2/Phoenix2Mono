@@ -101,11 +101,11 @@ transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -29, 
 
 [node name="sand" type="StaticBody3D" parent="Scene/props"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/props/sand"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/props/sand"]
 mesh = SubResource( 3 )
 material/0 = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/props/sand"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/sand"]
 shape = SubResource( 4 )
 
 [node name="floor" type="StaticBody3D" parent="Scene/props"]
@@ -113,7 +113,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 5 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/props/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/floor"]
 shape = SubResource( 1 )
 
 [node name="floor" type="MeshInstance3D" parent="Scene/props/floor"]

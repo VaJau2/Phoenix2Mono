@@ -97,7 +97,7 @@ material/3 = null
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0657628, 4.31748, -0.0671679 )
 shape = SubResource( 3 )
 

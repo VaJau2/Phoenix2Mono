@@ -1,15 +1,15 @@
-using Godot;
+﻿using Godot;
 using Godot.Collections;
 
-public partial class PickItemTrigger : ActivateOtherTrigger
+public class PickItemTrigger : ActivateOtherTrigger
 {
     [Export] private string itemCode;
     [Export] private NodePath itemModelPath;
-    private Node3D itemModel;
+    private Spatial itemModel;
 
     public override void _Ready()
     {
-        itemModel = GetNode<Node3D>(itemModelPath);
+        itemModel = GetNode<Spatial>(itemModelPath);
         base._Ready();
     }
 

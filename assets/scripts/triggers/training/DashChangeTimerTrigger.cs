@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class DashChangeTimerTrigger : TriggerBase
+public class DashChangeTimerTrigger : TriggerBase
 {
     [Export] public NodePath mainTriggerPath;
     [Export] public float newTimer = 5f;

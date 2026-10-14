@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class RandomItems : Node
+public class RandomItems : Node
 {
     [Export]
     public int maxItemsCount = 5;

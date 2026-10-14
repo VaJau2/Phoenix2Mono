@@ -1,11 +1,11 @@
 using Godot;
 using Godot.Collections;
 
-public partial class NpcPatroling : Node, ISavable
+public class NpcPatroling : Node, ISavable
 {
     private const float PATROL_WAIT = 4f;
 
-    private Node3D[] patrolPoints;
+    private Spatial[] patrolPoints;
     private float patrolWaitTimer;
     private int patrolI;
     
@@ -17,14 +17,14 @@ public partial class NpcPatroling : Node, ISavable
         
         if (patrolPoints != null) return;
 
-        patrolPoints = new Node3D[npc.patrolArray.Count];
+        patrolPoints = new Spatial[npc.patrolArray.Count];
         for (var i = 0; i < npc.patrolArray.Count; i++)
         {
-            patrolPoints[i] = npc.GetNode<Node3D>(npc.patrolArray[i]);
+            patrolPoints[i] = npc.GetNode<Spatial>(npc.patrolArray[i]);
         }
     }
 
-    public void SetPatrolPoints(Node3D[] newPatrolPoints)
+    public void SetPatrolPoints(Spatial[] newPatrolPoints)
     {
         patrolPoints = newPatrolPoints;
     }
@@ -87,10 +87,10 @@ public partial class NpcPatroling : Node, ISavable
     {
         if (data.Contains("patrolPaths") && data["patrolPaths"] is Array patrolPaths)
         {
-            patrolPoints = new Node3D[patrolPaths.Count];
+            patrolPoints = new Spatial[patrolPaths.Count];
             for (int i = 0; i < patrolPaths.Count; i++)
             {
-                patrolPoints[i] = npc.GetNode<Node3D>(patrolPaths[i].ToString());
+                patrolPoints[i] = npc.GetNode<Spatial>(patrolPaths[i].ToString());
             }
         }
         else

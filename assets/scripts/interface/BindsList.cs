@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 //класс, выводящий список биндов кнопок на канвасе
-public partial class BindsList : Node
+public class BindsList : Node
 {
     public BindIcon TempDeletingIcon;
     

@@ -4,7 +4,7 @@ using Godot.Collections;
 // скрипт взаимодействия с предметами
 //
 // TODO отрефакторить (выделить fov в отдельный класс)
-public partial class PlayerCamera : Camera3D
+public class PlayerCamera : Camera
 {
     private const float RAY_LENGTH = 8;
     private const float RAY_THIRD_LENGTH = 9;
@@ -36,7 +36,7 @@ public partial class PlayerCamera : Camera3D
     private bool isUpdating = true;
     private bool mayUseRay = true;
 
-    private RayCast3D tempRay => Player.RotationHelperThird.TempRay;
+    private RayCast tempRay => Player.RotationHelperThird.TempRay;
     
     private bool MayInteract => !interactionHint.Visible || !(closedTimer <= 0) ||
                                 tempInteractable is { MayInteract: true };
@@ -53,9 +53,9 @@ public partial class PlayerCamera : Camera3D
         
         loadingIcon = point.GetNode<Control>("loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", new Callable(this, nameof(HoldAnimationFinished))))
+        if (!loadingAnim.IsConnected("animation_finished", this, nameof(HoldAnimationFinished)))
         {
-            loadingAnim.Connect("animation_finished", new Callable(this, nameof(HoldAnimationFinished)));
+            loadingAnim.Connect("animation_finished", this, nameof(HoldAnimationFinished));
         }
     }
     
@@ -113,10 +113,10 @@ public partial class PlayerCamera : Camera3D
         }
     }
     
-    public RayCast3D UseRay(float newDistance)
+    public RayCast UseRay(float newDistance)
     {
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
-        tempRay.TargetPosition = new Vector3(0, 0, -newDistance);
+        tempRay.CastTo = new Vector3(0, 0, -newDistance);
         mayUseRay = false;
         return tempRay;
     }
@@ -125,7 +125,7 @@ public partial class PlayerCamera : Camera3D
     {
         float oldLength = Player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGTH;
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
-        tempRay.TargetPosition = new Vector3(0, 0, -oldLength);
+        tempRay.CastTo = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
@@ -180,7 +180,7 @@ public partial class PlayerCamera : Camera3D
         
         var obj = (Node)tempRay.GetCollider();
         
-        if (obj is PhysicalBone3D)
+        if (obj is PhysicalBone)
         {
             // путь к NPC
             obj = obj.GetNode<Node>("../../../");
@@ -229,8 +229,8 @@ public partial class PlayerCamera : Camera3D
 
         if (eyesClosed)
         {
-            eyePartUp.Position = SetRectY(eyePartUp.Position, 0);
-            eyePartDown.Position = SetRectY(eyePartDown.Position, 0);
+            eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
+            eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
         }
         else if (fovClosing)
         {
@@ -247,19 +247,19 @@ public partial class PlayerCamera : Camera3D
                 Fov -= FOV_SPEED * delta;
             }
             
-            if (eyePartUp.Position.y < -220)
+            if (eyePartUp.RectPosition.y < -220)
             {
-                eyePartUp.Position = SetRectY(
-                    eyePartUp.Position,
-                    eyePartUp.Position.y + delta * EYE_PART_SPEED1
+                eyePartUp.RectPosition = SetRectY(
+                    eyePartUp.RectPosition,
+                    eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
                 );
             }
             
-            if (eyePartDown.Position.y > 220)
+            if (eyePartDown.RectPosition.y > 220)
             {
-                eyePartDown.Position = SetRectY(
-                    eyePartDown.Position,
-                    eyePartDown.Position.y - delta * EYE_PART_SPEED1
+                eyePartDown.RectPosition = SetRectY(
+                    eyePartDown.RectPosition,
+                    eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
                 );
             }
         }
@@ -270,19 +270,19 @@ public partial class PlayerCamera : Camera3D
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.Position.y > -650)
+            if (eyePartUp.RectPosition.y > -650)
             {
-                eyePartUp.Position = SetRectY(
-                    eyePartUp.Position,
-                    eyePartUp.Position.y - delta * EYE_PART_SPEED2
+                eyePartUp.RectPosition = SetRectY(
+                    eyePartUp.RectPosition,
+                    eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
                 );
             }
             
-            if (eyePartDown.Position.y < 650)
+            if (eyePartDown.RectPosition.y < 650)
             {
-                eyePartDown.Position = SetRectY(
-                    eyePartDown.Position,
-                    eyePartDown.Position.y + delta * EYE_PART_SPEED2
+                eyePartDown.RectPosition = SetRectY(
+                    eyePartDown.RectPosition,
+                    eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
                 );
             }
         }

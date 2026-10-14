@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class MenuBase : Control
+public class MenuBase : Control
 {
     Global global = Global.Get();
     public string menuName = "mainMenu";

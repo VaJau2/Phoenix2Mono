@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 //При активации играет первый трек, затем переключает на другой после его завершения
-public partial class DragonMusic : TriggerBase
+public class DragonMusic : TriggerBase
 {
     [Export] private NodePath audiPath;
     [Export] private bool isAudi3D;

@@ -1,6 +1,6 @@
 namespace Effects;
 
-public partial class HydraEffect : Effect
+public class HydraEffect : Effect
 {
     const float HEAL_COOLDOWN = 2f;
     private Player player;

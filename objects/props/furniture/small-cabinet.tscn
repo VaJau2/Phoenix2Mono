@@ -102,7 +102,7 @@ OpenSound = ExtResource( 4 )
 CloseSound = ExtResource( 3 )
 chestCode = "small_cabinet"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Cube" type="MeshInstance3D" parent="."]

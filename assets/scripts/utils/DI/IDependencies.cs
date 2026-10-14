@@ -1,4 +1,4 @@
-using Godot.Collections;
+﻿using Godot.Collections;
 
 public interface IDependencies
 {

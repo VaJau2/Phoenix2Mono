@@ -506,7 +506,7 @@ __meta__ = {
 [node name="collision" type="StaticBody3D" parent="terrain/terrain_body/terrain_map"]
 physics_material_override = ExtResource( 13 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/terrain_map/collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/terrain_map/collision"]
 transform = Transform3D( 1, 6.04257e-11, 0, 2.21778e-12, 1, -3.63798e-12, -2.91038e-11, -2.36469e-11, 1, 28.981, 3.95531, -47.6513 )
 shape = SubResource( 1 )
 
@@ -531,7 +531,7 @@ collision_layer = 2
 collision_mask = 2
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body/road"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body/road"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.242, -1.62, -45.402 )
 shape = SubResource( 5 )
 
@@ -551,11 +551,11 @@ shape = SubResource( 8 )
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4083, -1.62, -28.9878 )
 shape = SubResource( 9 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain_body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="terrain/terrain_body"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.482, -1.28, 5.204 )
 shape = SubResource( 44 )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="terrain"]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="terrain"]
 transform = Transform3D( 0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0 )
 light_energy = 0.75
 shadow_enabled = true
@@ -750,10 +750,10 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.6878, -0.324089, -50.8369
 
 [node name="light" type="Node3D" parent="terrain/props"]
 
-[node name="Light3D" parent="terrain/props/light" instance=ExtResource( 32 )]
+[node name="Light" parent="terrain/props/light" instance=ExtResource( 32 )]
 transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -17.5892, -0.350516, -37.9216 )
 
-[node name="ElectricLine" parent="terrain/props/light/Light3D" instance=ExtResource( 33 )]
+[node name="ElectricLine" parent="terrain/props/light/Light" instance=ExtResource( 33 )]
 transform = Transform3D( -8.14572e-08, -7.10867e-10, -0.5, -0.00436327, 0.499981, 0, 0.499981, 0.00436327, -8.14603e-08, 4.34158, 19.6195, 0.43251 )
 material/0 = ExtResource( 19 )
 
@@ -1024,8 +1024,8 @@ process_mode = 3
 script = ExtResource( 99 )
 otherTriggerPaths = [ NodePath("../armoredSoldierDoor"), NodePath("../doneBatteryTask") ]
 npcPath = "../../npc/armored_soldier"
-showObjects = PackedStringArray( "Armature/Skeleton3D/BoneAttachment3D/hair", "Armature/Skeleton3D/Body" )
-hideObjects = PackedStringArray( "Armature/Skeleton3D/helmet" )
+showObjects = PackedStringArray( "Armature/Skeleton/BoneAttachment/hair", "Armature/Skeleton/Body" )
+hideObjects = PackedStringArray( "Armature/Skeleton/helmet" )
 newAnimation = "Sit"
 newWalkSpeed = 7
 newRunSpeed = 11
@@ -1051,7 +1051,7 @@ IsActive = false
 NewLevelNum = 3
 HintCode = "goToTheater"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/exit"]
+[node name="CollisionShape" type="CollisionShape3D" parent="triggers/exit"]
 shape = SubResource( 15 )
 
 [node name="shells" type="Node3D" parent="." groups=["savable"]]
@@ -1090,7 +1090,7 @@ mesh = SubResource( 16 )
 transform = Transform3D( 0.25338, 0, 0, 0, 0.25338, 0, 0, 0, 0.25338, 0, 0, 0 )
 mesh = SubResource( 17 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/kpp/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/kpp/walls"]
 shape = SubResource( 18 )
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="rooms/kpp/walls"]
@@ -1203,7 +1203,7 @@ physics_material_override = ExtResource( 6 )
 transform = Transform3D( -3.131, 0, 1.02021e-06, 0, 3.131, 0, -1.02021e-06, 0, -3.131, 1.364, -0.216003, -2.595 )
 mesh = SubResource( 20 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/kp/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/kp/walls"]
 transform = Transform3D( -3.131, 0, 1.02021e-06, 0, 3.131, 0, -1.02021e-06, 0, -3.131, 1.364, -0.216003, -2.595 )
 shape = SubResource( 21 )
 
@@ -1229,7 +1229,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 61 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/kp/floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/kp/floor"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94561, -4.05651 )
 shape = SubResource( 22 )
 
@@ -1427,7 +1427,7 @@ transform = Transform3D( 1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, -19.5241, 2.2343, 3
 [node name="chair" parent="rooms/kp/props/table2" instance=ExtResource( 44 )]
 transform = Transform3D( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 1.83813, -0.780956, 0.0126114 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/kp/props/table2"]
+[node name="MeshInstance" type="MeshInstance3D" parent="rooms/kp/props/table2"]
 transform = Transform3D( 0.470656, 0, 0, 0, 0.189236, 0, 0, 0, 0.348648, -0.402555, 0.165039, 1.27872 )
 mesh = SubResource( 23 )
 
@@ -1465,7 +1465,7 @@ transform = Transform3D( -2.68819e-07, 0, 1.65, 0, 1.65, 0, -1.65, 0, -2.68819e-
 [node name="chair" parent="rooms/kp/props/table7" instance=ExtResource( 44 )]
 transform = Transform3D( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 1.83813, -0.780956, 0.0126114 )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/kp/props/table7"]
+[node name="MeshInstance" type="MeshInstance3D" parent="rooms/kp/props/table7"]
 transform = Transform3D( 0.510925, 0, 1.76475e-08, 0, 0.26339, 0, 1.76476e-08, 0, 0.402605, -0.383158, 0.315899, -1.31607 )
 mesh = SubResource( 24 )
 
@@ -1556,7 +1556,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/storage/collision"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/storage/collision"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32688, -9.25906, -7.2272 )
 shape = SubResource( 26 )
 
@@ -1724,7 +1724,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource( 42 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/stolovaya/floor2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/stolovaya/floor2"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94561, -4.05651 )
 shape = SubResource( 43 )
 
@@ -1737,7 +1737,7 @@ physics_material_override = ExtResource( 61 )
 transform = Transform3D( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 mesh = SubResource( 32 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/stolovaya/walls"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/stolovaya/walls"]
 transform = Transform3D( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 shape = SubResource( 33 )
 
@@ -2079,7 +2079,7 @@ physics_material_override = ExtResource( 6 )
 transform = Transform3D( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 mesh = SubResource( 40 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/kazarma/walls2"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/kazarma/walls2"]
 transform = Transform3D( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 shape = SubResource( 41 )
 
@@ -2089,7 +2089,7 @@ collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource( 42 )
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/kazarma/floor3"]
+[node name="CollisionShape" type="CollisionShape3D" parent="rooms/kazarma/floor3"]
 transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94561, -4.05651 )
 shape = SubResource( 43 )
 
