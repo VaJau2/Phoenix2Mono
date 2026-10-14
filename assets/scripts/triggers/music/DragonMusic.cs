@@ -17,7 +17,7 @@ public partial class DragonMusic : TriggerBase
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        startTrackPlayed = Convert.ToBoolean(data["startTrackPlayed"]);
+        startTrackPlayed = data["startTrackPlayed"].AsBool();
         if (IsActive)
         {
             SetActive(true);

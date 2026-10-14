@@ -94,14 +94,14 @@ public partial class PlayerBody : Node3D
     {
         if (player.Health > 0)
         {
-            if (player.MayRotateHead) UpdateHeadRotation(delta);
+            if (player.MayRotateHead) UpdateHeadRotation((float)delta);
 
             //update smiling
             if (bodyRot > 130 || bodyRot < -105)
             {
                 if (smileCooldown < 5)
                 {
-                    smileCooldown += delta;
+                    smileCooldown += (float)delta;
                 }
                 else
                 {
@@ -119,7 +119,7 @@ public partial class PlayerBody : Node3D
 
             if (jumpingCooldown > 0)
             {
-                jumpingCooldown -= delta;
+                jumpingCooldown -= (float)delta;
             }
 
             if (player.IsCrouching)
@@ -128,17 +128,17 @@ public partial class PlayerBody : Node3D
             }
             else if (notJumpingCooldown > 0)
             {
-                notJumpingCooldown -= delta;
+                notJumpingCooldown -= (float)delta;
             }
 
             if (crouchingCooldown > 0)
             {
-                crouchingCooldown -= delta;
+                crouchingCooldown -= (float)delta;
             }
 
             AnimateMoving();
             UpdateBodyRotValue();
-            SetRotationByBodyRot(delta);
+            SetRotationByBodyRot((float)delta);
         }
     }
 
@@ -467,8 +467,8 @@ public partial class PlayerBody : Node3D
 
         var thirdBody = playerSkeleton.GetNode<MeshInstance3D>("Body_third");
         thirdBody.Layers = 1;
-        thirdBody.SetScript(null);
-        SetScript(null);
+        thirdBody.SetScript(new Variant());
+        SetScript(new Variant());
     }
 
     private void AnimateMoving()

@@ -40,20 +40,20 @@ public partial class FurnChest: FurnBase, ISavable, IChest
         if (IsOpen) return;
         base.ClickFurn();
         ChestHandler.Open();
-        ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.Connect("MenuIsClosed", new Callable(this, nameof(CloseFurn)));
     }
 
     public void CloseFurn()
     {
         base.ClickFurn();
-        ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.Disconnect("MenuIsClosed", new Callable(this, nameof(CloseFurn)));
     }
 
     public Dictionary GetSaveData()
     {
         Dictionary saveData = ChestHandler.GetSaveData();
 
-        if (Name.StartsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
             saveData.Add("pos", Transform.Origin);
             saveData.Add("rot", Transform.Basis.GetEuler());
@@ -70,12 +70,12 @@ public partial class FurnChest: FurnBase, ISavable, IChest
         startItemCodes.Clear();
         startAmmoCount.Clear();
         
-        if (Name.StartsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
             Vector3 newPos = data["pos"].ToString().ParseToVector3();
             Vector3 newRot = data["rot"].ToString().ParseToVector3();
 
-            Basis newBasis = new Basis(newRot);
+            Basis newBasis = Basis.FromEuler(newRot);
             Transform3D newTransform = new Transform3D(newBasis, newPos);
             Transform = newTransform;
         }

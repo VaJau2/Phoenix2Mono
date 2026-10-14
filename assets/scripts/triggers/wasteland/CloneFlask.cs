@@ -27,7 +27,7 @@ public partial class CloneFlask : Node3D, ISavable
         if (anim != null)
         {
             GD.Randomize();
-            anim.PlaybackSpeed = (float)GD.RandRange(0.8, 1);
+            anim.SpeedScale = (float)GD.RandRange(0.8, 1);
             anim.Play("idle");
         }
 
@@ -151,7 +151,7 @@ public partial class CloneFlask : Node3D, ISavable
 
     public void LoadData(Dictionary data)
     {
-        wokenUp = System.Convert.ToBoolean(data["wokenUp"]);
+        wokenUp = data["wokenUp"].AsBool();
         if (!wokenUp) return;
         
         DeleteBody();

@@ -114,9 +114,9 @@ public partial class MovePlayerTrigger : ActivateOtherTrigger
     {
         base.LoadData(data);
 
-        if (!data.Contains("isProcessing")) return;
+        if (!data.ContainsKey("isProcessing")) return;
         
-        var isProcessing = Convert.ToBoolean(data["isProcessing"]);
+        var isProcessing = data["isProcessing"].AsBool();
         SetActive(isProcessing);
     }
 

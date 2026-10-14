@@ -38,8 +38,8 @@ public partial class ControlHint : Control
 
     public override void _Process(double delta)
     {
-        if (icons.Count > 0) Iconshow(delta);
-        if (isMove) MoveIcon(delta);
+        if (icons.Count > 0) Iconshow((float)delta);
+        if (isMove) MoveIcon((float)delta);
         if (anim != null) UpdateHoldIcon();
     }
 

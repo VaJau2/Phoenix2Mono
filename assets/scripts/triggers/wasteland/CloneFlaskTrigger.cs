@@ -24,7 +24,7 @@ public partial class CloneFlaskTrigger : TriggerBase
     {
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
         }
         else
         {

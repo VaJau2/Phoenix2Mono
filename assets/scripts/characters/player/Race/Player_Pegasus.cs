@@ -55,7 +55,7 @@ public partial class Player_Pegasus : Player
         if (Body.RotationDegrees.Z != 0)
         {
             Vector3 newRot = Body.RotationDegrees;
-            float decreaseSpeed = Mathf.Abs(newRot.Z) * delta;
+            float decreaseSpeed = Mathf.Abs(newRot.Z) * (float)delta;
 
             if (IsFlyingFast)
             {
@@ -74,7 +74,7 @@ public partial class Player_Pegasus : Player
             }
             else if (IsFlying)
             {
-                newRot.Z = Mathf.MoveToward(newRot.Z, 0, 150f * delta);
+                newRot.Z = Mathf.MoveToward(newRot.Z, 0, 150f * (float)delta);
             }
             else
             {
@@ -88,7 +88,7 @@ public partial class Player_Pegasus : Player
         {
             if (flyingFastTimer < FLYING_FAST_SMASH_COOLDOWN)
             {
-                flyingFastTimer += delta;
+                flyingFastTimer += (float)delta;
             }
             else
             {
@@ -243,8 +243,8 @@ public partial class Player_Pegasus : Player
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        if (!data.Contains("is_flying")) return;
+        if (!data.ContainsKey("is_flying")) return;
 
-        IsFlying = Convert.ToBoolean(data["is_flying"]);
+        IsFlying = data["is_flying"].AsBool();
     }
 }

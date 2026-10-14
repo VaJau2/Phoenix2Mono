@@ -47,13 +47,13 @@ public partial class Skip : Control
         
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
             return;
         }
         
         if (label.Modulate.A > 0)
         {
-            var alpha = label.Modulate.A - delta * SPEED;
+            var alpha = label.Modulate.A - (float)delta * SPEED;
             SetTransparency(alpha);
             return;
         }

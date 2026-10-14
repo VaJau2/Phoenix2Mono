@@ -41,19 +41,19 @@ public partial class VertibirdStartFlyTrigger : TriggerBase
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        step = Convert.ToInt32(data["step"]);
+        step = data["step"].AsInt32();
         if (step <= 1) return;
         
-        float animTime = Convert.ToSingle(data["animTime"]);
+        float animTime = data["animTime"].AsSingle();
         anim.Play("fly");
         anim.Seek(animTime);
 
-        float audiTime = Convert.ToSingle(data["audiTime"]);
+        float audiTime = data["audiTime"].AsSingle();
         audi.Play(audiTime);
 
-        if (data.Contains("animTimer"))
+        if (data.ContainsKey("animTimer"))
         {
-            animTimer = Convert.ToSingle(data["animTimer"]);
+            animTimer = data["animTimer"].AsSingle();
         }
         
         _on_activate_trigger();
@@ -75,7 +75,7 @@ public partial class VertibirdStartFlyTrigger : TriggerBase
     {
         if (animTimer > 0)
         {
-            animTimer -= delta;
+            animTimer -= (float)delta;
         }
         else
         {

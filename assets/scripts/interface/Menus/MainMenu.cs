@@ -117,10 +117,10 @@ public partial class MainMenu : MenuBase
 
     private async void ChangeLabel(Label label) 
     {
-        label.PercentVisible = 0;
-        while(label.PercentVisible < 1) 
+        label.VisibleRatio = 0;
+        while(label.VisibleRatio < 1) 
         {
-            label.PercentVisible += 0.1f;
+            label.VisibleRatio += 0.1f;
             await global.ToTimer(0.05f, this);
         }
         EmitSignal(SignalName.labelChanged);
@@ -230,15 +230,13 @@ public partial class MainMenu : MenuBase
 
     private static Race GetRaceFromSave(string fileName)
     {
-        var saveFile = new File();
         var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-        saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
+        using var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Read);
         for (int i = 0; i < 4; i++)
         {
             saveFile.GetLine();
         }
         Race race = Global.RaceFromString(saveFile.GetLine());
-        saveFile.Close();
         return race;
     }
 

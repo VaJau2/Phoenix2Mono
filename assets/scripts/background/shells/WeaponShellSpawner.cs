@@ -26,7 +26,7 @@ public partial class WeaponShellSpawner : Node3D
     {
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
         }
         else
         {
@@ -44,8 +44,8 @@ public partial class WeaponShellSpawner : Node3D
             shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.Origin);
             shell.Rotation = GlobalTransform.Basis.GetEuler();
 
-            var dir = shell.Transform.Basis.Xform(forceDirection);
-            shell.AddCentralForce(dir * 950);
+            var dir = shell.Transform.Basis * forceDirection;
+            shell.ApplyCentralForce(dir * 950);
         }
     }
 }

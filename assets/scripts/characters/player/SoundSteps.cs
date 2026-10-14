@@ -209,7 +209,7 @@ public partial class SoundSteps : RayCast3D
         {
             if (timer > 0)
             {
-                timer -= delta;
+                timer -= (float)delta;
             }
             else
             {

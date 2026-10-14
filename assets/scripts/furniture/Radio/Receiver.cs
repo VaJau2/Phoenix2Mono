@@ -275,7 +275,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 
     public void LoadData(Dictionary data)
     {
-		if (!data.Contains("isOn")) return;
+		if (!data.ContainsKey("isOn")) return;
 
 		bool tempIsOn = (bool)data["isOn"];
 		if (IsOn != tempIsOn)

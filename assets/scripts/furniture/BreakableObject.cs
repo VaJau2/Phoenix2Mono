@@ -12,7 +12,7 @@ public partial class BreakableObject: StaticBody3D
     [Export]
     public BreakableObjectType objectType;
     [Export]
-    public Dictionary<string, AudioStreamWav> brakeSounds = new Dictionary<string, AudioStreamWav>
+    public Godot.Collections.Dictionary<string, AudioStreamWav> brakeSounds = new Godot.Collections.Dictionary<string, AudioStreamWav>
     {
         {"brake1", null},
         {"brake2", null}
@@ -68,7 +68,7 @@ public partial class BreakableObject: StaticBody3D
 
         if (deleteTimer > 0)
         {
-            deleteTimer -= delta;
+            deleteTimer -= (float)delta;
         }
         else
         {

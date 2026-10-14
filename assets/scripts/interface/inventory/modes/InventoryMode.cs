@@ -93,9 +93,9 @@ public abstract class InventoryMode
         useHandler = new UseHandler(menu, this, bindsHandler);
         bagSpawner = new BagSpawner();
         
-        if (!anim.IsConnected("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished)))
+        if (!anim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.OpenAnimFinished))))
         {
-            anim.Connect("animation_finished", menu, nameof(InventoryMenu.OpenAnimFinished));
+            anim.Connect("animation_finished", new Callable(menu, nameof(InventoryMenu.OpenAnimFinished)));
         }
     }
     
@@ -200,7 +200,7 @@ public abstract class InventoryMode
     //грузим подсказки по управлению предметом
     protected virtual void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = (ItemType)(int)tempItemData["type"];
         ControlText[] controlTexts;
 
         switch (type)
@@ -291,7 +291,7 @@ public abstract class InventoryMode
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
         foreach(string prop in itemProps.Keys) 
         {
-            if (itemPropNames.Contains(prop)) 
+            if (itemPropNames.ContainsKey(prop)) 
             {
                 // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
                 if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
@@ -366,7 +366,7 @@ public abstract class InventoryMode
     
     protected virtual void CheckDragItem()
     {
-        var itemType = (ItemType)tempItemData["type"];
+        var itemType = (ItemType)(int)tempItemData["type"];
 
         //если надеваем предмет через драггинг
         switch (itemType)
@@ -394,7 +394,7 @@ public abstract class InventoryMode
         {
             //получаем тип предмета, который уже лежит в сундуке
             var otherItemData = ItemJSON.GetItemData(dragInButton.myItemCode);
-            var otherItemType = (ItemType)otherItemData["type"];
+            var otherItemType = (ItemType)(int)otherItemData["type"];
             
             if (itemType == otherItemType && otherItemType is ItemType.weapon or ItemType.armor or ItemType.artifact)
             {
@@ -508,7 +508,7 @@ public abstract class InventoryMode
 
     protected bool UpdateDragging(InputEvent @event)
     {
-        var itemType = (ItemType)tempItemData["type"];
+        var itemType = (ItemType)(int)tempItemData["type"];
 
         if (Input.IsActionJustPressed("ui_click"))
         {
@@ -606,7 +606,7 @@ public abstract class InventoryMode
 
         for (var i = 0; i < 10; i++)
         {
-            if (Input.IsKeyPressed(48 + i) && menu.bindedButtons.Keys.Contains(i))
+            if (Input.IsKeyPressed((Key)(48 + i)) && menu.bindedButtons.Keys.Contains(i))
             {
                 SetTempButton(menu.bindedButtons[i], false);
                 useHandler.UseTempItem();
@@ -628,7 +628,7 @@ public abstract class InventoryMode
         {
             if (newTempButton.myItemCode == null) continue;
             SetTempButton(newTempButton);
-            if (tempButton.myItemCode != "healPotion" && (ItemType)tempItemData["type"] != ItemType.food) continue;
+            if (tempButton.myItemCode != "healPotion" && (ItemType)(int)tempItemData["type"] != ItemType.food) continue;
             useHandler.UseTempItem();
             return;
         }

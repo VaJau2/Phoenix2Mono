@@ -6,11 +6,11 @@ public partial class Room : SaveActive
 {
     [Export] private float depth = 100 / 1.5f;
     
-    [Export] private List<NodePath> radioPaths;
+    [Export] private Godot.Collections.Array<NodePath> radioPaths;
     private List<RadioBase> radioList = new();
     private RadioManager radioManager;
 
-    [Export] private List<NodePath> activateTriggersPaths = new ();
+    [Export] private Godot.Collections.Array<NodePath> activateTriggersPaths = new ();
     public List<TriggerBase> activateTriggers { get; } = new ();
     
     [Export] private bool changeEnvironment;
@@ -82,7 +82,7 @@ public partial class Room : SaveActive
         
         if (changeEnvironment)
         {
-            skybox.Environment.BackgroundEnergy = backgroundEnergy;
+            skybox.Environment.BackgroundEnergyMultiplier = backgroundEnergy;
             skybox.Environment.AmbientLightEnergy = ambientEnergy;
         }
         

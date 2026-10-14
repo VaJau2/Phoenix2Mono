@@ -35,7 +35,7 @@
         if (covers.InCover)
         {
             body?.LookAtTarget();
-            UpdateCoverTimer(delta);
+            UpdateCoverTimer((float)delta);
         }
         else
         {

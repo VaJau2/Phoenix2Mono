@@ -13,7 +13,7 @@ public partial class FurnBaseSavable : FurnBase, ISavable
 
     public void LoadData(Dictionary data)
     {
-        bool open = Convert.ToBoolean(data["open"]);
+        bool open = data["open"].AsBool();
         if (open)
         {
             LoadOpenTrue(false);

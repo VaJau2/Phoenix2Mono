@@ -33,14 +33,14 @@ public partial class WeaponShell : RigidBody3D
     {
         if (audiCooldown > 0)
         {
-            audiCooldown -= delta;
+            audiCooldown -= (float)delta;
         }
 
         if (LinearVelocity.Length() > MIN_STATIC_SPEED)
         {
             if (fallTimer < FALL_TIME)
             {
-                fallTimer += delta;
+                fallTimer += (float)delta;
             }
             else
             {
@@ -53,7 +53,7 @@ public partial class WeaponShell : RigidBody3D
         
         if (timer < STATIC_TIME)
         {
-            timer += delta;
+            timer += (float)delta;
         } 
         else
         {

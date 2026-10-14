@@ -63,7 +63,7 @@ public partial class CinematicExit : Area3D, ISavable
             cinematicCamera.GlobalTransform.Origin.Z
         );
         var transform = cinematicCamera.GlobalTransform;
-        transform.Origin = transform.Origin.Lerp(target, delta * CAMERA_SPEED);
+        transform.Origin = transform.Origin.Lerp(target, (float)delta * CAMERA_SPEED);
         cinematicCamera.GlobalTransform = transform;
     }
 
@@ -174,7 +174,7 @@ public partial class CinematicExit : Area3D, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("exitPointX")) return;
+        if (!data.ContainsKey("exitPointX")) return;
 
         player = GetNode<Player>("/root/Main/Scene/Player");
         player.RotationHelperThird.SetThirdView(true);

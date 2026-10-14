@@ -18,13 +18,13 @@ public abstract partial class AbstractMoveCinematic : PathBase
     {
         if (speedRot > 0)
         {
-            var camera = cutscene.GetCamera();
+            var camera = cutscene.GetCamera3D();
             if (camera.GlobalRotation != cameraAngleRad)
             {
                 var rot = camera.GlobalRotation;
-                rot.X = Mathf.LerpAngle(rot.X, cameraAngleRad.X, delta * speedRot);
-                rot.Y = Mathf.LerpAngle(rot.Y, cameraAngleRad.Y, delta * speedRot);
-                rot.Z = Mathf.LerpAngle(rot.Z, cameraAngleRad.Z, delta * speedRot);
+                rot.X = Mathf.LerpAngle(rot.X, cameraAngleRad.X, (float)delta * speedRot);
+                rot.Y = Mathf.LerpAngle(rot.Y, cameraAngleRad.Y, (float)delta * speedRot);
+                rot.Z = Mathf.LerpAngle(rot.Z, cameraAngleRad.Z, (float)delta * speedRot);
                 camera.GlobalRotation = rot;
             }
         }
@@ -35,7 +35,7 @@ public abstract partial class AbstractMoveCinematic : PathBase
     public override void Enable()
     {
         cutscene.SetCameraParent(pathFollow);
-        var camera = cutscene.GetCamera();
+        var camera = cutscene.GetCamera3D();
 
         if (smoothTransition)
         {

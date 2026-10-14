@@ -30,7 +30,7 @@ public partial class FurnBase: StaticBody3D, IInteractable
         if (HasNode("anim")) 
         {
             animator = GetNode<AnimationPlayer>("anim");
-            animator.Connect("animation_finished", this, nameof(AnimFinished));
+            animator.Connect("animation_finished", new Callable(this, nameof(AnimFinished)));
         }
     }
     

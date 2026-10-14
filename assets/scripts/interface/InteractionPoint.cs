@@ -30,7 +30,7 @@ public partial class InteractionPoint : Control
         if (fadeTimer == null)
         {
             fadeTimer = new Timer();
-            fadeTimer.Connect("timeout", this, nameof(HidePoint));
+            fadeTimer.Connect("timeout", new Callable(this, nameof(HidePoint)));
             AddChild(fadeTimer);
         }
             

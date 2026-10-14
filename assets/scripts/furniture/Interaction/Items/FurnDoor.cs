@@ -170,8 +170,8 @@ public partial class FurnDoor: FurnBase, ISavable
 
     public void LoadData(Dictionary data)
     {
-        var open = Convert.ToBoolean(data["open"]);
-        var otherSided = Convert.ToBoolean(data["otherSided"]);
+        var open = data["open"].AsBool();
+        var otherSided = data["otherSided"].AsBool();
 
         myKey = Convert.ToString(data["myKey"]);
         

@@ -69,7 +69,7 @@ public partial class NuclearBombTrigger : Node3D
         
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
         }
         else if (!rockerCame)
         {

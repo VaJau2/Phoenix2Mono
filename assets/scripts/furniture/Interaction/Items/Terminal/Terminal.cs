@@ -54,7 +54,7 @@ public partial class Terminal : StaticBody3D, IMenu, IInteractable
         var saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         var messages = GetNode<Messages>("/root/Main/Scene/canvas/messages");
         if (saveNode == null || messages == null) return;
-        if (saveNode.SavedVariables.Contains("terminalHint")) return;
+        if (saveNode.SavedVariables.ContainsKey("terminalHint")) return;
         
         messages.ShowMessage("5", "hints", 3.5f);
         saveNode.SavedVariables["terminalHint"] = true;

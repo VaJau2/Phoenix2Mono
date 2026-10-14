@@ -15,6 +15,6 @@ public partial class SaveActive : Node3D, ISavable
 
     public void LoadData(Dictionary data)
     {
-        Visible = System.Convert.ToBoolean(data["active"]);
+        Visible = data["active"].AsBool();
     }
 }

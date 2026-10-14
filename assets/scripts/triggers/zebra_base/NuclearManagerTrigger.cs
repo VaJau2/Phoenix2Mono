@@ -54,7 +54,7 @@ public partial class NuclearManagerTrigger : TriggerBase
         environment = GetNode<WorldEnvironment>("/root/Main/Scene/WorldEnvironment").Environment;
         ambientColor = environment.AmbientLightColor;
         ambientEnergy = environment.AmbientLightEnergy;
-        fogColor = environment.FogColor;
+        fogColor = environment.FogLightColor;
         fogDepthBegin = environment.FogDepthBegin;
         SetProcess(false);
     }
@@ -143,7 +143,7 @@ public partial class NuclearManagerTrigger : TriggerBase
             fogSpeed += 0.001f;
         }
 
-        environment.FogColor = fogColor;
+        environment.FogLightColor = fogColor;
         environment.FogDepthBegin = fogDepthBegin;
     }
 
@@ -151,7 +151,7 @@ public partial class NuclearManagerTrigger : TriggerBase
     {
         environment.AmbientLightColor = clonedEnvironment.AmbientLightColor;
         environment.AmbientLightEnergy = clonedEnvironment.AmbientLightEnergy;
-        environment.FogColor = clonedEnvironment.FogColor;
+        environment.FogLightColor = clonedEnvironment.FogLightColor;
         environment.FogDepthBegin = clonedEnvironment.FogDepthBegin;
     }
 
@@ -159,8 +159,8 @@ public partial class NuclearManagerTrigger : TriggerBase
     {
         if (warStarted)
         {
-            IncreaseShaking(delta);
-            MakeSkyRed(delta);
+            IncreaseShaking((float)delta);
+            MakeSkyRed((float)delta);
         }
 
         if (isNoising)
@@ -174,7 +174,7 @@ public partial class NuclearManagerTrigger : TriggerBase
         var blackScreenColor = blackScreen.Color;
         if (blackScreenColor.A < 1)
         {
-            blackScreenColor.A += delta;
+            blackScreenColor.A += (float)delta;
             blackScreen.Color = blackScreenColor;
         }
         else

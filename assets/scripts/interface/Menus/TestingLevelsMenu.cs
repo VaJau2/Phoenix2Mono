@@ -200,10 +200,9 @@ public partial class TestingLevelsMenu : Control
         var savableVarsText = questsInput.Text;
         if (string.IsNullOrEmpty(savableVarsText)) return;
         
-        var resultJson = JSON.Parse(savableVarsText);
-
-        if (resultJson.Error != Error.Ok) return;
-        var savableVars = (Dictionary)resultJson.Result;
+        var json = new Json();
+        if (json.Parse(savableVarsText) != Error.Ok) return;
+        var savableVars = json.Data.AsGodotDictionary();
 
         foreach (var key in savableVars.Keys)
         {

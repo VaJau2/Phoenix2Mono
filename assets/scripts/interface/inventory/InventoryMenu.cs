@@ -103,7 +103,7 @@ public partial class InventoryMenu : Control, IMenu
 
     public override void _Process(double delta)
     {
-        mode.Process(delta);
+        mode.Process((float)delta);
     }
 
     public override void _Input(InputEvent @event)

@@ -53,7 +53,7 @@ public partial class ItemIcon : ColorRect
         CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         SetIcon(newIcon);
 
-        var itemType = (ItemType)itemData["type"];
+        var itemType = (ItemType)(int)itemData["type"];
         countLabel.Visible = (itemType == ItemType.ammo) || (itemType == ItemType.money);
 
         if (itemType == ItemType.ammo)
@@ -92,7 +92,7 @@ public partial class ItemIcon : ColorRect
         if (isInventoryIcon)
         {
             Dictionary itemData = ItemJSON.GetItemData(myItemCode);
-            var itemType = (ItemType)itemData["type"];
+            var itemType = (ItemType)(int)itemData["type"];
 
             if (itemType == ItemType.ammo)
             {

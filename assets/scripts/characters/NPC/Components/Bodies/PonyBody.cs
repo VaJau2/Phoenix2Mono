@@ -41,7 +41,7 @@ public partial class PonyBody : Node, ISavable
         }
 
         UpdateWalkingAnimations();
-        UpdateHeadRotation(delta);
+        UpdateHeadRotation((float)delta);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
 
@@ -238,6 +238,6 @@ public partial class PonyBody : Node, ISavable
     public void LoadData(Dictionary data)
     {
         IdleAnim = data["idleAnim"].ToString();
-        CustomIdleAnim = data["customIdleAnim"]?.ToString();
+        CustomIdleAnim = data["customIdleAnim"].AsStringOrNull();
     }
 }

@@ -8,7 +8,7 @@ public partial class PhoenixSystem : Node, ISavable
 {
     [Export] private NodePath onDeathTriggerPath;
     [Export] private NodePath roomPath;
-    [Export] private List<NodePath> cloneFlasksPaths;
+    [Export] private Godot.Collections.Array<NodePath> cloneFlasksPaths;
     
     public bool CloneWokeUp;
     
@@ -202,16 +202,16 @@ public partial class PhoenixSystem : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("cloneNumber")) return;
+        if (!data.ContainsKey("cloneNumber")) return;
         
-        cloneNumber = Convert.ToInt32(data["cloneNumber"]);
+        cloneNumber = data["cloneNumber"].AsInt32();
         
         for (int i = cloneFlasks.Count - 1; i > cloneNumber; i--)
         {
             cloneFlasks.RemoveAt(i);
         }
 
-        CloneWokeUp = Convert.ToBoolean(data["cloneWokeUp"]);
+        CloneWokeUp = data["cloneWokeUp"].AsBool();
         Global.Get().playerRace = Global.RaceFromString(data["playerRace"].ToString());
     }
 }

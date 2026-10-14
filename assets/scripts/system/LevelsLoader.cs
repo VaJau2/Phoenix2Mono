@@ -192,7 +192,7 @@ public partial class LevelsLoader : Node
 	public void LoadObjectData(string objectKey)
 	{
 		if (levelData == null) return;
-		if (!levelData.Contains(objectKey)) return;
+		if (!levelData.ContainsKey(objectKey)) return;
 
 		//если это created-нод, у него хранится только имя
 		//если это существующий нод, у него хранится путь от /root/Main...
@@ -225,7 +225,7 @@ public partial class LevelsLoader : Node
 			var objData = (Dictionary) levelData[objKey];
 			
 			if (objData == null
-				|| !objData.Contains("name")
+				|| !objData.ContainsKey("name")
 				|| !objData["name"].ToString().StartsWith("Created_")
 			   )
 			{

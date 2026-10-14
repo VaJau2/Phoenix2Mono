@@ -76,12 +76,12 @@ public partial class Player_Earthpony : Player
         
         if (dashCooldown > 0) 
         {
-            dashCooldown -= delta;
+            dashCooldown -= (float)delta;
         }
 
         if (dashBlockTimer > 0)
         {
-            dashBlockTimer -= delta;
+            dashBlockTimer -= (float)delta;
         }
     }
 }

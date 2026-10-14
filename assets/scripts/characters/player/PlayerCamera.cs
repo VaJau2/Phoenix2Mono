@@ -53,9 +53,9 @@ public partial class PlayerCamera : Camera3D
         
         loadingIcon = point.GetNode<Control>("loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", this, nameof(HoldAnimationFinished)))
+        if (!loadingAnim.IsConnected("animation_finished", new Callable(this, nameof(HoldAnimationFinished))))
         {
-            loadingAnim.Connect("animation_finished", this, nameof(HoldAnimationFinished));
+            loadingAnim.Connect("animation_finished", new Callable(this, nameof(HoldAnimationFinished)));
         }
     }
     
@@ -63,7 +63,7 @@ public partial class PlayerCamera : Camera3D
     {
         if (!isUpdating) return;
 
-        UpdateFov(delta);
+        UpdateFov((float)delta);
         UpdateInteractionObject();
     }
 
@@ -79,7 +79,7 @@ public partial class PlayerCamera : Camera3D
         if (Player.ThirdView) return;
         if (Input.MouseMode != Input.MouseModeEnum.Captured) return;
         if (@event is not InputEventMouseButton mouseEv) return;
-        if (mouseEv.ButtonIndex == 2)
+        if (mouseEv.ButtonIndex == MouseButton.Right)
         {
             fovClosing = mouseEv.Pressed;
         }
@@ -237,7 +237,7 @@ public partial class PlayerCamera : Camera3D
             float closeFov = 42f;
 
             Dictionary armorProps = Player.Inventory.GetArmorProps();
-            if (armorProps.Contains("closeFov"))
+            if (armorProps.ContainsKey("closeFov"))
             {
                 closeFov = float.Parse(armorProps["closeFov"].ToString());
             }
@@ -368,7 +368,7 @@ public partial class PlayerCamera : Camera3D
     private void ShowLoadingIcon(IInteractableHold holdable)
     {
         loadingIcon.Visible = true;
-        loadingAnim.PlaybackSpeed = holdable.HoldingAnimSpeed;
+        loadingAnim.SpeedScale = holdable.HoldingAnimSpeed;
         loadingAnim.Play("load");
     }
 

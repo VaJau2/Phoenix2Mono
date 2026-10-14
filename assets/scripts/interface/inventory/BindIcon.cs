@@ -37,7 +37,7 @@ public partial class BindIcon : ItemIcon
     public bool IsNeedDelay()
     {
         var itemData = ItemJSON.GetItemData(myItemCode);
-        var type = (ItemType)itemData["type"];
+        var type = (ItemType)(int)itemData["type"];
 
         return type == ItemType.food || type == ItemType.meds;
     }
@@ -57,7 +57,7 @@ public partial class BindIcon : ItemIcon
     {
         var itemData = ItemJSON.GetItemData(itemCode);
 
-        switch ((ItemType)itemData["type"])
+        switch ((ItemType)(int)itemData["type"])
         {
             case ItemType.weapon:
                 CheckWeaponIcon(itemCode);

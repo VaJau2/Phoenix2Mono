@@ -115,7 +115,7 @@ public partial class TradeMode: InventoryMode
                 
                 if (@event is InputEventKey && !tradeButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                    bindsHandler.BindHotkeys((ItemType)(int)tempItemData["type"]);
                 }
             }
         }
@@ -272,7 +272,7 @@ public partial class TradeMode: InventoryMode
         sliderBack.Visible = tempCountMax > tempCount;
         modalAsk.Visible = true;
 
-        await player.ToSignal(player.GetTree(), "idle_frame");
+        await player.ToSignal(player.GetTree(), SceneTree.SignalName.ProcessFrame);
         askYes.Disabled = false;
         askNo.Disabled = false;
     }
@@ -383,7 +383,7 @@ public partial class TradeMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = (ItemType)(int)tempItemData["type"];
         ControlText[] controlTexts;
 
         if (isInventoryIcon)
@@ -464,7 +464,7 @@ public partial class TradeMode: InventoryMode
         Dictionary itemPropNames = InterfaceLang.GetPhrasesSection("inventory", "itemProps");
         foreach(string prop in itemProps.Keys) 
         {
-            if (itemPropNames.Contains(prop)) 
+            if (itemPropNames.ContainsKey(prop)) 
             {
                 // игнор требований силовой брони, дабы её инфа поместилась в меню инвентаря
                 if (tempButton.myItemCode is "powerArmor" && (prop is "checkHasItem" or "onlyForEarthponies")) 
@@ -494,7 +494,7 @@ public partial class TradeMode: InventoryMode
             }
         }
         
-        tempCountMax = (ItemType)itemProps["type"] == ItemType.ammo ? tempButton.GetCount() : 1;
+        tempCountMax = (ItemType)(int)itemProps["type"] == ItemType.ammo ? tempButton.GetCount() : 1;
         return result;
     } 
 
@@ -503,7 +503,7 @@ public partial class TradeMode: InventoryMode
         if (inventoryButtons.Contains(tempButton)) 
         {
             //если предмет квестовый, его нельзя продать
-            if (tempItemData.Contains("questItem"))
+            if (tempItemData.ContainsKey("questItem"))
             {
                 inventory.MessageCantSell(tempItemData["name"].ToString());
                 return true;

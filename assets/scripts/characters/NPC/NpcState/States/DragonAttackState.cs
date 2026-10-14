@@ -60,7 +60,7 @@ public partial class DragonAttackState(
             return;
         }
 
-        UpdateFiringAttack(tempNpc, enemyDistance, delta);
+        UpdateFiringAttack(tempNpc, enemyDistance, (float)delta);
     }
 
     private void UpdateFiringAttack(NPC npc, float enemyDistance, float delta)

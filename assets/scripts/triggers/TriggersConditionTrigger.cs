@@ -20,7 +20,7 @@ public partial class TriggersConditionTrigger: ActivateOtherTrigger
 
     public override void LoadData(Dictionary data)
     {
-        triggersCounter = Convert.ToInt32(data["triggersCount"]);
+        triggersCounter = data["triggersCount"].AsInt32();
         base.LoadData(data);
     }
 

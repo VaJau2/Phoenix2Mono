@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 {
-    [Export] private List<string> messages;
+    [Export] private Godot.Collections.Array<string> messages;
     protected WarningManager WarningManager;
 
     public override void _Ready()
@@ -38,12 +38,7 @@ public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
 
     protected virtual void OnMessageFinished()
     {
-        WarningManager.Disconnect
-        (
-            WarningManager.SignalName.MessageFinishedEvent, 
-            this, 
-            nameof(OnMessageFinished)
-        );
+        WarningManager.Disconnect(WarningManager.SignalName.MessageFinishedEvent, new Callable(this, nameof(OnMessageFinished)));
         
         SetActive(false);
         _on_activate_trigger();
@@ -52,12 +47,7 @@ public partial class VoiceMessageTrigger : TriggerBase, IVoiceMessage
     public void Connect()
     {
         SetActive(false);
-        WarningManager.Connect
-        (
-            WarningManager.SignalName.MessageFinishedEvent, 
-            this, 
-            nameof(OnMessageFinished)
-        );
+        WarningManager.Connect(WarningManager.SignalName.MessageFinishedEvent, new Callable(this, nameof(OnMessageFinished)));
     }
 
     private void SendMessage(int index)

@@ -35,7 +35,7 @@ public partial class RoboEyeSearchState(
         {
             if (searchTimer > 0) 
             {
-                searchTimer -= delta;
+                searchTimer -= (float)delta;
             } 
             else 
             {

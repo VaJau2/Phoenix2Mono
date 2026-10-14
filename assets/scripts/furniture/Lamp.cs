@@ -15,11 +15,11 @@ public partial class Lamp : BreakableObject
 
         switch (light)
         {
-            case OmniLight omniLight:
+            case OmniLight3D omniLight:
                 omniLight.OmniRange = range;
                 break;
             
-            case SpotLight spotLight:
+            case SpotLight3D spotLight:
                 spotLight.SpotRange = range;
                 break;
         }
@@ -32,7 +32,7 @@ public partial class Lamp : BreakableObject
 
     public override void _Process(double delta)
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             _Ready();
         }

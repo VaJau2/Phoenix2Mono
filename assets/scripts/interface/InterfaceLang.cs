@@ -48,7 +48,7 @@ public static class InterfaceLang
     public static string GetPhrase(string file, string section, string phrase) 
     {
         Dictionary sectionData = GetPhrasesSection(file, section);
-        if (sectionData == null || !sectionData.Contains(phrase))
+        if (sectionData == null || !sectionData.ContainsKey(phrase))
         {
             return null;
         }
@@ -66,16 +66,16 @@ public static class InterfaceLang
     public static Dictionary GetPhrasesSection(string file, string section) 
     {
         Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        if (data == null || !data.Contains(section)) return null;
-        var sectionData = data[section] as Dictionary;
+        if (data == null || !data.ContainsKey(section)) return null;
+        var sectionData = data[section].AsDictionaryOrNull();
         return sectionData;
     }
 
     public static Array GetPhrasesAsArray(string file, string section)
     {
         Dictionary data = Global.LoadJsonFile("assets/lang/" + lang + "/" + file + ".json");
-        var sectionData = data?[section] as Array;
-        return sectionData;
+        if (data == null || !data.ContainsKey(section)) return null;
+        return data[section].AsArrayOrNull();
     }
     
     //заменяет все #key#-значения с кодами кнопок на текущие кнопки из настроек управления

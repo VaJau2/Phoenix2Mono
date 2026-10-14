@@ -5,7 +5,7 @@ public static class DictionaryHelper
 {
     public static Dictionary Merge(Dictionary dictA, Dictionary dictB)
     {
-        var newDict = new Dictionary(dictA);
+        var newDict = dictA.Duplicate();
 
         if (dictB == null || dictB.Count == 0) return newDict;
         

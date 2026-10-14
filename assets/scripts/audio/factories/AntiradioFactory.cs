@@ -10,7 +10,7 @@ public partial class AntiradioFactory : IAudioEffectsFactory
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.5f;
         notchFilter.CutoffHz = 4000;
 

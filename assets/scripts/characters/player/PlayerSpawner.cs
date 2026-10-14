@@ -73,7 +73,7 @@ public partial class PlayerSpawner : Node3D
                 var savedData = GetNodeOrNull<SaveNode>("/root/Main/SaveNode");
                 if (IsInstanceValid(savedData))
                 {
-                    if (checkSavedMoney && savedData.InventoryData.Contains("money"))
+                    if (checkSavedMoney && savedData.InventoryData.ContainsKey("money"))
                     {
                         var loadedMoney = savedData.InventoryData["money"].ToString();
                         player.Inventory.LoadMoney(loadedMoney);

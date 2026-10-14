@@ -2,8 +2,8 @@ using Godot;
 
 public partial class PlayerThirdPerson : Node3D
 {
-    const int BUTTON_WHEEL_UP = 4;
-    const int BUTTON_WHEEL_DOWN = 5;
+    const MouseButton BUTTON_WHEEL_UP = MouseButton.WheelUp;
+    const MouseButton BUTTON_WHEEL_DOWN = MouseButton.WheelDown;
 
     public Camera3D thirdCamera;
     public Camera3D firstCamera;
@@ -26,7 +26,7 @@ public partial class PlayerThirdPerson : Node3D
 
     private Node3D Body;
 
-    public Camera3D GetCamera() => player.ThirdView ? thirdCamera : firstCamera;
+    public Camera3D GetCamera3D() => player.ThirdView ? thirdCamera : firstCamera;
     
     public void SetThirdView(bool on)
     {
@@ -54,7 +54,7 @@ public partial class PlayerThirdPerson : Node3D
                 Vector3 playerRot = player.GlobalTransform.Basis.GetEuler();
                 playerRot.Y = bodyRotY;
 
-                Basis basis = new Basis(playerRot);
+                Basis basis = Basis.FromEuler(playerRot);
                 Vector3 origin = player.GlobalTransform.Origin;
                 Transform3D playerTransform = new Transform3D(basis, origin);
                 player.GlobalTransform = playerTransform;
@@ -121,7 +121,7 @@ public partial class PlayerThirdPerson : Node3D
         RayToPlayer.TargetPosition = dir;
 
         Transform3D rayTransf = RayToPlayer.GlobalTransform;
-        rayTransf.Basis = new Basis(Vector3.Zero);
+        rayTransf.Basis = Basis.FromEuler(Vector3.Zero);
         RayToPlayer.GlobalTransform = rayTransf;
 
         if (RayToPlayer.IsColliding())
@@ -227,7 +227,7 @@ public partial class PlayerThirdPerson : Node3D
 
         if (player.ThirdView)
         {
-            UpdateThirdCameraPos(delta);
+            UpdateThirdCameraPos((float)delta);
             CheckCameraSee();
 
             if (!seePlayer)

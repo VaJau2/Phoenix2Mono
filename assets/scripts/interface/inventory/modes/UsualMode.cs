@@ -31,14 +31,14 @@ public partial class UsualMode: InventoryMode
         {
             if (UpdateDragging(@event)) return;
 
-            if (Input.IsMouseButtonPressed(2) && !isDragging && tempButton != null) 
+            if (Input.IsMouseButtonPressed(MouseButton.Right) && !isDragging && tempButton != null) 
             {
                 useHandler.DropTempItem();
             }
 
             if (@event is InputEventKey) 
             {
-                bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                bindsHandler.BindHotkeys((ItemType)(int)tempItemData["type"]);
             }
         }
     }

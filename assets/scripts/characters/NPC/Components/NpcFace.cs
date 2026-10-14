@@ -95,7 +95,7 @@ public partial class NpcFace : MeshInstance3D, ISavable
 
         if (Npc.Health > 0)
         {
-            UpdateOpenEyes(delta);
+            UpdateOpenEyes((float)delta);
         }
         else DeadFace();
     }

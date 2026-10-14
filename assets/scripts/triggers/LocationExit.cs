@@ -61,7 +61,7 @@ public partial class LocationExit : TriggerBase
         var blackScreenColor = blackScreen.Color;
         if (blackScreenColor.A < 1)
         {
-            blackScreenColor.A += delta;
+            blackScreenColor.A += (float)delta;
             blackScreen.Color = blackScreenColor;
         }
         else

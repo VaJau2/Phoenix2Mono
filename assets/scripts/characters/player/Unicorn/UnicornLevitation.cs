@@ -52,8 +52,8 @@ public partial class UnicornLevitation : Node3D, ISavable
         if (CheckGunOn())
         {
             Vector3 weaponPos = weaponNode.Position;
-            AnimateUpDown(ref weaponPos, delta);
-            UpdateWeaponNode(ref weaponPos, delta);
+            AnimateUpDown(ref weaponPos, (float)delta);
+            UpdateWeaponNode(ref weaponPos, (float)delta);
             weaponNode.Position = weaponPos;
 
             Vector3 oldRot = Rotation;
@@ -72,14 +72,14 @@ public partial class UnicornLevitation : Node3D, ISavable
     public void _on_collisionArea_body_entered(PhysicsBody3D body)
     {
         if (body == GetCharacterOwner()) return;
-        if (body.Name.Contains("shell")) return;
+        if (body.Name.ToString().Contains("shell")) return;
         weaponClose = true;
     }
 
     public void _on_collisionArea_body_exited(PhysicsBody3D body)
     {
         if (body == GetCharacterOwner()) return;
-        if (body.Name.Contains("shell")) return;
+        if (body.Name.ToString().Contains("shell")) return;
         weaponClose = false;
     }
 

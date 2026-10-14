@@ -59,7 +59,7 @@ public partial class StateMachine: Node, ISavable
     public Dictionary GetSaveData()
     {
         var saveData = new Dictionary();
-        saveData["state"] = GetCurrentSetState();
+        saveData["state"] = (int)GetCurrentSetState();
 
         if (currentState is ISavable savableState)
         {
@@ -75,10 +75,13 @@ public partial class StateMachine: Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        var newState = (SetStateEnum)Enum.Parse(typeof(SetStateEnum), data["state"].ToString());
+        var stateValue = data["state"];
+        var newState = stateValue.VariantType == Variant.Type.String
+            ? Enum.Parse<SetStateEnum>(stateValue.AsString())
+            : (SetStateEnum)stateValue.AsInt32();
         SetState(newState);
 
-        if (currentState is ISavable savableState && data.Contains("stateData"))
+        if (currentState is ISavable savableState && data.ContainsKey("stateData"))
         {
             savableState.LoadData((Dictionary)data["stateData"]);
         }

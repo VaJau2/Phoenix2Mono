@@ -140,14 +140,14 @@ public partial class DragonMouth : Area3D
 
         if (mouthCooldown > 0)
         {
-            mouthCooldown -= delta;
+            mouthCooldown -= (float)delta;
         }
         
         if (!HasEnemy) return;
         
         if (enemyMouthTimer > 0)
         {
-            UpdateEnemyInMouth(delta);
+            UpdateEnemyInMouth((float)delta);
         }
         else
         {

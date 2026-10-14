@@ -16,7 +16,7 @@ public partial class CachedHeadPosition : BoneAttachment3D
         npc.HeadPosition = this;
     }
     
-    public Vector3 GetPosition()
+    public new Vector3 GetPosition()
     {
         if (NeedToUpdatePosition())
         {

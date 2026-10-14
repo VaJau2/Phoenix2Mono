@@ -21,7 +21,7 @@ public partial class BaseMovingController : Node
         
         if (character.Velocity.Length() > 0) 
         {
-            character.MoveAndSlide(character.Velocity, new Vector3(0, 1, 0), true);
+            character.MoveAndSlideVelocity(true);
         }
     }
 
@@ -55,8 +55,8 @@ public partial class BaseMovingController : Node
     
     private void RotateTo(Vector3 place)
     {
-        var rotA = character.Transform.Basis.Quat().Normalized();
-        var rotB = character.Transform.LookingAt(place, Vector3.Up).Basis.Quat().Normalized();
+        var rotA = character.Transform.Basis.GetRotationQuaternion().Normalized();
+        var rotB = character.Transform.LookingAt(place, Vector3.Up).Basis.GetRotationQuaternion().Normalized();
         var tempRotation = rotA.Slerp(rotB, RotationSpeed);
 
         var oldScale = character.Scale;

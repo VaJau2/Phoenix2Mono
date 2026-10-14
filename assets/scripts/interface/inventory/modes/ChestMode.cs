@@ -72,7 +72,7 @@ public partial class ChestMode: InventoryMode
 
                 if (@event is InputEventKey && !chestButtons.Contains(tempButton)) 
                 {
-                    bindsHandler.BindHotkeys((ItemType)tempItemData["type"]);
+                    bindsHandler.BindHotkeys((ItemType)(int)tempItemData["type"]);
                 }
             }
 
@@ -198,7 +198,7 @@ public partial class ChestMode: InventoryMode
         button.SetItem(itemCode);
 
         Dictionary itemData = ItemJSON.GetItemData(itemCode);
-        if ((ItemType)itemData["type"] == ItemType.money)
+        if ((ItemType)(int)itemData["type"] == ItemType.money)
         {
             button.SetCount(tempChest.ChestHandler.MoneyCount);
         }
@@ -285,7 +285,7 @@ public partial class ChestMode: InventoryMode
             return; 
         }
         
-        if (tempItemData.Contains("questItem"))
+        if (tempItemData.ContainsKey("questItem"))
         {
             inventory.MessageCantDrop(tempItemData["name"].ToString());
             return;
@@ -314,7 +314,7 @@ public partial class ChestMode: InventoryMode
         
         if (dragInButton == null) return;
         
-        var itemType = (ItemType)tempItemData["type"];
+        var itemType = (ItemType)(int)tempItemData["type"];
             
         if (IsUnwearingItem(itemType))
         {
@@ -327,7 +327,7 @@ public partial class ChestMode: InventoryMode
         {
             //получаем тип предмета, который уже лежит в сундуке
             var otherItemData = ItemJSON.GetItemData(dragInButton.myItemCode);
-            var otherItemType = (ItemType)otherItemData["type"];
+            var otherItemType = (ItemType)(int)otherItemData["type"];
                 
             //если это оружие/броня/артефакт
             if (otherItemType is ItemType.weapon or ItemType.armor or ItemType.artifact)
@@ -364,7 +364,7 @@ public partial class ChestMode: InventoryMode
     //грузим подсказки по управлению предметом
     protected override void LoadControlHint(bool isInventoryIcon)
     {
-        var type = (ItemType)tempItemData["type"];
+        var type = (ItemType)(int)tempItemData["type"];
         ControlText[] controlTexts;
 
         switch (type)
@@ -435,7 +435,7 @@ public partial class ChestMode: InventoryMode
         //положить в сундук
         if (inventoryButtons.Contains(tempButton)) 
         {
-            if (tempItemData.Contains("questItem"))
+            if (tempItemData.ContainsKey("questItem"))
             {
                 inventory.MessageCantDrop(tempItemData["name"].ToString());
                 return false;
@@ -546,7 +546,7 @@ public partial class ChestMode: InventoryMode
 
     private bool CheckMoneyInInventory()
     {
-        var isMoney = (ItemType)tempItemData["type"] == ItemType.money;
+        var isMoney = (ItemType)(int)tempItemData["type"] == ItemType.money;
         if (!isMoney) return false;
         inventory.money += tempChest.ChestHandler.MoneyCount;
         tempChest.ChestHandler.MoneyCount = 0;

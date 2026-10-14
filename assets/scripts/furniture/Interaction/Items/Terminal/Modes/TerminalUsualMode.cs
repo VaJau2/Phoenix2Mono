@@ -75,9 +75,9 @@ public partial class TerminalUsualMode: TerminalMode {
                     //ищем написанную команду
                     string commandName = properties[0];
                     Dictionary section = InterfaceLang.GetPhrasesSection("terminal", "helpCommands");
-                    if (section.Contains(commandName)) {
+                    if (section.ContainsKey(commandName)) {
                         //если команда найдена, выводим помощь по ней
-                        Array commandHelp = section[commandName] as Array;
+                        Array commandHelp = section[commandName].AsArrayOrNull();
                         foreach(string temp in commandHelp) {
                             answer += temp + "\n";
                         }
@@ -135,28 +135,28 @@ public partial class TerminalUsualMode: TerminalMode {
                 .Aggregate(result, (current, fileName) => current + (" - " + fileName + "\n"));
     }
    
-    private bool IsLetterKey(uint keyCode)
+    private bool IsLetterKey(Key keyCode)
     {
-        return (keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90);
+        return (keyCode >= Key.Key0 && keyCode <= Key.Key9) || (keyCode >= Key.A && keyCode <= Key.Z);
     }
 
     public override void UpdateInput(InputEventKey keyEvent)
     {
-        if (keyEvent.Keycode == (uint)Key.Shift) {
+        if (keyEvent.Keycode == Key.Shift) {
             shiftKeyPressed = keyEvent.Pressed;
         }
         else if(keyEvent.Pressed) {
-            if(keyEvent.Keycode == (uint)Key.Enter) {
+            if(keyEvent.Keycode == Key.Enter) {
                 EnableCommand();
             }
-            else if(keyEvent.Keycode == (uint)Key.Backspace) {
+            else if(keyEvent.Keycode == Key.Backspace) {
                 RemoveLetterFromCommand();
             }
-            else if(keyEvent.Keycode == (uint)Key.Space) {
+            else if(keyEvent.Keycode == Key.Space) {
                 AddLetterToCommand(" ");
             }
-            else if(keyEvent.Keycode == (uint)Key.Slash
-                    || keyEvent.Keycode == (uint)Key.Period) {
+            else if(keyEvent.Keycode == Key.Slash
+                    || keyEvent.Keycode == Key.Period) {
                 AddLetterToCommand(".");
             }
             else if (IsLetterKey(keyEvent.Keycode)) {

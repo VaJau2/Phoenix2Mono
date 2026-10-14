@@ -154,7 +154,7 @@ public partial class ControlsSubmenu : SubmenuBase
     
     public void _on_default_pressed()
     {
-        InputMap.LoadFromGlobals();
+        InputMap.LoadFromProjectSettings();
         foreach(var action in global.Settings.controlActions) 
         {
             var actions = InputMap.ActionGetEvents(action);
@@ -206,7 +206,7 @@ public partial class ControlsSubmenu : SubmenuBase
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
         
-        if (eventKey.Keycode == (uint)Key.Escape) 
+        if (eventKey.Keycode == Key.Escape) 
         {
             CancelControlEdit();
         } 

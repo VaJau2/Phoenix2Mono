@@ -31,7 +31,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
     {
         if (tempTimer > 0)
         {
-            tempTimer -= delta;
+            tempTimer -= (float)delta;
             return;
         }
 
@@ -104,7 +104,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
             
             if (idleAnims != null && idleAnims.Count > i)
             {
-                npc[i].Connect(Character.SignalName.IsCame, this, nameof(AfterNpcCameToPoint), [i]);
+                BoundCall.Connect(npc[i], Character.SignalName.IsCame, this, nameof(AfterNpcCameToPoint), [i]);
                 connectedEvents.Add(i);
             }
 
@@ -141,7 +141,7 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
 
         if (connectedEvents.Contains(i))
         {
-            npc[i].Disconnect(Character.SignalName.IsCame, new Callable(this, nameof(AfterNpcCameToPoint)));
+            BoundCall.Disconnect(npc[i], Character.SignalName.IsCame, this, nameof(AfterNpcCameToPoint));
             connectedEvents.Remove(i);
             _on_activate_trigger();
         }
@@ -173,12 +173,12 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.ContainsKey("tempTimer"))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = data["tempTimer"].AsSingle();
         }
         
-        if (data.Contains("connectedEvents"))
+        if (data.ContainsKey("connectedEvents"))
         {
             connectedEvents = ConvertUtils.StringToArray(data["connectedEvents"].ToString());
             
@@ -189,20 +189,15 @@ public partial class MoveNpcTrigger: ActivateOtherTrigger
             
             foreach (var connectedId in connectedEvents)
             {
-                var isConnected = npc[connectedId].IsConnected(Character.SignalName.IsCame, new Callable(this, nameof(AfterNpcCameToPoint)));
+                var isConnected = BoundCall.IsConnected(npc[connectedId], Character.SignalName.IsCame, this, nameof(AfterNpcCameToPoint));
                 
                 if (isConnected) continue;
                 
-                npc[connectedId].Connect(
-                    Character.SignalName.IsCame,
-                    this,
-                    nameof(AfterNpcCameToPoint),
-                    [connectedId]
-                );
+                BoundCall.Connect(npc[connectedId], Character.SignalName.IsCame, this, nameof(AfterNpcCameToPoint), [connectedId]);
             }
         }
         
-        step = Convert.ToInt32(data["step"]);
+        step = data["step"].AsInt32();
         if (step > 0)
         {
             _on_activate_trigger();

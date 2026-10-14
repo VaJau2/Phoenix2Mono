@@ -13,7 +13,7 @@ public partial class LightsCheck : Area3D
 
     public void _on_lightsCheck_body_entered(Node3D body)
     {
-        if (body.Name.Contains("Light"))
+        if (body.Name.ToString().Contains("Light"))
         {
             var lightSource = body.GetNodeOrNull<BreakableObject>("lightSource");
             if (lightSource != null && !lightSource.Broken) 
@@ -22,7 +22,7 @@ public partial class LightsCheck : Area3D
                 myLights.Add(body);
             }
         }
-        if (body.Name.Contains("lamp"))
+        if (body.Name.ToString().Contains("lamp"))
         {
             var lamp = body as BreakableObject;
             if (lamp != null && !lamp.Broken)
@@ -35,12 +35,12 @@ public partial class LightsCheck : Area3D
 
     public void _on_lightsCheck_body_exited(Node3D body)
     {
-        if (body.Name.Contains("Light") && myLights.Contains(body))
+        if (body.Name.ToString().Contains("Light") && myLights.Contains(body))
         {
             myLamps.Remove(body);
             checkOff();
         }
-        if (body.Name.Contains("lamp") && myLamps.Contains(body))
+        if (body.Name.ToString().Contains("lamp") && myLamps.Contains(body))
         {
             myLamps.Remove(body);
             checkOff();

@@ -28,7 +28,7 @@ public partial class DragonIdleState(
         if (mouth.HasEnemy) return;
         
         var enemyDistance = body.GetEnemyDistance();
-        UpdateIdleTimer(delta, enemyDistance > 0);
+        UpdateIdleTimer((float)delta, enemyDistance > 0);
     }
     
     private void UpdatePatrolPoints()

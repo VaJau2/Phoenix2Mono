@@ -99,7 +99,7 @@ public partial class AudioEffectsController : Node, ISavable
     {
         return new Dictionary
         {
-            {"codes", savedCodes}
+            {"codes", new Array<string>(savedCodes)}
         };
     }
 

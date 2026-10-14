@@ -20,7 +20,7 @@ public partial class BlockAlarmAreaTrigger : TriggerBase
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        changedAlarm = Convert.ToBoolean(data["changedAlarm"]);
+        changedAlarm = data["changedAlarm"].AsBool();
     }
 
     public override void _Ready()

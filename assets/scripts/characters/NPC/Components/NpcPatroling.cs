@@ -85,7 +85,7 @@ public partial class NpcPatroling : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (data.Contains("patrolPaths") && data["patrolPaths"] is Array patrolPaths)
+        if (data.ContainsKey("patrolPaths") && data["patrolPaths"].AsArrayOrNull() is Array patrolPaths)
         {
             patrolPoints = new Node3D[patrolPaths.Count];
             for (int i = 0; i < patrolPaths.Count; i++)

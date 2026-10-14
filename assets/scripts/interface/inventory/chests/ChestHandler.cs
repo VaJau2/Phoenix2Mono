@@ -95,7 +95,7 @@ public class ChestHandler
     {
         return ItemCodes
             .Select(ItemJSON.GetItemData)
-            .Any(itemData => itemData.Contains("isBottle"));
+            .Any(itemData => itemData.ContainsKey("isBottle"));
     }
 
     public void Open()
@@ -128,14 +128,14 @@ public class ChestHandler
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("itemCodes")) return;
+        if (!data.ContainsKey("itemCodes")) return;
         
         Array newItemCodes = (Array) data["itemCodes"];
         Dictionary newAmmoCount = (Dictionary) data["ammoCount"];
         Dictionary newAmmoButtonNames = (Dictionary) data["ammoButtons"];
         Dictionary newItemPositions = (Dictionary) data["itemPositions"];
 
-        MoneyCount = Convert.ToInt32(data["moneyCount"]);
+        MoneyCount = data["moneyCount"].AsInt32();
         
         ItemCodes.Clear();
         foreach (string itemCode in newItemCodes)
@@ -146,7 +146,7 @@ public class ChestHandler
         AmmoCount.Clear();
         foreach (string key in newAmmoCount.Keys)
         {
-            AmmoCount.Add(key, Convert.ToInt32(newAmmoCount[key]));
+            AmmoCount.Add(key, newAmmoCount[key].AsInt32());
         }
         
         AmmoButtons.Clear();

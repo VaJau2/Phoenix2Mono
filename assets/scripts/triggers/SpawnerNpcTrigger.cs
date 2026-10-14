@@ -51,7 +51,7 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
     {
         if (tempTimer > 0)
         {
-            tempTimer -= delta;
+            tempTimer -= (float)delta;
             return;
         }
 
@@ -119,13 +119,20 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
             {
                 foreach (var triggerDataPrimary in triggerConnections)
                 {
-                    if (triggerDataPrimary is not Array { Count: 4 } triggerData) continue;
+                    if (triggerDataPrimary.AsArrayOrNull() is not Array { Count: 4 } triggerData) continue;
 
                     var trigger = GetNode(triggerData[0].ToString());
                     var signal = triggerData[1].ToString();
                     var method = triggerData[2].ToString();
-                    var binds = triggerData[3] as Array;
-                    npcInstance.Connect(signal, trigger, method, binds);
+                    var binds = triggerData[3].AsArrayOrNull();
+                    if (binds is { Count: > 0 })
+                    {
+                        BoundCall.Connect(npcInstance, signal, trigger, method, binds);
+                    }
+                    else
+                    {
+                        npcInstance.Connect(signal, new Callable(trigger, method));
+                    }
                 }
             }
         }
@@ -143,12 +150,12 @@ public partial class SpawnerNpcTrigger: ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.ContainsKey("tempTimer"))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = data["tempTimer"].AsSingle();
         }
         
-        step = Convert.ToInt16(data["step"]);
+        step = data["step"].AsInt16();
         if (step > 0)
         {
             _on_activate_trigger();

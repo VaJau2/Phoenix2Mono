@@ -17,7 +17,9 @@ public abstract partial class Character : CharacterBody3D, ISavable
     public int BaseDamage;
     public int BaseRecoil;
 
-    public Vector3 Velocity;
+    //своё поле скрывает свойство CharacterBody3D.Velocity: его меняют по компонентам (Velocity.X = ...),
+    //а в движок скорость передаётся в MoveAndSlideVelocity
+    public new Vector3 Velocity;
     public Vector3 impulse;
     public bool MayMove { get; private set; } = true;
 
@@ -87,6 +89,18 @@ public abstract partial class Character : CharacterBody3D, ISavable
         victim.TakeDamage(this, GetDamage(), shapeID);
     }
     
+    //аналог MoveAndSlide(Velocity, Vector3.Up, stopOnSlope, maxSlides) из Godot 3,
+    //возвращает скорость после столкновений
+    public Vector3 MoveAndSlideVelocity(bool stopOnSlope, int maxSlides = 4)
+    {
+        base.Velocity = Velocity;
+        UpDirection = Vector3.Up;
+        FloorStopOnSlope = stopOnSlope;
+        MaxSlides = maxSlides;
+        MoveAndSlide();
+        return base.Velocity;
+    }
+
     public void HandleImpulse() 
     {
         if (impulse.Length() > 0)
@@ -111,7 +125,7 @@ public abstract partial class Character : CharacterBody3D, ISavable
         GlobalPosition = doorTeleport.TeleportPos.GlobalPosition;
         GlobalRotation = doorTeleport.TeleportPos.GlobalRotation;
         
-        EmitSignal(SignalName.DoorTeleporting, doorTeleport);
+        EmitSignal(SignalName.DoorTeleporting, doorTeleport as Node3D);
     }
 
     // Метод должен будет использоваться во время сохранения, когда игра проходит по всем Character
@@ -134,6 +148,6 @@ public abstract partial class Character : CharacterBody3D, ISavable
         GlobalPosition = data["pos"].ToString().ParseToVector3();
         GlobalRotation = data["rot"].ToString().ParseToVector3();
         Scale = oldScale;
-        Health = Convert.ToInt32(data["health"]);
+        Health = data["health"].AsInt32();
     }
 }

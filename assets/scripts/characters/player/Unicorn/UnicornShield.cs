@@ -34,10 +34,10 @@ public partial class UnicornShield : Node3D
     {
         if (shieldCooldown > 0)
         {
-            shieldCooldown -= delta;
+            shieldCooldown -= (float)delta;
         }
         
-        float tempCost = SHIELD_COST * delta * player.ManaDelta;
+        float tempCost = SHIELD_COST * (float)delta * player.ManaDelta;
         if (player.MayMove 
             && Input.IsActionPressed("ui_shift") 
             && player.ManaIsEnough(tempCost) 

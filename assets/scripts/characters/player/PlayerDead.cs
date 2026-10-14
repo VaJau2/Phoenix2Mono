@@ -115,7 +115,7 @@ public partial class PlayerDead : CharacterBody3D, IInteractable, IChest, ISavab
             var newRot = data[$"rb_{bone.Name}_rot"].ToString().ParseToVector3();
             var oldScale = bone.Scale;
 
-            var newBasis = new Basis(newRot);
+            var newBasis = Basis.FromEuler(newRot);
             var newTransform = new Transform3D(newBasis, newPos);
             bone.GlobalTransform = newTransform;
             bone.Scale = oldScale;

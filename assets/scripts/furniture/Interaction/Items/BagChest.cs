@@ -8,8 +8,8 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
     private const float AUDI_COOLDOWN = 0.3f;
     
     [Export] private bool SpawnRandomItems;
-    [Export] private List<AudioStreamWav> openSounds;
-    [Export] private List<AudioStreamWav> dropSounds;
+    [Export] private Godot.Collections.Array<AudioStreamWav> openSounds;
+    [Export] private Godot.Collections.Array<AudioStreamWav> dropSounds;
     [Export] private AudioStreamWav bottleSound;
     
     private AudioStreamPlayer3D audi;
@@ -44,7 +44,7 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
     {
         if (audiCooldown > 0)
         {
-            audiCooldown -= delta;
+            audiCooldown -= (float)delta;
         }
     }
 
@@ -53,9 +53,9 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
         PlaySound(openSounds);
         ChestHandler.Open();
 
-        if (!ChestHandler.Menu.IsConnected("MenuIsClosed", this, nameof(CloseBag)))
+        if (!ChestHandler.Menu.IsConnected("MenuIsClosed", new Callable(this, nameof(CloseBag))))
         {
-            ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseBag));
+            ChestHandler.Menu.Connect("MenuIsClosed", new Callable(this, nameof(CloseBag)));
         }
     }
 
@@ -63,13 +63,13 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
     {
         PlaySound(openSounds);
         
-        if (ChestHandler.Menu.IsConnected("MenuIsClosed", this, nameof(CloseBag)))
+        if (ChestHandler.Menu.IsConnected("MenuIsClosed", new Callable(this, nameof(CloseBag))))
         {
-            ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseBag));
+            ChestHandler.Menu.Disconnect("MenuIsClosed", new Callable(this, nameof(CloseBag)));
         }
     }
     
-    private void PlaySound(List<AudioStreamWav> soundsArray)
+    private void PlaySound(IList<AudioStreamWav> soundsArray)
     {
         var rand = new Random();
         var randI = rand.Next(0, soundsArray.Count);
@@ -98,7 +98,7 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
     {
         Dictionary saveData = ChestHandler.GetSaveData();
 
-        if (Name.StartsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
             saveData.Add("pos", Transform.Origin);
             saveData.Add("rot", Transform.Basis.GetEuler());
@@ -122,12 +122,12 @@ public partial class BagChest : RigidBody3D, IChest, IInteractable, ISavable
     {
         if (data.Count == 0) return;
         
-        if (Name.StartsWith("Created_"))
+        if (Name.ToString().StartsWith("Created_"))
         {
             Vector3 newPos = data["pos"].ToString().ParseToVector3();
             Vector3 newRot = data["rot"].ToString().ParseToVector3();
 
-            Basis newBasis = new Basis(newRot);
+            Basis newBasis = Basis.FromEuler(newRot);
             Transform3D newTransform = new Transform3D(newBasis, newPos);
             Transform = newTransform;
         }

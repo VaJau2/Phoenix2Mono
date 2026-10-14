@@ -7,8 +7,8 @@ public partial class TriggerInteractionAdapter : StaticBody3D, IInteractable
 {
     private const string DEFAULT_HINT = "use";
     
-    [Export] private List<string> hintCodes;
-    [Export] private List<NodePath> activateTriggerPaths;
+    [Export] private Godot.Collections.Array<string> hintCodes;
+    [Export] private Godot.Collections.Array<NodePath> activateTriggerPaths;
 
     private Dictionary triggersData = new Dictionary();
     

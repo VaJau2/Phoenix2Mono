@@ -32,7 +32,7 @@ public partial class TestingCamera : Camera3D
     public override void _Process(double delta)
     {
         if (!Current) return;
-        UpdateMovingCamera(delta);
+        UpdateMovingCamera((float)delta);
     }
 
     public void DeleteCamera()

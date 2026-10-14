@@ -16,7 +16,7 @@ public partial class TriggerBase : Node, ISavable, IActivated
     }
     public virtual void LoadData(Dictionary data)
     {
-        IsActive = Convert.ToBoolean(data["active"]);
+        IsActive = data["active"].AsBool();
     }
 
     //включает триггер (не активирует)

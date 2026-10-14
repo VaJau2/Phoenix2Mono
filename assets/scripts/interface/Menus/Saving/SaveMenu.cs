@@ -116,9 +116,9 @@ public partial class SaveMenu : Control
         {
             if (!IsValidFilename(newText))
             {
-                int oldCaretPosition = lineEdit.CaretPosition;
+                int oldCaretPosition = lineEdit.CaretColumn;
                 lineEdit.Text = tempText;
-                lineEdit.CaretPosition = oldCaretPosition - 1;
+                lineEdit.CaretColumn = oldCaretPosition - 1;
                 return;
             }
 
@@ -190,17 +190,15 @@ public partial class SaveMenu : Control
         {
             Button newButton = table.SpawnButton(fileTableLine);
             Global.saveFilesArray.Add(fileTableLine);
-            newButton.Pressed = true;
+            newButton.ButtonPressed = true;
             table._on_table_button_click(newButton.Name);
         }
     }
 
     public void SaveGame(string fileName, SceneTree tree)
     {
-        var saveFile = new File();
-        
         var filePath = $"user://saves/{GetLikeLatinString(fileName)}.sav";
-        saveFile.OpenCompressed(filePath, File.ModeFlags.Write);
+        using var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Write);
         saveFile.StoreLine(fileName);                                     //название сохранения
         saveFile.StoreLine(DateTime.Now.ToShortDateString());             //дата
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
@@ -208,7 +206,7 @@ public partial class SaveMenu : Control
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
         
         //данные удаленных объектов
-        saveFile.StoreLine(JSON.Print(Global.deletedObjects));
+        saveFile.StoreLine(Json.Stringify(Global.deletedObjects));
         
         //данные игровых объектов
         var objectsData = new Dictionary<string, Dictionary>();
@@ -217,7 +215,7 @@ public partial class SaveMenu : Control
             if (tempNode is not ISavable savableNode) continue;
             
             var saveData = savableNode.GetSaveData();
-            var isCreated = tempNode.Name.StartsWith("Created_");
+            var isCreated = tempNode.Name.ToString().StartsWith("Created_");
 
             if (isCreated)
             {
@@ -238,13 +236,12 @@ public partial class SaveMenu : Control
             }
         }
         
-        saveFile.StoreLine(JSON.Print(objectsData));
-        saveFile.Close();
+        saveFile.StoreLine(Json.Stringify(objectsData));
     }
 
     private static string GetFilename(Node node)
     {
-        return node.Name.Contains("Created_Player") 
+        return node.Name.ToString().Contains("Created_Player") 
             ? "res://objects/characters/Player/PlayerDead.tscn" 
             : node.SceneFilePath;
     }

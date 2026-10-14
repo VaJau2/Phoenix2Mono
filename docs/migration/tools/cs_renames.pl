@@ -79,6 +79,16 @@ my @renames = (
     [qr/\bOS\.GetTicksUsec\b/, 'Time.GetTicksUsec'],
     [qr/\bButtonList\./, 'MouseButton.'],
     [qr/\bKeyList\./, 'Key.'],
+    [qr/\bPercentVisible\b/, 'VisibleRatio'],
+    [qr/\bUnitOffset\b/, 'ProgressRatio'],
+    [qr/\bFogColor\b/, 'FogLightColor'],
+    [qr/\bFilterDB\.Filter(\d+)db\b/, sub { "FilterDB.Filter${1}Db" }],
+    [qr/\bFilterDb\.Filter(\d+)Db\b/, sub { "FilterDB.Filter${1}Db" }],
+    [qr/\bGetCamera\(\)/, 'GetCamera3D()'],
+    [qr/\bCaretPosition\b/, 'CaretColumn'],
+    [qr/\bAdd(Color|Font|Stylebox|Constant|Icon)Override\(/, sub { "AddTheme${1}Override(" }],
+    [qr/\.Quat\(\)/, '.GetRotationQuaternion()'],
+    [qr/\bPlaybackSpeed\b/, 'SpeedScale'],
     [qr/\.BeginsWith\(/, '.StartsWith('],
     [qr/\.Empty\(\)/, '.IsEmpty()'],
     [qr/\b(override\s+void\s+_(?:Physics)?Process\s*\(\s*)float\b/, '$1double'],
@@ -106,8 +116,12 @@ for my $file (@files) {
     my $text = $orig;
 
     # Шаблоны, которые захватывают строки, — до разбиения на сегменты
-    $text =~ s/ToSignal\(\s*GetTree\(\)\s*,\s*"idle_frame"\s*\)/ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame)/g;
-    $text =~ s/ToSignal\(\s*GetTree\(\)\s*,\s*"physics_frame"\s*\)/ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame)/g;
+    $text =~ s/ToSignal\(\s*((?:[\w.]+\.)?GetTree\(\))\s*,\s*"idle_frame"\s*\)/ToSignal($1, SceneTree.SignalName.ProcessFrame)/g;
+    $text =~ s/ToSignal\(\s*((?:[\w.]+\.)?GetTree\(\))\s*,\s*"physics_frame"\s*\)/ToSignal($1, SceneTree.SignalName.PhysicsFrame)/g;
+
+    # obj.Connect(signal, target, "method" | nameof(method)[, ...]) -> obj.Connect(signal, new Callable(target, method)[, ...])
+    # (сигнал и метод могут быть строками, поэтому — до разбиения на сегменты)
+    $text =~ s/(?<!BoundCall)\.(Connect|Disconnect|IsConnected)\(\s*("[^"\n]*"|nameof\([^()]*\)|[\w.]+(?:\([^()]*\))?)\s*,\s*([\w.?]+)\s*,\s*("[^"\n]*"|nameof\(\s*[\w.]+\s*\)|\w+)\s*(?=[,)])/.$1($2, new Callable($3, $4)/g;
 
     $text = transform_code($text, \&rename_code);
 

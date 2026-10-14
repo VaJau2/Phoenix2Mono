@@ -55,7 +55,7 @@ public partial class NpcWeapons : Node, ISavable
     {
         if (shootCooldown > 0)
         {
-            shootCooldown -= delta;
+            shootCooldown -= (float)delta;
         }
     }
 
@@ -83,7 +83,7 @@ public partial class NpcWeapons : Node, ISavable
         //грузим статистику оружия
         Dictionary weaponData = ItemJSON.GetItemData(newWeaponCode);
         tempWeaponStats = weaponData;
-        IsPistol = weaponData.Contains("isPistol");
+        IsPistol = weaponData.ContainsKey("isPistol");
         shootSound = GD.Load<AudioStreamWav>("res://assets/audio/guns/shoot/" + newWeaponCode + ".wav");
         npc.BaseDamage = GetStatsInt("damage");
 
@@ -153,7 +153,7 @@ public partial class NpcWeapons : Node, ISavable
         
         var statsDistance = GetStatsInt("shootDistance");
 
-        if (tempWeaponStats.Contains("bullet"))
+        if (tempWeaponStats.ContainsKey("bullet"))
         {
             SpawnBullet();
         }
@@ -197,7 +197,7 @@ public partial class NpcWeapons : Node, ISavable
 
         shootCooldown += GetShootCooldown();
 
-        if (tempWeaponStats.Contains("isSilence")) return;
+        if (tempWeaponStats.ContainsKey("isSilence")) return;
         
         EnemiesManager enemiesManager = npc.GetParent() as EnemiesManager;
         enemiesManager?.LoudShoot(GetStatsInt("shootDistance") * 0.75f, npc);
@@ -274,13 +274,13 @@ public partial class NpcWeapons : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("weaponCode")) return;
+        if (!data.ContainsKey("weaponCode")) return;
         
-        if (data["weaponCode"] != null)
+        if (!data["weaponCode"].IsNull())
         {
             LoadWeapon(data["weaponCode"].ToString());
         }
 
-        shootCooldown = Convert.ToSingle(data["shootCooldown"]);
+        shootCooldown = data["shootCooldown"].AsSingle();
     }
 }

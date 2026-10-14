@@ -50,7 +50,7 @@ public partial class TradeTerminal: StaticBody3D, ITrader
             TradeMode tempMode = menu.mode as TradeMode;
             tempMode.SetTrader(this);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
+            menu.Connect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
             isTrading = true;
         }
     }
@@ -58,6 +58,6 @@ public partial class TradeTerminal: StaticBody3D, ITrader
     public void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
+        menu.Disconnect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
     }
 }

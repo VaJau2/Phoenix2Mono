@@ -62,13 +62,20 @@ public partial class DragonSpawnTrigger : TriggerBase
         
         foreach (var triggerDataPrimary in triggerConnections)
         {
-            if (triggerDataPrimary is not Array { Count: 4 } triggerData) continue;
+            if (triggerDataPrimary.AsArrayOrNull() is not Array { Count: 4 } triggerData) continue;
 
             var trigger = GetNode(triggerData[0].ToString());
             var signal = triggerData[1].ToString();
             var method = triggerData[2].ToString();
-            var binds = triggerData[3] as Array;
-            npcInstance.Connect(signal, trigger, method, binds);
+            var binds = triggerData[3].AsArrayOrNull();
+            if (binds is { Count: > 0 })
+            {
+                BoundCall.Connect(npcInstance, signal, trigger, method, binds);
+            }
+            else
+            {
+                npcInstance.Connect(signal, new Callable(trigger, method));
+            }
         }
 
         return npcInstance;

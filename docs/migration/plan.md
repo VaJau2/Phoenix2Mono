@@ -60,7 +60,7 @@ Godot 4.7.2 `--validate-conversion-3to4` и полный `--convert-3to4` на �
 | 1.4 | ✅ Удалить 5 бинарных `.material`, оставленных для импортёра Godot 3 (inventory.md §6); для `lab-sofa.glb`, `bread.glb`, `poolLand.glb` указать в импорте внешние `.tres` материалы | [ИИ] |
 | 1.5 | ✅ Первый импорт ассетов: `--headless --path . --import` (~1 мин). Для FBX выставлен встроенный импортёр ufbx (`fbx/importer=0` — по умолчанию стоял внешний FBX2glTF, которого нет). Godot извлёк встроенные в модели текстуры (~400 `.png`) и сам обновил `.csproj` до `Godot.NET.Sdk/4.7.2` + `net8.0` | [ИИ] |
 
-## Этап 2. Компиляция C#
+## Этап 2. Компиляция C# ✅
 
 Цель — `dotnet build` без ошибок. Работа в цикле «сборка → исправление» без запуска игры.
 
@@ -77,6 +77,32 @@ Godot 4.7.2 `--validate-conversion-3to4` и полный `--convert-3to4` на �
 Справочник решений — старая ветка: `git show origin/PHNX-154-godot-4-update:<путь к .cs>`.
 
 **Критерий:** 0 ошибок `dotnet build`. **Кто:** [ИИ].
+
+### ✅ Результат этапа 2 (2026-10-14)
+
+`dotnet build` — 0 ошибок, 8 предупреждений (3 — устаревший `PhysicalBonesStartSimulation`, это этап 3.4).
+
+Как делалось:
+- `docs/migration/tools/cs_renames.pl` — механические переименования только в коде (строки и комментарии не трогаются), классы Godot переименовываются только в позиции типа. Идемпотентен — можно запускать повторно.
+- Остальное — вручную по ошибкам компилятора.
+
+Новые вспомогательные классы:
+- `utils/VariantExtensions.cs` — `AsDictionaryOrNull()`, `AsArrayOrNull()`, `IsNull()`, `AsStringOrNull()`: замена старых `x is Dictionary d`, `x as Array`, `x?.ToString()` для `Variant`.
+- `utils/BoundCall.cs` — замена `binds` в `Connect`: в C# у `Callable` нет `Bind`. Подключения с аргументами сохраняются `NpcSaving` (цель, метод, аргументы).
+- `Character.MoveAndSlideVelocity(stopOnSlope, maxSlides)` — аналог `MoveAndSlide(velocity, up, ...)` из Godot 3; своё поле `Character.Velocity` сохранено (`new`), т. к. код меняет его по компонентам.
+
+**Ловушки, которые компилятор не показывает (исправлены, но проверить в игре):**
+1. `Convert.ToInt32(data["x"])` для `Variant` компилируется, но падает в рантайме (`Variant` не `IConvertible`) — 78 мест переведены на `.AsInt32()`/`.AsBool()`/`.AsSingle()`. Новые такие вызовы не добавлять.
+2. `ToSignal(..., "idle_frame")` — сигнала нет в Godot 4, `await` зависал бы навсегда. Везде заменено на `SceneTree.SignalName.ProcessFrame`.
+3. `коллекция as Array` для не-`Variant` (`sounds.Values as Array`) компилируется и всегда даёт `null` — исправлено в `DialogueAudioConfig`.
+4. В Godot 4 числа из JSON — всегда `float`, а `ToString()` даёт `"2.0"` (не `"2"`); векторы — `"(1.5, 2.0, 3.0)"`. `ParseToVector3` это понимает; `int.Parse(x.ToString())` безопасен только для значений, которые в JSON записаны строками (так сейчас в `items.json`, конфигах диалогов).
+5. `Enum` в словарях сохраняется как `int` (`StateMachine`, `ItemJSON`), загрузка состояния NPC понимает и число, и строку.
+
+**Изменения поведения (найдено при переносе):**
+- `SearchState`: позиция `lastSeePos` из сохранения раньше всегда загружалась как `(0,0,0)` (`as Vector3?` от строки давало `null`) — теперь восстанавливается.
+- `NpcSaving`: подключения сигналов теперь сохраняются с `flags`; `binds` из старых сохранений Godot 3 восстанавливаются через `BoundCall`.
+
+**Проверить на этапе 4:** сохранение/загрузка NPC со спавнеров (`SpawnerNpcTrigger`, `DragonSpawnTrigger` — `SetActive` с аргументом `true`) и `MoveNpcTrigger`; падение и подбор предметов (`PickupItem.Freeze`); движение игрока на склонах и лестницах (`FloorStopOnSlope`); пиксели зеркала (`SubViewport.Size`).
 
 ## Этап 3. Загрузка проекта и сцен без ошибок
 

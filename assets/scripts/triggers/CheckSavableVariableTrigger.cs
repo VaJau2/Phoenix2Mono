@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class CheckSavableVariableTrigger: TriggerBase
 {
     [Export] public string variableName;
-    [Export] public Dictionary<string, NodePath> otherTriggerPaths;
+    [Export] public Godot.Collections.Dictionary<string, NodePath> otherTriggerPaths;
     
     private Dictionary<string, TriggerBase> otherTriggers = new Dictionary<string, TriggerBase>();
     
@@ -38,7 +38,7 @@ public partial class CheckSavableVariableTrigger: TriggerBase
         if (!IsActive) return;
         var saveNode =  GetNode<SaveNode>("/root/Main/SaveNode");
         if (saveNode == null) return;
-        if (!saveNode.SavedVariables.Contains(variableName)) return;
+        if (!saveNode.SavedVariables.ContainsKey(variableName)) return;
 
         string key = saveNode.SavedVariables[variableName].ToString();
         if (otherTriggers.ContainsKey(key))

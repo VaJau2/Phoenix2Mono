@@ -26,7 +26,7 @@ public class DialogueAudioConfig
         if (tempCode == code) return;
         
         var path = $"assets/dialogues/configs/{code}.json";
-        if (!new File().FileExists("res://" + path))
+        if (!FileAccess.FileExists("res://" + path))
         {
             LoadDefaultConfig();
             return;
@@ -34,23 +34,23 @@ public class DialogueAudioConfig
 
         var configFile = Global.LoadJsonFile(path);
         
-        if (configFile.Contains("sounds"))
+        if (configFile.ContainsKey("sounds"))
         {
             var sounds = (Dictionary)configFile["sounds"];
-            LoadSounds(sounds.Values as Array);
+            LoadSounds(new Array(sounds.Values));
         }
 
-        if (configFile.Contains("min_pitch"))
+        if (configFile.ContainsKey("min_pitch"))
         {
             MinPitch = Global.ParseFloat(configFile["min_pitch"].ToString());
         }
         
-        if (configFile.Contains("max_pitch"))
+        if (configFile.ContainsKey("max_pitch"))
         {
             MaxPitch = Global.ParseFloat(configFile["max_pitch"].ToString());
         }
         
-        if (configFile.Contains("chars_to_sound"))
+        if (configFile.ContainsKey("chars_to_sound"))
         {
             CharsToSound = int.Parse(configFile["chars_to_sound"].ToString());
         }

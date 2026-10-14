@@ -147,7 +147,7 @@ public partial class Player : Character
     {
         var armorProps = Inventory.GetArmorProps();
         
-        if (armorProps.Contains("damageBlock"))
+        if (armorProps.ContainsKey("damageBlock"))
         {
             var armorBlock = Global.ParseFloat(armorProps["damageBlock"].ToString());
             return base.GetDamageBlock() + armorBlock;
@@ -578,7 +578,7 @@ public partial class Player : Character
         hvel = hvel.Lerp(target, acceleration * delta);
         Velocity.X = hvel.X;
         Velocity.Z = hvel.Z;
-        Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4);
+        Velocity = MoveAndSlideVelocity(false, 4);
     }
 
     private void RotateBodyClumped(float speedX)
@@ -646,11 +646,11 @@ public partial class Player : Character
         Inventory.LoadData((Dictionary)data["inventory"]);
         if (data.Count <= 1) return;
         
-        Radiation.SetRadLevel(Convert.ToInt32(data["radLevel"]));
+        Radiation.SetRadLevel(data["radLevel"].AsInt32());
         
         base.LoadData(data);
 
-        bool sittingOnChair = Convert.ToBoolean(data["sitOnChair"]);
+        bool sittingOnChair = data["sitOnChair"].AsBool();
         if (sittingOnChair)
         {
             //await нужен, чтоб PlayerBody успел загрузиться
@@ -706,7 +706,7 @@ public partial class Player : Character
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        Connect(SignalName.TakeItem, this, nameof(CheckTakeItem));
+        Connect(SignalName.TakeItem, new Callable(this, nameof(CheckTakeItem)));
     }
 
     public override void _Process(double delta)
@@ -721,13 +721,13 @@ public partial class Player : Character
         {
             if (MayMove)
             {
-                ProcessInput(delta);
+                ProcessInput((float)delta);
                 HandleImpulse();
             }
 
             if (!MovingController.IsProcessing()) // проверка активности CutsceneMoving
             {
-                ProcessMovement(delta);
+                ProcessMovement((float)delta);
             }
         }
 

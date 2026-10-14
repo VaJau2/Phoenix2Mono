@@ -36,7 +36,7 @@ public partial class StartSmoothMusic : AudioStreamPlayer, ISavable
     {
         if (startDelayTimer > 0)
         {
-            startDelayTimer -= delta;
+            startDelayTimer -= (float)delta;
             return;
         }
 

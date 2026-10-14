@@ -24,7 +24,7 @@ public partial class LoadingMenu : Control
     public override void _Process(double delta)
     {
         if (timer < TIME) {
-            timer += delta;
+            timer += (float)delta;
         } else {
             timer = 0;
 

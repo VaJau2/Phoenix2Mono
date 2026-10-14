@@ -5,7 +5,7 @@ public partial class Mirror : MeshInstance3D
     [Export] private Vector2 size = new(5,7);
    
     private int pixelPerUnit;
-    private Viewport viewport;
+    private SubViewport viewport;
     private Node3D planeMark;
     private Camera3D mirrorCamera;
     
@@ -18,7 +18,7 @@ public partial class Mirror : MeshInstance3D
     
     public override void _Ready()
     {
-        viewport = GetNode<Viewport>("Viewport");
+        viewport = GetNode<SubViewport>("Viewport");
         planeMark = GetNode<Node3D>("PlaneTransform");
         
         if (Mesh is PlaneMesh planeMesh)
@@ -58,7 +58,7 @@ public partial class Mirror : MeshInstance3D
         var reflectionTransform = planeMark.GlobalTransform;
         
         // Player camera position
-        var playerCameraPos = player.RotationHelperThird.GetCamera().GlobalTransform.Origin;
+        var playerCameraPos = player.RotationHelperThird.GetCamera3D().GlobalTransform.Origin;
         
         // The projected point of main camera's position onto the reflection plane
         var projectPos = reflectionPlane.Project(playerCameraPos);
@@ -76,7 +76,7 @@ public partial class Mirror : MeshInstance3D
         
         // Compute the tilting offset for the frustum (the X and Y coordinates of the mirrored camera position
         // when expressed in the reflection plane coordinate system)
-        var rawOffset = reflectionTransform.XformInv(playerCameraPos);
+        var rawOffset = playerCameraPos * reflectionTransform;
         var offset = new Vector2(rawOffset.X, rawOffset.Y);
         
         // Set mirror camera frustum
@@ -98,7 +98,7 @@ public partial class Mirror : MeshInstance3D
     {
         isOn = false;
         SetTexture(null);
-        viewport.Size = Vector2.Zero;
+        viewport.Size = Vector2I.Zero;
         mirrorCamera.QueueFree();
         mirrorCamera = null;
     }
@@ -113,7 +113,7 @@ public partial class Mirror : MeshInstance3D
         mirrorCamera.KeepAspect = Camera3D.KeepAspectEnum.Width;
         mirrorCamera.Current = true;
 
-        viewport.Size = size * pixelPerUnit;
+        viewport.Size = (Vector2I)(size * pixelPerUnit);
         SetTexture(viewport.GetTexture());
     }
 
@@ -130,7 +130,7 @@ public partial class Mirror : MeshInstance3D
         if (pixelPerUnit == Global.Get().Settings.reflection) return;
         
         pixelPerUnit = Global.Get().Settings.reflection;
-        viewport.Size = size * pixelPerUnit;
+        viewport.Size = (Vector2I)(size * pixelPerUnit);
 
         switch (mayOn)
         {

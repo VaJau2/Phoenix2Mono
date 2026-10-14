@@ -35,7 +35,7 @@ public class Global
 
     public static void AddDeletedObject(Node objectToDelete)
     {
-        if (objectToDelete.Name.StartsWith("Created_") || deletedObjects.Contains(objectToDelete.GetPath()))
+        if (objectToDelete.Name.ToString().StartsWith("Created_") || deletedObjects.Contains(objectToDelete.GetPath()))
         {
             return;
         }
@@ -152,27 +152,25 @@ public class Global
             return jsonCache;
         }
         
-        File tempFile = new File();
         string path = "res://" + filePath;
 
-        Error fileError = tempFile.Open(path, File.ModeFlags.Read);
-        if (fileError == Error.Ok) 
+        using var tempFile = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+        if (tempFile != null)
         {
             var textJson = tempFile.GetAsText();
-            tempFile.Close();
-            var resultJson = JSON.Parse(textJson);
+            var json = new Json();
 
-            if (resultJson.Error == Error.Ok) 
-            {  
+            if (json.Parse(textJson) == Error.Ok)
+            {
                 jsonCachePath = filePath;
-                jsonCache = (Dictionary)resultJson.Result;
+                jsonCache = json.Data.AsGodotDictionary();
                 return jsonCache;
             }
-            
-            GD.PrintErr("parse json (" + filePath  + ") error: " + resultJson.ErrorString + ", in line: " + resultJson.ErrorLine);
+
+            GD.PrintErr("parse json (" + filePath  + ") error: " + json.GetErrorMessage() + ", in line: " + json.GetErrorLine());
             return null;
         }
-        
+
         GD.PrintErr("error loading JSON file in: " + path);
         return null;
     }
@@ -201,7 +199,7 @@ public class Global
             player.GetNode("/root/Main/Scene").AddChild(newTimer);
         }
 
-        newTimer.Connect("timeout", newTimer, "queue_free");
+        newTimer.Connect("timeout", new Callable(newTimer, "queue_free"));
         return newTimer.ToSignal(newTimer, "timeout");
     }
 
@@ -284,16 +282,14 @@ public class Global
     public static Array<string> GetSaveFiles()
     {
         var files = new Array<string>();
-        var dir = new Directory();
-        dir.Open("user://");
 
-        if (!dir.DirExists("user://saves/"))
+        if (!DirAccess.DirExistsAbsolute("user://saves/"))
         {
-            Error result = dir.MakeDir("user://saves/");
+            DirAccess.MakeDirAbsolute("user://saves/");
             return new Array<string>();
         }
-        
-        dir.Open("user://saves/");
+
+        using var dir = DirAccess.Open("user://saves/");
         dir.ListDirBegin();
 
         while (true)
@@ -312,24 +308,22 @@ public class Global
 
     private static FileTableLine? GetFileMetadata(string fileName)
     {
-        var file = new File();
-        file.OpenCompressed(fileName, File.ModeFlags.Read);
-        
-        if (!file.IsOpen() || file.EofReached())
+        using var file = FileAccess.OpenCompressed(fileName, FileAccess.ModeFlags.Read);
+
+        if (file == null || file.EofReached())
         {
             return null;
         }
-        
+
         string name = file.GetLine();
         string date = file.GetLine();
         string level = file.GetLine();
-        file.Close();
         return new FileTableLine(name, date, level);
     }
 
     public static void DeleteSaveFile(string fileName)
     {
-        new Directory().Remove("user://saves/" + fileName);
+        DirAccess.RemoveAbsolute("user://saves/" + fileName);
     }
 }
 

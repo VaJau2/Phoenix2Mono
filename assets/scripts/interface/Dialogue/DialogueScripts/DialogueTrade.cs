@@ -17,7 +17,7 @@ public partial class DialogueTrade : BaseChangeInNPC
         }
         
         // ожидание прорисовки нового кадра, дабы menu manager или subtitles очистились
-        await node.ToSignal(node.GetTree(), "idle_frame");
+        await node.ToSignal(node.GetTree(), SceneTree.SignalName.ProcessFrame);
         
         trading.StartTrading();
     }

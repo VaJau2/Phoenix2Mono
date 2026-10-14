@@ -96,6 +96,6 @@ public partial class CollarCheckDistanceTrigger: TriggerBase
             SetCollarColor(COLOR_GREEN);
         }
 
-        UpdatePeeking(delta);
+        UpdatePeeking((float)delta);
     }
 }

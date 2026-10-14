@@ -34,7 +34,7 @@ public partial class Cutscene : Node, ISavable
             : player.RotationHelperThird.firstCamera;
     }
 
-    public Camera3D GetCamera()
+    public Camera3D GetCamera3D()
     {
         return cutsceneCamera;
     }
@@ -93,8 +93,8 @@ public partial class Cutscene : Node, ISavable
         skip.Disconnect(nameof(global::Skip.SkipEvent), new Callable(this, nameof(Skip)));
         skip.SetActive(false);
         
-        area.Disconnect("body_exited", this, nameof(ShowPlayerHead));
-        area.Disconnect("body_entered", this, nameof(HidePlayerHead));
+        area.Disconnect("body_exited", new Callable(this, nameof(ShowPlayerHead)));
+        area.Disconnect("body_entered", new Callable(this, nameof(HidePlayerHead)));
         area.QueueFree();
         
         player.RotationHelperThird.SetThirdView(wasThirdView);
@@ -157,8 +157,8 @@ public partial class Cutscene : Node, ISavable
         headBone.AddChild(area);
         
         area.GlobalPosition = player.RotationHelperThird.firstCamera.GlobalPosition;
-        area.Connect("body_exited", this, nameof(ShowPlayerHead));
-        area.Connect("body_entered", this, nameof(HidePlayerHead));
+        area.Connect("body_exited", new Callable(this, nameof(ShowPlayerHead)));
+        area.Connect("body_entered", new Callable(this, nameof(HidePlayerHead)));
     }
     
     private void ShowPlayerHead(Node body)
@@ -229,7 +229,7 @@ public partial class Cutscene : Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("wasThirdView")) return;
+        if (!data.ContainsKey("wasThirdView")) return;
         
         var cameraParentPath = Convert.ToString(data["cameraParentPath"]);
         var cameraParent = GetNode(cameraParentPath);
@@ -241,15 +241,15 @@ public partial class Cutscene : Node, ISavable
         cutsceneCamera.GlobalPosition = data["cameraPos"].ToString().ParseToVector3();
         cutsceneCamera.GlobalRotation = data["cameraRot"].ToString().ParseToVector3();
 
-        wasThirdView = Convert.ToBoolean(data["wasThirdView"]);
-        if (Convert.ToBoolean(data["thirdView"]))
+        wasThirdView = data["wasThirdView"].AsBool();
+        if (data["thirdView"].AsBool())
         {
             player.RotationHelperThird.SetThirdView(true);
             player.RotationHelperThird.thirdCamera.Current = false;
             cutsceneCamera.Current = true;
         }
         
-        var queueSize = Convert.ToInt32(data["queueSize"]);
+        var queueSize = data["queueSize"].AsInt32();
         if (queueSize == 0) return;
 
         for (var i = 0; i < queueSize; i++)

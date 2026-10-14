@@ -49,7 +49,7 @@ public partial class PlayerTestingCommands : Node
                 foreach (var child in npcParent.GetChildren())
                 {
                     if (child is not NPC npc) continue;
-                    if (npc.relation != Relation.Enemy && !npc.Name.Contains("dragon")) continue;
+                    if (npc.relation != Relation.Enemy && !npc.Name.ToString().Contains("dragon")) continue;
                     if (npc.Health <= 0) continue;
                     npc.TakeDamage(npc, KILL_DAMAGE);
                 }
@@ -89,10 +89,10 @@ public partial class PlayerTestingCommands : Node
         
         tempCommand = eventKey.Keycode switch
         {
-            (uint)Key.F1 => CommandType.Heal,
-            (uint)Key.F2 => CommandType.KillEnemies,
-            (uint)Key.F3 => CommandType.KillPlayer,
-            (uint)Key.F12 => CommandType.SpawnCamera,
+            Key.F1 => CommandType.Heal,
+            Key.F2 => CommandType.KillEnemies,
+            Key.F3 => CommandType.KillPlayer,
+            Key.F12 => CommandType.SpawnCamera,
             _ => tempCommand
         };
     }

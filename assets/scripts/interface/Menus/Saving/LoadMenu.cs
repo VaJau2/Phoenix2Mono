@@ -87,7 +87,7 @@ public partial class LoadMenu : Control
         {
             var fileName = tempTableLine.name;
             var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            var tempTime = new File().GetModifiedTime(filePath);
+            var tempTime = FileAccess.GetModifiedTime(filePath);
             if (tempTime <= lastTime) continue;
             lastFileName = fileName;
             lastTime = tempTime;
@@ -162,9 +162,8 @@ public partial class LoadMenu : Control
     {
         try
         {
-            var saveFile = new File();
             var filePath = $"user://saves/{SaveMenu.GetLikeLatinString(fileName)}.sav";
-            saveFile.OpenCompressed(filePath, File.ModeFlags.Read);
+            using var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Read);
             for (int i = 0; i < 2; i++) saveFile.GetLine();
             var levelNum = int.Parse(saveFile.GetLine());
 
@@ -181,9 +180,8 @@ public partial class LoadMenu : Control
                 Global.Get().playerRace = Global.RaceFromString(checkLine);
             }
             
-            var deletedObjects = (Godot.Collections.Array) JSON.Parse(saveFile.GetLine()).Result;
-            var levelsData = (Dictionary) JSON.Parse(saveFile.GetLine()).Result;
-            saveFile.Close();
+            var deletedObjects = Json.ParseString(saveFile.GetLine()).AsGodotArray();
+            var levelsData = Json.ParseString(saveFile.GetLine()).AsGodotDictionary();
 
             loader.LoadLevel(levelNum, levelsData, deletedObjects);
             return true;

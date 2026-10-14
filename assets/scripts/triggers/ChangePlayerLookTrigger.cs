@@ -23,7 +23,7 @@ public partial class ChangePlayerLookTrigger : ActivateOtherTrigger
         var headRotation = GetHeadRotationToTarget();
         var animTree = player.GetNode<AnimationTree>("player_body/animTree");
         var headBlend = (Vector2) animTree.Get("parameters/BlendSpace2D/blend_position");
-        headBlend = headBlend.MoveToward(headRotation, delta * 2);
+        headBlend = headBlend.MoveToward(headRotation, (float)delta * 2);
         animTree.Set("parameters/BlendSpace2D/blend_position", headBlend);
     }
     
@@ -73,9 +73,9 @@ public partial class ChangePlayerLookTrigger : ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (!data.Contains("isProcessing")) return;
+        if (!data.ContainsKey("isProcessing")) return;
         
-        if (Convert.ToBoolean(data["isProcessing"]))
+        if (data["isProcessing"].AsBool())
         {
             SetActive(true);
         }

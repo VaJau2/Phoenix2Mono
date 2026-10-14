@@ -67,7 +67,7 @@ public partial class Subtitles : Label, ISavable
         
         if (symbolTimer > 0)
         {
-            symbolTimer -= delta;
+            symbolTimer -= (float)delta;
             return;
         }
 
@@ -115,7 +115,7 @@ public partial class Subtitles : Label, ISavable
         var path = $"assets/dialogues/{lang}/{talkerCode}/subtitles.json";
 
         subtitlesCode = subCode;
-        phrases = Global.LoadJsonFile(path)[subtitlesCode] as Dictionary;
+        phrases = Global.LoadJsonFile(path)[subtitlesCode].AsDictionaryOrNull();
         if (phrases == null) return this;
         
         phrasesKeys = new Array(phrases.Keys);
@@ -131,7 +131,7 @@ public partial class Subtitles : Label, ISavable
 
         MayClearCode = true;
         tempPhraseKey = phrasesKeys[tempPhraseIndex].ToString();
-        tempPhraseData = phrases[tempPhraseKey] as Dictionary;
+        tempPhraseData = phrases[tempPhraseKey].AsDictionaryOrNull();
 
         ReadPhraseText();
         
@@ -155,7 +155,7 @@ public partial class Subtitles : Label, ISavable
     
     private void ReadPhraseText()
     {
-        if (tempPhraseData.Contains("speakerCode") && tempPhraseData.Contains("text"))
+        if (tempPhraseData.ContainsKey("speakerCode") && tempPhraseData.ContainsKey("text"))
         {
             var lang = InterfaceLang.GetLang();
             var namesPath = $"assets/lang/{lang}/names.json";
@@ -171,12 +171,12 @@ public partial class Subtitles : Label, ISavable
             cleanAnimatingText = DialogueDelay.ClearDelaySymbols(animatingText);
             Text += MakeSpacesString(cleanAnimatingText);
             
-            symbolDelay = tempPhraseData.Contains("symbolDelay") 
-                ? Convert.ToSingle(tempPhraseData["symbolDelay"]) 
+            symbolDelay = tempPhraseData.ContainsKey("symbolDelay") 
+                ? tempPhraseData["symbolDelay"].AsSingle() 
                 : DialogueDelay.DEFAULT_SYMBOL_DELAY; 
             
-            phraseDelay = tempPhraseData.Contains("phraseDelay") 
-                ? Convert.ToSingle(tempPhraseData["phraseDelay"]) 
+            phraseDelay = tempPhraseData.ContainsKey("phraseDelay") 
+                ? tempPhraseData["phraseDelay"].AsSingle() 
                 : DialogueDelay.DEFAULT_PHRASE_DELAY;
             
             IsAnimatingText = true;
@@ -225,7 +225,7 @@ public partial class Subtitles : Label, ISavable
 
     private void ReadPhraseScript()
     {
-        if (!tempPhraseData.Contains("class")) return;
+        if (!tempPhraseData.ContainsKey("class")) return;
         
         var scriptName = tempPhraseData["class"].ToString();
         var scriptType = Type.GetType("DialogueScripts." + scriptName);
@@ -234,12 +234,12 @@ public partial class Subtitles : Label, ISavable
             
         if (scriptType == null) return;
             
-        if (tempPhraseData.Contains("value"))
+        if (tempPhraseData.ContainsKey("value"))
         {
             parameter = tempPhraseData["value"].ToString();
         }
             
-        if (tempPhraseData.Contains("key"))
+        if (tempPhraseData.ContainsKey("key"))
         {
             key = tempPhraseData["key"].ToString();
         }
@@ -309,7 +309,7 @@ public partial class Subtitles : Label, ISavable
     public void LoadData(Dictionary data)
     {
         subtitlesCode = Convert.ToString(data["code"]);
-        tempPhraseIndex = Convert.ToInt32(data["phrase"]);
+        tempPhraseIndex = data["phrase"].AsInt32();
         
         var talkerPath = Convert.ToString(data["talkerPath"]);
         var talker = GetNodeOrNull<NPC>(talkerPath);

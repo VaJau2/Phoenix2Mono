@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public partial class ActivateTrigger : TriggerBase
 {
-    [Export] private List<NodePath> nodePaths;
+    [Export] private Godot.Collections.Array<NodePath> nodePaths;
     private List<IActivated> nodes = new List<IActivated>();
 
     public override void _Ready()

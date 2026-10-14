@@ -67,9 +67,9 @@ public partial class TheaterChair : StaticBody3D, ISavable, IInteractable
 
     public void LoadData(Dictionary data)
     {
-        if (data.Contains("isActive"))
+        if (data.ContainsKey("isActive"))
         {
-            isActive = Convert.ToBoolean(data["isActive"]);
+            isActive = data["isActive"].AsBool();
         }
     }
 }

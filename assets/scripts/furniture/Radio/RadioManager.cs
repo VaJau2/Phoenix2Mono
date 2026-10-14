@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public partial class RadioManager : Node
 {
-    [Export] private List<NodePath> radioListPath = new ();
+    [Export] private Godot.Collections.Array<NodePath> radioListPath = new ();
     protected List<RadioBase> radioList = new ();
 
     public override void _Ready()

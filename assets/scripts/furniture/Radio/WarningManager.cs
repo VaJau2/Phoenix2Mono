@@ -149,7 +149,7 @@ public partial class WarningManager : RadioManager, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("code")) return;
+        if (!data.ContainsKey("code")) return;
 
         var code = Convert.ToString(data["code"]);
         
@@ -159,9 +159,9 @@ public partial class WarningManager : RadioManager, ISavable
 
         Message = new WarningMessage(code, trigger);
         
-        if (!data.Contains("messageQueueCount")) return;
+        if (!data.ContainsKey("messageQueueCount")) return;
         
-        var messageQueueCount = Convert.ToInt32(data["messageQueueCount"]);
+        var messageQueueCount = data["messageQueueCount"].AsInt32();
         
         for (int i = 0; i < messageQueueCount; i++)
         {

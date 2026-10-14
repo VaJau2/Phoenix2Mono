@@ -14,7 +14,7 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
     private const float MIN_VELOCITY_TO_SOUND = 0.3f;
     
     [Export] private string itemCode;
-    [Export] private List<AudioStreamWav> sounds;
+    [Export] private Godot.Collections.Array<AudioStreamWav> sounds;
     
     public bool MayInteract => inventoryMenu.HasEmptyButton;
     public string InteractionHintCode => "pick";
@@ -47,7 +47,7 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
     {
         if (audiCooldown > 0)
         {
-            audiCooldown -= delta;
+            audiCooldown -= (float)delta;
         }
 
         currentSpeed = LinearVelocity.Length();
@@ -77,7 +77,7 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
     {
         return new Dictionary
         {
-            { "isStatic", Mode == ModeEnum.Static },
+            { "isStatic", Freeze && FreezeMode == FreezeModeEnum.Static },
             { "pos", GlobalTransform.Origin },
             { "rot", GlobalTransform.Basis.GetEuler() },
         };
@@ -87,14 +87,15 @@ public partial class PickupItem : RigidBody3D, IInteractable, ISavable
     {
         if ((bool)data["isStatic"])
         {
-            Mode = ModeEnum.Static;
+            FreezeMode = FreezeModeEnum.Static;
+            Freeze = true;
         }
         
         Vector3 newPos = data["pos"].ToString().ParseToVector3();
         Vector3 newRot = data["rot"].ToString().ParseToVector3();
         Vector3 oldScale = Scale;
 
-        Basis newBasis = new Basis(newRot);
+        Basis newBasis = Basis.FromEuler(newRot);
         Transform3D newTransform = new Transform3D(newBasis, newPos);
         GlobalTransform = newTransform;
         Scale = oldScale;

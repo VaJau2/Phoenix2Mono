@@ -51,7 +51,7 @@ public partial class DragonBody: Node
         if (npc.Velocity.Length() > 0 && !onetimeAnim)
         {
             UpdateFlyAnims();
-            PlayIdleSounds(delta);
+            PlayIdleSounds((float)delta);
         }
     }
 

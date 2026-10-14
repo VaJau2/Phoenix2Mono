@@ -10,7 +10,7 @@ public partial class FlaskGlassFactory : IAudioEffectsFactory
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.8f;
         notchFilter.CutoffHz = 3000;
 

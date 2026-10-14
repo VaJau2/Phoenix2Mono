@@ -56,10 +56,10 @@ public partial class Explosion : Node3D, ISavable
 
     public void LoadData(Dictionary savedData)
     {
-        exploded = System.Convert.ToBoolean(savedData["exploded"]);
-        if (savedData.Contains("checkWalls"))
+        exploded = savedData["exploded"].AsBool();
+        if (savedData.ContainsKey("checkWalls"))
         {
-            checkWalls = System.Convert.ToBoolean(savedData["checkWalls"]);
+            checkWalls = savedData["checkWalls"].AsBool();
         }
 
         if (!exploded) return;

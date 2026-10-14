@@ -48,7 +48,7 @@ public partial class WaitInBoxTrigger : TriggerBase
     {
         base.LoadData(data);
         if (!(bool)data["animating"]) return;
-        timer = Convert.ToSingle(data["timer"]);
+        timer = data["timer"].AsSingle();
         step = 1;
         playerHere = Global.Get().player;
         playerHere.Sit(true);
@@ -78,7 +78,7 @@ public partial class WaitInBoxTrigger : TriggerBase
 
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
             return;
         }
         

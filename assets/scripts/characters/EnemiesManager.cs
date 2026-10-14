@@ -11,7 +11,7 @@ public partial class EnemiesManager : Node, ISavable
     private const float PLAYER_MAX_DIST = 60f;
     [Export] public bool hasAlarm;
     [Export] public bool isAudi3D;
-    [Export] public List<NodePath> alarmSoundsPath;
+    [Export] public Godot.Collections.Array<NodePath> alarmSoundsPath;
 
     public List<NPC> enemies = [];
     
@@ -116,7 +116,7 @@ public partial class EnemiesManager : Node, ISavable
 
         if (triggerCooldown > 0)
         {
-            triggerCooldown -= delta;
+            triggerCooldown -= (float)delta;
             return;
         }
         
@@ -136,9 +136,9 @@ public partial class EnemiesManager : Node, ISavable
     public void LoadData(Dictionary data)
     {
         if (!hasAlarm) return;
-        if (!data.Contains("isAlarming")) return;
+        if (!data.ContainsKey("isAlarming")) return;
 
-        var alarming = Convert.ToBoolean(data["isAlarming"]);
+        var alarming = data["isAlarming"].AsBool();
         if (!alarming) return;
         
         StartAlarm();

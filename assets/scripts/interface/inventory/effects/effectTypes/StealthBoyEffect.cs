@@ -45,7 +45,7 @@ public partial class StealthBoyEffect : Effect
             if (tempMaterial == null) continue;
             if (CanChangeTransparency(tempMaterial))
             {
-                tempMaterial.FlagsTransparent = !visible;
+                tempMaterial.Transparency = visible ? BaseMaterial3D.TransparencyEnum.Disabled : BaseMaterial3D.TransparencyEnum.Alpha;
             }
             
             Color old = tempMaterial.AlbedoColor;

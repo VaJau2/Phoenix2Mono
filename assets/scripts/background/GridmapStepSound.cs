@@ -34,12 +34,12 @@ public partial class GridmapStepSound : GridMap
     {
         if (Player == null) return;
 
-        bool tempIsOnGridItem = CheckGridWithDelay(delta);
+        bool tempIsOnGridItem = CheckGridWithDelay((float)delta);
         bool isMove = Player.GetCurrentSpeed() > Character.MIN_WALKING_SPEED;
         bool isRotate = Player.IsRotating() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
 
         if (tempIsOnGridItem && (isMove || isRotate)) UpdatePlaying();
-        else StopPlaying(delta);
+        else StopPlaying((float)delta);
     }
 
     private void UpdatePlaying()
@@ -93,9 +93,9 @@ public partial class GridmapStepSound : GridMap
         if (Global.Get().player == null) return false;
         var playerGlobalPos = Global.Get().player.GlobalTransform.Origin;
         var playerLocalPos = playerGlobalPos - GlobalTransform.Origin;
-        var mapPos = WorldToMap(playerLocalPos);
+        var mapPos = LocalToMap(playerLocalPos);
         if (!Player.IsCrouching) mapPos.Y -= 1;
-        var cellItem = GetCellItem((int)mapPos.X, (int)mapPos.Y, (int)mapPos.Z);
+        var cellItem = GetCellItem(mapPos);
         return cellItem > -1;
     }
 }

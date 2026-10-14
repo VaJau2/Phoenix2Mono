@@ -43,7 +43,7 @@ public partial class CinematicTrigger : ActivateOtherTrigger
     {
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
         }
         else
         {
@@ -138,18 +138,18 @@ public partial class CinematicTrigger : ActivateOtherTrigger
     {
         base.LoadData(data);
         
-        if (!data.Contains("isCinematicsEnabled")) return;
-        isCinematicsEnabled = Convert.ToBoolean(data["isCinematicsEnabled"]);
+        if (!data.ContainsKey("isCinematicsEnabled")) return;
+        isCinematicsEnabled = data["isCinematicsEnabled"].AsBool();
         
         if (!isCinematicsEnabled) return;
         
         for (var i = 0; i < cinematicList.Count; i++)
         {
-            if (!Convert.ToBoolean(data[$"isCinematic{i}Enabled"])) continue;
+            if (!data[$"isCinematic{i}Enabled"].AsBool()) continue;
             cinematicList[i].Connect(PathBase.SignalName.Finished, new Callable(this, nameof(OnCinematicFinished)));
         }
         
-        finishedCinematics = Convert.ToInt32(data["finishedCinematics"]);
+        finishedCinematics = data["finishedCinematics"].AsInt32();
     }
 
     protected override void DeleteTrigger()

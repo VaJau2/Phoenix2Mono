@@ -72,10 +72,10 @@ public partial class MenuBase : Control
 
     private async void ChangeDownLabel() 
     {
-        downLabel.PercentVisible = 0;
-        while(downLabel.PercentVisible < 1) 
+        downLabel.VisibleRatio = 0;
+        while(downLabel.VisibleRatio < 1) 
         {
-            downLabel.PercentVisible += 0.1f;
+            downLabel.VisibleRatio += 0.1f;
             await global.ToTimer(0.01f, this, true);
         }
     }
@@ -119,7 +119,7 @@ public partial class MenuBase : Control
     {
         if (downLabelTimer > 0) 
         {
-            downLabelTimer -= delta;
+            downLabelTimer -= (float)delta;
         } 
         else 
         {

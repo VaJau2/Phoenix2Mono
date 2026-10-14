@@ -92,7 +92,7 @@ public partial class Player_Unicorn : Player
 
         if (Mana < MANA_MAX)
         {
-            Mana += MANA_SPEED * delta * (1 / ManaDelta) * (1 - GetDamageBlock());
+            Mana += MANA_SPEED * (float)delta * (1 / ManaDelta) * (1 - GetDamageBlock());
         }
     }
 
@@ -234,14 +234,14 @@ public partial class Player_Unicorn : Player
     {
         base.LoadData(data);
 
-        if (data.Contains("mana"))
+        if (data.ContainsKey("mana"))
         {
-            Mana = Convert.ToSingle(data["mana"]);
+            Mana = data["mana"].AsSingle();
         }
 
-        if (data.Contains("inside"))
+        if (data.ContainsKey("inside"))
         {
-            teleportInside = Convert.ToBoolean(data["inside"]);
+            teleportInside = data["inside"].AsBool();
         }
     }
 }

@@ -23,7 +23,7 @@ public partial class RotateCinematic : PathBase
     public override void _PhysicsProcess(double delta)
     {
         if (!isFinished) base._PhysicsProcess(delta);
-        cutscene.GetCamera().LookAt(target.GlobalPosition, Vector3.Up);
+        cutscene.GetCamera3D().LookAt(target.GlobalPosition, Vector3.Up);
     }
 
     public void SetWaiting(PathBase pathBase)

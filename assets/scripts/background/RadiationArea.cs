@@ -14,7 +14,7 @@ public partial class RadiationArea : Area3D
         
         if (tempTimer > 0)
         {
-            tempTimer -= delta;
+            tempTimer -= (float)delta;
             return;
         }
         

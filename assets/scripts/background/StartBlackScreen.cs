@@ -45,7 +45,7 @@ public partial class StartBlackScreen : CanvasLayer, ISavable
         if (blackScreen.Color.A > 0 && !done)
         {
             blackScreen.Color = new Color(blackScreen.Color,
-                blackScreen.Color.A - SPEED * delta
+                blackScreen.Color.A - SPEED * (float)delta
             );
         }
         else

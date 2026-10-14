@@ -10,7 +10,7 @@ public partial class Radiostation : Node
 	private List<AudioStream> defaultSongs = new ();
 
 	[Export] private bool randomize = true;
-	[Export] private List<AudioStream> scriptSongs = new ();
+	[Export] private Godot.Collections.Array<AudioStream> scriptSongs = new ();
 	
 	private List<AudioStream> songs = new ();
 
@@ -35,7 +35,7 @@ public partial class Radiostation : Node
 
 	public override void _Process(double delta)
     {
-		timer += delta;
+		timer += (float)delta;
 		if (timer >= song.GetLength())
         {
 			timer = 0;
@@ -46,7 +46,7 @@ public partial class Radiostation : Node
 	public void Initialize()
     {
 		defaultSongsNode = GetNode("Default Songs");
-		var defaultSongsArray = defaultSongsNode.Get("songs") as Godot.Collections.Array;
+		var defaultSongsArray = defaultSongsNode.Get("songs").AsArrayOrNull();
 		
 		foreach (AudioStream defaultSong in defaultSongsArray)
         {
@@ -56,7 +56,7 @@ public partial class Radiostation : Node
 		if (randomize)
         {
 			defaultSongs = Randomize(defaultSongs);
-			if (scriptSongs != null) scriptSongs = Randomize(scriptSongs);
+			if (scriptSongs != null) scriptSongs = new Godot.Collections.Array<AudioStream>(Randomize(scriptSongs));
 		}
 
 		if (scriptSongs != null) songs.AddRange(scriptSongs);
@@ -68,7 +68,7 @@ public partial class Radiostation : Node
 		timer = random.Next(0, (int)song.GetLength());
 	}
 
-	private List<AudioStream> Randomize(List<AudioStream> playlist)
+	private List<AudioStream> Randomize(IList<AudioStream> playlist)
 	{
 		var newPlaylist = new List<AudioStream>();
 		var random = new Random();

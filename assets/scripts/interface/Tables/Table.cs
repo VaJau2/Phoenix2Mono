@@ -39,9 +39,10 @@ public partial class Table : VBoxContainer
     public Button SpawnButton(FileTableLine fileData)
     {
         var newButton = new Button {Name = buttonsCount.ToString()};
-        newButton.Connect("pressed", this, nameof(_on_table_button_click), new Godot.Collections.Array() {newButton.Name});
+        var buttonName = newButton.Name.ToString();
+        newButton.Pressed += () => _on_table_button_click(buttonName);
         newButton.ToggleMode = true;
-        newButton.Align = Button.TextAlign.Left;
+        newButton.Alignment = HorizontalAlignment.Left;
         newButton.Theme = buttonsTheme;
         newButton.AddToGroup("ignore_color");
         newButton.Text = GetLine(fileData.name, fileData.date, 
@@ -75,14 +76,14 @@ public partial class Table : VBoxContainer
         if (IsInstanceValid(foundButton))
         {
             if (foundButton == tempButton) return true;
-            foundButton.Pressed = true;
-            if (IsInstanceValid(tempButton)) tempButton.Pressed = false;
+            foundButton.ButtonPressed = true;
+            if (IsInstanceValid(tempButton)) tempButton.ButtonPressed = false;
             tempButton = foundButton;
             return true;
         }
 
         if (!IsInstanceValid(tempButton)) return false;
-        tempButton.Pressed = false;
+        tempButton.ButtonPressed = false;
         tempButton = null;
         return false;
     }
@@ -111,7 +112,7 @@ public partial class Table : VBoxContainer
         SpawnButtons();
     }
 
-    public FileTableLine GetTempFileData => filesArray[Convert.ToInt32(tempButton.Name)];
+    public FileTableLine GetTempFileData => filesArray[Convert.ToInt32(tempButton.Name.ToString())];
 
     private Button FindButton(string saveName)
     {
@@ -185,7 +186,7 @@ public partial class Table : VBoxContainer
     public void _on_table_button_click(string buttonName)
     {
         if (IsInstanceValid(tempButton)) {
-            tempButton.Pressed = false;
+            tempButton.ButtonPressed = false;
         }
 
         tempButton = GetNodeOrNull<Button>(buttonName);

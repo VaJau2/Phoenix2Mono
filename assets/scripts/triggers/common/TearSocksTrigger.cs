@@ -27,9 +27,9 @@ public partial class TearSocksTrigger : Node
     {
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         
-        if (saveNode.SavedVariables.Contains("tornSocks"))
+        if (saveNode.SavedVariables.ContainsKey("tornSocks"))
         {
-            var tornSocks = Convert.ToBoolean(saveNode.SavedVariables["tornSocks"]);
+            var tornSocks = saveNode.SavedVariables["tornSocks"].AsBool();
             
             if (tornSocks)
             {
@@ -46,7 +46,7 @@ public partial class TearSocksTrigger : Node
         if (itemCode != "stealthArmor") return;
 
         var audioPlayer = player.GetAudi(true);
-        audioPlayer.Connect("finished", this, nameof(Comment));
+        audioPlayer.Connect("finished", new Callable(this, nameof(Comment)));
         audioPlayer.Stream = tearSound;
         audioPlayer.Play();
     }

@@ -82,13 +82,13 @@ public partial class PlayerWeapons : CollisionShape3D
                     RotationDegrees = player.RotationHelper.RotationDegrees;
                 }
 
-                if (Input.IsMouseButtonPressed(1) && cooldown <= 0)
+                if (Input.IsMouseButtonPressed(MouseButton.Left) && cooldown <= 0)
                 {
                     if (!onetimeShoot) HandleShoot();
                 }
             }
 
-            if (cooldown > 0) cooldown -= delta;
+            if (cooldown > 0) cooldown -= (float)delta;
         }
     }
     
@@ -100,7 +100,7 @@ public partial class PlayerWeapons : CollisionShape3D
 
         //грузим статистику оружия
         tempWeaponStats = weaponData;
-        isPistol = weaponData.Contains("isPistol");
+        isPistol = weaponData.ContainsKey("isPistol");
         Disabled = !isPistol || global.playerRace == Race.Unicorn;
 
         var shootSoundPath = "res://assets/audio/guns/shoot/" + weaponCode + ".wav";
@@ -239,7 +239,7 @@ public partial class PlayerWeapons : CollisionShape3D
     
     public float GetStatsFloat(string statsName) => Global.ParseFloat(tempWeaponStats[statsName].ToString());
 
-    public bool IsShootingWeapon => tempWeaponStats.Contains("ammoType");
+    public bool IsShootingWeapon => tempWeaponStats.ContainsKey("ammoType");
 
     private void LoadGunEffects()
     {
@@ -275,7 +275,7 @@ public partial class PlayerWeapons : CollisionShape3D
                 if (tempShake < recoil)
                 {
                     tempShake += SHAKE_SPEED;
-                    Camera3D camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3D();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
                         camera.RotationDegrees.X + SHAKE_SPEED
@@ -292,7 +292,7 @@ public partial class PlayerWeapons : CollisionShape3D
                 {
                     var diff = SHAKE_SPEED * SHAKE_DIFF;
                     tempShake -= diff;
-                    Camera3D camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3D();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
                         camera.RotationDegrees.X - SHAKE_SPEED * SHAKE_DIFF
@@ -305,7 +305,7 @@ public partial class PlayerWeapons : CollisionShape3D
                 }
             }
 
-            await player.ToSignal(player.GetTree(), "idle_frame");
+            await player.ToSignal(player.GetTree(), SceneTree.SignalName.ProcessFrame);
         }
     }
 
@@ -316,10 +316,10 @@ public partial class PlayerWeapons : CollisionShape3D
         {
             case Character character:
             {
-                if (character.Name.Contains("target") ||
-                    character.Name.Contains("roboEye") ||
-                    character.Name.Contains("mrGutsy") || 
-                    character.Name.Contains("assistant"))
+                if (character.Name.ToString().Contains("target") ||
+                    character.Name.ToString().Contains("roboEye") ||
+                    character.Name.ToString().Contains("mrGutsy") || 
+                    character.Name.ToString().Contains("assistant"))
                 {
                     name = "black";
                 }
@@ -328,19 +328,19 @@ public partial class PlayerWeapons : CollisionShape3D
                     name = "blood";
                 }
 
-                character.CheckShotgunShot(tempWeaponStats.Contains("isShotgun"));
+                character.CheckShotgunShot(tempWeaponStats.ContainsKey("isShotgun"));
                 player.MakeDamage(character, shapeID);
                 ShowCrossHitted(shapeID != 0);
                 break;
             } 
             
-            case PhysicalBone:
+            case PhysicalBone3D:
             {
                 name = "blood";
                 break;
             }
             
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 if (body.PhysicsMaterialOverride != null)
                 {
@@ -443,7 +443,7 @@ public partial class PlayerWeapons : CollisionShape3D
 
         //обрабатываем попадания
             
-        if (tempWeaponStats.Contains("isShotgun"))
+        if (tempWeaponStats.ContainsKey("isShotgun"))
         {
             player.impulse = player.RotationHelper.GlobalTransform.Basis.Z / 2;
         }
@@ -461,7 +461,7 @@ public partial class PlayerWeapons : CollisionShape3D
             var shapeId = tempRay.GetColliderShape();
             var matName = "box";
                     
-            if (tempWeaponStats.Contains("bullet"))
+            if (tempWeaponStats.ContainsKey("bullet"))
             {
                 SpawnBullet(tempRay.GetCollisionPoint());
             }
@@ -477,7 +477,7 @@ public partial class PlayerWeapons : CollisionShape3D
                 obj.Name
             );
         }
-        else if (tempWeaponStats.Contains("bullet"))
+        else if (tempWeaponStats.ContainsKey("bullet"))
         {
             SpawnBullet();
         }
@@ -489,7 +489,7 @@ public partial class PlayerWeapons : CollisionShape3D
         await global.ToTimer(0.06f);
         SetGunEffects(false);
 
-        if (!tempWeaponStats.Contains("isSilence"))
+        if (!tempWeaponStats.ContainsKey("isSilence"))
         {
             enemiesManager.LoudShoot(GetStatsInt("shootDistance") * 0.8f, player);
         }
@@ -504,7 +504,7 @@ public partial class PlayerWeapons : CollisionShape3D
     {
         var tempDistance = GetStatsInt("shootDistance");
         Dictionary armorProps = player.Inventory.GetArmorProps();
-        if (armorProps.Contains("shootDistPlus"))
+        if (armorProps.ContainsKey("shootDistPlus"))
         {
             tempDistance += int.Parse(armorProps["shootDistPlus"].ToString());
         }

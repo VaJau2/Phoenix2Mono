@@ -11,7 +11,7 @@ public partial class PowerArmorFactory : IAudioEffectsFactory
     public Dictionary<string, AudioEffect> CreateEffects()
     {
         var notchFilter = new AudioEffectNotchFilter();
-        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12db;
+        notchFilter.Db = AudioEffectFilter.FilterDB.Filter12Db;
         notchFilter.Resonance = 0.4f;
         notchFilter.CutoffHz = 1000;
 

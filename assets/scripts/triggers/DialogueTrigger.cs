@@ -52,7 +52,7 @@ public partial class DialogueTrigger : TriggerBase
     {
         if (tempTimer > 0)
         {
-            tempTimer -= delta;
+            tempTimer -= (float)delta;
             return;
         }
 
@@ -205,12 +205,12 @@ public partial class DialogueTrigger : TriggerBase
     {
         base.LoadData(data);
         
-        if (data.Contains("tempTimer"))
+        if (data.ContainsKey("tempTimer"))
         {
-            tempTimer = Convert.ToSingle(data["tempTimer"]);
+            tempTimer = data["tempTimer"].AsSingle();
         }
         
-        step = Convert.ToInt16(data["step"]);
+        step = data["step"].AsInt16();
         if (step > 0)
         {
             _on_activate_trigger();

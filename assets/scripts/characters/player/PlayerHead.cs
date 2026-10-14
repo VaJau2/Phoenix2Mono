@@ -20,7 +20,7 @@ public partial class PlayerHead : MeshInstance3D
 
     public void FindFaceMaterial()
     {
-        int count = GetSurfaceMaterialCount();
+        int count = GetSurfaceOverrideMaterialCount();
         for (int i = 0; i < count; i++)
         {
             StandardMaterial3D tempMaterial = Mesh.SurfaceGetMaterial(i) as StandardMaterial3D;
@@ -149,12 +149,12 @@ public partial class PlayerHead : MeshInstance3D
         {
             if (player != null && player.Health > 0)
             {
-                if (shyTimer > 0) shyTimer -= delta;
+                if (shyTimer > 0) shyTimer -= (float)delta;
                 else ShyOff();
 
                 if (closedTimer > 0)
                 {
-                    closedTimer -= delta;
+                    closedTimer -= (float)delta;
                 }
                 else
                 {

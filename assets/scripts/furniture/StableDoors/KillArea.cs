@@ -20,7 +20,7 @@ namespace Phoenix2Mono.assets.scripts.furniture.StableDoors
             if (bodyHere == null || !IsInstanceValid(bodyHere)) return;
             if (timer > 0)
             {
-                timer -= delta;
+                timer -= (float)delta;
             }
             else
             {

@@ -27,7 +27,7 @@ public partial class GunParticles : Node3D
         {
             if (timerParts > 0)
             {
-                timerParts -= delta;
+                timerParts -= (float)delta;
             }
             else
             {
@@ -40,7 +40,7 @@ public partial class GunParticles : Node3D
         {
             if (timerSelf > 0)
             {
-                timerSelf -= delta;
+                timerSelf -= (float)delta;
             }
             else
             {
@@ -54,7 +54,7 @@ public partial class GunParticles : Node3D
         parts = GetNode<GpuParticles3D>("Particles");
         parts.ProcessMaterial.Set("direction", direction);
         
-        if (!string.IsNullOrEmpty(materialName) && materials.Contains(materialName))
+        if (!string.IsNullOrEmpty(materialName) && materials.ContainsKey(materialName))
         {
             parts.DrawPass1.SurfaceSetMaterial(0, (Material)materials[materialName]);
             parts.Emitting = true;

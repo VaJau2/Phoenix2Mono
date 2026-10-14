@@ -30,14 +30,14 @@ public partial class Canvas : CanvasLayer
     {
         if (timer > 0)
         {
-            timer -= delta;
+            timer -= (float)delta;
             return;
         }
 
         if (blackScreen.Color.A > 0)
         {
             var oldColor = blackScreen.Color;
-            oldColor.A -= SPEED * delta;
+            oldColor.A -= SPEED * (float)delta;
             blackScreen.Color = oldColor;
             return;
         }

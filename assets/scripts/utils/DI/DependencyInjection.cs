@@ -22,8 +22,8 @@ public static class DependencyInjection
         for (var i = 0; i < parameters.Length; i++)
         {
             var parameterType = classParameters[i].ParameterType.Name;
-            parameters[i] = classes.Contains(parameterType)
-                ? classes[parameterType]
+            parameters[i] = classes.ContainsKey(parameterType)
+                ? classes[parameterType].AsGodotObject()
                 : null;
         }
 

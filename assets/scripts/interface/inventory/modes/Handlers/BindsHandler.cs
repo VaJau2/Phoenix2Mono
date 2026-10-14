@@ -53,7 +53,7 @@ public class BindsHandler
         
         for (int i = 0; i < 10; i++)
         {
-            if (!Input.IsKeyPressed(48 + i)) continue;
+            if (!Input.IsKeyPressed((Key)(48 + i))) continue;
             BindButtonWithKey(tempButton, i);
         }
     }

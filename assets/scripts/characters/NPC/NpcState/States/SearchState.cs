@@ -40,7 +40,7 @@ public partial class SearchState(
     {
         if (searchTimer > 0 && weapons.HasWeapon)
         {
-            searchTimer -= delta;
+            searchTimer -= (float)delta;
         }
         else
         {
@@ -66,6 +66,6 @@ public partial class SearchState(
 
     public void LoadData(Dictionary data)
     {
-        lastSeePos = data["lastSeePos"] as Vector3? ?? default;
+        lastSeePos = data.ContainsKey("lastSeePos") ? data["lastSeePos"].ToString().ParseToVector3() : default;
     }
 }

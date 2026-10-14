@@ -80,7 +80,7 @@ public partial class MentatsEffect : Effect
         {
             shader.SetShaderParameter("alpha", tempAlpha);
             tempAlpha += 0.02f;
-            await player.ToSignal(player.GetTree(), "idle_frame");
+            await player.ToSignal(player.GetTree(), SceneTree.SignalName.ProcessFrame);
         }
     }
 
@@ -90,7 +90,7 @@ public partial class MentatsEffect : Effect
         {
             shader.SetShaderParameter("alpha", tempAlpha);
             tempAlpha -= 0.02f;
-            await player.ToSignal(player.GetTree(), "idle_frame");
+            await player.ToSignal(player.GetTree(), SceneTree.SignalName.ProcessFrame);
         }
 
         colorRect.Visible = false;

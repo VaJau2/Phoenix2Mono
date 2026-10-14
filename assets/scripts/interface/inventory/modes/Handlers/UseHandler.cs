@@ -37,9 +37,9 @@ public class UseHandler
 
         loadingIcon = menu.GetNode<Control>("helper/back/loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished)))
+        if (!loadingAnim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.IconAnimFinished))))
         {
-            loadingAnim.Connect("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished));
+            loadingAnim.Connect("animation_finished", new Callable(menu, nameof(InventoryMenu.IconAnimFinished)));
         }
 
         var wearBack = menu.GetNode<Control>("helper/back/wearBack");
@@ -78,7 +78,7 @@ public class UseHandler
         
         Player.EmitSignal(Player.SignalName.UseItem, tempButton.myItemCode);
 
-        var itemType = (ItemType)mode.tempItemData["type"];
+        var itemType = (ItemType)(int)mode.tempItemData["type"];
         if (Inventory.ItemIsUsable(itemType)) 
         {
             switch(itemType) 
@@ -210,11 +210,11 @@ public class UseHandler
     {
         if (mode.tempItemData == null || mode.tempItemData.Count == 0) return false;
         
-        var itemType = (ItemType)mode.tempItemData["type"];
+        var itemType = (ItemType)(int)mode.tempItemData["type"];
         if (itemType != ItemType.artifact || Inventory.artifact == "") return true;
         
         var artifactData = ItemJSON.GetItemData(Inventory.artifact);
-        if (!artifactData.Contains("cantUnwear")) return true;
+        if (!artifactData.ContainsKey("cantUnwear")) return true;
         
         Inventory.MessageCantUnwear(artifactData["name"].ToString());
         return false;
@@ -222,7 +222,7 @@ public class UseHandler
     
     public void DropTempItem() 
     {
-        if (mode.tempItemData.Contains("questItem"))
+        if (mode.tempItemData.ContainsKey("questItem"))
         {
             Inventory.MessageCantDrop(mode.tempItemData["name"].ToString());
             return;

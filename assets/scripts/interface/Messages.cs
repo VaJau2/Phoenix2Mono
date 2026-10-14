@@ -22,13 +22,13 @@ public partial class Messages : VBoxContainer, ISavable
         }
         
         await global.ToTimer(time, null, true);
-        var tempA = label.GetColor("font_color").A;
+        var tempA = label.GetThemeColor("font_color").A;
         
         while (tempA > 0)
         {
             tempA -= 0.1f;
-            label.AddColorOverride("font_color", new Color(1, 1, 1, tempA));
-            label.AddColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
+            label.AddThemeColorOverride("font_color", new Color(1, 1, 1, tempA));
+            label.AddThemeColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
             await global.ToTimer(0.05f, null, true);
         }
 
@@ -48,10 +48,10 @@ public partial class Messages : VBoxContainer, ISavable
             tempA
         );
 
-        tempLabel.Autowrap = true;
+        tempLabel.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         tempLabel.Text = text;
         tempLabel.Theme = tempTheme;
-        tempLabel.Align = Label.AlignEnum.Left;
+        tempLabel.HorizontalAlignment = HorizontalAlignment.Left;
         AddChild(tempLabel);
         return tempLabel;
     }
@@ -170,13 +170,13 @@ public partial class Messages : VBoxContainer, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("tasksCount")) return;
-        var tasksCount = Convert.ToInt32(data["tasksCount"]);
+        if (!data.ContainsKey("tasksCount")) return;
+        var tasksCount = data["tasksCount"].AsInt32();
         currentTaskLinks.Clear();
         
         for (int i = 0; i < tasksCount; i++)
         {
-            if (data[$"task{i}"] != null)
+            if (!data[$"task{i}"].IsNull())
             {
                 currentTaskLinks.Add(data[$"task{i}"].ToString());
             }

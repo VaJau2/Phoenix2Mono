@@ -78,13 +78,13 @@ public class Settings
     {
         shadows = settingNum;
         var tempShadowSetting = shadowSettings[settingNum];
-        root.ShadowAtlasSize = tempShadowSetting;
+        root.PositionalShadowAtlasSize = tempShadowSetting;
     }
 
     public void SetFullscreen(bool on)
     {
         fullscreen = on;
-        OS.WindowFullscreen = on;
+        DisplayServer.WindowSetMode(on ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
     }
 
     public Settings(Node node) {
@@ -107,7 +107,7 @@ public class Settings
         config.SetValue("screen", "fullscreen", fullscreen);
         config.SetValue("screen", "cameraAngle", cameraAngle);
         config.SetValue("screen", "language", InterfaceLang.GetLang());
-        var screenSize = OS.WindowSize;
+        var screenSize = DisplayServer.WindowGetSize();
         config.SetValue("screen", "width", screenSize.X);
         config.SetValue("screen", "height", screenSize.Y);
         config.SetValue("screen", "color", interfaceColor);
@@ -134,7 +134,7 @@ public class Settings
             mouseSensivity = (float)config.GetValue("controls", "mouse_sensivity");
             foreach(string action in controlActions) {
                 string key = config.GetValue("controls", action).ToString();
-                var keyCode = (uint)OS.FindScancodeFromString(key);
+                var keyCode = OS.FindKeycodeFromString(key);
                 var newEvent = new InputEventKey();
                 newEvent.Keycode = keyCode;
 
@@ -152,7 +152,7 @@ public class Settings
             var screenSize = new Vector2();
             screenSize.X = (float)config.GetValue("screen", "width");
             screenSize.Y = (float)config.GetValue("screen", "height");
-            OS.WindowSize = screenSize;
+            DisplayServer.WindowSetSize((Vector2I)screenSize);
 
             interfaceColor = (Color)config.GetValue("screen", "color");
 

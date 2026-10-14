@@ -4,7 +4,7 @@ using Godot;
 
 public partial class DamageTrigger : ActivateOtherTrigger
 {
-    [Export] private List<string> characterPaths;
+    [Export] private Godot.Collections.Array<string> characterPaths;
 
     public override void _Ready()
     {

@@ -25,7 +25,7 @@ public partial class RoboEyeIdleState(
             return;
         }
         
-        if (patroling.IsWaiting(delta))
+        if (patroling.IsWaiting((float)delta))
         {
             return;
         }

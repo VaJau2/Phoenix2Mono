@@ -103,7 +103,7 @@ public partial class MoveNpcToDoorTrigger: ActivateOtherTrigger
     public override void LoadData(Dictionary data)
     {
         base.LoadData(data);
-        step = Convert.ToInt16(data["step"]);
+        step = data["step"].AsInt16();
         if (step > 0)
         {
             SetActive(true);

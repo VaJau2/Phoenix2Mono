@@ -19,18 +19,18 @@ public partial class PathBase : Path3D, ISavable
     
     public override void _PhysicsProcess(double delta)
     {
-        var newOffset = pathFollow.UnitOffset + speed * delta;
+        var newOffset = pathFollow.ProgressRatio + speed * (float)delta;
         
         if (newOffset < 1f)
         {
-            pathFollow.UnitOffset = newOffset;
+            pathFollow.ProgressRatio = newOffset;
         }
         else Disable();
     }
 
     public virtual void Enable()
     {
-        pathFollow.UnitOffset = 0;
+        pathFollow.ProgressRatio = 0;
         pathFollow.Rotation = Vector3.Zero;
         SetPhysicsProcess(true);
     }
@@ -45,7 +45,7 @@ public partial class PathBase : Path3D, ISavable
     {
         return new Dictionary
         {
-            { "unitOffset", pathFollow.UnitOffset },
+            { "unitOffset", pathFollow.ProgressRatio },
             { "rotation", pathFollow.Rotation },
             { "isProcess", IsPhysicsProcessing() }
         };
@@ -53,11 +53,11 @@ public partial class PathBase : Path3D, ISavable
 
     public virtual void LoadData(Dictionary data)
     {
-        if (!data.Contains("isProcess")) return;
-        if (!Convert.ToBoolean(data["isProcess"])) return;
+        if (!data.ContainsKey("isProcess")) return;
+        if (!data["isProcess"].AsBool()) return;
         
         Enable();
-        pathFollow.UnitOffset = (float)data["unitOffset"];
+        pathFollow.ProgressRatio = (float)data["unitOffset"];
         pathFollow.Rotation = data["rotation"].ToString().ParseToVector3();
     }
 }

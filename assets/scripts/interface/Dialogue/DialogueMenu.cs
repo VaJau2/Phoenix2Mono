@@ -74,8 +74,8 @@ public partial class DialogueMenu : Control, IMenu, ISavable
             return;
         }
         
-        UpdateAnswerCooldown(delta);
-        UpdateAnimatingText(delta);
+        UpdateAnswerCooldown((float)delta);
+        UpdateAnimatingText((float)delta);
     }
     
     public void StartTalkingTo(NPC newNpc)
@@ -84,7 +84,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
         //прим. - меню терминала, которое имеет mustBeClosed = false
         if (MenuManager.SomeMenuOpen)
         {
-            if (MenuManager.openedMenu is Object && IsInstanceValid(MenuManager.openedMenu as Object))
+            if (MenuManager.openedMenu is GodotObject && IsInstanceValid(MenuManager.openedMenu as GodotObject))
             {
                 MenuManager.CloseMenu(MenuManager.openedMenu);
             }
@@ -113,7 +113,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
         var lang = InterfaceLang.GetLang();
         var path = "assets/dialogues/" + lang + "/" + GetNpcName(npc) + "/" + npc.dialogueCode + ".json";
         
-        nodes = Global.LoadJsonFile(path)["nodes"] as Dictionary;
+        nodes = Global.LoadJsonFile(path)["nodes"].AsDictionaryOrNull();
         
         if (nodes == null) return;
         
@@ -149,7 +149,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
             return;
         }
 
-        tempNode = nodes[code] as Dictionary;
+        tempNode = nodes[code].AsDictionaryOrNull();
         if (tempNode == null) return;
         
         switch (tempNode["kind"].ToString()) 
@@ -173,7 +173,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
 
                 dialogueAudio.LoadCharacter(
                     GetNpcName(npc), npc.dialogueCode, 
-                    tempNode.Contains("config") ? tempNode["config"].ToString() : null
+                    tempNode.ContainsKey("config") ? tempNode["config"].ToString() : null
                 );
                 dialogueAudio.TryToPlayAudio(code);
                 break;
@@ -191,11 +191,11 @@ public partial class DialogueMenu : Control, IMenu, ISavable
                 
                 string parameter = null;
                 string key = null;
-                if (tempNode.Contains("set")) 
+                if (tempNode.ContainsKey("set")) 
                 {
-                    if (tempNode["set"] is Array paramsArray)
+                    if (tempNode["set"].AsArrayOrNull() is Array paramsArray)
                     {
-                        if (paramsArray[0] is Dictionary paramsDict)
+                        if (paramsArray[0].AsDictionaryOrNull() is Dictionary paramsDict)
                         {
                             parameter = paramsDict["value"].ToString();
                             key = paramsDict["key"].ToString();
@@ -224,7 +224,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
                 }
 
                 //после выполнения скрипта сразу отправляемся на следующий нод
-                if (tempNode.Contains("next"))
+                if (tempNode.ContainsKey("next"))
                 {
                     MoveToNode(tempNode["next"].ToString());
                     return;
@@ -356,7 +356,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
 
         text.Text += MakeSpacesString(cleanAnimatingText);
         
-        symbolDelay = animatingAnswerNum == -1 && tempNode.Contains("timer")
+        symbolDelay = animatingAnswerNum == -1 && tempNode.ContainsKey("timer")
             ? Global.ParseFloat(tempNode["timer"].ToString())
             : DialogueDelay.DEFAULT_SYMBOL_DELAY;
     }
@@ -390,25 +390,25 @@ public partial class DialogueMenu : Control, IMenu, ISavable
             answerText.Clear();
             mayAnswer = true;
         
-            if (tempNode.Contains("options")) 
+            if (tempNode.ContainsKey("options")) 
             {
-                if (!(tempNode["options"] is Array options)) return;
+                if (!(tempNode["options"].AsArrayOrNull() is Array options)) return;
                 for (int i = 0; i < answers.Length; i++) 
                 {
                     if (i < options.Count) 
                     {
-                        var option = options[i] as Dictionary;
+                        var option = options[i].AsDictionaryOrNull();
                         if (option == null) continue;
                         var optionCode = option["next"].ToString();
 
-                        if (!(nodes[optionCode] is Dictionary optionNode)) continue;
+                        if (!(nodes[optionCode].AsDictionaryOrNull() is Dictionary optionNode)) continue;
                         var optionText = optionNode["body"].ToString();
 
                         answerText.Add(optionText);
                         answers[i].Text = (i + 1) + ": " + optionText;
                         answers[i].Visible = true;
 
-                        if (optionNode.Contains("next")) 
+                        if (optionNode.ContainsKey("next")) 
                         {
                             var optionNext = optionNode["next"].ToString();
                             answerCodes[i] = optionNext;
@@ -425,7 +425,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
                 answers[0].Visible = true;
                 answerText.Add(GetContinueText());
                 answers[0].Text = "1: " + GetContinueText();
-                answerCodes[0] = tempNode.Contains("next") ? tempNode["next"].ToString() : "";
+                answerCodes[0] = tempNode.ContainsKey("next") ? tempNode["next"].ToString() : "";
             }
         }
     }
@@ -497,7 +497,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
         Array tempLines = new Array {text};
         tempLines = Global.ClumpLineLength(tempLines, MAX_LINE_LENGTH);
 
-        return tempLines.Cast<string>().Aggregate(
+        return tempLines.Select(line => line.AsString()).Aggregate(
             "", 
             (current, temp) => current + (temp + "\n")
         );
@@ -512,16 +512,16 @@ public partial class DialogueMenu : Control, IMenu, ISavable
 
         switch (eventKey.Keycode)
         {
-            case (uint)Key.Key1:
+            case Key.Key1:
                 _on_answer_pressed(0);
                 break;
-            case (uint)Key.Key2:
+            case Key.Key2:
                 _on_answer_pressed(1);
                 break;
-            case (uint)Key.Key3:
+            case Key.Key3:
                 _on_answer_pressed(2);
                 break;
-            case (uint)Key.Key4:
+            case Key.Key4:
                 _on_answer_pressed(3);
                 break;
         }
@@ -538,7 +538,7 @@ public partial class DialogueMenu : Control, IMenu, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (!data.Contains("currentCode")) return;
+        if (!data.ContainsKey("currentCode")) return;
         
         currentCode = (string) data["currentCode"];
         

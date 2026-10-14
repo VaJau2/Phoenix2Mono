@@ -5,7 +5,7 @@ public partial class Credits : Control
 {
     private const float TIMER_COOLDOWN = 3f;
     
-    private Array titles;
+    private Array<Node> titles;
     private int step;
 
     private AnimationPlayer anim;
@@ -21,7 +21,7 @@ public partial class Credits : Control
         MenuBase.LoadColorForChildren(this);
 
         anim = GetNode<AnimationPlayer>("Animator");
-        anim.Connect("animation_finished", this, nameof(NextCredit));
+        anim.Connect("animation_finished", new Callable(this, nameof(NextCredit)));
 
         skip = GetNode<Label>("Skip");
         skipAnim = skip.GetNode<AnimationPlayer>("anim");
@@ -49,7 +49,7 @@ public partial class Credits : Control
 
     public override void _Process(double delta)
     {
-        timer += delta;
+        timer += (float)delta;
 
         if (timer < TIMER_COOLDOWN) return;
         

@@ -39,7 +39,7 @@ public partial class ShellsManager : Node3D, ISavable
     {
         foreach(string shellName in data.Keys)
         {
-            if (data[shellName] is Dictionary shellData)
+            if (data[shellName].AsDictionaryOrNull() is Dictionary shellData)
             {
                 CallDeferred(nameof(LoadShell), shellData);
             }
@@ -50,10 +50,10 @@ public partial class ShellsManager : Node3D, ISavable
     {
         Vector3 newPos = shellData["pos"].ToString().ParseToVector3();
         Vector3 newRot = shellData["rot"].ToString().ParseToVector3();
-        float scaleValue = Convert.ToSingle(shellData["scale"]);
+        float scaleValue = shellData["scale"].AsSingle();
         Vector3 newScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
-        Basis newBasis = new Basis(newRot);
+        Basis newBasis = Basis.FromEuler(newRot);
         Transform3D newTransform = new Transform3D(newBasis, newPos);
 
         MeshInstance3D shell = new MeshInstance3D();
@@ -69,6 +69,6 @@ public partial class ShellsManager : Node3D, ISavable
     private static string GetMeshPath(string savedPath)
     {
         if (ResourceLoader.Exists(savedPath)) return savedPath;
-        return savedPath.BaseName() + ".tres";
+        return savedPath.GetBaseName() + ".tres";
     }
 }

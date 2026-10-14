@@ -55,7 +55,7 @@ public partial class IdleState(
             return;
         }
 
-        if (patroling.IsWaiting(delta))
+        if (patroling.IsWaiting((float)delta))
         {
             return;
         }

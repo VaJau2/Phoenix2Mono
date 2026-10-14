@@ -18,17 +18,17 @@ public partial class NpcSaving(NPC npc)
         }
         
         npc.relation = (Relation)Enum.Parse(typeof(Relation), data["relation"].ToString());
-        npc.aggressiveAgainstPlayer = Convert.ToBoolean(data["aggressiveAgainstPlayer"]);
-        npc.IsImmortal = Convert.ToBoolean(data["isImmortal"]);
+        npc.aggressiveAgainstPlayer = data["aggressiveAgainstPlayer"].AsBool();
+        npc.IsImmortal = data["isImmortal"].AsBool();
         npc.myStartPos = data["myStartPos"].ToString().ParseToVector3();
         npc.myStartRot = data["myStartRot"].ToString().ParseToVector3();
-        npc.dialogueCode = data["dialogueCode"]?.ToString();
-        npc.subtitlesCode = data["subtitlesCode"]?.ToString();
-        npc.ignoreDamager = Convert.ToBoolean(data["ignoreDamager"]);
+        npc.dialogueCode = data["dialogueCode"].AsStringOrNull();
+        npc.subtitlesCode = data["subtitlesCode"].AsStringOrNull();
+        npc.ignoreDamager = data["ignoreDamager"].AsBool();
         
         npc.ChestHandler.LoadData(data);
 
-        if (data["patrolArray"] is Godot.Collections.Array patrolArray)
+        if (data["patrolArray"].AsArrayOrNull() is Godot.Collections.Array patrolArray)
         {
             var pathArray = new Array<NodePath>();
             foreach (string item in patrolArray)
@@ -39,30 +39,39 @@ public partial class NpcSaving(NPC npc)
             npc.patrolArray = pathArray;
         }
 
-        if (data["signals"] is Godot.Collections.Array signals)
+        if (data["signals"].AsArrayOrNull() is Godot.Collections.Array signals)
         {
             foreach (Dictionary signalData in signals)
             {
                 var signalName = signalData["signal"].ToString();
                 var method = signalData["method"].ToString();
-                var binds = signalData["binds"] as Godot.Collections.Array;
+                var binds = signalData["binds"].AsArrayOrNull();
                 
+                var flags = signalData.ContainsKey("flags") ? signalData["flags"].AsUInt32() : 0;
+
                 var targetPath = signalData["target_path"].ToString();
                 var target = npc.GetNodeOrNull(targetPath);
                 if (target == null) continue;
 
-                if (!npc.IsConnected(signalName, new Callable(target, method)))
+                if (binds is { Count: > 0 })
                 {
-                    npc.Connect(signalName, target, method, binds);
+                    if (!BoundCall.IsConnected(npc, signalName, target, method))
+                    {
+                        BoundCall.Connect(npc, signalName, target, method, binds, flags);
+                    }
+                }
+                else if (!npc.IsConnected(signalName, new Callable(target, method)))
+                {
+                    npc.Connect(signalName, new Callable(target, method), flags);
                 }
             }
         }
 
-        if (data.Contains("showObjects") && data["showObjects"] is Dictionary showObjects)
+        if (data.ContainsKey("showObjects") && data["showObjects"].AsDictionaryOrNull() is Dictionary showObjects)
         {
             foreach (string objectPath in showObjects.Keys)
             {
-                bool showObject = Convert.ToBoolean(showObjects[objectPath]);
+                bool showObject = showObjects[objectPath].AsBool();
                 npc.SetObjectActive(objectPath, showObject);
             }
         }
@@ -73,7 +82,7 @@ public partial class NpcSaving(NPC npc)
             return;
         }
         
-        if (!data.Contains("followTarget") || data["followTarget"] == null) return;
+        if (!data.ContainsKey("followTarget") || data["followTarget"].IsNull()) return;
         
         LoadFollowTarget(data);
     }
@@ -109,19 +118,24 @@ public partial class NpcSaving(NPC npc)
             var connectionList = npc.GetSignalConnectionList(signalDict["name"].ToString());
             if (connectionList == null || connectionList.Count == 0) continue;
 
-            foreach (var connectionData in connectionList)
+            foreach (var connectionDict in connectionList)
             {
-                if (connectionData is not Dictionary connectionDict) continue;
-                if (connectionDict["target"] is not Node target) continue;
+                //в Godot 4 вместо target/method/binds подключение хранит Callable,
+                //а подключения с аргументами идут через BoundCall
+                var callable = connectionDict["callable"].AsCallable();
+                var boundCall = callable.Target as BoundCall;
+                var target = boundCall != null ? boundCall.Target : callable.Target as Node;
+                if (target == null || target == npc) continue;
                 var signalName = signalDict["name"].ToString();
                 if (skipSignals.Contains(signalName)) continue;
 
                 signals.Add(new Dictionary
                 {
                     {"signal", signalName},
-                    {"method", connectionDict["method"].ToString()},
+                    {"method", boundCall != null ? boundCall.Method : callable.Method},
                     {"target_path", target.GetPath()},
-                    {"binds", connectionDict["binds"]}
+                    {"binds", boundCall != null ? boundCall.Binds : new Godot.Collections.Array()},
+                    {"flags", connectionDict["flags"]}
                 });
             }
         }

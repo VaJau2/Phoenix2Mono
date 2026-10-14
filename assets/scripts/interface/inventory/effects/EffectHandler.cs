@@ -214,10 +214,10 @@ public partial class EffectHandler: Node
         {
             foreach(Effect effect in tempEffects) 
             {
-                if (!effect.Count(delta)) break;
+                if (!effect.Count((float)delta)) break;
             }
             
-            heartbeat.CheckOverdose(delta);
+            heartbeat.CheckOverdose((float)delta);
         }
     }
 }

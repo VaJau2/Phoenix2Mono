@@ -42,12 +42,12 @@ public partial class SaveNode: Node, ISavable
 
     public void LoadData(Dictionary data)
     {
-        if (data["inventory"] is Dictionary inventory)
+        if (data["inventory"].AsDictionaryOrNull() is Dictionary inventory)
         {
             InventoryData = inventory;
         }
 
-        if (data["savedVariables"] is Dictionary variables)
+        if (data["savedVariables"].AsDictionaryOrNull() is Dictionary variables)
         {
             SavedVariables = variables;
         }

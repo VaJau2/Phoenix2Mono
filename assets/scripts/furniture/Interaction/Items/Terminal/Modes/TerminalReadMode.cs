@@ -50,7 +50,7 @@ public partial class TerminalReadMode: TerminalMode {
     {
         if (keyEvent.Pressed) {
             //обрабатываем кнопку выхода
-            if (keyEvent.Keycode == (uint)Key.Backspace) {
+            if (keyEvent.Keycode == Key.Backspace) {
                 //если читается файл, выходим в список файлов
                 if (fileCode != null) {
                     fileCode = null;
@@ -67,7 +67,7 @@ public partial class TerminalReadMode: TerminalMode {
             if (fileCode == null) {
                 //обрабатываем стрелочки
                 //если нажата стрелочка вверх, перемещаем курсор вверх
-                if (keyEvent.Keycode == (uint)Key.Up) {
+                if (keyEvent.Keycode == Key.Up) {
                     if (tempChoose > 0) {
                         tempChoose--;
                     } else {
@@ -75,7 +75,7 @@ public partial class TerminalReadMode: TerminalMode {
                     }
                 }
                 //если нажата стрелочка вниз, перемещаем курсор вниз
-                if(keyEvent.Keycode == (uint)Key.Down) {
+                if(keyEvent.Keycode == Key.Down) {
                     if (tempChoose < textFiles.Count - 1) {
                         tempChoose++;
                     } else {
@@ -84,14 +84,14 @@ public partial class TerminalReadMode: TerminalMode {
                 }
 
                 //обрабатываем enter
-                if(keyEvent.Keycode == (uint)Key.Enter && textFiles.Count > 0) {
+                if(keyEvent.Keycode == Key.Enter && textFiles.Count > 0) {
                     fileCode = textFiles[tempChoose];
                 }
             } else {
-                if (keyEvent.Keycode == (uint)Key.Right) {
+                if (keyEvent.Keycode == Key.Right) {
                     TurnPage(true);
                 }
-                if (keyEvent.Keycode == (uint)Key.Left) {
+                if (keyEvent.Keycode == Key.Left) {
                     TurnPage(false);
                 }
             }
@@ -150,7 +150,7 @@ public partial class TerminalReadMode: TerminalMode {
         } 
         this.fileName = fileData["name"].ToString();
 
-        Array textLines = fileData["text"] as Array;
+        Array textLines = fileData["text"].AsArrayOrNull();
         lines = Global.ClumpLineLength(textLines, MAX_LINE_LENGTH);
         
         //считаем данные для постранички

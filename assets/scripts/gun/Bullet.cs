@@ -23,10 +23,10 @@ public partial class Bullet : Area3D
                 break;
             }
             
-            case StaticBody { PhysicsMaterialOverride: null }:
+            case StaticBody3D { PhysicsMaterialOverride: null }:
                 return;
             
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 if (body is BreakableObject obj)
                 {
@@ -62,7 +62,7 @@ public partial class Bullet : Area3D
 
         if (Timer > 0)
         {
-            Timer -= delta;
+            Timer -= (float)delta;
         }
         else
         {

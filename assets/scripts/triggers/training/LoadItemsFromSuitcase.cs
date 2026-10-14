@@ -39,17 +39,17 @@ public partial class LoadItemsFromSuitcase : TriggerBase
             Dictionary data = saveNode.InventoryData;
             
             
-            if (data.Contains("weapon"))
+            if (data.ContainsKey("weapon"))
             {
                 suitcase.ChestHandler.AddNewItem(data["weapon"].ToString());
                 suitcaseEmpty = false;
             }
-            if (data.Contains("cloth") && data["cloth"].ToString() != "empty")
+            if (data.ContainsKey("cloth") && data["cloth"].ToString() != "empty")
             {
                 suitcase.ChestHandler.AddNewItem(data["cloth"].ToString());
                 suitcaseEmpty = false;
             }
-            if (data.Contains("artifact"))
+            if (data.ContainsKey("artifact"))
             {
                 suitcase.ChestHandler.AddNewItem(data["artifact"].ToString());
                 suitcaseEmpty = false;
@@ -72,7 +72,7 @@ public partial class LoadItemsFromSuitcase : TriggerBase
                 var itemCode = itemCodes[i].ToString();
                 if (itemCode == "_") continue;
                 
-                var itemCount = Convert.ToInt32(itemCounts[i]);
+                var itemCount = itemCounts[i].AsInt32();
                 if (itemCount > 0)
                 {
                     suitcase.ChestHandler.AmmoCount.Add(itemCode, itemCount);

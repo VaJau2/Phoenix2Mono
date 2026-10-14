@@ -47,7 +47,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
             
             tempMode.SetTrader(this);
             MenuManager.TryToOpenMenu(menu);
-            menu.Connect("MenuIsClosed", this, nameof(StopTrading));
+            menu.Connect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
             isTrading = true;
         }
     }
@@ -55,7 +55,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
     public void StopTrading()
     {
         isTrading = false;
-        menu.Disconnect("MenuIsClosed", this, nameof(StopTrading));
+        menu.Disconnect("MenuIsClosed", new Callable(this, nameof(StopTrading)));
     }
 
     private void LoadTradingData()
@@ -88,7 +88,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
         Dictionary newAmmoButtonNames = (Dictionary) data["ammoButtons"];
         Dictionary newItemPositions = (Dictionary) data["itemPositions"];
 
-        moneyCount = Convert.ToInt32(data["moneyCount"]);
+        moneyCount = data["moneyCount"].AsInt32();
         
         itemCodes.Clear();
         foreach (string itemCode in newItemCodes)
@@ -99,7 +99,7 @@ public partial class NpcTrading: Node, ISavable, ITrader
         ammoCount.Clear();
         foreach (string key in newAmmoCount.Keys)
         {
-            ammoCount.Add(key, Convert.ToInt32(newAmmoCount[key]));
+            ammoCount.Add(key, newAmmoCount[key].AsInt32());
         }
         
         ammoButtons.Clear();

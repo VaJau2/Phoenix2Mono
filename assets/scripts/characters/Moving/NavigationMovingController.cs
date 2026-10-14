@@ -232,8 +232,8 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
 
     public void LoadData(Dictionary data)
     {
-        RunSpeed = Convert.ToInt16(data["runSpeed"]);
-        RunToPoint = Convert.ToBoolean(data["runToPoint"]);
+        RunSpeed = data["runSpeed"].AsInt16();
+        RunToPoint = data["runToPoint"].AsBool();
     }
 
     public override void _Process(double delta)
@@ -242,12 +242,12 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
         
         if (doorWait > 0)
         {
-            doorWait -= delta;
+            doorWait -= (float)delta;
             Stop(true);
             return;
         }
         
         HandleGravity();
-        UpdatePath(delta);
+        UpdatePath((float)delta);
     }
 }
