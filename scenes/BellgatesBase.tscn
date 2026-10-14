@@ -368,7 +368,7 @@ extents = Vector3( 0.469446, 0.279484, 0.886601 )
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.4
-height = 0.7
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id=346]
 flags_transparent = true
@@ -471,7 +471,7 @@ extents = Vector3( 0.469446, 0.279484, 0.886601 )
 
 [sub_resource type="CapsuleMesh" id=348]
 radius = 0.4
-height = 0.7
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id=209]
 flags_transparent = true
@@ -1320,7 +1320,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 2 )
 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/armor-house/props/lamp"]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 346 )
 
@@ -1372,7 +1372,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 2 )
 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/armor-house/props/lamp2"]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150375, 0.945635, 0.0530243 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150375, 0.945635, 0.0530243 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 127 )
 
@@ -1616,7 +1616,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 347 )
 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp1"]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
 material/0 = SubResource( 209 )
 
@@ -1668,7 +1668,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 347 )
 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp2"]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
 material/0 = SubResource( 210 )
 
@@ -1720,7 +1720,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 347 )
 
 [node name="mesh" type="MeshInstance3D" parent="terrain/props/houses/main-house/props/light/lamp3"]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 348 )
 material/0 = SubResource( 211 )
 

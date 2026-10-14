@@ -7,6 +7,7 @@
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 2 )
+height = 3
 
 [sub_resource type="ParticleProcessMaterial" id=2]
 emission_shape = 2
@@ -29,7 +30,7 @@ script = ExtResource( 3 )
 speed = 1.4
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.4, 0, 0, 0 )
+transform = Transform3D( 0.1, 0, 0, 0, 0, -0.1, 0, 0.4, 0, 0, 0, 0 )
 mesh = SubResource( 1 )
 
 [node name="Particles" type="Particles" parent="."]

@@ -27,39 +27,39 @@ extents = Vector3( 0.6, 0.5, 0.5 )
 
 [sub_resource type="CapsuleShape3D" id=7]
 radius = 1.1
-height = 0.36
+height = 2.56
 
 [sub_resource type="CapsuleShape3D" id=8]
 radius = 0.200047
-height = 0.002
+height = 0.402094
 
 [sub_resource type="BoxShape3D" id=75]
 extents = Vector3( 0.36, 0.36, 0.6 )
 
 [sub_resource type="CapsuleShape3D" id=10]
 radius = 0.19
-height = 0.024489
+height = 0.404489
 
 [sub_resource type="BoxShape3D" id=76]
 extents = Vector3( 0.36, 0.36, 0.6 )
 
 [sub_resource type="CapsuleShape3D" id=12]
 radius = 0.2
-height = 0.002
+height = 0.402
 
 [sub_resource type="BoxShape3D" id=77]
 extents = Vector3( 0.33, 0.38, 0.6 )
 
 [sub_resource type="CapsuleShape3D" id=14]
 radius = 0.2
-height = 0.002
+height = 0.402
 
 [sub_resource type="BoxShape3D" id=78]
 extents = Vector3( 0.33, 0.38, 0.6 )
 
 [sub_resource type="CapsuleShape3D" id=16]
 radius = 0.1844
-height = 0.847872
+height = 1.21667
 
 [sub_resource type="Image" id=79]
 data = {
@@ -5287,7 +5287,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone neck"]
-transform = Transform3D( 1, 0, 4.26326e-14, -9.66338e-13, 1, 0, 1.06581e-12, 0, 1, 9.31323e-09, -0.00677669, -0.120323 )
+transform = Transform3D( 1, 4.26326e-14, 0, -9.66338e-13, 0, -1, 1.06581e-12, 1, 0, 9.31323e-09, -0.00677669, -0.120323 )
 shape = SubResource( 7 )
 
 [node name="Physical Bone leg_1_l" type="PhysicalBone3D" parent="Armature/Skeleton"]
@@ -5308,7 +5308,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_l"]
-transform = Transform3D( 0.999999, 8.19564e-08, 1.30385e-08, -7.45058e-09, 0.999999, -1.19209e-07, 2.42144e-08, -1.78814e-07, 1, -1.78814e-07, -2.98023e-07, -0.053637 )
+transform = Transform3D( 0.999999, 1.30385e-08, -8.19564e-08, -7.45058e-09, -1.19209e-07, -0.999999, 2.42144e-08, 1, 1.78814e-07, -1.78814e-07, -2.98023e-07, -0.053637 )
 shape = SubResource( 8 )
 
 [node name="Physical Bone leg_2_l" type="PhysicalBone3D" parent="Armature/Skeleton"]
@@ -5350,7 +5350,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_r"]
-transform = Transform3D( 1, 7.45058e-09, -3.72529e-09, 7.45058e-09, 1, -4.47035e-08, 3.72529e-09, 2.98023e-08, 1, 0, 1.78814e-07, -0.0420383 )
+transform = Transform3D( 1, -3.72529e-09, -7.45058e-09, 7.45058e-09, -4.47035e-08, -1, 3.72529e-09, 1, -2.98023e-08, 0, 1.78814e-07, -0.0420383 )
 shape = SubResource( 10 )
 
 [node name="Physical Bone leg_2_r" type="PhysicalBone3D" parent="Armature/Skeleton"]
@@ -5392,7 +5392,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone b_leg_1_l"]
-transform = Transform3D( 1, -4.47035e-08, -9.31323e-10, 4.47035e-08, 1, 1.49012e-08, 9.31323e-10, 2.98023e-08, 1, -4.47035e-07, 2.98023e-07, -0.158874 )
+transform = Transform3D( 1, -9.31323e-10, 4.47035e-08, 4.47035e-08, 1.49012e-08, -1, 9.31323e-10, 1, -2.98023e-08, -4.47035e-07, 2.98023e-07, -0.158874 )
 shape = SubResource( 12 )
 
 [node name="Physical Bone b_leg_2_l" type="PhysicalBone3D" parent="Armature/Skeleton"]
@@ -5434,7 +5434,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone b_leg_1_r"]
-transform = Transform3D( 1, -7.45058e-09, -9.31323e-10, 8.19564e-08, 1, 7.45058e-08, 9.31323e-10, -4.47035e-08, 1, 0.17119, -0.0110374, -0.167921 )
+transform = Transform3D( 1, -9.31323e-10, 7.45058e-09, 8.19564e-08, 7.45058e-08, -1, 9.31323e-10, 1, 4.47035e-08, 0.17119, -0.0110374, -0.167921 )
 shape = SubResource( 14 )
 
 [node name="Physical Bone b_leg_2_r" type="PhysicalBone3D" parent="Armature/Skeleton"]
@@ -5476,7 +5476,7 @@ joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone tail_1"]
-transform = Transform3D( 1, -4.61853e-14, 1.98952e-13, -3.55271e-15, 0.958173, 0.28619, -1.84741e-13, -0.28619, 0.958173, 4.19095e-09, -0.170874, 0.0106683 )
+transform = Transform3D( 1, 1.98952e-13, 4.61853e-14, -3.55271e-15, 0.28619, -0.958173, -1.84741e-13, 0.958173, 0.28619, 4.19095e-09, -0.170874, 0.0106683 )
 shape = SubResource( 16 )
 
 [node name="BoneAttachment" type="BoneAttachment3D" parent="Armature/Skeleton"]

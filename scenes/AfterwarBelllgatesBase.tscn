@@ -724,6 +724,7 @@ agent_height = 4.0
 agent_radius = 1.4
 
 [sub_resource type="CapsuleMesh" id=80]
+height = 3
 
 [node name="Scene" type="Node"]
 
@@ -2234,11 +2235,11 @@ visible = false
 navigation_mesh = SubResource( 79 )
 
 [node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
-transform = Transform3D( -0.348327, 0, -9.9499, 0, 9.95599, 0, 9.9499, 0, -0.348327, 158.818, 0, 37.0158 )
+transform = Transform3D( -0.348327, -9.9499, 0, 0, 0, -9.95599, 9.9499, -0.348327, 0, 158.818, 0, 37.0158 )
 mesh = SubResource( 80 )
 
 [node name="MeshInstance2" type="MeshInstance3D" parent="navMesh"]
-transform = Transform3D( -0.348327, 0, -9.9499, 0, 9.95599, 0, 9.9499, 0, -0.348327, 113.11, 0, 37.0158 )
+transform = Transform3D( -0.348327, -9.9499, 0, 0, 0, -9.95599, 9.9499, -0.348327, 0, 113.11, 0, 37.0158 )
 mesh = SubResource( 80 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

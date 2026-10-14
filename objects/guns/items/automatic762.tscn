@@ -54,11 +54,11 @@ extents = Vector3( 0.085572, 0.16127, 1.34113 )
 
 [sub_resource type="CapsuleShape3D" id=11]
 radius = 0.0791291
-height = 0.749249
+height = 0.907507
 
 [sub_resource type="CapsuleShape3D" id=12]
 radius = 0.0881249
-height = 0.276961
+height = 0.453211
 
 [sub_resource type="BoxShape3D" id=13]
 extents = Vector3( 0.085572, 0.22608, 0.518598 )
@@ -89,11 +89,11 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183995, -0.663844 )
 shape = SubResource( 10 )
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="." index="5"]
-transform = Transform3D( 1, 0, 0, 0, -0.562892, -0.826531, 0, 0.826531, -0.562892, -0.00609803, -0.442726, -0.234337 )
+transform = Transform3D( 1, 0, 0, 0, -0.826531, 0.562892, 0, -0.562892, -0.826531, -0.00609803, -0.442726, -0.234337 )
 shape = SubResource( 11 )
 
 [node name="CollisionShape3" type="CollisionShape3D" parent="." index="6"]
-transform = Transform3D( 1, 0, 0, 0, -0.256711, 0.966488, 0, -0.966488, -0.256711, -0.0121958, -0.370592, 0.616964 )
+transform = Transform3D( 1, 0, 0, 0, 0.966488, 0.256711, 0, -0.256711, 0.966488, -0.0121958, -0.370592, 0.616964 )
 shape = SubResource( 12 )
 
 [node name="CollisionShape4" type="CollisionShape3D" parent="." index="7"]

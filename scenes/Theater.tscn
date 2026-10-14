@@ -507,6 +507,7 @@ agent_max_climb = 1.0
 [sub_resource type="BoxMesh" id=36]
 
 [sub_resource type="CapsuleMesh" id=39]
+height = 3
 
 [node name="Scene" type="Node"]
 
@@ -2270,12 +2271,12 @@ mesh = SubResource( 36 )
 skeleton = NodePath("")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="navMesh"]
-transform = Transform3D( 1.5, 0, 0, 0, -6.55671e-08, -3, 0, 1.5, -1.31134e-07, -10.5448, 0, -35.797 )
+transform = Transform3D( 1.5, 0, 0, 0, -3, 6.55671e-08, 0, -1.31134e-07, -1.5, -10.5448, 0, -35.797 )
 visible = false
 mesh = SubResource( 39 )
 
 [node name="MeshInstance2" type="MeshInstance3D" parent="navMesh"]
-transform = Transform3D( 0.5, 0, 0, 0, -2.18557e-08, -1, 0, 0.5, -4.37114e-08, 31.0773, 7.7093, 46.1401 )
+transform = Transform3D( 0.5, 0, 0, 0, -1, 2.18557e-08, 0, -4.37114e-08, -0.5, 31.0773, 7.7093, 46.1401 )
 visible = false
 mesh = SubResource( 39 )
 

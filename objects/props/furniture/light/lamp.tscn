@@ -15,7 +15,7 @@ extents = Vector3( 0.469446, 0.279484, 0.886601 )
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.4
-height = 0.7
+height = 1.5
 
 [sub_resource type="ParticleProcessMaterial" id=3]
 spread = 50.0
@@ -50,7 +50,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792038, 0.0434576 )
 shape = SubResource( 2 )
 
 [node name="mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 0.434409, 0, 0, 0, 1, -0.0150366, 0.945635, 0.0530213 )
+transform = Transform3D( 1, 0, 0, 0, 0, -0.434409, 0, 1, 0, -0.0150366, 0.945635, 0.0530213 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
