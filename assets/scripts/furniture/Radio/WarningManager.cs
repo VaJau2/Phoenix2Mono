@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class WarningManager : RadioManager, ISavable
+public partial class WarningManager : RadioManager, ISavable
 {
     [Export] private string systemName;
     private readonly List<Receiver> receivers = [];
@@ -39,12 +39,12 @@ public class WarningManager : RadioManager, ISavable
 
         messagePlayer = GetNode<AudioStreamPlayer3D>("Message Player");
         subtitles = GetNode<Subtitles>("/root/Main/Scene/canvas/subtitles");
-        subtitles.Connect(nameof(Subtitles.End), this, nameof(OnMessageEnd));
-        subtitles.Connect(nameof(Subtitles.ChangePhrase), this, nameof(OnAudioChange));
+        subtitles.Connect(nameof(Subtitles.End), new Callable(this, nameof(OnMessageEnd)));
+        subtitles.Connect(nameof(Subtitles.ChangePhrase), new Callable(this, nameof(OnAudioChange)));
         
         enemiesManager = GetNodeOrNull<EnemiesManager>("/root/Main/Scene/npc");
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), this, nameof(OnAlarmStart));
-        enemiesManager?.Connect(nameof(EnemiesManager.AlarmEnded), this, nameof(OnAlarmEnd));
+        enemiesManager?.Connect(nameof(EnemiesManager.AlarmStarted), new Callable(this, nameof(OnAlarmStart)));
+        enemiesManager?.Connect(nameof(EnemiesManager.AlarmEnded), new Callable(this, nameof(OnAlarmEnd)));
         
         base._Ready();
     }

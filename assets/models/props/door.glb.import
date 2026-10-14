@@ -11,7 +11,7 @@ dest_files=[ "res://.import/door.glb-c44f3ef94c15f63aa0be2273f0b0ae59.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

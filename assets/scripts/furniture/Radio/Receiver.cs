@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class Receiver : RadioBase, ISavable, IInteractable
+public partial class Receiver : RadioBase, ISavable, IInteractable
 {
 	private string model;
 
@@ -23,14 +23,14 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		U2
 	}
 
-	private Spatial l;
-	private Spatial m;
-	private Spatial k;
-	private Spatial u1;
-	private Spatial u2;
-	private Spatial arrow;
-	private Spatial frequencyLever;
-	private Spatial volumeLever;
+	private Node3D l;
+	private Node3D m;
+	private Node3D k;
+	private Node3D u1;
+	private Node3D u2;
+	private Node3D arrow;
+	private Node3D frequencyLever;
+	private Node3D volumeLever;
 
 	private Global global = Global.Get();
 	private float minRadioVolume;
@@ -48,7 +48,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 	public override void Initialize()
     {
 		var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
-		settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(UpdateVolumeLever));
+		settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), new Callable(this, nameof(UpdateVolumeLever)));
 		minRadioVolume = (float)settings.radioSlider.MinValue;
 		maxRadioVolume = (float)settings.radioSlider.MaxValue;
 
@@ -67,77 +67,77 @@ public class Receiver : RadioBase, ISavable, IInteractable
 
 	private void InitModel()
 	{
-		var hasRadio = GetNodeOrNull<Spatial>("Radio") != null;
+		var hasRadio = GetNodeOrNull<Node3D>("Radio") != null;
 		model = hasRadio ? "Radio" : "Radio Jr";
 	}
 
 	private void InitControls()
     {
-		volumeLever = GetNode<Spatial>("Volume Lever");
-		frequencyLever = GetNode<Spatial>("Frequency Lever");
+		volumeLever = GetNode<Node3D>("Volume Lever");
+		frequencyLever = GetNode<Node3D>("Frequency Lever");
 
-		l = GetNode<Spatial>("L");
-		m = GetNode<Spatial>("M");
-		k = GetNode<Spatial>("K");
-		u1 = GetNode<Spatial>("U1");
-		u2 = GetNode<Spatial>("U2");
+		l = GetNode<Node3D>("L");
+		m = GetNode<Node3D>("M");
+		k = GetNode<Node3D>("K");
+		u1 = GetNode<Node3D>("U1");
+		u2 = GetNode<Node3D>("U2");
 
 		switch (model)
 		{
 			case "Radio":
-				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
+				frequencyLever.Transform3D = Global.SetNewOrigin(frequencyLever.Transform3D, new Vector3(0.502f, frequency * 0.526f - 0.258f, -0.488f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.127f, -0.273f, -0.48f));
+						l.Transform3D = Global.SetNewOrigin(l.Transform3D, new Vector3(0.127f, -0.273f, -0.48f));
 						noiseDb = 0;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(-0.053f, -0.273f, -0.48f));
+						m.Transform3D = Global.SetNewOrigin(m.Transform3D, new Vector3(-0.053f, -0.273f, -0.48f));
 						noiseDb = -10;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(-0.233f, -0.273f, -0.48f));
+						k.Transform3D = Global.SetNewOrigin(k.Transform3D, new Vector3(-0.233f, -0.273f, -0.48f));
 						noiseDb = -20;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.413f, -0.273f, -0.48f));
+						u1.Transform3D = Global.SetNewOrigin(u1.Transform3D, new Vector3(-0.413f, -0.273f, -0.48f));
 						noiseDb = -30;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.592f, -0.273f, -0.48f));
+						u2.Transform3D = Global.SetNewOrigin(u2.Transform3D, new Vector3(-0.592f, -0.273f, -0.48f));
 						noiseDb = -40;
 						break;
 				}
 				break;
 
 			case "Radio Jr":
-				arrow = GetNode<Spatial>("Arrow");
+				arrow = GetNode<Node3D>("Arrow");
 				arrow.Rotate(Vector3.Back, (frequency * 160 + 10) * (float)(Math.PI / 180));
 
-				frequencyLever.Transform = Global.SetNewOrigin(frequencyLever.Transform, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
+				frequencyLever.Transform3D = Global.SetNewOrigin(frequencyLever.Transform3D, new Vector3(-0.58f, frequency * 0.15f + 0.19f, 0f));
 
 				switch (frequencyRange)
 				{
 					case FrequencyRange.L:
-						l.Transform = Global.SetNewOrigin(l.Transform, new Vector3(0.35f, 0.66f, 0f));
+						l.Transform3D = Global.SetNewOrigin(l.Transform3D, new Vector3(0.35f, 0.66f, 0f));
 						noiseDb = 3;
 						break;
 					case FrequencyRange.M:
-						m.Transform = Global.SetNewOrigin(m.Transform, new Vector3(0.175f, 0.66f, 0f));
+						m.Transform3D = Global.SetNewOrigin(m.Transform3D, new Vector3(0.175f, 0.66f, 0f));
 						noiseDb = -7;
 						break;
 					case FrequencyRange.K:
-						k.Transform = Global.SetNewOrigin(k.Transform, new Vector3(0f, 0.66f, 0f));
+						k.Transform3D = Global.SetNewOrigin(k.Transform3D, new Vector3(0f, 0.66f, 0f));
 						noiseDb = -17;
 						break;
 					case FrequencyRange.U1:
-						u1.Transform = Global.SetNewOrigin(u1.Transform, new Vector3(-0.175f, 0.66f, 0f));
+						u1.Transform3D = Global.SetNewOrigin(u1.Transform3D, new Vector3(-0.175f, 0.66f, 0f));
 						noiseDb = -27;
 						break;
 					case FrequencyRange.U2:
-						u2.Transform = Global.SetNewOrigin(u2.Transform, new Vector3(-0.35f, 0.66f, 0f));
+						u2.Transform3D = Global.SetNewOrigin(u2.Transform3D, new Vector3(-0.35f, 0.66f, 0f));
 						noiseDb = -37;
 						break;
 				}
@@ -159,18 +159,18 @@ public class Receiver : RadioBase, ISavable, IInteractable
 
 	public void TuneIn()
 	{
-		Radiostation?.Connect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
-		Radiostation?.Connect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
+		Radiostation?.Connect(nameof(Radiostation.SyncTimeEvent), new Callable(this, nameof(SyncTimer)));
+		Radiostation?.Connect(nameof(Radiostation.ChangeSongEvent), new Callable(this, nameof(ChangeMusic)));
 		
-		warningManager?.Disconnect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Disconnect(nameof(WarningManager.StartMessageEvent), new Callable(this, nameof(ChangeMusic)));
 	}
 
 	public void TuneOut()
 	{
-		Radiostation?.Disconnect(nameof(Radiostation.SyncTimeEvent), this, nameof(SyncTimer));
-		Radiostation?.Disconnect(nameof(Radiostation.ChangeSongEvent), this, nameof(ChangeMusic));
+		Radiostation?.Disconnect(nameof(Radiostation.SyncTimeEvent), new Callable(this, nameof(SyncTimer)));
+		Radiostation?.Disconnect(nameof(Radiostation.ChangeSongEvent), new Callable(this, nameof(ChangeMusic)));
 		
-		warningManager?.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(ChangeMusic));
+		warningManager?.Connect(nameof(WarningManager.StartMessageEvent), new Callable(this, nameof(ChangeMusic)));
 	}
 
 	public void SwitchOn(bool withSwitchSound = true, bool updateLever = true)
@@ -217,7 +217,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 	private void PlaySwitchSound()
     {
 		NoisePlayer.Stream = switchSound;
-		NoisePlayer.UnitDb = 0;
+		NoisePlayer.VolumeDb = 0;
 		NoisePlayer.Play();
 
 		EmitSignal(nameof(ChangeNoiseEvent), switchSound);
@@ -228,7 +228,7 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		if (IsOn)
         {
 			NoisePlayer.Stream = noiseSound;
-			NoisePlayer.UnitDb = noiseDb;
+			NoisePlayer.VolumeDb = noiseDb;
 			NoisePlayer.Play();
 
 			EmitSignal(nameof(ChangeNoiseEvent), noiseSound);
@@ -255,12 +255,12 @@ public class Receiver : RadioBase, ISavable, IInteractable
 		{
 			case "Radio":
 				normalizeLever = value * 0.526f - 0.26f;
-				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.659f, normalizeLever, -0.488f));
+				volumeLever.Transform3D = Global.SetNewOrigin(volumeLever.Transform3D, new Vector3(0.659f, normalizeLever, -0.488f));
 				break;
 
 			case "Radio Jr":
 				normalizeLever = value * 0.15f + 0.19f;
-				volumeLever.Transform = Global.SetNewOrigin(volumeLever.Transform, new Vector3(0.58f, normalizeLever, 0));
+				volumeLever.Transform3D = Global.SetNewOrigin(volumeLever.Transform3D, new Vector3(0.58f, normalizeLever, 0));
 				break;
 		}
 	}

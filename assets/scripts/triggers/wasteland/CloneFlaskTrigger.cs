@@ -1,6 +1,6 @@
 using Godot;
 
-public class CloneFlaskTrigger : TriggerBase
+public partial class CloneFlaskTrigger : TriggerBase
 {
     private PhoenixSystem phoenixSystem;
     private CloneFlask cloneFlask;
@@ -64,7 +64,7 @@ public class CloneFlaskTrigger : TriggerBase
                 player.RotationHelperThird.MayChange = false;
                 player.SetMayMove(false);
                 player.Sit(false);
-                player.Camera.eyesClosed = true;
+                player.Camera3D.eyesClosed = true;
                 player.Inventory.Clear();
                     
                 var playerPosTransform = cloneFlask.playerPos.GlobalTransform;
@@ -93,7 +93,7 @@ public class CloneFlaskTrigger : TriggerBase
                 break;
 
             case 1:
-                player.Camera.eyesClosed = false;
+                player.Camera3D.eyesClosed = false;
                 cloneFlask.anim.Play("wakeUp");
                 
                 timer = 1f;
@@ -117,7 +117,7 @@ public class CloneFlaskTrigger : TriggerBase
             case 4:
                 player.Visible = true;
                 player.SetMayMove(true);
-                player.Camera.Current = true;
+                player.Camera3D.Current = true;
                 player.RotationHelperThird.MayChange = true;
                 cloneFlask.DeleteBody();
                 cloneFlask.camera.MakeCurrent(false);

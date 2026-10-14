@@ -1,6 +1,6 @@
 using Godot;
 
-public class UsualMode: InventoryMode 
+public partial class UsualMode: InventoryMode 
 {
     private bool countClickTimer;
     private float clickTimer;

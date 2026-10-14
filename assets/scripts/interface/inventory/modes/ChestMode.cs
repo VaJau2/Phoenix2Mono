@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class ChestMode: InventoryMode
+public partial class ChestMode: InventoryMode
 {
     private Control chestBack;
     private Label chestLabel;

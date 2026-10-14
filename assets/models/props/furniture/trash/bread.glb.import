@@ -11,7 +11,7 @@ dest_files=[ "res://.import/bread.glb-2d035639fc29dd5176d6ca44f44d839a.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

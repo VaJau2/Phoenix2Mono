@@ -16,7 +16,7 @@ using Array = Godot.Collections.Array;
 //    .LoadSubtitlesFile(subtitlesCode)
 //    .StartAnimatingText();
 //
-public class Subtitles : Label, ISavable
+public partial class Subtitles : Label, ISavable
 {
     private const float VISIBLE_DISTANCE = 50;
 

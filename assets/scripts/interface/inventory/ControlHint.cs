@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class ControlHint : Control
+public partial class ControlHint : Control
 {
     [Export] private string actionKey;
     [Export] private bool holdDelay = true;
@@ -11,7 +11,7 @@ public class ControlHint : Control
     [Export] private bool isMove;
     private bool reverse;
 
-    [Export] private Array<Texture> icons = new Array<Texture>();
+    [Export] private Array<Texture2D> icons = new Array<Texture2D>();
     private TextureRect icon;
     private int indexIcon;
     private float changeTimer = 1f;
@@ -53,11 +53,11 @@ public class ControlHint : Control
     {
         if (!InputMap.HasAction(actionKey)) return;
 
-        var actions = InputMap.GetActionList(actionKey);
+        var actions = InputMap.ActionGetEvents(actionKey);
 
         if (actions[0] is InputEventKey inputKey)
         {
-            icon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + inputKey + ".png");
+            icon.Texture2D = GD.Load<Texture2D>("res://assets/textures/interface/icons/buttons/" + inputKey + ".png");
         }
     }
 
@@ -80,7 +80,7 @@ public class ControlHint : Control
             if (indexIcon == icons.Count - 1) indexIcon = 0;
             else indexIcon++;
 
-            icon.Texture = icons[indexIcon];
+            icon.Texture2D = icons[indexIcon];
         }
     }
 
@@ -91,12 +91,12 @@ public class ControlHint : Control
 
         if (reverse)
         {
-            if (icon.RectPosition.x < 5) icon.RectPosition += new Vector2(delta, 0);
+            if (icon.Position.x < 5) icon.Position += new Vector2(delta, 0);
             else reverse = false;
         }
         else
         {
-            if (icon.RectPosition.x > -5) icon.RectPosition -= new Vector2(delta, 0);
+            if (icon.Position.x > -5) icon.Position -= new Vector2(delta, 0);
             else reverse = true;
         }
     }

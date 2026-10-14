@@ -11,7 +11,7 @@ dest_files=[ "res://.import/woodFence1.glb-92dbfc268c1b427a986ed7f7e4784d2c.scn"
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class SavePosition : Spatial, ISavable
+public partial class SavePosition : Node3D, ISavable
 {
     public Dictionary GetSaveData()
     {

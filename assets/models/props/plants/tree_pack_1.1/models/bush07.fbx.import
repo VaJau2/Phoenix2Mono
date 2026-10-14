@@ -11,7 +11,7 @@ dest_files=[ "res://.import/bush07.fbx-da6a5ec364bb7b63ee65592828175921.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -3,16 +3,16 @@ using System.CodeDom.Compiler;
 using Godot;
 using Godot.Collections;
 
-public class ChangePlayerLookTrigger : ActivateOtherTrigger
+public partial class ChangePlayerLookTrigger : ActivateOtherTrigger
 { 
     [Export] private NodePath targetPath;
-    private Spatial target;
+    private Node3D target;
 
     private Player player => Global.Get().player;
     
     public override void _Ready()
     {
-        target = GetNode<Spatial>(targetPath);
+        target = GetNode<Node3D>(targetPath);
         SetProcess(false);
     }
 

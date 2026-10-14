@@ -11,7 +11,7 @@ dest_files=[ "res://.import/books-cabinet.glb-b92cefce9f984759047419b4856410d4.s
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

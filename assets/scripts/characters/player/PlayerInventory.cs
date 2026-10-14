@@ -5,7 +5,7 @@ using Godot.Collections;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
 
-public class PlayerInventory
+public partial class PlayerInventory
 {
     public EffectHandler effects;
     Messages messages;
@@ -409,7 +409,7 @@ public class PlayerInventory
         if (!itemData.Contains("sound")) return;
         
         var path = "res://assets/audio/item/" + itemData["sound"] + ".wav";
-        var sound = GD.Load<AudioStreamSample>(path);
+        var sound = GD.Load<AudioStreamWAV>(path);
             
         player.GetAudi(true).Stream = sound;
         player.GetAudi(true).Play();

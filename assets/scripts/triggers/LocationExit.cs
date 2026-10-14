@@ -1,6 +1,6 @@
 using Godot;
 
-public class LocationExit : TriggerBase
+public partial class LocationExit : TriggerBase
 {
     [Export] private bool UseBlackScreen = false;
     [Export] private bool SaveInventory = true;

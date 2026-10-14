@@ -11,7 +11,7 @@ dest_files=[ "res://.import/Bronco Express.glb-70468aaf063e9ab8fe11fdcf3f916320.
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

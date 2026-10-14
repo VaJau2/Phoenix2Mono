@@ -1,19 +1,19 @@
-﻿//Класс укрытия
+//Класс укрытия
 
 using System.Collections.Generic;
 using Godot;
 
-public class Cover
+public partial class Cover
 {
     public Vector3 center;
     public List<Vector3> places = new();
 
-    public Cover(Spatial place)
+    public Cover(Node3D place)
     {
         center = place.GlobalTranslation;
         foreach (Node tempPlace in place.GetChildren())
         {
-            if (tempPlace is Spatial spatialPlace)
+            if (tempPlace is Node3D spatialPlace)
             {
                 places.Add(spatialPlace.GlobalTranslation);
             }

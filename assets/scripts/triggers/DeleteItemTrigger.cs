@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DeleteItemTrigger : TriggerBase
+public partial class DeleteItemTrigger : TriggerBase
 {
     [Export] public string ItemToCheck;
     

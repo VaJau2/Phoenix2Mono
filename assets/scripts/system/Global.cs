@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Collections.Generic;
 
 //Синглтон-класс для управления паузами и для всяких универсальных методов
-public class Global 
+public partial class Global 
 {
     //----Using singleton pattern----
     private static Global instance;
@@ -177,9 +177,9 @@ public class Global
         return null;
     }
 
-    public static Transform SetNewOrigin(Transform transform, Vector3 newOrigin)
+    public static Transform3D SetNewOrigin(Transform3D transform, Vector3 newOrigin)
     {
-        Transform tempTrans = transform;
+        Transform3D tempTrans = transform;
         tempTrans.origin = newOrigin;
         return tempTrans;
     }
@@ -189,7 +189,7 @@ public class Global
         var newTimer = new Timer {Autostart = true, OneShot = true, WaitTime = time};
         if (pauseProcess)
         {
-            newTimer.PauseMode = Node.PauseModeEnum.Process;
+            newTimer.ProcessMode = Node.PauseModeEnum.Process;
         }
 
         if (Object.IsInstanceValid(_object))
@@ -201,7 +201,7 @@ public class Global
             player.GetNode("/root/Main/Scene").AddChild(newTimer);
         }
 
-        newTimer.Connect("timeout", newTimer, "queue_free");
+        newTimer.Connect("timeout", new Callable(newTimer, "queue_free"));
         return newTimer.ToSignal(newTimer, "timeout");
     }
 
@@ -218,10 +218,10 @@ public class Global
     //возвращает название кнопки клавиатуры по её экшну
     public static string GetKeyName(string actionName) 
     {
-        var actions = InputMap.GetActionList(actionName);
+        var actions = InputMap.ActionGetEvents(actionName);
         if (actions.Count == 0) return null;
         if (!(actions[0] is InputEventKey action)) return null;
-        return OS.GetScancodeString(action.Scancode);
+        return OS.GetKeycodeString(action.Keycode);
     }
 
     public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);
@@ -284,7 +284,7 @@ public class Global
     public static Array<string> GetSaveFiles()
     {
         var files = new Array<string>();
-        var dir = new Directory();
+        var dir = new DirAccess();
         dir.Open("user://");
 
         if (!dir.DirExists("user://saves/"))
@@ -329,7 +329,7 @@ public class Global
 
     public static void DeleteSaveFile(string fileName)
     {
-        new Directory().Remove("user://saves/" + fileName);
+        new DirAccess().Remove("user://saves/" + fileName);
     }
 }
 

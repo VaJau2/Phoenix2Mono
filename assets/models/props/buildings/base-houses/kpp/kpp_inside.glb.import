@@ -11,7 +11,7 @@ dest_files=[ "res://.import/kpp_inside.glb-f395602defa1eb6f229ba9b6f7628808.scn"
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

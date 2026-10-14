@@ -11,7 +11,7 @@ dest_files=[ "res://.import/location_tiles.glb-94380a78e0ca304519691e30ff80be52.
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

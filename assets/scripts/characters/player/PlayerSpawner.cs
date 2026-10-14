@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class PlayerSpawner : Spatial
+public partial class PlayerSpawner : Node3D
 {
     [Export]
     public int moneyCount;
@@ -57,7 +57,7 @@ public class PlayerSpawner : Spatial
         await ToSignal(GetTree(), "idle_frame");
         GetParent().AddChild(player);
         player.GlobalTransform = GlobalTransform;
-        player.Camera.Current = true;
+        player.Camera3D.Current = true;
 
         //если единорог спавнится в помещении
         if (player is Player_Unicorn unicorn && spawningInside)

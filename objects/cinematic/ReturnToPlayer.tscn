@@ -5,17 +5,17 @@
 [sub_resource type="Curve3D" id=1]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
-"tilts": PoolRealArray( 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
+"tilts": PackedFloat32Array( 0 )
 }
 
-[node name="ReturnToPlayer" type="Path" groups=["savable"]]
+[node name="ReturnToPlayer" type="Path3D" groups=["savable"]]
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 speed = 0.2
 
-[node name="PathFollow" type="PathFollow" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00149918, -0.000736237, -0.000427485 )
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00149918, -0.000736237, -0.000427485 )
 rotation_mode = 0
 cubic_interp = false
 loop = false

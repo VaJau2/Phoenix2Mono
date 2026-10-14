@@ -11,7 +11,7 @@ dest_files=[ "res://.import/stoneFence.glb-bd87bf09cbe3213e9d98aa8c01116969.scn"
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

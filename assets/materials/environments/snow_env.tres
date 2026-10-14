@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=2 format=2]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="Sky" id=1]
 ground_bottom_color = Color( 0.427451, 0.54902, 0.705882, 1 )
 ground_horizon_color = Color( 0.737255, 0.745098, 0.764706, 1 )
 sun_latitude = 45.0

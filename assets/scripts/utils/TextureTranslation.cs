@@ -2,9 +2,9 @@ using Godot;
 
 //Меняет материал на англ.версию (по умолчанию сначала должна стоять русская)
 //Не меняет материал при смене языка для уже загруженного уровня (при желании можно исправить)
-public class TextureTranslation : MeshInstance
+public partial class TextureTranslation : MeshInstance3D
 {
-    [Export] private SpatialMaterial engMaterial;
+    [Export] private StandardMaterial3D engMaterial;
     [Export] private int materialNum;
     
     public override void _Ready()

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 //обработчик эффектов
 //рисует иконки эффектов через интерфейс
 //вызывает нужные методы эффектов
-public class EffectHandler: Node
+public partial class EffectHandler: Node
 {
     public List<Effect> tempEffects { get; } = new();
     private PackedScene iconPrefab;

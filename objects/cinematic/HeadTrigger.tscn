@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=2]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 radius = 0.32
 
-[node name="HeadTrigger" type="Area"]
+[node name="HeadTrigger" type="Area3D"]
 collision_layer = 32
 collision_mask = 32
 
-[node name="shape" type="CollisionShape" parent="."]
+[node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )

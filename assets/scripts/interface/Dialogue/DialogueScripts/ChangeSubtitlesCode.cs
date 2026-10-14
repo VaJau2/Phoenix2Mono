@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts;
 
 //Скрипт, меняющий субитировный код непися, с которым общается игрок
-public class ChangeSubtitlesCode : BaseChangeInNPC
+public partial class ChangeSubtitlesCode : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {

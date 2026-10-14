@@ -1,7 +1,7 @@
 using Godot;
 
 //Позволяет запускать тестовые сцены напрямую без необходимости копировать туда ноды менюшек
-public class TestSceneLoader : Node
+public partial class TestSceneLoader : Node
 {
     [Export] private Race playerRace;
     

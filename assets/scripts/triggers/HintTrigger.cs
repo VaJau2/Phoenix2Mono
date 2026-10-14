@@ -1,6 +1,6 @@
 using Godot;
 
-public class HintTrigger : TriggerBase
+public partial class HintTrigger : TriggerBase
 {
     [Export] public string HintSection = "hints";
     [Export] public string HintCode;

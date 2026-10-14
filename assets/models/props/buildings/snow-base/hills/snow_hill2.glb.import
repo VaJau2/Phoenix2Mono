@@ -11,7 +11,7 @@ dest_files=[ "res://.import/snow_hill2.glb-7beb496e6874fae5ef2cd05103ef11fb.scn"
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

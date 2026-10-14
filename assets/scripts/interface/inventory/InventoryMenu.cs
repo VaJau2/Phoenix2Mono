@@ -4,7 +4,7 @@ using Godot.Collections;
 //класс управляет инвентарным меню
 //имеет несколько разных режимов работы
 //режимы устанавливаются переменной mode
-public class InventoryMenu : Control, IMenu
+public partial class InventoryMenu : Control, IMenu
 {
     public bool mustBeClosed => true;
     public InventoryMode mode;

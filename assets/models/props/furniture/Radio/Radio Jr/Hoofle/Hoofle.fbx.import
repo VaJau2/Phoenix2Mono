@@ -11,7 +11,7 @@ dest_files=[ "res://.import/Hoofle.fbx-f0748bc578b7f7bc26a98d1f34de9933.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/armory-house.glb-f93a331b0d800f55c279bd0d1f143271.sc
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

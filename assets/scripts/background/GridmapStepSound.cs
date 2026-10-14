@@ -4,7 +4,7 @@ using Godot;
  * Проверяет, двигается ли игрок внутри объекта гридмапа
  * если двигается, играет звуки
  */
-public class GridmapStepSound : GridMap
+public partial class GridmapStepSound : GridMap
 {
     private const float CHECK_DELAY_TIME = 0.5f;
     
@@ -36,7 +36,7 @@ public class GridmapStepSound : GridMap
 
         bool tempIsOnGridItem = CheckGridWithDelay(delta);
         bool isMove = Player.GetCurrentSpeed() > Character.MIN_WALKING_SPEED;
-        bool isRotate = Player.IsRotating() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
+        bool isRotate = Player.IsIgnoringRotation() && (!Player.ThirdView || (Player.ThirdView && Player.Weapons.GunOn));
 
         if (tempIsOnGridItem && (isMove || isRotate)) UpdatePlaying();
         else StopPlaying(delta);
@@ -44,7 +44,7 @@ public class GridmapStepSound : GridMap
 
     private void UpdatePlaying()
     {
-        audi.UnitDb = Player.IsCrouching ? 4 : -2;
+        audi.VolumeDb = Player.IsCrouching ? 4 : -2;
         audi.GlobalTransform = Global.SetNewOrigin(audi.GlobalTransform, Player.GlobalTransform.origin);
 
         if (!audi.Playing || audi.Stream != TempSound)
@@ -58,7 +58,7 @@ public class GridmapStepSound : GridMap
     {
         if (audi.Playing)
         {
-            if (audi.UnitDb > MIN_VOLUME) audi.UnitDb -= VOLUME_SPEED * delta;
+            if (audi.VolumeDb > MIN_VOLUME) audi.VolumeDb -= VOLUME_SPEED * delta;
             else audi.Stop();
         }
     }
@@ -93,7 +93,7 @@ public class GridmapStepSound : GridMap
         if (Global.Get().player == null) return false;
         var playerGlobalPos = Global.Get().player.GlobalTransform.origin;
         var playerLocalPos = playerGlobalPos - GlobalTransform.origin;
-        var mapPos = WorldToMap(playerLocalPos);
+        var mapPos = LocalToMap(playerLocalPos);
         if (!Player.IsCrouching) mapPos.y -= 1;
         var cellItem = GetCellItem((int)mapPos.x, (int)mapPos.y, (int)mapPos.z);
         return cellItem > -1;

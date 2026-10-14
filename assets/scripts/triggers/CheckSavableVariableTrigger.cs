@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 using System.Collections.Generic;
 
 //проверяет квестовую переменную при активации и запускает другие триггеры в зависимости от её значения
 //если активен при старте, проверяет сразу
-public class CheckSavableVariableTrigger: TriggerBase
+public partial class CheckSavableVariableTrigger: TriggerBase
 {
     [Export] public string variableName;
     [Export] public Dictionary<string, NodePath> otherTriggerPaths;
@@ -20,7 +20,7 @@ public class CheckSavableVariableTrigger: TriggerBase
         }
         
         var levelsLoader = GetNode<LevelsLoader>("/root/Main");
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), new Callable(this, nameof(OnSaveDataLoaded)));
     }
     
     private async void OnSaveDataLoaded()

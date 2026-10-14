@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts;
 
-public class ActivateCinematic : IDialogueScript
+public partial class ActivateCinematic : IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/cookie.glb-0f804d818130dc6673a70f20aea5f0ed.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

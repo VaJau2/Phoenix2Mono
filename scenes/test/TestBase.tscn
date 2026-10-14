@@ -20,7 +20,7 @@ script = ExtResource( 7 )
 [node name="canvas" parent="Scene" instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
 moneyCount = 500
 itemCodes = [ "shotgun20" ]
 ammo = {
@@ -35,9 +35,9 @@ script = ExtResource( 4 )
 teleportPointPath = NodePath("UpPoint")
 fallHeight = -150.0
 
-[node name="UpPoint" type="Spatial" parent="Scene/checkFall"]
+[node name="UpPoint" type="Node3D" parent="Scene/checkFall"]
 
-[node name="shells" type="Spatial" parent="Scene" groups=["savable"]]
+[node name="shells" type="Node3D" parent="Scene" groups=["savable"]]
 script = ExtResource( 13 )
 
 [node name="randomItems" type="Node" parent="Scene"]

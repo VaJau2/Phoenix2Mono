@@ -11,7 +11,7 @@ dest_files=[ "res://.import/fenceOneMesh.glb-13bc4acd17a4d4bed2448c75e6d1d53e.sc
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

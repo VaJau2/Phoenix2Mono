@@ -11,7 +11,7 @@ dest_files=[ "res://.import/bunker.glb-13823ce8b9f6541b8aad4b7d62f81f33.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

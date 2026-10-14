@@ -1,6 +1,6 @@
 using Godot;
 
-public class PonyStartIdleAnim : Node
+public partial class PonyStartIdleAnim : Node
 {
     [Export] private string Anim;
     

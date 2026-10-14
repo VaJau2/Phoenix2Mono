@@ -1,9 +1,9 @@
 using Godot;
 
-public class RoboEyeBody : Node
+public partial class RoboEyeBody : Node
 {
-    [Export] private AudioStreamSample dieSound;
-    [Export] private AudioStreamSample walkSound;
+    [Export] private AudioStreamWAV dieSound;
+    [Export] private AudioStreamWAV walkSound;
 
     public string IdleAnim = "idle";
 
@@ -18,7 +18,7 @@ public class RoboEyeBody : Node
         audi = npc.GetNode<NpcAudio>("audi");
         anim = npc.GetNode<AnimationPlayer>("anim");
         
-        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
+        npc.Connect(nameof(Character.DieEvent), new Callable(this, nameof(OnNpcDying)));
     }
 
     public override void _Process(float delta)
@@ -74,11 +74,11 @@ public class RoboEyeBody : Node
         string path = "res://assets/models/characters/robots/roboEye/roboEye";
         path += (materialName != "") ? "-" + materialName : "";
         path += ".tres";
-        SpatialMaterial newMaterial = GD.Load<SpatialMaterial>(path);
+        StandardMaterial3D newMaterial = GD.Load<StandardMaterial3D>(path);
 
         var monitor = GetNode("../corpus/monitor");
-        monitor.GetNode<MeshInstance>("screen").SetSurfaceMaterial(0, newMaterial);
-        monitor.GetNode<MeshInstance>("lamp").SetSurfaceMaterial(0, newMaterial);
+        monitor.GetNode<MeshInstance3D>("screen").SetSurfaceOverrideMaterial(0, newMaterial);
+        monitor.GetNode<MeshInstance3D>("lamp").SetSurfaceOverrideMaterial(0, newMaterial);
         tempMaterial = material;
     }
     

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/theater.glb-1a867a834678471e98d64c74fb21ef69.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

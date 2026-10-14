@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class MainMenu : MenuBase
+public partial class MainMenu : MenuBase
 {
     Global global = Global.Get();
     MenuAudi audi;
@@ -104,10 +104,10 @@ public class MainMenu : MenuBase
         settingsMenu = GetNode<SettingsMenu>("../SettingsMenu");
 
         var raceStr = Global.RaceToString(global.playerRace);
-        var bgPicRes = GD.Load<StreamTexture>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
+        var bgPicRes = GD.Load<CompressedTexture2D>("res://assets/textures/interface/bg_pic/bg_" + raceStr + ".png");
 
         var bgPic = GetNode<TextureRect>("bgPony");
-        bgPic.Texture = bgPicRes;
+        bgPic.Texture2D = bgPicRes;
     }
 
     private string GetMenuText(string phrase, string section = "main") 

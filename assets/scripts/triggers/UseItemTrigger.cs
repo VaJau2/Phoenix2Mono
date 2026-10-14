@@ -1,6 +1,6 @@
 using Godot;
 
-public class UseItemTrigger : ActivateOtherTrigger
+public partial class UseItemTrigger : ActivateOtherTrigger
 {
     [Export] public string ItemToUse;
     
@@ -14,7 +14,7 @@ public class UseItemTrigger : ActivateOtherTrigger
         
         if (IsActive)
         {
-            player.Connect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.Connect(nameof(Player.UseItem), new Callable(this, nameof(_on_player_use_item)));
         }
     }
 
@@ -23,11 +23,11 @@ public class UseItemTrigger : ActivateOtherTrigger
         base.SetActive(newActive);
         if (IsActive)
         {
-            player.Connect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.Connect(nameof(Player.UseItem), new Callable(this, nameof(_on_player_use_item)));
         }
         else
         {
-            player.Disconnect(nameof(Player.UseItem), this, nameof(_on_player_use_item));
+            player.Disconnect(nameof(Player.UseItem), new Callable(this, nameof(_on_player_use_item)));
         }
     }
 

@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //дверь, перемещающая в отдельную подлокацию
-public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
+public partial class DoorTeleport : StaticBody3D, ISavable, IInteractable, IDoorTeleport
 {
     [Export] public bool Closed;
     [Export] private bool Inside;
@@ -11,19 +11,19 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
     [Export] private NodePath newLocationPath;
     [Export] private NodePath otherDoorPath;
 
-    [Export] private AudioStreamSample openSound;
-    [Export] private AudioStreamSample closedSound;
+    [Export] private AudioStreamWAV openSound;
+    [Export] private AudioStreamWAV closedSound;
     [Export] private string customInteractionCode;
 
     private Room oldRoom;
     private Room newRoom;
 
     public DoorTeleport otherDoor { get; private set; }
-    public Spatial TeleportPos { get; private set; }
+    public Node3D TeleportPos { get; private set; }
 
     private AudioStreamPlayer3D audi;
-    private Spatial oldLocation;
-    private Spatial newLocation;
+    private Node3D oldLocation;
+    private Node3D newLocation;
 
     private static Player player => Global.Get().player;
     private CheckFall checkFall;
@@ -36,13 +36,13 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
     {
         if (oldLocationPath != null)
         {
-            oldLocation = GetNode<Spatial>(oldLocationPath);
+            oldLocation = GetNode<Node3D>(oldLocationPath);
             oldRoom = GetNodeOrNull<Room>(oldLocationPath);
         }
 
         if (newLocationPath != null)
         {
-            newLocation = GetNode<Spatial>(newLocationPath);
+            newLocation = GetNode<Node3D>(newLocationPath);
             newRoom = GetNodeOrNull<Room>(newLocationPath);
         }
         
@@ -52,7 +52,7 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
         }
         
         audi = GetNodeOrNull<AudioStreamPlayer3D>("audi");
-        TeleportPos = GetNode<Spatial>(newPlacePath);
+        TeleportPos = GetNode<Node3D>(newPlacePath);
         
         checkFall = GetNodeOrNull<CheckFall>("/root/Main/Scene/terrain/checkFall");
                 
@@ -81,11 +81,11 @@ public class DoorTeleport : StaticBody, ISavable, IInteractable, IDoorTeleport
 
     public void Open(Character character, bool soundOpening = true)
     {
-        player.Camera.HideHint();
+        player.Camera3D.HideHint();
         
         if (Closed)
         {
-            player.Camera.closedTimer = 1;
+            player.Camera3D.closedTimer = 1;
             audi.Stream = closedSound;
             audi.Play();
             SetProcess(false);

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class PowerArmorFactory : IAudioEffectsFactory
+public partial class PowerArmorFactory : IAudioEffectsFactory
 {
     private const string keyNotchFilter = "powerArmor_NotchFilter";
     private const string keyCompressor = "powerArmor_Compressor";

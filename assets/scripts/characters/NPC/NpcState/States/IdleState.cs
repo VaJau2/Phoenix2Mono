@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class IdleState(
+public partial class IdleState(
     NpcCovers covers,
     NpcWeapons weapons,
     NavigationMovingController movingController,

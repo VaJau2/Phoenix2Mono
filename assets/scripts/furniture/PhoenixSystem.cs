@@ -4,7 +4,7 @@ using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PhoenixSystem : Node, ISavable
+public partial class PhoenixSystem : Node, ISavable
 {
     [Export] private NodePath onDeathTriggerPath;
     [Export] private NodePath roomPath;
@@ -41,7 +41,7 @@ public class PhoenixSystem : Node, ISavable
 
         cloneNumber = cloneFlasks.Count - 1;
         
-        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), this, nameof(OnSaveDataLoaded));
+        levelsLoader.Connect(nameof(LevelsLoader.SaveDataLoaded), new Callable(this, nameof(OnSaveDataLoaded)));
     }
 
     private async void OnSaveDataLoaded()
@@ -63,7 +63,7 @@ public class PhoenixSystem : Node, ISavable
             
             if (deathManager.PermanentDeath) return;
             
-            deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+            deathManager.Connect(nameof(PlayerDeathManager.CloneDie), new Callable(this, nameof(OnCloneDie)));
         }
         else StartCloning();
     }
@@ -185,7 +185,7 @@ public class PhoenixSystem : Node, ISavable
         deathManager.PermanentDeath = cloneFlasks.Count < 1;
         InitDeathTrigger();
         
-        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), this, nameof(OnCloneDie));
+        deathManager.Connect(nameof(PlayerDeathManager.CloneDie), new Callable(this, nameof(OnCloneDie)));
         
         EmitSignal(nameof(CloneAwake));
     }

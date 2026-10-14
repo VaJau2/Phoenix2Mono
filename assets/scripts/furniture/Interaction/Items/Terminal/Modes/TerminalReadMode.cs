@@ -4,7 +4,7 @@ using Godot.Collections;
 //режим чтения
 //делится на два подрежима - выбор файла и чтение файла
 //выбор файла ограничен 9 текстовыми файлами
-public class TerminalReadMode: TerminalMode {
+public partial class TerminalReadMode: TerminalMode {
     const int MAX_LINES_COUNT = 10;
     private const int MAX_LINE_LENGTH = 36;
     private Array<string> textFiles = new Array<string>();
@@ -50,7 +50,7 @@ public class TerminalReadMode: TerminalMode {
     {
         if (keyEvent.Pressed) {
             //обрабатываем кнопку выхода
-            if (keyEvent.Scancode == (uint)KeyList.Backspace) {
+            if (keyEvent.Keycode == (uint)KeyList.Backspace) {
                 //если читается файл, выходим в список файлов
                 if (fileCode != null) {
                     fileCode = null;
@@ -67,7 +67,7 @@ public class TerminalReadMode: TerminalMode {
             if (fileCode == null) {
                 //обрабатываем стрелочки
                 //если нажата стрелочка вверх, перемещаем курсор вверх
-                if (keyEvent.Scancode == (uint)KeyList.Up) {
+                if (keyEvent.Keycode == (uint)KeyList.Up) {
                     if (tempChoose > 0) {
                         tempChoose--;
                     } else {
@@ -75,7 +75,7 @@ public class TerminalReadMode: TerminalMode {
                     }
                 }
                 //если нажата стрелочка вниз, перемещаем курсор вниз
-                if(keyEvent.Scancode == (uint)KeyList.Down) {
+                if(keyEvent.Keycode == (uint)KeyList.Down) {
                     if (tempChoose < textFiles.Count - 1) {
                         tempChoose++;
                     } else {
@@ -84,14 +84,14 @@ public class TerminalReadMode: TerminalMode {
                 }
 
                 //обрабатываем enter
-                if(keyEvent.Scancode == (uint)KeyList.Enter && textFiles.Count > 0) {
+                if(keyEvent.Keycode == (uint)KeyList.Enter && textFiles.Count > 0) {
                     fileCode = textFiles[tempChoose];
                 }
             } else {
-                if (keyEvent.Scancode == (uint)KeyList.Right) {
+                if (keyEvent.Keycode == (uint)KeyList.Right) {
                     TurnPage(true);
                 }
-                if (keyEvent.Scancode == (uint)KeyList.Left) {
+                if (keyEvent.Keycode == (uint)KeyList.Left) {
                     TurnPage(false);
                 }
             }

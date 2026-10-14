@@ -116,11 +116,11 @@ func _extract_texture(tex, material, slot, src):
 func _write_import(png_path, flags, srgb):
 	var f = File.new()
 	f.open(png_path + ".import", File.WRITE)
-	f.store_string("[remap]\n\nimporter=\"texture\"\ntype=\"StreamTexture\"\n\n")
+	f.store_string("[remap]\n\nimporter=\"texture\"\ntype=\"CompressedTexture2D\"\n\n")
 	f.store_string("[deps]\n\nsource_file=\"" + png_path + "\"\n\n")
 	f.store_string("[params]\n\n")
 	f.store_string("compress/mode=0\ncompress/lossy_quality=0.7\ncompress/hdr_mode=0\ncompress/bptc_ldr=0\n")
-	f.store_string("compress/normal_map=0\nflags/repeat=" + str(1 if flags & Texture.FLAG_REPEAT else 0) + "\n")
+	f.store_string("compress/normal_map=0\nflags/repeat=" + str(1 if flags & Texture2D.FLAG_REPEAT else 0) + "\n")
 	f.store_string("flags/filter=false\nflags/mipmaps=false\nflags/anisotropic=false\n")
 	f.store_string("flags/srgb=" + str(1 if srgb else 0) + "\nprocess/fix_alpha_border=true\nprocess/premult_alpha=false\n")
 	f.store_string("process/HDR_as_SRGB=false\nprocess/invert_color=false\nprocess/normal_map_invert_y=false\n")
@@ -136,7 +136,7 @@ func _fix_texture_types(path):
 	f.close()
 	var regex = RegEx.new()
 	regex.compile("(\\[ext_resource path=\"[^\"]+\\.png\") type=\"ImageTexture\"")
-	var fixed = regex.sub(text, "$1 type=\"Texture\"", true)
+	var fixed = regex.sub(text, "$1 type=\"Texture2D\"", true)
 	if fixed != text:
 		f.open(path, File.WRITE)
 		f.store_string(fixed)
@@ -149,7 +149,7 @@ func _free_path(base, old_ext, ext):
 		candidates.append(base + "_" + old_ext + "." + ext)
 	for i in range(2, 100):
 		candidates.append(base + "_" + str(i) + "." + ext)
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	for c in candidates:
 		if not planned_paths.has(c) and not dir.file_exists(c):
 			planned_paths[c] = true

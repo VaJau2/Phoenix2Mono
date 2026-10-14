@@ -11,7 +11,7 @@ dest_files=[ "res://.import/scientist2.glb-aa059fa73727afb024990d04c5aae184.scn"
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

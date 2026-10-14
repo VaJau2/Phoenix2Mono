@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class PlayerWeapons : CollisionShape
+public partial class PlayerWeapons : CollisionShape3D
 {
     private Global global;
     private const float SHAKE_SPEED = 2f;
@@ -28,11 +28,11 @@ public class PlayerWeapons : CollisionShape
 
     //--эффекты и анимания выстрела
     public ItemIcon TempAmmoButton { get; private set; }
-    public Spatial TempWeapon { get; private set; }
+    public Node3D TempWeapon { get; private set; }
     
     private AnimationPlayer gunAnim;
-    private Spatial gunLight;
-    private Spatial gunFire;
+    private Node3D gunLight;
+    private Node3D gunFire;
     private Particles gunSmoke;
     private PackedScene gunParticlesPrefab;
     private Node particlesParent;
@@ -44,8 +44,8 @@ public class PlayerWeapons : CollisionShape
 
     //--звуки-------------
     private AudioStreamPlayer audiShoot;
-    private AudioStreamSample tryShootSound;
-    private AudioStreamSample shootSound;
+    private AudioStreamWAV tryShootSound;
+    private AudioStreamWAV shootSound;
 
     private EnemiesManager enemiesManager;
 
@@ -65,7 +65,7 @@ public class PlayerWeapons : CollisionShape
         particlesParent = GetNode("/root/Main/Scene");
 
         audiShoot = GetNode<AudioStreamPlayer>("../sound/audi_shoot");
-        tryShootSound = GD.Load<AudioStreamSample>("res://assets/audio/guns/TryShoot.wav");
+        tryShootSound = GD.Load<AudioStreamWAV>("res://assets/audio/guns/TryShoot.wav");
 
         enemiesManager = player.GetNode<EnemiesManager>("/root/Main/Scene/npc");
     }
@@ -105,18 +105,18 @@ public class PlayerWeapons : CollisionShape
 
         var shootSoundPath = "res://assets/audio/guns/shoot/" + weaponCode + ".wav";
         shootSound = ResourceLoader.Exists(shootSoundPath)
-            ? GD.Load<AudioStreamSample>(shootSoundPath)
+            ? GD.Load<AudioStreamWAV>(shootSoundPath)
             : null;
 
         //вытаскиваем родительский нод из игрока
-        Spatial tempParent = player.GetWeaponParent(isPistol);
+        Node3D tempParent = player.GetWeaponParent(isPistol);
 
         //отправляем префаб туда
         var weapon = weaponPrefab.Instance();
         tempParent.AddChild(weapon);
 
         //сохраняем его для будущих перемещений по нодам
-        TempWeapon = (Spatial)weapon;
+        TempWeapon = (Node3D)weapon;
         LoadNewAmmo();
         LoadGunEffects();
 
@@ -150,8 +150,8 @@ public class PlayerWeapons : CollisionShape
         //если сменился вид, моделька перемещается в новый нод
         if (GunOn && isPistol)
         {
-            Spatial oldParent = (Spatial)TempWeapon.GetParent();
-            Spatial newParent = player.GetWeaponParent(isPistol);
+            Node3D oldParent = (Node3D)TempWeapon.GetParent();
+            Node3D newParent = player.GetWeaponParent(isPistol);
 
             if (oldParent != newParent)
             {
@@ -178,7 +178,7 @@ public class PlayerWeapons : CollisionShape
     {
         Dictionary itemData = ItemJSON.GetItemData(ammoType);
         string path = "res://assets/textures/interface/icons/items/" + itemData["icon"] + ".png";
-        StreamTexture newIcon = GD.Load<StreamTexture>(path);
+        CompressedTexture2D newIcon = GD.Load<CompressedTexture2D>(path);
         ammoIcon.SetIcon(newIcon);
     }
 
@@ -252,8 +252,8 @@ public class PlayerWeapons : CollisionShape
             gunAnim = null;
         }
 
-        gunLight = TempWeapon.GetNodeOrNull<Spatial>("light");
-        gunFire = TempWeapon.GetNodeOrNull<Spatial>("fire");
+        gunLight = TempWeapon.GetNodeOrNull<Node3D>("light");
+        gunFire = TempWeapon.GetNodeOrNull<Node3D>("fire");
         gunSmoke = TempWeapon.GetNodeOrNull<Particles>("smoke");
         shellSpawner = TempWeapon.GetNodeOrNull<WeaponShellSpawner>("shells");
     }
@@ -275,7 +275,7 @@ public class PlayerWeapons : CollisionShape
                 if (tempShake < recoil)
                 {
                     tempShake += SHAKE_SPEED;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3d();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
                         camera.RotationDegrees.x + SHAKE_SPEED
@@ -292,7 +292,7 @@ public class PlayerWeapons : CollisionShape
                 {
                     var diff = SHAKE_SPEED * SHAKE_DIFF;
                     tempShake -= diff;
-                    Camera camera = player.GetViewport().GetCamera();
+                    Camera3D camera = player.GetViewport().GetCamera3d();
                     camera.RotationDegrees = SetRotX(
                         camera.RotationDegrees,
                         camera.RotationDegrees.x - SHAKE_SPEED * SHAKE_DIFF
@@ -309,7 +309,7 @@ public class PlayerWeapons : CollisionShape
         }
     }
 
-    private string HandleVictim(Spatial victim, int shapeID = 0)
+    private string HandleVictim(Node3D victim, int shapeID = 0)
     {
         string name = null;
         switch (victim)
@@ -334,13 +334,13 @@ public class PlayerWeapons : CollisionShape
                 break;
             } 
             
-            case PhysicalBone:
+            case PhysicalBone3D:
             {
                 name = "blood";
                 break;
             }
             
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 if (body.PhysicsMaterialOverride != null)
                 {
@@ -414,15 +414,15 @@ public class PlayerWeapons : CollisionShape
         }
 
         var tempDistance = GetTempDistance();
-        var tempRay = player.Camera.UseRay(tempDistance);
+        var tempRay = player.Camera3D.UseRay(tempDistance);
             
         tempRay.ForceRaycastUpdate();
-        var obj = (Spatial)tempRay.GetCollider();
+        var obj = (Node3D)tempRay.GetCollider();
 
         if (obj is NPC { IsImmortal: true })
         {
             onetimeShoot = false;   
-            player.Camera.ReturnRayBack();
+            player.Camera3D.ReturnRayBack();
             return;
         }
         
@@ -439,7 +439,7 @@ public class PlayerWeapons : CollisionShape
         await global.ToTimer(0.05f);
         
         // костыль для фикса дисинхронизации объекта попадания
-        obj = (Spatial)tempRay.GetCollider();
+        obj = (Node3D)tempRay.GetCollider();
 
         //обрабатываем попадания
             
@@ -482,7 +482,7 @@ public class PlayerWeapons : CollisionShape
             SpawnBullet();
         }
 
-        player.Camera.ReturnRayBack();
+        player.Camera3D.ReturnRayBack();
 
         SetGunEffects(true);
         ShakeCameraUp();

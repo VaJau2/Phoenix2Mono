@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnChest: FurnBase, ISavable, IChest 
+public partial class FurnChest: FurnBase, ISavable, IChest 
 {
     [Export] private bool isBag;
     [Export] private bool SpawnRandomItems;
@@ -33,20 +33,20 @@ public class FurnChest: FurnBase, ISavable, IChest
 
     public bool MayOpen => (IsOpen == ChestHandler.Menu.isOpen);
 
-    public override void ClickFurn(AudioStreamSample openSound = null, float timer = 0, string openAnim = null)
+    public override void ClickFurn(AudioStreamWAV openSound = null, float timer = 0, string openAnim = null)
     {
         if (!MayOpen) return;
 
         if (IsOpen) return;
         base.ClickFurn();
         ChestHandler.Open();
-        ChestHandler.Menu.Connect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.Connect("MenuIsClosed", new Callable(this, nameof(CloseFurn)));
     }
 
     public void CloseFurn()
     {
         base.ClickFurn();
-        ChestHandler.Menu.Disconnect("MenuIsClosed", this, nameof(CloseFurn));
+        ChestHandler.Menu.Disconnect("MenuIsClosed", new Callable(this, nameof(CloseFurn)));
     }
 
     public Dictionary GetSaveData()
@@ -55,8 +55,8 @@ public class FurnChest: FurnBase, ISavable, IChest
 
         if (Name.BeginsWith("Created_"))
         {
-            saveData.Add("pos", Transform.origin);
-            saveData.Add("rot", Transform.basis.GetEuler());
+            saveData.Add("pos", Transform3D.origin);
+            saveData.Add("rot", Transform3D.basis.GetEuler());
         }
 
         return saveData;
@@ -76,8 +76,8 @@ public class FurnChest: FurnBase, ISavable, IChest
             Vector3 newRot = data["rot"].ToString().ParseToVector3();
 
             Basis newBasis = new Basis(newRot);
-            Transform newTransform = new Transform(newBasis, newPos);
-            Transform = newTransform;
+            Transform3D newTransform = new Transform3D(newBasis, newPos);
+            Transform3D = newTransform;
         }
 
         ChestHandler.LoadData(data);

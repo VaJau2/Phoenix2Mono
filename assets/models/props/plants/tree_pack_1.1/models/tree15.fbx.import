@@ -11,7 +11,7 @@ dest_files=[ "res://.import/tree15.fbx-c69306fa0a0482aceb8e1d7990f75da6.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

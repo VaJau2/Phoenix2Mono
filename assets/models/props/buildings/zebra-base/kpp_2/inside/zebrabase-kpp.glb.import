@@ -11,7 +11,7 @@ dest_files=[ "res://.import/zebrabase-kpp.glb-da781b45c127a0740737de08fbe5cd0c.s
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -27,10 +27,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 322.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 322.0
+offset_bottom = 42.0
 theme = ExtResource( 4 )
 text = "/Phoenix2/Главное_меню/Загрузка_уровня"
 __meta__ = {
@@ -38,10 +38,10 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="."]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 125.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 384.0
+offset_bottom = 125.0
 theme = ExtResource( 4 )
 text = "[Назад]"
 __meta__ = {
@@ -51,10 +51,10 @@ __meta__ = {
 [node name="Table" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.504
 anchor_right = 0.504
-margin_left = -452.096
-margin_top = -140.0
-margin_right = 451.904
-margin_bottom = 108.0
+offset_left = -452.096
+offset_top = -140.0
+offset_right = 451.904
+offset_bottom = 108.0
 
 [node name="Exist" type="Control" parent="." groups=["ignore_color"]]
 visible = false
@@ -62,9 +62,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -152.0
-margin_right = 384.0
-margin_bottom = -128.0
+offset_top = -152.0
+offset_right = 384.0
+offset_bottom = -128.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -74,8 +74,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -24.0
-margin_right = 192.0
+offset_top = -24.0
+offset_right = 192.0
 theme = ExtResource( 4 )
 disabled = true
 text = "[Перезаписать]"
@@ -88,8 +88,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -192.0
-margin_top = -24.0
+offset_left = -192.0
+offset_top = -24.0
 theme = ExtResource( 4 )
 disabled = true
 text = "[Удалить]"
@@ -99,9 +99,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -152.0
-margin_right = 384.0
-margin_bottom = -128.0
+offset_top = -152.0
+offset_right = 384.0
+offset_bottom = -128.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,9 +111,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -192.0
-margin_top = -24.0
-margin_right = 192.0
+offset_left = -192.0
+offset_top = -24.0
+offset_right = 192.0
 theme = ExtResource( 4 )
 disabled = true
 text = "[Сохранить]"
@@ -126,10 +126,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -392.0
-margin_top = -152.0
-margin_right = -56.0
-margin_bottom = -128.0
+offset_left = -392.0
+offset_top = -152.0
+offset_right = -56.0
+offset_bottom = -128.0
 theme = ExtResource( 4 )
 placeholder_text = "Введите название сохранения"
 caret_blink = true

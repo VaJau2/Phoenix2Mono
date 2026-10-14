@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot.Collections;
 
-public class EnemiesManager : Node, ISavable
+public partial class EnemiesManager : Node, ISavable
 {
     [Export] private float TRIGGER_COOLDOWN = 5f;
     private const float PLAYER_MIN_DIST = 15f;

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/mansion-collision.glb-a1d69f55eee6dfcbd82083155c0ba1
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

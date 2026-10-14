@@ -11,7 +11,7 @@ dest_files=[ "res://.import/dummy.glb-94120cd7336ce0aa1f9746c8c2201b1e.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

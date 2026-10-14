@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Radiostation : Node
+public partial class Radiostation : Node
 {
 	public AudioStream song { private set; get; }
 

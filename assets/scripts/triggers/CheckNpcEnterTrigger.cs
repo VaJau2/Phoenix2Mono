@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class CheckNpcEnterTrigger : ActivateOtherTrigger
+public partial class CheckNpcEnterTrigger : ActivateOtherTrigger
 {
     [Export] private Array<string> npcNames;
 

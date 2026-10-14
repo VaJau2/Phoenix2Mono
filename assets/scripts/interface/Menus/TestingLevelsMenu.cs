@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
-public class TestingLevelsMenu : Control
+public partial class TestingLevelsMenu : Control
 {
     private const string AUTOSAVE_NAME = "testing";
     private const int AMMO_COUNT = 50;

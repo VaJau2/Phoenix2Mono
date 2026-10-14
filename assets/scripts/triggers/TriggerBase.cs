@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
-public class TriggerBase : Node, ISavable, IActivated
+public partial class TriggerBase : Node, ISavable, IActivated
 {
     [Export] public bool IsActive { get; private set; } = true;
     [Export] public bool DeleteAfterTrigger = true;

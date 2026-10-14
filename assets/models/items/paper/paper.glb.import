@@ -11,7 +11,7 @@ dest_files=[ "res://.import/paper.glb-005038044b65ee2eadb030f008dfe872.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

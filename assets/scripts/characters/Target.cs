@@ -1,6 +1,6 @@
 using Godot;
 
-public class Target : Character
+public partial class Target : Character
 {
     public const int TARGET_HEALTH = 30;
         

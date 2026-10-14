@@ -4,7 +4,7 @@ using Godot;
 ///  Загружает расу игрока из клоновой колбы при первой загрузке уровня AfterwarBelllgatesBase
 /// (следующие загрузки рас из колб лежат в PhoenixSystem)
 /// </summary>
-public class RaceLoader : Node
+public partial class RaceLoader : Node
 {
     [Export] private NodePath cloneFlaskPath;
     

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/theater-wallparts.glb-04441c6624fdfc50bbf53e4cce6ff6
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

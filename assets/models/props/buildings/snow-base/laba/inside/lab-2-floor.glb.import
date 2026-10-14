@@ -11,7 +11,7 @@ dest_files=[ "res://.import/lab-2-floor.glb-9491d9dfa19e608aeec175a8a20c65b7.scn
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

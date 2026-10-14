@@ -3,7 +3,7 @@ using Effects;
 using Godot;
 using Godot.Collections;
 
-public class Player : Character
+public partial class Player : Character
 {
     protected Global global = Global.Get();
     public float MouseSensivity = 0.1f;
@@ -29,11 +29,11 @@ public class Player : Character
     public float PriceDelta = 1;
 
     //Ссылки на классы игрока
-    public PlayerCamera Camera { get; private set; }
-    public Spatial RotationHelper { get; private set; }
-    private Spatial headShape;
+    public PlayerCamera Camera3D { get; private set; }
+    public Node3D RotationHelper { get; private set; }
+    private Node3D headShape;
     public PlayerThirdPerson RotationHelperThird;
-    private Spatial CameraHeadPos;
+    private Node3D CameraHeadPos;
 
     public PlayerBody Body;
     //сслыки внутри Body:
@@ -53,7 +53,7 @@ public class Player : Character
     public Control JumpHint;
     private AudioStreamPlayer audi;
     private AudioStreamPlayer audiHitted;
-    private Listener listener;
+    private AudioListener3D listener;
 
     //Переменные для передвижения
     private Vector3 dir;
@@ -61,8 +61,8 @@ public class Player : Character
 
     private Vector3 oldRot;
 
-    private CollisionShape sphereCollider;
-    private CollisionShape bodyCollider;
+    private CollisionShape3D sphereCollider;
+    private CollisionShape3D bodyCollider;
 
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
@@ -156,15 +156,15 @@ public class Player : Character
         return base.GetDamageBlock();
     }
 
-    public virtual Spatial GetWeaponParent(bool isPistol)
+    public virtual Node3D GetWeaponParent(bool isPistol)
     {
         if (isPistol)
         {
-            if (ThirdView) return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/weapons");
-            return GetNode<Spatial>("rotation_helper/camera/weapons");
+            if (ThirdView) return GetNode<Node3D>("player_body/Armature/Skeleton3D/BoneAttachment3D/weapons");
+            return GetNode<Node3D>("rotation_helper/camera/weapons");
         }
 
-        return GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/weapons");
+        return GetNode<Node3D>("player_body/Armature/Skeleton3D/BoneAttachment3D 2/weapons");
     }
 
     public void SetTalking(bool value, NPC npc = null)
@@ -175,7 +175,7 @@ public class Player : Character
 
         if (IsTalking)
         {
-            Camera.HideInteractionSquare();
+            Camera3D.HideInteractionSquare();
 
             if (!string.IsNullOrEmpty(Inventory.weapon))
             {
@@ -188,23 +188,23 @@ public class Player : Character
 
     public virtual void SetWeaponOn(bool isPistol)
     {
-        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        var bug = GetNode<Node3D>("player_body/Armature/Skeleton3D/BoneAttachment3D 2/shotgunBag");
         bug.Visible = !isPistol;
         BodyFollowsCamera = !isPistol;
     }
 
     public virtual void SetWeaponOff()
     {
-        var bug = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment 2/shotgunBag");
+        var bug = GetNode<Node3D>("player_body/Armature/Skeleton3D/BoneAttachment3D 2/shotgunBag");
         bug.Visible = false;
         BodyFollowsCamera = false;
     }
 
     public void LoadBodyMesh()
     {
-        var bodyMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body");
+        var bodyMesh = GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/Body");
         LoadClothMesh(Inventory.cloth, "first", bodyMesh);
-        var bodyThirdMesh = GetNode<MeshInstance>("player_body/Armature/Skeleton/Body_third");
+        var bodyThirdMesh = GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/Body_third");
         LoadClothMesh(Inventory.cloth, "third", bodyThirdMesh);
 
         var head = bodyThirdMesh as PlayerHead;
@@ -214,7 +214,7 @@ public class Player : Character
         Body.SetHead(head);
     }
 
-    private void LoadClothMesh(string clothName, string viewName, MeshInstance meshInstance)
+    private void LoadClothMesh(string clothName, string viewName, MeshInstance3D meshInstance)
     {
         //определяем название расы по текущей Race
         //(у единорогов от первого лица нет своей модельки)
@@ -249,7 +249,7 @@ public class Player : Character
 
     public void LoadArtifactMesh(string artifactName = null)
     {
-        var artifact = GetNode<MeshInstance>("player_body/Armature/Skeleton/artifact");
+        var artifact = GetNode<MeshInstance3D>("player_body/Armature/Skeleton3D/artifact");
         artifact.Visible = artifactName != null;
 
         if (artifactName != null)
@@ -262,7 +262,7 @@ public class Player : Character
         }
     }
 
-    public bool IsRotating()
+    public bool IsIgnoringRotation()
     {
         return Mathf.Abs(RotationHelper.RotationDegrees.x - oldRot.x) > 0.01f;
     }
@@ -272,7 +272,7 @@ public class Player : Character
         return Velocity.Length();
     }
 
-    public override float GetSpeed()
+    public override float GetVelocity()
     {
         if (IsCrouching)
         {
@@ -295,7 +295,7 @@ public class Player : Character
     protected override void Die(Character damager, int shapeID = 0)
     {
         SetProcess(false);
-        Camera.SetUpdating(false);
+        Camera3D.SetUpdating(false);
         Body.AnimateDeath(damager);
         Weapons.ClearWeapon();
         DeathManager.OnPlayerDeath();
@@ -365,7 +365,7 @@ public class Player : Character
     {
         SetMayMove(value);
         MayRotateHead = value;
-        Camera.SetUpdating(value);
+        Camera3D.SetUpdating(value);
     }
     
     //для земнопня шоб бегал
@@ -467,16 +467,16 @@ public class Player : Character
             sideAngle = Mathf.Lerp(sideAngle, 0, 10 * delta);
         }
 
-        Camera.RotationDegrees = new Vector3(
-            Camera.RotationDegrees.x,
-            Camera.RotationDegrees.y,
+        Camera3D.RotationDegrees = new Vector3(
+            Camera3D.RotationDegrees.x,
+            Camera3D.RotationDegrees.y,
             global.Settings.cameraAngle ? sideAngle : 0
         );
 
         inputMovementVector = inputMovementVector.Normalized();
         IsWalking = inputMovementVector.Length() > 0;
 
-        Transform camXForm = Camera.GlobalTransform;
+        Transform3D camXForm = Camera3D.GlobalTransform;
         dir += -camXForm.basis.z * inputMovementVector.y;
         dir += camXForm.basis.x * inputMovementVector.x;
 
@@ -563,7 +563,7 @@ public class Player : Character
         hvel.y = 0;
 
         var target = dir;
-        target *= GetSpeed();
+        target *= GetVelocity();
 
         float acceleration;
         if (dir.Dot(hvel) > 0)
@@ -575,7 +575,7 @@ public class Player : Character
             acceleration = GetDeacceleration();
         }
 
-        hvel = hvel.LinearInterpolate(target, acceleration * delta);
+        hvel = hvel.Lerp(target, acceleration * delta);
         Velocity.x = hvel.x;
         Velocity.z = hvel.z;
         Velocity = MoveAndSlide(Velocity, new Vector3(0, 1, 0), false, 4);
@@ -589,13 +589,13 @@ public class Player : Character
             {
                 case > 0 when Body.RotClumpsMin:
                 case < 0 when Body.RotClumpsMax:
-                    RotateY(Mathf.Deg2Rad(speedX));
+                    RotateY(Mathf.DegToRad(speedX));
                     break;
             }
         }
         else
         {
-            RotateY(Mathf.Deg2Rad(speedX));
+            RotateY(Mathf.DegToRad(speedX));
         }
     }
 
@@ -609,7 +609,7 @@ public class Player : Character
         {
             oldRot = RotationHelper.RotationDegrees;
 
-            RotationHelper.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensivity));
+            RotationHelper.RotateX(Mathf.DegToRad(mouseEvent.Relative.y * -MouseSensivity));
             RotateBodyClumped(mouseEvent.Relative.x * -MouseSensivity);
             ClumpCameraRotation();
             OnCameraRotatingX(mouseEvent.Relative.x);
@@ -692,21 +692,21 @@ public class Player : Character
         var canvas = GetNode("/root/Main/Scene/canvas/");
         JumpHint = canvas.GetNode<Control>("jumpHint");
         damageEffects = canvas.GetNode<DamageEffects>("redScreen");
-        Camera = GetNode<PlayerCamera>("rotation_helper/camera");
-        RotationHelper = GetNode<Spatial>("rotation_helper");
-        headShape = GetNode<Spatial>("headShape");
-        CameraHeadPos = GetNode<Spatial>("player_body/Armature/Skeleton/BoneAttachment/HeadPos");
+        Camera3D = GetNode<PlayerCamera>("rotation_helper/camera");
+        RotationHelper = GetNode<Node3D>("rotation_helper");
+        headShape = GetNode<Node3D>("headShape");
+        CameraHeadPos = GetNode<Node3D>("player_body/Armature/Skeleton3D/BoneAttachment3D/HeadPos");
 
         audi = GetAudi();
         audiHitted = GetAudi(true);
-        listener = CameraHeadPos.GetNode<Listener>("Listener");
+        listener = CameraHeadPos.GetNode<AudioListener3D>("AudioListener3D");
 
-        sphereCollider = GetNode<CollisionShape>("shape");
-        bodyCollider = GetNode<CollisionShape>("body_shape");
+        sphereCollider = GetNode<CollisionShape3D>("shape");
+        bodyCollider = GetNode<CollisionShape3D>("body_shape");
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        Connect(nameof(TakeItem), this, nameof(CheckTakeItem));
+        Connect(nameof(TakeItem), new Callable(this, nameof(CheckTakeItem)));
     }
 
     public override void _Process(float delta)

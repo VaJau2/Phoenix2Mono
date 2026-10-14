@@ -3,7 +3,7 @@ using Godot;
 
 // Триггер мониторит текущее время проигрывания музыки
 // И меняет его на другое, когда оно достигает нужного значения
-public class LoopingMusicPartTrigger : TriggerBase
+public partial class LoopingMusicPartTrigger : TriggerBase
 {
     [Export] public float CheckTime;
     [Export] public float ChangeTime;

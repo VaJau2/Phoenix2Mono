@@ -1,13 +1,13 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts;
 
-public class ChangeNpcMouthTexture : BaseChangeInNPC
+public partial class ChangeNpcMouthTexture : BaseChangeInNPC
 {
     public override void initiate(Node node, string parameter, string key = "")
     {
         GetNPC(node)?
-            .GetNode<NpcFace>("Armature/Skeleton/Body")?
+            .GetNode<NpcFace>("Armature/Skeleton3D/Body")?
             .ChangeMouthVariant(parameter);
     }
 }

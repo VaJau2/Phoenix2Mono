@@ -11,7 +11,7 @@ dest_files=[ "res://.import/mrHandy-twilight-dead.glb-1f91487a2ff4c60880dba73893
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

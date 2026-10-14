@@ -2,15 +2,15 @@
 
 [ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/scripts/interface/Menus/MainMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/interface/bg_pic/bg_pic.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/interface/bg_pic/bg_earthpony.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_pic.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_earthpony.png" type="Texture2D" id=4]
 [ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=5]
 [ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture" id=8]
-[ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/interface/icons/unicorn.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/textures/interface/icons/earthpony.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/textures/interface/icons/pegasus.png" type="Texture2D" id=9]
 [ext_resource path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/textures/interface/bg_pic/bg_dust.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/interface/bg_pic/bg_dust.png" type="Texture2D" id=11]
 [ext_resource path="res://assets/materials/shaders/godrays.tres" type="Material" id=12]
 [ext_resource path="res://assets/audio/music/mainMenu.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=14]
@@ -25,7 +25,7 @@ _data = [ Vector2( 0, 0.454545 ), 0.0, 1.71599, 0, 0, Vector2( 1, 0.0909091 ), -
 width = 512
 curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 500, 300, 500 )
 flag_disable_z = true
@@ -40,7 +40,7 @@ scale_curve = SubResource( 2 )
 color = Color( 0.407843, 0.384314, 0.305882, 1 )
 
 [node name="MainMenu" type="Control" groups=["ignore_color"]]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -56,7 +56,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="particles" type="Particles2D" parent="." groups=["ignore_color"]]
+[node name="particles" type="GPUParticles2D" parent="." groups=["ignore_color"]]
 position = Vector2( 448, 304 )
 amount = 100
 process_material = SubResource( 3 )
@@ -110,10 +110,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -201.0
-margin_top = -90.0
-margin_right = 201.0
-margin_bottom = -68.0
+offset_left = -201.0
+offset_top = -90.0
+offset_right = 201.0
+offset_bottom = -68.0
 theme = ExtResource( 1 )
 text = "Выберите язык"
 align = 1
@@ -126,10 +126,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -470.0
-margin_top = -40.0
-margin_right = -68.0
-margin_bottom = -15.0
+offset_left = -470.0
+offset_top = -40.0
+offset_right = -68.0
+offset_bottom = -15.0
 theme = ExtResource( 1 )
 text = "[Русский]"
 __meta__ = {
@@ -141,10 +141,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 38.0
-margin_top = -40.0
-margin_right = 440.0
-margin_bottom = -15.0
+offset_left = 38.0
+offset_top = -40.0
+offset_right = 440.0
+offset_bottom = -15.0
 theme = ExtResource( 1 )
 text = "[English]"
 __meta__ = {
@@ -152,10 +152,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 215.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 215.0
+offset_bottom = 42.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -166,10 +166,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.492
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -116.0
-margin_right = -55.808
-margin_bottom = -91.0
+offset_left = 40.0
+offset_top = -116.0
+offset_right = -55.808
+offset_bottom = -91.0
 theme = ExtResource( 1 )
 text = "               [Продолжить]"
 align = 0
@@ -182,10 +182,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.437
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -84.0
-margin_right = 0.511993
-margin_bottom = -59.0
+offset_left = 40.0
+offset_top = -84.0
+offset_right = 0.511993
+offset_bottom = -59.0
 theme = ExtResource( 1 )
 text = "               [Начать игру]"
 align = 0
@@ -198,10 +198,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.437
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -52.0
-margin_right = 0.511993
-margin_bottom = -27.0
+offset_left = 40.0
+offset_top = -52.0
+offset_right = 0.511993
+offset_bottom = -27.0
 theme = ExtResource( 1 )
 text = "               [Загрузить сохранение]"
 align = 0
@@ -214,10 +214,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -20.0
-margin_right = -64.0
-margin_bottom = 5.0
+offset_left = 40.0
+offset_top = -20.0
+offset_right = -64.0
+offset_bottom = 5.0
 theme = ExtResource( 1 )
 text = "               [Настройки]"
 align = 0
@@ -230,10 +230,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = 12.0
-margin_right = -64.0
-margin_bottom = 37.0
+offset_left = 40.0
+offset_top = 12.0
+offset_right = -64.0
+offset_bottom = 37.0
 theme = ExtResource( 1 )
 text = "               [Об игре]"
 align = 0
@@ -246,10 +246,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = 44.0
-margin_right = -64.0
-margin_bottom = 69.0
+offset_left = 40.0
+offset_top = 44.0
+offset_right = -64.0
+offset_bottom = 69.0
 theme = ExtResource( 1 )
 text = "               [Выйти]"
 align = 0
@@ -259,10 +259,10 @@ visible = false
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 40.0
-margin_top = -148.0
-margin_right = -64.0
-margin_bottom = -123.0
+offset_left = 40.0
+offset_top = -148.0
+offset_right = -64.0
+offset_bottom = -123.0
 theme = ExtResource( 1 )
 text = "           DEV:[Загрузить уровень]"
 align = 0
@@ -286,10 +286,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="ChooseAutosaveName"]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 322.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 322.0
+offset_bottom = 42.0
 theme = ExtResource( 1 )
 text = "/Phoenix2/Главное_меню/Название_автосохранения"
 __meta__ = {
@@ -297,10 +297,10 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="ChooseAutosaveName"]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 125.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 384.0
+offset_bottom = 125.0
 theme = ExtResource( 1 )
 text = "[Назад]"
 __meta__ = {
@@ -312,10 +312,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -148.0
-margin_top = -46.0
-margin_right = 148.0
-margin_bottom = -28.0
+offset_left = -148.0
+offset_top = -46.0
+offset_right = 148.0
+offset_bottom = -28.0
 theme = ExtResource( 1 )
 text = "Введите название файла автосохранения"
 
@@ -324,10 +324,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -158.0
-margin_top = -12.5
-margin_right = 158.0
-margin_bottom = 12.5
+offset_left = -158.0
+offset_top = -12.5
+offset_right = 158.0
+offset_bottom = 12.5
 theme = ExtResource( 1 )
 text = "autosave"
 align = 1
@@ -338,10 +338,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -152.0
-margin_top = 34.0
-margin_right = 148.0
-margin_bottom = 54.0
+offset_left = -152.0
+offset_top = 34.0
+offset_right = 148.0
+offset_bottom = 54.0
 theme = ExtResource( 1 )
 text = "[Далее]"
 
@@ -367,10 +367,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="ChangeRace"]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 322.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 322.0
+offset_bottom = 42.0
 theme = ExtResource( 1 )
 text = "/Phoenix2/Главное_меню/Выбор_Расы"
 __meta__ = {
@@ -378,10 +378,10 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="ChangeRace"]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 125.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 384.0
+offset_bottom = 125.0
 theme = ExtResource( 1 )
 text = "[Назад]"
 __meta__ = {
@@ -393,10 +393,10 @@ anchor_left = 0.5
 anchor_top = 0.387
 anchor_right = 0.5
 anchor_bottom = 0.387
-margin_left = -292.0
-margin_top = -72.2
-margin_right = -154.0
-margin_bottom = 71.8
+offset_left = -292.0
+offset_top = -72.2
+offset_right = -154.0
+offset_bottom = 71.8
 texture = ExtResource( 8 )
 expand = true
 __meta__ = {
@@ -408,10 +408,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = 88.0
-margin_right = 61.0
-margin_bottom = 113.0
+offset_left = -75.0
+offset_top = 88.0
+offset_right = 61.0
+offset_bottom = 113.0
 theme = ExtResource( 1 )
 text = "Земной пони"
 align = 1
@@ -422,10 +422,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -69.0
-margin_top = 66.0
-margin_right = 69.0
-margin_bottom = 123.0
+offset_left = -69.0
+offset_top = 66.0
+offset_right = 69.0
+offset_bottom = 123.0
 theme = ExtResource( 1 )
 text = "> Здоровье: 200
 > Возможность 
@@ -444,7 +444,7 @@ anchor_bottom = 1.0
 
 [node name="border-left" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
-margin_right = 2.0
+offset_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -453,24 +453,24 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
+offset_left = -2.0
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_right = -129.0
-margin_bottom = 2.0
+offset_right = -129.0
+offset_bottom = 2.0
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_left = 129.0
-margin_bottom = 2.0
+offset_left = 129.0
+offset_bottom = 2.0
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/earthpony/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -2.0
-margin_right = -129.0
+offset_top = -2.0
+offset_right = -129.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -479,8 +479,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 129.0
-margin_top = -2.0
+offset_left = 129.0
+offset_top = -2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -488,17 +488,17 @@ __meta__ = {
 [node name="selectArea" type="Control" parent="ChangeRace/earthpony"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 192.0
+offset_bottom = 192.0
 
 [node name="unicorn" type="TextureRect" parent="ChangeRace"]
 anchor_left = 0.5
 anchor_top = 0.387
 anchor_right = 0.5
 anchor_bottom = 0.387
-margin_left = -72.0
-margin_top = -72.2
-margin_right = 66.0
-margin_bottom = 71.8
+offset_left = -72.0
+offset_top = -72.2
+offset_right = 66.0
+offset_bottom = 71.8
 texture = ExtResource( 7 )
 expand = true
 __meta__ = {
@@ -510,10 +510,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -69.0
-margin_top = 88.0
-margin_right = 69.0
-margin_bottom = 113.0
+offset_left = -69.0
+offset_top = 88.0
+offset_right = 69.0
+offset_bottom = 113.0
 theme = ExtResource( 1 )
 text = "Единорог"
 align = 1
@@ -524,10 +524,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -69.0
-margin_top = 66.0
-margin_right = 69.0
-margin_bottom = 183.0
+offset_left = -69.0
+offset_top = 66.0
+offset_right = 69.0
+offset_bottom = 183.0
 theme = ExtResource( 1 )
 text = "> Здоровье: 100
 > Возможность 
@@ -546,7 +546,7 @@ anchor_bottom = 1.0
 
 [node name="border-left" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
-margin_right = 2.0
+offset_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -555,24 +555,24 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
+offset_left = -2.0
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_right = -129.0
-margin_bottom = 2.0
+offset_right = -129.0
+offset_bottom = 2.0
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_left = 129.0
-margin_bottom = 2.0
+offset_left = 129.0
+offset_bottom = 2.0
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/unicorn/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -2.0
-margin_right = -129.0
+offset_top = -2.0
+offset_right = -129.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -581,8 +581,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 129.0
-margin_top = -2.0
+offset_left = 129.0
+offset_top = -2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -590,7 +590,7 @@ __meta__ = {
 [node name="selectArea" type="Control" parent="ChangeRace/unicorn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 184.0
+offset_bottom = 184.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -600,10 +600,10 @@ anchor_left = 0.5
 anchor_top = 0.387
 anchor_right = 0.5
 anchor_bottom = 0.387
-margin_left = 152.0
-margin_top = -72.2
-margin_right = 290.0
-margin_bottom = 71.8
+offset_left = 152.0
+offset_top = -72.2
+offset_right = 290.0
+offset_bottom = 71.8
 texture = ExtResource( 9 )
 expand = true
 __meta__ = {
@@ -615,10 +615,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -69.0
-margin_top = 88.0
-margin_right = 69.0
-margin_bottom = 113.0
+offset_left = -69.0
+offset_top = 88.0
+offset_right = 69.0
+offset_bottom = 113.0
 theme = ExtResource( 1 )
 text = "Пегас"
 align = 1
@@ -629,10 +629,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -69.0
-margin_top = 66.0
-margin_right = 69.0
-margin_bottom = 184.0
+offset_left = -69.0
+offset_top = 66.0
+offset_right = 69.0
+offset_bottom = 184.0
 theme = ExtResource( 1 )
 text = "> Здоровье: 100
 > Возможность 
@@ -648,7 +648,7 @@ anchor_bottom = 1.0
 
 [node name="border-left" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_bottom = 1.0
-margin_right = 2.0
+offset_right = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -657,24 +657,24 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
+offset_left = -2.0
 
 [node name="border-up1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_right = -129.0
-margin_bottom = 2.0
+offset_right = -129.0
+offset_bottom = 2.0
 
 [node name="border-up2" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_right = 1.0
-margin_left = 129.0
-margin_bottom = 2.0
+offset_left = 129.0
+offset_bottom = 2.0
 
 [node name="border-down1" type="ColorRect" parent="ChangeRace/pegasus/hover" groups=["ignore_color"]]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -2.0
-margin_right = -129.0
+offset_top = -2.0
+offset_right = -129.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -683,8 +683,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 129.0
-margin_top = -2.0
+offset_left = 129.0
+offset_top = -2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -692,7 +692,7 @@ __meta__ = {
 [node name="selectArea" type="Control" parent="ChangeRace/pegasus"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 128.0
+offset_bottom = 128.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -728,10 +728,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="About"]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 215.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 215.0
+offset_bottom = 42.0
 theme = ExtResource( 1 )
 text = "/Phoenix2/Главное_меню/Об_игре"
 __meta__ = {
@@ -743,10 +743,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -412.0
-margin_top = -140.0
-margin_right = 174.0
-margin_bottom = 4.0
+offset_left = -412.0
+offset_top = -140.0
+offset_right = 174.0
+offset_bottom = 4.0
 theme = ExtResource( 1 )
 text = "Игра разработана в ходе участия в Шестом Общетабунском Конкурсе Игростроения.
 
@@ -761,10 +761,10 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="About"]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 125.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 384.0
+offset_bottom = 125.0
 theme = ExtResource( 1 )
 text = "[Назад]"
 __meta__ = {
@@ -784,10 +784,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = -68.0
-margin_right = 176.0
-margin_bottom = 68.0
+offset_left = -176.0
+offset_top = -68.0
+offset_right = 176.0
+offset_bottom = 68.0
 color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -795,7 +795,7 @@ __meta__ = {
 
 [node name="border-up" type="ColorRect" parent="modalError/back"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -804,28 +804,28 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="border-left" type="ColorRect" parent="modalError/back"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="border-left2" type="ColorRect" parent="modalError/back"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 
 [node name="Header" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 8.0
-margin_right = -16.0
-margin_bottom = -102.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -102.0
 theme = ExtResource( 14 )
 text = "Ошибка"
 align = 1
@@ -833,19 +833,19 @@ align = 1
 [node name="Text" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = -16.0
-margin_bottom = -62.0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = -62.0
 theme = ExtResource( 15 )
 text = "Файл поврежден"
 align = 1
 
 [node name="OK" type="Button" parent="modalError/back"]
-margin_left = 120.0
-margin_top = 104.0
-margin_right = 232.0
-margin_bottom = 124.0
+offset_left = 120.0
+offset_top = 104.0
+offset_right = 232.0
+offset_bottom = 124.0
 theme = ExtResource( 15 )
 text = "[ну блин]"
 
@@ -853,10 +853,10 @@ text = "[ну блин]"
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = -50.0
-margin_right = 39.0
-margin_bottom = -28.0
+offset_left = 30.0
+offset_top = -50.0
+offset_right = 39.0
+offset_bottom = -28.0
 theme = ExtResource( 1 )
 text = ">"
 __meta__ = {
@@ -867,10 +867,10 @@ __meta__ = {
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 45.0
-margin_top = -50.0
-margin_right = 220.0
-margin_bottom = -28.0
+offset_left = 45.0
+offset_top = -50.0
+offset_right = 220.0
+offset_bottom = -28.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -882,7 +882,7 @@ bus = "Sound"
 script = ExtResource( 16 )
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
+process_mode = 3
 stream = ExtResource( 13 )
 volume_db = -3.0
 bus = "Music"

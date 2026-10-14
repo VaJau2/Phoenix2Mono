@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class AmbientVolSync : Spatial
+public partial class AmbientVolSync : Node3D
 {
     float distance;
     bool isEmpty = true;
@@ -16,7 +16,7 @@ public class AmbientVolSync : Spatial
     public override void _Ready()
     {
         var settings = GetNode<SettingsSubmenu>("/root/Main/Menu/SettingsMenu/Settings");
-        settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), this, nameof(OnChangeRadioVolume));
+        settings.Connect(nameof(SettingsSubmenu.ChangeRadioVolumeEvent), new Callable(this, nameof(OnChangeRadioVolume)));
         minVolume = (float)settings.musicSlider.MinValue;
 
         SetProcess(false);
@@ -61,10 +61,10 @@ public class AmbientVolSync : Spatial
 
         radioList.Add(radio);
         
-        if (radio.IsConnected(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline))) 
+        if (radio.IsConnected(nameof(RadioBase.ChangeOnline), new Callable(this, nameof(OnRadioChangeOnline)))) 
             return;
         
-        radio.Connect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
+        radio.Connect(nameof(RadioBase.ChangeOnline), new Callable(this, nameof(OnRadioChangeOnline)));
         if (!IsProcessing() && global.Settings.radioVolume > minVolume) SetProcess(true);
     }
 
@@ -74,7 +74,7 @@ public class AmbientVolSync : Spatial
         
         if (radioList.Contains(radio))
         {
-            radio.Disconnect(nameof(RadioBase.ChangeOnline), this, nameof(OnRadioChangeOnline));
+            radio.Disconnect(nameof(RadioBase.ChangeOnline), new Callable(this, nameof(OnRadioChangeOnline)));
             radioList.Remove(radio);
 
             if (radioList.Count == 0)

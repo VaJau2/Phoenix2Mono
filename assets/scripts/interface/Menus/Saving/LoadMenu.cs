@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public class LoadMenu : Control
+public partial class LoadMenu : Control
 {
     [Signal]
     public delegate void BackPressed();

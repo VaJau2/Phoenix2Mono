@@ -1,6 +1,6 @@
-﻿using Godot.Collections;
+using Godot.Collections;
 
-public class NpcStateDependencies : IDependencies
+public partial class NpcStateDependencies : IDependencies
 {
     private NPC npc;
 

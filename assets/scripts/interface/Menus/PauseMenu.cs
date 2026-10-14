@@ -1,6 +1,6 @@
 using Godot;
 
-public class PauseMenu : MenuBase, IMenu
+public partial class PauseMenu : MenuBase, IMenu
 {
     public bool mustBeClosed => true;
     Global global = Global.Get();

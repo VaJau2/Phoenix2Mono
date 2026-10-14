@@ -1,20 +1,20 @@
 using Godot;
 using Godot.Collections;
 
-public class NuclearBombTrigger : Spatial
+public partial class NuclearBombTrigger : Node3D
 {
-    [Export] private Array<AudioStreamSample> explosionSounds;
+    [Export] private Array<AudioStreamWAV> explosionSounds;
     [Export] private float timer;
 
     public bool isExploding;
-    private Spatial rocket;
+    private Node3D rocket;
     private bool rockerCame;
     private float speedY;
 
     public override void _Ready()
     {
         base._Ready();
-        rocket = GetNode<Spatial>("rocket");
+        rocket = GetNode<Node3D>("rocket");
         SetProcess(false);
     }
 
@@ -32,10 +32,10 @@ public class NuclearBombTrigger : Spatial
         var dist2D = rocketTempPlace.DistanceTo(GlobalTransform.origin);
         if (dist2D > 310)
         {
-            rocket.Translation = new Vector3(
-                rocket.Translation.x - 0.6f,
-                rocket.Translation.y,
-                rocket.Translation.z
+            rocket.Position = new Vector3(
+                rocket.Position.x - 0.6f,
+                rocket.Position.y,
+                rocket.Position.z
             );
         } 
         else if (dist2D > 4)
@@ -45,10 +45,10 @@ public class NuclearBombTrigger : Spatial
                 speedY += 0.004f;
             }
 
-            rocket.Translation = new Vector3(
-                rocket.Translation.x - (0.6f - speedY),
-                rocket.Translation.y - speedY,
-                rocket.Translation.z)
+            rocket.Position = new Vector3(
+                rocket.Position.x - (0.6f - speedY),
+                rocket.Position.y - speedY,
+                rocket.Position.z)
             ;
             rocket.RotationDegrees = new Vector3(
                 speedY * -150f,
@@ -77,8 +77,8 @@ public class NuclearBombTrigger : Spatial
         }
         else
         {
-            GetNode<Spatial>("light").Visible = true;
-            GetNode<Spatial>("sprite").Visible = true;
+            GetNode<Node3D>("light").Visible = true;
+            GetNode<Node3D>("sprite").Visible = true;
             GetNode<AnimationPlayer>("anim").Play("fire");
             var audi = GetNode<AudioStreamPlayer3D>("audi");
             var rand = new RandomNumberGenerator();

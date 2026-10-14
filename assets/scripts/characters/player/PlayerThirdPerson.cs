@@ -1,13 +1,13 @@
 using Godot;
 
-public class PlayerThirdPerson : Spatial
+public partial class PlayerThirdPerson : Node3D
 {
     const int BUTTON_WHEEL_UP = 4;
     const int BUTTON_WHEEL_DOWN = 5;
 
-    public Camera thirdCamera;
-    public Camera firstCamera;
-    public RayCast TempRay;
+    public Camera3D thirdCamera;
+    public Camera3D firstCamera;
+    public RayCast3D TempRay;
     public bool MayChange = true;
 
     private Player player;
@@ -18,15 +18,15 @@ public class PlayerThirdPerson : Spatial
     private Vector3 thirdMax = new Vector3(2.75f, 0.45f, 5.2f);
     private Vector3 tempThird = new Vector3(2.5f, 0.4f, 4.2f);
 
-    private RayCast RayToPlayer;
-    private RayCast RayFirst;
-    private RayCast RayThird;
+    private RayCast3D RayToPlayer;
+    private RayCast3D RayFirst;
+    private RayCast3D RayThird;
     private bool seePlayer = false;
     private Vector3 oldThird;
 
-    private Spatial Body;
+    private Node3D Body;
 
-    public Camera GetCamera() => player.ThirdView ? thirdCamera : firstCamera;
+    public Camera3D GetCamera3d() => player.ThirdView ? thirdCamera : firstCamera;
     
     public void SetThirdView(bool on)
     {
@@ -56,7 +56,7 @@ public class PlayerThirdPerson : Spatial
 
                 Basis basis = new Basis(playerRot);
                 Vector3 origin = player.GlobalTransform.origin;
-                Transform playerTransform = new Transform(basis, origin);
+                Transform3D playerTransform = new Transform3D(basis, origin);
                 player.GlobalTransform = playerTransform;
 
                 player.Body.SetRotZero();
@@ -111,16 +111,16 @@ public class PlayerThirdPerson : Spatial
             tempThird.y = third.y;
         }
 
-        thirdCamera.Translation = tempThird;
+        thirdCamera.Position = tempThird;
     }
 
     private void CheckCameraSee()
     {
         RayToPlayer.Enabled = true;
         var dir = player.GlobalTransform.origin - RayToPlayer.GlobalTransform.origin;
-        RayToPlayer.CastTo = dir;
+        RayToPlayer.TargetPosition = dir;
 
-        Transform rayTransf = RayToPlayer.GlobalTransform;
+        Transform3D rayTransf = RayToPlayer.GlobalTransform;
         rayTransf.basis = new Basis(Vector3.Zero);
         RayToPlayer.GlobalTransform = rayTransf;
 
@@ -196,17 +196,17 @@ public class PlayerThirdPerson : Spatial
         player = GetParent<Player>();
 
         eyePartsInterface = GetNode<Control>("/root/Main/Scene/canvas/eyesParts");
-        firstCamera = GetNode<Camera>("../rotation_helper/camera");
-        thirdCamera = GetNode<Camera>("camera");
-        RayToPlayer = GetNode<RayCast>("camera/RayToPlayer");
+        firstCamera = GetNode<Camera3D>("../rotation_helper/camera");
+        thirdCamera = GetNode<Camera3D>("camera");
+        RayToPlayer = GetNode<RayCast3D>("camera/RayToPlayer");
 
-        RayFirst = GetNode<RayCast>("../rotation_helper/camera/rayFirst");
-        RayThird = GetNode<RayCast>("camera/rayThird");
+        RayFirst = GetNode<RayCast3D>("../rotation_helper/camera/rayFirst");
+        RayThird = GetNode<RayCast3D>("camera/rayThird");
         RayFirst.AddException(player);
         RayThird.AddException(player);
         TempRay = RayFirst;
 
-        Body = GetNode<Spatial>("../player_body/Armature/Skeleton/Body");
+        Body = GetNode<Node3D>("../player_body/Armature/Skeleton3D/Body");
     }
 
     public override void _Process(float delta)

@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 using System.Linq;
 using Godot.Collections;
 using System.Collections.Generic;
 
-public class TriggerInteractionAdapter : StaticBody, IInteractable
+public partial class TriggerInteractionAdapter : StaticBody3D, IInteractable
 {
     private const string DEFAULT_HINT = "use";
     

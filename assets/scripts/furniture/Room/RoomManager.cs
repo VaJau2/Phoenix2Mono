@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class RoomManager : Node, ISavable
+public partial class RoomManager : Node, ISavable
 {
     public Room CurrentRoom { set; get; }
 

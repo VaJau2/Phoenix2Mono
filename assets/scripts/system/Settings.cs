@@ -1,6 +1,6 @@
 using Godot;
 
-public class Settings 
+public partial class Settings 
 {
     public bool SettingsLoaded;
     public Color interfaceColor = new Color(0.2f, 1f, 0.2f);
@@ -42,7 +42,7 @@ public class Settings
     public float npcAccuracy = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
     public float inflation = DifficultySubmenu.DEFAULT_SLIDERS_VALUE;
 
-    Viewport root;
+    SubViewport root;
 
     public void UpdateAudioBus(AudioBus bus, float value)
     {
@@ -97,9 +97,9 @@ public class Settings
         var config = new ConfigFile();
         config.SetValue("controls", "mouse_sensivity", mouseSensivity);
         foreach(string action in controlActions) {
-            var actions = InputMap.GetActionList(action);
+            var actions = InputMap.ActionGetEvents(action);
             var keyAction = actions[0] as InputEventKey;
-            var key = OS.GetScancodeString(keyAction.Scancode);
+            var key = OS.GetKeycodeString(keyAction.Keycode);
             config.SetValue("controls", action, key);
         }
         config.SetValue("screen", "distance", distance);
@@ -134,9 +134,9 @@ public class Settings
             mouseSensivity = (float)config.GetValue("controls", "mouse_sensivity");
             foreach(string action in controlActions) {
                 string key = config.GetValue("controls", action).ToString();
-                var keyCode = (uint)OS.FindScancodeFromString(key);
+                var keyCode = (uint)OS.FindKeycodeFromString(key);
                 var newEvent = new InputEventKey();
-                newEvent.Scancode = keyCode;
+                newEvent.Keycode = keyCode;
 
                 InputMap.ActionEraseEvents(action);
                 InputMap.ActionAddEvent(action, newEvent);

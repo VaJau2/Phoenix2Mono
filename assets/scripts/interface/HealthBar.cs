@@ -1,6 +1,6 @@
 using Godot;
 
-public class HealthBar : Control
+public partial class HealthBar : Control
 {
     private const int SIZE_X = 65;
     private const int SIZE_Y = 80;
@@ -34,7 +34,7 @@ public class HealthBar : Control
 
     private void UpdateHealthBar()
     {
-        if (float.IsNaN(mask.RectSize.y))
+        if (float.IsNaN(mask.Size.y))
         {
             mask.QueueFree();
             mask = healthPrefab.Instance<Control>();
@@ -43,12 +43,12 @@ public class HealthBar : Control
         }
         
         var healthRatio = (float)player.Health / player.HealthMax;
-        mask.RectSize = new Vector2(SIZE_X, healthRatio * SIZE_Y);
+        mask.Size = new Vector2(SIZE_X, healthRatio * SIZE_Y);
     }
     
     private void UpdateRadiationBar()
     {
-        if (float.IsNaN(radiationMask.RectSize.y))
+        if (float.IsNaN(radiationMask.Size.y))
         {
             radiationMask.QueueFree();
             radiationMask = radiationPrefab.Instance<Control>();
@@ -56,6 +56,6 @@ public class HealthBar : Control
         }
         
         var radiationRatio = (float)player.Radiation.GetRadLevel() / player.HealthMax;
-        radiationMask.RectSize = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
+        radiationMask.Size = new Vector2(SIZE_X, radiationRatio * SIZE_Y);
     }
 }

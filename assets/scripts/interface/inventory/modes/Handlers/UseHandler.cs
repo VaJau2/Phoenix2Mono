@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class UseHandler
+public partial class UseHandler
 {
     private const float CLEAR_BAG_DISTANCE = 5;
     
@@ -37,9 +37,9 @@ public class UseHandler
 
         loadingIcon = menu.GetNode<Control>("helper/back/loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished)))
+        if (!loadingAnim.IsConnected("animation_finished", new Callable(menu, nameof(InventoryMenu.IconAnimFinished))))
         {
-            loadingAnim.Connect("animation_finished", menu, nameof(InventoryMenu.IconAnimFinished));
+            loadingAnim.Connect("animation_finished", new Callable(menu, nameof(InventoryMenu.IconAnimFinished)));
         }
 
         var wearBack = menu.GetNode<Control>("helper/back/wearBack");
@@ -60,7 +60,7 @@ public class UseHandler
         Vector2 iconPos = menu.GetGlobalMousePosition();
         iconPos.x += 10;
         iconPos.y += 10;
-        loadingIcon.RectGlobalPosition = iconPos;
+        loadingIcon.GlobalPosition = iconPos;
         loadingIcon.Visible = true;
         loadingAnim.Play("load");
     }
@@ -264,7 +264,7 @@ public class UseHandler
 
     private void CheckTempBag()
     {
-        if (tempBag is Spatial bagPoint)
+        if (tempBag is Node3D bagPoint)
         {
             var distance = Player.GlobalTransform.origin.DistanceTo(bagPoint.GlobalTransform.origin);
             if (distance > CLEAR_BAG_DISTANCE)

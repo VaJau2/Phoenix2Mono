@@ -1,18 +1,18 @@
 using Godot;
 using System.Collections.Generic;
 
-public class BreakableObject: StaticBody 
+public partial class BreakableObject: StaticBody3D 
 {
     public bool Broken;
 
     [Export]
     public float BrakeDamage = 50;
     [Export]
-    public SpatialMaterial BrokenMaterial;
+    public StandardMaterial3D BrokenMaterial;
     [Export]
     public BreakableObjectType objectType;
     [Export]
-    public Dictionary<string, AudioStreamSample> brakeSounds = new Dictionary<string, AudioStreamSample>
+    public Dictionary<string, AudioStreamWAV> brakeSounds = new Dictionary<string, AudioStreamWAV>
     {
         {"brake1", null},
         {"brake2", null}
@@ -29,8 +29,8 @@ public class BreakableObject: StaticBody
         {
             if (BrokenMaterial != null)
             {
-                var mesh = GetNode<MeshInstance>("mesh");
-                mesh.SetSurfaceMaterial(0, BrokenMaterial);
+                var mesh = GetNode<MeshInstance3D>("mesh");
+                mesh.SetSurfaceOverrideMaterial(0, BrokenMaterial);
             }
             Broken = true;
             audi.Stream = brakeSounds["brake1"];
@@ -49,8 +49,8 @@ public class BreakableObject: StaticBody
                     break;
             }
 
-            GetNode<Spatial>("mesh").Visible = false;
-            GetNode<CollisionShape>("shape").Disabled = true;
+            GetNode<Node3D>("mesh").Visible = false;
+            GetNode<CollisionShape3D>("shape").Disabled = true;
             GetNode<Particles>("Particles").Emitting = true;
             audi.Play();
             isDeleting = true;

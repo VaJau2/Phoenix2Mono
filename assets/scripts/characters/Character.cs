@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public abstract class Character : KinematicBody, ISavable
+public abstract class Character : CharacterBody3D, ISavable
 {
     public const string IDLE_ANIM = "Idle";
     public const string IDLE_ANIM1 = "Idle1";
@@ -35,7 +35,7 @@ public abstract class Character : KinematicBody, ISavable
     public delegate void IsCame();
     
     [Signal]
-    public delegate void DoorTeleporting(Spatial doorTeleport);
+    public delegate void DoorTeleporting(Node3D doorTeleport);
 
     public override void _Ready()
     {
@@ -48,7 +48,7 @@ public abstract class Character : KinematicBody, ISavable
     }
     
     protected virtual float GetDamageBlock() => BaseDamageBlock;
-    public virtual float GetSpeed()  => BaseSpeed;
+    public virtual float GetVelocity()  => BaseSpeed;
     public virtual int GetDamage() => BaseDamage;
 
     public void DecreaseHealth(int decrease) 

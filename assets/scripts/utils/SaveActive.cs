@@ -3,7 +3,7 @@ using Godot.Collections;
 
 //нод, добавляющий в сохранение информацию о своей активности
 //(помещение)
-public class SaveActive : Spatial, ISavable
+public partial class SaveActive : Node3D, ISavable
 {
     public Dictionary GetSaveData()
     {

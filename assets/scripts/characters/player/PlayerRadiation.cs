@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class PlayerRadiation
+public partial class PlayerRadiation
 {
     private const int INCREASE_SPEED = 1;
     private const string RADIATION_COUNTER_ITEM = "radiationCounter";

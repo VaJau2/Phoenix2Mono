@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Godot;
 
-public class BindsHandler
+public partial class BindsHandler
 {
     public float useCooldown;
     

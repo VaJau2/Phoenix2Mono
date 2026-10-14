@@ -11,7 +11,7 @@ dest_files=[ "res://.import/suitcase.glb-866b9cde627f9c33453654d421b5038b.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class RoboEyeSearchState(
+public partial class RoboEyeSearchState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     StateMachine stateMachine

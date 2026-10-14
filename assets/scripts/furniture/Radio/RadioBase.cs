@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public abstract class RadioBase : StaticBody
+public abstract class RadioBase : StaticBody3D
 {
     private const float PAUSE_VOLUME = -28;
     
@@ -44,7 +44,7 @@ public abstract class RadioBase : StaticBody
         warningManager = GetNodeOrNull<WarningManager>("/root/Main/Scene/Warning Manager");
         
         var pauseMenu = GetNode<PauseMenu>("/root/Main/Menu/PauseMenu");
-        pauseMenu.Connect(nameof(PauseMenu.ChangePause), this, nameof(OnPauseChange));
+        pauseMenu.Connect(nameof(PauseMenu.ChangePause), new Callable(this, nameof(OnPauseChange)));
     }
 
     public void RepeaterMode(bool value)
@@ -62,13 +62,13 @@ public abstract class RadioBase : StaticBody
     {
         if (value)
         {
-            MusicPlayer.UnitDb = -80;
-            NoisePlayer.UnitDb = -80;
+            MusicPlayer.VolumeDb = -80;
+            NoisePlayer.VolumeDb = -80;
         }
         else
         {
-            MusicPlayer.UnitDb = 0;
-            NoisePlayer.UnitDb = noiseDb;
+            MusicPlayer.VolumeDb = 0;
+            NoisePlayer.VolumeDb = noiseDb;
         }
     }
 

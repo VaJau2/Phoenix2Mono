@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 //Сабменю настроек управления
-public class ControlsSubmenu : SubmenuBase
+public partial class ControlsSubmenu : SubmenuBase
 {
     Global global = Global.Get();
     
@@ -10,7 +10,7 @@ public class ControlsSubmenu : SubmenuBase
     private Dictionary<string, Label> controlLabels;
     
     private TextureRect changeIcon;
-    private Texture backupIcon;
+    private Texture2D backupIcon;
     private string tempAction = "";
 
     private Array<TextureRect> selectedIconList = new Array<TextureRect>();
@@ -33,11 +33,11 @@ public class ControlsSubmenu : SubmenuBase
             {
                 if (selectedIconList[i] == selectedIcon)
                 {
-                    if (selectedIconList[i].RectScale.x < 1) selectedIconList[i].RectScale += speedSize;
+                    if (selectedIconList[i].Scale.x < 1) selectedIconList[i].Scale += speedSize;
                 }
                 else
                 {
-                    if (selectedIconList[i].RectScale.x > 0.6f) selectedIconList[i].RectScale -= speedSize;
+                    if (selectedIconList[i].Scale.x > 0.6f) selectedIconList[i].Scale -= speedSize;
                     else selectedIconList.Remove(selectedIconList[i]);
                 }
             }
@@ -133,9 +133,9 @@ public class ControlsSubmenu : SubmenuBase
     private void LoadControlButtons()
     {
         foreach(var action in global.Settings.controlActions) {
-            var actions = InputMap.GetActionList(action);
+            var actions = InputMap.ActionGetEvents(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
-            var key = OS.GetScancodeString(eventKey.Scancode);
+            var key = OS.GetKeycodeString(eventKey.Keycode);
             var icon = GetIcon(action);
             WriteKeyToEdit(key, icon);
         }
@@ -143,23 +143,23 @@ public class ControlsSubmenu : SubmenuBase
 
     private void WriteKeyToEdit(string key, TextureRect icon)
     {
-        icon.Texture = GD.Load<Texture>("res://assets/textures/interface/icons/buttons/" + key + ".png");
+        icon.Texture2D = GD.Load<Texture2D>("res://assets/textures/interface/icons/buttons/" + key + ".png");
         EmitSignal(nameof(ChangeControlEvent));
     }
 
     private void CancelControlEdit()
     {
-        changeIcon.Texture = backupIcon;
+        changeIcon.Texture2D = backupIcon;
     }
     
     public void _on_default_pressed()
     {
-        InputMap.LoadFromGlobals();
+        InputMap.LoadFromProjectSettings();
         foreach(var action in global.Settings.controlActions) 
         {
-            var actions = InputMap.GetActionList(action);
+            var actions = InputMap.ActionGetEvents(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
-            var key = OS.GetScancodeString(eventKey.Scancode);
+            var key = OS.GetKeycodeString(eventKey.Keycode);
             var icon = GetIcon(action);
             WriteKeyToEdit(key, icon);
         }
@@ -190,12 +190,12 @@ public class ControlsSubmenu : SubmenuBase
 
             if (changeIcon != null && backupIcon != null)
             {
-                changeIcon.Texture = backupIcon;
+                changeIcon.Texture2D = backupIcon;
             }
 
             changeIcon = GetIcon(action);
-            backupIcon = changeIcon.Texture;
-            changeIcon.Texture = null;
+            backupIcon = changeIcon.Texture2D;
+            changeIcon.Texture2D = null;
         }
     }
 
@@ -206,7 +206,7 @@ public class ControlsSubmenu : SubmenuBase
         if (!(@event is InputEventKey eventKey)) return;
         if (!eventKey.Pressed) return;
         
-        if (eventKey.Scancode == (uint)KeyList.Escape) 
+        if (eventKey.Keycode == (uint)KeyList.Escape) 
         {
             CancelControlEdit();
         } 
@@ -214,7 +214,7 @@ public class ControlsSubmenu : SubmenuBase
         {
             InputMap.ActionEraseEvents(tempAction);
             InputMap.ActionAddEvent(tempAction, eventKey);
-            var key = OS.GetScancodeString(eventKey.Scancode);
+            var key = OS.GetKeycodeString(eventKey.Keycode);
             WriteKeyToEdit(key, changeIcon);
         }
 

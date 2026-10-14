@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class RadiationArea : Area
+public partial class RadiationArea : Area3D
 {
     private const float RADIATION_TIMER = 0.06f;
     
@@ -26,7 +26,7 @@ public class RadiationArea : Area
     {
         if (!(body is Player player)) return;
         tempPlayer = player;
-        tempPlayer.Connect(nameof(Character.DieEvent), this, nameof(Disable));
+        tempPlayer.Connect(nameof(Character.DieEvent), new Callable(this, nameof(Disable)));
         tempPlayer.Radiation.StartSounding();
     }
 
@@ -38,7 +38,7 @@ public class RadiationArea : Area
     
     private void Disable()
     {
-        tempPlayer.Disconnect(nameof(Character.DieEvent), this, nameof(Disable));
+        tempPlayer.Disconnect(nameof(Character.DieEvent), new Callable(this, nameof(Disable)));
         tempPlayer.Radiation.StopSounding();
         tempPlayer = null;
     }

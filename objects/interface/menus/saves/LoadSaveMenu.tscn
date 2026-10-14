@@ -32,10 +32,10 @@ __meta__ = {
 }
 
 [node name="page_label" type="Label" parent="."]
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 322.0
-margin_bottom = 42.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 322.0
+offset_bottom = 42.0
 theme = ExtResource( 5 )
 text = "/Phoenix2/Главное_меню/Загрузка_уровня"
 __meta__ = {
@@ -43,10 +43,10 @@ __meta__ = {
 }
 
 [node name="back" type="Button" parent="."]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 125.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 384.0
+offset_bottom = 125.0
 theme = ExtResource( 5 )
 text = "[Назад]"
 __meta__ = {
@@ -56,20 +56,20 @@ __meta__ = {
 [node name="Table" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.504
 anchor_right = 0.504
-margin_left = -452.096
-margin_top = -140.0
-margin_right = 451.904
-margin_bottom = 108.0
+offset_left = -452.096
+offset_top = -140.0
+offset_right = 451.904
+offset_bottom = 108.0
 
 [node name="Load" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 56.0
-margin_top = -160.0
-margin_right = 224.0
-margin_bottom = -140.0
+offset_left = 56.0
+offset_top = -160.0
+offset_right = 224.0
+offset_bottom = -140.0
 theme = ExtResource( 5 )
 disabled = true
 text = "Загрузить"
@@ -79,10 +79,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -240.0
-margin_top = -160.0
-margin_right = -72.0
-margin_bottom = -140.0
+offset_left = -240.0
+offset_top = -160.0
+offset_right = -72.0
+offset_bottom = -140.0
 theme = ExtResource( 5 )
 disabled = true
 text = "Удалить"
@@ -100,10 +100,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = -68.0
-margin_right = 176.0
-margin_bottom = 68.0
+offset_left = -176.0
+offset_top = -68.0
+offset_right = 176.0
+offset_bottom = 68.0
 color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,7 +111,7 @@ __meta__ = {
 
 [node name="border-up" type="ColorRect" parent="modalError/back"]
 anchor_right = 1.0
-margin_bottom = 1.0
+offset_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,28 +120,28 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
+offset_top = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="border-left" type="ColorRect" parent="modalError/back"]
 anchor_bottom = 1.0
-margin_right = 1.0
+offset_right = 1.0
 
 [node name="border-left2" type="ColorRect" parent="modalError/back"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
+offset_left = -1.0
 
 [node name="Header" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 8.0
-margin_right = -16.0
-margin_bottom = -102.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -102.0
 theme = ExtResource( 6 )
 text = "Ошибка"
 align = 1
@@ -149,19 +149,19 @@ align = 1
 [node name="Text" type="Label" parent="modalError/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = -16.0
-margin_bottom = -62.0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = -62.0
 theme = ExtResource( 1 )
 text = "Файл поврежден"
 align = 1
 
 [node name="OK" type="Button" parent="modalError/back"]
-margin_left = 120.0
-margin_top = 104.0
-margin_right = 232.0
-margin_bottom = 124.0
+offset_left = 120.0
+offset_top = 104.0
+offset_right = 232.0
+offset_bottom = 124.0
 theme = ExtResource( 1 )
 text = "[ну блин]"
 

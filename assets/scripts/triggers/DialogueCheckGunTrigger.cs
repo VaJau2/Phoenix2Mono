@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 //перед диалогом делает проверку на оружие
 //если у игрока нет оружия, запускает другой диалог
-public class DialogueCheckGunTrigger: DialogueTrigger
+public partial class DialogueCheckGunTrigger: DialogueTrigger
 {
     [Export] public string codeWithoutGun;
 

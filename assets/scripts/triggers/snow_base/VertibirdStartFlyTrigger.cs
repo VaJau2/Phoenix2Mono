@@ -2,18 +2,18 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class VertibirdStartFlyTrigger : TriggerBase
+public partial class VertibirdStartFlyTrigger : TriggerBase
 {
     private float animTimer = 19f;
     [Export] private NodePath VertibirdPath;
-    private Spatial Vertibird;
+    private Node3D Vertibird;
     private AnimationPlayer anim;
     private AudioStreamPlayer3D audi;
     private int step;
 
     public override void _Ready()
     {
-        Vertibird = GetNode<Spatial>(VertibirdPath);
+        Vertibird = GetNode<Node3D>(VertibirdPath);
         anim = Vertibird.GetNode<AnimationPlayer>("anim");
         audi = Vertibird.GetNode<AudioStreamPlayer3D>("Box001/audi");
         SetProcess(false);

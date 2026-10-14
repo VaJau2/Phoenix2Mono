@@ -11,7 +11,7 @@ dest_files=[ "res://.import/mrHandy-pinkie.glb-3a3d1b3d466412ed0fea2a60b69d73e7.
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

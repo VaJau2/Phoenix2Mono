@@ -5,7 +5,7 @@
 
 [node name="Testing" type="Node"]
 
-[node name="CameraPivot" type="Spatial" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
 
 [node name="PlayerCommands" type="Node" parent="."]
 script = ExtResource( 2 )

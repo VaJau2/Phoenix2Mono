@@ -11,7 +11,7 @@ dest_files=[ "res://.import/toilet.glb-c714e5706bce940108cce1c2e04e2da9.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

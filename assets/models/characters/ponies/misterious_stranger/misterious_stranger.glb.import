@@ -11,7 +11,7 @@ dest_files=[ "res://.import/misterious_stranger.glb-ff6d105c5be1dd6b778b144692ec
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

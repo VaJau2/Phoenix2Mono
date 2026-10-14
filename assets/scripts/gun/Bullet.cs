@@ -1,13 +1,13 @@
 using Godot;
 
-public class Bullet : Area
+public partial class Bullet : Area3D
 {
     [Export] public float speed;
     public int Damage;
     public float Timer;
     public Character Shooter;
     
-    private void HandleVictim(Spatial victim, int shapeID = 0)
+    private void HandleVictim(Node3D victim, int shapeID = 0)
     {
         switch (victim)
         {
@@ -23,10 +23,10 @@ public class Bullet : Area
                 break;
             }
             
-            case StaticBody { PhysicsMaterialOverride: null }:
+            case StaticBody3D { PhysicsMaterialOverride: null }:
                 return;
             
-            case StaticBody body:
+            case StaticBody3D body:
             {
                 if (body is BreakableObject obj)
                 {
@@ -48,7 +48,7 @@ public class Bullet : Area
             return;
         }
         
-        HandleVictim(body as Spatial, bodyShape);
+        HandleVictim(body as Node3D, bodyShape);
         QueueFree();
     }
 

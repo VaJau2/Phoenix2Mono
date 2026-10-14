@@ -1,6 +1,6 @@
 using Godot;
 
-public class NpcCovers : Node
+public partial class NpcCovers : Node
 {
     private readonly float[] COVER_TIMER = [1f, 5f];
     

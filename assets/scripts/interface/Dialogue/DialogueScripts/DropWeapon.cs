@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts;
 
-public class DropWeapon : IDialogueScript
+public partial class DropWeapon : IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

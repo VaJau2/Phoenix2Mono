@@ -22,80 +22,80 @@
 
 [sub_resource type="PlaneMesh" id=1]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 extents = Vector3( 50, 0.1, 50 )
 
 [sub_resource type="PlaneMesh" id=8]
 
 [sub_resource type="NavigationMesh" id=5]
-vertices = PoolVector3Array( 42, -0.49967, 48.25, 48.25, -0.49967, 48.25, 48.25, -0.49967, 42, -48.25, -0.49967, 42, -48.25, -0.49967, 48.25, -36.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 48.25, -0.49967, -48.25, 42, -0.49967, -48.25, 36, -0.49967, 48.25, 42, -0.49967, 48.25, 48.25, -0.49967, 42, -36.25, -0.49967, -48.25, -48.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 36, -48.25, -0.49967, 42, -36.25, -0.49967, 48.25, -24.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 42, -0.49967, -48.25, 36, -0.49967, -48.25, 48.25, -0.49967, -24.25, 36, -0.49967, 48.25, 48.25, -0.49967, 42, 48.25, -0.49967, 36, 24, -0.49967, 48.25, -24.25, -0.49967, -48.25, -36.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 24, -6.25, -0.49967, 48.25, 0, -0.49967, 48.25, -48.25, -0.49967, 12, 0, -0.49967, -48.25, -6.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, -12.25, 48.25, -0.49967, 0, 48.25, -0.49967, -6.25, 24, -0.49967, -48.25, 12, -0.49967, -48.25, -24.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, -24.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, 24, -48.25, -0.49967, 36, -24.25, -0.49967, 48.25, -12.25, -0.49967, 48.25, 48.25, -0.49967, -24.25, 36, -0.49967, -48.25, 24, -0.49967, -48.25, 48.25, -0.49967, -12.25, 24, -0.49967, 48.25, 48.25, -0.49967, 36, 48.25, -0.49967, 24, 12, -0.49967, 48.25, 48.25, -0.49967, 0, 0, -0.49967, -48.25, -48.25, -0.49967, 0, -48.25, -0.49967, 12, 0, -0.49967, 48.25, 48.25, -0.49967, 12, 0, -0.49967, -48.25, -48.25, -0.49967, -12.25, -48.25, -0.49967, -6.25, 48.25, -0.49967, 0, 12, -0.49967, -48.25, 0, -0.49967, -48.25, 0, -0.49967, -48.25, -48.25, -0.49967, -6.25, -48.25, -0.49967, 0, -6.25, -0.49967, -48.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, 24, -12.25, -0.49967, 48.25, -6.25, -0.49967, 48.25, 48.25, -0.49967, -6.25, 48.25, -0.49967, -12.25, 24, -0.49967, -48.25, 12, -0.49967, 48.25, 48.25, -0.49967, 24, 48.25, -0.49967, 12, 0, -0.49967, 48.25 )
-polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 16, 15, 17 ), PoolIntArray( 17, 15, 18 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 21, 19, 22 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 35, 34, 36 ), PoolIntArray( 36, 34, 37 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 45 ), PoolIntArray( 47, 46, 48 ), PoolIntArray( 48, 46, 49 ), PoolIntArray( 51, 50, 52 ), PoolIntArray( 52, 50, 53 ), PoolIntArray( 55, 54, 56 ), PoolIntArray( 56, 54, 57 ), PoolIntArray( 63, 62, 58 ), PoolIntArray( 58, 62, 61 ), PoolIntArray( 58, 61, 60 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 66, 65, 64 ), PoolIntArray( 69, 68, 67 ), PoolIntArray( 72, 71, 70 ), PoolIntArray( 75, 74, 73 ), PoolIntArray( 78, 77, 76 ), PoolIntArray( 81, 80, 79 ), PoolIntArray( 83, 82, 84 ), PoolIntArray( 84, 82, 85 ) ]
+vertices = PackedVector3Array( 42, -0.49967, 48.25, 48.25, -0.49967, 48.25, 48.25, -0.49967, 42, -48.25, -0.49967, 42, -48.25, -0.49967, 48.25, -36.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 48.25, -0.49967, -48.25, 42, -0.49967, -48.25, 36, -0.49967, 48.25, 42, -0.49967, 48.25, 48.25, -0.49967, 42, -36.25, -0.49967, -48.25, -48.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 36, -48.25, -0.49967, 42, -36.25, -0.49967, 48.25, -24.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 42, -0.49967, -48.25, 36, -0.49967, -48.25, 48.25, -0.49967, -24.25, 36, -0.49967, 48.25, 48.25, -0.49967, 42, 48.25, -0.49967, 36, 24, -0.49967, 48.25, -24.25, -0.49967, -48.25, -36.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 24, -6.25, -0.49967, 48.25, 0, -0.49967, 48.25, -48.25, -0.49967, 12, 0, -0.49967, -48.25, -6.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, -12.25, 48.25, -0.49967, 0, 48.25, -0.49967, -6.25, 24, -0.49967, -48.25, 12, -0.49967, -48.25, -24.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, -24.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, 24, -48.25, -0.49967, 36, -24.25, -0.49967, 48.25, -12.25, -0.49967, 48.25, 48.25, -0.49967, -24.25, 36, -0.49967, -48.25, 24, -0.49967, -48.25, 48.25, -0.49967, -12.25, 24, -0.49967, 48.25, 48.25, -0.49967, 36, 48.25, -0.49967, 24, 12, -0.49967, 48.25, 48.25, -0.49967, 0, 0, -0.49967, -48.25, -48.25, -0.49967, 0, -48.25, -0.49967, 12, 0, -0.49967, 48.25, 48.25, -0.49967, 12, 0, -0.49967, -48.25, -48.25, -0.49967, -12.25, -48.25, -0.49967, -6.25, 48.25, -0.49967, 0, 12, -0.49967, -48.25, 0, -0.49967, -48.25, 0, -0.49967, -48.25, -48.25, -0.49967, -6.25, -48.25, -0.49967, 0, -6.25, -0.49967, -48.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, 24, -12.25, -0.49967, 48.25, -6.25, -0.49967, 48.25, 48.25, -0.49967, -6.25, 48.25, -0.49967, -12.25, 24, -0.49967, -48.25, 12, -0.49967, 48.25, 48.25, -0.49967, 24, 48.25, -0.49967, 12, 0, -0.49967, 48.25 )
+polygons = [ PackedInt32Array( 2, 1, 0 ), PackedInt32Array( 5, 4, 3 ), PackedInt32Array( 8, 7, 6 ), PackedInt32Array( 11, 10, 9 ), PackedInt32Array( 14, 13, 12 ), PackedInt32Array( 16, 15, 17 ), PackedInt32Array( 17, 15, 18 ), PackedInt32Array( 20, 19, 21 ), PackedInt32Array( 21, 19, 22 ), PackedInt32Array( 24, 23, 25 ), PackedInt32Array( 25, 23, 26 ), PackedInt32Array( 29, 28, 27 ), PackedInt32Array( 31, 30, 32 ), PackedInt32Array( 32, 30, 33 ), PackedInt32Array( 35, 34, 36 ), PackedInt32Array( 36, 34, 37 ), PackedInt32Array( 39, 38, 40 ), PackedInt32Array( 40, 38, 41 ), PackedInt32Array( 43, 42, 44 ), PackedInt32Array( 44, 42, 45 ), PackedInt32Array( 47, 46, 48 ), PackedInt32Array( 48, 46, 49 ), PackedInt32Array( 51, 50, 52 ), PackedInt32Array( 52, 50, 53 ), PackedInt32Array( 55, 54, 56 ), PackedInt32Array( 56, 54, 57 ), PackedInt32Array( 63, 62, 58 ), PackedInt32Array( 58, 62, 61 ), PackedInt32Array( 58, 61, 60 ), PackedInt32Array( 58, 60, 59 ), PackedInt32Array( 66, 65, 64 ), PackedInt32Array( 69, 68, 67 ), PackedInt32Array( 72, 71, 70 ), PackedInt32Array( 75, 74, 73 ), PackedInt32Array( 78, 77, 76 ), PackedInt32Array( 81, 80, 79 ), PackedInt32Array( 83, 82, 84 ), PackedInt32Array( 84, 82, 85 ) ]
 agent_height = 4.0
 agent_radius = 1.55
 
 [sub_resource type="Curve3D" id=9]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( -6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+"points": PackedVector3Array( -6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807 ),
+"tilts": PackedFloat32Array( 0, 0, 0, 0, 0 )
 }
 
 [sub_resource type="Curve3D" id=18]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
-"tilts": PoolRealArray( 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
+"tilts": PackedFloat32Array( 0 )
 }
 
-[sub_resource type="SphereShape" id=17]
+[sub_resource type="SphereShape3D" id=17]
 radius = 2.0
 
 [sub_resource type="Curve3D" id=14]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.82007, -0.725437, -4.63688 ),
-"tilts": PoolRealArray( 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.82007, -0.725437, -4.63688 ),
+"tilts": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Curve3D" id=12]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.57121, -0.0119658, -0.00863111, 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933 ),
-"tilts": PoolRealArray( 0, 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.57121, -0.0119658, -0.00863111, 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933 ),
+"tilts": PackedFloat32Array( 0, 0 )
 }
 
 [sub_resource type="Curve3D" id=11]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.0524902, 0.0185537, 0.0442524 ),
-"tilts": PoolRealArray( 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -0.0524902, 0.0185537, 0.0442524 ),
+"tilts": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Curve3D" id=13]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933, 0, 0, 0, 0, 0, 0, -3.59928, -0.0273476, 0.018203 ),
-"tilts": PoolRealArray( 0, 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933, 0, 0, 0, 0, 0, 0, -3.59928, -0.0273476, 0.018203 ),
+"tilts": PackedFloat32Array( 0, 0 )
 }
 
 [sub_resource type="Curve3D" id=15]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.48657, 3.06391, 3.20606 ),
-"tilts": PoolRealArray( 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.48657, 3.06391, 3.20606 ),
+"tilts": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Curve3D" id=16]
 bake_interval = 0.02
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.00802755, -0.00111794, 0, 0, 0, 0, 0, 0, -3.59928, 3.08364, 3.22355 ),
-"tilts": PoolRealArray( 0, 0 )
+"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.00802755, -0.00111794, 0, 0, 0, 0, 0, 0, -3.59928, 3.08364, 3.22355 ),
+"tilts": PackedFloat32Array( 0, 0 )
 }
 
 [node name="Main" instance=ExtResource( 3 )]
 
 [node name="PlayerSpawner" parent="Scene" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6987, 1.5, 5.21641 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6987, 1.5, 5.21641 )
 itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "Quest_agentNote", "Quest_blueprints" ]
 ammo = {
 "ammo308": 20,
@@ -104,82 +104,82 @@ ammo = {
 }
 
 [node name="assistantSparkle" parent="Scene/npc" index="0" instance=ExtResource( 10 )]
-transform = Transform( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.94215 )
+transform = Transform3D( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.94215 )
 IsImmortal = true
 subtitlesCode = "briefing"
 
 [node name="test" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
-transform = Transform( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
+transform = Transform3D( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
 subtitlesCode = "testPlayerMove"
 itemCodes = [ "revolver32" ]
 
-[node name="terrain" type="StaticBody" parent="Scene" index="4"]
+[node name="terrain" type="StaticBody3D" parent="Scene" index="4"]
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain" index="0"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain" index="0"]
+transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain" index="1"]
 shape = SubResource( 2 )
 
-[node name="props" type="Spatial" parent="Scene/terrain" index="2"]
+[node name="props" type="Node3D" parent="Scene/terrain" index="2"]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain" index="3"]
-transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
+transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true
 
 [node name="covers" type="Node" parent="Scene/terrain" index="4"]
 script = ExtResource( 2 )
 
-[node name="1" type="Spatial" parent="Scene/terrain/covers" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.7832 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.7832 )
 
-[node name="1" type="Spatial" parent="Scene/terrain/covers/1" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.79724 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers/1" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.79724 )
 
-[node name="2" type="Spatial" parent="Scene/terrain/covers/1" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10719 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers/1" index="1"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10719 )
 
-[node name="2" type="Spatial" parent="Scene/terrain/covers" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.368, 0, 2.70287 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers" index="1"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.368, 0, 2.70287 )
 
-[node name="1" type="Spatial" parent="Scene/terrain/covers/2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11258, 0, -0.0895691 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers/2" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11258, 0, -0.0895691 )
 
-[node name="2" type="Spatial" parent="Scene/terrain/covers/2" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33775, 0, -0.328845 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers/2" index="1"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33775, 0, -0.328845 )
 
-[node name="patrolPoint1" type="Spatial" parent="Scene/terrain" index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
+[node name="patrolPoint1" type="Node3D" parent="Scene/terrain" index="5"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
 
-[node name="patrolPoint2" type="Spatial" parent="Scene/terrain" index="6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
+[node name="patrolPoint2" type="Node3D" parent="Scene/terrain" index="6"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
 
 [node name="Button" parent="Scene/terrain" index="7" instance=ExtResource( 7 )]
-transform = Transform( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0 )
+transform = Transform3D( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("../../triggers/ChangeSubtitlesTrigger") ]
 
-[node name="map" type="MeshInstance" parent="Scene/terrain" index="8"]
-transform = Transform( -1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.35565, -2.05938e-07, 9.00184e-15, -47.9088, 5.42532, -0.0465126 )
+[node name="map" type="MeshInstance3D" parent="Scene/terrain" index="8"]
+transform = Transform3D( -1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.35565, -2.05938e-07, 9.00184e-15, -47.9088, 5.42532, -0.0465126 )
 cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 9 )
 
-[node name="map2" type="MeshInstance" parent="Scene/terrain" index="9"]
-transform = Transform( -1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799 )
+[node name="map2" type="MeshInstance3D" parent="Scene/terrain" index="9"]
+transform = Transform3D( -1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799 )
 cast_shadow = 0
 mesh = SubResource( 8 )
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 11 )
 
-[node name="mesh" type="NavigationMeshInstance" parent="Scene" index="7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-navmesh = SubResource( 5 )
+[node name="mesh" type="NavigationRegion3D" parent="Scene" index="7"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
+navigation_mesh = SubResource( 5 )
 
 [node name="cutscenes" type="Node" parent="Scene" index="8"]
 
@@ -192,7 +192,7 @@ DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Test/test" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411 )
 curve = SubResource( 9 )
 rotationMode = 2
 cameraAngle = Vector3( 0, 180, 0 )
@@ -216,7 +216,7 @@ otherTriggerPaths = [ NodePath("MovePlayer") ]
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51622, 2.11585, 10.6806 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51622, 2.11585, 10.6806 )
 curve = SubResource( 18 )
 speed = 0.3
 speedRot = 2.0
@@ -224,20 +224,20 @@ speedRot = 2.0
 [node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="1"]
 script = ExtResource( 15 )
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("Spatial/Area") ]
-pointPath = NodePath("Spatial")
+otherTriggerPaths = [ NodePath("Node3D/Area3D") ]
+pointPath = NodePath("Node3D")
 
-[node name="Spatial" type="Spatial" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481 )
+[node name="Node3D" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
+transform = Transform3D( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481 )
 
-[node name="Area" type="Area" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0"]
+[node name="Area3D" type="Area3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D" index="0"]
 script = ExtResource( 16 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("../../../../continueSpeech") ]
 disactiveTriggerPaths = [ NodePath(".") ]
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 17 )
 
 [node name="continueSpeech" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1"]
@@ -249,10 +249,10 @@ npcPath = NodePath("../../../npc/test")
 [node name="lookAtTarget" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
 script = ExtResource( 19 )
 DeleteAfterTrigger = false
-targetPath = NodePath("Spatial")
+targetPath = NodePath("Node3D")
 
-[node name="Spatial" type="Spatial" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718 )
+[node name="Node3D" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718 )
 
 [node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="3"]
 script = ExtResource( 1 )
@@ -268,7 +268,7 @@ returnPath = NodePath("ReturnToPlayer")
 script = ExtResource( 5 )
 DeleteAfterTrigger = false
 otherTriggerPaths = [ NodePath("MovePlayer") ]
-disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area"), NodePath("../lookAtTarget") ]
+disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Node3D/Area3D"), NodePath("../lookAtTarget") ]
 npcPath = NodePath("../../../npc/test")
 newSubtitlesCode = "testPlayerMove"
 
@@ -277,7 +277,7 @@ script = ExtResource( 15 )
 DeleteAfterTrigger = false
 disactiveTriggerPaths = [  ]
 isTeleport = true
-pointPath = NodePath("../../cinematic/MovePlayer/Spatial")
+pointPath = NodePath("../../cinematic/MovePlayer/Node3D")
 
 [node name="Briefing" type="Node" parent="Scene/cutscenes" index="2"]
 script = ExtResource( 13 )
@@ -288,7 +288,7 @@ DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
 speed = 0.3
 speedRot = 2.0
 cameraAngle = Vector3( 0, 90, 0 )
@@ -299,13 +299,13 @@ DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent1" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
 curve = SubResource( 14 )
 speed = 0.5
 cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent1" index="1" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
 curve = SubResource( 12 )
 speed = 1.0
 
@@ -315,13 +315,13 @@ DeleteAfterTrigger = false
 movePath = NodePath("MoveCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent2" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 4, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 4, 0 )
 curve = SubResource( 11 )
 speed = 0.3
 cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent2" index="1" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
 curve = SubResource( 13 )
 speed = 0.3
 
@@ -332,13 +332,13 @@ movePath = NodePath("MoveCinematic")
 rotatePath = NodePath("RotateCinematic")
 
 [node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent3" index="0" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
 curve = SubResource( 15 )
 speed = 0.3
 cameraAngle = Vector3( 0, 90, 0 )
 
 [node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent3" index="1" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
 curve = SubResource( 16 )
 speed = 0.3
 
@@ -369,4 +369,4 @@ newSubtitlesCode = "cinematicTest"
 
 [node name="Testing" parent="." index="1" instance=ExtResource( 17 )]
 
-[connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" method="_on_body_entered"]
+[connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Node3D/Area3D" method="_on_body_entered"]

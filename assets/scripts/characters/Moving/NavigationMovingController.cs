@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class NavigationMovingController: BaseMovingController, ISavable
+public partial class NavigationMovingController: BaseMovingController, ISavable
 {
     private const float RUN_DISTANCE = 12f;
     private const float MIN_MOVING_DISTANCE = 0.5f;
@@ -72,8 +72,8 @@ public class NavigationMovingController: BaseMovingController, ISavable
         if (path == null || !IsTargetsSame(target))
         {
             pathI = 0;
-            path = NavigationServer.MapGetPath(
-                character.GetWorld().NavigationMap, 
+            path = NavigationServer3D.MapGetPath(
+                character.GetWorld3d().NavigationMap, 
                 pos, 
                 target, 
                 true

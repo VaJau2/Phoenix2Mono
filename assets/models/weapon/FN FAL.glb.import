@@ -11,7 +11,7 @@ dest_files=[ "res://.import/FN FAL.glb-7735c70a0a551da626a77448e98e3024.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

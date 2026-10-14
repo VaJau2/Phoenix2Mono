@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class DeleteNodeTrigger : TriggerBase
+public partial class DeleteNodeTrigger : TriggerBase
 {
     [Export] private Array<NodePath> objToDeletePaths;
 

@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 public abstract class TrainingTriggerWithButton: TriggerBase, IInteractable
 {
     [Export] public string HintCode = "pressButton";
-    [Export] public AudioStreamSample clickButtonSound;
+    [Export] public AudioStreamWAV clickButtonSound;
     [Export] public NodePath audiPath;
     
     protected AudioStreamPlayer3D audi;

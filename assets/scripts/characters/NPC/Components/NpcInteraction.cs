@@ -1,6 +1,6 @@
 using Godot;
 
-public class NpcInteraction: Node
+public partial class NpcInteraction: Node
 {
     private NPC npc;
     private DialogueMenu dialogueMenu;

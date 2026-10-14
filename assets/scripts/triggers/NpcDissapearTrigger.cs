@@ -1,7 +1,7 @@
 using Godot;
 
 //удаляет непися, когда тот попадает в зону проверки
-public class NpcDissapearTrigger : ActivateOtherTrigger
+public partial class NpcDissapearTrigger : ActivateOtherTrigger
 {
     [Export] public string npcPath;
     

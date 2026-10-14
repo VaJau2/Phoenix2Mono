@@ -11,7 +11,7 @@ dest_files=[ "res://.import/machete-zebra.glb-70e22a3fa66bd3fc3c21906c9f5f06cb.s
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

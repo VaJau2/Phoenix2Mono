@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 namespace Phoenix2Mono.assets.scripts.audio.factories;
 
-public class FlaskGlassFactory : IAudioEffectsFactory
+public partial class FlaskGlassFactory : IAudioEffectsFactory
 {
     private const string key = "flaskGlass";
     

@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class DragonIdleState(
+public partial class DragonIdleState(
     NpcPatroling patroling,
     DragonBody body,
     StateMachine stateMachine,

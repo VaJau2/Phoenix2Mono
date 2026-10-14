@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/scripts/utils/testing/TestingCamera.cs" type="Script" id=1]
 
-[node name="Camera" type="Camera"]
+[node name="Camera3D" type="Camera3D"]
 fov = 85.0
 far = 1000.0
 script = ExtResource( 1 )

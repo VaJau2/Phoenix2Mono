@@ -11,7 +11,7 @@ dest_files=[ "res://.import/revolver.glb-45ce0ab4b8c09d32136e272ab0b6dcc6.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-public class TradeMode: InventoryMode 
+public partial class TradeMode: InventoryMode 
 {
     const float PRICE_DIFF = 0.8f;
 

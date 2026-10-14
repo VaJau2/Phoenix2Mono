@@ -3,7 +3,7 @@ using Godot.Collections;
 
 //Музыка стартует плавно в начале уровня
 //А если загружается сохранение, то играет сразу с полной громкости
-public class StartSmoothMusic : AudioStreamPlayer, ISavable
+public partial class StartSmoothMusic : AudioStreamPlayer, ISavable
 {
     [Export] private float startDelayTimer = 2f;
     [Export] private float riseSpeed = 0.1f;

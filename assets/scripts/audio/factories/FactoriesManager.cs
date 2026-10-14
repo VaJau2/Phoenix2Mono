@@ -1,4 +1,4 @@
-﻿namespace Phoenix2Mono.assets.scripts.audio.factories;
+namespace Phoenix2Mono.assets.scripts.audio.factories;
 
 public enum FactoryType
 {
@@ -11,7 +11,7 @@ public enum FactoryType
     flaskGlass
 }
 
-public class FactoriesManager
+public partial class FactoriesManager
 {
     public static IAudioEffectsFactory GetFactory(FactoryType type)
     {

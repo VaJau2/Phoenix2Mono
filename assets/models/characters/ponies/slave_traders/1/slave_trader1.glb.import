@@ -11,7 +11,7 @@ dest_files=[ "res://.import/slave_trader1.glb-be1724f09925ba653e93b2619deef9c4.s
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

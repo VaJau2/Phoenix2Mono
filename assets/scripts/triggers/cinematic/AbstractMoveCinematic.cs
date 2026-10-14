@@ -18,7 +18,7 @@ public abstract class AbstractMoveCinematic : PathBase
     {
         if (speedRot > 0)
         {
-            var camera = cutscene.GetCamera();
+            var camera = cutscene.GetCamera3d();
             if (camera.GlobalRotation != cameraAngleRad)
             {
                 var rot = camera.GlobalRotation;
@@ -35,7 +35,7 @@ public abstract class AbstractMoveCinematic : PathBase
     public override void Enable()
     {
         cutscene.SetCameraParent(pathFollow);
-        var camera = cutscene.GetCamera();
+        var camera = cutscene.GetCamera3d();
 
         if (smoothTransition)
         {
@@ -43,7 +43,7 @@ public abstract class AbstractMoveCinematic : PathBase
             Curve.AddPoint(cameraLocalPos, null, null, 0);
         }
         
-        camera.Translation = Vector3.Zero;
+        camera.Position = Vector3.Zero;
         base.Enable();
     }
     

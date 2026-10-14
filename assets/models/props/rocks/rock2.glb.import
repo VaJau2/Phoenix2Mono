@@ -11,7 +11,7 @@ dest_files=[ "res://.import/rock2.glb-7660cddd08876de5b8d6ba4e0addfee7.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

@@ -1,6 +1,6 @@
 using Godot;
 
-public class TableSignals : ScrollContainer
+public partial class TableSignals : ScrollContainer
 {
     [Signal]
     public delegate void TableButtonPressed(string fileName);

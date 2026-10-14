@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 //если активен, следит за инвентарем и получаемыми предметами
@@ -17,7 +17,7 @@ class TakeItemTrigger: ActivateOtherTrigger
         
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Connect(nameof(Player.TakeItem), new Callable(this, nameof(_on_player_take_item)));
         }
     }
 
@@ -26,11 +26,11 @@ class TakeItemTrigger: ActivateOtherTrigger
         base.SetActive(newActive);
         if (IsActive)
         {
-            player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Connect(nameof(Player.TakeItem), new Callable(this, nameof(_on_player_take_item)));
         }
         else
         {
-            player.Disconnect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+            player.Disconnect(nameof(Player.TakeItem), new Callable(this, nameof(_on_player_take_item)));
         }
     }
 
@@ -63,11 +63,11 @@ class TakeItemTrigger: ActivateOtherTrigger
 
         if (!IsActive) return;
         
-        if (player.IsConnected(nameof(Player.TakeItem), this, nameof(_on_player_take_item)))
+        if (player.IsConnected(nameof(Player.TakeItem), new Callable(this, nameof(_on_player_take_item))))
         {
             return;
         }
                 
-        player.Connect(nameof(Player.TakeItem), this, nameof(_on_player_take_item));
+        player.Connect(nameof(Player.TakeItem), new Callable(this, nameof(_on_player_take_item)));
     }
 }

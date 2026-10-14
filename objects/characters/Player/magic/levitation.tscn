@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/magic/magic.tres" type="Material" id=1]
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticleProcessMaterial" id=1]
 emission_shape = 2
 emission_box_extents = Vector3( 0.5, 0.5, 1 )
 gravity = Vector3( 0, 0.1, 0 )

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/mrHandy-applejack-dead.glb-a9ae3c89a3aecf86a5fa91e33
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

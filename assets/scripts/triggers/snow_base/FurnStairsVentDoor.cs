@@ -1,20 +1,20 @@
-﻿using Godot;
+using Godot;
 
 namespace FurnStairs;
 
-public class FurnStairsVentDoor: FurnDoor, IDoorTeleport
+public partial class FurnStairsVentDoor: FurnDoor, IDoorTeleport
 {
     [Export] private NodePath teleportPointPath;
     [Export] private NodePath triggerAreaPath;
     
-    public Spatial TeleportPos { get; private set; }
+    public Node3D TeleportPos { get; private set; }
 
     private FurnStairsTriggerArea triggerArea;
 
     public override void _Ready()
     {
         base._Ready();
-        TeleportPos = GetNode<Spatial>(teleportPointPath);
+        TeleportPos = GetNode<Node3D>(teleportPointPath);
         triggerArea = GetNode<FurnStairsTriggerArea>(triggerAreaPath);
     }
     

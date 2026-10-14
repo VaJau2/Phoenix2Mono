@@ -1,6 +1,6 @@
 using Godot;
 
-public class Speaker : RadioBase
+public partial class Speaker : RadioBase
 {
     [Export] private NodePath receiverPath;
     private Receiver receiver;
@@ -19,15 +19,15 @@ public class Speaker : RadioBase
         
         if (receiver != null)
         {
-            receiver.Connect(nameof(ChangeOnline), this, nameof(OnChangeOnline));
-            receiver.Connect(nameof(Receiver.ChangeMusicEvent), this, nameof(OnChangeMusic));
-            receiver.Connect(nameof(Receiver.ChangeNoiseEvent), this, nameof(OnChangeNoise));
+            receiver.Connect(nameof(ChangeOnline), new Callable(this, nameof(OnChangeOnline)));
+            receiver.Connect(nameof(Receiver.ChangeMusicEvent), new Callable(this, nameof(OnChangeMusic)));
+            receiver.Connect(nameof(Receiver.ChangeNoiseEvent), new Callable(this, nameof(OnChangeNoise)));
             OnChangeNoise(receiver.NoisePlayer.Stream);
             OnChangeMusic(receiver.MusicPlayer.Stream);
         }
         else
         {
-            warningManager.Connect(nameof(WarningManager.StartMessageEvent), this, nameof(OnChangeMusic));
+            warningManager.Connect(nameof(WarningManager.StartMessageEvent), new Callable(this, nameof(OnChangeMusic)));
         }
     }
 
@@ -69,8 +69,8 @@ public class Speaker : RadioBase
 
     private void OnChangeNoise(AudioStream stream)
     {
-        noiseDb = receiver.NoisePlayer.UnitDb;
-        NoisePlayer.UnitDb = noiseDb;
+        noiseDb = receiver.NoisePlayer.VolumeDb;
+        NoisePlayer.VolumeDb = noiseDb;
         NoisePlayer.Stream = stream;
 
         if (receiver.NoisePlayer.Playing) NoisePlayer.Play();

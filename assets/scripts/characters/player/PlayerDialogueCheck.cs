@@ -2,7 +2,7 @@ using Godot;
 
 // Управляет камерой во время диалога с НПЦ
 // Искусственно отдаляет игрока от НПЦ, если он стоит слишком близко к нему
-public class PlayerDialogueCheck : Node
+public partial class PlayerDialogueCheck : Node
 {
     private const float MIN_NPC_DISTANCE_CHECK = 1f;
     private const float LOOK_POS_DELTA = 1.5f;

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/car_nt.glb-d1b6005969480e4379078ae13a359e6a.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

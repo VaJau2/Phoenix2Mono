@@ -4,7 +4,7 @@ using Godot.Collections;
 // скрипт взаимодействия с предметами
 //
 // TODO отрефакторить (выделить fov в отдельный класс)
-public class PlayerCamera : Camera
+public partial class PlayerCamera : Camera3D
 {
     private const float RAY_LENGTH = 8;
     private const float RAY_THIRD_LENGTH = 9;
@@ -36,7 +36,7 @@ public class PlayerCamera : Camera
     private bool isUpdating = true;
     private bool mayUseRay = true;
 
-    private RayCast tempRay => Player.RotationHelperThird.TempRay;
+    private RayCast3D tempRay => Player.RotationHelperThird.TempRay;
     
     private bool MayInteract => !interactionHint.Visible || !(closedTimer <= 0) ||
                                 tempInteractable is { MayInteract: true };
@@ -53,9 +53,9 @@ public class PlayerCamera : Camera
         
         loadingIcon = point.GetNode<Control>("loadingIcon");
         loadingAnim = loadingIcon.GetNode<AnimationPlayer>("anim");
-        if (!loadingAnim.IsConnected("animation_finished", this, nameof(HoldAnimationFinished)))
+        if (!loadingAnim.IsConnected("animation_finished", new Callable(this, nameof(HoldAnimationFinished))))
         {
-            loadingAnim.Connect("animation_finished", this, nameof(HoldAnimationFinished));
+            loadingAnim.Connect("animation_finished", new Callable(this, nameof(HoldAnimationFinished)));
         }
     }
     
@@ -113,10 +113,10 @@ public class PlayerCamera : Camera
         }
     }
     
-    public RayCast UseRay(float newDistance)
+    public RayCast3D UseRay(float newDistance)
     {
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
-        tempRay.CastTo = new Vector3(0, 0, -newDistance);
+        tempRay.TargetPosition = new Vector3(0, 0, -newDistance);
         mayUseRay = false;
         return tempRay;
     }
@@ -125,7 +125,7 @@ public class PlayerCamera : Camera
     {
         float oldLength = Player.ThirdView ? RAY_THIRD_LENGTH : RAY_LENGTH;
         tempRay.CollisionMask = 21; //слой 1, 3 и 5
-        tempRay.CastTo = new Vector3(0, 0, -oldLength);
+        tempRay.TargetPosition = new Vector3(0, 0, -oldLength);
         tempRay.ForceRaycastUpdate();
         mayUseRay = true;
     }
@@ -180,7 +180,7 @@ public class PlayerCamera : Camera
         
         var obj = (Node)tempRay.GetCollider();
         
-        if (obj is PhysicalBone)
+        if (obj is PhysicalBone3D)
         {
             // путь к NPC
             obj = obj.GetNode<Node>("../../../");
@@ -229,8 +229,8 @@ public class PlayerCamera : Camera
 
         if (eyesClosed)
         {
-            eyePartUp.RectPosition = SetRectY(eyePartUp.RectPosition, 0);
-            eyePartDown.RectPosition = SetRectY(eyePartDown.RectPosition, 0);
+            eyePartUp.Position = SetRectY(eyePartUp.Position, 0);
+            eyePartDown.Position = SetRectY(eyePartDown.Position, 0);
         }
         else if (fovClosing)
         {
@@ -247,19 +247,19 @@ public class PlayerCamera : Camera
                 Fov -= FOV_SPEED * delta;
             }
             
-            if (eyePartUp.RectPosition.y < -220)
+            if (eyePartUp.Position.y < -220)
             {
-                eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition,
-                    eyePartUp.RectPosition.y + delta * EYE_PART_SPEED1
+                eyePartUp.Position = SetRectY(
+                    eyePartUp.Position,
+                    eyePartUp.Position.y + delta * EYE_PART_SPEED1
                 );
             }
             
-            if (eyePartDown.RectPosition.y > 220)
+            if (eyePartDown.Position.y > 220)
             {
-                eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition,
-                    eyePartDown.RectPosition.y - delta * EYE_PART_SPEED1
+                eyePartDown.Position = SetRectY(
+                    eyePartDown.Position,
+                    eyePartDown.Position.y - delta * EYE_PART_SPEED1
                 );
             }
         }
@@ -270,19 +270,19 @@ public class PlayerCamera : Camera
                 Fov += FOV_SPEED * delta;
             }
 
-            if (eyePartUp.RectPosition.y > -650)
+            if (eyePartUp.Position.y > -650)
             {
-                eyePartUp.RectPosition = SetRectY(
-                    eyePartUp.RectPosition,
-                    eyePartUp.RectPosition.y - delta * EYE_PART_SPEED2
+                eyePartUp.Position = SetRectY(
+                    eyePartUp.Position,
+                    eyePartUp.Position.y - delta * EYE_PART_SPEED2
                 );
             }
             
-            if (eyePartDown.RectPosition.y < 650)
+            if (eyePartDown.Position.y < 650)
             {
-                eyePartDown.RectPosition = SetRectY(
-                    eyePartDown.RectPosition,
-                    eyePartDown.RectPosition.y + delta * EYE_PART_SPEED2
+                eyePartDown.Position = SetRectY(
+                    eyePartDown.Position,
+                    eyePartDown.Position.y + delta * EYE_PART_SPEED2
                 );
             }
         }

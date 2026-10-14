@@ -1,6 +1,6 @@
 using Godot;
 
-public class PlayerCanMoveTrigger : ActivateOtherTrigger
+public partial class PlayerCanMoveTrigger : ActivateOtherTrigger
 {
     [Export] public bool MakeMayMove;
     

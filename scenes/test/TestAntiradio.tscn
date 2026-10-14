@@ -14,7 +14,7 @@
 
 [sub_resource type="PlaneMesh" id=1]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 extents = Vector3( 50, 0.1, 50 )
 
 [node name="Main" type="Node"]
@@ -29,7 +29,7 @@ playerRace = 1
 [node name="canvas" parent="Scene" instance=ExtResource( 2 )]
 
 [node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
 moneyCount = 500
 itemCodes = [ "shotgun20" ]
 ammo = {
@@ -39,34 +39,34 @@ ammo = {
 [node name="npc" type="Node" parent="Scene"]
 script = ExtResource( 10 )
 
-[node name="shells" type="Spatial" parent="Scene" groups=["savable"]]
+[node name="shells" type="Node3D" parent="Scene" groups=["savable"]]
 script = ExtResource( 13 )
 
-[node name="terrain" type="StaticBody" parent="Scene"]
+[node name="terrain" type="StaticBody3D" parent="Scene"]
 collision_layer = 3
 collision_mask = 3
 physics_material_override = ExtResource( 11 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Scene/terrain"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/terrain"]
+transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Scene/terrain"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/terrain"]
 shape = SubResource( 2 )
 
-[node name="props" type="Spatial" parent="Scene/terrain"]
+[node name="props" type="Node3D" parent="Scene/terrain"]
 
 [node name="metallic-cabinet" parent="Scene/terrain/props" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4073, 2.86446, 1.17027 )
 startItemCodes = [ "powerArmor", "rage", "bowRibbon", "nucBattery", "coat" ]
 
 [node name="dummy" parent="Scene/terrain/props" instance=ExtResource( 3 )]
-transform = Transform( 0.555454, 0, -0.831547, 0, 1, 0, 0.831547, 0, 0.555454, -28.8174, 0.366631, 11.6461 )
+transform = Transform3D( 0.555454, 0, -0.831547, 0, 1, 0, 0.831547, 0, 0.555454, -28.8174, 0.366631, 11.6461 )
 pegasCloth = ExtResource( 4 )
 
 [node name="cloneFlask" parent="Scene/terrain/props" instance=ExtResource( 5 )]
-transform = Transform( -4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.15743, -32.5678, 2.62048, -10.9731 )
+transform = Transform3D( -4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.15743, -32.5678, 2.62048, -10.9731 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Scene/terrain"]
-transform = Transform( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/terrain"]
+transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
 shadow_enabled = true

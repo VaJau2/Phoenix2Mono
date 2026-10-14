@@ -11,7 +11,7 @@ dest_files=[ "res://.import/Radio.fbx-c1214edf207fa3970ee9c9da332f74c7.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

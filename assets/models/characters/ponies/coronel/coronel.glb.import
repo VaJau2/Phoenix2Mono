@@ -11,7 +11,7 @@ dest_files=[ "res://.import/coronel.glb-da2f574cc1f02c68e329907123bb83ca.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

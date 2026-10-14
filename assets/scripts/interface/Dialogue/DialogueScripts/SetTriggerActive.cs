@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts
 {
-    public class SetTriggerActive : IDialogueScript
+    public partial class SetTriggerActive : IDialogueScript
     {
         public void initiate(Node node, string parameter, string key = "")
         {

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/mrHandy-rarity-dead.glb-24a6be24f1003383b91f3fa62d5a
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

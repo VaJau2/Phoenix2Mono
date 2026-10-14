@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public class SeekArea : Area
+public partial class SeekArea : Area3D
 {
     private const float ATTACK_TIME = 3.5f;
 
@@ -18,13 +18,13 @@ public class SeekArea : Area
     private int tempEnemy;
 
     private NPC npc;
-    private RayCast ray;
+    private RayCast3D ray;
     private bool isActive = true;
     
     public override void _Ready()
     {
         npc = GetParent<NPC>();
-        ray = GetNode<RayCast>("ray");
+        ray = GetNode<RayCast3D>("ray");
         ray.AddException(npc);
     }
 
@@ -251,7 +251,7 @@ public class SeekArea : Area
         var charPos = character.GlobalTransform.origin;
         charPos.y += 0.5f;
         var dir = charPos - ray.GlobalTransform.origin;
-        ray.CastTo = dir;
+        ray.TargetPosition = dir;
         return ray.GetCollider() == character;
     }
 }

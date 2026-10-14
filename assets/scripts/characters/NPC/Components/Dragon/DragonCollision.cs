@@ -2,15 +2,15 @@ using Godot;
 
 //Части коллизии дракона повторяют положение костей дракона во время анимации
 //голова, тело, крылья и т.д.
-public class DragonCollision : CollisionShape
+public partial class DragonCollision : CollisionShape3D
 {
     [Export] private NodePath myPosPath;
-    private Spatial myPos;
+    private Node3D myPos;
     private Character myParent;
 
     public override void _Ready()
     {
-        myPos = GetNode<Spatial>(myPosPath);
+        myPos = GetNode<Node3D>(myPosPath);
         myParent = GetParent<Character>();
     }
 

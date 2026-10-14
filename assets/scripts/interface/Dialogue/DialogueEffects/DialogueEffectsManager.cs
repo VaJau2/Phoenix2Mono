@@ -1,11 +1,11 @@
-﻿using Godot;
+using Godot;
 using System.Linq;
 using DialogueEffects;
 using Godot.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-public class DialogueEffectsManager
+public partial class DialogueEffectsManager
 {
     private static List<IDialogueEffect> effects =
     [

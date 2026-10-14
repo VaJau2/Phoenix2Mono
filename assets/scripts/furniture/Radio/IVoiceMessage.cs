@@ -1,4 +1,4 @@
-﻿public interface IVoiceMessage
+public interface IVoiceMessage
 {
     public void Connect();
 }

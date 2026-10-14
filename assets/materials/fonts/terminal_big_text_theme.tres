@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=11 format=2]
 
-[ext_resource path="res://assets/materials/fonts/ds_pixel_cyr.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/textures/empty_image.png" type="Texture" id=2]
+[ext_resource path="res://assets/materials/fonts/ds_pixel_cyr.ttf" type="FontFile" id=1]
+[ext_resource path="res://assets/textures/empty_image.png" type="Texture2D" id=2]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 22
 font_data = ExtResource( 1 )
 

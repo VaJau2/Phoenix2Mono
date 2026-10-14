@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class HintMenu: Control, IMenu
+public partial class HintMenu: Control, IMenu
 {
     [Export] private Array<NodePath> canceledHintsPaths;
     private Array<HintTrigger> canceledHints;

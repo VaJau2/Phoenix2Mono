@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class RoboEyeIdleState(
+public partial class RoboEyeIdleState(
     RoboEyeBody body,
     NavigationMovingController movingController,
     NpcPatroling patroling,

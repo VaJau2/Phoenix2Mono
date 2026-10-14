@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public class PlayerLegs : Node
+public partial class PlayerLegs : Node
 {
     const int BACK_INCREASE = 2;
 
@@ -10,14 +10,14 @@ public class PlayerLegs : Node
     Global global;
 
     AudioStreamPlayer audi;
-    AudioStreamSample tryHit;
-    AudioStreamSample hit;
+    AudioStreamWAV tryHit;
+    AudioStreamWAV hit;
 
-    Dictionary<string, AudioStreamSample> materalSounds;
+    Dictionary<string, AudioStreamWAV> materalSounds;
     bool tempFront;
 
-    List<PhysicsBody> frontObjects;
-    List<PhysicsBody> backObjects;
+    List<PhysicsBody3D> frontObjects;
+    List<PhysicsBody3D> backObjects;
 
     private Player Player => global.player;
 
@@ -26,15 +26,15 @@ public class PlayerLegs : Node
         global = Global.Get();
         audi = GetNode<AudioStreamPlayer>("../../sound/audi_hitted");
 
-        tryHit = GD.Load<AudioStreamSample>("res://assets/audio/enemies/SwordTryHit.wav");
-        hit = GD.Load<AudioStreamSample>("res://assets/audio/flying/PegasusHit.wav");
+        tryHit = GD.Load<AudioStreamWAV>("res://assets/audio/enemies/SwordTryHit.wav");
+        hit = GD.Load<AudioStreamWAV>("res://assets/audio/flying/PegasusHit.wav");
 
         string matPath = "res://assets/audio/guns/legHits/";
-        materalSounds = new Dictionary<string, AudioStreamSample>()
+        materalSounds = new Dictionary<string, AudioStreamWAV>()
         {
-            { "fence", GD.Load<AudioStreamSample>(matPath + "fence_hit.wav") },
-            { "stone", GD.Load<AudioStreamSample>(matPath + "stone_hit.wav") },
-            { "wood", GD.Load<AudioStreamSample>(matPath + "wood_hit.wav") },
+            { "fence", GD.Load<AudioStreamWAV>(matPath + "fence_hit.wav") },
+            { "stone", GD.Load<AudioStreamWAV>(matPath + "stone_hit.wav") },
+            { "wood", GD.Load<AudioStreamWAV>(matPath + "wood_hit.wav") },
         };
 
         frontObjects = [];
@@ -53,7 +53,7 @@ public class PlayerLegs : Node
     }
 
 
-    private void HandleVictim(PhysicsBody victim, int damage)
+    private void HandleVictim(PhysicsBody3D victim, int damage)
     {
         if (!IsInstanceValid(victim)) return;
 
@@ -64,7 +64,7 @@ public class PlayerLegs : Node
         }
         else
         {
-            if (victim is StaticBody body && body.PhysicsMaterialOverride != null)
+            if (victim is StaticBody3D body && body.PhysicsMaterialOverride != null)
             {
                 var friction = body.PhysicsMaterialOverride.Friction;
                 var materialName = MatNames.GetMatName(friction);
@@ -119,14 +119,14 @@ public class PlayerLegs : Node
 
         if (tempFront)
         {
-            foreach (PhysicsBody victim in frontObjects)
+            foreach (PhysicsBody3D victim in frontObjects)
             {
                 HandleVictim(victim, damage);
             }
         }
         else
         {
-            foreach (PhysicsBody victim in backObjects)
+            foreach (PhysicsBody3D victim in backObjects)
             {
                 HandleVictim(victim, damage);
             }
@@ -169,17 +169,17 @@ public class PlayerLegs : Node
         }
     }
 
-    public void FrontAreaBodyEntered(PhysicsBody body)
+    public void FrontAreaBodyEntered(PhysicsBody3D body)
     {
         if (body is Player) return;
 
-        if (body is StaticBody or Character)
+        if (body is StaticBody3D or Character)
         {
             frontObjects.Add(body);
         }
     }
 
-    public void FrontAreaBodyExited(PhysicsBody body)
+    public void FrontAreaBodyExited(PhysicsBody3D body)
     {
         if (body is Player) return;
 
@@ -189,17 +189,17 @@ public class PlayerLegs : Node
         }
     }
 
-    public void BackAreaBodyEntered(PhysicsBody body)
+    public void BackAreaBodyEntered(PhysicsBody3D body)
     {
         if (body is Player) return;
 
-        if (body is StaticBody or Character)
+        if (body is StaticBody3D or Character)
         {
             backObjects.Add(body);
         }
     }
 
-    public void BackAreaBodyExited(PhysicsBody body)
+    public void BackAreaBodyExited(PhysicsBody3D body)
     {
         if (body is Player) return;
 

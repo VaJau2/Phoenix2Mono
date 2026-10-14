@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 namespace DialogueScripts;
 
 //получить предмет во время диалога 
 //(если нет места, предмет положится в сумку
-public class TakeItem: IDialogueScript
+public partial class TakeItem: IDialogueScript
 {
     public void initiate(Node node, string parameter, string key = "")
     {

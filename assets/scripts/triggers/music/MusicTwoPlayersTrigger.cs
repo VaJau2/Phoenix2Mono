@@ -5,7 +5,7 @@ using Godot.Collections;
 //При запуске действует в зависимости от активности
 //Если активен, врубает первый "боевой" трек
 //Если неактивен, вырубает его и, если есть второй "спокойный" трек, врубает его
-public class MusicTwoPlayersTrigger : TriggerBase
+public partial class MusicTwoPlayersTrigger : TriggerBase
 {
     [Export] public NodePath audi1Path;
     [Export] public NodePath audi2Path;

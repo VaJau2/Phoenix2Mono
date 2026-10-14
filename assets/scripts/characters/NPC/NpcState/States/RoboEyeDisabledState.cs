@@ -1,4 +1,4 @@
-﻿public class RoboEyeDisabledState(
+public partial class RoboEyeDisabledState(
     NavigationMovingController movingController,
     RoboEyeBody body,
     SeekArea seekArea

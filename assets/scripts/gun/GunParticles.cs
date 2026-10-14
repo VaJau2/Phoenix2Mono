@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class GunParticles : Spatial
+public partial class GunParticles : Node3D
 {
     private Dictionary materials = new() 
     {
@@ -60,7 +60,7 @@ public class GunParticles : Spatial
             parts.Emitting = true;
         }
 
-        var hole = GetNode<Spatial>("hole");
+        var hole = GetNode<Node3D>("hole");
 
         if (!string.IsNullOrEmpty(materialName)
             && materialName != "blood"
@@ -76,7 +76,7 @@ public class GunParticles : Spatial
                 hole.LookAt(hole.GlobalTransform.origin + direction, Vector3.Back);
             }
 
-            hole.Translation += (direction / 15);
+            hole.Position += (direction / 15);
         }
         else
         {

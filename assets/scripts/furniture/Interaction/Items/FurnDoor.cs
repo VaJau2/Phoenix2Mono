@@ -2,13 +2,13 @@ using System;
 using Godot;
 using Godot.Collections;
 
-public class FurnDoor: FurnBase, ISavable
+public partial class FurnDoor: FurnBase, ISavable
 {
     private const int DOOR_OPEN_DAMAGE = 110;
     
     [Export] public string myKey;
-    [Export] public AudioStreamSample closedSound;
-    [Export] public AudioStreamSample openWithKeySound;
+    [Export] public AudioStreamWAV closedSound;
+    [Export] public AudioStreamWAV openWithKeySound;
     [Export] public bool ForceOpening;
     [Export] public float openTimer;
     [Export] public string doorCode;
@@ -18,7 +18,7 @@ public class FurnDoor: FurnBase, ISavable
     public bool opening { get; private set; }
     
     private bool standingOtherSide;
-    private Dictionary<string, AudioStreamSample> materalSounds;
+    private Dictionary<string, AudioStreamWAV> materalSounds;
     private Player player => Global.Get().player;
 
     public override void _Ready()
@@ -26,11 +26,11 @@ public class FurnDoor: FurnBase, ISavable
         base._Ready();
         
         string matPath = "res://assets/audio/guns/legHits/";
-        materalSounds = new Dictionary<string, AudioStreamSample>
+        materalSounds = new Dictionary<string, AudioStreamWAV>
         {
-            { "door", GD.Load<AudioStreamSample>(matPath + "door_slam.wav") },
-            { "door_open", GD.Load<AudioStreamSample>(matPath + "door_slam_open.wav") },
-            { "stone", GD.Load<AudioStreamSample>(matPath + "stone_hit.wav") },
+            { "door", GD.Load<AudioStreamWAV>(matPath + "door_slam.wav") },
+            { "door_open", GD.Load<AudioStreamWAV>(matPath + "door_slam_open.wav") },
+            { "stone", GD.Load<AudioStreamWAV>(matPath + "stone_hit.wav") },
         };
     }
     
@@ -61,7 +61,7 @@ public class FurnDoor: FurnBase, ISavable
         }
     }
 
-    public async void SetOpen(AudioStreamSample keySound = null, float timer = 0, bool force = false) 
+    public async void SetOpen(AudioStreamWAV keySound = null, float timer = 0, bool force = false) 
     {
         string animForce = null;
         

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/storage_collision.glb-5b2d37df8b1c0686b5bd4ab2f02ea5
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

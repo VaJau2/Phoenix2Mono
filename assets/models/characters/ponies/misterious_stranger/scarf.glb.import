@@ -11,7 +11,7 @@ dest_files=[ "res://.import/scarf.glb-77e1e8653bd7a6e550b9f8c72e657683.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

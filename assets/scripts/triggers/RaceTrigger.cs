@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class RaceTrigger : TriggerBase
+public partial class RaceTrigger : TriggerBase
 {
     [Export] private NodePath earthponyTriggerPath;
     [Export] private NodePath pegasusTriggerPath;

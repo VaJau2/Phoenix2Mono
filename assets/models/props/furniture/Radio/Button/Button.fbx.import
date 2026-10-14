@@ -11,7 +11,7 @@ dest_files=[ "res://.import/Button.fbx-18663e5c8f0f1524aba148e415a1640e.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""

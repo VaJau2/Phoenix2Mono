@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public class ControlHintsManager : Control
+public partial class ControlHintsManager : Control
 {
     List<ControlHint> controlHints = new List<ControlHint>();
 
@@ -23,7 +23,7 @@ public class ControlHintsManager : Control
             ControlHint controlHint = (ControlHint)instance;
             controlHints.Add(controlHint);
             controlHint.Initialize();
-            controlHint.RectPosition = new Vector2(0, 25 * (controlHints.Count - 1));
+            controlHint.Position = new Vector2(0, 25 * (controlHints.Count - 1));
         }
     }
 }

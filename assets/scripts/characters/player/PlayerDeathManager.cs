@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class PlayerDeathManager : Node
+public partial class PlayerDeathManager : Node
 {
     public bool PermanentDeath = true;
     public TriggerBase OnDeathTrigger;

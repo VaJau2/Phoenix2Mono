@@ -1,7 +1,7 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
-public class DragonBody: Node
+public partial class DragonBody: Node
 {
     public const int MOUTH_DAMAGE = 40;
     public const int FIRE_DAMAGE = 30;
@@ -12,12 +12,12 @@ public class DragonBody: Node
     private DragonMouth mouth;
     private AnimationPlayer anim;
     
-    [Export] private Array<AudioStreamSample> idleSounds;
-    [Export] private AudioStreamSample fireSound;
-    [Export] private Array<AudioStreamSample> hittedSounds;
-    [Export] private AudioStreamSample dieSound;
+    [Export] private Array<AudioStreamWAV> idleSounds;
+    [Export] private AudioStreamWAV fireSound;
+    [Export] private Array<AudioStreamWAV> hittedSounds;
+    [Export] private AudioStreamWAV dieSound;
 
-    private Spatial fireObj;
+    private Node3D fireObj;
     private Array<Particles> fireParts = new();
     private AnimationPlayer fireAnim;
     private AudioStreamPlayer3D audiFire;
@@ -34,7 +34,7 @@ public class DragonBody: Node
         
         anim = npc.GetNode<AnimationPlayer>("anim");
         anim.Play("fly");
-        fireObj = npc.GetNode<Spatial>("Armature/Skeleton/BoneAttachment/mouth/fire");
+        fireObj = npc.GetNode<Node3D>("Armature/Skeleton3D/BoneAttachment3D/mouth/fire");
         fireParts.Add(fireObj.GetNode<Particles>("Particles"));
         fireParts.Add(fireObj.GetNode<Particles>("Particles2"));
         fireParts.Add(fireObj.GetNode<Particles>("Particles3"));
@@ -42,8 +42,8 @@ public class DragonBody: Node
         audiFire = npc.GetNode<AudioStreamPlayer3D>("audi-fire");
         mouth = npc.GetNode<DragonMouth>("smash-area");
         
-        npc.Connect(nameof(Character.TakenDamage), this, nameof(OnTakeDamage));
-        npc.Connect(nameof(Character.DieEvent), this, nameof(OnNpcDying));
+        npc.Connect(nameof(Character.TakenDamage), new Callable(this, nameof(OnTakeDamage)));
+        npc.Connect(nameof(Character.DieEvent), new Callable(this, nameof(OnNpcDying)));
     }
 
     public override void _Process(float delta)

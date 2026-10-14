@@ -11,7 +11,7 @@ dest_files=[ "res://.import/security_mare.glb-6da48ff94d33e36cefc20dc5231d8fa7.s
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""
