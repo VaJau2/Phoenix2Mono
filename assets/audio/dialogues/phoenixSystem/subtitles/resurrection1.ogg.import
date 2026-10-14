@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/resurrection1.ogg-924ce9e2902323fa6c382f2ffcc7779d.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://gne2vse3hes"
+path="res://.godot/imported/resurrection1.ogg-924ce9e2902323fa6c382f2ffcc7779d.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/resurrection1.ogg"
-dest_files=[ "res://.import/resurrection1.ogg-924ce9e2902323fa6c382f2ffcc7779d.oggstr" ]
+dest_files=["res://.godot/imported/resurrection1.ogg-924ce9e2902323fa6c382f2ffcc7779d.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/GunOff.wav-834113003ae97ce03e378c46e9655ad7.sample"
+type="AudioStreamWAV"
+uid="uid://dlsa5ay4vbjdc"
+path="res://.godot/imported/GunOff.wav-834113003ae97ce03e378c46e9655ad7.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/GunOff.wav"
-dest_files=[ "res://.import/GunOff.wav-834113003ae97ce03e378c46e9655ad7.sample" ]
+dest_files=["res://.godot/imported/GunOff.wav-834113003ae97ce03e378c46e9655ad7.sample"]
 
 [params]
 

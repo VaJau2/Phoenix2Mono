@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/LiftOpen.wav-ce9483eaa8a95eed31cfe6ffc7477f85.sample"
+type="AudioStreamWAV"
+uid="uid://duomob8boa7tf"
+path="res://.godot/imported/LiftOpen.wav-ce9483eaa8a95eed31cfe6ffc7477f85.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/LiftOpen.wav"
-dest_files=[ "res://.import/LiftOpen.wav-ce9483eaa8a95eed31cfe6ffc7477f85.sample" ]
+dest_files=["res://.godot/imported/LiftOpen.wav-ce9483eaa8a95eed31cfe6ffc7477f85.sample"]
 
 [params]
 

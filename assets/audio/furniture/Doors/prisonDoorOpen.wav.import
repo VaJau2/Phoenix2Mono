@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/prisonDoorOpen.wav-412ef0c6fec1ed2736bd7d31b8c103bf.sample"
+type="AudioStreamWAV"
+uid="uid://cg4x5glhcemt1"
+path="res://.godot/imported/prisonDoorOpen.wav-412ef0c6fec1ed2736bd7d31b8c103bf.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Doors/prisonDoorOpen.wav"
-dest_files=[ "res://.import/prisonDoorOpen.wav-412ef0c6fec1ed2736bd7d31b8c103bf.sample" ]
+dest_files=["res://.godot/imported/prisonDoorOpen.wav-412ef0c6fec1ed2736bd7d31b8c103bf.sample"]
 
 [params]
 

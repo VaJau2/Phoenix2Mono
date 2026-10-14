@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"
+type="AudioStreamWAV"
+uid="uid://cxygh3ghn03uu"
+path="res://.godot/imported/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/medX.wav"
-dest_files=[ "res://.import/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample" ]
+dest_files=["res://.godot/imported/medX.wav-36c4d34dc2f9600a0e1daaeba525af06.sample"]
 
 [params]
 

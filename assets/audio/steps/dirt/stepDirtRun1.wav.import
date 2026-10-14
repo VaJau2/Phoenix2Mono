@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepDirtRun1.wav-dff77870df3d89f287d60d9d3e87931c.sample"
+type="AudioStreamWAV"
+uid="uid://bh11rsfs6t1df"
+path="res://.godot/imported/stepDirtRun1.wav-dff77870df3d89f287d60d9d3e87931c.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/dirt/stepDirtRun1.wav"
-dest_files=[ "res://.import/stepDirtRun1.wav-dff77870df3d89f287d60d9d3e87931c.sample" ]
+dest_files=["res://.godot/imported/stepDirtRun1.wav-dff77870df3d89f287d60d9d3e87931c.sample"]
 
 [params]
 

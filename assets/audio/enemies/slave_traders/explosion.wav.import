@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/explosion.wav-11d07a04e8232af7b339084396163434.sample"
+type="AudioStreamWAV"
+uid="uid://bgufebof5wujt"
+path="res://.godot/imported/explosion.wav-11d07a04e8232af7b339084396163434.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/slave_traders/explosion.wav"
-dest_files=[ "res://.import/explosion.wav-11d07a04e8232af7b339084396163434.sample" ]
+dest_files=["res://.godot/imported/explosion.wav-11d07a04e8232af7b339084396163434.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/dress.wav-1cf1d37211cb015f82ea975b8b268012.sample"
+type="AudioStreamWAV"
+uid="uid://c2le0h8fglod3"
+path="res://.godot/imported/dress.wav-1cf1d37211cb015f82ea975b8b268012.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/dress.wav"
-dest_files=[ "res://.import/dress.wav-1cf1d37211cb015f82ea975b8b268012.sample" ]
+dest_files=["res://.godot/imported/dress.wav-1cf1d37211cb015f82ea975b8b268012.sample"]
 
 [params]
 

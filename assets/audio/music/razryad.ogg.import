@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/razryad.ogg-419fa9707ff97da2fc75824c3dc9deec.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://bmqp0ggt0mviq"
+path="res://.godot/imported/razryad.ogg-419fa9707ff97da2fc75824c3dc9deec.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/music/razryad.ogg"
-dest_files=[ "res://.import/razryad.ogg-419fa9707ff97da2fc75824c3dc9deec.oggstr" ]
+dest_files=["res://.godot/imported/razryad.ogg-419fa9707ff97da2fc75824c3dc9deec.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

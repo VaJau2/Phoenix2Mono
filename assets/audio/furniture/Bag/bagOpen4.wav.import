@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/bagOpen4.wav-05ed798b5d9de2cf23049ec28c099e35.sample"
+type="AudioStreamWAV"
+uid="uid://bi6ja0yr64fxy"
+path="res://.godot/imported/bagOpen4.wav-05ed798b5d9de2cf23049ec28c099e35.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Bag/bagOpen4.wav"
-dest_files=[ "res://.import/bagOpen4.wav-05ed798b5d9de2cf23049ec28c099e35.sample" ]
+dest_files=["res://.godot/imported/bagOpen4.wav-05ed798b5d9de2cf23049ec28c099e35.sample"]
 
 [params]
 

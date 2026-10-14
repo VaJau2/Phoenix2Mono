@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/0.wav-189ea127315a64571dfa5bc5f5ad20d4.sample"
+type="AudioStreamWAV"
+uid="uid://cytw4slo25xdt"
+path="res://.godot/imported/0.wav-189ea127315a64571dfa5bc5f5ad20d4.sample"
 
 [deps]
 
 source_file="res://assets/audio/heartbeat/0.wav"
-dest_files=[ "res://.import/0.wav-189ea127315a64571dfa5bc5f5ad20d4.sample" ]
+dest_files=["res://.godot/imported/0.wav-189ea127315a64571dfa5bc5f5ad20d4.sample"]
 
 [params]
 

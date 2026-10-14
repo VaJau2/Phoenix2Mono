@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/putSofa.wav-df115474c256f20e6486031fb39c0c87.sample"
+type="AudioStreamWAV"
+uid="uid://dsoibhfae33mi"
+path="res://.godot/imported/putSofa.wav-df115474c256f20e6486031fb39c0c87.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/putSofa.wav"
-dest_files=[ "res://.import/putSofa.wav-df115474c256f20e6486031fb39c0c87.sample" ]
+dest_files=["res://.godot/imported/putSofa.wav-df115474c256f20e6486031fb39c0c87.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stone_hit.wav-0a00de94f6c1be2ebb34efaf8ba85bc5.sample"
+type="AudioStreamWAV"
+uid="uid://02qr5i80sy4l"
+path="res://.godot/imported/stone_hit.wav-0a00de94f6c1be2ebb34efaf8ba85bc5.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/legHits/stone_hit.wav"
-dest_files=[ "res://.import/stone_hit.wav-0a00de94f6c1be2ebb34efaf8ba85bc5.sample" ]
+dest_files=["res://.godot/imported/stone_hit.wav-0a00de94f6c1be2ebb34efaf8ba85bc5.sample"]
 
 [params]
 

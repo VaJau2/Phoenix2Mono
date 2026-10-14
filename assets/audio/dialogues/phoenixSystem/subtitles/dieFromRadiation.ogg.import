@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/dieFromRadiation.ogg-4053fe14b4a14e8fd52f66d31fe8cb4b.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://ccotj3yfoc3bq"
+path="res://.godot/imported/dieFromRadiation.ogg-4053fe14b4a14e8fd52f66d31fe8cb4b.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieFromRadiation.ogg"
-dest_files=[ "res://.import/dieFromRadiation.ogg-4053fe14b4a14e8fd52f66d31fe8cb4b.oggstr" ]
+dest_files=["res://.godot/imported/dieFromRadiation.ogg-4053fe14b4a14e8fd52f66d31fe8cb4b.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

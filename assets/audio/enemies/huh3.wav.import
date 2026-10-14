@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/huh3.wav-fcb7d580f16017a7434a6945ac6dab02.sample"
+type="AudioStreamWAV"
+uid="uid://d0kq2ant1gth4"
+path="res://.godot/imported/huh3.wav-fcb7d580f16017a7434a6945ac6dab02.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/huh3.wav"
-dest_files=[ "res://.import/huh3.wav-fcb7d580f16017a7434a6945ac6dab02.sample" ]
+dest_files=["res://.godot/imported/huh3.wav-fcb7d580f16017a7434a6945ac6dab02.sample"]
 
 [params]
 

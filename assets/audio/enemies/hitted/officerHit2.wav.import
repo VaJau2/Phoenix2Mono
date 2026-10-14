@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/officerHit2.wav-a518755c6a09b399f6e6e44b0a6dc44a.sample"
+type="AudioStreamWAV"
+uid="uid://bowstthp30f4p"
+path="res://.godot/imported/officerHit2.wav-a518755c6a09b399f6e6e44b0a6dc44a.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/hitted/officerHit2.wav"
-dest_files=[ "res://.import/officerHit2.wav-a518755c6a09b399f6e6e44b0a6dc44a.sample" ]
+dest_files=["res://.godot/imported/officerHit2.wav-a518755c6a09b399f6e6e44b0a6dc44a.sample"]
 
 [params]
 

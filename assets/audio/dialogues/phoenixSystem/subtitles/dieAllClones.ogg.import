@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://blcj3mu53cnp7"
+path="res://.godot/imported/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieAllClones.ogg"
-dest_files=[ "res://.import/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggstr" ]
+dest_files=["res://.godot/imported/dieAllClones.ogg-26a4f56e57bd839e9d4428a0f51728af.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

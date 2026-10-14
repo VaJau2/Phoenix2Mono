@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/collarPIP.wav-3ec0c637f71fef18cea514e9be70b741.sample"
+type="AudioStreamWAV"
+uid="uid://ccxrs70744i1o"
+path="res://.godot/imported/collarPIP.wav-3ec0c637f71fef18cea514e9be70b741.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/slave_traders/collarPIP.wav"
-dest_files=[ "res://.import/collarPIP.wav-3ec0c637f71fef18cea514e9be70b741.sample" ]
+dest_files=["res://.godot/imported/collarPIP.wav-3ec0c637f71fef18cea514e9be70b741.sample"]
 
 [params]
 

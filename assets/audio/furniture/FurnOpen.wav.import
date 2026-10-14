@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/FurnOpen.wav-ef6e632cce1d333d239f7b7c4962b520.sample"
+type="AudioStreamWAV"
+uid="uid://cpvh3nwxscg0k"
+path="res://.godot/imported/FurnOpen.wav-ef6e632cce1d333d239f7b7c4962b520.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/FurnOpen.wav"
-dest_files=[ "res://.import/FurnOpen.wav-ef6e632cce1d333d239f7b7c4962b520.sample" ]
+dest_files=["res://.godot/imported/FurnOpen.wav-ef6e632cce1d333d239f7b7c4962b520.sample"]
 
 [params]
 

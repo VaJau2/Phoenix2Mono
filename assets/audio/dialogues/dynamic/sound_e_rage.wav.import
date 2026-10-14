@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/sound_e_rage.wav-9870a2cdbb31ba5dff6cc34ab57d138e.sample"
+type="AudioStreamWAV"
+uid="uid://c2uda4nqao7bh"
+path="res://.godot/imported/sound_e_rage.wav-9870a2cdbb31ba5dff6cc34ab57d138e.sample"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/dynamic/sound_e_rage.wav"
-dest_files=[ "res://.import/sound_e_rage.wav-9870a2cdbb31ba5dff6cc34ab57d138e.sample" ]
+dest_files=["res://.godot/imported/sound_e_rage.wav-9870a2cdbb31ba5dff6cc34ab57d138e.sample"]
 
 [params]
 

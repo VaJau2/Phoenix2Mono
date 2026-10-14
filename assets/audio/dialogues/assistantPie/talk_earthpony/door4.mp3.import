@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/door4.mp3-bac2632a639a7cd357b5f19db79045d2.mp3str"
+uid="uid://bbaytebn0dftn"
+path="res://.godot/imported/door4.mp3-bac2632a639a7cd357b5f19db79045d2.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/door4.mp3"
-dest_files=[ "res://.import/door4.mp3-bac2632a639a7cd357b5f19db79045d2.mp3str" ]
+dest_files=["res://.godot/imported/door4.mp3-bac2632a639a7cd357b5f19db79045d2.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

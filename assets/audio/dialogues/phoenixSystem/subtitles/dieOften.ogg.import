@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0irpigmxb0rr"
+path="res://.godot/imported/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieOften.ogg"
-dest_files=[ "res://.import/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggstr" ]
+dest_files=["res://.godot/imported/dieOften.ogg-49ddab5e7683c574ddf3fa139a23dc92.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

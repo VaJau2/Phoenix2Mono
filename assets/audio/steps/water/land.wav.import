@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/land.wav-3ac2e3b1395f12836897976497894bc6.sample"
+type="AudioStreamWAV"
+uid="uid://bqdw5lsvpgaxe"
+path="res://.godot/imported/land.wav-3ac2e3b1395f12836897976497894bc6.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/water/land.wav"
-dest_files=[ "res://.import/land.wav-3ac2e3b1395f12836897976497894bc6.sample" ]
+dest_files=["res://.godot/imported/land.wav-3ac2e3b1395f12836897976497894bc6.sample"]
 
 [params]
 

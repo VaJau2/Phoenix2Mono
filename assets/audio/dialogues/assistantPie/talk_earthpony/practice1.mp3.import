@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/practice1.mp3-36c677cbc5a746a55cfe7a38b5bfcdf2.mp3str"
+uid="uid://ux7spq82mk53"
+path="res://.godot/imported/practice1.mp3-36c677cbc5a746a55cfe7a38b5bfcdf2.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/practice1.mp3"
-dest_files=[ "res://.import/practice1.mp3-36c677cbc5a746a55cfe7a38b5bfcdf2.mp3str" ]
+dest_files=["res://.godot/imported/practice1.mp3-36c677cbc5a746a55cfe7a38b5bfcdf2.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

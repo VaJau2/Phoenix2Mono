@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/collar.wav-72ad0a3a0db7c33f3bbdb66c38699847.sample"
+type="AudioStreamWAV"
+uid="uid://c7ca6fn547r8h"
+path="res://.godot/imported/collar.wav-72ad0a3a0db7c33f3bbdb66c38699847.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/collar.wav"
-dest_files=[ "res://.import/collar.wav-72ad0a3a0db7c33f3bbdb66c38699847.sample" ]
+dest_files=["res://.godot/imported/collar.wav-72ad0a3a0db7c33f3bbdb66c38699847.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/unroped.wav-100c2368f88b686f60ebac9acc77edf3.sample"
+type="AudioStreamWAV"
+uid="uid://dmrc2ngda4ntd"
+path="res://.godot/imported/unroped.wav-100c2368f88b686f60ebac9acc77edf3.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/ropes/unroped.wav"
-dest_files=[ "res://.import/unroped.wav-100c2368f88b686f60ebac9acc77edf3.sample" ]
+dest_files=["res://.godot/imported/unroped.wav-100c2368f88b686f60ebac9acc77edf3.sample"]
 
 [params]
 

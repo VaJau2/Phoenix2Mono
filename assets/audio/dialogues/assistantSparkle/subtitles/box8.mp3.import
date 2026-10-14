@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/box8.mp3-0e6b78e7047a453ed16ad1d0ed34a248.mp3str"
+uid="uid://b6hayf0ae2ujo"
+path="res://.godot/imported/box8.mp3-0e6b78e7047a453ed16ad1d0ed34a248.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/box8.mp3"
-dest_files=[ "res://.import/box8.mp3-0e6b78e7047a453ed16ad1d0ed34a248.mp3str" ]
+dest_files=["res://.godot/imported/box8.mp3-0e6b78e7047a453ed16ad1d0ed34a248.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

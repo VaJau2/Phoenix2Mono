@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"
+type="AudioStreamWAV"
+uid="uid://cv3mkc8fevy88"
+path="res://.godot/imported/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/coffeeDrink.wav"
-dest_files=[ "res://.import/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample" ]
+dest_files=["res://.godot/imported/coffeeDrink.wav-2f1e6720656f24e00e86479b07094dff.sample"]
 
 [params]
 

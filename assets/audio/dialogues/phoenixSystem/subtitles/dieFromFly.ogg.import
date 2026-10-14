@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/dieFromFly.ogg-70cef5e43359a040d8802f860c275cdf.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://ckh4yofdfdg05"
+path="res://.godot/imported/dieFromFly.ogg-70cef5e43359a040d8802f860c275cdf.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/dieFromFly.ogg"
-dest_files=[ "res://.import/dieFromFly.ogg-70cef5e43359a040d8802f860c275cdf.oggstr" ]
+dest_files=["res://.godot/imported/dieFromFly.ogg-70cef5e43359a040d8802f860c275cdf.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

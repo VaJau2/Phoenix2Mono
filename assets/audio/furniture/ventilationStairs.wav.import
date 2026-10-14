@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ventilationStairs.wav-c4a98fb66ff3d3ac1064ea45e8e91086.sample"
+type="AudioStreamWAV"
+uid="uid://bhw716em6llro"
+path="res://.godot/imported/ventilationStairs.wav-c4a98fb66ff3d3ac1064ea45e8e91086.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/ventilationStairs.wav"
-dest_files=[ "res://.import/ventilationStairs.wav-c4a98fb66ff3d3ac1064ea45e8e91086.sample" ]
+dest_files=["res://.godot/imported/ventilationStairs.wav-c4a98fb66ff3d3ac1064ea45e8e91086.sample"]
 
 [params]
 

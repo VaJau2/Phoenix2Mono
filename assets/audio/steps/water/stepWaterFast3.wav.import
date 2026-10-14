@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepWaterFast3.wav-72c927bbf344a80f989ae187e16de63f.sample"
+type="AudioStreamWAV"
+uid="uid://c6aofjtq11iql"
+path="res://.godot/imported/stepWaterFast3.wav-72c927bbf344a80f989ae187e16de63f.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/water/stepWaterFast3.wav"
-dest_files=[ "res://.import/stepWaterFast3.wav-72c927bbf344a80f989ae187e16de63f.sample" ]
+dest_files=["res://.godot/imported/stepWaterFast3.wav-72c927bbf344a80f989ae187e16de63f.sample"]
 
 [params]
 

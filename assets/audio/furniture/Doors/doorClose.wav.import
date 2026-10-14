@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/doorClose.wav-dc36dba8f4500aa7739755b2f723f5f3.sample"
+type="AudioStreamWAV"
+uid="uid://baj6ctocqch87"
+path="res://.godot/imported/doorClose.wav-dc36dba8f4500aa7739755b2f723f5f3.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Doors/doorClose.wav"
-dest_files=[ "res://.import/doorClose.wav-dc36dba8f4500aa7739755b2f723f5f3.sample" ]
+dest_files=["res://.godot/imported/doorClose.wav-dc36dba8f4500aa7739755b2f723f5f3.sample"]
 
 [params]
 

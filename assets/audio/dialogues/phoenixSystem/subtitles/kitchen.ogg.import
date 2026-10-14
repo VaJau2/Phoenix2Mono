@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://db61u0ipqawdx"
+path="res://.godot/imported/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/kitchen.ogg"
-dest_files=[ "res://.import/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggstr" ]
+dest_files=["res://.godot/imported/kitchen.ogg-6e2cfc0645b9f3301f9d0ee8339c46a1.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/SwitchFrequency.ogg-931160136107491a2dc2c9e26cd2c096.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://cu8ix8utd11bl"
+path="res://.godot/imported/SwitchFrequency.ogg-931160136107491a2dc2c9e26cd2c096.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/radio/SwitchFrequency.ogg"
-dest_files=[ "res://.import/SwitchFrequency.ogg-931160136107491a2dc2c9e26cd2c096.oggstr" ]
+dest_files=["res://.godot/imported/SwitchFrequency.ogg-931160136107491a2dc2c9e26cd2c096.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

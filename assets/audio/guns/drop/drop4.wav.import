@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/drop4.wav-f9ac52e5062c7d252b670f08990d76a2.sample"
+type="AudioStreamWAV"
+uid="uid://cl0b05yw3bi5l"
+path="res://.godot/imported/drop4.wav-f9ac52e5062c7d252b670f08990d76a2.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/drop/drop4.wav"
-dest_files=[ "res://.import/drop4.wav-f9ac52e5062c7d252b670f08990d76a2.sample" ]
+dest_files=["res://.godot/imported/drop4.wav-f9ac52e5062c7d252b670f08990d76a2.sample"]
 
 [params]
 

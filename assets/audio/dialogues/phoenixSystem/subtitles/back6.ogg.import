@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/back6.ogg-d8028e1ff71fa2dc655fd17579c0bb4b.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://dyo7yq36uy621"
+path="res://.godot/imported/back6.ogg-d8028e1ff71fa2dc655fd17579c0bb4b.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/back6.ogg"
-dest_files=[ "res://.import/back6.ogg-d8028e1ff71fa2dc655fd17579c0bb4b.oggstr" ]
+dest_files=["res://.godot/imported/back6.ogg-d8028e1ff71fa2dc655fd17579c0bb4b.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

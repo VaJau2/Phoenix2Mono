@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/moreBriefing2.mp3-d145376a5097f44892697400cd4b88ad.mp3str"
+uid="uid://crgt03lmsryt1"
+path="res://.godot/imported/moreBriefing2.mp3-d145376a5097f44892697400cd4b88ad.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/moreBriefing2.mp3"
-dest_files=[ "res://.import/moreBriefing2.mp3-d145376a5097f44892697400cd4b88ad.mp3str" ]
+dest_files=["res://.godot/imported/moreBriefing2.mp3-d145376a5097f44892697400cd4b88ad.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

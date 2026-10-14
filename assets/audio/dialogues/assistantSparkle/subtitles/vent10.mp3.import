@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/vent10.mp3-c3845cbf91be4b8a70e8d77a998a4c44.mp3str"
+uid="uid://df6ji7hlwx331"
+path="res://.godot/imported/vent10.mp3-c3845cbf91be4b8a70e8d77a998a4c44.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/vent10.mp3"
-dest_files=[ "res://.import/vent10.mp3-c3845cbf91be4b8a70e8d77a998a4c44.mp3str" ]
+dest_files=["res://.godot/imported/vent10.mp3-c3845cbf91be4b8a70e8d77a998a4c44.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

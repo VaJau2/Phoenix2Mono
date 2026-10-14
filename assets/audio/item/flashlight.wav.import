@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/flashlight.wav-6f02d462ac228897a709faf65a9669fd.sample"
+type="AudioStreamWAV"
+uid="uid://bbgpswte2dbo5"
+path="res://.godot/imported/flashlight.wav-6f02d462ac228897a709faf65a9669fd.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/flashlight.wav"
-dest_files=[ "res://.import/flashlight.wav-6f02d462ac228897a709faf65a9669fd.sample" ]
+dest_files=["res://.godot/imported/flashlight.wav-6f02d462ac228897a709faf65a9669fd.sample"]
 
 [params]
 

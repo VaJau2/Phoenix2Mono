@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stableDoorClose.wav-ee9f1f4e49b9b664b2fb5231cd002a2f.sample"
+type="AudioStreamWAV"
+uid="uid://ylqwyqtawcfn"
+path="res://.godot/imported/stableDoorClose.wav-ee9f1f4e49b9b664b2fb5231cd002a2f.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Doors/stableDoorClose.wav"
-dest_files=[ "res://.import/stableDoorClose.wav-ee9f1f4e49b9b664b2fb5231cd002a2f.sample" ]
+dest_files=["res://.godot/imported/stableDoorClose.wav-ee9f1f4e49b9b664b2fb5231cd002a2f.sample"]
 
 [params]
 

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/door4.mp3-c8a0029762cb27735491baeb41d56d09.mp3str"
+uid="uid://0bcf1qn1ddgo"
+path="res://.godot/imported/door4.mp3-c8a0029762cb27735491baeb41d56d09.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/door4.mp3"
-dest_files=[ "res://.import/door4.mp3-c8a0029762cb27735491baeb41d56d09.mp3str" ]
+dest_files=["res://.godot/imported/door4.mp3-c8a0029762cb27735491baeb41d56d09.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

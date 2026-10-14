@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/start3.mp3-1441ea530e7b5bc0753d586855323948.mp3str"
+uid="uid://bdrd2gw46ofyq"
+path="res://.godot/imported/start3.mp3-1441ea530e7b5bc0753d586855323948.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/start3.mp3"
-dest_files=[ "res://.import/start3.mp3-1441ea530e7b5bc0753d586855323948.mp3str" ]
+dest_files=["res://.godot/imported/start3.mp3-1441ea530e7b5bc0753d586855323948.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

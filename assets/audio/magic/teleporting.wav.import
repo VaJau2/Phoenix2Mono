@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample"
+type="AudioStreamWAV"
+uid="uid://bgts40denfoo0"
+path="res://.godot/imported/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample"
 
 [deps]
 
 source_file="res://assets/audio/magic/teleporting.wav"
-dest_files=[ "res://.import/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample" ]
+dest_files=["res://.godot/imported/teleporting.wav-bd6f10318b53d5875e3ca4fe94b52aec.sample"]
 
 [params]
 

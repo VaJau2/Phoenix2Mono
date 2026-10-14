@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/prisonDoorOpenKeyCard.wav-41ac68f259ebd424473cf7e062edaba5.sample"
+type="AudioStreamWAV"
+uid="uid://dv6rgg7gcl4s4"
+path="res://.godot/imported/prisonDoorOpenKeyCard.wav-41ac68f259ebd424473cf7e062edaba5.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Doors/prisonDoorOpenKeyCard.wav"
-dest_files=[ "res://.import/prisonDoorOpenKeyCard.wav-41ac68f259ebd424473cf7e062edaba5.sample" ]
+dest_files=["res://.godot/imported/prisonDoorOpenKeyCard.wav-41ac68f259ebd424473cf7e062edaba5.sample"]
 
 [params]
 

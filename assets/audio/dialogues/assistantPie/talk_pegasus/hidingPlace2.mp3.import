@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/hidingPlace2.mp3-01862acd32ad750fcd975ce737e1fbb7.mp3str"
+uid="uid://cqicf2pi7pu12"
+path="res://.godot/imported/hidingPlace2.mp3-01862acd32ad750fcd975ce737e1fbb7.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/hidingPlace2.mp3"
-dest_files=[ "res://.import/hidingPlace2.mp3-01862acd32ad750fcd975ce737e1fbb7.mp3str" ]
+dest_files=["res://.godot/imported/hidingPlace2.mp3-01862acd32ad750fcd975ce737e1fbb7.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

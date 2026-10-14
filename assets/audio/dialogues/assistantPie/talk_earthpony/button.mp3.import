@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/button.mp3-ec00bcbe8a1080236cff4b763b445f72.mp3str"
+uid="uid://dadkhoa72m77x"
+path="res://.godot/imported/button.mp3-ec00bcbe8a1080236cff4b763b445f72.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_earthpony/button.mp3"
-dest_files=[ "res://.import/button.mp3-ec00bcbe8a1080236cff4b763b445f72.mp3str" ]
+dest_files=["res://.godot/imported/button.mp3-ec00bcbe8a1080236cff4b763b445f72.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

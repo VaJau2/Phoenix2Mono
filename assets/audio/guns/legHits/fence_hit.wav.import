@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/fence_hit.wav-5e442183282474b58a2a3e0a15899457.sample"
+type="AudioStreamWAV"
+uid="uid://b2tlhxee3nleu"
+path="res://.godot/imported/fence_hit.wav-5e442183282474b58a2a3e0a15899457.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/legHits/fence_hit.wav"
-dest_files=[ "res://.import/fence_hit.wav-5e442183282474b58a2a3e0a15899457.sample" ]
+dest_files=["res://.godot/imported/fence_hit.wav-5e442183282474b58a2a3e0a15899457.sample"]
 
 [params]
 

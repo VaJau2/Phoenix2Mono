@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample"
+type="AudioStreamWAV"
+uid="uid://vj2xjcnnl18e"
+path="res://.godot/imported/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/colaDrink.wav"
-dest_files=[ "res://.import/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample" ]
+dest_files=["res://.godot/imported/colaDrink.wav-a8fe01cd5e9fdcd254c1e33b17798ace.sample"]
 
 [params]
 

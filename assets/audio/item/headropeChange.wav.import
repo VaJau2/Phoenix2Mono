@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/headropeChange.wav-bcea878e5fc8babb08213798bf3e5b24.sample"
+type="AudioStreamWAV"
+uid="uid://b5b0wgncrswcm"
+path="res://.godot/imported/headropeChange.wav-bcea878e5fc8babb08213798bf3e5b24.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/headropeChange.wav"
-dest_files=[ "res://.import/headropeChange.wav-bcea878e5fc8babb08213798bf3e5b24.sample" ]
+dest_files=["res://.godot/imported/headropeChange.wav-bcea878e5fc8babb08213798bf3e5b24.sample"]
 
 [params]
 

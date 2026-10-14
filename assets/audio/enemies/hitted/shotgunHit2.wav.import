@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample"
+type="AudioStreamWAV"
+uid="uid://bmp6h1dbgray8"
+path="res://.godot/imported/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/hitted/shotgunHit2.wav"
-dest_files=[ "res://.import/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample" ]
+dest_files=["res://.godot/imported/shotgunHit2.wav-308ba1660bccdc6c31733913e86b8a39.sample"]
 
 [params]
 

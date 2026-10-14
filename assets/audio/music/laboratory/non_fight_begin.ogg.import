@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://dab07d5dx46ol"
+path="res://.godot/imported/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/music/laboratory/non_fight_begin.ogg"
-dest_files=[ "res://.import/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggstr" ]
+dest_files=["res://.godot/imported/non_fight_begin.ogg-06008d920441a9414d9402bb1beab607.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

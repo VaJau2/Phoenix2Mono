@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shotgun20.wav-46d4e46deed6ea395bf6e8310f8960f6.sample"
+type="AudioStreamWAV"
+uid="uid://y2raeyhs13eu"
+path="res://.godot/imported/shotgun20.wav-46d4e46deed6ea395bf6e8310f8960f6.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/shotgun20.wav"
-dest_files=[ "res://.import/shotgun20.wav-46d4e46deed6ea395bf6e8310f8960f6.sample" ]
+dest_files=["res://.godot/imported/shotgun20.wav-46d4e46deed6ea395bf6e8310f8960f6.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample"
+type="AudioStreamWAV"
+uid="uid://c1wt1sxsrgyxs"
+path="res://.godot/imported/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/coat.wav"
-dest_files=[ "res://.import/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample" ]
+dest_files=["res://.godot/imported/coat.wav-77c2ed38b229674c9fd44e732fd7c660.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mrHandy_break-2.wav-289d307251f6348e39279a5ca8f8e1a6.sample"
+type="AudioStreamWAV"
+uid="uid://bnkbevstnicee"
+path="res://.godot/imported/mrHandy_break-2.wav-289d307251f6348e39279a5ca8f8e1a6.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/result/mrHandy_break-2.wav"
-dest_files=[ "res://.import/mrHandy_break-2.wav-289d307251f6348e39279a5ca8f8e1a6.sample" ]
+dest_files=["res://.godot/imported/mrHandy_break-2.wav-289d307251f6348e39279a5ca8f8e1a6.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample"
+type="AudioStreamWAV"
+uid="uid://crp3ig5kryu1b"
+path="res://.godot/imported/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/result/glass_brake2.wav"
-dest_files=[ "res://.import/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample" ]
+dest_files=["res://.godot/imported/glass_brake2.wav-9530e62691d52dc3ecdfbb41642247bc.sample"]
 
 [params]
 

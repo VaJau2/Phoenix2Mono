@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/plasmaPistol.wav-2250f6bcfa462a9df6573411d5222586.sample"
+type="AudioStreamWAV"
+uid="uid://c6p8k8nip1ru1"
+path="res://.godot/imported/plasmaPistol.wav-2250f6bcfa462a9df6573411d5222586.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/shoot/plasmaPistol.wav"
-dest_files=[ "res://.import/plasmaPistol.wav-2250f6bcfa462a9df6573411d5222586.sample" ]
+dest_files=["res://.godot/imported/plasmaPistol.wav-2250f6bcfa462a9df6573411d5222586.sample"]
 
 [params]
 

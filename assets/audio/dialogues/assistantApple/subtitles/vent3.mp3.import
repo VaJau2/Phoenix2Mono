@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/vent3.mp3-0c0f0ddff992b7b5fc620568e412a95f.mp3str"
+uid="uid://ddt1euohlt6qs"
+path="res://.godot/imported/vent3.mp3-0c0f0ddff992b7b5fc620568e412a95f.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantApple/subtitles/vent3.mp3"
-dest_files=[ "res://.import/vent3.mp3-0c0f0ddff992b7b5fc620568e412a95f.mp3str" ]
+dest_files=["res://.godot/imported/vent3.mp3-0c0f0ddff992b7b5fc620568e412a95f.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

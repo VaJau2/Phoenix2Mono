@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/door_slam.wav-f2d1c7e070849ee70a8a3747912f2fb4.sample"
+type="AudioStreamWAV"
+uid="uid://i5xda0ieggrv"
+path="res://.godot/imported/door_slam.wav-f2d1c7e070849ee70a8a3747912f2fb4.sample"
 
 [deps]
 
 source_file="res://assets/audio/guns/legHits/door_slam.wav"
-dest_files=[ "res://.import/door_slam.wav-f2d1c7e070849ee70a8a3747912f2fb4.sample" ]
+dest_files=["res://.godot/imported/door_slam.wav-f2d1c7e070849ee70a8a3747912f2fb4.sample"]
 
 [params]
 

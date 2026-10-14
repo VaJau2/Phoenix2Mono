@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/officerDead.wav-7a17ec290010903f70d200d3fc563ebd.sample"
+type="AudioStreamWAV"
+uid="uid://br44nbgl61u1e"
+path="res://.godot/imported/officerDead.wav-7a17ec290010903f70d200d3fc563ebd.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/hitted/officerDead.wav"
-dest_files=[ "res://.import/officerDead.wav-7a17ec290010903f70d200d3fc563ebd.sample" ]
+dest_files=["res://.godot/imported/officerDead.wav-7a17ec290010903f70d200d3fc563ebd.sample"]
 
 [params]
 

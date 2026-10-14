@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/suit4.mp3-722556a34a63f4dcf14f1bb05aeab58f.mp3str"
+uid="uid://385m8h1gdkof"
+path="res://.godot/imported/suit4.mp3-722556a34a63f4dcf14f1bb05aeab58f.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantRarity/talk/suit4.mp3"
-dest_files=[ "res://.import/suit4.mp3-722556a34a63f4dcf14f1bb05aeab58f.mp3str" ]
+dest_files=["res://.godot/imported/suit4.mp3-722556a34a63f4dcf14f1bb05aeab58f.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

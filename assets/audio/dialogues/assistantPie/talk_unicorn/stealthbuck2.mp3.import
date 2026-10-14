@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/stealthbuck2.mp3-96b2400bd236a3353a53f0a2f6fc61bd.mp3str"
+uid="uid://cudxmx2jw5wrf"
+path="res://.godot/imported/stealthbuck2.mp3-96b2400bd236a3353a53f0a2f6fc61bd.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/stealthbuck2.mp3"
-dest_files=[ "res://.import/stealthbuck2.mp3-96b2400bd236a3353a53f0a2f6fc61bd.mp3str" ]
+dest_files=["res://.godot/imported/stealthbuck2.mp3-96b2400bd236a3353a53f0a2f6fc61bd.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

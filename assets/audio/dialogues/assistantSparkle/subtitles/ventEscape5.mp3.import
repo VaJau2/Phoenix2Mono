@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/ventEscape5.mp3-27f607484fcf45dba277371677c73222.mp3str"
+uid="uid://jpxeyxe6ekqa"
+path="res://.godot/imported/ventEscape5.mp3-27f607484fcf45dba277371677c73222.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/ventEscape5.mp3"
-dest_files=[ "res://.import/ventEscape5.mp3-27f607484fcf45dba277371677c73222.mp3str" ]
+dest_files=["res://.godot/imported/ventEscape5.mp3-27f607484fcf45dba277371677c73222.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

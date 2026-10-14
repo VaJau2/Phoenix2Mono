@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stealth_fail.wav-2df8e9e49c76ac34237ad7c408852039.sample"
+type="AudioStreamWAV"
+uid="uid://dnwmjl31sa6vm"
+path="res://.godot/imported/stealth_fail.wav-2df8e9e49c76ac34237ad7c408852039.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/stealth_fail.wav"
-dest_files=[ "res://.import/stealth_fail.wav-2df8e9e49c76ac34237ad7c408852039.sample" ]
+dest_files=["res://.godot/imported/stealth_fail.wav-2df8e9e49c76ac34237ad7c408852039.sample"]
 
 [params]
 

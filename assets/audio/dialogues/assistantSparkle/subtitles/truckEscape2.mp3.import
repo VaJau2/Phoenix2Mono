@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/truckEscape2.mp3-e880a261fb0971a39da1cbd7ce419905.mp3str"
+uid="uid://dngrghhu072da"
+path="res://.godot/imported/truckEscape2.mp3-e880a261fb0971a39da1cbd7ce419905.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantSparkle/subtitles/truckEscape2.mp3"
-dest_files=[ "res://.import/truckEscape2.mp3-e880a261fb0971a39da1cbd7ce419905.mp3str" ]
+dest_files=["res://.godot/imported/truckEscape2.mp3-e880a261fb0971a39da1cbd7ce419905.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

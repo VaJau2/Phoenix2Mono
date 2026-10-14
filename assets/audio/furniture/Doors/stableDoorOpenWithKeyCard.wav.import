@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stableDoorOpenWithKeyCard.wav-04af410d5ecb9b9ecf46b37172caa257.sample"
+type="AudioStreamWAV"
+uid="uid://dkjglih1ql0p5"
+path="res://.godot/imported/stableDoorOpenWithKeyCard.wav-04af410d5ecb9b9ecf46b37172caa257.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/Doors/stableDoorOpenWithKeyCard.wav"
-dest_files=[ "res://.import/stableDoorOpenWithKeyCard.wav-04af410d5ecb9b9ecf46b37172caa257.sample" ]
+dest_files=["res://.godot/imported/stableDoorOpenWithKeyCard.wav-04af410d5ecb9b9ecf46b37172caa257.sample"]
 
 [params]
 

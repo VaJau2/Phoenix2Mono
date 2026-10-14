@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample"
+type="AudioStreamWAV"
+uid="uid://coj516trb8i67"
+path="res://.godot/imported/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/eating1.wav"
-dest_files=[ "res://.import/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample" ]
+dest_files=["res://.godot/imported/eating1.wav-3d54fe7bb61a9bbe38146aea3ae63251.sample"]
 
 [params]
 

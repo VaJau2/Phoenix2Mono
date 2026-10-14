@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/nuclear_explosion1.wav-8a904a3006ba3a0b3b820034d71507d8.sample"
+type="AudioStreamWAV"
+uid="uid://d1o7my7nql8er"
+path="res://.godot/imported/nuclear_explosion1.wav-8a904a3006ba3a0b3b820034d71507d8.sample"
 
 [deps]
 
 source_file="res://assets/audio/background/nuclear/nuclear_explosion1.wav"
-dest_files=[ "res://.import/nuclear_explosion1.wav-8a904a3006ba3a0b3b820034d71507d8.sample" ]
+dest_files=["res://.godot/imported/nuclear_explosion1.wav-8a904a3006ba3a0b3b820034d71507d8.sample"]
 
 [params]
 

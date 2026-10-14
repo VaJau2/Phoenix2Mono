@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://ovd8yfiur0ch"
+path="res://.godot/imported/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/cloneRoom.ogg"
-dest_files=[ "res://.import/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggstr" ]
+dest_files=["res://.godot/imported/cloneRoom.ogg-e8a1db35f367c12713273899e2a0065d.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

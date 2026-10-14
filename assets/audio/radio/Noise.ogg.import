@@ -1,15 +1,19 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
-path="res://.import/Noise.ogg-e6440e9ac254cdc94dd2c0c30b01e5d4.oggstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdc454v00olr8"
+path="res://.godot/imported/Noise.ogg-e6440e9ac254cdc94dd2c0c30b01e5d4.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/radio/Noise.ogg"
-dest_files=[ "res://.import/Noise.ogg-e6440e9ac254cdc94dd2c0c30b01e5d4.oggstr" ]
+dest_files=["res://.godot/imported/Noise.ogg-e6440e9ac254cdc94dd2c0c30b01e5d4.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

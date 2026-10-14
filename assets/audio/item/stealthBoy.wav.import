@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stealthBoy.wav-027b5c3404bb722c403726793e15f3fc.sample"
+type="AudioStreamWAV"
+uid="uid://dq34701v108in"
+path="res://.godot/imported/stealthBoy.wav-027b5c3404bb722c403726793e15f3fc.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/stealthBoy.wav"
-dest_files=[ "res://.import/stealthBoy.wav-027b5c3404bb722c403726793e15f3fc.sample" ]
+dest_files=["res://.godot/imported/stealthBoy.wav-027b5c3404bb722c403726793e15f3fc.sample"]
 
 [params]
 

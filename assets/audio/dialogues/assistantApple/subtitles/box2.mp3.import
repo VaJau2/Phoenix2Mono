@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/box2.mp3-2a31258249c87cd1facf6236ac33955d.mp3str"
+uid="uid://b8hwddsd1ttec"
+path="res://.godot/imported/box2.mp3-2a31258249c87cd1facf6236ac33955d.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantApple/subtitles/box2.mp3"
-dest_files=[ "res://.import/box2.mp3-2a31258249c87cd1facf6236ac33955d.mp3str" ]
+dest_files=["res://.godot/imported/box2.mp3-2a31258249c87cd1facf6236ac33955d.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

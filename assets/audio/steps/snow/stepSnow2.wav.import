@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepSnow2.wav-18fcc0c70d6570f02de4a45461e4c423.sample"
+type="AudioStreamWAV"
+uid="uid://bcl6okdakh1ov"
+path="res://.godot/imported/stepSnow2.wav-18fcc0c70d6570f02de4a45461e4c423.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/snow/stepSnow2.wav"
-dest_files=[ "res://.import/stepSnow2.wav-18fcc0c70d6570f02de4a45461e4c423.sample" ]
+dest_files=["res://.godot/imported/stepSnow2.wav-18fcc0c70d6570f02de4a45461e4c423.sample"]
 
 [params]
 

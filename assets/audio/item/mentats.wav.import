@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mentats.wav-c76a93e53401011676a838cbb708b85a.sample"
+type="AudioStreamWAV"
+uid="uid://b87y12grdytlx"
+path="res://.godot/imported/mentats.wav-c76a93e53401011676a838cbb708b85a.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/mentats.wav"
-dest_files=[ "res://.import/mentats.wav-c76a93e53401011676a838cbb708b85a.sample" ]
+dest_files=["res://.godot/imported/mentats.wav-c76a93e53401011676a838cbb708b85a.sample"]
 
 [params]
 

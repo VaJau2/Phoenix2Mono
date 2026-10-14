@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/stepGrass2.wav-a3393737a7e4ce4ca39bf33e6628c136.sample"
+type="AudioStreamWAV"
+uid="uid://csth4jdx0vd6d"
+path="res://.godot/imported/stepGrass2.wav-a3393737a7e4ce4ca39bf33e6628c136.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/grass/stepGrass2.wav"
-dest_files=[ "res://.import/stepGrass2.wav-a3393737a7e4ce4ca39bf33e6628c136.sample" ]
+dest_files=["res://.godot/imported/stepGrass2.wav-a3393737a7e4ce4ca39bf33e6628c136.sample"]
 
 [params]
 

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/moreBriefing1.mp3-fa1d31e9e5054d87e5cc2f27a5534502.mp3str"
+uid="uid://cse43tnqrsc3i"
+path="res://.godot/imported/moreBriefing1.mp3-fa1d31e9e5054d87e5cc2f27a5534502.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/moreBriefing1.mp3"
-dest_files=[ "res://.import/moreBriefing1.mp3-fa1d31e9e5054d87e5cc2f27a5534502.mp3str" ]
+dest_files=["res://.godot/imported/moreBriefing1.mp3-fa1d31e9e5054d87e5cc2f27a5534502.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

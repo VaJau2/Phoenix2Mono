@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/StoneStepRun2.wav-1d910321e5ec70c68c062fc0ed37c3be.sample"
+type="AudioStreamWAV"
+uid="uid://c2nhnb0xf84f6"
+path="res://.godot/imported/StoneStepRun2.wav-1d910321e5ec70c68c062fc0ed37c3be.sample"
 
 [deps]
 
 source_file="res://assets/audio/steps/stone/StoneStepRun2.wav"
-dest_files=[ "res://.import/StoneStepRun2.wav-1d910321e5ec70c68c062fc0ed37c3be.sample" ]
+dest_files=["res://.godot/imported/StoneStepRun2.wav-1d910321e5ec70c68c062fc0ed37c3be.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/underwater.wav-e754a39e7650b577bd2b376b4ab0723b.sample"
+type="AudioStreamWAV"
+uid="uid://db1x5jamh1anb"
+path="res://.godot/imported/underwater.wav-e754a39e7650b577bd2b376b4ab0723b.sample"
 
 [deps]
 
 source_file="res://assets/audio/underwater.wav"
-dest_files=[ "res://.import/underwater.wav-e754a39e7650b577bd2b376b4ab0723b.sample" ]
+dest_files=["res://.godot/imported/underwater.wav-e754a39e7650b577bd2b376b4ab0723b.sample"]
 
 [params]
 

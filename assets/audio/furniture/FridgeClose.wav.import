@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/FridgeClose.wav-dcd270d4b8b4372c9ce7183efb9da007.sample"
+type="AudioStreamWAV"
+uid="uid://b2thq1oio4ibg"
+path="res://.godot/imported/FridgeClose.wav-dcd270d4b8b4372c9ce7183efb9da007.sample"
 
 [deps]
 
 source_file="res://assets/audio/furniture/FridgeClose.wav"
-dest_files=[ "res://.import/FridgeClose.wav-dcd270d4b8b4372c9ce7183efb9da007.sample" ]
+dest_files=["res://.godot/imported/FridgeClose.wav-dcd270d4b8b4372c9ce7183efb9da007.sample"]
 
 [params]
 

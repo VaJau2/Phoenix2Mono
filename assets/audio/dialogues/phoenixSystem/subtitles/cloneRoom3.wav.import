@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/cloneRoom3.wav-2861ba24c5311bc4bea58d6795576707.sample"
+type="AudioStreamWAV"
+uid="uid://wn3mdfnuqf5j"
+path="res://.godot/imported/cloneRoom3.wav-2861ba24c5311bc4bea58d6795576707.sample"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/cloneRoom3.wav"
-dest_files=[ "res://.import/cloneRoom3.wav-2861ba24c5311bc4bea58d6795576707.sample" ]
+dest_files=["res://.godot/imported/cloneRoom3.wav-2861ba24c5311bc4bea58d6795576707.sample"]
 
 [params]
 

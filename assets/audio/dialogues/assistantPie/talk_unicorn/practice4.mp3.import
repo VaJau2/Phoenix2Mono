@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/practice4.mp3-30fba529b43b474a8c1c68a918281ef1.mp3str"
+uid="uid://bnpxhjfno4jsp"
+path="res://.godot/imported/practice4.mp3-30fba529b43b474a8c1c68a918281ef1.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_unicorn/practice4.mp3"
-dest_files=[ "res://.import/practice4.mp3-30fba529b43b474a8c1c68a918281ef1.mp3str" ]
+dest_files=["res://.godot/imported/practice4.mp3-30fba529b43b474a8c1c68a918281ef1.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

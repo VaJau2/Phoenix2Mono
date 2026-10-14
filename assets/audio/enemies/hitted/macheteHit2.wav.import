@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/macheteHit2.wav-90b27e7374adde1409208476dd022bb5.sample"
+type="AudioStreamWAV"
+uid="uid://cll32edpgq0ch"
+path="res://.godot/imported/macheteHit2.wav-90b27e7374adde1409208476dd022bb5.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/hitted/macheteHit2.wav"
-dest_files=[ "res://.import/macheteHit2.wav-90b27e7374adde1409208476dd022bb5.sample" ]
+dest_files=["res://.godot/imported/macheteHit2.wav-90b27e7374adde1409208476dd022bb5.sample"]
 
 [params]
 

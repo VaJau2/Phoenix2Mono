@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/unroping.wav-fc0c897369e7e054af071a604944301f.sample"
+type="AudioStreamWAV"
+uid="uid://c7b66h8u4njte"
+path="res://.godot/imported/unroping.wav-fc0c897369e7e054af071a604944301f.sample"
 
 [deps]
 
 source_file="res://assets/audio/enemies/ropes/unroping.wav"
-dest_files=[ "res://.import/unroping.wav-fc0c897369e7e054af071a604944301f.sample" ]
+dest_files=["res://.godot/imported/unroping.wav-fc0c897369e7e054af071a604944301f.sample"]
 
 [params]
 

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/stealthbuck2.mp3-07067e1edc45da10b41cd95185f6f78e.mp3str"
+uid="uid://6lsep4cvwfts"
+path="res://.godot/imported/stealthbuck2.mp3-07067e1edc45da10b41cd95185f6f78e.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/assistantPie/talk_pegasus/stealthbuck2.mp3"
-dest_files=[ "res://.import/stealthbuck2.mp3-07067e1edc45da10b41cd95185f6f78e.mp3str" ]
+dest_files=["res://.godot/imported/stealthbuck2.mp3-07067e1edc45da10b41cd95185f6f78e.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

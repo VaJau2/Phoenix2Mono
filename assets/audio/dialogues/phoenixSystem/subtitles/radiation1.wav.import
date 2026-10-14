@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/radiation1.wav-b93cef71bf1df95209e3a3a3da4ada8a.sample"
+type="AudioStreamWAV"
+uid="uid://hywyg1nhsopd"
+path="res://.godot/imported/radiation1.wav-b93cef71bf1df95209e3a3a3da4ada8a.sample"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/radiation1.wav"
-dest_files=[ "res://.import/radiation1.wav-b93cef71bf1df95209e3a3a3da4ada8a.sample" ]
+dest_files=["res://.godot/imported/radiation1.wav-b93cef71bf1df95209e3a3a3da4ada8a.sample"]
 
 [params]
 

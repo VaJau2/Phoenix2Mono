@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/resurrection.wav-8a37e6c7f2c428b853ed7de7dbd93ecd.sample"
+type="AudioStreamWAV"
+uid="uid://bgmbw0ft3fcvv"
+path="res://.godot/imported/resurrection.wav-8a37e6c7f2c428b853ed7de7dbd93ecd.sample"
 
 [deps]
 
 source_file="res://assets/audio/dialogues/phoenixSystem/subtitles/resurrection.wav"
-dest_files=[ "res://.import/resurrection.wav-8a37e6c7f2c428b853ed7de7dbd93ecd.sample" ]
+dest_files=["res://.godot/imported/resurrection.wav-8a37e6c7f2c428b853ed7de7dbd93ecd.sample"]
 
 [params]
 

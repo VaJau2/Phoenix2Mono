@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/armor.wav-8760d8880e4b27a39eff0ec61fb33447.sample"
+type="AudioStreamWAV"
+uid="uid://fil638wk4fmg"
+path="res://.godot/imported/armor.wav-8760d8880e4b27a39eff0ec61fb33447.sample"
 
 [deps]
 
 source_file="res://assets/audio/item/armor.wav"
-dest_files=[ "res://.import/armor.wav-8760d8880e4b27a39eff0ec61fb33447.sample" ]
+dest_files=["res://.godot/imported/armor.wav-8760d8880e4b27a39eff0ec61fb33447.sample"]
 
 [params]
 
