@@ -1,0 +1,8 @@
+# Godot always writes text resources with LF, so keep LF in the working copy
+# regardless of the local core.autocrlf setting.
+* text=auto eol=lf
+
+# Windows-only scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
