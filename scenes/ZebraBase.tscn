@@ -181,6 +181,7 @@ extents = Vector3( 1, 7.88846, 6.67159 )
 [sub_resource type="BoxMesh" id=11]
 
 [sub_resource type="StandardMaterial3D" id=12]
+texture_filter = 0
 albedo_color = Color( 0.643137, 0.137255, 0.137255, 1 )
 
 [sub_resource type="BoxMesh" id=13]
@@ -2110,6 +2111,7 @@ mesh = SubResource( 32 )
 surface_material_override/0 = ExtResource( 109 )
 
 [node name="sign" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -2.99564e-07, 0, 1.37065, 0, 6.85323, 0, -6.85323, 0, -5.99128e-08, -15.3278, 2.22436, -3.31359 )
 cast_shadow = 0
 double_sided = false
@@ -2122,6 +2124,7 @@ mesh = SubResource( 32 )
 surface_material_override/0 = ExtResource( 105 )
 
 [node name="sign2" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -6.85323, 0, -2.06962e-07, 0, 6.85323, 0, 1.03481e-06, 0, -1.37065, 2.06505, 2.11786, 7.64668 )
 cast_shadow = 0
 double_sided = false
@@ -2134,6 +2137,7 @@ mesh = SubResource( 32 )
 surface_material_override/0 = ExtResource( 106 )
 
 [node name="sign3" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -6.85323, 0, -2.06962e-07, 0, 6.85323, 0, 1.03481e-06, 0, -1.37065, 6.40842, 2.11786, 7.64668 )
 cast_shadow = 0
 double_sided = false
@@ -2146,6 +2150,7 @@ mesh = SubResource( 32 )
 surface_material_override/0 = ExtResource( 107 )
 
 [node name="sign4" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -2.99564e-07, 0, 1.37065, 0, 6.85323, 0, -6.85323, 0, -5.99128e-08, -15.3423, 2.32051, 3.02347 )
 cast_shadow = 0
 double_sided = false
@@ -2158,18 +2163,21 @@ mesh = SubResource( 32 )
 surface_material_override/0 = ExtResource( 108 )
 
 [node name="sign5" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -6.85323, 0, -1.19826e-07, 0, 6.85323, 0, 5.99128e-07, 0, -1.37065, 11.2592, 2.47768, 7.62896 )
 cast_shadow = 0
 double_sided = false
 texture = ExtResource( 113 )
 
 [node name="sign6" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -6.54116, 2.04449, -1.19826e-07, 2.04449, 6.54116, 3.75264e-08, 6.27822e-07, 3.53353e-10, -1.37065, 9.44067, 2.16319, 7.18872 )
 cast_shadow = 0
 double_sided = false
 texture = ExtResource( 113 )
 
 [node name="sign7" type="Sprite3D" parent="rooms/cpp/props/pics"]
+texture_filter = 0
 transform = Transform3D( -5.99536, -3.32, -1.19826e-07, -3.32, 5.99536, -5.80487e-08, 6.64738e-07, 3.63319e-08, -1.37065, 11.5995, 1.11076, 7.60786 )
 cast_shadow = 0
 double_sided = false

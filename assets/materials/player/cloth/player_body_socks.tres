@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/textures/characters/player/emotions/player_body.png" type="Texture2D" id=3]
 
 [resource]
+texture_filter = 0
 resource_name = "test"
 albedo_texture = ExtResource( 1 )
 metallic_specular = 0.3

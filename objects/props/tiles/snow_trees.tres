@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree05-snow.png" type="Texture2D" id=4]
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 resource_name = "tree01"
 flags_transparent = true
 transparency = 4
@@ -46,6 +47,7 @@ size = Vector2( 64, 64 )
 extents = Vector3( 0.266074, 4.49729, 0.237883 )
 
 [sub_resource type="StandardMaterial3D" id=6]
+texture_filter = 0
 flags_transparent = true
 transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
@@ -85,6 +87,7 @@ size = Vector2( 64, 64 )
 extents = Vector3( 0.267323, 4.49729, 0.296129 )
 
 [sub_resource type="StandardMaterial3D" id=11]
+texture_filter = 0
 flags_transparent = true
 transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
@@ -124,6 +127,7 @@ size = Vector2( 64, 64 )
 extents = Vector3( 0.490107, 4.49729, 0.548255 )
 
 [sub_resource type="StandardMaterial3D" id=16]
+texture_filter = 0
 flags_transparent = true
 transparency = 4
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )

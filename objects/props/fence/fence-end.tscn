@@ -64,6 +64,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=6]
+texture_filter = 0
 albedo_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
 [node name="fence-end" type="StaticBody3D"]

@@ -16,6 +16,7 @@ scale = Vector2( 1, -1 )
 clip_contents = true
 
 [node name="bar" type="TextureRect" parent="." groups=["ignore_color"]]
+texture_filter = 2
 show_behind_parent = true
 offset_top = 128.0
 offset_right = 128.0

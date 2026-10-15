@@ -168,6 +168,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=14]
+texture_filter = 0
 resource_name = "hair.001"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
@@ -279,6 +280,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=24]
+texture_filter = 0
 resource_name = "bodyArmor"
 params_cull_mode = 2
 albedo_texture = ExtResource( 6 )

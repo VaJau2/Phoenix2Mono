@@ -33,6 +33,7 @@ omni_range = 10.0
 omni_attenuation = 2.28
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.72902, 0 )
 layers = 8
 cast_shadow = 0

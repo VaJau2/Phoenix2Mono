@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=2]
 
 [resource]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1

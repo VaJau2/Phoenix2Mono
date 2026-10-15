@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/models/props/buildings/snow-base/laba/inside/room-walls-1.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "room-walls-1"
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 1 )

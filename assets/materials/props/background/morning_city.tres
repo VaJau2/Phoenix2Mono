@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/background/morningcity.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 flags_transparent = true
 params_diffuse_mode = 1
 transparency = 4

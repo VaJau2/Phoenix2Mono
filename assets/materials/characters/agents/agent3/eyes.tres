@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/characters/agent3/eyes/neitral/0.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "test"
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )

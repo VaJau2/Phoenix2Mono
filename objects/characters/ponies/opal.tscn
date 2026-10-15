@@ -9,6 +9,7 @@
 
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=2]
@@ -127,6 +128,7 @@ bind/18/bone = -1
 bind/18/pose = Transform3D( 1.26706, -4.78518e-08, 2.98276e-07, 2.57638e-12, -1.25107, -0.200702, 3.02089e-07, 0.200705, -1.25106, 0.00774003, 2.39394, 1.68216 )
 
 [sub_resource type="StandardMaterial3D" id=5]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=6]

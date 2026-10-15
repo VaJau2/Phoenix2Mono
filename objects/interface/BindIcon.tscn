@@ -315,6 +315,7 @@ script = ExtResource( 2 )
 visible = false
 
 [node name="icon" parent="." index="2"]
+texture_filter = 2
 self_modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -330,6 +331,7 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="shadow" parent="icon" index="0"]
+texture_filter = 2
 self_modulate = Color( 0, 0, 0, 0.784314 )
 show_behind_parent = true
 texture = ExtResource( 3 )

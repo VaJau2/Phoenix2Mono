@@ -11,6 +11,7 @@
 
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=2]
@@ -29,6 +30,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=3]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=4]
@@ -47,6 +49,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=5]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=6]

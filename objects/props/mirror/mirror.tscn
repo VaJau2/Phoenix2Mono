@@ -6,12 +6,14 @@
 size = Vector2( 5, 7 )
 
 [sub_resource type="StandardMaterial3D" id=2]
+texture_filter = 0
 resource_local_to_scene = true
 flags_albedo_tex_force_srgb = true
 metallic_specular = 0.27
 roughness = 0.42
 
 [sub_resource type="StandardMaterial3D" id=3]
+texture_filter = 0
 albedo_color = Color( 1, 0.827451, 0.623529, 1 )
 
 [node name="Mirror" type="MeshInstance3D"]

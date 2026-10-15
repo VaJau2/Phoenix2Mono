@@ -290,6 +290,7 @@ size = Vector2( 64, 64 )
 extents = Vector3( 0.231829, 1.91529, 0.184935 )
 
 [sub_resource type="StandardMaterial3D" id=21]
+texture_filter = 0
 render_priority = 4
 flags_transparent = true
 transparency = 4
@@ -384,6 +385,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=236]
+texture_filter = 0
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
 
@@ -434,6 +436,7 @@ scale_max = 50
 color_ramp = SubResource( 148 )
 
 [sub_resource type="StandardMaterial3D" id=150]
+texture_filter = 0
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -601,6 +604,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=122]
+texture_filter = 0
 albedo_texture = ExtResource( 76 )
 metallic = 0.74
 
@@ -666,6 +670,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=131]
+texture_filter = 0
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
 
@@ -676,6 +681,7 @@ extents = Vector3( 21.5651, 8.33414, 44.1478 )
 extents = Vector3( 33.8545, 7.51315, 27.7591 )
 
 [sub_resource type="StandardMaterial3D" id=132]
+texture_filter = 0
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
 
@@ -1057,6 +1063,7 @@ transform = Transform3D( -5.32776e-08, 0, 1.21885, 0, 1.21885, 0, -1.21885, 0, -
 [node name="posters" type="Node3D" parent="terrain/props/houses/main-house/props"]
 
 [node name="1" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
+texture_filter = 0
 transform = Transform3D( -4.49693, 0, 3.93134e-07, 0, 4.49693, 0, -3.93134e-07, 0, -4.49693, -5.09145, 5.61199, 31.8702 )
 cast_shadow = 0
 shaded = true
@@ -1065,6 +1072,7 @@ alpha_cut = 1
 texture = ExtResource( 50 )
 
 [node name="2" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
+texture_filter = 0
 transform = Transform3D( -4.49693, 0, -3.93134e-07, 0, 4.49693, 0, 3.93134e-07, 0, -4.49693, 27.5153, 5.78888, 5.94761 )
 cast_shadow = 0
 shaded = true
@@ -1073,6 +1081,7 @@ alpha_cut = 1
 texture = ExtResource( 71 )
 
 [node name="3" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
+texture_filter = 0
 transform = Transform3D( 4.49693, 0, 0, 0, 4.49693, 0, 0, 0, 4.49693, 1.5019, 5.78888, 6.79639 )
 cast_shadow = 0
 shaded = true
@@ -1081,6 +1090,7 @@ alpha_cut = 1
 texture = ExtResource( 95 )
 
 [node name="4" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
+texture_filter = 0
 transform = Transform3D( -1.96567e-07, 0, 4.49693, 0, 4.49693, 0, -4.49693, 0, -1.96567e-07, 0.681114, 5.78888, -4.54991 )
 cast_shadow = 0
 shaded = true
@@ -1089,6 +1099,7 @@ alpha_cut = 1
 texture = ExtResource( 108 )
 
 [node name="5" type="Sprite3D" parent="terrain/props/houses/main-house/props/posters"]
+texture_filter = 0
 transform = Transform3D( 4.49693, 0, -8.52651e-14, 0, 4.49693, 0, 8.52651e-14, 0, 4.49693, 30.8544, 4.43886, -17.1192 )
 cast_shadow = 0
 shaded = true
@@ -1572,6 +1583,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.880722, 2.4968, -14.7559 )
 shape = SubResource( 173 )
 
 [node name="poster5" type="Sprite3D" parent="rooms/bunker/props/frame-room"]
+texture_filter = 0
 transform = Transform3D( -1.56741e-07, 0, 3.58581, 0, 3.58581, 0, -3.58581, 0, -1.56741e-07, -3.94693, -0.0672989, 41.7416 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1692,6 +1704,7 @@ shadow_reverse_cull_face = true
 spot_range = 15.0
 
 [node name="poster" type="Sprite3D" parent="rooms/bunker/props/kitchen-toilet"]
+texture_filter = 0
 transform = Transform3D( -3.58581, 0, -3.13481e-07, 0, 3.58581, 0, 3.13481e-07, 0, -3.58581, -1.64833, 0.336998, 17.0706 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1699,6 +1712,7 @@ double_sided = false
 texture = ExtResource( 48 )
 
 [node name="poster2" type="Sprite3D" parent="rooms/bunker/props/kitchen-toilet"]
+texture_filter = 0
 transform = Transform3D( -1.56741e-07, 0, -3.58581, 0, 3.58581, 0, 3.58581, 0, -1.56741e-07, 13.4826, -0.0795822, -22.3444 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1826,6 +1840,7 @@ usage = 0
 [node name="Control" parent="rooms/bunker/props/bedroom/terminal/Viewport" instance=ExtResource( 78 )]
 
 [node name="poster3" type="Sprite3D" parent="rooms/bunker/props/bedroom"]
+texture_filter = 0
 transform = Transform3D( 3.58581, 0, 0, 0, 3.58581, 0, 0, 0, 3.58581, 2.10117, 0.0975189, -30.737 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1833,6 +1848,7 @@ double_sided = false
 texture = ExtResource( 50 )
 
 [node name="poster4" type="Sprite3D" parent="rooms/bunker/props/bedroom"]
+texture_filter = 0
 transform = Transform3D( -3.58581, 0, -3.13481e-07, 0, 3.58581, 0, 3.13481e-07, 0, -3.58581, 5.06731, -0.232391, 14.0164 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1908,6 +1924,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3053, 0, -95.4424 )
 visible = false
 
 [node name="poster3" type="Sprite3D" parent="rooms/bunker/props/corridors2"]
+texture_filter = 0
 transform = Transform3D( -3.58581, 0, -3.13481e-07, 0, 3.58581, 0, 3.13481e-07, 0, -3.58581, -3.3493, 0.088356, 90.0767 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )
@@ -1915,6 +1932,7 @@ double_sided = false
 texture = ExtResource( 48 )
 
 [node name="poster4" type="Sprite3D" parent="rooms/bunker/props/corridors2"]
+texture_filter = 0
 transform = Transform3D( -3.58581, 0, -3.13481e-07, 0, 3.58581, 0, 3.13481e-07, 0, -3.58581, 13.543, -0.139488, 90.0767 )
 cast_shadow = 0
 modulate = Color( 0.705882, 0.956863, 0.686275, 1 )

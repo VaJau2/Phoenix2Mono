@@ -310,6 +310,7 @@ scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 10 )
 
 [node name="shadow" type="TextureRect" parent="health"]
+texture_filter = 2
 self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_top = 1.0
@@ -336,6 +337,7 @@ scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 3 )
 
 [node name="shadow" type="TextureRect" parent="mana"]
+texture_filter = 2
 self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_top = 1.0
@@ -380,6 +382,7 @@ offset_right = 88.0
 offset_bottom = 32.0
 
 [node name="button" type="TextureRect" parent="skip/icon"]
+texture_filter = 2
 offset_left = -31.0
 offset_top = 6.0
 offset_right = 17.0
@@ -390,6 +393,7 @@ script = ExtResource( 32 )
 key = "jump"
 
 [node name="shadow" type="TextureRect" parent="skip/icon/button" groups=["ignore_color"]]
+texture_filter = 2
 modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_left = 0.5

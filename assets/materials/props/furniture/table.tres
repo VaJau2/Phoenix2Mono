@@ -3,5 +3,6 @@
 [ext_resource path="res://assets/textures/props/furniture/table.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 albedo_color = Color( 0.733333, 0.733333, 0.733333, 1 )
 albedo_texture = ExtResource( 1 )

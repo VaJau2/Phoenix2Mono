@@ -460,6 +460,7 @@ image = SubResource( 113 )
 size = Vector2( 128, 128 )
 
 [sub_resource type="StandardMaterial3D" id=41]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 albedo_texture = SubResource( 40 )
@@ -1290,6 +1291,7 @@ transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35.2
 transform = Transform3D( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 19.8, 4.9, 41 )
 
 [node name="open" type="Sprite3D" parent="terrain/props/houses/market"]
+texture_filter = 0
 transform = Transform3D( -4.37107e-08, -2.52521e-10, -1, -0.005777, 0.999983, 8.32653e-17, 0.999983, 0.005777, -4.37114e-08, -1.60885, -1.55612, 0.455507 )
 transparent = false
 shaded = true

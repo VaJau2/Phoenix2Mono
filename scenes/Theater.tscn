@@ -936,6 +936,7 @@ shape = SubResource( 18 )
 transform = Transform3D( 0.758818, 0, 0, 0, 0.758818, 0, 0, 0, 0.758818, 1.38066, 1.80855, 0.458871 )
 
 [node name="plakat" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 7, 0, 0, 0, 7, 0, 0, 0, 7, 30.6319, 13.5805, -10.5959 )
 cast_shadow = 0
 transparent = false
@@ -944,6 +945,7 @@ double_sided = false
 texture = ExtResource( 5 )
 
 [node name="plakat3" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 4, 27.7671, 11.2271, -29.0984 )
 cast_shadow = 0
 transparent = false
@@ -952,6 +954,7 @@ double_sided = false
 texture = ExtResource( 9 )
 
 [node name="plakat4" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 27.7671, 11.2271, -12.8984 )
 cast_shadow = 0
 transparent = false
@@ -960,6 +963,7 @@ double_sided = false
 texture = ExtResource( 4 )
 
 [node name="plakat5" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 4, -78.8254, 11.1701, -59.3097 )
 cast_shadow = 0
 transparent = false
@@ -968,6 +972,7 @@ double_sided = false
 texture = ExtResource( 4 )
 
 [node name="plakat6" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 4, -34.515, -3.69882, -10.55 )
 cast_shadow = 0
 transparent = false
@@ -976,6 +981,7 @@ double_sided = false
 texture = ExtResource( 2 )
 
 [node name="plakat7" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 4, -6.66499, -3.69882, -10.55 )
 cast_shadow = 0
 transparent = false
@@ -984,6 +990,7 @@ double_sided = false
 texture = ExtResource( 6 )
 
 [node name="plakat8" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 3.99999, 0, 0, 0, 3.99999, 0, 0, 0, 3.99999, -39.7647, 11.6979, -29.1565 )
 cast_shadow = 0
 transparent = false
@@ -992,6 +999,7 @@ double_sided = false
 texture = ExtResource( 10 )
 
 [node name="plakat2" type="Sprite3D" parent="terrain/props/plakats"]
+texture_filter = 0
 transform = Transform3D( 7, 0, 0, 0, 7, 0, 0, 0, 7, 67.9355, 14.9669, -10.6488 )
 cast_shadow = 0
 transparent = false

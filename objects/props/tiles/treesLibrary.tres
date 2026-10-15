@@ -35,6 +35,7 @@ size = Vector2( 64, 64 )
 extents = Vector3( 0.231829, 1.91529, 0.184935 )
 
 [sub_resource type="StandardMaterial3D" id=5]
+texture_filter = 0
 render_priority = 4
 flags_transparent = true
 transparency = 4

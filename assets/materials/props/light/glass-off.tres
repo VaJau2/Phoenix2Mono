@@ -1,5 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=2]
 
 [resource]
+texture_filter = 0
 flags_transparent = true
 albedo_color = Color( 0.556863, 0.717647, 0.717647, 0.576471 )

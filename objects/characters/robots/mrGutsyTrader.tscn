@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/textures/enemies/robots/mrHandy-military.png" type="Texture2D" id=4]
 
 [sub_resource type="StandardMaterial3D" id=2]
+texture_filter = 0
 resource_name = "mrHandy"
 params_cull_mode = 2
 albedo_texture = ExtResource( 4 )

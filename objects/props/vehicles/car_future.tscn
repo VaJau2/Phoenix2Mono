@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/models/props/vehicles/car_future/_roughness.tga" type="Texture2D" id=5]
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 2 )
 metallic = 0.5

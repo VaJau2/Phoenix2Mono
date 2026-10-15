@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/props/box-texture.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 albedo_texture = ExtResource( 1 )
 metallic = 0.19
 metallic_specular = 0.2

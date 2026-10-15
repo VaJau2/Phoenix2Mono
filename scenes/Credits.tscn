@@ -3836,6 +3836,7 @@ __meta__ = {
 }
 
 [node name="icon" type="TextureRect" parent="Skip"]
+texture_filter = 2
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -3854,6 +3855,7 @@ __meta__ = {
 }
 
 [node name="shadow" type="TextureRect" parent="Skip/icon"]
+texture_filter = 2
 self_modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_left = 1.0

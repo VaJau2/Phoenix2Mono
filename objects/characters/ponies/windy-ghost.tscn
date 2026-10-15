@@ -6,6 +6,7 @@
 
 
 [sub_resource type="StandardMaterial3D" id=6]
+texture_filter = 0
 resource_name = "hair.001"
 flags_transparent = true
 vertex_color_use_as_albedo = true
@@ -48,6 +49,7 @@ image = SubResource( 20 )
 size = Vector2( 256, 256 )
 
 [sub_resource type="StandardMaterial3D" id=9]
+texture_filter = 0
 resource_name = "body.001"
 flags_transparent = true
 vertex_color_use_as_albedo = true
@@ -76,6 +78,7 @@ image = SubResource( 21 )
 size = Vector2( 64, 64 )
 
 [sub_resource type="StandardMaterial3D" id=12]
+texture_filter = 0
 resource_name = "mouth"
 flags_transparent = true
 vertex_color_use_as_albedo = true

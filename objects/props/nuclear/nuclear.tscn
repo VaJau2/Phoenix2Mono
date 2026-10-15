@@ -72,6 +72,7 @@ script = ExtResource( 4 )
 explosionSounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 
 [node name="sprite" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 50, 0, 0, 0, 50, 0, 0, 0, 1, 0, 7.43599, 0 )
 visible = false
 texture = ExtResource( 1 )

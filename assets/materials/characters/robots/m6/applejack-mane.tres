@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/enemies/robots/m6/applejack-mane.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "mane"
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )

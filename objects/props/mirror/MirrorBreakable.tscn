@@ -19,6 +19,7 @@ extents = Vector3( 1.08, 0.552, 0.158027 )
 size = Vector2( 8, 4 )
 
 [sub_resource type="StandardMaterial3D" id=4]
+texture_filter = 0
 resource_local_to_scene = true
 flags_albedo_tex_force_srgb = true
 metallic_specular = 0.27

@@ -30,6 +30,7 @@ tracks/0/keys = {
 script = SubResource( 1 )
 
 [node name="sprite" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 3, 0 )
 modulate = Color( 0.647059, 0.172549, 0.913725, 1 )
 billboard = 1

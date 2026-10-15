@@ -173,6 +173,7 @@ anims/fire = SubResource( 10 )
 anims/idle = SubResource( 11 )
 
 [node name="sprite" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 2.87115e-12, 3.49691e-06, 1, 30, -0.000175158, 1.82719e-19, 6.56844e-05, 80, -4.37114e-08, 0, 0, 14.3419 )
 modulate = Color( 1, 0.760784, 0.258824, 1 )
 texture = ExtResource( 4 )
@@ -180,6 +181,7 @@ hframes = 6
 vframes = 5
 
 [node name="sprite2" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 21.2132, 3.81747e-06, 0.707107, 21.2132, -9.21618e-06, -0.707107, 1.43155e-06, 80, -1.15202e-07, 0, 0, 14.3419 )
 modulate = Color( 1, 0.760784, 0.258824, 1 )
 texture = ExtResource( 4 )
@@ -187,6 +189,7 @@ hframes = 6
 vframes = 5
 
 [node name="sprite3" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 21.2132, 4.56227e-06, -0.707107, -21.2132, 1.10143e-05, -0.707107, 1.71085e-06, 80, 1.37679e-07, 0, 0, 14.3419 )
 modulate = Color( 1, 0.760784, 0.258824, 1 )
 texture = ExtResource( 4 )

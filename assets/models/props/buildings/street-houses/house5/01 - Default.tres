@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/buildings/street-houses/house5/Hs5__color.tga" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "01 - Default"
 params_cull_mode = 2
 albedo_texture = ExtResource( 2 )

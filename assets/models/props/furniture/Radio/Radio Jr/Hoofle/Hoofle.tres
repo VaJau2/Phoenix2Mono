@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/furniture/Radio/Radio Jr/Hoofle/ORM.png" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "Hoofle"
 albedo_texture = ExtResource( 1 )
 metallic = 1.0

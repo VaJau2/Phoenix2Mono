@@ -63,6 +63,7 @@ transform = Transform3D( 0.999994, -0.00343047, -0.000681861, 0.00343066, 0.9999
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -1.5058e-07, 0, 3.44487, 0, 3.44487, 0, -3.44487, 0, -1.5058e-07, -0.0666615, 2.94868, 0 )
 transparent = false
 shaded = true

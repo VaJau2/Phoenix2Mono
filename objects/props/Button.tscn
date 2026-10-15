@@ -8,6 +8,7 @@ extents = Vector3( 0.0665556, 0.183349, 0.167756 )
 [sub_resource type="BoxMesh" id=33]
 
 [sub_resource type="StandardMaterial3D" id=31]
+texture_filter = 0
 albedo_color = Color( 0.643137, 0.137255, 0.137255, 1 )
 
 [sub_resource type="BoxMesh" id=34]

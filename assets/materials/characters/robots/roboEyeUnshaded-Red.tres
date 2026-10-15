@@ -3,5 +3,6 @@
 [ext_resource path="res://assets/textures/enemies/robots/roboEye-red.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 flags_unshaded = true
 albedo_texture = ExtResource( 1 )

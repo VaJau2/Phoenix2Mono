@@ -20,6 +20,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=2]
+texture_filter = 0
 albedo_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = 1.0
@@ -43,19 +44,23 @@ transform = Transform3D( 0.279971, 0, 0, 0, 0.279971, 0, 0, 0, 0.279971, -1.9148
 shape = SubResource( 3 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -1.67808e-07, 0, 1, 0, 1.03, 0, -1.03, 0, -1.62921e-07, 8.8967, 11.2839, 3.50189 )
 texture = ExtResource( 2 )
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -1.67808e-07, 0, 1, 0, 1.03, 0, -1.03, 0, -1.62921e-07, 8.8967, 11.2839, -3.7067 )
 flip_h = true
 texture = ExtResource( 2 )
 
 [node name="Sprite3D3" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -1.67808e-07, 0, 1, 0, 1.03, 0, -1.03, 0, -1.62921e-07, 8.8967, 18.5023, 3.50189 )
 texture = ExtResource( 2 )
 
 [node name="Sprite3D4" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -1.67808e-07, 0, 1, 0, 1.03, 0, -1.03, 0, -1.62921e-07, 8.8967, 18.5023, -3.7067 )
 flip_h = true
 texture = ExtResource( 2 )

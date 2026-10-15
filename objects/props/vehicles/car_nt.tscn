@@ -23,6 +23,7 @@ extents = Vector3( 3.51839, 0.650644, 0.154037 )
 extents = Vector3( 0.147325, 0.650644, 2.15238 )
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 2 )
 normal_enabled = true

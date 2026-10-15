@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/weapon/result/glass-parts/glass_part2.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1

@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/inside/01 - Default.001.png" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "01 - Default.001"
 flags_transparent = true
 vertex_color_use_as_albedo = true

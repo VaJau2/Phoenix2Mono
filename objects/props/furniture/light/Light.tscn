@@ -14,6 +14,7 @@
 extents = Vector3( 0.573285, 10.5258, 0.772525 )
 
 [sub_resource type="StandardMaterial3D" id=2]
+texture_filter = 0
 resource_name = "Metal"
 params_cull_mode = 2
 albedo_color = Color( 0.14666, 0.14666, 0.14666, 1 )

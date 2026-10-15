@@ -855,6 +855,7 @@ shape = SubResource( 99 )
 transform = Transform3D( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 19.8, 4.9, 41 )
 
 [node name="closed" type="Sprite3D" parent="terrain/props/houses/market"]
+texture_filter = 0
 transform = Transform3D( -4.27172e-08, -9.26936e-09, -1, -0.212058, 0.977257, -1.18104e-16, 0.977257, 0.212058, -4.37114e-08, -1.60885, -1.92816, 0.374777 )
 transparent = false
 shaded = true

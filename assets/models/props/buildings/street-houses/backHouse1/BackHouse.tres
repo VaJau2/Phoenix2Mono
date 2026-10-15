@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1Ligh.png" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "BackHouse"
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )

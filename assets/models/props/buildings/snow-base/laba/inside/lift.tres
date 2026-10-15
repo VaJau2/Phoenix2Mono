@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/models/props/buildings/snow-base/laba/inside/lift.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "lift"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2

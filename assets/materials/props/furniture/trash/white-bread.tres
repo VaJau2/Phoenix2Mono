@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=2]
 
 [resource]
+texture_filter = 0
 resource_name = "white-bread"
 params_cull_mode = 2
 albedo_color = Color( 0.78666, 0.711751, 0.430349, 1 )

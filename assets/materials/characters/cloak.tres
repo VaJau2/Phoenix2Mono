@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=2]
 
 [resource]
+texture_filter = 0
 resource_name = "cloak"
 params_cull_mode = 2
 albedo_color = Color( 0.199956, 0.0776203, 0.0152253, 1 )

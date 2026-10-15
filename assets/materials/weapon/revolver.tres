@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/weapon/revolver.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "pistol"
 params_cull_mode = 2
 albedo_color = Color( 0.929412, 0.929412, 0.929412, 1 )

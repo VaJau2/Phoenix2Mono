@@ -40,6 +40,7 @@ image = SubResource( 29 )
 size = Vector2( 128, 128 )
 
 [sub_resource type="StandardMaterial3D" id=6]
+texture_filter = 0
 resource_name = "stair1"
 params_cull_mode = 2
 albedo_texture = SubResource( 5 )
@@ -66,6 +67,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=8]
+texture_filter = 0
 params_cull_mode = 2
 roughness = 0.4
 emission_enabled = true
@@ -90,6 +92,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=10]
+texture_filter = 0
 params_cull_mode = 2
 roughness = 0.4
 emission_enabled = true
@@ -114,6 +117,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=12]
+texture_filter = 0
 params_cull_mode = 2
 roughness = 0.4
 emission_enabled = true
@@ -193,6 +197,7 @@ material = ExtResource( 6 )
 extents = Vector3( 1.08, 0.552, 0.158027 )
 
 [sub_resource type="StandardMaterial3D" id=22]
+texture_filter = 0
 resource_local_to_scene = true
 flags_albedo_tex_force_srgb = true
 metallic_specular = 0.27

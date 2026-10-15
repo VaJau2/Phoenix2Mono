@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/props/fence.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "fence"
 render_priority = 3
 flags_transparent = true

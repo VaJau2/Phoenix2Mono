@@ -1132,6 +1132,7 @@ transform = Transform3D( -1, 0, -4.45101e-07, 0, 1.139, 0, 3.89414e-07, 0, -1.14
 [node name="plakats" type="Node3D" parent="rooms/kp"]
 
 [node name="plakat2" type="Sprite3D" parent="rooms/kp/plakats"]
+texture_filter = 0
 transform = Transform3D( 3, 0, 0, 0, 3, 0, 0, 0, 1, -21.3621, 4.7644, -26.3338 )
 transparent = false
 shaded = true
@@ -1139,6 +1140,7 @@ double_sided = false
 texture = ExtResource( 68 )
 
 [node name="plakat3" type="Sprite3D" parent="rooms/kp/plakats"]
+texture_filter = 0
 transform = Transform3D( -6.51683e-07, 0, -1, 0, 4, 0, 4, 0, -1.62921e-07, 16.1466, 4.26719, -17.2288 )
 transparent = false
 shaded = true
@@ -1146,6 +1148,7 @@ double_sided = false
 texture = ExtResource( 59 )
 
 [node name="plakat4" type="Sprite3D" parent="rooms/kp/plakats"]
+texture_filter = 0
 transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 1, -0.844, 4.694, -1.586 )
 transparent = false
 shaded = true
@@ -1153,6 +1156,7 @@ double_sided = false
 texture = ExtResource( 60 )
 
 [node name="plakat5" type="Sprite3D" parent="rooms/kp/plakats"]
+texture_filter = 0
 transform = Transform3D( -6.51683e-07, 0, 1, 0, 4, 0, -4, 0, -1.62921e-07, 16.7192, 4.26719, -15.5394 )
 transparent = false
 shaded = true
@@ -1160,6 +1164,7 @@ double_sided = false
 texture = ExtResource( 67 )
 
 [node name="plakat6" type="Sprite3D" parent="rooms/kp/plakats"]
+texture_filter = 0
 transform = Transform3D( -4.88762e-07, 0, -1, 0, 3, 0, 3, 0, -1.62921e-07, -14.4227, 4.60061, 0.741432 )
 transparent = false
 shaded = true
@@ -1291,6 +1296,7 @@ frequency = 0.23
 [node name="notes" type="Node3D" parent="rooms/kp"]
 
 [node name="note100" type="Sprite3D" parent="rooms/kp/notes"]
+texture_filter = 0
 transform = Transform3D( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.5533, 4.51536, -8.77026 )
 transparent = false
 shaded = true
@@ -1298,6 +1304,7 @@ double_sided = false
 texture = ExtResource( 65 )
 
 [node name="note101" type="Sprite3D" parent="rooms/kp/notes"]
+texture_filter = 0
 transform = Transform3D( -2.44381e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, -2.44381e-07, 16.1975, 4.51536, -2.54877 )
 transparent = false
 shaded = true
@@ -1305,6 +1312,7 @@ double_sided = false
 texture = ExtResource( 66 )
 
 [node name="note102" type="Sprite3D" parent="rooms/kp/notes"]
+texture_filter = 0
 transform = Transform3D( -2.44381e-07, 0, 1.5, 0, 1.5, 0, -1.5, 0, -2.44381e-07, 11.61, 4.51536, 12.7678 )
 transparent = false
 shaded = true
@@ -1312,6 +1320,7 @@ double_sided = false
 texture = ExtResource( 64 )
 
 [node name="note103" type="Sprite3D" parent="rooms/kp/notes"]
+texture_filter = 0
 transform = Transform3D( -2.44381e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, -2.44381e-07, 16.198, 4.515, 12.768 )
 transparent = false
 shaded = true
@@ -1545,6 +1554,7 @@ myKey = "closed"
 [node name="notes" type="Node3D" parent="rooms/kazarma"]
 
 [node name="101" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -18.112 )
 transparent = false
 shaded = true
@@ -1552,6 +1562,7 @@ double_sided = false
 texture = ExtResource( 66 )
 
 [node name="102" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -10.8422 )
 transparent = false
 shaded = true
@@ -1559,6 +1570,7 @@ double_sided = false
 texture = ExtResource( 64 )
 
 [node name="103" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, -2.7723 )
 transparent = false
 shaded = true
@@ -1566,6 +1578,7 @@ double_sided = false
 texture = ExtResource( 63 )
 
 [node name="104" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, 4.88884 )
 transparent = false
 shaded = true
@@ -1573,6 +1586,7 @@ double_sided = false
 texture = ExtResource( 93 )
 
 [node name="105" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5079, 4.27715, 14.0936 )
 transparent = false
 shaded = true
@@ -1580,6 +1594,7 @@ double_sided = false
 texture = ExtResource( 95 )
 
 [node name="106" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.96846, 4.277, 4.889 )
 transparent = false
 shaded = true
@@ -1587,6 +1602,7 @@ double_sided = false
 texture = ExtResource( 96 )
 
 [node name="107" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -2.772 )
 transparent = false
 shaded = true
@@ -1594,6 +1610,7 @@ double_sided = false
 texture = ExtResource( 91 )
 
 [node name="108" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -10.8427 )
 transparent = false
 shaded = true
@@ -1601,6 +1618,7 @@ double_sided = false
 texture = ExtResource( 94 )
 
 [node name="109" type="Sprite3D" parent="rooms/kazarma/notes"]
+texture_filter = 0
 transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.968, 4.277, -18.1115 )
 transparent = false
 shaded = true

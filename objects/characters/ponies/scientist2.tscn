@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/scripts/characters/NPC/Components/NpcFace.cs" type="Script" id=9]
 
 [sub_resource type="StandardMaterial3D" id=24]
+texture_filter = 0
 resource_name = "bodyArmor"
 params_cull_mode = 2
 albedo_texture = ExtResource( 2 )
@@ -59,6 +60,7 @@ image = SubResource( 25 )
 size = Vector2( 256, 256 )
 
 [sub_resource type="StandardMaterial3D" id=4]
+texture_filter = 0
 resource_name = "body"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
@@ -80,6 +82,7 @@ image = SubResource( 26 )
 size = Vector2( 128, 128 )
 
 [sub_resource type="StandardMaterial3D" id=7]
+texture_filter = 0
 resource_name = "eyes"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
@@ -101,6 +104,7 @@ image = SubResource( 27 )
 size = Vector2( 128, 128 )
 
 [sub_resource type="StandardMaterial3D" id=10]
+texture_filter = 0
 resource_name = "mouth.001"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
@@ -219,6 +223,7 @@ bind/22/bone = -1
 bind/22/pose = Transform3D( -0.41242, -1.19649, 0.0612076, -1.16058, 0.415061, 0.293628, -0.297326, 0.0395104, -1.23104, 2.51849, -1.84893, -1.26585 )
 
 [sub_resource type="StandardMaterial3D" id=13]
+texture_filter = 0
 resource_name = "hair.001"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2

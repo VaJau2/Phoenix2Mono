@@ -39,6 +39,7 @@ process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
 
 [node name="hole" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 modulate = Color( 0.14902, 0.14902, 0.14902, 1 )
 texture = ExtResource( 2 )

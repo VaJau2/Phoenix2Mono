@@ -14,6 +14,7 @@ script = ExtResource( 3 )
 textKey = 9
 
 [node name="Icon" type="TextureRect" parent="."]
+texture_filter = 2
 offset_right = 48.0
 offset_bottom = 32.0
 scale = Vector2( 0.6, 0.6 )

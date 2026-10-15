@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/materials/weapon/02 - Default_2.png" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "02 - Default"
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )

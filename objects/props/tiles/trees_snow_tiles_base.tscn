@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree05-snow.png" type="Texture2D" id=5]
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 resource_name = "tree01"
 flags_transparent = true
 transparency = 4
@@ -34,6 +35,7 @@ surfaces/0 = {
 extents = Vector3( 0.266074, 4.49729, 0.237883 )
 
 [sub_resource type="StandardMaterial3D" id=4]
+texture_filter = 0
 resource_name = "tree04"
 flags_transparent = true
 transparency = 4
@@ -61,6 +63,7 @@ surfaces/0 = {
 extents = Vector3( 0.267323, 4.49729, 0.296129 )
 
 [sub_resource type="StandardMaterial3D" id=7]
+texture_filter = 0
 resource_name = "tree05"
 flags_transparent = true
 transparency = 4
@@ -88,6 +91,7 @@ surfaces/0 = {
 extents = Vector3( 0.490107, 4.49729, 0.548255 )
 
 [sub_resource type="StandardMaterial3D" id=10]
+texture_filter = 0
 resource_name = "tree12"
 flags_transparent = true
 transparency = 4

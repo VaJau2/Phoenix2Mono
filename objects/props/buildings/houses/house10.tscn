@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/buildings/street-houses/hs10/House_1_UVChannel_1_color.tga" type="Texture2D" id=2]
 
 [sub_resource type="StandardMaterial3D" id=1]
+texture_filter = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 2 )
 

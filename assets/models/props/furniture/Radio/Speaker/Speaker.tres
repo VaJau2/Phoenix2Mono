@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/models/props/furniture/Radio/Speaker/Speaker_3.png" type="Texture2D" id=3]
 
 [resource]
+texture_filter = 0
 resource_name = "Speaker"
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 1 )

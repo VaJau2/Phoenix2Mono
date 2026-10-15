@@ -74,6 +74,7 @@ mesh = ExtResource( 2 )
 surface_material_override/0 = ExtResource( 3 )
 
 [node name="sprite" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 4.94923, -0.924958, -4.86308, 0, 6.87672, -1.30795, 4.95026, 0.924765, 4.86207, 0.0025053, 1.33985, -0.0143251 )
 cast_shadow = 0
 billboard = 2
@@ -81,6 +82,7 @@ texture = ExtResource( 1 )
 hframes = 7
 
 [node name="sprite2" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( -5.585, -0.788491, -4.1456, 0, 6.87672, -1.30795, 4.21992, -1.04356, -5.48664, -0.00173895, 1.33985, -0.0104197 )
 cast_shadow = 0
 texture = ExtResource( 1 )
@@ -88,6 +90,7 @@ hframes = 7
 frame = 1
 
 [node name="sprite3" type="Sprite3D" parent="."]
+texture_filter = 0
 transform = Transform3D( 2.37686, 1.12796, 6.48678, 0.484299, 6.84788, -1.3682, -6.56628, 0.913367, 2.24717, -0.0108683, 1.34021, -0.00621729 )
 cast_shadow = 0
 texture = ExtResource( 1 )

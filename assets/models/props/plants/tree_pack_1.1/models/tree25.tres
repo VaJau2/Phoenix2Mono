@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree25.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 resource_name = "tree25"
 flags_transparent = true
 transparency = 4

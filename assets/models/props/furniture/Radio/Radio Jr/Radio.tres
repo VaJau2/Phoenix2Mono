@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/models/props/furniture/Radio/Radio Jr/Metallic.png" type="Texture2D" id=4]
 
 [resource]
+texture_filter = 0
 resource_name = "Radio"
 albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 3 )

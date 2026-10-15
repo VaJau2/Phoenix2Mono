@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/materials/player/cloth/antiradio/player_body_antiradio.png" type="Texture2D" id=3]
 
 [resource]
+texture_filter = 0
 resource_name = "player_body_antiradio"
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource( 3 )

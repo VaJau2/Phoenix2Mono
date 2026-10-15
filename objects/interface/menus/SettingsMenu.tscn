@@ -883,6 +883,7 @@ __meta__ = {
 }
 
 [node name="keyForwardIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -909,6 +910,7 @@ theme = ExtResource( 2 )
 text = "Назад:"
 
 [node name="keyBackIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -935,6 +937,7 @@ theme = ExtResource( 2 )
 text = "Налево:"
 
 [node name="keyLeftIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -964,6 +967,7 @@ __meta__ = {
 }
 
 [node name="keyRightIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -990,6 +994,7 @@ theme = ExtResource( 2 )
 text = "Прыжок/Полет:"
 
 [node name="keyJumpIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1016,6 +1021,7 @@ theme = ExtResource( 2 )
 text = "Бег/Щит/Снижение:"
 
 [node name="keyRunIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1045,6 +1051,7 @@ __meta__ = {
 }
 
 [node name="keyUseIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1074,6 +1081,7 @@ __meta__ = {
 }
 
 [node name="keyCrouchIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1100,6 +1108,7 @@ theme = ExtResource( 2 )
 text = "Подкат/Телепорт: "
 
 [node name="keyDashIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1126,6 +1135,7 @@ theme = ExtResource( 2 )
 text = "Ближний удар:"
 
 [node name="keyLegsIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1152,6 +1162,7 @@ theme = ExtResource( 2 )
 text = "Сменить камеру: "
 
 [node name="keyCameraIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1178,6 +1189,7 @@ theme = ExtResource( 2 )
 text = "Просмотреть задачи:"
 
 [node name="keyTaskIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1207,6 +1219,7 @@ __meta__ = {
 }
 
 [node name="keyInventoryIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1233,6 +1246,7 @@ theme = ExtResource( 2 )
 text = "Автохил:"
 
 [node name="keyAutohealIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1259,6 +1273,7 @@ theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
 
 [node name="keyQuicksaveIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1285,6 +1300,7 @@ theme = ExtResource( 2 )
 text = "Быстрое сохранение:"
 
 [node name="keyQuickloadIcon" type="TextureRect" parent="Controls"]
+texture_filter = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

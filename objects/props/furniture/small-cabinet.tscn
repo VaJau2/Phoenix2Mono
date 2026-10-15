@@ -38,6 +38,7 @@ image = SubResource( 9 )
 size = Vector2( 90, 90 )
 
 [sub_resource type="StandardMaterial3D" id=5]
+texture_filter = 0
 resource_name = "small-cabinet"
 params_cull_mode = 2
 albedo_texture = SubResource( 4 )

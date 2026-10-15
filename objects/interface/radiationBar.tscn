@@ -15,6 +15,7 @@ offset_bottom = -81.952
 clip_contents = true
 
 [node name="bar" type="TextureRect" parent="." groups=["ignore_color"]]
+texture_filter = 2
 self_modulate = Color( 1, 0, 0, 1 )
 show_behind_parent = true
 offset_left = -25.0

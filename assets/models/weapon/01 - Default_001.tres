@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/weapon/01 - Default.001_2.png" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "01 - Default.001"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2

@@ -3,4 +3,5 @@
 [ext_resource path="res://assets/textures/enemies/slave_traders/slave_trader2/body-1-closer_eyes.png" type="Texture2D" id=1]
 
 [resource]
+texture_filter = 0
 albedo_texture = ExtResource( 1 )

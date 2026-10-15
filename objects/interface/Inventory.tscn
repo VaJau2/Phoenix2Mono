@@ -565,6 +565,7 @@ text = " Взять все"
 expand_icon = true
 
 [node name="icon" type="TextureRect" parent="helper/back/chestBack/takeAll"]
+texture_filter = 2
 offset_left = 8.0
 offset_top = 2.0
 offset_right = 56.0
@@ -1067,6 +1068,7 @@ disabled = true
 text = "Да"
 
 [node name="icon" type="TextureRect" parent="modalAsk/yes"]
+texture_filter = 2
 offset_left = 7.0
 offset_top = 2.0
 offset_right = 55.0
@@ -1092,6 +1094,7 @@ __meta__ = {
 }
 
 [node name="icon" type="TextureRect" parent="modalAsk/no"]
+texture_filter = 2
 offset_left = 7.0
 offset_top = 2.0
 offset_right = 55.0
@@ -1207,6 +1210,7 @@ theme = ExtResource( 3 )
 text = "Закрыть"
 
 [node name="Escape" type="TextureRect" parent="modalRead/closeHint"]
+texture_filter = 2
 offset_left = -45.0
 offset_top = -7.0
 offset_right = 3.0

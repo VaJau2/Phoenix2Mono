@@ -19,6 +19,7 @@ image = SubResource( 3 )
 size = Vector2( 256, 256 )
 
 [resource]
+texture_filter = 0
 resource_name = "body"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2

@@ -33,6 +33,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=3]
+texture_filter = 0
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
 

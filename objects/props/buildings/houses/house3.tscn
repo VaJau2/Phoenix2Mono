@@ -19,6 +19,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=2]
+texture_filter = 0
 albedo_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = 1.0

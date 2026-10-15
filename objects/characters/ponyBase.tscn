@@ -75,6 +75,7 @@ image = SubResource( 79 )
 size = Vector2( 256, 256 )
 
 [sub_resource type="StandardMaterial3D" id=3]
+texture_filter = 0
 params_cull_mode = 2
 albedo_texture = SubResource( 2 )
 roughness = 0.5

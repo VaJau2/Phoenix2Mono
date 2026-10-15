@@ -94,6 +94,7 @@ bind/18/bone = -1
 bind/18/pose = Transform3D( 1.26706, -4.78518e-08, 2.98276e-07, 2.57638e-12, -1.25107, -0.200702, 3.02089e-07, 0.200705, -1.25106, 0.00774003, 2.39394, 1.68216 )
 
 [sub_resource type="StandardMaterial3D" id=7]
+texture_filter = 0
 resource_name = "hair"
 flags_transparent = true
 params_cull_mode = 2
@@ -105,6 +106,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="StandardMaterial3D" id=8]
+texture_filter = 0
 resource_name = "tie"
 flags_transparent = true
 params_cull_mode = 2
@@ -126,6 +128,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="StandardMaterial3D" id=9]
+texture_filter = 0
 resource_name = "body"
 flags_transparent = true
 params_cull_mode = 2
@@ -138,6 +141,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="StandardMaterial3D" id=10]
+texture_filter = 0
 resource_name = "mouth"
 flags_transparent = true
 params_cull_mode = 2

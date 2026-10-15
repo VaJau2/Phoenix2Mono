@@ -693,6 +693,7 @@ extents = Vector3( 7.08067, 6.77558, 6.62497 )
 [sub_resource type="BoxMesh" id=65]
 
 [sub_resource type="StandardMaterial3D" id=66]
+texture_filter = 0
 albedo_color = Color( 0.643137, 0.137255, 0.137255, 1 )
 
 [sub_resource type="BoxMesh" id=67]
@@ -2853,6 +2854,7 @@ max_distance = 500.0
 bus = "Sound"
 
 [node name="plakat" type="Sprite3D" parent="rooms/2floor/props/kpp"]
+texture_filter = 0
 transform = Transform3D( -2.28812, 0, -2.00034e-07, 0, 2.28812, 0, 2.00034e-07, 0, -2.28812, 6.52161, 1.05179, 19.8914 )
 cast_shadow = 0
 transparent = false
@@ -2861,6 +2863,7 @@ double_sided = false
 texture = ExtResource( 101 )
 
 [node name="plakat2" type="Sprite3D" parent="rooms/2floor/props/kpp"]
+texture_filter = 0
 transform = Transform3D( -2.28812, 0, -2.00034e-07, 0, 2.28812, 0, 2.00034e-07, 0, -2.28812, 29.9811, 1.05179, 19.8914 )
 cast_shadow = 0
 transparent = false
@@ -2869,6 +2872,7 @@ double_sided = false
 texture = ExtResource( 103 )
 
 [node name="plakat3" type="Sprite3D" parent="rooms/2floor/props/kpp"]
+texture_filter = 0
 transform = Transform3D( 4.27528, 0, 0, 0, 4.27528, 0, 0, 0, 4.27528, -18.4555, 2.3539, -31.5709 )
 cast_shadow = 0
 transparent = false
@@ -2877,6 +2881,7 @@ double_sided = false
 texture = ExtResource( 102 )
 
 [node name="plakat4" type="Sprite3D" parent="rooms/2floor/props/kpp"]
+texture_filter = 0
 transform = Transform3D( -1.86879e-07, 0, 4.27528, 0, 4.27528, 0, -4.27528, 0, -1.86879e-07, -35.2492, 0.274246, 6.96021 )
 cast_shadow = 0
 transparent = false
@@ -3140,6 +3145,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.123, 6.8, 22.123 )
 receiverPath = NodePath("../../kpp/Radio KPP")
 
 [node name="plakat5" type="Sprite3D" parent="rooms/2floor/props/frame-room"]
+texture_filter = 0
 transform = Transform3D( -1.00017e-07, 0, -2.28812, 0, 2.28812, 0, 2.28812, 0, -1.00017e-07, 23.3781, 0.663925, -20.9438 )
 cast_shadow = 0
 transparent = false
@@ -3148,6 +3154,7 @@ double_sided = false
 texture = ExtResource( 101 )
 
 [node name="plakat6" type="Sprite3D" parent="rooms/2floor/props/frame-room"]
+texture_filter = 0
 transform = Transform3D( -1.96406e-07, 0, 4.49325, 0, 4.49325, 0, -4.49325, 0, -1.96406e-07, -20.756, 1.50311, -20.9438 )
 cast_shadow = 0
 transparent = false
@@ -3500,6 +3507,7 @@ useSound = ExtResource( 147 )
 itemToGet = "sofa"
 
 [node name="plakat5" type="Sprite3D" parent="rooms/2floor/props/cabinets1"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, -4.13205, 0, 4.13205, 0, 4.13205, 0, -1.80618e-07, 21.4737, 1.27588, -6.52435 )
 cast_shadow = 0
 transparent = false
@@ -3508,6 +3516,7 @@ double_sided = false
 texture = ExtResource( 112 )
 
 [node name="plakat6" type="Sprite3D" parent="rooms/2floor/props/cabinets1"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, -4.13205, 0, 4.13205, 0, 4.13205, 0, -1.80618e-07, 21.4737, 1.44408, 9.02604 )
 cast_shadow = 0
 transparent = false
@@ -3516,6 +3525,7 @@ double_sided = false
 texture = ExtResource( 111 )
 
 [node name="plakat7" type="Sprite3D" parent="rooms/2floor/props/cabinets1"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, 4.13205, 0, 4.13205, 0, -4.13205, 0, -1.80618e-07, -27.2928, 1.9649, 15.724 )
 cast_shadow = 0
 transparent = false
@@ -3524,6 +3534,7 @@ double_sided = false
 texture = ExtResource( 113 )
 
 [node name="plakat8" type="Sprite3D" parent="rooms/2floor/props/cabinets1"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, 4.13205, 0, 4.13205, 0, -4.13205, 0, -1.80618e-07, -27.2928, 1.9649, -14.6506 )
 cast_shadow = 0
 transparent = false
@@ -3866,6 +3877,7 @@ transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.3
 receiverPath = NodePath("../../kpp/Radio KPP")
 
 [node name="plakat9" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, 4.13205, 0, 4.13205, 0, -4.13205, 0, -1.80618e-07, -10.9959, 1.56102, -2.6978 )
 cast_shadow = 0
 transparent = false
@@ -3874,6 +3886,7 @@ double_sided = false
 texture = ExtResource( 114 )
 
 [node name="plakat10" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( -1.80618e-07, 0, 4.13205, 0, 4.13205, 0, -4.13205, 0, -1.80618e-07, -32.2581, 1.89702, -12.6339 )
 cast_shadow = 0
 transparent = false
@@ -3882,6 +3895,7 @@ double_sided = false
 texture = ExtResource( 102 )
 
 [node name="plakat11" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( 4.13205, 0, 0, 0, 4.13205, 0, 0, 0, 4.13205, -10.7795, 1.57593, 11.5555 )
 cast_shadow = 0
 transparent = false
@@ -3890,6 +3904,7 @@ double_sided = false
 texture = ExtResource( 102 )
 
 [node name="plakat12" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( 4.13205, 0, 0, 0, 4.13205, 0, 0, 0, 4.13205, 5.12682, 1.57593, 11.5555 )
 cast_shadow = 0
 transparent = false
@@ -3898,6 +3913,7 @@ double_sided = false
 texture = ExtResource( 102 )
 
 [node name="plakat13" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( 4.13205, 0, 0, 0, 4.13205, 0, 0, 0, 4.13205, 16.6047, 1.57593, -18.2792 )
 cast_shadow = 0
 transparent = false
@@ -3906,6 +3922,7 @@ double_sided = false
 texture = ExtResource( 101 )
 
 [node name="plakat14" type="Sprite3D" parent="rooms/2floor/props/cabinets2"]
+texture_filter = 0
 transform = Transform3D( -4.13205, 0, -3.61236e-07, 0, 4.13205, 0, 3.61236e-07, 0, -4.13205, -0.6138, 0.590775, -19.4758 )
 cast_shadow = 0
 transparent = false
@@ -4113,6 +4130,7 @@ transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.753, 6.8, 1.47 )
 receiverPath = NodePath("../../kpp/Radio KPP")
 
 [node name="plakat15" type="Sprite3D" parent="rooms/2floor/props/main-cabinet"]
+texture_filter = 0
 transform = Transform3D( -6.42774, 0, -5.61931e-07, 0, 6.42774, 0, 5.61931e-07, 0, -6.42774, 35.6411, 2.33681, 2.08499 )
 cast_shadow = 0
 transparent = false
@@ -4121,6 +4139,7 @@ double_sided = false
 texture = ExtResource( 107 )
 
 [node name="plakat16" type="Sprite3D" parent="rooms/2floor/props/main-cabinet"]
+texture_filter = 0
 transform = Transform3D( -1.9027e-07, 0, -4.35286, 0, 4.35286, 0, 4.35286, 0, -1.9027e-07, 11.8758, 2.33681, 1.74161 )
 cast_shadow = 0
 transparent = false
@@ -4129,6 +4148,7 @@ double_sided = false
 texture = ExtResource( 104 )
 
 [node name="plakat17" type="Sprite3D" parent="rooms/2floor/props/main-cabinet"]
+texture_filter = 0
 transform = Transform3D( -1.9027e-07, 0, 4.35286, 0, 4.35286, 0, -4.35286, 0, -1.9027e-07, -32.3843, 1.39476, -5.90092 )
 cast_shadow = 0
 transparent = false
@@ -4137,6 +4157,7 @@ double_sided = false
 texture = ExtResource( 114 )
 
 [node name="plakat18" type="Sprite3D" parent="rooms/2floor/props/main-cabinet"]
+texture_filter = 0
 transform = Transform3D( -1.34718e-07, 0, 3.08199, 0, 3.08199, 0, -3.08199, 0, -1.34718e-07, 93.0785, 5.75766, -12.3471 )
 cast_shadow = 0
 transparent = false

@@ -50,6 +50,7 @@ scale_max = 2
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=5]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1
@@ -66,6 +67,7 @@ emission_on_uv2 = false
 material = SubResource( 5 )
 
 [sub_resource type="StandardMaterial3D" id=7]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1
@@ -92,6 +94,7 @@ initial_velocity_max = 10
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=10]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1
@@ -117,6 +120,7 @@ scale_max = 3
 scale_curve = SubResource( 3 )
 
 [sub_resource type="StandardMaterial3D" id=13]
+texture_filter = 0
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1

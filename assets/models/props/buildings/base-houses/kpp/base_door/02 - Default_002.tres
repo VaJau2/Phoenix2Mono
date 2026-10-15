@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/models/props/buildings/base-houses/kpp/base_door/base_door__color.tga" type="Texture2D" id=2]
 
 [resource]
+texture_filter = 0
 resource_name = "02 - Default.002"
 albedo_texture = ExtResource( 2 )
 metallic = 1.0
