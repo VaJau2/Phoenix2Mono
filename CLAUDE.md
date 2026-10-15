@@ -1,29 +1,35 @@
 # Phoenix 2 Mono
 
-3D-игра (пони, постапокалипсис) на **Godot 3.6 Mono, C#**. Идёт подготовка к миграции на Godot 4.x.
+3D-игра (пони, постапокалипсис) на C#. Основная ветка — **Godot 3.6 Mono**; в ветке `phnx-godot-4-update-2` идёт миграция на **Godot 4.7.2 .NET** (этапы 0–3 выполнены, дальше — тестирование и баги, этап 4).
 
 ## Документация
 
-- [docs/architecture.md](docs/architecture.md) — архитектура: жизненный цикл, подсистемы, сохранения, ассеты, соглашения.
-- [docs/migration/plan.md](docs/migration/plan.md) — план миграции на Godot 4.7.2 по этапам, принятые решения, чек-лист тестирования.
-- [docs/migration/inventory.md](docs/migration/inventory.md) — что затронет переход на Godot 4, с оценкой риска.
-- `bash docs/migration/inventory.sh` — пересчитать места в C# коде, использующие API Godot 3.
+- [docs/migration/plan.md](docs/migration/plan.md) — план миграции по этапам, **итоги каждого этапа**, что проверить в игре, чек-лист тестирования. Читать первым при работе над миграцией.
+- [docs/migration/bugs.md](docs/migration/bugs.md) — баги, найденные при тестировании на Godot 4 (если файл есть).
+- [docs/architecture.md](docs/architecture.md) — архитектура: жизненный цикл, подсистемы, сохранения, ассеты, соглашения (описана версия на Godot 3, структура та же).
+- [docs/migration/inventory.md](docs/migration/inventory.md) — исходная инвентаризация затронутого API.
+- `docs/migration/tools/` — инструменты миграции (описание в шапке каждого файла).
 
 Читай `architecture.md` перед изменениями в незнакомой подсистеме.
 
-## Сборка и запуск
+## Сборка и запуск (Godot 4)
 
-- Сборка C# без редактора: `dotnet build "Phoenix 2 Mono.csproj"` (сейчас: 0 ошибок, ~200 предупреждений — это норма).
-- Редактор Godot 3: `D:\Godot\Godot_v3.6.3-stable_mono_win64\Godot_v3.6.3-stable_mono_win64.exe` (вывод в консоль не идёт — перенаправлять в файл).
-- Godot 3 без окна для скриптов: `... .exe --no-window --path . -s <script.gd>` (скрипт `extends SceneTree`).
-- Целевой Godot 4: `D:\Godot\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe` (`--headless`).
-- Главная сцена `scenes/Main.tscn`; уровни — `scenes/levels.json`; тестовые сцены `scenes/test/` можно запускать напрямую.
+- Сборка C#: `dotnet build "Phoenix 2 Mono.csproj"` (0 ошибок).
+- Godot 4: `D:\Godot\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe --headless --path . ...`
+- Скрипт без редактора: `... --headless --path . -s <абсолютный путь к .gd> -- <аргументы>` (скрипт `extends SceneTree`, аргументы — `OS.get_cmdline_user_args()`).
+- Проверка загрузки всех сцен: `docs/migration/tools/load_all_4.gd`; поиск молча потерянных свойств: `docs/migration/tools/check_props.gd`.
+- Godot 3 (для сравнения): `D:\Godot\Godot_v3.6.3-stable_mono_win64\Godot_v3.6.3-stable_mono_win64.exe --no-window --path . -s <script.gd>`; вывод в консоль не идёт — перенаправлять в файл.
+- Главная сцена `scenes/Main.tscn`; уровни — `scenes/levels.json`; тестовые сцены `scenes/test/`.
 - Отладка в игре: F1 — лечение, F2 — убить врагов, F3 — убить игрока (`objects/testing/Testing.tscn`).
+- Перед запуском инструментов, которые пишут файлы, Godot и Rider должны быть закрыты (Rider блокирует файлы при индексации).
 
 ## Важное
 
 - Окончания строк — LF (`.gitattributes`), Godot сам пишет LF.
 - Комментарии в коде — на русском, как в остальном проекте.
 - Сцены подключают сигналы к методам `_on_<node>_<signal>` по имени — переименование таких методов ломает сцены без ошибки компиляции.
-- Всё, что должно сохраняться, реализует `ISavable` и состоит в группе `savable`; объекты, созданные в рантайме, называются `Created_*`.
+- Всё, что должно сохраняться, реализует `ISavable` и состоит в группе `savable`; объекты, созданные в рантайме, называются `Created_*`. Старые сохранения (Godot 3) должны загружаться — не переименовывать узлы уровней и не менять формат сохранения.
+- **Godot 4 молча игнорирует неизвестные свойства в сценах** — при странном поведении узла сначала проверить `check_props.gd`.
+- **`Variant` не `IConvertible`**: не использовать `Convert.ToInt32(dict["x"])`, только `.AsInt32()`/`.AsBool()` и т. п. Для проверок `is/as` — `utils/VariantExtensions.cs`. Подключения сигналов с аргументами — `utils/BoundCall.cs` (в C# нет `Callable.Bind`).
+- Физика — Jolt (на GodotPhysics рэгдоллы взрываются). Текстуры в 3D — `texture_filter = Nearest` в материалах (пиксельный стиль), импорт без VRAM-сжатия (`detect_3d/compress_to=0`).
 - Ветка `origin/PHNX-154-godot-4-update` — старая попытка миграции на Godot 4.2. Не мержить, использовать как справочник (`git show origin/PHNX-154-godot-4-update:<путь>`).
