@@ -219,7 +219,7 @@ public class Global
         var actions = InputMap.ActionGetEvents(actionName);
         if (actions.Count == 0) return null;
         if (!(actions[0] is InputEventKey action)) return null;
-        return OS.GetKeycodeString(action.Keycode);
+        return KeyNames.GetName(action.Keycode);
     }
 
     public static float ParseFloat(string value) => float.Parse(value, CultureInfo.InvariantCulture);

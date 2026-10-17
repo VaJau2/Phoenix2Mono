@@ -99,7 +99,7 @@ public class Settings
         foreach(string action in controlActions) {
             var actions = InputMap.ActionGetEvents(action);
             var keyAction = actions[0] as InputEventKey;
-            var key = OS.GetKeycodeString(keyAction.Keycode);
+            var key = KeyNames.GetName(keyAction.Keycode);
             config.SetValue("controls", action, key);
         }
         config.SetValue("screen", "distance", distance);
@@ -134,7 +134,9 @@ public class Settings
             mouseSensivity = (float)config.GetValue("controls", "mouse_sensivity");
             foreach(string action in controlActions) {
                 string key = config.GetValue("controls", action).ToString();
-                var keyCode = OS.FindKeycodeFromString(key);
+                var keyCode = KeyNames.FromName(key);
+                //нераспознанная клавиша (пустая или неизвестное название) — остаётся клавиша по умолчанию из проекта
+                if (keyCode == Key.None) continue;
                 var newEvent = new InputEventKey();
                 newEvent.Keycode = keyCode;
 

@@ -135,7 +135,7 @@ public partial class ControlsSubmenu : SubmenuBase
         foreach(var action in global.Settings.controlActions) {
             var actions = InputMap.ActionGetEvents(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
-            var key = OS.GetKeycodeString(eventKey.Keycode);
+            var key = KeyNames.GetName(eventKey.Keycode);
             var icon = GetIcon(action);
             WriteKeyToEdit(key, icon);
         }
@@ -159,7 +159,7 @@ public partial class ControlsSubmenu : SubmenuBase
         {
             var actions = InputMap.ActionGetEvents(action);
             if (!(actions[0] is InputEventKey eventKey)) continue;
-            var key = OS.GetKeycodeString(eventKey.Keycode);
+            var key = KeyNames.GetName(eventKey.Keycode);
             var icon = GetIcon(action);
             WriteKeyToEdit(key, icon);
         }
@@ -214,7 +214,7 @@ public partial class ControlsSubmenu : SubmenuBase
         {
             InputMap.ActionEraseEvents(tempAction);
             InputMap.ActionAddEvent(tempAction, eventKey);
-            var key = OS.GetKeycodeString(eventKey.Keycode);
+            var key = KeyNames.GetName(eventKey.Keycode);
             WriteKeyToEdit(key, changeIcon);
         }
 
