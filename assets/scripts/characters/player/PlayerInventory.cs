@@ -332,7 +332,8 @@ public class PlayerInventory
 
     public void LoadMoney(string loadedMoney)
     {
-        money = Convert.ToInt32(loadedMoney);
+        //в Godot 4 числа из сохранения приходят как float и превращаются в строку "120.0"
+        money = (int)Global.ParseFloat(loadedMoney);
     }
     
     public void LoadData(Dictionary data)

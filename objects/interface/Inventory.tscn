@@ -1,306 +1,256 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene format=3 uid="uid://cb7cesakyugaw"]
 
-[ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
-[ext_resource path="res://objects/interface/itemIcon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/scripts/interface/inventory/InventoryMenu.cs" type="Script" id=4]
-[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
-[ext_resource path="res://objects/interface/UseItemLoadingIcon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/interface/controlHints/buy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Tab.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" type="Script" id=9]
-[ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=10]
-[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="FontFile" id=11]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Enter.png" type="Texture2D" id=13]
-[ext_resource path="res://assets/scripts/interface/InteractiveButtonIcon.cs" type="Script" id=14]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Shift.png" type="Texture2D" id=17]
+[ext_resource type="Theme" uid="uid://bcd4ups7bv135" path="res://assets/materials/fonts/big_text_theme.tres" id="1"]
+[ext_resource type="PackedScene" path="res://objects/interface/itemIcon.tscn" id="2"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="3"]
+[ext_resource type="Script" uid="uid://dwl46vmvxax16" path="res://assets/scripts/interface/inventory/InventoryMenu.cs" id="4"]
+[ext_resource type="Theme" uid="uid://hu07d4u3auvy" path="res://assets/materials/fonts/terminal_theme.tres" id="5"]
+[ext_resource type="PackedScene" path="res://objects/interface/UseItemLoadingIcon.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://objects/interface/controlHints/buy.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://oknjtntn4id7" path="res://assets/textures/interface/icons/buttons/Tab.png" id="8"]
+[ext_resource type="Script" uid="uid://crpumryr0he78" path="res://assets/scripts/interface/inventory/ControlHintsManager.cs" id="9"]
+[ext_resource type="Script" uid="uid://elfmg3cv6d3d" path="res://assets/scripts/interface/IconWithShadow.cs" id="10"]
+[ext_resource type="FontFile" uid="uid://dishf8dwdlexh" path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" id="11"]
+[ext_resource type="Texture2D" uid="uid://dl2idxkte1laq" path="res://assets/textures/interface/icons/buttons/Enter.png" id="13"]
+[ext_resource type="Script" uid="uid://dpdbvbxfyeap" path="res://assets/scripts/interface/InteractiveButtonIcon.cs" id="14"]
+[ext_resource type="Texture2D" uid="uid://b13vxurlbn5tw" path="res://assets/textures/interface/icons/buttons/Shift.png" id="17"]
 
-[sub_resource type="FontVariation" id=4]
-base_font = ExtResource( 11 )
+[sub_resource type="FontVariation" id="4"]
+base_font = ExtResource("11")
 
+[sub_resource type="FontVariation" id="5"]
+base_font = ExtResource("11")
 
-[sub_resource type="FontVariation" id=5]
-base_font = ExtResource( 11 )
+[sub_resource type="FontVariation" id="6"]
+base_font = ExtResource("11")
 
-
-[sub_resource type="FontVariation" id=6]
-base_font = ExtResource( 11 )
-
-
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "Close"
 length = 0.2
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( -272, 0 ), Vector2( 0, 0 ) ]
+"values": [Vector2(-272, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Open"
 length = 0.2
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -272, 0 ) ]
+"values": [Vector2(0, 0), Vector2(-272, 0)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("helper/back:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[node name="inventory" type="Control" groups=["ignore_color"]]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpghy"]
+_data = {
+&"Close": SubResource("1"),
+&"Open": SubResource("2"),
+&"RESET": SubResource("3")
+}
+
+[node name="inventory" type="Control" unique_id=2029469521 groups=["ignore_color"]]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="helper" type="Control" parent="." groups=["ignore_color"]]
+[node name="helper" type="Control" parent="." unique_id=257174412 groups=["ignore_color"]]
+anchors_preset = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="back" type="ColorRect" parent="helper" groups=["ignore_color"]]
+[node name="back" type="ColorRect" parent="helper" unique_id=1880783430 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 272.0
 mouse_filter = 1
-color = Color( 0, 0, 0, 0.784314 )
+color = Color(0, 0, 0, 0.784314)
 
-[node name="items" type="GridContainer" parent="helper/back" groups=["ignore_color"]]
+[node name="items" type="GridContainer" parent="helper/back" unique_id=1232907251 groups=["ignore_color"]]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_top = 47.0
 offset_right = -14.0
 offset_bottom = -311.0
-theme_override_constants/v_separation = 8
 theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 columns = 5
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="itemIcon" parent="helper/back/items" instance=ExtResource( 2 )]
+[node name="itemIcon" parent="helper/back/items" unique_id=1135084931 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon2" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_right = 92.0
+[node name="itemIcon2" parent="helper/back/items" unique_id=1466064649 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon3" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_right = 142.0
+[node name="itemIcon3" parent="helper/back/items" unique_id=1284713491 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon4" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_right = 192.0
+[node name="itemIcon4" parent="helper/back/items" unique_id=458817942 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon5" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_right = 242.0
+[node name="itemIcon5" parent="helper/back/items" unique_id=1960750036 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon6" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_top = 50.0
-offset_bottom = 92.0
+[node name="itemIcon6" parent="helper/back/items" unique_id=959317261 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon7" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 92.0
-offset_bottom = 92.0
+[node name="itemIcon7" parent="helper/back/items" unique_id=1585612020 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon8" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 142.0
-offset_bottom = 92.0
+[node name="itemIcon8" parent="helper/back/items" unique_id=1648198397 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon9" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 50.0
-offset_right = 192.0
-offset_bottom = 92.0
+[node name="itemIcon9" parent="helper/back/items" unique_id=2067600734 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon10" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 242.0
-offset_bottom = 92.0
+[node name="itemIcon10" parent="helper/back/items" unique_id=951233954 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon11" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_top = 100.0
-offset_bottom = 142.0
+[node name="itemIcon11" parent="helper/back/items" unique_id=1001083157 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon12" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 92.0
-offset_bottom = 142.0
+[node name="itemIcon12" parent="helper/back/items" unique_id=73569739 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon13" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 142.0
-offset_bottom = 142.0
+[node name="itemIcon13" parent="helper/back/items" unique_id=1742646494 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon14" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 192.0
-offset_bottom = 142.0
+[node name="itemIcon14" parent="helper/back/items" unique_id=1567693091 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon15" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 100.0
-offset_right = 242.0
-offset_bottom = 142.0
+[node name="itemIcon15" parent="helper/back/items" unique_id=629717642 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon16" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_top = 150.0
-offset_bottom = 192.0
+[node name="itemIcon16" parent="helper/back/items" unique_id=894113710 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon17" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 150.0
-offset_right = 92.0
-offset_bottom = 192.0
+[node name="itemIcon17" parent="helper/back/items" unique_id=1341489729 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon18" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 150.0
-offset_right = 142.0
-offset_bottom = 192.0
+[node name="itemIcon18" parent="helper/back/items" unique_id=378104490 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon19" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 150.0
-offset_right = 192.0
-offset_bottom = 192.0
+[node name="itemIcon19" parent="helper/back/items" unique_id=226250588 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon20" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 150.0
-offset_right = 242.0
-offset_bottom = 192.0
+[node name="itemIcon20" parent="helper/back/items" unique_id=343221157 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon21" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_top = 200.0
-offset_bottom = 242.0
+[node name="itemIcon21" parent="helper/back/items" unique_id=735064978 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon22" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 200.0
-offset_right = 92.0
-offset_bottom = 242.0
+[node name="itemIcon22" parent="helper/back/items" unique_id=2112518124 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon23" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 200.0
-offset_right = 142.0
-offset_bottom = 242.0
+[node name="itemIcon23" parent="helper/back/items" unique_id=2091313173 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon24" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 200.0
-offset_right = 192.0
-offset_bottom = 242.0
+[node name="itemIcon24" parent="helper/back/items" unique_id=919486746 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="itemIcon25" parent="helper/back/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 200.0
-offset_right = 242.0
-offset_bottom = 242.0
+[node name="itemIcon25" parent="helper/back/items" unique_id=2046664832 instance=ExtResource("2")]
+layout_mode = 2
 isInventoryIcon = true
 
-[node name="moneyLabel" type="Label" parent="helper/back"]
+[node name="moneyLabel" type="Label" parent="helper/back" unique_id=271959671]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -96.0
 offset_top = 15.0
 offset_right = 37.0
 offset_bottom = 32.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Количество денег:"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="moneyCount" type="Label" parent="helper/back"]
+[node name="moneyCount" type="Label" parent="helper/back" unique_id=982786555]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 56.0
 offset_top = 15.0
 offset_right = 120.0
 offset_bottom = 32.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border" type="ColorRect" parent="helper/back"]
+[node name="border" type="ColorRect" parent="helper/back" unique_id=636853399]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 
-[node name="itemInfo" type="Control" parent="helper/back" groups=["ignore_color"]]
+[node name="itemInfo" type="Control" parent="helper/back" unique_id=62915962 groups=["ignore_color"]]
 visible = false
+anchors_preset = 0
 anchor_bottom = 1.0
 offset_top = 303.0
 offset_right = 272.0
 offset_bottom = -49.0
 
-[node name="name" type="Label" parent="helper/back/itemInfo"]
+[node name="name" type="Label" parent="helper/back/itemInfo" unique_id=1770214511]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -309,11 +259,12 @@ offset_left = -128.0
 offset_top = -248.0
 offset_right = 128.0
 offset_bottom = -233.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Название предмета"
-align = 1
+horizontal_alignment = 1
 
-[node name="description" type="Label" parent="helper/back/itemInfo"]
+[node name="description" type="Label" parent="helper/back/itemInfo" unique_id=1985036759]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -322,14 +273,15 @@ offset_left = -120.0
 offset_top = -224.0
 offset_right = 120.0
 offset_bottom = -144.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Описание предмета
 2
 3
 4"
 autowrap_mode = 3
 
-[node name="props" type="Label" parent="helper/back/itemInfo"]
+[node name="props" type="Label" parent="helper/back/itemInfo" unique_id=358252552]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -338,14 +290,15 @@ offset_left = -120.0
 offset_top = -136.0
 offset_right = 121.0
 offset_bottom = -46.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Свойства Предмета
 1
 2
 3"
 autowrap_mode = 3
 
-[node name="hints" type="Control" parent="helper/back/itemInfo"]
+[node name="hints" type="Control" parent="helper/back/itemInfo" unique_id=749388941]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -354,77 +307,80 @@ offset_left = -120.0
 offset_top = -54.0
 offset_right = 120.0
 offset_bottom = -22.0
-theme = ExtResource( 3 )
-script = ExtResource( 9 )
+theme = ExtResource("3")
+script = ExtResource("9")
 
-[node name="ControlHint1" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
+[node name="ControlHint1" parent="helper/back/itemInfo/hints" unique_id=65086906 instance=ExtResource("7")]
 visible = false
 offset_right = -240.0
 offset_bottom = -32.0
 
-[node name="ControlHint2" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
+[node name="ControlHint2" parent="helper/back/itemInfo/hints" unique_id=2089334996 instance=ExtResource("7")]
 visible = false
 offset_top = 24.0
 offset_right = -240.0
 offset_bottom = -8.0
 textKey = 1
 
-[node name="ControlHint3" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
+[node name="ControlHint3" parent="helper/back/itemInfo/hints" unique_id=1622491122 instance=ExtResource("7")]
 visible = false
 offset_top = 48.0
 offset_right = -240.0
 offset_bottom = 16.0
 textKey = 2
 
-[node name="ControlHint4" parent="helper/back/itemInfo/hints" instance=ExtResource( 7 )]
+[node name="ControlHint4" parent="helper/back/itemInfo/hints" unique_id=598784685 instance=ExtResource("7")]
 visible = false
 offset_top = 72.0
 offset_right = -240.0
 offset_bottom = 40.0
 textKey = 3
 
-[node name="wearBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
+[node name="wearBack" type="ColorRect" parent="helper/back" unique_id=2142401550 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 0.734
 anchor_right = 0.734
 offset_left = -398.0
 offset_top = 47.0
 offset_right = -199.648
 offset_bottom = 289.0
-color = Color( 0, 0, 0, 0.784314 )
+color = Color(0, 0, 0, 0.784314)
 
-[node name="border-down" type="ColorRect" parent="helper/back/wearBack"]
+[node name="border-down" type="ColorRect" parent="helper/back/wearBack" unique_id=1128587612]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
 
-[node name="border-up" type="ColorRect" parent="helper/back/wearBack"]
+[node name="border-up" type="ColorRect" parent="helper/back/wearBack" unique_id=363735990]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
 
-[node name="border-left" type="ColorRect" parent="helper/back/wearBack"]
+[node name="border-left" type="ColorRect" parent="helper/back/wearBack" unique_id=17182858]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="helper/back/wearBack"]
+[node name="Label" type="Label" parent="helper/back/wearBack" unique_id=2005059144]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -97.176
 offset_top = 18.0
 offset_right = 99.824
 offset_bottom = 44.0
-theme = ExtResource( 1 )
-theme_override_fonts/font = SubResource( 4 )
+theme = ExtResource("1")
+theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 18
 text = "Экипировано"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="weapon" parent="helper/back/wearBack" instance=ExtResource( 2 )]
+[node name="weapon" parent="helper/back/wearBack" unique_id=993422016 instance=ExtResource("2")]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -56.0
@@ -433,21 +389,20 @@ offset_right = -14.0
 offset_bottom = 92.0
 isInventoryIcon = true
 
-[node name="weaponLabel" type="Label" parent="helper/back/wearBack"]
+[node name="weaponLabel" type="Label" parent="helper/back/wearBack" unique_id=1588349789]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -184.0
 offset_top = 66.0
 offset_right = -72.0
 offset_bottom = 83.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Оружие:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="armor" parent="helper/back/wearBack" instance=ExtResource( 2 )]
+[node name="armor" parent="helper/back/wearBack" unique_id=722164034 instance=ExtResource("2")]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -56.0
@@ -456,21 +411,20 @@ offset_right = -14.0
 offset_bottom = 142.0
 isInventoryIcon = true
 
-[node name="armorLabel" type="Label" parent="helper/back/wearBack"]
+[node name="armorLabel" type="Label" parent="helper/back/wearBack" unique_id=361374156]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -184.0
 offset_top = 116.0
 offset_right = -72.0
 offset_bottom = 133.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Броня:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="artifact" parent="helper/back/wearBack" instance=ExtResource( 2 )]
+[node name="artifact" parent="helper/back/wearBack" unique_id=587271809 instance=ExtResource("2")]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -56.0
@@ -479,22 +433,21 @@ offset_right = -14.0
 offset_bottom = 192.0
 isInventoryIcon = true
 
-[node name="artifactLabel" type="Label" parent="helper/back/wearBack"]
+[node name="artifactLabel" type="Label" parent="helper/back/wearBack" unique_id=1681352901]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -184.0
 offset_top = 158.0
 offset_right = -72.0
 offset_bottom = 175.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Артефакт:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="chestBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
+[node name="chestBack" type="ColorRect" parent="helper/back" unique_id=309295254 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -503,56 +456,50 @@ offset_left = -746.0
 offset_top = -156.0
 offset_right = -474.0
 offset_bottom = 148.0
-color = Color( 0, 0, 0, 0.784314 )
+color = Color(0, 0, 0, 0.784314)
 
-[node name="Label" type="Label" parent="helper/back/chestBack"]
+[node name="Label" type="Label" parent="helper/back/chestBack" unique_id=1783495866]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -128.0
 offset_top = 21.0
 offset_right = 128.0
 offset_bottom = 40.0
-theme = ExtResource( 1 )
-theme_override_fonts/font = SubResource( 5 )
+theme = ExtResource("1")
+theme_override_fonts/font = SubResource("5")
 theme_override_font_sizes/font_size = 18
 text = "Сундук"
-align = 1
+horizontal_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-left" type="ColorRect" parent="helper/back/chestBack"]
+[node name="border-left" type="ColorRect" parent="helper/back/chestBack" unique_id=862970495]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 offset_bottom = 3.05176e-05
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-right" type="ColorRect" parent="helper/back/chestBack"]
+[node name="border-right" type="ColorRect" parent="helper/back/chestBack" unique_id=965625357]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-down" type="ColorRect" parent="helper/back/chestBack"]
+[node name="border-down" type="ColorRect" parent="helper/back/chestBack" unique_id=2008560070]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-up" type="ColorRect" parent="helper/back/chestBack"]
+[node name="border-up" type="ColorRect" parent="helper/back/chestBack" unique_id=1105578402]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
 
-[node name="takeAll" type="Button" parent="helper/back/chestBack"]
+[node name="takeAll" type="Button" parent="helper/back/chestBack" unique_id=381196619]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
@@ -560,23 +507,25 @@ offset_top = 65.0
 offset_right = 122.0
 offset_bottom = 89.0
 mouse_filter = 1
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = " Взять все"
 expand_icon = true
 
-[node name="icon" type="TextureRect" parent="helper/back/chestBack/takeAll"]
+[node name="icon" type="TextureRect" parent="helper/back/chestBack/takeAll" unique_id=758844009]
 texture_filter = 2
+layout_mode = 0
 offset_left = 8.0
 offset_top = 2.0
 offset_right = 56.0
 offset_bottom = 34.0
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 17 )
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("17")
 stretch_mode = 3
-script = ExtResource( 14 )
+script = ExtResource("14")
 key = "ui_shift"
 
-[node name="items" type="GridContainer" parent="helper/back/chestBack" groups=["ignore_color"]]
+[node name="items" type="GridContainer" parent="helper/back/chestBack" unique_id=2019611404 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -585,117 +534,73 @@ offset_left = -120.0
 offset_top = -208.0
 offset_right = 122.0
 offset_bottom = -16.0
-theme_override_constants/v_separation = 8
 theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 columns = 5
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="itemIcon" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon" parent="helper/back/chestBack/items" unique_id=1225344097 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon2" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_right = 92.0
+[node name="itemIcon2" parent="helper/back/chestBack/items" unique_id=1843730229 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon3" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_right = 142.0
+[node name="itemIcon3" parent="helper/back/chestBack/items" unique_id=1470710392 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon4" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_right = 192.0
+[node name="itemIcon4" parent="helper/back/chestBack/items" unique_id=1901110112 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon5" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_right = 242.0
+[node name="itemIcon5" parent="helper/back/chestBack/items" unique_id=659600818 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon6" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_top = 50.0
-offset_bottom = 92.0
+[node name="itemIcon6" parent="helper/back/chestBack/items" unique_id=73095868 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon7" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 92.0
-offset_bottom = 92.0
+[node name="itemIcon7" parent="helper/back/chestBack/items" unique_id=392500338 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon8" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 142.0
-offset_bottom = 92.0
+[node name="itemIcon8" parent="helper/back/chestBack/items" unique_id=586538503 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon9" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 50.0
-offset_right = 192.0
-offset_bottom = 92.0
+[node name="itemIcon9" parent="helper/back/chestBack/items" unique_id=1840749620 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon10" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 242.0
-offset_bottom = 92.0
+[node name="itemIcon10" parent="helper/back/chestBack/items" unique_id=693306952 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon11" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_top = 100.0
-offset_bottom = 142.0
+[node name="itemIcon11" parent="helper/back/chestBack/items" unique_id=927506274 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon12" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 92.0
-offset_bottom = 142.0
+[node name="itemIcon12" parent="helper/back/chestBack/items" unique_id=1199213922 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon13" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 142.0
-offset_bottom = 142.0
+[node name="itemIcon13" parent="helper/back/chestBack/items" unique_id=1606085368 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon14" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 192.0
-offset_bottom = 142.0
+[node name="itemIcon14" parent="helper/back/chestBack/items" unique_id=1310694162 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon15" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 100.0
-offset_right = 242.0
-offset_bottom = 142.0
+[node name="itemIcon15" parent="helper/back/chestBack/items" unique_id=2103169235 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon16" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_top = 150.0
-offset_bottom = 192.0
+[node name="itemIcon16" parent="helper/back/chestBack/items" unique_id=1985059828 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon17" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 150.0
-offset_right = 92.0
-offset_bottom = 192.0
+[node name="itemIcon17" parent="helper/back/chestBack/items" unique_id=826037541 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon18" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 150.0
-offset_right = 142.0
-offset_bottom = 192.0
+[node name="itemIcon18" parent="helper/back/chestBack/items" unique_id=1862635878 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon19" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 150.0
-offset_right = 192.0
-offset_bottom = 192.0
+[node name="itemIcon19" parent="helper/back/chestBack/items" unique_id=1029933274 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon20" parent="helper/back/chestBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 150.0
-offset_right = 242.0
-offset_bottom = 192.0
+[node name="itemIcon20" parent="helper/back/chestBack/items" unique_id=1519337385 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="tradeBack" type="ColorRect" parent="helper/back" groups=["ignore_color"]]
+[node name="tradeBack" type="ColorRect" parent="helper/back" unique_id=60065651 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -705,83 +610,73 @@ offset_top = -172.0
 offset_right = -426.0
 offset_bottom = 196.0
 mouse_filter = 1
-color = Color( 0, 0, 0, 0.784314 )
+color = Color(0, 0, 0, 0.784314)
 
-[node name="Label" type="Label" parent="helper/back/tradeBack"]
+[node name="Label" type="Label" parent="helper/back/tradeBack" unique_id=1236548667]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -184.0
 offset_top = 21.0
 offset_right = 184.0
 offset_bottom = 40.0
-theme = ExtResource( 1 )
-theme_override_fonts/font = SubResource( 6 )
+theme = ExtResource("1")
+theme_override_fonts/font = SubResource("6")
 theme_override_font_sizes/font_size = 18
 text = "Торговец"
-align = 1
+horizontal_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="moneyLabel" type="Label" parent="helper/back/tradeBack"]
+[node name="moneyLabel" type="Label" parent="helper/back/tradeBack" unique_id=1023242383]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -176.0
 offset_top = 64.0
 offset_right = 72.0
 offset_bottom = 83.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Количество денег:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="moneyCount" type="Label" parent="helper/back/tradeBack"]
+[node name="moneyCount" type="Label" parent="helper/back/tradeBack" unique_id=753721285]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 96.0
 offset_top = 64.0
 offset_right = 184.0
 offset_bottom = 83.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-left" type="ColorRect" parent="helper/back/tradeBack"]
+[node name="border-left" type="ColorRect" parent="helper/back/tradeBack" unique_id=1496405336]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 offset_bottom = 3.05176e-05
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-right" type="ColorRect" parent="helper/back/tradeBack"]
+[node name="border-right" type="ColorRect" parent="helper/back/tradeBack" unique_id=1422579818]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-down" type="ColorRect" parent="helper/back/tradeBack"]
+[node name="border-down" type="ColorRect" parent="helper/back/tradeBack" unique_id=1144539624]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-up" type="ColorRect" parent="helper/back/tradeBack"]
+[node name="border-up" type="ColorRect" parent="helper/back/tradeBack" unique_id=2000661197]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
 
-[node name="items" type="GridContainer" parent="helper/back/tradeBack" groups=["ignore_color"]]
+[node name="items" type="GridContainer" parent="helper/back/tradeBack" unique_id=1166569987 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -790,232 +685,151 @@ offset_left = -168.0
 offset_top = -272.0
 offset_right = 176.0
 offset_bottom = -24.0
-theme_override_constants/v_separation = 8
 theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 columns = 7
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="itemIcon" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
+[node name="itemIcon" parent="helper/back/tradeBack/items" unique_id=1907572061 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon2" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_right = 92.0
+[node name="itemIcon2" parent="helper/back/tradeBack/items" unique_id=1532297617 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon3" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_right = 142.0
+[node name="itemIcon3" parent="helper/back/tradeBack/items" unique_id=1751103471 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon4" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_right = 192.0
+[node name="itemIcon4" parent="helper/back/tradeBack/items" unique_id=1901340495 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon5" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_right = 242.0
+[node name="itemIcon5" parent="helper/back/tradeBack/items" unique_id=1656582545 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon6" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 250.0
-offset_right = 292.0
+[node name="itemIcon6" parent="helper/back/tradeBack/items" unique_id=522441598 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon7" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 300.0
-offset_right = 342.0
+[node name="itemIcon7" parent="helper/back/tradeBack/items" unique_id=1545988010 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon8" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_top = 50.0
-offset_bottom = 92.0
+[node name="itemIcon8" parent="helper/back/tradeBack/items" unique_id=1964012773 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon9" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 92.0
-offset_bottom = 92.0
+[node name="itemIcon9" parent="helper/back/tradeBack/items" unique_id=1775086766 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon10" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 142.0
-offset_bottom = 92.0
+[node name="itemIcon10" parent="helper/back/tradeBack/items" unique_id=440602748 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon11" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 50.0
-offset_right = 192.0
-offset_bottom = 92.0
+[node name="itemIcon11" parent="helper/back/tradeBack/items" unique_id=1357766177 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon12" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 242.0
-offset_bottom = 92.0
+[node name="itemIcon12" parent="helper/back/tradeBack/items" unique_id=1582936284 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon13" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 250.0
-offset_top = 50.0
-offset_right = 292.0
-offset_bottom = 92.0
+[node name="itemIcon13" parent="helper/back/tradeBack/items" unique_id=60775064 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon14" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 300.0
-offset_top = 50.0
-offset_right = 342.0
-offset_bottom = 92.0
+[node name="itemIcon14" parent="helper/back/tradeBack/items" unique_id=1536238702 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon15" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_top = 100.0
-offset_bottom = 142.0
+[node name="itemIcon15" parent="helper/back/tradeBack/items" unique_id=297741284 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon16" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 92.0
-offset_bottom = 142.0
+[node name="itemIcon16" parent="helper/back/tradeBack/items" unique_id=1580520162 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon17" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 142.0
-offset_bottom = 142.0
+[node name="itemIcon17" parent="helper/back/tradeBack/items" unique_id=867451856 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon18" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 192.0
-offset_bottom = 142.0
+[node name="itemIcon18" parent="helper/back/tradeBack/items" unique_id=2041533670 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon19" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 100.0
-offset_right = 242.0
-offset_bottom = 142.0
+[node name="itemIcon19" parent="helper/back/tradeBack/items" unique_id=659223828 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon20" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 250.0
-offset_top = 100.0
-offset_right = 292.0
-offset_bottom = 142.0
+[node name="itemIcon20" parent="helper/back/tradeBack/items" unique_id=521508165 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon21" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 300.0
-offset_top = 100.0
-offset_right = 342.0
-offset_bottom = 142.0
+[node name="itemIcon21" parent="helper/back/tradeBack/items" unique_id=840110941 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon22" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_top = 150.0
-offset_bottom = 192.0
+[node name="itemIcon22" parent="helper/back/tradeBack/items" unique_id=1138685797 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon23" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 150.0
-offset_right = 92.0
-offset_bottom = 192.0
+[node name="itemIcon23" parent="helper/back/tradeBack/items" unique_id=1339942957 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon24" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 150.0
-offset_right = 142.0
-offset_bottom = 192.0
+[node name="itemIcon24" parent="helper/back/tradeBack/items" unique_id=566582808 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon25" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 150.0
-offset_right = 192.0
-offset_bottom = 192.0
+[node name="itemIcon25" parent="helper/back/tradeBack/items" unique_id=2087631300 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon26" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 150.0
-offset_right = 242.0
-offset_bottom = 192.0
+[node name="itemIcon26" parent="helper/back/tradeBack/items" unique_id=1792062438 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon27" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 250.0
-offset_top = 150.0
-offset_right = 292.0
-offset_bottom = 192.0
+[node name="itemIcon27" parent="helper/back/tradeBack/items" unique_id=94704101 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon28" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 300.0
-offset_top = 150.0
-offset_right = 342.0
-offset_bottom = 192.0
+[node name="itemIcon28" parent="helper/back/tradeBack/items" unique_id=803023119 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon29" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_top = 200.0
-offset_bottom = 242.0
+[node name="itemIcon29" parent="helper/back/tradeBack/items" unique_id=1555703410 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon30" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 50.0
-offset_top = 200.0
-offset_right = 92.0
-offset_bottom = 242.0
+[node name="itemIcon30" parent="helper/back/tradeBack/items" unique_id=1419187728 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon31" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 100.0
-offset_top = 200.0
-offset_right = 142.0
-offset_bottom = 242.0
+[node name="itemIcon31" parent="helper/back/tradeBack/items" unique_id=1641182409 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon32" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 150.0
-offset_top = 200.0
-offset_right = 192.0
-offset_bottom = 242.0
+[node name="itemIcon32" parent="helper/back/tradeBack/items" unique_id=1811346449 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon33" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 200.0
-offset_top = 200.0
-offset_right = 242.0
-offset_bottom = 242.0
+[node name="itemIcon33" parent="helper/back/tradeBack/items" unique_id=1485521894 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon34" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 250.0
-offset_top = 200.0
-offset_right = 292.0
-offset_bottom = 242.0
+[node name="itemIcon34" parent="helper/back/tradeBack/items" unique_id=600617320 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="itemIcon35" parent="helper/back/tradeBack/items" instance=ExtResource( 2 )]
-offset_left = 300.0
-offset_top = 200.0
-offset_right = 342.0
-offset_bottom = 242.0
+[node name="itemIcon35" parent="helper/back/tradeBack/items" unique_id=1488343480 instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="dragIcon" type="TextureRect" parent="helper/back"]
+[node name="dragIcon" type="TextureRect" parent="helper/back" unique_id=304318117]
+layout_mode = 0
 anchor_right = 0.9
 anchor_bottom = 0.9
 offset_right = -202.8
 offset_bottom = -498.0
-scale = Vector2( 0.9, 0.9 )
-pivot_offset = Vector2( 21, 21 )
-expand = true
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(21, 21)
+expand_mode = 1
 stretch_mode = 5
-script = ExtResource( 10 )
+script = ExtResource("10")
 
-[node name="shadow" type="TextureRect" parent="helper/back/dragIcon"]
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="helper/back/dragIcon" unique_id=1217441099]
+self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+layout_mode = 0
 anchor_right = 0.9
 anchor_bottom = 0.9
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 6.20002
 offset_bottom = 6.2
-pivot_offset = Vector2( 21, 21 )
-expand = true
+pivot_offset = Vector2(21, 21)
+expand_mode = 1
 stretch_mode = 5
 
-[node name="loadingIcon" parent="helper/back" instance=ExtResource( 6 )]
+[node name="loadingIcon" parent="helper/back" unique_id=741302069 instance=ExtResource("6")]
 visible = false
 anchor_right = 0.136
 anchor_bottom = 0.06
 offset_right = 0.00799942
 offset_bottom = 0.0
 
-[node name="modalAsk" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="modalAsk" type="ColorRect" parent="." unique_id=1543428687 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1024,9 +838,10 @@ offset_left = -208.0
 offset_top = -52.0
 offset_right = 208.0
 offset_bottom = 60.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
-[node name="askLabel" type="Label" parent="modalAsk"]
+[node name="askLabel" type="Label" parent="modalAsk" unique_id=2141173651]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -208.0
@@ -1034,79 +849,85 @@ offset_top = 16.0
 offset_right = 208.0
 offset_bottom = 31.0
 grow_horizontal = 2
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Продать твою душу за 42 бита?"
-align = 1
+horizontal_alignment = 1
 
-[node name="border-up" type="ColorRect" parent="modalAsk"]
+[node name="border-up" type="ColorRect" parent="modalAsk" unique_id=572740450]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
 
-[node name="border-down" type="ColorRect" parent="modalAsk"]
+[node name="border-down" type="ColorRect" parent="modalAsk" unique_id=716194417]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
 
-[node name="border-left" type="ColorRect" parent="modalAsk"]
+[node name="border-left" type="ColorRect" parent="modalAsk" unique_id=537436273]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 
-[node name="border-right" type="ColorRect" parent="modalAsk"]
+[node name="border-right" type="ColorRect" parent="modalAsk" unique_id=1065978672]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 
-[node name="yes" type="Button" parent="modalAsk"]
+[node name="yes" type="Button" parent="modalAsk" unique_id=779657609]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 80.0
 offset_right = 156.0
 offset_bottom = 100.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 disabled = true
 text = "Да"
 
-[node name="icon" type="TextureRect" parent="modalAsk/yes"]
+[node name="icon" type="TextureRect" parent="modalAsk/yes" unique_id=306732271]
 texture_filter = 2
+layout_mode = 0
 offset_left = 7.0
 offset_top = 2.0
 offset_right = 55.0
 offset_bottom = 34.0
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13")
 stretch_mode = 3
-script = ExtResource( 14 )
+script = ExtResource("14")
 key = "jump"
 
-[node name="no" type="Button" parent="modalAsk"]
+[node name="no" type="Button" parent="modalAsk" unique_id=2102818120]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -160.0
 offset_top = 80.0
 offset_right = -64.0
 offset_bottom = 100.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 disabled = true
 text = "Нет"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="icon" type="TextureRect" parent="modalAsk/no"]
+[node name="icon" type="TextureRect" parent="modalAsk/no" unique_id=1644396833]
 texture_filter = 2
+layout_mode = 0
 offset_left = 7.0
 offset_top = 2.0
 offset_right = 55.0
 offset_bottom = 34.0
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 17 )
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17")
 stretch_mode = 3
-script = ExtResource( 14 )
+script = ExtResource("14")
 key = "ui_shift"
 
-[node name="sliderBack" type="Control" parent="modalAsk" groups=["ignore_color"]]
+[node name="sliderBack" type="Control" parent="modalAsk" unique_id=1857088664 groups=["ignore_color"]]
 visible = false
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1115,36 +936,30 @@ offset_left = -176.0
 offset_top = -20.0
 offset_right = 176.0
 offset_bottom = 12.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="sliderLabel" type="Label" parent="modalAsk/sliderBack"]
+[node name="sliderLabel" type="Label" parent="modalAsk/sliderBack" unique_id=1943820769]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 108.0
 offset_bottom = 23.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Количество:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="sliderCount" type="Label" parent="modalAsk/sliderBack"]
+[node name="sliderCount" type="Label" parent="modalAsk/sliderBack" unique_id=332913661]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -64.0
 offset_top = 8.0
 offset_right = -16.0
 offset_bottom = 23.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="slider" type="HSlider" parent="modalAsk/sliderBack"]
+[node name="slider" type="HSlider" parent="modalAsk/sliderBack" unique_id=29360574]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = -1.125
 anchor_right = 0.5
@@ -1153,15 +968,13 @@ offset_left = -56.0
 offset_top = 44.0
 offset_right = 96.0
 offset_bottom = 60.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 min_value = 1.0
 value = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="modalRead" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="modalRead" type="ColorRect" parent="." unique_id=341560552 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1170,9 +983,10 @@ offset_left = -208.0
 offset_top = -172.0
 offset_right = 208.0
 offset_bottom = 212.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
-[node name="noteName" type="Label" parent="modalRead"]
+[node name="noteName" type="Label" parent="modalRead" unique_id=1354432770]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -208.0
@@ -1180,14 +994,12 @@ offset_top = 16.0
 offset_right = 208.0
 offset_bottom = 31.0
 grow_horizontal = 2
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Название записки"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="noteText" type="RichTextLabel" parent="modalRead"]
+[node name="noteText" type="RichTextLabel" parent="modalRead" unique_id=352003342]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -192.0
@@ -1195,10 +1007,11 @@ offset_top = 48.0
 offset_right = 192.0
 offset_bottom = 312.0
 grow_horizontal = 2
-theme = ExtResource( 5 )
+theme = ExtResource("5")
 text = "Текст записки"
 
-[node name="closeHint" type="Label" parent="modalRead"]
+[node name="closeHint" type="Label" parent="modalRead" unique_id=1252967672]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -165.0
@@ -1206,44 +1019,47 @@ offset_top = 352.0
 offset_right = 195.0
 offset_bottom = 369.0
 grow_horizontal = 2
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 text = "Закрыть"
 
-[node name="Escape" type="TextureRect" parent="modalRead/closeHint"]
+[node name="Escape" type="TextureRect" parent="modalRead/closeHint" unique_id=1819332476]
 texture_filter = 2
+layout_mode = 0
 offset_left = -45.0
 offset_top = -7.0
 offset_right = 3.0
 offset_bottom = 25.0
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 8 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("8")
 stretch_mode = 5
 
-[node name="border-up" type="ColorRect" parent="modalRead"]
+[node name="border-up" type="ColorRect" parent="modalRead" unique_id=581997653]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
 
-[node name="border-down" type="ColorRect" parent="modalRead"]
+[node name="border-down" type="ColorRect" parent="modalRead" unique_id=340879403]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
 
-[node name="border-left" type="ColorRect" parent="modalRead"]
+[node name="border-left" type="ColorRect" parent="modalRead" unique_id=1158637277]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 
-[node name="border-right" type="ColorRect" parent="modalRead"]
+[node name="border-right" type="ColorRect" parent="modalRead" unique_id=637646754]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/Close = SubResource( 1 )
-anims/Open = SubResource( 2 )
-anims/RESET = SubResource( 3 )
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1005720741]
+libraries/ = SubResource("AnimationLibrary_cpghy")
 
 [connection signal="pressed" from="helper/back/chestBack/takeAll" to="." method="_on_takeAll_pressed"]
 [connection signal="pressed" from="modalAsk/yes" to="." method="_on_modal_yes_pressed"]

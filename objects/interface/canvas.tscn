@@ -1,127 +1,123 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene format=3 uid="uid://b38jwtl7wp5ah"]
 
-[ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/scripts/interface/ManaBar.cs" type="Script" id=3]
-[ext_resource path="res://objects/interface/Inventory.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/scripts/interface/Messages.cs" type="Script" id=5]
-[ext_resource path="res://objects/interface/point.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/textures/interface/hitted_screen.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/textures/interface/icons/Health Bar.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/textures/interface/EyePart.png" type="Texture2D" id=9]
-[ext_resource path="res://assets/scripts/interface/HealthBar.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/interface/DamageEffects.cs" type="Script" id=11]
-[ext_resource path="res://assets/scripts/interface/inventory/effects/EffectHandler.cs" type="Script" id=12]
-[ext_resource path="res://assets/materials/shaders/contrast.gdshader" type="Shader" id=13]
-[ext_resource path="res://assets/textures/interface/cross-hitted.png" type="Texture2D" id=14]
-[ext_resource path="res://assets/scripts/interface/Menus/MenuPart.cs" type="Script" id=15]
-[ext_resource path="res://objects/interface/DialogueMenu.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/scripts/interface/BindsList.cs" type="Script" id=17]
-[ext_resource path="res://assets/materials/fonts/hint_theme.tres" type="Theme" id=18]
-[ext_resource path="res://assets/scripts/interface/Canvas.cs" type="Script" id=19]
-[ext_resource path="res://assets/textures/interface/icons/Mana Bar.png" type="Texture2D" id=20]
-[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="FontFile" id=21]
-[ext_resource path="res://assets/scripts/interface/InteractionPointManager.cs" type="Script" id=23]
-[ext_resource path="res://assets/scripts/interface/IconWithShadow.cs" type="Script" id=24]
-[ext_resource path="res://assets/materials/shaders/fisheye.gdshader" type="Shader" id=26]
-[ext_resource path="res://objects/interface/healthBar.tscn" type="PackedScene" id=27]
-[ext_resource path="res://objects/interface/manaBar.tscn" type="PackedScene" id=28]
-[ext_resource path="res://objects/interface/radiationBar.tscn" type="PackedScene" id=29]
-[ext_resource path="res://assets/scripts/interface/Dialogue/Subtitles.cs" type="Script" id=30]
-[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=31]
-[ext_resource path="res://assets/scripts/interface/ButtonIcon.cs" type="Script" id=32]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Space.png" type="Texture2D" id=33]
-[ext_resource path="res://assets/scripts/interface/LabelLang.cs" type="Script" id=34]
-[ext_resource path="res://assets/scripts/interface/Skip.cs" type="Script" id=35]
-[ext_resource path="res://objects/interface/UseItemLoadingIcon.tscn" type="PackedScene" id=36]
+[ext_resource type="Theme" path="res://assets/materials/fonts/big_text_theme.tres" id="1"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="2"]
+[ext_resource type="Script" uid="uid://d3urkqunwvjf8" path="res://assets/scripts/interface/ManaBar.cs" id="3"]
+[ext_resource type="PackedScene" path="res://objects/interface/Inventory.tscn" id="4"]
+[ext_resource type="Script" uid="uid://brxn4ppsy3q2t" path="res://assets/scripts/interface/Messages.cs" id="5"]
+[ext_resource type="PackedScene" path="res://objects/interface/point.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://dx4x0i1t081gi" path="res://assets/textures/interface/hitted_screen.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://d0yjdpydg8h3x" path="res://assets/textures/interface/icons/Health Bar.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://57h8vnjpb7or" path="res://assets/textures/interface/EyePart.png" id="9"]
+[ext_resource type="Script" uid="uid://bf5sssrmth5fk" path="res://assets/scripts/interface/HealthBar.cs" id="10"]
+[ext_resource type="Script" uid="uid://hqwckk6vhggs" path="res://assets/scripts/interface/DamageEffects.cs" id="11"]
+[ext_resource type="Script" uid="uid://c8fvqkvppydi3" path="res://assets/scripts/interface/inventory/effects/EffectHandler.cs" id="12"]
+[ext_resource type="Shader" uid="uid://dpxk0ycjkc1sn" path="res://assets/materials/shaders/contrast.gdshader" id="13"]
+[ext_resource type="Texture2D" uid="uid://bcfskvgov5wr7" path="res://assets/textures/interface/cross-hitted.png" id="14"]
+[ext_resource type="Script" uid="uid://dgtay03hqdmfr" path="res://assets/scripts/interface/Menus/MenuPart.cs" id="15"]
+[ext_resource type="PackedScene" path="res://objects/interface/DialogueMenu.tscn" id="16"]
+[ext_resource type="Script" uid="uid://dg1v06yx1hhob" path="res://assets/scripts/interface/BindsList.cs" id="17"]
+[ext_resource type="Theme" path="res://assets/materials/fonts/hint_theme.tres" id="18"]
+[ext_resource type="Script" uid="uid://6lgx7ju6cf4f" path="res://assets/scripts/interface/Canvas.cs" id="19"]
+[ext_resource type="Texture2D" uid="uid://hbmekblji2hy" path="res://assets/textures/interface/icons/Mana Bar.png" id="20"]
+[ext_resource type="FontFile" uid="uid://dishf8dwdlexh" path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" id="21"]
+[ext_resource type="Script" uid="uid://b72rnealfdi2h" path="res://assets/scripts/interface/InteractionPointManager.cs" id="23"]
+[ext_resource type="Script" uid="uid://elfmg3cv6d3d" path="res://assets/scripts/interface/IconWithShadow.cs" id="24"]
+[ext_resource type="Shader" uid="uid://cimggxtkfvy28" path="res://assets/materials/shaders/fisheye.gdshader" id="26"]
+[ext_resource type="PackedScene" path="res://objects/interface/healthBar.tscn" id="27"]
+[ext_resource type="PackedScene" path="res://objects/interface/manaBar.tscn" id="28"]
+[ext_resource type="PackedScene" path="res://objects/interface/radiationBar.tscn" id="29"]
+[ext_resource type="Script" uid="uid://hkwxhxeq66h5" path="res://assets/scripts/interface/Dialogue/Subtitles.cs" id="30"]
+[ext_resource type="Script" uid="uid://d1a4bilosns60" path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" id="31"]
+[ext_resource type="Script" uid="uid://b7mghu5xa2tam" path="res://assets/scripts/interface/ButtonIcon.cs" id="32"]
+[ext_resource type="Texture2D" uid="uid://0vw8vcd11v7s" path="res://assets/textures/interface/icons/buttons/Space.png" id="33"]
+[ext_resource type="Script" uid="uid://bsjnvvtmciqat" path="res://assets/scripts/interface/LabelLang.cs" id="34"]
+[ext_resource type="Script" uid="uid://yjr7remfdk3p" path="res://assets/scripts/interface/Skip.cs" id="35"]
+[ext_resource type="PackedScene" path="res://objects/interface/UseItemLoadingIcon.tscn" id="36"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 13 )
-shader_parameter/brightness = null
-shader_parameter/contrast = null
-shader_parameter/saturation = null
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("13")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/saturation = 0.0
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 26 )
+[sub_resource type="ShaderMaterial" id="5"]
+shader = ExtResource("26")
 shader_parameter/fisheye_strength = 0.9
 shader_parameter/alpha = 0.0
-shader_parameter/r_displacement = Vector2( 3, 0 )
-shader_parameter/g_displacement = Vector2( 0, 0 )
-shader_parameter/b_displacement = Vector2( -3, 0 )
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
 
-[sub_resource type="FontVariation" id=3]
-base_font = ExtResource( 21 )
+[sub_resource type="FontVariation" id="3"]
+base_font = ExtResource("21")
 
+[sub_resource type="FontVariation" id="2"]
+base_font = ExtResource("21")
 
-[sub_resource type="FontVariation" id=2]
-base_font = ExtResource( 21 )
+[sub_resource type="FontVariation" id="4"]
+base_font = ExtResource("21")
 
+[node name="canvas" type="CanvasLayer" unique_id=1023054805]
+script = ExtResource("19")
 
-[sub_resource type="FontVariation" id=4]
-base_font = ExtResource( 21 )
-
-
-[node name="canvas" type="CanvasLayer"]
-script = ExtResource( 19 )
-
-[node name="colorShader" type="ColorRect" parent="."]
+[node name="colorShader" type="ColorRect" parent="." unique_id=871287303]
 visible = false
-material = SubResource( 1 )
+material = SubResource("1")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(1, 1, 1, 0)
 
-[node name="fisheyeShader" type="ColorRect" parent="."]
+[node name="fisheyeShader" type="ColorRect" parent="." unique_id=698172605]
 visible = false
-material = SubResource( 5 )
+material = SubResource("5")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
+color = Color(1, 1, 1, 0)
 
-[node name="eyesParts" type="Control" parent="."]
+[node name="eyesParts" type="Control" parent="." unique_id=1378094423]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_right = 20.0
 
-[node name="eyeUp" type="TextureRect" parent="eyesParts"]
+[node name="eyeUp" type="TextureRect" parent="eyesParts" unique_id=1749007077]
+layout_mode = 0
 anchor_top = -1.0
 anchor_right = 1.0
 offset_left = -20.0
 offset_right = -20.0
-texture = ExtResource( 9 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("9")
+expand_mode = 1
 
-[node name="eyeDown" type="TextureRect" parent="eyesParts"]
+[node name="eyeDown" type="TextureRect" parent="eyesParts" unique_id=1025188862]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 2.0
 offset_left = -20.0
 offset_right = -20.0
-pivot_offset = Vector2( 512, 300 )
-texture = ExtResource( 9 )
-expand = true
+pivot_offset = Vector2(512, 300)
+texture = ExtResource("9")
+expand_mode = 1
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="redScreen" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="redScreen" type="TextureRect" parent="." unique_id=913183162]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
-script = ExtResource( 11 )
+texture = ExtResource("7")
+expand_mode = 1
+script = ExtResource("11")
 
-[node name="stealthLabel" type="Label" parent="."]
+[node name="stealthLabel" type="Label" parent="." unique_id=1447073441]
 visible = false
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -130,17 +126,18 @@ offset_left = -59.0
 offset_top = -70.0
 offset_right = 59.0
 offset_bottom = -49.0
-theme = ExtResource( 2 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("2")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "[Вас не видят]"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="jumpHint" type="ColorRect" parent="."]
+[node name="jumpHint" type="ColorRect" parent="." unique_id=1859339584]
 visible = false
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -149,31 +146,29 @@ offset_left = -96.0
 offset_top = -80.0
 offset_right = 96.0
 offset_bottom = -36.0
-color = Color( 0.180392, 0.176471, 0.176471, 0.537255 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.180392, 0.176471, 0.176471, 0.537255)
 
-[node name="label" type="Label" parent="jumpHint"]
+[node name="label" type="Label" parent="jumpHint" unique_id=1733433662]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "перепрыгнуть"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="pointManager" type="Control" parent="."]
+[node name="pointManager" type="Control" parent="." unique_id=570129591]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-script = ExtResource( 23 )
+script = ExtResource("23")
 
-[node name="interactionHint" type="Label" parent="pointManager" groups=["ignore_color"]]
+[node name="interactionHint" type="Label" parent="pointManager" unique_id=646755910 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -79.0
@@ -182,21 +177,18 @@ offset_right = 81.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2( 80, 11 )
-theme = ExtResource( 2 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+pivot_offset = Vector2(80, 11)
+theme = ExtResource("2")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource("2")
 text = "Открыть"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
-[node name="loadingIcon" parent="pointManager" instance=ExtResource( 36 )]
+[node name="loadingIcon" parent="pointManager" unique_id=79137468 instance=ExtResource("36")]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -204,12 +196,12 @@ offset_left = -13.0
 offset_top = -11.0
 offset_right = 8.0
 offset_bottom = 9.0
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2(1.2, 1.2)
 
-[node name="pointShadow" parent="pointManager" instance=ExtResource( 6 )]
+[node name="pointShadow" parent="pointManager" unique_id=495405599 instance=ExtResource("6")]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
-self_modulate = Color( 0, 0, 0, 1 )
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -218,32 +210,33 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 1.0
 offset_bottom = 1.0
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2(0.2, 0.2)
 
-[node name="point" parent="pointManager" instance=ExtResource( 6 )]
+[node name="point" parent="pointManager" unique_id=33863476 instance=ExtResource("6")]
 visible = false
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2(0.2, 0.2)
 
-[node name="shootInterface" type="Control" parent="."]
+[node name="shootInterface" type="Control" parent="." unique_id=319235732]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ammoBack" type="ColorRect" parent="shootInterface"]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="ammoBack" type="ColorRect" parent="shootInterface" unique_id=1708985657]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_left = 0.874
 anchor_top = 0.923
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.0239868
 offset_top = 0.199951
-color = Color( 0, 0, 0, 0.784314 )
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 0.784314)
+script = ExtResource("15")
 
-[node name="label" type="Label" parent="shootInterface/ammoBack" groups=["ignore_color"]]
+[node name="label" type="Label" parent="shootInterface/ammoBack" unique_id=1615741728 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -252,17 +245,18 @@ offset_left = -97.0
 offset_top = -44.0001
 offset_right = -49.0
 offset_bottom = -2.00006
-theme = ExtResource( 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 28
 text = "0"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="icon" type="TextureRect" parent="shootInterface/ammoBack" groups=["ignore_color"]]
+[node name="icon" type="TextureRect" parent="shootInterface/ammoBack" unique_id=1374569078 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -271,20 +265,22 @@ offset_left = -50.0
 offset_top = -50.0001
 offset_right = -2.0
 offset_bottom = -2.0001
-expand = true
-script = ExtResource( 24 )
+expand_mode = 1
+script = ExtResource("24")
 
-[node name="shadow" type="TextureRect" parent="shootInterface/ammoBack/icon" groups=["ignore_color"]]
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="shootInterface/ammoBack/icon" unique_id=1627962856 groups=["ignore_color"]]
+self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 49.0
 offset_bottom = 49.0
-expand = true
+expand_mode = 1
 
-[node name="hitted" type="TextureRect" parent="shootInterface"]
+[node name="hitted" type="TextureRect" parent="shootInterface" unique_id=602590932]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -293,64 +289,68 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
-texture = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("14")
+expand_mode = 1
 
-[node name="health" type="Control" parent="." groups=["ignore_color"]]
+[node name="health" type="Control" parent="." unique_id=2112463497 groups=["ignore_color"]]
+layout_mode = 3
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = -58.0
 offset_right = 136.0
 offset_bottom = 70.0
-scale = Vector2( 0.4, 0.4 )
-script = ExtResource( 10 )
+scale = Vector2(0.4, 0.4)
+script = ExtResource("10")
 
-[node name="shadow" type="TextureRect" parent="health"]
-texture_filter = 2
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="health" unique_id=876801463]
+self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = -125.0
 offset_right = 133.0
 offset_bottom = 3.0
-texture = ExtResource( 8 )
+texture = ExtResource("8")
 stretch_mode = 4
 
-[node name="mask" parent="health" instance=ExtResource( 27 )]
+[node name="mask" parent="health" unique_id=1653862699 instance=ExtResource("27")]
 
-[node name="radiationMask" parent="health" instance=ExtResource( 29 )]
+[node name="radiationMask" parent="health" unique_id=314158277 instance=ExtResource("29")]
 
-[node name="mana" type="Control" parent="."]
+[node name="mana" type="Control" parent="." unique_id=1513714449]
+layout_mode = 3
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = -58.0
 offset_right = 136.0
 offset_bottom = 70.0
-scale = Vector2( 0.4, 0.4 )
-script = ExtResource( 3 )
+scale = Vector2(0.4, 0.4)
+script = ExtResource("3")
 
-[node name="shadow" type="TextureRect" parent="mana"]
-texture_filter = 2
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="mana" unique_id=2128281917]
+self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -128.0
 offset_right = 128.0
-texture = ExtResource( 20 )
-expand = true
+texture = ExtResource("20")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="mask" parent="mana" instance=ExtResource( 28 )]
+[node name="mask" parent="mana" unique_id=140356641 instance=ExtResource("28")]
 
-[node name="effects" type="VBoxContainer" parent="."]
+[node name="effects" type="VBoxContainer" parent="." unique_id=317202551]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 18.0
@@ -358,13 +358,11 @@ offset_top = -582.0
 offset_right = 50.0
 offset_bottom = -60.0
 alignment = 2
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_lock_": true
-}
+script = ExtResource("12")
 
-[node name="skip" type="HBoxContainer" parent="."]
+[node name="skip" type="HBoxContainer" parent="." unique_id=1193350899]
 visible = false
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -374,28 +372,28 @@ offset_top = -151.0
 offset_right = 117.0
 offset_bottom = -119.0
 alignment = 1
-script = ExtResource( 35 )
+script = ExtResource("35")
 
-[node name="icon" type="Control" parent="skip"]
-offset_left = 88.0
-offset_right = 88.0
-offset_bottom = 32.0
+[node name="icon" type="Control" parent="skip" unique_id=2041248046]
+layout_mode = 2
 
-[node name="button" type="TextureRect" parent="skip/icon"]
+[node name="button" type="TextureRect" parent="skip/icon" unique_id=1200528173]
 texture_filter = 2
+layout_mode = 0
 offset_left = -31.0
 offset_top = 6.0
 offset_right = 17.0
 offset_bottom = 38.0
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 33 )
-script = ExtResource( 32 )
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("33")
+script = ExtResource("32")
 key = "jump"
 
-[node name="shadow" type="TextureRect" parent="skip/icon/button" groups=["ignore_color"]]
-texture_filter = 2
-modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="skip/icon/button" unique_id=1185752862 groups=["ignore_color"]]
+modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -404,25 +402,23 @@ offset_left = -22.0
 offset_top = -30.0
 offset_right = 26.0
 offset_bottom = 2.0
-texture = ExtResource( 33 )
+texture = ExtResource("33")
 
-[node name="label" type="Label" parent="skip"]
-offset_left = 92.0
-offset_top = 5.0
-offset_right = 124.0
-offset_bottom = 26.0
+[node name="label" type="Label" parent="skip" unique_id=1270764223]
+layout_mode = 2
 mouse_filter = 1
-theme = ExtResource( 2 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("2")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "Skip"
-align = 1
-script = ExtResource( 34 )
+horizontal_alignment = 1
+script = ExtResource("34")
 phraseCode = "skip"
 
-[node name="subtitles" type="Label" parent="." groups=["savable"]]
+[node name="subtitles" type="Label" parent="." unique_id=173808054 groups=["savable"]]
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -432,19 +428,16 @@ offset_top = -92.0
 offset_right = 478.0
 offset_bottom = -58.0
 mouse_filter = 1
-theme = ExtResource( 2 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("2")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
-align = 1
-script = ExtResource( 30 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+theme_override_fonts/font = SubResource("3")
+horizontal_alignment = 1
+script = ExtResource("30")
 
-[node name="speaker" type="Label" parent="subtitles"]
+[node name="speaker" type="Label" parent="subtitles" unique_id=1631332798]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -454,52 +447,48 @@ offset_top = -54.0
 offset_right = 477.5
 offset_bottom = -20.0
 mouse_filter = 1
-theme = ExtResource( 2 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("2")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
-align = 1
+theme_override_fonts/font = SubResource("3")
+horizontal_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="dialogueAudio" type="Node" parent="subtitles"]
-script = ExtResource( 31 )
+[node name="dialogueAudio" type="Node" parent="subtitles" unique_id=381529232]
+script = ExtResource("31")
 
-[node name="binds" type="HBoxContainer" parent="." groups=["ignore_color"]]
+[node name="binds" type="HBoxContainer" parent="." unique_id=1439647389 groups=["ignore_color"]]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 64.0
 offset_top = -46.0
 offset_right = 816.0
 offset_bottom = -4.0
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource("17")
 
-[node name="messages" type="VBoxContainer" parent="." groups=["savable"]]
+[node name="messages" type="VBoxContainer" parent="." unique_id=736655482 groups=["savable"]]
+anchors_preset = -1
 anchor_bottom = 0.82
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 351.0
 offset_bottom = -3.05176e-05
-script = ExtResource( 5 )
-tempTheme = ExtResource( 18 )
+script = ExtResource("5")
+tempTheme = ExtResource("18")
 
-[node name="inventory" parent="." instance=ExtResource( 4 )]
+[node name="inventory" parent="." unique_id=318890354 instance=ExtResource("4")]
 visible = false
+layout_mode = 3
 
-[node name="DialogueMenu" parent="." instance=ExtResource( 16 )]
+[node name="DialogueMenu" parent="." unique_id=1779292033 instance=ExtResource("16")]
 visible = false
+layout_mode = 3
 
-[node name="black" type="ColorRect" parent="."]
+[node name="black" type="ColorRect" parent="." unique_id=470002922]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_lock_": true
-}
+color = Color(0, 0, 0, 0)
