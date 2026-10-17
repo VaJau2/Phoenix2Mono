@@ -3,8 +3,8 @@
 [resource]
 texture_filter = 0
 flags_transparent = true
-params_diffuse_mode = 3
-params_specular_mode = 2
+diffuse_mode = 0
+specular_mode = 0
 params_cull_mode = 2
 transparency = 4
 albedo_color = Color( 0.360784, 0.501961, 0.686275, 0.45098 )

@@ -5,7 +5,7 @@
 [resource]
 texture_filter = 0
 flags_transparent = true
-params_diffuse_mode = 1
+diffuse_mode = 1
 transparency = 4
 albedo_texture = ExtResource( 1 )
 metallic_specular = 0.0

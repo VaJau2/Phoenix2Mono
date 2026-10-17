@@ -115,7 +115,7 @@ func _process(delta):
 "
 
 [sub_resource type="ParticleProcessMaterial" id=51]
-emission_shape = 2
+emission_shape = 3
 emission_box_extents = Vector3( 45, 10, 45 )
 direction = Vector3( 0, -1, 0 )
 spread = 0.0
@@ -151,7 +151,7 @@ func _process(_delta):
 "
 
 [sub_resource type="ParticleProcessMaterial" id=55]
-emission_shape = 2
+emission_shape = 3
 emission_box_extents = Vector3( 40, 2, 40 )
 direction = Vector3( 0, 1, 0 )
 initial_velocity_min = 2

@@ -19,7 +19,7 @@ width = 1024
 curve = SubResource( 2 )
 
 [sub_resource type="ParticleProcessMaterial" id=4]
-emission_shape = 2
+emission_shape = 3
 emission_box_extents = Vector3( 0.8, 0.1, 0.8 )
 direction = Vector3( 0, 2, 0 )
 spread = 50.0

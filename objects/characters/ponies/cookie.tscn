@@ -24,7 +24,7 @@ width = 1024
 curve = SubResource( 1 )
 
 [sub_resource type="ParticleProcessMaterial" id=3]
-emission_shape = 2
+emission_shape = 3
 emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
 direction = Vector3( 0, 0, -1 )
 gravity = Vector3( 0, -3, 0 )
@@ -240,7 +240,7 @@ bind/18/pose = Transform3D( 1.26706, -4.78518e-08, 2.98276e-07, 2.57638e-12, -1.
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
 [sub_resource type="ParticleProcessMaterial" id=12]
-emission_shape = 2
+emission_shape = 3
 emission_box_extents = Vector3( 0.5, 0.5, 1 )
 gravity = Vector3( 0, 0.1, 0 )
 scale_min = 0
