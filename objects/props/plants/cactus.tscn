@@ -1,25 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://cromua5ndfjma"]
 
-[ext_resource path="res://assets/materials/props/cactus.tres" type="Material" id=1]
+[ext_resource type="Material" path="res://assets/materials/props/cactus.tres" id="1"]
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="PlaneMesh" id="1"]
 
-[sub_resource type="CapsuleShape3D" id=2]
+[sub_resource type="CapsuleShape3D" id="2"]
 radius = 0.580172
 height = 6.49487
 
-[node name="cactus" type="StaticBody3D"]
+[node name="cactus" type="StaticBody3D" unique_id=1696925747]
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D( -2.85111e-07, -1, 1.63918e-07, 0, -4.37114e-08, -3.75, 1.75, -1.62921e-07, 2.67056e-14, 0, 3.72143, 0 )
-mesh = SubResource( 1 )
-surface_material_override/0 = ExtResource( 1 )
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=50268289]
+transform = Transform3D(-2.85111e-07, -1, 1.63918e-07, 0, -4.37114e-08, -3.75, 1.75, -1.62921e-07, 2.67056e-14, 0, 3.72143, 0)
+mesh = SubResource("1")
+surface_material_override/0 = ExtResource("1")
 
-[node name="mesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D( -1.75, -3.89414e-07, 6.38319e-14, 0, -4.37114e-08, -3.75, 6.81475e-07, -1, 1.63918e-07, 0, 3.72143, 0 )
-mesh = SubResource( 1 )
-surface_material_override/0 = ExtResource( 1 )
+[node name="mesh2" type="MeshInstance3D" parent="." unique_id=530471066]
+transform = Transform3D(-1.75, -3.89414e-07, 6.38319e-14, 0, -4.37114e-08, -3.75, 6.81475e-07, -1, 1.63918e-07, 0, 3.72143, 0)
+mesh = SubResource("1")
+surface_material_override/0 = ExtResource("1")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, -1, 1.62921e-07, 0, -1.62921e-07, -1, 0.0739999, 3.21759, -0.142302 )
-shape = SubResource( 2 )
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1388451916]
+transform = Transform3D(1, 0, 0, 0, -1, 1.62921e-07, 0, -1.62921e-07, -1, 0.0739999, 3.21759, -0.142302)
+shape = SubResource("2")

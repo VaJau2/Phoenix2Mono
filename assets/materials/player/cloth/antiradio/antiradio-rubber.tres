@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0i8o2kk404f6"]
 
 [resource]
-texture_filter = 0
 resource_name = "Rubber"
 vertex_color_use_as_albedo = true
-albedo_color = Color( 0.905882, 0.670588, 0.219608, 1 )
+albedo_color = Color(0.905882, 0.670588, 0.219608, 1)
 roughness = 0.9
+texture_filter = 0

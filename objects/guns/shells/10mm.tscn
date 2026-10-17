@@ -1,20 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://cxfxd8i35l4tp"]
 
-[ext_resource path="res://objects/guns/shells/shell-base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/guns/shells/meshes/10mm.tres" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/audio/guns/shells/10mm_1.mp3" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/guns/shells/10mm_2.mp3" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/guns/shells/10mm_3.mp3" type="AudioStream" id=5]
+[ext_resource type="PackedScene" path="res://objects/guns/shells/shell-base.tscn" id="1"]
+[ext_resource type="ArrayMesh" path="res://objects/guns/shells/meshes/10mm.tres" id="2"]
+[ext_resource type="AudioStream" uid="uid://cx7g0xfmlvohw" path="res://assets/audio/guns/shells/10mm_1.mp3" id="3"]
+[ext_resource type="AudioStream" uid="uid://tu2dh4wieo5s" path="res://assets/audio/guns/shells/10mm_2.mp3" id="4"]
+[ext_resource type="AudioStream" uid="uid://cqry1njgh5ycu" path="res://assets/audio/guns/shells/10mm_3.mp3" id="5"]
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 0.10669, 0.0460153, 0.0449615 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(0.21338, 0.0920306, 0.089923)
 
-[node name="10mm-shell" instance=ExtResource( 1 )]
-shellSound = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+[node name="10mm-shell" unique_id=441550702 instance=ExtResource("1")]
+shellSound = [ExtResource("3"), ExtResource("4"), ExtResource("5")]
+
+[node name="audi" parent="." index="0"]
+bus = &"Sound"
 
 [node name="CollisionShape" parent="." index="1"]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
-[node name="mesh" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
-mesh = ExtResource( 2 )
+[node name="mesh" type="MeshInstance3D" parent="." index="2" unique_id=1720164740]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = ExtResource("2")

@@ -1,6 +1,6 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwtik344hvvkg"]
 
 [resource]
+shading_mode = 0
+albedo_color = Color(1, 0.262745, 0.262745, 1)
 texture_filter = 0
-flags_unshaded = true
-albedo_color = Color( 1, 0.262745, 0.262745, 1 )

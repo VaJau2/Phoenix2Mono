@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bn1ujlpcc8plm"]
 
 [resource]
-texture_filter = 0
 resource_name = "Arrow"
-albedo_color = Color( 0.8, 0.764356, 0.551884, 1 )
+albedo_color = Color(0.8, 0.764356, 0.551884, 1)
 roughness = 0.15
+texture_filter = 0

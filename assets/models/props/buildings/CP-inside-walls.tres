@@ -1,13 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfeqd7yoq1ykf"]
 
 [resource]
-texture_filter = 0
 resource_name = "CP-inside-walls"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
 roughness = 0.4
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+texture_filter = 0

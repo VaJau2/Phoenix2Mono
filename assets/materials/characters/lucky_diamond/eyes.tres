@@ -1,16 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5mfsnxt7ugsr"]
 
-[ext_resource path="res://assets/textures/characters/lucky_diamond/eyes/neitral/0.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://bgaet6xqaohcj" path="res://assets/textures/characters/lucky_diamond/eyes/neitral/0.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "eyes"
-flags_transparent = true
-params_cull_mode = 2
-albedo_color = Color( 1, 1, 1, 0.0313726 )
-albedo_texture = ExtResource( 1 )
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.231373)
+albedo_texture = ExtResource("1")
 emission_enabled = true
-emission = Color( 0.0470588, 0.0901961, 0.0980392, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(0.0470588, 0.0901961, 0.0980392, 1)
+texture_filter = 0

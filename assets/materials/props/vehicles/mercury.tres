@@ -1,13 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdbo7dkv0uiw0"]
 
-[ext_resource path="res://assets/models/props/vehicles/Mercuriy/Mercuriy__color.tga" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/vehicles/Mercuriy/Mercuriy__nmap.tga" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://bhalmp26456xd" path="res://assets/models/props/vehicles/Mercuriy/Mercuriy__color.tga" id="1"]
+[ext_resource type="Texture2D" uid="uid://leghjyyj21c5" path="res://assets/models/props/vehicles/Mercuriy/Mercuriy__nmap.tga" id="2"]
 
 [resource]
-texture_filter = 0
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 metallic = 0.5
 roughness = 0.5
 normal_enabled = true
 normal_scale = 0.5
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

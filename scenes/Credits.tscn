@@ -1,213 +1,221 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene format=3 uid="uid://ohr25cc0rosw"]
 
-[ext_resource path="res://assets/scripts/interface/Credits/Credits.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" type="FontFile" id=2]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/scripts/interface/Credits/TitleItem.cs" type="Script" id=4]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Empty 48x32.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/audio/music/credits/Johnny Cash - We Will Meet Again.mp3" type="AudioStream" id=6]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Space.png" type="Texture2D" id=7]
+[ext_resource type="Script" uid="uid://dlhnqn4n1me0a" path="res://assets/scripts/interface/Credits/Credits.cs" id="1"]
+[ext_resource type="FontFile" uid="uid://dishf8dwdlexh" path="res://assets/materials/fonts/CenturyGhoticBlod.TTF" id="2"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="3"]
+[ext_resource type="Script" uid="uid://b03nd8brh1gh7" path="res://assets/scripts/interface/Credits/TitleItem.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://b4bcv3l66ubis" path="res://assets/textures/interface/icons/buttons/Empty 48x32.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://bkrb52dchfgiv" path="res://assets/audio/music/credits/Johnny Cash - We Will Meet Again.mp3" id="6"]
+[ext_resource type="Texture2D" uid="uid://0vw8vcd11v7s" path="res://assets/textures/interface/icons/buttons/Space.png" id="7"]
 
-[sub_resource type="FontVariation" id=4]
-base_font = ExtResource( 2 )
+[sub_resource type="FontVariation" id="4"]
+base_font = ExtResource("2")
 
+[sub_resource type="FontVariation" id="3"]
+base_font = ExtResource("2")
 
-[sub_resource type="FontVariation" id=3]
-base_font = ExtResource( 2 )
+[sub_resource type="FontVariation" id="8"]
+base_font = ExtResource("2")
 
+[sub_resource type="FontVariation" id="9"]
+base_font = ExtResource("2")
 
-[sub_resource type="FontVariation" id=8]
-base_font = ExtResource( 2 )
+[sub_resource type="FontVariation" id="10"]
+base_font = ExtResource("2")
 
+[sub_resource type="FontVariation" id="11"]
+base_font = ExtResource("2")
 
-[sub_resource type="FontVariation" id=9]
-base_font = ExtResource( 2 )
+[sub_resource type="FontVariation" id="12"]
+base_font = ExtResource("2")
 
-
-[sub_resource type="FontVariation" id=10]
-base_font = ExtResource( 2 )
-
-
-[sub_resource type="FontVariation" id=11]
-base_font = ExtResource( 2 )
-
-
-[sub_resource type="FontVariation" id=12]
-base_font = ExtResource( 2 )
-
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id="6"]
 resource_name = "Move Title"
 length = 139.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Titles/Music From Radio:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0.5, 136.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0.5, 136.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 300, 650 ), Vector2( 300, -7450 ) ]
+"values": [Vector2(300, 650), Vector2(300, -7450)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Black:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 139 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 139),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id="7"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Black:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"values": [Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Titles/Music From Radio:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 300, 600 ) ]
+"values": [Vector2(300, 600)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Black:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Skip:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 resource_name = "Show Title"
 length = 4.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Black:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1, 2.5, 3.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="FontVariation" id=16]
-base_font = ExtResource( 2 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g618n"]
+_data = {
+&"Move Title": SubResource("6"),
+&"RESET": SubResource("7"),
+&"Show Title": SubResource("5")
+}
 
+[sub_resource type="FontVariation" id="16"]
+base_font = ExtResource("2")
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id="14"]
 resource_name = "Fade Out Skip"
 length = 2.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Skip:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id="15"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Black:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"values": [Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Titles/Music From Radio:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 300, 600 ) ]
+"values": [Vector2(300, 600)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Black:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Skip:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[node name="Credits" type="Control"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkn"]
+_data = {
+&"Fade Out Skip": SubResource("14"),
+&"RESET": SubResource("15")
+}
+
+[node name="Credits" type="Control" unique_id=1020521015]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Titles" type="Control" parent="."]
+[node name="Titles" type="Control" parent="." unique_id=110801077]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -217,8 +225,9 @@ offset_top = -300.0
 offset_right = -512.0
 offset_bottom = -300.0
 
-[node name="Created By" type="Label" parent="Titles"]
+[node name="Created By" type="Label" parent="Titles" unique_id=1121941599]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -227,19 +236,20 @@ offset_left = 301.0
 offset_top = 280.0
 offset_right = 725.0
 offset_bottom = 301.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Created by"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "createdBy"
 
-[node name="VaJa" type="Label" parent="Titles/Created By"]
+[node name="VaJa" type="Label" parent="Titles/Created By" unique_id=1945239180]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -248,19 +258,20 @@ offset_left = -213.0
 offset_top = 4.5
 offset_right = 212.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "VaJa"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Programmers" type="Label" parent="Titles"]
+[node name="Programmers" type="Label" parent="Titles" unique_id=614812290]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -269,19 +280,20 @@ offset_left = 300.0
 offset_top = 260.0
 offset_right = 724.0
 offset_bottom = 281.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Programmers"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "programmers"
 
-[node name="VaJa" type="Label" parent="Titles/Programmers"]
+[node name="VaJa" type="Label" parent="Titles/Programmers" unique_id=2091813327]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -290,17 +302,18 @@ offset_left = -212.0
 offset_top = 4.5
 offset_right = 213.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "VaJa"
-align = 1
+horizontal_alignment = 1
 
-[node name="McFord" type="Label" parent="Titles/Programmers"]
+[node name="McFord" type="Label" parent="Titles/Programmers" unique_id=1650560717]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -309,18 +322,19 @@ offset_left = -212.0
 offset_top = 37.5
 offset_right = 213.0
 offset_bottom = 78.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "McFord"
-align = 1
+horizontal_alignment = 1
 
-[node name="Modelers" type="Label" parent="Titles"]
+[node name="Modelers" type="Label" parent="Titles" unique_id=1139464662]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -329,19 +343,20 @@ offset_left = 300.0
 offset_top = 245.0
 offset_right = 724.0
 offset_bottom = 266.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Modelers"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "modelers"
 
-[node name="VaJa" type="Label" parent="Titles/Modelers"]
+[node name="VaJa" type="Label" parent="Titles/Modelers" unique_id=1239063869]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -350,17 +365,18 @@ offset_left = -212.0
 offset_top = 4.5
 offset_right = 213.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "VaJa"
-align = 1
+horizontal_alignment = 1
 
-[node name="Tankony" type="Label" parent="Titles/Modelers"]
+[node name="Tankony" type="Label" parent="Titles/Modelers" unique_id=2090625925]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -369,17 +385,18 @@ offset_left = -212.0
 offset_top = 39.5
 offset_right = 213.0
 offset_bottom = 80.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Tankony"
-align = 1
+horizontal_alignment = 1
 
-[node name="McFord" type="Label" parent="Titles/Modelers"]
+[node name="McFord" type="Label" parent="Titles/Modelers" unique_id=428514634]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -388,18 +405,19 @@ offset_left = -212.0
 offset_top = 74.5
 offset_right = 213.0
 offset_bottom = 115.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "McFord"
-align = 1
+horizontal_alignment = 1
 
-[node name="Artists" type="Label" parent="Titles"]
+[node name="Artists" type="Label" parent="Titles" unique_id=365288846]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -408,19 +426,20 @@ offset_left = 300.0
 offset_top = 260.0
 offset_right = 724.0
 offset_bottom = 281.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Artists"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "artists"
 
-[node name="VaJa" type="Label" parent="Titles/Artists"]
+[node name="VaJa" type="Label" parent="Titles/Artists" unique_id=996592202]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -429,17 +448,18 @@ offset_left = -212.0
 offset_top = 4.5
 offset_right = 213.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "VaJa"
-align = 1
+horizontal_alignment = 1
 
-[node name="McFord" type="Label" parent="Titles/Artists"]
+[node name="McFord" type="Label" parent="Titles/Artists" unique_id=812159230]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -448,35 +468,37 @@ offset_left = -212.0
 offset_top = 37.5
 offset_right = 213.0
 offset_bottom = 78.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "McFord"
-align = 1
+horizontal_alignment = 1
 
-[node name="Scenarists" type="Label" parent="Titles"]
+[node name="Scenarists" type="Label" parent="Titles" unique_id=155120880]
 visible = false
+layout_mode = 0
 offset_left = 301.0
 offset_top = 260.0
 offset_right = 725.0
 offset_bottom = 281.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Scenarists"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "scenarists"
 
-[node name="VaJa" type="Label" parent="Titles/Scenarists"]
+[node name="VaJa" type="Label" parent="Titles/Scenarists" unique_id=213791298]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -485,18 +507,19 @@ offset_left = -213.0
 offset_top = 4.5
 offset_right = 212.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "VaJa"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="McFord" type="Label" parent="Titles/Scenarists"]
+[node name="McFord" type="Label" parent="Titles/Scenarists" unique_id=483601536]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -505,19 +528,20 @@ offset_left = -213.0
 offset_top = 37.5
 offset_right = 212.0
 offset_bottom = 78.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "McFord"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Voice Acting" type="Label" parent="Titles"]
+[node name="Voice Acting" type="Label" parent="Titles" unique_id=2027786371]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -526,19 +550,20 @@ offset_left = 301.0
 offset_top = 260.0
 offset_right = 725.0
 offset_bottom = 281.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Voice Acting"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "voiceActing"
 
-[node name="15ai" type="Label" parent="Titles/Voice Acting"]
+[node name="15ai" type="Label" parent="Titles/Voice Acting" unique_id=1487912591]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -547,18 +572,19 @@ offset_left = -213.0
 offset_top = 4.5
 offset_right = 212.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "15.ai"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HaySay" type="Label" parent="Titles/Voice Acting"]
+[node name="HaySay" type="Label" parent="Titles/Voice Acting" unique_id=665039212]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -567,19 +593,20 @@ offset_left = -213.0
 offset_top = 34.5
 offset_right = 212.0
 offset_bottom = 75.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "HaySay.ai"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Composer" type="Label" parent="Titles"]
+[node name="Composer" type="Label" parent="Titles" unique_id=2120688620]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -588,19 +615,20 @@ offset_left = 301.0
 offset_top = 280.0
 offset_right = 725.0
 offset_bottom = 301.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Сomposer"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "composer"
 
-[node name="Phelanhik" type="Label" parent="Titles/Composer"]
+[node name="Phelanhik" type="Label" parent="Titles/Composer" unique_id=135219925]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -609,39 +637,41 @@ offset_left = -213.0
 offset_top = 4.5
 offset_right = 212.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Phelanhik"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Music From Radio" type="Label" parent="Titles"]
+[node name="Music From Radio" type="Label" parent="Titles" unique_id=797651349]
 visible = false
+layout_mode = 0
 offset_left = 300.0
 offset_top = 600.0
 offset_right = 725.0
 offset_bottom = 621.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Music"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 isMoveTitle = true
 key = "music"
 
-[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio"]
+[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio" unique_id=2087779486]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -652,17 +682,18 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 8 )
+theme_override_fonts/font = SubResource("8")
 theme_override_font_sizes/font_size = 24
 text = "WE'LL MEET AGAIN"
-align = 1
+horizontal_alignment = 1
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/We Will Meet Again"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/We Will Meet Again" unique_id=262992691]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -671,17 +702,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 9 )
+theme_override_fonts/font = SubResource("9")
 theme_override_font_sizes/font_size = 24
 text = "Johnny Cash"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/We Will Meet Again"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/We Will Meet Again" unique_id=832806602]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -690,16 +722,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 211.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Blue Radio" type="Label" parent="Titles/Music From Radio"]
+[node name="Blue Radio" type="Label" parent="Titles/Music From Radio" unique_id=1859974578]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -710,17 +743,18 @@ offset_right = 212.5
 offset_bottom = 220.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Blue Radio"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="Happy Times" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Happy Times" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=1438019388]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -731,18 +765,19 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Happy Times"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times" unique_id=1304080301]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -751,17 +786,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Bob Crosby And The Bobcats"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Happy Times" unique_id=2101415822]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -770,16 +806,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Mathilda" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Mathilda" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=2119271416]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -790,18 +827,19 @@ offset_right = 212.5
 offset_bottom = 235.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Mathilda"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda" unique_id=1347103906]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -810,17 +848,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 51.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Cookie and the Cupcakes"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Mathilda" unique_id=352360440]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -829,16 +868,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 211.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Cant Help Falling In Love" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Cant Help Falling In Love" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=1007685438]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -849,18 +889,19 @@ offset_right = 212.5
 offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Can't Help Falling In Love"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love" unique_id=1726535982]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -869,17 +910,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Elvis Presley"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Cant Help Falling In Love" unique_id=1248605274]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -888,16 +930,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "RCA Records Label"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Black and Blue" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Black and Blue" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=298292199]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -908,18 +951,19 @@ offset_right = 212.5
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Black and Blue"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue" unique_id=202323876]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -928,17 +972,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Louis Armstrong"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Black and Blue" unique_id=243795264]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -947,16 +992,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Sony Music Entertainment Inc."
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="They Never Know" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="They Never Know" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=833833156]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -967,18 +1013,19 @@ offset_right = 212.5
 offset_bottom = 655.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "They Never Know"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know" unique_id=984180627]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -987,17 +1034,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Boppers"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/They Never Know" unique_id=1111413044]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1006,16 +1054,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Easy Living" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Easy Living" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=1768380752]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1026,18 +1075,19 @@ offset_right = 212.5
 offset_bottom = 795.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Easy Living"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living" unique_id=1756298046]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1046,17 +1096,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Easy Living" unique_id=1132491987]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1065,16 +1116,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="I Do Not Want To Set The World On Fire" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="I Do Not Want To Set The World On Fire" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=2070009390]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1085,18 +1137,19 @@ offset_right = 235.0
 offset_bottom = 935.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "I Don't Want To Set The World On Fire"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire" unique_id=1467676397]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1105,17 +1158,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/I Do Not Want To Set The World On Fire" unique_id=583992169]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1124,16 +1178,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Into each Life Some Rain Must Fall" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Into each Life Some Rain Must Fall" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=737565236]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1144,18 +1199,19 @@ offset_right = 235.0
 offset_bottom = 1075.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Into each Life Some Rain Must Fall"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall" unique_id=989476255]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1164,17 +1220,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Into each Life Some Rain Must Fall" unique_id=1687878811]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1183,16 +1240,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="It is A Sin To Tell A Lie" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="It is A Sin To Tell A Lie" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=1267422829]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1203,18 +1261,19 @@ offset_right = 235.0
 offset_bottom = 1215.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "It's A Sin To Tell A Lie"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie" unique_id=706643491]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1223,17 +1282,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/It is A Sin To Tell A Lie" unique_id=787013534]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1242,16 +1302,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Maybe" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="Maybe" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=950699063]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1262,18 +1323,19 @@ offset_right = 235.0
 offset_bottom = 1355.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "Maybe"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe" unique_id=1133180287]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1282,17 +1344,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/Maybe" unique_id=766252018]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1301,16 +1364,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="We\'ll Meet Again" type="Label" parent="Titles/Music From Radio/Blue Radio"]
+[node name="We\'ll Meet Again" type="Label" parent="Titles/Music From Radio/Blue Radio" unique_id=1946757357]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1321,18 +1385,19 @@ offset_right = 235.0
 offset_bottom = 1495.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "We'll Meet Again"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again" unique_id=519400653]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1341,17 +1406,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 12 )
+theme_override_fonts/font = SubResource("12")
 theme_override_font_sizes/font_size = 24
 text = "The Ink Spots"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Blue Radio/We\'ll Meet Again" unique_id=556984861]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1360,16 +1426,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Country Station" type="Label" parent="Titles/Music From Radio"]
+[node name="Country Station" type="Label" parent="Titles/Music From Radio" unique_id=1875963692]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1380,17 +1447,18 @@ offset_right = 212.5
 offset_bottom = 1840.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Country Station"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="Bubbles In My Beer" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Bubbles In My Beer" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=717165363]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1401,18 +1469,19 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Bubbles In My Beer"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer" unique_id=697987456]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1421,17 +1490,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Bob Wills And His Texas Playboys"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Bubbles In My Beer" unique_id=1320842385]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1440,16 +1510,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dark As A Dungeon" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Dark As A Dungeon" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=1326763258]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1460,18 +1531,19 @@ offset_right = 212.5
 offset_bottom = 235.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Dark As A Dungeon"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon" unique_id=1051500571]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1480,17 +1552,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Ernie Ford"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Dark As A Dungeon" unique_id=860618844]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1499,16 +1572,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Heartache By The Numbers" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Heartache By The Numbers" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=864213693]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1519,18 +1593,19 @@ offset_right = 212.5
 offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Heartache By The Numbers"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers" unique_id=302363135]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1539,17 +1614,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Guy Mitchell"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Heartache By The Numbers" unique_id=1579980508]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1558,16 +1634,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Ingrooves"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Answer To Drivin Nails In My Coffin" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Answer To Drivin Nails In My Coffin" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=841852173]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1578,18 +1655,19 @@ offset_right = 232.0
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Answer To Drivin Nails In My Coffin"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin" unique_id=388046782]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1598,17 +1676,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Jerry Irby"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Answer To Drivin Nails In My Coffin" unique_id=1908780977]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1617,16 +1696,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "MGM Records"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Stars of the Midnight Range" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Stars of the Midnight Range" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=1107618707]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1637,18 +1717,19 @@ offset_right = 212.5
 offset_bottom = 655.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Stars of the Midnight Range"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range" unique_id=210003972]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1657,17 +1738,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Johnny Bond"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Stars of the Midnight Range" unique_id=1716023485]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1676,16 +1758,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Exceleration Music"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Lets Ride Into The Sunset Together" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Lets Ride Into The Sunset Together" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=615149957]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1696,18 +1779,19 @@ offset_right = 212.5
 offset_bottom = 795.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Lets Ride Into The Sunset Together"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together" unique_id=201001594]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1716,17 +1800,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Lost Weekend Western Swing Band"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lets Ride Into The Sunset Together" unique_id=760575350]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1735,16 +1820,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Kontor New Media GmbH"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Lone Star" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Lone Star" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=178937105]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1755,18 +1841,19 @@ offset_right = 212.5
 offset_bottom = 935.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Lone Star"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star" unique_id=739898553]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1775,17 +1862,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Lost Weekend Western Swing Band"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Lone Star" unique_id=213067243]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1794,16 +1882,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Kontor New Media GmbH"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Shadow in the Valley" type="Label" parent="Titles/Music From Radio/Country Station"]
+[node name="Shadow in the Valley" type="Label" parent="Titles/Music From Radio/Country Station" unique_id=440023130]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1814,18 +1903,19 @@ offset_right = 212.5
 offset_bottom = 1075.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Shadow in the Valley"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley" unique_id=2086429289]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1834,17 +1924,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Lost Weekend Western Swing Band"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Country Station/Shadow in the Valley" unique_id=1770175850]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1853,16 +1944,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Kontor New Media GmbH"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Easy-Greasy FM" type="Label" parent="Titles/Music From Radio"]
+[node name="Easy-Greasy FM" type="Label" parent="Titles/Music From Radio" unique_id=1849379348]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1873,17 +1965,18 @@ offset_right = 212.5
 offset_bottom = 3040.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Easy-Greasy FM"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="Take It Easy Greasy" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Take It Easy Greasy" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=159272171]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1894,18 +1987,19 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Take It Easy Greasy"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy" unique_id=782572552]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1914,17 +2008,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Bobby Charles"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Take It Easy Greasy" unique_id=884808081]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1933,16 +2028,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Aint Got No Home" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Aint Got No Home" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=1806403336]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1953,18 +2049,19 @@ offset_right = 212.5
 offset_bottom = 235.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Ain't Got No Home"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home" unique_id=527741567]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1973,17 +2070,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Clarence Henry"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Aint Got No Home" unique_id=1169286590]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1992,16 +2090,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Sugar Coated Love" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Sugar Coated Love" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=1316508979]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2012,18 +2111,19 @@ offset_right = 212.5
 offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Sugar Coated Love"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love" unique_id=2017713285]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2032,17 +2132,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Lazy Lester"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Sugar Coated Love" unique_id=2010723294]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2051,16 +2152,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Come Back Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Come Back Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=669022725]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2071,18 +2173,19 @@ offset_right = 212.5
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Come Back Baby"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby" unique_id=1400339047]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2091,17 +2194,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Little Walter"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Come Back Baby" unique_id=458160347]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2110,16 +2214,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "UMG Recordings, Inc."
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="My Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="My Baby" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=1602869437]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2130,18 +2235,19 @@ offset_right = 212.5
 offset_bottom = 655.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "My Baby"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby" unique_id=646776717]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2150,17 +2256,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Little Walter"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/My Baby" unique_id=1289808727]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2169,16 +2276,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Oh Marie" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Oh Marie" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=856325867]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2189,18 +2297,19 @@ offset_right = 212.5
 offset_bottom = 795.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Oh Marie"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie" unique_id=69927901]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2209,17 +2318,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Louis Prima"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Oh Marie" unique_id=851232492]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2228,16 +2338,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Little Lil" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM"]
+[node name="Little Lil" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM" unique_id=1834422147]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2248,18 +2359,19 @@ offset_right = 212.5
 offset_bottom = 935.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Little Lil"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil" unique_id=730918779]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2268,17 +2380,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "The Hillbilly Moon Explosion"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Easy-Greasy FM/Little Lil" unique_id=766234718]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2287,16 +2400,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Radio Applewood" type="Label" parent="Titles/Music From Radio"]
+[node name="Radio Applewood" type="Label" parent="Titles/Music From Radio" unique_id=150372403]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2307,17 +2421,18 @@ offset_right = 212.5
 offset_bottom = 4100.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Radio Applewood"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="Happy Days are Here Again" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Happy Days are Here Again" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=704520846]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2328,18 +2443,19 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Happy Days are Here Again"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again" unique_id=1544557952]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2348,17 +2464,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Ben Selvin And The Crooners"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Happy Days are Here Again" unique_id=1245177123]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2367,16 +2484,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dear Hearts And Gentle People" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Dear Hearts And Gentle People" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1964675744]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2387,18 +2505,19 @@ offset_right = 212.5
 offset_bottom = 235.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Dear Hearts And Gentle People"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People" unique_id=1267631954]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2407,17 +2526,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Bob Crosby And The Bobcats"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dear Hearts And Gentle People" unique_id=1699061297]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2426,16 +2546,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="I Cant Dance I Got Ants In My Pants" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="I Cant Dance I Got Ants In My Pants" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1289508225]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2446,18 +2567,19 @@ offset_right = 212.5
 offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "I Can't Dance I Got Ants In My Pants"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants" unique_id=628229824]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2466,17 +2588,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Chick Webb"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Cant Dance I Got Ants In My Pants" unique_id=1155013406]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2485,16 +2608,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Civilization" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Civilization" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=867086547]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2505,18 +2629,19 @@ offset_right = 212.5
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Civilization"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization" unique_id=1682697950]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2525,17 +2650,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Danny Kaye"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Civilization" unique_id=901225186]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2544,16 +2670,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Que Sera Sera" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Que Sera Sera" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1681085758]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2564,18 +2691,19 @@ offset_right = 212.5
 offset_bottom = 655.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Que Sera, Sera"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera" unique_id=1908140688]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2584,17 +2712,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Doris Day"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Que Sera Sera" unique_id=506028360]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2603,16 +2732,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Masterworks"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Lets Call the Whole Thing Off" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Lets Call the Whole Thing Off" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1617843697]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2623,18 +2753,19 @@ offset_right = 212.5
 offset_bottom = 795.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Lets Call the Whole Thing Off"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off" unique_id=1560378115]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2643,17 +2774,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Ella Fitzgerald & Louis Armstrong"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Call the Whole Thing Off" unique_id=354084340]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2662,16 +2794,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dont Love Me" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Dont Love Me" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=2092232605]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2682,18 +2815,19 @@ offset_right = 212.5
 offset_bottom = 935.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Don't Love Me"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me" unique_id=1789844794]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2702,17 +2836,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Eva Eastwood & The Major Keys"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Dont Love Me" unique_id=1968941814]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2721,16 +2856,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Its Been A Long Long Time" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Its Been A Long Long Time" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1313846791]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2741,18 +2877,19 @@ offset_right = 212.5
 offset_bottom = 1075.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "It's Been A Long Long Time"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time" unique_id=676782267]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2761,17 +2898,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Harry James"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Its Been A Long Long Time" unique_id=456502019]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2780,16 +2918,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="What Would I Care" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="What Would I Care" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1574493285]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2800,18 +2939,19 @@ offset_right = 212.5
 offset_bottom = 1215.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "What Would I Care"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care" unique_id=1000624958]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2820,17 +2960,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "High Hatters & Frank Luther"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/What Would I Care" unique_id=698428914]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2839,16 +2980,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "RCA Records Label"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Lets Go Sunning" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Lets Go Sunning" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1926047961]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2859,18 +3001,19 @@ offset_right = 212.5
 offset_bottom = 1355.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Let's Go Sunning"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning" unique_id=1257130618]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2879,17 +3022,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Jack Shaindlin"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Lets Go Sunning" unique_id=1130685736]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2898,16 +3042,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Sunday" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Sunday" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=561397953]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2918,18 +3063,19 @@ offset_right = 212.5
 offset_bottom = 1495.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Sunday"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday" unique_id=83588743]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2938,17 +3084,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Jean Goldkette And His Orchestra"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sunday" unique_id=255493608]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2957,16 +3104,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "RCA Records Label"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="La Vie En Rose" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="La Vie En Rose" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=499601780]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2977,18 +3125,19 @@ offset_right = 212.5
 offset_bottom = 1635.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "La Vie En Rose"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose" unique_id=1542837257]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2997,17 +3146,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Louis Armstrong"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/La Vie En Rose" unique_id=1509921720]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3016,16 +3166,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="I Didnt Know The Gun Was Loaded" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="I Didnt Know The Gun Was Loaded" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1075602068]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3036,18 +3187,19 @@ offset_right = 212.5
 offset_bottom = 1775.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "I Didnt Know The Gun Was Loaded"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded" unique_id=276562085]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3056,17 +3208,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Patsy Montana"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/I Didnt Know The Gun Was Loaded" unique_id=1967295297]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3075,16 +3228,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Zebralution GmbH"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="All I Care About" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="All I Care About" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=839253674]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3095,18 +3249,19 @@ offset_right = 215.5
 offset_bottom = 1915.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "All I Care About"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About" unique_id=537454689]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3115,17 +3270,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Richard Gere"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/All I Care About" unique_id=1398878416]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3134,16 +3290,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Epic Records"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Mr Sandman" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Mr Sandman" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=648141883]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3154,18 +3311,19 @@ offset_right = 215.5
 offset_bottom = 2055.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Mr. Sandman"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman" unique_id=361197908]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3174,17 +3332,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "The Chordettes"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Mr Sandman" unique_id=2023555326]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3193,16 +3352,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "River Records Limited"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Sh-Boom" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="Sh-Boom" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1964194295]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3213,18 +3373,19 @@ offset_right = 215.5
 offset_bottom = 2195.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Sh-Boom"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom" unique_id=1629544388]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3233,17 +3394,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "The Chords"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/Sh-Boom" unique_id=341553168]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3252,16 +3414,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Warner Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio/Radio Applewood"]
+[node name="We Will Meet Again" type="Label" parent="Titles/Music From Radio/Radio Applewood" unique_id=1749151517]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3272,18 +3435,19 @@ offset_right = 215.5
 offset_bottom = 2335.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "We'll meet again"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again" unique_id=1856774121]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3292,17 +3456,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Vera Lynn"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Radio Applewood/We Will Meet Again" unique_id=330145376]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3311,16 +3476,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "The Orchard Enterprises"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Royal Radio" type="Label" parent="Titles/Music From Radio"]
+[node name="Royal Radio" type="Label" parent="Titles/Music From Radio" unique_id=1158015666]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3331,17 +3497,18 @@ offset_right = 212.5
 offset_bottom = 6560.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Royal Radio"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="Sign Sign Sign" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="Sign Sign Sign" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=1846562798]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3352,18 +3519,19 @@ offset_right = 212.5
 offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Sign Sign Sign"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign" unique_id=7935847]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3372,17 +3540,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Benny Goodman"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Sign Sign Sign" unique_id=1143777162]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3391,16 +3560,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Fonotil Label"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Blue Moon" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="Blue Moon" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=1181186198]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3411,18 +3581,19 @@ offset_right = 212.5
 offset_bottom = 235.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Blue Moon"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon" unique_id=1920122555]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3431,17 +3602,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Frank Sinatra"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Blue Moon" unique_id=364662855]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3450,16 +3622,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="My Guardian Angel" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="My Guardian Angel" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=832607262]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3470,18 +3643,19 @@ offset_right = 212.5
 offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "My Guardian Angel"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel" unique_id=986077799]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3490,17 +3664,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Jimmy Breedlove"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/My Guardian Angel" unique_id=1463431759]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3509,16 +3684,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "OKeh Records"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dream A Little Dream Of Me" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="Dream A Little Dream Of Me" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=1864561515]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3529,18 +3705,19 @@ offset_right = 212.5
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "Dream A Little Dream Of Me"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me" unique_id=1040602865]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3549,17 +3726,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Ella Fitzgerald & Louis Armstrong"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/Dream A Little Dream Of Me" unique_id=1455614874]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3568,16 +3746,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Universal Music Group"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="A Kiss To Build A Dream On" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="A Kiss To Build A Dream On" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=336307275]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3588,18 +3767,19 @@ offset_right = 212.5
 offset_bottom = 655.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "A Kiss To Build A Dream On"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On" unique_id=1407787573]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3608,17 +3788,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Louis Armstrong"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/A Kiss To Build A Dream On" unique_id=860365457]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3627,16 +3808,17 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "IIP-DDS, GBMT LTD"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="This Can\'t Be Love" type="Label" parent="Titles/Music From Radio/Royal Radio"]
+[node name="This Can\'t Be Love" type="Label" parent="Titles/Music From Radio/Royal Radio" unique_id=400333574]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3647,18 +3829,19 @@ offset_right = 212.5
 offset_bottom = 795.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 10 )
+theme_override_fonts/font = SubResource("10")
 theme_override_font_sizes/font_size = 24
 text = "This Can't Be Love"
-align = 1
+horizontal_alignment = 1
 uppercase = true
 
-[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love"]
+[node name="Group" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love" unique_id=1640798414]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3667,17 +3850,18 @@ offset_left = -212.5
 offset_top = 10.0
 offset_right = 212.5
 offset_bottom = 46.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 11 )
+theme_override_fonts/font = SubResource("11")
 theme_override_font_sizes/font_size = 24
 text = "Nat King Cole"
-align = 1
+horizontal_alignment = 1
 
-[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love"]
+[node name="Publisher" type="Label" parent="Titles/Music From Radio/Royal Radio/This Can\'t Be Love" unique_id=2010235477]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3686,17 +3870,18 @@ offset_left = -212.5
 offset_top = 42.0
 offset_right = 212.5
 offset_bottom = 63.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Full Taste Records, Believe SAS"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Special Thanks" type="Label" parent="Titles"]
+[node name="Special Thanks" type="Label" parent="Titles" unique_id=1125378131]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3705,19 +3890,20 @@ offset_left = 300.0
 offset_top = 245.0
 offset_right = 724.0
 offset_bottom = 266.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "Special Thanks"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "specialThanks"
 
-[node name="shadowiq" type="Label" parent="Titles/Special Thanks"]
+[node name="shadowiq" type="Label" parent="Titles/Special Thanks" unique_id=914432428]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3726,17 +3912,18 @@ offset_left = -212.0
 offset_top = 4.5
 offset_right = 213.0
 offset_bottom = 45.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "shadowiq"
-align = 1
+horizontal_alignment = 1
 
-[node name="StaSyaN" type="Label" parent="Titles/Special Thanks"]
+[node name="StaSyaN" type="Label" parent="Titles/Special Thanks" unique_id=1910803276]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3745,17 +3932,18 @@ offset_left = -212.0
 offset_top = 39.5
 offset_right = 213.0
 offset_bottom = 80.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "StaSyaN"
-align = 1
+horizontal_alignment = 1
 
-[node name="McFord" type="Label" parent="Titles/Special Thanks"]
+[node name="McFord" type="Label" parent="Titles/Special Thanks" unique_id=1251133048]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3764,18 +3952,19 @@ offset_left = -212.0
 offset_top = 74.5
 offset_right = 213.0
 offset_bottom = 115.5
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Проект СИДР"
-align = 1
+horizontal_alignment = 1
 
-[node name="OKI" type="Label" parent="Titles"]
+[node name="OKI" type="Label" parent="Titles" unique_id=619706944]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3784,35 +3973,35 @@ offset_left = 140.0
 offset_top = 270.0
 offset_right = 890.0
 offset_bottom = 370.0
-theme = ExtResource( 3 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Игра разрабатывалась в рамках Общетабунских Конкурсов Игростроения"
-align = 1
+horizontal_alignment = 1
 autowrap_mode = 3
-script = ExtResource( 4 )
+script = ExtResource("4")
 key = "OKI"
 
-[node name="Black" type="ColorRect" parent="."]
+[node name="Black" type="ColorRect" parent="." unique_id=338307144]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=731536767]
+stream = ExtResource("6")
 volume_db = -15.0
 autoplay = true
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-"anims/Move Title" = SubResource( 6 )
-anims/RESET = SubResource( 7 )
-"anims/Show Title" = SubResource( 5 )
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1153256964]
+libraries/ = SubResource("AnimationLibrary_g618n")
 
-[node name="Skip" type="Label" parent="."]
+[node name="Skip" type="Label" parent="." unique_id=1789110634]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -3821,22 +4010,20 @@ offset_left = -144.0
 offset_top = -24.0
 offset_right = -37.0
 offset_bottom = -3.0
-theme = ExtResource( 3 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme = ExtResource("3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = SubResource( 16 )
+theme_override_fonts/font = SubResource("16")
 theme_override_font_sizes/font_size = 14
 text = "пропустить"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="icon" type="TextureRect" parent="Skip"]
+[node name="icon" type="TextureRect" parent="Skip" unique_id=740569322]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -3845,19 +4032,17 @@ offset_left = -6.0
 offset_top = -26.0
 offset_right = 42.0
 offset_bottom = 6.0
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-theme = ExtResource( 3 )
-texture = ExtResource( 7 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+theme = ExtResource("3")
+texture = ExtResource("7")
 stretch_mode = 5
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="shadow" type="TextureRect" parent="Skip/icon"]
-texture_filter = 2
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="Skip/icon" unique_id=2100148109]
+self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -3866,12 +4051,11 @@ offset_left = -46.0
 offset_top = -30.0
 offset_right = 2.0
 offset_bottom = 2.0
-pivot_offset = Vector2( 24, 16 )
-theme = ExtResource( 3 )
-texture = ExtResource( 5 )
+pivot_offset = Vector2(24, 16)
+theme = ExtResource("3")
+texture = ExtResource("5")
 stretch_mode = 5
 
-[node name="anim" type="AnimationPlayer" parent="Skip"]
+[node name="anim" type="AnimationPlayer" parent="Skip" unique_id=870153673]
 root_node = NodePath("../..")
-"anims/Fade Out Skip" = SubResource( 14 )
-anims/RESET = SubResource( 15 )
+libraries/ = SubResource("AnimationLibrary_t4hkn")

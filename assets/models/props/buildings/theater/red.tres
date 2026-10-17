@@ -1,10 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dh4xuk32o8mso"]
 
 [resource]
-texture_filter = 0
 resource_name = "red"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.62666, 0.21606, 0.200132, 1 )
+albedo_color = Color(0.62666, 0.21606, 0.200132, 1)
 metallic = 0.543103
 roughness = 0.318966
+texture_filter = 0

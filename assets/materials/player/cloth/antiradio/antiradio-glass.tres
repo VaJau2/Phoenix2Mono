@@ -1,14 +1,12 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cruh41m8sos4o"]
 
 [resource]
-texture_filter = 0
 resource_name = "Glass"
-flags_transparent = true
-vertex_color_use_as_albedo = true
 transparency = 4
-params_line_width = 0.1
-params_point_size = 0.1
-albedo_color = Color( 0, 1, 0.882353, 0.141176 )
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 0.882353, 0.141176)
 metallic = 0.1
 metallic_specular = 0.9
 roughness = 0.1
+texture_filter = 0
+point_size = 0.1

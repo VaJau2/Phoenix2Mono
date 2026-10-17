@@ -1,59 +1,57 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene format=3 uid="uid://bqv50lhm0u762"]
 
-[ext_resource path="res://assets/audio/radio/Switch.ogg" type="AudioStream" id=1]
-[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsMenu.cs" type="Script" id=3]
-[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
-[ext_resource path="res://assets/scripts/interface/Menus/Settings/SettingsSubmenu.cs" type="Script" id=5]
-[ext_resource path="res://assets/scripts/interface/Menus/Settings/ControlsSubmenu.cs" type="Script" id=6]
-[ext_resource path="res://assets/scripts/interface/Menus/Settings/DifficultySubmenu.cs" type="Script" id=7]
-[ext_resource path="res://assets/scripts/interface/MenuAudi.cs" type="Script" id=8]
-[ext_resource path="res://assets/textures/interface/icons/buttons/Slash.png" type="Texture2D" id=11]
+[ext_resource type="AudioStream" uid="uid://dr1ewd05y075b" path="res://assets/audio/radio/Switch.ogg" id="1"]
+[ext_resource type="Theme" uid="uid://hu07d4u3auvy" path="res://assets/materials/fonts/terminal_theme.tres" id="2"]
+[ext_resource type="Script" uid="uid://comawgjnymso2" path="res://assets/scripts/interface/Menus/Settings/SettingsMenu.cs" id="3"]
+[ext_resource type="Material" uid="uid://dydffc5w3lmpo" path="res://assets/dialogues/blur.tres" id="4"]
+[ext_resource type="Script" uid="uid://c7taulx5r7dmu" path="res://assets/scripts/interface/Menus/Settings/SettingsSubmenu.cs" id="5"]
+[ext_resource type="Script" uid="uid://c5bbgitmogy3x" path="res://assets/scripts/interface/Menus/Settings/ControlsSubmenu.cs" id="6"]
+[ext_resource type="Script" uid="uid://c8env77m32n8m" path="res://assets/scripts/interface/Menus/Settings/DifficultySubmenu.cs" id="7"]
+[ext_resource type="Script" uid="uid://dhfu8qyyoshb6" path="res://assets/scripts/interface/MenuAudi.cs" id="8"]
+[ext_resource type="Texture2D" uid="uid://b4lua2ciio3be" path="res://assets/textures/interface/icons/buttons/Slash.png" id="11"]
 
-[node name="SettingsMenu" type="Control" groups=["ignore_color"]]
+[node name="SettingsMenu" type="Control" unique_id=1462813950 groups=["ignore_color"]]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
+script = ExtResource("3")
 submenuPaths = {
 "Controls": NodePath("Controls"),
 "Difficulty": NodePath("Difficulty"),
 "Settings": NodePath("Settings")
 }
 
-[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
-material = ExtResource( 4 )
+[node name="background" type="ColorRect" parent="." unique_id=1282647329 groups=["ignore_color"]]
+material = ExtResource("4")
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="background2" type="ColorRect" parent="." unique_id=1389439853 groups=["ignore_color"]]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 0.588235)
 
-[node name="page_label" type="Label" parent="."]
+[node name="page_label" type="Label" parent="." unique_id=1693664128]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 21.0
 offset_right = 322.0
 offset_bottom = 43.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "page_label"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Settings" type="Control" parent="." groups=["ignore_color"]]
+[node name="Settings" type="Control" parent="." unique_id=1376975406 groups=["ignore_color"]]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
+script = ExtResource("5")
 
-[node name="mouse_label" type="Label" parent="Settings"]
+[node name="mouse_label" type="Label" parent="Settings" unique_id=1776001168]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -62,11 +60,12 @@ offset_left = -112.0
 offset_top = -204.0
 offset_right = 64.0
 offset_bottom = -182.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Чувствительность мыши:"
-align = 2
+horizontal_alignment = 2
 
-[node name="mouse_slider" type="HSlider" parent="Settings"]
+[node name="mouse_slider" type="HSlider" parent="Settings" unique_id=1916472135]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -75,29 +74,25 @@ offset_left = 98.0001
 offset_top = -204.0
 offset_right = 398.0
 offset_bottom = -184.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.01
 max_value = 0.8
 step = 0.01
-value = 0.1
-__meta__ = {
-"_edit_group_": true
-}
+value = 0.09999999999999999
 
-[node name="mouse_border" type="Label" parent="Settings/mouse_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/mouse_slider" unique_id=1564701620 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="mouse_border2" type="Label" parent="Settings/mouse_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/mouse_slider" unique_id=2120009362 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -106,13 +101,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="distance_label" type="Label" parent="Settings"]
+[node name="distance_label" type="Label" parent="Settings" unique_id=309176483]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -121,11 +114,12 @@ offset_left = -112.0
 offset_top = -164.0
 offset_right = 64.0
 offset_bottom = -146.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Дальность прорисовки:"
-align = 2
+horizontal_alignment = 2
 
-[node name="distance_slider" type="HSlider" parent="Settings"]
+[node name="distance_slider" type="HSlider" parent="Settings" unique_id=1218418477]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -134,28 +128,24 @@ offset_left = 96.0
 offset_top = -164.0
 offset_right = 396.0
 offset_bottom = -144.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 200.0
 max_value = 600.0
 value = 600.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="distance_border" type="Label" parent="Settings/distance_slider" groups=["ignore_color"]]
+[node name="distance_border" type="Label" parent="Settings/distance_slider" unique_id=1220590270 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -7.93205
 offset_right = 306.0
 offset_bottom = 14.0679
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="distance_border2" type="Label" parent="Settings/distance_slider" groups=["ignore_color"]]
+[node name="distance_border2" type="Label" parent="Settings/distance_slider" unique_id=2021582814 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -164,13 +154,11 @@ offset_left = 2.0
 offset_top = -7.93205
 offset_right = 10.0
 offset_bottom = 10.0679
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="shadows_label" type="Label" parent="Settings"]
+[node name="shadows_label" type="Label" parent="Settings" unique_id=215801470]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -179,11 +167,12 @@ offset_left = -112.0
 offset_top = -116.0
 offset_right = 64.0
 offset_bottom = -94.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Качество теней:"
-align = 2
+horizontal_alignment = 2
 
-[node name="shadows_button" type="Button" parent="Settings"]
+[node name="shadows_button" type="Button" parent="Settings" unique_id=709941818]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -192,25 +181,21 @@ offset_left = 88.0001
 offset_top = -116.0
 offset_right = 403.0
 offset_bottom = -98.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Максимальное"
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="shadows_border" type="Label" parent="Settings/shadows_button" groups=["ignore_color"]]
+[node name="shadows_border" type="Label" parent="Settings/shadows_button" unique_id=1734732152 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -8.49998
 offset_right = 6.0
 offset_bottom = 13.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="shadows_border2" type="Label" parent="Settings/shadows_button" groups=["ignore_color"]]
+[node name="shadows_border2" type="Label" parent="Settings/shadows_button" unique_id=1584375441 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -219,13 +204,11 @@ offset_left = -5.99982
 offset_top = -8.49998
 offset_right = 0.000183105
 offset_bottom = 6.50002
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="fullscreen" type="Label" parent="Settings"]
+[node name="fullscreen" type="Label" parent="Settings" unique_id=485866210]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -234,11 +217,12 @@ offset_left = -112.0
 offset_top = -76.0
 offset_right = 64.0
 offset_bottom = -54.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Полноэкранный режим:"
-align = 2
+horizontal_alignment = 2
 
-[node name="fullscreen_button" type="Button" parent="Settings"]
+[node name="fullscreen_button" type="Button" parent="Settings" unique_id=809434549]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -247,25 +231,21 @@ offset_left = 88.0
 offset_top = -76.0
 offset_right = 403.0
 offset_bottom = -58.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Выключен"
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="fullscreeen_border" type="Label" parent="Settings/fullscreen_button" groups=["ignore_color"]]
+[node name="fullscreeen_border" type="Label" parent="Settings/fullscreen_button" unique_id=230794070 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -8.5
 offset_right = 6.0
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="fullscreeen_border2" type="Label" parent="Settings/fullscreen_button" groups=["ignore_color"]]
+[node name="fullscreeen_border2" type="Label" parent="Settings/fullscreen_button" unique_id=1696471168 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -274,13 +254,11 @@ offset_left = -6.00021
 offset_top = -8.5
 offset_right = -0.000213623
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="cameraAngle" type="Label" parent="Settings"]
+[node name="cameraAngle" type="Label" parent="Settings" unique_id=1058189871]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -289,11 +267,12 @@ offset_left = -152.0
 offset_top = -36.0
 offset_right = 64.0
 offset_bottom = -14.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Поворот камеры в движении:"
-align = 2
+horizontal_alignment = 2
 
-[node name="cameraAngle_button" type="Button" parent="Settings"]
+[node name="cameraAngle_button" type="Button" parent="Settings" unique_id=170032083]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -302,25 +281,21 @@ offset_left = 88.0
 offset_top = -36.0
 offset_right = 403.0
 offset_bottom = -18.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Включен"
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="fullscreeen_border" type="Label" parent="Settings/cameraAngle_button" groups=["ignore_color"]]
+[node name="fullscreeen_border" type="Label" parent="Settings/cameraAngle_button" unique_id=101160217 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -8.5
 offset_right = 6.0
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="fullscreeen_border2" type="Label" parent="Settings/cameraAngle_button" groups=["ignore_color"]]
+[node name="fullscreeen_border2" type="Label" parent="Settings/cameraAngle_button" unique_id=64146462 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -329,13 +304,11 @@ offset_left = -6.00021
 offset_top = -8.5
 offset_right = -0.000213623
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="sound_label" type="Label" parent="Settings"]
+[node name="sound_label" type="Label" parent="Settings" unique_id=2043502771]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -344,11 +317,12 @@ offset_left = -112.0
 offset_top = 20.0
 offset_right = 64.0
 offset_bottom = 41.999
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Громкость звуков:"
-align = 2
+horizontal_alignment = 2
 
-[node name="sound_slider" type="HSlider" parent="Settings"]
+[node name="sound_slider" type="HSlider" parent="Settings" unique_id=306535675]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -357,29 +331,25 @@ offset_left = 98.0
 offset_top = 20.0
 offset_right = 398.0
 offset_bottom = 39.999
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = -80.0
 max_value = 0.0
 step = 0.1
 value = -15.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="sound_border" type="Label" parent="Settings/sound_slider" groups=["ignore_color"]]
+[node name="sound_border" type="Label" parent="Settings/sound_slider" unique_id=595946325 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -9.0
 offset_top = -7.49989
 offset_right = -3.0
 offset_bottom = 7.50011
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="sound_border2" type="Label" parent="Settings/sound_slider" groups=["ignore_color"]]
+[node name="sound_border2" type="Label" parent="Settings/sound_slider" unique_id=1222474102 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -388,13 +358,11 @@ offset_left = 3.00018
 offset_top = -7.49989
 offset_right = 9.00018
 offset_bottom = 7.50011
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="radio_label" type="Label" parent="Settings"]
+[node name="radio_label" type="Label" parent="Settings" unique_id=1238468142]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -403,11 +371,12 @@ offset_left = -112.0
 offset_top = 52.0
 offset_right = 64.0
 offset_bottom = 74.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Громкость радио:"
-align = 2
+horizontal_alignment = 2
 
-[node name="radio_slider" type="HSlider" parent="Settings"]
+[node name="radio_slider" type="HSlider" parent="Settings" unique_id=351277351]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -416,29 +385,25 @@ offset_left = 98.0
 offset_top = 52.0
 offset_right = 398.0
 offset_bottom = 72.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = -80.0
 max_value = 0.0
 step = 0.1
 value = -15.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="music_border" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+[node name="music_border" type="Label" parent="Settings/radio_slider" unique_id=482447447 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -9.0
 offset_top = -7.50002
 offset_right = -3.0
 offset_bottom = 7.49998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="music_border2" type="Label" parent="Settings/radio_slider" groups=["ignore_color"]]
+[node name="music_border2" type="Label" parent="Settings/radio_slider" unique_id=1171755066 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -447,13 +412,11 @@ offset_left = 3.00018
 offset_top = -7.00002
 offset_right = 9.00018
 offset_bottom = 7.99998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="music_label" type="Label" parent="Settings"]
+[node name="music_label" type="Label" parent="Settings" unique_id=227039981]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -462,11 +425,12 @@ offset_left = -112.0
 offset_top = 84.0
 offset_right = 64.0
 offset_bottom = 106.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Громкость музыки:"
-align = 2
+horizontal_alignment = 2
 
-[node name="music_slider" type="HSlider" parent="Settings"]
+[node name="music_slider" type="HSlider" parent="Settings" unique_id=101388532]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -475,29 +439,25 @@ offset_left = 98.0
 offset_top = 84.0
 offset_right = 398.0
 offset_bottom = 104.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = -80.0
 max_value = 0.0
 step = 0.1
 value = -80.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="music_border" type="Label" parent="Settings/music_slider" groups=["ignore_color"]]
+[node name="music_border" type="Label" parent="Settings/music_slider" unique_id=870165313 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -9.0
 offset_top = -7.50002
 offset_right = -3.0
 offset_bottom = 7.49998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="music_border2" type="Label" parent="Settings/music_slider" groups=["ignore_color"]]
+[node name="music_border2" type="Label" parent="Settings/music_slider" unique_id=2090409414 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -506,13 +466,11 @@ offset_left = 3.00018
 offset_top = -7.00002
 offset_right = 9.00018
 offset_bottom = 7.99998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="voice_label" type="Label" parent="Settings"]
+[node name="voice_label" type="Label" parent="Settings" unique_id=480885912]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -521,14 +479,12 @@ offset_left = -112.0
 offset_top = 116.0
 offset_right = 64.0
 offset_bottom = 138.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Громкость озвучки:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
-[node name="voice_slider" type="HSlider" parent="Settings"]
+[node name="voice_slider" type="HSlider" parent="Settings" unique_id=1122145801]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -537,29 +493,25 @@ offset_left = 98.0
 offset_top = 116.0
 offset_right = 398.0
 offset_bottom = 136.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = -80.0
 max_value = 0.0
 step = 0.1
 value = -15.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="voice_border" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
+[node name="voice_border" type="Label" parent="Settings/voice_slider" unique_id=1452916525 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -9.0
 offset_top = -7.50002
 offset_right = -3.0
 offset_bottom = 7.49998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="voice_border2" type="Label" parent="Settings/voice_slider" groups=["ignore_color"]]
+[node name="voice_border2" type="Label" parent="Settings/voice_slider" unique_id=55986787 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -568,13 +520,11 @@ offset_left = 3.00018
 offset_top = -7.00002
 offset_right = 9.00018
 offset_bottom = 7.99998
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="language" type="Label" parent="Settings"]
+[node name="language" type="Label" parent="Settings" unique_id=236531302]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -583,11 +533,12 @@ offset_left = -472.0
 offset_top = -152.0
 offset_right = -232.0
 offset_bottom = -130.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Язык:"
-align = 1
+horizontal_alignment = 1
 
-[node name="language_button" type="Button" parent="Settings"]
+[node name="language_button" type="Button" parent="Settings" unique_id=1373646776]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -596,25 +547,21 @@ offset_left = -432.0
 offset_top = -122.0
 offset_right = -273.0
 offset_bottom = -104.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Русский"
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="border1" type="Label" parent="Settings/language_button" groups=["ignore_color"]]
+[node name="border1" type="Label" parent="Settings/language_button" unique_id=604051955 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -8.5
 offset_right = 6.0
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Settings/language_button" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Settings/language_button" unique_id=1756963976 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -623,13 +570,11 @@ offset_left = -6.00021
 offset_top = -8.5
 offset_right = -0.000213623
 offset_bottom = 6.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="colorBlock" type="Control" parent="Settings" groups=["ignore_color"]]
+[node name="colorBlock" type="Control" parent="Settings" unique_id=1738520847 groups=["ignore_color"]]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -638,37 +583,34 @@ offset_left = -448.0
 offset_top = -52.0
 offset_right = -192.0
 offset_bottom = 60.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="label" type="Label" parent="Settings/colorBlock"]
+[node name="label" type="Label" parent="Settings/colorBlock" unique_id=1854622087]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
 offset_right = -96.0
 offset_bottom = -176.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Цвет интерфейса:"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="r_label" type="Label" parent="Settings/colorBlock"]
+[node name="r_label" type="Label" parent="Settings/colorBlock" unique_id=1295109111]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -16.0
 offset_top = 28.0
 offset_right = -216.0
 offset_bottom = -65.9999
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "R:"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="r_slider" type="HSlider" parent="Settings/colorBlock/r_label" groups=["ignore_color"]]
+[node name="r_slider" type="HSlider" parent="Settings/colorBlock/r_label" unique_id=1287674129 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -676,29 +618,25 @@ offset_left = 32.0001
 offset_top = 7.0
 offset_right = 197.0
 offset_bottom = -6.00008
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 0.2
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/r_label/r_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/r_label/r_slider" unique_id=1599127977 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.5
 offset_right = -2.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/r_label/r_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/r_label/r_slider" unique_id=864041362 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -707,25 +645,24 @@ offset_left = 4.0
 offset_top = -8.5
 offset_right = 12.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="g_label" type="Label" parent="Settings/colorBlock"]
+[node name="g_label" type="Label" parent="Settings/colorBlock" unique_id=777153418]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -16.0
 offset_top = 52.0
 offset_right = -216.0
 offset_bottom = -41.9999
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "G:"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="g_slider" type="HSlider" parent="Settings/colorBlock/g_label" groups=["ignore_color"]]
+[node name="g_slider" type="HSlider" parent="Settings/colorBlock/g_label" unique_id=2047809396 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -733,30 +670,25 @@ offset_left = 32.0001
 offset_top = 7.0
 offset_right = 197.0
 offset_bottom = -6.00008
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/g_label/g_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/g_label/g_slider" unique_id=1265355374 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.5
 offset_right = -2.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/g_label/g_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/g_label/g_slider" unique_id=683418361 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -765,25 +697,24 @@ offset_left = 4.0
 offset_top = -8.5
 offset_right = 12.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="b_label" type="Label" parent="Settings/colorBlock"]
+[node name="b_label" type="Label" parent="Settings/colorBlock" unique_id=994443554]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -16.0
 offset_top = 76.0
 offset_right = -216.0
 offset_bottom = -17.9999
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "B:"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="b_slider" type="HSlider" parent="Settings/colorBlock/b_label" groups=["ignore_color"]]
+[node name="b_slider" type="HSlider" parent="Settings/colorBlock/b_label" unique_id=1438003512 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -791,29 +722,25 @@ offset_left = 32.0001
 offset_top = 7.0
 offset_right = 197.0
 offset_bottom = -6.00008
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 0.2
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="mouse_border" type="Label" parent="Settings/colorBlock/b_label/b_slider" groups=["ignore_color"]]
+[node name="mouse_border" type="Label" parent="Settings/colorBlock/b_label/b_slider" unique_id=136877961 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.5
 offset_right = -2.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="mouse_border2" type="Label" parent="Settings/colorBlock/b_label/b_slider" groups=["ignore_color"]]
+[node name="mouse_border2" type="Label" parent="Settings/colorBlock/b_label/b_slider" unique_id=536596252 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -822,37 +749,38 @@ offset_left = 4.0
 offset_top = -8.5
 offset_right = 12.0
 offset_bottom = 9.5
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="controls" type="Button" parent="Settings"]
+[node name="controls" type="Button" parent="Settings" unique_id=2112723481]
+layout_mode = 0
 anchor_top = 0.773
 anchor_right = 1.0
 anchor_bottom = 0.813
 offset_top = 0.199951
 offset_bottom = 0.199982
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "[Настройки управления]"
 
-[node name="difficulty" type="Button" parent="Settings"]
+[node name="difficulty" type="Button" parent="Settings" unique_id=331577046]
+layout_mode = 0
 anchor_top = 0.827
 anchor_right = 1.0
 anchor_bottom = 0.867
 offset_top = -0.200012
 offset_bottom = -0.200012
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "[Настройки сложности]"
 
-[node name="Controls" type="Control" parent="." groups=["ignore_color"]]
+[node name="Controls" type="Control" parent="." unique_id=2051076592 groups=["ignore_color"]]
 visible = false
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 6 )
+script = ExtResource("6")
 
-[node name="default" type="Button" parent="Controls"]
+[node name="default" type="Button" parent="Controls" unique_id=762200989]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -861,13 +789,11 @@ offset_left = -440.0
 offset_top = -180.0
 offset_right = -152.0
 offset_bottom = -154.128
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = " [Сбросить]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyForwardLabel" type="Label" parent="Controls"]
+[node name="keyForwardLabel" type="Label" parent="Controls" unique_id=158845395]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -876,14 +802,12 @@ offset_left = -128.0
 offset_top = -172.0
 offset_right = 36.0
 offset_bottom = -152.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Вперед:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyForwardIcon" type="TextureRect" parent="Controls"]
+[node name="keyForwardIcon" type="TextureRect" parent="Controls" unique_id=330129735]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -892,12 +816,13 @@ offset_left = 104.0
 offset_top = -178.0
 offset_right = 152.0
 offset_bottom = -152.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyBackLabel" type="Label" parent="Controls"]
+[node name="keyBackLabel" type="Label" parent="Controls" unique_id=546985233]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -906,11 +831,12 @@ offset_left = -128.0
 offset_top = -140.0
 offset_right = -25.0
 offset_bottom = -120.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Назад:"
 
-[node name="keyBackIcon" type="TextureRect" parent="Controls"]
+[node name="keyBackIcon" type="TextureRect" parent="Controls" unique_id=1568953041]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -919,12 +845,13 @@ offset_left = 104.0
 offset_top = -146.0
 offset_right = 152.0
 offset_bottom = -120.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyLeftLabel" type="Label" parent="Controls"]
+[node name="keyLeftLabel" type="Label" parent="Controls" unique_id=809690810]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -933,11 +860,12 @@ offset_left = -128.0
 offset_top = -108.0
 offset_right = -8.0
 offset_bottom = -88.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Налево:"
 
-[node name="keyLeftIcon" type="TextureRect" parent="Controls"]
+[node name="keyLeftIcon" type="TextureRect" parent="Controls" unique_id=1890934388]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -946,12 +874,13 @@ offset_left = 104.0
 offset_top = -114.0
 offset_right = 152.0
 offset_bottom = -88.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyRightLabel" type="Label" parent="Controls"]
+[node name="keyRightLabel" type="Label" parent="Controls" unique_id=1393422751]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -960,14 +889,12 @@ offset_left = -128.0
 offset_top = -76.0
 offset_right = -49.0
 offset_bottom = -56.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Направо:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyRightIcon" type="TextureRect" parent="Controls"]
+[node name="keyRightIcon" type="TextureRect" parent="Controls" unique_id=2109408351]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -976,12 +903,13 @@ offset_left = 104.0
 offset_top = -82.0
 offset_right = 152.0
 offset_bottom = -56.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyJumpLabel" type="Label" parent="Controls"]
+[node name="keyJumpLabel" type="Label" parent="Controls" unique_id=1595549454]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -990,11 +918,12 @@ offset_left = -128.0
 offset_top = -44.0
 offset_right = 88.0
 offset_bottom = -24.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Прыжок/Полет:"
 
-[node name="keyJumpIcon" type="TextureRect" parent="Controls"]
+[node name="keyJumpIcon" type="TextureRect" parent="Controls" unique_id=1972459825]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1003,12 +932,13 @@ offset_left = 104.0
 offset_top = -50.0
 offset_right = 152.0
 offset_bottom = -18.0
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyRunLabel" type="Label" parent="Controls"]
+[node name="keyRunLabel" type="Label" parent="Controls" unique_id=856569950]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1017,11 +947,12 @@ offset_left = -128.0
 offset_top = -12.0
 offset_right = 96.0
 offset_bottom = 8.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Бег/Щит/Снижение:"
 
-[node name="keyRunIcon" type="TextureRect" parent="Controls"]
+[node name="keyRunIcon" type="TextureRect" parent="Controls" unique_id=1170090200]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1030,12 +961,13 @@ offset_left = 104.0
 offset_top = -18.0
 offset_right = 152.0
 offset_bottom = 7.39999
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyUseLabel" type="Label" parent="Controls"]
+[node name="keyUseLabel" type="Label" parent="Controls" unique_id=1713039755]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1044,14 +976,12 @@ offset_left = -128.0
 offset_top = 20.0
 offset_right = 88.0
 offset_bottom = 40.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Использовать: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyUseIcon" type="TextureRect" parent="Controls"]
+[node name="keyUseIcon" type="TextureRect" parent="Controls" unique_id=415362905]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1060,12 +990,13 @@ offset_left = 104.0
 offset_top = 14.0
 offset_right = 152.0
 offset_bottom = 39.4
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyCrouchLabel" type="Label" parent="Controls"]
+[node name="keyCrouchLabel" type="Label" parent="Controls" unique_id=948337471]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1074,14 +1005,12 @@ offset_left = -128.0
 offset_top = 52.0
 offset_right = 88.0
 offset_bottom = 72.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Присесть: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyCrouchIcon" type="TextureRect" parent="Controls"]
+[node name="keyCrouchIcon" type="TextureRect" parent="Controls" unique_id=948895080]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1090,12 +1019,13 @@ offset_left = 104.0
 offset_top = 46.0
 offset_right = 152.0
 offset_bottom = 71.4
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyDashLabel" type="Label" parent="Controls"]
+[node name="keyDashLabel" type="Label" parent="Controls" unique_id=227637793]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1104,11 +1034,12 @@ offset_left = -128.0
 offset_top = 84.0
 offset_right = 88.0
 offset_bottom = 104.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Подкат/Телепорт: "
 
-[node name="keyDashIcon" type="TextureRect" parent="Controls"]
+[node name="keyDashIcon" type="TextureRect" parent="Controls" unique_id=2092712877]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1117,12 +1048,13 @@ offset_left = 104.0
 offset_top = 78.0
 offset_right = 152.0
 offset_bottom = 103.4
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyLegsLabel" type="Label" parent="Controls"]
+[node name="keyLegsLabel" type="Label" parent="Controls" unique_id=943412547]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1131,11 +1063,12 @@ offset_left = -128.0
 offset_top = 116.0
 offset_right = 88.0
 offset_bottom = 136.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Ближний удар:"
 
-[node name="keyLegsIcon" type="TextureRect" parent="Controls"]
+[node name="keyLegsIcon" type="TextureRect" parent="Controls" unique_id=673924780]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1144,12 +1077,13 @@ offset_left = 104.0
 offset_top = 110.0
 offset_right = 152.0
 offset_bottom = 135.4
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyCameraLabel" type="Label" parent="Controls"]
+[node name="keyCameraLabel" type="Label" parent="Controls" unique_id=1273071048]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1158,11 +1092,12 @@ offset_left = 216.0
 offset_top = -172.0
 offset_right = 392.0
 offset_bottom = -152.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Сменить камеру: "
 
-[node name="keyCameraIcon" type="TextureRect" parent="Controls"]
+[node name="keyCameraIcon" type="TextureRect" parent="Controls" unique_id=961268819]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1171,12 +1106,13 @@ offset_left = 408.0
 offset_top = -178.0
 offset_right = 456.0
 offset_bottom = -152.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyTaskLabel" type="Label" parent="Controls"]
+[node name="keyTaskLabel" type="Label" parent="Controls" unique_id=1156001604]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1185,11 +1121,12 @@ offset_left = 216.0
 offset_top = -140.0
 offset_right = 392.0
 offset_bottom = -120.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Просмотреть задачи:"
 
-[node name="keyTaskIcon" type="TextureRect" parent="Controls"]
+[node name="keyTaskIcon" type="TextureRect" parent="Controls" unique_id=250998710]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1198,12 +1135,13 @@ offset_left = 408.0
 offset_top = -146.0
 offset_right = 456.0
 offset_bottom = -120.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyInventoryLabel" type="Label" parent="Controls"]
+[node name="keyInventoryLabel" type="Label" parent="Controls" unique_id=909836149]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1212,14 +1150,12 @@ offset_left = 216.0
 offset_top = -108.0
 offset_right = 392.0
 offset_bottom = -88.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Инвентарь:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="keyInventoryIcon" type="TextureRect" parent="Controls"]
+[node name="keyInventoryIcon" type="TextureRect" parent="Controls" unique_id=2098728459]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1228,12 +1164,13 @@ offset_left = 408.0
 offset_top = -114.0
 offset_right = 456.0
 offset_bottom = -88.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyAutohealLabel" type="Label" parent="Controls"]
+[node name="keyAutohealLabel" type="Label" parent="Controls" unique_id=1911021325]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1242,11 +1179,12 @@ offset_left = 216.0
 offset_top = -76.0
 offset_right = 392.0
 offset_bottom = -56.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Автохил:"
 
-[node name="keyAutohealIcon" type="TextureRect" parent="Controls"]
+[node name="keyAutohealIcon" type="TextureRect" parent="Controls" unique_id=121717786]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1255,12 +1193,13 @@ offset_left = 408.0
 offset_top = -82.0
 offset_right = 456.0
 offset_bottom = -56.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyQuicksaveLabel" type="Label" parent="Controls"]
+[node name="keyQuicksaveLabel" type="Label" parent="Controls" unique_id=1118984311]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1269,11 +1208,12 @@ offset_left = 216.0
 offset_top = -44.0
 offset_right = 392.0
 offset_bottom = -24.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Быстрое сохранение:"
 
-[node name="keyQuicksaveIcon" type="TextureRect" parent="Controls"]
+[node name="keyQuicksaveIcon" type="TextureRect" parent="Controls" unique_id=1649036257]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1282,12 +1222,13 @@ offset_left = 408.0
 offset_top = -50.0
 offset_right = 456.0
 offset_bottom = -24.6
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="keyQuickloadLabel" type="Label" parent="Controls"]
+[node name="keyQuickloadLabel" type="Label" parent="Controls" unique_id=51207121]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1296,11 +1237,12 @@ offset_left = 216.0
 offset_top = -12.0
 offset_right = 392.0
 offset_bottom = 8.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Быстрое сохранение:"
 
-[node name="keyQuickloadIcon" type="TextureRect" parent="Controls"]
+[node name="keyQuickloadIcon" type="TextureRect" parent="Controls" unique_id=743725085]
 texture_filter = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1309,18 +1251,20 @@ offset_left = 408.0
 offset_top = -18.0
 offset_right = 456.0
 offset_bottom = 7.39999
-scale = Vector2( 0.6, 0.6 )
-pivot_offset = Vector2( 24, 16 )
-texture = ExtResource( 11 )
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(24, 16)
+texture = ExtResource("11")
 stretch_mode = 5
 
-[node name="Difficulty" type="Control" parent="." groups=["ignore_color"]]
+[node name="Difficulty" type="Control" parent="." unique_id=1157876228 groups=["ignore_color"]]
 visible = false
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 7 )
+script = ExtResource("7")
 
-[node name="default" type="Button" parent="Difficulty"]
+[node name="default" type="Button" parent="Difficulty" unique_id=1702121893]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1329,10 +1273,11 @@ offset_left = -440.0
 offset_top = -180.0
 offset_right = -152.0
 offset_bottom = -154.128
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = " [Сбросить]"
 
-[node name="player_damage_label" type="Label" parent="Difficulty"]
+[node name="player_damage_label" type="Label" parent="Difficulty" unique_id=1318279203]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1340,11 +1285,12 @@ anchor_bottom = 0.5
 offset_left = -224.0
 offset_top = -100.0
 offset_bottom = -78.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Коэффициент урона игрока:"
-align = 2
+horizontal_alignment = 2
 
-[node name="player_damage_slider" type="HSlider" parent="Difficulty"]
+[node name="player_damage_slider" type="HSlider" parent="Difficulty" unique_id=1250313937]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1353,30 +1299,25 @@ offset_left = 16.0
 offset_top = -100.0
 offset_right = 316.0
 offset_bottom = -80.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.1
 max_value = 2.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="border" type="Label" parent="Difficulty/player_damage_slider" groups=["ignore_color"]]
+[node name="border" type="Label" parent="Difficulty/player_damage_slider" unique_id=346054017 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Difficulty/player_damage_slider" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Difficulty/player_damage_slider" unique_id=1968690418 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1385,13 +1326,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="player_damage_number" type="Label" parent="Difficulty"]
+[node name="player_damage_number" type="Label" parent="Difficulty" unique_id=1352267321]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1400,11 +1339,12 @@ offset_left = 336.0
 offset_top = -100.0
 offset_right = 384.0
 offset_bottom = -78.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "1,00"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_damage_label" type="Label" parent="Difficulty"]
+[node name="npc_damage_label" type="Label" parent="Difficulty" unique_id=796900932]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1412,11 +1352,12 @@ anchor_bottom = 0.5
 offset_left = -232.0
 offset_top = -68.0
 offset_bottom = -46.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Коэффициент урона персонажей:"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_damage_slider" type="HSlider" parent="Difficulty"]
+[node name="npc_damage_slider" type="HSlider" parent="Difficulty" unique_id=633271783]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1425,29 +1366,25 @@ offset_left = 16.0
 offset_top = -68.0
 offset_right = 316.0
 offset_bottom = -48.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.1
 max_value = 2.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="border" type="Label" parent="Difficulty/npc_damage_slider" groups=["ignore_color"]]
+[node name="border" type="Label" parent="Difficulty/npc_damage_slider" unique_id=1357864854 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Difficulty/npc_damage_slider" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Difficulty/npc_damage_slider" unique_id=1134502312 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1456,13 +1393,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="npc_damage_number" type="Label" parent="Difficulty"]
+[node name="npc_damage_number" type="Label" parent="Difficulty" unique_id=1181208879]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1471,11 +1406,12 @@ offset_left = 336.0
 offset_top = -68.0
 offset_right = 384.0
 offset_bottom = -46.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "1,00"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_aggressive_label" type="Label" parent="Difficulty"]
+[node name="npc_aggressive_label" type="Label" parent="Difficulty" unique_id=1022286961]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1483,11 +1419,12 @@ anchor_bottom = 0.5
 offset_left = -224.0
 offset_top = -36.0
 offset_bottom = -14.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Агрессивность персонажей:"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_aggressive_slider" type="HSlider" parent="Difficulty"]
+[node name="npc_aggressive_slider" type="HSlider" parent="Difficulty" unique_id=1185040870]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1496,29 +1433,25 @@ offset_left = 16.0
 offset_top = -36.0
 offset_right = 316.0
 offset_bottom = -16.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.1
 max_value = 2.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="border" type="Label" parent="Difficulty/npc_aggressive_slider" groups=["ignore_color"]]
+[node name="border" type="Label" parent="Difficulty/npc_aggressive_slider" unique_id=1816443377 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Difficulty/npc_aggressive_slider" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Difficulty/npc_aggressive_slider" unique_id=1839762143 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1527,13 +1460,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="npc_aggressive_number" type="Label" parent="Difficulty"]
+[node name="npc_aggressive_number" type="Label" parent="Difficulty" unique_id=114058304]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1542,11 +1473,12 @@ offset_left = 336.0
 offset_top = -36.0
 offset_right = 384.0
 offset_bottom = -14.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "1,00"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_accuracy_label" type="Label" parent="Difficulty"]
+[node name="npc_accuracy_label" type="Label" parent="Difficulty" unique_id=1142649878]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1554,11 +1486,12 @@ anchor_bottom = 0.5
 offset_left = -224.0
 offset_top = -4.0
 offset_bottom = 18.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Точность персонажей:"
-align = 2
+horizontal_alignment = 2
 
-[node name="npc_accuracy_slider" type="HSlider" parent="Difficulty"]
+[node name="npc_accuracy_slider" type="HSlider" parent="Difficulty" unique_id=1223730198]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1567,29 +1500,25 @@ offset_left = 16.0
 offset_top = -4.0
 offset_right = 316.0
 offset_bottom = 16.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.1
 max_value = 2.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="border" type="Label" parent="Difficulty/npc_accuracy_slider" groups=["ignore_color"]]
+[node name="border" type="Label" parent="Difficulty/npc_accuracy_slider" unique_id=1896505871 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Difficulty/npc_accuracy_slider" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Difficulty/npc_accuracy_slider" unique_id=999141372 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1598,13 +1527,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="npc_accuracy_number" type="Label" parent="Difficulty"]
+[node name="npc_accuracy_number" type="Label" parent="Difficulty" unique_id=1532287239]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1613,11 +1540,12 @@ offset_left = 336.0
 offset_top = -4.0
 offset_right = 384.0
 offset_bottom = 18.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "1,00"
-align = 2
+horizontal_alignment = 2
 
-[node name="inflation_label" type="Label" parent="Difficulty"]
+[node name="inflation_label" type="Label" parent="Difficulty" unique_id=1904805256]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1625,11 +1553,12 @@ anchor_bottom = 0.5
 offset_left = -232.0
 offset_top = 60.0
 offset_bottom = 82.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Уровень инфляции в Эквестрии:"
-align = 2
+horizontal_alignment = 2
 
-[node name="inflation_slider" type="HSlider" parent="Difficulty"]
+[node name="inflation_slider" type="HSlider" parent="Difficulty" unique_id=457840145]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1638,29 +1567,25 @@ offset_left = 16.0
 offset_top = 60.0
 offset_right = 316.0
 offset_bottom = 80.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 min_value = 0.1
 max_value = 2.0
 step = 0.01
 value = 1.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="border" type="Label" parent="Difficulty/inflation_slider" groups=["ignore_color"]]
+[node name="border" type="Label" parent="Difficulty/inflation_slider" unique_id=1384652940 groups=["ignore_color"]]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -8.43
 offset_right = -2.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "["
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border2" type="Label" parent="Difficulty/inflation_slider" groups=["ignore_color"]]
+[node name="border2" type="Label" parent="Difficulty/inflation_slider" unique_id=1598339487 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1669,13 +1594,11 @@ offset_left = 4.0
 offset_top = -8.43
 offset_right = 12.0
 offset_bottom = 13.57
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="inflation_number" type="Label" parent="Difficulty"]
+[node name="inflation_number" type="Label" parent="Difficulty" unique_id=1017617478]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1684,11 +1607,12 @@ offset_left = 336.0
 offset_top = 60.0
 offset_right = 384.0
 offset_bottom = 82.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "1,00"
-align = 2
+horizontal_alignment = 2
 
-[node name="back" type="Button" parent="."]
+[node name="back" type="Button" parent="." unique_id=656880645]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1697,153 +1621,149 @@ offset_left = -440.0
 offset_top = -212.0
 offset_right = -150.0
 offset_bottom = -187.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "[Назад]"
 
-[node name="Label5" type="Label" parent="."]
+[node name="Label5" type="Label" parent="." unique_id=2072373532]
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 30.0
 offset_top = -50.0
 offset_right = 39.0
 offset_bottom = -28.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="down_label" type="Label" parent="."]
+[node name="down_label" type="Label" parent="." unique_id=1611518098]
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 45.0
 offset_top = -50.0
 offset_right = 220.0
 offset_bottom = -28.0
-theme = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("2")
 
-[node name="audi" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-bus = "Sound"
-script = ExtResource( 8 )
+[node name="audi" type="AudioStreamPlayer" parent="." unique_id=1707691053]
+stream = ExtResource("1")
+bus = &"Sound"
+script = ExtResource("8")
 
-[connection signal="mouse_entered" from="Settings/mouse_slider" to="." method="_on_mouse_entered" binds= [ "choose", "mouse" ]]
+[connection signal="mouse_entered" from="Settings/mouse_slider" to="." method="_on_mouse_entered" binds= ["choose", "mouse"]]
 [connection signal="mouse_exited" from="Settings/mouse_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/mouse_slider" to="Settings" method="_on_mouse_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/distance_slider" to="." method="_on_mouse_entered" binds= [ "choose", "distance" ]]
+[connection signal="mouse_entered" from="Settings/distance_slider" to="." method="_on_mouse_entered" binds= ["choose", "distance"]]
 [connection signal="mouse_exited" from="Settings/distance_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/distance_slider" to="Settings" method="_on_distance_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/shadows_button" to="." method="_on_mouse_entered" binds= [ "choose", "shadows" ]]
+[connection signal="mouse_entered" from="Settings/shadows_button" to="." method="_on_mouse_entered" binds= ["choose", "shadows"]]
 [connection signal="mouse_exited" from="Settings/shadows_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/shadows_button" to="Settings" method="_on_shadows_button_pressed"]
-[connection signal="mouse_entered" from="Settings/fullscreen_button" to="." method="_on_mouse_entered" binds= [ "choose", "fullscreen" ]]
+[connection signal="mouse_entered" from="Settings/fullscreen_button" to="." method="_on_mouse_entered" binds= ["choose", "fullscreen"]]
 [connection signal="mouse_exited" from="Settings/fullscreen_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/fullscreen_button" to="Settings" method="_on_fullscreen_button_pressed"]
-[connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= [ "choose", "cameraAngle" ]]
+[connection signal="mouse_entered" from="Settings/cameraAngle_button" to="." method="_on_mouse_entered" binds= ["choose", "cameraAngle"]]
 [connection signal="mouse_exited" from="Settings/cameraAngle_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/cameraAngle_button" to="Settings" method="_on_cameraAngle_button_pressed"]
-[connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= [ "choose", "sound" ]]
+[connection signal="mouse_entered" from="Settings/sound_slider" to="." method="_on_mouse_entered" binds= ["choose", "sound"]]
 [connection signal="mouse_exited" from="Settings/sound_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/sound_slider" to="Settings" method="_on_sound_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/radio_slider" to="." method="_on_mouse_entered" binds= [ "choose", "radio" ]]
+[connection signal="mouse_entered" from="Settings/radio_slider" to="." method="_on_mouse_entered" binds= ["choose", "radio"]]
 [connection signal="mouse_exited" from="Settings/radio_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/radio_slider" to="Settings" method="_on_radio_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= [ "choose", "music" ]]
+[connection signal="mouse_entered" from="Settings/music_slider" to="." method="_on_mouse_entered" binds= ["choose", "music"]]
 [connection signal="mouse_exited" from="Settings/music_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/music_slider" to="Settings" method="_on_music_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/voice_slider" to="." method="_on_mouse_entered" binds= [ "choose", "voice" ]]
+[connection signal="mouse_entered" from="Settings/voice_slider" to="." method="_on_mouse_entered" binds= ["choose", "voice"]]
 [connection signal="mouse_exited" from="Settings/voice_slider" to="." method="_on_mouse_exited"]
 [connection signal="value_changed" from="Settings/voice_slider" to="Settings" method="_on_voice_slider_value_changed"]
-[connection signal="mouse_entered" from="Settings/language_button" to="." method="_on_mouse_entered" binds= [ "choose", "language" ]]
+[connection signal="mouse_entered" from="Settings/language_button" to="." method="_on_mouse_entered" binds= ["choose", "language"]]
 [connection signal="mouse_exited" from="Settings/language_button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Settings/language_button" to="Settings" method="_on_language_button_pressed"]
-[connection signal="mouse_entered" from="Settings/colorBlock/r_label/r_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_r" ]]
+[connection signal="mouse_entered" from="Settings/colorBlock/r_label/r_slider" to="." method="_on_mouse_entered" binds= ["choose", "color_r"]]
 [connection signal="mouse_exited" from="Settings/colorBlock/r_label/r_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/r_label/r_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Red" ]]
-[connection signal="mouse_entered" from="Settings/colorBlock/g_label/g_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_g" ]]
+[connection signal="value_changed" from="Settings/colorBlock/r_label/r_slider" to="Settings" method="_on_color_slider_value_changed" binds= ["Red"]]
+[connection signal="mouse_entered" from="Settings/colorBlock/g_label/g_slider" to="." method="_on_mouse_entered" binds= ["choose", "color_g"]]
 [connection signal="mouse_exited" from="Settings/colorBlock/g_label/g_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/g_label/g_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Green" ]]
-[connection signal="mouse_entered" from="Settings/colorBlock/b_label/b_slider" to="." method="_on_mouse_entered" binds= [ "choose", "color_b" ]]
+[connection signal="value_changed" from="Settings/colorBlock/g_label/g_slider" to="Settings" method="_on_color_slider_value_changed" binds= ["Green"]]
+[connection signal="mouse_entered" from="Settings/colorBlock/b_label/b_slider" to="." method="_on_mouse_entered" binds= ["choose", "color_b"]]
 [connection signal="mouse_exited" from="Settings/colorBlock/b_label/b_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Settings/colorBlock/b_label/b_slider" to="Settings" method="_on_color_slider_value_changed" binds= [ "Blue" ]]
-[connection signal="mouse_entered" from="Settings/controls" to="." method="_on_mouse_entered" binds= [ "choose", "controls" ]]
+[connection signal="value_changed" from="Settings/colorBlock/b_label/b_slider" to="Settings" method="_on_color_slider_value_changed" binds= ["Blue"]]
+[connection signal="mouse_entered" from="Settings/controls" to="." method="_on_mouse_entered" binds= ["choose", "controls"]]
 [connection signal="mouse_exited" from="Settings/controls" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/controls" to="." method="_on_submenu_pressed" binds= [ "Controls" ]]
-[connection signal="mouse_entered" from="Settings/difficulty" to="." method="_on_mouse_entered" binds= [ "choose", "difficulty" ]]
+[connection signal="pressed" from="Settings/controls" to="." method="_on_submenu_pressed" binds= ["Controls"]]
+[connection signal="mouse_entered" from="Settings/difficulty" to="." method="_on_mouse_entered" binds= ["choose", "difficulty"]]
 [connection signal="mouse_exited" from="Settings/difficulty" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Settings/difficulty" to="." method="_on_submenu_pressed" binds= [ "Difficulty" ]]
-[connection signal="mouse_entered" from="Controls/default" to="." method="_on_mouse_entered" binds= [ "choose", "default" ]]
+[connection signal="pressed" from="Settings/difficulty" to="." method="_on_submenu_pressed" binds= ["Difficulty"]]
+[connection signal="mouse_entered" from="Controls/default" to="." method="_on_mouse_entered" binds= ["choose", "default"]]
 [connection signal="mouse_exited" from="Controls/default" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Controls/default" to="Controls" method="_on_default_pressed"]
-[connection signal="gui_input" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_up" ]]
-[connection signal="mouse_entered" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyForwardIcon", "forward" ]]
+[connection signal="gui_input" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_up"]]
+[connection signal="mouse_entered" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyForwardIcon", "forward"]]
 [connection signal="mouse_exited" from="Controls/keyForwardIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyBackIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_down" ]]
-[connection signal="mouse_entered" from="Controls/keyBackIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyBackIcon", "back" ]]
+[connection signal="gui_input" from="Controls/keyBackIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_down"]]
+[connection signal="mouse_entered" from="Controls/keyBackIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyBackIcon", "back"]]
 [connection signal="mouse_exited" from="Controls/keyBackIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_left" ]]
-[connection signal="mouse_entered" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyLeftIcon", "left" ]]
+[connection signal="gui_input" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_left"]]
+[connection signal="mouse_entered" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyLeftIcon", "left"]]
 [connection signal="mouse_exited" from="Controls/keyLeftIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyRightIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_right" ]]
-[connection signal="mouse_entered" from="Controls/keyRightIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyRightIcon", "right" ]]
+[connection signal="gui_input" from="Controls/keyRightIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_right"]]
+[connection signal="mouse_entered" from="Controls/keyRightIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyRightIcon", "right"]]
 [connection signal="mouse_exited" from="Controls/keyRightIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_gui_input" binds= [ "jump" ]]
-[connection signal="mouse_entered" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyJumpIcon", "jump" ]]
+[connection signal="gui_input" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_gui_input" binds= ["jump"]]
+[connection signal="mouse_entered" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyJumpIcon", "jump"]]
 [connection signal="mouse_exited" from="Controls/keyJumpIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyRunIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_shift" ]]
-[connection signal="mouse_entered" from="Controls/keyRunIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyRunIcon", "run" ]]
+[connection signal="gui_input" from="Controls/keyRunIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_shift"]]
+[connection signal="mouse_entered" from="Controls/keyRunIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyRunIcon", "run"]]
 [connection signal="mouse_exited" from="Controls/keyRunIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyUseIcon" to="Controls" method="_on_controls_gui_input" binds= [ "use" ]]
-[connection signal="mouse_entered" from="Controls/keyUseIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyUseIcon", "use" ]]
+[connection signal="gui_input" from="Controls/keyUseIcon" to="Controls" method="_on_controls_gui_input" binds= ["use"]]
+[connection signal="mouse_entered" from="Controls/keyUseIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyUseIcon", "use"]]
 [connection signal="mouse_exited" from="Controls/keyUseIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_gui_input" binds= [ "crouch" ]]
-[connection signal="mouse_entered" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyCrouchIcon", "sit" ]]
+[connection signal="gui_input" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_gui_input" binds= ["crouch"]]
+[connection signal="mouse_entered" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyCrouchIcon", "sit"]]
 [connection signal="mouse_exited" from="Controls/keyCrouchIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyDashIcon" to="Controls" method="_on_controls_gui_input" binds= [ "dash" ]]
-[connection signal="mouse_entered" from="Controls/keyDashIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyDashIcon", "dash" ]]
+[connection signal="gui_input" from="Controls/keyDashIcon" to="Controls" method="_on_controls_gui_input" binds= ["dash"]]
+[connection signal="mouse_entered" from="Controls/keyDashIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyDashIcon", "dash"]]
 [connection signal="mouse_exited" from="Controls/keyDashIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_gui_input" binds= [ "legsHit" ]]
-[connection signal="mouse_entered" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyLegsIcon", "choseHit" ]]
+[connection signal="gui_input" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_gui_input" binds= ["legsHit"]]
+[connection signal="mouse_entered" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyLegsIcon", "choseHit"]]
 [connection signal="mouse_exited" from="Controls/keyLegsIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_gui_input" binds= [ "changeView" ]]
-[connection signal="mouse_entered" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyCameraIcon", "changeView" ]]
+[connection signal="gui_input" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_gui_input" binds= ["changeView"]]
+[connection signal="mouse_entered" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyCameraIcon", "changeView"]]
 [connection signal="mouse_exited" from="Controls/keyCameraIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_gui_input" binds= [ "task" ]]
-[connection signal="mouse_entered" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyTaskIcon", "seeTasks" ]]
+[connection signal="gui_input" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_gui_input" binds= ["task"]]
+[connection signal="mouse_entered" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyTaskIcon", "seeTasks"]]
 [connection signal="mouse_exited" from="Controls/keyTaskIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_gui_input" binds= [ "inventory" ]]
-[connection signal="mouse_entered" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyInventoryIcon", "inventory" ]]
+[connection signal="gui_input" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_gui_input" binds= ["inventory"]]
+[connection signal="mouse_entered" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyInventoryIcon", "inventory"]]
 [connection signal="mouse_exited" from="Controls/keyInventoryIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_gui_input" binds= [ "autoheal" ]]
-[connection signal="mouse_entered" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyAutohealIcon", "autoheal" ]]
+[connection signal="gui_input" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_gui_input" binds= ["autoheal"]]
+[connection signal="mouse_entered" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyAutohealIcon", "autoheal"]]
 [connection signal="mouse_exited" from="Controls/keyAutohealIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quicksave" ]]
-[connection signal="mouse_entered" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyQuicksaveIcon", "quicksave" ]]
+[connection signal="gui_input" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_quicksave"]]
+[connection signal="mouse_entered" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyQuicksaveIcon", "quicksave"]]
 [connection signal="mouse_exited" from="Controls/keyQuicksaveIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="gui_input" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_gui_input" binds= [ "ui_quickload" ]]
-[connection signal="mouse_entered" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_mouse_entered" binds= [ "keyQuickloadIcon", "quickload" ]]
+[connection signal="gui_input" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_gui_input" binds= ["ui_quickload"]]
+[connection signal="mouse_entered" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_mouse_entered" binds= ["keyQuickloadIcon", "quickload"]]
 [connection signal="mouse_exited" from="Controls/keyQuickloadIcon" to="Controls" method="_on_controls_mouse_exited"]
-[connection signal="mouse_entered" from="Difficulty/default" to="." method="_on_mouse_entered" binds= [ "choose", "default_difficulty" ]]
+[connection signal="mouse_entered" from="Difficulty/default" to="." method="_on_mouse_entered" binds= ["choose", "default_difficulty"]]
 [connection signal="mouse_exited" from="Difficulty/default" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Difficulty/default" to="Difficulty" method="_on_default_pressed"]
-[connection signal="mouse_entered" from="Difficulty/player_damage_slider" to="." method="_on_mouse_entered" binds= [ "choose", "player_damage" ]]
+[connection signal="mouse_entered" from="Difficulty/player_damage_slider" to="." method="_on_mouse_entered" binds= ["choose", "player_damage"]]
 [connection signal="mouse_exited" from="Difficulty/player_damage_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Difficulty/player_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "player_damage" ]]
-[connection signal="mouse_entered" from="Difficulty/npc_damage_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_damage" ]]
+[connection signal="value_changed" from="Difficulty/player_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= ["player_damage"]]
+[connection signal="mouse_entered" from="Difficulty/npc_damage_slider" to="." method="_on_mouse_entered" binds= ["choose", "npc_damage"]]
 [connection signal="mouse_exited" from="Difficulty/npc_damage_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Difficulty/npc_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_damage" ]]
-[connection signal="mouse_entered" from="Difficulty/npc_aggressive_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_aggressive" ]]
+[connection signal="value_changed" from="Difficulty/npc_damage_slider" to="Difficulty" method="_on_slider_value_changed" binds= ["npc_damage"]]
+[connection signal="mouse_entered" from="Difficulty/npc_aggressive_slider" to="." method="_on_mouse_entered" binds= ["choose", "npc_aggressive"]]
 [connection signal="mouse_exited" from="Difficulty/npc_aggressive_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Difficulty/npc_aggressive_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_aggressive" ]]
-[connection signal="mouse_entered" from="Difficulty/npc_accuracy_slider" to="." method="_on_mouse_entered" binds= [ "choose", "npc_accuracy" ]]
+[connection signal="value_changed" from="Difficulty/npc_aggressive_slider" to="Difficulty" method="_on_slider_value_changed" binds= ["npc_aggressive"]]
+[connection signal="mouse_entered" from="Difficulty/npc_accuracy_slider" to="." method="_on_mouse_entered" binds= ["choose", "npc_accuracy"]]
 [connection signal="mouse_exited" from="Difficulty/npc_accuracy_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Difficulty/npc_accuracy_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "npc_accuracy" ]]
-[connection signal="mouse_entered" from="Difficulty/inflation_slider" to="." method="_on_mouse_entered" binds= [ "choose", "inflation" ]]
+[connection signal="value_changed" from="Difficulty/npc_accuracy_slider" to="Difficulty" method="_on_slider_value_changed" binds= ["npc_accuracy"]]
+[connection signal="mouse_entered" from="Difficulty/inflation_slider" to="." method="_on_mouse_entered" binds= ["choose", "inflation"]]
 [connection signal="mouse_exited" from="Difficulty/inflation_slider" to="." method="_on_mouse_exited"]
-[connection signal="value_changed" from="Difficulty/inflation_slider" to="Difficulty" method="_on_slider_value_changed" binds= [ "inflation" ]]
-[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "back", "mainMenu" ]]
+[connection signal="value_changed" from="Difficulty/inflation_slider" to="Difficulty" method="_on_slider_value_changed" binds= ["inflation"]]
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= ["back", "mainMenu"]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

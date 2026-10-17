@@ -1,14 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://l85ht7ta8m50"]
 
 [resource]
-texture_filter = 0
 resource_name = "12 - Default"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.735357, 0.735357, 0.735357, 1 )
+albedo_color = Color(0.735357, 0.735357, 0.735357, 1)
 roughness = 0.552786
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+texture_filter = 0

@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfi61ayphs0s"]
 
-[ext_resource path="res://assets/textures/props/box-texture.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://bg13w25gmu0i6" path="res://assets/textures/props/box-texture.png" id="1"]
 
 [resource]
-texture_filter = 0
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 metallic = 0.19
 metallic_specular = 0.2
+texture_filter = 0

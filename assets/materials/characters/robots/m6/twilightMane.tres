@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://kvl43goyueal"]
 
-[ext_resource path="res://assets/textures/enemies/robots/m6/twilight-mane.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://bsircoevf60nu" path="res://assets/textures/enemies/robots/m6/twilight-mane.png" id="1"]
 
 [resource]
+albedo_texture = ExtResource("1")
 texture_filter = 0
-albedo_texture = ExtResource( 1 )

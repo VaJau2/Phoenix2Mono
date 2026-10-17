@@ -1,21 +1,13 @@
-[gd_resource type="Environment" format=2]
+[gd_resource type="Environment" format=3 uid="uid://d3u53jn0po6fu"]
 
 [resource]
-background_sky_custom_fov = 75.0
 background_energy_multiplier = 0.5
-ambient_light_color = Color( 0.337255, 0.337255, 0.356863, 1 )
-ambient_light_energy = 0.5
+sky_custom_fov = 75.0
+ambient_light_color = Color(0.337255, 0.337255, 0.356863, 1)
 ambient_light_sky_contribution = 0.69
-fog_light_color = Color( 0.105882, 0.105882, 0.12549, 1 )
-fog_sun_color = Color( 0, 0, 0, 1 )
-fog_sun_scatter = 0.51
-fog_depth_begin = 15.0
-fog_depth_curve = 1.03527
-fog_transmit_enabled = true
-fog_transmit_curve = 0.840897
-fog_height_min = -5.0
-fog_height_max = 15.0
-fog_height_curve = 1.07177
+ambient_light_energy = 0.5
 tonemap_mode = 2
-dof_blur_far_distance = 120.3
-dof_blur_far_quality = 0
+fog_light_color = Color(0.105882, 0.105882, 0.12549, 1)
+fog_sun_scatter = 0.51
+fog_depth_curve = 1.03527
+fog_depth_begin = 15.0

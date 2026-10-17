@@ -1,100 +1,92 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://1cbxk3atdwxx"]
 
-[ext_resource path="res://assets/scripts/interface/inventory/ItemIcon.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
+[ext_resource type="Script" uid="uid://chfuewhr4oqls" path="res://assets/scripts/interface/inventory/ItemIcon.cs" id="1"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="2"]
 
-[node name="itemIcon" type="ColorRect" groups=["ignore_color"]]
+[node name="itemIcon" type="ColorRect" unique_id=727812364 groups=["ignore_color"]]
+custom_minimum_size = Vector2(42, 42)
 offset_right = 42.0
 offset_bottom = 42.0
-custom_minimum_size = Vector2( 42, 42 )
-color = Color( 0, 0, 0, 1 )
-script = ExtResource( 1 )
+color = Color(0, 0, 0, 1)
+script = ExtResource("1")
 
-[node name="borders" type="Control" parent="."]
+[node name="borders" type="Control" parent="." unique_id=570882534]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.148647
 offset_right = 0.148647
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="left" type="ColorRect" parent="borders"]
+[node name="left" type="ColorRect" parent="borders" unique_id=1798199730]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="right" type="ColorRect" parent="borders"]
+[node name="right" type="ColorRect" parent="borders" unique_id=1514942903]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="up" type="ColorRect" parent="borders"]
+[node name="up" type="ColorRect" parent="borders" unique_id=1242926623]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="down" type="ColorRect" parent="borders"]
+[node name="down" type="ColorRect" parent="borders" unique_id=1480009680]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="selected" type="ColorRect" parent="."]
+[node name="selected" type="ColorRect" parent="." unique_id=1537912242]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="icon" type="TextureRect" parent="." unique_id=963942113]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = -2.0
 offset_bottom = -2.0
-expand = true
+expand_mode = 1
 stretch_mode = 5
 
-[node name="shadow" type="TextureRect" parent="icon"]
+[node name="shadow" type="TextureRect" parent="icon" unique_id=1702224649]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 1.0
 offset_bottom = 1.0
-expand = true
+expand_mode = 1
 stretch_mode = 5
 
-[node name="bindLabel" type="Label" parent="." groups=["ignore_color"]]
+[node name="bindLabel" type="Label" parent="." unique_id=689869625 groups=["ignore_color"]]
+layout_mode = 0
 offset_left = 1.0
 offset_top = -2.0
 offset_right = 9.0
 offset_bottom = 15.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 
-[node name="countLabel" type="Label" parent="." groups=["ignore_color"]]
+[node name="countLabel" type="Label" parent="." unique_id=1619563891 groups=["ignore_color"]]
 visible = false
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -8.0
 offset_top = -2.0
 offset_bottom = 15.0
 grow_horizontal = 0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "0"
 
 [connection signal="mouse_entered" from="icon" to="." method="_on_itemIcon_mouse_entered"]

@@ -1,118 +1,123 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://x25hf12wjt5g"]
 
-[ext_resource path="res://assets/textures/props/fire_anim.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/fire.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/materials/props/fireWood.tres" type="Material" id=3]
-[ext_resource path="res://assets/audio/background/fire_back.ogg" type="AudioStream" id=4]
+[ext_resource type="Texture2D" uid="uid://c60xht8p0i68" path="res://assets/textures/props/fire_anim.png" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://cjd613ulkmcye" path="res://assets/models/props/fire.obj" id="2"]
+[ext_resource type="Material" path="res://assets/materials/props/fireWood.tres" id="3"]
+[ext_resource type="AudioStream" uid="uid://bu1okmbxb8jja" path="res://assets/audio/background/fire_back.ogg" id="4"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "idle"
 length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("sprite2:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 1, 2, 3, 4, 5, 6, 0 ]
+"values": [1, 2, 3, 4, 5, 6, 0]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("sprite3:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 2, 3, 4, 5, 6, 0, 1 ]
+"values": [2, 3, 4, 5, 6, 0, 1]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("OmniLight:omni_range")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 15.0, 16.0, 14.0, 13.0, 15.0, 14.0, 15.0 ]
+"values": [15.0, 16.0, 14.0, 13.0, 15.0, 14.0, 15.0]
 }
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhqx6"]
+_data = {
+&"idle": SubResource("1")
+}
+
+[sub_resource type="GDScript" id="2"]
 script/source = "extends AnimationPlayer
 
 func _ready():
 	play(\"idle\")
 "
 
-[node name="fire" type="Node3D"]
+[node name="fire" type="Node3D" unique_id=1980593642]
 
-[node name="fire" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0198243, -0.143151, -0.194114 )
+[node name="fire" type="MeshInstance3D" parent="." unique_id=301984865]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0198243, -0.143151, -0.194114)
 cast_shadow = 0
-mesh = ExtResource( 2 )
-surface_material_override/0 = ExtResource( 3 )
+mesh = ExtResource("2")
+surface_material_override/0 = ExtResource("3")
 
-[node name="sprite" type="Sprite3D" parent="."]
-texture_filter = 0
-transform = Transform3D( 4.94923, -0.924958, -4.86308, 0, 6.87672, -1.30795, 4.95026, 0.924765, 4.86207, 0.0025053, 1.33985, -0.0143251 )
+[node name="sprite" type="Sprite3D" parent="." unique_id=1310085840]
+transform = Transform3D(4.94923, -0.924958, -4.86308, 0, 6.87672, -1.30795, 4.95026, 0.924765, 4.86207, 0.0025053, 1.33985, -0.0143251)
 cast_shadow = 0
 billboard = 2
-texture = ExtResource( 1 )
+texture_filter = 0
+texture = ExtResource("1")
 hframes = 7
 
-[node name="sprite2" type="Sprite3D" parent="."]
-texture_filter = 0
-transform = Transform3D( -5.585, -0.788491, -4.1456, 0, 6.87672, -1.30795, 4.21992, -1.04356, -5.48664, -0.00173895, 1.33985, -0.0104197 )
+[node name="sprite2" type="Sprite3D" parent="." unique_id=28859829]
+transform = Transform3D(-5.585, -0.788491, -4.1456, 0, 6.87672, -1.30795, 4.21992, -1.04356, -5.48664, -0.00173895, 1.33985, -0.0104197)
 cast_shadow = 0
-texture = ExtResource( 1 )
+texture_filter = 0
+texture = ExtResource("1")
 hframes = 7
 frame = 1
 
-[node name="sprite3" type="Sprite3D" parent="."]
-texture_filter = 0
-transform = Transform3D( 2.37686, 1.12796, 6.48678, 0.484299, 6.84788, -1.3682, -6.56628, 0.913367, 2.24717, -0.0108683, 1.34021, -0.00621729 )
+[node name="sprite3" type="Sprite3D" parent="." unique_id=416166748]
+transform = Transform3D(2.37686, 1.12796, 6.48678, 0.484299, 6.84788, -1.3682, -6.56628, 0.913367, 2.24717, -0.0108683, 1.34021, -0.00621729)
 cast_shadow = 0
-texture = ExtResource( 1 )
+texture_filter = 0
+texture = ExtResource("1")
 hframes = 7
 frame = 2
 
-[node name="OmniLight" type="OmniLight3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617448, 0 )
-light_color = Color( 0.917647, 0.678431, 0.396078, 1 )
+[node name="OmniLight" type="OmniLight3D" parent="." unique_id=1034149462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617448, 0)
+light_color = Color(0.917647, 0.678431, 0.396078, 1)
 light_energy = 1.5
 shadow_enabled = true
 omni_range = 15.0
 omni_attenuation = 2.63902
 omni_shadow_mode = 0
 
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 1 )
-script = SubResource( 2 )
+[node name="anim" type="AnimationPlayer" parent="." unique_id=231900885]
+libraries/ = SubResource("AnimationLibrary_xhqx6")
+script = SubResource("2")
 
-[node name="audi" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 4 )
+[node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=749097113]
+stream = ExtResource("4")
 volume_db = 2.0
 unit_size = 3.0
 autoplay = true
-bus = "Sound"
+bus = &"Sound"

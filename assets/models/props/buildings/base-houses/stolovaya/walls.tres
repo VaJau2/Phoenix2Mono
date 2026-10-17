@@ -1,20 +1,16 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cok7lko1sgtru"]
 
-[ext_resource path="res://assets/models/props/buildings/base-houses/stolovaya/stolovaya__color.tga" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/buildings/base-houses/stolovaya/stolovaya__nmap.tga" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://mscog76tcyky" path="res://assets/models/props/buildings/base-houses/stolovaya/stolovaya__color.tga" id="1"]
+[ext_resource type="Texture2D" uid="uid://bpuxutodsvq0y" path="res://assets/models/props/buildings/base-houses/stolovaya/stolovaya__nmap.tga" id="2"]
 
 [resource]
-texture_filter = 0
 resource_name = "03 - Default"
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_texture = ExtResource("1")
 metallic = 1.0
 roughness = 0.858579
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
 normal_enabled = true
 normal_scale = 0.75
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

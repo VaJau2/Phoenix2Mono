@@ -1,14 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgf3wdxokig8t"]
 
 [resource]
-texture_filter = 0
 resource_name = "green"
-params_cull_mode = 2
-albedo_color = Color( 0.0665532, 0.319993, 0.0775925, 1 )
+cull_mode = 2
+albedo_color = Color(0.0665532, 0.319993, 0.0775925, 1)
 metallic = 0.4
 roughness = 0.9
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+texture_filter = 0

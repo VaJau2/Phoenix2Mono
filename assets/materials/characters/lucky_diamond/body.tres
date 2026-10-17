@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7s6jblwsadex"]
 
-[ext_resource path="res://assets/textures/characters/lucky_diamond/body.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://8gq4ykn62ww2" path="res://assets/textures/characters/lucky_diamond/body.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "body"
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_texture = ExtResource("1")
+texture_filter = 0

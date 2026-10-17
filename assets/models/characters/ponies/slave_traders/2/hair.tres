@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cf76t7sglv3en"]
 
 [resource]
-texture_filter = 0
 resource_name = "hair"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.591563, 0.842177, 0.953327, 1 )
+albedo_color = Color(0.591563, 0.842177, 0.953327, 1)
 roughness = 0.5
+texture_filter = 0

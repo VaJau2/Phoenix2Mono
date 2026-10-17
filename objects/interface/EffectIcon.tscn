@@ -1,21 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://bguspwof3cpt4"]
 
-[ext_resource path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" type="Script" id=1]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
+[ext_resource type="Script" uid="uid://d30t60un6jke" path="res://assets/scripts/interface/inventory/effects/EffectIcon.cs" id="1"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="2"]
 
-[node name="EffectIcon" type="Control" groups=["ignore_color"]]
+[node name="EffectIcon" type="Control" unique_id=690485711 groups=["ignore_color"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -993.0
 offset_bottom = -569.0
-custom_minimum_size = Vector2( 31, 31 )
 mouse_filter = 1
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 
-[node name="back" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="back" type="ColorRect" parent="." unique_id=1932802099 groups=["ignore_color"]]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -24,12 +25,12 @@ offset_left = -15.5
 offset_top = -15.5
 offset_right = 14.5
 offset_bottom = 14.5
-custom_minimum_size = Vector2( 30, 30 )
 mouse_filter = 1
-color = Color( 0, 0, 0, 0 )
+color = Color(0, 0, 0, 0)
 
-[node name="shadow" type="TextureRect" parent="back"]
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="shadow" type="TextureRect" parent="back" unique_id=1048645104]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 anchor_left = 0.033
 anchor_top = 1.033
 anchor_right = 0.033
@@ -38,53 +39,49 @@ offset_left = 0.00999999
 offset_top = -29.99
 offset_right = 30.01
 offset_bottom = 0.0100002
-expand = true
+expand_mode = 1
 stretch_mode = 6
 
-[node name="timer" type="ColorRect" parent="back" groups=["ignore_color"]]
+[node name="timer" type="ColorRect" parent="back" unique_id=637915305 groups=["ignore_color"]]
+clip_contents = true
+layout_mode = 0
 anchor_top = 1.033
 anchor_bottom = 1.033
 offset_top = 0.0100002
 offset_right = 31.0
 offset_bottom = 31.01
-scale = Vector2( 1, -1 )
-clip_contents = true
-color = Color( 0, 0, 0, 0 )
+scale = Vector2(1, -1)
+color = Color(0, 0, 0, 0)
 
-[node name="icon" type="TextureRect" parent="back/timer"]
+[node name="icon" type="TextureRect" parent="back/timer" unique_id=1263642742]
+layout_mode = 0
 anchor_top = 0.032
 anchor_bottom = 0.032
 offset_top = 30.008
 offset_right = 30.0
 offset_bottom = 60.008
-scale = Vector2( 1, -1 )
-expand = true
+scale = Vector2(1, -1)
+expand_mode = 1
 stretch_mode = 6
 
-[node name="message" type="Label" parent="."]
+[node name="message" type="Label" parent="." unique_id=774106243]
 visible = false
+layout_mode = 0
 offset_left = 48.0
 offset_top = 8.0
 offset_right = 106.0
 offset_bottom = 27.0
-theme = ExtResource( 2 )
-valign = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+theme = ExtResource("2")
+vertical_alignment = 1
 
-[node name="back" type="ColorRect" parent="message" groups=["ignore_color"]]
+[node name="back" type="ColorRect" parent="message" unique_id=2060463794 groups=["ignore_color"]]
 show_behind_parent = true
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -10.0
 offset_right = 10.0
-color = Color( 0, 0, 0, 0.784314 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 0.784314)
 
 [connection signal="mouse_entered" from="back/shadow" to="." method="_on_EffectIcon_mouse_entered"]
 [connection signal="mouse_exited" from="back/shadow" to="." method="_on_EffectIcon_mouse_exited"]

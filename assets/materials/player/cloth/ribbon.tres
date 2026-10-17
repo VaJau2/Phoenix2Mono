@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmpb177nedclh"]
 
 [resource]
-texture_filter = 0
 resource_name = "ribbon"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.619455, 0.555669, 0.719994, 1 )
+albedo_color = Color(0.619455, 0.555669, 0.719994, 1)
+texture_filter = 0

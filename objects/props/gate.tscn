@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://biondf11nmtu0"]
 
-[ext_resource path="res://assets/models/props/gate.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/materials/props/gate.tres" type="Material" id=2]
+[ext_resource type="ArrayMesh" uid="uid://dhkhedpogp5q4" path="res://assets/models/props/gate.obj" id="1"]
+[ext_resource type="Material" path="res://assets/materials/props/gate.tres" id="2"]
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 5.44829, 1, 0.291515 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(10.89658, 2, 0.58303)
 
-[node name="gate" type="StaticBody3D"]
+[node name="gate" type="StaticBody3D" unique_id=1346812483]
 
-[node name="gate" type="MeshInstance3D" parent="."]
-mesh = ExtResource( 1 )
-surface_material_override/0 = ExtResource( 2 )
+[node name="gate" type="MeshInstance3D" parent="." unique_id=777226153]
+mesh = ExtResource("1")
+surface_material_override/0 = ExtResource("2")
 
-[node name="shape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9346, 1.08459, 0 )
-shape = SubResource( 1 )
+[node name="shape" type="CollisionShape3D" parent="." unique_id=565785319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9346, 1.08459, 0)
+shape = SubResource("1")

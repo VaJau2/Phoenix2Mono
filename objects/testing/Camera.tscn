@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=3 uid="uid://c2qqinqyy45au"]
 
-[ext_resource path="res://assets/scripts/utils/testing/TestingCamera.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://ckh08xmmo8gwc" path="res://assets/scripts/utils/testing/TestingCamera.cs" id="1"]
 
-[node name="Camera" type="Camera3D"]
+[node name="Camera" type="Camera3D" unique_id=1659099556]
 fov = 85.0
 far = 1000.0
-script = ExtResource( 1 )
+script = ExtResource("1")

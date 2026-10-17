@@ -1,18 +1,18 @@
-[gd_resource type="ArrayMesh" load_steps=2 format=2]
+[gd_resource type="ArrayMesh" format=4 uid="uid://ea5nmj8dv705"]
 
-[ext_resource path="res://assets/models/weapon/shells/10mm.tres" type="Material" id=1]
+[ext_resource type="Material" uid="uid://881u30xgll4v" path="res://assets/models/weapon/shells/10mm.tres" id="1"]
 
 [resource]
 resource_name = "10mm_Cube001"
-surfaces/0 = {
-"aabb": AABB( -2.19088, -1, -1, 4.38175, 2, 2 ),
-"array_data": PackedByteArray( 78, 55, 12, 192, 72, 13, 80, 191, 191, 143, 87, 63, 129, 0, 125, 1, 197, 57, 50, 57, 78, 55, 12, 192, 72, 13, 80, 191, 191, 143, 87, 63, 212, 216, 61, 47, 231, 34, 7, 52, 78, 55, 12, 192, 72, 13, 80, 63, 191, 143, 87, 63, 129, 0, 125, 1, 193, 57, 17, 59, 78, 55, 12, 192, 72, 13, 80, 63, 191, 143, 87, 63, 212, 40, 61, 79, 231, 34, 231, 34, 78, 55, 12, 192, 72, 13, 80, 63, 191, 143, 87, 63, 212, 40, 61, 79, 231, 34, 228, 59, 78, 55, 12, 192, 72, 13, 80, 191, 191, 143, 87, 191, 129, 0, 125, 1, 182, 59, 54, 57, 78, 55, 12, 192, 72, 13, 80, 191, 191, 143, 87, 191, 170, 174, 94, 30, 231, 34, 255, 55, 78, 55, 12, 192, 72, 13, 80, 63, 191, 143, 87, 191, 129, 0, 125, 1, 178, 59, 21, 59, 78, 55, 12, 192, 72, 13, 80, 63, 191, 143, 87, 191, 170, 82, 94, 96, 231, 34, 231, 57, 78, 55, 12, 64, 72, 13, 80, 191, 191, 143, 87, 63, 44, 216, 94, 96, 38, 57, 7, 52, 78, 55, 12, 64, 72, 13, 80, 191, 191, 143, 87, 63, 127, 0, 0, 63, 181, 59, 25, 49, 78, 55, 12, 64, 72, 13, 80, 63, 191, 143, 87, 63, 44, 40, 94, 30, 38, 57, 231, 34, 78, 55, 12, 64, 72, 13, 80, 63, 191, 143, 87, 63, 44, 40, 94, 30, 38, 57, 228, 59, 78, 55, 12, 64, 72, 13, 80, 63, 191, 143, 87, 63, 127, 0, 0, 63, 178, 59, 74, 54, 78, 55, 12, 64, 72, 13, 80, 191, 191, 143, 87, 191, 86, 174, 61, 79, 38, 57, 0, 56, 78, 55, 12, 64, 72, 13, 80, 191, 191, 143, 87, 191, 127, 0, 0, 63, 196, 57, 14, 49, 78, 55, 12, 64, 72, 13, 80, 63, 191, 143, 87, 191, 86, 82, 61, 47, 38, 57, 231, 57, 78, 55, 12, 64, 72, 13, 80, 63, 191, 143, 87, 191, 127, 0, 0, 63, 194, 57, 69, 54, 78, 55, 12, 192, 0, 0, 128, 191, 0, 0, 0, 128, 129, 0, 125, 1, 190, 58, 253, 56, 78, 55, 12, 192, 0, 0, 128, 191, 0, 0, 0, 128, 197, 189, 67, 33, 231, 34, 3, 54, 78, 55, 12, 192, 0, 0, 128, 63, 0, 0, 0, 128, 129, 0, 125, 1, 185, 58, 74, 59, 78, 55, 12, 192, 0, 0, 128, 63, 0, 0, 0, 128, 197, 67, 67, 93, 231, 34, 230, 58, 78, 55, 12, 64, 0, 0, 128, 191, 0, 0, 0, 128, 59, 189, 67, 93, 38, 57, 3, 54, 78, 55, 12, 64, 0, 0, 128, 191, 0, 0, 0, 128, 127, 0, 0, 63, 189, 58, 55, 48, 78, 55, 12, 64, 0, 0, 128, 63, 0, 0, 0, 128, 59, 67, 67, 33, 38, 57, 230, 58, 78, 55, 12, 64, 0, 0, 128, 63, 0, 0, 0, 128, 127, 0, 0, 63, 185, 58, 182, 54, 78, 55, 12, 192, 0, 0, 0, 0, 0, 0, 128, 63, 129, 0, 125, 1, 149, 57, 33, 58, 78, 55, 12, 192, 0, 0, 0, 0, 0, 0, 128, 63, 197, 0, 67, 63, 231, 34, 62, 48, 78, 55, 12, 192, 0, 0, 0, 0, 0, 0, 128, 191, 129, 0, 125, 1, 226, 59, 38, 58, 78, 55, 12, 192, 0, 0, 0, 0, 0, 0, 128, 191, 129, 67, 126, 33, 231, 34, 243, 56, 78, 55, 12, 64, 0, 0, 0, 0, 0, 0, 128, 191, 127, 67, 67, 63, 38, 57, 243, 56, 78, 55, 12, 64, 0, 0, 0, 0, 0, 0, 128, 191, 127, 0, 0, 63, 148, 57, 101, 52, 78, 55, 12, 64, 0, 0, 0, 0, 0, 0, 128, 63, 59, 0, 126, 33, 38, 57, 62, 48, 78, 55, 12, 64, 0, 0, 0, 0, 0, 0, 128, 63, 127, 0, 0, 63, 226, 59, 108, 52, 78, 55, 12, 64, 0, 0, 0, 0, 0, 0, 0, 128, 127, 0, 0, 63, 187, 58, 104, 52, 78, 55, 12, 192, 0, 0, 0, 0, 0, 0, 0, 128, 129, 0, 125, 1, 187, 58, 36, 58 ),
-"array_index_data": PackedByteArray( 35, 0, 7, 0, 20, 0, 35, 0, 28, 0, 7, 0, 29, 0, 16, 0, 8, 0, 29, 0, 30, 0, 16, 0, 34, 0, 13, 0, 25, 0, 34, 0, 33, 0, 13, 0, 32, 0, 3, 0, 11, 0, 32, 0, 27, 0, 3, 0, 19, 0, 9, 0, 22, 0, 19, 0, 1, 0, 9, 0, 24, 0, 4, 0, 21, 0, 24, 0, 12, 0, 4, 0, 16, 0, 21, 0, 8, 0, 16, 0, 24, 0, 21, 0, 6, 0, 22, 0, 14, 0, 6, 0, 19, 0, 22, 0, 31, 0, 25, 0, 17, 0, 31, 0, 34, 0, 25, 0, 26, 0, 20, 0, 2, 0, 26, 0, 35, 0, 20, 0, 0, 0, 35, 0, 26, 0, 0, 0, 18, 0, 35, 0, 15, 0, 34, 0, 31, 0, 15, 0, 23, 0, 34, 0, 9, 0, 27, 0, 32, 0, 9, 0, 1, 0, 27, 0, 23, 0, 33, 0, 34, 0, 23, 0, 10, 0, 33, 0, 6, 0, 30, 0, 29, 0, 6, 0, 14, 0, 30, 0, 18, 0, 28, 0, 35, 0, 18, 0, 5, 0, 28, 0 ),
-"blend_shape_data": [  ],
-"format": 2194711,
+_surfaces = [{
+"aabb": AABB(-2.19088, -1, -1, 4.38175, 2, 2),
+"attribute_data": PackedByteArray("AKA4PwBAJj8A4Fw8AOCAPgAgOD8AIGI/AOBcPADgXDwA4Fw8AIB8PwDAdj8AwCY/AOBcPADg/z4AQHY/AKBiPwDgXDwA4Dw/AMAkPwDggD4AoHY/ACAjPgDAJD8A4Fw8AMAkPwCAfD8AQHY/AEDJPgDAJD8AAAA/AIA4PwDAIT4AwCQ/AOA8PwBAOD8AoMg+AMBXPwCgHz8A4Fw8AGDAPgAgVz8AQGk/AOBcPADAXD8AwCQ/AGDAPgCgVz8A4AY+AMAkPwDAXD8AIFc/AMDWPgCgMj8AIEQ/AOBcPADABz4AQHw/AMBEPwDgXDwAYB4/AMAkPwBgHj8AgDI/AKCMPgDAJD8AwAc+AEB8PwCAjT4AYFc/AACNPgBgVz8AgEQ/"),
+"format": 34359742487,
 "index_count": 96,
-"material": ExtResource( 1 ),
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 36
-}
+"index_data": PackedByteArray("IwAHABQAIwAcAAcAHQAQAAgAHQAeABAAIgANABkAIgAhAA0AIAADAAsAIAAbAAMAEwAJABYAEwABAAkAGAAEABUAGAAMAAQAEAAVAAgAEAAYABUABgAWAA4ABgATABYAHwAZABEAHwAiABkAGgAUAAIAGgAjABQAAAAjABoAAAASACMADwAiAB8ADwAXACIACQAbACAACQABABsAFwAhACIAFwAKACEABgAeAB0ABgAOAB4AEgAcACMAEgAFABwA"),
+"material": ExtResource("1"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("TjcMwEgNUL+/j1c/TjcMwEgNUL+/j1c/TjcMwEgNUD+/j1c/TjcMwEgNUD+/j1c/TjcMwEgNUD+/j1c/TjcMwEgNUL+/j1e/TjcMwEgNUL+/j1e/TjcMwEgNUD+/j1e/TjcMwEgNUD+/j1e/TjcMQEgNUL+/j1c/TjcMQEgNUL+/j1c/TjcMQEgNUD+/j1c/TjcMQEgNUD+/j1c/TjcMQEgNUD+/j1c/TjcMQEgNUL+/j1e/TjcMQEgNUL+/j1e/TjcMQEgNUD+/j1e/TjcMQEgNUD+/j1e/TjcMwAAAgL8AAACATjcMwAAAgL8AAACATjcMwAAAgD8AAACATjcMwAAAgD8AAACATjcMQAAAgL8AAACATjcMQAAAgL8AAACATjcMQAAAgD8AAACATjcMQAAAgD8AAACATjcMwAAAAAAAAIA/TjcMwAAAAAAAAIA/TjcMwAAAAAAAAIC/TjcMwAAAAAAAAIC/TjcMQAAAAAAAAIC/TjcMQAAAAAAAAIC/TjcMQAAAAAAAAIA/TjcMQAAAAAAAAIA/TjcMQAAAAAAAAACATjcMwAAAAAAAAACAAYAAAPr9AYGo07DXer1erwGAAAD6/QGBqNNQKHq9ns+o01Aoer2ezwGAAAD6/QGBVKlcrbzeO54BgAAA+v0BgVSppFK83sDgWCyw17zewOD/fwAA/39+v1gsUCi83jueWCxQKLzeO57/fwAA/39+v6xWXK16vZ7P/38AAP9/fr+sVqRSer1er/9/AAD/f36/AYAAAPr9AYGKxHq8hsNBoQGAAAD6/QGBisSGQ4bDut12O3q8hsO63f9/AAD/f36/djuGQ4bDQaH/fwAA/39+vwGAAAD6/QGBisQAAIbDfr8BgAAA+v0BgQGAhkP8/kGh/3+GQ4bDfr//fwAA/39+v3Y7AAD8/kGh/38AAP9/fr//fwAA/39+vwGAAAD6/QGB")
+}]

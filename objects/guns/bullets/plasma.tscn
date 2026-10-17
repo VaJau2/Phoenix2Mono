@@ -1,50 +1,48 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://1ylwqn0yni82"]
 
-[ext_resource path="res://assets/materials/weapon/result/plasmaParticles.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/weapon/result/plasma.tres" type="Material" id=2]
-[ext_resource path="res://assets/scripts/gun/Bullet.cs" type="Script" id=3]
+[ext_resource type="Material" path="res://assets/materials/weapon/result/plasmaParticles.tres" id="1"]
+[ext_resource type="Material" path="res://assets/materials/weapon/result/plasma.tres" id="2"]
+[ext_resource type="Script" uid="uid://ngwrr0ubklox" path="res://assets/scripts/gun/Bullet.cs" id="3"]
 
+[sub_resource type="CapsuleMesh" id="1"]
+material = ExtResource("2")
+height = 3.0
 
-[sub_resource type="CapsuleMesh" id=1]
-material = ExtResource( 2 )
-height = 3
-
-[sub_resource type="ParticleProcessMaterial" id=2]
+[sub_resource type="ParticleProcessMaterial" id="2"]
 emission_shape = 3
-emission_box_extents = Vector3( 0.2, 0.2, 0.5 )
-direction = Vector3( 0, 0, -1 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity_min = 1
-initial_velocity_max = 1
+emission_box_extents = Vector3(0.2, 0.2, 0.5)
+direction = Vector3(0, 0, -1)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
 
-[sub_resource type="QuadMesh" id=3]
-material = ExtResource( 1 )
-size = Vector2( 0.2, 0.2 )
+[sub_resource type="QuadMesh" id="3"]
+material = ExtResource("1")
+size = Vector2(0.2, 0.2)
 
-[sub_resource type="BoxShape3D" id=4]
-extents = Vector3( 0.338521, 0.192603, 0.765301 )
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(0.677042, 0.385206, 1.530602)
 
-[node name="plasma" type="Area3D"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0532041 )
+[node name="plasma" type="Area3D" unique_id=513482443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0532041)
 collision_layer = 3
-script = ExtResource( 3 )
+script = ExtResource("3")
 speed = 1.4
 
-[node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.1, 0, 0, 0, 0, -0.1, 0, 0.4, 0, 0, 0, 0 )
-mesh = SubResource( 1 )
+[node name="MeshInstance" type="MeshInstance3D" parent="." unique_id=769901929]
+transform = Transform3D(0.1, 0, 0, 0, 0, -0.1, 0, 0.4, 0, 0, 0, 0)
+mesh = SubResource("1")
 
-[node name="Particles" type="Particles" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00269753 )
+[node name="Particles" type="GPUParticles3D" parent="." unique_id=886264353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00269753)
 amount = 16
 lifetime = 0.3
-visibility_aabb = AABB( -1.21591, -0.98581, -1.47966, 2.43183, 1.97162, 3.47104 )
-local_coords = false
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 3 )
+visibility_aabb = AABB(-1.21591, -0.98581, -1.47966, 2.43183, 1.97162, 3.47104)
+process_material = SubResource("2")
+draw_pass_1 = SubResource("3")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0588598 )
-shape = SubResource( 4 )
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=2075255171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0588598)
+shape = SubResource("4")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_plasma_body_shape_entered"]

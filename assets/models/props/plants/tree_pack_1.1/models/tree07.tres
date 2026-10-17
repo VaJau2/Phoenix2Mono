@@ -1,12 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6a3j7a28lsa5"]
 
-[ext_resource path="res://assets/models/props/plants/tree_pack_1.1/textures/tree07.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://bdw3unasetvcr" path="res://assets/models/props/plants/tree_pack_1.1/textures/tree07.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "tree07"
-flags_transparent = true
 transparency = 4
-albedo_color = Color( 0.8, 0.8, 0.8, 1 )
-albedo_texture = ExtResource( 1 )
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("1")
 metallic = 1.0
+texture_filter = 0

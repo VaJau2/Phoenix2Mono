@@ -1,21 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://dkig0vhg4junx"]
 
-[ext_resource path="res://assets/materials/magic/magic.tres" type="Material" id=1]
+[ext_resource type="Material" path="res://assets/materials/magic/magic.tres" id="1"]
 
-[sub_resource type="ParticleProcessMaterial" id=1]
+[sub_resource type="ParticleProcessMaterial" id="1"]
 emission_shape = 3
-emission_box_extents = Vector3( 0.5, 0.5, 1 )
-gravity = Vector3( 0, 0.1, 0 )
-scale_min = 0
+emission_box_extents = Vector3(0.5, 0.5, 1)
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.0
 scale_max = 0.5
 
-[sub_resource type="QuadMesh" id=2]
-material = ExtResource( 1 )
-size = Vector2( 0.1, 0.1 )
+[sub_resource type="QuadMesh" id="2"]
+material = ExtResource("1")
+size = Vector2(0.1, 0.1)
 
-[node name="levitation" type="Particles"]
+[node name="levitation" type="GPUParticles3D" unique_id=1560454860]
 amount = 24
 lifetime = 0.75
-local_coords = false
-process_material = SubResource( 1 )
-draw_pass_1 = SubResource( 2 )
+process_material = SubResource("1")
+draw_pass_1 = SubResource("2")

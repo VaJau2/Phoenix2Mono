@@ -1,11 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cm5p4eeg43tyr"]
 
-[ext_resource path="res://assets/models/props/vehicles/chevrolet/Chevrolet__color.tga" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/vehicles/chevrolet/Chevrolet__nmap.tga" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://b0fki8uaao80e" path="res://assets/models/props/vehicles/chevrolet/Chevrolet__color.tga" id="1"]
+[ext_resource type="Texture2D" uid="uid://cjnpcxh8wvkfd" path="res://assets/models/props/vehicles/chevrolet/Chevrolet__nmap.tga" id="2"]
 
 [resource]
-texture_filter = 0
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 normal_enabled = true
 normal_scale = 0.5
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

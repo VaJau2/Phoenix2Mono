@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmrda27my7hot"]
 
 [resource]
+albedo_color = Color(0.027451, 0.517647, 0, 1)
 texture_filter = 0
-params_billboard_mode = 3
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0.027451, 0.517647, 0, 1 )

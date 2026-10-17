@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c5emyx2b3c2wp"]
 
 [resource]
-texture_filter = 0
 resource_name = "Material.002"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
 metallic = 1.0
+texture_filter = 0

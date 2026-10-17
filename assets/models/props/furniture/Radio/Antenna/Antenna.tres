@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://xcjl28pof74x"]
 
 [resource]
-texture_filter = 0
 resource_name = "Antenna"
-albedo_color = Color( 0.8, 0.8, 0.8, 1 )
+albedo_color = Color(0.8, 0.8, 0.8, 1)
 metallic = 1.0
 roughness = 0.15
+texture_filter = 0

@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://waa6fmrl1mw2"]
 
-[ext_resource path="res://assets/models/props/buildings/street-houses/backHouse2/BackHouse2.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://de5h2vvll8lqu" path="res://assets/models/props/buildings/street-houses/backHouse2/BackHouse2.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "BackHouse"
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_texture = ExtResource("1")
+texture_filter = 0

@@ -1,11 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c85oiibgurwc4"]
 
 [resource]
-texture_filter = 0
 resource_name = "Light"
-flags_transparent = true
-vertex_color_use_as_albedo = true
-params_cull_mode = 2
 transparency = 4
-albedo_color = Color( 0.70179, 0.690894, 0.59333, 0.85 )
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.70179, 0.690894, 0.59333, 0.85)
 roughness = 0.25
+texture_filter = 0

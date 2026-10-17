@@ -1,17 +1,14 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dekkc8bt38c4f"]
 
-[ext_resource path="res://assets/textures/characters/windy/eyes/neitral/0.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://qfbmjbi0roqt" path="res://assets/textures/characters/windy/eyes/neitral/0.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "eyes"
-flags_transparent = true
+transparency = 1
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 1, 1, 1, 0.0392157 )
-albedo_texture = ExtResource( 1 )
+albedo_color = Color(1, 1, 1, 0.231373)
+albedo_texture = ExtResource("1")
 emission_enabled = true
-emission = Color( 0.12549, 0.223529, 0.227451, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(0.12549, 0.223529, 0.227451, 1)
+texture_filter = 0

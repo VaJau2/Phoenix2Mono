@@ -1,33 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://ui5dv5oeq78m"]
 
-[ext_resource path="res://assets/textures/interface/icons/buttons/LMB.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/scripts/interface/inventory/ControlHint.cs" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://04tl1afrpv13" path="res://assets/textures/interface/icons/buttons/LMB.png" id="1"]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="2"]
+[ext_resource type="Script" uid="uid://bnuyexdy8baia" path="res://assets/scripts/interface/inventory/ControlHint.cs" id="3"]
 
-[node name="ControlHint" type="Control"]
+[node name="ControlHint" type="Control" unique_id=1452673273]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1024.0
 offset_bottom = -600.0
-theme = ExtResource( 2 )
-script = ExtResource( 3 )
+theme = ExtResource("2")
+script = ExtResource("3")
 holdDelay = false
 isMove = true
 textKey = 2
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=467405826]
 texture_filter = 2
+layout_mode = 0
 offset_right = 48.0
 offset_bottom = 32.0
-scale = Vector2( 0.6, 0.6 )
-theme = ExtResource( 2 )
-texture = ExtResource( 1 )
+scale = Vector2(0.6, 0.6)
+theme = ExtResource("2")
+texture = ExtResource("1")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1597349458]
+layout_mode = 0
 offset_left = 40.0
 offset_right = 243.0
 offset_bottom = 19.2
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "Переместить"
-valign = 1
+vertical_alignment = 1

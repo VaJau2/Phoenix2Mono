@@ -1,39 +1,39 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://cj4lb7rcckc4i"]
 
-[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/models/props/furniture/Fonar/Fonar.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/materials/props/light/light2_texture.tres" type="Material" id=3]
-[ext_resource path="res://assets/materials/props/light/lightwhite.tres" type="Material" id=4]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.tres" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://hg5w5qxjl0sc" path="res://assets/models/props/furniture/Fonar/Fonar.obj" id="2"]
+[ext_resource type="Material" path="res://assets/materials/props/light/light2_texture.tres" id="3"]
+[ext_resource type="Material" path="res://assets/materials/props/light/lightwhite.tres" id="4"]
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 1.32911, 25.349, 1 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(2.65822, 50.698, 2)
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 2.90077, 3.85123, 3.18677 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(5.80154, 7.70246, 6.37354)
 
-[node name="Light" type="StaticBody3D"]
-transform = Transform3D( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
-physics_material_override = ExtResource( 1 )
+[node name="Light" type="StaticBody3D" unique_id=315906653]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+physics_material_override = ExtResource("1")
 
-[node name="Fonar" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.0476103, 0, 0, 0, 0.0476103, 0, 0, 0, 0.0476103, 0, -0.00708274, 0 )
+[node name="Fonar" type="MeshInstance3D" parent="." unique_id=1056258891]
+transform = Transform3D(0.0476103, 0, 0, 0, 0.0476103, 0, 0, 0, 0.0476103, 0, -0.00708274, 0)
 cast_shadow = 0
-mesh = ExtResource( 2 )
-surface_material_override/0 = ExtResource( 3 )
-surface_material_override/1 = ExtResource( 4 )
+mesh = ExtResource("2")
+surface_material_override/0 = ExtResource("3")
+surface_material_override/1 = ExtResource("4")
 
-[node name="OmniLight" type="OmniLight3D" parent="."]
-transform = Transform3D( 1.42857, 0, 0, 0, 1.42857, 0, 0, 0, 1.42857, 0, 10.97, 0 )
-light_color = Color( 0.917647, 0.913725, 0.764706, 1 )
+[node name="OmniLight" type="OmniLight3D" parent="." unique_id=841909069]
+transform = Transform3D(1.42857, 0, 0, 0, 1.42857, 0, 0, 0, 1.42857, 0, 10.97, 0)
+light_color = Color(0.917647, 0.913725, 0.764706, 1)
 shadow_enabled = true
 shadow_bias = 0.65
 shadow_reverse_cull_face = true
 omni_range = 25.0
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 6.05406, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=717914081]
+transform = Transform3D(0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 6.05406, 0)
+shape = SubResource("1")
 
-[node name="CollisionShape2" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 11.0241, 0 )
-shape = SubResource( 2 )
+[node name="CollisionShape2" type="CollisionShape3D" parent="." unique_id=1059466284]
+transform = Transform3D(0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 11.0241, 0)
+shape = SubResource("2")

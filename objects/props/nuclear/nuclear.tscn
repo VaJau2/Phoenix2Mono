@@ -1,122 +1,126 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene format=3 uid="uid://ch2l46ywl43gg"]
 
-[ext_resource path="res://assets/textures/background/nuclear.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/materials/weapon/result/white-smoke.tres" type="Material" id=2]
-[ext_resource path="res://assets/materials/props/light/lightwhite.tres" type="Material" id=3]
-[ext_resource path="res://assets/scripts/triggers/zebra_base/NuclearBombTrigger.cs" type="Script" id=4]
-[ext_resource path="res://assets/audio/background/nuclear/rocket_fly.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion2.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion1.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/background/nuclear/nuclear_explosion.wav" type="AudioStream" id=8]
+[ext_resource type="Texture2D" uid="uid://cc56kvdfhhr8y" path="res://assets/textures/background/nuclear.png" id="1"]
+[ext_resource type="Material" path="res://assets/materials/weapon/result/white-smoke.tres" id="2"]
+[ext_resource type="Material" path="res://assets/materials/props/light/lightwhite.tres" id="3"]
+[ext_resource type="Script" uid="uid://bmgjb4xkhpknu" path="res://assets/scripts/triggers/zebra_base/NuclearBombTrigger.cs" id="4"]
+[ext_resource type="AudioStream" uid="uid://byjpns5qrqc7" path="res://assets/audio/background/nuclear/rocket_fly.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://cl6lpx18b0b1u" path="res://assets/audio/background/nuclear/nuclear_explosion2.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://d1o7my7nql8er" path="res://assets/audio/background/nuclear/nuclear_explosion1.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://cr60sgubr6hff" path="res://assets/audio/background/nuclear/nuclear_explosion.wav" id="8"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 length = 1.1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("light:omni_range")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 40.0, 100.0, 900.0, 700.0, 200.0, 150.0, 100.0, 50.0, 20.0, 10.0, 5.0 ]
+"values": [40.0, 100.0, 900.0, 700.0, 200.0, 150.0, 100.0, 50.0, 20.0, 10.0, 5.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("light:light_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 15.0, 20.0, 30.0, 60.0, 70.0, 60.0, 40.0, 20.0, 15.0, 5.0, 1.0 ]
+"values": [15.0, 20.0, 30.0, 60.0, 70.0, 60.0, 40.0, 20.0, 15.0, 5.0, 1.0]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
-[sub_resource type="BoxMesh" id=2]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25scl"]
+_data = {
+&"fire": SubResource("1")
+}
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.445238, 0.0, 0, 0 ]
+[sub_resource type="BoxMesh" id="2"]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.445238, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="ParticleProcessMaterial" id=5]
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
 spread = 20.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity_min = 2
-initial_velocity_max = 2
-scale_curve = SubResource( 4 )
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("4")
 
-[sub_resource type="QuadMesh" id=6]
-material = ExtResource( 2 )
-size = Vector2( 2, 2 )
+[sub_resource type="QuadMesh" id="6"]
+material = ExtResource("2")
+size = Vector2(2, 2)
 
-[node name="nuclear" type="Node3D"]
-script = ExtResource( 4 )
-explosionSounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+[node name="nuclear" type="Node3D" unique_id=1136738526]
+script = ExtResource("4")
+explosionSounds = [ExtResource("7"), ExtResource("6"), ExtResource("8")]
 
-[node name="sprite" type="Sprite3D" parent="."]
-texture_filter = 0
-transform = Transform3D( 50, 0, 0, 0, 50, 0, 0, 0, 1, 0, 7.43599, 0 )
+[node name="sprite" type="Sprite3D" parent="." unique_id=1720627842]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 1, 0, 7.43599, 0)
 visible = false
-texture = ExtResource( 1 )
+texture_filter = 0
+texture = ExtResource("1")
 hframes = 7
 vframes = 2
 
-[node name="light" type="OmniLight3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.0078, 0 )
+[node name="light" type="OmniLight3D" parent="." unique_id=1530366630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.0078, 0)
 visible = false
-light_color = Color( 0.890196, 0.392157, 0.352941, 1 )
+light_color = Color(0.890196, 0.392157, 0.352941, 1)
 light_energy = 15.0
 shadow_enabled = true
 omni_range = 40.0
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1411803413]
+libraries/ = SubResource("AnimationLibrary_25scl")
 speed_scale = 0.5
-anims/fire = SubResource( 1 )
 
-[node name="audi" type="AudioStreamPlayer3D" parent="."]
+[node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=1528735093]
 unit_size = 90.0
 max_db = 6.0
 max_distance = 2500.0
-bus = "Sound"
+bus = &"Sound"
 
-[node name="rocket" type="Node3D" parent="."]
-transform = Transform3D( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 300, 40, 0 )
+[node name="rocket" type="Node3D" parent="." unique_id=764431778]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 300, 40, 0)
 visible = false
 
-[node name="MeshInstance" type="MeshInstance3D" parent="rocket"]
-transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 2 )
-surface_material_override/0 = ExtResource( 3 )
+[node name="MeshInstance" type="MeshInstance3D" parent="rocket" unique_id=1528815712]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("2")
+surface_material_override/0 = ExtResource("3")
 
-[node name="Particles" type="Particles" parent="rocket"]
-transform = Transform3D( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.185927, -0.0524101, -0.378815 )
+[node name="Particles" type="GPUParticles3D" parent="rocket" unique_id=693967533]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.185927, -0.0524101, -0.378815)
 amount = 80
 lifetime = 1.2
-visibility_aabb = AABB( -0.436759, -2.55555, -1.98594, 8.44871, 5.1111, 3.97188 )
-local_coords = false
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 6 )
+visibility_aabb = AABB(-0.436759, -2.55555, -1.98594, 8.44871, 5.1111, 3.97188)
+process_material = SubResource("5")
+draw_pass_1 = SubResource("6")
 
-[node name="audi" type="AudioStreamPlayer3D" parent="rocket"]
-stream = ExtResource( 5 )
-unit_size = 10.0
+[node name="audi" type="AudioStreamPlayer3D" parent="rocket" unique_id=1473570785]
+stream = ExtResource("5")
 max_distance = 1000.0
-bus = "Sound"
+bus = &"Sound"

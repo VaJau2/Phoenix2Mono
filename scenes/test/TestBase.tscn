@@ -1,52 +1,52 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene format=3 uid="uid://c54whr5dbvclb"]
 
-[ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/utils/CheckFall.cs" type="Script" id=4]
-[ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
-[ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
-[ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
-[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
+[ext_resource type="PackedScene" uid="uid://bonamhqx7h1ys" path="res://objects/characters/Player/PlayerSpawner.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b38jwtl7wp5ah" path="res://objects/interface/canvas.tscn" id="2"]
+[ext_resource type="Script" uid="uid://c82p4e215jq7o" path="res://assets/scripts/furniture/RandomItems.cs" id="3"]
+[ext_resource type="Script" uid="uid://cp4k2ur0005rw" path="res://assets/scripts/utils/CheckFall.cs" id="4"]
+[ext_resource type="Script" uid="uid://bdjidp3whcsyd" path="res://assets/scripts/system/TestSceneLoader.cs" id="7"]
+[ext_resource type="Script" uid="uid://3tl1l6vtlegb" path="res://assets/scripts/characters/EnemiesManager.cs" id="10"]
+[ext_resource type="Script" uid="uid://ck5jsdvtjmwgd" path="res://assets/scripts/system/LevelsLoader.cs" id="12"]
+[ext_resource type="Script" uid="uid://b2lxwalr3h0c" path="res://assets/scripts/background/shells/ShellsManager.cs" id="13"]
 
-[node name="Main" type="Node"]
-script = ExtResource( 12 )
+[node name="Main" type="Node" unique_id=1395804855]
+script = ExtResource("12")
 
-[node name="Scene" type="Node" parent="."]
+[node name="Scene" type="Node" parent="." unique_id=1231096953]
 
-[node name="TestSceneLoader" type="Node" parent="Scene"]
-script = ExtResource( 7 )
+[node name="TestSceneLoader" type="Node" parent="Scene" unique_id=1298554975]
+script = ExtResource("7")
 
-[node name="canvas" parent="Scene" instance=ExtResource( 2 )]
+[node name="canvas" parent="Scene" unique_id=1272298408 instance=ExtResource("2")]
 
-[node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
+[node name="PlayerSpawner" parent="Scene" unique_id=1808292846 instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0)
 moneyCount = 500
-itemCodes = [ "shotgun20" ]
-ammo = {
+itemCodes = Array[String](["shotgun20"])
+ammo = Dictionary[String, int]({
 "ammo20": 20
-}
+})
 
-[node name="npc" type="Node" parent="Scene"]
-script = ExtResource( 10 )
+[node name="npc" type="Node" parent="Scene" unique_id=366712157]
+script = ExtResource("10")
 
-[node name="checkFall" type="Node" parent="Scene"]
-script = ExtResource( 4 )
+[node name="checkFall" type="Node" parent="Scene" unique_id=2087853742]
+script = ExtResource("4")
 teleportPointPath = NodePath("UpPoint")
 fallHeight = -150.0
 
-[node name="UpPoint" type="Node3D" parent="Scene/checkFall"]
+[node name="UpPoint" type="Node3D" parent="Scene/checkFall" unique_id=1787125680]
 
-[node name="shells" type="Node3D" parent="Scene" groups=["savable"]]
-script = ExtResource( 13 )
+[node name="shells" type="Node3D" parent="Scene" unique_id=338708082 groups=["savable"]]
+script = ExtResource("13")
 
-[node name="randomItems" type="Node" parent="Scene"]
-script = ExtResource( 3 )
+[node name="randomItems" type="Node" parent="Scene" unique_id=1893294518]
+script = ExtResource("3")
 maxItemsCount = 10
 moneyChance = 0.9
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bowRibbon", "healPotion", "laserPistol", "plasmaPistol" ]
-ammoCount = {
+itemCodes = Array[String](["mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bowRibbon", "healPotion", "laserPistol", "plasmaPistol"])
+ammoCount = Dictionary[String, int]({
 "ammo308": 20,
 "ammo32": 20
-}
+})

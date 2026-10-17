@@ -1,10 +1,9 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cd1iaqiun4otx"]
 
-[ext_resource path="res://assets/textures/props/window/window-broken.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://xm84s6tbm4ra" path="res://assets/textures/props/window/window-broken.png" id="1"]
 
 [resource]
-texture_filter = 0
 render_priority = 3
-flags_transparent = true
 transparency = 4
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
+texture_filter = 0

@@ -1,136 +1,135 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene format=3 uid="uid://h0gfr55j721o"]
 
-[ext_resource path="res://objects/characters/Player/PlayerSpawner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/interface/canvas.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/scripts/furniture/RandomItems.cs" type="Script" id=3]
-[ext_resource path="res://assets/scripts/triggers/cinematic/CinematicExit.cs" type="Script" id=4]
-[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=5]
-[ext_resource path="res://assets/materials/props/locations/sand.tres" type="Material" id=6]
-[ext_resource path="res://assets/scripts/system/TestSceneLoader.cs" type="Script" id=7]
-[ext_resource path="res://objects/props/vehicles/Mercury.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/props/vehicles/chevrolet.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/scripts/characters/EnemiesManager.cs" type="Script" id=10]
-[ext_resource path="res://objects/props/vehicles/Pontiac.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/scripts/system/LevelsLoader.cs" type="Script" id=12]
-[ext_resource path="res://assets/scripts/background/shells/ShellsManager.cs" type="Script" id=13]
-[ext_resource path="res://objects/props/vehicles/car_nt.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/materials/props/metal.tres" type="Material" id=15]
-[ext_resource path="res://assets/materials/props/furniture/trash/green.tres" type="Material" id=16]
+[ext_resource type="PackedScene" uid="uid://bonamhqx7h1ys" path="res://objects/characters/Player/PlayerSpawner.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b38jwtl7wp5ah" path="res://objects/interface/canvas.tscn" id="2"]
+[ext_resource type="Script" uid="uid://c82p4e215jq7o" path="res://assets/scripts/furniture/RandomItems.cs" id="3"]
+[ext_resource type="Script" uid="uid://cgsnf3hetxmyu" path="res://assets/scripts/triggers/cinematic/CinematicExit.cs" id="4"]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.tres" id="5"]
+[ext_resource type="Material" path="res://assets/materials/props/locations/sand.tres" id="6"]
+[ext_resource type="Script" uid="uid://bdjidp3whcsyd" path="res://assets/scripts/system/TestSceneLoader.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://wesqrcnjdrjs" path="res://objects/props/vehicles/Mercury.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://do7k0r83yx8xj" path="res://objects/props/vehicles/chevrolet.tscn" id="9"]
+[ext_resource type="Script" uid="uid://3tl1l6vtlegb" path="res://assets/scripts/characters/EnemiesManager.cs" id="10"]
+[ext_resource type="PackedScene" uid="uid://btpywu6moilgf" path="res://objects/props/vehicles/Pontiac.tscn" id="11"]
+[ext_resource type="Script" uid="uid://ck5jsdvtjmwgd" path="res://assets/scripts/system/LevelsLoader.cs" id="12"]
+[ext_resource type="Script" uid="uid://b2lxwalr3h0c" path="res://assets/scripts/background/shells/ShellsManager.cs" id="13"]
+[ext_resource type="PackedScene" uid="uid://ddf8rfy5eak8w" path="res://objects/props/vehicles/car_nt.tscn" id="14"]
+[ext_resource type="Material" path="res://assets/materials/props/metal.tres" id="15"]
+[ext_resource type="Material" path="res://assets/materials/props/furniture/trash/green.tres" id="16"]
 
+[sub_resource type="BoxMesh" id="6"]
+size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="BoxMesh" id=6]
-size = Vector3( 0.5, 0.5, 0.5 )
-
-[sub_resource type="CylinderMesh" id=3]
+[sub_resource type="CylinderMesh" id="3"]
 top_radius = 23.0
 bottom_radius = 23.0
 height = 0.01
 
-[sub_resource type="CylinderShape3D" id=4]
+[sub_resource type="CylinderShape3D" id="4"]
 height = 0.01
 radius = 23.0
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 500.764, 1, 497.571 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(1001.528, 2, 995.142)
 
-[sub_resource type="QuadMesh" id=2]
+[sub_resource type="QuadMesh" id="2"]
 
-[sub_resource type="SphereShape3D" id=5]
+[sub_resource type="SphereShape3D" id="5"]
 radius = 23.0
 
-[node name="Main" type="Node"]
-script = ExtResource( 12 )
+[node name="Main" type="Node" unique_id=216721901]
+script = ExtResource("12")
 
-[node name="Scene" type="Node" parent="."]
+[node name="Scene" type="Node" parent="." unique_id=547534867]
 
-[node name="TestSceneLoader" type="Node" parent="Scene"]
-script = ExtResource( 7 )
+[node name="TestSceneLoader" type="Node" parent="Scene" unique_id=730382044]
+script = ExtResource("7")
 
-[node name="canvas" parent="Scene" instance=ExtResource( 2 )]
+[node name="canvas" parent="Scene" unique_id=1229368834 instance=ExtResource("2")]
 
-[node name="PlayerSpawner" parent="Scene" instance=ExtResource( 1 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0 )
+[node name="PlayerSpawner" parent="Scene" unique_id=1868657125 instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9434, 1.5, 0)
 moneyCount = 500
-itemCodes = [ "shotgun20" ]
-ammo = {
+itemCodes = Array[String](["shotgun20"])
+ammo = Dictionary[String, int]({
 "ammo20": 20
-}
+})
 
-[node name="npc" type="Node" parent="Scene"]
-script = ExtResource( 10 )
+[node name="npc" type="Node" parent="Scene" unique_id=1555734417]
+script = ExtResource("10")
 
-[node name="shells" type="Node3D" parent="Scene" groups=["savable"]]
-script = ExtResource( 13 )
+[node name="shells" type="Node3D" parent="Scene" unique_id=889019774 groups=["savable"]]
+script = ExtResource("13")
 
-[node name="randomItems" type="Node" parent="Scene"]
-script = ExtResource( 3 )
+[node name="randomItems" type="Node" parent="Scene" unique_id=729847569]
+script = ExtResource("3")
 maxItemsCount = 10
 moneyChance = 0.9
 maxMoneyCount = 50
-itemCodes = [ "mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol" ]
-ammoCount = {
+itemCodes = Array[String](["mentats", "dash", "maffin", "ammo308", "ammo32", "revolver32", "bow-ribbon", "heal-potion", "laserPistol", "plasmaPistol"])
+ammoCount = Dictionary[String, int]({
 "ammo308": 20,
 "ammo32": 20
-}
+})
 
-[node name="props" type="Node3D" parent="Scene"]
+[node name="props" type="Node3D" parent="Scene" unique_id=777393824]
 
-[node name="Target" type="MeshInstance3D" parent="Scene/props"]
+[node name="Target" type="MeshInstance3D" parent="Scene/props" unique_id=41828769]
 visible = false
-mesh = SubResource( 6 )
+mesh = SubResource("6")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( 15 )
+surface_material_override/0 = ExtResource("15")
 
-[node name="Exit Point" type="MeshInstance3D" parent="Scene/props"]
+[node name="Exit Point" type="MeshInstance3D" parent="Scene/props" unique_id=742347760]
 visible = false
-mesh = SubResource( 6 )
+mesh = SubResource("6")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( 16 )
+surface_material_override/0 = ExtResource("16")
 
-[node name="Mercury" parent="Scene/props" instance=ExtResource( 8 )]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.075, 0.005, 28 )
+[node name="Mercury" parent="Scene/props" unique_id=1550166673 instance=ExtResource("8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.075, 0.005, 28)
 
-[node name="Chevrolet" parent="Scene/props" instance=ExtResource( 9 )]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.005, -27 )
+[node name="Chevrolet" parent="Scene/props" unique_id=156542441 instance=ExtResource("9")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.005, -27)
 
-[node name="Pontiac" parent="Scene/props" instance=ExtResource( 11 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.005, 0 )
+[node name="Pontiac" parent="Scene/props" unique_id=820252324 instance=ExtResource("11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.005, 0)
 
-[node name="car_nt" parent="Scene/props" instance=ExtResource( 14 )]
-transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -29, 0.005, 0 )
+[node name="car_nt" parent="Scene/props" unique_id=343535496 instance=ExtResource("14")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -29, 0.005, 0)
 
-[node name="sand" type="StaticBody3D" parent="Scene/props"]
+[node name="sand" type="StaticBody3D" parent="Scene/props" unique_id=1781778585]
 
-[node name="MeshInstance" type="MeshInstance3D" parent="Scene/props/sand"]
-mesh = SubResource( 3 )
-surface_material_override/0 = ExtResource( 6 )
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/props/sand" unique_id=545710025]
+mesh = SubResource("3")
+surface_material_override/0 = ExtResource("6")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/sand"]
-shape = SubResource( 4 )
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/sand" unique_id=1564684961]
+shape = SubResource("4")
 
-[node name="floor" type="StaticBody3D" parent="Scene/props"]
+[node name="floor" type="StaticBody3D" parent="Scene/props" unique_id=1956266756]
 collision_layer = 3
 collision_mask = 3
-physics_material_override = ExtResource( 5 )
+physics_material_override = ExtResource("5")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/floor"]
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/props/floor" unique_id=1576100816]
+shape = SubResource("1")
 
-[node name="floor" type="MeshInstance3D" parent="Scene/props/floor"]
-transform = Transform3D( 1000, 0, 0, 0, -4.37114e-05, 1, 0, -1000, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 2 )
+[node name="floor" type="MeshInstance3D" parent="Scene/props/floor" unique_id=1621703281]
+transform = Transform3D(1000, 0, 0, 0, -4.37114e-05, 1, 0, -1000, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("2")
 skeleton = NodePath("../..")
 
-[node name="triggers" type="Node" parent="Scene"]
+[node name="triggers" type="Node" parent="Scene" unique_id=979985939]
 
-[node name="exitCheck" type="Area3D" parent="Scene/triggers"]
+[node name="exitCheck" type="Area3D" parent="Scene/triggers" unique_id=501692376]
 collision_layer = 8
 collision_mask = 8
 monitorable = false
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="shape" type="CollisionShape3D" parent="Scene/triggers/exitCheck"]
-shape = SubResource( 5 )
+[node name="shape" type="CollisionShape3D" parent="Scene/triggers/exitCheck" unique_id=1601219821]
+shape = SubResource("5")
 
 [connection signal="body_entered" from="Scene/triggers/exitCheck" to="Scene/triggers/exitCheck" method="OnAreaEntered"]
 [connection signal="body_exited" from="Scene/triggers/exitCheck" to="Scene/triggers/exitCheck" method="OnAreaExited"]

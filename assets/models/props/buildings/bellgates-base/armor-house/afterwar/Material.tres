@@ -1,16 +1,16 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://djciodehe1vcb"]
 
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/afterwar/Material.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/armor-house/afterwar/Material_2.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://b7pkmeya7j1bc" path="res://assets/models/props/buildings/bellgates-base/armor-house/afterwar/Material.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://diuuhwsfy378e" path="res://assets/models/props/buildings/bellgates-base/armor-house/afterwar/Material_2.png" id="2"]
 
 [resource]
-texture_filter = 0
 resource_name = "Material"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 metallic = 0.74
 roughness = 0.86
 normal_enabled = true
 normal_scale = 0.4
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

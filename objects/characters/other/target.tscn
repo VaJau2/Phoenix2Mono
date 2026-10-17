@@ -1,83 +1,88 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://vh1i76fxqr3u"]
 
-[ext_resource path="res://assets/textures/props/target.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/scripts/characters/Target.cs" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://xg4rr7v7kj4b" path="res://assets/textures/props/target.png" id="1"]
+[ext_resource type="Script" uid="uid://wtrfn6v6lrwa" path="res://assets/scripts/characters/Target.cs" id="2"]
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 0.0453738, 3.01609, 1.98346 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(0.0907476, 6.03218, 3.96692)
 
-[sub_resource type="BoxShape3D" id=6]
-extents = Vector3( 0.0746879, 0.557771, 0.478823 )
+[sub_resource type="BoxShape3D" id="6"]
+size = Vector3(0.1493758, 1.115542, 0.957646)
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "Die"
 length = 0.2
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( -0.0154885, -0.0390678, 0.196563 ), Vector3( 0.035, -0.023, 90 ) ]
+"values": [Vector3(-0.0154885, -0.0390678, 0.196563), Vector3(0.035, -0.023, 90)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 resource_name = "Lie"
 length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0.035, -0.023, 90 ), Vector3( 0.035, -0.023, 90 ) ]
+"values": [Vector3(0.035, -0.023, 90), Vector3(0.035, -0.023, 90)]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 resource_name = "Rise"
 length = 0.2
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0.035, -0.023, 90 ), Vector3( -0.0154885, -0.0390678, 0.196563 ) ]
+"values": [Vector3(0.035, -0.023, 90), Vector3(-0.0154885, -0.0390678, 0.196563)]
 }
 
-[node name="target" type="CharacterBody3D"]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681861, 0.00343066, 0.999994, 0.000270326, 0.00068093, -0.000272663, 1, 6.93201, 0, 15.6377 )
-script = ExtResource( 2 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2borh"]
+_data = {
+&"Die": SubResource("3"),
+&"Lie": SubResource("4"),
+&"Rise": SubResource("5")
+}
 
-[node name="sprite" type="Sprite3D" parent="."]
-texture_filter = 0
-transform = Transform3D( -1.5058e-07, 0, 3.44487, 0, 3.44487, 0, -3.44487, 0, -1.5058e-07, -0.0666615, 2.94868, 0 )
+[node name="target" type="CharacterBody3D" unique_id=251179963]
+transform = Transform3D(0.999994, -0.00343047, -0.000681861, 0.00343066, 0.999994, 0.000270326, 0.00068093, -0.000272663, 1, 6.93201, 0, 15.6377)
+script = ExtResource("2")
+
+[node name="sprite" type="Sprite3D" parent="." unique_id=469861697]
+transform = Transform3D(-1.5058e-07, 0, 3.44487, 0, 3.44487, 0, -3.44487, 0, -1.5058e-07, -0.0666615, 2.94868, 0)
 transparent = false
 shaded = true
-texture = ExtResource( 1 )
+texture_filter = 0
+texture = ExtResource("1")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127876, 2.99058, 0.0588303 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1234628037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127876, 2.99058, 0.0588303)
+shape = SubResource("1")
 
-[node name="CollisionShape3" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 2.46295e-09, 6.40284e-10, 3.39375e-09, 1, 0, -1.16415e-10, 5.82077e-11, 1, 0.0156946, 4.19814, 0.0591106 )
-shape = SubResource( 6 )
+[node name="CollisionShape3" type="CollisionShape3D" parent="." unique_id=221417509]
+transform = Transform3D(1, 2.46295e-09, 6.40284e-10, 3.39375e-09, 1, 0, -1.16415e-10, 5.82077e-11, 1, 0.0156946, 4.19814, 0.0591106)
+shape = SubResource("6")
 
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/Die = SubResource( 3 )
-anims/Lie = SubResource( 4 )
-anims/Rise = SubResource( 5 )
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1916734568]
+libraries/ = SubResource("AnimationLibrary_2borh")

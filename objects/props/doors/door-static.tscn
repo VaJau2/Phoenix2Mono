@@ -1,35 +1,34 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene format=4 uid="uid://dfkny1i4boy76"]
 
-[ext_resource path="res://assets/materials/physics/wood.tres" type="PhysicsMaterial" id=1]
-[ext_resource path="res://assets/materials/props/door2.tres" type="Material" id=7]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/wood.tres" id="1"]
+[ext_resource type="Material" path="res://assets/materials/props/door2.tres" id="7"]
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube"
-lightmap_size_hint = Vector2( 212, 120 )
-surfaces/0 = {
-"aabb": AABB( -0.133413, -0.0371488, -1.87413, 0.266825, 4.07345, 2 ),
-"array_data": PackedByteArray( 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 129, 0, 0, 0, 0, 0, 129, 127, 12, 55, 255, 59, 91, 56, 196, 56, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 129, 0, 0, 0, 0, 0, 129, 127, 173, 10, 147, 46, 212, 24, 68, 28, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 129, 0, 0, 0, 0, 0, 129, 127, 12, 55, 147, 46, 212, 24, 196, 56, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 129, 0, 0, 0, 0, 0, 129, 127, 174, 10, 255, 59, 91, 56, 68, 28, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 162, 59, 33, 52, 212, 24, 42, 58, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 241, 59, 198, 58, 91, 56, 162, 58, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 162, 59, 198, 58, 91, 56, 42, 58, 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 0, 0, 129, 0, 129, 0, 0, 127, 241, 59, 33, 52, 212, 24, 162, 58, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 127, 0, 0, 0, 0, 0, 127, 127, 13, 59, 255, 59, 101, 56, 179, 59, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 127, 0, 0, 0, 0, 0, 127, 127, 14, 55, 147, 46, 19, 59, 68, 28, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 127, 0, 0, 0, 0, 0, 127, 127, 13, 59, 147, 46, 101, 56, 68, 28, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 127, 0, 0, 0, 0, 0, 127, 127, 14, 55, 255, 59, 19, 59, 179, 59, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 134, 59, 195, 58, 28, 59, 247, 59, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 55, 59, 28, 52, 96, 59, 204, 40, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 134, 59, 28, 52, 28, 59, 204, 40, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 0, 0, 127, 0, 129, 0, 0, 127, 55, 59, 195, 58, 96, 59, 247, 59, 74, 157, 8, 190, 96, 41, 24, 189, 8, 229, 0, 62, 0, 129, 0, 0, 0, 0, 127, 127, 205, 54, 144, 37, 106, 59, 196, 56, 74, 157, 8, 62, 96, 41, 24, 189, 95, 227, 239, 191, 0, 129, 0, 0, 0, 0, 127, 127, 208, 44, 97, 44, 173, 59, 68, 28, 74, 157, 8, 190, 96, 41, 24, 189, 95, 227, 239, 191, 0, 129, 0, 0, 0, 0, 127, 127, 208, 44, 144, 37, 106, 59, 68, 28, 74, 157, 8, 62, 96, 41, 24, 189, 8, 229, 0, 62, 0, 129, 0, 0, 0, 0, 127, 127, 205, 54, 97, 44, 173, 59, 196, 56, 74, 157, 8, 62, 72, 41, 129, 64, 8, 229, 0, 62, 0, 127, 0, 0, 0, 0, 127, 127, 94, 59, 144, 37, 183, 59, 8, 57, 74, 157, 8, 190, 72, 41, 129, 64, 95, 227, 239, 191, 0, 127, 0, 0, 0, 0, 127, 127, 145, 56, 97, 44, 251, 59, 204, 40, 74, 157, 8, 62, 72, 41, 129, 64, 95, 227, 239, 191, 0, 127, 0, 0, 0, 0, 127, 127, 145, 56, 144, 37, 183, 59, 204, 40, 74, 157, 8, 190, 72, 41, 129, 64, 8, 229, 0, 62, 0, 127, 0, 0, 0, 0, 127, 127, 94, 59, 97, 44, 251, 59, 8, 57 ),
-"array_index_data": PackedByteArray( 0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0, 4, 0, 5, 0, 6, 0, 4, 0, 7, 0, 5, 0, 8, 0, 9, 0, 10, 0, 8, 0, 11, 0, 9, 0, 12, 0, 13, 0, 14, 0, 12, 0, 15, 0, 13, 0, 16, 0, 17, 0, 18, 0, 16, 0, 19, 0, 17, 0, 20, 0, 21, 0, 22, 0, 20, 0, 23, 0, 21, 0 ),
-"blend_shape_data": [  ],
-"format": 97591,
+lightmap_size_hint = Vector2i(212, 120)
+_surfaces = [{
+"aabb": AABB(-0.133413, -0.0371488, -1.87413, 0.266825, 4.07345, 2),
+"attribute_data": PackedByteArray("AIDhPgDgfz8AYAs/AIAYPwCgVTkAYNI9AIAaOwCAiDsAgOE+AGDSPQCAGjsAgBg/AMBVOQDgfz8AYAs/AICIOwBAdD8AIIQ+AIAaOwBART8AIH4/AMBYPwBgCz8AQFQ/AEB0PwDAWD8AYAs/AEBFPwAgfj8AIIQ+AIAaOwBAVD8AoGE/AOB/PwCgDD8AYHY/AMDhPgBg0j0AYGI/AICIOwCgYT8AYNI9AKAMPwCAiDsAwOE+AOB/PwBgYj8AYHY/AMBwPwBgWD8AgGM/AOB+PwDgZj8AgIM+AABsPwCAGT0AwHA/AICDPgCAYz8AgBk9AOBmPwBgWD8AAGw/AOB+PwCg2T4AALI8AEBtPwCAGD8AAJo9ACCMPQCgdT8AgIg7AACaPQAAsjwAQG0/AICIOwCg2T4AIIw9AKB1PwCAGD8AwGs/AACyPADgdj8AACE/ACASPwAgjD0AYH8/AIAZPQAgEj8AALI8AOB2PwCAGT0AwGs/ACCMPQBgfz8AACE/"),
+"format": 34359742519,
 "index_count": 36,
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 24
-}
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("Sp0IvkgpgUBf4++/Sp0IvmApGL0I5QA+Sp0IvmApGL1f4++/Sp0IvkgpgUAI5QA+Sp0IPkgpgUBf4++/Sp0IvmApGL1f4++/Sp0IPmApGL1f4++/Sp0IvkgpgUBf4++/Sp0IPkgpgUAI5QA+Sp0IPmApGL1f4++/Sp0IPmApGL0I5QA+Sp0IPkgpgUBf4++/Sp0IvkgpgUAI5QA+Sp0IPmApGL0I5QA+Sp0IvmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IvmApGL0I5QA+Sp0IPmApGL1f4++/Sp0IvmApGL1f4++/Sp0IPmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IvkgpgUBf4++/Sp0IPkgpgUBf4++/Sp0IvkgpgUAI5QA+/////2UAAAD/////dAAAAP////9yAAAA/////3QAAAAAAP+/YwAAAAAA/78AAAAAAAD/v2UAAAAAAP+/cAAAAP9//79nAAAA/3//v3AAAAD/f/+/ZwAAAP9//79jAAAAAAD/vy4AAAAAAP+/cwAAAAAA/79lAAAAAAD/v3MAAAD/f/+/bwAAAP9//79lAAAA/3//v2kAAAD/f/+/cwAAAP9//79kAAAA/3//vy4AAAD/f/+/bgAAAP9//78AAAAA")
+}]
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 0.118674, 2.84399, 1.73329 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(0.237348, 5.68798, 3.46658)
 
-[node name="door" type="StaticBody3D"]
-physics_material_override = ExtResource( 1 )
+[node name="door" type="StaticBody3D" unique_id=1452663937]
+physics_material_override = ExtResource("1")
 
-[node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0 )
-use_in_baked_light = true
-mesh = SubResource( 1 )
-surface_material_override/0 = ExtResource( 7 )
+[node name="Cube" type="MeshInstance3D" parent="." unique_id=1146521713]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1.765, 0, 0, 0)
+mesh = SubResource("1")
+surface_material_override/0 = ExtResource("7")
 
-[node name="shape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00236702, 2.86101, -1.50955 )
-shape = SubResource( 2 )
+[node name="shape" type="CollisionShape3D" parent="." unique_id=452212712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00236702, 2.86101, -1.50955)
+shape = SubResource("2")

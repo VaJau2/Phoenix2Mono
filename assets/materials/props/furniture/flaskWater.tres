@@ -1,20 +1,18 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bl1ugr8ikhjmc"]
 
 [resource]
-texture_filter = 0
 resource_name = "front-door"
 render_priority = 1
-flags_transparent = true
+transparency = 1
+blend_mode = 3
+cull_mode = 2
+depth_draw_mode = 1
 diffuse_mode = 3
 specular_mode = 2
-params_blend_mode = 3
-params_cull_mode = 2
-depth_draw_mode = 1
-albedo_color = Color( 0.0117647, 0.462745, 0.0117647, 0.47451 )
+albedo_color = Color(0.0117647, 0.462745, 0.0117647, 0.47451)
 metallic = 0.2
 roughness = 0.9
 emission_enabled = true
-emission = Color( 0.0117647, 0.462745, 0.0117647, 1 )
-emission_energy = 1.5
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(0.0117647, 0.462745, 0.0117647, 1)
+emission_energy_multiplier = 1.5
+texture_filter = 0

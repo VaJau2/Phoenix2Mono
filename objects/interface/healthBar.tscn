@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=3 uid="uid://bbts8gm7xeeft"]
 
-[ext_resource path="res://assets/textures/interface/icons/Health Bar.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://d0yjdpydg8h3x" path="res://assets/textures/interface/icons/Health Bar.png" id="1"]
 
-[node name="mask" type="Control"]
+[node name="mask" type="Control" unique_id=746486218]
 show_behind_parent = true
+clip_contents = true
+layout_mode = 3
 anchor_left = 0.195
 anchor_top = 0.859
 anchor_right = 0.195
@@ -12,16 +14,16 @@ offset_left = 0.039999
 offset_top = 0.0479965
 offset_right = 65.04
 offset_bottom = 80.048
-scale = Vector2( 1, -1 )
-clip_contents = true
+scale = Vector2(1, -1)
 
-[node name="bar" type="TextureRect" parent="." groups=["ignore_color"]]
-texture_filter = 2
+[node name="bar" type="TextureRect" parent="." unique_id=1119413599 groups=["ignore_color"]]
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 offset_left = -25.0
 offset_top = 110.0
 offset_right = 103.0
 offset_bottom = 238.0
-scale = Vector2( 1, -1 )
-texture = ExtResource( 1 )
+scale = Vector2(1, -1)
+texture = ExtResource("1")
 stretch_mode = 4

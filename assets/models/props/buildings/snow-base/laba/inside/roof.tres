@@ -1,11 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://brckbggntdemx"]
 
-[ext_resource path="res://assets/textures/props/buildings/snow-lab/roof.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://dol0ylcu7bw3" path="res://assets/textures/props/buildings/snow-lab/roof.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "roof"
 vertex_color_use_as_albedo = true
-albedo_color = Color( 0.698039, 0.698039, 0.698039, 1 )
-albedo_texture = ExtResource( 1 )
+albedo_color = Color(0.698039, 0.698039, 0.698039, 1)
+albedo_texture = ExtResource("1")
 metallic = 0.2
+texture_filter = 0

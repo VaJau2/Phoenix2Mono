@@ -1,13 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://sdn1rvbvt6sx"]
 
-[ext_resource path="res://assets/textures/background/nightcity.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://beaa0g3riy3u4" path="res://assets/textures/background/nightcity.png" id="1"]
 
 [resource]
-texture_filter = 0
-flags_transparent = true
-flags_unshaded = true
-diffuse_mode = 1
+transparency = 1
 depth_draw_mode = 1
-albedo_color = Color( 0.333333, 0.333333, 0.333333, 1 )
-albedo_texture = ExtResource( 1 )
-uv1_scale = Vector3( 4, 1, 1 )
+shading_mode = 0
+diffuse_mode = 1
+albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
+albedo_texture = ExtResource("1")
+uv1_scale = Vector3(4, 1, 1)
+texture_filter = 0

@@ -1,47 +1,49 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene format=3 uid="uid://dbqdivr2vmuem"]
 
-[ext_resource path="res://assets/textures/interface/noise/noise1.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/textures/interface/noise/noise2.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/textures/interface/noise/noise0.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/textures/interface/noise/noise5.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/textures/interface/noise/noise3.png" type="Texture2D" id=9]
-[ext_resource path="res://assets/textures/interface/noise/noise4.png" type="Texture2D" id=10]
-[ext_resource path="res://assets/textures/interface/noise/noise6.png" type="Texture2D" id=11]
+[ext_resource type="Texture2D" uid="uid://c2sxf3upx2p3g" path="res://assets/textures/interface/noise/noise1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://vmhv74chyjig" path="res://assets/textures/interface/noise/noise2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bbupwgcefr5gw" path="res://assets/textures/interface/noise/noise0.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b460k38yonnhv" path="res://assets/textures/interface/noise/noise5.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dppasd1qnsgqi" path="res://assets/textures/interface/noise/noise3.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://d2v20e12l6c8u" path="res://assets/textures/interface/noise/noise4.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://ci7if2rv6o8o2" path="res://assets/textures/interface/noise/noise6.png" id="11"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "noise"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 2.37841 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 2.37841),
 "update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 11 ) ]
+"values": [ExtResource("3"), ExtResource("1"), ExtResource("2"), ExtResource("9"), ExtResource("10"), ExtResource("6"), ExtResource("11")]
 }
 
-[node name="noise" type="Control"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0aqw"]
+_data = {
+&"noise": SubResource("1")
+}
+
+[node name="noise" type="Control" unique_id=2077088591]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="texture" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="texture" type="TextureRect" parent="." unique_id=78838921]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("2")
+expand_mode = 1
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="anim" type="AnimationPlayer" parent="." unique_id=619972489]
+libraries/ = SubResource("AnimationLibrary_n0aqw")
 speed_scale = 1.5
-anims/noise = SubResource( 1 )

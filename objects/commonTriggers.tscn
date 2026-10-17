@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://bn3evpkwafmg4"]
 
-[ext_resource path="res://assets/scripts/triggers/common/TearSocksTrigger.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/item/rippingClothes.mp3" type="AudioStream" id=2]
+[ext_resource type="Script" uid="uid://cbfxfq2qg8w10" path="res://assets/scripts/triggers/common/TearSocksTrigger.cs" id="1"]
+[ext_resource type="AudioStream" uid="uid://iew3x1j0e28f" path="res://assets/audio/item/rippingClothes.mp3" id="2"]
 
-[node name="commonTriggers" type="Node"]
+[node name="commonTriggers" type="Node" unique_id=1820087965]
 
-[node name="firtWearStealthArmor" type="Node" parent="." groups=["savable"]]
-script = ExtResource( 1 )
-tearSound = ExtResource( 2 )
+[node name="firtWearStealthArmor" type="Node" parent="." unique_id=1108861075 groups=["savable"]]
+script = ExtResource("1")
+tearSound = ExtResource("2")

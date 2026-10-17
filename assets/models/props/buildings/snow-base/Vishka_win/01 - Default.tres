@@ -1,21 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4yr2hd1mrs6i"]
 
-[ext_resource path="res://assets/models/props/buildings/snow-base/Vishka_win/01 - Default.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/buildings/snow-base/Vishka_win/01 - Default_2.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://dqswgplyr55k0" path="res://assets/models/props/buildings/snow-base/Vishka_win/01 - Default.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b3evqsuedonxo" path="res://assets/models/props/buildings/snow-base/Vishka_win/01 - Default_2.png" id="2"]
 
 [resource]
-texture_filter = 0
 resource_name = "01 - Default"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 metallic = 1.0
 roughness = 0.858579
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
 normal_enabled = true
 normal_scale = 0.75
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

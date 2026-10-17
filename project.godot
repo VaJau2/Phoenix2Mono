@@ -19,6 +19,10 @@ config/icon="res://assets/textures/interface/icons/icon.png"
 config/macos_native_icon="res://assets/textures/interface/icons/icon.png"
 config/windows_native_icon="res://icon.ico"
 
+[audio]
+
+buses/default_bus_layout="uid://bmjocdetbscip"
+
 [display]
 
 window/size/viewport_width=1024

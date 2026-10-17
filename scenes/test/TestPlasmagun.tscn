@@ -1,94 +1,94 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://dya3orddv3jhw"]
 
-[ext_resource path="res://objects/characters/other/target.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=6]
+[ext_resource type="PackedScene" uid="uid://vh1i76fxqr3u" path="res://objects/characters/other/target.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c54whr5dbvclb" path="res://scenes/test/TestBase.tscn" id="3"]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.tres" id="6"]
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="PlaneMesh" id="1"]
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 92.6416, 0.1, 50 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(185.2832, 0.2, 100)
 
-[sub_resource type="BoxMesh" id=3]
+[sub_resource type="BoxMesh" id="3"]
 
-[sub_resource type="BoxShape3D" id=4]
-extents = Vector3( 1, 6.39822, 20.0432 )
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(2, 12.79644, 40.0864)
 
-[node name="Main" instance=ExtResource( 3 )]
+[node name="Main" unique_id=715564455 instance=ExtResource("3")]
 
-[node name="TestSceneLoader" parent="Scene" index="0"]
+[node name="TestSceneLoader" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="0" unique_id=1298554975]
 playerRace = 1
 
-[node name="PlayerSpawner" parent="Scene" index="2"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4685, 1.5, 0 )
-itemCodes = [ "revolver32", "plasmaPistol", "sniper308" ]
-ammo = {
+[node name="PlayerSpawner" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="2" unique_id=1808292846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4685, 1.5, 0)
+itemCodes = Array[String](["revolver32", "plasmaPistol", "sniper308"])
+ammo = Dictionary[String, int]({
 "ammo308": 20,
 "ammo32": 20,
 "ammoEnergy": 100
-}
+})
 
-[node name="terrain" type="StaticBody3D" parent="Scene" index="5"]
+[node name="terrain" type="StaticBody3D" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="5" unique_id=1577006658]
 collision_layer = 3
 collision_mask = 3
-physics_material_override = ExtResource( 6 )
+physics_material_override = ExtResource("6")
 
-[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0"]
-transform = Transform3D( 92.5207, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 1 )
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0" unique_id=1703608284]
+transform = Transform3D(92.5207, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("1")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1"]
-shape = SubResource( 2 )
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1" unique_id=255242137]
+shape = SubResource("2")
 
-[node name="props" type="Node3D" parent="Scene/terrain" index="2"]
+[node name="props" type="Node3D" parent="Scene/terrain" index="2" unique_id=609754225]
 
-[node name="box" type="StaticBody3D" parent="Scene/terrain/props" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4648, 0, 0 )
+[node name="box" type="StaticBody3D" parent="Scene/terrain/props" index="0" unique_id=698816523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4648, 0, 0)
 
-[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 6, 0, 0, 0, 20, 0, 5.55054, 0 )
-mesh = SubResource( 3 )
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain/props/box" index="0" unique_id=882847637]
+transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 20, 0, 5.55054, 0)
+mesh = SubResource("3")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box" index="1"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17597, 0 )
-shape = SubResource( 4 )
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain/props/box" index="1" unique_id=995772160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.17597, 0)
+shape = SubResource("4")
 
-[node name="target4" parent="Scene/terrain/props" index="1" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 29.8375, 0, -13.2659 )
+[node name="target4" parent="Scene/terrain/props" index="1" unique_id=114495531 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 29.8375, 0, -13.2659)
 
-[node name="target5" parent="Scene/terrain/props" index="2" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 45.3175, 0, -4.69791 )
+[node name="target5" parent="Scene/terrain/props" index="2" unique_id=201063318 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 45.3175, 0, -4.69791)
 
-[node name="target6" parent="Scene/terrain/props" index="3" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 31.6184, 0, 5.07945 )
+[node name="target6" parent="Scene/terrain/props" index="3" unique_id=1568985637 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 31.6184, 0, 5.07945)
 
-[node name="target7" parent="Scene/terrain/props" index="4" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 32.7109, 0, 13.6474 )
+[node name="target7" parent="Scene/terrain/props" index="4" unique_id=1983459166 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 32.7109, 0, 13.6474)
 
-[node name="target8" parent="Scene/terrain/props" index="5" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 43.983, 0, 7.75796 )
+[node name="target8" parent="Scene/terrain/props" index="5" unique_id=819569547 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 43.983, 0, 7.75796)
 
-[node name="target9" parent="Scene/terrain/props" index="6" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, 12.964 )
+[node name="target9" parent="Scene/terrain/props" index="6" unique_id=1845349197 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, 12.964)
 
-[node name="target10" parent="Scene/terrain/props" index="7" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, -14.0396 )
+[node name="target10" parent="Scene/terrain/props" index="7" unique_id=1254070140 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, -14.0396)
 
-[node name="target11" parent="Scene/terrain/props" index="8" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, 0.202994 )
+[node name="target11" parent="Scene/terrain/props" index="8" unique_id=985886964 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 69.5559, 0, 0.202994)
 
-[node name="target12" parent="Scene/terrain/props" index="9" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 56.1115, 0, 7.13391 )
+[node name="target12" parent="Scene/terrain/props" index="9" unique_id=349242827 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 56.1115, 0, 7.13391)
 
-[node name="target13" parent="Scene/terrain/props" index="10" instance=ExtResource( 1 )]
-transform = Transform3D( 0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 56.1115, 0, -9.84766 )
+[node name="target13" parent="Scene/terrain/props" index="10" unique_id=1799008726 instance=ExtResource("1")]
+transform = Transform3D(0.999994, -0.00343047, -0.000681859, 0.00343066, 0.999994, 0.00027033, 0.00068093, -0.000272663, 1, 56.1115, 0, -9.84766)
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
-transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3" unique_id=183179307]
+transform = Transform3D(1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0)
 shadow_enabled = true
 
-[node name="patrolPoint1" type="Node3D" parent="Scene/terrain" index="4"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
+[node name="patrolPoint1" type="Node3D" parent="Scene/terrain" index="4" unique_id=663891408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242)
 
-[node name="patrolPoint2" type="Node3D" parent="Scene/terrain" index="5"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
+[node name="patrolPoint2" type="Node3D" parent="Scene/terrain" index="5" unique_id=1797101568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418)

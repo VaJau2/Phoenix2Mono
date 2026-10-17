@@ -1,16 +1,14 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cn6mb7jvb8xt2"]
 
-[ext_resource path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1Ligh.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://kq80p6dalhva" path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ii4gnrp8kcqi" path="res://assets/models/props/buildings/street-houses/backHouse1/BackHouse1Ligh.png" id="2"]
 
 [resource]
-texture_filter = 0
 resource_name = "BackHouse"
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_texture = ExtResource("1")
 emission_enabled = true
-emission = Color( 0.27451, 0.27451, 0.27451, 1 )
-emission_energy = 1.0
+emission = Color(0.27451, 0.27451, 0.27451, 1)
 emission_operator = 1
-emission_on_uv2 = false
-emission_texture = ExtResource( 2 )
+emission_texture = ExtResource("2")
+texture_filter = 0

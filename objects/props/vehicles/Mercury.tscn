@@ -1,40 +1,40 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://wesqrcnjdrjs"]
 
-[ext_resource path="res://assets/models/props/vehicles/Mercuriy/Mercuriy.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/materials/props/vehicles/mercury.tres" type="Material" id=2]
-[ext_resource path="res://assets/materials/physics/metal.tres" type="PhysicsMaterial" id=3]
+[ext_resource type="ArrayMesh" uid="uid://bgv8cw8eusqxv" path="res://assets/models/props/vehicles/Mercuriy/Mercuriy.obj" id="1"]
+[ext_resource type="Material" path="res://assets/materials/props/vehicles/mercury.tres" id="2"]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/metal.tres" id="3"]
 
-[sub_resource type="BoxShape3D" id=1]
-extents = Vector3( 8.45105, 1.34104, 2.81422 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16.9021, 2.68208, 5.62844)
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 2.55506, 1.34104, 2.11512 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(5.11012, 2.68208, 4.23024)
 
-[sub_resource type="BoxShape3D" id=3]
-extents = Vector3( 0.946847, 0.875574, 2.11512 )
+[sub_resource type="BoxShape3D" id="3"]
+size = Vector3(1.893694, 1.751148, 4.23024)
 
-[node name="Mercury" type="StaticBody3D"]
+[node name="Mercury" type="StaticBody3D" unique_id=1006457045]
 collision_layer = 3
 collision_mask = 2147483651
-physics_material_override = ExtResource( 3 )
+physics_material_override = ExtResource("3")
 
-[node name="Mercuriy" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.0875801, 0, 0, 0, 0.0875801, 0, 0, 0, 0.0875801, -0.136375, 0.0307982, 0 )
-mesh = ExtResource( 1 )
-surface_material_override/0 = ExtResource( 2 )
+[node name="Mercuriy" type="MeshInstance3D" parent="." unique_id=389069682]
+transform = Transform3D(0.0875801, 0, 0, 0, 0.0875801, 0, 0, 0, 0.0875801, -0.136375, 0.0307982, 0)
+mesh = ExtResource("1")
+surface_material_override/0 = ExtResource("2")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.875801, 0, 0, 0, 0.875801, 0, 0, 0, 0.875801, -0.136375, 1.52804, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=861665743]
+transform = Transform3D(0.875801, 0, 0, 0, 0.875801, 0, 0, 0, 0.875801, -0.136375, 1.52804, 0)
+shape = SubResource("1")
 
-[node name="CollisionShape2" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.875801, 0, 0, 0, 0.875801, 0, 0, 0, 0.875801, -1.06358, 2.81306, 0 )
-shape = SubResource( 2 )
+[node name="CollisionShape2" type="CollisionShape3D" parent="." unique_id=1337711266]
+transform = Transform3D(0.875801, 0, 0, 0, 0.875801, 0, 0, 0, 0.875801, -1.06358, 2.81306, 0)
+shape = SubResource("2")
 
-[node name="CollisionShape3" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.594472, -0.643141, 0, 0.643141, 0.594472, 0, 0, 0, 0.875801, 1.19555, 2.95842, 0 )
-shape = SubResource( 3 )
+[node name="CollisionShape3" type="CollisionShape3D" parent="." unique_id=2007292363]
+transform = Transform3D(0.594472, -0.643141, 0, 0.643141, 0.594472, 0, 0, 0, 0.875801, 1.19555, 2.95842, 0)
+shape = SubResource("3")
 
-[node name="CollisionShape4" type="CollisionShape3D" parent="."]
-transform = Transform3D( 0.648397, -0.588735, 0, 0.588735, 0.648397, 0, 0, 0, 0.875801, -3.39162, 2.87624, 0 )
-shape = SubResource( 3 )
+[node name="CollisionShape4" type="CollisionShape3D" parent="." unique_id=1168356000]
+transform = Transform3D(0.648397, -0.588735, 0, 0.588735, 0.648397, 0, 0, 0, 0.875801, -3.39162, 2.87624, 0)
+shape = SubResource("3")

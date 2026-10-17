@@ -1,12 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cbl0p6hkgbl7g"]
 
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/__color.tga" type="Texture2D" id=1]
-[ext_resource path="res://assets/models/props/buildings/bellgates-base/main/__nmap.tga" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://ddpedfwqlfn7q" path="res://assets/models/props/buildings/bellgates-base/main/__color.tga" id="1"]
+[ext_resource type="Texture2D" uid="uid://pwcw54kygkay" path="res://assets/models/props/buildings/bellgates-base/main/__nmap.tga" id="2"]
 
 [resource]
-texture_filter = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

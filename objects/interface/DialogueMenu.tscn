@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://83plhpaqk11l"]
 
-[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" type="Script" id=4]
+[ext_resource type="Theme" uid="uid://hu07d4u3auvy" path="res://assets/materials/fonts/terminal_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://dsxrdk8nvhxup" path="res://assets/scripts/interface/Dialogue/DialogueMenu.cs" id="2"]
+[ext_resource type="Script" uid="uid://d1a4bilosns60" path="res://assets/scripts/interface/Dialogue/DialogueAudio.cs" id="4"]
 
-[node name="DialogueMenu" type="Control"]
+[node name="DialogueMenu" type="Control" unique_id=656934703]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Menu" type="Control" parent="." groups=["ignore_color", "savable"]]
+[node name="Menu" type="Control" parent="." unique_id=1943073591 groups=["ignore_color", "savable"]]
+anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 0.493
 anchor_right = 1.0
@@ -18,27 +21,28 @@ offset_left = -512.0
 offset_top = -255.8
 offset_right = -16.0
 offset_bottom = 248.2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource("2")
 
-[node name="background" type="ColorRect" parent="Menu" groups=["ignore_color"]]
+[node name="background" type="ColorRect" parent="Menu" unique_id=1043039561 groups=["ignore_color"]]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.784314 )
+color = Color(0, 0, 0, 0.784314)
 
-[node name="border1" type="ColorRect" parent="Menu"]
+[node name="border1" type="ColorRect" parent="Menu" unique_id=76288181]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 
-[node name="border2" type="ColorRect" parent="Menu"]
+[node name="border2" type="ColorRect" parent="Menu" unique_id=772584570]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 
-[node name="border3" type="ColorRect" parent="Menu"]
+[node name="border3" type="ColorRect" parent="Menu" unique_id=1376497583]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -46,11 +50,9 @@ offset_left = 2.0
 offset_top = 156.0
 offset_right = -1.0
 offset_bottom = 157.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border4" type="ColorRect" parent="Menu"]
+[node name="border4" type="ColorRect" parent="Menu" unique_id=1198641255]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -58,11 +60,9 @@ offset_left = 2.0
 offset_top = -200.0
 offset_right = -1.0
 offset_bottom = -199.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border5" type="ColorRect" parent="Menu"]
+[node name="border5" type="ColorRect" parent="Menu" unique_id=2104025068]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -70,11 +70,9 @@ offset_left = 2.0
 offset_top = 250.0
 offset_right = -1.0
 offset_bottom = 251.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border6" type="ColorRect" parent="Menu"]
+[node name="border6" type="ColorRect" parent="Menu" unique_id=770290332]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -82,40 +80,34 @@ offset_left = 2.0
 offset_top = -252.0
 offset_right = -1.0
 offset_bottom = -251.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="leftName" type="Label" parent="Menu"]
+[node name="leftName" type="Label" parent="Menu" unique_id=1147713867]
+layout_mode = 0
 anchor_right = 0.5
 anchor_bottom = 0.096
 offset_left = 11.0
 offset_top = 1.0
 offset_right = -16.0
 offset_bottom = 0.616001
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Игрок"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+vertical_alignment = 1
 
-[node name="rightName" type="Label" parent="Menu"]
+[node name="rightName" type="Label" parent="Menu" unique_id=415200530]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.096
 offset_top = 1.0
 offset_right = -14.0
 offset_bottom = 0.616001
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Непись 1"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="text" type="RichTextLabel" parent="Menu"]
+[node name="text" type="RichTextLabel" parent="Menu" unique_id=808991402]
+layout_mode = 0
 anchor_left = 0.03
 anchor_top = 0.111
 anchor_right = 0.985
@@ -124,15 +116,13 @@ offset_left = -7.84
 offset_top = 0.0559959
 offset_right = -0.0800171
 offset_bottom = -0.240021
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 bbcode_enabled = true
 scroll_following = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="answer1" type="Button" parent="Menu"]
+[node name="answer1" type="Button" parent="Menu" unique_id=2121109270]
 visible = false
+layout_mode = 0
 anchor_left = 0.004
 anchor_top = 0.819
 anchor_right = 1.0
@@ -141,14 +131,12 @@ offset_top = 0.138
 offset_right = -1.99994
 offset_bottom = -75.0
 grow_horizontal = 2
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="answer2" type="Button" parent="Menu"]
+[node name="answer2" type="Button" parent="Menu" unique_id=1609431980]
 visible = false
+layout_mode = 0
 anchor_top = 0.819
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -157,12 +145,13 @@ offset_top = 24.138
 offset_right = -1.99994
 offset_bottom = -51.0
 grow_horizontal = 2
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "[Ответ 2]"
 clip_text = true
 
-[node name="answer3" type="Button" parent="Menu"]
+[node name="answer3" type="Button" parent="Menu" unique_id=1149257473]
 visible = false
+layout_mode = 0
 anchor_left = 0.004
 anchor_top = 0.819
 anchor_right = 1.0
@@ -171,15 +160,13 @@ offset_top = 48.138
 offset_right = -1.99994
 offset_bottom = -27.0
 grow_horizontal = 2
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "[Ответ 3]"
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="answer4" type="Button" parent="Menu"]
+[node name="answer4" type="Button" parent="Menu" unique_id=656230092]
 visible = false
+layout_mode = 0
 anchor_left = 0.004
 anchor_top = 0.803
 anchor_right = 1.0
@@ -187,15 +174,13 @@ anchor_bottom = 1.0
 offset_top = 80.106
 offset_right = -1.99994
 offset_bottom = -3.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "[Ответ 4]"
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="skipLabel" type="Label" parent="Menu"]
+[node name="skipLabel" type="Label" parent="Menu" unique_id=768534237]
 visible = false
+layout_mode = 0
 anchor_top = 0.817
 anchor_right = 0.994
 anchor_bottom = 1.0
@@ -203,27 +188,27 @@ offset_left = 4.0
 offset_top = 0.231995
 offset_right = 0.167969
 offset_bottom = -7.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Е - пропустить"
-align = 1
+horizontal_alignment = 1
 
-[node name="dialogueAudio" type="Node" parent="."]
-script = ExtResource( 4 )
+[node name="dialogueAudio" type="Node" parent="." unique_id=1523090648]
+script = ExtResource("4")
 audioPlayerPath = NodePath("audi")
 
-[node name="audi" type="AudioStreamPlayer" parent="dialogueAudio"]
+[node name="audi" type="AudioStreamPlayer" parent="dialogueAudio" unique_id=800304187]
 volume_db = -5.0
-bus = "Voice"
+bus = &"Voice"
 
-[connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [ 0 ]]
-[connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [ 0 ]]
-[connection signal="pressed" from="Menu/answer1" to="Menu" method="_on_answer_pressed" binds= [ 0 ]]
-[connection signal="mouse_entered" from="Menu/answer2" to="Menu" method="_on_answer_mouse_entered" binds= [ 1 ]]
-[connection signal="mouse_exited" from="Menu/answer2" to="Menu" method="_on_answer_mouse_exited" binds= [ 1 ]]
-[connection signal="pressed" from="Menu/answer2" to="Menu" method="_on_answer_pressed" binds= [ 1 ]]
-[connection signal="mouse_entered" from="Menu/answer3" to="Menu" method="_on_answer_mouse_entered" binds= [ 2 ]]
-[connection signal="mouse_exited" from="Menu/answer3" to="Menu" method="_on_answer_mouse_exited" binds= [ 2 ]]
-[connection signal="pressed" from="Menu/answer3" to="Menu" method="_on_answer_pressed" binds= [ 2 ]]
-[connection signal="mouse_entered" from="Menu/answer4" to="Menu" method="_on_answer_mouse_entered" binds= [ 3 ]]
-[connection signal="mouse_exited" from="Menu/answer4" to="Menu" method="_on_answer_mouse_exited" binds= [ 3 ]]
-[connection signal="pressed" from="Menu/answer4" to="Menu" method="_on_answer_pressed" binds= [ 3 ]]
+[connection signal="mouse_entered" from="Menu/answer1" to="Menu" method="_on_answer_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="Menu/answer1" to="Menu" method="_on_answer_mouse_exited" binds= [0]]
+[connection signal="pressed" from="Menu/answer1" to="Menu" method="_on_answer_pressed" binds= [0]]
+[connection signal="mouse_entered" from="Menu/answer2" to="Menu" method="_on_answer_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="Menu/answer2" to="Menu" method="_on_answer_mouse_exited" binds= [1]]
+[connection signal="pressed" from="Menu/answer2" to="Menu" method="_on_answer_pressed" binds= [1]]
+[connection signal="mouse_entered" from="Menu/answer3" to="Menu" method="_on_answer_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="Menu/answer3" to="Menu" method="_on_answer_mouse_exited" binds= [2]]
+[connection signal="pressed" from="Menu/answer3" to="Menu" method="_on_answer_pressed" binds= [2]]
+[connection signal="mouse_entered" from="Menu/answer4" to="Menu" method="_on_answer_mouse_entered" binds= [3]]
+[connection signal="mouse_exited" from="Menu/answer4" to="Menu" method="_on_answer_mouse_exited" binds= [3]]
+[connection signal="pressed" from="Menu/answer4" to="Menu" method="_on_answer_pressed" binds= [3]]

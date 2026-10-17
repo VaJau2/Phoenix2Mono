@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqg4vjjei8qdt"]
 
 [resource]
-texture_filter = 0
 resource_name = "Lever"
-albedo_color = Color( 0.54902, 0.54902, 0.54902, 1 )
+albedo_color = Color(0.54902, 0.54902, 0.54902, 1)
 metallic = 1.0
 roughness = 0.25
+texture_filter = 0

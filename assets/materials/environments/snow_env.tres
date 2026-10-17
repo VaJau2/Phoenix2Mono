@@ -1,29 +1,25 @@
-[gd_resource type="Environment" load_steps=2 format=2]
+[gd_resource type="Environment" format=3 uid="uid://bheeo2d7pe4p1"]
 
-[sub_resource type="ProceduralSkyMaterial" id=2]
-ground_bottom_color = Color( 0.427451, 0.54902, 0.705882, 1 )
-ground_horizon_color = Color( 0.737255, 0.745098, 0.764706, 1 )
+[sub_resource type="ProceduralSkyMaterial" id="2"]
+ground_bottom_color = Color(0.427451, 0.54902, 0.705882, 1)
+ground_horizon_color = Color(0.737255, 0.745098, 0.764706, 1)
 
-[sub_resource type="Sky" id=1]
-sky_material = SubResource( 2 )
+[sub_resource type="Sky" id="1"]
+sky_material = SubResource("2")
 
 [resource]
 background_mode = 2
-background_sky = SubResource( 1 )
-ambient_light_color = Color( 0.94902, 0.972549, 0.976471, 1 )
+sky = SubResource("1")
+ambient_light_color = Color(0.94902, 0.972549, 0.976471, 1)
 ambient_light_energy = 0.35
-fog_enabled = true
-fog_light_color = Color( 0.592157, 0.662745, 0.74902, 0.890196 )
-fog_sun_color = Color( 0.733333, 0.862745, 0.882353, 0.929412 )
-fog_depth_begin = 5.0
-fog_depth_end = 150.0
 ssao_enabled = true
 ssao_radius = 1.5
 ssao_light_affect = 1.0
-dof_blur_far_enabled = true
-dof_blur_far_distance = 120.0
-dof_blur_far_quality = 2
 glow_enabled = true
 glow_intensity = 1.0
 glow_bloom = 0.02
 glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.592157, 0.662745, 0.74902, 0.890196)
+fog_depth_begin = 5.0
+fog_depth_end = 150.0

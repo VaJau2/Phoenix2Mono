@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dnn0bekryvb0v"]
 
 [resource]
-texture_filter = 0
 resource_name = "bow"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.564537, 0.0460048, 0.0151816, 1 )
+albedo_color = Color(0.564537, 0.0460048, 0.0151816, 1)
+texture_filter = 0

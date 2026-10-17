@@ -1,22 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cpveuoc15iw8s"]
 
-[ext_resource path="res://assets/textures/weapon/AEP7__color.tga" type="Texture2D" id=1]
-[ext_resource path="res://assets/textures/weapon/AEP7__nmap.tga" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://b46h4difsyhae" path="res://assets/textures/weapon/AEP7__color.tga" id="1"]
+[ext_resource type="Texture2D" uid="uid://buejan0kal02y" path="res://assets/textures/weapon/AEP7__nmap.tga" id="2"]
 
 [resource]
-texture_filter = 0
 resource_name = "pistol"
-params_cull_mode = 2
-albedo_color = Color( 0.929412, 0.929412, 0.929412, 1 )
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_color = Color(0.929412, 0.929412, 0.929412, 1)
+albedo_texture = ExtResource("1")
 metallic = 0.5
 metallic_specular = 0.05
 roughness = 0.9
 emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
 normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 2 )
+normal_texture = ExtResource("2")
+texture_filter = 0

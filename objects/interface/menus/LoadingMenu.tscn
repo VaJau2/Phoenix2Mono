@@ -1,52 +1,46 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://w4cocoyqx8io"]
 
-[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/scripts/interface/Menus/LoadingMenu.cs" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://hu07d4u3auvy" path="res://assets/materials/fonts/terminal_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://nt6vlmqkjco" path="res://assets/scripts/interface/Menus/LoadingMenu.cs" id="2"]
 
-[node name="LoadingMenu" type="Control" groups=["ignore_color"]]
+[node name="LoadingMenu" type="Control" unique_id=1695619602 groups=["ignore_color"]]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="Label5" type="Label" parent="."]
+[node name="Label5" type="Label" parent="." unique_id=1864979474]
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 30.0
 offset_top = -50.0
 offset_right = 39.0
 offset_bottom = -28.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="background" type="ColorRect" parent="." unique_id=1074315127 groups=["ignore_color"]]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
-[node name="page_label" type="Label" parent="."]
+[node name="page_label" type="Label" parent="." unique_id=1730060355]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 20.0
 offset_right = 215.0
 offset_bottom = 42.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "/Phoenix2/Меню_Загрузки"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2073604000]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 100.0
 offset_right = 246.0
 offset_bottom = 122.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Загрузка"
-__meta__ = {
-"_edit_use_anchors_": false
-}

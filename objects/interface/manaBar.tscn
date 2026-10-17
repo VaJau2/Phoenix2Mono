@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=3 uid="uid://dao4fr73f6uk7"]
 
-[ext_resource path="res://assets/textures/interface/icons/Mana Bar.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://hbmekblji2hy" path="res://assets/textures/interface/icons/Mana Bar.png" id="1"]
 
-[node name="mask" type="Control" groups=["ignore_color"]]
+[node name="mask" type="Control" unique_id=1535633810 groups=["ignore_color"]]
 show_behind_parent = true
+clip_contents = true
+layout_mode = 3
 anchor_left = 0.195
 anchor_top = 0.859
 anchor_right = 0.195
@@ -12,16 +14,16 @@ offset_left = -24.96
 offset_top = 18.048
 offset_right = 103.04
 offset_bottom = 146.048
-scale = Vector2( 1, -1 )
-clip_contents = true
+scale = Vector2(1, -1)
 
-[node name="bar" type="TextureRect" parent="." groups=["ignore_color"]]
-texture_filter = 2
+[node name="bar" type="TextureRect" parent="." unique_id=881496801 groups=["ignore_color"]]
 show_behind_parent = true
+texture_filter = 2
+layout_mode = 0
 offset_top = 128.0
 offset_right = 128.0
 offset_bottom = 256.0
-scale = Vector2( 1, -1 )
-texture = ExtResource( 1 )
-expand = true
+scale = Vector2(1, -1)
+texture = ExtResource("1")
+expand_mode = 1
 stretch_mode = 5

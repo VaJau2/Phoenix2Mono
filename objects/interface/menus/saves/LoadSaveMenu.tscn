@@ -1,59 +1,51 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://cmembx31ffops"]
 
-[ext_resource path="res://assets/materials/fonts/text_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/scripts/interface/Menus/Saving/LoadMenu.cs" type="Script" id=2]
-[ext_resource path="res://objects/interface/table.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/dialogues/blur.tres" type="Material" id=4]
-[ext_resource path="res://assets/materials/fonts/terminal_theme.tres" type="Theme" id=5]
-[ext_resource path="res://assets/materials/fonts/big_text_theme.tres" type="Theme" id=6]
+[ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://or0s5c22uxct" path="res://assets/scripts/interface/Menus/Saving/LoadMenu.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cxpr306g1osx1" path="res://objects/interface/table.tscn" id="3"]
+[ext_resource type="Material" uid="uid://dydffc5w3lmpo" path="res://assets/dialogues/blur.tres" id="4"]
+[ext_resource type="Theme" uid="uid://hu07d4u3auvy" path="res://assets/materials/fonts/terminal_theme.tres" id="5"]
+[ext_resource type="Theme" uid="uid://bcd4ups7bv135" path="res://assets/materials/fonts/big_text_theme.tres" id="6"]
 
-[node name="Load" type="Control" groups=["ignore_color"]]
+[node name="Load" type="Control" unique_id=2032618012 groups=["ignore_color"]]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("2")
 
-[node name="background" type="ColorRect" parent="." groups=["ignore_color"]]
-material = ExtResource( 4 )
+[node name="background" type="ColorRect" parent="." unique_id=1832411070 groups=["ignore_color"]]
+material = ExtResource("4")
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="background2" type="ColorRect" parent="." groups=["ignore_color"]]
+[node name="background2" type="ColorRect" parent="." unique_id=1528352372 groups=["ignore_color"]]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 0.588235)
 
-[node name="page_label" type="Label" parent="."]
+[node name="page_label" type="Label" parent="." unique_id=1409576579]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 20.0
 offset_right = 322.0
 offset_bottom = 42.0
-theme = ExtResource( 5 )
+theme = ExtResource("5")
 text = "/Phoenix2/Главное_меню/Загрузка_уровня"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="back" type="Button" parent="."]
+[node name="back" type="Button" parent="." unique_id=1013339415]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 100.0
 offset_right = 384.0
 offset_bottom = 125.0
-theme = ExtResource( 5 )
+theme = ExtResource("5")
 text = "[Назад]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Table" parent="." instance=ExtResource( 3 )]
+[node name="Table" parent="." unique_id=676764646 instance=ExtResource("3")]
+layout_mode = 0
 anchor_left = 0.504
 anchor_right = 0.504
 offset_left = -452.096
@@ -61,7 +53,8 @@ offset_top = -140.0
 offset_right = 451.904
 offset_bottom = 108.0
 
-[node name="Load" type="Button" parent="."]
+[node name="Load" type="Button" parent="." unique_id=1004875060]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -70,11 +63,12 @@ offset_left = 56.0
 offset_top = -160.0
 offset_right = 224.0
 offset_bottom = -140.0
-theme = ExtResource( 5 )
+theme = ExtResource("5")
 disabled = true
 text = "Загрузить"
 
-[node name="Delete" type="Button" parent="."]
+[node name="Delete" type="Button" parent="." unique_id=1827692669]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -83,19 +77,18 @@ offset_left = -240.0
 offset_top = -160.0
 offset_right = -72.0
 offset_bottom = -140.0
-theme = ExtResource( 5 )
+theme = ExtResource("5")
 disabled = true
 text = "Удалить"
 
-[node name="modalError" type="Control" parent="." groups=["ignore_color"]]
+[node name="modalError" type="Control" parent="." unique_id=550918547 groups=["ignore_color"]]
 visible = false
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="back" type="ColorRect" parent="modalError" groups=["ignore_color"]]
+[node name="back" type="ColorRect" parent="modalError" unique_id=1064351451 groups=["ignore_color"]]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -104,75 +97,73 @@ offset_left = -176.0
 offset_top = -68.0
 offset_right = 176.0
 offset_bottom = 68.0
-color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 
-[node name="border-up" type="ColorRect" parent="modalError/back"]
+[node name="border-up" type="ColorRect" parent="modalError/back" unique_id=1592271617]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-down" type="ColorRect" parent="modalError/back"]
+[node name="border-down" type="ColorRect" parent="modalError/back" unique_id=1523576202]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="border-left" type="ColorRect" parent="modalError/back"]
+[node name="border-left" type="ColorRect" parent="modalError/back" unique_id=409039393]
+layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 1.0
 
-[node name="border-left2" type="ColorRect" parent="modalError/back"]
+[node name="border-left2" type="ColorRect" parent="modalError/back" unique_id=822164128]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 
-[node name="Header" type="Label" parent="modalError/back"]
+[node name="Header" type="Label" parent="modalError/back" unique_id=1002803338]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_top = 8.0
 offset_right = -16.0
 offset_bottom = -102.0
-theme = ExtResource( 6 )
+theme = ExtResource("6")
 text = "Ошибка"
-align = 1
+horizontal_alignment = 1
 
-[node name="Text" type="Label" parent="modalError/back"]
+[node name="Text" type="Label" parent="modalError/back" unique_id=1695715687]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_top = 48.0
 offset_right = -16.0
 offset_bottom = -62.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Файл поврежден"
-align = 1
+horizontal_alignment = 1
 
-[node name="OK" type="Button" parent="modalError/back"]
+[node name="OK" type="Button" parent="modalError/back" unique_id=643447905]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 104.0
 offset_right = 232.0
 offset_bottom = 124.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "[ну блин]"
 
-[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= [ "choose", "back" ]]
+[connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered" binds= ["choose", "back"]]
 [connection signal="mouse_exited" from="back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="TableButtonPressed" from="Table" to="." method="_on_TableButtonPressed"]
-[connection signal="mouse_entered" from="Load" to="." method="_on_mouse_entered" binds= [ "choose", "load" ]]
+[connection signal="mouse_entered" from="Load" to="." method="_on_mouse_entered" binds= ["choose", "load"]]
 [connection signal="mouse_exited" from="Load" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]
-[connection signal="mouse_entered" from="Delete" to="." method="_on_mouse_entered" binds= [ "choose", "delete" ]]
+[connection signal="mouse_entered" from="Delete" to="." method="_on_mouse_entered" binds= ["choose", "delete"]]
 [connection signal="mouse_exited" from="Delete" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="modalError/back/OK" to="." method="_on_Error_OK_pressed"]

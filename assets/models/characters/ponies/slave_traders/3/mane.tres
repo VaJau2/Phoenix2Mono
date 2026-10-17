@@ -1,11 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dhnklhnbfarp"]
 
-[ext_resource path="res://assets/models/characters/ponies/slave_traders/3/mane.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://sjqlm6gx4d0y" path="res://assets/models/characters/ponies/slave_traders/3/mane.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "mane"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource("1")
 metallic = 0.0727273
+texture_filter = 0

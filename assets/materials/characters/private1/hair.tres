@@ -1,5 +1,5 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2vc3yitv4p3f"]
 
 [resource]
+albedo_color = Color(0.0666667, 0.305882, 0.00784314, 1)
 texture_filter = 0
-albedo_color = Color( 0.0666667, 0.305882, 0.00784314, 1 )

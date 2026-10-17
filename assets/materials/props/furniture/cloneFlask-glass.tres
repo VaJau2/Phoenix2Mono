@@ -1,13 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cwu1c7n3w8wih"]
 
-[ext_resource path="res://assets/textures/props/furniture/cloneFlask.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://c48xxal1c5wce" path="res://assets/textures/props/furniture/cloneFlask.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "front-door"
 render_priority = 3
-flags_transparent = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1")
 metallic = 1.0
 roughness = 0.05
+texture_filter = 0

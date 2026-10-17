@@ -1,10 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4b5g1rrwsnlo"]
 
 [resource]
+transparency = 1
+albedo_color = Color(0.564706, 0.564706, 0.564706, 0.45098)
 texture_filter = 0
-flags_transparent = true
-params_billboard_mode = 3
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0.564706, 0.564706, 0.564706, 0.45098 )

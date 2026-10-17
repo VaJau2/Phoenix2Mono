@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c3tubwvmk3nkx"]
 
 [resource]
-texture_filter = 0
 resource_name = "hair"
-params_cull_mode = 2
-albedo_color = Color( 0.666667, 0.266667, 0, 1 )
+cull_mode = 2
+albedo_color = Color(0.666667, 0.266667, 0, 1)
+texture_filter = 0

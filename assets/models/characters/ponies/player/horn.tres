@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b43lw6l8v3qxp"]
 
 [resource]
-texture_filter = 0
 resource_name = "horn"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
+texture_filter = 0

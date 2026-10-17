@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dm24wcm2bk2bg"]
 
-[ext_resource path="res://assets/textures/props/materials/stone.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://scf0j6ap8n1i" path="res://assets/textures/props/materials/stone.png" id="1"]
 
 [resource]
+albedo_texture = ExtResource("1")
+uv1_scale = Vector3(8.186, 3, 1)
 texture_filter = 0
-albedo_texture = ExtResource( 1 )
-uv1_scale = Vector3( 8.186, 3, 1 )

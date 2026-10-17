@@ -1,374 +1,382 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene format=3 uid="uid://v26hsn3uniyw"]
 
-[ext_resource path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" type="Script" id=1]
-[ext_resource path="res://assets/scripts/background/CoversManager.cs" type="Script" id=2]
-[ext_resource path="res://scenes/test/TestBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://objects/characters/ponies/facetest.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/scripts/triggers/ChangeSubtitlesTrigger.cs" type="Script" id=5]
-[ext_resource path="res://assets/materials/physics/stone.tres" type="PhysicsMaterial" id=6]
-[ext_resource path="res://objects/props/Button.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/cinematic/RotateCinematic.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/materials/props/locations/MASfloorMap.tres" type="Material" id=9]
-[ext_resource path="res://objects/characters/robots/m6/assistantSparkle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/materials/props/locations/MASterrianMap.tres" type="Material" id=11]
-[ext_resource path="res://objects/cinematic/MoveCinematic.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/scripts/triggers/cinematic/Cutscene.cs" type="Script" id=13]
-[ext_resource path="res://objects/cinematic/ReturnToPlayer.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/scripts/triggers/MovePlayerTrigger.cs" type="Script" id=15]
-[ext_resource path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" type="Script" id=16]
-[ext_resource path="res://objects/testing/Testing.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/scripts/triggers/SubtitlesTrigger.cs" type="Script" id=18]
-[ext_resource path="res://assets/scripts/triggers/ChangePlayerLookTrigger.cs" type="Script" id=19]
+[ext_resource type="Script" uid="uid://vpkem4170ny3" path="res://assets/scripts/triggers/cinematic/CinematicTrigger.cs" id="1"]
+[ext_resource type="Script" uid="uid://2ri48vep8k4j" path="res://assets/scripts/background/CoversManager.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://c54whr5dbvclb" path="res://scenes/test/TestBase.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cf0k6s0xnp215" path="res://objects/characters/ponies/facetest.tscn" id="4"]
+[ext_resource type="Script" uid="uid://c2rrkyuu8oyl1" path="res://assets/scripts/triggers/ChangeSubtitlesTrigger.cs" id="5"]
+[ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/stone.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://bqcliuv7hl80h" path="res://objects/props/Button.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://wdagqwc72haj" path="res://objects/cinematic/RotateCinematic.tscn" id="8"]
+[ext_resource type="Material" path="res://assets/materials/props/locations/MASfloorMap.tres" id="9"]
+[ext_resource type="PackedScene" uid="uid://cwcsotcua5m51" path="res://objects/characters/robots/m6/assistantSparkle.tscn" id="10"]
+[ext_resource type="Material" path="res://assets/materials/props/locations/MASterrianMap.tres" id="11"]
+[ext_resource type="PackedScene" uid="uid://c0fx0ft5vsgwt" path="res://objects/cinematic/MoveCinematic.tscn" id="12"]
+[ext_resource type="Script" uid="uid://ngg38usdq1xa" path="res://assets/scripts/triggers/cinematic/Cutscene.cs" id="13"]
+[ext_resource type="PackedScene" uid="uid://cx1g30nahmfkn" path="res://objects/cinematic/ReturnToPlayer.tscn" id="14"]
+[ext_resource type="Script" uid="uid://bq3esfqhit61n" path="res://assets/scripts/triggers/MovePlayerTrigger.cs" id="15"]
+[ext_resource type="Script" uid="uid://xubmw06mw2uj" path="res://assets/scripts/triggers/ActivateOtherTrigger.cs" id="16"]
+[ext_resource type="PackedScene" uid="uid://bedhe87g6vqdr" path="res://objects/testing/Testing.tscn" id="17"]
+[ext_resource type="Script" uid="uid://wa2esaxog3gt" path="res://assets/scripts/triggers/SubtitlesTrigger.cs" id="18"]
+[ext_resource type="Script" uid="uid://b8kdnifd0lc43" path="res://assets/scripts/triggers/ChangePlayerLookTrigger.cs" id="19"]
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="PlaneMesh" id="1"]
 
-[sub_resource type="BoxShape3D" id=2]
-extents = Vector3( 50, 0.1, 50 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(100, 0.2, 100)
 
-[sub_resource type="PlaneMesh" id=8]
+[sub_resource type="PlaneMesh" id="8"]
 
-[sub_resource type="NavigationMesh" id=5]
+[sub_resource type="NavigationMesh" id="5"]
+vertices = PackedVector3Array(42, -0.49967, 48.25, 48.25, -0.49967, 48.25, 48.25, -0.49967, 42, -48.25, -0.49967, 42, -48.25, -0.49967, 48.25, -36.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 48.25, -0.49967, -48.25, 42, -0.49967, -48.25, 36, -0.49967, 48.25, 42, -0.49967, 48.25, 48.25, -0.49967, 42, -36.25, -0.49967, -48.25, -48.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 36, -48.25, -0.49967, 42, -36.25, -0.49967, 48.25, -24.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 42, -0.49967, -48.25, 36, -0.49967, -48.25, 48.25, -0.49967, -24.25, 36, -0.49967, 48.25, 48.25, -0.49967, 42, 48.25, -0.49967, 36, 24, -0.49967, 48.25, -24.25, -0.49967, -48.25, -36.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 24, -6.25, -0.49967, 48.25, 0, -0.49967, 48.25, -48.25, -0.49967, 12, 0, -0.49967, -48.25, -6.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, -12.25, 48.25, -0.49967, 0, 48.25, -0.49967, -6.25, 24, -0.49967, -48.25, 12, -0.49967, -48.25, -24.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, -24.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, 24, -48.25, -0.49967, 36, -24.25, -0.49967, 48.25, -12.25, -0.49967, 48.25, 48.25, -0.49967, -24.25, 36, -0.49967, -48.25, 24, -0.49967, -48.25, 48.25, -0.49967, -12.25, 24, -0.49967, 48.25, 48.25, -0.49967, 36, 48.25, -0.49967, 24, 12, -0.49967, 48.25, 48.25, -0.49967, 0, 0, -0.49967, -48.25, -48.25, -0.49967, 0, -48.25, -0.49967, 12, 0, -0.49967, 48.25, 48.25, -0.49967, 12, 0, -0.49967, -48.25, -48.25, -0.49967, -12.25, -48.25, -0.49967, -6.25, 48.25, -0.49967, 0, 12, -0.49967, -48.25, 0, -0.49967, -48.25, 0, -0.49967, -48.25, -48.25, -0.49967, -6.25, -48.25, -0.49967, 0, -6.25, -0.49967, -48.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, 24, -12.25, -0.49967, 48.25, -6.25, -0.49967, 48.25, 48.25, -0.49967, -6.25, 48.25, -0.49967, -12.25, 24, -0.49967, -48.25, 12, -0.49967, 48.25, 48.25, -0.49967, 24, 48.25, -0.49967, 12, 0, -0.49967, 48.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 45), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 57), PackedInt32Array(63, 62, 58), PackedInt32Array(58, 62, 61), PackedInt32Array(58, 61, 60), PackedInt32Array(58, 60, 59), PackedInt32Array(66, 65, 64), PackedInt32Array(69, 68, 67), PackedInt32Array(72, 71, 70), PackedInt32Array(75, 74, 73), PackedInt32Array(78, 77, 76), PackedInt32Array(81, 80, 79), PackedInt32Array(83, 82, 84), PackedInt32Array(84, 82, 85)]
 cell_size = 0.3
 cell_height = 0.2
-vertices = PackedVector3Array( 42, -0.49967, 48.25, 48.25, -0.49967, 48.25, 48.25, -0.49967, 42, -48.25, -0.49967, 42, -48.25, -0.49967, 48.25, -36.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 48.25, -0.49967, -48.25, 42, -0.49967, -48.25, 36, -0.49967, 48.25, 42, -0.49967, 48.25, 48.25, -0.49967, 42, -36.25, -0.49967, -48.25, -48.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 36, -48.25, -0.49967, 42, -36.25, -0.49967, 48.25, -24.25, -0.49967, 48.25, 48.25, -0.49967, -36.25, 42, -0.49967, -48.25, 36, -0.49967, -48.25, 48.25, -0.49967, -24.25, 36, -0.49967, 48.25, 48.25, -0.49967, 42, 48.25, -0.49967, 36, 24, -0.49967, 48.25, -24.25, -0.49967, -48.25, -36.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, 24, -6.25, -0.49967, 48.25, 0, -0.49967, 48.25, -48.25, -0.49967, 12, 0, -0.49967, -48.25, -6.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, -12.25, 48.25, -0.49967, 0, 48.25, -0.49967, -6.25, 24, -0.49967, -48.25, 12, -0.49967, -48.25, -24.25, -0.49967, -48.25, -48.25, -0.49967, -36.25, -48.25, -0.49967, -24.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, 24, -48.25, -0.49967, 36, -24.25, -0.49967, 48.25, -12.25, -0.49967, 48.25, 48.25, -0.49967, -24.25, 36, -0.49967, -48.25, 24, -0.49967, -48.25, 48.25, -0.49967, -12.25, 24, -0.49967, 48.25, 48.25, -0.49967, 36, 48.25, -0.49967, 24, 12, -0.49967, 48.25, 48.25, -0.49967, 0, 0, -0.49967, -48.25, -48.25, -0.49967, 0, -48.25, -0.49967, 12, 0, -0.49967, 48.25, 48.25, -0.49967, 12, 0, -0.49967, -48.25, -48.25, -0.49967, -12.25, -48.25, -0.49967, -6.25, 48.25, -0.49967, 0, 12, -0.49967, -48.25, 0, -0.49967, -48.25, 0, -0.49967, -48.25, -48.25, -0.49967, -6.25, -48.25, -0.49967, 0, -6.25, -0.49967, -48.25, -12.25, -0.49967, -48.25, -48.25, -0.49967, -24.25, -48.25, -0.49967, 24, -12.25, -0.49967, 48.25, -6.25, -0.49967, 48.25, 48.25, -0.49967, -6.25, 48.25, -0.49967, -12.25, 24, -0.49967, -48.25, 12, -0.49967, 48.25, 48.25, -0.49967, 24, 48.25, -0.49967, 12, 0, -0.49967, 48.25 )
-polygons = [ PackedInt32Array( 2, 1, 0 ), PackedInt32Array( 5, 4, 3 ), PackedInt32Array( 8, 7, 6 ), PackedInt32Array( 11, 10, 9 ), PackedInt32Array( 14, 13, 12 ), PackedInt32Array( 16, 15, 17 ), PackedInt32Array( 17, 15, 18 ), PackedInt32Array( 20, 19, 21 ), PackedInt32Array( 21, 19, 22 ), PackedInt32Array( 24, 23, 25 ), PackedInt32Array( 25, 23, 26 ), PackedInt32Array( 29, 28, 27 ), PackedInt32Array( 31, 30, 32 ), PackedInt32Array( 32, 30, 33 ), PackedInt32Array( 35, 34, 36 ), PackedInt32Array( 36, 34, 37 ), PackedInt32Array( 39, 38, 40 ), PackedInt32Array( 40, 38, 41 ), PackedInt32Array( 43, 42, 44 ), PackedInt32Array( 44, 42, 45 ), PackedInt32Array( 47, 46, 48 ), PackedInt32Array( 48, 46, 49 ), PackedInt32Array( 51, 50, 52 ), PackedInt32Array( 52, 50, 53 ), PackedInt32Array( 55, 54, 56 ), PackedInt32Array( 56, 54, 57 ), PackedInt32Array( 63, 62, 58 ), PackedInt32Array( 58, 62, 61 ), PackedInt32Array( 58, 61, 60 ), PackedInt32Array( 58, 60, 59 ), PackedInt32Array( 66, 65, 64 ), PackedInt32Array( 69, 68, 67 ), PackedInt32Array( 72, 71, 70 ), PackedInt32Array( 75, 74, 73 ), PackedInt32Array( 78, 77, 76 ), PackedInt32Array( 81, 80, 79 ), PackedInt32Array( 83, 82, 84 ), PackedInt32Array( 84, 82, 85 ) ]
 agent_height = 4.0
 agent_radius = 1.55
 
-[sub_resource type="Curve3D" id=9]
+[sub_resource type="Curve3D" id="9"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( -6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807 ),
-"tilts": PackedFloat32Array( 0, 0, 0, 0, 0 )
+"points": PackedVector3Array(-6.36208, 0, -0.195958, 6.36208, 0, 0.195958, -0.259037, 0.000112057, 1.38807, 0, 0, -5.26421, 0, 0, 5.26421, 8.28134, 0.000112057, 10.2972, 4.14931, 0, 0.066288, -4.14931, 0, -0.066288, 0.0264874, 0.000112057, 17.685, 0, 0, 5.62725, 0, 0, -5.62725, -8.60043, 0.000112057, 9.45008, -3.98481, 0, 0.256465, 3.98481, 0, -0.256465, -0.259037, 0.000112057, 1.38807),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
+point_count = 5
 
-[sub_resource type="Curve3D" id=18]
+[sub_resource type="Curve3D" id="18"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485 ),
-"tilts": PackedFloat32Array( 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.00149918, -0.000736237, -0.000427485),
+"tilts": PackedFloat32Array(0)
 }
+point_count = 1
 
-[sub_resource type="SphereShape3D" id=17]
+[sub_resource type="SphereShape3D" id="17"]
 radius = 2.0
 
-[sub_resource type="Curve3D" id=14]
+[sub_resource type="Curve3D" id="14"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.82007, -0.725437, -4.63688 ),
-"tilts": PackedFloat32Array( 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.82007, -0.725437, -4.63688),
+"tilts": PackedFloat32Array(0)
 }
+point_count = 1
 
-[sub_resource type="Curve3D" id=12]
+[sub_resource type="Curve3D" id="12"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.57121, -0.0119658, -0.00863111, 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933 ),
-"tilts": PackedFloat32Array( 0, 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.57121, -0.0119658, -0.00863111, 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933),
+"tilts": PackedFloat32Array(0, 0)
 }
+point_count = 2
 
-[sub_resource type="Curve3D" id=11]
+[sub_resource type="Curve3D" id="11"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -0.0524902, 0.0185537, 0.0442524 ),
-"tilts": PackedFloat32Array( 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0524902, 0.0185537, 0.0442524),
+"tilts": PackedFloat32Array(0)
 }
+point_count = 1
 
-[sub_resource type="Curve3D" id=13]
+[sub_resource type="Curve3D" id="13"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933, 0, 0, 0, 0, 0, 0, -3.59928, -0.0273476, 0.018203 ),
-"tilts": PackedFloat32Array( 0, 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.58903, -0.726096, -4.86933, 0, 0, 0, 0, 0, 0, -3.59928, -0.0273476, 0.018203),
+"tilts": PackedFloat32Array(0, 0)
 }
+point_count = 2
 
-[sub_resource type="Curve3D" id=15]
+[sub_resource type="Curve3D" id="15"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.48657, 3.06391, 3.20606 ),
-"tilts": PackedFloat32Array( 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.48657, 3.06391, 3.20606),
+"tilts": PackedFloat32Array(0)
 }
+point_count = 1
 
-[sub_resource type="Curve3D" id=16]
+[sub_resource type="Curve3D" id="16"]
 bake_interval = 0.02
 _data = {
-"points": PackedVector3Array( 0, 0, 0, 0, 0, 0, -3.58903, -0.00802755, -0.00111794, 0, 0, 0, 0, 0, 0, -3.59928, 3.08364, 3.22355 ),
-"tilts": PackedFloat32Array( 0, 0 )
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.58903, -0.00802755, -0.00111794, 0, 0, 0, 0, 0, 0, -3.59928, 3.08364, 3.22355),
+"tilts": PackedFloat32Array(0, 0)
 }
+point_count = 2
 
-[node name="Main" instance=ExtResource( 3 )]
+[node name="Main" unique_id=739012874 instance=ExtResource("3")]
 
-[node name="PlayerSpawner" parent="Scene" index="2"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6987, 1.5, 5.21641 )
-itemCodes = [ "revolver32", "stealthBoy", "automatic308", "sniper308", "Quest_agentNote", "Quest_blueprints" ]
-ammo = {
+[node name="PlayerSpawner" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="2" unique_id=1808292846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6987, 1.5, 5.21641)
+itemCodes = Array[String](["revolver32", "stealthBoy", "automatic308", "sniper308", "Quest_agentNote", "Quest_blueprints"])
+ammo = Dictionary[String, int]({
 "ammo308": 20,
 "ammo32": 20,
 "ammo762": 20
-}
+})
 
-[node name="assistantSparkle" parent="Scene/npc" index="0" instance=ExtResource( 10 )]
-transform = Transform3D( -0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.94215 )
+[node name="assistantSparkle" parent="Scene/npc" parent_id_path=PackedInt32Array(366712157) index="0" unique_id=875828080 instance=ExtResource("10")]
+transform = Transform3D(-0.258499, 0, -0.966012, 0, 1, 0, 0.966012, 0, -0.258499, -45.4351, 0.117896, -5.94215)
 IsImmortal = true
 subtitlesCode = "briefing"
 
-[node name="test" parent="Scene/npc" index="1" instance=ExtResource( 4 )]
-transform = Transform3D( -0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412 )
+[node name="test" parent="Scene/npc" parent_id_path=PackedInt32Array(366712157) index="1" unique_id=559602582 instance=ExtResource("4")]
+transform = Transform3D(-0.999993, 0, 0.00378709, 0, 1, 0, -0.00378709, 0, -0.999993, 6.43604, 7.62939e-06, -7.19412)
 subtitlesCode = "testPlayerMove"
-itemCodes = [ "revolver32" ]
+itemCodes = Array[String](["revolver32"])
 
-[node name="terrain" type="StaticBody3D" parent="Scene" index="4"]
+[node name="terrain" type="StaticBody3D" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="4" unique_id=1502433948]
 collision_layer = 3
 collision_mask = 3
-physics_material_override = ExtResource( 6 )
+physics_material_override = ExtResource("6")
 
-[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0"]
-transform = Transform3D( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 1 )
+[node name="MeshInstance" type="MeshInstance3D" parent="Scene/terrain" index="0" unique_id=1302156126]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("1")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1"]
-shape = SubResource( 2 )
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/terrain" index="1" unique_id=1827410916]
+shape = SubResource("2")
 
-[node name="props" type="Node3D" parent="Scene/terrain" index="2"]
+[node name="props" type="Node3D" parent="Scene/terrain" index="2" unique_id=1236946638]
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3"]
-transform = Transform3D( 1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0 )
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3" unique_id=1805900109]
+transform = Transform3D(1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0)
 shadow_enabled = true
 
-[node name="covers" type="Node" parent="Scene/terrain" index="4"]
-script = ExtResource( 2 )
+[node name="covers" type="Node" parent="Scene/terrain" index="4" unique_id=496289079]
+script = ExtResource("2")
 
-[node name="1" type="Node3D" parent="Scene/terrain/covers" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.7832 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers" index="0" unique_id=1032181630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.7832)
 
-[node name="1" type="Node3D" parent="Scene/terrain/covers/1" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.79724 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers/1" index="0" unique_id=1199201059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.79724)
 
-[node name="2" type="Node3D" parent="Scene/terrain/covers/1" index="1"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10719 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers/1" index="1" unique_id=1205941177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10719)
 
-[node name="2" type="Node3D" parent="Scene/terrain/covers" index="1"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.368, 0, 2.70287 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers" index="1" unique_id=1096756434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.368, 0, 2.70287)
 
-[node name="1" type="Node3D" parent="Scene/terrain/covers/2" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11258, 0, -0.0895691 )
+[node name="1" type="Node3D" parent="Scene/terrain/covers/2" index="0" unique_id=1857304002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11258, 0, -0.0895691)
 
-[node name="2" type="Node3D" parent="Scene/terrain/covers/2" index="1"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33775, 0, -0.328845 )
+[node name="2" type="Node3D" parent="Scene/terrain/covers/2" index="1" unique_id=89016061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33775, 0, -0.328845)
 
-[node name="patrolPoint1" type="Node3D" parent="Scene/terrain" index="5"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242 )
+[node name="patrolPoint1" type="Node3D" parent="Scene/terrain" index="5" unique_id=2143173573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8235, 4.06153, -27.6242)
 
-[node name="patrolPoint2" type="Node3D" parent="Scene/terrain" index="6"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418 )
+[node name="patrolPoint2" type="Node3D" parent="Scene/terrain" index="6" unique_id=170007804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9139, 4.06153, 42.2418)
 
-[node name="Button" parent="Scene/terrain" index="7" instance=ExtResource( 7 )]
-transform = Transform3D( 0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0 )
+[node name="Button" parent="Scene/terrain" index="7" unique_id=1214913657 instance=ExtResource("7")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 6.59346, 0.126994, 0)
+otherTriggerPaths = [NodePath("../../triggers/ChangeSubtitlesTrigger")]
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("../../triggers/ChangeSubtitlesTrigger") ]
 
-[node name="map" type="MeshInstance3D" parent="Scene/terrain" index="8"]
-transform = Transform3D( -1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.35565, -2.05938e-07, 9.00184e-15, -47.9088, 5.42532, -0.0465126 )
+[node name="map" type="MeshInstance3D" parent="Scene/terrain" index="8" unique_id=457032507]
+transform = Transform3D(-1.59299e-07, 4, -1.74846e-07, 0, -1.74846e-07, -4, -4.35565, -2.05938e-07, 9.00184e-15, -47.9088, 5.42532, -0.0465126)
 cast_shadow = 0
-mesh = SubResource( 8 )
+mesh = SubResource("8")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource( 9 )
+surface_material_override/0 = ExtResource("9")
 
-[node name="map2" type="MeshInstance3D" parent="Scene/terrain" index="9"]
-transform = Transform3D( -1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799 )
+[node name="map2" type="MeshInstance3D" parent="Scene/terrain" index="9" unique_id=1864800746]
+transform = Transform3D(-1.65058e-07, 4, -9.32107e-08, 0.418877, -1.68112e-07, -1.989, -3.97801, -1.83672e-07, -0.209438, -47.9018, 6.9575, 6.38799)
 cast_shadow = 0
-mesh = SubResource( 8 )
+mesh = SubResource("8")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource( 11 )
+surface_material_override/0 = ExtResource("11")
 
-[node name="mesh" type="NavigationRegion3D" parent="Scene" index="7"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0 )
-navigation_mesh = SubResource( 5 )
+[node name="mesh" type="NavigationRegion3D" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="7" unique_id=1503129496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99967, 0)
+navigation_mesh = SubResource("5")
 
-[node name="cutscenes" type="Node" parent="Scene" index="8"]
+[node name="cutscenes" type="Node" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="8" unique_id=103100525]
 
-[node name="Test" type="Node" parent="Scene/cutscenes" index="0"]
-script = ExtResource( 13 )
+[node name="Test" type="Node" parent="Scene/cutscenes" index="0" unique_id=1320168436]
+script = ExtResource("13")
 
-[node name="test" type="Node" parent="Scene/cutscenes/Test" index="0"]
-script = ExtResource( 1 )
-DeleteAfterTrigger = false
+[node name="test" type="Node" parent="Scene/cutscenes/Test" index="0" unique_id=508137941]
+script = ExtResource("1")
 movePath = NodePath("MoveCinematic")
-
-[node name="MoveCinematic" parent="Scene/cutscenes/Test/test" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411 )
-curve = SubResource( 9 )
-rotationMode = 2
-cameraAngle = Vector3( 0, 180, 0 )
-
-[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Test" index="1"]
-script = ExtResource( 1 )
 DeleteAfterTrigger = false
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Test/test" index="0" unique_id=1152508787 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95712, 3.42136, -3.38411)
+curve = SubResource("9")
+rotationMode = 2
+cameraAngle = Vector3(0, 180, 0)
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Test" index="1" unique_id=1028578722]
+script = ExtResource("1")
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
-
-[node name="ReturnToPlayer" parent="Scene/cutscenes/Test/returnToPlayer" index="0" instance=ExtResource( 14 )]
-
-[node name="TestPlayerMove" type="Node" parent="Scene/cutscenes" index="1"]
-script = ExtResource( 13 )
-
-[node name="cinematic" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="0"]
-script = ExtResource( 1 )
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("MovePlayer") ]
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/Test/returnToPlayer" index="0" unique_id=606937079 instance=ExtResource("14")]
+
+[node name="TestPlayerMove" type="Node" parent="Scene/cutscenes" index="1" unique_id=1813316819]
+script = ExtResource("13")
+
+[node name="cinematic" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="0" unique_id=1382243866]
+script = ExtResource("1")
 movePath = NodePath("MoveCinematic")
+otherTriggerPaths = [NodePath("MovePlayer")]
+DeleteAfterTrigger = false
 
-[node name="MoveCinematic" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51622, 2.11585, 10.6806 )
-curve = SubResource( 18 )
-speed = 0.3
+[node name="MoveCinematic" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="0" unique_id=41029272 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51622, 2.11585, 10.6806)
+curve = SubResource("18")
 speedRot = 2.0
+speed = 0.3
 
-[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="1"]
-script = ExtResource( 15 )
-DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("Spatial/Area") ]
+[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/cinematic" index="1" unique_id=2133956123]
+script = ExtResource("15")
 pointPath = NodePath("Spatial")
-
-[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0"]
-transform = Transform3D( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481 )
-
-[node name="Area" type="Area3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0"]
-script = ExtResource( 16 )
+otherTriggerPaths = [NodePath("Spatial/Area")]
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("../../../../continueSpeech") ]
-disactiveTriggerPaths = [ NodePath(".") ]
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = SubResource( 17 )
+[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer" index="0" unique_id=1197257143]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.30464e-07, 0, -8.21481)
 
-[node name="continueSpeech" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1"]
-script = ExtResource( 18 )
+[node name="Area" type="Area3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial" index="0" unique_id=973522806]
+script = ExtResource("16")
+otherTriggerPaths = [NodePath("../../../../continueSpeech")]
+disactiveTriggerPaths = [NodePath(".")]
 DeleteAfterTrigger = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" index="0" unique_id=713714528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("17")
+
+[node name="continueSpeech" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="1" unique_id=1049959331]
+script = ExtResource("18")
 code = "testPlayerLook"
 npcPath = NodePath("../../../npc/test")
-
-[node name="lookAtTarget" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2"]
-script = ExtResource( 19 )
 DeleteAfterTrigger = false
+
+[node name="lookAtTarget" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="2" unique_id=1445130470]
+script = ExtResource("19")
 targetPath = NodePath("Spatial")
-
-[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718 )
-
-[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="3"]
-script = ExtResource( 1 )
 DeleteAfterTrigger = false
-disactiveTriggerPaths = [ NodePath("../lookAtTarget") ]
+
+[node name="Spatial" type="Node3D" parent="Scene/cutscenes/TestPlayerMove/lookAtTarget" index="0" unique_id=1721058232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60676, 0.198006, 0.0132718)
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="3" unique_id=949692631]
+script = ExtResource("1")
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
-
-[node name="ReturnToPlayer" parent="Scene/cutscenes/TestPlayerMove/returnToPlayer" index="0" instance=ExtResource( 14 )]
-
-[node name="skip" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="4"]
-script = ExtResource( 5 )
+disactiveTriggerPaths = [NodePath("../lookAtTarget")]
 DeleteAfterTrigger = false
-otherTriggerPaths = [ NodePath("MovePlayer") ]
-disactiveTriggerPaths = [ NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area"), NodePath("../lookAtTarget") ]
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/TestPlayerMove/returnToPlayer" index="0" unique_id=1390658126 instance=ExtResource("14")]
+
+[node name="skip" type="Node" parent="Scene/cutscenes/TestPlayerMove" index="4" unique_id=412552958]
+script = ExtResource("5")
 npcPath = NodePath("../../../npc/test")
 newSubtitlesCode = "testPlayerMove"
-
-[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/skip" index="0"]
-script = ExtResource( 15 )
+otherTriggerPaths = [NodePath("MovePlayer")]
+disactiveTriggerPaths = [NodePath("../cinematic/MovePlayer"), NodePath("../cinematic/MovePlayer/Spatial/Area"), NodePath("../lookAtTarget")]
 DeleteAfterTrigger = false
-disactiveTriggerPaths = [  ]
+
+[node name="MovePlayer" type="Node" parent="Scene/cutscenes/TestPlayerMove/skip" index="0" unique_id=1365625648]
+script = ExtResource("15")
 isTeleport = true
 pointPath = NodePath("../../cinematic/MovePlayer/Spatial")
-
-[node name="Briefing" type="Node" parent="Scene/cutscenes" index="2"]
-script = ExtResource( 13 )
-
-[node name="overall" type="Node" parent="Scene/cutscenes/Briefing" index="0"]
-script = ExtResource( 1 )
+disactiveTriggerPaths = []
 DeleteAfterTrigger = false
-movePath = NodePath("MoveCinematic")
 
-[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5 )
-speed = 0.3
+[node name="Briefing" type="Node" parent="Scene/cutscenes" index="2" unique_id=2018093851]
+script = ExtResource("13")
+
+[node name="overall" type="Node" parent="Scene/cutscenes/Briefing" index="0" unique_id=1932906439]
+script = ExtResource("1")
+movePath = NodePath("MoveCinematic")
+DeleteAfterTrigger = false
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/overall" index="0" unique_id=1520274304 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5.5, 2.5)
+cameraAngle = Vector3(0, 90, 0)
 speedRot = 2.0
-cameraAngle = Vector3( 0, 90, 0 )
+speed = 0.3
 
-[node name="vent1" type="Node" parent="Scene/cutscenes/Briefing" index="1"]
-script = ExtResource( 1 )
-DeleteAfterTrigger = false
+[node name="vent1" type="Node" parent="Scene/cutscenes/Briefing" index="1" unique_id=542492511]
+script = ExtResource("1")
 movePath = NodePath("MoveCinematic")
+DeleteAfterTrigger = false
 
-[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent1" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
-curve = SubResource( 14 )
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent1" index="0" unique_id=458341594 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6)
+curve = SubResource("14")
+cameraAngle = Vector3(0, 90, 0)
 speed = 0.5
-cameraAngle = Vector3( 0, 90, 0 )
 
-[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent1" index="1" instance=ExtResource( 8 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
-curve = SubResource( 12 )
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent1" index="1" unique_id=1182216776 instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6)
+curve = SubResource("12")
 speed = 1.0
 
-[node name="vent2" type="Node" parent="Scene/cutscenes/Briefing" index="2"]
-script = ExtResource( 1 )
-DeleteAfterTrigger = false
+[node name="vent2" type="Node" parent="Scene/cutscenes/Briefing" index="2" unique_id=1375494432]
+script = ExtResource("1")
 movePath = NodePath("MoveCinematic")
-
-[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent2" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 4, 0 )
-curve = SubResource( 11 )
-speed = 0.3
-cameraAngle = Vector3( 0, 90, 0 )
-
-[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent2" index="1" instance=ExtResource( 8 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
-curve = SubResource( 13 )
-speed = 0.3
-
-[node name="vent3" type="Node" parent="Scene/cutscenes/Briefing" index="3"]
-script = ExtResource( 1 )
 DeleteAfterTrigger = false
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent2" index="0" unique_id=86579109 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 4, 0)
+curve = SubResource("11")
+cameraAngle = Vector3(0, 90, 0)
+speed = 0.3
+
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent2" index="1" unique_id=316348370 instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6)
+curve = SubResource("13")
+speed = 0.3
+
+[node name="vent3" type="Node" parent="Scene/cutscenes/Briefing" index="3" unique_id=1463476244]
+script = ExtResource("1")
 movePath = NodePath("MoveCinematic")
 rotatePath = NodePath("RotateCinematic")
-
-[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent3" index="0" instance=ExtResource( 12 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6 )
-curve = SubResource( 15 )
-speed = 0.3
-cameraAngle = Vector3( 0, 90, 0 )
-
-[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent3" index="1" instance=ExtResource( 8 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6 )
-curve = SubResource( 16 )
-speed = 0.3
-
-[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Briefing" index="4"]
-script = ExtResource( 1 )
 DeleteAfterTrigger = false
+
+[node name="MoveCinematic" parent="Scene/cutscenes/Briefing/vent3" index="0" unique_id=648720706 instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 4.607, 0.6)
+curve = SubResource("15")
+cameraAngle = Vector3(0, 90, 0)
+speed = 0.3
+
+[node name="RotateCinematic" parent="Scene/cutscenes/Briefing/vent3" index="1" unique_id=716961000 instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.264, 4.607, 0.6)
+curve = SubResource("16")
+speed = 0.3
+
+[node name="returnToPlayer" type="Node" parent="Scene/cutscenes/Briefing" index="4" unique_id=511316009]
+script = ExtResource("1")
 movePath = NodePath("")
 rotatePath = NodePath("")
 returnPath = NodePath("ReturnToPlayer")
-
-[node name="ReturnToPlayer" parent="Scene/cutscenes/Briefing/returnToPlayer" index="0" instance=ExtResource( 14 )]
-
-[node name="skip" type="Node" parent="Scene/cutscenes/Briefing" index="5"]
-script = ExtResource( 5 )
 DeleteAfterTrigger = false
+
+[node name="ReturnToPlayer" parent="Scene/cutscenes/Briefing/returnToPlayer" index="0" unique_id=833230998 instance=ExtResource("14")]
+
+[node name="skip" type="Node" parent="Scene/cutscenes/Briefing" index="5" unique_id=36676405]
+script = ExtResource("5")
 npcPath = NodePath("../../../npc/assistantSparkle")
 newSubtitlesCode = "briefing"
-
-[node name="triggers" type="Node" parent="Scene" index="9"]
-
-[node name="ChangeSubtitlesTrigger" type="Node" parent="Scene/triggers" index="0"]
-script = ExtResource( 5 )
 DeleteAfterTrigger = false
-otherTriggerPaths = [  ]
-disactiveTriggerPaths = [  ]
+
+[node name="triggers" type="Node" parent="Scene" parent_id_path=PackedInt32Array(1231096953) index="9" unique_id=910328485]
+
+[node name="ChangeSubtitlesTrigger" type="Node" parent="Scene/triggers" index="0" unique_id=318630230]
+script = ExtResource("5")
 npcPath = NodePath("../../npc/test")
 newSubtitlesCode = "cinematicTest"
+otherTriggerPaths = []
+disactiveTriggerPaths = []
+DeleteAfterTrigger = false
 
-[node name="Testing" parent="." index="1" instance=ExtResource( 17 )]
+[node name="Testing" parent="." index="1" unique_id=1188840751 instance=ExtResource("17")]
 
 [connection signal="body_entered" from="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" to="Scene/cutscenes/TestPlayerMove/cinematic/MovePlayer/Spatial/Area" method="_on_body_entered"]

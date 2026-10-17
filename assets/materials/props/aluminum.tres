@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://flo4hekgqgax"]
 
 [resource]
-texture_filter = 0
 resource_name = "Lever"
 metallic = 1.0
 roughness = 0.0
+texture_filter = 0

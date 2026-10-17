@@ -1,11 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dfyxj1dh21t5p"]
 
-[ext_resource path="res://assets/models/props/vehicles/btr/btr.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://d1i1b14jkgvuy" path="res://assets/models/props/vehicles/btr/btr.png" id="1"]
 
 [resource]
-texture_filter = 0
 resource_name = "btr"
-params_cull_mode = 2
-albedo_texture = ExtResource( 1 )
+cull_mode = 2
+albedo_texture = ExtResource("1")
 metallic = 0.8
 roughness = 0.8
+texture_filter = 0

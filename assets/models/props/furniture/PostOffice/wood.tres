@@ -1,9 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpaqwvnlj6nqm"]
 
 [resource]
-texture_filter = 0
 resource_name = "wood"
+cull_mode = 2
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
-albedo_color = Color( 0.379993, 0.160366, 0.111665, 1 )
+albedo_color = Color(0.379993, 0.160366, 0.111665, 1)
 roughness = 0.5
+texture_filter = 0
