@@ -33,7 +33,7 @@ public partial class PlayerDeathManager : Node
             var temp = blackScreen.Color;
             temp.A += 0.01f;
             blackScreen.Color = temp;
-            await Global.Get().ToTimer(0.04f);
+            await Global.Get().ToTimer(0.04f, this);
         }
         
         if (PermanentDeath)

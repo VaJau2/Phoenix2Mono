@@ -78,6 +78,12 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
                 target, 
                 true
             );
+            //в Godot 4 путь пустой, пока карта навигации не синхронизирована (первые кадры уровня)
+            //или если точки вне навмеша — тогда идём к цели напрямую до следующего пересчёта пути
+            if (path.Length == 0)
+            {
+                path = [target];
+            }
             pathLastPoint = path[path.Length - 1];
             tempTarget = target;
         }

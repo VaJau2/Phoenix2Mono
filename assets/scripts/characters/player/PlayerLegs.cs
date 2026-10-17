@@ -169,9 +169,10 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void FrontAreaBodyEntered(PhysicsBody3D body)
+    public void FrontAreaBodyEntered(Node3D node)
     {
-        if (body is Player) return;
+        //сигнал присылает любое тело, включая GridMap — он не PhysicsBody3D
+        if (node is not PhysicsBody3D body || body is Player) return;
 
         if (body is StaticBody3D or Character)
         {
@@ -179,9 +180,9 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void FrontAreaBodyExited(PhysicsBody3D body)
+    public void FrontAreaBodyExited(Node3D node)
     {
-        if (body is Player) return;
+        if (node is not PhysicsBody3D body || body is Player) return;
 
         if (frontObjects.Contains(body))
         {
@@ -189,9 +190,10 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void BackAreaBodyEntered(PhysicsBody3D body)
+    public void BackAreaBodyEntered(Node3D node)
     {
-        if (body is Player) return;
+        //сигнал присылает любое тело, включая GridMap — он не PhysicsBody3D
+        if (node is not PhysicsBody3D body || body is Player) return;
 
         if (body is StaticBody3D or Character)
         {
@@ -199,9 +201,9 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void BackAreaBodyExited(PhysicsBody3D body)
+    public void BackAreaBodyExited(Node3D node)
     {
-        if (body is Player) return;
+        if (node is not PhysicsBody3D body || body is Player) return;
 
         if (backObjects.Contains(body))
         {

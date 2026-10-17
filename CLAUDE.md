@@ -18,6 +18,7 @@
 - Godot 4: `D:\Godot\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe --headless --path . ...`
 - Скрипт без редактора: `... --headless --path . -s <абсолютный путь к .gd> -- <аргументы>` (скрипт `extends SceneTree`, аргументы — `OS.get_cmdline_user_args()`).
 - Проверка загрузки всех сцен: `docs/migration/tools/load_all_4.gd`; поиск молча потерянных свойств: `docs/migration/tools/check_props.gd`.
+- **Смоук-тест уровней** (после правок кода — обязательно): `... --headless --fixed-fps 60 --path . -s D:/Godot/projects/Phoenix2Mono/docs/migration/tools/smoke_test.gd -- [--levels=1,7] [--frames=900] > smoke.log 2>&1`, затем `perl docs/migration/tools/smoke_report.pl smoke.log` — ошибки по уровням и месту в коде. Все 12 уровней — ~4 минуты. Предупреждения Jolt о `softness/relaxation` и OGG о комментариях — известный шум.
 - Godot 3 (для сравнения): `D:\Godot\Godot_v3.6.3-stable_mono_win64\Godot_v3.6.3-stable_mono_win64.exe --no-window --path . -s <script.gd>`; вывод в консоль не идёт — перенаправлять в файл.
 - Главная сцена `scenes/Main.tscn`; уровни — `scenes/levels.json`; тестовые сцены `scenes/test/`.
 - Отладка в игре: F1 — лечение, F2 — убить врагов, F3 — убить игрока (`objects/testing/Testing.tscn`).

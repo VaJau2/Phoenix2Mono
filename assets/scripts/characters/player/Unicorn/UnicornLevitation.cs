@@ -69,14 +69,14 @@ public partial class UnicornLevitation : Node3D, ISavable
         return gunOn;
     }
 
-    public void _on_collisionArea_body_entered(PhysicsBody3D body)
+    public void _on_collisionArea_body_entered(Node3D body)
     {
         if (body == GetCharacterOwner()) return;
         if (body.Name.ToString().Contains("shell")) return;
         weaponClose = true;
     }
 
-    public void _on_collisionArea_body_exited(PhysicsBody3D body)
+    public void _on_collisionArea_body_exited(Node3D body)
     {
         if (body == GetCharacterOwner()) return;
         if (body.Name.ToString().Contains("shell")) return;
