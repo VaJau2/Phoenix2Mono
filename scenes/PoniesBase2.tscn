@@ -110,6 +110,7 @@
 [ext_resource type="Script" uid="uid://bg18qsv3om013" path="res://assets/scripts/furniture/Room/RoomManager.cs" id="108"]
 [ext_resource type="Script" uid="uid://dxhtnvealtslk" path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" id="109"]
 [ext_resource type="PackedScene" uid="uid://suimtheyg8va" path="res://objects/props/furniture/light/lamp_off.tscn" id="110"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/city_night_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(59.3302, 5.65978, 0.790714)
@@ -1844,6 +1845,7 @@ navigation_mesh = SubResource("38")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1735808926]
 environment = ExtResource("41")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=742267226 groups=["unpaused_sound"]]
 process_mode = 3

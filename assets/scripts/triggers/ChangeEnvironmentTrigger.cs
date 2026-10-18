@@ -17,7 +17,8 @@ public partial class ChangeEnvironmentTrigger : TriggerBase
         if (!IsActive) return;
         
         env = GetNode<WorldEnvironment>(envPath);
-        if (!IsInstanceValid(env))
+        //в Godot 3 условие было перевёрнуто (!IsInstanceValid) — окружение никогда не менялось (B-20)
+        if (IsInstanceValid(env))
         {
             env.Environment = envResource;
         }

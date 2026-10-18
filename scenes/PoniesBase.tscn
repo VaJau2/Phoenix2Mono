@@ -122,6 +122,7 @@
 [ext_resource type="Script" uid="uid://bg18qsv3om013" path="res://assets/scripts/furniture/Room/RoomManager.cs" id="120"]
 [ext_resource type="Script" uid="uid://dxhtnvealtslk" path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" id="121"]
 [ext_resource type="PackedScene" uid="uid://suimtheyg8va" path="res://objects/props/furniture/light/lamp_off.tscn" id="122"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/green_with_fog_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(59.3302, 5.65978, 0.790714)
@@ -2364,6 +2365,7 @@ navigation_mesh = SubResource("38")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1563381613]
 environment = ExtResource("108")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=1330937453 groups=["unpaused_sound"]]
 process_mode = 3

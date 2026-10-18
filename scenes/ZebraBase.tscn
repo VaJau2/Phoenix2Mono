@@ -116,6 +116,7 @@
 [ext_resource type="Script" uid="uid://bsjnvvtmciqat" path="res://assets/scripts/interface/LabelLang.cs" id="114"]
 [ext_resource type="Script" uid="uid://b2lxwalr3h0c" path="res://assets/scripts/background/shells/ShellsManager.cs" id="115"]
 [ext_resource type="Script" uid="uid://dxhtnvealtslk" path="res://assets/scripts/characters/NPC/Components/PonyStartIdleAnim.cs" id="116"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/city_night_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends CanvasLayer
@@ -2351,6 +2352,7 @@ navigation_mesh = SubResource("43")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1624280378]
 environment = ExtResource("24")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=876197510 groups=["savable", "unpaused_sound"]]
 process_mode = 3

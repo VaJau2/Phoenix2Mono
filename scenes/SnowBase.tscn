@@ -161,6 +161,7 @@
 [ext_resource type="Script" uid="uid://bbbqsba6asix1" path="res://assets/scripts/triggers/TriggersConditionTrigger.cs" id="159"]
 [ext_resource type="Script" uid="uid://c67481ximpv07" path="res://assets/scripts/triggers/MoveNpcToDoorTrigger.cs" id="160"]
 [ext_resource type="PackedScene" uid="uid://bn3evpkwafmg4" path="res://objects/commonTriggers.tscn" id="161"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/snow_env_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="BoxShape3D" id="119"]
 size = Vector3(330.73, 2, 607.128)
@@ -5164,6 +5165,7 @@ physics_material_override = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1964079872]
 environment = ExtResource("4")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="Radio Manager" type="Node" parent="." unique_id=215152147 groups=["savable"]]
 script = ExtResource("149")

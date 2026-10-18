@@ -139,6 +139,7 @@
 [ext_resource type="AudioStream" uid="uid://dftt1wwj4uptm" path="res://assets/audio/guns/result/glass_brake1.wav" id="143"]
 [ext_resource type="AudioStream" uid="uid://crp3ig5kryu1b" path="res://assets/audio/guns/result/glass_brake2.wav" id="144"]
 [ext_resource type="PackedScene" uid="uid://dkkscwdrs828g" path="res://objects/props/doors/double-door.tscn" id="145"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/sand_env_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="CylinderShape3D" id="108"]
 height = 1.0
@@ -3241,6 +3242,7 @@ skeleton = NodePath("../../terrain/terrain_body")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1192527047]
 environment = ExtResource("5")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=1293576700 groups=["unpaused_sound"]]
 process_mode = 3

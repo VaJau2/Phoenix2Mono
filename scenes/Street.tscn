@@ -59,6 +59,7 @@
 [ext_resource type="AudioStream" uid="uid://ygyr1jr22qig" path="res://assets/audio/background/bushes/bushes_sneak.mp3" id="58"]
 [ext_resource type="Script" uid="uid://dgrly6x7snrv4" path="res://assets/scripts/triggers/DamageTrigger.cs" id="59"]
 [ext_resource type="Script" uid="uid://v03i047ywwf8" path="res://assets/scripts/background/GridmapStepSound.cs" id="60"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/city_night_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="BoxShape3D" id="41"]
 size = Vector3(127.7482, 2.87106, 123.438)
@@ -958,6 +959,7 @@ navigation_mesh = SubResource("50")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1385628383]
 environment = ExtResource("21")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=1700639787 groups=["unpaused_sound"]]
 process_mode = 3

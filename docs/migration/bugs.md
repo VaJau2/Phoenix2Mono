@@ -137,3 +137,14 @@
 - Нормали, которые не сходятся с геометрией и в исходной модели (тонкая/двусторонняя геометрия): ошейник игрока, части зебр, `cloneFlask`, `dusk`, `scientist3`, `dragon` — оставлены как в Godot 3.
 - Не обработаны (не используются, остались в формате Godot 3): `objects/props/buildings/CP.tscn`, `roof.tscn`, `objects/props/training/wall-gun.tscn`.
 - Автопроверка: зонд нормалей (доля треугольников с нормалью против геометрии) — после исправления 0–1 % на уровне 1.
+
+## B-19: Пропал блюр вдали (DOF) — 🟡
+- Уровень / сцена: уровни с окружениями `city_night` (Street, PoniesBase2, ZebraBase), `cloudy_env` (AfterwarBelllgatesBase), `green_with_fog` (PoniesBase), `sand_env` (BellgatesBase), `snow_env` (SnowBase).
+- Причина: в Godot 3 дальний блюр (`dof_blur_far_*`) задавался в `Environment`, в Godot 4 — в `CameraAttributes`; конвертер его выбросил. Другие пост-эффекты Godot 3 (glow, SSAO, SSR, тонмаппинг, туман) переносятся `fix_environments.pl`; у камер своих окружений/эффектов в Godot 3 не было.
+- Исправление: `tools/fix_environments.pl` создаёт `<окружение>_camera.tres` (`CameraAttributesPractical`: расстояние и переход из Godot 3, сила по умолчанию 0.1 — как в Godot 3) и подключает его (`camera_attributes`) к `WorldEnvironment` 7 сцен. По скриншоту уровня 2 дальние здания размыты, как на эталоне. Качество/форма боке — настройки проекта `rendering/camera/depth_of_field/*` (по умолчанию).
+- Проверить в игре силу размытия на этих уровнях.
+
+## B-20: Смена времени суток в PrewarHome не срабатывала (было и в Godot 3) — 🟡
+- Уровень / сцена: `scenes/PrewarHome.tscn`, триггер `triggers/changeDayTime` (`ChangeEnvironmentTrigger`, окружение `evening_env`).
+- Причина: проверка `if (!IsInstanceValid(env))` перевёрнута — окружение не менялось никогда. Исправлено на `IsInstanceValid(env)`.
+- Проверить в игре: после срабатывания триггера сцена переходит на вечернее освещение (`evening_env`).

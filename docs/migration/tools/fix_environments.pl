@@ -13,8 +13,10 @@
 #   background_sky_orientation -> sky_rotation, ss_reflections_enabled -> ssr_enabled;
 # - ProceduralSky: цвета и кривые по умолчанию Godot 3, sky/ground_energy -> *_energy_multiplier
 #   (солнце в Godot 4 рисует DirectionalLight).
-# Не переносится: DOF (в Godot 4 — CameraAttributes), fog_transmit, fog_sun_color (в Godot 4 цвет
-# рассеивания берётся от DirectionalLight).
+# - DOF (dof_blur_far_*) в Godot 4 — не в Environment, а в CameraAttributes: для окружений с
+#   блюром создаётся <окружение>_camera.tres (CameraAttributesPractical) и подключается
+#   (camera_attributes) ко всем WorldEnvironment сцен scenes/ с этим окружением.
+# Не переносится: fog_transmit, fog_sun_color (в Godot 4 цвет рассеивания берётся от DirectionalLight).
 #
 # Запуск (Godot закрыт): perl docs/migration/tools/fix_environments.pl [файлы...]
 # без файлов — assets/materials/environments/*.tres и default_env.tres.
@@ -46,6 +48,45 @@ for my $file (@files) {
     print $out $text;
     close $out;
     print "$file\n";
+
+    camera_attributes($file, \%env) if ($env{dof_blur_far_enabled} // 'false') eq 'true';
+}
+
+# CameraAttributesPractical с дальним блюром Godot 3 + подключение к WorldEnvironment сцен
+sub camera_attributes {
+    my ($env_file, $e) = @_;
+    (my $cam_file = $env_file) =~ s/\.tres$/_camera.tres/;
+    my @p = ('dof_blur_far_enabled = true');
+    push @p, 'dof_blur_far_distance = ' . ($e->{dof_blur_far_distance} // 10.0);
+    push @p, 'dof_blur_far_transition = ' . ($e->{dof_blur_far_transition} // 5.0);
+    push @p, "dof_blur_amount = $e->{dof_blur_far_amount}" if exists $e->{dof_blur_far_amount};
+    open(my $out, '>:raw', $cam_file) or die "$cam_file: $!";
+    print $out "[gd_resource type=\"CameraAttributesPractical\" format=3]\n\n[resource]\n" . join('', map { "$_\n" } @p);
+    close $out;
+    print "$cam_file\n";
+
+    my $env_res = "res://$env_file";
+    my $cam_res = "res://$cam_file";
+    for my $scene (glob('scenes/*.tscn')) {
+        open(my $in, '<:raw', $scene) or die "$scene: $!";
+        my $text = do { local $/; <$in> };
+        close $in;
+        my ($env_id) = $text =~ /^\[ext_resource type="Environment"[^\]]*path="\Q$env_res\E" id="([^"]+)"\]/m;
+        next unless defined $env_id;
+        my ($cam_id) = $text =~ /^\[ext_resource type="CameraAttributesPractical"[^\]]*path="\Q$cam_res\E" id="([^"]+)"\]/m;
+        if (!defined $cam_id) {
+            $cam_id = 'camera_attributes_g3';
+            # после последнего ext_resource
+            $text =~ s/(\A(?:.*\n)*^\[ext_resource [^\n]*\n)/$1\[ext_resource type="CameraAttributesPractical" path="$cam_res" id="$cam_id"]\n/m;
+        }
+        # у WorldEnvironment с этим окружением — camera_attributes сразу после environment
+        my $n = ($text =~ s/(^\[node [^\n]*type="WorldEnvironment"[^\n]*\]\n(?:(?!\[)[^\n]*\n)*?environment = ExtResource\("\Q$env_id\E"\)\n)(?:camera_attributes = [^\n]*\n)?/$1camera_attributes = ExtResource("$cam_id")\n/mg);
+        next unless $n;
+        open(my $o, '>:raw', $scene) or die "$scene: $!";
+        print $o $text;
+        close $o;
+        print "  $scene: WorldEnvironment x$n\n";
+    }
 }
 
 sub section {

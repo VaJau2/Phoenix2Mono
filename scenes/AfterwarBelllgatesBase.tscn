@@ -114,6 +114,7 @@
 [ext_resource type="PackedScene" uid="uid://22dbch5wudsa" path="res://objects/characters/ponies/lucky_diamond-ghost.tscn" id="112"]
 [ext_resource type="Script" uid="uid://bn8bsf7gk0clv" path="res://assets/scripts/triggers/MoveNpcTrigger.cs" id="113"]
 [ext_resource type="Script" uid="uid://d3huhh24mlsn5" path="res://assets/scripts/background/Smoke.cs" id="114"]
+[ext_resource type="CameraAttributesPractical" path="res://assets/materials/environments/cloudy_env_camera.tres" id="camera_attributes_g3"]
 
 [sub_resource type="CylinderShape3D" id="162"]
 height = 1.0
@@ -2357,6 +2358,7 @@ mesh = SubResource("80")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1671010078]
 environment = ExtResource("4")
+camera_attributes = ExtResource("camera_attributes_g3")
 
 [node name="Warning Manager" type="Node" parent="." unique_id=1767727135 groups=["savable"]]
 script = ExtResource("82")
