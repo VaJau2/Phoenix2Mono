@@ -122,6 +122,10 @@ public partial class Mirror : MeshInstance3D
         if (GetSurfaceOverrideMaterial(0) is StandardMaterial3D material)
         {
             material.AlbedoTexture = texture;
+            //в Godot 3 текстура вьюпорта была перевёрнута по вертикали (расчёт камеры зеркала это учитывал);
+            //в Godot 4 переворота нет — отражаем UV обратно
+            material.Uv1Scale = new Vector3(1, -1, 1);
+            material.Uv1Offset = new Vector3(0, 1, 0);
         }
     }
 

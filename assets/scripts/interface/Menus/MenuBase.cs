@@ -57,6 +57,30 @@ public partial class MenuBase : Control
             newColor.B,
             tempA
         );
+
+        LoadPopupColor(item, newColor);
+    }
+
+    //в Godot 4 выпадающий список (OptionButton/MenuButton) — отдельное окно, Modulate родителя
+    //на него не действует (в Godot 3 он был дочерним элементом и красился вместе с меню).
+    //Содержимое окна красится через CanvasModulate
+    private static void LoadPopupColor(CanvasItem item, Color color)
+    {
+        PopupMenu popup = item switch
+        {
+            OptionButton optionButton => optionButton.GetPopup(),
+            MenuButton menuButton => menuButton.GetPopup(),
+            _ => null
+        };
+        if (popup == null) return;
+
+        var canvasModulate = popup.GetNodeOrNull<CanvasModulate>("interfaceColor");
+        if (canvasModulate == null)
+        {
+            canvasModulate = new CanvasModulate { Name = "interfaceColor" };
+            popup.AddChild(canvasModulate);
+        }
+        canvasModulate.Color = new Color(color.R, color.G, color.B);
     }
 
     public virtual void SetMenuVisible(bool animate = false)
