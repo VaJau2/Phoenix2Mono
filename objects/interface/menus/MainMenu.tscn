@@ -32,13 +32,15 @@ emission_shape = 3
 emission_box_extents = Vector3(500, 300, 500)
 direction = Vector3(-90, 0, 0)
 spread = 20.0
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
 gravity = Vector3(0, 50, 0)
-scale_min = 2.0
-scale_max = 2.0
 scale_curve = SubResource("2")
 color = Color(0.407843, 0.384314, 0.305882, 1)
+initial_velocity_min = 50
+initial_velocity_max = 50
+orbit_velocity_min = 0
+orbit_velocity_max = 0
+scale_min = 2
+scale_max = 2
 
 [node name="MainMenu" type="Control" unique_id=1754875073 groups=["ignore_color"]]
 process_mode = 3

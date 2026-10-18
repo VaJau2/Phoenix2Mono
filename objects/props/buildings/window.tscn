@@ -23,9 +23,9 @@ size = Vector3(0.065406, 0.856048, 1.30126)
 
 [sub_resource type="ParticleProcessMaterial" id="3"]
 spread = 50.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 gravity = Vector3(0, -6, 0)
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("4")
@@ -68,6 +68,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("4")
 draw_pass_2 = SubResource("5")
 draw_pass_3 = SubResource("6")
+local_coords = true
+fixed_fps = 0
 
 [node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=1832869802]
 volume_db = 5.0

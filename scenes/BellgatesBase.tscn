@@ -379,9 +379,9 @@ texture_filter = 0
 
 [sub_resource type="ParticleProcessMaterial" id="3"]
 spread = 50.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 gravity = Vector3(0, -6, 0)
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("138")
@@ -485,9 +485,9 @@ texture_filter = 0
 
 [sub_resource type="ParticleProcessMaterial" id="349"]
 spread = 50.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 gravity = Vector3(0, -6, 0)
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="350"]
 material = ExtResource("138")
@@ -1382,6 +1382,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("4")
 draw_pass_2 = SubResource("5")
 draw_pass_3 = SubResource("6")
+local_coords = true
+fixed_fps = 0
 
 [node name="lamp2" type="StaticBody3D" parent="terrain/props/houses/armor-house/props" unique_id=776119616]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.59187, 10.0762, 0)
@@ -1437,6 +1439,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("4")
 draw_pass_2 = SubResource("5")
 draw_pass_3 = SubResource("6")
+local_coords = true
+fixed_fps = 0
 
 [node name="lampOff1" parent="terrain/props/houses/armor-house/props" unique_id=2003610035 instance=ExtResource("64")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.4081, 10.0762, 0)
@@ -1683,6 +1687,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("350")
 draw_pass_2 = SubResource("351")
 draw_pass_3 = SubResource("352")
+local_coords = true
+fixed_fps = 0
 
 [node name="lamp2" type="StaticBody3D" parent="terrain/props/houses/main-house/props/light" unique_id=1198209525]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.886, 9.4, 13.936)
@@ -1738,6 +1744,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("350")
 draw_pass_2 = SubResource("351")
 draw_pass_3 = SubResource("352")
+local_coords = true
+fixed_fps = 0
 
 [node name="lamp3" type="StaticBody3D" parent="terrain/props/houses/main-house/props/light" unique_id=1672041242]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.446, 9.4, -4.938)
@@ -1793,6 +1801,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("350")
 draw_pass_2 = SubResource("351")
 draw_pass_3 = SubResource("352")
+local_coords = true
+fixed_fps = 0
 
 [node name="stable-table2" parent="terrain/props/houses/main-house/props" unique_id=367610117 instance=ExtResource("122")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -27.3082, 1.66724, 24.7839)

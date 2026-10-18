@@ -64,10 +64,10 @@ curve = SubResource("3")
 
 [sub_resource type="ParticleProcessMaterial" id="5"]
 spread = 20.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("4")
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="6"]
 material = ExtResource("2")
@@ -123,6 +123,8 @@ lifetime = 1.2
 visibility_aabb = AABB(-0.436759, -2.55555, -1.98594, 8.44871, 5.1111, 3.97188)
 process_material = SubResource("5")
 draw_pass_1 = SubResource("6")
+local_coords = false
+fixed_fps = 0
 
 [node name="audi" type="AudioStreamPlayer3D" parent="rocket" unique_id=1473570785]
 stream = ExtResource("5")

@@ -14,13 +14,13 @@ curve = SubResource("1")
 [sub_resource type="ParticleProcessMaterial" id="3"]
 direction = Vector3(0, 1, -0.5)
 spread = 30.0
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
 gravity = Vector3(0, 0, 0)
-radial_accel_min = 0.5
-radial_accel_max = 0.5
 scale_curve = SubResource("2")
 color = Color(0.972549, 0.941176, 0.941176, 1)
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("3")
@@ -86,6 +86,8 @@ explosiveness = 1.0
 visibility_aabb = AABB(-0.0938148, -0.657526, 0.169458, 0.569466, 1.19005, 0.692334)
 process_material = SubResource("3")
 draw_pass_1 = SubResource("4")
+local_coords = true
+fixed_fps = 0
 
 [node name="Gun-armature" type="Node3D" parent="." unique_id=253459900]
 transform = Transform3D(0.194427, 0, 0.00725503, 0, 0.194562, 0, -0.00725503, 0, 0.194427, 0.0400078, -0.124492, 0)

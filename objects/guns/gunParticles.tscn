@@ -14,9 +14,11 @@ curve = SubResource("2")
 [sub_resource type="ParticleProcessMaterial" id="4"]
 direction = Vector3(0, 1, 0)
 spread = 30.0
-initial_velocity_min = 6.0
-initial_velocity_max = 6.0
 scale_curve = SubResource("3")
+angle_min = 0
+angle_max = 0
+initial_velocity_min = 6
+initial_velocity_max = 6
 
 [sub_resource type="QuadMesh" id="5"]
 material = ExtResource("1")
@@ -36,6 +38,8 @@ randomness = 0.5
 visibility_aabb = AABB(-0.861842, -1.25995, -1.05623, 1.72368, 2.5199, 2.11245)
 process_material = SubResource("4")
 draw_pass_1 = SubResource("5")
+local_coords = true
+fixed_fps = 0
 
 [node name="hole" type="Sprite3D" parent="." unique_id=693211724]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

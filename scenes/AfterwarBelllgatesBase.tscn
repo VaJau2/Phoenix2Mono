@@ -425,14 +425,14 @@ emission_box_extents = Vector3(150, 0.1, 150)
 direction = Vector3(1, 0, 0.2)
 spread = 50.0
 flatness = 1.0
-initial_velocity_min = 1.8
-initial_velocity_max = 2.0
-angular_velocity_min = 6.75
-angular_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
-scale_min = 25.0
-scale_max = 50.0
 color_ramp = SubResource("148")
+angular_velocity_min = -1.5
+angular_velocity_max = 15
+initial_velocity_min = 1.8
+initial_velocity_max = 2
+scale_min = 25.5
+scale_max = 50
 
 [sub_resource type="StandardMaterial3D" id="150"]
 transparency = 1
@@ -1220,6 +1220,8 @@ draw_pass_1 = SubResource("151")
 script = ExtResource("114")
 mapCenter = Vector3(40, 0, 60)
 mapSize = 232
+local_coords = false
+fixed_fps = 0
 
 [node name="rooms" type="Node" parent="." unique_id=208154294 groups=["savable"]]
 script = ExtResource("37")

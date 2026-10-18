@@ -48,12 +48,12 @@ emission_shape = 3
 emission_box_extents = Vector3(3, 3, 3)
 direction = Vector3(1, 1, 1)
 spread = 180.0
-initial_velocity_min = 40.0
-initial_velocity_max = 40.0
 gravity = Vector3(0, 1, 0)
-scale_min = 2.0
-scale_max = 2.0
 scale_curve = SubResource("3")
+initial_velocity_min = 40
+initial_velocity_max = 40
+scale_min = 2
+scale_max = 2
 
 [sub_resource type="StandardMaterial3D" id="5"]
 transparency = 1
@@ -90,10 +90,10 @@ emission_shape = 3
 emission_box_extents = Vector3(10, 10, 10)
 direction = Vector3(0.5, 1, 0.5)
 spread = 90.0
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
 gravity = Vector3(0, -0.4, 0)
 scale_curve = SubResource("3")
+initial_velocity_min = 10
+initial_velocity_max = 10
 
 [sub_resource type="StandardMaterial3D" id="10"]
 transparency = 1
@@ -112,14 +112,14 @@ emission_shape = 3
 emission_box_extents = Vector3(15, 10, 15)
 direction = Vector3(1, 1, 1)
 spread = 180.0
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-angular_velocity_min = 5.0
-angular_velocity_max = 5.0
 gravity = Vector3(0, -0.4, 0)
-scale_min = 3.0
-scale_max = 3.0
 scale_curve = SubResource("3")
+angular_velocity_min = 5
+angular_velocity_max = 5
+initial_velocity_min = 15
+initial_velocity_max = 15
+scale_min = 3
+scale_max = 3
 
 [sub_resource type="StandardMaterial3D" id="13"]
 transparency = 1
@@ -161,6 +161,8 @@ explosiveness = 0.97
 visibility_aabb = AABB(-34.9628, -19.4512, -25.7537, 69.9257, 38.9025, 51.5074)
 process_material = SubResource("4")
 draw_pass_1 = SubResource("6")
+local_coords = true
+fixed_fps = 0
 
 [node name="fire3" type="GPUParticles3D" parent="parts" unique_id=1355254341]
 cast_shadow = 0
@@ -172,6 +174,8 @@ explosiveness = 0.97
 visibility_aabb = AABB(-33.3626, -24.1058, -26.8437, 66.7252, 48.2115, 53.6874)
 process_material = SubResource("4")
 draw_pass_1 = SubResource("8")
+local_coords = true
+fixed_fps = 0
 
 [node name="fire2" type="GPUParticles3D" parent="parts" unique_id=949720963]
 cast_shadow = 0
@@ -183,6 +187,8 @@ explosiveness = 0.87
 visibility_aabb = AABB(-34.7913, -22.1421, -31.702, 69.5827, 44.2842, 63.4039)
 process_material = SubResource("9")
 draw_pass_1 = SubResource("8")
+local_coords = true
+fixed_fps = 0
 
 [node name="smoke" type="GPUParticles3D" parent="parts" unique_id=1081793311]
 cast_shadow = 0
@@ -194,6 +200,8 @@ explosiveness = 0.9
 visibility_aabb = AABB(-35.6528, -24.3162, -30.2157, 71.3056, 48.6323, 60.4314)
 process_material = SubResource("9")
 draw_pass_1 = SubResource("11")
+local_coords = true
+fixed_fps = 0
 
 [node name="smoke2" type="GPUParticles3D" parent="parts" unique_id=493434134]
 cast_shadow = 0
@@ -205,6 +213,8 @@ explosiveness = 0.92
 visibility_aabb = AABB(-33.5595, -26.0028, -31.9551, 67.119, 52.0057, 63.9101)
 process_material = SubResource("12")
 draw_pass_1 = SubResource("14")
+local_coords = true
+fixed_fps = 0
 
 [node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=1273986659]
 stream = ExtResource("2")

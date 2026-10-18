@@ -24,12 +24,12 @@ emission_shape = 3
 emission_box_extents = Vector3(0.8, 0.1, 0.8)
 direction = Vector3(0, 2, 0)
 spread = 50.0
-initial_velocity_min = 4.0
-initial_velocity_max = 4.0
-angular_velocity_min = 0.6
-angular_velocity_max = 0.6
 gravity = Vector3(0, -9, 0)
 scale_curve = SubResource("3")
+angular_velocity_min = 0.6
+angular_velocity_max = 0.6
+initial_velocity_min = 4
+initial_velocity_max = 4
 
 [sub_resource type="QuadMesh" id="5"]
 material = ExtResource("5")
@@ -69,6 +69,8 @@ draw_passes = 3
 draw_pass_1 = SubResource("5")
 draw_pass_2 = null
 draw_pass_3 = null
+local_coords = true
+fixed_fps = 0
 
 [node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=1788050042]
 volume_db = 5.0

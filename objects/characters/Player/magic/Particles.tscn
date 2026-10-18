@@ -14,10 +14,10 @@ curve = SubResource("1")
 emission_shape = 3
 emission_box_extents = Vector3(0.2, 0.2, 0.2)
 direction = Vector3(0, 0, -1)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 gravity = Vector3(0, -3, 0)
 scale_curve = SubResource("2")
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("1")
@@ -31,3 +31,6 @@ explosiveness = 0.3
 visibility_aabb = AABB(-0.769224, -0.718177, -1.00421, 1.53845, 1.43635, 2.00842)
 process_material = SubResource("3")
 draw_pass_1 = SubResource("4")
+local_coords = true
+fixed_fps = 0
+

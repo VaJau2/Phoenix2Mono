@@ -12,9 +12,9 @@ height = 3.0
 emission_shape = 3
 emission_box_extents = Vector3(0.2, 0.2, 0.5)
 direction = Vector3(0, 0, -1)
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1
+initial_velocity_max = 1
 
 [sub_resource type="QuadMesh" id="3"]
 material = ExtResource("1")
@@ -40,6 +40,8 @@ lifetime = 0.3
 visibility_aabb = AABB(-1.21591, -0.98581, -1.47966, 2.43183, 1.97162, 3.47104)
 process_material = SubResource("2")
 draw_pass_1 = SubResource("3")
+local_coords = false
+fixed_fps = 0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=2075255171]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0588598)

@@ -120,10 +120,10 @@ emission_shape = 3
 emission_box_extents = Vector3(45, 10, 45)
 direction = Vector3(0, -1, 0)
 spread = 0.0
-initial_velocity_min = 120.0
-initial_velocity_max = 120.0
-scale_min = 0.05
-scale_max = 0.1
+initial_velocity_min = 120
+initial_velocity_max = 120
+scale_min = 0.1
+scale_max = 0.55
 
 [sub_resource type="StandardMaterial3D" id="52"]
 transparency = 1
@@ -155,12 +155,12 @@ func _process(_delta):
 emission_shape = 3
 emission_box_extents = Vector3(40, 2, 40)
 direction = Vector3(0, 1, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 damping_min = 0.5
 damping_max = 0.5
-scale_min = 0.05
-scale_max = 0.1
+initial_velocity_min = 2
+initial_velocity_max = 2
+scale_min = 0.1
+scale_max = 0.55
 
 [sub_resource type="QuadMesh" id="56"]
 material = SubResource("52")
@@ -986,6 +986,8 @@ visibility_aabb = AABB(-10.9987, -14.859, -10.4483, 21.9974, 23.22, 20.8965)
 process_material = SubResource("51")
 draw_pass_1 = SubResource("53")
 script = SubResource("54")
+local_coords = false
+fixed_fps = 0
 
 [node name="rainSound" type="AudioStreamPlayer" parent="rain" unique_id=409513880 groups=["unpaused_sound"]]
 process_mode = 3
@@ -1002,6 +1004,8 @@ visibility_aabb = AABB(-7.41551, -6.65972, -5.41109, 14.831, 13.3194, 10.8222)
 process_material = SubResource("55")
 draw_pass_1 = SubResource("56")
 script = SubResource("57")
+local_coords = false
+fixed_fps = 0
 
 [connection signal="DieEvent" from="npc/agent" to="triggers/npcDie" method="_on_activate_trigger"]
 [connection signal="body_entered" from="triggers/hint1" to="triggers/hint1" method="_on_body_entered"]

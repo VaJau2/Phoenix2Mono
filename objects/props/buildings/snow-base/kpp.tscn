@@ -39,12 +39,12 @@ curve = SubResource("5")
 [sub_resource type="ParticleProcessMaterial" id="7"]
 direction = Vector3(5, 5, 0)
 spread = 50.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-angular_velocity_min = 45.0
-angular_velocity_max = 45.0
 gravity = Vector3(0, 5, 0)
 scale_curve = SubResource("6")
+angular_velocity_min = 45
+angular_velocity_max = 45
+initial_velocity_min = 2
+initial_velocity_max = 2
 
 [sub_resource type="QuadMesh" id="8"]
 material = ExtResource("3")
@@ -77,3 +77,6 @@ lifetime = 1.5
 visibility_aabb = AABB(-1.40483, -0.243652, -1.33649, 2.80967, 8, 2.67298)
 process_material = SubResource("7")
 draw_pass_1 = SubResource("8")
+local_coords = true
+fixed_fps = 0
+

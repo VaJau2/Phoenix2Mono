@@ -161,13 +161,13 @@ curve = SubResource("6")
 [sub_resource type="ParticleProcessMaterial" id="8"]
 direction = Vector3(0, 1, -0.5)
 spread = 30.0
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
 gravity = Vector3(0, 0, 0)
-radial_accel_min = 0.5
-radial_accel_max = 0.5
 scale_curve = SubResource("7")
 color = Color(0.972549, 0.941176, 0.941176, 1)
+initial_velocity_min = 3
+initial_velocity_max = 3
+radial_accel_min = 0.5
+radial_accel_max = 0.5
 
 [sub_resource type="QuadMesh" id="9"]
 material = ExtResource("3")
@@ -274,3 +274,6 @@ explosiveness = 1.0
 visibility_aabb = AABB(-0.0938148, -0.657526, 0.169458, 0.569466, 1.19005, 0.692334)
 process_material = SubResource("8")
 draw_pass_1 = SubResource("9")
+local_coords = true
+fixed_fps = 0
+

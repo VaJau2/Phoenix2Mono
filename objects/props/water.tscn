@@ -18,12 +18,12 @@ emission_shape = 3
 emission_box_extents = Vector3(2, 0.2, 2)
 direction = Vector3(0.2, 1, 0.2)
 spread = 40.0
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
 gravity = Vector3(0, -20, 0)
+scale_curve = SubResource("2")
+initial_velocity_min = 15
+initial_velocity_max = 15
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("2")
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("3")
@@ -45,6 +45,8 @@ one_shot = true
 explosiveness = 0.81
 process_material = SubResource("3")
 draw_pass_1 = SubResource("4")
+local_coords = true
+fixed_fps = 0
 
 [node name="water" type="MeshInstance3D" parent="." unique_id=1399234865]
 transform = Transform3D(3, 0, 3.45993e-17, 1.0093e-20, -1.74846e-07, 3, -8.32667e-17, -4, -1.31134e-07, 0, -0.0750582, 0)

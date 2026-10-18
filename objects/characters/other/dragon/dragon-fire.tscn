@@ -16,12 +16,12 @@ curve = SubResource("1")
 [sub_resource type="ParticleProcessMaterial" id="3"]
 direction = Vector3(0, 0, 1)
 spread = 8.0
-initial_velocity_min = 35.0
-initial_velocity_max = 35.0
 gravity = Vector3(0, 0, 0)
-linear_accel_min = 5.0
-linear_accel_max = 5.0
 scale_curve = SubResource("2")
+initial_velocity_min = 35
+initial_velocity_max = 35
+linear_accel_min = 5
+linear_accel_max = 5
 
 [sub_resource type="QuadMesh" id="4"]
 material = ExtResource("3")
@@ -33,12 +33,12 @@ curve = SubResource("1")
 [sub_resource type="ParticleProcessMaterial" id="6"]
 direction = Vector3(0, 0, 1)
 spread = 10.0
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-linear_accel_min = 5.0
-linear_accel_max = 5.0
 scale_curve = SubResource("5")
+initial_velocity_min = 20
+initial_velocity_max = 20
+linear_accel_min = 5
+linear_accel_max = 5
 
 [sub_resource type="QuadMesh" id="7"]
 material = ExtResource("2")
@@ -46,12 +46,12 @@ material = ExtResource("2")
 [sub_resource type="ParticleProcessMaterial" id="8"]
 direction = Vector3(0, 0, 1)
 spread = 15.0
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
 gravity = Vector3(0, 9.8, 0)
-linear_accel_min = 5.0
-linear_accel_max = 5.0
 scale_curve = SubResource("2")
+initial_velocity_min = 20
+initial_velocity_max = 20
+linear_accel_min = 5
+linear_accel_max = 5
 
 [sub_resource type="QuadMesh" id="9"]
 material = ExtResource("1")
@@ -153,6 +153,8 @@ explosiveness = 0.1
 visibility_aabb = AABB(-6.56101, -2.08642, -1.49419, 13.122, 4.17285, 36.7755)
 process_material = SubResource("3")
 draw_pass_1 = SubResource("4")
+local_coords = false
+fixed_fps = 0
 
 [node name="Particles2" type="GPUParticles3D" parent="." unique_id=1111007162]
 emitting = false
@@ -162,6 +164,8 @@ explosiveness = 0.1
 visibility_aabb = AABB(-5.77415, -2.7996, 0.0717049, 11.5483, 5.5992, 34.8566)
 process_material = SubResource("6")
 draw_pass_1 = SubResource("7")
+local_coords = false
+fixed_fps = 0
 
 [node name="Particles3" type="GPUParticles3D" parent="." unique_id=1327385175]
 emitting = false
@@ -171,6 +175,8 @@ explosiveness = 0.1
 visibility_aabb = AABB(-6.12127, -2.23069, -0.519295, 12.2425, 4.46138, 35.7944)
 process_material = SubResource("8")
 draw_pass_1 = SubResource("9")
+local_coords = false
+fixed_fps = 0
 
 [node name="fireAnim" type="AnimationPlayer" parent="." unique_id=1484602522]
 libraries/ = SubResource("AnimationLibrary_h3vg6")
