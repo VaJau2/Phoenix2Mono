@@ -6,6 +6,9 @@
 # которые теряют ненулевые привязки корня своей сцены. Исправление: убрать `layout_mode = 0` у экземпляра
 # (и при желании явно записать нужные anchor_*).
 # Запуск: perl docs/migration/tools/check_layout.pl
+use strict;
+use warnings;
+use File::Find;
 
 my @files; find(sub { if ($_ eq '.godot') { $File::Find::prune = 1; return } push @files, $File::Find::name if /\.tscn$/ }, '.');
 my %root;   # res path -> anchors of root
