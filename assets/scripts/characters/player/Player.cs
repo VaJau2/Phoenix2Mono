@@ -496,14 +496,15 @@ public partial class Player : Character
             Fly();
         }
 
+        //при приседании ниже становится только коробка тела. Капсулу (sphereCollider) в Godot 3 тоже
+        //масштабировали по Y, но её узел был повёрнут, и это сужало капсулу спереди назад, а не по высоте;
+        //после перевода капсул на ось Y тот же код сжимал её по высоте, а Jolt не умеет неравномерно
+        //масштабировать капсулы — уменьшал её целиком, игрок проваливался (B-23). Капсула не масштабируется
         if (bodyCollider.Scale.Y != bodyColliderSize)
         {
             Vector3 bodyScale = bodyCollider.Scale;
-            Vector3 sphereScale = sphereCollider.Scale;
             bodyScale.Y = bodyColliderSize;
-            sphereScale.Y = bodyColliderSize;
             bodyCollider.Scale = bodyScale;
-            sphereCollider.Scale = sphereScale;
         }
     }
 
