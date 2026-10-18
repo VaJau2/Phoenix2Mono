@@ -13,16 +13,16 @@ points = PackedVector3Array(-0.574162, -0.0109244, -0.00815541, -0.574162, -0.00
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "ventilation-door"
 _surfaces = [{
-"aabb": AABB(-0.574162, -0.0109244, -0.00815541, 1.15754, 0.00880359, 1.10678),
+"material": ExtResource("1"),
+"aabb": AABB(-0.5741625, -0.010924382, -0.0081554055, 1.1575394, 0.008793592, 1.1067696),
 "attribute_data": PackedByteArray("AEC9PACAsD0AgHs/AGAqPwCAez8AYCo/AEC9PAAgbD8AIHc/AMB/PwCAez8AAKo+ACB3PwBgKj8AwGU/ACBsPwAgdz8AYCo/ACB3PwAAqj4AwGU/AICwPQCAez8AwH8/AKB4PwBgKj8AoHg/AGAqPwBAvTwAIGw/AKB4PwAAqj4AAH0/AMB/PwBAvTwAgLA9AKB4PwDAfz8AwGU/ACBsPwAAfT8AAKo+AAB9PwBgKj8AwGU/AICwPQAAfT8AYCo/"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("BwAAAAoABwADAAAADgAWABMADgARABYABQAXAAIABQAUABcACQAMAAYACQAPAAwAAQAQAAsAAQAVABAACAASAAQACAANABIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("UPwSv7ikC7tkn4w/UPwSv7ikC7tkn4w/UPwSv7ikC7tkn4w/UPwSv7ikC7tAngW8UPwSv7ikC7tAngW8UPwSv7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tkn4w/MFgVP7ikC7tkn4w/MFgVP7ikC7tkn4w/MFgVPy78MrxAngW8MFgVPy78MrxAngW8MFgVPy78MrxAngW8MFgVPy78Mrxkn4w/MFgVPy78Mrxkn4w/MFgVPy78Mrxkn4w/UPwSvy78MrxAngW8UPwSvy78MrxAngW8UPwSvy78MrxAngW8UPwSvy78Mrxkn4w/UPwSvy78Mrxkn4w/UPwSvy78Mrxkn4w/////v3IAAAD/ff+ARAAAAP+BAIBvAAAA////vy4AAAD/gf+AcwAAAAGBAIABANxB/3+AgNDG6UH///+/jdbsQf+B/4CydPVB/3+AgNoc+0H///+/ekL9Qf1+gIBKUwJC/3+AgAAAAEL/gf+AAAAEQgAA/78AAABC/3+AgAAABEL9foCAeUL9QQAA/79KUwJC/4H/gLN09UEAAP+/2hz7QQGBAIDQxulB/33/gIzW7EEAAP+/AADcQf+BAIAAANxB")
+"vertex_data": PackedByteArray("UPwSv7ikC7tkn4w/UPwSv7ikC7tkn4w/UPwSv7ikC7tkn4w/UPwSv7ikC7tAngW8UPwSv7ikC7tAngW8UPwSv7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tAngW8MFgVP7ikC7tkn4w/MFgVP7ikC7tkn4w/MFgVP7ikC7tkn4w/MFgVPy78MrxAngW8MFgVPy78MrxAngW8MFgVPy78MrxAngW8MFgVPy78Mrxkn4w/MFgVPy78Mrxkn4w/MFgVPy78Mrxkn4w/UPwSvy78MrxAngW8UPwSvy78MrxAngW8UPwSvy78MrxAngW8UPwSvy78Mrxkn4w/UPwSvy78Mrxkn4w/UPwSvy78Mrxkn4w//38AAP///7///////33/gP///3//gQCA/38AAP///7//f/9//4H/gP///38BgQCAAAD/f/9/gID/fwAA////v/9//3//gf+AAAD/f/9/gID/fwAA////v//////9foCAAAD/f/9/gID/f/9//4H/gP9///8AAP+/AAD/f/9/gID//////X6AgP9///8AAP+//3//f/+B/4D/f///AAD/v////38BgQCA//////99/4D/f///AAD/v////3//gQCA")
 }]
 
 [sub_resource type="Animation" id="3"]

@@ -5,16 +5,16 @@
 
 [sub_resource type="ArrayMesh" id="21"]
 _surfaces = [{
-"aabb": AABB(-1, 0, -1.5973, 2, 1e-05, 3.1946),
+"material": ExtResource("2"),
+"aabb": AABB(-1, 0, -1.5972964, 2, 1e-05, 3.1945927),
 "attribute_data": PackedByteArray("AGAFPgDgfz8AgE8/AOB/PwBgBT4AIKY4AIBPPwDgpTg="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("2"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAA1dMw/AACAPwAAAAA1dMw/AACAvwAAAAA1dMy/AACAPwAAAAA1dMy/////vwAAAAD///+/TQBvAP///79cAC4A////v2QAbwA=")
+"vertex_data": PackedByteArray("AACAvwAAAAA1dMw/AACAPwAAAAA1dMw/AACAvwAAAAA1dMy/AACAPwAAAAA1dMy//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="BoxShape3D" id="22"]

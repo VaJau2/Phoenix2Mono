@@ -105,11 +105,13 @@ frame = 2
 [node name="OmniLight" type="OmniLight3D" parent="." unique_id=1034149462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617448, 0)
 light_color = Color(0.917647, 0.678431, 0.396078, 1)
-light_energy = 1.5
 shadow_enabled = true
 omni_range = 15.0
-omni_attenuation = 2.63902
 omni_shadow_mode = 0
+light_energy = 1.399
+omni_attenuation = 0.65
+metadata/g3_attenuation = 2.63902
+metadata/g3_light_energy = 1.5
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=231900885]
 libraries/ = SubResource("AnimationLibrary_xhqx6")

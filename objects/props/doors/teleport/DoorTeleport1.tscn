@@ -8,16 +8,16 @@
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube"
 _surfaces = [{
-"aabb": AABB(-0.133413, -0.0371488, -1.87413, 0.266825, 4.07345, 2),
+"material": ExtResource("1"),
+"aabb": AABB(-0.13341251, -0.037148833, -1.8741263, 0.26682502, 4.073438, 2),
 "attribute_data": PackedByteArray("AIDhPgDgfz8AgOE+AGDSPQCgVTkAYNI9AMBVOQDgfz8AQHQ/ACCEPgBAdD8AwFg/ACB+PwDAWD8AIH4/ACCEPgCgYT8A4H8/AKBhPwBg0j0AwOE+AGDSPQDA4T4A4H8/AMBwPwBgWD8AwHA/AICDPgDgZj8AgIM+AOBmPwBgWD8AoNk+AACyPAAAmj0AALI8AACaPQAgjD0AoNk+ACCMPQDAaz8AALI8ACASPwAAsjwAIBI/ACCMPQDAaz8AIIw9"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYACAAKAAkACAALAAoADAAOAA0ADAAPAA4AEAASABEAEAATABIAFAAWABUAFAAXABYA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("Sp0IvkgpgUBf4++/Sp0IvmApGL1f4++/Sp0IvmApGL0I5QA+Sp0IvkgpgUAI5QA+Sp0IPkgpgUBf4++/Sp0IPmApGL1f4++/Sp0IvmApGL1f4++/Sp0IvkgpgUBf4++/Sp0IPkgpgUAI5QA+Sp0IPmApGL0I5QA+Sp0IPmApGL1f4++/Sp0IPkgpgUBf4++/Sp0IvkgpgUAI5QA+Sp0IvmApGL0I5QA+Sp0IPmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IvmApGL0I5QA+Sp0IvmApGL1f4++/Sp0IPmApGL1f4++/Sp0IPmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IPkgpgUBf4++/Sp0IvkgpgUBf4++/Sp0IvkgpgUAI5QA+/////28AAAD/////dAAAAP////8uAAAA/////3MAAAAAAP+/bgAAAAAA/7+lYgFBAAD/v+nczkAAAP+/5S2sQP9//78AAKBA/3//vwAAoED/f/+/5i2sQP9//7/n3M5AAAD/v6ViAUEAAP+/AQAgQQAA/78AACRCAAD/v1enK0L/f/+/YyQyQv9//79EejZC/3//vwAAOEL/f/+/AAA4Qv9//79DejZC/3//v2MkMkL/f/+/V6crQv9//78AACRC")
+"vertex_data": PackedByteArray("Sp0IvkgpgUBf4++/Sp0IvmApGL1f4++/Sp0IvmApGL0I5QA+Sp0IvkgpgUAI5QA+Sp0IPkgpgUBf4++/Sp0IPmApGL1f4++/Sp0IvmApGL1f4++/Sp0IvkgpgUBf4++/Sp0IPkgpgUAI5QA+Sp0IPmApGL0I5QA+Sp0IPmApGL1f4++/Sp0IPkgpgUBf4++/Sp0IvkgpgUAI5QA+Sp0IvmApGL0I5QA+Sp0IPmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IvmApGL0I5QA+Sp0IvmApGL1f4++/Sp0IPmApGL1f4++/Sp0IPmApGL0I5QA+Sp0IPkgpgUAI5QA+Sp0IPkgpgUBf4++/Sp0IvkgpgUBf4++/Sp0IvkgpgUAI5QA+AAD/f/////8AAP9//////wAA/3//////AAD/f///////////AAD/v/////8AAP+//////wAA/7//////AAD/v////3//f/+/////f/9//7////9//3//v////3//f/+//3//fwAA/7//f/9/AAD/v/9//38AAP+//3//fwAA/7//fwAA/3//v/9/AAD/f/+//38AAP9//7//fwAA/3//v/9/////f/+//3////9//7//f////3//v/9/////f/+/")
 }]
 
 [sub_resource type="BoxShape3D" id="2"]

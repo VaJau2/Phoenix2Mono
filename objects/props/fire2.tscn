@@ -72,16 +72,16 @@ func _ready():
 [sub_resource type="ArrayMesh" id="7"]
 resource_name = "Cylinder001"
 _surfaces = [{
-"aabb": AABB(-1.77255, 0, -1.53507, 3.5451, 21.8183, 3.07014),
+"material": ExtResource("1"),
+"aabb": AABB(-1.7725471, 0, -1.5350709, 3.5450943, 21.818262, 3.0701418),
 "attribute_data": PackedByteArray("AGAdPwCgvD0AoBk/AKC8PQCgGT8AoJM+AGAdPwCgkz4AAC0/AKC8PQCgKD8AoLw9AKAoPwCgkz4AAC0/AKCTPgDgJD8AoLw9AOAkPwCgkz4AoCg/AKCTPgAgIT8AoLw9ACAhPwCgkz4AoBk/AKC8PQBAFT8AoLw9AEAVPwCgkz4AoBk/AKCTPgAgIT8AoLw9ACAhPwCgkz4AgCs/ACAvPQDAJz8AgA49AAAkPwAgLz0AACQ/AIBwPQDAJz8AgIg9AIArPwCAcD0="),
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYABQAJAAgABQAKAAkACAAMAAsACAAJAAwADQAPAA4ADQAQAA8AEQADAAAAEQASAAMAEwAVABQAFQAXABYAFwATABgAFQATABcA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 25,
-"vertex_data": PackedByteArray("0+LiPwAAAAAAAACA0uJiPwAAAAA0fcS/0uJiP82LrkE0fcS/0+LiP82LrkEAAACA0uJiPwAAAAA0fcS/1eJivwAAAAAzfcS/1eJiv82LrkEzfcS/0uJiP82LrkE0fcS/0+LivwAAAABbYyY00+Liv82LrkFbYyY01eJiv82LrkEzfcS/0OJivwAAAAA0fcQ/0OJiv82LrkE0fcQ/0OJivwAAAAA0fcQ/0eJiPwAAAAA0fcQ/0eJiP82LrkE0fcQ/0OJiv82LrkE0fcQ/0eJiPwAAAAA0fcQ/0eJiP82LrkE0fcQ/0eJiP82LrkE0fcQ/0+LiP82LrkEAAACA0uJiP82LrkE0fcS/1eJiv82LrkEzfcS/0+Liv82LrkFbYyY00OJiv82LrkE0fcQ//3//vwAAAAAc0f+/HQAAABzR/7/wqnL//3//vwAAAAAc0f+/HQAAAP//cNewqXL///9w1wAAAAAc0f+/HQAAAP/////wqXL//////wAAAAD//3DXHQAAAAAAcNcwqnL/AABw1wAAAAAAAHDXHQAAAOIu/79wrnL/4i7/vwAAAAAAAHDXHQAAAOIu/7/wp3L/4i7/vwAAAAD/f/+/HQAAAP9//79wpHL//3//vwAAAAD/f/+/HQAAAP9//7/wrHL//3//vwAAAAA=")
+"vertex_data": PackedByteArray("0+LiPwAAAAAAAACA0uJiPwAAAAA0fcS/0uJiP82LrkE0fcS/0+LiP82LrkEAAACA0uJiPwAAAAA0fcS/1eJivwAAAAAzfcS/1eJiv82LrkEzfcS/0uJiP82LrkE0fcS/0+LivwAAAABbYyY00+Liv82LrkFbYyY01eJiv82LrkEzfcS/0OJivwAAAAA0fcQ/0OJiv82LrkE0fcQ/0OJivwAAAAA0fcQ/0eJiPwAAAAA0fcQ/0eJiP82LrkE0fcQ/0OJiv82LrkE0fcQ/0eJiPwAAAAA0fcQ/0eJiP82LrkE0fcQ/0eJiP82LrkE0fcQ/0+LiP82LrkEAAACA0uJiP82LrkE0fcS/1eJiv82LrkEzfcS/0+Liv82LrkFbYyY00OJiv82LrkE0fcQ/////f/9//7///xzRHNH/v///HNEc0f+/////f/9//7///xzRHNH/vwAAHNH//3DXAAAc0f//cNf//xzRHNH/vwAA/3//////AAD/f/////8AABzR//9w1x1R/38AAHDXHVH/fwAAcNcdUf9/AABw1+Gu/3/iLv+/4a7/f+Iu/78dUf9/AABw1+Gu/3/iLv+/4a7/f+Iu/7//f////3//v/9/////f/+//3////9//7//f////3//v/9/////f/+//3////9//78=")
 }]
 
 [node name="fire" type="Node3D" unique_id=502558931]
@@ -113,11 +113,13 @@ frame = 2
 [node name="OmniLight" type="OmniLight3D" parent="." unique_id=773119072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617448, 0)
 light_color = Color(0.917647, 0.678431, 0.396078, 1)
-light_energy = 1.5
 shadow_enabled = true
 omni_range = 15.0
-omni_attenuation = 2.63902
 omni_shadow_mode = 0
+light_energy = 1.399
+omni_attenuation = 0.65
+metadata/g3_attenuation = 2.63902
+metadata/g3_light_energy = 1.5
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1543963128]
 libraries/ = SubResource("AnimationLibrary_o0vnx")

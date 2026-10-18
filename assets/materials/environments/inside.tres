@@ -1,13 +1,10 @@
 [gd_resource type="Environment" format=3 uid="uid://d3u53jn0po6fu"]
 
 [resource]
+background_mode = 0
 background_energy_multiplier = 0.5
 sky_custom_fov = 75.0
 ambient_light_color = Color(0.337255, 0.337255, 0.356863, 1)
 ambient_light_sky_contribution = 0.69
 ambient_light_energy = 0.5
 tonemap_mode = 2
-fog_light_color = Color(0.105882, 0.105882, 0.12549, 1)
-fog_sun_scatter = 0.51
-fog_depth_curve = 1.03527
-fog_depth_begin = 15.0

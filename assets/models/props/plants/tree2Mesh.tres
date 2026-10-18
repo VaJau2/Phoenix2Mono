@@ -11,14 +11,14 @@ texture_filter = 0
 [resource]
 resource_name = "Plane"
 _surfaces = [{
-"aabb": AABB(-1, 0.00508678, -0.708595, 2, 3.97391, 1.42177),
+"material": SubResource("5"),
+"aabb": AABB(-0.99999994, 0.0050867796, -0.70859474, 1.9999999, 3.9739041, 1.4217687),
 "attribute_data": PackedByteArray("AGB/PwAAlTgAwJQ4ACCVOABgfz8A4H8/AGCVOADgfz8AYH8/AACVOADAlDgAIJU4AGB/PwDgfz8AYJU4AOB/PwBgfz8AAJU4AMCUOAAglTgAYH8/AOB/PwBglTgA4H8/AGB/PwAAlTgAwJQ4ACCVOABgfz8A4H8/AGCVOADgfz8AYH8/AACVOADAlDgAIJU4AGB/PwDgfz8AYJU4AOB/PwBgfz8AAJU4AMCUOAAglTgAYH8/AOB/PwBglTgA4H8/"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("AAADAAEAAAACAAMABAAHAAUABAAGAAcACAALAAkACAAKAAsADAAPAA0ADAAOAA8AEAATABEAEAASABMAFAAXABUAFAAWABcA"),
-"material": SubResource("5"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("//9/v8qnfkBwEUi7//9/P8qnfkBwEUi7//9/vwCvpjtwDUi7//9/PwCvpjtwDUi7//9/P8qnfkCVE/o7//9/v8qnfkANFfo7//9/PwCvpjuVEfo7//9/vwCvpjsNE/o7g/w1v8qnfkBtozQ/YQ00P8qnfkB3ZjW/gPw1vwCvpjtwozQ/ZA00PwCvpjt0ZjW/gvw1P8qnfkBWdzO/YA00v8qnfkCQkjY/f/w1PwCvpjtZdzO/Yg00vwCvpjuOkjY/YQ00v8qnfkB3ZjW/g/w1P8qnfkBtozQ/ZA00vwCvpjt0ZjW/gPw1PwCvpjtwozQ/Yg00P8qnfkCOkjY/hPw1v8qnfkBUdzO/ZQ00PwCvpjuLkjY/gvw1vwCvpjtWdzO/AAD/v8qnfkAAAP+/WQBZAAAA/7/7O6gEAAD/v8qnfkD///+/WQBZAP///7+mBKkE////vwCvpjv///+/WQBZAP8//7/7O/87/z//vwCvpjv/P/+/WQBZAP8//7+rBP87////38qnfkD////fWQCnAP///9/7O6gE////38qnfkAAAP/fWQCnAAAA/9+mBKkEAAD/3wCvpjsAAP/fWQCnAP+//7/7O/87/7//vwCvpjv/v/+/WQCnAP+//7+SJEk/")
+"vertex_data": PackedByteArray("//9/v8qnfkBwEUi7//9/P8qnfkBwEUi7//9/vwCvpjtwDUi7//9/PwCvpjtwDUi7//9/P8qnfkCVE/o7//9/v8qnfkANFfo7//9/PwCvpjuVEfo7//9/vwCvpjsNE/o7g/w1v8qnfkBtozQ/YQ00P8qnfkB3ZjW/gPw1vwCvpjtwozQ/ZA00PwCvpjt0ZjW/gvw1P8qnfkBWdzO/YA00v8qnfkCQkjY/f/w1PwCvpjtZdzO/Yg00vwCvpjuOkjY/YQ00v8qnfkB3ZjW/g/w1P8qnfkBtozQ/ZA00vwCvpjt0ZjW/gPw1PwCvpjtwozQ/Yg00P8qnfkCOkjY/hPw1v8qnfkBUdzO/ZQ00PwCvpjuLkjY/gvw1vwCvpjtWdzO//////wAA/7//////AAD/v/////8AAP+//////wAA/7//f/9/////v/9//3////+//3//f////7//f/9/////vwAA/7//P/+/AAD/v/8//78AAP+//z//vwAA/7//P/+//7//f////9//v/9/////3/+//3/////f/7//f////9////+/AAD/3////78AAP/f////vwAA/9////+/AAD/3/8//3//v/+//z//f/+//7//P/9//7//v/8//3//v/+/")
 }]

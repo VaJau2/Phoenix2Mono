@@ -114,10 +114,12 @@ surface_material_override/0 = ExtResource("5")
 [node name="light" type="OmniLight3D" parent="shield/first" index="0" unique_id=849732576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74101, 0)
 light_color = Color(0.0862745, 0.415686, 0.980392, 1)
-light_energy = 0.3
 shadow_enabled = true
 omni_range = 10.0
-omni_attenuation = 2.28
+light_energy = 0.2267
+omni_attenuation = 0.58
+metadata/g3_attenuation = 2.28
+metadata/g3_light_energy = 0.3
 
 [node name="third" type="MeshInstance3D" parent="shield" index="1" unique_id=869676334]
 visible = false
@@ -128,10 +130,12 @@ surface_material_override/0 = ExtResource("5")
 [node name="light" type="OmniLight3D" parent="shield/third" index="0" unique_id=1153434832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74101, 0)
 light_color = Color(0.0862745, 0.415686, 0.980392, 1)
-light_energy = 0.3
 shadow_enabled = true
 omni_range = 10.0
-omni_attenuation = 2.28
+light_energy = 0.2267
+omni_attenuation = 0.58
+metadata/g3_attenuation = 2.28
+metadata/g3_light_energy = 0.3
 
 [node name="levitation" type="Node3D" parent="." index="11" unique_id=1046944063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768608, 2.6, 0.53288)

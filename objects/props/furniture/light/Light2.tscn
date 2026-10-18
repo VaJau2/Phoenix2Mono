@@ -29,6 +29,10 @@ shadow_enabled = true
 shadow_bias = 0.65
 shadow_reverse_cull_face = true
 omni_range = 25.0
+light_energy = 1.131
+omni_attenuation = 0.25
+metadata/g3_attenuation = 1
+metadata/g3_light_energy = 1
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=717914081]
 transform = Transform3D(0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 6.05406, 0)

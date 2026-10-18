@@ -5,16 +5,16 @@
 [sub_resource type="ArrayMesh" id="34"]
 resource_name = "location_tiles_Plane"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKCqOwAApT4AQCU+AAClPgCgqjsAQCo8AEAlPgBAKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_7ga14"]
@@ -32,16 +32,16 @@ image = SubResource("Image_7ga14")
 [sub_resource type="ArrayMesh" id="37"]
 resource_name = "location_tiles_Plane001"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKCqOwDgJz8AQCU+AOAnPwCgqjsAgK8+AEAlPgCArz4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_yu0vx"]
@@ -59,16 +59,16 @@ image = SubResource("Image_yu0vx")
 [sub_resource type="ArrayMesh" id="31"]
 resource_name = "grass2006"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKAqPwCgKj8AQFU/AKAqPwCgKj8AoKo+AEBVPwCgqj4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/////v/gCAAD///+/AQMAAP///78OAwAA////vxEDAAA=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_g0j74"]
@@ -86,16 +86,16 @@ image = SubResource("Image_g0j74")
 [sub_resource type="ArrayMesh" id="65"]
 resource_name = "location_tiles_Plane011"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AMBWPwDAJz8AgH4/AMAnPwDAVj8AILA+AIB+PwAgsD4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_axqs4"]
@@ -113,16 +113,16 @@ image = SubResource("Image_axqs4")
 [sub_resource type="ArrayMesh" id="68"]
 resource_name = "location_tiles_Plane012"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKCsOwBAfT8AQCU+AEB9PwCgrDsAQC0/AEAlPgBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_14wp7"]
@@ -140,16 +140,16 @@ image = SubResource("Image_14wp7")
 [sub_resource type="ArrayMesh" id="71"]
 resource_name = "location_tiles_Plane013"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAwPgBAfT8A4Kc+AEB9PwAAMD4AQC0/AOCnPgBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_mbid5"]
@@ -167,16 +167,16 @@ image = SubResource("Image_mbid5")
 [sub_resource type="ArrayMesh" id="74"]
 resource_name = "location_tiles_Plane016"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AECtPgBAfT8AQP0+AEB9PwBArT4AQC0/AED9PgBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_fxfjw"]
@@ -194,16 +194,16 @@ image = SubResource("Image_fxfjw")
 [sub_resource type="ArrayMesh" id="77"]
 resource_name = "location_tiles_Plane014"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AEABPwBAfT8AQCk/AEB9PwBAAT8AQC0/AEApPwBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_yw35g"]
@@ -221,16 +221,16 @@ image = SubResource("Image_yw35g")
 [sub_resource type="ArrayMesh" id="80"]
 resource_name = "location_tiles_Plane017"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAsPwBAfT8A4FM/AEB9PwAALD8AQC0/AOBTPwBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_e0y5l"]
@@ -248,16 +248,16 @@ image = SubResource("Image_e0y5l")
 [sub_resource type="ArrayMesh" id="83"]
 resource_name = "location_tiles_Plane018"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKBWPwBAfT8AoH4/AEB9PwCgVj8AQC0/AKB+PwBALT8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_ya6vd"]
@@ -275,16 +275,16 @@ image = SubResource("Image_ya6vd")
 [sub_resource type="ArrayMesh" id="86"]
 resource_name = "location_tiles_Plane010"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAsPwAAKD8A4FM/AAAoPwAALD8AALA+AOBTPwAAsD4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_kslmh"]
@@ -302,16 +302,16 @@ image = SubResource("Image_kslmh")
 [sub_resource type="ArrayMesh" id="40"]
 resource_name = "location_tiles_Plane002"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAwPgDAJz8AAKg+AMAnPwAAMD4A4K8+AACoPgDgrz4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_edeer"]
@@ -329,16 +329,16 @@ image = SubResource("Image_edeer")
 [sub_resource type="ArrayMesh" id="43"]
 resource_name = "location_tiles_Plane003"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAwPgBApT4AAKg+AEClPgAAMD4AgCo8AACoPgCAKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_skkk2"]
@@ -356,16 +356,16 @@ image = SubResource("Image_skkk2")
 [sub_resource type="ArrayMesh" id="46"]
 resource_name = "location_tiles_Plane004"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AECtPgAApT4AQP0+AAClPgBArT4AQCo8AED9PgBAKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_shw8h"]
@@ -383,16 +383,16 @@ image = SubResource("Image_shw8h")
 [sub_resource type="ArrayMesh" id="49"]
 resource_name = "location_tiles_Plane005"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AECtPgDgJz8AQP0+AOAnPwBArT4AALA+AED9PgAAsD4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_v11r2"]
@@ -410,16 +410,16 @@ image = SubResource("Image_v11r2")
 [sub_resource type="ArrayMesh" id="52"]
 resource_name = "location_tiles_Plane006"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AEABPwBgpT4AQCk/AGClPgBAAT8AwCo8AEApPwDAKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_kwapx"]
@@ -437,16 +437,16 @@ image = SubResource("Image_kwapx")
 [sub_resource type="ArrayMesh" id="55"]
 resource_name = "location_tiles_Plane007"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AAAsPwAApT4A4FM/AAClPgAALD8AQCo8AOBTPwBAKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_rsqol"]
@@ -464,16 +464,16 @@ image = SubResource("Image_rsqol")
 [sub_resource type="ArrayMesh" id="58"]
 resource_name = "location_tiles_Plane008"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKBWPwBApT4AwH4/AEClPgCgVj8AoCo8AMB+PwCgKjw="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_jftdx"]
@@ -491,16 +491,16 @@ image = SubResource("Image_jftdx")
 [sub_resource type="ArrayMesh" id="61"]
 resource_name = "location_tiles_Plane009"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AEABPwDgJz8AQCk/AOAnPwBAAT8A4K8+AEApPwDgrz4="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC/AAD/f///fr8AAP9///9+vwAA/3///36/AAD/f///fr8=")
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIC//3//////gMD/f/////+AwP9//////4DA/3//////gMA=")
 }]
 
 [sub_resource type="Image" id="Image_o3i6q"]

@@ -5,16 +5,16 @@
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "fence"
 _surfaces = [{
-"aabb": AABB(-5.99974, -0.0364828, -0.142013, 11.9995, 3.9597, 0.284036),
+"material": ExtResource("1"),
+"aabb": AABB(-5.99974, -0.03648281, -0.14201277, 11.99948, 3.9596958, 0.28402555),
 "attribute_data": PackedByteArray("AGCkPgCADj0A4Hk/AICzPgAAfroAgA49AOB5PwBALD8AgDM5AICyPgBgpD4AIG09AGAXOQBgLT8AAH66ACBtPQCAFzkA4H8/AIAzOQCgpj4AYBc5AICzPgBgpD4AYA09AIAXOQBALD8A4Hk/AICyPgAAfroAYA09AOB5PwBgLT8AYKQ+AAA7PADgeT8A4H8/AOB5PwCgpj4AAH66AAA7PA=="),
 "format": 34359742487,
 "index_count": 30,
 "index_data": PackedByteArray("AAAHAAIAAAAFAAcABgARAAgABgAPABEAEAAOABMAEAALAA4ACgADAAwACgABAAMAEgAEAAkAEgANAAQA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 20,
-"vertex_data": PackedByteArray("3/2/wABvFb3MaxE+3/2/wABvFb3MaxE+3/2/wOwVe0DMaxE+3/2/wOwVe0DMaxE+3/2/wOwVe0DMaxE+3/2/wABvFb3MaxG+3/2/wABvFb3MaxG+3/2/wOwVe0DMaxG+3/2/wOwVe0DMaxG+3/2/wOwVe0DMaxG+3/2/QABvFb3MaxE+3/2/QABvFb3MaxE+3/2/QOwVe0DMaxE+3/2/QOwVe0DMaxE+3/2/QOwVe0DMaxE+3/2/QABvFb3MaxG+3/2/QABvFb3MaxG+3/2/QOwVe0DMaxG+3/2/QOwVe0DMaxG+3/2/QOwVe0DMaxG+/38AgG4AAAAAAP+/LQAAAP9/AIA2AAAAAAD/vzkAAAD///+/ZgAAAP9/AIBiAAAA////vzIAAAD/fwCAZAAAAP///79kAAAA////vzIAAAAAAP+/ZAAAAP9/AIA4AAAAAAD/v2MAAAD///+/NAAAAP9/AIAzAAAA////vzQAAAD/fwCAYwAAAP///783AAAA////v2MAAAD/fwCAZwAAAA==")
+"vertex_data": PackedByteArray("3/2/wABvFb3MaxE+3/2/wABvFb3MaxE+3/2/wOwVe0DMaxE+3/2/wOwVe0DMaxE+3/2/wOwVe0DMaxE+3/2/wABvFb3MaxG+3/2/wABvFb3MaxG+3/2/wOwVe0DMaxG+3/2/wOwVe0DMaxG+3/2/wOwVe0DMaxG+3/2/QABvFb3MaxE+3/2/QABvFb3MaxE+3/2/QOwVe0DMaxE+3/2/QOwVe0DMaxE+3/2/QOwVe0DMaxE+3/2/QABvFb3MaxG+3/2/QABvFb3MaxG+3/2/QOwVe0DMaxG+3/2/QOwVe0DMaxG+3/2/QOwVe0DMaxG+AAD/f/9/AID/f/9/AAD/vwAA/3//fwCA/3//fwAA/7//f///////vwAA/3//fwCA/////////78AAP9//38AgP////////+//3///////7//f/9/AAD/v////3//fwCA/3//fwAA/7//f///////v////3//fwCA/////////7////9//38AgP////////+//3///////7////9//38AgA==")
 }]
 
 [sub_resource type="Image" id="Image_knre7"]

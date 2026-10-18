@@ -5,16 +5,16 @@
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "grass1"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKAqPgAAAD8AoCo+AAAAAAAAAAAAAAAAAAAAAAAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////vwAAAAD///+/IAAAAP///78gAAAA////v10AAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_phf46"]
@@ -32,16 +32,16 @@ image = SubResource("Image_phf46")
 [sub_resource type="ArrayMesh" id="4"]
 resource_name = "grass1001"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKAqPgAAgD8AoCo+AAAAPwAAAAAAAAA/AAAAAAAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v14NAAD///+/Yw0AAP///7+wDQAA////v7UNAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_8y4ai"]
@@ -59,16 +59,16 @@ image = SubResource("Image_8y4ai")
 [sub_resource type="ArrayMesh" id="31"]
 resource_name = "grass2006"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AEBVPwAAgD8AQFU/AAAAPwCgKj8AAAA/AKAqPwAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v1MAAAD///+/bAAAAP///79hAAAA////vwAAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_3l01d"]
@@ -86,16 +86,16 @@ image = SubResource("Image_3l01d")
 [sub_resource type="ArrayMesh" id="34"]
 resource_name = "grass2007"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAPwBAVT8AAAA/AEBVPwAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v0MDAAD///+/RQMAAP///79bAwAA////v14DAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_86wun"]
@@ -113,16 +113,16 @@ image = SubResource("Image_86wun")
 [sub_resource type="ArrayMesh" id="7"]
 resource_name = "sand1"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKCqPgAAgD8AoKo+AAAAPwCgKj4AAAA/AKAqPgAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v18AAAD///+/ZgAAAP///79vAAAA////v3QAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_hbe8y"]
@@ -140,16 +140,16 @@ image = SubResource("Image_hbe8y")
 [sub_resource type="ArrayMesh" id="10"]
 resource_name = "grass2"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKCqPgAAAD8AoKo+AAAAAACgKj4AAAAAAKAqPgAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v1MAAAD///+/bAAAAP///79hAAAA////vwAAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_juesk"]
@@ -167,16 +167,16 @@ image = SubResource("Image_juesk")
 [sub_resource type="ArrayMesh" id="13"]
 resource_name = "grass2001"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AOD/PgAAAD8A4P8+AAAAAACgqj4AAAAAAKCqPgAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v18AAAD///+/ZgAAAP///79vAAAA////v3QAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_2pld7"]
@@ -194,16 +194,16 @@ image = SubResource("Image_2pld7")
 [sub_resource type="ArrayMesh" id="16"]
 resource_name = "sand1001"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AOD/PgAAgD8A4P8+AAAAPwCgqj4AAAA/AKCqPgAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v1MAAAD///+/bAAAAP///79hAAAA////vwAAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_a7ebj"]
@@ -221,16 +221,16 @@ image = SubResource("Image_a7ebj")
 [sub_resource type="ArrayMesh" id="19"]
 resource_name = "grass2002"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKAqPwAAAD8AoCo/AAAAAADg/z4AAAAAAOD/PgAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v1MAAAD///+/bAAAAP///79hAAAA////vwAAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_3rmy7"]
@@ -248,16 +248,16 @@ image = SubResource("Image_3rmy7")
 [sub_resource type="ArrayMesh" id="22"]
 resource_name = "grass2003"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AEBVPwAAAD8AQFU/AAAAAACgKj8AAAAAAKAqPwAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v18AAAD///+/ZgAAAP///79vAAAA////v3QAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_yylm5"]
@@ -275,16 +275,16 @@ image = SubResource("Image_yylm5")
 [sub_resource type="ArrayMesh" id="25"]
 resource_name = "grass2004"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AACAPwAAAD8AAIA/AAAAAABAVT8AAAAAAEBVPwAAAD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v1MAAAD///+/bAAAAP///79hAAAA////vwAAAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_7afrx"]
@@ -302,16 +302,16 @@ image = SubResource("Image_7afrx")
 [sub_resource type="ArrayMesh" id="28"]
 resource_name = "grass2005"
 _surfaces = [{
-"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"material": ExtResource("1"),
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "attribute_data": PackedByteArray("AKAqPwAAgD8AoCo/AAAAPwDg/z4AAAA/AOD/PgAAgD8="),
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAACAAEAAAADAAIA"),
-"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA/////v0MDAAD///+/RQMAAP///79bAwAA////v14DAAA=")
+"vertex_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIC/AACAvwAAAAAAAIC/AACAvwAAAAAAAIA//3///////7//f///////v/9///////+//3///////78=")
 }]
 
 [sub_resource type="Image" id="Image_dh2ox"]

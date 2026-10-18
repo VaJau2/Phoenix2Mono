@@ -9,13 +9,13 @@
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube"
 _surfaces = [{
-"aabb": AABB(-0.0360849, -0.0956103, -0.687606, 0.0721698, 0.841761, 1.32326),
+"aabb": AABB(-0.036084875, -0.0956103, -0.6876063, 0.07216975, 0.84175056, 1.3232621),
 "attribute_data": PackedByteArray("ACBRPwCA/j4AIKM9AGDmPAAgUT8AYOY8ACBRPwCA/j4AIKM9AID+PgAgoz0AYOY8AIBPPwBAfj8A4JY9ACAGPwCATz8AIAY/AIBPPwBAfj8A4JY9AEB+PwDglj0AIAY/"),
 "format": 34359738391,
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 12,
-"vertex_data": PackedByteArray("vM0TvQwDPz/3BjC/vM0TvVXPw71XuiI/vM0TvVXPw733BjC/vM0TvQwDPz/3BjC/vM0TvQwDPz9XuiI/vM0TvVXPw71XuiI/vM0TPQwDPz9XuiI/vM0TPVXPw733BjC/vM0TPVXPw71XuiI/vM0TPQwDPz9XuiI/vM0TPQwDPz/3BjC/vM0TPVXPw733BjC//////3IAAAD/////awAAAP////9uAAAA/////3AAAAD/////ZwAAAP////9pAAAA/3//v3AAAAD/f/+/cgAAAP9//78AAAAA/3//v2kAAAD/f/+/ZAAAAP9//793AAAA")
+"vertex_data": PackedByteArray("vM0TvQwDPz/3BjC/vM0TvVXPw71XuiI/vM0TvVXPw733BjC/vM0TvQwDPz/3BjC/vM0TvQwDPz9XuiI/vM0TvVXPw71XuiI/vM0TPQwDPz9XuiI/vM0TPVXPw733BjC/vM0TPVXPw71XuiI/vM0TPQwDPz9XuiI/vM0TPQwDPz/3BjC/vM0TPVXPw733BjC/AAD/f/////8AAP9//////wAA/3//////AAD/f/////8AAP9//////wAA/3//////////f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+/")
 }]
 
 [sub_resource type="BoxShape3D" id="2"]

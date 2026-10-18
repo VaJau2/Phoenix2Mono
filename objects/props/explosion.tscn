@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 5.0, 0.0]
+"values": [0, 5.54, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -138,10 +138,12 @@ script = ExtResource("1")
 
 [node name="light" type="OmniLight3D" parent="." unique_id=1684277160]
 light_color = Color(0.890196, 0.517647, 0.219608, 1)
-light_energy = 0.0
 shadow_enabled = true
 omni_range = 1.0
-omni_attenuation = 0.0824694
+light_energy = 0
+omni_attenuation = 0
+metadata/g3_attenuation = 0.0824694
+metadata/g3_light_energy = 0.0
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1467134257]
 libraries/ = SubResource("AnimationLibrary_sjlqd")

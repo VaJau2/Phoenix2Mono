@@ -208,10 +208,13 @@ texture = ExtResource( 7 )
 transform = Transform3D( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.000505373, 0.0193821, 1.72395 )
 visible = false
 light_color = Color( 0.890196, 0.631373, 0.423529, 1 )
-light_energy = 0.2
 light_indirect_energy = 0.0
 light_bake_mode = 0
 omni_range = 6.0
+light_energy = 0.1584
+omni_attenuation = 0.25
+metadata/g3_attenuation = 1
+metadata/g3_light_energy = 0.2
 
 [node name="smoke" type="Particles" parent="."]
 transform = Transform3D( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.167408, -0.0378409, 1.87816 )
