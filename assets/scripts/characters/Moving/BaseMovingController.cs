@@ -19,9 +19,40 @@ public partial class BaseMovingController : Node
         
         character.HandleImpulse();
         
-        if (character.Velocity.Length() > 0) 
+        if (character.Velocity.Length() > 0)
         {
             character.MoveAndSlideVelocity(true);
+            StepUpLowObstacle();
+            (character as NPC)?.OpenCollidedDoor();
+        }
+    }
+
+    private const float STEP_HEIGHT = 0.3f;
+
+    //подъём на низкое препятствие (порожек двери и т. п.). Коллизия NPC — коробки с плоским дном: в Jolt
+    //они упираются в ступеньку даже в несколько сантиметров (контакт с горизонтальной нормалью), а в Godot 3
+    //физика выталкивала коробку на ребро вверх (B-27)
+    private void StepUpLowObstacle()
+    {
+        var horizontal = new Vector3(character.Velocity.X, 0, character.Velocity.Z);
+        if (horizontal.LengthSquared() < 0.01f || !character.IsOnFloor()) return;
+
+        for (int i = 0; i < character.GetSlideCollisionCount(); i++)
+        {
+            var collision = character.GetSlideCollision(i);
+            var normal = collision.GetNormal();
+            if (Mathf.Abs(normal.Y) > 0.3f || normal.Dot(horizontal) >= 0) continue;   //не стена впереди
+            if (collision.GetCollider() is Character) continue;
+            float height = collision.GetPosition().Y - character.GlobalPosition.Y;
+            if (height <= 0.01f || height > STEP_HEIGHT) continue;                  //не низкое препятствие
+
+            //сверху и над препятствием должно быть свободно
+            var up = new Vector3(0, STEP_HEIGHT, 0);
+            if (character.TestMove(character.GlobalTransform, up)) return;
+            if (character.TestMove(character.GlobalTransform.Translated(up), horizontal.Normalized() * 0.3f)) return;
+
+            character.GlobalPosition += up;
+            return;
         }
     }
 

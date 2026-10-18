@@ -259,6 +259,21 @@ public partial class NPC : Character, IInteractable, IChest
         }
     }
     
+    //NPC упёрся в закрытую дверь — открывает её. Обычно дверь открывается раньше, когда её заденет
+    //stopArea (4–6 м впереди), но если NPC подходит к проёму под углом, зона может пройти мимо двери,
+    //и NPC стоит перед ней (сценарий в театре, B-27)
+    public void OpenCollidedDoor()
+    {
+        for (int i = 0; i < GetSlideCollisionCount(); i++)
+        {
+            if (GetSlideCollision(i).GetCollider() is FurnDoor { IsOpen: false, IsAnimating: false } door)
+            {
+                OpenDoor(door);
+                return;
+            }
+        }
+    }
+
     public void _on_stopArea_body_exited(Node body)
     {
         if (body is Player && MovingController is NavigationMovingController navigation)

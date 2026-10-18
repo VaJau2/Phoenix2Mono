@@ -44,7 +44,9 @@ public partial class BoundCall : GodotObject
         if (boundCall == null) return;
 
         source.Disconnect(signal, new Callable(boundCall, MethodName.Invoke));
-        boundCall.Free();
+        //отключение часто вызывается из самого вызова (сигнал -> Invoke -> обработчик -> Disconnect):
+        //удалять объект, пока выполняется его метод, нельзя («Object is locked and can't be freed»)
+        boundCall.CallDeferred(GodotObject.MethodName.Free);
     }
 
     private static BoundCall Find(GodotObject source, StringName signal, Node target, StringName method) =>

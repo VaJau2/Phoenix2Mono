@@ -24,6 +24,8 @@ public static class JoltScaleFix
 
     public static void Connect(SceneTree tree)
     {
+        //переменная окружения JOLT_SCALE_FIX_OFF отключает исправление (для сравнения при отладке)
+        if (OS.HasEnvironment("JOLT_SCALE_FIX_OFF")) return;
         tree.NodeAdded += node =>
         {
             //после текущего кода: объект могли передвинуть/масштабировать сразу после AddChild
@@ -37,6 +39,7 @@ public static class JoltScaleFix
     //сцена, ещё не добавленная в дерево (глобальные трансформы считаются вручную от parentGlobal)
     public static void FixTree(Node root, Transform3D parentGlobal)
     {
+        if (OS.HasEnvironment("JOLT_SCALE_FIX_OFF")) return;
         var global = parentGlobal;
         if (root is Node3D node3D)
         {
