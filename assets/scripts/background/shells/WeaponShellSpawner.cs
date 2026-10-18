@@ -40,6 +40,13 @@ public partial class WeaponShellSpawner : Node3D
         if (shellPrefab.Instantiate() is WeaponShell shell)
         {
             shell.Name = "Created_" + shell.Name;
+            //гильза появляется внутри коллизии стрелка — без исключения движение персонажа
+            //выталкивает его из гильзы (в Godot 4 игрока сдвигало вбок при каждом выстреле)
+            var shooter = GetShooter();
+            if (shooter != null)
+            {
+                shell.AddCollisionExceptionWith(shooter);
+            }
             GetNode<Node>("/root/Main/Scene").AddChild(shell);
             shell.GlobalTransform = Global.SetNewOrigin(shell.GlobalTransform, GlobalTransform.Origin);
             shell.Rotation = GlobalTransform.Basis.GetEuler();
@@ -47,5 +54,15 @@ public partial class WeaponShellSpawner : Node3D
             var dir = shell.Transform.Basis * forceDirection;
             shell.ApplyCentralForce(dir * 950);
         }
+    }
+
+    private Character GetShooter()
+    {
+        for (var node = GetParent(); node != null; node = node.GetParent())
+        {
+            if (node is Character character) return character;
+        }
+
+        return null;
     }
 }

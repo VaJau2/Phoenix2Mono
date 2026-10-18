@@ -1624,8 +1624,8 @@ bones/22/scale = Vector3(1, 1, 1)
 
 [node name="Physical Bone back_1" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=705313593]
 transform = Transform3D(1.2195121, -7.302999e-08, -3.7431857e-07, 4.1795877e-07, 0.2281259, 1.1979845, 2.842171e-14, -1.1979845, 0.2281259, -1.7583395e-06, 0.6127683, -0.19043326)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.329989e-06, -0.23299965, -0.3189424)
 body_offset = Transform3D(1.2195121, -7.3029994e-08, -3.7431857e-07, 4.1547798e-07, 0.35710058, 1.166056, 4.5469744e-08, -1.166056, 0.35710058, -1.7583397e-06, 0.455109, -0.15779614)
@@ -1640,8 +1640,8 @@ shape = SubResource("8")
 
 [node name="Physical Bone back_2" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=1493119747]
 transform = Transform3D(1.2195121, -4.7691824e-09, 3.45345e-07, 3.7255694e-07, -0.266284, -1.1900845, 8.1780755e-08, 1.1900845, -0.266284, -1.4305148e-06, 1.4789648, -0.032482147)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.100805e-06, 0.006156072, 0.25510484)
@@ -1661,8 +1661,8 @@ shape = SubResource("9")
 
 [node name="Physical Bone neck" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=1319028252]
 transform = Transform3D(1.2195121, -5.4886897e-08, 3.095656e-06, 3.0892426e-07, -1.2126921, -0.1287869, 3.0858598e-06, 0.1287869, -1.2126921, -2.1774238e-06, 1.9898434, 1.8447558)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5972072e-06, 0.0047116876, 1.3326724)
@@ -1682,8 +1682,8 @@ shape = SubResource("10")
 
 [node name="Physical Bone leg_1_l" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=708968413]
 transform = Transform3D(1.2147167, -0.10804438, 1.1387454e-07, 0.1077462, 1.2113637, 0.09053691, -0.008021357, -0.09018089, 1.2161461, -0.25912634, 1.7981796, -0.75263554)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010236119, -0.01152835, 0.36648306)
@@ -1703,8 +1703,8 @@ shape = SubResource("11")
 
 [node name="Physical Bone leg_2_l" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=630236074]
 transform = Transform3D(1.2056255, -0.14005058, 0.118586205, 0.14206003, 1.211129, -0.013929516, -0.11617132, 0.027584925, 1.2136521, -0.40786707, 1.8114053, -1.813709)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00640945, 0.005692847, 0.71834975)
@@ -1723,8 +1723,8 @@ shape = SubResource("12")
 
 [node name="Physical Bone leg_1_r" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=218361134]
 transform = Transform3D(1.2147164, 0.10804612, 3.286965e-07, -0.107792564, 1.211866, 0.08348715, 0.0073964577, -0.08315891, 1.2166505, 0.2870776, 1.7937121, -0.7566576)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00053843064, -0.0059964666, 0.3700852)
@@ -1744,8 +1744,8 @@ shape = SubResource("13")
 
 [node name="Physical Bone leg_2_r" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=1976359110]
 transform = Transform3D(1.2117176, 0.13766052, 2.5388954e-07, -0.13636065, 1.2002763, -0.16718492, -0.018872356, 0.16611631, 1.2079973, 0.34370896, 1.7849033, -1.8230393)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013401386, 0.11796925, 0.7125179)
@@ -1764,8 +1764,8 @@ shape = SubResource("14")
 
 [node name="Physical Bone b_leg_1_l" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=723765899]
 transform = Transform3D(1.20725, -0.17250304, 8.324127e-05, 0.17200257, 1.2037022, -0.09340528, 0.013130249, 0.09247783, 1.2159292, -0.25990534, 0.4979241, -0.99003816)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011720372, 0.03657133, 0.47567528)
@@ -1785,8 +1785,8 @@ shape = SubResource("15")
 
 [node name="Physical Bone b_leg_2_l" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=1276800331]
 transform = Transform3D(1.2002943, -0.21550815, -0.0077272165, 0.21296458, 1.1914749, -0.14913778, 0.033904698, 0.14543816, 1.2103332, -0.3669282, 0.5415504, -2.0439386)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029272124, 0.13765445, 0.6775277)
@@ -1805,8 +1805,8 @@ shape = SubResource("16")
 
 [node name="Physical Bone b_leg_1_r" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=386626982]
 transform = Transform3D(1.2072506, 0.17249879, 7.540105e-05, -0.17184792, 1.2027417, -0.105304465, -0.014969573, 0.10423505, 1.2149565, 0.2799591, 0.49401546, -0.9858609)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 3
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006431504, 0.044955336, 0.471592)
@@ -1826,8 +1826,8 @@ shape = SubResource("17")
 
 [node name="Physical Bone b_leg_2_r" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=834443513]
 transform = Transform3D(1.2035031, 0.19694556, 0.0016035667, -0.19540176, 1.1952337, -0.14297883, -0.024662059, 0.14084496, 1.2110997, 0.3944039, 0.5423069, -2.0448127)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022751518, 0.13477275, 0.6790342)
@@ -1846,8 +1846,8 @@ shape = SubResource("18")
 
 [node name="Physical Bone tail_1" type="PhysicalBone3D" parent="player_body/Armature/Skeleton" unique_id=1987753424]
 transform = Transform3D(1.2195121, -2.47684e-07, -7.801235e-07, 8.5409056e-07, 0.31130633, 1.1791084, -3.8615312e-08, -1.1791084, 0.31130633, 0.014768763, -0.6591823, -0.11539912)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6703419e-06, -0.02448795, 0.52237654)
