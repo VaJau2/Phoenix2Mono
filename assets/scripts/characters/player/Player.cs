@@ -63,7 +63,6 @@ public partial class Player : Character
 
     private CollisionShape3D sphereCollider;
     private CollisionShape3D bodyCollider;
-    private PlayerRagdollPusher ragdollPusher;
 
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
@@ -704,7 +703,6 @@ public partial class Player : Character
 
         sphereCollider = GetNode<CollisionShape3D>("shape");
         bodyCollider = GetNode<CollisionShape3D>("body_shape");
-        ragdollPusher = new PlayerRagdollPusher(this, sphereCollider, bodyCollider);
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -730,7 +728,6 @@ public partial class Player : Character
             if (!MovingController.IsProcessing()) // проверка активности CutsceneMoving
             {
                 ProcessMovement((float)delta);
-                ragdollPusher.Push(Velocity);
             }
         }
 
