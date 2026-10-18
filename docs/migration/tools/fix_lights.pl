@@ -9,6 +9,8 @@
 # (метод наименьших квадратов). Исходные значения сохраняются в metadata/g3_attenuation и
 # metadata/g3_light_energy — по ним повторный запуск источник пропускает.
 # Дорожки анимации light_energy этих источников (в том же файле) умножаются на тот же E.
+# Всем источникам (включая DirectionalLight3D) без явного light_specular пишется 0.5 — значение
+# Godot 3 по умолчанию (в Godot 4 — 1.0: блики вдвое ярче).
 #
 # Запуск (Godot закрыт): perl docs/migration/tools/fix_lights.pl [--dry] [файлы...]
 # без файлов — все .tscn/.tres проекта.
@@ -27,10 +29,23 @@ for my $file (sort @files) {
     open(my $in, '<:raw', $file) or die "$file: $!";
     my $text = do { local $/; <$in> };
     close $in;
-    next unless $text =~ /type="(OmniLight3D|SpotLight3D)"/;
+    next unless $text =~ /type="(OmniLight3D|SpotLight3D|DirectionalLight3D)"/;
 
     my @blocks = split /(?=^\[)/m, $text;
     my %scale;   # путь узла -> E
+    my $changed = 0;
+    for my $b (@blocks) {
+        if ($b =~ /^\[node [^
+]*type="(OmniLight3D|SpotLight3D|DirectionalLight3D)"/ && $b !~ /^light_specular = /m) {
+            $b =~ s/
+*\z//;
+            $b .= "
+light_specular = 0.5
+
+";
+            $changed++;
+        }
+    }
     for my $b (@blocks) {
         next unless $b =~ /^\[node name="([^"]+)" type="(OmniLight3D|SpotLight3D)"(.*)\]/;
         my ($name, $type, $rest) = ($1, $2, $3);
@@ -56,7 +71,7 @@ for my $file (sort @files) {
             $file, $path, $range, $att, $new_k, $e, $energy, $new_energy, $err * 100;
         $nlights++;
     }
-    next unless %scale;
+    next unless %scale || $changed;
 
     # дорожки анимации light_energy (пути относительно корня сцены — AnimationPlayer лежит в корне)
     for my $b (@blocks) {

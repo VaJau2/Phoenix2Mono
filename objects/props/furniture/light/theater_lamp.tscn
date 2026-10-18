@@ -294,6 +294,7 @@ light_energy = 1.231
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="lustra" type="Node3D" parent="." unique_id=1716827589]
 transform = Transform3D(2.72652, 0, 0, 0, 2.72652, 0, 0, 0, 2.72652, 0.00552974, 1.42024, -0.0198912)

@@ -1974,6 +1974,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="halo" type="MeshInstance3D" parent="rooms/market/light/SpotLight" unique_id=2098944261]
 transform = Transform3D(0.335963, -0.00380551, -0.00556878, -0.00479022, -0.0722624, -0.402712, 0.00136474, 0.683178, -0.0426274, 0.0986443, -0.0534019, -0.111084)
@@ -1987,6 +1988,7 @@ light_energy = 2.14
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 2.0
+light_specular = 0.5
 
 [node name="halo2" type="MeshInstance3D" parent="rooms/market/light/SpotLight2" unique_id=1630881191]
 transform = Transform3D(0.288938, -0.00822526, -0.0079137, -0.0052935, -0.08105, -0.460765, 0.00281757, 0.691216, -0.0541221, 0.0119858, 0.105446, -0.355309)
@@ -2001,6 +2003,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="halo3" type="MeshInstance3D" parent="rooms/market/light/SpotLight3" unique_id=1257006862]
 transform = Transform3D(0.34536, -0.0478904, 0.0295456, 0.0211835, -0.0634246, -0.434315, 0.0262065, 0.682388, -0.038294, 0, 0, 0)
@@ -2015,6 +2018,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="halo4" type="MeshInstance3D" parent="rooms/market/light/SpotLight4" unique_id=239069521]
 transform = Transform3D(0.3315, -0.0371984, -0.00191994, -0.0026473, -0.0468729, -0.455899, 0.0180217, 0.677362, -0.0316532, 0.178398, 0.0608253, -0.241669)
@@ -2150,6 +2154,7 @@ light_color = Color(0.847059, 0.854902, 0.760784, 1)
 light_energy = 0.9
 shadow_enabled = true
 shadow_reverse_cull_face = true
+light_specular = 0.5
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=486250240 groups=["unpaused_sound"]]
 process_mode = 3

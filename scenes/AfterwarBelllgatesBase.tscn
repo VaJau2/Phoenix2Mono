@@ -835,6 +835,7 @@ shape = SubResource("8")
 transform = Transform3D(0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0)
 light_color = Color(0.592157, 0.615686, 0.592157, 1)
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="covers" type="Node" parent="terrain" unique_id=2113457450]
 script = ExtResource("11")
@@ -1368,6 +1369,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Mainframe Light 2" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=814468576]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.59442, 5.64946, 84.0856)
@@ -1380,6 +1382,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Mainframe Light 3" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=94425261]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.59442, 5.64946, 99.9926)
@@ -1392,6 +1395,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Mainframe Light 4" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=1782018974]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.8804, 4.55835, 66.0699)
@@ -1404,6 +1408,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Mainframe Light 5" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=956974549]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.5416, 5.64946, 84.0856)
@@ -1416,6 +1421,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Mainframe Light 6" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=1118997299]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 26.5416, 5.64946, 99.9926)
@@ -1428,6 +1434,7 @@ light_energy = 1.518
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1.5
+light_specular = 0.5
 
 [node name="Generator Light" type="SpotLight3D" parent="rooms/bunker/props/frame-room" unique_id=2057340655]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.25029, 5.63424, 42.5859)
@@ -1440,6 +1447,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="mainframe" parent="rooms/bunker/props/frame-room" unique_id=582817259 instance=ExtResource("13")]
 transform = Transform3D(-1.5451, 0, -1.35077e-07, 0, 1.8678, 0, 1.35077e-07, 0, -1.5451, 16.6493, -3.96717, 109.995)
@@ -1654,6 +1662,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Kitchen Light 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet" unique_id=1817193816]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.12164, 4.99335, 6.57031)
@@ -1666,6 +1675,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="sink" parent="rooms/bunker/props/kitchen-toilet" unique_id=2130482318 instance=ExtResource("54")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5481, -1.86623, -24.0468)
@@ -1701,6 +1711,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="WC Light 2" type="SpotLight3D" parent="rooms/bunker/props/kitchen-toilet" unique_id=248176920]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.09921, 5.06952, -25.5113)
@@ -1713,6 +1724,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="poster" type="Sprite3D" parent="rooms/bunker/props/kitchen-toilet" unique_id=1870803006]
 transform = Transform3D(-3.58581, 0, -3.13481e-07, 0, 3.58581, 0, 3.13481e-07, 0, -3.58581, -1.64833, 0.336998, 17.0706)
@@ -1753,6 +1765,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bedroom Light 2" type="SpotLight3D" parent="rooms/bunker/props/bedroom" unique_id=984942705]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, 7.42001)
@@ -1765,6 +1778,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bedroom Light 3" type="SpotLight3D" parent="rooms/bunker/props/bedroom" unique_id=787546445]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.35001, 4.98569, -6.17813)
@@ -1777,6 +1791,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bedroom Light 4" type="SpotLight3D" parent="rooms/bunker/props/bedroom" unique_id=899802502]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, -6.17813)
@@ -1789,6 +1804,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bedroom Light 5" type="SpotLight3D" parent="rooms/bunker/props/bedroom" unique_id=1843410535]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.35001, 4.98569, -21.8073)
@@ -1801,6 +1817,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bedroom Light 6" type="SpotLight3D" parent="rooms/bunker/props/bedroom" unique_id=1873406318]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.8, 4.98569, -21.8073)
@@ -1813,6 +1830,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="fusion_air" parent="rooms/bunker/props/bedroom" unique_id=2035964499 instance=ExtResource("61")]
 transform = Transform3D(2.52429, 0, 0, 0, 2.52429, 0, 0, 0, 2.52429, 12.2326, -1.12283, -29.8825)
@@ -1916,6 +1934,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="OmniLight6" type="OmniLight3D" parent="rooms/bunker/props/corridors1" unique_id=1398587867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3117, 5.12513, 42.0894)
@@ -1927,6 +1946,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="OmniLight4" type="OmniLight3D" parent="rooms/bunker/props/corridors1" unique_id=1480682571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4485, 5.13993, 30.0342)
@@ -1938,6 +1958,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="OmniLight8" type="OmniLight3D" parent="rooms/bunker/props/corridors1" unique_id=956255511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4485, 5.13993, 22.7836)
@@ -1949,6 +1970,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="OmniLight5" type="OmniLight3D" parent="rooms/bunker/props/corridors1" unique_id=718860686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.977, 5.10835, 26.3044)
@@ -1960,6 +1982,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="OmniLight7" type="OmniLight3D" parent="rooms/bunker/props/corridors1" unique_id=2139973513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5879, 5.12003, -3.30786)
@@ -1971,6 +1994,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="corridors2" type="Node3D" parent="rooms/bunker/props" unique_id=580843932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3053, 0, -95.4424)
@@ -2039,6 +2063,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Hall Light 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2" unique_id=1688509676]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.733017, 6.06988, 83.2589)
@@ -2050,6 +2075,7 @@ light_energy = 0.9957
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Exit Light" type="OmniLight3D" parent="rooms/bunker/props/corridors2" unique_id=1788074100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69781, 2.72139, 64.6046)
@@ -2061,6 +2087,7 @@ light_energy = 0.9468
 omni_attenuation = 0.63
 metadata/g3_attenuation = 2.5
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Bellgates Van" parent="rooms/bunker/props/corridors2" unique_id=1882214627 instance=ExtResource("52")]
 transform = Transform3D(-0.0436543, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.0436543, 18.9081, -4.86079, 43.7712)
@@ -2078,6 +2105,7 @@ light_energy = 1.131
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Garage Light 2" type="SpotLight3D" parent="rooms/bunker/props/corridors2" unique_id=670099264]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.14017, 9.24969, 61.312)
@@ -2089,6 +2117,7 @@ light_energy = 1.131
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Garage Light 3" type="SpotLight3D" parent="rooms/bunker/props/corridors2" unique_id=391923873]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 17.2538, 9.24969, 3.32809)
@@ -2100,6 +2129,7 @@ light_energy = 1.131
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Garage Light 4" type="SpotLight3D" parent="rooms/bunker/props/corridors2" unique_id=1583875128]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.14017, 9.24969, 3.32809)
@@ -2111,6 +2141,7 @@ light_energy = 1.131
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="VisibleArea5" type="Area3D" parent="rooms/bunker/props/corridors2" unique_id=2058361311]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.1695, 0.0343323, 103.579)
@@ -2131,6 +2162,7 @@ light_energy = 1.07
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Tunel Light 2" type="OmniLight3D" parent="rooms/bunker/props/corridors2" unique_id=858740305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86293, 24.477, -68.3188)
@@ -2142,6 +2174,7 @@ light_energy = 1.07
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Tunel Light 3" type="OmniLight3D" parent="rooms/bunker/props/corridors2" unique_id=1886251586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4799, 29.9073, -105.143)
@@ -2153,6 +2186,7 @@ light_energy = 1.561
 omni_attenuation = 0.56
 metadata/g3_attenuation = 2.14355
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Tunel Light 4" type="OmniLight3D" parent="rooms/bunker/props/corridors2" unique_id=461398019]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.792, 42.2691, -105.426)
@@ -2164,6 +2198,7 @@ light_energy = 1.561
 omni_attenuation = 0.56
 metadata/g3_attenuation = 2.14355
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="patrol_points" type="Node3D" parent="rooms/bunker" unique_id=397705100]
 

@@ -1559,6 +1559,7 @@ light_energy = 0.2249
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 0.25
+light_specular = 0.5
 
 [node name="collision" type="StaticBody3D" parent="." unique_id=1422792600]
 collision_layer = 3

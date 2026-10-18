@@ -33,6 +33,7 @@ light_energy = 1.131
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=717914081]
 transform = Transform3D(0.238051, 0, 0, 0, 0.238051, 0, 0, 0, 0.238051, 0, 6.05406, 0)

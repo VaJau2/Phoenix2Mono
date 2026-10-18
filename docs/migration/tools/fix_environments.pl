@@ -6,9 +6,15 @@
 # Godot 3 (коммит 6c2d3229) с учётом значений по умолчанию Godot 3:
 # - туман: в Godot 3 — по глубине (begin/end/curve), сила = альфа fog_color, небо не затуманивается;
 #   в Godot 4 по умолчанию экспоненциальный и ложится на небо -> fog_mode = 1 (depth),
-#   fog_density = альфа, fog_sky_affect = 0;
+#   fog_density = альфа, fog_sky_affect = 0; если fog_depth_end не задан, Godot 3 доводит туман
+#   до дальней плоскости камеры -> fog_depth_end = 600 (дальность камеры игры; 0 в Godot 4 туман выключает);
+# - рассеянный свет: в Godot 3 ambient_light_energy E умножает и цвет, и небо:
+#   цвет·E·(1−c) + небо·E·c; в Godot 4 E действует только на цвет, небо входит с весом c.
+#   Пересчёт: c' = c·E, E' = E·(1−c)/(1−c') (точно, пока c·E ≤ 1);
 # - SSAO: в Godot 4 intensity по умолчанию 2 и power 1.5 -> 1 и 1, как в Godot 3;
-# - glow: в Godot 3 по умолчанию blend_mode = softlight (2), в Godot 4 — screen (1);
+# - glow: значения Godot 3 по умолчанию — blend_mode = softlight (2), intensity 0.8, уровни 3 и 5
+#   (в Godot 4: screen, 0.3, уровни 2–4 с весами) — без них нет bloom;
+# Значения проверены замером на тестовой сцене в Godot 3 и Godot 4 (яркость света/тени/тумана).
 # - background_energy -> background_energy_multiplier, background_sky_custom_fov -> sky_custom_fov,
 #   background_sky_orientation -> sky_rotation, ss_reflections_enabled -> ssr_enabled;
 # - ProceduralSky: цвета и кривые по умолчанию Godot 3, sky/ground_energy -> *_energy_multiplier
@@ -24,7 +30,7 @@ use strict;
 use warnings;
 
 my $G3 = '6c2d3229';
-my @files = @ARGV ? @ARGV : (glob('assets/materials/environments/*.tres'), 'default_env.tres');
+my @files = @ARGV ? @ARGV : ((grep { !/_camera.tres$/ } glob('assets/materials/environments/*.tres')), 'default_env.tres');
 
 for my $file (@files) {
     my $g3 = `git show $G3:$file`;
@@ -132,8 +138,21 @@ sub env_props {
         push @out, sprintf('sky_rotation = Vector3(0, %.6g, 0)', atan2($m[2], $m[0]));
     }
     push @out, "ambient_light_color = " . g4color($e->{ambient_light_color}) if exists $e->{ambient_light_color};
-    push @out, "ambient_light_sky_contribution = $e->{ambient_light_sky_contribution}" if exists $e->{ambient_light_sky_contribution};
-    push @out, "ambient_light_energy = $e->{ambient_light_energy}" if exists $e->{ambient_light_energy};
+    if ($get->('background_mode', 0) != 2) {
+        # без неба Godot 3 берёт рассеянный свет из цвета с полной энергией;
+        # Godot 4 с источником «фон» взял бы чёрный цвет фона
+        push @out, "ambient_light_source = 1";
+        push @out, "ambient_light_energy = " . $get->('ambient_light_energy', 1.0);
+    } else {
+        # Godot 3: цвет·E·(1−c) + небо·E·c; Godot 4: цвет·E'·(1−c') + небо·c'
+        my $c = $get->('ambient_light_sky_contribution', 1.0);
+        my $en = $get->('ambient_light_energy', 1.0);
+        my $c4 = $c * $en;
+        $c4 = 1.0 if $c4 > 1.0;
+        my $e4 = $c4 < 1.0 ? $en * (1 - $c) / (1 - $c4) : $en;
+        push @out, sprintf('ambient_light_sky_contribution = %.6g', $c4);
+        push @out, sprintf('ambient_light_energy = %.6g', $e4);
+    }
 
     push @out, "tonemap_mode = $e->{tonemap_mode}" if exists $e->{tonemap_mode};
     push @out, "tonemap_exposure = $e->{tonemap_exposure}" if exists $e->{tonemap_exposure};
@@ -152,10 +171,12 @@ sub env_props {
 
     if ($get->('glow_enabled', 'false') eq 'true') {
         push @out, "glow_enabled = true";
+        # уровни Godot 3 по умолчанию — 3 и 5
         for my $l (1 .. 7) {
-            push @out, "glow_levels/$l = " . ($e->{"glow_levels/$l"} eq 'true' ? '1.0' : '0.0') if exists $e->{"glow_levels/$l"};
+            my $on = $get->("glow_levels/$l", ($l == 3 || $l == 5) ? 'true' : 'false');
+            push @out, "glow_levels/$l = " . ($on eq 'true' ? '1.0' : '0.0');
         }
-        push @out, "glow_intensity = $e->{glow_intensity}" if exists $e->{glow_intensity};
+        push @out, "glow_intensity = " . $get->('glow_intensity', 0.8);
         push @out, "glow_strength = $e->{glow_strength}" if exists $e->{glow_strength};
         push @out, "glow_bloom = $e->{glow_bloom}" if exists $e->{glow_bloom};
         push @out, "glow_blend_mode = " . $get->('glow_blend_mode', 2);
@@ -178,7 +199,9 @@ sub env_props {
         }
         push @out, "fog_depth_curve = $e->{fog_depth_curve}" if exists $e->{fog_depth_curve};
         push @out, "fog_depth_begin = " . $get->('fog_depth_begin', 10.0);
-        push @out, "fog_depth_end = " . $get->('fog_depth_end', 100.0);
+        # не задан в Godot 3 — до дальней плоскости камеры
+        # 0 в Godot 4 туман выключает — ставим дальность камеры игрока по умолчанию (Settings.distance)
+        push @out, "fog_depth_end = " . $get->('fog_depth_end', 600.0);
     }
     return @out;
 }

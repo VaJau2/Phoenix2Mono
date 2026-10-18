@@ -2332,6 +2332,7 @@ transform = Transform3D(0.94562, -0.149298, -0.288985, 0.14183, -0.61028, 0.7793
 light_color = Color(0.454902, 0.470588, 0.635294, 1)
 light_energy = 0.02
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="randomItems" type="Node" parent="." unique_id=159159202]
 script = ExtResource("3")

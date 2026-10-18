@@ -507,6 +507,7 @@ transform = Transform3D(0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 
 light_color = Color(0.192157, 0.305882, 0.501961, 1)
 light_energy = 0.2
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="covers" type="Node" parent="terrain" unique_id=941472499]
 script = ExtResource("11")

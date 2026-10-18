@@ -95,6 +95,7 @@ light_energy = 19.09
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 15.0
+light_specular = 0.5
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1411803413]
 libraries/ = SubResource("AnimationLibrary_25scl")

@@ -136,6 +136,7 @@ light_energy = 1.184
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="halo" type="MeshInstance3D" parent="lightSource/mesh" unique_id=1018366172]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57591, 18.1533, 2.43906e-06)

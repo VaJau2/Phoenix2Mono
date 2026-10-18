@@ -215,6 +215,7 @@ light_energy = 0.1584
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 0.2
+light_specular = 0.5
 
 [node name="smoke" type="Particles" parent="."]
 transform = Transform3D( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.167408, -0.0378409, 1.87816 )

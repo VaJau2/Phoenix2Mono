@@ -382,6 +382,7 @@ autoplay = true
 [node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1483473170]
 transform = Transform3D(0.909693, -0.308308, -0.278216, -0.0586786, -0.758654, 0.648846, -0.411114, -0.573926, -0.708233, 0, 17.7334, 0)
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="mesh" type="NavigationRegion3D" parent="." unique_id=1279361435]
 transform = Transform3D(1, 0, 0, 0, 0.624289, 0, 0, 0, 1, 0, -0.6257, 0)

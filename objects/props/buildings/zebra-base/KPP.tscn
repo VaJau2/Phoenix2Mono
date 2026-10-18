@@ -44,6 +44,7 @@ light_energy = 1.038
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="Box002" type="MeshInstance3D" parent="." unique_id=1735113699]
 transform = Transform3D(0.367683, 0, 0, 0, 0.367683, 0, 0, 0, 0.367683, -0.595333, 0.458325, -0.127929)

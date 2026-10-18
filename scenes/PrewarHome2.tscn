@@ -1551,6 +1551,7 @@ light_color = Color(0.847059, 0.854902, 0.760784, 1)
 light_energy = 0.9
 shadow_enabled = true
 shadow_reverse_cull_face = true
+light_specular = 0.5
 
 [node name="Radio Manager" type="Node" parent="." unique_id=1722257847 groups=["savable"]]
 process_mode = 3

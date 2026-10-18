@@ -144,6 +144,7 @@ light_energy = 0
 omni_attenuation = 0
 metadata/g3_attenuation = 0.0824694
 metadata/g3_light_energy = 0.0
+light_specular = 0.5
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1467134257]
 libraries/ = SubResource("AnimationLibrary_sjlqd")

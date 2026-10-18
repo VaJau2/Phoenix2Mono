@@ -5,6 +5,6 @@ background_mode = 0
 background_energy_multiplier = 0.5
 sky_custom_fov = 75.0
 ambient_light_color = Color(0.337255, 0.337255, 0.356863, 1)
-ambient_light_sky_contribution = 0.69
+ambient_light_source = 1
 ambient_light_energy = 0.5
 tonemap_mode = 2

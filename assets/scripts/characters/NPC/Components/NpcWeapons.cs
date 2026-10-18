@@ -133,6 +133,8 @@ public partial class NpcWeapons : Node, ISavable
         var item = (Node3D)itemPrefab.Instantiate();
         item.Name = "Created_" + npc.Name + "s_" + item.Name;
         var itemsParent = GetNode<Node>("/root/Main/Scene");
+        //до добавления в дерево: Jolt собирает коллизию сразу при добавлении (B-14)
+        JoltScaleFix.FixTree(item, Transform3D.Identity);
         itemsParent.AddChild(item);
         
         var tempParent = GetWeaponParent();

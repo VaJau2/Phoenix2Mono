@@ -550,6 +550,7 @@ shape = SubResource("44")
 transform = Transform3D(0.992927, -0.118677, -0.0033021, -0.0644188, -0.561914, 0.824683, -0.0997266, -0.818638, -0.565585, 0, 8.63824, 0)
 light_energy = 0.75
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="covers" type="Node" parent="terrain" unique_id=654435732]
 script = ExtResource("11")

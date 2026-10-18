@@ -1771,6 +1771,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="SpotLight2" type="SpotLight3D" parent="rooms/market/light" unique_id=1594224666]
 transform = Transform3D(0.0845074, -0.000840974, 5.29836e-05, 2.16905e-05, 0.00748316, 0.0841796, -0.000842363, -0.0841754, 0.007483, -0.284102, 0.65413, 0.209134)
@@ -1781,6 +1782,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="SpotLight3" type="SpotLight3D" parent="rooms/market/light" unique_id=259264490]
 transform = Transform3D(0.0793895, -0.000738328, 0.028965, -0.0246622, 0.0426231, 0.0686823, -0.0152084, -0.0729721, 0.0398243, 0.414445, 0.652059, -0.251877)
@@ -1791,6 +1793,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="SpotLight4" type="SpotLight3D" parent="rooms/market/light" unique_id=719817616]
 transform = Transform3D(0.0793895, -0.0226785, 0.0180334, -0.0246622, -0.0252817, 0.0767777, -0.0152085, -0.0773868, -0.0303675, 0.415798, 0.657778, 0.217984)
@@ -1801,6 +1804,7 @@ light_energy = 1.07
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="walls-collision" type="StaticBody3D" parent="rooms/market" unique_id=683266226]
 transform = Transform3D(1.29053, 0, 0, 0, 1.29053, 0, 0, 0, 1.29053, 0.197731, -0.407669, 0.00296783)
@@ -2645,6 +2649,7 @@ light_color = Color(0.847059, 0.854902, 0.760784, 1)
 light_energy = 0.9
 shadow_enabled = true
 shadow_reverse_cull_face = true
+light_specular = 0.5
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=823820365 groups=["unpaused_sound"]]
 process_mode = 3

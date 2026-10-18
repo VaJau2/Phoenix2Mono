@@ -120,6 +120,7 @@ light_energy = 0.2267
 omni_attenuation = 0.58
 metadata/g3_attenuation = 2.28
 metadata/g3_light_energy = 0.3
+light_specular = 0.5
 
 [node name="third" type="MeshInstance3D" parent="shield" index="1" unique_id=869676334]
 visible = false
@@ -136,6 +137,7 @@ light_energy = 0.2267
 omni_attenuation = 0.58
 metadata/g3_attenuation = 2.28
 metadata/g3_light_energy = 0.3
+light_specular = 0.5
 
 [node name="levitation" type="Node3D" parent="." index="11" unique_id=1046944063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768608, 2.6, 0.53288)

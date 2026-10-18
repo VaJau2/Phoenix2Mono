@@ -118,6 +118,7 @@ shape = SubResource("4")
 [node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" index="3" unique_id=1826918341]
 transform = Transform3D(1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0)
 shadow_enabled = true
+light_specular = 0.5
 
 [node name="covers" type="Node" parent="Scene/terrain" index="4" unique_id=935146580]
 script = ExtResource("2")

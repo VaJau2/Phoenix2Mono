@@ -70,3 +70,5 @@ transform = Transform3D(-4.15743, 0, 0.733068, 0, 4.22157, 0, -0.733068, 0, -4.1
 [node name="DirectionalLight" type="DirectionalLight3D" parent="Scene/terrain" unique_id=2086608851]
 transform = Transform3D(1, 0, 0, 0, -0.189096, 0.981959, 0, -0.981959, -0.189096, 0, 8.63824, 0)
 shadow_enabled = true
+light_specular = 0.5
+

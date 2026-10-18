@@ -38,6 +38,7 @@ public partial class LevelsLoader : Node
 	
 	public override async void _Ready()
 	{
+		JoltScaleFix.Connect(GetTree());
 		var levelsData = Global.LoadJsonFile("scenes/levels.json");
 		levelPaths.Add("menu");
 		foreach(string filePath in levelsData.Values) {
@@ -305,6 +306,8 @@ public partial class LevelsLoader : Node
 				LoadLevelData(newScene);
 			}
 			
+			//до добавления в дерево: Jolt собирает коллизию сразу при добавлении (B-14)
+			JoltScaleFix.FixTree(newScene, Transform3D.Identity);
 			GetTree().Root.GetNode("Main").AddChild(newScene);
 			currentScene = newScene;
 			DeleteLoadingMenu();

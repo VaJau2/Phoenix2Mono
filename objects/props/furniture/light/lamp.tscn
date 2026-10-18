@@ -66,6 +66,7 @@ light_energy = 1.288
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 1
+light_specular = 0.5
 
 [node name="audi" type="AudioStreamPlayer3D" parent="." unique_id=668933120]
 unit_size = 5.0

@@ -45,4 +45,5 @@ light_energy = 3.298
 spot_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 2.5
+light_specular = 0.5
 

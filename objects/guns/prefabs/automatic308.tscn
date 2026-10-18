@@ -141,6 +141,7 @@ light_energy = 0.1584
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 0.2
+light_specular = 0.5
 
 [node name="light2" type="OmniLight3D" parent="light" unique_id=137692833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0364689, 2.40875)
@@ -153,6 +154,7 @@ light_energy = 1.513
 omni_attenuation = 0.25
 metadata/g3_attenuation = 1
 metadata/g3_light_energy = 2.0
+light_specular = 0.5
 
 [node name="fire" type="Node3D" parent="." unique_id=307685322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0383179, 0.0731853, -3.12977)
