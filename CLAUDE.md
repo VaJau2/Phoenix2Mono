@@ -33,5 +33,6 @@
 - **Godot 4 молча игнорирует неизвестные свойства в сценах** — при странном поведении узла сначала проверить `check_props.gd`.
 - **У части enum'ов в Godot 4 сдвинулись номера** (имя свойства то же, число означает другое): `emission_shape` частиц, `specular_mode`/`diffuse_mode` материалов, `stretch_mode` у TextureRect — исправлено `fix_enums.pl`/`fix_props.pl`. При странном поведении — сверить значения enum'а в Godot 3 и 4. Пересохранение редактором закрепляет неверные значения и выбрасывает «лишние» свойства (так терялись `emission_box_extents`).
 - **`Variant` не `IConvertible`**: не использовать `Convert.ToInt32(dict["x"])`, только `.AsInt32()`/`.AsBool()` и т. п. Для проверок `is/as` — `utils/VariantExtensions.cs`. Подключения сигналов с аргументами — `utils/BoundCall.cs` (в C# нет `Callable.Bind`).
+- `AnimationTree` — `deterministic = false` (как смешивание в Godot 3: дорожки, которых нет в анимации, не тянутся к позе покоя). Новым `AnimationTree` ставить так же.
 - Физика — Jolt (на GodotPhysics рэгдоллы взрываются). Текстуры в 3D — `texture_filter = Nearest` в материалах (пиксельный стиль), импорт без VRAM-сжатия (`detect_3d/compress_to=0`).
 - Ветка `origin/PHNX-154-godot-4-update` — старая попытка миграции на Godot 4.2. Не мержить, использовать как справочник (`git show origin/PHNX-154-godot-4-update:<путь>`).

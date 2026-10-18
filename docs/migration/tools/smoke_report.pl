@@ -14,9 +14,11 @@ my @lines = map { s/\e\[[0-9;]*m//gr } <$fh>;
 close $fh;
 
 my $level = 'MAIN';
-my (%count, %first, @order);
+my (%count, %first, @order, @fails);
 for (my $i = 0; $i < @lines; $i++) {
     my $l = $lines[$i];
+    # проверки самого теста (уровень не загрузился, NPC без анимации и т. п.)
+    if ($l =~ /^SMOKE (.*FAIL.*)/) { push @fails, $1 }
     if ($l =~ /^SMOKE LEVEL (\d+) start/) { $level = $1; next }
     if ($l =~ /^SMOKE ALL DONE/) { $level = 'EXIT'; next }
     next unless $l =~ /^(ERROR|SCRIPT ERROR|WARNING): (.*)/;
@@ -35,6 +37,12 @@ for (my $i = 0; $i < @lines; $i++) {
     my $key = "$kind\t$msg\t$where";
     push @order, $key unless $count{$key};
     $count{$key}{$level}++;
+}
+
+if (@fails) {
+    print "Проверки теста не пройдены:\n";
+    print "  $_\n" for @fails;
+    print "\n";
 }
 
 for my $key (sort { total($count{$b}) <=> total($count{$a}) } @order) {

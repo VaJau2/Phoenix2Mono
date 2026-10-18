@@ -69,6 +69,7 @@ func _run() -> void:
 		var player := scene.get_node_or_null("Player")
 		_mark("LEVEL %d player: %s" % [level, player != null])
 		await _play(level)
+		await _check_npc_anims(scene, level)
 		if test_saves:
 			await _quicksave_quickload(main, level)
 		_mark("LEVEL %d done" % level)
@@ -102,6 +103,47 @@ func _play(level: int) -> void:
 			await process_frame
 		for action in step[1]:
 			Input.action_release(action)
+
+# Идущие NPC должны двигать ногами (B-11): за 40 кадров кости скелета должны заметно повернуться.
+# Если в смешивании AnimationTree поза тела уходит в позу покоя, размах — единицы градусов.
+const NPC_MIN_SWING := 20.0
+
+func _check_npc_anims(scene: Node, level: int) -> void:
+	var npc_root := scene.get_node_or_null("npc")
+	if npc_root == null:
+		return
+	var moving := {}   # NPC -> [скелет, исходные повороты костей, макс. отклонение]
+	for n in npc_root.get_children():
+		var v = n.get("Velocity")
+		if not (v is Vector3 and Vector2(v.x, v.z).length() > 0.5):
+			continue
+		# анимации ходьбы есть только у NPC с AnimationTree (пони, зебры); роботы (mrGutsy) летают без неё
+		if not n.get_node_or_null("animTree") is AnimationTree:
+			continue
+		var skeletons := n.find_children("*", "Skeleton3D", true, false)
+		if skeletons.is_empty():
+			continue
+		var sk: Skeleton3D = skeletons[0]
+		var base := []
+		for b in sk.get_bone_count():
+			base.append(sk.get_bone_pose_rotation(b))
+		moving[n] = [sk, base, 0.0]
+	if moving.is_empty():
+		_mark("LEVEL %d npc anim: идущих NPC нет" % level)
+		return
+	for i in 40:
+		await process_frame
+		for n in moving:
+			if not is_instance_valid(n):
+				continue
+			var sk: Skeleton3D = moving[n][0]
+			for b in sk.get_bone_count():
+				moving[n][2] = max(moving[n][2], rad_to_deg(moving[n][1][b].angle_to(sk.get_bone_pose_rotation(b))))
+	for n in moving:
+		if not is_instance_valid(n):
+			continue
+		var swing: float = moving[n][2]
+		_mark("LEVEL %d npc anim %s: %.0f°%s" % [level, n.name, swing, " FAIL: идёт без анимации" if swing < NPC_MIN_SWING else ""])
 
 func _wait(n: int) -> void:
 	for i in n:

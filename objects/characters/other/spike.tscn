@@ -1410,6 +1410,7 @@ shape = SubResource("4")
 libraries/ = SubResource("AnimationLibrary_etasa")
 
 [node name="animTree" type="AnimationTree" parent="." unique_id=960684446]
+deterministic = false
 tree_root = SubResource("37")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.99

@@ -5507,6 +5507,7 @@ shape = SubResource("18")
 libraries/ = SubResource("AnimationLibrary_grx8b")
 
 [node name="animTree" type="AnimationTree" parent="." unique_id=236352468]
+deterministic = false
 tree_root = SubResource("58")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.9

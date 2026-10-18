@@ -1924,6 +1924,7 @@ skeleton = NodePath("..")
 libraries/ = SubResource("AnimationLibrary_q2b64")
 
 [node name="animTree" type="AnimationTree" parent="player_body" unique_id=110611508]
+deterministic = false
 tree_root = SubResource("74")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.94

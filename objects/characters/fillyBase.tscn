@@ -3183,6 +3183,7 @@ shape = SubResource("18")
 libraries/ = SubResource("AnimationLibrary_p4brc")
 
 [node name="animTree" type="AnimationTree" parent="." unique_id=1075618881]
+deterministic = false
 tree_root = SubResource("87")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.99

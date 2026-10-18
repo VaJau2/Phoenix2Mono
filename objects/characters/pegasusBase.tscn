@@ -8484,6 +8484,7 @@ shape = SubResource("18")
 libraries/ = SubResource("AnimationLibrary_0fieh")
 
 [node name="animTree" type="AnimationTree" parent="." unique_id=86750418]
+deterministic = false
 tree_root = SubResource("60")
 anim_player = NodePath("../anim")
 parameters/Blend2/blend_amount = 0.99
