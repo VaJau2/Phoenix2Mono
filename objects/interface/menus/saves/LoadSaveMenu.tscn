@@ -45,9 +45,10 @@ theme = ExtResource("5")
 text = "[Назад]"
 
 [node name="Table" parent="." unique_id=676764646 instance=ExtResource("3")]
-layout_mode = 0
 anchor_left = 0.504
+anchor_top = 0.5
 anchor_right = 0.504
+anchor_bottom = 0.5
 offset_left = -452.096
 offset_top = -140.0
 offset_right = 451.904
