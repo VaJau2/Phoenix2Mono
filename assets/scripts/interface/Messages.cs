@@ -28,7 +28,7 @@ public partial class Messages : VBoxContainer, ISavable
         {
             tempA -= 0.1f;
             label.AddThemeColorOverride("font_color", new Color(1, 1, 1, tempA));
-            label.AddThemeColorOverride("font_color_shadow", new Color(0, 0, 0, tempA));
+            label.AddThemeColorOverride("font_shadow_color", new Color(0, 0, 0, tempA));
             await global.ToTimer(0.05f, null, true);
         }
 
