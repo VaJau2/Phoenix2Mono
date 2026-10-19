@@ -468,6 +468,12 @@ public partial class PlayerWeapons : CollisionShape3D
             else
             {
                 matName = HandleVictim(obj, shapeId);
+                if (obj is PhysicalBone3D bone)
+                {
+                    var hitPoint = tempRay.GetCollisionPoint();
+                    PlayerRagdollPusher.PushByShot(bone, hitPoint, hitPoint - tempRay.GlobalPosition,
+                        tempWeaponStats.ContainsKey("isShotgun"));
+                }
             }
                     
             gunParticles.StartEmitting

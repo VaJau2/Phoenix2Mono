@@ -23,6 +23,13 @@ public partial class Bullet : Area3D
                 break;
             }
             
+            case PhysicalBone3D bone:
+            {
+                //снаряд толкает труп по направлению полёта
+                PlayerRagdollPusher.PushByShot(bone, GlobalPosition, -GlobalBasis.Z, false);
+                break;
+            }
+            
             case StaticBody3D { PhysicsMaterialOverride: null }:
                 return;
             

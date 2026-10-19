@@ -26,6 +26,7 @@ size = Vector3(0.677042, 0.385206, 1.530602)
 [node name="plasma" type="Area3D" unique_id=513482443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0532041)
 collision_layer = 3
+collision_mask = 65
 script = ExtResource("3")
 speed = 1.4
 

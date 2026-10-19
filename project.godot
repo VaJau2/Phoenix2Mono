@@ -168,6 +168,7 @@ test_camera_down={
 3d_physics/layer_4="Exit"
 3d_physics/layer_5="Door"
 3d_physics/layer_6="Camera"
+3d_physics/layer_7="Corpse"
 
 [locale]
 

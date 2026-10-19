@@ -4,6 +4,9 @@ using Godot.Collections;
 public partial class NpcSkeleton : Skeleton3D, ISavable
 {
     [Export] private float RagdollImpulse = 500;
+
+    //слой 7 «Corpse»: кости трупов; в маске только у игрока и снарядов
+    public const uint CORPSE_LAYER = 64;
     [Export] private NodePath headBonePath, bodyBonePath;
     
     private NPC npc;
@@ -35,7 +38,8 @@ public partial class NpcSkeleton : Skeleton3D, ISavable
         foreach (var boneObject in GetChildren())
         {
             if (boneObject is not PhysicalBone3D bone) continue;
-            bone.CollisionLayer = 6; // слои 2 и 3
+            //слои 2 и 3 + слой трупов (7): с ним сталкивается только игрок — не проходит сквозь трупы (B-17)
+            bone.CollisionLayer = 6 | CORPSE_LAYER;
             bone.CollisionMask = 6; // слои 2 и 3
         }
     }
