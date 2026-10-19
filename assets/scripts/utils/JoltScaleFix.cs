@@ -227,12 +227,10 @@ public static class JoltScaleFix
     private static ConcavePolygonShape3D Concave(Shape3D shape, Basis basis)
     {
         Vector3[] faces;
-        bool backface = false;
         switch (shape)
         {
             case ConcavePolygonShape3D concave:
                 faces = concave.GetFaces();
-                backface = concave.BackfaceCollision;
                 break;
             case ConvexPolygonShape3D convex:
                 faces = HullFaces(convex.Points);
@@ -243,7 +241,8 @@ public static class JoltScaleFix
         }
         if (faces == null || faces.Length == 0) return null;
         for (int i = 0; i < faces.Length; i++) faces[i] = basis * faces[i];
-        var result = new ConcavePolygonShape3D { BackfaceCollision = backface };
+        //двусторонняя, как сетки коллизии Godot 3 (B-29)
+        var result = new ConcavePolygonShape3D { BackfaceCollision = true };
         result.SetFaces(faces);
         return result;
     }
