@@ -580,6 +580,31 @@ public partial class Player : Character
         Velocity.X = hvel.X;
         Velocity.Z = hvel.Z;
         Velocity = MoveAndSlideVelocity(false, 4);
+        PushRigidBodies(hvel);
+    }
+
+    //толкание физических предметов (выпавшее оружие, сумки, гильзы). В Godot 3 move_and_slide
+    //с бесконечной инерцией расталкивал их сам, в Godot 4 персонаж просто упирается в RigidBody3D —
+    //скорость предмета подтягивается к скорости игрока (B-28). Кости трупов (PhysicalBone3D) не толкаются (B-17)
+    private void PushRigidBodies(Vector3 moveVelocity)
+    {
+        float speed = moveVelocity.Length();
+        if (speed < 0.1f) return;
+
+        for (int i = 0; i < GetSlideCollisionCount(); i++)
+        {
+            var collision = GetSlideCollision(i);
+            if (collision.GetCollider() is not RigidBody3D body || body.Freeze) continue;
+
+            var dir = -collision.GetNormal();
+            dir.Y = 0;
+            if (dir.LengthSquared() < 0.01f) continue;
+            dir = dir.Normalized();
+
+            float missingSpeed = speed - body.LinearVelocity.Dot(dir);
+            if (missingSpeed <= 0) continue;
+            body.ApplyCentralImpulse(dir * missingSpeed * body.Mass);
+        }
     }
 
     private void RotateBodyClumped(float speedX)
