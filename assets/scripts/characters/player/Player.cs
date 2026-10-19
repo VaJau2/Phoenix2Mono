@@ -63,6 +63,7 @@ public partial class Player : Character
 
     private CollisionShape3D sphereCollider;
     private CollisionShape3D bodyCollider;
+    private PlayerRagdollPusher ragdollPusher;
 
     public bool ThirdView = false;
     public bool BodyFollowsCamera;
@@ -581,11 +582,12 @@ public partial class Player : Character
         Velocity.Z = hvel.Z;
         Velocity = MoveAndSlideVelocity(false, 4);
         PushRigidBodies(hvel);
+        ragdollPusher.Push(hvel);
     }
 
     //толкание физических предметов (выпавшее оружие, сумки, гильзы). В Godot 3 move_and_slide
     //с бесконечной инерцией расталкивал их сам, в Godot 4 персонаж просто упирается в RigidBody3D —
-    //скорость предмета подтягивается к скорости игрока (B-28). Кости трупов (PhysicalBone3D) не толкаются (B-17)
+    //скорость предмета подтягивается к скорости игрока (B-28). Трупы (PhysicalBone3D) толкает PlayerRagdollPusher
     private void PushRigidBodies(Vector3 moveVelocity)
     {
         float speed = moveVelocity.Length();
@@ -729,6 +731,7 @@ public partial class Player : Character
 
         sphereCollider = GetNode<CollisionShape3D>("shape");
         bodyCollider = GetNode<CollisionShape3D>("body_shape");
+        ragdollPusher = new PlayerRagdollPusher(this, sphereCollider, bodyCollider);
 
         MouseSensivity = global.Settings.mouseSensivity;
         Input.MouseMode = Input.MouseModeEnum.Captured;
