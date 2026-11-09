@@ -2413,10 +2413,12 @@ taskCode = "putSuitcase"
 clearPreviousTasks = false
 IsActive = false
 
-[node name="changeDayTime" type="Node" parent="triggers" unique_id=2067247419]
+[node name="changeDayTime" type="Node" parent="triggers" unique_id=2067247419 groups=["savable"]]
 script = ExtResource("74")
+DeleteAfterTrigger = false
 envPath = NodePath("../../WorldEnvironment")
 envResource = ExtResource("75")
+transitionTime = 20.0
 
 [node name="windyTeleport3" type="Node" parent="triggers" unique_id=2095815851 groups=["savable"]]
 script = ExtResource("72")
