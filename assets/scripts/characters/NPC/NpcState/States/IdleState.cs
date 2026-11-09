@@ -8,6 +8,8 @@ public partial class IdleState(
     NpcPatroling patroling
 ) : AbstractNpcState
 {
+    private const float START_POINT_DISTANCE = 0.1f;
+
     private bool isTeleported;
     
     public override void Enable(NPC npc)
@@ -70,6 +72,10 @@ public partial class IdleState(
 
     private void GoToStartPoint(NPC npc)
     {
+        //NPC уже поставлен на точку. GoTo меряет расстояние до последней точки пути на навмеше, а точка может быть
+        //вне его (кресло): при малом ComeDistance NPC шёл к навмешу и снова телепортировался обратно (B-32)
+        if (isTeleported && npc.GlobalPosition.DistanceTo(npc.myStartPos) < START_POINT_DISTANCE) return;
+
         movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
         
         if (movingController.cameToPlace)
