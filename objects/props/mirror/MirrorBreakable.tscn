@@ -19,7 +19,6 @@ size = Vector2(8, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7lri"]
 resource_local_to_scene = true
-albedo_texture_force_srgb = true
 metallic_specular = 0.27
 roughness = 0.42
 texture_filter = 0

@@ -122,6 +122,11 @@ public partial class Mirror : MeshInstance3D
         if (GetSurfaceOverrideMaterial(0) is StandardMaterial3D material)
         {
             material.AlbedoTexture = texture;
+            //отражение показывается как есть: со светом сцены картинка темнела второй раз (B-34).
+            //Выключенное зеркало (без текстуры) — обычная освещаемая поверхность, иначе оно ярко-белое
+            material.ShadingMode = texture != null
+                ? BaseMaterial3D.ShadingModeEnum.Unshaded
+                : BaseMaterial3D.ShadingModeEnum.PerPixel;
             //в Godot 3 текстура вьюпорта была перевёрнута по вертикали (расчёт камеры зеркала это учитывал);
             //в Godot 4 переворота нет — отражаем UV обратно
             material.Uv1Scale = new Vector3(1, -1, 1);
