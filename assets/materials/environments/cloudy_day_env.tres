@@ -6,7 +6,6 @@ sky_horizon_color = Color(0.705882, 0.733333, 0.65098, 1)
 sky_curve = 0.09
 ground_bottom_color = Color(0.509804, 0.462745, 0.34902, 1)
 ground_horizon_color = Color(0.521569, 0.47451, 0.384314, 1)
-ground_curve = 0.02
 
 [sub_resource type="Sky" id="1"]
 sky_material = SubResource("2")
@@ -17,11 +16,11 @@ background_energy_multiplier = 0.2
 sky = SubResource("1")
 sky_custom_fov = 75.0
 ambient_light_color = Color(0.298039, 0.298039, 0.301961, 1)
-ambient_light_sky_contribution = 0
+ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.4
 tonemap_mode = 2
 ssao_enabled = true
-ssao_intensity = 1
+ssao_intensity = 1.0
 ssao_power = 1.0
 ssao_light_affect = 1.0
 fog_enabled = true
@@ -31,4 +30,4 @@ fog_density = 0.0156863
 fog_sky_affect = 0.0
 fog_depth_curve = 1.03527
 fog_depth_begin = 15.0
-fog_depth_end = 600
+fog_depth_end = 600.0

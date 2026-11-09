@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dm2jto8dpionk" path="res://assets/scripts/furniture/Interaction/Items/PickupItem.cs" id="2"]
 
 [node name="itemBase" type="RigidBody3D" unique_id=146188408 groups=["savable"]]
-collision_layer = 3
+collision_layer = 1
 collision_mask = 3
 contact_monitor = true
 max_contacts_reported = 1

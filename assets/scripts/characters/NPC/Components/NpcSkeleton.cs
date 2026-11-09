@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
 
 public partial class NpcSkeleton : Skeleton3D, ISavable
 {
@@ -7,8 +8,10 @@ public partial class NpcSkeleton : Skeleton3D, ISavable
 
     //слой 7 «Corpse»: кости трупов; в маске только у игрока и снарядов
     public const uint CORPSE_LAYER = 64;
+    private const float MAX_CORPSE_SPEED = 40f; //быстрее кости трупа не летают, м/с (импульс смерти — до ~35)
     [Export] private NodePath headBonePath, bodyBonePath;
-    
+
+    private readonly List<PhysicalBone3D> bones = [];
     private NPC npc;
     private PhysicalBone3D headBone;
     private PhysicalBone3D bodyBone;
@@ -22,8 +25,34 @@ public partial class NpcSkeleton : Skeleton3D, ISavable
             : GetNodeOrNull<PhysicalBone3D>("Physical Bone neck");
         bodyBone = bodyBonePath != null ? GetNodeOrNull<PhysicalBone3D>(bodyBonePath) 
             : GetNodeOrNull<PhysicalBone3D>("Physical Bone back_2");
+
+        //кости живого NPC кинематические и следуют за анимацией: для физики это тела с бесконечной массой,
+        //пробегающий NPC разгонял кости трупа до предела Jolt (500 м/с), и рэгдолл получал NaN (B-31).
+        //Слой и маска задаются в MakeDead, как и у игрока (B-17)
+        foreach (var boneObject in GetChildren())
+        {
+            if (boneObject is not PhysicalBone3D bone) continue;
+            bone.CollisionLayer = 0;
+            bone.CollisionMask = 0;
+            bones.Add(bone);
+        }
+
+        SetPhysicsProcess(false);
     }
-    
+
+    //ограничение скорости костей трупа: разогнавшийся рэгдолл разлетается по уровню и получает NaN (B-31)
+    public override void _PhysicsProcess(double delta)
+    {
+        foreach (var bone in bones)
+        {
+            var velocity = bone.LinearVelocity;
+            if (velocity.LengthSquared() > MAX_CORPSE_SPEED * MAX_CORPSE_SPEED)
+            {
+                bone.LinearVelocity = velocity.LimitLength(MAX_CORPSE_SPEED);
+            }
+        }
+    }
+
     public void CheckShotgunShot(bool isShotgun)
     {
         tempShotgunShot = isShotgun;
@@ -35,13 +64,15 @@ public partial class NpcSkeleton : Skeleton3D, ISavable
     {
         PhysicalBonesStartSimulation();
             
-        foreach (var boneObject in GetChildren())
+        foreach (var bone in bones)
         {
-            if (boneObject is not PhysicalBone3D bone) continue;
-            //слои 2 и 3 + слой трупов (7): с ним сталкивается только игрок — не проходит сквозь трупы (B-17)
-            bone.CollisionLayer = 6 | CORPSE_LAYER;
-            bone.CollisionMask = 6; // слои 2 и 3
+            //слой 3 (попадания выстрелов, другие трупы) + слой трупов (7): с ним сталкивается только игрок (B-17).
+            //Слоя 2 нет: предметы (маска 3) не должны задевать трупы, иначе NPC вдавливает их в рэгдолл (B-31)
+            bone.CollisionLayer = 4 | CORPSE_LAYER;
+            bone.CollisionMask = 6; // слои 2 (пол) и 3
         }
+
+        SetPhysicsProcess(true);
     }
 
     // даёт рэгдоллу импульс
