@@ -174,7 +174,7 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
         }
     }
     
-    private void FinishGoingTo()
+    public void FinishGoingTo()
     {
         if (cameToPlace) return;
         

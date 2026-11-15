@@ -263,11 +263,20 @@ public partial class LevelsLoader : Node
 			//если это created-нод, у него хранится только имя
 			//если это существующий нод, у него хранится путь от /root/Main...
 			Node node = scene.GetNodeOrNull(objKey);
-			
+
 			if (node is ISavable savable)
 			{
-				Dictionary objData = (Dictionary)levelData[objKey];
-				savable.LoadData(objData);
+				//исключение в LoadData одного объекта обрывало весь цикл: объекты после него (игрок с инвентарём,
+				//триггеры) оставались в состоянии по умолчанию, а стартовые предметы при загрузке не выдаются (B-37)
+				try
+				{
+					Dictionary objData = (Dictionary)levelData[objKey];
+					savable.LoadData(objData);
+				}
+				catch (System.Exception e)
+				{
+					GD.PushError($"LevelsLoader: ошибка загрузки объекта '{objKey}': {e}");
+				}
 			}
 		}
 		
