@@ -94,8 +94,13 @@ public partial class GridmapStepSound : GridMap
         var playerGlobalPos = Global.Get().player.GlobalTransform.Origin;
         var playerLocalPos = playerGlobalPos - GlobalTransform.Origin;
         var mapPos = LocalToMap(playerLocalPos);
-        if (!Player.IsCrouching) mapPos.Y -= 1;
-        var cellItem = GetCellItem(mapPos);
-        return cellItem > -1;
+        if (GetCellItem(mapPos) > -1) return true;
+        if (Player.IsCrouching) return false;
+
+        //стоящий игрок обычно выше клетки куста — проверяем и клетку под ним.
+        //Раньше проверялась только она: в Street центр игрока в Godot 4 на ~7 см ниже границы
+        //клеток и попадал в саму клетку куста — звук не играл
+        mapPos.Y -= 1;
+        return GetCellItem(mapPos) > -1;
     }
 }
