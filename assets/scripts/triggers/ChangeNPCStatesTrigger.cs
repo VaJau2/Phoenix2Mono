@@ -18,7 +18,8 @@ partial class ChangeNPCStatesTrigger: ActivateOtherTrigger
     [Export] public Array<NodePath> newPatrolPointsPath;
     [Export] public NodePath newIdlePointPath;
     [Export] public Relation newRelation = Relation.Friend;
-    [Export] public string newWeaponCode;
+    // "Null" — не менять оружие, пустая строка — убрать (см. DialogueTrigger.KeepCode, B-38)
+    [Export] public string newWeaponCode = DialogueTrigger.KeepCode;
     [Export] public bool ignoreDamager;
     [Export] private Mortality newMortality;
 
@@ -134,7 +135,7 @@ partial class ChangeNPCStatesTrigger: ActivateOtherTrigger
             patroling?.SetPatrolPoints(patrolPoints);
         }
 
-        if (newWeaponCode != null)
+        if (newWeaponCode != null && newWeaponCode != DialogueTrigger.KeepCode)
         {
             npc.Weapons?.LoadWeapon(newWeaponCode);
         }

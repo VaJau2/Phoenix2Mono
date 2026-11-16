@@ -4737,6 +4737,8 @@ otherTriggerPaths = [NodePath("../leaveTask"), NodePath("../exit"), NodePath("..
 script = ExtResource("153")
 onlyChangeCode = true
 npcPath = "../../../npc/clone_with_armor"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="changeClone1Mortality" type="Node" parent="triggers/cloneAttacks" unique_id=516332570]
 script = ExtResource("157")
@@ -4767,6 +4769,8 @@ newPatrolPointsPath = [NodePath("../../../rooms/1floor/clonePatrol"), NodePath("
 script = ExtResource("153")
 onlyChangeCode = true
 npcPath = "../../../npc/clone_with_armor2"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="changeClone2Mortality" type="Node" parent="triggers/cloneAttacks" unique_id=2082928796]
 script = ExtResource("157")
@@ -4797,6 +4801,8 @@ newPatrolPointsPath = [NodePath("../../../rooms/2floor/patrol/clone2"), NodePath
 script = ExtResource("153")
 onlyChangeCode = true
 npcPath = "../../../npc/clone_with_armor3"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="changeClone3Mortality" type="Node" parent="triggers/cloneAttacks" unique_id=1489162072]
 script = ExtResource("157")
@@ -4827,6 +4833,8 @@ newPatrolPointsPath = [NodePath("../../../rooms/2floor/patrol/5/6"), NodePath(".
 script = ExtResource("153")
 onlyChangeCode = true
 npcPath = "../../../npc/clone_with_armor4"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="changeClone4Mortality" type="Node" parent="triggers/cloneAttacks" unique_id=1885766479]
 script = ExtResource("157")

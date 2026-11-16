@@ -134,6 +134,7 @@ public partial class SaveMenu : Control
 
     public void _on_Save_pressed()
     {
+        parentMenu.SoundClick();
         SaveGame(lineEdit.Text, GetTree());
         CreateTableLine(lineEdit.Text);
     }
@@ -197,6 +198,44 @@ public partial class SaveMenu : Control
 
     public void SaveGame(string fileName, SceneTree tree)
     {
+        //данные игровых объектов
+        //собираются до открытия файла: исключение посреди записи оставляло обрезанный файл,
+        //который потом не загружался (Parse JSON failed, B-37). Ошибка одного объекта
+        //не мешает сохранить остальные (как при загрузке в LevelsLoader)
+        var objectsData = new Dictionary<string, Dictionary>();
+        foreach (Node tempNode in tree.GetNodesInGroup("savable"))
+        {
+            if (tempNode is not ISavable savableNode) continue;
+
+            try
+            {
+                var saveData = savableNode.GetSaveData();
+                var isCreated = tempNode.Name.ToString().StartsWith("Created_");
+
+                if (isCreated)
+                {
+                    saveData.Add("name", tempNode.Name);
+                    saveData.Add("parentPath", GetNode("/root/Main/Scene").GetPathTo(tempNode.GetParent()));
+                    saveData.Add("fileName", GetFilename(tempNode));
+                }
+
+                if (tempNode.Name == "Player")
+                {
+                    objectsData.Add(tempNode.Name, saveData);
+                }
+                else
+                {
+                    //сохраняемые объекты могут иметь одинаковые имена
+                    //поэтому вместо имен сохраняем локальные пути от нода сцены
+                    objectsData.Add(GetNode("/root/Main/Scene").GetPathTo(tempNode), saveData);
+                }
+            }
+            catch (Exception e)
+            {
+                GD.PushError($"SaveMenu: ошибка сохранения объекта '{tempNode.GetPath()}': {e}");
+            }
+        }
+
         var filePath = $"user://saves/{GetLikeLatinString(fileName)}.sav";
         using var saveFile = FileAccess.OpenCompressed(filePath, FileAccess.ModeFlags.Write);
         saveFile.StoreLine(fileName);                                     //название сохранения
@@ -204,38 +243,10 @@ public partial class SaveMenu : Control
         saveFile.StoreLine(LevelsLoader.tempLevelNum.ToString());         //номер текущего уровня
         saveFile.StoreLine(AUTOSAVE_PREFIX + Global.Get().autosaveName);  //название слота автосохранения
         saveFile.StoreLine(Global.RaceToString(Global.Get().playerRace)); //раса
-        
+
         //данные удаленных объектов
         saveFile.StoreLine(Json.Stringify(Global.deletedObjects));
-        
-        //данные игровых объектов
-        var objectsData = new Dictionary<string, Dictionary>();
-        foreach (Node tempNode in tree.GetNodesInGroup("savable"))
-        {
-            if (tempNode is not ISavable savableNode) continue;
-            
-            var saveData = savableNode.GetSaveData();
-            var isCreated = tempNode.Name.ToString().StartsWith("Created_");
 
-            if (isCreated)
-            {
-                saveData.Add("name", tempNode.Name);
-                saveData.Add("parentPath", GetNode("/root/Main/Scene").GetPathTo(tempNode.GetParent()));
-                saveData.Add("fileName", GetFilename(tempNode));
-            }
-            
-            if (tempNode.Name == "Player")
-            {
-                objectsData.Add(tempNode.Name, saveData);
-            }
-            else
-            {
-                //сохраняемые объекты могут иметь одинаковые имена
-                //поэтому вместо имен сохраняем локальные пути от нода сцены
-                objectsData.Add(GetNode("/root/Main/Scene").GetPathTo(tempNode), saveData);
-            }
-        }
-        
         saveFile.StoreLine(Json.Stringify(objectsData));
     }
 

@@ -1798,11 +1798,13 @@ shape = SubResource("27")
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/bellgates"
+otherDialogueCode = ""
 
 [node name="shloerDialogueOff" type="Node" parent="triggers/dialoguesOff" unique_id=1257087551 groups=["savable"]]
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/shloer"
+otherDialogueCode = ""
 
 [node name="spawners" type="Node" parent="triggers" unique_id=979297930]
 
@@ -2054,6 +2056,7 @@ newPos = Vector3(0.907, 2.829, -0.647)
 [node name="duskRun" type="Node" parent="triggers" unique_id=132952318 groups=["savable"]]
 script = ExtResource("66")
 npcPath = "../../npc/dusk"
+newWeaponCode = ""
 
 [node name="redPunchDialogue" type="Area3D" parent="triggers" unique_id=1087969877 groups=["savable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3298, -2.06226, -3.74093)
@@ -2061,6 +2064,7 @@ script = ExtResource("68")
 codeWithoutGun = "talk_without_gun"
 npcPath = "../../npc/Created_red_punch"
 otherDialogueCode = "talk"
+otherSubtitleCode = ""
 IsActive = false
 
 [node name="CollisionShape" type="CollisionShape3D" parent="triggers/redPunchDialogue" unique_id=677288618]
@@ -2114,11 +2118,15 @@ otherDialogueCode = "suspect"
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/security1"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="securityMareDialogueClear" type="Node" parent="triggers" unique_id=1345621199 groups=["savable"]]
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/security_mare"
+otherDialogueCode = ""
+otherSubtitleCode = ""
 
 [node name="duskThanksNotKill" type="Node" parent="triggers" unique_id=748444298 groups=["savable"]]
 script = ExtResource("13")
@@ -2158,6 +2166,7 @@ IsActive = false
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "../../npc/dusk"
+otherDialogueCode = ""
 otherSubtitleCode = "following"
 
 [node name="duskFollowEnd" type="Area3D" parent="triggers" unique_id=637578419 groups=["savable"]]
@@ -2182,12 +2191,14 @@ script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "/root/Main/Scene/npc/scientist1"
 otherDialogueCode = "thanks"
+otherSubtitleCode = ""
 
 [node name="duskThanks" type="Node" parent="triggers" unique_id=936145582 groups=["savable"]]
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "../../npc/dusk"
 otherDialogueCode = "thanks"
+otherSubtitleCode = ""
 
 [node name="bellgatesThanks" type="Node" parent="triggers" unique_id=1541882939 groups=["savable"]]
 script = ExtResource("13")

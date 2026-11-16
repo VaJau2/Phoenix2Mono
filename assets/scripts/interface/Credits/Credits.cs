@@ -35,7 +35,7 @@ public partial class Credits : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("jump") && skip.Modulate == visible)
+        if (@event.IsActionPressed("jump") && skip.Modulate == visible)
         {
             LoadMainMenu();
         }

@@ -83,7 +83,10 @@ public partial class PauseMenu : MenuBase, IMenu
 
     public override void _Input(InputEvent @event)
     {
-        if (!Input.IsActionJustPressed("ui_cancel")) return;
+        // проверяем само событие: Input.IsActionJustPressed весь кадр возвращает true, а _Input
+        // за кадр может вызваться несколько раз (Esc и движение мыши при смене MouseMode) —
+        // меню закрывалось и тут же открывалось снова (B-39)
+        if (!@event.IsActionPressed("ui_cancel")) return;
         //меню паузы загружается раньше уровня
         if (global.player == null) 
         {

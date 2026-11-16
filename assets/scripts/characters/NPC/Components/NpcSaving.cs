@@ -125,7 +125,9 @@ public partial class NpcSaving(NPC npc)
                 var callable = connectionDict["callable"].AsCallable();
                 var boundCall = callable.Target as BoundCall;
                 var target = boundCall != null ? boundCall.Target : callable.Target as Node;
-                if (target == null || target == npc) continue;
+                //в Godot 3 подключение к удалённому объекту исчезало само, а BoundCall живёт отдельно
+                //от цели: после удаления цели (например, сработавшего триггера) подключение остаётся (B-37)
+                if (!GodotObject.IsInstanceValid(target) || target == npc) continue;
                 var signalName = signalDict["name"].ToString();
                 if (skipSignals.Contains(signalName)) continue;
 

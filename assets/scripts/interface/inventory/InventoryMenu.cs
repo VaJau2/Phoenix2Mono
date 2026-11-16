@@ -112,7 +112,7 @@ public partial class InventoryMenu : Control, IMenu
         mode.UpdateInput(@event);
 
         if (!(@event is InputEventKey)) return;
-        if (Input.IsActionJustPressed("inventory")) 
+        if (@event.IsActionPressed("inventory")) // само событие, а не состояние за кадр (B-39) 
         {
             if (isOpen) 
             {

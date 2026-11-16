@@ -18,7 +18,7 @@ public partial class Skip : Control
     {
         if (!isActive) return;
         
-        if (Input.IsActionJustPressed("jump"))
+        if (@event.IsActionPressed("jump"))
         {
             if (Visible)
             {
