@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dr1ewd05y075b" path="res://assets/audio/radio/Switch.ogg" id="6"]
 [ext_resource type="Texture2D" uid="uid://7scpt7ln5lyc" path="res://assets/textures/interface/icons/unicorn.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://g5wcaiuvpb0s" path="res://assets/textures/interface/icons/earthpony.png" id="8"]
+[ext_resource type="Script" uid="uid://dyam8xy5yvyaa" path="res://assets/scripts/interface/Menus/Saving/SaveFileValidation.cs" id="8_jq505"]
 [ext_resource type="Texture2D" uid="uid://dhp8t11p53i14" path="res://assets/textures/interface/icons/pegasus.png" id="9"]
 [ext_resource type="PackedScene" uid="uid://cmembx31ffops" path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://ct4gvvjkj7ef7" path="res://assets/textures/interface/bg_pic/bg_dust.png" id="11"]
@@ -70,7 +71,7 @@ offset_left = -92.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.0-dev.1"
+text = "v1.4.0-dev.2"
 
 [node name="particles" type="GPUParticles2D" parent="." unique_id=72361748 groups=["ignore_color"]]
 position = Vector2(448, 304)
@@ -320,6 +321,9 @@ theme = ExtResource("1")
 text = "autosave"
 placeholder_text = "заполните название автосохранения"
 alignment = 1
+
+[node name="validation" type="Node" parent="ChooseAutosaveName/input" unique_id=1343210174]
+script = ExtResource("8_jq505")
 
 [node name="next" type="Button" parent="ChooseAutosaveName" unique_id=523002821]
 layout_mode = 0
@@ -868,6 +872,7 @@ bus = &"Music"
 [connection signal="mouse_entered" from="ChooseAutosaveName/back" to="." method="_on_mouse_entered" binds= ["main", "chooseBack"]]
 [connection signal="mouse_exited" from="ChooseAutosaveName/back" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ChooseAutosaveName/back" to="." method="_on_back_pressed"]
+[connection signal="text_changed" from="ChooseAutosaveName/input" to="ChooseAutosaveName/input/validation" method="_on_input_text_changed"]
 [connection signal="mouse_entered" from="ChooseAutosaveName/next" to="." method="_on_mouse_entered" binds= ["main", "chooseNext"]]
 [connection signal="mouse_exited" from="ChooseAutosaveName/next" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ChooseAutosaveName/next" to="." method="_on_autosave_next_pressed"]

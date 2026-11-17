@@ -38,6 +38,15 @@ project/assembly_name="Phoenix 2 Mono"
 
 convert_text_resources_to_binary_on_export=true
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://assets/scripts/": "green",
+"res://objects/": "orange",
+"res://scenes/": "purple"
+}
+
 [importer_defaults]
 
 texture={

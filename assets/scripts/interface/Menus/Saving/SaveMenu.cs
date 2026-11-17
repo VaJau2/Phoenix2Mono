@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -102,19 +101,12 @@ public partial class SaveMenu : Control
         lineEdit.EmitSignal("text_changed", fileName);
     }
 
-    private static bool IsValidFilename(string line)
-    {
-        var forbiddenChars = new[] {':', '/', '\\', '?', '*', '\"', '|', '%', '<', '>'};
-        var lineArray = line.ToCharArray();
-        return !forbiddenChars.Any(tempLineChar => lineArray.Any(tempCheckChar => tempLineChar == tempCheckChar));
-    }
-
     public void _on_LineEdit_text_changed(string newText)
     {
         var textNotEmpty = newText.Length > 0;
         if (textNotEmpty)
         {
-            if (!IsValidFilename(newText))
+            if (!SaveFileValidation.IsValidFilename(newText))
             {
                 int oldCaretPosition = lineEdit.CaretColumn;
                 lineEdit.Text = tempText;
