@@ -98,7 +98,7 @@ offset_left = -92.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.0-dev.2"
+text = "v1.4.0-dev.3"
 
 [node name="background" type="ColorRect" parent="." unique_id=1005156412 groups=["ignore_color"]]
 layout_mode = 0

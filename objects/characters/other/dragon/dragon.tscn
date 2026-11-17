@@ -4139,7 +4139,7 @@ size = Vector3(184.146, 157.6136, 365.096)
 
 [node name="dragon" type="CharacterBody3D" unique_id=226688975 groups=["savable"]]
 collision_layer = 5
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("4")
 StartHealth = 5000
 relation = 3
@@ -4712,7 +4712,7 @@ myPosPath = NodePath("../Armature/Skeleton/BoneAttachment 3/wingR")
 [node name="smash-area" type="Area3D" parent="." unique_id=1845719658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.333096, 0)
 collision_layer = 5
-collision_mask = 4
+collision_mask = 5
 monitorable = false
 script = ExtResource("7")
 eatSound = ExtResource("13")

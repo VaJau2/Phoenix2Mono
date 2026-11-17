@@ -11,6 +11,9 @@ public partial class DragonMouth : Area3D
     private NpcAudio audi;
     private DragonBody body;
     private Character enemyInMouth;
+    //слой и маска схваченного — вернуть их, когда дракон его отпустит
+    private uint enemyCollisionLayer;
+    private uint enemyCollisionMask;
     private float enemyMouthTimer;
     private float mouthCooldown;
     private float damageTimer = 3f;
@@ -57,6 +60,8 @@ public partial class DragonMouth : Area3D
                 pegasus.IsFlying = pegasus.IsFlyingFast = false;
             }
 
+            enemyCollisionLayer = character.CollisionLayer;
+            enemyCollisionMask = character.CollisionMask;
             character.CollisionLayer = 0;
             character.CollisionMask = 0;
             character.TakeDamage(npc, DragonBody.MOUTH_DAMAGE);
@@ -127,8 +132,8 @@ public partial class DragonMouth : Area3D
         }
         
         enemyInMouth.SetMayMove(true);
-        enemyInMouth.CollisionLayer = 1;
-        enemyInMouth.CollisionMask = 1;
+        enemyInMouth.CollisionLayer = enemyCollisionLayer;
+        enemyInMouth.CollisionMask = enemyCollisionMask;
         enemyInMouth.RotationDegrees = new Vector3(0, enemyInMouth.RotationDegrees.Y, 0);
         enemyInMouth.impulse = -npc.GlobalTransform.Basis.Z * 3 + new Vector3(0, -2, 0);
         enemyInMouth = null;
