@@ -9,14 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://7scpt7ln5lyc" path="res://assets/textures/interface/icons/unicorn.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://g5wcaiuvpb0s" path="res://assets/textures/interface/icons/earthpony.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://dhp8t11p53i14" path="res://assets/textures/interface/icons/pegasus.png" id="9"]
-[ext_resource type="PackedScene" path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://cmembx31ffops" path="res://objects/interface/menus/saves/LoadSaveMenu.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://ct4gvvjkj7ef7" path="res://assets/textures/interface/bg_pic/bg_dust.png" id="11"]
-[ext_resource type="Material" path="res://assets/materials/shaders/godrays.tres" id="12"]
+[ext_resource type="Material" uid="uid://cgr3fd8ng5qud" path="res://assets/materials/shaders/godrays.tres" id="12"]
 [ext_resource type="AudioStream" uid="uid://bcr0u0trdx2pn" path="res://assets/audio/music/mainMenu.ogg" id="13"]
 [ext_resource type="Theme" uid="uid://bcd4ups7bv135" path="res://assets/materials/fonts/big_text_theme.tres" id="14"]
 [ext_resource type="Theme" uid="uid://c0iqoe5jj3bio" path="res://assets/materials/fonts/text_theme.tres" id="15"]
 [ext_resource type="Script" uid="uid://dhfu8qyyoshb6" path="res://assets/scripts/interface/MenuAudi.cs" id="16"]
-[ext_resource type="PackedScene" path="res://objects/interface/menus/TestingLevelsMenu.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://dhvcxr6pxpj8l" path="res://objects/interface/menus/TestingLevelsMenu.tscn" id="17"]
 
 [sub_resource type="Curve" id="1"]
 _data = [Vector2(0, 0.454545), 0.0, 1.71599, 0, 0, Vector2(1, 0.0909091), -4.12208, 0.0, 0, 0]
@@ -32,15 +32,13 @@ emission_shape = 3
 emission_box_extents = Vector3(500, 300, 500)
 direction = Vector3(-90, 0, 0)
 spread = 20.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
 gravity = Vector3(0, 50, 0)
+scale_min = 2.0
+scale_max = 2.0
 scale_curve = SubResource("2")
 color = Color(0.407843, 0.384314, 0.305882, 1)
-initial_velocity_min = 50
-initial_velocity_max = 50
-orbit_velocity_min = 0
-orbit_velocity_max = 0
-scale_min = 2
-scale_max = 2
 
 [node name="MainMenu" type="Control" unique_id=1754875073 groups=["ignore_color"]]
 process_mode = 3
@@ -48,6 +46,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2")
 
 [node name="bgPic" type="TextureRect" parent="." unique_id=1544717062 groups=["ignore_color"]]
@@ -650,9 +650,15 @@ offset_bottom = 128.0
 
 [node name="Load" parent="." unique_id=124139481 instance=ExtResource("10")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Testing" parent="." unique_id=621448599 instance=ExtResource("17")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="About" type="Control" parent="." unique_id=1904516486 groups=["ignore_color"]]
 visible = false

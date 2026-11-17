@@ -5,12 +5,12 @@
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "fence"
 _surfaces = [{
-"material": ExtResource("1"),
 "aabb": AABB(-5.99974, -0.03648281, -0.14201277, 11.99948, 3.9596958, 0.28402555),
 "attribute_data": PackedByteArray("AGCkPgCADj0A4Hk/AICzPgAAfroAgA49AOB5PwBALD8AgDM5AICyPgBgpD4AIG09AGAXOQBgLT8AAH66ACBtPQCAFzkA4H8/AIAzOQCgpj4AYBc5AICzPgBgpD4AYA09AIAXOQBALD8A4Hk/AICyPgAAfroAYA09AOB5PwBgLT8AYKQ+AAA7PADgeT8A4H8/AOB5PwCgpj4AAH66AAA7PA=="),
 "format": 34359742487,
 "index_count": 30,
 "index_data": PackedByteArray("AAAHAAIAAAAFAAcABgARAAgABgAPABEAEAAOABMAEAALAA4ACgADAAwACgABAAMAEgAEAAkAEgANAAQA"),
+"material": ExtResource("1"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 20,

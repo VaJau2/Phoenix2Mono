@@ -81,28 +81,48 @@ public partial class PauseMenu : MenuBase, IMenu
         saveButton.Disabled = LevelsLoader.tempLevelNum == 0;
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _Process(double delta)
     {
-        // проверяем само событие: Input.IsActionJustPressed весь кадр возвращает true, а _Input
-        // за кадр может вызваться несколько раз (Esc и движение мыши при смене MouseMode) —
-        // меню закрывалось и тут же открывалось снова (B-39)
-        if (!@event.IsActionPressed("ui_cancel")) return;
-        //меню паузы загружается раньше уровня
-        if (global.player == null) 
+        if (Input.IsActionJustPressed("ui_cancel"))
         {
+            //меню паузы загружается раньше уровня
+            if (global.player == null) 
+            {
+                return;
+            }
+            
+            if (Visible)
+            {
+                CloseMenuByButton();
+            } 
+            else 
+            {
+                MenuManager.TryToOpenMenu(this, true);
+            }
+        }
+    }
+
+    private void CloseMenuByButton()
+    {
+        if (settingsMenu.Visible)
+        {
+            settingsMenu.CloseMenu();
             return;
         }
-            
-        if (Visible) 
+
+        if (loadMenu.Visible)
         {
             loadMenu.Visible = false;
-            saveMenu.Visible = false;
-            MenuManager.CloseMenu(this);
-        } 
-        else 
-        {
-            MenuManager.TryToOpenMenu(this, true);
+            return;
         }
+
+        if (saveMenu.Visible)
+        {
+            saveMenu.Visible = false;
+            return;
+        }
+        
+        MenuManager.CloseMenu(this);
     }
     
     public void _on_back_Pressed()

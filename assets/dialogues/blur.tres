@@ -8,7 +8,8 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform float blur_amount : hint_range(0, 5);
 
 void fragment() {
-	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
+	// альфа копии экрана после 3D-рендера в Godot 4 равна 0 — берём только цвет, фон непрозрачный
+	COLOR = vec4(textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount).rgb, 1.0);
 }"
 
 [resource]
