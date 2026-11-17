@@ -30,8 +30,10 @@ public static class MenuManager
                 return false;
             }
         }
+        
         openedMenu = menu;
         menu.OpenMenu();
+        
         return true;
     }
 

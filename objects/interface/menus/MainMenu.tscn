@@ -59,6 +59,19 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="devVersion" type="Label" parent="." unique_id=1018992177]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v1.4.0-dev.1"
+
 [node name="particles" type="GPUParticles2D" parent="." unique_id=72361748 groups=["ignore_color"]]
 position = Vector2(448, 304)
 amount = 100
