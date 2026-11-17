@@ -60,19 +60,6 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="devVersion" type="Label" parent="." unique_id=1018992177]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -92.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "v1.4.0-dev.2"
-
 [node name="particles" type="GPUParticles2D" parent="." unique_id=72361748 groups=["ignore_color"]]
 position = Vector2(448, 304)
 amount = 100
@@ -99,6 +86,19 @@ material = ExtResource("12")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="--devVersion" type="Label" parent="." unique_id=1018992177]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v1.4.0-dev.2"
 
 [node name="background" type="ColorRect" parent="." unique_id=1005156412 groups=["ignore_color"]]
 layout_mode = 0
@@ -216,9 +216,10 @@ theme = ExtResource("1")
 text = "               [Настройки]"
 alignment = 0
 
-[node name="about" type="Button" parent="." unique_id=85396808]
+[node name="exit" type="Button" parent="." unique_id=492555247]
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
@@ -226,20 +227,6 @@ offset_left = 40.0
 offset_top = 12.0
 offset_right = -64.0
 offset_bottom = 37.0
-theme = ExtResource("1")
-text = "               [Об игре]"
-alignment = 0
-
-[node name="exit" type="Button" parent="." unique_id=492555247]
-visible = false
-layout_mode = 0
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = 44.0
-offset_right = -64.0
-offset_bottom = 69.0
 theme = ExtResource("1")
 text = "               [Выйти]"
 alignment = 0
@@ -677,62 +664,6 @@ layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="About" type="Control" parent="." unique_id=1904516486 groups=["ignore_color"]]
-visible = false
-anchors_preset = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="background" type="ColorRect" parent="About" unique_id=391651353 groups=["ignore_color"]]
-material = ExtResource("5")
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="background2" type="ColorRect" parent="About" unique_id=803221537 groups=["ignore_color"]]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.588235)
-
-[node name="page_label" type="Label" parent="About" unique_id=1403503582]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 20.0
-offset_right = 215.0
-offset_bottom = 42.0
-theme = ExtResource("1")
-text = "/Phoenix2/Главное_меню/Об_игре"
-
-[node name="about_label" type="Label" parent="About" unique_id=1290601612]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -412.0
-offset_top = -140.0
-offset_right = 174.0
-offset_bottom = 4.0
-theme = ExtResource("1")
-text = "Игра разработана в ходе участия в Шестом Общетабунском Конкурсе Игростроения.
-
-Автор игры: VaJa72
-Композитор треков и просто хороший человек: Phelanhik
-
-Озвучено с использованием сервиса 15.ai
-
-2020"
-
-[node name="back" type="Button" parent="About" unique_id=1901997928]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 100.0
-offset_right = 384.0
-offset_bottom = 125.0
-theme = ExtResource("1")
-text = "[Назад]"
-
 [node name="modalError" type="Control" parent="." unique_id=1610567183 groups=["ignore_color"]]
 visible = false
 anchors_preset = 0
@@ -860,9 +791,6 @@ bus = &"Music"
 [connection signal="mouse_entered" from="settings" to="." method="_on_mouse_entered" binds= ["main", "chooseSettings"]]
 [connection signal="mouse_exited" from="settings" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
-[connection signal="mouse_entered" from="about" to="." method="_on_mouse_entered" binds= ["main", "chooseAbout"]]
-[connection signal="mouse_exited" from="about" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="about" to="." method="_on_about_pressed"]
 [connection signal="mouse_entered" from="exit" to="." method="_on_mouse_entered" binds= ["main", "chooseExit"]]
 [connection signal="mouse_exited" from="exit" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
@@ -890,7 +818,4 @@ bus = &"Music"
 [connection signal="mouse_exited" from="ChangeRace/pegasus/selectArea" to="." method="_on_selectArea_mouse_exited"]
 [connection signal="BackPressed" from="Load" to="." method="_on_back_pressed"]
 [connection signal="BackPressed" from="Testing" to="." method="_on_back_pressed"]
-[connection signal="mouse_entered" from="About/back" to="." method="_on_mouse_entered" binds= ["main", "chooseBack"]]
-[connection signal="mouse_exited" from="About/back" to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="About/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="modalError/back/OK" to="." method="_on_error_OK_pressed"]

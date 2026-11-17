@@ -13,7 +13,6 @@ public partial class MainMenu : MenuBase
     Control changeRaceMenu;
     LoadMenu loadMenu;
     TestingLevelsMenu testingLevelsMenu;
-    Control aboutMenu;
 
     Control chooseLanguage;
     Control label5;
@@ -23,13 +22,8 @@ public partial class MainMenu : MenuBase
     Button startButton;
     Button loadButton;
     Button settingsButton;
-    Button aboutButton;
     Button exitButton;
     Button testingButton;
-
-    Label aboutPage;
-    Label aboutLabel;
-    Button aboutBack;
 
     Label autosavePage;
     Label autosaveHeader;
@@ -64,14 +58,8 @@ public partial class MainMenu : MenuBase
         startButton = GetNode<Button>("start");
         loadButton = GetNode<Button>("load");
         settingsButton = GetNode<Button>("settings");
-        aboutButton = GetNode<Button>("about");
         exitButton = GetNode<Button>("exit");
         testingButton = GetNode<Button>("testing");
-
-        aboutMenu = GetNode<Control>("About");
-        aboutPage = GetNode<Label>("About/page_label");
-        aboutLabel = GetNode<Label>("About/about_label");
-        aboutBack = GetNode<Button>("About/back");
 
         autosaveMenu = GetNode<Control>("ChooseAutosaveName");
         autosavePage = autosaveMenu.GetNode<Label>("page_label");
@@ -132,7 +120,6 @@ public partial class MainMenu : MenuBase
         startButton.Text = GetMenuText("start");
         loadButton.Text = GetMenuText("load");
         settingsButton.Text = GetMenuText("settings");
-        aboutButton.Text = GetMenuText("about");
         exitButton.Text = GetMenuText("exit");
         testingButton.Text = GetMenuText("testing");
         
@@ -141,13 +128,6 @@ public partial class MainMenu : MenuBase
         modalOk.Text = InterfaceLang.GetPhrase("saveloadMenu", "modal", "ok");
         loadMenu.LoadInterfaceLanguage();
         testingLevelsMenu.LoadInterfaceLanguage();
-    }
-
-    private void LoadAboutLanguage()
-    {
-        aboutPage.Text = GetMenuText("page", "about");
-        aboutLabel.Text = GetMenuText("label", "about");
-        aboutBack.Text = GetMenuText("back");
     }
 
     private void LoadChooseAutosaveLanguage()
@@ -223,7 +203,6 @@ public partial class MainMenu : MenuBase
         startButton.Visible = true;
         loadButton.Visible = true;
         settingsButton.Visible = true;
-        aboutButton.Visible = true;
         exitButton.Visible = true;
         testingButton.Visible = OS.IsDebugBuild();
     }
@@ -313,13 +292,6 @@ public partial class MainMenu : MenuBase
         SoundClick();
         settingsMenu.OpenMenu(this);
     }
-
-    public void _on_about_pressed()
-    {
-        LoadAboutLanguage();
-        SoundClick();
-        aboutMenu.Visible = true;
-    }
     
     public void _on_testing_pressed()
     {
@@ -339,7 +311,6 @@ public partial class MainMenu : MenuBase
         else
         {
             continueButton.Visible = Global.saveFilesArray.Count > 0;
-            aboutMenu.Visible = false;
             autosaveMenu.Visible = false;
             loadMenu.Visible = false;
             testingLevelsMenu.Visible = false;
