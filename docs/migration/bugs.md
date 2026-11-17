@@ -366,3 +366,15 @@
 - Проба (ZebraBase, дракон через `dragonSpawn.SetActive`, игрок в форме `smash-area`): до правки зона видит только самого дракона, после — и игрока. Смоук-тест всех уровней без ошибок.
 - Попутно (так было и в Godot 3): `DragonMouth.LetMouthEnemyGo` ставил отпущенному игроку слой и маску 1 вместо его 17/81 — после пасти дракона игрок проходил сквозь двери (слой 16) и трупы (слой 7). Теперь при захвате слой и маска схваченного запоминаются и возвращаются. Проба (захват `_on_smasharea_body_entered` в состоянии Attack, отпускание `OnTakeDamage`): 17/81 → в пасти 0/0 → после 17/81 (до правки — 1/1).
 - Проверить в игре: бой с драконом в ZebraBase (хватает игрока пастью, после двух выстрелов отпускает, не пролетает сквозь землю/постройки и не застревает в них); выстрелы плазмой в воду и в обломки стены в театре.
+
+## B-51: При активации стэлс-полигона на Базе Бельгетса будто бы пересоздаётся скрипт триггера испытания Пинки. Ошибками срёт, но при этом внутри игры будто бы всё нормально работает.
+int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack): System.InvalidCastException: Unable to cast object of type 'PinkieStealthTrigger' to type 'Godot.Node3D'.
+<Ошибка C++>  System.InvalidCastException
+<Исходный код C++>:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
+<Трассировка стека>:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
+:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
+:0 @ object System.Runtime.CompilerServices.CastHelpers.ChkCastAny_NoCacheLookup(System.Void*, object)
+VariantUtils.generic.cs:398 @ T Godot.NativeInterop.VariantUtils.ConvertTo<T>(Godot.NativeInterop.godot_variant&)
+LightsCheck_ScriptMethods.generated.cs:54 @ bool LightsCheck.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
+CSharpInstanceBridge.cs:24 @ Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*)
+

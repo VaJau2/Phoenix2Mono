@@ -44,17 +44,17 @@ _subresources={
 "dark-bread": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/props/furniture/trash/dark-bread.tres",
-"use_external/path": "res://assets/models/props/furniture/trash/dark-bread.tres"
+"use_external/path": "uid://dlx58rl01ip06"
 },
 "green": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/props/furniture/trash/green.tres",
-"use_external/path": "res://assets/models/props/furniture/trash/green.tres"
+"use_external/path": "uid://cvqntqil825cn"
 },
 "white-bread": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/props/furniture/trash/white-bread.tres",
-"use_external/path": "res://assets/models/props/furniture/trash/white-bread.tres"
+"use_external/path": "uid://68qc1ye4rb8q"
 }
 }
 }

@@ -1818,6 +1818,9 @@ StartHealth = 120
 weaponCode = "shotgun20"
 relation = 1
 itemCodes = Array[String](["buck"])
+ammoCount = Dictionary[String, int]({
+"ammo20": 10
+})
 triggerConnections = [["../../deadEnemiesCount", "DieEvent", "SetActive", [true]]]
 
 [node name="spawner2" type="Node" parent="triggers/spawners" unique_id=1975993329 groups=["savable"]]
@@ -1859,6 +1862,9 @@ StartHealth = 120
 weaponCode = "shotgun12"
 relation = 1
 itemCodes = Array[String](["healPotion"])
+ammoCount = Dictionary[String, int]({
+"ammo12": 10
+})
 triggerConnections = [["../../deadEnemiesCount", "DieEvent", "SetActive", [true]]]
 
 [node name="position1" type="Node3D" parent="triggers/spawners" unique_id=1120224853]
@@ -2023,6 +2029,9 @@ StartHealth = 120
 weaponCode = "revolver32"
 relation = 2
 itemCodes = Array[String](["manaPotion"])
+ammoCount = Dictionary[String, int]({
+"ammo32": 6
+})
 triggerConnections = [["../duskThanksKill", "DieEvent", "SetActive", [true]], ["../redPunchRotateGun", "TakenDamage", "SetActive", [true]], ["../duskRun", "TakenDamage", "SetActive", [true]], ["../security1DialogueClear", "DieEvent", "SetActive", [true]], ["../securityMareDialogueClear", "DieEvent", "SetActive", [true]]]
 otherTriggerPaths = [NodePath("../redPunchPointingGun"), NodePath("../redDamageTrigger")]
 disactiveTriggerPaths = []

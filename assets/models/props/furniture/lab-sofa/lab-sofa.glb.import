@@ -44,7 +44,7 @@ _subresources={
 "sofa": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/props/furniture/lab-sofa/sofa.tres",
-"use_external/path": "res://assets/models/props/furniture/lab-sofa/sofa.tres"
+"use_external/path": "uid://7rmdrn2ygij2"
 }
 }
 }
