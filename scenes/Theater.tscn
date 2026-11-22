@@ -495,14 +495,19 @@ agent_radius = 1.5
 agent_max_climb = 1.0
 
 [sub_resource type="BoxMesh" id="37"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="38"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="35"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="36"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="CapsuleMesh" id="39"]
+radius = 1.0
 height = 3.0
 
 [node name="Scene" type="Node" unique_id=236308167]

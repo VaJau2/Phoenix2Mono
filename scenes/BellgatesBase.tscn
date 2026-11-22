@@ -515,17 +515,20 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="69"]
 
 [sub_resource type="BoxMesh" id="28"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ConvexPolygonShape3D" id="29"]
 points = PackedVector3Array(-1, -1, -1, -1, -1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="30"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="31"]
 albedo_color = Color(0.643137, 0.137255, 0.137255, 1)
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="32"]
+size = Vector3(2, 2, 2)
 material = SubResource("31")
 
 [sub_resource type="BoxShape3D" id="33"]
@@ -1015,6 +1018,7 @@ agent_height = 4.0
 agent_radius = 1.4
 
 [sub_resource type="BoxMesh" id="132"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="PlaneMesh" id="216"]
 size = Vector2(10, 5)

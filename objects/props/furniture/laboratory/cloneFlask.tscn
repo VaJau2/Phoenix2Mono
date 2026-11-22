@@ -1276,6 +1276,7 @@ _data = {
 }
 
 [sub_resource type="CylinderShape3D" id="16"]
+radius = 1.0
 height = 0.883947
 
 [sub_resource type="CylinderShape3D" id="17"]

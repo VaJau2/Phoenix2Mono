@@ -4,6 +4,7 @@
 [ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/metal.tres" id="2"]
 
 [sub_resource type="BoxShape3D" id="1"]
+size = Vector3(2, 2, 2)
 
 [node name="shell-base" type="RigidBody3D" unique_id=1396047235]
 collision_layer = 1

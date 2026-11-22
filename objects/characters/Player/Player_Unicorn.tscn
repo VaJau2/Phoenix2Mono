@@ -16,9 +16,13 @@ material = ExtResource("10")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="SphereMesh" id="3"]
+radius = 1.0
+height = 2.0
 flip_faces = true
 
 [sub_resource type="SphereMesh" id="4"]
+radius = 1.0
+height = 2.0
 
 [sub_resource type="QuadMesh" id="5"]
 material = ExtResource("10")

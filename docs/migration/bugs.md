@@ -331,7 +331,13 @@
 
 ## B-42: Музыка в театре десинхронизируется - разные динамики играют одну и ту же музыку в чуть разных таймингах (при загрузке) - 🔴
 
-## B-43: Щит единорогов слишком маленький (можно увеличить процент порога урона чтоб он еще лучше работал). Так же еще заметили что кнопки на базе бельгетса тоже уменьшились - 🔴
+## B-43: Щит единорогов слишком маленький (можно увеличить процент порога урона чтоб он еще лучше работал). Так же еще заметили что кнопки на базе бельгетса тоже уменьшились — ✅
+- Причина: сцены хранят только свойства, отличные от значения по умолчанию, а в Godot 4 умолчания у примитивов вдвое меньше: `SphereMesh` радиус 1 → 0.5 (высота 2 → 1), `CubeMesh`/`BoxMesh` 2 → 1, `CylinderMesh` радиусы 1 → 0.5, `CapsuleMesh` радиус 1 → 0.5; то же у форм коллизии — `BoxShape` (полуразмер 1 → 0.5), `SphereShape`/`CylinderShape`/`CapsuleShape` радиус 1 → 0.5. Конвертер умолчания не дописывает. Щит (`Player_Unicorn.tscn`, `shield/first`, `shield/third` — `SphereMesh` без свойств) и кнопки на BellgatesBase (`BoxMesh` без `size`) уменьшились вдвое. `fix_capsules.pl` пересчитал высоту капсул с радиусом 1, но сам радиус не записал — у капсул без `radius` он тоже стал 0.5.
+- Исправление: `tools/fix_primitive_defaults.pl` — для каждого примитива сверяет ресурс с тем же id в версии Godot 3 (родитель коммита автоконвертации `a11f4b5b`) и, если там свойство не было задано, дописывает умолчание Godot 3. 58 свойств в 25 сценах:
+  - меши: щит единорога; кнопки (`objects/props/Button.tscn`, BellgatesBase, PoniesBase, PoniesBase2, SnowBase, Theater, ZebraBase, AfterwarBelllgatesBase); `nuclear.tscn`; `light-base-projector.tscn` (цилиндр); капсулы без радиуса — `plasma.tscn`, Theater, AfterwarBelllgatesBase; сфера и коробки PrewarHome; тестовые сцены;
+  - коллизии (тоже были вдвое меньше): голова игрока `headShape` и зона `exitCheck` (`Player.tscn`), гильзы `shell-base.tscn`, манекены `dummy*.tscn`, `cloneFlask.tscn`, `light-base-projector.tscn`, `terminal-table.tscn`, `wall-terminal.tscn`, терминалы AfterwarBelllgatesBase, триггер `waitInBox` на SnowBase, тестовые сцены.
+  - `PlaneMesh`/`QuadMesh` (умолчания совпадают) и ресурсы, созданные уже в Godot 4, не трогаются. `BoxShape3D` с `extents` (CP, roof, wall-gun) читаются совместимостью Godot 4 (`size = extents * 2`).
+- Проверить в игре: размер щита единорога (вид от первого и третьего лица), кнопки на BellgatesBase и других базах; приседание/вентиляции (голова игрока снова радиусом 1, как в Godot 3); гильзы, манекены в тире.
 
 ## B-44: Успешное прохождение тира не меняет диалог с Дешкой (вроде раньше меняло) - 🔴
 
@@ -367,7 +373,7 @@
 - Попутно (так было и в Godot 3): `DragonMouth.LetMouthEnemyGo` ставил отпущенному игроку слой и маску 1 вместо его 17/81 — после пасти дракона игрок проходил сквозь двери (слой 16) и трупы (слой 7). Теперь при захвате слой и маска схваченного запоминаются и возвращаются. Проба (захват `_on_smasharea_body_entered` в состоянии Attack, отпускание `OnTakeDamage`): 17/81 → в пасти 0/0 → после 17/81 (до правки — 1/1).
 - Проверить в игре: бой с драконом в ZebraBase (хватает игрока пастью, после двух выстрелов отпускает, не пролетает сквозь землю/постройки и не застревает в них); выстрелы плазмой в воду и в обломки стены в театре.
 
-## B-51: При активации стэлс-полигона на Базе Бельгетса будто бы пересоздаётся скрипт триггера испытания Пинки. Ошибками срёт, но при этом внутри игры будто бы всё нормально работает.
+## B-51: При активации стэлс-полигона на Базе Бельгетса будто бы пересоздаётся скрипт триггера испытания Пинки. Ошибками срёт, но при этом внутри игры будто бы всё нормально работает. 🔴
 int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack): System.InvalidCastException: Unable to cast object of type 'PinkieStealthTrigger' to type 'Godot.Node3D'.
 <Ошибка C++>  System.InvalidCastException
 <Исходный код C++>:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)

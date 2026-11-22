@@ -6,12 +6,14 @@
 size = Vector3(0.1331112, 0.366698, 0.335512)
 
 [sub_resource type="BoxMesh" id="33"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="31"]
 albedo_color = Color(0.643137, 0.137255, 0.137255, 1)
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="34"]
+size = Vector3(2, 2, 2)
 material = SubResource("31")
 
 [node name="Button" type="StaticBody3D" unique_id=1778518085]

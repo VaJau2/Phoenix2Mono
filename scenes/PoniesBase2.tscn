@@ -207,8 +207,10 @@ _surfaces = [{
 size = Vector3(61.6306, 2, 50.4422)
 
 [sub_resource type="BoxMesh" id="19"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="20"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="21"]
 _surfaces = [{

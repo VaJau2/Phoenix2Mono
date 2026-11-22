@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dw77hf76le6ju" path="res://assets/scripts/furniture/Interaction/Items/Terminal/Terminal.cs" id="4"]
 
 [sub_resource type="BoxShape3D" id="1"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="2"]
 resource_name = "terminal"

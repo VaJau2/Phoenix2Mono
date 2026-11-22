@@ -358,6 +358,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="234"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="235"]
 resource_name = "terminal"
@@ -392,6 +393,7 @@ texture_filter = 0
 size = Vector3(8.36176, 5.10618, 0.0963806)
 
 [sub_resource type="BoxMesh" id="28"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ConvexPolygonShape3D" id="29"]
 points = PackedVector3Array(-1, -1, -1, -1, -1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1)
@@ -638,6 +640,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="129"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="130"]
 resource_name = "terminal-table"
@@ -726,6 +729,7 @@ agent_height = 4.0
 agent_radius = 1.4
 
 [sub_resource type="CapsuleMesh" id="80"]
+radius = 1.0
 height = 3.0
 
 [node name="Scene" type="Node" unique_id=511274258]

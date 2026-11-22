@@ -10,6 +10,7 @@
 size = Vector3(185.2832, 0.2, 100)
 
 [sub_resource type="BoxMesh" id="3"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(2, 12.79644, 40.0864)

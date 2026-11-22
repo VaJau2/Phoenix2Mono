@@ -6,6 +6,7 @@
 [ext_resource type="Material" path="res://assets/materials/props/furniture/terminal-table.tres" id="4"]
 
 [sub_resource type="BoxShape3D" id="2"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "terminal-table"

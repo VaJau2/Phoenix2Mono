@@ -11,8 +11,11 @@
 [ext_resource type="PhysicsMaterial" path="res://assets/materials/physics/glass.tres" id="9"]
 
 [sub_resource type="CylinderMesh" id="1"]
+top_radius = 1.0
+bottom_radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="2"]
+radius = 1.0
 height = 0.168055
 
 [sub_resource type="ParticleProcessMaterial" id="3"]

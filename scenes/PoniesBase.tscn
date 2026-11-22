@@ -215,6 +215,7 @@ _surfaces = [{
 size = Vector3(11.23484, 0.0996532, 22.3486)
 
 [sub_resource type="BoxMesh" id="19"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="20"]
 _surfaces = [{
@@ -249,8 +250,10 @@ backface_collision = true
 size = Vector3(61.6306, 2, 50.4422)
 
 [sub_resource type="BoxMesh" id="23"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="24"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="25"]
 _surfaces = [{

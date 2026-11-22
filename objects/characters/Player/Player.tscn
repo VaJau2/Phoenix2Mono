@@ -57,6 +57,7 @@ func _process(_delta) -> void:
 "
 
 [sub_resource type="SphereShape3D" id="4"]
+radius = 1.0
 
 [sub_resource type="ConvexPolygonShape3D" id="5"]
 points = PackedVector3Array(0.635, -0.422, -0.46, 0.647, 0.013, -3.206, 0.647, 0.279, -3.206, 0.431, 0.279, -3.206, 0.431, 0.013, -3.206, 0.431, -0.422, -0.46, 0.431, 0.368, -0.46, 0.635, 0.368, -0.46)
@@ -1426,6 +1427,7 @@ size = Vector3(14.18, 13.362, 14.18)
 radius = 100.0
 
 [sub_resource type="SphereShape3D" id="79"]
+radius = 1.0
 
 [node name="Player" type="CharacterBody3D" unique_id=1013020836 groups=["savable"]]
 collision_layer = 17

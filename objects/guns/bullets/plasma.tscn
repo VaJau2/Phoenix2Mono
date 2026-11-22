@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ngwrr0ubklox" path="res://assets/scripts/gun/Bullet.cs" id="3"]
 
 [sub_resource type="CapsuleMesh" id="1"]
+radius = 1.0
 material = ExtResource("2")
 height = 3.0
 

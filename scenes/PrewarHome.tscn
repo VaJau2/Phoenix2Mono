@@ -1072,16 +1072,21 @@ agent_radius = 1.5
 agent_max_climb = 0.3
 
 [sub_resource type="SphereMesh" id="81"]
+radius = 1.0
+height = 2.0
 
 [sub_resource type="PlaneMesh" id="82"]
 
 [sub_resource type="BoxMesh" id="87"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="PlaneMesh" id="93"]
 
 [sub_resource type="BoxMesh" id="100"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="101"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="GDScript" id="83"]
 script/source = "extends AudioStreamPlayer
