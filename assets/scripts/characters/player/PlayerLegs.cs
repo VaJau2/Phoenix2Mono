@@ -169,7 +169,9 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void FrontAreaBodyEntered(Node3D node)
+    //аргумент — Node, а не Node3D: у кнопок-триггеров (StaticBody3D со скриптом от TriggerBase : Node)
+    //C#-объект не Node3D, и приведение к Node3D до вызова метода падает с InvalidCastException
+    public void FrontAreaBodyEntered(Node node)
     {
         //сигнал присылает любое тело, включая GridMap — он не PhysicsBody3D
         if (node is not PhysicsBody3D body || body is Player) return;
@@ -180,7 +182,7 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void FrontAreaBodyExited(Node3D node)
+    public void FrontAreaBodyExited(Node node)
     {
         if (node is not PhysicsBody3D body || body is Player) return;
 
@@ -190,7 +192,7 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void BackAreaBodyEntered(Node3D node)
+    public void BackAreaBodyEntered(Node node)
     {
         //сигнал присылает любое тело, включая GridMap — он не PhysicsBody3D
         if (node is not PhysicsBody3D body || body is Player) return;
@@ -201,7 +203,7 @@ public partial class PlayerLegs : Node
         }
     }
 
-    public void BackAreaBodyExited(Node3D node)
+    public void BackAreaBodyExited(Node node)
     {
         if (node is not PhysicsBody3D body || body is Player) return;
 

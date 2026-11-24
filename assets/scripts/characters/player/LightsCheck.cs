@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 public partial class LightsCheck : Area3D
 {
-    private List<Node3D> myLights = new List<Node3D>();
+    private List<Node> myLights = new List<Node>();
     private int lightI;
 
-    private List<Node3D> myLamps = new List<Node3D>();
+    private List<Node> myLamps = new List<Node>();
     private int lampI;
 
     public bool OnLight;
 
-    public void _on_lightsCheck_body_entered(Node3D body)
+    public void _on_lightsCheck_body_entered(Node body)
     {
         if (body.Name.ToString().Contains("Light"))
         {
@@ -33,7 +33,7 @@ public partial class LightsCheck : Area3D
         }
     }
 
-    public void _on_lightsCheck_body_exited(Node3D body)
+    public void _on_lightsCheck_body_exited(Node body)
     {
         if (body.Name.ToString().Contains("Light") && myLights.Contains(body))
         {

@@ -281,7 +281,7 @@
 - Проба с рендером (BellgatesBase, armor-house): цвета в зеркале совпадают с кадром самой комнаты; выключенное зеркало — серое, освещаемое, как раньше; повторное включение работает. Смоук-тест уровня с `--saves` — только плавающая B-16.
 - Проверить в игре: яркость отражения, зеркало при подходе и уходе.
 
-## B-35: Бинды оружия иногда не работают — 🔴
+## B-35: Бинды оружия иногда не работают — 🟡
 - Уровень / сцена: Любая, чаще всего воспроизводилось: `scenes/Theater.tscn`, кресла `TheaterChair`; `Player.SitOnChair`, `UseHandler.ForceUnwearItem`.
 - Изначально предполагалось что шаги воспроизведения - сесть на кресло в театре с включенными биндами, использовать предмет и дождаться взрыва
 - Но сейчас оно воспроизвелось рандомно само по себе
@@ -339,7 +339,7 @@
   - `PlaneMesh`/`QuadMesh` (умолчания совпадают) и ресурсы, созданные уже в Godot 4, не трогаются. `BoxShape3D` с `extents` (CP, roof, wall-gun) читаются совместимостью Godot 4 (`size = extents * 2`).
 - Проверить в игре: размер щита единорога (вид от первого и третьего лица), кнопки на BellgatesBase и других базах; приседание/вентиляции (голова игрока снова радиусом 1, как в Godot 3); гильзы, манекены в тире.
 
-## B-44: Успешное прохождение тира не меняет диалог с Дешкой (вроде раньше меняло) - 🔴
+## B-44: Успешное прохождение тира не меняет диалог с Дешкой (вроде раньше меняло) - ✅
 
 ## B-45: Перетаскивание карты доступа в инвентарь не дает доступа в двери и вентиляции - видимо карта не добавляется в массив keys когда ты её перетаскиваешь - 🔴
 
@@ -373,14 +373,11 @@
 - Попутно (так было и в Godot 3): `DragonMouth.LetMouthEnemyGo` ставил отпущенному игроку слой и маску 1 вместо его 17/81 — после пасти дракона игрок проходил сквозь двери (слой 16) и трупы (слой 7). Теперь при захвате слой и маска схваченного запоминаются и возвращаются. Проба (захват `_on_smasharea_body_entered` в состоянии Attack, отпускание `OnTakeDamage`): 17/81 → в пасти 0/0 → после 17/81 (до правки — 1/1).
 - Проверить в игре: бой с драконом в ZebraBase (хватает игрока пастью, после двух выстрелов отпускает, не пролетает сквозь землю/постройки и не застревает в них); выстрелы плазмой в воду и в обломки стены в театре.
 
-## B-51: При активации стэлс-полигона на Базе Бельгетса будто бы пересоздаётся скрипт триггера испытания Пинки. Ошибками срёт, но при этом внутри игры будто бы всё нормально работает. 🔴
-int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack): System.InvalidCastException: Unable to cast object of type 'PinkieStealthTrigger' to type 'Godot.Node3D'.
-<Ошибка C++>  System.InvalidCastException
-<Исходный код C++>:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
-<Трассировка стека>:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
-:0 @ int System.Runtime.CompilerServices.CastHelpers.<IsInstanceOf_NoCacheLookup>g____PInvoke|4_0(System.Void*, int, System.Runtime.CompilerServices.ObjectHandleOnStack)
-:0 @ object System.Runtime.CompilerServices.CastHelpers.ChkCastAny_NoCacheLookup(System.Void*, object)
-VariantUtils.generic.cs:398 @ T Godot.NativeInterop.VariantUtils.ConvertTo<T>(Godot.NativeInterop.godot_variant&)
-LightsCheck_ScriptMethods.generated.cs:54 @ bool LightsCheck.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-CSharpInstanceBridge.cs:24 @ Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*)
+## B-51: При активации стэлс-полигона на Базе Бельгетса будто бы пересоздаётся скрипт триггера испытания Пинки. Ошибками срёт, но при этом внутри игры будто бы всё нормально работает — 🟡
+- Уровень / сцена: BellgatesBase, кнопки `triggers/PieStealthTrigger` и `triggers/DashTrainingTrigger` (тир); то же возможно у `stopAlarmButton` (SnowBase, ZebraBase) и `objects/props/Button.tscn`.
+- Фактически: когда игрок подходит к кнопке, в консоли `InvalidCastException: Unable to cast object of type 'PinkieStealthTrigger' (или 'DashTrainingTrigger') to type 'Godot.Node3D'` из `LightsCheck_ScriptMethods.generated.cs` / `PlayerLegs_ScriptMethods.generated.cs`. Скрипт не пересоздаётся — ошибка в зонах игрока, на сами триггеры (и на диалог Дешки из B-44) она не влияет.
+- Причина: кнопки — узлы `StaticBody3D`, а их скрипты унаследованы от `TriggerBase : Node`. C#-объект такого узла имеет тип скрипта и не является `Node3D` (как в B-14). Сигнал `body_entered` в Godot 4 объявлен с `Node3D`; если аргумент обработчика типизирован `Node3D`, сгенерированный код приводит к нему тело **до** вызова метода и падает. В Godot 3 аргумент был `Node`, ошибки не было. Сменить базу `TriggerBase` нельзя — его наследники висят и на обычных `Node`.
+- Исправление: аргумент обработчиков `body_entered`/`body_exited` — `Node` (как у остальных ~60 обработчиков в проекте): `PlayerLegs` (зоны удара копытами), `LightsCheck`, `UnicornLevitation._on_collisionArea_*` (у единорога из-за ошибки не срабатывал `weaponClose` у кнопок — теперь как в Godot 3). Сигналов `area_entered` в проекте нет, поэтому зоны-триггеры (`Area3D` со скриптом от `Node`) не затронуты. Новым обработчикам `body_entered` — аргумент `Node`, а не `Node3D`; в C#-событии `BodyEntered +=` тип не сменить — подключать через `Connect` с `Callable.From<Node>`.
+- Проба (BellgatesBase, игрок ставится вплотную к обеим кнопкам с четырёх сторон): до правки 10 таких исключений, после — 0.
+- Проверить в игре: подойти к кнопкам тира и стэлс-полигона — консоль чистая; удар копытами рядом с кнопкой; единорог с оружием у кнопки.
 
