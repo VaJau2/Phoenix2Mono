@@ -211,7 +211,7 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 
 	private void SyncTimer()
     {
-		if (IsOn) MusicPlayer.Play(Radiostation.timer);
+		if (IsOn) Radiostation.PlaySong(MusicPlayer, Radiostation.timer);
 	}
 
 	private void PlaySwitchSound()
@@ -241,7 +241,8 @@ public partial class Receiver : RadioBase, ISavable, IInteractable
 		
 		MusicPlayer.Stop();
 		MusicPlayer.Stream = stream;
-		MusicPlayer.Play();
+		if (Radiostation != null && stream == Radiostation.song) Radiostation.PlaySong(MusicPlayer, 0);
+		else MusicPlayer.Play();
 
 		EmitSignal(SignalName.ChangeMusicEvent, stream);
 	}

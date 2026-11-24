@@ -46,9 +46,17 @@ public partial class Speaker : RadioBase
         
         if (receiver != null)
         {
-            if (receiver.MusicPlayer.Playing) MusicPlayer.Play(receiver.Radiostation.timer);
+            if (receiver.MusicPlayer.Playing) PlayReceiverMusic();
             else MusicPlayer.Stop();
         }
+    }
+
+    //песня станции — через станцию для синхронизации (B-42)
+    private void PlayReceiverMusic()
+    {
+        var station = receiver.Radiostation;
+        if (MusicPlayer.Stream == station.song) station.PlaySong(MusicPlayer, station.timer);
+        else MusicPlayer.Play(station.timer);
     }
     
     private void OnChangeMusic(AudioStream stream)
@@ -63,7 +71,7 @@ public partial class Speaker : RadioBase
         
         if (receiver != null)
         {
-            MusicPlayer.Play(receiver.Radiostation.timer);
+            PlayReceiverMusic();
         }
     }
 
