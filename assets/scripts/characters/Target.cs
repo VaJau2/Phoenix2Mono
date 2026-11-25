@@ -19,6 +19,11 @@ public partial class Target : Character
     {
         SetStartHealth(newHealth);
         anim.Play(newHealth > 0 ? "Rise" : "Lie");
+        
+        if (newHealth > 0)
+        {
+            IsDead = false;
+        }
     }
     
     public void Off()
