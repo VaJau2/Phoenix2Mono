@@ -1642,8 +1642,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48237, -1.36845, 21.1498)
 
 [node name="after" type="Node3D" parent="terrain/npcPlaces" unique_id=1463645831]
 
-[node name="scientist1" type="Node3D" parent="terrain/npcPlaces/after" unique_id=2130629476]
-transform = Transform3D(0.366306, 0, 0.930494, 0, 1, 0, -0.930494, 0, 0.366306, -9.26288, -3.69855, 34.637)
+[node name="scientist1" type="Node3D" parent="terrain/npcPlaces/after" unique_id=1656827698]
+transform = Transform3D(-0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148, 18.5341, -3.88827, 27.056198)
 
 [node name="bellgates" type="Node3D" parent="terrain/npcPlaces/after" unique_id=1828545323]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.3417, -1.69033, 27.6623)
@@ -1915,11 +1915,8 @@ followPath = "/root/Main/Scene/Player"
 script = ExtResource("13")
 npcPath = "/root/Main/Scene/npc/scientist1"
 goToPlayer = true
-afterDialoguePointPath = NodePath("afterDialogue")
+afterDialoguePointPath = NodePath("../../terrain/npcPlaces/after/scientist1")
 otherDialogueCode = "help"
-
-[node name="afterDialogue" type="Node3D" parent="triggers/scientistDialogue" unique_id=1656827698]
-transform = Transform3D(-0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148, 57.5, 5.35, 42.3)
 
 [node name="afterScientistDialogue" type="Node" parent="triggers" unique_id=2119042196 groups=["savable"]]
 script = ExtResource("34")
@@ -1946,12 +1943,9 @@ shape = SubResource("28")
 script = ExtResource("13")
 onlyChangeCode = true
 npcPath = "../../npc/scientist1"
-dialogueStartPointPath = NodePath("point")
-afterDialoguePointPath = NodePath("point")
+dialogueStartPointPath = NodePath("../../terrain/npcPlaces/after/scientist1")
+afterDialoguePointPath = NodePath("../../terrain/npcPlaces/after/scientist1")
 otherDialogueCode = "help"
-
-[node name="point" type="Node3D" parent="triggers/changeScientistDialogue" unique_id=387787320]
-transform = Transform3D(-0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, -0.978148, 57.5, 5.35, 42.3)
 
 [node name="corridorSpawner" type="Area3D" parent="triggers" unique_id=975055140 groups=["savable"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -57.7078, 6.33781, -24.203)
