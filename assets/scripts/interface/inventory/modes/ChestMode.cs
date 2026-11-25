@@ -278,12 +278,9 @@ public partial class ChestMode: InventoryMode
         base.CheckDragItem();
         
         if (tempItemData == null) return;
-        
-        if (GetDragInButton(inventoryButtons, "inventory") != null) 
-        { 
-            TakeItemFromChest(); 
-            return; 
-        }
+
+        //перенос из сундука в инвентарь уже сделал base.CheckDragItem (ключи и событие взятия — в ChangeItemButtons)
+        if (GetDragInButton(inventoryButtons, "inventory") != null) return;
         
         if (tempItemData.ContainsKey("questItem"))
         {
@@ -416,13 +413,48 @@ public partial class ChestMode: InventoryMode
         {
             bindsHandler.ClearBind(oldButton);
         }
-        
+
+        //все переносы между сундуком и инвентарём (клик, драггинг, обмен местами) идут через этот метод,
+        //поэтому ключи и событие взятия обрабатываются здесь (B-45: при драггинге предмет переносит
+        //base.CheckDragItem, и проверки в TakeItemFromChest не вызывались)
+        string oldItem = oldButton.myItemCode;
+        string newItem = newButton.myItemCode;
+        bool toInventory   = chestButtons.Contains(oldButton) && inventoryButtons.Contains(newButton);
+        bool fromInventory = inventoryButtons.Contains(oldButton) && chestButtons.Contains(newButton);
+
+        //ключи убираем до обмена: RemoveKey считает копии, ещё лежащие в инвентаре
+        if (fromInventory) RemoveKeyFromInventory(oldItem);
+        if (toInventory) RemoveKeyFromInventory(newItem);
+
         base.ChangeItemButtons(oldButton, newButton);
+
+        if (toInventory) OnItemTakenFromChest(oldItem);
+        if (fromInventory) OnItemTakenFromChest(newItem);
 
         if (chestButtons.Contains(oldButton) || chestButtons.Contains(newButton))
         {
             UpdateChestPositions();
         }
+    }
+
+    private void RemoveKeyFromInventory(string itemCode)
+    {
+        if (itemCode != null && itemCode.Contains("key"))
+        {
+            inventory.RemoveKey(itemCode);
+        }
+    }
+
+    private void OnItemTakenFromChest(string itemCode)
+    {
+        if (itemCode == null) return;
+
+        if (itemCode.Contains("key"))
+        {
+            inventory.AddKey(itemCode);
+        }
+
+        tempChest.ChestHandler.TakeItem(itemCode);
     }
 
     protected override void MoveTempItem()
@@ -479,23 +511,12 @@ public partial class ChestMode: InventoryMode
 
     private void PlaceTempItemToChest(ItemIcon chestButton)
     {
-        if (tempButton.myItemCode.Contains("key")) 
-        {
-            inventory.RemoveKey(tempButton.myItemCode);
-        }
-        
         ChangeItemButtons(tempButton, chestButton);
         SetTempButton(null);
     }
 
     private void TakeItemFromChest(ItemIcon chestButton, ItemIcon inventoryButton)
     {
-        if (chestButton.myItemCode.Contains("key")) 
-        {
-            inventory.AddKey(chestButton.myItemCode);
-        }
-        
-        tempChest.ChestHandler.TakeItem(chestButton.myItemCode);
         ChangeItemButtons(chestButton, inventoryButton);
         
         if (chestButton == tempButton)
