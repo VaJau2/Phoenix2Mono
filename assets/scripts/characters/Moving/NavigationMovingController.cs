@@ -68,8 +68,8 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
         }
         
         CheckMovablePath();
-        
-        if (path == null || !IsTargetsSame(target))
+
+        if (path == null || IsTargetMoved(target))
         {
             pathI = 0;
             path = NavigationServer3D.MapGetPath(
@@ -103,7 +103,14 @@ public partial class NavigationMovingController: BaseMovingController, ISavable
         }
     }
 
-    private bool IsTargetsSame(Vector3 target) => target.DistanceTo(tempTarget) < 0.01f;
+    //путь пересчитывается, только если цель сместилась заметно. Раньше порог был 1 см: за движущейся целью
+    //(игрок в FollowState/AttackState) путь строился заново каждый кадр с pathI = 0, а path[0] — это позиция
+    //самого NPC, MoveTo до неё сразу «доходит» и скорость не меняет — NPC стоял, пока цель двигалась (B-52).
+    //Игрок двигается в _PhysicsProcess, NPC — в _Process: при FPS выше частоты физики часть кадров видела
+    //ту же позицию игрока, путь успевал пройти дальше path[0] — поэтому на быстрых машинах баг проявлялся реже
+    private const float TARGET_MOVED_DISTANCE = 1f;
+    
+    private bool IsTargetMoved(Vector3 target) => target.DistanceTo(tempTarget) > TARGET_MOVED_DISTANCE;
 
     private Vector3 GetLastPoint(Vector3 target)
     {
