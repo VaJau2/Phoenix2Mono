@@ -67,10 +67,8 @@ public partial class FollowState(
 
     private void FollowTarget()
     {
-        //игрок вошёл в stopArea NPC (зона в 4–6 м перед ним; с учётом тела игрока — до ~7.5 м): GoTo останавливает
-        //NPC, но «дошёл» засчитывает только ближе ComeDistance * 2 (6 м) — NPC стоял перед игроком и не начинал
-        //диалог (DialogueTrigger ждёт IsCame), а когда игрок отходил, снова бежал за ним (B-36).
-        //Остановился перед игроком — значит дошёл
+        //остановился перед игроком (stopArea) — значит дошёл: иначе GoTo не засчитывал приход
+        //дальше 6 м, и диалог не начинался (B-36)
         if (movingController.stopAreaEntered && tempNpc.followTarget is Player)
         {
             movingController.FinishGoingTo();

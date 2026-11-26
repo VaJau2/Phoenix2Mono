@@ -43,7 +43,7 @@ public partial class RoboEyeIdleState(
     {
         movingController.GoTo(npc.myStartPos, 0, movingController.RunToPoint);
         
-        if (movingController.cameToPlace)
+        if (movingController.cameToPlace && !movingController.IsBlockedNearTarget)
         {
             npc.GlobalPosition = npc.myStartPos;
             npc.Rotation = new Vector3(0, npc.myStartRot.Y, 0);

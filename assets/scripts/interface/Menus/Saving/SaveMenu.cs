@@ -190,10 +190,8 @@ public partial class SaveMenu : Control
 
     public void SaveGame(string fileName, SceneTree tree)
     {
-        //данные игровых объектов
-        //собираются до открытия файла: исключение посреди записи оставляло обрезанный файл,
-        //который потом не загружался (Parse JSON failed, B-37). Ошибка одного объекта
-        //не мешает сохранить остальные (как при загрузке в LevelsLoader)
+        //данные объектов собираются до открытия файла — исключение посреди записи оставляло обрезанный файл (B-37);
+        //ошибка одного объекта не мешает сохранить остальные
         var objectsData = new Dictionary<string, Dictionary>();
         foreach (Node tempNode in tree.GetNodesInGroup("savable"))
         {

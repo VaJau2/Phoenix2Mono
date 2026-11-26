@@ -497,10 +497,8 @@ public partial class Player : Character
             Fly();
         }
 
-        //при приседании ниже становится только коробка тела. Капсулу (sphereCollider) в Godot 3 тоже
-        //масштабировали по Y, но её узел был повёрнут, и это сужало капсулу спереди назад, а не по высоте;
-        //после перевода капсул на ось Y тот же код сжимал её по высоте, а Jolt не умеет неравномерно
-        //масштабировать капсулы — уменьшал её целиком, игрок проваливался (B-23). Капсула не масштабируется
+        //при приседании ниже становится только коробка тела; капсулу не масштабируем — Jolt уменьшал её
+        //целиком, и игрок проваливался (B-23)
         if (bodyCollider.Scale.Y != bodyColliderSize)
         {
             Vector3 bodyScale = bodyCollider.Scale;
@@ -585,9 +583,8 @@ public partial class Player : Character
         ragdollPusher.Push(hvel);
     }
 
-    //толкание физических предметов (выпавшее оружие, сумки, гильзы). В Godot 3 move_and_slide
-    //с бесконечной инерцией расталкивал их сам, в Godot 4 персонаж просто упирается в RigidBody3D —
-    //скорость предмета подтягивается к скорости игрока (B-28). Трупы (PhysicalBone3D) толкает PlayerRagdollPusher
+    //толкание физических предметов: в Godot 4 нет бесконечной инерции, скорость предмета подтягивается
+    //к скорости игрока (B-28); трупы толкает PlayerRagdollPusher
     private void PushRigidBodies(Vector3 moveVelocity)
     {
         float speed = moveVelocity.Length();

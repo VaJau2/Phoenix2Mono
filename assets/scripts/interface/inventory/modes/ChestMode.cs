@@ -414,9 +414,8 @@ public partial class ChestMode: InventoryMode
             bindsHandler.ClearBind(oldButton);
         }
 
-        //все переносы между сундуком и инвентарём (клик, драггинг, обмен местами) идут через этот метод,
-        //поэтому ключи и событие взятия обрабатываются здесь (B-45: при драггинге предмет переносит
-        //base.CheckDragItem, и проверки в TakeItemFromChest не вызывались)
+        //все переносы между сундуком и инвентарём идут через этот метод — ключи и событие взятия обрабатываются здесь
+        //(B-45: при драггинге проверки в TakeItemFromChest не вызывались)
         string oldItem = oldButton.myItemCode;
         string newItem = newButton.myItemCode;
         bool toInventory   = chestButtons.Contains(oldButton) && inventoryButtons.Contains(newButton);

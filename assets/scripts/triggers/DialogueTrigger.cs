@@ -13,10 +13,8 @@ public partial class DialogueTrigger : TriggerBase
     [Export] public NodePath afterDialoguePointPath;
     [Export] public float dialogueStartTimer;
     
-    // По-умолчанию тут стоит "Null", т.е. триггер не меняет диалоги непися
-    // Если нужно, чтобы коды очищались, нужно стереть "Null" (в сцене — otherDialogueCode = "")
-    // В Godot 3 по умолчанию был null, но Godot 4 считает пустую строку значением по умолчанию
-    // и выбрасывает её из сцены при пересохранении — очистка молча пропадала (B-38)
+    // "Null" — триггер не меняет диалоги непися; чтобы очистить коды, стереть "Null" (otherDialogueCode = "")
+    // Не null по умолчанию: Godot 4 выбрасывает пустую строку из сцены, и очистка пропадала (B-38)
     public const string KeepCode = "Null";
     
     [Export] public string otherDialogueCode = KeepCode;

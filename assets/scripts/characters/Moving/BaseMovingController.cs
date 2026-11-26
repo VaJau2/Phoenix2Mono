@@ -11,6 +11,12 @@ public partial class BaseMovingController : Node
     public override void _Ready()
     {
         character = GetParent<Character>();
+
+        //в Godot 4 упор в стену почти в лоб (<15°) гасит движение, в Godot 3 тело скользило — NPC шагали на месте (B-53)
+        if (character is NPC)
+        {
+            character.WallMinSlideAngle = 0;
+        }
     }
 
     public override void _Process(double delta)
@@ -29,9 +35,8 @@ public partial class BaseMovingController : Node
 
     private const float STEP_HEIGHT = 0.3f;
 
-    //подъём на низкое препятствие (порожек двери и т. п.). Коллизия NPC — коробки с плоским дном: в Jolt
-    //они упираются в ступеньку даже в несколько сантиметров (контакт с горизонтальной нормалью), а в Godot 3
-    //физика выталкивала коробку на ребро вверх (B-27)
+    //подъём на низкий порожек: в Jolt коробка-коллизия NPC упирается даже в сантиметровую ступеньку,
+    //в Godot 3 её выталкивало вверх (B-27)
     private void StepUpLowObstacle()
     {
         var horizontal = new Vector3(character.Velocity.X, 0, character.Velocity.Z);
@@ -88,7 +93,11 @@ public partial class BaseMovingController : Node
     {
         var rotA = character.Transform.Basis.GetRotationQuaternion().Normalized();
         var rotB = character.Transform.LookingAt(place, Vector3.Up).Basis.GetRotationQuaternion().Normalized();
-        var tempRotation = rotA.Slerp(rotB, RotationSpeed);
+        //RotationSpeed — доля поворота за кадр при 60 FPS; пересчёт по delta, чтобы на 144 Гц не поворачивать резче
+        var weight = RotationSpeed >= 1f
+            ? 1f
+            : 1f - Mathf.Pow(1f - RotationSpeed, (float)GetProcessDeltaTime() * 60f);
+        var tempRotation = rotA.Slerp(rotB, weight);
 
         var oldScale = character.Scale;
         Transform3D tempTransform = character.Transform;

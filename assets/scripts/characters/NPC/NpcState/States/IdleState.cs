@@ -80,6 +80,9 @@ public partial class IdleState(
         
         if (movingController.cameToPlace)
         {
+            //упёрся в стоящего у точки персонажа — ждёт, а не телепортируется сквозь него (B-53)
+            if (movingController.IsBlockedNearTarget) return;
+
             if (!isTeleported)
             {
                 npc.GlobalPosition = npc.myStartPos;
