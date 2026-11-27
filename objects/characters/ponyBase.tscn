@@ -5256,8 +5256,8 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 39.999996
 joint_constraints/angular_limit_lower = -39.999996
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
-joint_constraints/angular_limit_relaxation = 16.0
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone back_2" unique_id=633585598]
 transform = Transform3D(1, -3.55271e-15, -1.98952e-13, 1.77636e-15, 1, -3.72529e-09, 1.98952e-13, 0, 1, 9.31323e-08, -0.0213661, -0.437457)

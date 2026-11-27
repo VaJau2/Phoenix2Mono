@@ -4379,7 +4379,7 @@ joint_constraints/angular_limit_upper = 90.0
 joint_constraints/angular_limit_lower = -90.0
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
-joint_constraints/angular_limit_relaxation = 0.5
+joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone body" unique_id=1436833681]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4398,7 +4398,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 19.999998
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone body_2" unique_id=2064528584]
 transform = Transform3D(1, 0, -6.78288e-23, 4.96308e-23, -1.49012e-08, -0.999999, 5.29396e-23, 0.999999, -1.49012e-08, 0, -0.0867549, -0.0874095)
@@ -4416,7 +4416,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 39.999996
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone neck_1" unique_id=188042012]
 transform = Transform3D(1, 1.32349e-23, 2.48154e-23, 0, -7.45058e-09, -1, -2.64698e-23, 1, -7.45058e-09, 0, -0.0983743, -0.0105352)
@@ -4434,7 +4434,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 39.999996
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone neck_2" unique_id=92654062]
 transform = Transform3D(1, 0, -9.92617e-24, -5.29396e-23, 0, -1, 0, 1, 0, 0, -0.0656859, 0.0103951)
@@ -4454,7 +4454,7 @@ joint_constraints/angular_limit_upper = 30.0
 joint_constraints/angular_limit_lower = -30.0
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
-joint_constraints/angular_limit_relaxation = 0.5
+joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone head" unique_id=1788537737]
 transform = Transform3D(0.999999, -3.00352e-08, 2.32831e-10, 1.81608e-08, -2.08616e-07, -0.999999, -3.1665e-08, 1, 5.96046e-08, -0.00456548, 1.47613, -0.823958)
@@ -4472,7 +4472,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 19.999998
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_r" unique_id=1132698927]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4490,7 +4490,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 19.999998
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_l" unique_id=270455231]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4507,8 +4507,8 @@ bone_name = "wing_1_r"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 39.999996
 joint_constraints/bias = 0.3
-joint_constraints/softness = 0.9
-joint_constraints/relaxation = 0.5
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone wing_1_r" unique_id=522665395]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4529,8 +4529,8 @@ bone_name = "wing_2_r"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 24.999998
 joint_constraints/bias = 0.3
-joint_constraints/softness = 0.9
-joint_constraints/relaxation = 0.5
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone wing_2_r" unique_id=1568948235]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4547,8 +4547,8 @@ bone_name = "wing_1_l"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 39.999996
 joint_constraints/bias = 0.3
-joint_constraints/softness = 0.9
-joint_constraints/relaxation = 0.5
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone wing_1_l" unique_id=1754910929]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4569,8 +4569,8 @@ bone_name = "wing_2_l"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 24.999998
 joint_constraints/bias = 0.3
-joint_constraints/softness = 0.9
-joint_constraints/relaxation = 0.5
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone wing_2_l" unique_id=1334136352]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4588,7 +4588,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 19.999998
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_3_r" unique_id=604107188]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4606,7 +4606,7 @@ joint_constraints/swing_span = 49.999996
 joint_constraints/twist_span = 30.0
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone tail_1" unique_id=301003591]
 transform = Transform3D(1, 0, 2.58494e-26, -1.29247e-26, 0, -1, 0, 1, -9.31323e-10, 0, 0, 0)
@@ -4624,7 +4624,7 @@ joint_constraints/swing_span = 49.999996
 joint_constraints/twist_span = 30.0
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone tail_2" unique_id=636691759]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -4642,7 +4642,7 @@ joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 19.999998
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
-joint_constraints/relaxation = 0.5
+joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_3_l" unique_id=1210728281]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)

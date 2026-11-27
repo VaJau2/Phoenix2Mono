@@ -8234,8 +8234,8 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 39.999996
 joint_constraints/angular_limit_lower = -39.999996
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
-joint_constraints/angular_limit_relaxation = 0.8
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone back_2" unique_id=754062558]
 transform = Transform3D(1, 0, -4.44089e-15, -1.77636e-15, 0, -1, 5.68434e-14, 1, 0, 0, 0, -0.101393)
@@ -8275,7 +8275,7 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 19.999998
 joint_constraints/angular_limit_lower = -49.999996
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
+joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_l" unique_id=958684193]
@@ -8315,7 +8315,7 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 19.999998
 joint_constraints/angular_limit_lower = -49.999996
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
+joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone leg_1_r" unique_id=943459231]
@@ -8355,7 +8355,7 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 90.0
 joint_constraints/angular_limit_lower = -30.0
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
+joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone b_leg_1_l" unique_id=811353605]
@@ -8395,7 +8395,7 @@ joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 90.0
 joint_constraints/angular_limit_lower = -30.0
 joint_constraints/angular_limit_bias = 0.3
-joint_constraints/angular_limit_softness = 0.5
+joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Armature/Skeleton/Physical Bone b_leg_1_r" unique_id=2013464706]
