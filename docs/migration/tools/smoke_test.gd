@@ -12,12 +12,14 @@ extends SceneTree
 #     -s <абсолютный путь к этому файлу> -- [--levels=1,2,5] [--frames=600] [--race=0] [--saves] > smoke.log 2>&1
 # --saves: на каждом уровне F5/F9 (быстрое сохранение и загрузка), в конце — загрузка старых сохранений
 #     Godot 3 из docs/migration/saves. Папка user://saves сохраняется перед тестом и восстанавливается после.
+# Экспортированная версия: "<exe>" --headless --fixed-fps 60 -s <путь к этому файлу> -- --saves --old-saves=<абсолютный путь к docs/migration/saves>
 # --fixed-fps 60 — каждый кадр = 1/60 с игрового времени, независимо от скорости машины.
 
 var levels: Array[int] = []
 var frames := 600
 var race := -1   # индекс расы в DEV-меню; -1 — по очереди для каждого уровня
 var test_saves := false   # --saves: быстрое сохранение/загрузка на каждом уровне + загрузка старых сохранений Godot 3
+var old_saves_dir := "res://docs/migration/saves/"   # --old-saves=<папка>: для экспортированной версии (docs в пак не входит)
 
 func _init() -> void:
 	for a in OS.get_cmdline_user_args():
@@ -30,6 +32,8 @@ func _init() -> void:
 			race = a.substr(7).to_int()
 		elif a == "--saves":
 			test_saves = true
+		elif a.begins_with("--old-saves="):
+			old_saves_dir = a.substr(12).trim_suffix("/") + "/"
 	if levels.is_empty():
 		var json = JSON.parse_string(FileAccess.get_file_as_string("res://scenes/levels.json"))
 		for k in json.keys():
@@ -211,7 +215,7 @@ func _quicksave_quickload(main: Node, level: int) -> void:
 
 # Старые сохранения Godot 3 из docs/migration/saves: подкладываются как quicksave.sav и загружаются F9
 func _old_saves(main: Node) -> void:
-	var dir := "res://docs/migration/saves/"
+	var dir := old_saves_dir
 	for f in DirAccess.get_files_at(dir):
 		if not f.ends_with(".sav"):
 			continue

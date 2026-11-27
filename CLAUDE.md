@@ -1,6 +1,6 @@
 # Phoenix 2 Mono
 
-3D-игра (пони, постапокалипсис) на C#. Основная ветка — **Godot 3.6 Mono**; в ветке `phnx-godot-4-update-2` идёт миграция на **Godot 4.7.2 .NET** (этапы 0–3 выполнены, дальше — тестирование и баги, этап 4).
+3D-игра (пони, постапокалипсис) на C#. Основная ветка — **Godot 3.6 Mono**; в ветке `phnx-godot-4-update-2` идёт миграция на **Godot 4.7.2 .NET** (этапы 0–3 и 5 выполнены; этап 4 — ручная проверка багов 🟡, этап 6 — экспорт и подготовка к слиянию, см. plan.md).
 
 ## Документация
 
@@ -20,6 +20,7 @@
 - Проверка загрузки всех сцен: `docs/migration/tools/load_all_4.gd`; поиск молча потерянных свойств: `docs/migration/tools/check_props.gd`.
 - **Смоук-тест уровней** (после правок кода — обязательно): `... --headless --fixed-fps 60 --path . -s D:/Godot/projects/Phoenix2Mono/docs/migration/tools/smoke_test.gd -- [--levels=1,7] [--frames=900] [--saves] > smoke.log 2>&1` (`--saves` — F5/F9 на каждом уровне и загрузка старых сохранений из `docs/migration/saves`; папка `user://saves` восстанавливается после теста, при аварийном завершении копия остаётся в `user://saves_smoke_backup`), затем `perl docs/migration/tools/smoke_report.pl smoke.log` — ошибки по уровням и месту в коде. Все 12 уровней — ~4 минуты. Предупреждений в чистом прогоне нет (B-56; проверка — `smoke_report.pl smoke.log --warnings`): новые — повод разобраться.
 - **Скриншоты уровней** (визуал, этап 5): `... --path . -s D:/Godot/projects/Phoenix2Mono/docs/migration/tools/screenshot.gd -- [--levels=1,2] [--third] --out=<папка>` — с окном (без `--headless`); эталон Godot 3 — `D:\Godot\projects\phoenix_доп_бекап_7.05.2022\скрины феникса до обновления`.
+- **Экспорт** (этап 6): `... --headless --path . --export-release "Windows Desktop" "<папка>/Phoenix 2 Mono.exe"` (пресет — `export_presets.cfg`, в пак входят `*.json`, `docs/` исключены). Шаблоны экспорта не запускают внешние скрипты (`-s`) и сцены — полноту пака проверяет `docs/migration/tools/check_pack.gd` через `--main-pack` (описание в шапке); FPS по уровням — `perf_test.gd` (с окном).
 - Godot 3 (для сравнения): `D:\Godot\Godot_v3.6.3-stable_mono_win64\Godot_v3.6.3-stable_mono_win64.exe --no-window --path . -s <script.gd>`; вывод в консоль не идёт — перенаправлять в файл.
 - Главная сцена `scenes/Main.tscn`; уровни — `scenes/levels.json`; тестовые сцены `scenes/test/`.
 - Отладка в игре: F1 — лечение, F2 — убить врагов, F3 — убить игрока (`objects/testing/Testing.tscn`).
