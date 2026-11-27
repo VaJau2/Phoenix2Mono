@@ -4,6 +4,8 @@ namespace Effects;
 
 public partial class StealthBoyEffect : Effect
 {
+    private const string SHADOW_META = "stealth_cast_shadow";
+    
     private Player player;
     public StealthBoyEffect()
     {
@@ -37,6 +39,8 @@ public partial class StealthBoyEffect : Effect
 
     private static void ChangeMeshVisibility(MeshInstance3D meshInstance, bool visible)
     {
+        ChangeMeshShadow(meshInstance, visible);
+
         Mesh mesh = meshInstance.Mesh;
         int materialsCount = mesh.GetSurfaceCount();
         for (int i = 0; i < materialsCount; i++)
@@ -50,6 +54,22 @@ public partial class StealthBoyEffect : Effect
             
             Color old = tempMaterial.AlbedoColor;
             tempMaterial.AlbedoColor = new Color(old.R, old.G, old.B, visible ? 1 : 0.1f);
+        }
+    }
+
+    // в Godot 4 прозрачные материалы отбрасывают тень — выключаем её на время эффекта (B-55)
+    private static void ChangeMeshShadow(MeshInstance3D meshInstance, bool visible)
+    {
+        if (!visible)
+        {
+            if (meshInstance.HasMeta(SHADOW_META)) return;
+            meshInstance.SetMeta(SHADOW_META, (int)meshInstance.CastShadow);
+            meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        }
+        else if (meshInstance.HasMeta(SHADOW_META))
+        {
+            meshInstance.CastShadow = (GeometryInstance3D.ShadowCastingSetting)meshInstance.GetMeta(SHADOW_META).AsInt32();
+            meshInstance.RemoveMeta(SHADOW_META);
         }
     }
 
